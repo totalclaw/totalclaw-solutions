@@ -1,0 +1,80 @@
+{
+  "id": "material-to-table",
+  "name": "素材归一 · 统一表格",
+  "icon": "icon-table",
+  "category": "数据整理",
+  "version": "2.0.0",
+  "schemaVersion": 1,
+  "description": "把一个文件夹里不同类型的素材（截图 / 对话截图 / 图片 / excel / csv）自动分组，每组按各自的字段列整理成表格。适合多部门/多类素材混在一起的归集场景。",
+  "runner": "material-table",
+  "source": "bundled",
+  "prefill": [
+    {
+      "key": "folderPath",
+      "label": "素材库文件夹",
+      "hint": "选择要遍历的文件夹，里面的图片/截图/excel 会被逐个自动分组并提取",
+      "type": "folder",
+      "required": true
+    },
+    {
+      "key": "groups",
+      "label": "分组与字段（每组一套列，组提示词用于自动分组）",
+      "hint": "定义若干『组』。每组的提示词描述这类素材长什么样（自动分组靠它判定），每组有自己的字段列。可增删改组与字段。",
+      "type": "groups",
+      "defaultValue": [
+        {
+          "name": "客户·联系人",
+          "hint": "名片、客户资料、聊天里出现的人物/联系方式截图",
+          "fields": [
+            { "name": "姓名", "hint": "联系人姓名", "type": "text", "required": true },
+            { "name": "电话", "hint": "手机/座机", "type": "text" },
+            { "name": "公司", "hint": "所属公司/单位", "type": "text" },
+            { "name": "职位", "hint": "职务/头衔", "type": "text" },
+            { "name": "备注", "hint": "其它信息", "type": "text" }
+          ]
+        },
+        {
+          "name": "订单·交易",
+          "hint": "订单截图、支付/交易记录、对账单、收款截图",
+          "fields": [
+            { "name": "订单号", "hint": "订单/流水号", "type": "text" },
+            { "name": "金额", "hint": "成交/支付金额", "type": "number" },
+            { "name": "日期", "hint": "下单/支付日期", "type": "date" },
+            { "name": "状态", "hint": "已付/待付/退款等", "type": "text" }
+          ]
+        },
+        {
+          "name": "商品·SKU",
+          "hint": "商品图片、商品 excel、SKU 列表、价目表",
+          "fields": [
+            { "name": "名称", "hint": "商品名称", "type": "text", "required": true },
+            { "name": "规格", "hint": "型号/规格/参数", "type": "text" },
+            { "name": "价格", "hint": "售价/单价", "type": "number" },
+            { "name": "库存", "hint": "库存数量", "type": "number" }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fileTypes",
+      "label": "纳入的素材类型",
+      "type": "fileTypes",
+      "defaultValue": ["image", "screenshot", "chat-screenshot", "excel", "csv"]
+    },
+    {
+      "key": "granularity",
+      "label": "记录粒度",
+      "type": "enum",
+      "defaultValue": "auto",
+      "options": [
+        { "value": "auto", "label": "智能（图片=1行 / 表格按行展开）" },
+        { "value": "one-per-file", "label": "每个素材 1 行" },
+        { "value": "rows", "label": "尽量按行展开" }
+      ]
+    }
+  ],
+  "analysis": {
+    "vlmPromptHint": "你是数据整理助手。下面有若干分组，每组有名称、特征描述、字段表。先判断这张图属于哪一组，再按该组字段表提取，找不到字段留空。",
+    "excelColumnMapping": "llm"
+  }
+}
