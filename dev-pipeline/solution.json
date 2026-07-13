@@ -1,0 +1,28 @@
+{
+  "id": "dev-pipeline",
+  "name": "AI 研发流水线",
+  "icon": "icon-solutions",
+  "category": "产品研发",
+  "version": "1.0.0",
+  "schemaVersion": 1,
+  "description": "输入一句产品需求，一支 AI 研发团队在工作流画布上自动接力跑完整条研发流程：产品经理写 PRD → 开发工程师出技术设计 → 代码评审员审查+单测 → 测试工程师出测试用例 → 运维工程师出部署运维方案，最后 CTO 汇总评估。点「启动」即跳工作流页，逐节点真执行、逐个点亮。",
+  "runner": "agent-pipeline",
+  "source": "bundled",
+  "prefill": [
+    {
+      "key": "requirement",
+      "label": "产品需求",
+      "hint": "用一段话描述你想做的产品 / 功能（越具体越好）。例：做一个团队周报工具，成员每周填写，系统自动汇总生成部门周报并推送到企业微信。",
+      "type": "textarea",
+      "required": true,
+      "defaultValue": "做一个团队周报工具：成员每周提交本周进展与下周计划，系统自动按部门汇总生成周报，并定时推送到企业微信群。"
+    },
+    {
+      "key": "projectName",
+      "label": "项目名称",
+      "hint": "用于文档标题与命名（可留空）。",
+      "type": "text",
+      "defaultValue": "团队周报助手"
+    }
+  ]
+}
