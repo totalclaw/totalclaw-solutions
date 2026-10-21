@@ -242,16 +242,19 @@ export class SolutionManager {
     const detail = Array.isArray(item.files) ? { versions: null } : await this._detail(ref, item);
     const all = versionsOf(item, detail);
     const cur = this.get(item.id);
+    const quarantined = new Set((readLock(this.root).quarantine?.[item.id] || []).map((q) => q.version));
     const out = [];
     for (const v of all) {
       const { target, skipped } = await this._select(ref, index, item, { onlyVersion: v.version });
+      // 本机隔离的坏版本：列表里明确标出，不提供「使用此版本」
+      const bad = quarantined.has(v.version) && cur?.version !== v.version;
       out.push({
         version: v.version,
         channel: v.channel || 'stable',
         rollout: v.rollout ?? 100,
         publishedAt: v.publishedAt || null,
-        available: !!target,
-        reason: target ? undefined : skipped.find((x) => x.version === v.version)?.reason,
+        available: !!target && !bad,
+        reason: bad ? 'QUARANTINED' : target ? undefined : skipped.find((x) => x.version === v.version)?.reason,
         installed: cur?.version === v.version,
       });
     }

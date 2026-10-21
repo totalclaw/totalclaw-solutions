@@ -157,6 +157,7 @@ test('坏版本：激活失败 → 自动回滚并隔离，之后跳过它，直
   assert.equal(m.get('alpha').pinned, false);
   assert.deepEqual(readLock(m.root).quarantine.alpha.map((q) => q.version), ['1.1.0']);
   assert.equal((await m.checkUpdates()).find((x) => x.id === 'alpha').action, 'up-to-date');
+  assert.equal((await m.versions('alpha')).find((v) => v.version === '1.1.0').reason, 'QUARANTINED');
   publish(repo, '1.2.0');
   m.catalogCache = null;
   await m.updateAll();
