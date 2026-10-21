@@ -1,0 +1,13 @@
+{
+  "hostApi": 2,
+  "renderer": [
+    "apps/desktop-shell/src/renderer/components/PageBackButton.vue",
+    "apps/desktop-shell/src/renderer/stores/notification.ts",
+    "apps/desktop-shell/src/renderer/utils/humanize.ts",
+    "apps/desktop-shell/src/renderer/utils/usMarketSession.ts",
+    "apps/desktop-shell/src/shared/marketIntel.ts",
+    "npm:@totalclaw/i18n",
+    "npm:vue"
+  ],
+  "main": []
+}

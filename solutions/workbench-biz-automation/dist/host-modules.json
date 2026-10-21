@@ -1,0 +1,40 @@
+{
+  "hostApi": 2,
+  "renderer": [
+    "apps/desktop-shell/src/renderer/components/PageBackButton.vue",
+    "apps/desktop-shell/src/renderer/i18n.ts",
+    "apps/desktop-shell/src/renderer/stores/notification.ts",
+    "apps/desktop-shell/src/renderer/workbenches/biz-automation/shared.ts",
+    "apps/desktop-shell/src/renderer/workbenches/service-settlement/StepCard.vue",
+    "apps/desktop-shell/src/renderer/workbenches/service-settlement/StickyProgress.vue",
+    "npm:vue",
+    "npm:vue-router"
+  ],
+  "main": [
+    "apps/desktop-shell/src/main/ipc/apparelStore.ipc.ts",
+    "apps/desktop-shell/src/main/ipc/mediaFal.ipc.ts",
+    "apps/desktop-shell/src/main/services/accountScope.ts",
+    "apps/desktop-shell/src/main/services/agentPython.ts",
+    "apps/desktop-shell/src/main/services/apparelStore/logic.ts",
+    "apps/desktop-shell/src/main/services/caseMailSender.ts",
+    "apps/desktop-shell/src/main/services/charityContent/media.ts",
+    "apps/desktop-shell/src/main/services/charityContent/pipeline.ts",
+    "apps/desktop-shell/src/main/services/charityContent/render.ts",
+    "apps/desktop-shell/src/main/services/charityContent/subtitles.ts",
+    "apps/desktop-shell/src/main/services/cronResultNotifier.ts",
+    "apps/desktop-shell/src/main/services/digitalHumanProc.ts",
+    "apps/desktop-shell/src/main/services/ffmpegPath.ts",
+    "apps/desktop-shell/src/main/services/knowledgeBase/fieldCatalog.ts",
+    "apps/desktop-shell/src/main/services/knowledgeBase/retrieval.ts",
+    "apps/desktop-shell/src/main/services/knowledgeBase/service.ts",
+    "apps/desktop-shell/src/main/services/media/ttsRouter.ts",
+    "apps/desktop-shell/src/main/services/mediaModelConfig.ts",
+    "apps/desktop-shell/src/main/services/runtimeLocation.ts",
+    "apps/desktop-shell/src/main/services/serviceSettlement/excel.ts",
+    "apps/desktop-shell/src/main/services/workbenchLlm.ts",
+    "apps/desktop-shell/src/main/util/quitRegistry.ts",
+    "apps/desktop-shell/src/main/utils/userFacingError.ts",
+    "npm:@totalclaw/i18n",
+    "npm:@totalclaw/ipc-contracts"
+  ]
+}

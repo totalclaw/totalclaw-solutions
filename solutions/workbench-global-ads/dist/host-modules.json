@@ -1,0 +1,26 @@
+{
+  "hostApi": 2,
+  "renderer": [
+    "apps/desktop-shell/src/renderer/components/AutomationOpsConsole.vue",
+    "apps/desktop-shell/src/renderer/components/PageBackButton.vue",
+    "apps/desktop-shell/src/renderer/components/StepRunAlert.vue",
+    "apps/desktop-shell/src/renderer/components/WorkbenchStepBar.vue",
+    "apps/desktop-shell/src/renderer/composables/overseasPublish.ts",
+    "apps/desktop-shell/src/renderer/composables/useNativeBrowserModalLock.ts",
+    "apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts",
+    "apps/desktop-shell/src/renderer/composables/workflowAutoRun.ts",
+    "apps/desktop-shell/src/renderer/i18n.ts",
+    "apps/desktop-shell/src/renderer/stores/notification.ts",
+    "apps/desktop-shell/src/renderer/utils/humanize.ts",
+    "apps/desktop-shell/src/renderer/workbenches/workflowResult.ts",
+    "npm:@totalclaw/core-domain",
+    "npm:echarts/charts",
+    "npm:echarts/components",
+    "npm:echarts/core",
+    "npm:echarts/renderers",
+    "npm:vue",
+    "npm:vue-echarts",
+    "npm:vue-router"
+  ],
+  "main": []
+}

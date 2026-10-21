@@ -1,0 +1,19 @@
+{
+  "hostApi": 2,
+  "renderer": [
+    "apps/desktop-shell/src/renderer/components/PageBackButton.vue",
+    "apps/desktop-shell/src/renderer/components/StepRunAlert.vue",
+    "apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts",
+    "apps/desktop-shell/src/renderer/i18n.ts",
+    "apps/desktop-shell/src/renderer/stores/notification.ts",
+    "apps/desktop-shell/src/renderer/utils/humanize.ts",
+    "apps/desktop-shell/src/renderer/workbenches/digital-human/PyExtInstaller.vue",
+    "npm:vue",
+    "npm:vue-i18n"
+  ],
+  "main": [
+    "apps/desktop-shell/src/main/ipc/shared.ts",
+    "npm:@totalclaw/i18n",
+    "npm:@totalclaw/ipc-contracts"
+  ]
+}

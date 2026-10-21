@@ -1,0 +1,26 @@
+{
+  "hostApi": 2,
+  "renderer": [
+    "apps/desktop-shell/src/renderer/components/PageBackButton.vue",
+    "apps/desktop-shell/src/renderer/composables/workflowAutoRun.ts",
+    "apps/desktop-shell/src/renderer/i18n.ts",
+    "apps/desktop-shell/src/renderer/stores/bidDesk.ts",
+    "apps/desktop-shell/src/renderer/stores/notification.ts",
+    "apps/desktop-shell/src/renderer/utils/bidDeskArtifacts.ts",
+    "apps/desktop-shell/src/renderer/utils/humanize.ts",
+    "apps/desktop-shell/src/renderer/utils/workspaceTaskRegistration.ts",
+    "npm:pinia",
+    "npm:vue",
+    "npm:vue-router"
+  ],
+  "main": [
+    "apps/desktop-shell/src/main/services/accountScope.ts",
+    "apps/desktop-shell/src/main/services/spreadsheetRead.ts",
+    "npm:@napi-rs/canvas",
+    "npm:@totalclaw/i18n",
+    "npm:@totalclaw/ipc-contracts",
+    "npm:adm-zip",
+    "npm:pdfjs-dist/legacy/build/pdf.mjs",
+    "npm:xlsx"
+  ]
+}

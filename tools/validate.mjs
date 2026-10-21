@@ -216,6 +216,25 @@ if (args.since) {
   }
 }
 
+// 发布文件必须能进版本库：被 .gitignore 忽略的文件客户端从 gitee 下载不到（2026-10-21 dist/ 规则误伤的教训）
+try {
+  const published = [];
+  for (const id of ids) {
+    const f = join(REPO_ROOT, 'index', `${id}.json`);
+    if (!existsSync(f)) continue;
+    for (const file of readJson(f).files || []) published.push(`solutions/${id}/${file.path}`);
+  }
+  for (let i = 0; i < published.length; i += 200) {
+    let out = '';
+    try {
+      out = execFileSync('git', ['check-ignore', '--no-index', ...published.slice(i, i + 200)], { cwd: REPO_ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+    } catch (e) {
+      out = e.stdout?.toString?.() || ''; // 退出码 1 = 一个都没被忽略
+    }
+    for (const p of out.split('\n').filter(Boolean)) err(p.split('/')[1], `发布文件被 .gitignore 忽略，客户端下载不到：${p}`);
+  }
+} catch { /* 非 git 目录 */ }
+
 // 生成物是否最新
 try {
   execFileSync(process.execPath, [join(REPO_ROOT, 'tools', 'build-index.mjs'), '--check'], { cwd: REPO_ROOT, stdio: 'pipe' });

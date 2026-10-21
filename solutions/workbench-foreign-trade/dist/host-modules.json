@@ -1,0 +1,38 @@
+{
+  "hostApi": 2,
+  "renderer": [
+    "apps/desktop-shell/src/renderer/components/PageBackButton.vue",
+    "apps/desktop-shell/src/renderer/i18n.ts",
+    "apps/desktop-shell/src/renderer/stores/notification.ts",
+    "apps/desktop-shell/src/renderer/workbenches/foreign-trade/shared.ts",
+    "apps/desktop-shell/src/renderer/workbenches/service-settlement/StepCard.vue",
+    "apps/desktop-shell/src/renderer/workbenches/service-settlement/StickyProgress.vue",
+    "apps/desktop-shell/src/renderer/workbenches/service-settlement/shared.ts",
+    "npm:vue",
+    "npm:vue-router"
+  ],
+  "main": [
+    "apps/desktop-shell/src/main/ipc/mediaFal.ipc.ts",
+    "apps/desktop-shell/src/main/services/accountScope.ts",
+    "apps/desktop-shell/src/main/services/bidWriter/docx.ts",
+    "apps/desktop-shell/src/main/services/bidWriter/noticeFetch.ts",
+    "apps/desktop-shell/src/main/services/bidWriter/noticeSearch.ts",
+    "apps/desktop-shell/src/main/services/documentExtraction.ts",
+    "apps/desktop-shell/src/main/services/documentExtractor.ts",
+    "apps/desktop-shell/src/main/services/fxRateService.ts",
+    "apps/desktop-shell/src/main/services/localConfigCrypto.ts",
+    "apps/desktop-shell/src/main/services/mailIntakeProc.ts",
+    "apps/desktop-shell/src/main/services/runtimeLocation.ts",
+    "apps/desktop-shell/src/main/services/serviceSettlement/excel.ts",
+    "apps/desktop-shell/src/main/services/websiteCrawler.ts",
+    "apps/desktop-shell/src/main/services/workbenchLlm.ts",
+    "apps/desktop-shell/src/main/util/quitRegistry.ts",
+    "apps/desktop-shell/src/main/utils/userFacingError.ts",
+    "npm:@totalclaw/i18n",
+    "npm:@totalclaw/ipc-contracts",
+    "npm:imapflow",
+    "npm:mailparser",
+    "npm:nodemailer",
+    "npm:xlsx"
+  ]
+}

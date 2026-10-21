@@ -1,0 +1,16 @@
+{
+  "hostApi": 2,
+  "renderer": [
+    "apps/desktop-shell/src/renderer/components/PageBackButton.vue",
+    "apps/desktop-shell/src/renderer/i18n.ts",
+    "apps/desktop-shell/src/renderer/stores/notification.ts",
+    "apps/desktop-shell/src/renderer/utils/ipcPlain.ts",
+    "apps/desktop-shell/src/renderer/workbenches/service-settlement/StepCard.vue",
+    "apps/desktop-shell/src/renderer/workbenches/service-settlement/StickyProgress.vue",
+    "apps/desktop-shell/src/renderer/workbenches/service-settlement/shared.ts",
+    "npm:@totalclaw/ipc-contracts",
+    "npm:vue",
+    "npm:vue-router"
+  ],
+  "main": []
+}

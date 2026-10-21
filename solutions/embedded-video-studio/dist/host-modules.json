@@ -1,0 +1,22 @@
+{
+  "hostApi": 2,
+  "renderer": [
+    "apps/desktop-shell/src/renderer/components/PageBackButton.vue",
+    "apps/desktop-shell/src/renderer/components/StepRunAlert.vue",
+    "apps/desktop-shell/src/renderer/components/workflow/HumanConfirmCard.vue",
+    "apps/desktop-shell/src/renderer/composables/publishPlatforms.ts",
+    "apps/desktop-shell/src/renderer/composables/useLocale.ts",
+    "apps/desktop-shell/src/renderer/composables/useNativeBrowserModalLock.ts",
+    "apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts",
+    "apps/desktop-shell/src/renderer/composables/workflowAutoRun.ts",
+    "apps/desktop-shell/src/renderer/i18n.ts",
+    "apps/desktop-shell/src/renderer/stores/notification.ts",
+    "apps/desktop-shell/src/renderer/utils/humanize.ts",
+    "apps/desktop-shell/src/renderer/utils/humanizeChatError.ts",
+    "apps/desktop-shell/src/renderer/utils/seedanceShots.ts",
+    "apps/desktop-shell/src/renderer/utils/videoProductionEstimate.ts",
+    "npm:vue",
+    "npm:vue-router"
+  ],
+  "main": []
+}

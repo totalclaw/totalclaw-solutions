@@ -1,0 +1,8 @@
+{
+  "hostApi": 2,
+  "renderer": [
+    "apps/desktop-shell/src/renderer/workbenches/saudi/SaudiWorkbench.vue",
+    "npm:vue"
+  ],
+  "main": []
+}

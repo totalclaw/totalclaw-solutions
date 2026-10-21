@@ -1,0 +1,22 @@
+{
+  "hostApi": 2,
+  "renderer": [
+    "apps/desktop-shell/src/renderer/components/AutomationOpsConsole.vue",
+    "apps/desktop-shell/src/renderer/components/PageBackButton.vue",
+    "apps/desktop-shell/src/renderer/components/WorkbenchStepBar.vue",
+    "apps/desktop-shell/src/renderer/i18n.ts",
+    "apps/desktop-shell/src/renderer/stores/notification.ts",
+    "apps/desktop-shell/src/renderer/utils/humanize.ts",
+    "apps/desktop-shell/src/renderer/utils/markdown.ts",
+    "apps/desktop-shell/src/renderer/workbenches/workflowResult.ts",
+    "npm:vue",
+    "npm:vue-i18n",
+    "npm:vue-router"
+  ],
+  "main": [
+    "apps/desktop-shell/src/main/ipc/shared.ts",
+    "apps/desktop-shell/src/main/ipc/workbenchApi.ts",
+    "npm:@totalclaw/i18n",
+    "npm:@totalclaw/ipc-contracts"
+  ]
+}

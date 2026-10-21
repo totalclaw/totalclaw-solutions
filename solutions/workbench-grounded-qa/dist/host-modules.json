@@ -1,0 +1,18 @@
+{
+  "hostApi": 2,
+  "renderer": [
+    "apps/desktop-shell/src/renderer/components/PageBackButton.vue",
+    "apps/desktop-shell/src/renderer/utils/humanize.ts",
+    "npm:vue",
+    "npm:vue-i18n"
+  ],
+  "main": [
+    "apps/desktop-shell/src/main/services/accountScope.ts",
+    "apps/desktop-shell/src/main/services/councilChatRouter.ts",
+    "apps/desktop-shell/src/main/services/eduHubStore.ts",
+    "apps/desktop-shell/src/main/services/groundedQa.logic.ts",
+    "apps/desktop-shell/src/main/services/pdfOcr.ts",
+    "npm:@totalclaw/i18n",
+    "npm:@totalclaw/ipc-contracts"
+  ]
+}

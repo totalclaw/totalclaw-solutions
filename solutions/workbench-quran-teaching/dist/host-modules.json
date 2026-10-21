@@ -1,0 +1,20 @@
+{
+  "hostApi": 2,
+  "renderer": [],
+  "main": [
+    "apps/desktop-shell/src/main/ipc/mediaFal.ipc.ts",
+    "apps/desktop-shell/src/main/ipc/shared.ts",
+    "apps/desktop-shell/src/main/services/accountScope.ts",
+    "apps/desktop-shell/src/main/services/councilChatRouter.ts",
+    "apps/desktop-shell/src/main/services/ffmpegPath.ts",
+    "apps/desktop-shell/src/main/services/lanServer.ts",
+    "apps/desktop-shell/src/main/services/localTts.ts",
+    "apps/desktop-shell/src/main/services/mediaProtocol.ts",
+    "apps/desktop-shell/src/main/services/runtimeLocation.ts",
+    "apps/desktop-shell/src/main/utils/atomicJson.ts",
+    "apps/desktop-shell/src/shared/matchTokens.ts",
+    "apps/desktop-shell/src/shared/quranPaperVariant.ts",
+    "npm:@totalclaw/i18n",
+    "npm:@totalclaw/ipc-contracts"
+  ]
+}

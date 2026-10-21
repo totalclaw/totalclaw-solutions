@@ -1,0 +1,38 @@
+{
+  "hostApi": 2,
+  "renderer": [
+    "apps/desktop-shell/src/renderer/components/PageBackButton.vue",
+    "apps/desktop-shell/src/renderer/i18n.ts",
+    "apps/desktop-shell/src/renderer/stores/notification.ts",
+    "apps/desktop-shell/src/renderer/utils/ipcPlain.ts",
+    "apps/desktop-shell/src/renderer/workbenches/service-settlement/StepCard.vue",
+    "apps/desktop-shell/src/renderer/workbenches/service-settlement/StickyProgress.vue",
+    "apps/desktop-shell/src/renderer/workbenches/service-settlement/shared.ts",
+    "npm:@totalclaw/ipc-contracts",
+    "npm:vue",
+    "npm:vue-router"
+  ],
+  "main": [
+    "apps/desktop-shell/src/main/services/documentExtractor.ts",
+    "apps/desktop-shell/src/main/services/financeAgent/budget.ts",
+    "apps/desktop-shell/src/main/services/financeAgent/common.ts",
+    "apps/desktop-shell/src/main/services/financeAgent/cost.ts",
+    "apps/desktop-shell/src/main/services/financeAgent/expense.ts",
+    "apps/desktop-shell/src/main/services/financeAgent/filing.ts",
+    "apps/desktop-shell/src/main/services/financeAgent/invoice.ts",
+    "apps/desktop-shell/src/main/services/financeAgent/knowledge.ts",
+    "apps/desktop-shell/src/main/services/financeAgent/risk.ts",
+    "apps/desktop-shell/src/main/services/financeAgent/statements.ts",
+    "apps/desktop-shell/src/main/services/financeAgent/store.ts",
+    "apps/desktop-shell/src/main/services/financeAgent/tax.ts",
+    "apps/desktop-shell/src/main/services/financeAgent/voucher.ts",
+    "apps/desktop-shell/src/main/services/pdfOcr.ts",
+    "apps/desktop-shell/src/main/services/serviceSettlement/excel.ts",
+    "apps/desktop-shell/src/main/services/workbenchLlm.ts",
+    "apps/desktop-shell/src/main/util/quitRegistry.ts",
+    "apps/desktop-shell/src/main/utils/userFacingError.ts",
+    "npm:@totalclaw/i18n",
+    "npm:@totalclaw/ipc-contracts",
+    "npm:adm-zip"
+  ]
+}
