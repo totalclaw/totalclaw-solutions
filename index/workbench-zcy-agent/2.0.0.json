@@ -1,0 +1,47 @@
+{
+  "id": "workbench-zcy-agent",
+  "version": "2.0.0",
+  "treeDigest": "8f0b4000d0fbc0fae59ca1bfeb978c951b9243511241cdb06a111428a7d6b859",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 449,
+      "sha256": "1b3d26115d836c6fb720571b54217d82ba98f8c8f4d6b4aebeeb7a97e0d67509"
+    },
+    {
+      "path": "README.md",
+      "size": 1432,
+      "sha256": "4098ffce1cdc7eee563f8386ed362d6a308fa4b92a2d973878fc3638e222f940"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 1221,
+      "sha256": "4ac41cfec10f7e59103695af977a9677663028efbee1a597b043507721084dd1"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 83817,
+      "sha256": "833a1c5b418163cf2dca2097befb15a877c6d79ff6b5dac7961039487a0ef7dd"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 206366,
+      "sha256": "f03b6dbcd9965e008aea6e0b4b8f3fc9c64c030a83a550e05470a295d880ac0b"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 16422,
+      "sha256": "f6b7e48a5002e4d1d1c3d916100e779493bb5092db67d5fd7c6a43fddfacbc8d"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2233,
+      "sha256": "f3cadc3431426dfc2b221e9ce8486038370b789cdec66c4b274c89f5b1419647"
+    }
+  ]
+}

@@ -33,5 +33,18 @@
       "size": 2863,
       "sha256": "865fccd33a0a0d426ad73b008a656fea3cc6f48c31e8ab2bd6450b54ec1f6b4f"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-quran-teaching@2.0.0",
+      "treeDigest": "059e19d892ca393335986ebbbababd0afd47bb6508b59d95544721494675a2dd",
+      "filesRef": "index/workbench-quran-teaching/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

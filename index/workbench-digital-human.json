@@ -43,5 +43,18 @@
       "size": 1934,
       "sha256": "f86889f1563cf8f37cd53ac4eb5a44ee36bb9cf3475a8e1149f08bf79b8a986b"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-digital-human@2.0.0",
+      "treeDigest": "5023476334adc605ee232adf18b2a7585ebdcae593c41339710761030079275b",
+      "filesRef": "index/workbench-digital-human/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

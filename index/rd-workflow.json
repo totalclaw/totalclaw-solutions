@@ -43,5 +43,18 @@
       "size": 2066,
       "sha256": "5503737a65dc2c8e0df5ad2646ce8ab3bdefb5b26b285bbcffe12132e83539eb"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "rd-workflow@2.0.0",
+      "treeDigest": "2b20a848dcd9d24e777913308fff0fe0d78bff22192e92d5d5687ba3ee98492c",
+      "filesRef": "index/rd-workflow/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

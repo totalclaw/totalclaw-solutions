@@ -43,5 +43,18 @@
       "size": 2577,
       "sha256": "c1f569439c1b90d7ae60c054dc178e429333e4ee40053fa896fb2744c542ec6b"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-foreign-trade@2.0.0",
+      "treeDigest": "78be5d81a6cbd59a16a4a2968358f74f62b61774a245826c5d4126c516c79fcd",
+      "filesRef": "index/workbench-foreign-trade/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

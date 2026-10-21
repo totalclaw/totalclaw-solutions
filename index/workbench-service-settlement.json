@@ -43,5 +43,18 @@
       "size": 2221,
       "sha256": "5ba767682e2ddbb34043ba7a79a3276fc1b567750e0ea0e1f4dce04de51cd46a"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-service-settlement@2.0.0",
+      "treeDigest": "1b9fed9ae00ec6bc0cdc2cdc73205de4d1b660bfae7ebf0536dff86bdce20ac5",
+      "filesRef": "index/workbench-service-settlement/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

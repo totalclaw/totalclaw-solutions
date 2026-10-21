@@ -43,5 +43,18 @@
       "size": 2667,
       "sha256": "774fd9ee8061977440f92eb0dc2ff93be1e50e6542b489f280be7e73fd8c0325"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-bid-writer@2.0.0",
+      "treeDigest": "78a12addc504a2b1559716fc33fca7179b645a96f401ca6cdce3a5e818ce8e2e",
+      "filesRef": "index/workbench-bid-writer/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

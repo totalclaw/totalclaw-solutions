@@ -43,5 +43,18 @@
       "size": 2313,
       "sha256": "d5876f3f2319cc344ddce03ec6ad349fd57616f6dbe2a289318034f671e352bf"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-finance-agent@2.0.0",
+      "treeDigest": "0363c3948da92449f5936efbea6f5e4d94325397872ceb376bb814e2bcdfeaa6",
+      "filesRef": "index/workbench-finance-agent/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

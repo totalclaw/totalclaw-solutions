@@ -1,0 +1,27 @@
+{
+  "id": "material-to-table",
+  "version": "2.1.0",
+  "treeDigest": "18cff7e85a56e79b397908dd9c37f3dd7983dc964f5a3f765fa6f6b22dac3999",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 345,
+      "sha256": "52c2d69765323d5544be5d5573966f6b67b1cc1e8363c7135f4f8634714fb195"
+    },
+    {
+      "path": "README.md",
+      "size": 510,
+      "sha256": "c9f94dd864b324082d4af173dd5c5e7a9b725edc199cb0a3b2df2abb8410ea87"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 5051,
+      "sha256": "973ed44982127e4af2a8f3767b6f582b37856acdc7b83d8050d54c51b1a32088"
+    }
+  ]
+}

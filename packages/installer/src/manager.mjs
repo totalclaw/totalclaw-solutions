@@ -10,8 +10,9 @@
 // 安装器只写 root 内的路径；用户数据（账号目录）只在 uninstall({purgeData}) 时按清单声明删除，
 // 迁移在 migrate.mjs，由宿主在账号进入方案时调用。
 import { randomUUID } from 'node:crypto';
+import { forcedReason, isDelisted, normalizePolicy, selectVersion } from './release.mjs';
 import { verifyIndexSignature } from './signature.mjs';
-import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { digestDir, sha256, treeDigest } from './digest.mjs';
 import { assertSafeRelPath, ensureDir, moveDir, readJsonFile, rmrf, safeJoin } from './fsutil.mjs';
@@ -62,14 +63,26 @@ export class SolutionManager {
    * @param {(evt:object)=>void} [opts.onProgress]
    * @param {(msg:string)=>void} [opts.log]
    */
-  constructor({ root, source, appVersion = '999.0.0', hostApi = 1, concurrency = 6, archiveThreshold = 300, publicKey = null, onProgress, log } = {}) {
+  constructor({ root, source, appVersion = '999.0.0', hostApi = 1, concurrency = 6, archiveThreshold = 300, publicKey = null, deviceId = null, policy = null, onProgress, log } = {}) {
     if (!root) throw new Error('SolutionManager 需要 root');
     if (!source) throw new Error('SolutionManager 需要 source');
-    Object.assign(this, { root, source, appVersion, hostApi, concurrency, archiveThreshold, publicKey });
+    Object.assign(this, { root, source, appVersion, hostApi, concurrency, archiveThreshold, publicKey, deviceId });
+    /** 账号更新策略（渠道 / 自动更新 / 单方案覆盖），可为对象或返回对象的函数（账号切换后随之变化） */
+    this._policy = policy;
     this.onProgress = onProgress || (() => {});
     this.log = log || (() => {});
     this.lockFile = new DirLock(ensureDir(root));
     this.catalogCache = null;
+  }
+
+  /** 当前生效的账号更新策略 */
+  policy() {
+    return normalizePolicy(typeof this._policy === 'function' ? this._policy() : this._policy);
+  }
+
+  /** 替换更新策略（web 下发新策略时） */
+  setPolicy(policy) {
+    this._policy = policy;
   }
 
   // ── 目录 ──────────────────────────────────────────────────────────
@@ -81,6 +94,7 @@ export class SolutionManager {
     const index = this.publicKey ? await this._fetchSignedIndex(ref) : await this.source.fetchIndex(ref);
     if (!index || !Array.isArray(index.items)) throw new SolutionError('BAD_INDEX', '方案目录格式错误');
     this.catalogCache = { ref, index, at: Date.now() };
+    this._detailCache?.clear();
     return this.catalogCache;
   }
 
@@ -183,15 +197,53 @@ export class SolutionManager {
   // ── 安装 ──────────────────────────────────────────────────────────
 
   /**
-   * 安装 / 升级到目录中的最新版本。
+   * 安装 / 升级到「本机可见且兼容的最高版本」（渠道、灰度、兼容、吊销、隔离、账号策略，见 release.mjs）。
    * @param {string} query id 或名称
    * @param {object} [opts]
-   * @param {'manual'|'granted'|'on-demand'|'dependency'|'auto-update'} [opts.reason]
+   * @param {'manual'|'granted'|'on-demand'|'dependency'|'auto-update'|'forced'} [opts.reason]
    * @param {boolean} [opts.force]  忽略 tombstone、同版本也重装（repair）
    * @param {boolean} [opts.withDependencies]  默认 true
+   * @param {boolean} [opts.allowDowngrade]  允许装比当前低的版本（版本吊销 / 账号策略锁定旧版本时）
    */
   async install(query, opts = {}) {
     return this.lockFile.run(() => this._install(query, { reason: 'manual', withDependencies: true, ...opts }, new Set()));
+  }
+
+  /** index/<id>.json（逐文件清单 + 版本历史），按快照缓存 */
+  async _detail(ref, item) {
+    if (!item.filesRef) return { files: item.files, versions: null };
+    const key = `${ref}\0${item.filesRef}`;
+    this._detailCache ||= new Map();
+    if (this._detailCache.has(key)) return this._detailCache.get(key);
+    const detail = JSON.parse((await this.source.fetchFile(ref, item.filesRef)).toString('utf8'));
+    if (detail.id !== item.id || detail.version !== item.version || detail.treeDigest !== item.treeDigest) {
+      throw new SolutionError('HASH_MISMATCH', `${item.id} 文件清单与目录不一致`);
+    }
+    this._detailCache.set(key, detail);
+    return detail;
+  }
+
+  /** 选目标版本；没有可用版本时返回 { target:null, skipped } */
+  async _select(ref, index, item) {
+    const detail = Array.isArray(item.files) ? { files: item.files, versions: null } : await this._detail(ref, item);
+    const lock = readLock(this.root);
+    const quarantined = (lock.quarantine?.[item.id] || []).map((q) => q.version);
+    const sel = selectVersion({ item, detail, index, policy: this.policy(), deviceId: this.deviceId, appVersion: this.appVersion, hostApi: this.hostApi, quarantined });
+    return { ...sel, detail };
+  }
+
+  /** 目标版本的逐文件清单与下载引用（历史版本按 tag 取，最新版用目录快照） */
+  async _targetFiles(ref, item, detail, target) {
+    if (target.version === item.version && target.treeDigest === item.treeDigest) {
+      return { files: detail.files || item.files, fileRef: ref };
+    }
+    if (!target.filesRef) throw new SolutionError('BAD_INDEX', `${item.id}@${target.version} 缺少文件清单`);
+    const vd = JSON.parse((await this.source.fetchFile(ref, target.filesRef)).toString('utf8'));
+    if (vd.version !== target.version || vd.treeDigest !== target.treeDigest || treeDigest(vd.files) !== target.treeDigest) {
+      throw new SolutionError('HASH_MISMATCH', `${item.id}@${target.version} 文件清单与目录不一致`);
+    }
+    if (!target.ref) throw new SolutionError('BAD_INDEX', `${item.id}@${target.version} 缺少版本引用（tag）`);
+    return { files: vd.files, fileRef: `tag:${target.ref}` };
   }
 
   async _install(query, opts, visiting) {
@@ -205,10 +257,20 @@ export class SolutionManager {
     if (tomb && !opts.force && ['granted', 'dependency', 'auto-update', 'on-demand'].includes(opts.reason)) {
       return { id: item.id, status: 'skipped', reason: 'TOMBSTONE', message: `${item.name} 曾被用户卸载，不自动重装` };
     }
-    const removed = this.removedEntry(index, item.id, item.version);
-    if (removed) throw new SolutionError('DELISTED', `${item.name} 已下架：${removed.reason || ''}`);
-    const problem = this.compatProblem(item);
-    if (problem) throw new SolutionError(problem.code, problem.message);
+    if (isDelisted(index, item.id)) {
+      const r = (index.removed || []).find((x) => x.id === item.id && !x.versions);
+      throw new SolutionError('DELISTED', `${item.name} 已下架：${r?.reason || ''}`);
+    }
+    if (this.policy().overrides?.[item.id]?.block) throw new SolutionError('POLICY_BLOCK', `${item.name} 已被管理员停用更新 / 安装`);
+
+    let { target, skipped, detail } = await this._select(ref, index, item);
+    if (!target) {
+      const why = skipped.find((s) => s.reason === 'APP_TOO_OLD' || s.reason === 'HOST_API') || skipped[0];
+      const problem = this.compatProblem(item);
+      if (why?.reason === 'APP_TOO_OLD' || why?.reason === 'HOST_API') throw new SolutionError(why.reason, problem?.message || `${item.name} 需要更新的客户端`);
+      if (why?.reason === 'REVOKED') throw new SolutionError('DELISTED', `${item.name} ${why.version} 已被吊销`);
+      throw new SolutionError('NO_AVAILABLE_VERSION', `${item.name} 当前没有可安装的版本（${skipped.map((s) => `${s.version}:${s.reason}`).join(', ')}）`);
+    }
 
     const deps = [];
     if (opts.withDependencies !== false) {
@@ -217,7 +279,7 @@ export class SolutionManager {
         const depItem = index.items.find((it) => it.id === dep);
         if (!depItem) throw new SolutionError('MISSING_DEPENDENCY', `${item.name} 依赖的 ${dep} 不在目录中`);
         if (!cur || semver.gt(depItem.version, cur.version)) {
-          deps.push(await this._install(dep, { ...opts, reason: cur ? 'auto-update' : 'dependency', force: false }, visiting));
+          deps.push(await this._install(dep, { ...opts, reason: cur ? 'auto-update' : 'dependency', force: false, allowDowngrade: false }, visiting));
         }
       }
     }
@@ -226,53 +288,69 @@ export class SolutionManager {
     if (
       current &&
       !opts.force &&
-      current.version === item.version &&
-      current.treeDigest === item.treeDigest &&
+      current.version === target.version &&
+      current.treeDigest === target.treeDigest &&
       existsSync(join(this.root, current.activePath))
     ) {
-      return { id: item.id, status: 'unchanged', version: item.version, dependencies: deps };
+      return { id: item.id, status: 'unchanged', version: target.version, dependencies: deps };
     }
-    if (current && !opts.force && semver.lt(item.version, current.version)) {
+    if (current && !opts.force && !opts.allowDowngrade && semver.lt(target.version, current.version)) {
       return { id: item.id, status: 'skipped', reason: 'NEWER_INSTALLED', version: current.version, dependencies: deps };
     }
 
     let staged;
+    let tf;
     try {
-      staged = await this._download(ref, item);
+      tf = await this._targetFiles(ref, item, detail, target);
+      staged = await this._download(tf.fileRef, item, target, tf.files, current);
     } catch (err) {
       // 按分支名下载时目录可能刚好被新提交替换：刷新目录重试一次
       if (err.code === 'HASH_MISMATCH' && !COMMIT_RE.test(ref)) {
         ({ ref, index } = await this.catalog({ refresh: true }));
-        staged = await this._download(ref, this.resolveIn(index, item.id));
+        this._detailCache?.clear();
+        const fresh = this.resolveIn(index, item.id);
+        ({ target, detail } = await this._select(ref, index, fresh));
+        if (!target) throw err;
+        tf = await this._targetFiles(ref, fresh, detail, target);
+        staged = await this._download(tf.fileRef, fresh, target, tf.files, current);
       } else throw err;
     }
 
-    const result = this._publish(item, staged, ref, current, opts.reason);
-    return { ...result, dependencies: deps };
+    const result = this._publish(item, target, staged, ref, current, opts.reason);
+    return { ...result, reused: staged.reused, downloaded: staged.downloaded, dependencies: deps };
   }
 
-  /** 目录摘要不含逐文件清单时，按 filesRef 从同一快照取 index/<id>.json */
-  async _fileList(ref, item) {
-    if (Array.isArray(item.files)) return item.files;
-    if (!item.filesRef) throw new SolutionError('BAD_INDEX', `${item.id} 缺少文件清单`);
-    const detail = JSON.parse((await this.source.fetchFile(ref, item.filesRef)).toString('utf8'));
-    if (detail.id !== item.id || detail.version !== item.version || detail.treeDigest !== item.treeDigest) {
-      throw new SolutionError('HASH_MISMATCH', `${item.id} 文件清单与目录不一致`);
-    }
-    return detail.files;
-  }
-
-  /** 下载到 .staging/<uuid> 并逐文件校验，返回 staging 目录 */
-  async _download(ref, item) {
-    const files = await this._fileList(ref, item);
+  /**
+   * 下载到 .staging/<uuid> 并逐文件校验，返回 { dir, reused, downloaded }。
+   * 增量：当前已装版本里哈希相同的文件直接本地复制，只下载变化的文件。
+   */
+  async _download(ref, item, target, files, current) {
     const stage = join(this.root, '.staging', randomUUID());
     mkdirSync(stage, { recursive: true });
     const total = files.length;
     let done = 0;
-    const emit = () => this.onProgress({ id: item.id, version: item.version, done, total });
+    let reused = 0;
+    let downloaded = 0;
+    const localDirs = [current?.activePath, current?.previous?.path].filter(Boolean).map((p) => join(this.root, p)).filter((d) => existsSync(d));
+    const localHit = (f) => {
+      for (const d of localDirs) {
+        const p = join(d, f.path);
+        try {
+          if (!existsSync(p)) continue;
+          const buf = readFileSync(p);
+          if (buf.length === f.size && sha256(buf) === f.sha256) return buf;
+        } catch { /* 读不到就下载 */ }
+      }
+      return null;
+    };
+    const emit = () => this.onProgress({ id: item.id, version: target.version, done, total, reused });
     try {
+      const need = files.filter((f) => {
+        assertSafeRelPath(f.path);
+        return !localHit(f);
+      });
       let archive = null;
-      if (this.source.fetchArchive && total > this.archiveThreshold) {
+      if (this.source.fetchArchive && need.length > this.archiveThreshold) {
         try {
           archive = await this.source.fetchArchive(ref, item.path);
         } catch (err) {
@@ -280,9 +358,12 @@ export class SolutionManager {
         }
       }
       await pool(files, this.concurrency, async (f) => {
-        assertSafeRelPath(f.path);
-        let buf = archive?.get(f.path);
-        if (!buf) buf = await this.source.fetchFile(ref, item.path ? `${item.path}/${f.path}` : f.path);
+        let buf = localHit(f);
+        if (buf) reused++;
+        else {
+          buf = archive?.get(f.path) || (await this.source.fetchFile(ref, item.path ? `${item.path}/${f.path}` : f.path));
+          downloaded++;
+        }
         if (buf.length !== f.size || sha256(buf) !== f.sha256) {
           throw new SolutionError('HASH_MISMATCH', `${item.id}/${f.path} 校验失败（期望 ${f.sha256.slice(0, 12)}…）`);
         }
@@ -293,13 +374,13 @@ export class SolutionManager {
         if (done === total || done % 20 === 0) emit();
       });
       const actual = treeDigest(files);
-      if (actual !== item.treeDigest) throw new SolutionError('HASH_MISMATCH', `${item.id} 整包摘要不一致`);
+      if (actual !== target.treeDigest) throw new SolutionError('HASH_MISMATCH', `${item.id} 整包摘要不一致`);
       const manifest = readJsonFile(join(stage, 'solution.json'), null);
-      if (!manifest || manifest.id !== item.id || manifest.version !== item.version) {
+      if (!manifest || manifest.id !== item.id || manifest.version !== target.version) {
         throw new SolutionError('BAD_PACKAGE', `${item.id} 包内 solution.json 与目录不一致`);
       }
       emit();
-      return stage;
+      return { dir: stage, reused, downloaded, manifest };
     } catch (err) {
       rmrf(stage);
       throw err;
@@ -307,48 +388,52 @@ export class SolutionManager {
   }
 
   /** stage → 正式目录 → 切换锁文件；旧版本保留一份作为 previous */
-  _publish(item, stage, ref, current, reason) {
-    const dirName = `${item.version}+${item.treeDigest.slice(0, 8)}`;
-    const target = join(this.root, item.id, dirName);
+  _publish(item, target, staged, ref, current, reason) {
+    const stage = staged.dir;
+    const manifest = staged.manifest || {};
+    const dirName = `${target.version}+${target.treeDigest.slice(0, 8)}`;
+    const dest = join(this.root, item.id, dirName);
     const activePath = `${item.id}/${dirName}`;
-    beginJournal(this.root, { op: 'install', id: item.id, version: item.version, target });
-    if (existsSync(target)) rmrf(stage); // 同内容目录已在（例如回滚后再升级），直接复用
-    else moveDir(stage, target);
+    beginJournal(this.root, { op: 'install', id: item.id, version: target.version, target: dest });
+    if (existsSync(dest)) rmrf(stage); // 同内容目录已在（例如回滚后再升级），直接复用
+    else moveDir(stage, dest);
 
     const lock = readLock(this.root);
     const now = new Date().toISOString();
     const keepPrevious = current && current.activePath !== activePath;
     lock.items[item.id] = {
       id: item.id,
-      name: item.name,
-      kind: item.kind,
-      version: item.version,
-      treeDigest: item.treeDigest,
+      name: manifest.name || item.name,
+      kind: manifest.kind || item.kind,
+      version: target.version,
+      treeDigest: target.treeDigest,
       activePath,
       previous: keepPrevious
         ? { version: current.version, path: current.activePath, treeDigest: current.treeDigest }
         : current?.previous || null,
-      source: { ...this.source.describe(), ref, path: item.path },
-      dataSchemaVersion: item.data?.schemaVersion ?? 1,
-      capabilities: item.capabilities || [],
+      source: { ...this.source.describe(), ref, path: item.path, channel: target.channel || 'stable' },
+      dataSchemaVersion: manifest.data?.schemaVersion ?? item.data?.schemaVersion ?? 1,
+      capabilities: manifest.capabilities || item.capabilities || [],
       installedAt: current?.installedAt || now,
       updatedAt: now,
       pinned: current?.pinned || false,
       autoUpdate: current?.autoUpdate ?? true,
       reason: current?.reason || reason,
+      /** 观察期：新版本首次激活成功前算「待确认」，宿主激活失败时据此自动回滚 */
+      pendingHealth: !!current && current.version !== target.version,
     };
     delete lock.tombstones[item.id];
     writeLock(this.root, lock);
     commitJournal(this.root);
     this._gc(item.id, lock.items[item.id]);
     clearJournal(this.root);
-    this.log(`已安装 ${item.id}@${item.version}`);
+    this.log(`已安装 ${item.id}@${target.version}（复用 ${staged.reused ?? 0}，下载 ${staged.downloaded ?? 0}）`);
     return {
       id: item.id,
-      status: current ? (current.version === item.version ? 'reinstalled' : 'updated') : 'installed',
+      status: current ? (current.version === target.version ? 'reinstalled' : semver.lt(target.version, current.version) ? 'downgraded' : 'updated') : 'installed',
       from: current?.version || null,
-      version: item.version,
-      path: target,
+      version: target.version,
+      path: dest,
     };
   }
 
@@ -368,11 +453,13 @@ export class SolutionManager {
   // ── 升级 ──────────────────────────────────────────────────────────
 
   /**
-   * 只读检查已安装方案的可用升级。
-   * @returns {Array<{id,name,from,to,level,action:'update'|'blocked'|'delisted'|'up-to-date',reason?,message?}>}
+   * 只读检查已安装方案的更新计划。
+   * action：update（含降级到可用版本）/ repair（同版本内容变了）/ blocked / delisted / up-to-date
+   * forced：版本被吊销或低于 minimumVersion 时为原因串（REVOKED / MINIMUM_VERSION），此时无视锁定与自动更新开关
    */
   async checkUpdates({ refresh = true } = {}) {
-    const { index } = await this.catalog({ refresh });
+    const { ref, index } = await this.catalog({ refresh });
+    const pol = this.policy();
     const out = [];
     for (const cur of this.list()) {
       const item = index.items.find((it) => it.id === cur.id);
@@ -381,52 +468,73 @@ export class SolutionManager {
         out.push({ ...base, to: null, action: 'delisted', reason: 'NOT_IN_INDEX' });
         continue;
       }
-      const removed = this.removedEntry(index, item.id, item.version);
-      if (removed) {
-        out.push({ ...base, to: item.version, action: 'delisted', reason: 'REMOVED', message: removed.reason });
+      if (isDelisted(index, item.id)) {
+        const r = (index.removed || []).find((x) => x.id === item.id && !x.versions);
+        out.push({ ...base, to: null, action: 'delisted', reason: 'REMOVED', message: r?.reason });
         continue;
       }
-      if (!semver.gt(item.version, cur.version)) {
-        out.push({ ...base, to: item.version, action: 'up-to-date' });
+      const ov = pol.overrides?.[item.id] || {};
+      if (ov.block) {
+        out.push({ ...base, to: null, action: 'blocked', reason: 'POLICY_BLOCK' });
         continue;
       }
-      const entry = { ...base, to: item.version, level: semver.diff(cur.version, item.version), changelog: item.changelog || null };
-      const problem = this.compatProblem(item);
+      let sel;
+      try {
+        sel = await this._select(ref, index, item);
+      } catch (e) {
+        out.push({ ...base, to: null, action: 'blocked', reason: e.code || 'ERROR', message: e.message });
+        continue;
+      }
+      const forced = forcedReason({ index, item, installedVersion: cur.version });
+      const target = sel.target;
+      if (!target) {
+        const why = sel.skipped.find((s) => s.version === item.version)?.reason || sel.skipped[0]?.reason || 'NO_AVAILABLE_VERSION';
+        out.push({ ...base, to: item.version, action: forced === 'REVOKED' ? 'delisted' : 'blocked', reason: forced === 'REVOKED' ? 'REVOKED' : why, forced: forced || undefined });
+        continue;
+      }
+      const entry = { ...base, to: target.version, level: semver.diff(cur.version, target.version), changelog: target.version === item.version ? item.changelog || null : null, channel: target.channel || 'stable' };
+      const newer = semver.gt(target.version, cur.version);
+      const downgradeWanted = semver.lt(target.version, cur.version) && (forced === 'REVOKED' || (ov.pinVersion && ov.pinVersion === target.version));
+      if (!newer && !downgradeWanted) {
+        if (target.version === cur.version && target.treeDigest !== cur.treeDigest) out.push({ ...entry, action: 'repair', reason: 'DIGEST_CHANGED' });
+        else out.push({ ...entry, action: 'up-to-date' });
+        continue;
+      }
       const newCaps = (item.capabilities || []).filter((c) => !(cur.capabilities || []).includes(c));
-      if (cur.pinned) out.push({ ...entry, action: 'blocked', reason: 'PINNED' });
+      if (forced) out.push({ ...entry, action: 'update', forced, downgrade: downgradeWanted || undefined });
+      else if (downgradeWanted) out.push({ ...entry, action: 'update', reason: 'POLICY_PIN', downgrade: true });
+      else if (cur.pinned) out.push({ ...entry, action: 'blocked', reason: 'PINNED' });
       else if (cur.autoUpdate === false) out.push({ ...entry, action: 'blocked', reason: 'AUTO_UPDATE_OFF' });
-      else if (problem) out.push({ ...entry, action: 'blocked', reason: problem.code, message: problem.message });
+      else if (!pol.autoUpdate) out.push({ ...entry, action: 'blocked', reason: 'POLICY_AUTO_UPDATE_OFF' });
       else if (newCaps.length) out.push({ ...entry, action: 'blocked', reason: 'NEEDS_CONSENT', capabilities: newCaps });
       else out.push({ ...entry, action: 'update' });
     }
     return out;
   }
 
-  /** 升级单个方案（忽略 autoUpdate 开关，但尊重 pin） */
+  /** 升级单个方案（忽略 autoUpdate 开关，但尊重 pin；强制更新不受 pin 限制） */
   async update(id, { acceptCapabilities = false } = {}) {
     const cur = this.get(id);
     if (!cur) throw new SolutionError('NOT_INSTALLED', `${id} 未安装`);
-    if (cur.pinned) throw new SolutionError('PINNED', `${id} 已锁定版本 ${cur.version}`);
-    if (!acceptCapabilities) {
-      const { index } = await this.catalog({ refresh: true });
-      const item = index.items.find((it) => it.id === id);
-      const newCaps = (item?.capabilities || []).filter((c) => !(cur.capabilities || []).includes(c));
-      if (newCaps.length) throw new SolutionError('NEEDS_CONSENT', `${id} 新版本需要额外能力：${newCaps.join(', ')}`, { capabilities: newCaps });
+    const plan = (await this.checkUpdates()).find((p) => p.id === id);
+    if (cur.pinned && !plan?.forced) throw new SolutionError('PINNED', `${id} 已锁定版本 ${cur.version}`);
+    if (!acceptCapabilities && plan?.reason === 'NEEDS_CONSENT') {
+      throw new SolutionError('NEEDS_CONSENT', `${id} 新版本需要额外能力：${plan.capabilities.join(', ')}`, { capabilities: plan.capabilities });
     }
-    return this.install(id, { reason: 'auto-update' });
+    return this.install(id, { reason: plan?.forced ? 'forced' : 'auto-update', allowDowngrade: !!plan?.downgrade, force: plan?.action === 'repair' });
   }
 
-  /** 自动升级：应用 checkUpdates 中 action=update 的全部条目，单个失败不影响其他 */
+  /** 自动升级：应用计划中 action=update / repair 的条目（强制更新即使正在使用也不推迟以外的规则），单个失败不影响其他 */
   async updateAll({ isBusy = () => false } = {}) {
     const plan = await this.checkUpdates();
     const results = [];
-    for (const p of plan.filter((x) => x.action === 'update')) {
+    for (const p of plan.filter((x) => x.action === 'update' || x.action === 'repair')) {
       if (isBusy(p.id)) {
         results.push({ id: p.id, status: 'deferred', reason: 'BUSY' });
         continue;
       }
       try {
-        results.push(await this.install(p.id, { reason: 'auto-update' }));
+        results.push(await this.install(p.id, { reason: p.forced ? 'forced' : 'auto-update', allowDowngrade: !!p.downgrade, force: p.action === 'repair' }));
       } catch (err) {
         results.push({ id: p.id, status: 'failed', error: err.message, code: err.code });
       }
@@ -434,27 +542,73 @@ export class SolutionManager {
     return { plan, results };
   }
 
-  // ── 回滚 / 锁定 / 开关 ────────────────────────────────────────────
+  // ── 回滚 / 隔离 / 锁定 / 开关 ─────────────────────────────────────
 
-  async rollback(id) {
+  /**
+   * 回滚到上一版本。用户手动回滚默认锁定（避免下一轮又升回去）；
+   * 健康检查自动回滚用 { pin:false }，并配合隔离名单跳过坏版本。
+   */
+  async rollback(id, { pin = true } = {}) {
+    return this.lockFile.run(async () => this._rollback(id, { pin }));
+  }
+
+  _rollback(id, { pin }) {
+    const lock = readLock(this.root);
+    const cur = lock.items[id];
+    if (!cur?.previous) throw new SolutionError('NO_PREVIOUS', `${id} 没有可回滚的上一版本`);
+    if (!existsSync(join(this.root, cur.previous.path))) throw new SolutionError('NO_PREVIOUS', `${id} 上一版本目录已不存在`);
+    const prevManifest = readJsonFile(join(this.root, cur.previous.path, 'solution.json'), {});
+    lock.items[id] = {
+      ...cur,
+      version: cur.previous.version,
+      treeDigest: cur.previous.treeDigest,
+      activePath: cur.previous.path,
+      previous: { version: cur.version, path: cur.activePath, treeDigest: cur.treeDigest },
+      dataSchemaVersion: prevManifest.data?.schemaVersion ?? 1,
+      pinned: pin ? true : cur.pinned,
+      pendingHealth: false,
+      updatedAt: new Date().toISOString(),
+    };
+    writeLock(this.root, lock);
+    return { id, status: 'rolled-back', version: lock.items[id].version, from: cur.version, pinned: lock.items[id].pinned };
+  }
+
+  /**
+   * 新版本激活失败（健康检查不通过）：自动回滚到上一版本，并把坏版本记入本机隔离名单，
+   * 之后的自动升级跳过它，直到出现更高版本。
+   */
+  async markBad(id, reason = 'ACTIVATION_FAILED') {
     return this.lockFile.run(async () => {
       const lock = readLock(this.root);
       const cur = lock.items[id];
-      if (!cur?.previous) throw new SolutionError('NO_PREVIOUS', `${id} 没有可回滚的上一版本`);
-      if (!existsSync(join(this.root, cur.previous.path))) throw new SolutionError('NO_PREVIOUS', `${id} 上一版本目录已不存在`);
-      const prevManifest = readJsonFile(join(this.root, cur.previous.path, 'solution.json'), {});
-      lock.items[id] = {
-        ...cur,
-        version: cur.previous.version,
-        treeDigest: cur.previous.treeDigest,
-        activePath: cur.previous.path,
-        previous: { version: cur.version, path: cur.activePath, treeDigest: cur.treeDigest },
-        dataSchemaVersion: prevManifest.data?.schemaVersion ?? 1,
-        pinned: true, // 回滚后锁定，避免下一轮自动升级立刻又升回去
-        updatedAt: new Date().toISOString(),
-      };
+      if (!cur) throw new SolutionError('NOT_INSTALLED', `${id} 未安装`);
+      const bad = cur.version;
+      lock.quarantine ||= {};
+      lock.quarantine[id] = [...(lock.quarantine[id] || []).filter((q) => q.version !== bad), { version: bad, reason, at: new Date().toISOString() }];
       writeLock(this.root, lock);
-      return { id, status: 'rolled-back', version: lock.items[id].version, from: cur.version, pinned: true };
+      if (!cur.previous || !existsSync(join(this.root, cur.previous.path))) return { id, status: 'quarantined', version: bad, rolledBack: false };
+      const r = this._rollback(id, { pin: false });
+      return { ...r, status: 'rolled-back', quarantined: bad, rolledBack: true };
+    });
+  }
+
+  /** 新版本首次激活成功：结束观察期 */
+  async markHealthy(id) {
+    const cur = this.get(id);
+    if (!cur?.pendingHealth) return cur;
+    return this._patch(id, { pendingHealth: false });
+  }
+
+  /** 本机隔离名单（{ [id]: [{version, reason, at}] }） */
+  quarantine() {
+    return readLock(this.root).quarantine || {};
+  }
+
+  async clearQuarantine(id) {
+    return this.lockFile.run(async () => {
+      const lock = readLock(this.root);
+      if (lock.quarantine) delete lock.quarantine[id];
+      writeLock(this.root, lock);
     });
   }
 

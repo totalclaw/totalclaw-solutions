@@ -43,5 +43,18 @@
       "size": 1777,
       "sha256": "c336bdce10cb479cd53bcfca5c046a9c88ad4fb61be04b182c5bf730015eb82c"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "embedded-bid-desk@2.0.0",
+      "treeDigest": "f640edd755a059b09c75da27a87c33931a322ea2e26d192a0ebdef6140996f44",
+      "filesRef": "index/embedded-bid-desk/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

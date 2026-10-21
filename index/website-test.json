@@ -23,5 +23,18 @@
       "size": 2665,
       "sha256": "2e40d4198eaf3db2340ca67b516f29660ccad03c43cd4b5349e9460e8efda194"
     }
+  ],
+  "versions": [
+    {
+      "version": "1.1.0",
+      "ref": "website-test@1.1.0",
+      "treeDigest": "c5716c66e8d73bb2a9fe5eadd7ea82fd98943b31405654b15ce8bb06e8b8b22b",
+      "filesRef": "index/website-test/1.1.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.0",
+      "hostApi": 1,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

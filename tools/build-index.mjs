@@ -5,6 +5,7 @@
 //   --check  只比对，生成物与已提交内容不一致时退出码 1（CI 用）
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+import { execFileSync } from 'node:child_process';
 import { REPO_ROOT, SOLUTIONS_DIR, fileManifest, listSolutionDirs, parseArgs, readJson, treeDigest as treeDigestOf } from './lib/common.mjs';
 
 const args = parseArgs(process.argv.slice(2));
@@ -30,6 +31,52 @@ export function changelogSection(dir, version) {
   return (next >= 0 ? rest.slice(0, next) : rest).trim().slice(0, 1200) || null;
 }
 
+/** 发布策略：渠道 / 灰度比例 / 强制最低版本（缺省 stable、全量、无强制） */
+export function releaseOf(m) {
+  const r = m.release || {};
+  return {
+    channel: r.channel || 'stable',
+    rollout: Number.isFinite(r.rollout) ? r.rollout : 100,
+    ...(r.minimumVersion ? { minimumVersion: r.minimumVersion } : {}),
+  };
+}
+
+function gitTagExists(tag) {
+  try {
+    execFileSync('git', ['rev-parse', '-q', '--verify', `refs/tags/${tag}`], { cwd: REPO_ROOT, stdio: 'ignore' });
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * 版本历史：沿用已提交的 index/<id>.json 的 versions，当前版本替换 / 追加。
+ * 已打 tag（已发布）的版本内容不可变：同版本摘要变了直接报错（必须升版本号）。
+ */
+function versionHistory(item, m, files) {
+  const detailFile = join(REPO_ROOT, item.filesRef);
+  const prev = existsSync(detailFile) ? readJson(detailFile).versions || [] : [];
+  const tag = `${item.id}@${item.version}`;
+  const same = prev.find((v) => v.version === item.version);
+  if (same && same.treeDigest !== item.treeDigest && gitTagExists(tag)) {
+    throw new Error(`${item.id}@${item.version} 已发布（tag ${tag}），内容不可再改：请提升版本号`);
+  }
+  const entry = {
+    version: item.version,
+    ref: tag,
+    treeDigest: item.treeDigest,
+    filesRef: `index/${item.id}/${item.version}.json`,
+    channel: item.release.channel,
+    rollout: item.release.rollout,
+    minAppVersion: m.compat?.minAppVersion,
+    hostApi: m.compat?.hostApi ?? 1,
+    publishedAt: same && same.treeDigest === item.treeDigest ? same.publishedAt : new Date().toISOString().slice(0, 10),
+  };
+  const versions = [entry, ...prev.filter((v) => v.version !== item.version)].slice(0, 30);
+  return { versions, versionFile: { id: item.id, version: item.version, treeDigest: item.treeDigest, files } };
+}
+
 export function buildIndex() {
   const items = [];
   for (const id of listSolutionDirs()) {
@@ -52,6 +99,7 @@ export function buildIndex() {
       ...(m.descriptionEn ? { descriptionEn: m.descriptionEn } : {}),
       ...(m.descriptionAr ? { descriptionAr: m.descriptionAr } : {}),
       version: m.version,
+      release: releaseOf(m),
       compat: m.compat,
       access: m.access,
       runtime: m.runtime,
@@ -67,6 +115,8 @@ export function buildIndex() {
       filesRef: `index/${id}.json`,
       files,
     });
+    const it = items[items.length - 1];
+    Object.assign(it, versionHistory(it, m, files));
   }
   items.sort((a, b) => a.order - b.order || (a.id < b.id ? -1 : 1));
   const removedFile = join(REPO_ROOT, 'removed.json');
@@ -99,22 +149,27 @@ const stringify = (v) => JSON.stringify(v, null, 2) + '\n';
 
 /** index.json 只放摘要（客户端频繁拉取）；逐文件清单拆到 index/<id>.json，安装时按需取 */
 export function splitIndex(index) {
-  const summary = { ...index, items: index.items.map(({ files, ...rest }) => rest) };
-  const perItem = Object.fromEntries(index.items.map((it) => [it.filesRef, { id: it.id, version: it.version, treeDigest: it.treeDigest, files: it.files }]));
-  return { summary, perItem };
+  const summary = { ...index, items: index.items.map(({ files, versions, versionFile, ...rest }) => rest) };
+  const perItem = Object.fromEntries(
+    index.items.map((it) => [it.filesRef, { id: it.id, version: it.version, treeDigest: it.treeDigest, files: it.files, versions: it.versions }]),
+  );
+  // 每个版本的文件清单（只增不改；历史版本从这里取清单、按 tag 取文件）
+  const perVersion = Object.fromEntries(index.items.map((it) => [it.versions[0].filesRef, it.versionFile]));
+  return { summary, perItem, perVersion };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const index = buildIndex();
-  const { summary, perItem } = splitIndex(index);
+  const { summary, perItem, perVersion } = splitIndex(index);
   const outputs = {
     'index.json': stringify(summary),
     'catalog.json': stringify(buildLegacyCatalog(index)),
     ...Object.fromEntries(Object.entries(perItem).map(([k, v]) => [k, stringify(v)])),
+    ...Object.fromEntries(Object.entries(perVersion).map(([k, v]) => [k, stringify(v)])),
   };
-  // 已删除方案遗留的 index/<id>.json
+  // 已删除方案遗留的 index/<id>.json（版本子目录只增不删：老客户端可能还要按它装历史版本）
   const indexDir = join(REPO_ROOT, 'index');
-  for (const f of existsSync(indexDir) ? readdirSync(indexDir) : []) {
+  for (const f of existsSync(indexDir) ? readdirSync(indexDir).filter((n) => n.endsWith('.json')) : []) {
     if (outputs[`index/${f}`]) continue;
     if (args.check) {
       console.error(`✗ index/${f} 已无对应方案`);

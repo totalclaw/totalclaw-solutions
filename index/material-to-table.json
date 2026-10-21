@@ -23,5 +23,18 @@
       "size": 5051,
       "sha256": "973ed44982127e4af2a8f3767b6f582b37856acdc7b83d8050d54c51b1a32088"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.1.0",
+      "ref": "material-to-table@2.1.0",
+      "treeDigest": "18cff7e85a56e79b397908dd9c37f3dd7983dc964f5a3f765fa6f6b22dac3999",
+      "filesRef": "index/material-to-table/2.1.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.0",
+      "hostApi": 1,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

@@ -38,5 +38,18 @@
       "size": 1873,
       "sha256": "003c5e3df834ee477ad63ef24d33225f3e05abe7451445a8d149c02d59a3b0dd"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "embedded-video-studio@2.0.0",
+      "treeDigest": "f68e2cea95a9bae4999442f37fe6d781bc600c79536c8023cd6cc5a3a3e7dbc6",
+      "filesRef": "index/embedded-video-studio/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

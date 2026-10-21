@@ -125,6 +125,14 @@ for (const id of ids) {
     }
   }
 
+  // 发布策略
+  if (m.release !== undefined) {
+    const r = m.release || {};
+    if (r.channel !== undefined && !['stable', 'beta'].includes(r.channel)) err(id, 'release.channel 只能是 stable / beta');
+    if (r.rollout !== undefined && !(Number.isInteger(r.rollout) && r.rollout >= 0 && r.rollout <= 100)) err(id, 'release.rollout 必须是 0–100 的整数');
+    if (r.minimumVersion !== undefined && (!semver.valid(r.minimumVersion) || semver.gt(r.minimumVersion, m.version))) err(id, 'release.minimumVersion 必须是不高于当前版本的 semver');
+  }
+
   // 数据声明
   if (!Number.isInteger(m.data?.schemaVersion) || m.data.schemaVersion < 1) err(id, 'data.schemaVersion 必须是 ≥1 的整数');
   for (const p of m.data?.paths || []) {

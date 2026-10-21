@@ -38,8 +38,15 @@ export class LocalSource {
     return JSON.parse(readFileSync(join(this.root, 'index.json'), 'utf8'));
   }
 
-  async fetchFile(_ref, repoPath) {
-    return readFileSync(safeJoin(this.root, assertSafeRelPath(repoPath)));
+  async fetchFile(ref, repoPath) {
+    assertSafeRelPath(repoPath);
+    // 历史版本：tag:<id>@<version> → git show（发布时打的不可变 tag）
+    if (typeof ref === 'string' && ref.startsWith('tag:')) {
+      const tag = ref.slice(4);
+      if (!/^[A-Za-z0-9._@+-]+$/.test(tag)) throw new Error(`非法 tag：${tag}`);
+      return execFileSync('git', ['show', `refs/tags/${tag}:${repoPath}`], { cwd: this.root, maxBuffer: 256 * 1024 * 1024, stdio: ['ignore', 'pipe', 'ignore'] });
+    }
+    return readFileSync(safeJoin(this.root, repoPath));
   }
 }
 
@@ -147,7 +154,8 @@ export class GiteeSource {
 
   rawUrl(ref, path) {
     const encoded = path.split('/').map(encodeURIComponent).join('/');
-    return this.urls.raw.replace('{ref}', encodeURIComponent(ref)).replace('{path}', encoded);
+    const r = String(ref).startsWith('tag:') ? String(ref).slice(4) : ref; // 历史版本按 tag 取
+    return this.urls.raw.replace('{ref}', encodeURIComponent(r)).replace('{path}', encoded);
   }
 
   async fetchIndex(ref) {

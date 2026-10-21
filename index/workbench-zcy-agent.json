@@ -43,5 +43,18 @@
       "size": 2233,
       "sha256": "f3cadc3431426dfc2b221e9ce8486038370b789cdec66c4b274c89f5b1419647"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-zcy-agent@2.0.0",
+      "treeDigest": "8f0b4000d0fbc0fae59ca1bfeb978c951b9243511241cdb06a111428a7d6b859",
+      "filesRef": "index/workbench-zcy-agent/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

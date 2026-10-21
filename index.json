@@ -22,6 +22,10 @@
       "order": 10,
       "description": "导入教材一键生成教案、学生要点与小测；启动校内服务，学生扫码用浏览器学习，进展实时回看。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -80,6 +84,10 @@
       "order": 20,
       "description": "客户需求 → AI 产品经理(选项式头脑风暴) → AI 开发(工作区写代码) → 代码评审 → 测试 → 运维，逐节点真执行、实时看状态与文件改动、缺料随时暂停补充。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -138,6 +146,10 @@
       "order": 30,
       "description": "多 Agent 协同备课、实训辅导、学情分析、教学配图与教师审核。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -197,6 +209,10 @@
       "order": 40,
       "description": "只依据已审批的宣教资料回答，每条结论标注来源页码，教法裁决与超纲问题自动拒答并转人工。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -255,6 +271,10 @@
       "order": 50,
       "description": "患者服务、院内工单、隐私保护、服务质量与人工复核，不涉及诊断治疗。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -313,6 +333,10 @@
       "order": 60,
       "description": "多源数据归一、销售与库存对账、采购到货、补货调拨和出入库执行。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -371,6 +395,10 @@
       "order": 70,
       "description": "Facebook、Instagram、Google Ads 与 YouTube 全链路投放、复盘和账户优化。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -431,6 +459,10 @@
       "order": 80,
       "description": "从询价收件、产品匹配、供应与外协到可见公式的报价与审批文件，全程留痕。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -485,6 +517,10 @@
       "order": 90,
       "description": "多来源标书去重、Addendum 差异、硬性门槛与能力匹配，输出可拍板的 Bid/No-Bid 建议。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -539,6 +575,10 @@
       "order": 100,
       "description": "填投标目标与目标投标网站，自动抓公告拆成逐条要求；模板可上传也可从知识库找；公司资料取自知识库，逐章成文后自检废标风险，导出 Word / PDF。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -597,6 +637,10 @@
       "order": 110,
       "description": "邮件、网页表单工单与 WhatsApp 三渠道统一收件，检索获准来源后产出简短回复与七段咨询报告。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -651,6 +695,10 @@
       "order": 120,
       "description": "加密与美股 7×24 情报流：gate.io 行情异动与多源新闻快讯同一条时间线，每条可回溯原文，随时 AI 研判。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -708,6 +756,10 @@
       "order": 130,
       "description": "文稿或 LLM 输出交给数字人念出来：离线出成片，或起一路实时会话做直播与教课。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -764,6 +816,10 @@
       "order": 140,
       "description": "多邮箱接管，覆盖平台运营、客户开发、询盘处理、客户背调、跟进、内容生产、网站社媒、报价、订单推进与数据整理十项日常工作。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -831,6 +887,10 @@
       "order": 150,
       "description": "内置 PubMed、Europe PMC、arXiv、Crossref、OpenAlex 检索与知网、万方等学术网站，抓取文献、精读、拟提纲、分节成稿，接人机双写编辑器一起改论文。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -891,6 +951,10 @@
       "order": 160,
       "description": "凭证、税务申报、费用报销、往来对账、财务报表、风险巡检、预算、成本、合同审核、财税问答十个智能体，多账套持续跟进。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -951,6 +1015,10 @@
       "order": 170,
       "description": "AI 一键换装：顾客手机扫码或店员电脑上传照片，自选背景、姿势、发型生成试穿图，手机电脑同时查看；试穿码到店核销，试穿数据看板指导主推款。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -1010,6 +1078,10 @@
       "order": 180,
       "description": "短视频生成并发抖音、快手、小红书、视频号；数字人出镜介绍企业；商品图文自动上下架；收银与财务数据自动取数、统计并推送经营日报。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -1070,6 +1142,10 @@
       "order": 190,
       "description": "拿着付款单或一张开票申请表（很多行、很多家购买方）批量开票：自动识别列、逐行校验税号与金额、按规则组票拆票算税，生成电子税务局批量导入文件或由数字员工逐张填写，台账自动回填发票号码。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -1129,6 +1205,10 @@
       "order": 200,
       "description": "导入 OA、费控、CSS 三个系统的流程报表，按时效规则算出每个流程和每位审核人是否超时，自动出时效看板、周报和月度分析报告，并跟进在途流程和改善建议。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -1189,6 +1269,10 @@
       "order": 210,
       "description": "投喂配件历史发货、采购提前期、采购在途和实时库存四类数据，算出每个配件是呆滞、冗余、健康、将缺货还是已缺货，给出处理建议和补库清单，人工检验后转采购订单，并可定时循环运算预警。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -1249,6 +1333,10 @@
       "order": 220,
       "description": "校级 AI 中心一体化平台：统一校园知识库，师生扫码就能问、答案带出处、答不了的转部门；按成绩和考勤算学业预警，辅导员复核后出谈话提纲与通知；模型服务、调用审计与数据保留统一运维。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -1309,6 +1397,10 @@
       "order": 230,
       "description": "给它企业材料和政采云账号，在内置浏览器里代做供应商的日常工作：商品上架前的合规与比价检查、询价单读回与报价测算、订单接单发货预警、待开票订单转开票。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -1369,6 +1461,10 @@
       "order": 240,
       "description": "京东/天猫好评激励核算、服务费用结案汇总与邮件下发、发票监听与付款跟踪、报废台账更新、服务营销激励季度结案（含个税申报表与结案报告）。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -1429,6 +1525,10 @@
       "order": 250,
       "description": "月结关账、对账、审计与内控、税务合规、管理报告、资金风险与投融资估值，48 个模块分步出底稿，人工签核后归档；中英阿三语，适配中国、国际、沙特与阿联酋准则税制。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -1496,6 +1596,10 @@
       "descriptionEn": "Turn one charity event's raw material (photos, field notes, donation data) into multilingual campaign content in one pass: posters and illustrations, short-video cuts, social posts and donor thank-you letters, exported per platform aspect ratio and language, with a reviewable trail.",
       "descriptionAr": "حوّل مواد فعالية خيرية واحدة (الصور، السجلات الميدانية، بيانات التبرعات) إلى محتوى ترويجي متعدد اللغات بخطوة واحدة: ملصقات وصور، مقاطع فيديو قصيرة، منشورات للتواصل الاجتماعي ورسائل شكر للمتبرعين، تُصدَّر حسب مقاس كل منصة ولغتها مع سجل كامل قابل للمراجعة.",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -1614,6 +1718,10 @@
       "descriptionEn": "A university-facing demonstration of a closed AI teaching loop: locked scripture corpus import, lesson generation, comprehension maps, adaptive assessment, learning analytics and reinforcement, grounded strictly in the imported corpus.",
       "descriptionAr": "عرض توضيحي لحلقة تعليم مغلقة بالذكاء الاصطناعي موجّه للجامعات: استيراد مدونة نصية مُقفلة، توليد الدروس، خرائط الفهم، تقييم تكيفي، تحليلات التعلم والتعزيز، مع الالتزام الكامل بالمدونة المستوردة.",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -1667,6 +1775,10 @@
       "order": 280,
       "description": "从 RFQ/BOQ 到审批文件的可追溯业务闭环",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -1725,6 +1837,10 @@
       "order": 290,
       "description": "从素材整理、脚本、配音配乐到成片审核，一次准备抖音、快手、小红书和微信视频号版本。",
       "version": "2.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 2
@@ -1784,6 +1900,10 @@
       "order": 300,
       "description": "把一个文件夹里不同类型的素材（截图 / 对话截图 / 图片 / excel / csv）自动分组，每组按各自的字段列整理成表格。适合多部门/多类素材混在一起的归集场景。",
       "version": "2.1.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.0",
         "hostApi": 1
@@ -1830,6 +1950,10 @@
       "order": 310,
       "description": "选一个素材文件夹，一键跑完整条全平台运营：自动写文案 → 合成 9:16 竖屏短视频（Ken Burns 运镜+转场）→ 客资 RFM 分层+回访话术 → 中差评回复 → 数据复盘(ROI/复购/漏斗) → 同城获客方案 → 汇总成运营简报。可选一键发布到 小红书/抖音/视频号（发布会停在登录页等你扫码登录，不会因没登录就失败）。",
       "version": "2.1.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.0",
         "hostApi": 1
@@ -1876,6 +2000,10 @@
       "order": 320,
       "description": "面向财税代账公司，按代账行业 SOP 把最耗时的前置环节自动化：资料清单校验 → 单据识别清洗 → 票据合规审查 → 会计凭证生成 → 期末结转与报表 → 账务风险检测 → 纳税申报指引与交付。区分小规模/一般两套科目、分录符合《小企业会计准则》。点「启动」即跳工作流页，7 个环节逐节点真执行、逐个点亮。产出为草稿，须持证会计复核后入账。",
       "version": "1.1.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.0",
         "hostApi": 1
@@ -1921,6 +2049,10 @@
       "order": 330,
       "description": "输入一句产品需求，一支 AI 研发团队在工作流画布上自动接力跑完整条研发流程：产品经理写 PRD → 开发工程师出技术设计 → 代码评审员审查+单测 → 测试工程师出测试用例 → 运维工程师出部署运维方案，最后 CTO 汇总评估。点「启动」即跳工作流页，逐节点真执行、逐个点亮。",
       "version": "1.1.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.0",
         "hostApi": 1
@@ -1966,6 +2098,10 @@
       "order": 340,
       "description": "给一个网址，一个 AI 测试工程师用浏览器工具真实逐页点测：站点勘探 → 链接与资源体检 → 交互点测 → 表单与关键流程 → UI/响应式/可访问性，最后汇总成一份完整测试报告（问题按严重度分组、含证据/复现步骤/修复建议）。点「启动」即跳工作流页，6 个阶段逐节点真跑、逐个点亮。危险操作（支付/删除/真实注册）只验证不最终确认。",
       "version": "1.1.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.0",
         "hostApi": 1
@@ -2012,6 +2148,10 @@
       "order": 9000,
       "description": "runtime.mode=dynamic 的参考实现：界面与主进程逻辑都来自方案包，不随 App 编译；安装即可运行、升级即热替换。新方案照此结构开发。",
       "version": "1.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
       "compat": {
         "minAppVersion": "2.0.5",
         "hostApi": 1

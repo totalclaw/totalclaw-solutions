@@ -33,5 +33,18 @@
       "size": 1804,
       "sha256": "2d969cb4dfb12ff150d18a205b3857eaaafedcc6fe0bde88bb322454e7aeb0cb"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-rfq-quote@2.0.0",
+      "treeDigest": "968f0b959c97b6a8095ca394318cce29b9935f77414baf1cd343c4e33c085ecb",
+      "filesRef": "index/workbench-rfq-quote/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

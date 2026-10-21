@@ -1,0 +1,47 @@
+{
+  "id": "workbench-biz-automation",
+  "version": "2.0.0",
+  "treeDigest": "467816736f54bd52b802364072f2d47555a9b7fb027a553e96637be53fcbb13d",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 455,
+      "sha256": "27aeae3dd8dc88ca84dfa67caae3f87eb74f5d96a6f38a071f5168498f5420f3"
+    },
+    {
+      "path": "README.md",
+      "size": 1480,
+      "sha256": "e131bc295f356bbe3294d4a09d00a5722c91bd0fccf803e788cbd92dda0cd012"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 2061,
+      "sha256": "c04c68b73033144ef1eb196da905e053286874f45b30ef430f192cb034e4744d"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 141643,
+      "sha256": "cf48a85343494f0ea46f3a9b4a554c379b1e0c55ec02cf72319a00510a336224"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 278389,
+      "sha256": "db5823d6a3a1bd7b34faba0571d8eae0231945496606378ed6fa0c1b655b49e8"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 29337,
+      "sha256": "253c7bf6e488a255661f7460c9f75c05587eac2c86b3294c2de7b4cd4013e683"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2270,
+      "sha256": "b28c7c1717ab91d73369249273fa5cb63f0f683d90b020a91c80375010c0c809"
+    }
+  ]
+}

@@ -43,5 +43,18 @@
       "size": 2831,
       "sha256": "aa6176572080ea3de8f9b9e8aa5161f94100532369f53f1e16cda449ffec3080"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-finance-audit@2.0.0",
+      "treeDigest": "5c5895217418df30ccc535300872faa7c42fc0f470770d5077ec47ba0557809d",
+      "filesRef": "index/workbench-finance-audit/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

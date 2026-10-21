@@ -102,6 +102,20 @@ npm run tcsol -- check | update --all | rollback <id> | uninstall <id>
 3. 数据结构有破坏性变化：新增 `migrations/NNN-<name>.mjs` 并把 `data.schemaVersion` +1（见下）。
 4. `npm run index` 后提交。合入 master 后，已安装该方案的 qiye-app 在下个检查周期（启动 30 秒后、之后每 6 小时）自动升级。
 
+## 更新策略（清单 `release` 字段）
+
+```jsonc
+"release": {
+  "channel": "stable",         // stable / beta：beta 版本只给订阅 beta 的账号
+  "rollout": 100,              // 灰度比例 0–100：按设备稳定分桶，先给一部分设备
+  "minimumVersion": "2.0.1"    // 强制最低版本：已装版本低于它时强制更新（无视用户锁定，用于安全修复）
+}
+```
+
+- 吊销某个版本：在 `removed.json` 写 `{ "id": "...", "versions": ["2.0.1"], "reason": "..." }`。装了这个版本的客户端会升级到可用的最高版本，没有更高版本就降级。
+- 版本身份以内容摘要为准：已打 tag 的版本内容不可再改，`npm run index` 会直接报错。
+- 客户端只在 semver 更高时升级；同版本内容变化时按修复重装；新版本激活失败会自动回滚，并隔离这个版本。
+
 ## 数据与记忆保护
 
 - 安装目录（代码）与账号数据目录物理分离：安装器只写 `solution-packages/`，**从不写**账号数据。
@@ -148,7 +162,11 @@ export default {
    - 在 qiye-app 根目录执行 `pnpm solutions:pull`，把源码叠加回 App 原路径（已被 .gitignore 忽略），在 App 里照常开发、跑测试。
    - 改完用 `pnpm solutions:sync --push` 把改动带回本仓库。
 2. 构建：在 qiye-app 执行 `pnpm solutions:build --only <id>`，产物写进本仓库的 `solutions/<id>/dist/`，宿主模块注册表随之重新生成。
-3. 发版：提升 `version`、写 CHANGELOG，再执行 `npm run release`（重建目录 → 签名 → 校验，需要私钥 `TCSOL_SIGNING_KEY`），然后提交。
+3. 发版：
+   1. 提升 `version`、写 CHANGELOG。
+   2. 执行 `npm run release`（重建目录 → 签名 → 校验，需要私钥 `TCSOL_SIGNING_KEY`）。
+   3. 提交。
+   4. 执行 `npm run tag`，为新版本打不可变 tag `<id>@<version>`，与提交一起推送（`git push --tags`）。旧客户端会按 tag 取它兼容的历史版本。
 4. 客户端：存量工作台下次启动时升级到新版本。新开发的方案（hostApi 1）可以热替换。
 
 共享代码（被宿主或多个方案使用的部分）属于宿主 SDK，留在 qiye-app，清单见 `apps/desktop-shell/solution-sdk.json`。修改这部分要随 App 发版。

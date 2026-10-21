@@ -43,5 +43,18 @@
       "size": 2152,
       "sha256": "7666ed461a385eab5a7b3b6e93a75ea1b2e95abaa98b7b6ac3efab351b091d0b"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-parts-alert@2.0.0",
+      "treeDigest": "3263f3bcd651867ccf20b87cba02a04dc6cbe9106e39641c8d06a2ee7a365b51",
+      "filesRef": "index/workbench-parts-alert/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

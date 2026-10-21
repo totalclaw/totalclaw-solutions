@@ -43,5 +43,18 @@
       "size": 2149,
       "sha256": "27f070579404b40261c59ea13eaaf90c8bbe94d3851a11a1706fed729323ddef"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-flow-sla@2.0.0",
+      "treeDigest": "a9d21c68407b7d8432a25e85e198067e7a781d6dca4ddfcae6dda8ccfbf28435",
+      "filesRef": "index/workbench-flow-sla/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

@@ -43,5 +43,18 @@
       "size": 2044,
       "sha256": "c5824233a58fd659f47d967406240e7ba48d91f8b0342bbf41683a96c3be5a69"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-edu-hub@2.0.0",
+      "treeDigest": "11ddb2ceffc239aa4f79ccd76d236de4d5e3967dde376a2bf665911aae2cfec2",
+      "filesRef": "index/workbench-edu-hub/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

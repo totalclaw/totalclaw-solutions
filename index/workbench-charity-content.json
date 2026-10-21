@@ -43,5 +43,18 @@
       "size": 5779,
       "sha256": "2ea913a5ef1cfbfa6c6429a6b09cda95dc435dd19e4289c94b70ed5f147f616a"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-charity-content@2.0.0",
+      "treeDigest": "d0d0122384f67de49160d3e05859d093b316b1f9d94e3b8e1a58581b79b8c08c",
+      "filesRef": "index/workbench-charity-content/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

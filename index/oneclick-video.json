@@ -23,5 +23,18 @@
       "size": 2854,
       "sha256": "7945c655ad68352f8d0066c8a3762e2d8ca808b60253562b8dff426b9099e99c"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.1.0",
+      "ref": "oneclick-video@2.1.0",
+      "treeDigest": "df64338d5834409afedf966f09b549c7a51cb865ee7258aadd5f4801dada12f3",
+      "filesRef": "index/oneclick-video/2.1.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.0",
+      "hostApi": 1,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

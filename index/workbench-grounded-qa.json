@@ -43,5 +43,18 @@
       "size": 2178,
       "sha256": "41107a5403cf33d7c5839691dffa5c3ac6847b8aab6155afa1b674f4d8922d6d"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-grounded-qa@2.0.0",
+      "treeDigest": "e7b2299b901a9ece39b32f4b7a301d4b4e9f23e3c4333d8215dd65a1b3bfbf5f",
+      "filesRef": "index/workbench-grounded-qa/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

@@ -33,5 +33,18 @@
       "size": 1827,
       "sha256": "af6c4de45085d3ba81fa1e359f4a3ff743156c7405c2695fc46fcad673165afe"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-bid-decision@2.0.0",
+      "treeDigest": "45fd740b80310201fd931dc673e56b6826bbfe5cd0572ea3968b3c1d7e2a1910",
+      "filesRef": "index/workbench-bid-decision/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

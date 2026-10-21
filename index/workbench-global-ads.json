@@ -38,5 +38,18 @@
       "size": 1950,
       "sha256": "6b580d9018c02774ecfeee9ffd7138e3047666e1d2941bba2a1f5bdfdb36c748"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-global-ads@2.0.0",
+      "treeDigest": "489f7b8af551018d5242d4687114be51fc17e86675cfa1592fe1bf98759304ed",
+      "filesRef": "index/workbench-global-ads/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

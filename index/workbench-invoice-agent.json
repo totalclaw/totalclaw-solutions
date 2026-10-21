@@ -38,5 +38,18 @@
       "size": 2132,
       "sha256": "0cadee4a66e883d365149648097ce9bdd7d8216d736a19b83731d7606295c347"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-invoice-agent@2.0.0",
+      "treeDigest": "933f2f43632f1bfbe46e4381078048d07e07ae1517468e4acc04bea468814285",
+      "filesRef": "index/workbench-invoice-agent/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

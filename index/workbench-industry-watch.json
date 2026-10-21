@@ -38,5 +38,18 @@
       "size": 2181,
       "sha256": "af8abbe5a32a969ad2ac16f3077ef8c7b9548b0b3856163a68b8983e45df7c36"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-industry-watch@2.0.0",
+      "treeDigest": "8f28c49b8c510251c80f098f99dc1c7e76b74e7827f4eef6893c0d43e8a8966a",
+      "filesRef": "index/workbench-industry-watch/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

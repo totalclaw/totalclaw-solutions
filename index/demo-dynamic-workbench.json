@@ -33,5 +33,18 @@
       "size": 4040,
       "sha256": "c4bd7422e9b8eb515ee7ebdf66d6592312cfc088f64108fc60985e36c8e27236"
     }
+  ],
+  "versions": [
+    {
+      "version": "1.0.0",
+      "ref": "demo-dynamic-workbench@1.0.0",
+      "treeDigest": "43c68bd27f1ac74f51cf113a37bdb7b999f07d71f334a417bdee99a8301da3e1",
+      "filesRef": "index/demo-dynamic-workbench/1.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 1,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

@@ -1,0 +1,42 @@
+{
+  "id": "workbench-industry-watch",
+  "version": "2.0.0",
+  "treeDigest": "8f28c49b8c510251c80f098f99dc1c7e76b74e7827f4eef6893c0d43e8a8966a",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 446,
+      "sha256": "0be20f057070e530598c65e6654274b8064fe83edd395a9869ea698b70a1eece"
+    },
+    {
+      "path": "README.md",
+      "size": 1118,
+      "sha256": "c4d2d26e774b80720a6f82da2414ecb42d100397bc8d01a3dbfa220db76683d0"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 399,
+      "sha256": "9cd6acb1366c8214adbf4b63e3ca48f4315e505471bfda4e2f2fe23b42e87026"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 38416,
+      "sha256": "9cd1a18507d1eb9f72b64804842c260fab72528e98b70965511fd3e6d1994fb7"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 10960,
+      "sha256": "2b7fea6fd55154549e526277665dc090291aca9c75020b661267c3f558d18668"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2181,
+      "sha256": "af8abbe5a32a969ad2ac16f3077ef8c7b9548b0b3856163a68b8983e45df7c36"
+    }
+  ]
+}

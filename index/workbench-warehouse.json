@@ -43,5 +43,18 @@
       "size": 1916,
       "sha256": "7fa0b750f6699f81ce53176c221292c92c6ba7f42538bb1807c3c1ceede7188b"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-warehouse@2.0.0",
+      "treeDigest": "b8efd3eb8c35cc16f16172e3ac432d15c17d5645e4b23745ea33b47bf34e3dc3",
+      "filesRef": "index/workbench-warehouse/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

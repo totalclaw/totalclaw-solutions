@@ -38,5 +38,18 @@
       "size": 2108,
       "sha256": "9e8494079997274cd486b9c0567d15653f98b2fe220289c8763153bed4778acf"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-apparel-store@2.0.0",
+      "treeDigest": "39436a471d2876d66c073f69fbc0ee340f26255ea2278effe7f7c443078d01e2",
+      "filesRef": "index/workbench-apparel-store/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

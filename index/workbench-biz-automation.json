@@ -43,5 +43,18 @@
       "size": 2270,
       "sha256": "b28c7c1717ab91d73369249273fa5cb63f0f683d90b020a91c80375010c0c809"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-biz-automation@2.0.0",
+      "treeDigest": "467816736f54bd52b802364072f2d47555a9b7fb027a553e96637be53fcbb13d",
+      "filesRef": "index/workbench-biz-automation/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

@@ -63,5 +63,18 @@
       "size": 4722,
       "sha256": "bbd6cfaab293a104345e5fdea22e2c972b15830925ce1a53fa363023f00b8501"
     }
+  ],
+  "versions": [
+    {
+      "version": "1.1.0",
+      "ref": "daizhang-accounting@1.1.0",
+      "treeDigest": "35c9e977f63ffdad93abd75d7208640fc401c26567ca0df3252dde1a4086928a",
+      "filesRef": "index/daizhang-accounting/1.1.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.0",
+      "hostApi": 1,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

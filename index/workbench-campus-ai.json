@@ -43,5 +43,18 @@
       "size": 2388,
       "sha256": "386268379cdff2cc39174e4e539dcbf3f4cc8f6c5b892a25c3c0126b6652ddfe"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-campus-ai@2.0.0",
+      "treeDigest": "e15c047f1c937cb45334dcbe10fed296a3f4221a0358bcbf47cccde0f1a2eca2",
+      "filesRef": "index/workbench-campus-ai/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }

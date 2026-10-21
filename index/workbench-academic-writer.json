@@ -43,5 +43,18 @@
       "size": 2348,
       "sha256": "22c7e3dd38bc8e4a7b613097e04a37aa700b4d59eaeafe5721642c96436ad1ff"
     }
+  ],
+  "versions": [
+    {
+      "version": "2.0.0",
+      "ref": "workbench-academic-writer@2.0.0",
+      "treeDigest": "1d2d71f9f87c30c6628358959794072813e002f6b776f32a82fb1df07a7db184",
+      "filesRef": "index/workbench-academic-writer/2.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-21"
+    }
   ]
 }
