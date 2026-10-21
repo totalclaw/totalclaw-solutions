@@ -195,3 +195,20 @@ test('账号策略：锁定旧版本（可降级）/ 停用 / 关闭自动更新
   assert.equal((await m.checkUpdates()).find((x) => x.id === 'alpha').reason, 'POLICY_BLOCK');
   await assert.rejects(m.install('alpha', { force: true }), { code: 'POLICY_BLOCK' });
 });
+
+test('版本历史与「回到此版本」：列出可用性，装指定旧版本并锁定', async () => {
+  const repo = setup();
+  publish(repo, '1.1.0');
+  publish(repo, '1.2.0', { release: { channel: 'beta' } });
+  const m = mgr(repo);
+  await m.install('alpha');
+  const vs = await m.versions('alpha');
+  assert.deepEqual(vs.map((v) => [v.version, v.available, v.reason ?? null, v.installed]), [
+    ['1.2.0', false, 'CHANNEL', false],
+    ['1.1.0', true, null, true],
+    ['1.0.0', true, null, false],
+  ]);
+  const r = await m.install('alpha', { version: '1.0.0' });
+  assert.equal(r.status, 'downgraded');
+  assert.equal(m.get('alpha').pinned, true);
+});

@@ -10,7 +10,7 @@
 // 安装器只写 root 内的路径；用户数据（账号目录）只在 uninstall({purgeData}) 时按清单声明删除，
 // 迁移在 migrate.mjs，由宿主在账号进入方案时调用。
 import { randomUUID } from 'node:crypto';
-import { forcedReason, isDelisted, normalizePolicy, selectVersion } from './release.mjs';
+import { forcedReason, isDelisted, normalizePolicy, selectVersion, versionsOf } from './release.mjs';
 import { verifyIndexSignature } from './signature.mjs';
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
@@ -223,13 +223,39 @@ export class SolutionManager {
     return detail;
   }
 
-  /** 选目标版本；没有可用版本时返回 { target:null, skipped } */
-  async _select(ref, index, item) {
+  /** 选目标版本；没有可用版本时返回 { target:null, skipped }。onlyVersion：指定版本（用户「回到此版本」） */
+  async _select(ref, index, item, { onlyVersion = null } = {}) {
     const detail = Array.isArray(item.files) ? { files: item.files, versions: null } : await this._detail(ref, item);
     const lock = readLock(this.root);
-    const quarantined = (lock.quarantine?.[item.id] || []).map((q) => q.version);
-    const sel = selectVersion({ item, detail, index, policy: this.policy(), deviceId: this.deviceId, appVersion: this.appVersion, hostApi: this.hostApi, quarantined });
+    const quarantined = (lock.quarantine?.[item.id] || []).map((q) => q.version).filter((v) => v !== onlyVersion);
+    const sel = selectVersion({ item, detail, index, policy: this.policy(), deviceId: this.deviceId, appVersion: this.appVersion, hostApi: this.hostApi, quarantined, onlyVersion });
     return { ...sel, detail };
+  }
+
+  /**
+   * 方案的版本历史与本机可用性（UI「版本历史」）：
+   * [{ version, channel, rollout, publishedAt, available, reason?, installed }]
+   */
+  async versions(query) {
+    const { ref, index } = await this.catalog();
+    const item = this.resolveIn(index, query);
+    const detail = Array.isArray(item.files) ? { versions: null } : await this._detail(ref, item);
+    const all = versionsOf(item, detail);
+    const cur = this.get(item.id);
+    const out = [];
+    for (const v of all) {
+      const { target, skipped } = await this._select(ref, index, item, { onlyVersion: v.version });
+      out.push({
+        version: v.version,
+        channel: v.channel || 'stable',
+        rollout: v.rollout ?? 100,
+        publishedAt: v.publishedAt || null,
+        available: !!target,
+        reason: target ? undefined : skipped.find((x) => x.version === v.version)?.reason,
+        installed: cur?.version === v.version,
+      });
+    }
+    return out.sort((a, b) => semver.compare(b.version, a.version));
   }
 
   /** 目标版本的逐文件清单与下载引用（历史版本按 tag 取，最新版用目录快照） */
@@ -263,7 +289,7 @@ export class SolutionManager {
     }
     if (this.policy().overrides?.[item.id]?.block) throw new SolutionError('POLICY_BLOCK', `${item.name} 已被管理员停用更新 / 安装`);
 
-    let { target, skipped, detail } = await this._select(ref, index, item);
+    let { target, skipped, detail } = await this._select(ref, index, item, { onlyVersion: opts.version || null });
     if (!target) {
       const why = skipped.find((s) => s.reason === 'APP_TOO_OLD' || s.reason === 'HOST_API') || skipped[0];
       const problem = this.compatProblem(item);
@@ -294,7 +320,7 @@ export class SolutionManager {
     ) {
       return { id: item.id, status: 'unchanged', version: target.version, dependencies: deps };
     }
-    if (current && !opts.force && !opts.allowDowngrade && semver.lt(target.version, current.version)) {
+    if (current && !opts.force && !opts.allowDowngrade && !opts.version && semver.lt(target.version, current.version)) {
       return { id: item.id, status: 'skipped', reason: 'NEWER_INSTALLED', version: current.version, dependencies: deps };
     }
 
@@ -317,6 +343,12 @@ export class SolutionManager {
     }
 
     const result = this._publish(item, target, staged, ref, current, opts.reason);
+    // 用户指定装某个版本：锁定它，避免下一轮自动升级又换掉
+    if (opts.version) {
+      const l = readLock(this.root);
+      l.items[item.id] = { ...l.items[item.id], pinned: true };
+      writeLock(this.root, l);
+    }
     return { ...result, reused: staged.reused, downloaded: staged.downloaded, dependencies: deps };
   }
 

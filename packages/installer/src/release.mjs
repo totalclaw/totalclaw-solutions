@@ -61,13 +61,14 @@ export function isDelisted(index, id) {
  * 选出目标版本。
  * @returns {{ target: object|null, skipped: Array<{version:string, reason:string}> }}
  */
-export function selectVersion({ item, detail, index, policy, deviceId, appVersion, hostApi, quarantined = [] }) {
+export function selectVersion({ item, detail, index, policy, deviceId, appVersion, hostApi, quarantined = [], onlyVersion = null }) {
   const pol = normalizePolicy(policy);
   const ov = pol.overrides[item.id] || {};
   const skipped = [];
   const ok = [];
   for (const v of versionsOf(item, detail)) {
     const skip = (reason) => skipped.push({ version: v.version, reason });
+    if (onlyVersion && v.version !== onlyVersion) continue; // 用户指定版本：只看这一个，其余规则照常
     if (!semver.valid(v.version)) { skip('BAD_VERSION'); continue; }
     if (isRevoked(index, item.id, v.version)) { skip('REVOKED'); continue; }
     if (ov.pinVersion && v.version !== ov.pinVersion) { skip('POLICY_PIN'); continue; }
