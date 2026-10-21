@@ -1,0 +1,247 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 112,
+    "solutions": {},
+    "host": [
+      "main/ipc/workbenchApi.ts",
+      "main/services/accountScope.ts",
+      "main/services/caseMailSender.ts",
+      "main/services/councilChatRouter.ts",
+      "main/services/cronResultNotifier.ts",
+      "main/services/documentExtractor.ts",
+      "main/services/qiyeApiBridge.ts",
+      "main/services/qiyeApiClient.ts",
+      "main/services/spreadsheetRead.ts",
+      "main/util/quitRegistry.ts",
+      "main/utils/atomicJson.ts",
+      "main/utils/userFacingError.ts",
+      "renderer/components/PageBackButton.vue",
+      "renderer/components/StepRunAlert.vue",
+      "renderer/components/WorkbenchStepBar.vue",
+      "renderer/composables/useStepWatchdog.ts",
+      "renderer/i18n.ts",
+      "renderer/stores/notification.ts",
+      "renderer/utils/ipcPlain.ts"
+    ],
+    "packages": [
+      "@totalclaw/i18n",
+      "@totalclaw/ipc-contracts",
+      "@vue/test-utils",
+      "electron",
+      "events",
+      "fs",
+      "imapflow",
+      "mailparser",
+      "os",
+      "path",
+      "pinia",
+      "vitest",
+      "vue",
+      "vue-router",
+      "xlsx",
+      "zod"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/views/ServiceSettlementWorkbenchView.vue",
+      "from": "renderer/views/ServiceSettlementWorkbenchView.vue"
+    },
+    {
+      "path": "src/renderer/views/ServiceSettlementWorkbenchView.test.ts",
+      "from": "renderer/views/ServiceSettlementWorkbenchView.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/FileDropField.vue",
+      "from": "renderer/workbenches/service-settlement/FileDropField.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/MarketingIncentiveModule.test.ts",
+      "from": "renderer/workbenches/service-settlement/MarketingIncentiveModule.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/MarketingIncentiveModule.vue",
+      "from": "renderer/workbenches/service-settlement/MarketingIncentiveModule.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/ReviewIncentiveModule.vue",
+      "from": "renderer/workbenches/service-settlement/ReviewIncentiveModule.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/ScrapLedgerModule.test.ts",
+      "from": "renderer/workbenches/service-settlement/ScrapLedgerModule.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/ScrapLedgerModule.vue",
+      "from": "renderer/workbenches/service-settlement/ScrapLedgerModule.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/SettlementModule.vue",
+      "from": "renderer/workbenches/service-settlement/SettlementModule.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/StepCard.vue",
+      "from": "renderer/workbenches/service-settlement/StepCard.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/StepCard.watchdog.test.ts",
+      "from": "renderer/workbenches/service-settlement/StepCard.watchdog.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/StickyProgress.vue",
+      "from": "renderer/workbenches/service-settlement/StickyProgress.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/TableMapping.vue",
+      "from": "renderer/workbenches/service-settlement/TableMapping.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/dataKeywords.json",
+      "from": "renderer/workbenches/service-settlement/dataKeywords.json"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/shared.format.test.ts",
+      "from": "renderer/workbenches/service-settlement/shared.format.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/shared.openPath.test.ts",
+      "from": "renderer/workbenches/service-settlement/shared.openPath.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/shared.test.ts",
+      "from": "renderer/workbenches/service-settlement/shared.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/shared.ts",
+      "from": "renderer/workbenches/service-settlement/shared.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/styles.css",
+      "from": "renderer/workbenches/service-settlement/styles.css"
+    },
+    {
+      "path": "src/main/ipc/serviceSettlement.ipc.ts",
+      "from": "main/ipc/serviceSettlement.ipc.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/columnKeywords.json",
+      "from": "main/services/serviceSettlement/columnKeywords.json"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/dataKeywords.json",
+      "from": "main/services/serviceSettlement/dataKeywords.json"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/edgeCases.test.ts",
+      "from": "main/services/serviceSettlement/edgeCases.test.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/excel.ts",
+      "from": "main/services/serviceSettlement/excel.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/mailReceiptEvidence.test.ts",
+      "from": "main/services/serviceSettlement/mailReceiptEvidence.test.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/mailReceiptEvidence.ts",
+      "from": "main/services/serviceSettlement/mailReceiptEvidence.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/mailReceiptScan.test.ts",
+      "from": "main/services/serviceSettlement/mailReceiptScan.test.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/marketingIncentive.autodetect.test.ts",
+      "from": "main/services/serviceSettlement/marketingIncentive.autodetect.test.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/marketingIncentive.rules.test.ts",
+      "from": "main/services/serviceSettlement/marketingIncentive.rules.test.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/marketingIncentive.ts",
+      "from": "main/services/serviceSettlement/marketingIncentive.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/policyExtraction.test.ts",
+      "from": "main/services/serviceSettlement/policyExtraction.test.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/policyExtraction.ts",
+      "from": "main/services/serviceSettlement/policyExtraction.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/policyReview.test.ts",
+      "from": "main/services/serviceSettlement/policyReview.test.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/policyReview.ts",
+      "from": "main/services/serviceSettlement/policyReview.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/policyReviewPersistence.test.ts",
+      "from": "main/services/serviceSettlement/policyReviewPersistence.test.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/proc.test.ts",
+      "from": "main/services/serviceSettlement/proc.test.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/proc.ts",
+      "from": "main/services/serviceSettlement/proc.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/realdataFixes.test.ts",
+      "from": "main/services/serviceSettlement/realdataFixes.test.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/reviewIncentive.ts",
+      "from": "main/services/serviceSettlement/reviewIncentive.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/rulesPdfSources.test.ts",
+      "from": "main/services/serviceSettlement/rulesPdfSources.test.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/rulesPdfSources.ts",
+      "from": "main/services/serviceSettlement/rulesPdfSources.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/scrapLedger.ts",
+      "from": "main/services/serviceSettlement/scrapLedger.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/scrapTemplate.schema.json",
+      "from": "main/services/serviceSettlement/scrapTemplate.schema.json"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/scrapTemplate.test.ts",
+      "from": "main/services/serviceSettlement/scrapTemplate.test.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/scrapTemplate.ts",
+      "from": "main/services/serviceSettlement/scrapTemplate.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/serviceSettlement.test.ts",
+      "from": "main/services/serviceSettlement/serviceSettlement.test.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/settlementSummary.ts",
+      "from": "main/services/serviceSettlement/settlementSummary.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/store.ts",
+      "from": "main/services/serviceSettlement/store.ts"
+    }
+  ]
+}

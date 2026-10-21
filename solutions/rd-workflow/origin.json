@@ -1,0 +1,58 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 2,
+    "solutions": {
+      "workbench-service-settlement": [
+        "renderer/workbenches/service-settlement/shared.ts"
+      ]
+    },
+    "host": [
+      "main/ipc/shared.ts",
+      "main/services/documentExtractor.ts",
+      "renderer/components/PageBackButton.vue",
+      "renderer/components/StepRunAlert.vue",
+      "renderer/composables/useStepWatchdog.ts",
+      "renderer/i18n.ts"
+    ],
+    "packages": [
+      "@totalclaw/core-domain",
+      "@totalclaw/i18n",
+      "@totalclaw/ipc-contracts",
+      "electron",
+      "fs",
+      "path",
+      "vue",
+      "vue-router"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/views/RdWorkflowWorkbenchView.vue",
+      "from": "renderer/views/RdWorkflowWorkbenchView.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/rd-workflow/FileDiffViewer.vue",
+      "from": "renderer/workbenches/rd-workflow/FileDiffViewer.vue"
+    },
+    {
+      "path": "src/renderer/components/rd/FileDiffViewer.vue",
+      "from": "renderer/components/rd/FileDiffViewer.vue"
+    },
+    {
+      "path": "src/renderer/composables/rdWorkflow.ts",
+      "from": "renderer/composables/rdWorkflow.ts"
+    },
+    {
+      "path": "src/main/ipc/rdWorkflow.ipc.ts",
+      "from": "main/ipc/rdWorkflow.ipc.ts"
+    }
+  ]
+}

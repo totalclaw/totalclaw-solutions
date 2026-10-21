@@ -1,0 +1,45 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "hedge.firmRatio": {
+      "value": 0.75,
+      "label": "确定敞口对冲比例（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/fx-risk/skills/fx-hedging-strategy/SKILL.md",
+        "section": "第四步：分层对冲策略"
+      }
+    },
+    "hedge.probableRatio": {
+      "value": 0.5,
+      "label": "很可能敞口对冲比例（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/fx-risk/skills/fx-hedging-strategy/SKILL.md",
+        "section": "第四步：分层对冲策略"
+      }
+    },
+    "hedge.possibleRatio": {
+      "value": 0.25,
+      "label": "可能敞口对冲比例（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/fx-risk/skills/fx-hedging-strategy/SKILL.md",
+        "section": "第四步：分层对冲策略"
+      }
+    },
+    "fx.limitEscalate": {
+      "value": 1000000000,
+      "label": "单一币种交易敞口限额 1000 万元本位币，超限升级（分）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/fx-risk/references/判断框架.md",
+        "section": "类型一：外汇敞口超过限额"
+      }
+    },
+    "fx.concentrationHigh": {
+      "value": 0.5,
+      "label": "单一币种占外币敞口 > 50% 为高集中度（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/fx-risk/skills/fx-exposure-calculation/SKILL.md",
+        "section": "第二步：敞口集中度（> [X]% 为高）"
+      }
+    }
+  }
+}

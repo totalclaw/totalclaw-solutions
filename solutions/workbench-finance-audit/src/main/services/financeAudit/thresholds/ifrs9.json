@@ -1,0 +1,173 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "stage.dpdS2": {
+      "value": 30,
+      "label": "逾期 ≥ 30 天进入第二阶段（天）",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "5.1 SICR 量化标准（30 DPD 绝对底线）"
+      }
+    },
+    "stage.dpdS3": {
+      "value": 90,
+      "label": "逾期 ≥ 90 天进入第三阶段（天）",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/判断框架.md",
+        "section": "Stage 3 触发（逾期 90 天以上）"
+      }
+    },
+    "stage.downgradeNotches": {
+      "value": 2,
+      "label": "评级下调 ≥ 2 个等级视为信用风险显著上升",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "5.2 规则 1：评级迁移法"
+      }
+    },
+    "ecl.lgdDefault": {
+      "value": 0.6,
+      "label": "没填 LGD 时按 60%（无抵押中型对公）",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "3.2 无抵押 LGD"
+      }
+    },
+    "ecl.eirDefault": {
+      "value": 0.05,
+      "label": "没填实际利率时按 5% 折现",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "6.4 完整计算案例"
+      }
+    },
+    "ecl.ccfDefault": {
+      "value": 0.5,
+      "label": "没填 CCF 时未提用额度按 50% 转换",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "4.2 CCF 监管参考值"
+      }
+    },
+    "ecl.termDefault": {
+      "value": 1,
+      "label": "没填剩余期限时按 1 年",
+      "source": {
+        "file": "docs/finance-audit-solution.md",
+        "section": "本方案约定"
+      }
+    },
+    "scenario.optWeight": {
+      "value": 0.25,
+      "label": "乐观情景权重（小数）",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "6.1 三情景法典型权重"
+      }
+    },
+    "scenario.baseWeight": {
+      "value": 0.5,
+      "label": "基准情景权重（小数）",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "6.1 三情景法典型权重"
+      }
+    },
+    "scenario.pesWeight": {
+      "value": 0.25,
+      "label": "悲观情景权重（小数）",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "6.1 三情景法典型权重"
+      }
+    },
+    "scenario.optMult": {
+      "value": 0.75,
+      "label": "乐观情景 PD 调整系数",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "6.4 完整计算案例（0.45% / 0.60%）"
+      }
+    },
+    "scenario.baseMult": {
+      "value": 1.0,
+      "label": "基准情景 PD 调整系数",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "6.4 完整计算案例"
+      }
+    },
+    "scenario.pesMult": {
+      "value": 1.5,
+      "label": "悲观情景 PD 调整系数",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "6.4 完整计算案例（0.90% / 0.60%）"
+      }
+    },
+    "matrix.current": {
+      "value": 0.005,
+      "label": "简化法损失率：未到期（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "简化法（应按本企业历史损失率校准，可上传损失率表）"
+      }
+    },
+    "matrix.d30": {
+      "value": 0.02,
+      "label": "简化法损失率：逾期 1–30 天（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "简化法"
+      }
+    },
+    "matrix.d60": {
+      "value": 0.05,
+      "label": "简化法损失率：逾期 31–60 天（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "简化法"
+      }
+    },
+    "matrix.d90": {
+      "value": 0.1,
+      "label": "简化法损失率：逾期 61–90 天（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "简化法"
+      }
+    },
+    "matrix.d180": {
+      "value": 0.25,
+      "label": "简化法损失率：逾期 91–180 天（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "简化法"
+      }
+    },
+    "matrix.d365": {
+      "value": 0.5,
+      "label": "简化法损失率：逾期 181–365 天（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "简化法"
+      }
+    },
+    "matrix.d365plus": {
+      "value": 1.0,
+      "label": "简化法损失率：逾期 365 天以上（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/ECL计算详解.md",
+        "section": "简化法"
+      }
+    },
+    "stage3ShareWatch": {
+      "value": 0.05,
+      "label": "第三阶段敞口占比 > 5%：升级（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/ifrs9-credit-risk/references/判断框架.md",
+        "section": "升级触发条件（Stage 3 敞口占比 > [X]%）"
+      }
+    }
+  }
+}

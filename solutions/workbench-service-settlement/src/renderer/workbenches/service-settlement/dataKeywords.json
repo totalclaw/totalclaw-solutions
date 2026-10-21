@@ -1,0 +1,12 @@
+{
+  "_comment": "匹配客户 Excel 工作表名 / 表头用的中文关键字，不是界面文案：放 JSON 里避免被 i18n codemod 包成 t()，切英文界面也要认得出「售后」这一页",
+  "sheetHints": {
+    "jdInstall": ["安装评价", "安装"],
+    "jdAfterSales": ["售后", "满意"],
+    "tmall": ["天猫"],
+    "evaluable": ["服务商版", "评价率", "可评价", "完工", "单量"]
+  },
+  "feeSheetPrefer": ["外发"],
+  "qualifierPattern": "电动止回阀",
+  "orderProviderFallbackColumn": "客户备注"
+}

@@ -1,0 +1,284 @@
+{
+ "students": [
+  {
+   "id": "stu-a",
+   "code": "甲",
+   "name": [
+    "学生甲",
+    "Student A",
+    "الطالب أ"
+   ],
+   "description": [
+    "记忆、词汇、理解均较强——高掌握学生。",
+    "Strong in memory, vocabulary and comprehension – a high-mastery student.",
+    "قوي في الحفظ والمفردات والفهم – طالب عالي الإتقان."
+   ],
+   "traits": {
+    "memory": 0.95,
+    "order": 0.92,
+    "vocabulary": 0.9,
+    "comprehension": 0.88,
+    "concept": 0.86
+   }
+  },
+  {
+   "id": "stu-b",
+   "code": "乙",
+   "name": [
+    "学生乙",
+    "Student B",
+    "الطالب ب"
+   ],
+   "description": [
+    "记忆较强，但理解题和概念关系题偏弱——区分「背得好」和「理解得好」。",
+    "Strong memory but weak on comprehension and concept-relation items – distinguishes memorising from understanding.",
+    "حفظ قوي لكن ضعف في أسئلة الفهم والعلاقات المفاهيمية – يميّز بين الحفظ والفهم."
+   ],
+   "traits": {
+    "memory": 0.93,
+    "order": 0.9,
+    "vocabulary": 0.8,
+    "comprehension": 0.42,
+    "concept": 0.38
+   }
+  },
+  {
+   "id": "stu-c",
+   "code": "丙",
+   "name": [
+    "学生丙",
+    "Student C",
+    "الطالب ج"
+   ],
+   "description": [
+    "词汇与匹配题偏弱——展示词汇维度分析。",
+    "Weak in vocabulary and matching items – shows the vocabulary dimension.",
+    "ضعف في المفردات وأسئلة المطابقة – يُظهر بُعد المفردات."
+   ],
+   "traits": {
+    "memory": 0.82,
+    "order": 0.8,
+    "vocabulary": 0.35,
+    "comprehension": 0.75,
+    "concept": 0.72
+   }
+  },
+  {
+   "id": "stu-d",
+   "code": "丁",
+   "name": [
+    "学生丁",
+    "Student D",
+    "الطالب د"
+   ],
+   "description": [
+    "整体不差，但某一概念连续出错——展示局部知识点弱项。",
+    "Generally fine, but repeatedly wrong on one concept – shows a local weak point.",
+    "جيد عمومًا لكنه يخطئ باستمرار في مفهوم واحد – يُظهر نقطة ضعف موضعية."
+   ],
+   "traits": {
+    "memory": 0.85,
+    "order": 0.84,
+    "vocabulary": 0.82,
+    "comprehension": 0.8,
+    "concept": 0.78,
+    "weakConceptHint": "first"
+   }
+  },
+  {
+   "id": "stu-e",
+   "code": "戊",
+   "name": [
+    "学生戊",
+    "Student E",
+    "الطالب هـ"
+   ],
+   "description": [
+    "整体中等，多个维度有少量错误——形成群体统计对比。",
+    "Average overall with a few errors across dimensions – provides the group baseline.",
+    "متوسط عمومًا مع أخطاء قليلة في عدة أبعاد – يشكّل خط الأساس للمجموعة."
+   ],
+   "traits": {
+    "memory": 0.7,
+    "order": 0.68,
+    "vocabulary": 0.66,
+    "comprehension": 0.64,
+    "concept": 0.6
+   }
+  }
+ ],
+ "dimension": {
+  "memory": [
+   "记忆与识别",
+   "Memory & recognition",
+   "الحفظ والتعرّف"
+  ],
+  "order": [
+   "顺序",
+   "Order",
+   "الترتيب"
+  ],
+  "vocabulary": [
+   "词汇",
+   "Vocabulary",
+   "المفردات"
+  ],
+  "comprehension": [
+   "理解",
+   "Comprehension",
+   "الفهم"
+  ],
+  "concept": [
+   "概念掌握",
+   "Concept mastery",
+   "إتقان المفاهيم"
+  ]
+ },
+ "type": {
+  "mcq": [
+   "选择题",
+   "Multiple choice",
+   "اختيار من متعدد"
+  ],
+  "fill": [
+   "填空",
+   "Fill in the blank",
+   "ملء الفراغ"
+  ],
+  "order": [
+   "排序",
+   "Ordering",
+   "ترتيب"
+  ],
+  "match": [
+   "匹配",
+   "Matching",
+   "مطابقة"
+  ],
+  "concept": [
+   "概念关系",
+   "Concept relation",
+   "علاقة مفاهيمية"
+  ]
+ },
+ "classification": {
+  "memory": [
+   "记忆问题",
+   "Memory issue",
+   "مشكلة حفظ"
+  ],
+  "vocabulary": [
+   "词汇问题",
+   "Vocabulary issue",
+   "مشكلة مفردات"
+  ],
+  "concept": [
+   "概念理解问题",
+   "Concept understanding issue",
+   "مشكلة فهم مفهوم"
+  ],
+  "order": [
+   "顺序问题",
+   "Ordering issue",
+   "مشكلة ترتيب"
+  ],
+  "question_type": [
+   "题型问题",
+   "Question-type issue",
+   "مشكلة نوع السؤال"
+  ],
+  "coverage_gap": [
+   "教学材料覆盖不足",
+   "Insufficient approved material coverage",
+   "نقص في تغطية المواد المعتمدة"
+  ]
+ },
+ "verdict": {
+  "common": [
+   "群体共同薄弱点（{n}/{m}）",
+   "Common group weak point ({n}/{m})",
+   "نقطة ضعف مشتركة ({n}/{m})"
+  ],
+  "hint": [
+   "提示需要增加复习（{n}/{m}）",
+   "Suggests extra review ({n}/{m})",
+   "يوصى بمراجعة إضافية ({n}/{m})"
+  ],
+  "individual": [
+   "更可能属于个人问题（{n}/{m}）",
+   "More likely an individual issue ({n}/{m})",
+   "على الأرجح مشكلة فردية ({n}/{m})"
+  ]
+ },
+ "weakLabel": {
+  "verse": [
+   "经文 {ref}",
+   "Verse {ref}",
+   "الآية {ref}"
+  ],
+  "type": [
+   "题型：{type}",
+   "Type: {type}",
+   "النوع: {type}"
+  ],
+  "vocabulary": [
+   "词汇「{word}」",
+   "Vocabulary \"{word}\"",
+   "المفردة «{word}»"
+  ]
+ },
+ "recommend": {
+  "concept": [
+   "复习概念「{label}」对应的经文（{refs}），在理解图中查看其关联，并完成 5 道针对性强化题。",
+   "Review the verses for the concept \"{label}\" ({refs}), inspect its links in the understanding map, and complete 5 targeted reinforcement items.",
+   "راجع آيات مفهوم «{label}» ({refs})، وتفحّص روابطه في خريطة الفهم، وأكمل 5 أسئلة تعزيزية."
+  ],
+  "verse": [
+   "重读并背诵 {ref}，配合填空与排序练习巩固记忆。",
+   "Re-read and memorise {ref}, reinforcing with fill-in and ordering exercises.",
+   "أعد قراءة وحفظ {ref} مع تمارين ملء الفراغ والترتيب."
+  ],
+  "vocabulary": [
+   "用词汇卡复习批准词表中的「{word}」及同节词汇。",
+   "Review \"{word}\" and its verse-mates from the approved glossary with vocabulary cards.",
+   "راجع «{word}» ومفردات آيتها من القائمة المعتمدة باستخدام بطاقات المفردات."
+  ],
+  "type": [
+   "{type} 题型错误集中，建议先做 3 道同类低难度练习熟悉题型。",
+   "Errors cluster in {type} items; start with 3 easier items of the same type to get used to the format.",
+   "تتركز الأخطاء في أسئلة {type}؛ ابدأ بثلاثة أسئلة أسهل من النوع نفسه للتعوّد على الشكل."
+  ],
+  "fine": [
+   "各维度均衡，建议进入下一单元并做一次综合复测。",
+   "All dimensions are balanced; proceed to the next unit and take a comprehensive retest.",
+   "جميع الأبعاد متوازنة؛ انتقل إلى الوحدة التالية وأجرِ إعادة اختبار شاملة."
+  ]
+ },
+ "note": {
+  "concept": [
+   "{n} 名学生在概念「{label}」相关题上出错，建议集中讲解并配理解图。",
+   "{n} students missed items on the concept \"{label}\"; teach it explicitly with the understanding map.",
+   "أخطأ {n} طلاب في أسئلة مفهوم «{label}»؛ يُنصح بشرحه مع خريطة الفهم."
+  ],
+  "vocabulary": [
+   "{n} 名学生在词汇「{word}」上出错，需要增加词汇复习。",
+   "{n} students missed the word \"{word}\"; add vocabulary review.",
+   "أخطأ {n} طلاب في المفردة «{word}»؛ أضف مراجعة للمفردات."
+  ],
+  "verse": [
+   "{n} 名学生在 {ref} 的记忆/顺序题上出错。",
+   "{n} students missed memory/order items on {ref}.",
+   "أخطأ {n} طلاب في أسئلة الحفظ/الترتيب للآية {ref}."
+  ],
+  "type": [
+   "{n} 名学生在 {type} 题型上出错，可能是题型熟悉度问题而非内容问题。",
+   "{n} students missed {type} items – possibly familiarity with the format rather than the content.",
+   "أخطأ {n} طلاب في أسئلة {type} – ربما بسبب شكل السؤال لا المحتوى."
+  ],
+  "coverage": [
+   "该概念仅有结构表一条批准资料支撑，错误集中时更可能是教学材料覆盖不足，建议补充经批准的讲解资料。",
+   "Only one approved structure-table entry supports this concept; clustered errors more likely indicate insufficient approved material – add approved explanatory material.",
+   "لا يدعم هذا المفهوم سوى مدخل واحد من جدول البنية المعتمد؛ تركّز الأخطاء يشير إلى نقص المواد المعتمدة."
+  ]
+ }
+}

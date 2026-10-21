@@ -1,0 +1,56 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-rfq-quote",
+  "name": "AI 询价与报价数字员工",
+  "aliases": [
+    "rfq-quote"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "询价报价",
+  "icon": "icon-solutions",
+  "order": 80,
+  "description": "从询价收件、产品匹配、供应与外协到可见公式的报价与审批文件，全程留痕。",
+  "detail": "从邮箱自动收取询价单开始：产品库匹配、供应与外协比价、成本公式全程可见，最终产出带审批流的报价文件，每一步留痕、可回溯到原始邮件。",
+  "shortcuts": [
+    "查看询价收件",
+    "产品匹配比价",
+    "生成报价文件"
+  ],
+  "highlights": [
+    "成本公式全程可见",
+    "带审批流的报价文件",
+    "可回溯原始邮件"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/rfq-quote",
+    "renderer": "src/renderer/views/RfqQuoteWorkbenchView.vue",
+    "main": null
+  },
+  "dependsOn": [
+    "kit-saudi-workbench"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-rfq-quote"
+  }
+}

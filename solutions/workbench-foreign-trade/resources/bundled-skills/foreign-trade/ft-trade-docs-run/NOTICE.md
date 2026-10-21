@@ -1,0 +1,7 @@
+# 来源与改动说明
+
+- 来源：
+  - https://github.com/Dangooy/trade-pipeline-skill，提交 afcbda5dec97c2a6e9ab692b2add5021cd748040，路径 `trade_pipeline/__init__.py`、`trade_pipeline/__main__.py`、`trade_pipeline/paths.py`、`trade_pipeline/config_service.py`、`trade_pipeline/adapters`、`trade_pipeline/cli`、`trade_pipeline/config`、`trade_pipeline/extractors`、`trade_pipeline/models`、`trade_pipeline/pipeline`、`trade_pipeline/understanding`、`trade_pipeline/validation`、`trade_pipeline/writers`、`examples/demo_config.yaml`、`examples/sample_inquiry.xlsx`、`docs/gate-pattern.md`、`docs/output-verification.md`、`docs/llm-wiki-pattern.md`、`docs/adversarial-review-2607.md`、`docs/adversarial-review-2607-crosscheck.md`、`docs/adversarial-review-2608-external.md`
+- 许可证：MIT（Copyright (c) 2026 Yang Haoping）
+- 改编方：TotalClaw，2026-10-19
+- 改动：重命名为 `ft-trade-docs-run`；改写 frontmatter（中文名称与描述、模块、来源仓库与提交号）；正文前补「在本产品中使用」一节（工具替换、发信改为人工确认、数据落到工作区文件）；替换特定产品名；正文按上游代码与文档重写为技能步骤（规则与阈值照上游源码）；去掉：trade_pipeline/legacy/（pl_gen_bridge：子进程调用仓库外的 pl-gen 包，公开仓库本就不含，目录不存在时走内置 lite）；writers/pl_writer.py 换成只走 lite 的副本；understanding/llm_parser.py 去掉写死的模型名，改读环境变量 TRADE_PIPELINE_LLM_MODEL，未设置时 --use-llm 直接回退规则模式；未复制 scripts/check_version.py（只校验上游版本号一致性的 CI 脚本，不联网）；上游技能目录 .claude/skills/trade-pipeline-run（只有 SKILL.md，故不设 from）。paths.py 换成加了 TRADE_PIPELINE_HOME 的副本：设了就把 config.yaml / 输出 / product_catalog.yaml 放到该目录（正文要求指向 <工作区>/trade-docs），首用时从包内模板复制配置，避免技能升级覆盖用户配置。示例文件放 scripts/examples/，因为 paths.bundle_root() 是 trade_pipeline 的上级目录。依赖 openpyxl、pyyaml，Python ≥ 3.11

@@ -1,0 +1,7 @@
+# 来源与改动说明
+
+- 来源：
+  - https://github.com/wo9230/osint-agent，提交 cc8f4dec475c50efb557c81bfa3c6770ccd5954a，路径 `skills/strategic-growth-advisor`
+- 许可证：MIT（附加中英文合规声明）（Copyright (c) 2026 OSINT Agent Contributors）
+- 改编方：TotalClaw，2026-10-19
+- 改动：重命名为 `ft-strategic-growth-advisor`；改写 frontmatter（中文名称与描述、模块、来源仓库与提交号）；正文前补「在本产品中使用」一节（工具替换、发信改为人工确认、数据落到工作区文件）；替换特定产品名；以上游正文为底稿改写（工具名、发送方式、路径）；selfbuilt 改写 SKILL.md：references 路径改为技能内相对路径，上游 /osint 第 8 步改为接 ft-b2b-osint-research 报告，卖家精灵数据改为「装了连接器才用，否则 web_search」

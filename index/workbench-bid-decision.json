@@ -1,0 +1,37 @@
+{
+  "id": "workbench-bid-decision",
+  "version": "1.0.0",
+  "treeDigest": "1291ea26ba36dfc58ef56b729c4302f1e255967321789b746eab86fd4efe21ad",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 138,
+      "sha256": "7b1663e4cfbb5e624dd84d6ffdb033551800da5b9965ac1465245aab4cf6eb13"
+    },
+    {
+      "path": "README.md",
+      "size": 873,
+      "sha256": "88bc187527e4a0f0151202309da29d170ad8c52d690ff6359ea1760c04479c76"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "origin.json",
+      "size": 760,
+      "sha256": "9c0b32663c810a2a13224c95072d7284e833cb43855f24c61aca5299a517eedc"
+    },
+    {
+      "path": "solution.json",
+      "size": 1481,
+      "sha256": "9deda4f5de4f955571169b9c4614d6517fba6c9152bc801c2a51289578c27f4a"
+    },
+    {
+      "path": "src/renderer/views/BidDecisionWorkbenchView.vue",
+      "size": 390,
+      "sha256": "586ae23198b24a378fae9e4bf8d60d84084b22767eeca1a3c5d302b07a02a2b1"
+    }
+  ]
+}

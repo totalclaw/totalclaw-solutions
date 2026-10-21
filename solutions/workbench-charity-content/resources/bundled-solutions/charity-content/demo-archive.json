@@ -1,0 +1,31 @@
+{
+  "orgName": {
+    "zh": "丝绸之路文明交流协会",
+    "en": "Silk Road Civilizational Communication Association",
+    "ar": "جمعية طريق الحرير للتواصل الحضاري"
+  },
+  "eventName": {
+    "zh": "从伙伴关系到影响力",
+    "en": "From Partnership to Impact",
+    "ar": "من الشراكة ... إلى الأثر"
+  },
+  "date": "2026-08-15",
+  "location": {
+    "zh": "沙特阿拉伯 · 利雅得",
+    "en": "Riyadh, Saudi Arabia",
+    "ar": "الرياض، المملكة العربية السعودية"
+  },
+  "participants": 120,
+  "donation": "SAR 85,000",
+  "organizer": {
+    "zh": "丝绸之路文明交流协会",
+    "en": "Silk Road Civilizational Communication Association",
+    "ar": "جمعية طريق الحرير للتواصل الحضاري"
+  },
+  "summary": {
+    "zh": "该活动记录了谢赫·穆罕默德·本·阿卜杜勒阿齐兹·拉吉希基金会的访问，作为战略伙伴，旨在跟踪“十亿指引”项目的实施进展，强调了执行中的伙伴关系及其在可持续性和实现目标方面的更大影响。",
+    "en": "The event records the visit of Sheikh Mohammed bin Abdulaziz Al Rajhi Endowments, as a strategic partner, to track the implementation progress of the #Hidayat_Al_Milyar project, emphasizing the present partnership in implementation and its greater impact on sustainability and reach.",
+    "ar": "يسجل الحدث زيارة أوقاف الشيخ محمد بن عبد العزيز الراجحي، كشريك استراتيجي، لتتبع مسار تنفيذ مشروع #هداية_المليار، مؤكداً على الشراكة الحاضرة في التنفيذ وأثرها الأكبر في الاستدامة والوصول."
+  },
+  "source": "demo"
+}

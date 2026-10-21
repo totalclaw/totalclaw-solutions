@@ -1,0 +1,61 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-edu-hub",
+  "name": "AI 学习中心（文档生成教案）",
+  "aliases": [
+    "edu-hub"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "教育",
+  "icon": "icon-solutions",
+  "order": 10,
+  "description": "导入教材一键生成教案、学生要点与小测；启动校内服务，学生扫码用浏览器学习，进展实时回看。",
+  "detail": "上传 Word 或 PDF 教材，AI 自动拆分课时并生成教案、学生要点与随堂小测，支持中、英、阿三语切换；一键启动校内服务后，学生扫码即可在浏览器里学习，教师端实时回看每个学生的进展与答题情况。",
+  "shortcuts": [
+    "导入教材生成教案",
+    "启动校内服务",
+    "学生扫码学习"
+  ],
+  "highlights": [
+    "一键生成教案/要点/小测",
+    "中英阿三语切换",
+    "实时回看学习进展"
+  ],
+  "access": {
+    "requiresSolutionGrant": false,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/edu-hub",
+    "renderer": "src/renderer/views/EduHubWorkbenchView.vue",
+    "main": "src/main/ipc/eduHub.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-digital-human",
+    "workbench-quran-teaching"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "edu-hub/"
+    ],
+    "localStorage": [
+      "totalclaw:edu-hub"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-edu-hub"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "minComparables": { "value": 3, "label": "可比公司少于 3 家：可比性不足（中风险）", "source": { "file": "finance-skills/skills/transfer-pricing-documentation/references/判断框架.md", "section": "转让定价风险判断 · 风险分级（中风险）" } },
+    "intlCbcr.floor": { "value": 75000000000, "label": "国际口径国别报告门槛：OECD 为 7.5 亿欧元；默认按本位币 7.5 亿填写，请按汇率折算后修改（最小货币单位）", "source": { "file": "OECD/G20 BEPS Action 13 Final Report", "section": "Country-by-Country Reporting Implementation Package" } }
+  }
+}

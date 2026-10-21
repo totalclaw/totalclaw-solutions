@@ -1,0 +1,107 @@
+{
+  "id": "workbench-edu-hub",
+  "version": "1.0.0",
+  "treeDigest": "7aaf456769e04819feab49bc5b8eafdaee117cbe4a7f1506f80f3d708b107d43",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 147,
+      "sha256": "4c409e6b82205902c1d178d5883f7ed0f2c18e7d48c72d10350a6b5b79a70482"
+    },
+    {
+      "path": "README.md",
+      "size": 987,
+      "sha256": "9e7c446a39e7165fdad446d95ba08fcc0dc41de74b8a5dd14f6d2bc635c4da2a"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "origin.json",
+      "size": 3525,
+      "sha256": "33fe3d8c67ed72bcdd2d4c56073edf751ee294edb230b80529c0a0fdc299209d"
+    },
+    {
+      "path": "solution.json",
+      "size": 1680,
+      "sha256": "2c5721091a5f4c3a8e6b4f0d4b70aff528c54810c669d2b28115c7d993d87c18"
+    },
+    {
+      "path": "src/main/ipc/eduHub.ipc.ts",
+      "size": 18321,
+      "sha256": "8b5e3a254e20f82ef08b6842f8e09beedca269f13cea186f88c1309dfdae2478"
+    },
+    {
+      "path": "src/main/services/eduHubAnalyze.test.ts",
+      "size": 5317,
+      "sha256": "3c593eb9648f566660c446ea1a40ebbd7562b63105501b727b80a08c723e2862"
+    },
+    {
+      "path": "src/main/services/eduHubDelete.test.ts",
+      "size": 9284,
+      "sha256": "265ddaecb8f0e11aa7e74ff2c83d90ce024a8eeae560d798ee61b675162177d3"
+    },
+    {
+      "path": "src/main/services/eduHubGenerateRetry.test.ts",
+      "size": 8594,
+      "sha256": "67b7480746cadaff782cb585800be9691aec2d796317136923b92ee1d100d6d6"
+    },
+    {
+      "path": "src/main/services/eduHubJson.test.ts",
+      "size": 2915,
+      "sha256": "cf2cad4ccf4407ee0ffc5438b4180c9c3de0b9a90c10da52a7208d88475ea72e"
+    },
+    {
+      "path": "src/main/services/eduHubProc.test.ts",
+      "size": 19814,
+      "sha256": "cca72afc020f34aed1cd3f4308324330063d4727c7f545e9c9b47b2cd0c7df11"
+    },
+    {
+      "path": "src/main/services/eduHubProc.ts",
+      "size": 9343,
+      "sha256": "bf31a4564414db4830a39cb135dd411fe48455c1ab4a68fe0074b33853eb47a7"
+    },
+    {
+      "path": "src/main/services/eduHubReparse.test.ts",
+      "size": 4231,
+      "sha256": "4833d655d22d3f259b8a00dbe69c999d5ec511acf3de7659bfee8078c173c488"
+    },
+    {
+      "path": "src/main/services/eduHubStore.langSwitch.test.ts",
+      "size": 9561,
+      "sha256": "be692f352e51359ebf7cbc3d10a191ee3347a8398dfcca1015a56a1d8f629aa2"
+    },
+    {
+      "path": "src/main/services/eduHubStore.p0logic.test.ts",
+      "size": 8370,
+      "sha256": "51915f7e4df6ef399d4f433c79cae237bacc2c827c16254ff70e11954ac39e2c"
+    },
+    {
+      "path": "src/main/services/eduHubStore.submitLang.test.ts",
+      "size": 5730,
+      "sha256": "fcca5b96880aedc3f483f7d6120fd7de890aa62bc71719971fd5fad0c470d2d8"
+    },
+    {
+      "path": "src/main/services/eduHubStore.ts",
+      "size": 130783,
+      "sha256": "5d19a6298315662e9a7ff699d04acd3a64b043df9714f43aff94ba8b605a184c"
+    },
+    {
+      "path": "src/main/services/eduHubStudentPage.ts",
+      "size": 53295,
+      "sha256": "0a73cc2562da26a33e326de1d40b7ba1beb84827ab9d24e426271959566fb4b3"
+    },
+    {
+      "path": "src/renderer/views/EduHubWorkbenchView.genWatchdog.test.ts",
+      "size": 6325,
+      "sha256": "466299864ed14383eb0852b6fddae620e58678e7ed9af51af7d2030632322bfd"
+    },
+    {
+      "path": "src/renderer/views/EduHubWorkbenchView.vue",
+      "size": 82318,
+      "sha256": "1676d374309cf23d1a54aa5d14f36785e926a5bb117a2227de00fcde63115605"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-invoice-agent",
+  "name": "发票智能体",
+  "aliases": [
+    "invoice-agent"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "财税",
+  "icon": "icon-solutions",
+  "order": 190,
+  "description": "拿着付款单或一张开票申请表（很多行、很多家购买方）批量开票：自动识别列、逐行校验税号与金额、按规则组票拆票算税，生成电子税务局批量导入文件或由数字员工逐张填写，台账自动回填发票号码。",
+  "detail": "七步向导：销售方与通道 → 导入付款单或表格（付款回单由模型读出后回原文核对）→ 逐行校验（税号校验位、同名不同税号、数量 × 单价 ≠ 金额、疑似重复开票）→ 税收分类编码 → 组票拆票并确认 → 开具 → 回填号码。金额与税额按分做整数运算，模型不算钱；登录、扫脸、验证码由你本人完成，系统与数字员工都停在「发票开具」按钮前。",
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/invoice-agent",
+    "renderer": "src/renderer/views/InvoiceAgentWorkbenchView.vue",
+    "main": "src/main/ipc/invoiceAgent.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-service-settlement"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "invoice-agent/"
+    ],
+    "localStorage": [
+      "totalclaw:invoice-agent"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-invoice-agent"
+  }
+}

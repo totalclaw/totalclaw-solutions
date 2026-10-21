@@ -1,0 +1,9 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "vatLineTol": { "value": 100, "label": "逐行核对：税额与「不含税金额 × 税率」的容差 1.00（最小货币单位）", "source": { "file": "docs/finance-audit-solution.md", "section": "5.6 C1 第 ④ 步（本方案设定，处理按单张发票合计计税产生的尾差）" } },
+    "topSupplierShare": { "value": 0.6, "label": "进项发票集中于少数供应商：TOP 3 占比 > 60% 须说明合理性", "source": { "file": "finance-skills/skills/tax-filing/references/判断框架.md", "section": "类型二：进项税额异常 · 第二步：进项来源分析" } },
+    "inputOverOutputMonthsWarn": { "value": 3, "label": "连续 3 个月进项 > 销项：须关注", "source": { "file": "finance-skills/skills/tax-filing/references/判断框架.md", "section": "类型二：进项税额异常 · 第一步" } },
+    "inputOverOutputMonthsHigh": { "value": 6, "label": "连续 6 个月进项 > 销项：须税务经理介入", "source": { "file": "finance-skills/skills/tax-filing/references/判断框架.md", "section": "类型二：进项税额异常 · 第一步" } }
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "id": "workbench-campus-ai",
+  "version": "1.0.0",
+  "treeDigest": "a7eca9863b40efa6077e289d34195a51c5f179dba6b82ec2d8a233998804c497",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 134,
+      "sha256": "57a4f83fc828105d6c5472803fbe908ef25bff43dae354276920e1625abf44ea"
+    },
+    {
+      "path": "README.md",
+      "size": 1537,
+      "sha256": "861f77b44e565be8a0ffe30968ce0950c618ec8eef551458bbbaa1457a46b9c8"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "origin.json",
+      "size": 6240,
+      "sha256": "97572569637e0dfbfe6ed0444546943d1bb1dc7bd2dcf360621fd3bf5d916209"
+    },
+    {
+      "path": "solution.json",
+      "size": 2022,
+      "sha256": "eb040efc34b808d56e91f2062edd832da56ae6cf764b99e75d7169633c454b1f"
+    },
+    {
+      "path": "src/contracts/campusAi.ts",
+      "size": 16132,
+      "sha256": "ed9b75c6bd76a06d803b213ad569c5efdd183a27d67f38c5c51054fac9ff49d5"
+    },
+    {
+      "path": "src/main/ipc/campusAi.ipc.ts",
+      "size": 27037,
+      "sha256": "5ae9b0c6a00b198d040f09e4f8cf0a13278f0f8b40178703ed5b393ab6ba7f07"
+    },
+    {
+      "path": "src/main/ipc/campusAi.modules.ts",
+      "size": 28312,
+      "sha256": "19f9d8fff1ba87fd62ac71a4d055eea7f2543a7b7bc6b57b25a1beb412a9b18a"
+    },
+    {
+      "path": "src/main/services/campusAi/campusAi.test.ts",
+      "size": 11253,
+      "sha256": "b13037b4be8fe613851e0635819b8d8bf6f1985afde154d962b780a9b3a5f370"
+    },
+    {
+      "path": "src/main/services/campusAi/columnKeywords.json",
+      "size": 1880,
+      "sha256": "44089ba3371dfee43db8f09016d59b77dfba59dd27948977588ec580c331d356"
+    },
+    {
+      "path": "src/main/services/campusAi/demoCampus.json",
+      "size": 16468,
+      "sha256": "a1b08cf034552ec1559440278bb24bc766ed2a3d9bb74218fd0ddbd01eeff3d6"
+    },
+    {
+      "path": "src/main/services/campusAi/demoData.ts",
+      "size": 8017,
+      "sha256": "26484f36d1ac3f8e1385f6471f807139e2d66540305a886e2b29d631dadec7af"
+    },
+    {
+      "path": "src/main/services/campusAi/domains.json",
+      "size": 2238,
+      "sha256": "a730cb86f15ad2a5b68694efd6ffc76d88b3c15ef81692282140dbdd3ab5b92f"
+    },
+    {
+      "path": "src/main/services/campusAi/domains.ts",
+      "size": 2554,
+      "sha256": "a54f0061dd700039dea987197344efb02c47a70c6fb2d500d8cd996eb6d2f70f"
+    },
+    {
+      "path": "src/main/services/campusAi/govDocx.ts",
+      "size": 8116,
+      "sha256": "218e0debcc77a690c468db581236dfdfc344cdda32c503f10e1aa3ce762e5703"
+    },
+    {
+      "path": "src/main/services/campusAi/governance.ts",
+      "size": 8965,
+      "sha256": "a30cc68f9d3544980ee44babfd534c84a8f920bdd1c0f66edeb5807d5339f8f9"
+    },
+    {
+      "path": "src/main/services/campusAi/kb.ts",
+      "size": 5052,
+      "sha256": "97d44318afde5f4746e45a37bcd84b22c8624cded7fe329e7cf3d13ae3ff0338"
+    },
+    {
+      "path": "src/main/services/campusAi/mobilePage.ts",
+      "size": 11523,
+      "sha256": "a777a00aec7b628e7143bf652aa89a1b662eeb10d270d606f84f955a69953cf1"
+    },
+    {
+      "path": "src/main/services/campusAi/mobileServer.ts",
+      "size": 6165,
+      "sha256": "311d0459a39af81391d4ff93bd6c4401fd7773c1059ed12a423665203cdf41e3"
+    },
+    {
+      "path": "src/main/services/campusAi/modules.test.ts",
+      "size": 9986,
+      "sha256": "672444bddcf3dd126f11edf4a38bd424f7f19dc6323bb5ea14f644525b60badc"
+    },
+    {
+      "path": "src/main/services/campusAi/notice.ts",
+      "size": 6486,
+      "sha256": "50599e78a23ccce2b5f66d8aff3bfe3153145034f139211aaeb037e3cb133eb4"
+    },
+    {
+      "path": "src/main/services/campusAi/qa.ts",
+      "size": 7906,
+      "sha256": "7bd07b114f3c94ed297007f087eddcac6333676fed77769fc91dc96827afdaf7"
+    },
+    {
+      "path": "src/main/services/campusAi/research.ts",
+      "size": 7247,
+      "sha256": "9168d45a7170d82bf9fe17e2b127a21a9e744116e8c24ff67cbadba3fe7f2ad7"
+    },
+    {
+      "path": "src/main/services/campusAi/scenarios.ts",
+      "size": 7087,
+      "sha256": "a318d2ccf5e4c74d7782b4b9057f07c3c64efef7e9506eaffbae39bdfaf06ea1"
+    },
+    {
+      "path": "src/main/services/campusAi/service.ts",
+      "size": 20246,
+      "sha256": "426c3eec75bcf5bad4e313c43b32d610bdd3c6b4dc3b2336db467dc41ce7e280"
+    },
+    {
+      "path": "src/main/services/campusAi/store.ts",
+      "size": 14738,
+      "sha256": "eeb3d70a3e79f73deea4a950dce0b4cdfa37c30a3ec1c38bef43c55f7bc919f3"
+    },
+    {
+      "path": "src/main/services/campusAi/teaching.ts",
+      "size": 13306,
+      "sha256": "f39eb6d32d208365bf7ad4a117a8b3603ef81d20d79cdba1a5a2b8c1990c3954"
+    },
+    {
+      "path": "src/main/services/campusAi/warning.ts",
+      "size": 14310,
+      "sha256": "36290438946486b7703fe93f1704f515f3806a4f3bd2b2208ed058a65aeb18b8"
+    },
+    {
+      "path": "src/renderer/views/CampusAiWorkbenchView.vue",
+      "size": 15748,
+      "sha256": "7b2703ac586a1f2ed75722e1fe5fe1c562800de9985546ef1aa40a605e442f59"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/AppsTab.vue",
+      "size": 9114,
+      "sha256": "2805bb926d8df60b1065eddb58d6a50e2ec08250ef326f0cbf637bc2ee8ef0c6"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/GovTab.vue",
+      "size": 18411,
+      "sha256": "36ab051f08fb66b752fe198016332ccb9d1774d53b0aac38677c965c372fe96a"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/KbTab.vue",
+      "size": 18468,
+      "sha256": "65dfa2bc10d19f197ba04b93b179df03b8d5be182f336881d65ee79d80374295"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/OpsTab.vue",
+      "size": 14182,
+      "sha256": "3451efe139cb9aa4979117bcabadb649db9db18b89f15c15df536415b11d047f"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/OverviewTab.vue",
+      "size": 17554,
+      "sha256": "ab871805fc6cd8c9b0422dec551227675e2cd8c00af1a4989e4bb60d7805fa49"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/QaTab.vue",
+      "size": 10663,
+      "sha256": "a34f49847867c5ee170f264f415ccb1a7aee0186497c042a222d5cf64498347f"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/ResearchTab.vue",
+      "size": 11018,
+      "sha256": "b6447c198d8144fe767eb23052a13844699acc2db38736c89f74632f587e590e"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/TeachTab.vue",
+      "size": 31231,
+      "sha256": "9d0f67ded9f61e39fc661e4748f4d84bba95b207c1aab50b59e7ff72dfff729f"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/TicketsTab.vue",
+      "size": 7300,
+      "sha256": "a16b987d828d12f43c0b0fb0246bd99529f8bb4f3131f4a8e375759db457dae7"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/WarningTab.vue",
+      "size": 28362,
+      "sha256": "24be258462c1c321af8eb27cf8b8059b69c87f10e041bdf20ee26ca3f1a5acd8"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/shared.ts",
+      "size": 4556,
+      "sha256": "fb7f87949102942c63ea230d3729533b8a2e61140847225929e7f92fbcdef769"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/styles.css",
+      "size": 6500,
+      "sha256": "da7ce1113a28746620797d62134c55264c22044c31b6565b390a219870b95e34"
+    }
+  ]
+}

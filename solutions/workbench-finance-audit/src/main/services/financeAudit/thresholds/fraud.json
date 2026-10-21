@@ -1,0 +1,117 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "benford.minN": {
+      "value": 100,
+      "label": "本福特检验最少样本数，少于此数不下结论",
+      "source": {
+        "file": "docs/finance-audit-solution.md",
+        "section": "5.6 B5 舞弊（本方案新增的数据分析规则；源技能「第三步：数据分析」未给具体方法）"
+      }
+    },
+    "benford.amount.floor": {
+      "value": 1000,
+      "label": "参与本福特检验的最小金额 10 元（分）",
+      "source": {
+        "file": "docs/finance-audit-solution.md",
+        "section": "5.6 B5 舞弊（本方案新增的数据分析规则；源技能「第三步：数据分析」未给具体方法）"
+      }
+    },
+    "benford.madClose": {
+      "value": 0.006,
+      "label": "首位数 MAD 上限：高度符合（Nigrini）",
+      "source": {
+        "file": "docs/finance-audit-solution.md",
+        "section": "5.6 B5 舞弊（本福特首位数检验；MAD 分档采用 Nigrini 公开口径 0.006 / 0.012 / 0.015）"
+      }
+    },
+    "benford.madAcceptable": {
+      "value": 0.012,
+      "label": "首位数 MAD 上限：可接受",
+      "source": {
+        "file": "docs/finance-audit-solution.md",
+        "section": "5.6 B5 舞弊（本福特首位数检验；MAD 分档采用 Nigrini 公开口径 0.006 / 0.012 / 0.015）"
+      }
+    },
+    "benford.madMarginal": {
+      "value": 0.015,
+      "label": "首位数 MAD 上限：边缘符合；以上为不符合",
+      "source": {
+        "file": "docs/finance-audit-solution.md",
+        "section": "5.6 B5 舞弊（本福特首位数检验；MAD 分档采用 Nigrini 公开口径 0.006 / 0.012 / 0.015）"
+      }
+    },
+    "dup.windowDays": {
+      "value": 30,
+      "label": "重复付款：同收款方同金额在多少天内判重复",
+      "source": {
+        "file": "docs/finance-audit-solution.md",
+        "section": "5.6 B5 舞弊（本方案新增的数据分析规则；源技能「第三步：数据分析」未给具体方法）"
+      }
+    },
+    "periodEnd.days": {
+      "value": 3,
+      "label": "期末最后几天算「期末」",
+      "source": {
+        "file": "finance-skills/skills/internal-audit/CLAUDE.md",
+        "section": "舞弊红旗指标（期末重大非常规交易）"
+      }
+    },
+    "periodEnd.amount.floor": {
+      "value": 5000000,
+      "label": "期末大额手工调整门槛 5 万元（分）",
+      "source": {
+        "file": "finance-skills/skills/internal-audit/CLAUDE.md",
+        "section": "舞弊红旗指标（期末重大非常规交易）"
+      }
+    },
+    "round.amount.floor": {
+      "value": 1000000,
+      "label": "整数金额检查门槛 1 万元（分），且为 1000 元整数倍",
+      "source": {
+        "file": "apps/desktop-shell/src/main/services/financeAgent/risk.ts",
+        "section": "abnormalExpenses（整千大额）"
+      }
+    },
+    "weekend.amount.floor": {
+      "value": 100000,
+      "label": "周末分录检查门槛 1000 元（分）",
+      "source": {
+        "file": "apps/desktop-shell/src/main/services/financeAgent/risk.ts",
+        "section": "abnormalExpenses（周末招待）"
+      }
+    },
+    "name.similarity": {
+      "value": 0.85,
+      "label": "关联方名称相似度门槛（0–1）",
+      "source": {
+        "file": "docs/finance-audit-solution.md",
+        "section": "5.6 B5 舞弊（本方案新增的数据分析规则；源技能「第三步：数据分析」未给具体方法）"
+      }
+    },
+    "cash.large.floor": {
+      "value": 5000000,
+      "label": "大额现金收付门槛 5 万元（分），与财务智能体风险巡检同口径",
+      "source": {
+        "file": "apps/desktop-shell/src/main/services/financeAgent/risk.ts",
+        "section": "defaultRiskThresholds"
+      }
+    },
+    "expense.spikeRatio": {
+      "value": 2,
+      "label": "费用环比暴涨倍数，与财务智能体风险巡检同口径",
+      "source": {
+        "file": "apps/desktop-shell/src/main/services/financeAgent/risk.ts",
+        "section": "defaultRiskThresholds"
+      }
+    },
+    "stale.days": {
+      "value": 365,
+      "label": "往来长期挂账天数，与财务智能体风险巡检同口径",
+      "source": {
+        "file": "apps/desktop-shell/src/main/services/financeAgent/risk.ts",
+        "section": "defaultRiskThresholds"
+      }
+    }
+  }
+}

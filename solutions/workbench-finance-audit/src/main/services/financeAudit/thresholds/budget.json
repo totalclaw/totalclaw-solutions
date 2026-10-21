@@ -1,0 +1,85 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "usage.warnRatio": {
+      "value": 0.8,
+      "label": "预算执行率 ≥ 80%：接近上限预警（与财务智能体预算规则同口径）",
+      "source": {
+        "file": "apps/desktop-shell/src/main/services/financeAgent/budget.ts",
+        "section": "WARN_USAGE"
+      }
+    },
+    "band.lowRatio": {
+      "value": 0.5,
+      "label": "执行率 < 50%：预算编制过大或业务进度延迟，复盘预算假设",
+      "source": {
+        "file": "finance-skills/skills/budget-management/references/判断框架.md",
+        "section": "类型三：预算执行率异常"
+      }
+    },
+    "band.slowRatio": {
+      "value": 0.7,
+      "label": "执行率 50%–70%：进度偏慢；70%–90% 正常",
+      "source": {
+        "file": "finance-skills/skills/budget-management/references/判断框架.md",
+        "section": "类型三：预算执行率异常"
+      }
+    },
+    "band.nearRatio": {
+      "value": 0.9,
+      "label": "执行率 90%–100%：接近预算上限，监控下月超支风险；> 100% 超预算",
+      "source": {
+        "file": "finance-skills/skills/budget-management/references/判断框架.md",
+        "section": "类型三：预算执行率异常"
+      }
+    },
+    "overrun.tier1Pct": {
+      "value": 0.05,
+      "label": "单项超预算 ≤ 5%：部门负责人审批",
+      "source": {
+        "file": "finance-skills/skills/budget-management/references/判断框架.md",
+        "section": "类型一：单项费用超预算（第二步）"
+      }
+    },
+    "overrun.tier2Pct": {
+      "value": 0.1,
+      "label": "单项超预算 5%–10%：财务经理审批",
+      "source": {
+        "file": "finance-skills/skills/budget-management/references/判断框架.md",
+        "section": "类型一：单项费用超预算（第二步）"
+      }
+    },
+    "overrun.tier3Pct": {
+      "value": 0.2,
+      "label": "单项超预算 10%–20%：财务总监审批，须提交预算调整申请；> 20% 须 CEO 审批",
+      "source": {
+        "file": "finance-skills/skills/budget-management/references/判断框架.md",
+        "section": "类型一：单项费用超预算（第二步）"
+      }
+    },
+    "escalate.itemOverPct": {
+      "value": 0.2,
+      "label": "单项费用超预算 > 20%：升级（签核须批准人）",
+      "source": {
+        "file": "finance-skills/skills/budget-management/references/判断框架.md",
+        "section": "升级触发条件"
+      }
+    },
+    "escalate.revenueShortPct": {
+      "value": 0.2,
+      "label": "收入预算低于预期 > 20%：升级",
+      "source": {
+        "file": "finance-skills/skills/budget-management/references/判断框架.md",
+        "section": "升级触发条件"
+      }
+    },
+    "adjust.largePct": {
+      "value": 0.3,
+      "label": "调整幅度 > 30%：预算基础有重大变化，评估后批准或否决",
+      "source": {
+        "file": "finance-skills/skills/budget-management/references/判断框架.md",
+        "section": "类型四：预算调整申请异常"
+      }
+    }
+  }
+}

@@ -1,0 +1,376 @@
+{
+  "identify": [
+    [
+      "下列哪一项是《{chapter}》第 {verse} 节的原文？",
+      "Which of the following is the text of {chapter} verse {verse}?",
+      "أيّ مما يلي هو نصّ الآية {verse} من سورة {chapter}؟"
+    ],
+    [
+      "请从选项中找出第 {verse} 节（{chapter}）。",
+      "Identify verse {verse} of {chapter} among the options.",
+      "حدّد الآية {verse} من سورة {chapter} من بين الخيارات."
+    ],
+    [
+      "{chapter} · 第 {verse} 节的经文是哪一句？",
+      "{chapter}: which line is verse {verse}?",
+      "سورة {chapter}: أيّ سطر هو الآية {verse}؟"
+    ]
+  ],
+  "next": [
+    [
+      "紧接在下面这一节之后的是哪一节？\n{verse}",
+      "Which verse comes immediately after this one?\n{verse}",
+      "ما الآية التي تلي هذه الآية مباشرة؟\n{verse}"
+    ],
+    [
+      "按经文顺序，下一节应是？（{ref}）\n{verse}",
+      "In the order of the text, which verse follows ({ref})?\n{verse}",
+      "بحسب ترتيب النص، ما الآية التالية لـ({ref})؟\n{verse}"
+    ],
+    [
+      "{ref} 之后紧接的一节：",
+      "The verse that directly follows {ref}:",
+      "الآية التي تأتي مباشرة بعد {ref}:"
+    ]
+  ],
+  "fill": [
+    [
+      "补全第 {ref} 节空缺的词：\n{verse}",
+      "Complete the missing word in verse {ref}:\n{verse}",
+      "أكمل الكلمة الناقصة في الآية {ref}:\n{verse}"
+    ],
+    [
+      "下面这节经文（{ref}）少了一个词，请选出正确的词。\n{verse}",
+      "One word is missing from verse {ref}. Choose the correct word.\n{verse}",
+      "سقطت كلمة من الآية {ref}. اختر الكلمة الصحيحة.\n{verse}"
+    ],
+    [
+      "{ref}：空格处应填入哪个词？\n{verse}",
+      "{ref}: which word fills the blank?\n{verse}",
+      "{ref}: ما الكلمة التي تملأ الفراغ؟\n{verse}"
+    ]
+  ],
+  "orderVerses": [
+    [
+      "把下列经文按《{chapter}》中的先后顺序排列（{range}）。",
+      "Arrange these verses in their order in {chapter} ({range}).",
+      "رتّب هذه الآيات حسب ترتيبها في سورة {chapter} ({range})."
+    ],
+    [
+      "以下几节被打乱了顺序，请恢复原顺序（{chapter} {range}）。",
+      "These verses are shuffled. Restore the original order ({chapter} {range}).",
+      "اختلط ترتيب هذه الآيات. أعد ترتيبها الأصلي ({chapter} {range})."
+    ],
+    [
+      "按经文顺序排列（{range}）：",
+      "Put in textual order ({range}):",
+      "رتّب حسب ترتيب النص ({range}):"
+    ]
+  ],
+  "orderWords": [
+    [
+      "把下列词语按第 {ref} 节的原文顺序排列。",
+      "Arrange these words in the order of verse {ref}.",
+      "رتّب هذه الكلمات بحسب ترتيبها في الآية {ref}."
+    ],
+    [
+      "第 {ref} 节的词被打乱了，请恢复原句顺序。",
+      "The words of verse {ref} are shuffled. Restore the sentence.",
+      "اختلط ترتيب كلمات الآية {ref}. أعد ترتيب الجملة."
+    ],
+    [
+      "恢复第 {ref} 节的词序：",
+      "Restore the word order of verse {ref}:",
+      "أعد ترتيب كلمات الآية {ref}:"
+    ]
+  ],
+  "orderEvents": [
+    [
+      "把下列事件按《{chapter}》的叙事顺序排列。",
+      "Arrange these events in the narrative order of {chapter}.",
+      "رتّب هذه الأحداث حسب تسلسلها في سورة {chapter}."
+    ],
+    [
+      "以下事件出自《{chapter}》，请按发生先后排序。",
+      "These events are from {chapter}. Order them as they occur.",
+      "هذه الأحداث من سورة {chapter}. رتّبها حسب وقوعها."
+    ],
+    [
+      "《{chapter}》事件顺序（{range}）：",
+      "Event order in {chapter} ({range}):",
+      "ترتيب الأحداث في سورة {chapter} ({range}):"
+    ]
+  ],
+  "matchWords": [
+    [
+      "把左列的词与右列的基础释义配对（{chapter}，批准词表）。",
+      "Match each word on the left with its basic meaning on the right ({chapter}, approved glossary).",
+      "صِل كل كلمة في العمود الأيمن بمعناها الأساسي ({chapter}، قائمة المفردات المعتمدة)."
+    ],
+    [
+      "词汇配对（{chapter} {range}）：为每个词选出释义。",
+      "Vocabulary matching ({chapter} {range}): choose the meaning for each word.",
+      "مطابقة المفردات ({chapter} {range}): اختر المعنى لكل كلمة."
+    ],
+    [
+      "为下列词语选择正确释义：",
+      "Choose the correct meaning for each word:",
+      "اختر المعنى الصحيح لكل كلمة:"
+    ]
+  ],
+  "matchUnits": [
+    [
+      "把下列经文与其所属的教学单元配对（{chapter}）。",
+      "Match each verse with the teaching unit it belongs to ({chapter}).",
+      "صِل كل آية بالوحدة التعليمية التي تنتمي إليها ({chapter})."
+    ],
+    [
+      "跨节理解：这些经文各属于哪个单元？",
+      "Cross-verse comprehension: which unit does each verse belong to?",
+      "فهم عبر الآيات: إلى أيّ وحدة تنتمي كل آية؟"
+    ],
+    [
+      "经文 ↔ 教学单元配对（{range}）：",
+      "Verse ↔ unit matching ({range}):",
+      "مطابقة الآية بالوحدة ({range}):"
+    ]
+  ],
+  "concept": [
+    [
+      "下列哪一节最直接对应概念「{concept}」？（依据批准教学资料）",
+      "Which verse most directly corresponds to the concept \"{concept}\"? (per approved materials)",
+      "أيّ آية تقابل مباشرة مفهوم «{concept}»؟ (وفق المواد المعتمدة)"
+    ],
+    [
+      "概念「{concept}」出现在哪一节？",
+      "In which verse does the concept \"{concept}\" appear?",
+      "في أيّ آية يرد مفهوم «{concept}»؟"
+    ],
+    [
+      "请选出体现「{concept}」的经文：",
+      "Select the verse that expresses \"{concept}\":",
+      "اختر الآية التي تعبّر عن «{concept}»:"
+    ]
+  ],
+  "conceptUnit": [
+    [
+      "概念「{concept}」属于哪个教学单元？",
+      "Which teaching unit does the concept \"{concept}\" belong to?",
+      "إلى أيّ وحدة تعليمية ينتمي مفهوم «{concept}»؟"
+    ],
+    [
+      "「{concept}」是下列哪个单元的教学重点？",
+      "\"{concept}\" is the focus of which unit?",
+      "«{concept}» هو محور أيّ وحدة؟"
+    ],
+    [
+      "综合理解：「{concept}」对应的单元是？",
+      "Synthesis: the unit corresponding to \"{concept}\" is?",
+      "فهم شامل: ما الوحدة المقابلة لـ«{concept}»؟"
+    ]
+  ],
+  "explain": {
+    "identify": [
+      "正确答案是第 {ref} 节的原文（锁定源数据，逐字引用）。",
+      "The correct answer is the text of verse {ref} (locked source data, quoted verbatim).",
+      "الإجابة الصحيحة هي نص الآية {ref} (بيانات مصدر مقفلة، منقولة حرفيًا)."
+    ],
+    "next": [
+      "按锁定语料的节序，{ref} 之后是 {next}。",
+      "By the locked order of verses, {next} follows {ref}.",
+      "بحسب ترتيب النص المقفل، تأتي {next} بعد {ref}."
+    ],
+    "fill": [
+      "原文第 {ref} 节中该位置的词是「{word}」（逐字取自锁定语料）。",
+      "The word at that position in verse {ref} is \"{word}\" (taken verbatim from the locked corpus).",
+      "الكلمة في ذلك الموضع من الآية {ref} هي «{word}» (منقولة حرفيًا من النص المقفل)."
+    ],
+    "orderVerses": [
+      "正确顺序即锁定语料中的节序：{refs}。",
+      "The correct order is the verse order in the locked corpus: {refs}.",
+      "الترتيب الصحيح هو ترتيب الآيات في النص المقفل: {refs}."
+    ],
+    "orderWords": [
+      "正确词序即第 {ref} 节原文的词序。",
+      "The correct order is the word order of verse {ref}.",
+      "الترتيب الصحيح هو ترتيب كلمات الآية {ref}."
+    ],
+    "orderEvents": [
+      "事件顺序依据批准教案结构表中的节范围：{refs}。",
+      "The event order follows the verse ranges in the approved structure table: {refs}.",
+      "ترتيب الأحداث وفق نطاقات الآيات في جدول البنية المعتمد: {refs}."
+    ],
+    "matchWords": [
+      "释义来自批准词表（{source}），每个词都出现在 {range} 的原文中。",
+      "Meanings come from the approved glossary ({source}); every word occurs in the text of {range}.",
+      "المعاني من قائمة المفردات المعتمدة ({source})؛ كل كلمة واردة في نص {range}."
+    ],
+    "matchUnits": [
+      "单元划分来自批准教案结构表；每节按其节号落入对应单元的节范围。",
+      "Unit boundaries come from the approved structure table; each verse falls in its unit's verse range.",
+      "حدود الوحدات من جدول البنية المعتمد؛ كل آية تقع ضمن نطاق وحدتها."
+    ],
+    "concept": [
+      "概念「{concept}」在批准资料中挂在 {refs}；正确选项取自该范围的原文。",
+      "The concept \"{concept}\" is mapped to {refs} in the approved materials; the correct option is quoted from that range.",
+      "مفهوم «{concept}» مرتبط بـ{refs} في المواد المعتمدة؛ الخيار الصحيح منقول من ذلك النطاق."
+    ],
+    "conceptUnit": [
+      "批准教案结构表把「{concept}」列为单元「{unit}」（{refs}）的教学概念。",
+      "The approved structure table lists \"{concept}\" as a concept of unit \"{unit}\" ({refs}).",
+      "يدرج جدول البنية المعتمد «{concept}» كمفهوم للوحدة «{unit}» ({refs})."
+    ],
+    "themeVerse": [
+      "批准教案结构表把 {ref} 划入单元「{unit}」，其主题为：{theme}。正确选项逐字取自该节原文。",
+      "The approved structure table places {ref} in unit \"{unit}\", whose theme is: {theme}. The correct option is quoted verbatim from that verse.",
+      "يضع جدول البنية المعتمد {ref} في الوحدة «{unit}» وموضوعها: {theme}. الخيار الصحيح منقول حرفيًا من تلك الآية."
+    ],
+    "verseUnit": [
+      "按批准教案结构表，{ref} 落在单元「{unit}」的节范围（{range}）内。",
+      "Per the approved structure table, {ref} falls within unit \"{unit}\" ({range}).",
+      "وفق جدول البنية المعتمد، تقع {ref} ضمن الوحدة «{unit}» ({range})."
+    ],
+    "conceptPair": [
+      "批准教案结构表把「{a}」与「{b}」都列为单元「{unit}」（{range}）的教学概念。",
+      "The approved structure table lists both \"{a}\" and \"{b}\" as concepts of unit \"{unit}\" ({range}).",
+      "يدرج جدول البنية المعتمد «{a}» و«{b}» كمفهومين للوحدة «{unit}» ({range})."
+    ],
+    "unitTheme": [
+      "{unit} 的主题是「{theme}」（{range}）。",
+      "{unit} is about “{theme}” ({range}).",
+      "موضوع {unit} هو «{theme}» ({range})."
+    ]
+  },
+  "verify": {
+    "ok_verbatim": [
+      "答案逐字存在于锁定经文 {refs}",
+      "Answer exists verbatim in locked verses {refs}",
+      "الإجابة موجودة حرفيًا في الآيات المقفلة {refs}"
+    ],
+    "ok_order": [
+      "顺序与锁定语料一致（{refs}）",
+      "Order matches the locked corpus ({refs})",
+      "الترتيب مطابق للنص المقفل ({refs})"
+    ],
+    "ok_material": [
+      "答案由批准资料 {ids} 支持",
+      "Answer supported by approved materials {ids}",
+      "الإجابة مدعومة بالمواد المعتمدة {ids}"
+    ],
+    "fail": [
+      "自动一致性检查未通过：{why}",
+      "Automatic consistency check failed: {why}",
+      "فشل فحص الاتساق التلقائي: {why}"
+    ]
+  },
+  "eventLabel": [
+    "事件 {n}：{title}（{range}）",
+    "Event {n}: {title} ({range})",
+    "الحدث {n}: {title} ({range})"
+  ],
+  "unitLabel": [
+    "单元 {n}：{title}（{range}）",
+    "Unit {n}: {title} ({range})",
+    "الوحدة {n}: {title} ({range})"
+  ],
+  "paperTitle": {
+    "practice": [
+      "练习 · {chapter} {range} · 第 {v} 版",
+      "Practice · {chapter} {range} · version {v}",
+      "تدريب · {chapter} {range} · النسخة {v}"
+    ],
+    "exam": [
+      "考试 · {chapter} {range} · 第 {v} 版",
+      "Exam · {chapter} {range} · version {v}",
+      "اختبار · {chapter} {range} · النسخة {v}"
+    ],
+    "reinforce": [
+      "强化练习 · {target}",
+      "Reinforcement practice · {target}",
+      "تدريب تعزيزي · {target}"
+    ],
+    "retest": [
+      "复测 · {target}",
+      "Retest · {target}",
+      "إعادة اختبار · {target}"
+    ]
+  },
+  "autoUnitTitle": [
+    "第 {range} 节",
+    "Verses {range}",
+    "الآيات {range}"
+  ],
+  "autoUnitTheme": [
+    "自动分段（未覆盖批准单元表，教师确认后可命名）",
+    "Auto segment (not covered by the approved unit table; teacher may name it)",
+    "تقسيم آلي (غير مغطى بجدول الوحدات المعتمد؛ يمكن للمعلم تسميته)"
+  ],
+  "themeVerse": [
+    [
+      "下列哪一节体现了单元「{unit}」的主题：{theme}",
+      "Which verse expresses the theme of unit \"{unit}\": {theme}",
+      "أيّ آية تعبّر عن موضوع الوحدة «{unit}»: {theme}"
+    ],
+    [
+      "根据批准资料，「{theme}」对应下面哪一节？",
+      "According to the approved materials, which verse corresponds to: \"{theme}\"?",
+      "وفق المواد المعتمدة، أيّ آية تقابل: «{theme}»؟"
+    ],
+    [
+      "理解题：哪一节讲的是「{unit}」？",
+      "Comprehension: which verse is about \"{unit}\"?",
+      "فهم: أيّ آية تتحدث عن «{unit}»؟"
+    ]
+  ],
+  "verseUnit": [
+    [
+      "下面这节经文属于哪个教学单元？\n{verse}",
+      "Which teaching unit does this verse belong to?\n{verse}",
+      "إلى أيّ وحدة تعليمية تنتمي هذه الآية؟\n{verse}"
+    ],
+    [
+      "第 {ref} 节的主题归入哪个单元？\n{verse}",
+      "Under which unit does the theme of verse {ref} fall?\n{verse}",
+      "تحت أيّ وحدة يندرج موضوع الآية {ref}؟\n{verse}"
+    ],
+    [
+      "请为第 {ref} 节选出所属单元：\n{verse}",
+      "Choose the unit for verse {ref}:\n{verse}",
+      "اختر الوحدة التي تنتمي إليها الآية {ref}:\n{verse}"
+    ]
+  ],
+  "conceptPair": [
+    [
+      "概念「{a}」与「{b}」同属于哪个教学单元？",
+      "Which teaching unit contains both concepts \"{a}\" and \"{b}\"?",
+      "أيّ وحدة تعليمية تضم مفهومي «{a}» و«{b}» معًا؟"
+    ],
+    [
+      "综合理解：「{a}」和「{b}」在哪一个单元里一起出现？",
+      "Synthesis: in which unit do \"{a}\" and \"{b}\" appear together?",
+      "فهم شامل: في أيّ وحدة يرد «{a}» و«{b}» معًا؟"
+    ],
+    [
+      "「{a}」「{b}」两个概念的共同单元是？",
+      "The unit shared by the concepts \"{a}\" and \"{b}\" is?",
+      "ما الوحدة المشتركة بين مفهومي «{a}» و«{b}»؟"
+    ]
+  ],
+  "unitTheme": [
+    [
+      "{unit} 这一段讲的主要是什么？",
+      "What is {unit} mainly about?",
+      "عمّ يتحدّث {unit} بشكل رئيسي؟"
+    ],
+    [
+      "下面哪一项最能概括 {unit}？",
+      "Which option best sums up {unit}?",
+      "أي خيار يلخّص {unit} على أفضل وجه؟"
+    ],
+    [
+      "读完 {unit}，它的重点是：",
+      "After reading {unit}, its main point is:",
+      "بعد قراءة {unit}، فإن محوره هو:"
+    ]
+  ]
+}

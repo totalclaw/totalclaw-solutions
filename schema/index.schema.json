@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gitee.com/jlzdyx/totalclaw-solutions/schema/index.schema.json",
+  "title": "TotalClaw 方案目录 index.json（schemaVersion 2）",
+  "description": "由 tools/build-index.mjs 生成。index.json 只含摘要；逐文件清单在 index/<id>.json（filesRef），安装时从同一提交快照读取。",
+  "type": "object",
+  "required": ["schemaVersion", "kind", "source", "removed", "items"],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "kind": { "const": "solution-index" },
+    "source": {
+      "type": "object",
+      "properties": {
+        "repo": { "type": "string" },
+        "branch": { "type": "string" },
+        "raw": { "type": "string", "description": "raw 文件 URL 模板，{ref} {path}" },
+        "archive": { "type": "string", "description": "整仓归档 URL 模板，{ref}" },
+        "refApi": { "type": "string", "description": "分支当前 commit 查询接口" }
+      }
+    },
+    "removed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "properties": { "id": { "type": "string" }, "reason": { "type": "string" }, "versions": { "type": "array", "items": { "type": "string" } } }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "kind", "version", "path", "treeDigest", "filesRef", "fileCount", "size"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "aliases": { "type": "array", "items": { "type": "string" } },
+          "kind": { "type": "string" },
+          "version": { "type": "string" },
+          "path": { "type": "string", "description": "仓库内方案目录，如 solutions/<id>" },
+          "treeDigest": { "type": "string", "description": "sha256(按 path 排序逐行 `path\\0sha256\\n`)" },
+          "filesRef": { "type": "string", "description": "逐文件清单 index/<id>.json" },
+          "fileCount": { "type": "integer" },
+          "size": { "type": "integer" },
+          "changelog": { "type": ["string", "null"] }
+        }
+      }
+    }
+  }
+}

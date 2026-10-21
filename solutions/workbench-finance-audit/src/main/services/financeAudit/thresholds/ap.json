@@ -1,0 +1,22 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "match.pctTol": { "value": 0.01, "label": "三单匹配单价差异率容差 1%（与金额容差取较大者）；源为占位「如 1%」，取示例值", "source": { "file": "finance-skills/skills/accounts-payable/skills/triple-match-automation-ap/SKILL.md", "section": "第三步：价格与金额判定" } },
+    "match.amtTol": { "value": 10000, "label": "三单匹配金额容差 100 元（分；与差异率容差取较大者）；源为占位，取保守默认", "source": { "file": "finance-skills/skills/accounts-payable/CLAUDE.md", "section": "三单匹配规则（发票对 PO）" } },
+    "match.rejectPct": { "value": 0.05, "label": "数量 / 金额差异 > 5% 且无合理解释为不合理差异：退回供应商、不付", "source": { "file": "finance-skills/skills/accounts-payable/references/判断框架.md", "section": "类型一：三单不匹配" } },
+    "match.escalateDiff": { "value": 1000000, "label": "三单金额差异 > 1 万元升级（分）；源为占位「如 1 万元」，取示例值", "source": { "file": "finance-skills/skills/accounts-payable/skills/triple-match-automation-ap/SKILL.md", "section": "升级触发条件" } },
+    "match.consecutive": { "value": 3, "label": "同一供应商连续 N 次三单不匹配升级", "source": { "file": "finance-skills/skills/accounts-payable/skills/triple-match-automation-ap/SKILL.md", "section": "升级触发条件" } },
+    "plan.dueSoonDays": { "value": 7, "label": "P2：到期日 ≤ 7 天", "source": { "file": "finance-skills/skills/accounts-payable/skills/payment-scheduling/SKILL.md", "section": "付款优先级框架" } },
+    "plan.horizonDays": { "value": 30, "label": "P3：到期日 8–30 天；资金缺口按 30 天内到期应付计算", "source": { "file": "finance-skills/skills/accounts-payable/skills/payment-scheduling/SKILL.md", "section": "第二步、第三步" } },
+    "plan.approvalL1": { "value": 5000000, "label": "单笔 ≤ 5 万元：AP 专员 → AP 主管（分）", "source": { "file": "finance-skills/skills/accounts-payable/CLAUDE.md", "section": "付款审批矩阵" } },
+    "plan.approvalL2": { "value": 20000000, "label": "单笔 5–20 万元：加财务经理（分）", "source": { "file": "finance-skills/skills/accounts-payable/CLAUDE.md", "section": "付款审批矩阵" } },
+    "plan.approvalL3": { "value": 50000000, "label": "单笔 20–50 万元：加财务总监；> 50 万元：加 CEO（分）", "source": { "file": "finance-skills/skills/accounts-payable/CLAUDE.md", "section": "付款审批矩阵" } },
+    "overdue.normalMax": { "value": 7, "label": "逾期 0–7 天：正常，下一个付款日安排", "source": { "file": "finance-skills/skills/accounts-payable/references/判断框架.md", "section": "类型三：逾期付款" } },
+    "overdue.attentionMax": { "value": 30, "label": "逾期 8–30 天：关注，优先级前移", "source": { "file": "finance-skills/skills/accounts-payable/references/判断框架.md", "section": "类型三：逾期付款" } },
+    "overdue.warningMax": { "value": 60, "label": "逾期 31–60 天：警告并升级；> 60 天：高风险，升级财务总监", "source": { "file": "finance-skills/skills/accounts-payable/references/判断框架.md", "section": "类型三：逾期付款" } },
+    "gap.smallMax": { "value": 50000000, "label": "资金缺口 < 50 万元：延后 P3 / P4 或加速催收（分）", "source": { "file": "finance-skills/skills/cash-management/skills/payment-scheduling-cm/SKILL.md", "section": "第四步：缺口分档" } },
+    "gap.mediumMax": { "value": 200000000, "label": "资金缺口 50–200 万元：短期融资并协商延后；> 200 万元：升级财务总监（分）", "source": { "file": "finance-skills/skills/cash-management/skills/payment-scheduling-cm/SKILL.md", "section": "第四步：缺口分档" } },
+    "concentration.max": { "value": 0.3, "label": "单一供应商应付 > 应付总额 30% 预警", "source": { "file": "finance-skills/skills/accounts-payable/references/数据源清单.md", "section": "关键阈值" } },
+    "split.band": { "value": 0.02, "label": "分拆付款：同一供应商同日多笔、金额贴近审批限额（限额以下 2% 以内）；源未给带宽，取 2%", "source": { "file": "finance-skills/skills/accounts-payable/skills/supplier-payment-review/SKILL.md", "section": "分拆付款检测" } }
+  }
+}

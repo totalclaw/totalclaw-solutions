@@ -1,0 +1,14 @@
+{
+  "_note": "天课基数加减项的自动归类（草稿口径，需当地专业人员复核）。先按科目报表行（IFRS 行 / 中国报表行 key）归类，再按科目名称关键词细分；认不出的列为「不计入」并提醒人工确认。匹配数据用，不是界面文案。",
+  "byLine": {
+    "capital": "add_equity", "reserves": "add_equity", "retained": "add_equity",
+    "paidIn": "add_equity", "capitalReserve": "add_equity", "surplus": "add_equity",
+    "ppe": "deduct_fixed", "accumDep": "deduct_fixed", "fixed": "deduct_fixed", "cip": "deduct_fixed",
+    "intangibles": "deduct_intangible", "intangible": "deduct_intangible",
+    "investments": "deduct_investment", "longInvest": "deduct_investment",
+    "longLoan": "add_liability", "longPay": "add_liability"
+  },
+  "provisionWords": ["provision", "end of service", "مخصص", "مكافأة نهاية الخدمة", "预计负债", "准备金"],
+  "longTermWords": ["long-term", "long term", "non-current", "noncurrent", "طويلة الأجل", "غير متداولة", "长期"],
+  "liabilityLines": ["borrowings", "accruals", "payables", "longLoan", "longPay"]
+}

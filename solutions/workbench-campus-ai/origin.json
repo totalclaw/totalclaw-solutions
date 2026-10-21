@@ -1,0 +1,198 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 74,
+    "solutions": {
+      "workbench-grounded-qa": [
+        "main/services/groundedQa.logic.ts"
+      ],
+      "workbench-service-settlement": [
+        "main/services/serviceSettlement/excel.ts",
+        "renderer/workbenches/service-settlement/StepCard.vue",
+        "renderer/workbenches/service-settlement/StickyProgress.vue",
+        "renderer/workbenches/service-settlement/shared.ts",
+        "renderer/workbenches/service-settlement/styles.css"
+      ]
+    },
+    "host": [
+      "main/ipc/workbenchApi.ts",
+      "main/services/accountScope.ts",
+      "main/services/caseMailSender.ts",
+      "main/services/documentExtractor.ts",
+      "main/services/knowledgeBase/retrieval.ts",
+      "main/services/knowledgeBase/textAnalysis.ts",
+      "main/services/lanServer.ts",
+      "main/services/workbenchLlm.ts",
+      "main/util/quitRegistry.ts",
+      "main/utils/userFacingError.ts",
+      "renderer/components/PageBackButton.vue",
+      "renderer/i18n.ts",
+      "renderer/stores/notification.ts",
+      "renderer/utils/ipcPlain.ts"
+    ],
+    "packages": [
+      "@totalclaw/i18n",
+      "@totalclaw/ipc-contracts",
+      "@totalclaw/logger",
+      "adm-zip",
+      "electron",
+      "qrcode",
+      "vitest",
+      "vue",
+      "vue-router"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/views/CampusAiWorkbenchView.vue",
+      "from": "renderer/views/CampusAiWorkbenchView.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/AppsTab.vue",
+      "from": "renderer/workbenches/campus-ai/AppsTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/GovTab.vue",
+      "from": "renderer/workbenches/campus-ai/GovTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/KbTab.vue",
+      "from": "renderer/workbenches/campus-ai/KbTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/OpsTab.vue",
+      "from": "renderer/workbenches/campus-ai/OpsTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/OverviewTab.vue",
+      "from": "renderer/workbenches/campus-ai/OverviewTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/QaTab.vue",
+      "from": "renderer/workbenches/campus-ai/QaTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/ResearchTab.vue",
+      "from": "renderer/workbenches/campus-ai/ResearchTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/TeachTab.vue",
+      "from": "renderer/workbenches/campus-ai/TeachTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/TicketsTab.vue",
+      "from": "renderer/workbenches/campus-ai/TicketsTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/WarningTab.vue",
+      "from": "renderer/workbenches/campus-ai/WarningTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/shared.ts",
+      "from": "renderer/workbenches/campus-ai/shared.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/campus-ai/styles.css",
+      "from": "renderer/workbenches/campus-ai/styles.css"
+    },
+    {
+      "path": "src/main/ipc/campusAi.ipc.ts",
+      "from": "main/ipc/campusAi.ipc.ts"
+    },
+    {
+      "path": "src/main/ipc/campusAi.modules.ts",
+      "from": "main/ipc/campusAi.modules.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/campusAi.test.ts",
+      "from": "main/services/campusAi/campusAi.test.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/columnKeywords.json",
+      "from": "main/services/campusAi/columnKeywords.json"
+    },
+    {
+      "path": "src/main/services/campusAi/demoCampus.json",
+      "from": "main/services/campusAi/demoCampus.json"
+    },
+    {
+      "path": "src/main/services/campusAi/demoData.ts",
+      "from": "main/services/campusAi/demoData.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/domains.json",
+      "from": "main/services/campusAi/domains.json"
+    },
+    {
+      "path": "src/main/services/campusAi/domains.ts",
+      "from": "main/services/campusAi/domains.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/govDocx.ts",
+      "from": "main/services/campusAi/govDocx.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/governance.ts",
+      "from": "main/services/campusAi/governance.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/kb.ts",
+      "from": "main/services/campusAi/kb.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/mobilePage.ts",
+      "from": "main/services/campusAi/mobilePage.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/mobileServer.ts",
+      "from": "main/services/campusAi/mobileServer.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/modules.test.ts",
+      "from": "main/services/campusAi/modules.test.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/notice.ts",
+      "from": "main/services/campusAi/notice.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/qa.ts",
+      "from": "main/services/campusAi/qa.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/research.ts",
+      "from": "main/services/campusAi/research.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/scenarios.ts",
+      "from": "main/services/campusAi/scenarios.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/service.ts",
+      "from": "main/services/campusAi/service.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/store.ts",
+      "from": "main/services/campusAi/store.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/teaching.ts",
+      "from": "main/services/campusAi/teaching.ts"
+    },
+    {
+      "path": "src/main/services/campusAi/warning.ts",
+      "from": "main/services/campusAi/warning.ts"
+    },
+    {
+      "path": "src/contracts/campusAi.ts",
+      "from": "packages/ipc-contracts/src/campusAi.ts"
+    }
+  ]
+}

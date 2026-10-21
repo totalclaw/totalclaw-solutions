@@ -1,0 +1,185 @@
+{
+ "_note": "C1 沙特天课试跑数据（来自 __fixtures__/tax/index.ts，金额单位：哈拉拉）。",
+ "company": {
+  "name": "Demo Trading LLC",
+  "regions": [
+   "SA"
+  ],
+  "region": "SA",
+  "standard": "SOCPA",
+  "currency": "SAR"
+ },
+ "project": {
+  "type": "filing",
+  "period": "2025"
+ },
+ "params": {
+  "period": "2025",
+  "zakatYearBasis": "gregorian",
+  "saudiShare": 100
+ },
+ "datasets": [
+  {
+   "slot": "tb",
+   "kind": "tb",
+   "rows": [
+    {
+     "row": 2,
+     "accountCode": "3101",
+     "accountName": "Share capital",
+     "level": 1,
+     "openingDr": 0,
+     "openingCr": 0,
+     "periodDr": 0,
+     "periodCr": 0,
+     "closingDr": 0,
+     "closingCr": 100000000
+    },
+    {
+     "row": 3,
+     "accountCode": "3201",
+     "accountName": "Statutory reserve",
+     "level": 1,
+     "openingDr": 0,
+     "openingCr": 0,
+     "periodDr": 0,
+     "periodCr": 0,
+     "closingDr": 0,
+     "closingCr": 10000000
+    },
+    {
+     "row": 4,
+     "accountCode": "3301",
+     "accountName": "Retained earnings",
+     "level": 1,
+     "openingDr": 0,
+     "openingCr": 0,
+     "periodDr": 0,
+     "periodCr": 0,
+     "closingDr": 0,
+     "closingCr": 5000000
+    },
+    {
+     "row": 5,
+     "accountCode": "2401",
+     "accountName": "Provision for end of service benefits",
+     "level": 1,
+     "openingDr": 0,
+     "openingCr": 0,
+     "periodDr": 0,
+     "periodCr": 0,
+     "closingDr": 0,
+     "closingCr": 5000000
+    },
+    {
+     "row": 6,
+     "accountCode": "2501",
+     "accountName": "Long-term loan",
+     "level": 1,
+     "openingDr": 0,
+     "openingCr": 0,
+     "periodDr": 0,
+     "periodCr": 0,
+     "closingDr": 0,
+     "closingCr": 20000000
+    },
+    {
+     "row": 7,
+     "accountCode": "2101",
+     "accountName": "Accounts payable",
+     "level": 1,
+     "openingDr": 0,
+     "openingCr": 0,
+     "periodDr": 0,
+     "periodCr": 0,
+     "closingDr": 0,
+     "closingCr": 8000000
+    },
+    {
+     "row": 8,
+     "accountCode": "1601",
+     "accountName": "Property, plant and equipment",
+     "level": 1,
+     "openingDr": 0,
+     "openingCr": 0,
+     "periodDr": 0,
+     "periodCr": 0,
+     "closingDr": 80000000,
+     "closingCr": 0
+    },
+    {
+     "row": 9,
+     "accountCode": "1602",
+     "accountName": "Accumulated depreciation",
+     "level": 1,
+     "openingDr": 0,
+     "openingCr": 0,
+     "periodDr": 0,
+     "periodCr": 0,
+     "closingDr": 0,
+     "closingCr": 20000000
+    },
+    {
+     "row": 10,
+     "accountCode": "1701",
+     "accountName": "Investment in subsidiary",
+     "level": 1,
+     "openingDr": 0,
+     "openingCr": 0,
+     "periodDr": 0,
+     "periodCr": 0,
+     "closingDr": 10000000,
+     "closingCr": 0
+    },
+    {
+     "row": 11,
+     "accountCode": "1101",
+     "accountName": "Cash at bank",
+     "level": 1,
+     "openingDr": 0,
+     "openingCr": 0,
+     "periodDr": 0,
+     "periodCr": 0,
+     "closingDr": 38000000,
+     "closingCr": 0
+    },
+    {
+     "row": 12,
+     "accountCode": "4101",
+     "accountName": "Revenue",
+     "level": 1,
+     "openingDr": 0,
+     "openingCr": 0,
+     "periodDr": 0,
+     "periodCr": 90000000,
+     "closingDr": 0,
+     "closingCr": 90000000
+    },
+    {
+     "row": 13,
+     "accountCode": "5101",
+     "accountName": "Salaries expense",
+     "level": 1,
+     "openingDr": 0,
+     "openingCr": 0,
+     "periodDr": 60000000,
+     "periodCr": 0,
+     "closingDr": 60000000,
+     "closingCr": 0
+    },
+    {
+     "row": 14,
+     "accountCode": "5901",
+     "accountName": "Zakat expense",
+     "level": 1,
+     "openingDr": 0,
+     "openingCr": 0,
+     "periodDr": 1000000,
+     "periodCr": 0,
+     "closingDr": 1000000,
+     "closingCr": 0
+    }
+   ]
+  }
+ ]
+}

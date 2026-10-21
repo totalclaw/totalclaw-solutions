@@ -1,0 +1,47 @@
+{
+  "id": "workbench-industry-watch",
+  "version": "1.0.0",
+  "treeDigest": "4830cdafdd45d08d57de9da4bc76bd935f1853991880ef55e282c99efda8e64f",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 123,
+      "sha256": "7c09f47b87d4372a9a203dab97cd78101bac656f06ddae558ef7677bdab318a6"
+    },
+    {
+      "path": "README.md",
+      "size": 1118,
+      "sha256": "c4d2d26e774b80720a6f82da2414ecb42d100397bc8d01a3dbfa220db76683d0"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "origin.json",
+      "size": 1074,
+      "sha256": "f9238838db98305ccd2f18bbf6d26916550f42b7717b66a1593a4f9a1b08a89f"
+    },
+    {
+      "path": "solution.json",
+      "size": 1790,
+      "sha256": "d9a86628bcadcf249cf20dedd776c763529e08718bc79f945d29ed44f136547b"
+    },
+    {
+      "path": "src/renderer/views/IndustryWatchView.vue",
+      "size": 34499,
+      "sha256": "0b9197609afff6e962b6f1de9b5c26a578fc71e96149687091556177508b77d7"
+    },
+    {
+      "path": "src/shared/marketIntel.test.ts",
+      "size": 13768,
+      "sha256": "d7b61a1877f4e7c295a4106b0c53c0dc0362eafedcfad70be540d0346f94a8ce"
+    },
+    {
+      "path": "src/shared/marketIntel.ts",
+      "size": 18780,
+      "sha256": "ef04db6dad16031731f2fa9130e930180e0dcd278f6bee90f168d2117a973afa"
+    }
+  ]
+}

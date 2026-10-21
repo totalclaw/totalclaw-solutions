@@ -1,0 +1,301 @@
+{
+ "_note": "A2 银企对账试跑数据（来自 __fixtures__/accounting/bank.ts，金额单位：分）。",
+ "company": {
+  "name": "Demo Manufacturing Co.",
+  "regions": [
+   "CN"
+  ],
+  "region": "CN",
+  "standard": "CAS",
+  "currency": "CNY"
+ },
+ "project": {
+  "type": "month_close",
+  "period": "2026-09"
+ },
+ "params": {},
+ "datasets": [
+  {
+   "slot": "bankJournal",
+   "kind": "journal",
+   "rows": [
+    {
+     "row": 2,
+     "date": "2026-09-03",
+     "voucherNo": "记-0001",
+     "lineNo": 1,
+     "accountCode": "100201",
+     "accountName": "银行存款-工行基本户1234",
+     "summary": "支付8月房租",
+     "debit": 0,
+     "credit": 6000000,
+     "currency": "CNY",
+     "fxAmount": null,
+     "counterparty": "华南物业",
+     "dept": "",
+     "project": "",
+     "businessDate": "",
+     "source": ""
+    },
+    {
+     "row": 3,
+     "date": "2026-09-15",
+     "voucherNo": "记-0003",
+     "lineNo": 1,
+     "accountCode": "100201",
+     "accountName": "银行存款-工行基本户1234",
+     "summary": "收回货款 B0915088",
+     "debit": 9000000,
+     "credit": 0,
+     "currency": "CNY",
+     "fxAmount": null,
+     "counterparty": "客户甲",
+     "dept": "",
+     "project": "",
+     "businessDate": "",
+     "source": ""
+    },
+    {
+     "row": 4,
+     "date": "2026-09-29",
+     "voucherNo": "记-0012",
+     "lineNo": 1,
+     "accountCode": "100201",
+     "accountName": "银行存款-工行基本户1234",
+     "summary": "支付货款",
+     "debit": 0,
+     "credit": 800000,
+     "currency": "CNY",
+     "fxAmount": null,
+     "counterparty": "供应商戊",
+     "dept": "",
+     "project": "",
+     "businessDate": "",
+     "source": ""
+    },
+    {
+     "row": 5,
+     "date": "2026-09-02",
+     "voucherNo": "记-0013",
+     "lineNo": 1,
+     "accountCode": "100202",
+     "accountName": "银行存款-建行一般户5678",
+     "summary": "收到货款",
+     "debit": 500000,
+     "credit": 0,
+     "currency": "CNY",
+     "fxAmount": null,
+     "counterparty": "客户乙",
+     "dept": "",
+     "project": "",
+     "businessDate": "",
+     "source": ""
+    },
+    {
+     "row": 6,
+     "date": "2026-09-15",
+     "voucherNo": "记-0014",
+     "lineNo": 1,
+     "accountCode": "100202",
+     "accountName": "银行存款-建行一般户5678",
+     "summary": "支付货款 TX0915001",
+     "debit": 0,
+     "credit": 1200000,
+     "currency": "CNY",
+     "fxAmount": null,
+     "counterparty": "供应商丁",
+     "dept": "",
+     "project": "",
+     "businessDate": "",
+     "source": ""
+    },
+    {
+     "row": 7,
+     "date": "2026-09-19",
+     "voucherNo": "记-0015",
+     "lineNo": 1,
+     "accountCode": "100202",
+     "accountName": "银行存款-建行一般户5678",
+     "summary": "支付货款",
+     "debit": 0,
+     "credit": 1200000,
+     "currency": "CNY",
+     "fxAmount": null,
+     "counterparty": "供应商己",
+     "dept": "",
+     "project": "",
+     "businessDate": "",
+     "source": ""
+    },
+    {
+     "row": 8,
+     "date": "2026-09-19",
+     "voucherNo": "记-0016",
+     "lineNo": 1,
+     "accountCode": "100202",
+     "accountName": "银行存款-建行一般户5678",
+     "summary": "支付货款",
+     "debit": 0,
+     "credit": 1800000,
+     "currency": "CNY",
+     "fxAmount": null,
+     "counterparty": "供应商庚",
+     "dept": "",
+     "project": "",
+     "businessDate": "",
+     "source": ""
+    },
+    {
+     "row": 9,
+     "date": "2026-09-26",
+     "voucherNo": "记-0005",
+     "lineNo": 1,
+     "accountCode": "100202",
+     "accountName": "银行存款-建行一般户5678",
+     "summary": "发放8月工资",
+     "debit": 0,
+     "credit": 6000000,
+     "currency": "CNY",
+     "fxAmount": null,
+     "counterparty": "",
+     "dept": "",
+     "project": "",
+     "businessDate": "",
+     "source": ""
+    }
+   ]
+  },
+  {
+   "slot": "bank",
+   "kind": "bank",
+   "rows": [
+    {
+     "row": 2,
+     "bankAccount": "6222000011111234",
+     "date": "2026-09-04",
+     "valueDate": "2026-09-04",
+     "ref": "B0904001",
+     "counterparty": "华南物业",
+     "amountIn": 0,
+     "amountOut": 6000000,
+     "balance": 24000000,
+     "summary": "转账支付"
+    },
+    {
+     "row": 3,
+     "bankAccount": "6222000011111234",
+     "date": "2026-09-15",
+     "valueDate": "2026-09-15",
+     "ref": "B0915088",
+     "counterparty": "客户甲",
+     "amountIn": 9000000,
+     "amountOut": 0,
+     "balance": 33000000,
+     "summary": "货款"
+    },
+    {
+     "row": 4,
+     "bankAccount": "6222000011111234",
+     "date": "2026-09-25",
+     "valueDate": "2026-09-25",
+     "ref": "",
+     "counterparty": "",
+     "amountIn": 0,
+     "amountOut": 3500,
+     "balance": 32996500,
+     "summary": "手续费"
+    },
+    {
+     "row": 5,
+     "bankAccount": "6222000011111234",
+     "date": "2026-09-27",
+     "valueDate": "2026-09-27",
+     "ref": "",
+     "counterparty": "",
+     "amountIn": 0,
+     "amountOut": 150000,
+     "balance": 32846500,
+     "summary": "扣款"
+    },
+    {
+     "row": 6,
+     "bankAccount": "6217000022225678",
+     "date": "2026-09-08",
+     "valueDate": "2026-09-08",
+     "ref": "",
+     "counterparty": "客户乙",
+     "amountIn": 500000,
+     "amountOut": 0,
+     "balance": 10500000,
+     "summary": "货款"
+    },
+    {
+     "row": 7,
+     "bankAccount": "6217000022225678",
+     "date": "2026-09-16",
+     "valueDate": "2026-09-16",
+     "ref": "TX0915001",
+     "counterparty": "供应商丁",
+     "amountIn": 0,
+     "amountOut": 1210000,
+     "balance": 9290000,
+     "summary": "货款"
+    },
+    {
+     "row": 8,
+     "bankAccount": "6217000022225678",
+     "date": "2026-09-20",
+     "valueDate": "2026-09-20",
+     "ref": "BP0920",
+     "counterparty": "",
+     "amountIn": 0,
+     "amountOut": 3000000,
+     "balance": 6290000,
+     "summary": "批量代付"
+    },
+    {
+     "row": 9,
+     "bankAccount": "6217000022225678",
+     "date": "2026-09-26",
+     "valueDate": "2026-09-26",
+     "ref": "PAY0926",
+     "counterparty": "",
+     "amountIn": 0,
+     "amountOut": 6000000,
+     "balance": 290000,
+     "summary": "代发工资"
+    }
+   ]
+  },
+  {
+   "slot": "bankTb",
+   "kind": "tb",
+   "rows": [
+    {
+     "row": 2,
+     "accountCode": "100201",
+     "accountName": "银行存款-工行基本户1234",
+     "level": 2,
+     "openingDr": 30000000,
+     "openingCr": 0,
+     "periodDr": 9000000,
+     "periodCr": 6800000,
+     "closingDr": 32200000,
+     "closingCr": 0
+    },
+    {
+     "row": 3,
+     "accountCode": "100202",
+     "accountName": "银行存款-建行一般户5678",
+     "level": 2,
+     "openingDr": 10000000,
+     "openingCr": 0,
+     "periodDr": 500000,
+     "periodCr": 10200000,
+     "closingDr": 300000,
+     "closingCr": 0
+    }
+   ]
+  }
+ ]
+}

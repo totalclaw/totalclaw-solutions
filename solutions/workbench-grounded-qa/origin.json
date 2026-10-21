@@ -1,0 +1,65 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 6,
+    "solutions": {
+      "workbench-edu-hub": [
+        "main/services/eduHubStore.ts"
+      ]
+    },
+    "host": [
+      "main/ipc/shared.ts",
+      "main/services/accountScope.ts",
+      "main/services/councilChatRouter.ts",
+      "main/services/pdfOcr.ts",
+      "renderer/components/PageBackButton.vue",
+      "renderer/utils/humanize.ts",
+      "shared/matchTokens.ts"
+    ],
+    "packages": [
+      "@totalclaw/i18n",
+      "@totalclaw/ipc-contracts",
+      "electron",
+      "vitest",
+      "vue",
+      "vue-i18n"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/views/GroundedQaWorkbenchView.vue",
+      "from": "renderer/views/GroundedQaWorkbenchView.vue"
+    },
+    {
+      "path": "src/main/ipc/groundedQa.ipc.ts",
+      "from": "main/ipc/groundedQa.ipc.ts"
+    },
+    {
+      "path": "src/main/services/groundedQa.logic.ts",
+      "from": "main/services/groundedQa.logic.ts"
+    },
+    {
+      "path": "src/main/services/groundedQa.logic.test.ts",
+      "from": "main/services/groundedQa.logic.test.ts"
+    },
+    {
+      "path": "src/main/services/groundedQaStore.ts",
+      "from": "main/services/groundedQaStore.ts"
+    },
+    {
+      "path": "src/main/services/groundedQaStore.test.ts",
+      "from": "main/services/groundedQaStore.test.ts"
+    },
+    {
+      "path": "src/main/services/groundedQaStopwords.json",
+      "from": "main/services/groundedQaStopwords.json"
+    }
+  ]
+}

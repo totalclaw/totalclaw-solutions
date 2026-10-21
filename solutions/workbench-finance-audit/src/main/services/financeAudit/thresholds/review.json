@@ -1,0 +1,7 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "nav.tolerance": { "value": 1, "label": "LP 对账单逐行重算容差 0.01（分）", "source": { "file": "financial-services/plugins/vertical-plugins/fund-admin/skills/nav-tieout/SKILL.md", "section": "Compare（Tolerance: 0.01）" } },
+    "xls.sumGapRows": { "value": 1, "label": "求和区间与相邻数据区相差多少行判为漏行", "source": { "file": "financial-services/plugins/vertical-plugins/financial-analysis/skills/audit-xls/SKILL.md", "section": "Step 2（Off-by-one ranges）" } }
+  }
+}

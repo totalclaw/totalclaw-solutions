@@ -1,0 +1,117 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "port.maxRiskRating": {
+      "value": 3,
+      "label": "可投资产品风险等级上限（R1–R5）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/treasury-advanced/references/判断框架.md",
+        "section": "类型三：产品风险评级 vs 公司限额"
+      }
+    },
+    "port.issuerWatch": {
+      "value": 0.2,
+      "label": "单一发行人占比 ≥ 20%：关注（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/investment-management/references/判断框架.md",
+        "section": "集中度"
+      }
+    },
+    "port.issuerBreach": {
+      "value": 0.3,
+      "label": "单一发行人占比 ≥ 30%：越线（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/investment-management/references/判断框架.md",
+        "section": "集中度"
+      }
+    },
+    "port.lossWatch": {
+      "value": 0.05,
+      "label": "浮亏 ≥ 5%：关注（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/investment-management/references/判断框架.md",
+        "section": "浮亏比例"
+      }
+    },
+    "port.lossMajor": {
+      "value": 0.5,
+      "label": "亏损 ≥ 50%：重大亏损（小数）",
+      "source": {
+        "file": "finance-skills/skills/investment-management/references/判断框架.md",
+        "section": "损失分档（< 50% / 50–90% / > 90%）"
+      }
+    },
+    "liq.currentWatch": {
+      "value": 1.5,
+      "label": "流动比率 < 1.5：关注（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/investment-management/skills/liquidity-assessment/SKILL.md",
+        "section": "流动性分级"
+      }
+    },
+    "liq.currentBreach": {
+      "value": 1.0,
+      "label": "流动比率 < 1.0：越线（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/investment-management/skills/liquidity-assessment/SKILL.md",
+        "section": "流动性分级"
+      }
+    },
+    "liq.quickWatch": {
+      "value": 1.0,
+      "label": "速动比率 < 1.0：关注（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/investment-management/skills/liquidity-assessment/SKILL.md",
+        "section": "流动性分级"
+      }
+    },
+    "liq.quickBreach": {
+      "value": 0.7,
+      "label": "速动比率 < 0.7：越线（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/investment-management/skills/liquidity-assessment/SKILL.md",
+        "section": "流动性分级"
+      }
+    },
+    "liq.coverageWatch": {
+      "value": 1.2,
+      "label": "现金对一年内到期债务覆盖 < 1.2：关注（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/investment-management/skills/liquidity-assessment/SKILL.md",
+        "section": "短期偿债能力"
+      }
+    },
+    "liq.coverageBreach": {
+      "value": 1.0,
+      "label": "现金对一年内到期债务覆盖 < 1.0：越线（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/investment-management/skills/liquidity-assessment/SKILL.md",
+        "section": "短期偿债能力"
+      }
+    },
+    "liq.facilityWatch": {
+      "value": 0.7,
+      "label": "授信使用率 ≥ 70%：关注（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/investment-management/skills/liquidity-assessment/SKILL.md",
+        "section": "授信使用率"
+      }
+    },
+    "liq.facilityBreach": {
+      "value": 0.85,
+      "label": "授信使用率 ≥ 85%：越线（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/investment-management/skills/liquidity-assessment/SKILL.md",
+        "section": "授信使用率"
+      }
+    },
+    "liq.liquidDays": {
+      "value": 30,
+      "label": "多少天内可变现的投资算作可快速变现",
+      "source": {
+        "file": "finance-skills/skills/investment-management/skills/liquidity-assessment/SKILL.md",
+        "section": "可用资金"
+      }
+    }
+  }
+}

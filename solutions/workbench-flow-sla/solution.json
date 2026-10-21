@@ -1,0 +1,51 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-flow-sla",
+  "name": "流程时效监控智能体",
+  "aliases": [
+    "flow-sla"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "流程管理",
+  "icon": "icon-solutions",
+  "order": 200,
+  "description": "导入 OA、费控、CSS 三个系统的流程报表，按时效规则算出每个流程和每位审核人是否超时，自动出时效看板、周报和月度分析报告，并跟进在途流程和改善建议。",
+  "detail": "六步向导：导入报表与花名册 → 标准化与规则核对 → 计算（端到端用时、个人审核用时、合规率、排名、在途逾期）→ 环比与异常流程的节点分析 → 超时原因收集与归类 → 生成周报邮件或月度分析报告。另有时效看板、在途跟进（内部流程 3 天、外部流程 7 天提醒一次）和改善建议台账（到期前 7 天提醒）。所有数字由规则计算，模型只归纳原因和写总结；邮件发送前由你确认。",
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/flow-sla",
+    "renderer": "src/renderer/views/FlowSlaWorkbenchView.vue",
+    "main": "src/main/ipc/flowSla.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-charity-content",
+    "workbench-service-settlement"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "flow-sla/"
+    ],
+    "localStorage": [
+      "totalclaw:flow-sla"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-flow-sla"
+  }
+}

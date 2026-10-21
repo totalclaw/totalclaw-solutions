@@ -1,0 +1,44 @@
+MIT License
+
+Copyright (c) 2026 OSINT Agent Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## 重要合规声明 (Important Compliance Notice)
+
+本项目是一个**开源情报 (OSINT) 工具**，仅供以下场景使用：
+
+- ✅ 合法的 B2B 商业情报调查（竞品分析、供应商验证、客户背调）
+- ✅ 个人学习和研究
+- ✅ 授权的安全评估和风险审计
+
+使用者必须遵守：
+
+1. **仅使用公开数据** (Only publicly available data)
+2. **遵守目标平台的 Terms of Service**
+3. **遵守使用者所在司法管辖区的法律**（包括 GDPR、CCPA、《个人信息保护法》等）
+4. **不用于**：人身跟踪、骚扰、歧视、未授权访问、军事/政治情报收集、针对未成年人的调查
+
+**作者和贡献者不对使用者的行为负任何法律责任。** 使用本工具即表示你同意自行承担合规责任。
+
+This is an OSINT tool. Users are solely responsible for compliance with
+applicable laws and platform Terms of Service. The authors and contributors
+disclaim all liability for misuse.

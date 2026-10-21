@@ -1,0 +1,92 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "oneclick-video",
+  "name": "全平台运营",
+  "aliases": [
+    "一键视频",
+    "全平台运营方案"
+  ],
+  "version": "2.1.0",
+  "kind": "runner",
+  "category": "全媒体运营",
+  "icon": "icon-solutions",
+  "order": 310,
+  "description": "选一个素材文件夹，一键跑完整条全平台运营：自动写文案 → 合成 9:16 竖屏短视频（Ken Burns 运镜+转场）→ 客资 RFM 分层+回访话术 → 中差评回复 → 数据复盘(ROI/复购/漏斗) → 同城获客方案 → 汇总成运营简报。可选一键发布到 小红书/抖音/视频号（发布会停在登录页等你扫码登录，不会因没登录就失败）。",
+  "access": {
+    "requiresSolutionGrant": false,
+    "feature": null,
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.0",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "oneclick-video",
+    "route": null,
+    "renderer": null,
+    "main": null
+  },
+  "dependsOn": [],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "solution-runs.json#oneclick-video"
+    ],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/oneclick-video"
+  },
+  "runner": "oneclick-video",
+  "source": "bundled",
+  "prefill": [
+    {
+      "key": "folderPath",
+      "label": "素材库文件夹",
+      "hint": "选放图片的文件夹（jpg / png / webp / heic 等）。图按文件名排序自动合成，中文/空格名也没问题。",
+      "type": "folder",
+      "required": true
+    },
+    {
+      "key": "store",
+      "label": "门店名称",
+      "hint": "用于文案与运营简报。",
+      "type": "text",
+      "defaultValue": "演示·巷子口私房菜"
+    },
+    {
+      "key": "city",
+      "label": "城市 / 商圈",
+      "hint": "用于同城获客与文案标签。",
+      "type": "text",
+      "defaultValue": "成都·春熙路"
+    },
+    {
+      "key": "perImage",
+      "label": "每张图时长（秒）",
+      "hint": "每张图片在视频里停留的秒数，默认 2.5。",
+      "type": "number",
+      "defaultValue": 2.5
+    },
+    {
+      "key": "publishMode",
+      "label": "出片后自动发布到 小红书 / 抖音 / 视频号",
+      "hint": "开启则出片后打开浏览器发布；若未登录会停在登录页等你扫码，登录后自动继续。",
+      "type": "switch",
+      "defaultValue": false
+    },
+    {
+      "key": "schedule",
+      "label": "定时托管（7×24 自动运营）",
+      "hint": "开启则写入 3 条定时任务：私信/评论巡检（每小时）、选题发布（每天9点）、客资回访（每天10点）。可在 设置→定时任务 查看/管理。",
+      "type": "switch",
+      "defaultValue": false
+    }
+  ]
+}

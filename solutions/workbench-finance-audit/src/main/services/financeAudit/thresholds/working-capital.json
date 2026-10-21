@@ -1,0 +1,93 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "abc.aShare": {
+      "value": 0.8,
+      "label": "A 类：累计耗用金额占比 ≤ 80%（小数）",
+      "source": {
+        "file": "scripts/finance-audit-selfbuilt/fa-inventory-optimization/SKILL.md",
+        "section": "ABC 分类（常用 80 / 15 / 5）"
+      }
+    },
+    "abc.bShare": {
+      "value": 0.95,
+      "label": "B 类：累计耗用金额占比 ≤ 95%（小数）",
+      "source": {
+        "file": "scripts/finance-audit-selfbuilt/fa-inventory-optimization/SKILL.md",
+        "section": "ABC 分类（常用 80 / 15 / 5）"
+      }
+    },
+    "inv.slowDays": {
+      "value": 180,
+      "label": "超过 180 天无出入库为呆滞",
+      "source": {
+        "file": "scripts/finance-audit-selfbuilt/fa-inventory-optimization/SKILL.md",
+        "section": "呆滞与过时"
+      }
+    },
+    "inv.obsoleteDays": {
+      "value": 365,
+      "label": "超过 365 天无出入库为过时",
+      "source": {
+        "file": "scripts/finance-audit-selfbuilt/fa-inventory-optimization/SKILL.md",
+        "section": "呆滞与过时"
+      }
+    },
+    "supplier.shareWatch": {
+      "value": 0.3,
+      "label": "单一供应商应付占比 ≥ 30%：关注（小数）",
+      "source": {
+        "file": "scripts/finance-audit-selfbuilt/fa-payables-strategy/SKILL.md",
+        "section": "供应商集中度"
+      }
+    },
+    "supplier.dueSoonDays": {
+      "value": 30,
+      "label": "统计多少天内到期的应付",
+      "source": {
+        "file": "scripts/finance-audit-selfbuilt/fa-payables-strategy/SKILL.md",
+        "section": "到期分布"
+      }
+    },
+    "scf.extensionDays": {
+      "value": 30,
+      "label": "反向保理可延长的付款天数",
+      "source": {
+        "file": "scripts/finance-audit-selfbuilt/fa-supply-chain-finance/SKILL.md",
+        "section": "反向保理测算（默认值，按银行方案修改）"
+      }
+    },
+    "scf.advanceRate": {
+      "value": 0.8,
+      "label": "应收保理预付比例（小数）",
+      "source": {
+        "file": "scripts/finance-audit-selfbuilt/fa-supply-chain-finance/SKILL.md",
+        "section": "应收保理测算（默认值）"
+      }
+    },
+    "scf.inventoryAdvanceRate": {
+      "value": 0.5,
+      "label": "存货融资折扣率（小数）",
+      "source": {
+        "file": "scripts/finance-audit-selfbuilt/fa-supply-chain-finance/SKILL.md",
+        "section": "存货融资测算（默认值）"
+      }
+    },
+    "scf.financingRate": {
+      "value": 0.04,
+      "label": "融资年化成本（小数）",
+      "source": {
+        "file": "scripts/finance-audit-selfbuilt/fa-supply-chain-finance/SKILL.md",
+        "section": "成本测算（默认值）"
+      }
+    },
+    "scf.discountPct": {
+      "value": 0.01,
+      "label": "动态折扣：提前付款换取的折扣（小数）",
+      "source": {
+        "file": "scripts/finance-audit-selfbuilt/fa-supply-chain-finance/SKILL.md",
+        "section": "动态折扣测算（默认值）"
+      }
+    }
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 87,
+    "solutions": {
+      "workbench-service-settlement": [
+        "renderer/workbenches/service-settlement/shared.ts"
+      ]
+    },
+    "host": [
+      "main/ipc/mediaFal.ipc.ts",
+      "main/ipc/shared.ts",
+      "main/services/accountScope.ts",
+      "main/services/councilChatRouter.ts",
+      "main/services/ffmpegPath.ts",
+      "main/services/lanServer.ts",
+      "main/services/localTts.ts",
+      "main/services/mediaProtocol.ts",
+      "main/services/runtimeLocation.ts",
+      "main/utils/atomicJson.ts",
+      "renderer/components/FalServiceConfig.vue",
+      "renderer/components/falServiceStatus.ts",
+      "renderer/composables/useStepWatchdog.ts",
+      "renderer/i18n.ts",
+      "renderer/utils/ipcPlain.ts",
+      "shared/matchTokens.ts"
+    ],
+    "packages": [
+      "@totalclaw/i18n",
+      "@totalclaw/ipc-contracts",
+      "@totalclaw/logger",
+      "@vue-flow/background",
+      "@vue-flow/controls",
+      "@vue-flow/core",
+      "@vue-flow/minimap",
+      "@vue/test-utils",
+      "crypto",
+      "electron",
+      "playwright",
+      "qrcode",
+      "vitest",
+      "vue"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/workbenches/quran-teaching/ManagerDashboard.vue",
+      "from": "renderer/workbenches/quran-teaching/ManagerDashboard.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/QtGraph.vue",
+      "from": "renderer/workbenches/quran-teaching/QtGraph.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/QtProgress.test.ts",
+      "from": "renderer/workbenches/quran-teaching/QtProgress.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/QtProgress.vue",
+      "from": "renderer/workbenches/quran-teaching/QtProgress.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/QtQuestion.vue",
+      "from": "renderer/workbenches/quran-teaching/QtQuestion.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/QtStep.vue",
+      "from": "renderer/workbenches/quran-teaching/QtStep.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/QtVerse.vue",
+      "from": "renderer/workbenches/quran-teaching/QtVerse.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/QuranPlatform.vue",
+      "from": "renderer/workbenches/quran-teaching/QuranPlatform.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/StudentPortal.vue",
+      "from": "renderer/workbenches/quran-teaching/StudentPortal.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/TeacherFlow.vue",
+      "from": "renderer/workbenches/quran-teaching/TeacherFlow.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/shared.ts",
+      "from": "renderer/workbenches/quran-teaching/shared.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/styles.css",
+      "from": "renderer/workbenches/quran-teaching/styles.css"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/teacherSteps.test.ts",
+      "from": "renderer/workbenches/quran-teaching/teacherSteps.test.ts"
+    },
+    {
+      "path": "src/main/ipc/quranTeaching.ipc.ts",
+      "from": "main/ipc/quranTeaching.ipc.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/__e2eBoot.mts",
+      "from": "main/services/quranTeaching/__e2eBoot.mts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/__e2eDrive.mjs",
+      "from": "main/services/quranTeaching/__e2eDrive.mjs"
+    },
+    {
+      "path": "src/main/services/quranTeaching/__e2eSimulateRace.mjs",
+      "from": "main/services/quranTeaching/__e2eSimulateRace.mjs"
+    },
+    {
+      "path": "src/main/services/quranTeaching/analysisTemplates.json",
+      "from": "main/services/quranTeaching/analysisTemplates.json"
+    },
+    {
+      "path": "src/main/services/quranTeaching/approved.ts",
+      "from": "main/services/quranTeaching/approved.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/approvedMaterials.json",
+      "from": "main/services/quranTeaching/approvedMaterials.json"
+    },
+    {
+      "path": "src/main/services/quranTeaching/comprehensionOnly.test.ts",
+      "from": "main/services/quranTeaching/comprehensionOnly.test.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/corpus.ts",
+      "from": "main/services/quranTeaching/corpus.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/corpusFormat.json",
+      "from": "main/services/quranTeaching/corpusFormat.json"
+    },
+    {
+      "path": "src/main/services/quranTeaching/graph.ts",
+      "from": "main/services/quranTeaching/graph.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/lan.test.ts",
+      "from": "main/services/quranTeaching/lan.test.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/lan.ts",
+      "from": "main/services/quranTeaching/lan.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/media.ts",
+      "from": "main/services/quranTeaching/media.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/mediaTemplates.json",
+      "from": "main/services/quranTeaching/mediaTemplates.json"
+    },
+    {
+      "path": "src/main/services/quranTeaching/offscreenRender.ts",
+      "from": "main/services/quranTeaching/offscreenRender.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/parse.ts",
+      "from": "main/services/quranTeaching/parse.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/planTemplates.json",
+      "from": "main/services/quranTeaching/planTemplates.json"
+    },
+    {
+      "path": "src/main/services/quranTeaching/planner.ts",
+      "from": "main/services/quranTeaching/planner.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/quiz.ts",
+      "from": "main/services/quranTeaching/quiz.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/quizTemplates.json",
+      "from": "main/services/quranTeaching/quizTemplates.json"
+    },
+    {
+      "path": "src/main/services/quranTeaching/quranTeaching.acceptance.test.ts",
+      "from": "main/services/quranTeaching/quranTeaching.acceptance.test.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/quranTeaching.i18n.test.ts",
+      "from": "main/services/quranTeaching/quranTeaching.i18n.test.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/quranTeaching.test.ts",
+      "from": "main/services/quranTeaching/quranTeaching.test.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/reinforce.ts",
+      "from": "main/services/quranTeaching/reinforce.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/reinforceTemplates.json",
+      "from": "main/services/quranTeaching/reinforceTemplates.json"
+    },
+    {
+      "path": "src/main/services/quranTeaching/rng.ts",
+      "from": "main/services/quranTeaching/rng.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/store.ts",
+      "from": "main/services/quranTeaching/store.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/storeAtomic.test.ts",
+      "from": "main/services/quranTeaching/storeAtomic.test.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/studentPage.ts",
+      "from": "main/services/quranTeaching/studentPage.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/studentPageAnswers.test.ts",
+      "from": "main/services/quranTeaching/studentPageAnswers.test.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/students.ts",
+      "from": "main/services/quranTeaching/students.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/textUtils.ts",
+      "from": "main/services/quranTeaching/textUtils.ts"
+    },
+    {
+      "path": "src/main/services/quranTeaching/videoPipeline.test.ts",
+      "from": "main/services/quranTeaching/videoPipeline.test.ts"
+    },
+    {
+      "path": "src/shared/quranPaperVariant.ts",
+      "from": "shared/quranPaperVariant.ts"
+    },
+    {
+      "path": "resources/quran-demo-corpus/00_README.txt",
+      "from": "resources/quran-demo-corpus/00_README.txt"
+    },
+    {
+      "path": "resources/quran-demo-corpus/01_001_al-fatiha.txt",
+      "from": "resources/quran-demo-corpus/01_001_al-fatiha.txt"
+    },
+    {
+      "path": "resources/quran-demo-corpus/02_103_al-asr.txt",
+      "from": "resources/quran-demo-corpus/02_103_al-asr.txt"
+    },
+    {
+      "path": "resources/quran-demo-corpus/03_108_al-kawthar.txt",
+      "from": "resources/quran-demo-corpus/03_108_al-kawthar.txt"
+    },
+    {
+      "path": "resources/quran-demo-corpus/04_112_al-ikhlas.txt",
+      "from": "resources/quran-demo-corpus/04_112_al-ikhlas.txt"
+    },
+    {
+      "path": "resources/quran-demo-corpus/05_113_al-falaq.txt",
+      "from": "resources/quran-demo-corpus/05_113_al-falaq.txt"
+    },
+    {
+      "path": "resources/quran-demo-corpus/06_114_an-nas.txt",
+      "from": "resources/quran-demo-corpus/06_114_an-nas.txt"
+    },
+    {
+      "path": "resources/quran-demo-corpus/07_049_al-hujurat.txt",
+      "from": "resources/quran-demo-corpus/07_049_al-hujurat.txt"
+    },
+    {
+      "path": "resources/quran-demo-corpus/08_067_al-mulk.txt",
+      "from": "resources/quran-demo-corpus/08_067_al-mulk.txt"
+    },
+    {
+      "path": "resources/quran-demo-corpus/09_055_ar-rahman.txt",
+      "from": "resources/quran-demo-corpus/09_055_ar-rahman.txt"
+    },
+    {
+      "path": "resources/quran-demo-corpus/10_012_yusuf.txt",
+      "from": "resources/quran-demo-corpus/10_012_yusuf.txt"
+    },
+    {
+      "path": "resources/quran-demo-corpus/corpus_manifest.csv",
+      "from": "resources/quran-demo-corpus/corpus_manifest.csv"
+    },
+    {
+      "path": "resources/quran-demo-corpus/quran_corpus_10ch_265v.csv",
+      "from": "resources/quran-demo-corpus/quran_corpus_10ch_265v.csv"
+    },
+    {
+      "path": "resources/quran-demo-corpus/quran_corpus_10ch_265v.json",
+      "from": "resources/quran-demo-corpus/quran_corpus_10ch_265v.json"
+    },
+    {
+      "path": "resources/quran-demo-fonts/Amiri-Regular.ttf",
+      "from": "resources/quran-demo-fonts/Amiri-Regular.ttf"
+    },
+    {
+      "path": "resources/quran-demo-fonts/AmiriQuran.ttf",
+      "from": "resources/quran-demo-fonts/AmiriQuran.ttf"
+    },
+    {
+      "path": "resources/quran-demo-fonts/OFL.txt",
+      "from": "resources/quran-demo-fonts/OFL.txt"
+    },
+    {
+      "path": "resources/quran-demo-fonts/README.md",
+      "from": "resources/quran-demo-fonts/README.md"
+    },
+    {
+      "path": "resources/quran-demo-videos/quran-demo-103-ar.json",
+      "from": "resources/quran-demo-videos/quran-demo-103-ar.json"
+    },
+    {
+      "path": "resources/quran-demo-videos/quran-demo-103-ar.mp4",
+      "from": "resources/quran-demo-videos/quran-demo-103-ar.mp4"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+# 来源与改动说明
+
+- 来源：
+  - https://github.com/nexscope-ai/Amazon-Skills，提交 0f3b13fa0e5ed0a9f3d600dc18518bc76ddd813b，路径 `amazon-keyword-research`
+- 许可证：MIT（Copyright (c) 2026 Nexscope AI）
+- 改编方：TotalClaw，2026-10-19
+- 改动：重命名为 `ft-amazon-keyword-research`；改写 frontmatter（中文名称与描述、模块、来源仓库与提交号）；正文前补「在本产品中使用」一节（工具替换、发信改为人工确认、数据落到工作区文件）；替换特定产品名；删除推广导流段与安装命令；正文原样保留（源语言）；不复制上游技能市场元数据（_meta.json，含发布者 ownerId）与其它助手的界面配置（agents/openai.yaml）；scripts/research.sh 用 selfbuilt 副本：关键词改为经 argv 传给 python，修掉上游把关键词直接拼进 python -c 代码串的注入问题

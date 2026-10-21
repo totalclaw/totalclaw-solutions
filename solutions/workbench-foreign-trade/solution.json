@@ -1,0 +1,68 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-foreign-trade",
+  "name": "外贸业务智能体",
+  "aliases": [
+    "foreign-trade"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "外贸",
+  "icon": "icon-solutions",
+  "order": 140,
+  "description": "多邮箱接管，覆盖平台运营、客户开发、询盘处理、客户背调、跟进、内容生产、网站社媒、报价、订单推进与数据整理十项日常工作。",
+  "detail": "同时接管多个业务邮箱，新询盘自动整理分类、可按规则自动回复；客户背调与潜客开发带来源可核对；产品素材（文案、图片、视频）一键生成，交给数字员工在平台发布；报价按规则计算、审批后发出；订单节点与单据一致性自动核对；日报周报定时推送。每个模块可单独指定使用的模型。",
+  "shortcuts": [
+    "处理新询盘",
+    "客户背调",
+    "报价与订单推进"
+  ],
+  "highlights": [
+    "多邮箱统一接管",
+    "询盘自动分类回复",
+    "日报周报定时推送"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/foreign-trade",
+    "renderer": "src/renderer/views/ForeignTradeWorkbenchView.vue",
+    "main": "src/main/ipc/foreignTrade.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-bid-writer",
+    "workbench-service-settlement"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "foreign-trade/"
+    ],
+    "localStorage": [
+      "totalclaw:foreign-trade"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [
+    {
+      "path": "resources/bundled-skills/foreign-trade/ft-trade-knowledge-base/references/领英获客.pdf",
+      "size": 2326808,
+      "sha256": "fe2392238af1b82ffe9e91247fee25519b95e57f1be15bb9ea3d214bfcfeda0d",
+      "origin": "resources/bundled-skills/foreign-trade/ft-trade-knowledge-base/references/领英获客.pdf"
+    }
+  ],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-foreign-trade"
+  }
+}

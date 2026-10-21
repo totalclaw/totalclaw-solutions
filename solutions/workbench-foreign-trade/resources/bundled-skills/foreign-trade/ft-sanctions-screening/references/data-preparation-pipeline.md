@@ -1,0 +1,96 @@
+---
+layout: page
+title: Data preparation Pipeline
+hide_hero: true
+show_sidebar: false
+menubar: docs-menu
+---
+
+# Data preparation pipeline
+
+Watchman prepares list records and search queries the same way so a query like `nicolas maduro` can match a list name stored as `MADURO MOROS, Nicolas`. This page is that preparation. Scoring is [Similarity methodology](/watchman/methodology/). Candidate indexes are [Indexing](/watchman/indexing/).
+
+There are two layers:
+
+1. **List ingest** — extra steps some sources run when a file is loaded. OFAC is the main one.
+2. **`Normalize()`** — runs on every list entity after ingest and on every search query.
+
+## List ingest
+
+When Watchman loads lists (like the OFAC SDN) it organizes the names and values into a common ordering.
+
+**Name reordering** (people only, `SDNType=individual`):
+
+- `MADURO MOROS, Nicolas` → `Nicolas MADURO MOROS`
+
+**Company suffix stripping** (companies):
+
+- `SAI ADVISORS INC.` → `SAI ADVISORS`
+- Suffixes include `INC.`, `LLC`, `LTD.`, `GMBH`, `CO.`, and similar.
+
+A query is **not** reordered or suffix-stripped. You can search `Nicolas Maduro` or `MADURO, Nicolas`; after `Normalize()` both become comparable to the OFAC person name that was already reordered at ingest.
+
+## Normalize (every list record and every query)
+
+`Entity.Normalize()` fills `PreparedFields` used by scoring and indexes.
+
+### Names
+
+1. Drop a leading trade-document role marker (`SHIPPER:`, `BENEFICIARY:`, `ORDERING CUSTOMER:`, `MESSRS.`, `FIELD 59:`).
+2. Treat former-name markers as `HistoricalInfo` and drop them from the primary name: `(ex-Cape Diamond)`, `(f.k.a. …)`, `(formerly …)`, `(formerly known as …)`, inline `f.k.a.` / `f/k/a` / `formerly`, and an `ex` token with a separator (`Kalliopi Dawn ex Orion Tanager`). Chained `(ex A, ex B)` becomes two former names. A trailing year on the former name (`, 2020` or `until 2019`) is dropped. `(example)` stays on the primary name.
+3. Trim, lowercase, turn `.` `,` `-` and other punctuation/symbols into spaces.
+4. Unicode NFD → strip combining marks → NFC, so `Raúl` and `raul` match.
+5. For **vessels**, drop a trailing port or place (`MV SIAM ORCHID 7, Bangkok` → `MV SIAM ORCHID 7`; a final `(Laem Chabang)` is dropped), then drop leading ship-type markers (`MV`, `M/V`, `M/T`, `SS`, `N/M`, `T/B`, and the same after punctuation becomes spaces). `MV Solenne Harbour` and `Solenne Harbour` compare as the same prepared name.
+6. For **businesses and organizations**, rewrite English legal-form phrases to the short token (`incorporated` → `inc`, `limited` → `ltd`, `limited liability company` → `llc`, `public limited company` → `plc`, `corporation` → `corp`, `company` → `co`). `Harrowfield Bearings Limited` and `HARROWFIELD BEARINGS LTD.` compare as the same prepared name. Jurisdiction-specific forms (`GmbH`, `Sdn. Bhd.`) are left as they are.
+7. Split on whitespace into tokens.
+8. Drop **stopwords** (`of`, `the`, `and`, and the same idea in other languages). Language is guessed from the name. Numeric tokens (`11420`) are kept. Set `KEEP_STOPWORDS=true` to skip this step.
+
+The same steps run on the primary name, aliases, and former names (`HistoricalInfo` of type `Former Name`).
+
+Example: `BANK OF AMERICA` → tokens `bank`, `america`.
+
+### Phones and fax
+
+Digits are kept and, when possible, normalized with a country guess (`+1 (555) 010-0100` and `555-010-0100` can compare).
+
+### Websites
+
+`website=` values and listed websites are reduced to a host for indexing and scoring. Scheme (`http://`, `https://`), userinfo, path, query, fragment, default ports (`:80`, `:443`), a trailing dot, and a leading `www.` are dropped. `https://www.gicdf.org/about` and listed `www.gicdf.org` compare as `gicdf.org`. The original string stays on `contact.websites` in the JSON.
+
+### Domains
+
+`domain=` values, listed websites, and email hosts are walked from the FQDN down to eTLD+1 using the Public Suffix List. `mail.suex.io` and listed `suex.io` share `suex.io`. Public suffixes (`co.uk`, `ru`) are not indexed or queried. Email hosts at consumer providers (gmail, yahoo, mail.ru, icloud, …) are skipped so those providers are not treated as an entity domain. `website=` still scores the prepared host exactly; listed websites also feed the domain index, so a subdomain on either `website=` or `domain=` can match a listed eTLD+1.
+
+### SWIFT/BIC
+
+`swift=` and `bic=` are aliases for ISO 9362 codes. Letters are uppercased, spaces, hyphens, and periods are stripped, and an `XXX` branch suffix is dropped so the 8-character head-office form is stored. 8- and 11-character forms match on the first eight characters. OFAC SDN remarks (`SWIFT/BIC HNRBBY2X`, `alt. SWIFT/BIC VVBKRU2Y`) and US CSL IDs (`SWIFT/BIC, RUDVRUMM` and `CKLBCNBJ, SWIFT/BIC`) are extracted into `swiftBICs`. Ingest YAML can map `swift` and `bic` columns the same way. The original query string stays on `swiftBICs` in the JSON; prepared values are canonical.
+
+### Addresses
+
+1. Free-text `address=` on the query is parsed into line, city, state, postal code, country. **Docker images and Linux/macOS GitHub releases** use libpostal. **Windows `.exe` and `go run`** use usaddress unless built with `-tags libpostal`. **Any build** can enable deepparse. See [Addresses](/watchman/addresses/).
+2. Parsed fields are lowercased. Commas are stripped from street lines. Country codes (`US`, `USA`) fold to a common name (`United States`).
+3. Street, city, and similar fields are split into tokens for scoring.
+
+### Gender (query parameter)
+
+`gender=` is mapped to `male`, `female`, or `unknown` (`m` / `male` / `f` / `female`, and a few synonyms).
+
+### Government IDs
+
+Query IDs are `gov_<type>=COUNTRY:IDENTIFIER` (for example `gov_passport=IR:Y53914915`). Country on the ID is normalized the same way as address country when scoring.
+
+## What this means for searches
+
+- Case, accents, and punctuation do not need to match the list file: `José` and `jose` compare as the same letters.
+- Common words can be omitted: `Bank of America` and `Bank America`.
+- For **OFAC people**, list names in `SURNAME, Given` order are stored as `Given SURNAME`, so a natural-order query works.
+- For **OFAC companies**, `Inc.` / `LLC` on the list name is stripped at ingest. A query of `Acme Inc` still has `inc` as a token unless you omit it; it is a weak token, not a blocker. English legal-form expansions on the query (`Incorporated`, `Limited`) are rewritten to the same short tokens as `Inc.` / `Ltd.` during `Normalize()`.
+- Send IDs and dates when you have them. Preparation does not invent them.
+
+## Debugging
+
+`debug=true` (or `debug=0.80`) on `/v2/search` returns **score pieces** (name, identifiers, dates, addresses), not a dump of these pipeline stages. If a name does not match, check type (`person` vs `business`), whether you sent the same fields as the list record, and the prepared tokens implied above.
+
+## Related
+
+[Using Watchman](/watchman/using-watchman/) · [Search](/watchman/search/) · [Similarity methodology](/watchman/methodology/) · [Indexing](/watchman/indexing/)

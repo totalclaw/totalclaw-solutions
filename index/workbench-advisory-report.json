@@ -1,0 +1,37 @@
+{
+  "id": "workbench-advisory-report",
+  "version": "1.0.0",
+  "treeDigest": "b58c34471b1fae76dc5e408fa8b86094d28b4acb485adb4a08ed6ba93855b369",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 150,
+      "sha256": "79ee8b7d5a3b49d99412bffa19cb81f2ea5fb529f7745d37e095fb8b328bbc3c"
+    },
+    {
+      "path": "README.md",
+      "size": 929,
+      "sha256": "99c7e2140c03fc889146980e19038d17eae7f28aa1b356d45a01fd70f313edee"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "origin.json",
+      "size": 766,
+      "sha256": "6c81490e51f8a0656beadd0618bad0361d6fa4c28d4b901db4002bafade153da"
+    },
+    {
+      "path": "solution.json",
+      "size": 1535,
+      "sha256": "2c3cd8fe09d73ee80243e78763885934f95baf40ab0ec48af2f9ee34fd42ee25"
+    },
+    {
+      "path": "src/renderer/views/AdvisoryReportWorkbenchView.vue",
+      "size": 477,
+      "sha256": "583bbf17e6a354600982c2604e2574aef26c5c76aa97bac05c8c5ea04e9dc886"
+    }
+  ]
+}

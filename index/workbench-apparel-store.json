@@ -1,0 +1,142 @@
+{
+  "id": "workbench-apparel-store",
+  "version": "1.0.0",
+  "treeDigest": "6abbf70f8be544d06672cea5c9f60e9788b2e7d20d92d6b69bf3c90dc3dadac5",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 132,
+      "sha256": "783671b63153b04313fdb4e1eb9930f73d9b67cd443b8e2ff989985da6c9bdb5"
+    },
+    {
+      "path": "README.md",
+      "size": 1323,
+      "sha256": "eb5abcbb7cb6c04beb1a8781e2dcd6603b397bedc19b4d46ff836e57e032c259"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "origin.json",
+      "size": 4655,
+      "sha256": "571ab258fc9f817d611f76f4520acac19acd01bee6289f7de59991819328756c"
+    },
+    {
+      "path": "solution.json",
+      "size": 1825,
+      "sha256": "b780180a77aed7927963c854ef56e927b4b7fb25888d08e5595d343310304a20"
+    },
+    {
+      "path": "src/contracts/apparelStore.ts",
+      "size": 6804,
+      "sha256": "63ecc16f806195fe67bca8dd00c04b636b53073e82f0f13952b82c084f033f62"
+    },
+    {
+      "path": "src/main/ipc/apparelStore.ipc.ts",
+      "size": 9926,
+      "sha256": "27bdb2f5e6d0e026f255398de81a7d922dc15301fc49a010325db2b157e1ba0d"
+    },
+    {
+      "path": "src/main/services/apparelStore/logic.test.ts",
+      "size": 8933,
+      "sha256": "ea89ad47ac034b4ce7c47c6990b1af0750a35016604de07e887db94b095badc7"
+    },
+    {
+      "path": "src/main/services/apparelStore/logic.ts",
+      "size": 20062,
+      "sha256": "95c171b347ac63ce3a849d64d988c5cec7aa797aca48256f4079d0b1cb877b22"
+    },
+    {
+      "path": "src/main/services/apparelStore/mobilePage.ts",
+      "size": 29458,
+      "sha256": "df09bfda4df3e5b3d588f0b565cc9aa0c7d499ea9a1a7e51330b2a42865394fe"
+    },
+    {
+      "path": "src/main/services/apparelStore/mobileServer.ts",
+      "size": 10573,
+      "sha256": "d9788301befe82548f0acad2b6349ab99f0e1a056c0d2978ace0f6bc5b6f98cc"
+    },
+    {
+      "path": "src/main/services/apparelStore/prompts.ts",
+      "size": 4022,
+      "sha256": "9a7e590c2034782c78527ad9bc749a2683323c22e9326b3bf033a89a531a7325"
+    },
+    {
+      "path": "src/main/services/apparelStore/service.ts",
+      "size": 26869,
+      "sha256": "fc24bae83837b398f679b089edb065703b707ce32d043d8fedd54361e11b3ca5"
+    },
+    {
+      "path": "src/main/services/apparelStore/store.ts",
+      "size": 6158,
+      "sha256": "d31a759d3d78494497886cedfd80237ea67a5aff689a9996c7984df95f60b0fe"
+    },
+    {
+      "path": "src/main/services/apparelStore/styleOptions.ts",
+      "size": 24008,
+      "sha256": "38cda6a73fb186f98a98d79dfe5ea74443e3ab2b2281a9f7f64eafbb35a3f78e"
+    },
+    {
+      "path": "src/renderer/views/ApparelStoreWorkbenchView.vue",
+      "size": 10194,
+      "sha256": "2709a4aeff426c7e58e0d4493f21edf55f399c2e61980b1ad82ef380e2b594a0"
+    },
+    {
+      "path": "src/renderer/workbenches/apparel-store/CheckinTab.vue",
+      "size": 6851,
+      "sha256": "2bfdcdf7c0fe845ca7797c4a24592606d5a1f5f2945ee87de52938d3f607dda9"
+    },
+    {
+      "path": "src/renderer/workbenches/apparel-store/DashboardTab.vue",
+      "size": 7775,
+      "sha256": "ea037977b24cf9fa27aa2328d0edf2b12f9d20076b883cb90e3b90e265dec1c6"
+    },
+    {
+      "path": "src/renderer/workbenches/apparel-store/GarmentsTab.vue",
+      "size": 11693,
+      "sha256": "986026bca5bc5c686c78857a1c58837bb6a4928f3fb346cca7708c478c7c01ec"
+    },
+    {
+      "path": "src/renderer/workbenches/apparel-store/MobileTab.vue",
+      "size": 6953,
+      "sha256": "3c1471ff488145953cd4fd510af667e0a7f11655478adf4e9314122a9f7d1eb7"
+    },
+    {
+      "path": "src/renderer/workbenches/apparel-store/OverviewTab.vue",
+      "size": 4707,
+      "sha256": "8f8b276095417354478643bff34fc1ea0fd07c57636ab2610f7194377198df3b"
+    },
+    {
+      "path": "src/renderer/workbenches/apparel-store/SettingsTab.vue",
+      "size": 5168,
+      "sha256": "66b95afe7f0ac7bfd9e0f405f54493a26d894fd9f28bfda7ffae73c5127980af"
+    },
+    {
+      "path": "src/renderer/workbenches/apparel-store/StylePicker.vue",
+      "size": 6251,
+      "sha256": "ccafdacfae7c5c1b2ca9d98235ccb894c3beb78976f96ee6c226bdef2acf65bb"
+    },
+    {
+      "path": "src/renderer/workbenches/apparel-store/StylesTab.vue",
+      "size": 6428,
+      "sha256": "57e039fcf4a629eef08fb6c6b578b3a235a9538823bdc27026113c6b17a2b062"
+    },
+    {
+      "path": "src/renderer/workbenches/apparel-store/TryonFlow.vue",
+      "size": 35629,
+      "sha256": "ef15c6179ed61a5041452949f7ce39ebe7e463e85c55d43bfc52f072745c37f7"
+    },
+    {
+      "path": "src/renderer/workbenches/apparel-store/shared.ts",
+      "size": 7359,
+      "sha256": "5123914d982825c3b444794127a1da5228cd727bd8c8c2c03940ac2e28e80018"
+    },
+    {
+      "path": "src/renderer/workbenches/apparel-store/tryonWatchdog.test.ts",
+      "size": 6607,
+      "sha256": "13767a456f22c0a80d4528904dda558800be79beb66f2a0948e7f07a85dd8201"
+    }
+  ]
+}

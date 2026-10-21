@@ -1,0 +1,62 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 2,
+    "solutions": {},
+    "host": [
+      "main/ipc/shared.ts",
+      "main/services/accountScope.ts",
+      "main/services/spreadsheetRead.ts",
+      "renderer/components/PageBackButton.vue",
+      "renderer/composables/workflowAutoRun.ts",
+      "renderer/i18n.ts",
+      "renderer/stores/bidDesk.ts",
+      "renderer/stores/notification.ts",
+      "renderer/utils/bidDeskArtifacts.ts",
+      "renderer/utils/humanize.ts",
+      "renderer/utils/workspaceTaskRegistration.ts"
+    ],
+    "packages": [
+      "@napi-rs/canvas",
+      "@totalclaw/i18n",
+      "@totalclaw/ipc-contracts",
+      "adm-zip",
+      "electron",
+      "pdfjs-dist",
+      "pinia",
+      "vitest",
+      "vue",
+      "vue-router",
+      "xlsx"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/views/BidDeskView.vue",
+      "from": "renderer/views/BidDeskView.vue"
+    },
+    {
+      "path": "src/renderer/composables/bidDeskLocale.ts",
+      "from": "renderer/composables/bidDeskLocale.ts"
+    },
+    {
+      "path": "src/renderer/composables/bidDeskLocale.test.ts",
+      "from": "renderer/composables/bidDeskLocale.test.ts"
+    },
+    {
+      "path": "src/main/ipc/bidDesk.ipc.ts",
+      "from": "main/ipc/bidDesk.ipc.ts"
+    },
+    {
+      "path": "src/shared/bidDeskWorkflow.ts",
+      "from": "shared/bidDeskWorkflow.ts"
+    }
+  ]
+}

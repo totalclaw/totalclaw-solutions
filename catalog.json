@@ -3,13 +3,37 @@
   "kind": "solution",
   "items": [
     {
+      "id": "material-to-table",
+      "name": "办公材料整理智能体",
+      "description": "把一个文件夹里不同类型的素材（截图 / 对话截图 / 图片 / excel / csv）自动分组，每组按各自的字段列整理成表格。适合多部门/多类素材混在一起的归集场景。",
+      "category": "数据整理",
+      "version": "2.1.0",
+      "icon": "icon-table",
+      "path": "solutions/material-to-table",
+      "files": [
+        "solution.json"
+      ]
+    },
+    {
+      "id": "oneclick-video",
+      "name": "全平台运营",
+      "description": "选一个素材文件夹，一键跑完整条全平台运营：自动写文案 → 合成 9:16 竖屏短视频（Ken Burns 运镜+转场）→ 客资 RFM 分层+回访话术 → 中差评回复 → 数据复盘(ROI/复购/漏斗) → 同城获客方案 → 汇总成运营简报。可选一键发布到 小红书/抖音/视频号（发布会停在登录页等你",
+      "category": "全媒体运营",
+      "version": "2.1.0",
+      "icon": "icon-solutions",
+      "path": "solutions/oneclick-video",
+      "files": [
+        "solution.json"
+      ]
+    },
+    {
       "id": "daizhang-accounting",
       "name": "小微企业代账账务处理",
-      "description": "面向财税代账公司，按代账行业 SOP 把最耗时的前置环节自动化：资料清单校验 → 单据识别清洗 → 票据合规审查 → 会计凭证生成 → 期末结转与报表 → 账务风险检测 → 纳税申报指引与交付。区分小规模/一般两套科目、分录符合《小企业会计准则》。点「启动」即跳工作流页，7 个环节逐节点真执行、逐个点亮。产出为草稿，须",
+      "description": "面向财税代账公司，按代账行业 SOP 把最耗时的前置环节自动化：资料清单校验 → 单据识别清洗 → 票据合规审查 → 会计凭证生成 → 期末结转与报表 → 账务风险检测 → 纳税申报指引与交付。区分小规模/一般两套科目、分录符合《小企业会计准则》。点「启动」即跳工作流页，7 个环节逐节点真执行、逐个",
       "category": "财税财务",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "icon": "icon-solutions",
-      "path": "daizhang-accounting",
+      "path": "solutions/daizhang-accounting",
       "files": [
         "solution.json"
       ]
@@ -19,33 +43,9 @@
       "name": "AI 研发流水线",
       "description": "输入一句产品需求，一支 AI 研发团队在工作流画布上自动接力跑完整条研发流程：产品经理写 PRD → 开发工程师出技术设计 → 代码评审员审查+单测 → 测试工程师出测试用例 → 运维工程师出部署运维方案，最后 CTO 汇总评估。点「启动」即跳工作流页，逐节点真执行、逐个点亮。",
       "category": "产品研发",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "icon": "icon-solutions",
-      "path": "dev-pipeline",
-      "files": [
-        "solution.json"
-      ]
-    },
-    {
-      "id": "material-to-table",
-      "name": "素材归一 · 统一表格",
-      "description": "把一个文件夹里不同类型的素材（截图 / 对话截图 / 图片 / excel / csv）自动分组，每组按各自的字段列整理成表格。适合多部门/多类素材混在一起的归集场景。",
-      "category": "数据整理",
-      "version": "2.0.0",
-      "icon": "icon-table",
-      "path": "material-to-table",
-      "files": [
-        "solution.json"
-      ]
-    },
-    {
-      "id": "oneclick-video",
-      "name": "全平台运营",
-      "description": "选一个素材文件夹，一键跑完整条全平台运营：自动写文案 → 合成 9:16 竖屏短视频（Ken Burns 运镜+转场）→ 客资 RFM 分层+回访话术 → 中差评回复 → 数据复盘(ROI/复购/漏斗) → 同城获客方案 → 汇总成运营简报。可选一键发布到 小红书/抖音/视频号（发布会停在登录页等你扫码登录，不会因没登",
-      "category": "全媒体运营",
-      "version": "2.0.0",
-      "icon": "icon-solutions",
-      "path": "oneclick-video",
+      "path": "solutions/dev-pipeline",
       "files": [
         "solution.json"
       ]
@@ -53,11 +53,11 @@
     {
       "id": "website-test",
       "name": "网站测试 · 自动点测出报告",
-      "description": "给一个网址，一个 AI 测试工程师用浏览器工具真实逐页点测：站点勘探 → 链接与资源体检 → 交互点测 → 表单与关键流程 → UI/响应式/可访问性，最后汇总成一份完整测试报告（问题按严重度分组、含证据/复现步骤/修复建议）。点「启动」即跳工作流页，6 个阶段逐节点真跑、逐个点亮。危险操作（支付/删除/真实注册）只验",
+      "description": "给一个网址，一个 AI 测试工程师用浏览器工具真实逐页点测：站点勘探 → 链接与资源体检 → 交互点测 → 表单与关键流程 → UI/响应式/可访问性，最后汇总成一份完整测试报告（问题按严重度分组、含证据/复现步骤/修复建议）。点「启动」即跳工作流页，6 个阶段逐节点真跑、逐个点亮。危险操作（支付/",
       "category": "研发测试",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "icon": "icon-solutions",
-      "path": "website-test",
+      "path": "solutions/website-test",
       "files": [
         "solution.json"
       ]

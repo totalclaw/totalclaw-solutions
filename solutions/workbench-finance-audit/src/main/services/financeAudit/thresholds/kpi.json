@@ -1,0 +1,29 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "level.greenMinRatio": {
+      "value": 1.0,
+      "label": "达成率 ≥ 100%：绿灯；源技能只写黄灯 / 红灯，未给数值，取常用默认",
+      "source": {
+        "file": "finance-skills/skills/kpi-management/references/判断框架.md",
+        "section": "类型一：KPI 连续未达标（预警状态）"
+      }
+    },
+    "level.yellowMinRatio": {
+      "value": 0.9,
+      "label": "达成率 90%–100%：黄灯；低于 90%：红灯（默认值，可在首次配置里改）",
+      "source": {
+        "file": "finance-skills/skills/kpi-management/references/判断框架.md",
+        "section": "类型三：KPI 预警触发"
+      }
+    },
+    "escalate.consecutiveMisses": {
+      "value": 3,
+      "label": "关键 KPI 连续 3 个月未达标须 CFO 关注",
+      "source": {
+        "file": "finance-skills/skills/kpi-management/references/判断框架.md",
+        "section": "升级触发条件"
+      }
+    }
+  }
+}

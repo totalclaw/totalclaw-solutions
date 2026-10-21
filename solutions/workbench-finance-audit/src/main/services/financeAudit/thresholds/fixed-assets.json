@@ -1,0 +1,10 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "dep.pctTol": { "value": 0.01, "label": "折旧偏差预警：重算与账面相差超过 ±1%", "source": { "file": "finance-skills/skills/fixed-assets/references/数据源清单.md", "section": "关键阈值" } },
+    "dep.amtTol": { "value": 100, "label": "折旧差异的舍入下限 1 元（分），与 1% 取较大者；本方案自定", "source": { "file": "docs/finance-audit-solution.md", "section": "5.6 A6 折旧重算与账面差异" } },
+    "cap.minAmount": { "value": 500000, "label": "资本化门槛：单价 < 5000 元可能应费用化（分）；源为占位，取常用口径，按公司制度改", "source": { "file": "finance-skills/skills/fixed-assets/CLAUDE.md", "section": "资本化门槛" } },
+    "cap.largeAmount": { "value": 500000000, "label": "大额资本化预警：单笔 > 500 万元（分）", "source": { "file": "finance-skills/skills/fixed-assets/references/数据源清单.md", "section": "关键阈值" } },
+    "salvage.defaultRate": { "value": 0.05, "label": "台账没写残值率时的默认残值率 5%；源为占位，按公司制度改", "source": { "file": "finance-skills/skills/fixed-assets/CLAUDE.md", "section": "资产子类配置" } }
+  }
+}

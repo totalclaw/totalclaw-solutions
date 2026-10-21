@@ -1,0 +1,39 @@
+{
+  "product": {
+    "model": ["型号", "货号", "model", "sku", "item no", "item", "art no"],
+    "name": ["品名", "名称", "产品名称", "product", "name", "description", "品名规格"],
+    "spec": ["规格", "参数", "spec", "specification", "size"],
+    "unitCost": ["出厂价", "成本", "单价", "采购价", "cost", "price", "unit price", "exw"],
+    "moq": ["起订量", "最小起订量", "moq", "min order"],
+    "leadTimeDays": ["交期", "生产周期", "lead time", "delivery"],
+    "pcsPerCarton": ["装箱数", "每箱数量", "pcs/ctn", "pcs per carton", "qty/ctn"],
+    "cartonCbm": ["箱体积", "体积", "cbm", "外箱体积", "carton cbm", "volume"],
+    "unitNetKg": ["单件净重", "单重", "净重", "unit net weight", "net weight", "n.w."],
+    "cartonKg": ["毛重", "箱重", "gw", "gross weight", "carton kg", "weight"]
+  },
+  "listing": {
+    "title": ["标题", "产品标题", "商品标题", "title", "product name"],
+    "keywords": ["关键词", "关键字", "keywords", "keyword"],
+    "category": ["类目", "分类", "category"],
+    "images": ["图片数", "主图数", "图片数量", "images", "image count"],
+    "descLength": ["详情长度", "描述长度", "description length", "desc length"],
+    "attributesFilled": ["已填属性", "属性填写数", "attributes filled"],
+    "attributesTotal": ["属性总数", "attributes total"],
+    "exposure": ["曝光", "曝光量", "impressions", "exposure"],
+    "clicks": ["点击", "点击量", "clicks"],
+    "inquiries": ["询盘", "询盘数", "反馈", "inquiries", "feedback"],
+    "url": ["链接", "网址", "url", "link"]
+  },
+  "tradeDoc": {
+    "no": ["序号", "no.", "no", "item no", "#", "s/n"],
+    "description": ["品名", "货物名称", "名称", "description", "commodity", "goods", "product", "name of goods"],
+    "model": ["型号", "model", "art no", "part no"],
+    "quantity": ["数量", "qty", "quantity", "pcs"],
+    "unitPrice": ["单价", "unit price", "price"],
+    "amount": ["金额", "总价", "amount", "total value", "value"],
+    "cartons": ["箱数", "件数", "ctns", "cartons", "packages"],
+    "netWeightKg": ["净重", "n.w.", "n.w", "net weight", "nw"],
+    "grossWeightKg": ["毛重", "g.w.", "g.w", "gross weight", "gw"]
+  },
+  "tradeDocTotal": ["合计", "总计", "total", "totals", "grand total"]
+}

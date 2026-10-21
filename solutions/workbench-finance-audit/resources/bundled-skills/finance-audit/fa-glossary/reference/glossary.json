@@ -1,0 +1,1806 @@
+{
+ "version": 1,
+ "note": "中英阿财会术语；阿语以沙特（SOCPA）用法为准，待懂财会的阿语母语者审阅",
+ "terms": [
+  {
+   "zh": "会计准则",
+   "en": "Accounting standards",
+   "ar": "المعايير المحاسبية",
+   "domain": "general"
+  },
+  {
+   "zh": "企业会计准则",
+   "en": "Chinese Accounting Standards for Business Enterprises (CAS)",
+   "ar": "معايير المحاسبة الصينية للمنشآت (CAS)",
+   "domain": "general"
+  },
+  {
+   "zh": "小企业会计准则",
+   "en": "Accounting Standards for Small Enterprises (China)",
+   "ar": "معايير المحاسبة للمنشآت الصغيرة (الصين)",
+   "domain": "general"
+  },
+  {
+   "zh": "国际财务报告准则",
+   "en": "International Financial Reporting Standards (IFRS)",
+   "ar": "المعايير الدولية للتقرير المالي (IFRS)",
+   "domain": "ifrs"
+  },
+  {
+   "zh": "中小主体国际财务报告准则",
+   "en": "IFRS for SMEs",
+   "ar": "المعيار الدولي للتقرير المالي للمنشآت الصغيرة ومتوسطة الحجم",
+   "domain": "ifrs"
+  },
+  {
+   "zh": "沙特注册会计师组织",
+   "en": "Saudi Organization for Chartered and Professional Accountants (SOCPA)",
+   "ar": "الهيئة السعودية للمراجعين والمحاسبين (SOCPA)",
+   "domain": "general"
+  },
+  {
+   "zh": "记账本位币",
+   "en": "Functional currency",
+   "ar": "عملة النشاط",
+   "domain": "accounting"
+  },
+  {
+   "zh": "列报货币",
+   "en": "Presentation currency",
+   "ar": "عملة العرض",
+   "domain": "accounting"
+  },
+  {
+   "zh": "会计年度",
+   "en": "Financial year",
+   "ar": "السنة المالية",
+   "domain": "general"
+  },
+  {
+   "zh": "会计期间",
+   "en": "Accounting period",
+   "ar": "الفترة المحاسبية",
+   "domain": "general"
+  },
+  {
+   "zh": "回历年",
+   "en": "Hijri year",
+   "ar": "السنة الهجرية",
+   "domain": "zakat"
+  },
+  {
+   "zh": "公历年",
+   "en": "Gregorian year",
+   "ar": "السنة الميلادية",
+   "domain": "zakat"
+  },
+  {
+   "zh": "科目",
+   "en": "Account",
+   "ar": "حساب",
+   "domain": "accounting"
+  },
+  {
+   "zh": "一级科目",
+   "en": "Primary account",
+   "ar": "حساب رئيسي",
+   "domain": "accounting"
+  },
+  {
+   "zh": "明细科目",
+   "en": "Sub-account",
+   "ar": "حساب فرعي",
+   "domain": "accounting"
+  },
+  {
+   "zh": "科目编码",
+   "en": "Account code",
+   "ar": "رمز الحساب",
+   "domain": "accounting"
+  },
+  {
+   "zh": "会计科目表",
+   "en": "Chart of accounts",
+   "ar": "دليل الحسابات",
+   "domain": "accounting"
+  },
+  {
+   "zh": "科目映射",
+   "en": "Account mapping",
+   "ar": "ربط الحسابات",
+   "domain": "accounting"
+  },
+  {
+   "zh": "序时账",
+   "en": "General journal",
+   "ar": "دفتر اليومية العامة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "总账",
+   "en": "General ledger",
+   "ar": "دفتر الأستاذ العام",
+   "domain": "accounting"
+  },
+  {
+   "zh": "子账",
+   "en": "Subledger",
+   "ar": "دفتر الأستاذ المساعد",
+   "domain": "accounting"
+  },
+  {
+   "zh": "科目余额表",
+   "en": "Trial balance",
+   "ar": "ميزان المراجعة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "试算平衡",
+   "en": "Trial balance agrees",
+   "ar": "توازن ميزان المراجعة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "试算不平",
+   "en": "Trial balance out of balance",
+   "ar": "عدم توازن ميزان المراجعة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "凭证",
+   "en": "Voucher",
+   "ar": "سند القيد",
+   "domain": "accounting"
+  },
+  {
+   "zh": "记账凭证",
+   "en": "Accounting voucher",
+   "ar": "سند قيد محاسبي",
+   "domain": "accounting"
+  },
+  {
+   "zh": "凭证号",
+   "en": "Voucher number",
+   "ar": "رقم السند",
+   "domain": "accounting"
+  },
+  {
+   "zh": "分录",
+   "en": "Journal entry",
+   "ar": "قيد يومية",
+   "domain": "accounting"
+  },
+  {
+   "zh": "分录草稿",
+   "en": "Draft journal entry",
+   "ar": "قيد يومية مقترح",
+   "domain": "accounting"
+  },
+  {
+   "zh": "调整分录",
+   "en": "Adjusting entry",
+   "ar": "قيد تسوية",
+   "domain": "accounting"
+  },
+  {
+   "zh": "冲回",
+   "en": "Reversal",
+   "ar": "عكس القيد",
+   "domain": "accounting"
+  },
+  {
+   "zh": "自动冲回",
+   "en": "Auto-reversing",
+   "ar": "عكس تلقائي",
+   "domain": "accounting"
+  },
+  {
+   "zh": "过账",
+   "en": "Posting",
+   "ar": "الترحيل",
+   "domain": "accounting"
+  },
+  {
+   "zh": "借方",
+   "en": "Debit",
+   "ar": "مدين",
+   "domain": "accounting"
+  },
+  {
+   "zh": "贷方",
+   "en": "Credit",
+   "ar": "دائن",
+   "domain": "accounting"
+  },
+  {
+   "zh": "期初余额",
+   "en": "Opening balance",
+   "ar": "الرصيد الافتتاحي",
+   "domain": "accounting"
+  },
+  {
+   "zh": "期末余额",
+   "en": "Closing balance",
+   "ar": "الرصيد الختامي",
+   "domain": "accounting"
+  },
+  {
+   "zh": "本期发生额",
+   "en": "Movement for the period",
+   "ar": "حركة الفترة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "摘要",
+   "en": "Description",
+   "ar": "البيان",
+   "domain": "accounting"
+  },
+  {
+   "zh": "辅助核算",
+   "en": "Auxiliary accounting dimension",
+   "ar": "بُعد محاسبي مساعد",
+   "domain": "accounting"
+  },
+  {
+   "zh": "往来单位",
+   "en": "Counterparty",
+   "ar": "الطرف المقابل",
+   "domain": "accounting"
+  },
+  {
+   "zh": "月结",
+   "en": "Month-end close",
+   "ar": "الإقفال الشهري",
+   "domain": "accounting"
+  },
+  {
+   "zh": "关账",
+   "en": "Period close",
+   "ar": "إقفال الفترة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "关账清单",
+   "en": "Close checklist",
+   "ar": "قائمة التحقق من الإقفال",
+   "domain": "accounting"
+  },
+  {
+   "zh": "关账包",
+   "en": "Close package",
+   "ar": "حزمة الإقفال",
+   "domain": "accounting"
+  },
+  {
+   "zh": "关账备忘录",
+   "en": "Close memo",
+   "ar": "مذكرة الإقفال",
+   "domain": "accounting"
+  },
+  {
+   "zh": "结账验证",
+   "en": "Close verification",
+   "ar": "التحقق من الإقفال",
+   "domain": "accounting"
+  },
+  {
+   "zh": "跨期调整",
+   "en": "Cut-off adjustment",
+   "ar": "تسوية القطع",
+   "domain": "accounting"
+  },
+  {
+   "zh": "跨期",
+   "en": "Cut-off error",
+   "ar": "خطأ القطع بين الفترات",
+   "domain": "accounting"
+  },
+  {
+   "zh": "业务日期",
+   "en": "Transaction date",
+   "ar": "تاريخ المعاملة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "计提",
+   "en": "Accrual",
+   "ar": "الاستحقاق",
+   "domain": "accounting"
+  },
+  {
+   "zh": "计提表",
+   "en": "Accrual schedule",
+   "ar": "جدول المستحقات",
+   "domain": "accounting"
+  },
+  {
+   "zh": "应计费用",
+   "en": "Accrued expenses",
+   "ar": "المصروفات المستحقة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "预付费用",
+   "en": "Prepaid expenses",
+   "ar": "المصروفات المدفوعة مقدماً",
+   "domain": "accounting"
+  },
+  {
+   "zh": "待摊费用",
+   "en": "Deferred charges",
+   "ar": "مصروفات مؤجلة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "滚动表",
+   "en": "Roll-forward schedule",
+   "ar": "جدول حركة الحساب",
+   "domain": "accounting"
+  },
+  {
+   "zh": "未解释差异",
+   "en": "Unexplained difference",
+   "ar": "فرق غير مفسَّر",
+   "domain": "accounting"
+  },
+  {
+   "zh": "倒挤",
+   "en": "Plug figure",
+   "ar": "رقم موازنة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "重分类",
+   "en": "Reclassification",
+   "ar": "إعادة التصنيف",
+   "domain": "accounting"
+  },
+  {
+   "zh": "外币折算",
+   "en": "Foreign currency translation",
+   "ar": "ترجمة العملات الأجنبية",
+   "domain": "accounting"
+  },
+  {
+   "zh": "汇兑损益",
+   "en": "Foreign exchange gains and losses",
+   "ar": "أرباح وخسائر فروق العملة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "期末汇率",
+   "en": "Closing exchange rate",
+   "ar": "سعر الصرف الختامي",
+   "domain": "accounting"
+  },
+  {
+   "zh": "波动说明",
+   "en": "Flux commentary",
+   "ar": "تفسير التقلبات",
+   "domain": "accounting"
+  },
+  {
+   "zh": "差异分析",
+   "en": "Variance analysis",
+   "ar": "تحليل الانحرافات",
+   "domain": "accounting"
+  },
+  {
+   "zh": "上期",
+   "en": "Prior period",
+   "ar": "الفترة السابقة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "本期",
+   "en": "Current period",
+   "ar": "الفترة الحالية",
+   "domain": "accounting"
+  },
+  {
+   "zh": "预算",
+   "en": "Budget",
+   "ar": "الموازنة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "预算执行率",
+   "en": "Budget execution rate",
+   "ar": "نسبة تنفيذ الموازنة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "对账",
+   "en": "Reconciliation",
+   "ar": "المطابقة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "银企对账",
+   "en": "Bank reconciliation",
+   "ar": "التسوية البنكية",
+   "domain": "accounting"
+  },
+  {
+   "zh": "银行对账单",
+   "en": "Bank statement",
+   "ar": "كشف الحساب البنكي",
+   "domain": "accounting"
+  },
+  {
+   "zh": "银行流水",
+   "en": "Bank transactions",
+   "ar": "حركات الحساب البنكي",
+   "domain": "accounting"
+  },
+  {
+   "zh": "银行余额调节表",
+   "en": "Bank reconciliation statement",
+   "ar": "مذكرة التسوية البنكية",
+   "domain": "accounting"
+  },
+  {
+   "zh": "未达账项",
+   "en": "Reconciling items",
+   "ar": "بنود التسوية",
+   "domain": "accounting"
+  },
+  {
+   "zh": "企业已付银行未付",
+   "en": "Outstanding payments",
+   "ar": "مدفوعات معلّقة لم يقيدها البنك",
+   "domain": "accounting"
+  },
+  {
+   "zh": "企业已收银行未收",
+   "en": "Deposits in transit",
+   "ar": "إيداعات بالطريق",
+   "domain": "accounting"
+  },
+  {
+   "zh": "银行已付企业未付",
+   "en": "Bank debits not yet recorded",
+   "ar": "خصومات بنكية غير مقيدة في الدفاتر",
+   "domain": "accounting"
+  },
+  {
+   "zh": "银行已收企业未收",
+   "en": "Bank credits not yet recorded",
+   "ar": "إضافات بنكية غير مقيدة في الدفاتر",
+   "domain": "accounting"
+  },
+  {
+   "zh": "银行手续费",
+   "en": "Bank charges",
+   "ar": "الرسوم البنكية",
+   "domain": "accounting"
+  },
+  {
+   "zh": "不明扣款",
+   "en": "Unidentified debit",
+   "ar": "خصم غير محدد المصدر",
+   "domain": "accounting"
+  },
+  {
+   "zh": "调节后余额",
+   "en": "Adjusted balance",
+   "ar": "الرصيد المعدَّل",
+   "domain": "accounting"
+  },
+  {
+   "zh": "差异",
+   "en": "Break",
+   "ar": "فرق",
+   "domain": "accounting"
+  },
+  {
+   "zh": "差异溯源",
+   "en": "Break trace",
+   "ar": "تتبع الفرق",
+   "domain": "accounting"
+  },
+  {
+   "zh": "根因",
+   "en": "Root cause",
+   "ar": "السبب الجذري",
+   "domain": "accounting"
+  },
+  {
+   "zh": "相符",
+   "en": "Matched",
+   "ar": "مطابق",
+   "domain": "accounting"
+  },
+  {
+   "zh": "仅总账有",
+   "en": "GL only",
+   "ar": "في الأستاذ العام فقط",
+   "domain": "accounting"
+  },
+  {
+   "zh": "仅子账有",
+   "en": "Subledger only",
+   "ar": "في الدفتر المساعد فقط",
+   "domain": "accounting"
+  },
+  {
+   "zh": "相符率",
+   "en": "Match rate",
+   "ar": "نسبة المطابقة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "应收账款",
+   "en": "Accounts receivable",
+   "ar": "الذمم المدينة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "应付账款",
+   "en": "Accounts payable",
+   "ar": "الذمم الدائنة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "其他应收款",
+   "en": "Other receivables",
+   "ar": "ذمم مدينة أخرى",
+   "domain": "accounting"
+  },
+  {
+   "zh": "其他应付款",
+   "en": "Other payables",
+   "ar": "ذمم دائنة أخرى",
+   "domain": "accounting"
+  },
+  {
+   "zh": "预收账款",
+   "en": "Advances from customers",
+   "ar": "دفعات مقدمة من العملاء",
+   "domain": "accounting"
+  },
+  {
+   "zh": "预付账款",
+   "en": "Advances to suppliers",
+   "ar": "دفعات مقدمة للموردين",
+   "domain": "accounting"
+  },
+  {
+   "zh": "账龄",
+   "en": "Aging",
+   "ar": "أعمار الذمم",
+   "domain": "accounting"
+  },
+  {
+   "zh": "账龄分析",
+   "en": "Aging analysis",
+   "ar": "تحليل أعمار الذمم",
+   "domain": "accounting"
+  },
+  {
+   "zh": "坏账准备",
+   "en": "Allowance for doubtful accounts",
+   "ar": "مخصص الديون المشكوك في تحصيلها",
+   "domain": "accounting"
+  },
+  {
+   "zh": "核销",
+   "en": "Write-off",
+   "ar": "الشطب",
+   "domain": "accounting"
+  },
+  {
+   "zh": "三单匹配",
+   "en": "Three-way match",
+   "ar": "المطابقة الثلاثية",
+   "domain": "accounting"
+  },
+  {
+   "zh": "采购订单",
+   "en": "Purchase order",
+   "ar": "أمر الشراء",
+   "domain": "accounting"
+  },
+  {
+   "zh": "收货单",
+   "en": "Goods received note",
+   "ar": "مذكرة استلام البضائع",
+   "domain": "accounting"
+  },
+  {
+   "zh": "固定资产",
+   "en": "Property, plant and equipment",
+   "ar": "الممتلكات والآلات والمعدات",
+   "domain": "accounting"
+  },
+  {
+   "zh": "累计折旧",
+   "en": "Accumulated depreciation",
+   "ar": "مجمع الإهلاك",
+   "domain": "accounting"
+  },
+  {
+   "zh": "折旧",
+   "en": "Depreciation",
+   "ar": "الإهلاك",
+   "domain": "accounting"
+  },
+  {
+   "zh": "摊销",
+   "en": "Amortisation",
+   "ar": "الإطفاء",
+   "domain": "accounting"
+  },
+  {
+   "zh": "无形资产",
+   "en": "Intangible assets",
+   "ar": "الأصول غير الملموسة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "在建工程",
+   "en": "Construction in progress",
+   "ar": "مشروعات تحت التنفيذ",
+   "domain": "accounting"
+  },
+  {
+   "zh": "存货",
+   "en": "Inventories",
+   "ar": "المخزون",
+   "domain": "accounting"
+  },
+  {
+   "zh": "库存现金",
+   "en": "Cash on hand",
+   "ar": "النقدية في الصندوق",
+   "domain": "accounting"
+  },
+  {
+   "zh": "银行存款",
+   "en": "Cash at bank",
+   "ar": "النقدية لدى البنوك",
+   "domain": "accounting"
+  },
+  {
+   "zh": "货币资金",
+   "en": "Cash and cash equivalents",
+   "ar": "النقد وما في حكمه",
+   "domain": "report"
+  },
+  {
+   "zh": "应付职工薪酬",
+   "en": "Employee benefits payable",
+   "ar": "مستحقات الموظفين",
+   "domain": "accounting"
+  },
+  {
+   "zh": "应交税费",
+   "en": "Taxes payable",
+   "ar": "الضرائب المستحقة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "短期借款",
+   "en": "Short-term borrowings",
+   "ar": "القروض قصيرة الأجل",
+   "domain": "accounting"
+  },
+  {
+   "zh": "长期借款",
+   "en": "Long-term borrowings",
+   "ar": "القروض طويلة الأجل",
+   "domain": "accounting"
+  },
+  {
+   "zh": "实收资本",
+   "en": "Paid-in capital",
+   "ar": "رأس المال المدفوع",
+   "domain": "accounting"
+  },
+  {
+   "zh": "资本公积",
+   "en": "Capital reserve",
+   "ar": "الاحتياطي الرأسمالي",
+   "domain": "accounting"
+  },
+  {
+   "zh": "盈余公积",
+   "en": "Surplus reserve",
+   "ar": "الاحتياطي النظامي",
+   "domain": "accounting"
+  },
+  {
+   "zh": "未分配利润",
+   "en": "Retained earnings",
+   "ar": "الأرباح المبقاة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "营业收入",
+   "en": "Revenue",
+   "ar": "الإيرادات",
+   "domain": "report"
+  },
+  {
+   "zh": "营业成本",
+   "en": "Cost of sales",
+   "ar": "تكلفة المبيعات",
+   "domain": "report"
+  },
+  {
+   "zh": "销售费用",
+   "en": "Selling expenses",
+   "ar": "مصروفات البيع والتوزيع",
+   "domain": "report"
+  },
+  {
+   "zh": "管理费用",
+   "en": "Administrative expenses",
+   "ar": "المصروفات الإدارية والعمومية",
+   "domain": "report"
+  },
+  {
+   "zh": "财务费用",
+   "en": "Finance costs",
+   "ar": "تكاليف التمويل",
+   "domain": "report"
+  },
+  {
+   "zh": "研发费用",
+   "en": "Research and development expenses",
+   "ar": "مصروفات البحث والتطوير",
+   "domain": "report"
+  },
+  {
+   "zh": "营业外收入",
+   "en": "Non-operating income",
+   "ar": "إيرادات غير تشغيلية",
+   "domain": "report"
+  },
+  {
+   "zh": "营业外支出",
+   "en": "Non-operating expenses",
+   "ar": "مصروفات غير تشغيلية",
+   "domain": "report"
+  },
+  {
+   "zh": "利润总额",
+   "en": "Profit before tax",
+   "ar": "الربح قبل الضريبة",
+   "domain": "report"
+  },
+  {
+   "zh": "所得税费用",
+   "en": "Income tax expense",
+   "ar": "مصروف ضريبة الدخل",
+   "domain": "report"
+  },
+  {
+   "zh": "净利润",
+   "en": "Net profit",
+   "ar": "صافي الربح",
+   "domain": "report"
+  },
+  {
+   "zh": "资产负债表",
+   "en": "Balance sheet",
+   "ar": "قائمة المركز المالي",
+   "domain": "report"
+  },
+  {
+   "zh": "财务状况表",
+   "en": "Statement of financial position",
+   "ar": "قائمة المركز المالي",
+   "domain": "ifrs"
+  },
+  {
+   "zh": "利润表",
+   "en": "Income statement",
+   "ar": "قائمة الدخل",
+   "domain": "report"
+  },
+  {
+   "zh": "损益及其他综合收益表",
+   "en": "Statement of profit or loss and other comprehensive income",
+   "ar": "قائمة الربح أو الخسارة والدخل الشامل الآخر",
+   "domain": "ifrs"
+  },
+  {
+   "zh": "现金流量表",
+   "en": "Statement of cash flows",
+   "ar": "قائمة التدفقات النقدية",
+   "domain": "report"
+  },
+  {
+   "zh": "所有者权益变动表",
+   "en": "Statement of changes in equity",
+   "ar": "قائمة التغيرات في حقوق الملكية",
+   "domain": "report"
+  },
+  {
+   "zh": "附注",
+   "en": "Notes to the financial statements",
+   "ar": "الإيضاحات المتممة للقوائم المالية",
+   "domain": "report"
+  },
+  {
+   "zh": "三表勾稽",
+   "en": "Financial statement tie-out",
+   "ar": "مطابقة القوائم المالية",
+   "domain": "report"
+  },
+  {
+   "zh": "勾稽关系",
+   "en": "Tie-out relationship",
+   "ar": "علاقة المطابقة",
+   "domain": "report"
+  },
+  {
+   "zh": "资产总计",
+   "en": "Total assets",
+   "ar": "إجمالي الأصول",
+   "domain": "report"
+  },
+  {
+   "zh": "负债合计",
+   "en": "Total liabilities",
+   "ar": "إجمالي الالتزامات",
+   "domain": "report"
+  },
+  {
+   "zh": "所有者权益合计",
+   "en": "Total equity",
+   "ar": "إجمالي حقوق الملكية",
+   "domain": "report"
+  },
+  {
+   "zh": "流动资产",
+   "en": "Current assets",
+   "ar": "الأصول المتداولة",
+   "domain": "report"
+  },
+  {
+   "zh": "流动负债",
+   "en": "Current liabilities",
+   "ar": "الالتزامات المتداولة",
+   "domain": "report"
+  },
+  {
+   "zh": "经营活动现金流量",
+   "en": "Cash flows from operating activities",
+   "ar": "التدفقات النقدية من الأنشطة التشغيلية",
+   "domain": "report"
+  },
+  {
+   "zh": "投资活动现金流量",
+   "en": "Cash flows from investing activities",
+   "ar": "التدفقات النقدية من الأنشطة الاستثمارية",
+   "domain": "report"
+  },
+  {
+   "zh": "筹资活动现金流量",
+   "en": "Cash flows from financing activities",
+   "ar": "التدفقات النقدية من الأنشطة التمويلية",
+   "domain": "report"
+  },
+  {
+   "zh": "合并财务报表",
+   "en": "Consolidated financial statements",
+   "ar": "القوائم المالية الموحدة",
+   "domain": "report"
+  },
+  {
+   "zh": "内部往来",
+   "en": "Intercompany balances",
+   "ar": "الأرصدة بين شركات المجموعة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "抵销分录",
+   "en": "Elimination entry",
+   "ar": "قيد الاستبعاد",
+   "domain": "accounting"
+  },
+  {
+   "zh": "关联方",
+   "en": "Related party",
+   "ar": "طرف ذو علاقة",
+   "domain": "accounting"
+  },
+  {
+   "zh": "重要性水平",
+   "en": "Materiality",
+   "ar": "الأهمية النسبية",
+   "domain": "audit"
+  },
+  {
+   "zh": "底稿",
+   "en": "Working paper",
+   "ar": "ورقة عمل",
+   "domain": "audit"
+  },
+  {
+   "zh": "底稿索引号",
+   "en": "Working paper reference",
+   "ar": "مرجع ورقة العمل",
+   "domain": "audit"
+  },
+  {
+   "zh": "草稿",
+   "en": "Draft",
+   "ar": "مسودة",
+   "domain": "general"
+  },
+  {
+   "zh": "草稿—待签核",
+   "en": "Draft — pending sign-off",
+   "ar": "مسودة — بانتظار الاعتماد",
+   "domain": "general"
+  },
+  {
+   "zh": "签核",
+   "en": "Sign-off",
+   "ar": "الاعتماد",
+   "domain": "general"
+  },
+  {
+   "zh": "编制人",
+   "en": "Preparer",
+   "ar": "المُعِدّ",
+   "domain": "general"
+  },
+  {
+   "zh": "复核人",
+   "en": "Reviewer",
+   "ar": "المُراجِع",
+   "domain": "general"
+  },
+  {
+   "zh": "批准人",
+   "en": "Approver",
+   "ar": "المعتمِد",
+   "domain": "general"
+  },
+  {
+   "zh": "职责分离",
+   "en": "Segregation of duties",
+   "ar": "الفصل بين المهام",
+   "domain": "control"
+  },
+  {
+   "zh": "退回",
+   "en": "Return for revision",
+   "ar": "إعادة للتعديل",
+   "domain": "general"
+  },
+  {
+   "zh": "已知悉",
+   "en": "Acknowledged",
+   "ar": "تم الاطلاع",
+   "domain": "general"
+  },
+  {
+   "zh": "未核实",
+   "en": "Unverified",
+   "ar": "غير مُتحقَّق منه",
+   "domain": "general"
+  },
+  {
+   "zh": "归档",
+   "en": "Archive",
+   "ar": "الأرشفة",
+   "domain": "general"
+  },
+  {
+   "zh": "升级",
+   "en": "Escalation",
+   "ar": "التصعيد",
+   "domain": "general"
+  },
+  {
+   "zh": "置信度",
+   "en": "Confidence level",
+   "ar": "مستوى الثقة",
+   "domain": "general"
+  },
+  {
+   "zh": "审计",
+   "en": "Audit",
+   "ar": "المراجعة",
+   "domain": "audit"
+  },
+  {
+   "zh": "外部审计",
+   "en": "External audit",
+   "ar": "المراجعة الخارجية",
+   "domain": "audit"
+  },
+  {
+   "zh": "内部审计",
+   "en": "Internal audit",
+   "ar": "المراجعة الداخلية",
+   "domain": "audit"
+  },
+  {
+   "zh": "审计师",
+   "en": "Auditor",
+   "ar": "المراجع",
+   "domain": "audit"
+  },
+  {
+   "zh": "注册会计师",
+   "en": "Certified public accountant",
+   "ar": "محاسب قانوني",
+   "domain": "audit"
+  },
+  {
+   "zh": "审计意见",
+   "en": "Audit opinion",
+   "ar": "رأي المراجع",
+   "domain": "audit"
+  },
+  {
+   "zh": "鉴证",
+   "en": "Assurance",
+   "ar": "التأكيد",
+   "domain": "audit"
+  },
+  {
+   "zh": "审计证据",
+   "en": "Audit evidence",
+   "ar": "أدلة المراجعة",
+   "domain": "audit"
+  },
+  {
+   "zh": "审计程序",
+   "en": "Audit procedure",
+   "ar": "إجراء المراجعة",
+   "domain": "audit"
+  },
+  {
+   "zh": "审计调整",
+   "en": "Audit adjustment",
+   "ar": "تسوية المراجعة",
+   "domain": "audit"
+  },
+  {
+   "zh": "审计资料清单",
+   "en": "Prepared-by-client (PBC) list",
+   "ar": "قائمة المستندات المطلوبة من المنشأة",
+   "domain": "audit"
+  },
+  {
+   "zh": "函证",
+   "en": "Confirmation",
+   "ar": "المصادقة",
+   "domain": "audit"
+  },
+  {
+   "zh": "回函",
+   "en": "Confirmation reply",
+   "ar": "رد المصادقة",
+   "domain": "audit"
+  },
+  {
+   "zh": "替代程序",
+   "en": "Alternative procedures",
+   "ar": "الإجراءات البديلة",
+   "domain": "audit"
+  },
+  {
+   "zh": "抽样",
+   "en": "Sampling",
+   "ar": "العينات",
+   "domain": "audit"
+  },
+  {
+   "zh": "属性抽样",
+   "en": "Attribute sampling",
+   "ar": "العينات بالخصائص",
+   "domain": "audit"
+  },
+  {
+   "zh": "样本量",
+   "en": "Sample size",
+   "ar": "حجم العينة",
+   "domain": "audit"
+  },
+  {
+   "zh": "可容忍偏差率",
+   "en": "Tolerable deviation rate",
+   "ar": "معدل الانحراف المقبول",
+   "domain": "audit"
+  },
+  {
+   "zh": "发现与建议",
+   "en": "Findings and recommendations",
+   "ar": "الملاحظات والتوصيات",
+   "domain": "audit"
+  },
+  {
+   "zh": "整改",
+   "en": "Remediation",
+   "ar": "المعالجة",
+   "domain": "audit"
+  },
+  {
+   "zh": "舞弊",
+   "en": "Fraud",
+   "ar": "الاحتيال",
+   "domain": "audit"
+  },
+  {
+   "zh": "本福特定律",
+   "en": "Benford's law",
+   "ar": "قانون بنفورد",
+   "domain": "audit"
+  },
+  {
+   "zh": "持续经营",
+   "en": "Going concern",
+   "ar": "الاستمرارية",
+   "domain": "audit"
+  },
+  {
+   "zh": "期后事项",
+   "en": "Subsequent events",
+   "ar": "الأحداث اللاحقة",
+   "domain": "audit"
+  },
+  {
+   "zh": "内部控制",
+   "en": "Internal control",
+   "ar": "الرقابة الداخلية",
+   "domain": "control"
+  },
+  {
+   "zh": "财务报告内部控制",
+   "en": "Internal control over financial reporting (ICFR)",
+   "ar": "الرقابة الداخلية على التقرير المالي",
+   "domain": "control"
+  },
+  {
+   "zh": "风险控制矩阵",
+   "en": "Risk and control matrix (RCM)",
+   "ar": "مصفوفة المخاطر والضوابط",
+   "domain": "control"
+  },
+  {
+   "zh": "控制测试",
+   "en": "Test of controls",
+   "ar": "اختبار الضوابط",
+   "domain": "control"
+  },
+  {
+   "zh": "控制缺陷",
+   "en": "Control deficiency",
+   "ar": "قصور في الرقابة",
+   "domain": "control"
+  },
+  {
+   "zh": "重大缺陷",
+   "en": "Material weakness",
+   "ar": "ضعف جوهري",
+   "domain": "control"
+  },
+  {
+   "zh": "重要缺陷",
+   "en": "Significant deficiency",
+   "ar": "قصور هام",
+   "domain": "control"
+  },
+  {
+   "zh": "补偿性控制",
+   "en": "Compensating control",
+   "ar": "ضابط تعويضي",
+   "domain": "control"
+  },
+  {
+   "zh": "审批矩阵",
+   "en": "Approval matrix",
+   "ar": "مصفوفة الصلاحيات",
+   "domain": "control"
+  },
+  {
+   "zh": "穿行测试",
+   "en": "Walkthrough",
+   "ar": "اختبار المسار",
+   "domain": "control"
+  },
+  {
+   "zh": "客商尽调",
+   "en": "Know your customer (KYC)",
+   "ar": "اعرف عميلك",
+   "domain": "control"
+  },
+  {
+   "zh": "反洗钱",
+   "en": "Anti-money laundering (AML)",
+   "ar": "مكافحة غسل الأموال",
+   "domain": "control"
+  },
+  {
+   "zh": "受益所有人",
+   "en": "Ultimate beneficial owner",
+   "ar": "المستفيد الحقيقي",
+   "domain": "control"
+  },
+  {
+   "zh": "增值税",
+   "en": "Value added tax (VAT)",
+   "ar": "ضريبة القيمة المضافة",
+   "domain": "tax"
+  },
+  {
+   "zh": "一般纳税人",
+   "en": "General VAT taxpayer",
+   "ar": "مكلف عام بضريبة القيمة المضافة",
+   "domain": "tax"
+  },
+  {
+   "zh": "小规模纳税人",
+   "en": "Small-scale VAT taxpayer",
+   "ar": "مكلف صغير بضريبة القيمة المضافة",
+   "domain": "tax"
+  },
+  {
+   "zh": "销项税额",
+   "en": "Output VAT",
+   "ar": "ضريبة المخرجات",
+   "domain": "tax"
+  },
+  {
+   "zh": "进项税额",
+   "en": "Input VAT",
+   "ar": "ضريبة المدخلات",
+   "domain": "tax"
+  },
+  {
+   "zh": "进项转出",
+   "en": "Input VAT reversal",
+   "ar": "عكس ضريبة المدخلات",
+   "domain": "tax"
+  },
+  {
+   "zh": "价税分离",
+   "en": "Separation of price and tax",
+   "ar": "فصل الضريبة عن السعر",
+   "domain": "tax"
+  },
+  {
+   "zh": "附加税费",
+   "en": "VAT surcharges",
+   "ar": "الرسوم الإضافية على ضريبة القيمة المضافة",
+   "domain": "tax"
+  },
+  {
+   "zh": "企业所得税",
+   "en": "Corporate income tax",
+   "ar": "ضريبة دخل الشركات",
+   "domain": "tax"
+  },
+  {
+   "zh": "小型微利企业",
+   "en": "Small low-profit enterprise",
+   "ar": "منشأة صغيرة منخفضة الربح",
+   "domain": "tax"
+  },
+  {
+   "zh": "个人所得税",
+   "en": "Individual income tax",
+   "ar": "ضريبة الدخل على الأفراد",
+   "domain": "tax"
+  },
+  {
+   "zh": "累计预扣法",
+   "en": "Cumulative withholding method",
+   "ar": "طريقة الاستقطاع التراكمي",
+   "domain": "tax"
+  },
+  {
+   "zh": "专项附加扣除",
+   "en": "Special additional deductions",
+   "ar": "الخصومات الإضافية الخاصة",
+   "domain": "tax"
+  },
+  {
+   "zh": "社会保险",
+   "en": "Social insurance",
+   "ar": "التأمينات الاجتماعية",
+   "domain": "tax"
+  },
+  {
+   "zh": "住房公积金",
+   "en": "Housing provident fund",
+   "ar": "صندوق الادخار للإسكان",
+   "domain": "tax"
+  },
+  {
+   "zh": "纳税申报",
+   "en": "Tax return",
+   "ar": "الإقرار الضريبي",
+   "domain": "tax"
+  },
+  {
+   "zh": "申报底稿",
+   "en": "Tax return working paper",
+   "ar": "ورقة عمل الإقرار الضريبي",
+   "domain": "tax"
+  },
+  {
+   "zh": "纳税调整",
+   "en": "Tax adjustment",
+   "ar": "التسوية الضريبية",
+   "domain": "tax"
+  },
+  {
+   "zh": "应纳税所得额",
+   "en": "Taxable income",
+   "ar": "الدخل الخاضع للضريبة",
+   "domain": "tax"
+  },
+  {
+   "zh": "暂时性差异",
+   "en": "Temporary difference",
+   "ar": "فرق مؤقت",
+   "domain": "ifrs"
+  },
+  {
+   "zh": "递延所得税",
+   "en": "Deferred tax",
+   "ar": "الضريبة المؤجلة",
+   "domain": "ifrs"
+  },
+  {
+   "zh": "电子税务局",
+   "en": "Electronic tax bureau (China)",
+   "ar": "بوابة الضرائب الإلكترونية (الصين)",
+   "domain": "tax"
+  },
+  {
+   "zh": "金税",
+   "en": "Golden Tax system (China)",
+   "ar": "نظام الضريبة الذهبية (الصين)",
+   "domain": "tax"
+  },
+  {
+   "zh": "数电票",
+   "en": "Fully digitalised e-invoice (China)",
+   "ar": "الفاتورة الإلكترونية الرقمية بالكامل (الصين)",
+   "domain": "tax"
+  },
+  {
+   "zh": "统一社会信用代码",
+   "en": "Unified social credit code",
+   "ar": "الرمز الموحد للائتمان الاجتماعي",
+   "domain": "tax"
+  },
+  {
+   "zh": "发票",
+   "en": "Invoice",
+   "ar": "فاتورة",
+   "domain": "tax"
+  },
+  {
+   "zh": "开票",
+   "en": "Invoicing",
+   "ar": "إصدار الفواتير",
+   "domain": "tax"
+  },
+  {
+   "zh": "转让定价",
+   "en": "Transfer pricing",
+   "ar": "أسعار التحويل",
+   "domain": "tax"
+  },
+  {
+   "zh": "同期资料",
+   "en": "Contemporaneous documentation",
+   "ar": "وثائق أسعار التحويل",
+   "domain": "tax"
+  },
+  {
+   "zh": "主体文档",
+   "en": "Master file",
+   "ar": "الملف الرئيسي",
+   "domain": "tax"
+  },
+  {
+   "zh": "本地文档",
+   "en": "Local file",
+   "ar": "الملف المحلي",
+   "domain": "tax"
+  },
+  {
+   "zh": "国别报告",
+   "en": "Country-by-country report",
+   "ar": "التقرير على أساس كل دولة",
+   "domain": "tax"
+  },
+  {
+   "zh": "预约定价安排",
+   "en": "Advance pricing arrangement",
+   "ar": "اتفاقية التسعير المسبق",
+   "domain": "tax"
+  },
+  {
+   "zh": "可比公司",
+   "en": "Comparable companies",
+   "ar": "الشركات المماثلة",
+   "domain": "tax"
+  },
+  {
+   "zh": "四分位区间",
+   "en": "Interquartile range",
+   "ar": "النطاق الربيعي",
+   "domain": "tax"
+  },
+  {
+   "zh": "预提税",
+   "en": "Withholding tax",
+   "ar": "ضريبة الاستقطاع",
+   "domain": "zatca"
+  },
+  {
+   "zh": "沙特天课税务海关总局",
+   "en": "Zakat, Tax and Customs Authority (ZATCA)",
+   "ar": "هيئة الزكاة والضريبة والجمارك",
+   "domain": "zatca"
+  },
+  {
+   "zh": "电子发票",
+   "en": "E-invoice",
+   "ar": "الفاتورة الإلكترونية",
+   "domain": "zatca"
+  },
+  {
+   "zh": "标准税率发票",
+   "en": "Standard tax invoice",
+   "ar": "فاتورة ضريبية",
+   "domain": "zatca"
+  },
+  {
+   "zh": "简化税务发票",
+   "en": "Simplified tax invoice",
+   "ar": "فاتورة ضريبية مبسطة",
+   "domain": "zatca"
+  },
+  {
+   "zh": "零税率",
+   "en": "Zero-rated",
+   "ar": "خاضع لنسبة الصفر",
+   "domain": "zatca"
+  },
+  {
+   "zh": "免税",
+   "en": "Exempt",
+   "ar": "معفى",
+   "domain": "zatca"
+  },
+  {
+   "zh": "反向征收",
+   "en": "Reverse charge",
+   "ar": "الاحتساب العكسي",
+   "domain": "zatca"
+  },
+  {
+   "zh": "增值税号",
+   "en": "VAT registration number",
+   "ar": "الرقم الضريبي",
+   "domain": "zatca"
+  },
+  {
+   "zh": "商业登记号",
+   "en": "Commercial registration number",
+   "ar": "رقم السجل التجاري",
+   "domain": "zatca"
+  },
+  {
+   "zh": "二维码",
+   "en": "QR code",
+   "ar": "رمز الاستجابة السريعة",
+   "domain": "zatca"
+  },
+  {
+   "zh": "天课",
+   "en": "Zakat",
+   "ar": "الزكاة",
+   "domain": "zakat"
+  },
+  {
+   "zh": "天课基数",
+   "en": "Zakat base",
+   "ar": "الوعاء الزكوي",
+   "domain": "zakat"
+  },
+  {
+   "zh": "天课申报",
+   "en": "Zakat return",
+   "ar": "الإقرار الزكوي",
+   "domain": "zakat"
+  },
+  {
+   "zh": "海湾合作委员会国家",
+   "en": "GCC countries",
+   "ar": "دول مجلس التعاون الخليجي",
+   "domain": "zakat"
+  },
+  {
+   "zh": "期末服务金",
+   "en": "End-of-service benefits",
+   "ar": "مكافأة نهاية الخدمة",
+   "domain": "zakat"
+  },
+  {
+   "zh": "社会保险总局",
+   "en": "General Organization for Social Insurance (GOSI)",
+   "ar": "المؤسسة العامة للتأمينات الاجتماعية",
+   "domain": "zakat"
+  },
+  {
+   "zh": "现金管理",
+   "en": "Cash management",
+   "ar": "إدارة النقد",
+   "domain": "treasury"
+  },
+  {
+   "zh": "现金预测",
+   "en": "Cash forecast",
+   "ar": "توقعات التدفق النقدي",
+   "domain": "treasury"
+  },
+  {
+   "zh": "司库",
+   "en": "Treasury",
+   "ar": "الخزينة",
+   "domain": "treasury"
+  },
+  {
+   "zh": "现金池",
+   "en": "Cash pool",
+   "ar": "التجميع النقدي",
+   "domain": "treasury"
+  },
+  {
+   "zh": "付款计划",
+   "en": "Payment plan",
+   "ar": "خطة المدفوعات",
+   "domain": "treasury"
+  },
+  {
+   "zh": "外汇敞口",
+   "en": "Foreign exchange exposure",
+   "ar": "التعرض لمخاطر العملات الأجنبية",
+   "domain": "treasury"
+  },
+  {
+   "zh": "套期会计",
+   "en": "Hedge accounting",
+   "ar": "محاسبة التحوط",
+   "domain": "ifrs"
+  },
+  {
+   "zh": "询价单",
+   "en": "Request for quotation",
+   "ar": "طلب عرض سعر",
+   "domain": "treasury"
+  },
+  {
+   "zh": "加权平均资本成本",
+   "en": "Weighted average cost of capital (WACC)",
+   "ar": "المتوسط المرجح لتكلفة رأس المال",
+   "domain": "treasury"
+  },
+  {
+   "zh": "契约条款",
+   "en": "Covenant",
+   "ar": "التعهدات المالية",
+   "domain": "treasury"
+  },
+  {
+   "zh": "流动性覆盖率",
+   "en": "Liquidity coverage ratio (LCR)",
+   "ar": "نسبة تغطية السيولة",
+   "domain": "treasury"
+  },
+  {
+   "zh": "预期信用损失",
+   "en": "Expected credit loss (ECL)",
+   "ar": "الخسائر الائتمانية المتوقعة",
+   "domain": "ifrs"
+  },
+  {
+   "zh": "信用风险显著增加",
+   "en": "Significant increase in credit risk",
+   "ar": "الزيادة الجوهرية في مخاطر الائتمان",
+   "domain": "ifrs"
+  },
+  {
+   "zh": "违约概率",
+   "en": "Probability of default",
+   "ar": "احتمال التعثر",
+   "domain": "ifrs"
+  },
+  {
+   "zh": "违约损失率",
+   "en": "Loss given default",
+   "ar": "الخسارة عند التعثر",
+   "domain": "ifrs"
+  },
+  {
+   "zh": "违约风险敞口",
+   "en": "Exposure at default",
+   "ar": "التعرض عند التعثر",
+   "domain": "ifrs"
+  },
+  {
+   "zh": "拨备矩阵",
+   "en": "Provision matrix",
+   "ar": "مصفوفة المخصصات",
+   "domain": "ifrs"
+  },
+  {
+   "zh": "营运资本",
+   "en": "Working capital",
+   "ar": "رأس المال العامل",
+   "domain": "treasury"
+  },
+  {
+   "zh": "现金转换周期",
+   "en": "Cash conversion cycle",
+   "ar": "دورة التحويل النقدي",
+   "domain": "treasury"
+  },
+  {
+   "zh": "应收账款周转天数",
+   "en": "Days sales outstanding",
+   "ar": "متوسط فترة التحصيل",
+   "domain": "treasury"
+  },
+  {
+   "zh": "应付账款周转天数",
+   "en": "Days payable outstanding",
+   "ar": "متوسط فترة السداد",
+   "domain": "treasury"
+  },
+  {
+   "zh": "存货周转天数",
+   "en": "Days inventory outstanding",
+   "ar": "متوسط فترة الاحتفاظ بالمخزون",
+   "domain": "treasury"
+  },
+  {
+   "zh": "供应链金融",
+   "en": "Supply chain finance",
+   "ar": "تمويل سلاسل الإمداد",
+   "domain": "treasury"
+  },
+  {
+   "zh": "管理报告",
+   "en": "Management report",
+   "ar": "تقرير الإدارة",
+   "domain": "report"
+  },
+  {
+   "zh": "关键绩效指标",
+   "en": "Key performance indicator (KPI)",
+   "ar": "مؤشر الأداء الرئيسي",
+   "domain": "report"
+  },
+  {
+   "zh": "董事会",
+   "en": "Board of directors",
+   "ar": "مجلس الإدارة",
+   "domain": "report"
+  },
+  {
+   "zh": "审计委员会",
+   "en": "Audit committee",
+   "ar": "لجنة المراجعة",
+   "domain": "report"
+  },
+  {
+   "zh": "投资者关系",
+   "en": "Investor relations",
+   "ar": "علاقات المستثمرين",
+   "domain": "report"
+  },
+  {
+   "zh": "环境、社会和治理",
+   "en": "Environmental, social and governance (ESG)",
+   "ar": "البيئة والمسؤولية الاجتماعية والحوكمة",
+   "domain": "report"
+  },
+  {
+   "zh": "信息披露",
+   "en": "Disclosure",
+   "ar": "الإفصاح",
+   "domain": "report"
+  },
+  {
+   "zh": "估值",
+   "en": "Valuation",
+   "ar": "التقييم",
+   "domain": "treasury"
+  },
+  {
+   "zh": "现金流折现",
+   "en": "Discounted cash flow (DCF)",
+   "ar": "التدفقات النقدية المخصومة",
+   "domain": "treasury"
+  },
+  {
+   "zh": "净现值",
+   "en": "Net present value (NPV)",
+   "ar": "صافي القيمة الحالية",
+   "domain": "treasury"
+  },
+  {
+   "zh": "内部收益率",
+   "en": "Internal rate of return (IRR)",
+   "ar": "معدل العائد الداخلي",
+   "domain": "treasury"
+  },
+  {
+   "zh": "尽职调查",
+   "en": "Due diligence",
+   "ar": "العناية الواجبة",
+   "domain": "audit"
+  },
+  {
+   "zh": "非投资建议",
+   "en": "Not investment advice",
+   "ar": "ليست نصيحة استثمارية",
+   "domain": "general"
+  },
+  {
+   "zh": "非审计意见",
+   "en": "Not an audit opinion",
+   "ar": "ليس رأي مراجعة",
+   "domain": "audit"
+  },
+  {
+   "zh": "数据完整度",
+   "en": "Data completeness",
+   "ar": "اكتمال البيانات",
+   "domain": "general"
+  },
+  {
+   "zh": "来源",
+   "en": "Source",
+   "ar": "المصدر",
+   "domain": "general"
+  },
+  {
+   "zh": "未注明来源",
+   "en": "Unsourced",
+   "ar": "غير موثّق المصدر",
+   "domain": "general"
+  },
+  {
+   "zh": "人工签核",
+   "en": "Human sign-off",
+   "ar": "الاعتماد البشري",
+   "domain": "general"
+  },
+  {
+   "zh": "公司档案",
+   "en": "Company profile",
+   "ar": "ملف الشركة",
+   "domain": "general"
+  },
+  {
+   "zh": "地区档案",
+   "en": "Regional profile",
+   "ar": "الملف الإقليمي",
+   "domain": "general"
+  },
+  {
+   "zh": "草稿口径",
+   "en": "Draft basis",
+   "ar": "أساس مبدئي",
+   "domain": "general"
+  }
+ ]
+}

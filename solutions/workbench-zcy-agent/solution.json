@@ -1,0 +1,53 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-zcy-agent",
+  "name": "政采云智能体",
+  "aliases": [
+    "zcy-agent"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "政府采购",
+  "icon": "icon-solutions",
+  "order": 230,
+  "description": "给它企业材料和政采云账号，在内置浏览器里代做供应商的日常工作：商品上架前的合规与比价检查、询价单读回与报价测算、订单接单发货预警、待开票订单转开票。",
+  "detail": "四个模块：① 账号与材料——密码加密存在本机、只由应用填进登录框，资质到期提醒；② 商品上架——按区划规则查标题、禁用词、图片规格、自营比价链接与售价，数字员工填写后停在「提交审核」前；③ 询价报价——读回待报价的询价单，按成本与毛利率用规则算报价，停在「提交报价」前；④ 订单履约——读回订单，接单与发货时限预警，待开票订单转入发票智能体。各省规则不同，阈值可改；验证码、CA、电子投标不在范围内。",
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/zcy-agent",
+    "renderer": "src/renderer/views/ZcyAgentWorkbenchView.vue",
+    "main": "src/main/ipc/zcyAgent.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-biz-automation",
+    "workbench-foreign-trade",
+    "workbench-invoice-agent",
+    "workbench-service-settlement"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "zcy-agent/"
+    ],
+    "localStorage": [
+      "totalclaw:zcy-agent"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-zcy-agent"
+  }
+}

@@ -1,0 +1,106 @@
+/*
+ * 高校一体化 AI 智能体：学院主题（只作用于 .ca-wb 之内，不影响应用其它页面）。
+ * 酒红为主色、墨蓝为正文、细金线做分隔；衬线只给页面标题、区块标题与校徽，数据和控件仍用应用的无衬线字体。
+ * 变量覆盖在 .ca-wb 上，步骤卡 / 进度条等共享组件自动跟着换色。
+ */
+.ca-wb {
+  --ca-serif: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'STSong', 'SimSun', Georgia, serif;
+  --ca-oxblood: oklch(0.42 0.13 22);
+  --ca-oxblood-deep: oklch(0.33 0.11 22);
+  --ca-ink: oklch(0.27 0.045 255);
+  --ca-gold: oklch(0.70 0.11 78);
+  --ca-gold-soft: oklch(0.70 0.11 78 / 0.35);
+  --ca-banner-ink: oklch(0.98 0.01 80);
+
+  --color-brand: var(--ca-oxblood);
+  --color-brand-hover: oklch(0.47 0.14 22);
+  --color-brand-subtle: oklch(0.42 0.13 22 / 0.10);
+  --color-bg-primary: oklch(0.975 0.005 20);
+  --color-bg-card: oklch(0.995 0.002 20);
+  --color-bg-hover: oklch(0.955 0.01 20);
+  --color-bg-input: oklch(0.965 0.008 20);
+  --color-border: oklch(0.87 0.02 25);
+  --color-border-subtle: oklch(0.92 0.012 25);
+  --color-text-primary: oklch(0.24 0.03 255);
+  --color-text-secondary: oklch(0.42 0.025 255);
+  --color-text-muted: oklch(0.52 0.02 255);
+  /* 步骤进度条等共享组件用的品牌渐变：酒红到金 */
+  --gradient-brand: linear-gradient(90deg, var(--ca-oxblood), var(--ca-gold));
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  /* 底色铺满两侧（内容区限宽 1440，背景不该跟着在两边留出一条别的颜色） */
+  box-shadow: 0 0 0 100vmax var(--color-bg-primary);
+  clip-path: inset(0 -100vmax);
+}
+
+:root[data-theme="dark"] .ca-wb {
+  --ca-oxblood: oklch(0.70 0.12 18);
+  --ca-oxblood-deep: oklch(0.30 0.08 20);
+  --ca-gold: oklch(0.78 0.10 80);
+  --ca-gold-soft: oklch(0.78 0.10 80 / 0.30);
+  --color-brand-hover: oklch(0.76 0.12 18);
+  --color-brand-subtle: oklch(0.70 0.12 18 / 0.14);
+  --color-bg-primary: oklch(0.18 0.015 20);
+  --color-bg-card: oklch(0.22 0.018 20);
+  --color-bg-hover: oklch(0.26 0.02 20);
+  --color-bg-input: oklch(0.25 0.018 20);
+  --color-border: oklch(0.34 0.025 22);
+  --color-border-subtle: oklch(0.29 0.02 22);
+  --color-text-primary: oklch(0.94 0.012 60);
+  --color-text-secondary: oklch(0.78 0.02 50);
+  --color-text-muted: oklch(0.66 0.02 50);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .ca-wb {
+    --ca-oxblood: oklch(0.70 0.12 18);
+    --ca-oxblood-deep: oklch(0.30 0.08 20);
+    --ca-gold: oklch(0.78 0.10 80);
+    --ca-gold-soft: oklch(0.78 0.10 80 / 0.30);
+    --color-brand-hover: oklch(0.76 0.12 18);
+    --color-brand-subtle: oklch(0.70 0.12 18 / 0.14);
+    --color-bg-primary: oklch(0.18 0.015 20);
+    --color-bg-card: oklch(0.22 0.018 20);
+    --color-bg-hover: oklch(0.26 0.02 20);
+    --color-bg-input: oklch(0.25 0.018 20);
+    --color-border: oklch(0.34 0.025 22);
+    --color-border-subtle: oklch(0.29 0.02 22);
+    --color-text-primary: oklch(0.94 0.012 60);
+    --color-text-secondary: oklch(0.78 0.02 50);
+    --color-text-muted: oklch(0.66 0.02 50);
+  }
+}
+
+/* 区块：白底细边，标题衬线 + 金色短线 */
+.ca-wb .ss-panel { border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg-card); padding: 18px 20px; display: grid; gap: 10px; }
+.ca-wb .ss-panel h3 { margin: 0; font-family: var(--ca-serif); font-size: 16.5px; font-weight: 700; letter-spacing: .02em; display: flex; align-items: center; gap: 8px; color: var(--color-text-primary); text-wrap: balance; }
+.ca-wb .ss-panel h3 > i { color: var(--ca-oxblood); }
+.ca-wb .ss-panel h3::after { content: ''; flex: 0 0 28px; height: 2px; background: var(--ca-gold); margin-inline-start: 4px; border-radius: 1px; }
+.ca-wb .ss-panel h4 { margin: 0; font-size: 13px; }
+.ca-wb .ss-step { border-radius: 12px; }
+.ca-wb .ss-kpi { border-radius: 10px; }
+.ca-wb .ss-table th { background: color-mix(in srgb, var(--ca-oxblood) 6%, var(--color-bg-card)); }
+.ca-wb .ss-btn.primary { background: var(--ca-oxblood); border-color: var(--ca-oxblood); }
+.ca-wb .ss-btn:focus-visible, .ca-wb button:focus-visible, .ca-wb input:focus-visible, .ca-wb select:focus-visible, .ca-wb textarea:focus-visible { outline: 2px solid var(--ca-gold); outline-offset: 2px; }
+
+.ca-wb .spin { animation: ca-spin 1s linear infinite; }
+@keyframes ca-spin { to { transform: rotate(360deg); } }
+.ca-wb .ca-list { margin: 0; padding-inline-start: 18px; font-size: 13px; color: var(--color-text-secondary); display: grid; gap: 5px; line-height: 1.65; max-width: 80ch; }
+.ca-wb .ca-sources { margin: 0; padding-inline-start: 18px; display: grid; gap: 6px; font-size: 12.5px; }
+.ca-wb .ca-sources li { color: var(--color-text-secondary); line-height: 1.55; }
+.ca-wb .ca-sources b { color: var(--color-text-primary); }
+.ca-wb .ca-pre { white-space: pre-wrap; line-height: 1.7; font-size: 13.5px; margin: 0; max-width: 90ch; }
+.ca-wb .ca-filter { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.ca-wb .ca-filter button { border: 1px solid var(--color-border); background: var(--color-bg-card); border-radius: 999px; padding: 3px 11px; font: inherit; font-size: 12px; cursor: pointer; color: var(--color-text-secondary); transition: border-color .15s, color .15s; }
+.ca-wb .ca-filter button:hover { border-color: var(--ca-oxblood); color: var(--ca-oxblood); }
+.ca-wb .ca-filter button.on { border-color: var(--ca-oxblood); background: var(--color-brand-subtle); color: var(--ca-oxblood); font-weight: 700; }
+.ca-wb .ca-wrap { white-space: normal !important; min-width: 220px; max-width: 520px; line-height: 1.5; }
+.ca-wb .ss-table-wrap.tall { max-height: 520px; overflow: auto; }
+.ca-wb .ca-input { flex: 1; min-width: 240px; height: 36px; border: 1px solid var(--color-border); border-radius: 8px; padding: 0 10px; font: inherit; background: var(--color-bg-input); color: var(--color-text-primary); }
+.ca-wb .ca-sel { height: 28px; border: 1px solid var(--color-border); border-radius: 8px; padding: 0 6px; font: inherit; font-size: 12px; background: var(--color-bg-card); color: var(--color-text-primary); }
+.ca-wb .ca-check { display: inline-flex; gap: 6px; align-items: center; font-size: 12.5px; }
+.ca-wb .ca-split { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+@media (max-width: 1000px) { .ca-wb .ca-split { grid-template-columns: 1fr; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ca-wb .spin { animation: none; }
+}

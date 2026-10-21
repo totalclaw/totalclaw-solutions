@@ -1,0 +1,61 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "alert.debtRatioWarnRatio": {
+      "value": 0.6,
+      "label": "资产负债率 > 60% 且持续上升：黄色预警",
+      "source": {
+        "file": "finance-skills/skills/financial-analysis/references/判断框架.md",
+        "section": "类型五：资产负债率持续上升"
+      }
+    },
+    "alert.debtRatioRedRatio": {
+      "value": 0.7,
+      "label": "资产负债率 > 70%：红色，升级",
+      "source": {
+        "file": "finance-skills/skills/financial-analysis/references/判断框架.md",
+        "section": "升级触发条件"
+      }
+    },
+    "alert.currentRatioWarnRatio": {
+      "value": 1.5,
+      "label": "流动比率低于 1.5：黄色预警",
+      "source": {
+        "file": "finance-skills/skills/financial-analysis/references/判断框架.md",
+        "section": "类型五：资产负债率持续上升（流动比率是否 > 1.5）"
+      }
+    },
+    "alert.currentRatioRedRatio": {
+      "value": 1.0,
+      "label": "流动比率 < 1.0：红色，升级",
+      "source": {
+        "file": "finance-skills/skills/financial-analysis/references/判断框架.md",
+        "section": "升级触发条件"
+      }
+    },
+    "alert.grossMarginDropPts": {
+      "value": 0.02,
+      "label": "毛利率比上期 / 预算下降超过 2 个百分点：黄色预警；源技能写「低于预警值」未给数值，取保守默认，可在首次配置里改",
+      "source": {
+        "file": "finance-skills/skills/financial-analysis/references/判断框架.md",
+        "section": "类型一：毛利率异常（下降/低于目标）"
+      }
+    },
+    "alert.revenueDropPct": {
+      "value": 0.1,
+      "label": "收入比上期下降超过 10%：黄色预警；源技能写「[X]%」未给数值，取保守默认",
+      "source": {
+        "file": "finance-skills/skills/financial-analysis/references/判断框架.md",
+        "section": "类型二：收入增长异常（下降/不及目标）"
+      }
+    },
+    "alert.revenueShortPct": {
+      "value": 0.2,
+      "label": "收入低于预算超过 20%：红色，升级",
+      "source": {
+        "file": "finance-skills/skills/budget-management/references/判断框架.md",
+        "section": "升级触发条件（收入预算低于预期 > 20%）"
+      }
+    }
+  }
+}

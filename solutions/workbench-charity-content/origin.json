@@ -1,0 +1,306 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 95,
+    "solutions": {
+      "workbench-service-settlement": [
+        "renderer/workbenches/service-settlement/shared.ts"
+      ]
+    },
+    "host": [
+      "main/ipc/mediaFal.ipc.ts",
+      "main/ipc/shared.ts",
+      "main/ipc/workbenchApi.ts",
+      "main/services/accountScope.ts",
+      "main/services/agentPython.ts",
+      "main/services/connectors/secrets.ts",
+      "main/services/councilChatRouter.ts",
+      "main/services/documentExtractor.ts",
+      "main/services/ffmpegPath.ts",
+      "main/services/media/falProvider.ts",
+      "main/services/media/ttsRouter.ts",
+      "main/services/mediaModelConfig.ts",
+      "main/services/mediaProtocol.ts",
+      "main/services/mediaSecrets.ts",
+      "main/services/qiyeApiBridge.ts",
+      "main/services/qiyeApiClient.ts",
+      "main/services/runtimeLocation.ts",
+      "main/utils/userFacingError.ts",
+      "main/utils/winSpawnCompat.ts",
+      "renderer/components/FalServiceConfig.vue",
+      "renderer/components/PageBackButton.vue",
+      "renderer/components/StepRunAlert.vue",
+      "renderer/components/WorkbenchStepBar.vue",
+      "renderer/composables/overseasPublish.ts",
+      "renderer/composables/publishPlatforms.ts",
+      "renderer/composables/useStepWatchdog.ts",
+      "renderer/composables/workflowAutoRun.ts",
+      "renderer/i18n.ts",
+      "renderer/stores/notification.ts",
+      "renderer/utils/ipcPlain.ts",
+      "shared/matchTokens.ts"
+    ],
+    "packages": [
+      "@totalclaw/i18n",
+      "@totalclaw/ipc-contracts",
+      "@vue/test-utils",
+      "crypto",
+      "electron",
+      "fs",
+      "path",
+      "stream",
+      "tar",
+      "vitest",
+      "vue",
+      "vue-router"
+    ]
+  },
+  "largeAssets": [
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-materials/58865d8353e8b485e0ce7db1b3a23559.mp4",
+      "size": 3077866,
+      "sha256": "341ed0492a15a7062e1946b040e255bd6f3469f38bd848d4c16538cd158fe26c",
+      "origin": "resources/bundled-solutions/charity-content/demo-materials/58865d8353e8b485e0ce7db1b3a23559.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-materials/7b45c72945f9e7823ae4fd1eeaa151bf.mp4",
+      "size": 9937013,
+      "sha256": "327fd674c738e7a361aacf09a00d143e31f3a54a1f2c4d3e6b2f6f3b117c2149",
+      "origin": "resources/bundled-solutions/charity-content/demo-materials/7b45c72945f9e7823ae4fd1eeaa151bf.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-materials/8d7278f8655e4b5014b1c2c82340ddbb.mp4",
+      "size": 4904944,
+      "sha256": "2da55f7c92caf404f813ad2bd6fdbfc91cc01e9dc08435fef4caa100798c0ea0",
+      "origin": "resources/bundled-solutions/charity-content/demo-materials/8d7278f8655e4b5014b1c2c82340ddbb.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/prebaked/video-ar-ai.mp4",
+      "size": 16351234,
+      "sha256": "434cc43cc6544c558ff4fa9970a2b6ee69fe8d92e0035d214b75f37f7939f912",
+      "origin": "resources/bundled-solutions/charity-content/prebaked/video-ar-ai.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/prebaked/video-ar.mp4",
+      "size": 12934307,
+      "sha256": "b233806477684f5e8ccbd5b6aa21e1610013aa59eef392fc19ad8f896d54eb73",
+      "origin": "resources/bundled-solutions/charity-content/prebaked/video-ar.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/prebaked/video-en-ai.mp4",
+      "size": 24148332,
+      "sha256": "94a6455b2195b459d4956050775bdd4f0db813e217a4eb8c41747e29c75b699c",
+      "origin": "resources/bundled-solutions/charity-content/prebaked/video-en-ai.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/prebaked/video-en.mp4",
+      "size": 19868411,
+      "sha256": "f05552c16a34827d6094f3363b8faeeec1dc40b2a962ed813b5d2bd0bdb7777b",
+      "origin": "resources/bundled-solutions/charity-content/prebaked/video-en.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/prebaked/video-zh-ai.mp4",
+      "size": 17024801,
+      "sha256": "428c92e027d1d7386f94fac578d24db51c21562411c689e560057eb58500d820",
+      "origin": "resources/bundled-solutions/charity-content/prebaked/video-zh-ai.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/prebaked/video-zh.mp4",
+      "size": 12749909,
+      "sha256": "236a341ffe5d8c6a9d8a87d11ee0cd32973b96959d4b3a4bb3004737f8fb1d6e",
+      "origin": "resources/bundled-solutions/charity-content/prebaked/video-zh.mp4"
+    }
+  ],
+  "files": [
+    {
+      "path": "src/renderer/views/CharityContentWorkbenchView.vue",
+      "from": "renderer/views/CharityContentWorkbenchView.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/charity-content/AssetActions.vue",
+      "from": "renderer/workbenches/charity-content/AssetActions.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/charity-content/AudioWave.vue",
+      "from": "renderer/workbenches/charity-content/AudioWave.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/charity-content/CcProgress.vue",
+      "from": "renderer/workbenches/charity-content/CcProgress.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/charity-content/CcPromptBox.vue",
+      "from": "renderer/workbenches/charity-content/CcPromptBox.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/charity-content/CcStep.vue",
+      "from": "renderer/workbenches/charity-content/CcStep.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/charity-content/CcVideoPhases.vue",
+      "from": "renderer/workbenches/charity-content/CcVideoPhases.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/charity-content/LangChips.vue",
+      "from": "renderer/workbenches/charity-content/LangChips.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/charity-content/MaterialGrid.vue",
+      "from": "renderer/workbenches/charity-content/MaterialGrid.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/charity-content/charityContent.test.ts",
+      "from": "renderer/workbenches/charity-content/charityContent.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/charity-content/charityContent.watchdog.test.ts",
+      "from": "renderer/workbenches/charity-content/charityContent.watchdog.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/charity-content/shared.ts",
+      "from": "renderer/workbenches/charity-content/shared.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/charity-content/styles.css",
+      "from": "renderer/workbenches/charity-content/styles.css"
+    },
+    {
+      "path": "src/main/ipc/charityContent.ipc.ts",
+      "from": "main/ipc/charityContent.ipc.ts"
+    },
+    {
+      "path": "src/main/ipc/charityContent.ipc.test.ts",
+      "from": "main/ipc/charityContent.ipc.test.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/archive.ts",
+      "from": "main/services/charityContent/archive.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/charityContent.test.ts",
+      "from": "main/services/charityContent/charityContent.test.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/concurrency.test.ts",
+      "from": "main/services/charityContent/concurrency.test.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/concurrency.ts",
+      "from": "main/services/charityContent/concurrency.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/demoMaterials.test.ts",
+      "from": "main/services/charityContent/demoMaterials.test.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/demoMaterials.ts",
+      "from": "main/services/charityContent/demoMaterials.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/demoPack.test.ts",
+      "from": "main/services/charityContent/demoPack.test.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/demoPack.ts",
+      "from": "main/services/charityContent/demoPack.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/describeParse.test.ts",
+      "from": "main/services/charityContent/describeParse.test.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/falBridge.ts",
+      "from": "main/services/charityContent/falBridge.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/media.ts",
+      "from": "main/services/charityContent/media.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/narrationCaptions.test.ts",
+      "from": "main/services/charityContent/narrationCaptions.test.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/pipeline.ts",
+      "from": "main/services/charityContent/pipeline.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/prebakeEntry.ts",
+      "from": "main/services/charityContent/prebakeEntry.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/prebaked.ts",
+      "from": "main/services/charityContent/prebaked.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/prebakedOverwrite.test.ts",
+      "from": "main/services/charityContent/prebakedOverwrite.test.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/render.ts",
+      "from": "main/services/charityContent/render.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/reportHtml.ts",
+      "from": "main/services/charityContent/reportHtml.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/reportText.ts",
+      "from": "main/services/charityContent/reportText.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/runtime.ts",
+      "from": "main/services/charityContent/runtime.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/subtitles.ts",
+      "from": "main/services/charityContent/subtitles.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/validate.ts",
+      "from": "main/services/charityContent/validate.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/videoAi.test.ts",
+      "from": "main/services/charityContent/videoAi.test.ts"
+    },
+    {
+      "path": "src/shared/charityPrompts.ts",
+      "from": "shared/charityPrompts.ts"
+    },
+    {
+      "path": "src/shared/charityPrompts.test.ts",
+      "from": "shared/charityPrompts.test.ts"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/charity-demo-pack.json",
+      "from": "resources/bundled-solutions/charity-content/charity-demo-pack.json"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-archive.json",
+      "from": "resources/bundled-solutions/charity-content/demo-archive.json"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-materials/5527e40e0a9ecd35a71e83d1b58a9ae8.jpg",
+      "from": "resources/bundled-solutions/charity-content/demo-materials/5527e40e0a9ecd35a71e83d1b58a9ae8.jpg"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-materials/636815265de590c9960263134c345a22.jpg",
+      "from": "resources/bundled-solutions/charity-content/demo-materials/636815265de590c9960263134c345a22.jpg"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-materials/de85f80e5d63df4e5a91e817365c2a10.jpg",
+      "from": "resources/bundled-solutions/charity-content/demo-materials/de85f80e5d63df4e5a91e817365c2a10.jpg"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-materials/新穆斯林生活指南-信仰不隔亲情.pdf",
+      "from": "resources/bundled-solutions/charity-content/demo-materials/新穆斯林生活指南-信仰不隔亲情.pdf"
+    }
+  ]
+}

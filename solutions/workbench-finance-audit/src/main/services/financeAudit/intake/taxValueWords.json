@@ -1,0 +1,73 @@
+{
+  "_note": "税务组数据集里枚举列的取值词（中 / 英 / 阿），用于把导出表里的写法规整成固定值。匹配数据用，不是界面文案。先整词精确匹配，再按包含匹配（按列出的顺序）。",
+  "vatDirection": {
+    "sales": ["销项", "销售", "开具", "开票", "sales", "sale", "output", "supply", "مبيعات", "مخرجات", "توريد"],
+    "purchase": ["进项", "采购", "取得", "收票", "purchase", "purchases", "input", "expense", "مشتريات", "مدخلات"]
+  },
+  "vatCategory": {
+    "reverse_charge": ["反向征收", "代扣代缴", "reverse charge", "reverse", "rcm", "احتساب عكسي", "التكليف العكسي"],
+    "import_customs": ["进口", "海关", "import", "imports", "customs", "استيراد", "جمارك"],
+    "export": ["出口", "export", "exports", "تصدير"],
+    "zero": ["零税率", "零税", "zero rated", "zero-rated", "zero", "z", "نسبة صفرية", "صفري"],
+    "exempt": ["免税", "免征", "exempt", "e", "معفى", "معفاة"],
+    "out_of_scope": ["不征税", "不属于", "out of scope", "outside scope", "o", "خارج النطاق"],
+    "standard": ["标准", "一般计税", "应税", "standard rated", "standard", "s", "خاضع للنسبة الأساسية", "أساسي", "خاضع"]
+  },
+  "invoiceStatus": {
+    "void": ["作废", "void", "cancelled", "ملغاة", "ملغى"],
+    "red": ["红冲", "红字", "credit note", "credit", "إشعار دائن"],
+    "abnormal": ["失控", "异常", "异常凭证", "abnormal", "blocked", "غير طبيعية"],
+    "normal": ["正常", "normal", "valid", "عادية", "سارية"]
+  },
+  "invoiceType": {
+    "vat_special": ["专票", "专用发票", "增值税专用发票", "数电专票", "special"],
+    "vat_normal": ["普票", "普通发票", "增值税普通发票", "数电普票", "normal"],
+    "e_ticket": ["客票", "行程单", "电子客票", "火车票", "e-ticket"]
+  },
+  "whtType": {
+    "management_fee": ["管理费", "management fee", "management", "أتعاب الإدارة"],
+    "royalty": ["特许权", "版税", "royalty", "royalties", "إتاوة", "الإتاوات"],
+    "related_service": ["关联方服务", "总部服务", "related party service", "head office", "خدمات طرف ذي علاقة"],
+    "rent": ["租金", "租赁", "rent", "lease", "إيجار"],
+    "technical_service": ["技术服务", "咨询", "technical", "consulting", "خدمات فنية", "استشارية"],
+    "freight_ticket": ["运费", "机票", "freight", "air ticket", "shipping", "شحن", "تذاكر"],
+    "telecom": ["电信", "telecom", "telecommunication", "اتصالات"],
+    "dividend": ["股息", "分红", "dividend", "dividends", "أرباح موزعة", "توزيعات"],
+    "interest": ["利息", "贷款", "interest", "loan", "فوائد", "عوائد القروض"],
+    "insurance": ["保险", "再保险", "insurance", "reinsurance", "تأمين"],
+    "other": ["其他", "other", "أخرى"]
+  },
+  "tdClass": {
+    "asset": ["资产", "asset", "أصل", "أصول"],
+    "liability": ["负债", "liability", "التزام", "خصوم"]
+  },
+  "eventType": {
+    "related_party": ["关联交易", "关联", "related party", "related", "طرف ذو علاقة", "أطراف ذات علاقة"],
+    "guarantee": ["担保", "guarantee", "ضمان", "كفالة"],
+    "litigation": ["诉讼", "仲裁", "litigation", "lawsuit", "arbitration", "دعوى", "تحكيم"],
+    "impairment": ["减值", "impairment", "انخفاض القيمة"],
+    "transaction": ["交易", "购买", "出售", "资产", "transaction", "acquisition", "disposal", "صفقة", "شراء", "بيع"],
+    "other": ["其他", "other", "أخرى"]
+  },
+  "rpKind": {
+    "natural": ["自然人", "个人", "natural person", "individual", "شخص طبيعي"],
+    "legal": ["法人", "公司", "企业", "legal person", "entity", "company", "شخص اعتباري", "شركة"]
+  },
+  "rptType": {
+    "intangible_license": ["无形资产使用权", "许可", "特许权使用费", "license", "licence", "royalty", "ترخيص"],
+    "intangible_transfer": ["无形资产所有权", "无形资产转让", "intangible transfer", "sale of intangible", "نقل الأصول غير الملموسة"],
+    "financial_asset": ["金融资产", "financial asset", "أصول مالية"],
+    "financing": ["融资", "资金借贷", "借款", "loan", "financing", "تمويل", "قرض"],
+    "service": ["劳务", "服务", "service", "services", "خدمات"],
+    "tangible": ["有形资产", "货物", "购销", "tangible", "goods", "سلع", "أصول ملموسة"],
+    "other": ["其他", "other", "أخرى"]
+  },
+  "rptDirection": {
+    "in": ["收入", "流入", "销售给", "income", "in", "receivable", "وارد"],
+    "out": ["支出", "流出", "采购自", "expense", "out", "payable", "صادر"]
+  },
+  "bool": {
+    "yes": ["是", "Y", "Yes", "true", "1", "نعم"],
+    "no": ["否", "N", "No", "false", "0", "لا"]
+  }
+}

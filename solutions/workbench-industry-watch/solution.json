@@ -1,0 +1,56 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-industry-watch",
+  "name": "盘面情报台",
+  "aliases": [
+    "industry-watch"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "24 小时情报",
+  "icon": "icon-solutions",
+  "order": 120,
+  "description": "加密与美股 7×24 情报流：gate.io 行情异动与多源新闻快讯同一条时间线，每条可回溯原文，随时 AI 研判。",
+  "detail": "市场不收盘，情报也不该等早报。gate.io 加密现货与美股 / 指数永续行情按确定性规则推导异动、触及高低点、极端资金费率、大额强平，新浪 7×24、财联社、华尔街见闻、CoinDesk、Cointelegraph 快讯并入同一条 24 小时时间线；按时间窗、类型、市场、自选筛选（美股带盘前 / 盘中 / 盘后 / 休市盘态），每条可打开原文核验，任何时刻一键 AI 研判当前窗口。",
+  "shortcuts": [
+    "7×24 情报流",
+    "自选行情与强平",
+    "随时 AI 研判"
+  ],
+  "highlights": [
+    "行情异动确定性推导",
+    "多源快讯可回溯原文",
+    "24 小时不间断刷新"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/industry-watch",
+    "renderer": "src/renderer/views/IndustryWatchView.vue",
+    "main": null
+  },
+  "dependsOn": [],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [],
+    "localStorage": [
+      "totalclaw.market-intel.watchlist.v1"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-industry-watch"
+  }
+}

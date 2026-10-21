@@ -1,0 +1,72 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 5,
+    "solutions": {
+      "kit-automation-ops": [
+        "renderer/components/AutomationOpsConsole.vue",
+        "renderer/workbenches/automationExecution.ts",
+        "renderer/workbenches/workflowResult.ts"
+      ]
+    },
+    "host": [
+      "main/ipc/shared.ts",
+      "main/ipc/workbenchApi.ts",
+      "renderer/components/PageBackButton.vue",
+      "renderer/i18n.ts",
+      "renderer/utils/humanize.ts"
+    ],
+    "packages": [
+      "@totalclaw/i18n",
+      "@totalclaw/ipc-contracts",
+      "@vue/test-utils",
+      "electron",
+      "vitest",
+      "vue",
+      "vue-i18n",
+      "vue-router",
+      "xlsx"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/views/WarehouseWorkbenchView.vue",
+      "from": "renderer/views/WarehouseWorkbenchView.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/warehouse/format.test.ts",
+      "from": "renderer/workbenches/warehouse/format.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/warehouse/format.ts",
+      "from": "renderer/workbenches/warehouse/format.ts"
+    },
+    {
+      "path": "src/renderer/components/WarehouseDataNormalization.vue",
+      "from": "renderer/components/WarehouseDataNormalization.vue"
+    },
+    {
+      "path": "src/renderer/components/WarehouseDataNormalization.test.ts",
+      "from": "renderer/components/WarehouseDataNormalization.test.ts"
+    },
+    {
+      "path": "src/main/ipc/warehouseWorkbench.ipc.ts",
+      "from": "main/ipc/warehouseWorkbench.ipc.ts"
+    },
+    {
+      "path": "src/main/services/warehouseNormalization.ts",
+      "from": "main/services/warehouseNormalization.ts"
+    },
+    {
+      "path": "src/main/services/warehouseNormalization.test.ts",
+      "from": "main/services/warehouseNormalization.test.ts"
+    }
+  ]
+}

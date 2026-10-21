@@ -1,0 +1,58 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-service-settlement",
+  "name": "服务商结算与激励核算",
+  "aliases": [
+    "service-settlement"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "服务结算",
+  "icon": "icon-solutions",
+  "order": 240,
+  "description": "京东/天猫好评激励核算、服务费用结案汇总与邮件下发、发票监听与付款跟踪、报废台账更新、服务营销激励季度结案（含个税申报表与结案报告）。",
+  "detail": "四大模块分步核算：好评激励自动算账并按月提醒付款；结案费用按服务商拆分邮件下发，发票回收自动归档、逾期自动催办；报废台账合并与条码匹配；营销激励逐步结案，含个税申报表与季度报告。",
+  "shortcuts": [
+    "好评激励核算",
+    "结案费用汇总下发",
+    "发票监听跟踪"
+  ],
+  "highlights": [
+    "四大模块分步核算",
+    "逾期自动催办",
+    "含个税申报表与季度报告"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/service-settlement",
+    "renderer": "src/renderer/views/ServiceSettlementWorkbenchView.vue",
+    "main": "src/main/ipc/serviceSettlement.ipc.ts"
+  },
+  "dependsOn": [],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "service-settlement.json"
+    ],
+    "localStorage": [
+      "totalclaw:service-settlement"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-service-settlement"
+  }
+}

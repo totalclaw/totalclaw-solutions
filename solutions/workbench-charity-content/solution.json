@@ -1,0 +1,117 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-charity-content",
+  "name": "慈善活动内容工场",
+  "aliases": [
+    "charity-content"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "公益传播",
+  "icon": "icon-solutions",
+  "order": 260,
+  "description": "放进活动照片与视频：自动生成活动档案、中英阿三语报告 PDF 与海报、高保真语音、9:16 宣传短视频，一键完整流程。",
+  "descriptionEn": "Turn one charity event's raw material (photos, field notes, donation data) into multilingual campaign content in one pass: posters and illustrations, short-video cuts, social posts and donor thank-you letters, exported per platform aspect ratio and language, with a reviewable trail.",
+  "descriptionAr": "حوّل مواد فعالية خيرية واحدة (الصور، السجلات الميدانية، بيانات التبرعات) إلى محتوى ترويجي متعدد اللغات بخطوة واحدة: ملصقات وصور، مقاطع فيديو قصيرة، منشورات للتواصل الاجتماعي ورسائل شكر للمتبرعين، تُصدَّر حسب مقاس كل منصة ولغتها مع سجل كامل قابل للمراجعة.",
+  "detail": "视觉模型读图起草活动档案，逐图与视频抽帧生成画面描述，写成中文 / English / العربية 三语活动报告（阿语 RTL 排版）并输出 PDF 与 9:16 海报；报告摘要或任意文字可转成高保真语音；素材剪辑版或 AI 增强版竖版短视频自动配字幕、配音、配乐。",
+  "shortcuts": [
+    "导入活动照片视频",
+    "生成三语报告",
+    "生成宣传短视频"
+  ],
+  "highlights": [
+    "中英阿三语报告与海报",
+    "高保真语音",
+    "9:16 短视频自动配字幕"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/charity-content",
+    "renderer": "src/renderer/views/CharityContentWorkbenchView.vue",
+    "main": "src/main/ipc/charityContent.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-service-settlement"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "charity-content/"
+    ],
+    "localStorage": [
+      "charity-content."
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-materials/58865d8353e8b485e0ce7db1b3a23559.mp4",
+      "size": 3077866,
+      "sha256": "341ed0492a15a7062e1946b040e255bd6f3469f38bd848d4c16538cd158fe26c",
+      "origin": "resources/bundled-solutions/charity-content/demo-materials/58865d8353e8b485e0ce7db1b3a23559.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-materials/7b45c72945f9e7823ae4fd1eeaa151bf.mp4",
+      "size": 9937013,
+      "sha256": "327fd674c738e7a361aacf09a00d143e31f3a54a1f2c4d3e6b2f6f3b117c2149",
+      "origin": "resources/bundled-solutions/charity-content/demo-materials/7b45c72945f9e7823ae4fd1eeaa151bf.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-materials/8d7278f8655e4b5014b1c2c82340ddbb.mp4",
+      "size": 4904944,
+      "sha256": "2da55f7c92caf404f813ad2bd6fdbfc91cc01e9dc08435fef4caa100798c0ea0",
+      "origin": "resources/bundled-solutions/charity-content/demo-materials/8d7278f8655e4b5014b1c2c82340ddbb.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/prebaked/video-ar-ai.mp4",
+      "size": 16351234,
+      "sha256": "434cc43cc6544c558ff4fa9970a2b6ee69fe8d92e0035d214b75f37f7939f912",
+      "origin": "resources/bundled-solutions/charity-content/prebaked/video-ar-ai.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/prebaked/video-ar.mp4",
+      "size": 12934307,
+      "sha256": "b233806477684f5e8ccbd5b6aa21e1610013aa59eef392fc19ad8f896d54eb73",
+      "origin": "resources/bundled-solutions/charity-content/prebaked/video-ar.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/prebaked/video-en-ai.mp4",
+      "size": 24148332,
+      "sha256": "94a6455b2195b459d4956050775bdd4f0db813e217a4eb8c41747e29c75b699c",
+      "origin": "resources/bundled-solutions/charity-content/prebaked/video-en-ai.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/prebaked/video-en.mp4",
+      "size": 19868411,
+      "sha256": "f05552c16a34827d6094f3363b8faeeec1dc40b2a962ed813b5d2bd0bdb7777b",
+      "origin": "resources/bundled-solutions/charity-content/prebaked/video-en.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/prebaked/video-zh-ai.mp4",
+      "size": 17024801,
+      "sha256": "428c92e027d1d7386f94fac578d24db51c21562411c689e560057eb58500d820",
+      "origin": "resources/bundled-solutions/charity-content/prebaked/video-zh-ai.mp4"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/prebaked/video-zh.mp4",
+      "size": 12749909,
+      "sha256": "236a341ffe5d8c6a9d8a87d11ee0cd32973b96959d4b3a4bb3004737f8fb1d6e",
+      "origin": "resources/bundled-solutions/charity-content/prebaked/video-zh.mp4"
+    }
+  ],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-charity-content"
+  }
+}

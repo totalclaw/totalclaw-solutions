@@ -1,0 +1,24 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "period.okDays": { "value": 30, "label": "报销提交距开票 ≤ 30 天：正常", "source": { "file": "finance-skills/skills/expense-review/skills/reimbursement-review/SKILL.md", "section": "必检项六：期间归属" } },
+    "period.rejectDays": { "value": 90, "label": "30–90 天须说明原因；> 90 天驳回", "source": { "file": "finance-skills/skills/expense-review/skills/reimbursement-review/SKILL.md", "section": "必检项六：期间归属" } },
+    "over.minorPct": { "value": 0.05, "label": "超标率 ≤ 5%：轻微，直属上级确认", "source": { "file": "finance-skills/skills/expense-review/skills/policy-compliance-check/SKILL.md", "section": "超标率分档" } },
+    "over.reviewPct": { "value": 0.2, "label": "超标率 5%–20%：上级加签；> 20%：初步驳回", "source": { "file": "finance-skills/skills/expense-review/skills/policy-compliance-check/SKILL.md", "section": "超标率分档" } },
+    "hf.single": { "value": 2, "label": "高频异常员工：同一员工同一自然月某一类异常 ≥ 2 次", "source": { "file": "finance-skills/skills/expense-review/skills/dispute-identification/SKILL.md", "section": "模式一：高频异常员工" } },
+    "hf.total": { "value": 3, "label": "高频异常员工：同一员工同一自然月异常合计 ≥ 3 次", "source": { "file": "finance-skills/skills/expense-review/skills/dispute-identification/SKILL.md", "section": "模式一：高频异常员工" } },
+    "split.windowDays": { "value": 30, "label": "拆单：同一员工、同一供应商 30 天内", "source": { "file": "finance-skills/skills/expense-review/skills/dispute-identification/SKILL.md", "section": "模式二：临界规避" } },
+    "split.count": { "value": 3, "label": "拆单：≥ 3 笔且每笔都低于审批阈值", "source": { "file": "finance-skills/skills/expense-review/skills/dispute-identification/SKILL.md", "section": "模式二：临界规避" } },
+    "split.under": { "value": 500000, "label": "拆单的审批阈值 5000 元（分）", "source": { "file": "finance-skills/skills/expense-review/skills/dispute-identification/SKILL.md", "section": "模式二：临界规避" } },
+    "split.boundaryBand": { "value": 0.02, "label": "贴近审批边界（如 4999 / 9999）：边界以下 2% 以内；源给示例未给带宽", "source": { "file": "finance-skills/skills/expense-review/skills/dispute-identification/SKILL.md", "section": "模式二：临界规避" } },
+    "supplier.windowDays": { "value": 30, "label": "供应商集中：同一供应商 30 天内", "source": { "file": "finance-skills/skills/expense-review/skills/dispute-identification/SKILL.md", "section": "模式三：供应商集中" } },
+    "supplier.count": { "value": 5, "label": "供应商集中：≥ 5 笔", "source": { "file": "finance-skills/skills/expense-review/skills/dispute-identification/SKILL.md", "section": "模式三：供应商集中" } },
+    "supplier.amount": { "value": 20000000, "label": "供应商集中：合计 ≥ 20 万元（分）；源为占位，取示例值", "source": { "file": "finance-skills/skills/expense-review/skills/dispute-identification/SKILL.md", "section": "模式三：供应商集中" } },
+    "cross.days": { "value": 60, "label": "跨期规律：提交距费用发生 ≥ 60 天", "source": { "file": "finance-skills/skills/expense-review/skills/dispute-identification/SKILL.md", "section": "模式六：跨期规律" } },
+    "cross.count": { "value": 3, "label": "跨期规律：≥ 3 次", "source": { "file": "finance-skills/skills/expense-review/skills/dispute-identification/SKILL.md", "section": "模式六：跨期规律" } },
+    "round.unit": { "value": 10000, "label": "整数金额：价税合计是 100 元的整数倍（分）；源未给规则，本方案自定", "source": { "file": "docs/finance-audit-solution.md", "section": "5.6 A5 异常模式（整数）" } },
+    "round.min": { "value": 100000, "label": "整数金额只看 1000 元以上的票（分）；源未给规则，本方案自定", "source": { "file": "docs/finance-audit-solution.md", "section": "5.6 A5 异常模式（整数）" } },
+    "escalate.single": { "value": 10000000, "label": "单笔报销 > 10 万元升级（分）；源为占位，取示例值", "source": { "file": "finance-skills/skills/expense-review/references/判断框架.md", "section": "升级触发条件" } },
+    "qr.tol": { "value": 1, "label": "ZATCA 二维码金额与票面金额容差（最小货币单位）", "source": { "file": "docs/finance-audit-solution.md", "section": "5.6 A5 沙特发票解析 ZATCA 二维码（TLV）并与票面核对" } }
+  }
+}

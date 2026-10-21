@@ -1,0 +1,146 @@
+# Personal Email Domains List
+# Used to distinguish corporate emails from personal emails
+# Format: one domain per line, lines starting with # are comments
+
+# Google
+gmail.com
+googlemail.com
+
+# Microsoft
+hotmail.com
+hotmail.co.uk
+outlook.com
+live.com
+msn.com
+outlook.co.uk
+
+# Yahoo
+yahoo.com
+yahoo.co.uk
+yahoo.fr
+yahoo.de
+yahoo.es
+yahoo.it
+yahoo.co.jp
+yahoo.in
+
+# AOL
+aol.com
+aol.co.uk
+
+# Apple
+icloud.com
+me.com
+mac.com
+
+# GMX
+gmx.com
+gmx.de
+gmx.fr
+gmx.net
+gmx.co.uk
+
+# Web.de
+web.de
+
+# Yandex
+yandex.com
+yandex.ru
+yandex.ua
+yandex.kz
+yandex.by
+
+# Mail.ru
+mail.ru
+inbox.ru
+list.ru
+bk.ru
+
+# China
+qq.com
+163.com
+126.com
+sina.com
+sohu.com
+tom.com
+21cn.com
+foxmail.com
+yeah.net
+aliyun.com
+
+# Korea
+naver.com
+hanmail.net
+daum.net
+kakao.com
+
+# Japan
+docomo.ne.jp
+ezweb.ne.jp
+softbank.ne.jp
+au.com
+
+# Privacy-focused
+protonmail.com
+protonmail.ch
+tutanota.com
+tutanota.de
+zoho.com
+zoho.eu
+fastmail.com
+hushmail.com
+hush.com
+lavabit.com
+countermail.com
+mailbox.org
+posteo.de
+mailfence.com
+runbox.com
+disroot.org
+riseup.net
+startmail.com
+
+# Disposable/Temporary
+10minutemail.com
+guerrillamail.com
+mailinator.com
+throwaway.email
+temp-mail.org
+mohmal.com
+yopmail.com
+sharklasers.com
+guerrillamailblock.com
+pokemail.net
+spam4.me
+grr.la
+getairmail.com
+dropmail.me
+mailnesia.com
+tempail.com
+mcache.net
+
+# Other common
+mail.com
+email.com
+inbox.com
+globo.com
+uol.com.br
+terra.com.br
+libero.it
+virgilio.it
+alice.it
+tin.it
+tiscali.it
+orange.fr
+free.fr
+laposte.net
+wanadoo.fr
+sky.com
+btinternet.com
+talktalk.net
+virginmedia.com
+bigpond.com
+optusnet.com.au
+iinet.net.au
+xtra.co.nz
+paradise.net.nz

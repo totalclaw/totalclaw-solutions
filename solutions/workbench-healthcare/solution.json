@@ -1,0 +1,58 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-healthcare",
+  "name": "智慧医院运营工作台",
+  "aliases": [
+    "healthcare"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "智慧医院",
+  "icon": "icon-solutions",
+  "order": 50,
+  "description": "患者服务、院内工单、隐私保护、服务质量与人工复核，不涉及诊断治疗。",
+  "detail": "覆盖患者服务应答、院内工单流转与服务质量复核的运营中枢：敏感信息自动脱敏、关键环节强制人工复核，只做运营支撑，不涉及任何诊断与治疗建议。",
+  "shortcuts": [
+    "查看院内工单",
+    "患者服务应答",
+    "服务质量复核"
+  ],
+  "highlights": [
+    "敏感信息自动脱敏",
+    "关键环节强制人工复核",
+    "只做运营不涉诊疗"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/healthcare",
+    "renderer": "src/renderer/views/HealthcareWorkbenchView.vue",
+    "main": "src/main/ipc/healthcareWorkbench.ipc.ts"
+  },
+  "dependsOn": [
+    "kit-automation-ops"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [],
+    "localStorage": [
+      "totalclaw:healthcare"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-healthcare"
+  }
+}

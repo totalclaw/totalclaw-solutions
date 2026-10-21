@@ -1,0 +1,5 @@
+{
+  "_note": "资产负债表合计行的标签（中 / 英 / 阿），模型档用来找「资产总计」与「负债和权益总计」。匹配用的数据，不是界面文案，不进 i18n 词典。",
+  "totalAssets": ["资产总计", "资产合计", "total assets", "إجمالي الأصول", "مجموع الأصول"],
+  "totalLiabilitiesEquity": ["负债和所有者权益总计", "负债和所有者权益（或股东权益）总计", "负债及所有者权益合计", "负债和股东权益总计", "total liabilities and equity", "total liabilities and shareholders' equity", "total equity and liabilities", "إجمالي الخصوم وحقوق الملكية", "إجمالي المطلوبات وحقوق الملكية"]
+}

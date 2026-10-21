@@ -1,0 +1,61 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-academic-writer",
+  "name": "学术写作智能体",
+  "aliases": [
+    "academic-writer"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "学术科研",
+  "icon": "icon-solutions",
+  "order": 150,
+  "description": "内置 PubMed、Europe PMC、arXiv、Crossref、OpenAlex 检索与知网、万方等学术网站，抓取文献、精读、拟提纲、分节成稿，接人机双写编辑器一起改论文。",
+  "detail": "选题 → 一键检索多个学术库并去重合并，或在内置浏览器打开知网 / 万方 / Google Scholar 抓取当前文献；精读每篇的问题、方法、发现与局限（依据句回摘要核对）；按文献库拟提纲、分节写初稿，引用只许用库里的文献；送进人机双写编辑器由你改；按 GB/T 7714、APA、IEEE 生成参考文献并查验引用；导出 Word / Markdown / BibTeX，可选本机 WPS、Pages 等打开。",
+  "shortcuts": [
+    "检索文献",
+    "拟提纲成稿",
+    "生成参考文献"
+  ],
+  "highlights": [
+    "多学术库检索去重",
+    "引用只用库内文献",
+    "导出 Word / BibTeX"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/academic-writer",
+    "renderer": "src/renderer/views/AcademicWriterWorkbenchView.vue",
+    "main": "src/main/ipc/academicWriter.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-foreign-trade",
+    "workbench-service-settlement"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "academic-writer/"
+    ],
+    "localStorage": [
+      "totalclaw:academic-writer"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-academic-writer"
+  }
+}

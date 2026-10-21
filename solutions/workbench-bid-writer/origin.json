@@ -1,0 +1,133 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 35,
+    "solutions": {
+      "workbench-service-settlement": [
+        "renderer/workbenches/service-settlement/shared.ts"
+      ]
+    },
+    "host": [
+      "main/ipc/shared.ts",
+      "main/services/accountScope.ts",
+      "main/services/councilChatRouter.ts",
+      "main/services/documentExtractor.ts",
+      "main/services/embeddedBrowserTabs.ts",
+      "main/services/knowledgeBase/fieldCatalog.ts",
+      "main/services/knowledgeBase/retrieval.ts",
+      "main/services/knowledgeBase/service.ts",
+      "main/services/knowledgeBase/textAnalysis.ts",
+      "main/services/qiyeApiClient.ts",
+      "renderer/components/PageBackButton.vue",
+      "renderer/components/WorkbenchStepBar.vue",
+      "renderer/composables/useStepWatchdog.ts",
+      "renderer/i18n.ts",
+      "renderer/stores/notification.ts",
+      "renderer/utils/ipcPlain.ts"
+    ],
+    "packages": [
+      "@totalclaw/i18n",
+      "@totalclaw/ipc-contracts",
+      "@vue/test-utils",
+      "adm-zip",
+      "electron",
+      "vitest",
+      "vue",
+      "vue-router",
+      "xlsx"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/views/BidWriterWorkbenchView.vue",
+      "from": "renderer/views/BidWriterWorkbenchView.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/BwGapForm.vue",
+      "from": "renderer/workbenches/bid-writer/BwGapForm.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/BwProgress.test.ts",
+      "from": "renderer/workbenches/bid-writer/BwProgress.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/BwProgress.vue",
+      "from": "renderer/workbenches/bid-writer/BwProgress.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/BwStep.vue",
+      "from": "renderer/workbenches/bid-writer/BwStep.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/persistence.test.ts",
+      "from": "renderer/workbenches/bid-writer/persistence.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/placeholder.ts",
+      "from": "renderer/workbenches/bid-writer/placeholder.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/shared.ts",
+      "from": "renderer/workbenches/bid-writer/shared.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/styles.css",
+      "from": "renderer/workbenches/bid-writer/styles.css"
+    },
+    {
+      "path": "src/main/ipc/bidWriter.ipc.ts",
+      "from": "main/ipc/bidWriter.ipc.ts"
+    },
+    {
+      "path": "src/main/services/bidWriter/bidWriter.test.ts",
+      "from": "main/services/bidWriter/bidWriter.test.ts"
+    },
+    {
+      "path": "src/main/services/bidWriter/compliance.ts",
+      "from": "main/services/bidWriter/compliance.ts"
+    },
+    {
+      "path": "src/main/services/bidWriter/docx.ts",
+      "from": "main/services/bidWriter/docx.ts"
+    },
+    {
+      "path": "src/main/services/bidWriter/llmReply.ts",
+      "from": "main/services/bidWriter/llmReply.ts"
+    },
+    {
+      "path": "src/main/services/bidWriter/matchPatterns.ts",
+      "from": "main/services/bidWriter/matchPatterns.ts"
+    },
+    {
+      "path": "src/main/services/bidWriter/noticeFetch.ts",
+      "from": "main/services/bidWriter/noticeFetch.ts"
+    },
+    {
+      "path": "src/main/services/bidWriter/noticeRules.ts",
+      "from": "main/services/bidWriter/noticeRules.ts"
+    },
+    {
+      "path": "src/main/services/bidWriter/noticeSearch.ts",
+      "from": "main/services/bidWriter/noticeSearch.ts"
+    },
+    {
+      "path": "src/main/services/bidWriter/outline.ts",
+      "from": "main/services/bidWriter/outline.ts"
+    },
+    {
+      "path": "src/main/services/bidWriter/prompts.ts",
+      "from": "main/services/bidWriter/prompts.ts"
+    },
+    {
+      "path": "src/main/services/bidWriter/store.ts",
+      "from": "main/services/bidWriter/store.ts"
+    }
+  ]
+}

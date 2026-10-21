@@ -1,0 +1,58 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-bid-writer",
+  "name": "标书制作智能体",
+  "aliases": [
+    "bid-writer"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "招投标",
+  "icon": "icon-solutions",
+  "order": 100,
+  "description": "填投标目标与目标投标网站，自动抓公告拆成逐条要求；模板可上传也可从知识库找；公司资料取自知识库，逐章成文后自检废标风险，导出 Word / PDF。",
+  "detail": "六步做完一份标书：① 写清项目与投标目标；② 填目标投标网站自动抓公告（要登录的平台先在内置浏览器登录一次，抓取复用登录态），把资格门槛、评分办法、必交材料、技术需求逐条拆开；③ 上传招标文件规定的投标文件格式当模板解析章节，没有就从知识库里找模板，再不行用内置标准大纲；④ 从知识库取公司名称、信用代码、资质、业绩等资料并逐条核对资格门槛；⑤ 按大纲一章一章生成正文，每章可单独重写与手改，资料里没有的信息一律写成待补充占位而不是编造；⑥ 投标前自检（章节缺失 / 待补充占位 / 资格不满足 / 截止时间），有阻断项只能导草稿件，通过后导出带封面、目录与页码的 Word 与 PDF 正式件。",
+  "shortcuts": [
+    "抓取招标公告",
+    "逐章生成正文",
+    "投标前自检"
+  ],
+  "highlights": [
+    "公告自动拆成逐条要求",
+    "公司资料取自知识库",
+    "导出 Word / PDF 正式件"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/bid-writer",
+    "renderer": "src/renderer/views/BidWriterWorkbenchView.vue",
+    "main": "src/main/ipc/bidWriter.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-service-settlement"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "bid-writer/"
+    ],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-bid-writer"
+  }
+}

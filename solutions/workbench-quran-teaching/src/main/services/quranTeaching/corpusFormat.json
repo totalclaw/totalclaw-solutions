@@ -1,0 +1,9 @@
+{
+ "manifestFile": "corpus_manifest.csv",
+ "jsonFile": "quran_corpus_10ch_265v.json",
+ "legacyManifestFile": "语料清单与校验值.csv",
+ "legacyJsonFile": "标准经文测试语料_10章265节.json",
+ "columns": { "tier": "测试层级", "chapter": "章号", "nameZh": "中文识别名", "nameAr": "阿拉伯文章名", "verseCount": "节数", "file": "文件名", "sha": "SHA-256" },
+ "jsonKeys": { "chapter": "章号", "ref": "经文编号", "arabic": "阿拉伯文原文" },
+ "tierPrefix": { "1": "一", "2": "二" }
+}

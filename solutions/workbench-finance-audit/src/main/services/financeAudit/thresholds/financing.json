@@ -1,0 +1,45 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "wacc.rf": {
+      "value": 0.025,
+      "label": "无风险利率（小数，10 年期国债收益率）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/financing-structure/skills/financing-cost-calculation/SKILL.md",
+        "section": "第三步：无风险利率 Rf"
+      }
+    },
+    "wacc.erp": {
+      "value": 0.06,
+      "label": "市场风险溢价（小数）（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/financing-structure/skills/financing-cost-calculation/SKILL.md",
+        "section": "第三步：市场风险溢价 ERP"
+      }
+    },
+    "wacc.beta": {
+      "value": 1.0,
+      "label": "Beta（源框架为占位 [X]，本方案默认值，按公司政策调整）",
+      "source": {
+        "file": "finance-skills/skills/financing-structure/skills/financing-cost-calculation/SKILL.md",
+        "section": "第三步：Beta"
+      }
+    },
+    "wacc.taxRate": {
+      "value": 0.25,
+      "label": "所得税率（小数；中国企业所得税 25%）",
+      "source": {
+        "file": "finance-skills/skills/financing-structure/skills/financing-cost-calculation/SKILL.md",
+        "section": "第二步：税后债务成本 = 税前 × (1 − 税率)"
+      }
+    },
+    "covenant.headroomWatch": {
+      "value": 0.1,
+      "label": "契约缓冲空间 < 10%：关注（小数）",
+      "source": {
+        "file": "finance-skills/skills/financing-structure/skills/covenant-compliance-monitoring/SKILL.md",
+        "section": "第四步：中风险（缓冲空间 < [X]%，如 < 10%）"
+      }
+    }
+  }
+}

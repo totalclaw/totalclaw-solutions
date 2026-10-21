@@ -1,0 +1,128 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 24,
+    "solutions": {
+      "workbench-biz-automation": [
+        "renderer/workbenches/biz-automation/shared.ts"
+      ],
+      "workbench-foreign-trade": [
+        "renderer/workbenches/foreign-trade/shared.ts"
+      ],
+      "workbench-invoice-agent": [
+        "main/ipc/invoiceAgent.ipc.ts"
+      ],
+      "workbench-service-settlement": [
+        "main/services/serviceSettlement/excel.ts",
+        "renderer/workbenches/service-settlement/StepCard.vue",
+        "renderer/workbenches/service-settlement/StickyProgress.vue",
+        "renderer/workbenches/service-settlement/shared.ts",
+        "renderer/workbenches/service-settlement/styles.css"
+      ]
+    },
+    "host": [
+      "main/ipc/workbenchApi.ts",
+      "main/services/accountScope.ts",
+      "main/services/workbenchLlm.ts",
+      "main/util/quitRegistry.ts",
+      "main/utils/userFacingError.ts",
+      "renderer/components/PageBackButton.vue",
+      "renderer/i18n.ts",
+      "renderer/stores/notification.ts",
+      "renderer/utils/ipcPlain.ts"
+    ],
+    "packages": [
+      "@totalclaw/i18n",
+      "@totalclaw/ipc-contracts",
+      "electron",
+      "vitest",
+      "vue",
+      "vue-router"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/views/ZcyAgentWorkbenchView.vue",
+      "from": "renderer/views/ZcyAgentWorkbenchView.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/zcy-agent/AccountTab.vue",
+      "from": "renderer/workbenches/zcy-agent/AccountTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/zcy-agent/ListingTab.vue",
+      "from": "renderer/workbenches/zcy-agent/ListingTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/zcy-agent/OrdersTab.vue",
+      "from": "renderer/workbenches/zcy-agent/OrdersTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/zcy-agent/QuoteTab.vue",
+      "from": "renderer/workbenches/zcy-agent/QuoteTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/zcy-agent/ReadBack.vue",
+      "from": "renderer/workbenches/zcy-agent/ReadBack.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/zcy-agent/SettingsTab.vue",
+      "from": "renderer/workbenches/zcy-agent/SettingsTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/zcy-agent/shared.ts",
+      "from": "renderer/workbenches/zcy-agent/shared.ts"
+    },
+    {
+      "path": "src/main/ipc/zcyAgent.ipc.ts",
+      "from": "main/ipc/zcyAgent.ipc.ts"
+    },
+    {
+      "path": "src/main/services/zcyAgent/keywords.json",
+      "from": "main/services/zcyAgent/keywords.json"
+    },
+    {
+      "path": "src/main/services/zcyAgent/logic.test.ts",
+      "from": "main/services/zcyAgent/logic.test.ts"
+    },
+    {
+      "path": "src/main/services/zcyAgent/logic.ts",
+      "from": "main/services/zcyAgent/logic.ts"
+    },
+    {
+      "path": "src/main/services/zcyAgent/login.test.ts",
+      "from": "main/services/zcyAgent/login.test.ts"
+    },
+    {
+      "path": "src/main/services/zcyAgent/login.ts",
+      "from": "main/services/zcyAgent/login.ts"
+    },
+    {
+      "path": "src/main/services/zcyAgent/prompts.ts",
+      "from": "main/services/zcyAgent/prompts.ts"
+    },
+    {
+      "path": "src/main/services/zcyAgent/store.ts",
+      "from": "main/services/zcyAgent/store.ts"
+    },
+    {
+      "path": "src/main/services/zcyAgent/zcyPage.test.ts",
+      "from": "main/services/zcyAgent/zcyPage.test.ts"
+    },
+    {
+      "path": "src/main/services/zcyAgent/zcyPage.ts",
+      "from": "main/services/zcyAgent/zcyPage.ts"
+    },
+    {
+      "path": "src/contracts/zcyAgent.ts",
+      "from": "packages/ipc-contracts/src/zcyAgent.ts"
+    }
+  ]
+}

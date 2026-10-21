@@ -1,0 +1,5379 @@
+{
+ "version": "V1.0",
+ "sourceGlossary": [
+  "演示批准词表 V1.0（教师基础词义笔记）",
+  "Demo approved glossary V1.0 (teacher's notes on basic word meanings)",
+  "قائمة المفردات المعتمدة التجريبية V1.0 (ملاحظات المعلم حول المعاني الأساسية للكلمات)"
+ ],
+ "sourceStructure": [
+  "演示批准教案结构表 V1.0（教师笔记 · 章节主题与教学单元）",
+  "Demo approved lesson-structure table V1.0 (teacher's notes · surah themes and teaching units)",
+  "جدول بنية الدروس المعتمد التجريبي V1.0 (ملاحظات المعلم · موضوعات السور والوحدات التعليمية)"
+ ],
+ "reviewer": [
+  "演示内容审核人（待正式项目指定）",
+  "Demo content reviewer (to be appointed for the full project)",
+  "مراجع المحتوى التجريبي (يُعيَّن في المشروع الرسمي)"
+ ],
+ "glossary": [
+  {
+   "chapter": 1,
+   "word": "بسم",
+   "zh": "以……之名",
+   "en": "in the name of",
+   "ar": "باسم"
+  },
+  {
+   "chapter": 1,
+   "word": "الحمد",
+   "zh": "一切赞颂",
+   "en": "all praise",
+   "ar": "الثناء الكامل"
+  },
+  {
+   "chapter": 1,
+   "word": "رب",
+   "zh": "主、养育者",
+   "en": "Lord, Sustainer",
+   "ar": "المالك المربّي"
+  },
+  {
+   "chapter": 1,
+   "word": "العالمين",
+   "zh": "众世界",
+   "en": "the worlds",
+   "ar": "كل المخلوقات"
+  },
+  {
+   "chapter": 1,
+   "word": "الرحمان",
+   "zh": "至仁的",
+   "en": "the Most Gracious",
+   "ar": "واسع الرحمة"
+  },
+  {
+   "chapter": 1,
+   "word": "الرحيم",
+   "zh": "至慈的",
+   "en": "the Most Merciful",
+   "ar": "دائم الرحمة"
+  },
+  {
+   "chapter": 1,
+   "word": "مالك",
+   "zh": "主宰、掌管者",
+   "en": "Master, Owner",
+   "ar": "صاحب الملك"
+  },
+  {
+   "chapter": 1,
+   "word": "يوم",
+   "zh": "日",
+   "en": "day",
+   "ar": "النهار / الوقت"
+  },
+  {
+   "chapter": 1,
+   "word": "الدين",
+   "zh": "报应（之日）",
+   "en": "recompense, judgement",
+   "ar": "الجزاء"
+  },
+  {
+   "chapter": 1,
+   "word": "نعبد",
+   "zh": "我们崇拜",
+   "en": "we worship",
+   "ar": "نخضع بالعبادة"
+  },
+  {
+   "chapter": 1,
+   "word": "نستعين",
+   "zh": "我们求助",
+   "en": "we ask for help",
+   "ar": "نطلب العون"
+  },
+  {
+   "chapter": 1,
+   "word": "اهدنا",
+   "zh": "求你引导我们",
+   "en": "guide us",
+   "ar": "أرشدنا"
+  },
+  {
+   "chapter": 1,
+   "word": "الصراط",
+   "zh": "道路",
+   "en": "the path",
+   "ar": "الطريق"
+  },
+  {
+   "chapter": 1,
+   "word": "المستقيم",
+   "zh": "端正的、笔直的",
+   "en": "straight",
+   "ar": "الذي لا اعوجاج فيه"
+  },
+  {
+   "chapter": 1,
+   "word": "انعمت",
+   "zh": "你施恩",
+   "en": "You have bestowed favour",
+   "ar": "أعطيت النعمة"
+  },
+  {
+   "chapter": 1,
+   "word": "المغضوب",
+   "zh": "被谴怒的",
+   "en": "those who earned anger",
+   "ar": "من نزل عليهم الغضب"
+  },
+  {
+   "chapter": 1,
+   "word": "الضالين",
+   "zh": "迷误的人",
+   "en": "those who went astray",
+   "ar": "التائهون عن الطريق"
+  },
+  {
+   "chapter": 103,
+   "word": "والعصر",
+   "zh": "以时光盟誓",
+   "en": "by time (an oath)",
+   "ar": "قسم بالزمان"
+  },
+  {
+   "chapter": 103,
+   "word": "الانسان",
+   "zh": "人",
+   "en": "mankind, the human being",
+   "ar": "البشر"
+  },
+  {
+   "chapter": 103,
+   "word": "خسر",
+   "zh": "亏折、损失",
+   "en": "loss",
+   "ar": "خسارة ونقصان"
+  },
+  {
+   "chapter": 103,
+   "word": "امنوا",
+   "zh": "归信的人们",
+   "en": "those who believe",
+   "ar": "صدّقوا وآمنوا"
+  },
+  {
+   "chapter": 103,
+   "word": "وعملوا",
+   "zh": "做、行",
+   "en": "they did / performed",
+   "ar": "فعلوا"
+  },
+  {
+   "chapter": 103,
+   "word": "الصالحات",
+   "zh": "善功",
+   "en": "righteous deeds",
+   "ar": "الأعمال الصالحة"
+  },
+  {
+   "chapter": 103,
+   "word": "وتواصوا",
+   "zh": "互相劝勉",
+   "en": "they advised one another",
+   "ar": "أوصى بعضهم بعضًا"
+  },
+  {
+   "chapter": 103,
+   "word": "بالحق",
+   "zh": "以真理",
+   "en": "with the truth",
+   "ar": "بالصدق والصواب"
+  },
+  {
+   "chapter": 103,
+   "word": "بالصبر",
+   "zh": "以坚忍",
+   "en": "with patience",
+   "ar": "بالثبات والتحمّل"
+  },
+  {
+   "chapter": 108,
+   "word": "اعطيناك",
+   "zh": "我们赐给你",
+   "en": "We have granted you",
+   "ar": "منحناك"
+  },
+  {
+   "chapter": 108,
+   "word": "الكوثر",
+   "zh": "多福、丰盛的恩惠",
+   "en": "abundance (al-Kawthar)",
+   "ar": "الخير الكثير"
+  },
+  {
+   "chapter": 108,
+   "word": "فصل",
+   "zh": "你当礼拜",
+   "en": "so pray",
+   "ar": "أدِّ الصلاة"
+  },
+  {
+   "chapter": 108,
+   "word": "لربك",
+   "zh": "为你的主",
+   "en": "to your Lord",
+   "ar": "لله ربك"
+  },
+  {
+   "chapter": 108,
+   "word": "وانحر",
+   "zh": "并宰牲",
+   "en": "and sacrifice",
+   "ar": "واذبح القربان"
+  },
+  {
+   "chapter": 108,
+   "word": "شانءك",
+   "zh": "憎恨你者",
+   "en": "the one who hates you",
+   "ar": "مبغضك"
+  },
+  {
+   "chapter": 108,
+   "word": "الابتر",
+   "zh": "绝后的、断绝的",
+   "en": "the one cut off",
+   "ar": "المقطوع من كل خير"
+  },
+  {
+   "chapter": 112,
+   "word": "قل",
+   "zh": "你说",
+   "en": "say",
+   "ar": "قُل"
+  },
+  {
+   "chapter": 112,
+   "word": "احد",
+   "zh": "独一",
+   "en": "One, unique",
+   "ar": "واحد لا شريك له"
+  },
+  {
+   "chapter": 112,
+   "word": "الصمد",
+   "zh": "万物所仰赖的",
+   "en": "the Eternal Refuge",
+   "ar": "الذي يُقصد في الحاجات"
+  },
+  {
+   "chapter": 112,
+   "word": "يلد",
+   "zh": "生（子）",
+   "en": "beget",
+   "ar": "يُنجب"
+  },
+  {
+   "chapter": 112,
+   "word": "يولد",
+   "zh": "被生",
+   "en": "be born",
+   "ar": "يُولَد"
+  },
+  {
+   "chapter": 112,
+   "word": "كفوا",
+   "zh": "匹敌者",
+   "en": "equal, comparable",
+   "ar": "مثيل ونظير"
+  },
+  {
+   "chapter": 113,
+   "word": "اعوذ",
+   "zh": "我求庇护",
+   "en": "I seek refuge",
+   "ar": "ألتجئ وأحتمي"
+  },
+  {
+   "chapter": 113,
+   "word": "الفلق",
+   "zh": "曙光、黎明",
+   "en": "the daybreak",
+   "ar": "الصبح"
+  },
+  {
+   "chapter": 113,
+   "word": "شر",
+   "zh": "恶、祸害",
+   "en": "evil, harm",
+   "ar": "السوء والأذى"
+  },
+  {
+   "chapter": 113,
+   "word": "خلق",
+   "zh": "创造",
+   "en": "created",
+   "ar": "أوجد"
+  },
+  {
+   "chapter": 113,
+   "word": "غاسق",
+   "zh": "黑夜",
+   "en": "darkness of night",
+   "ar": "الليل المظلم"
+  },
+  {
+   "chapter": 113,
+   "word": "وقب",
+   "zh": "笼罩、降临",
+   "en": "when it settles",
+   "ar": "دخل وأظلم"
+  },
+  {
+   "chapter": 113,
+   "word": "العقد",
+   "zh": "结",
+   "en": "knots",
+   "ar": "العُقَد"
+  },
+  {
+   "chapter": 113,
+   "word": "حاسد",
+   "zh": "嫉妒者",
+   "en": "envier",
+   "ar": "من يتمنى زوال النعمة"
+  },
+  {
+   "chapter": 113,
+   "word": "حسد",
+   "zh": "嫉妒",
+   "en": "envies",
+   "ar": "أظهر الحسد"
+  },
+  {
+   "chapter": 114,
+   "word": "الناس",
+   "zh": "世人",
+   "en": "mankind, people",
+   "ar": "البشر"
+  },
+  {
+   "chapter": 114,
+   "word": "ملك",
+   "zh": "君王",
+   "en": "King",
+   "ar": "المالك المتصرف"
+  },
+  {
+   "chapter": 114,
+   "word": "الاه",
+   "zh": "神、被崇拜者",
+   "en": "God (the one worshipped)",
+   "ar": "المعبود"
+  },
+  {
+   "chapter": 114,
+   "word": "الوسواس",
+   "zh": "教唆者、私语者",
+   "en": "the whisperer",
+   "ar": "الموسوِس"
+  },
+  {
+   "chapter": 114,
+   "word": "الخناس",
+   "zh": "潜伏者、退缩者",
+   "en": "the one who withdraws",
+   "ar": "الذي يختفي ويتراجع"
+  },
+  {
+   "chapter": 114,
+   "word": "يوسوس",
+   "zh": "教唆、私语",
+   "en": "whispers",
+   "ar": "يُلقي الوسوسة"
+  },
+  {
+   "chapter": 114,
+   "word": "صدور",
+   "zh": "胸膛（内心）",
+   "en": "breasts (hearts)",
+   "ar": "القلوب"
+  },
+  {
+   "chapter": 114,
+   "word": "الجنة",
+   "zh": "精灵",
+   "en": "jinn",
+   "ar": "الجن"
+  },
+  {
+   "chapter": 49,
+   "word": "تقدموا",
+   "zh": "抢先、僭越",
+   "en": "put yourselves forward",
+   "ar": "تتقدّموا"
+  },
+  {
+   "chapter": 49,
+   "word": "واتقوا",
+   "zh": "你们当敬畏",
+   "en": "and fear (be mindful of)",
+   "ar": "خافوا واحذروا"
+  },
+  {
+   "chapter": 49,
+   "word": "سميع",
+   "zh": "全聪的",
+   "en": "All-Hearing",
+   "ar": "يسمع كل شيء"
+  },
+  {
+   "chapter": 49,
+   "word": "عليم",
+   "zh": "全知的",
+   "en": "All-Knowing",
+   "ar": "يعلم كل شيء"
+  },
+  {
+   "chapter": 49,
+   "word": "اصواتكم",
+   "zh": "你们的声音",
+   "en": "your voices",
+   "ar": "أصواتكم"
+  },
+  {
+   "chapter": 49,
+   "word": "النبي",
+   "zh": "先知",
+   "en": "the Prophet",
+   "ar": "النبيّ"
+  },
+  {
+   "chapter": 49,
+   "word": "تحبط",
+   "zh": "失效、白费",
+   "en": "become worthless",
+   "ar": "تبطل"
+  },
+  {
+   "chapter": 49,
+   "word": "يغضون",
+   "zh": "压低（声音）",
+   "en": "lower (their voices)",
+   "ar": "يخفضون"
+  },
+  {
+   "chapter": 49,
+   "word": "للتقوي",
+   "zh": "为敬畏",
+   "en": "for righteousness",
+   "ar": "للخشية والطاعة"
+  },
+  {
+   "chapter": 49,
+   "word": "مغفرة",
+   "zh": "饶恕",
+   "en": "forgiveness",
+   "ar": "العفو عن الذنب"
+  },
+  {
+   "chapter": 49,
+   "word": "واجر",
+   "zh": "报酬",
+   "en": "reward",
+   "ar": "ثواب"
+  },
+  {
+   "chapter": 49,
+   "word": "الحجرات",
+   "zh": "寝室、内室",
+   "en": "the private rooms",
+   "ar": "الغرف"
+  },
+  {
+   "chapter": 49,
+   "word": "يعقلون",
+   "zh": "理解、明理",
+   "en": "understand",
+   "ar": "يفهمون"
+  },
+  {
+   "chapter": 49,
+   "word": "صبروا",
+   "zh": "他们坚忍",
+   "en": "they were patient",
+   "ar": "تحمّلوا وانتظروا"
+  },
+  {
+   "chapter": 49,
+   "word": "فاسق",
+   "zh": "悖逆者",
+   "en": "a wrongdoer",
+   "ar": "الخارج عن الطاعة"
+  },
+  {
+   "chapter": 49,
+   "word": "بنبا",
+   "zh": "带着消息",
+   "en": "with news",
+   "ar": "بخبر"
+  },
+  {
+   "chapter": 49,
+   "word": "فتبينوا",
+   "zh": "你们当核实",
+   "en": "verify it",
+   "ar": "تثبّتوا وتأكدوا"
+  },
+  {
+   "chapter": 49,
+   "word": "بجهالة",
+   "zh": "因无知",
+   "en": "out of ignorance",
+   "ar": "بغير علم"
+  },
+  {
+   "chapter": 49,
+   "word": "نادمين",
+   "zh": "后悔的",
+   "en": "regretful",
+   "ar": "متحسّرين"
+  },
+  {
+   "chapter": 49,
+   "word": "الايمان",
+   "zh": "信仰",
+   "en": "faith",
+   "ar": "التصديق بالقلب"
+  },
+  {
+   "chapter": 49,
+   "word": "الكفر",
+   "zh": "不信",
+   "en": "disbelief",
+   "ar": "الجحود"
+  },
+  {
+   "chapter": 49,
+   "word": "الفسوق",
+   "zh": "悖逆",
+   "en": "defiance, wickedness",
+   "ar": "الخروج عن الطاعة"
+  },
+  {
+   "chapter": 49,
+   "word": "والعصيان",
+   "zh": "违抗",
+   "en": "disobedience",
+   "ar": "مخالفة الأمر"
+  },
+  {
+   "chapter": 49,
+   "word": "الراشدون",
+   "zh": "循正道者",
+   "en": "the rightly guided",
+   "ar": "المهتدون"
+  },
+  {
+   "chapter": 49,
+   "word": "طاءفتان",
+   "zh": "两伙人",
+   "en": "two groups",
+   "ar": "جماعتان"
+  },
+  {
+   "chapter": 49,
+   "word": "المءمنين",
+   "zh": "信士们",
+   "en": "the believers",
+   "ar": "المصدّقون"
+  },
+  {
+   "chapter": 49,
+   "word": "اقتتلوا",
+   "zh": "互相争斗",
+   "en": "fight each other",
+   "ar": "تقاتلوا"
+  },
+  {
+   "chapter": 49,
+   "word": "فاصلحوا",
+   "zh": "你们当调解",
+   "en": "make peace",
+   "ar": "أزيلوا الخلاف"
+  },
+  {
+   "chapter": 49,
+   "word": "بالعدل",
+   "zh": "以公正",
+   "en": "with justice",
+   "ar": "بالإنصاف"
+  },
+  {
+   "chapter": 49,
+   "word": "المقسطين",
+   "zh": "主持公道者",
+   "en": "those who act justly",
+   "ar": "العادلون"
+  },
+  {
+   "chapter": 49,
+   "word": "اخوة",
+   "zh": "兄弟",
+   "en": "brothers",
+   "ar": "إخوة"
+  },
+  {
+   "chapter": 49,
+   "word": "ترحمون",
+   "zh": "你们蒙慈悯",
+   "en": "you may receive mercy",
+   "ar": "تنالون الرحمة"
+  },
+  {
+   "chapter": 49,
+   "word": "يسخر",
+   "zh": "嘲笑",
+   "en": "ridicule",
+   "ar": "يستهزئ"
+  },
+  {
+   "chapter": 49,
+   "word": "تلمزوا",
+   "zh": "诽谤、指责",
+   "en": "insult, find fault",
+   "ar": "تعيبوا"
+  },
+  {
+   "chapter": 49,
+   "word": "تنابزوا",
+   "zh": "互相取绰号",
+   "en": "call each other by nicknames",
+   "ar": "تتداعوا بالألقاب"
+  },
+  {
+   "chapter": 49,
+   "word": "بالالقاب",
+   "zh": "以绰号",
+   "en": "by (offensive) nicknames",
+   "ar": "بالأسماء المكروهة"
+  },
+  {
+   "chapter": 49,
+   "word": "الظالمون",
+   "zh": "不义者",
+   "en": "the wrongdoers",
+   "ar": "الذين ظلموا"
+  },
+  {
+   "chapter": 49,
+   "word": "اجتنبوا",
+   "zh": "你们当远离",
+   "en": "avoid",
+   "ar": "ابتعدوا"
+  },
+  {
+   "chapter": 49,
+   "word": "الظن",
+   "zh": "猜疑",
+   "en": "suspicion, assumption",
+   "ar": "الشك والتخمين"
+  },
+  {
+   "chapter": 49,
+   "word": "اثم",
+   "zh": "罪",
+   "en": "sin",
+   "ar": "ذنب"
+  },
+  {
+   "chapter": 49,
+   "word": "تجسسوا",
+   "zh": "窥探",
+   "en": "spy",
+   "ar": "تتبّعوا العورات"
+  },
+  {
+   "chapter": 49,
+   "word": "يغتب",
+   "zh": "背谈",
+   "en": "backbite",
+   "ar": "يذكر أخاه بما يكره"
+  },
+  {
+   "chapter": 49,
+   "word": "تواب",
+   "zh": "至赦的",
+   "en": "Accepting of repentance",
+   "ar": "كثير قبول التوبة"
+  },
+  {
+   "chapter": 49,
+   "word": "خلقناكم",
+   "zh": "我们创造了你们",
+   "en": "We created you",
+   "ar": "أوجدناكم"
+  },
+  {
+   "chapter": 49,
+   "word": "ذكر",
+   "zh": "男",
+   "en": "male",
+   "ar": "ذكر"
+  },
+  {
+   "chapter": 49,
+   "word": "وانثي",
+   "zh": "女",
+   "en": "female",
+   "ar": "أنثى"
+  },
+  {
+   "chapter": 49,
+   "word": "شعوبا",
+   "zh": "民族",
+   "en": "peoples",
+   "ar": "أمم"
+  },
+  {
+   "chapter": 49,
+   "word": "وقباءل",
+   "zh": "部落",
+   "en": "tribes",
+   "ar": "قبائل"
+  },
+  {
+   "chapter": 49,
+   "word": "لتعارفوا",
+   "zh": "以便你们互相认识",
+   "en": "so that you may know one another",
+   "ar": "ليعرف بعضكم بعضًا"
+  },
+  {
+   "chapter": 49,
+   "word": "اكرمكم",
+   "zh": "你们中最尊贵者",
+   "en": "the most noble of you",
+   "ar": "أفضلكم"
+  },
+  {
+   "chapter": 49,
+   "word": "اتقيكم",
+   "zh": "你们中最敬畏者",
+   "en": "the most righteous of you",
+   "ar": "أكثركم تقوى"
+  },
+  {
+   "chapter": 49,
+   "word": "خبير",
+   "zh": "彻知的",
+   "en": "All-Aware",
+   "ar": "عليم ببواطن الأمور"
+  },
+  {
+   "chapter": 49,
+   "word": "الاعراب",
+   "zh": "游牧人",
+   "en": "the desert Arabs",
+   "ar": "سكان البادية"
+  },
+  {
+   "chapter": 49,
+   "word": "اسلمنا",
+   "zh": "我们归顺了",
+   "en": "we have submitted",
+   "ar": "استسلمنا وانقدنا"
+  },
+  {
+   "chapter": 49,
+   "word": "يرتابوا",
+   "zh": "怀疑",
+   "en": "doubt",
+   "ar": "يشكّوا"
+  },
+  {
+   "chapter": 49,
+   "word": "وجاهدوا",
+   "zh": "奋斗",
+   "en": "strive",
+   "ar": "بذلوا الجهد"
+  },
+  {
+   "chapter": 49,
+   "word": "الصادقون",
+   "zh": "诚实者",
+   "en": "the truthful",
+   "ar": "الصادقون في إيمانهم"
+  },
+  {
+   "chapter": 49,
+   "word": "بدينكم",
+   "zh": "以你们的宗教",
+   "en": "of your religion",
+   "ar": "بدينكم"
+  },
+  {
+   "chapter": 49,
+   "word": "يمنون",
+   "zh": "他们施恩图报",
+   "en": "they consider it a favour",
+   "ar": "يذكّرون بالفضل"
+  },
+  {
+   "chapter": 49,
+   "word": "هديكم",
+   "zh": "他引导了你们",
+   "en": "He guided you",
+   "ar": "أرشدكم"
+  },
+  {
+   "chapter": 49,
+   "word": "غيب",
+   "zh": "幽玄",
+   "en": "the unseen",
+   "ar": "ما خفي"
+  },
+  {
+   "chapter": 49,
+   "word": "بصير",
+   "zh": "明察的",
+   "en": "All-Seeing",
+   "ar": "يرى كل شيء"
+  },
+  {
+   "chapter": 67,
+   "word": "تبارك",
+   "zh": "多福的、尊崇的",
+   "en": "blessed is",
+   "ar": "تعاظم وكثر خيره"
+  },
+  {
+   "chapter": 67,
+   "word": "الملك",
+   "zh": "主权、国权",
+   "en": "the dominion",
+   "ar": "السلطان والحكم"
+  },
+  {
+   "chapter": 67,
+   "word": "قدير",
+   "zh": "全能的",
+   "en": "All-Powerful",
+   "ar": "قادر على كل شيء"
+  },
+  {
+   "chapter": 67,
+   "word": "الموت",
+   "zh": "死亡",
+   "en": "death",
+   "ar": "الموت"
+  },
+  {
+   "chapter": 67,
+   "word": "والحيواة",
+   "zh": "与生命",
+   "en": "and life",
+   "ar": "والحياة"
+  },
+  {
+   "chapter": 67,
+   "word": "ليبلوكم",
+   "zh": "以便考验你们",
+   "en": "to test you",
+   "ar": "ليختبركم"
+  },
+  {
+   "chapter": 67,
+   "word": "احسن",
+   "zh": "最好的",
+   "en": "best",
+   "ar": "أفضل"
+  },
+  {
+   "chapter": 67,
+   "word": "عملا",
+   "zh": "行为",
+   "en": "in deed",
+   "ar": "عملًا"
+  },
+  {
+   "chapter": 67,
+   "word": "العزيز",
+   "zh": "万能的",
+   "en": "the Almighty",
+   "ar": "الغالب"
+  },
+  {
+   "chapter": 67,
+   "word": "الغفور",
+   "zh": "至赦的",
+   "en": "the Forgiving",
+   "ar": "كثير المغفرة"
+  },
+  {
+   "chapter": 67,
+   "word": "سبع",
+   "zh": "七",
+   "en": "seven",
+   "ar": "سبع"
+  },
+  {
+   "chapter": 67,
+   "word": "سماوات",
+   "zh": "诸天",
+   "en": "heavens",
+   "ar": "سماوات"
+  },
+  {
+   "chapter": 67,
+   "word": "طباقا",
+   "zh": "层层的",
+   "en": "in layers",
+   "ar": "بعضها فوق بعض"
+  },
+  {
+   "chapter": 67,
+   "word": "تفاوت",
+   "zh": "参差、不协调",
+   "en": "inconsistency",
+   "ar": "اختلاف واضطراب"
+  },
+  {
+   "chapter": 67,
+   "word": "البصر",
+   "zh": "视线",
+   "en": "sight",
+   "ar": "النظر"
+  },
+  {
+   "chapter": 67,
+   "word": "فطور",
+   "zh": "裂缝",
+   "en": "flaws, rifts",
+   "ar": "شقوق"
+  },
+  {
+   "chapter": 67,
+   "word": "كرتين",
+   "zh": "再三",
+   "en": "again and again",
+   "ar": "مرة بعد مرة"
+  },
+  {
+   "chapter": 67,
+   "word": "خاسا",
+   "zh": "疲惫地、羞愧地",
+   "en": "humbled",
+   "ar": "ذليلًا"
+  },
+  {
+   "chapter": 67,
+   "word": "حسير",
+   "zh": "倦怠的",
+   "en": "fatigued",
+   "ar": "كليل متعب"
+  },
+  {
+   "chapter": 67,
+   "word": "بمصابيح",
+   "zh": "以灯（星辰）",
+   "en": "with lamps (stars)",
+   "ar": "بالنجوم المضيئة"
+  },
+  {
+   "chapter": 67,
+   "word": "رجوما",
+   "zh": "投射物",
+   "en": "missiles",
+   "ar": "شُهُبًا تُرمى"
+  },
+  {
+   "chapter": 67,
+   "word": "للشياطين",
+   "zh": "对恶魔",
+   "en": "for the devils",
+   "ar": "للشياطين"
+  },
+  {
+   "chapter": 67,
+   "word": "عذاب",
+   "zh": "刑罚",
+   "en": "punishment",
+   "ar": "عقوبة"
+  },
+  {
+   "chapter": 67,
+   "word": "السعير",
+   "zh": "烈火",
+   "en": "the Blaze",
+   "ar": "النار الملتهبة"
+  },
+  {
+   "chapter": 67,
+   "word": "جهنم",
+   "zh": "火狱",
+   "en": "Hell",
+   "ar": "جهنم"
+  },
+  {
+   "chapter": 67,
+   "word": "المصير",
+   "zh": "归宿",
+   "en": "destination",
+   "ar": "المرجع"
+  },
+  {
+   "chapter": 67,
+   "word": "شهيقا",
+   "zh": "咆哮声",
+   "en": "a roaring",
+   "ar": "صوتًا شديدًا"
+  },
+  {
+   "chapter": 67,
+   "word": "تفور",
+   "zh": "沸腾",
+   "en": "boiling",
+   "ar": "تغلي"
+  },
+  {
+   "chapter": 67,
+   "word": "الغيظ",
+   "zh": "暴怒",
+   "en": "rage",
+   "ar": "شدة الغضب"
+  },
+  {
+   "chapter": 67,
+   "word": "فوج",
+   "zh": "一群",
+   "en": "a group",
+   "ar": "جماعة"
+  },
+  {
+   "chapter": 67,
+   "word": "خزنتها",
+   "zh": "它的看守者",
+   "en": "its keepers",
+   "ar": "حرّاسها"
+  },
+  {
+   "chapter": 67,
+   "word": "نذير",
+   "zh": "警告者",
+   "en": "a warner",
+   "ar": "مُنذِر"
+  },
+  {
+   "chapter": 67,
+   "word": "فكذبنا",
+   "zh": "我们否认了",
+   "en": "but we denied",
+   "ar": "فأنكرنا"
+  },
+  {
+   "chapter": 67,
+   "word": "ضلال",
+   "zh": "迷误",
+   "en": "error",
+   "ar": "ضياع عن الحق"
+  },
+  {
+   "chapter": 67,
+   "word": "نسمع",
+   "zh": "我们听",
+   "en": "we listen",
+   "ar": "نسمع"
+  },
+  {
+   "chapter": 67,
+   "word": "نعقل",
+   "zh": "我们理解",
+   "en": "we reason",
+   "ar": "نفهم"
+  },
+  {
+   "chapter": 67,
+   "word": "فاعترفوا",
+   "zh": "他们承认了",
+   "en": "so they confessed",
+   "ar": "أقرّوا"
+  },
+  {
+   "chapter": 67,
+   "word": "بذنبهم",
+   "zh": "他们的罪",
+   "en": "their sin",
+   "ar": "بخطيئتهم"
+  },
+  {
+   "chapter": 67,
+   "word": "يخشون",
+   "zh": "畏惧",
+   "en": "fear",
+   "ar": "يخافون"
+  },
+  {
+   "chapter": 67,
+   "word": "بالغيب",
+   "zh": "在幽玄中（未见时）",
+   "en": "in the unseen",
+   "ar": "دون أن يروا"
+  },
+  {
+   "chapter": 67,
+   "word": "واسروا",
+   "zh": "你们隐藏",
+   "en": "conceal",
+   "ar": "أخفوا"
+  },
+  {
+   "chapter": 67,
+   "word": "اجهروا",
+   "zh": "公开",
+   "en": "declare openly",
+   "ar": "أعلنوا"
+  },
+  {
+   "chapter": 67,
+   "word": "الصدور",
+   "zh": "胸中（内心）",
+   "en": "the breasts",
+   "ar": "القلوب"
+  },
+  {
+   "chapter": 67,
+   "word": "اللطيف",
+   "zh": "至精微的",
+   "en": "the Subtle",
+   "ar": "العالم بدقائق الأمور"
+  },
+  {
+   "chapter": 67,
+   "word": "الخبير",
+   "zh": "彻知的",
+   "en": "the All-Aware",
+   "ar": "العالم ببواطن الأمور"
+  },
+  {
+   "chapter": 67,
+   "word": "ذلولا",
+   "zh": "驯服的",
+   "en": "subservient",
+   "ar": "سهلة مذلّلة"
+  },
+  {
+   "chapter": 67,
+   "word": "مناكبها",
+   "zh": "它的各方",
+   "en": "its regions",
+   "ar": "جوانبها"
+  },
+  {
+   "chapter": 67,
+   "word": "رزقه",
+   "zh": "他的给养",
+   "en": "His provision",
+   "ar": "ما رزق"
+  },
+  {
+   "chapter": 67,
+   "word": "النشور",
+   "zh": "复活",
+   "en": "the resurrection",
+   "ar": "البعث"
+  },
+  {
+   "chapter": 67,
+   "word": "يخسف",
+   "zh": "使陷落",
+   "en": "cause to swallow",
+   "ar": "يغور بكم"
+  },
+  {
+   "chapter": 67,
+   "word": "تمور",
+   "zh": "动荡",
+   "en": "sways",
+   "ar": "تضطرب"
+  },
+  {
+   "chapter": 67,
+   "word": "حاصبا",
+   "zh": "飞石",
+   "en": "a storm of stones",
+   "ar": "ريحًا فيها حجارة"
+  },
+  {
+   "chapter": 67,
+   "word": "نكير",
+   "zh": "我的谴责",
+   "en": "My denial (punishment)",
+   "ar": "إنكاري وعقوبتي"
+  },
+  {
+   "chapter": 67,
+   "word": "الطير",
+   "zh": "鸟",
+   "en": "the birds",
+   "ar": "الطيور"
+  },
+  {
+   "chapter": 67,
+   "word": "صافات",
+   "zh": "展翅的",
+   "en": "spreading their wings",
+   "ar": "باسطات أجنحتها"
+  },
+  {
+   "chapter": 67,
+   "word": "ويقبضن",
+   "zh": "收翅",
+   "en": "and folding them",
+   "ar": "ويضممن"
+  },
+  {
+   "chapter": 67,
+   "word": "جند",
+   "zh": "军队",
+   "en": "an army",
+   "ar": "جيش"
+  },
+  {
+   "chapter": 67,
+   "word": "ينصركم",
+   "zh": "援助你们",
+   "en": "help you",
+   "ar": "يعينكم"
+  },
+  {
+   "chapter": 67,
+   "word": "غرور",
+   "zh": "欺骗、迷惑",
+   "en": "delusion",
+   "ar": "خداع"
+  },
+  {
+   "chapter": 67,
+   "word": "يرزقكم",
+   "zh": "供给你们",
+   "en": "provide for you",
+   "ar": "يعطيكم الرزق"
+  },
+  {
+   "chapter": 67,
+   "word": "عتو",
+   "zh": "傲慢",
+   "en": "insolence",
+   "ar": "تكبّر"
+  },
+  {
+   "chapter": 67,
+   "word": "ونفور",
+   "zh": "与抗拒",
+   "en": "and aversion",
+   "ar": "وابتعاد"
+  },
+  {
+   "chapter": 67,
+   "word": "مكبا",
+   "zh": "俯伏地",
+   "en": "fallen on his face",
+   "ar": "منكبًا"
+  },
+  {
+   "chapter": 67,
+   "word": "سويا",
+   "zh": "端正地",
+   "en": "upright",
+   "ar": "مستقيمًا"
+  },
+  {
+   "chapter": 67,
+   "word": "انشاكم",
+   "zh": "他创造了你们",
+   "en": "He produced you",
+   "ar": "أوجدكم"
+  },
+  {
+   "chapter": 67,
+   "word": "السمع",
+   "zh": "听觉",
+   "en": "hearing",
+   "ar": "السمع"
+  },
+  {
+   "chapter": 67,
+   "word": "والابصار",
+   "zh": "与视觉",
+   "en": "and sight",
+   "ar": "والعيون"
+  },
+  {
+   "chapter": 67,
+   "word": "والافءدة",
+   "zh": "与心",
+   "en": "and hearts",
+   "ar": "والقلوب"
+  },
+  {
+   "chapter": 67,
+   "word": "تشكرون",
+   "zh": "你们感谢",
+   "en": "you give thanks",
+   "ar": "تشكرون"
+  },
+  {
+   "chapter": 67,
+   "word": "ذراكم",
+   "zh": "他繁衍了你们",
+   "en": "He multiplied you",
+   "ar": "بثّكم ونشركم"
+  },
+  {
+   "chapter": 67,
+   "word": "تحشرون",
+   "zh": "你们被集合",
+   "en": "you will be gathered",
+   "ar": "تُجمعون"
+  },
+  {
+   "chapter": 67,
+   "word": "الوعد",
+   "zh": "允诺",
+   "en": "the promise",
+   "ar": "الوعد"
+  },
+  {
+   "chapter": 67,
+   "word": "العلم",
+   "zh": "知识",
+   "en": "knowledge",
+   "ar": "العلم"
+  },
+  {
+   "chapter": 67,
+   "word": "زلفة",
+   "zh": "临近",
+   "en": "near",
+   "ar": "قريبًا"
+  },
+  {
+   "chapter": 67,
+   "word": "وجوه",
+   "zh": "面容",
+   "en": "faces",
+   "ar": "وجوه"
+  },
+  {
+   "chapter": 67,
+   "word": "تدعون",
+   "zh": "你们（曾）要求",
+   "en": "you used to call for",
+   "ar": "تطلبون"
+  },
+  {
+   "chapter": 67,
+   "word": "اهلكني",
+   "zh": "毁灭我",
+   "en": "destroys me",
+   "ar": "أماتني"
+  },
+  {
+   "chapter": 67,
+   "word": "رحمنا",
+   "zh": "慈悯我们",
+   "en": "has mercy on us",
+   "ar": "رحمنا"
+  },
+  {
+   "chapter": 67,
+   "word": "يجير",
+   "zh": "保护",
+   "en": "protect",
+   "ar": "يحمي"
+  },
+  {
+   "chapter": 67,
+   "word": "اليم",
+   "zh": "痛苦的",
+   "en": "painful",
+   "ar": "موجع"
+  },
+  {
+   "chapter": 67,
+   "word": "توكلنا",
+   "zh": "我们托靠",
+   "en": "we rely",
+   "ar": "اعتمدنا"
+  },
+  {
+   "chapter": 67,
+   "word": "ماءكم",
+   "zh": "你们的水",
+   "en": "your water",
+   "ar": "ماؤكم"
+  },
+  {
+   "chapter": 67,
+   "word": "غورا",
+   "zh": "渗入地下",
+   "en": "sunk (into the earth)",
+   "ar": "ذاهبًا في الأرض"
+  },
+  {
+   "chapter": 67,
+   "word": "معين",
+   "zh": "流动的（泉水）",
+   "en": "flowing",
+   "ar": "جارٍ ظاهر"
+  },
+  {
+   "chapter": 55,
+   "word": "علم",
+   "zh": "教授",
+   "en": "taught",
+   "ar": "علّم"
+  },
+  {
+   "chapter": 55,
+   "word": "القران",
+   "zh": "古兰经",
+   "en": "the Quran",
+   "ar": "القرآن"
+  },
+  {
+   "chapter": 55,
+   "word": "البيان",
+   "zh": "表达、说明",
+   "en": "eloquence, expression",
+   "ar": "النطق والإفصاح"
+  },
+  {
+   "chapter": 55,
+   "word": "الشمس",
+   "zh": "太阳",
+   "en": "the sun",
+   "ar": "الشمس"
+  },
+  {
+   "chapter": 55,
+   "word": "والقمر",
+   "zh": "与月亮",
+   "en": "and the moon",
+   "ar": "والقمر"
+  },
+  {
+   "chapter": 55,
+   "word": "بحسبان",
+   "zh": "依定数运行",
+   "en": "by precise calculation",
+   "ar": "بحساب دقيق"
+  },
+  {
+   "chapter": 55,
+   "word": "والنجم",
+   "zh": "与星辰（草木）",
+   "en": "and the stars (or plants)",
+   "ar": "والنجم"
+  },
+  {
+   "chapter": 55,
+   "word": "والشجر",
+   "zh": "与树木",
+   "en": "and the trees",
+   "ar": "والشجر"
+  },
+  {
+   "chapter": 55,
+   "word": "يسجدان",
+   "zh": "两者叩头",
+   "en": "both prostrate",
+   "ar": "يخضعان"
+  },
+  {
+   "chapter": 55,
+   "word": "رفعها",
+   "zh": "他升起它",
+   "en": "He raised it",
+   "ar": "رفعها"
+  },
+  {
+   "chapter": 55,
+   "word": "الميزان",
+   "zh": "天平、平衡",
+   "en": "the balance",
+   "ar": "العدل والميزان"
+  },
+  {
+   "chapter": 55,
+   "word": "تطغوا",
+   "zh": "过分",
+   "en": "transgress",
+   "ar": "تتجاوزوا الحد"
+  },
+  {
+   "chapter": 55,
+   "word": "الوزن",
+   "zh": "称量",
+   "en": "the weight",
+   "ar": "الوزن"
+  },
+  {
+   "chapter": 55,
+   "word": "بالقسط",
+   "zh": "以公平",
+   "en": "with justice",
+   "ar": "بالعدل"
+  },
+  {
+   "chapter": 55,
+   "word": "تخسروا",
+   "zh": "你们减少",
+   "en": "make deficient",
+   "ar": "تنقصوا"
+  },
+  {
+   "chapter": 55,
+   "word": "للانام",
+   "zh": "为众生",
+   "en": "for the creatures",
+   "ar": "للخلق"
+  },
+  {
+   "chapter": 55,
+   "word": "فاكهة",
+   "zh": "水果",
+   "en": "fruit",
+   "ar": "فاكهة"
+  },
+  {
+   "chapter": 55,
+   "word": "والنخل",
+   "zh": "与椰枣树",
+   "en": "and palm trees",
+   "ar": "والنخل"
+  },
+  {
+   "chapter": 55,
+   "word": "الاكمام",
+   "zh": "花萼、花苞",
+   "en": "sheaths",
+   "ar": "أوعية الطلع"
+  },
+  {
+   "chapter": 55,
+   "word": "والحب",
+   "zh": "与谷粒",
+   "en": "and grain",
+   "ar": "والحبوب"
+  },
+  {
+   "chapter": 55,
+   "word": "العصف",
+   "zh": "茎叶、糠",
+   "en": "husks",
+   "ar": "ورق الزرع"
+  },
+  {
+   "chapter": 55,
+   "word": "والريحان",
+   "zh": "与香草",
+   "en": "and fragrant plants",
+   "ar": "والنبات الطيب"
+  },
+  {
+   "chapter": 55,
+   "word": "فباي",
+   "zh": "那么，哪一件",
+   "en": "so which of",
+   "ar": "فبأيّ"
+  },
+  {
+   "chapter": 55,
+   "word": "الاء",
+   "zh": "恩典",
+   "en": "favours",
+   "ar": "النعم"
+  },
+  {
+   "chapter": 55,
+   "word": "ربكما",
+   "zh": "你俩的主",
+   "en": "your Lord (dual)",
+   "ar": "ربكما"
+  },
+  {
+   "chapter": 55,
+   "word": "تكذبان",
+   "zh": "你俩否认",
+   "en": "would you both deny",
+   "ar": "تنكران"
+  },
+  {
+   "chapter": 55,
+   "word": "صلصال",
+   "zh": "干泥",
+   "en": "clay",
+   "ar": "طين يابس"
+  },
+  {
+   "chapter": 55,
+   "word": "كالفخار",
+   "zh": "像陶器",
+   "en": "like pottery",
+   "ar": "كالطين المحروق"
+  },
+  {
+   "chapter": 55,
+   "word": "الجان",
+   "zh": "精灵",
+   "en": "the jinn",
+   "ar": "الجن"
+  },
+  {
+   "chapter": 55,
+   "word": "مارج",
+   "zh": "火焰",
+   "en": "a smokeless flame",
+   "ar": "لهب"
+  },
+  {
+   "chapter": 55,
+   "word": "نار",
+   "zh": "火",
+   "en": "fire",
+   "ar": "نار"
+  },
+  {
+   "chapter": 55,
+   "word": "المشرقين",
+   "zh": "两个东方",
+   "en": "the two easts",
+   "ar": "مشرقا الشتاء والصيف"
+  },
+  {
+   "chapter": 55,
+   "word": "المغربين",
+   "zh": "两个西方",
+   "en": "the two wests",
+   "ar": "مغربا الشتاء والصيف"
+  },
+  {
+   "chapter": 55,
+   "word": "مرج",
+   "zh": "使汇合",
+   "en": "He released",
+   "ar": "أرسل وخلط"
+  },
+  {
+   "chapter": 55,
+   "word": "البحرين",
+   "zh": "两海",
+   "en": "the two seas",
+   "ar": "البحرين"
+  },
+  {
+   "chapter": 55,
+   "word": "يلتقيان",
+   "zh": "两者相遇",
+   "en": "they meet",
+   "ar": "يتقابلان"
+  },
+  {
+   "chapter": 55,
+   "word": "برزخ",
+   "zh": "屏障",
+   "en": "a barrier",
+   "ar": "حاجز"
+  },
+  {
+   "chapter": 55,
+   "word": "يبغيان",
+   "zh": "两者越界",
+   "en": "they transgress",
+   "ar": "يعتديان"
+  },
+  {
+   "chapter": 55,
+   "word": "اللءلء",
+   "zh": "珍珠",
+   "en": "pearls",
+   "ar": "اللؤلؤ"
+  },
+  {
+   "chapter": 55,
+   "word": "والمرجان",
+   "zh": "与珊瑚",
+   "en": "and coral",
+   "ar": "والمرجان"
+  },
+  {
+   "chapter": 55,
+   "word": "الجوار",
+   "zh": "船只",
+   "en": "the ships",
+   "ar": "السفن"
+  },
+  {
+   "chapter": 55,
+   "word": "المنشات",
+   "zh": "高耸的",
+   "en": "elevated",
+   "ar": "المرتفعة"
+  },
+  {
+   "chapter": 55,
+   "word": "كالاعلام",
+   "zh": "像山岳",
+   "en": "like mountains",
+   "ar": "كالجبال"
+  },
+  {
+   "chapter": 55,
+   "word": "فان",
+   "zh": "要消逝的",
+   "en": "will perish",
+   "ar": "زائل"
+  },
+  {
+   "chapter": 55,
+   "word": "ويبقي",
+   "zh": "而永存",
+   "en": "and there remains",
+   "ar": "ويدوم"
+  },
+  {
+   "chapter": 55,
+   "word": "الجلال",
+   "zh": "尊严",
+   "en": "majesty",
+   "ar": "العظمة"
+  },
+  {
+   "chapter": 55,
+   "word": "والاكرام",
+   "zh": "与尊荣",
+   "en": "and honour",
+   "ar": "والكرم"
+  },
+  {
+   "chapter": 55,
+   "word": "شان",
+   "zh": "事务",
+   "en": "a matter",
+   "ar": "أمر"
+  },
+  {
+   "chapter": 55,
+   "word": "سنفرغ",
+   "zh": "我们将专注",
+   "en": "We will attend",
+   "ar": "سنتفرّغ"
+  },
+  {
+   "chapter": 55,
+   "word": "الثقلان",
+   "zh": "两大类（人与精灵）",
+   "en": "the two weighty ones",
+   "ar": "الجن والإنس"
+  },
+  {
+   "chapter": 55,
+   "word": "يامعشر",
+   "zh": "……的群体啊",
+   "en": "O company of",
+   "ar": "يا جماعة"
+  },
+  {
+   "chapter": 55,
+   "word": "تنفذوا",
+   "zh": "你们穿越",
+   "en": "pass beyond",
+   "ar": "تخرجوا"
+  },
+  {
+   "chapter": 55,
+   "word": "اقطار",
+   "zh": "各边、区域",
+   "en": "the regions",
+   "ar": "نواحي"
+  },
+  {
+   "chapter": 55,
+   "word": "بسلطان",
+   "zh": "凭权力",
+   "en": "with authority",
+   "ar": "بقوة وحجة"
+  },
+  {
+   "chapter": 55,
+   "word": "شواظ",
+   "zh": "火焰",
+   "en": "a flame",
+   "ar": "لهب"
+  },
+  {
+   "chapter": 55,
+   "word": "ونحاس",
+   "zh": "与烟",
+   "en": "and smoke",
+   "ar": "ودخان"
+  },
+  {
+   "chapter": 55,
+   "word": "تنتصران",
+   "zh": "你俩获救",
+   "en": "you both will defend",
+   "ar": "تمتنعان"
+  },
+  {
+   "chapter": 55,
+   "word": "انشقت",
+   "zh": "破裂",
+   "en": "is split",
+   "ar": "تصدّعت"
+  },
+  {
+   "chapter": 55,
+   "word": "وردة",
+   "zh": "玫瑰色",
+   "en": "rose-coloured",
+   "ar": "حمراء كالورد"
+  },
+  {
+   "chapter": 55,
+   "word": "كالدهان",
+   "zh": "像油脂",
+   "en": "like oil",
+   "ar": "كالزيت"
+  },
+  {
+   "chapter": 55,
+   "word": "المجرمون",
+   "zh": "罪人",
+   "en": "the criminals",
+   "ar": "المذنبون"
+  },
+  {
+   "chapter": 55,
+   "word": "بسيماهم",
+   "zh": "凭他们的标记",
+   "en": "by their marks",
+   "ar": "بعلاماتهم"
+  },
+  {
+   "chapter": 55,
+   "word": "بالنواصي",
+   "zh": "抓额发",
+   "en": "by the forelocks",
+   "ar": "بمقدّم الرأس"
+  },
+  {
+   "chapter": 55,
+   "word": "والاقدام",
+   "zh": "与双脚",
+   "en": "and the feet",
+   "ar": "والأرجل"
+  },
+  {
+   "chapter": 55,
+   "word": "حميم",
+   "zh": "沸水",
+   "en": "scalding water",
+   "ar": "ماء شديد الحرارة"
+  },
+  {
+   "chapter": 55,
+   "word": "خاف",
+   "zh": "畏惧",
+   "en": "fears",
+   "ar": "خاف"
+  },
+  {
+   "chapter": 55,
+   "word": "مقام",
+   "zh": "站立（面对）",
+   "en": "the standing (before)",
+   "ar": "الوقوف بين يدي"
+  },
+  {
+   "chapter": 55,
+   "word": "جنتان",
+   "zh": "两座乐园",
+   "en": "two gardens",
+   "ar": "جنتان"
+  },
+  {
+   "chapter": 55,
+   "word": "افنان",
+   "zh": "枝条",
+   "en": "branches",
+   "ar": "أغصان"
+  },
+  {
+   "chapter": 55,
+   "word": "عينان",
+   "zh": "两道泉",
+   "en": "two springs",
+   "ar": "عينان"
+  },
+  {
+   "chapter": 55,
+   "word": "تجريان",
+   "zh": "两泉流淌",
+   "en": "flowing",
+   "ar": "تسيلان"
+  },
+  {
+   "chapter": 55,
+   "word": "زوجان",
+   "zh": "两种",
+   "en": "two kinds",
+   "ar": "صنفان"
+  },
+  {
+   "chapter": 55,
+   "word": "متكءين",
+   "zh": "斜倚着",
+   "en": "reclining",
+   "ar": "مستندين"
+  },
+  {
+   "chapter": 55,
+   "word": "فرش",
+   "zh": "床褥",
+   "en": "beds",
+   "ar": "فُرش"
+  },
+  {
+   "chapter": 55,
+   "word": "استبرق",
+   "zh": "锦缎",
+   "en": "brocade",
+   "ar": "حرير غليظ"
+  },
+  {
+   "chapter": 55,
+   "word": "وجني",
+   "zh": "与果实",
+   "en": "and the fruit",
+   "ar": "وثمر"
+  },
+  {
+   "chapter": 55,
+   "word": "دان",
+   "zh": "临近的",
+   "en": "near at hand",
+   "ar": "قريب"
+  },
+  {
+   "chapter": 55,
+   "word": "الياقوت",
+   "zh": "红宝石",
+   "en": "rubies",
+   "ar": "الياقوت"
+  },
+  {
+   "chapter": 55,
+   "word": "جزاء",
+   "zh": "报酬",
+   "en": "reward",
+   "ar": "مكافأة"
+  },
+  {
+   "chapter": 55,
+   "word": "الاحسان",
+   "zh": "善行",
+   "en": "good",
+   "ar": "الإحسان"
+  },
+  {
+   "chapter": 55,
+   "word": "مدهامتان",
+   "zh": "深绿的（两园）",
+   "en": "dark green",
+   "ar": "شديدتا الخضرة"
+  },
+  {
+   "chapter": 55,
+   "word": "نضاختان",
+   "zh": "喷涌的（两泉）",
+   "en": "gushing",
+   "ar": "فوّارتان"
+  },
+  {
+   "chapter": 55,
+   "word": "ونخل",
+   "zh": "与椰枣",
+   "en": "and palm trees",
+   "ar": "ونخل"
+  },
+  {
+   "chapter": 55,
+   "word": "ورمان",
+   "zh": "与石榴",
+   "en": "and pomegranates",
+   "ar": "ورمان"
+  },
+  {
+   "chapter": 55,
+   "word": "خيرات",
+   "zh": "善良的",
+   "en": "good ones",
+   "ar": "فاضلات"
+  },
+  {
+   "chapter": 55,
+   "word": "حسان",
+   "zh": "美丽的",
+   "en": "beautiful",
+   "ar": "جميلات"
+  },
+  {
+   "chapter": 55,
+   "word": "الخيام",
+   "zh": "帐篷",
+   "en": "pavilions",
+   "ar": "الخيام"
+  },
+  {
+   "chapter": 55,
+   "word": "رفرف",
+   "zh": "绿垫",
+   "en": "green cushions",
+   "ar": "وسائد"
+  },
+  {
+   "chapter": 55,
+   "word": "خضر",
+   "zh": "绿色的",
+   "en": "green",
+   "ar": "خضراء"
+  },
+  {
+   "chapter": 55,
+   "word": "وعبقري",
+   "zh": "与精美地毯",
+   "en": "and fine carpets",
+   "ar": "وبُسط فاخرة"
+  },
+  {
+   "chapter": 55,
+   "word": "اسم",
+   "zh": "名字",
+   "en": "the name",
+   "ar": "اسم"
+  },
+  {
+   "chapter": 12,
+   "word": "الر",
+   "zh": "（章首字母）",
+   "en": "(disconnected letters)",
+   "ar": "حروف مقطعة"
+  },
+  {
+   "chapter": 12,
+   "word": "ايات",
+   "zh": "迹象、经文",
+   "en": "verses, signs",
+   "ar": "آيات"
+  },
+  {
+   "chapter": 12,
+   "word": "الكتاب",
+   "zh": "经典",
+   "en": "the Book",
+   "ar": "الكتاب"
+  },
+  {
+   "chapter": 12,
+   "word": "المبين",
+   "zh": "明白的",
+   "en": "the clear",
+   "ar": "الواضح"
+  },
+  {
+   "chapter": 12,
+   "word": "انزلناه",
+   "zh": "我们降示它",
+   "en": "We sent it down",
+   "ar": "أنزلناه"
+  },
+  {
+   "chapter": 12,
+   "word": "قرانا",
+   "zh": "古兰（诵读的）",
+   "en": "a Quran (recitation)",
+   "ar": "قرآنًا"
+  },
+  {
+   "chapter": 12,
+   "word": "عربيا",
+   "zh": "阿拉伯语的",
+   "en": "Arabic",
+   "ar": "بلغة العرب"
+  },
+  {
+   "chapter": 12,
+   "word": "تعقلون",
+   "zh": "你们理解",
+   "en": "you understand",
+   "ar": "تفهمون"
+  },
+  {
+   "chapter": 12,
+   "word": "نقص",
+   "zh": "我们讲述",
+   "en": "We relate",
+   "ar": "نحكي"
+  },
+  {
+   "chapter": 12,
+   "word": "القصص",
+   "zh": "故事",
+   "en": "stories",
+   "ar": "الأخبار"
+  },
+  {
+   "chapter": 12,
+   "word": "يوسف",
+   "zh": "优素福",
+   "en": "Yusuf (Joseph)",
+   "ar": "يوسف عليه السلام"
+  },
+  {
+   "chapter": 12,
+   "word": "لابيه",
+   "zh": "对他的父亲",
+   "en": "to his father",
+   "ar": "لأبيه"
+  },
+  {
+   "chapter": 12,
+   "word": "ياابت",
+   "zh": "我的父亲啊",
+   "en": "O my father",
+   "ar": "يا أبي"
+  },
+  {
+   "chapter": 12,
+   "word": "رايت",
+   "zh": "我看见（梦见）",
+   "en": "I saw (in a dream)",
+   "ar": "رأيت في المنام"
+  },
+  {
+   "chapter": 12,
+   "word": "كوكبا",
+   "zh": "星",
+   "en": "stars",
+   "ar": "نجمًا"
+  },
+  {
+   "chapter": 12,
+   "word": "والشمس",
+   "zh": "与太阳",
+   "en": "and the sun",
+   "ar": "والشمس"
+  },
+  {
+   "chapter": 12,
+   "word": "ساجدين",
+   "zh": "叩头的",
+   "en": "prostrating",
+   "ar": "خاضعين"
+  },
+  {
+   "chapter": 12,
+   "word": "يابني",
+   "zh": "我的孩子啊",
+   "en": "O my son",
+   "ar": "يا ابني"
+  },
+  {
+   "chapter": 12,
+   "word": "رءياك",
+   "zh": "你的梦",
+   "en": "your vision",
+   "ar": "ما رأيته في نومك"
+  },
+  {
+   "chapter": 12,
+   "word": "اخوتك",
+   "zh": "你的兄弟们",
+   "en": "your brothers",
+   "ar": "إخوتك"
+  },
+  {
+   "chapter": 12,
+   "word": "كيدا",
+   "zh": "计谋",
+   "en": "a plot",
+   "ar": "مكرًا"
+  },
+  {
+   "chapter": 12,
+   "word": "الشيطان",
+   "zh": "恶魔",
+   "en": "Satan",
+   "ar": "الشيطان"
+  },
+  {
+   "chapter": 12,
+   "word": "عدو",
+   "zh": "敌人",
+   "en": "an enemy",
+   "ar": "عدو"
+  },
+  {
+   "chapter": 12,
+   "word": "يجتبيك",
+   "zh": "他选拔你",
+   "en": "He will choose you",
+   "ar": "يصطفيك"
+  },
+  {
+   "chapter": 12,
+   "word": "تاويل",
+   "zh": "解释",
+   "en": "interpretation",
+   "ar": "تفسير"
+  },
+  {
+   "chapter": 12,
+   "word": "الاحاديث",
+   "zh": "梦兆、言谈",
+   "en": "narrations (dreams)",
+   "ar": "الرؤى"
+  },
+  {
+   "chapter": 12,
+   "word": "واخوته",
+   "zh": "与他的兄弟们",
+   "en": "and his brothers",
+   "ar": "وإخوته"
+  },
+  {
+   "chapter": 12,
+   "word": "للساءلين",
+   "zh": "对询问者",
+   "en": "for those who ask",
+   "ar": "للمستفسرين"
+  },
+  {
+   "chapter": 12,
+   "word": "عصبة",
+   "zh": "一伙（强壮的人）",
+   "en": "a strong group",
+   "ar": "جماعة قوية"
+  },
+  {
+   "chapter": 12,
+   "word": "اقتلوا",
+   "zh": "你们杀",
+   "en": "kill",
+   "ar": "اقتلوا"
+  },
+  {
+   "chapter": 12,
+   "word": "اطرحوه",
+   "zh": "把他扔到",
+   "en": "cast him out",
+   "ar": "ألقوه"
+  },
+  {
+   "chapter": 12,
+   "word": "ارضا",
+   "zh": "一片土地",
+   "en": "a land",
+   "ar": "أرضًا"
+  },
+  {
+   "chapter": 12,
+   "word": "الجب",
+   "zh": "井",
+   "en": "the well",
+   "ar": "البئر"
+  },
+  {
+   "chapter": 12,
+   "word": "السيارة",
+   "zh": "商队、旅客",
+   "en": "travellers",
+   "ar": "القافلة"
+  },
+  {
+   "chapter": 12,
+   "word": "لناصحون",
+   "zh": "忠告者",
+   "en": "sincere advisers",
+   "ar": "مخلصون في النصح"
+  },
+  {
+   "chapter": 12,
+   "word": "الذءب",
+   "zh": "狼",
+   "en": "the wolf",
+   "ar": "الذئب"
+  },
+  {
+   "chapter": 12,
+   "word": "قميصه",
+   "zh": "他的衬衣",
+   "en": "his shirt",
+   "ar": "قميصه"
+  },
+  {
+   "chapter": 12,
+   "word": "بدم",
+   "zh": "带着血",
+   "en": "with blood",
+   "ar": "بدم"
+  },
+  {
+   "chapter": 12,
+   "word": "كذب",
+   "zh": "假的",
+   "en": "false",
+   "ar": "مزيّف"
+  },
+  {
+   "chapter": 12,
+   "word": "سولت",
+   "zh": "怂恿、美化",
+   "en": "enticed",
+   "ar": "زيّنت"
+  },
+  {
+   "chapter": 12,
+   "word": "فصبر",
+   "zh": "那么，坚忍",
+   "en": "so patience",
+   "ar": "فصبر"
+  },
+  {
+   "chapter": 12,
+   "word": "جميل",
+   "zh": "美好的",
+   "en": "beautiful",
+   "ar": "حسن"
+  },
+  {
+   "chapter": 12,
+   "word": "المستعان",
+   "zh": "被求助者",
+   "en": "the One sought for help",
+   "ar": "المطلوب عونه"
+  },
+  {
+   "chapter": 12,
+   "word": "سيارة",
+   "zh": "商队",
+   "en": "a caravan",
+   "ar": "قافلة"
+  },
+  {
+   "chapter": 12,
+   "word": "واردهم",
+   "zh": "他们的取水人",
+   "en": "their water-drawer",
+   "ar": "الساقي"
+  },
+  {
+   "chapter": 12,
+   "word": "دلوه",
+   "zh": "他的水桶",
+   "en": "his bucket",
+   "ar": "دلوه"
+  },
+  {
+   "chapter": 12,
+   "word": "غلام",
+   "zh": "少年",
+   "en": "a boy",
+   "ar": "صبي"
+  },
+  {
+   "chapter": 12,
+   "word": "بضاعة",
+   "zh": "货物",
+   "en": "merchandise",
+   "ar": "سلعة"
+  },
+  {
+   "chapter": 12,
+   "word": "وشروه",
+   "zh": "他们卖了他",
+   "en": "they sold him",
+   "ar": "باعوه"
+  },
+  {
+   "chapter": 12,
+   "word": "بخس",
+   "zh": "低廉的",
+   "en": "a low (price)",
+   "ar": "ناقص قليل"
+  },
+  {
+   "chapter": 12,
+   "word": "دراهم",
+   "zh": "银币",
+   "en": "dirhams",
+   "ar": "دراهم"
+  },
+  {
+   "chapter": 12,
+   "word": "مصر",
+   "zh": "埃及",
+   "en": "Egypt",
+   "ar": "مصر"
+  },
+  {
+   "chapter": 12,
+   "word": "لامراته",
+   "zh": "对他的妻子",
+   "en": "to his wife",
+   "ar": "لزوجته"
+  },
+  {
+   "chapter": 12,
+   "word": "مثويه",
+   "zh": "他的住处",
+   "en": "his residence",
+   "ar": "مقامه"
+  },
+  {
+   "chapter": 12,
+   "word": "ولدا",
+   "zh": "儿子",
+   "en": "a son",
+   "ar": "ابنًا"
+  },
+  {
+   "chapter": 12,
+   "word": "اشده",
+   "zh": "他的成年",
+   "en": "his maturity",
+   "ar": "كمال قوته"
+  },
+  {
+   "chapter": 12,
+   "word": "حكما",
+   "zh": "智慧（判断力）",
+   "en": "judgement",
+   "ar": "حكمة"
+  },
+  {
+   "chapter": 12,
+   "word": "وعلما",
+   "zh": "与知识",
+   "en": "and knowledge",
+   "ar": "وعلمًا"
+  },
+  {
+   "chapter": 12,
+   "word": "المحسنين",
+   "zh": "行善者",
+   "en": "the doers of good",
+   "ar": "المحسنين"
+  },
+  {
+   "chapter": 12,
+   "word": "وراودته",
+   "zh": "她引诱他",
+   "en": "she sought to seduce him",
+   "ar": "طلبت منه"
+  },
+  {
+   "chapter": 12,
+   "word": "وغلقت",
+   "zh": "她锁上",
+   "en": "she closed",
+   "ar": "أغلقت"
+  },
+  {
+   "chapter": 12,
+   "word": "الابواب",
+   "zh": "门",
+   "en": "the doors",
+   "ar": "الأبواب"
+  },
+  {
+   "chapter": 12,
+   "word": "معاذ",
+   "zh": "求庇护",
+   "en": "refuge (with God)",
+   "ar": "أعوذ"
+  },
+  {
+   "chapter": 12,
+   "word": "ربي",
+   "zh": "我的主",
+   "en": "my Lord",
+   "ar": "ربي"
+  },
+  {
+   "chapter": 12,
+   "word": "المخلصين",
+   "zh": "虔诚的",
+   "en": "the chosen (sincere)",
+   "ar": "المختارون المخلصون"
+  },
+  {
+   "chapter": 12,
+   "word": "الباب",
+   "zh": "门",
+   "en": "the door",
+   "ar": "الباب"
+  },
+  {
+   "chapter": 12,
+   "word": "وقدت",
+   "zh": "她撕破",
+   "en": "she tore",
+   "ar": "شقّت"
+  },
+  {
+   "chapter": 12,
+   "word": "دبر",
+   "zh": "后面",
+   "en": "from behind",
+   "ar": "من الخلف"
+  },
+  {
+   "chapter": 12,
+   "word": "قبل",
+   "zh": "前面",
+   "en": "from the front",
+   "ar": "من الأمام"
+  },
+  {
+   "chapter": 12,
+   "word": "شاهد",
+   "zh": "证人",
+   "en": "a witness",
+   "ar": "شاهد"
+  },
+  {
+   "chapter": 12,
+   "word": "كيدكن",
+   "zh": "你们（女人）的计谋",
+   "en": "your (women's) plot",
+   "ar": "مكركن"
+  },
+  {
+   "chapter": 12,
+   "word": "المدينة",
+   "zh": "城市",
+   "en": "the city",
+   "ar": "المدينة"
+  },
+  {
+   "chapter": 12,
+   "word": "نسوة",
+   "zh": "妇女们",
+   "en": "women",
+   "ar": "نساء"
+  },
+  {
+   "chapter": 12,
+   "word": "امرات",
+   "zh": "妻子",
+   "en": "the wife of",
+   "ar": "زوجة"
+  },
+  {
+   "chapter": 12,
+   "word": "العزيز",
+   "zh": "权贵",
+   "en": "the Aziz (governor)",
+   "ar": "العزيز"
+  },
+  {
+   "chapter": 12,
+   "word": "بمكرهن",
+   "zh": "她们的议论",
+   "en": "their scheming",
+   "ar": "مكرهنّ"
+  },
+  {
+   "chapter": 12,
+   "word": "متكا",
+   "zh": "宴席",
+   "en": "a banquet",
+   "ar": "مجلس طعام"
+  },
+  {
+   "chapter": 12,
+   "word": "سكينا",
+   "zh": "一把刀",
+   "en": "a knife",
+   "ar": "سكينًا"
+  },
+  {
+   "chapter": 12,
+   "word": "اكبرنه",
+   "zh": "她们惊叹他",
+   "en": "they were amazed at him",
+   "ar": "أعظمنه"
+  },
+  {
+   "chapter": 12,
+   "word": "وقطعن",
+   "zh": "她们割伤",
+   "en": "and they cut",
+   "ar": "وجرحن"
+  },
+  {
+   "chapter": 12,
+   "word": "ايديهن",
+   "zh": "她们的手",
+   "en": "their hands",
+   "ar": "أيديهن"
+  },
+  {
+   "chapter": 12,
+   "word": "بشرا",
+   "zh": "凡人",
+   "en": "a human being",
+   "ar": "إنسانًا"
+  },
+  {
+   "chapter": 12,
+   "word": "كريم",
+   "zh": "尊贵的",
+   "en": "noble",
+   "ar": "كريم"
+  },
+  {
+   "chapter": 12,
+   "word": "السجن",
+   "zh": "监狱",
+   "en": "prison",
+   "ar": "السجن"
+  },
+  {
+   "chapter": 12,
+   "word": "يدعونني",
+   "zh": "她们叫我",
+   "en": "they call me",
+   "ar": "يطلبن مني"
+  },
+  {
+   "chapter": 12,
+   "word": "الجاهلين",
+   "zh": "无知者",
+   "en": "the ignorant",
+   "ar": "الجاهلين"
+  },
+  {
+   "chapter": 12,
+   "word": "السميع",
+   "zh": "全聪的",
+   "en": "the All-Hearing",
+   "ar": "السميع"
+  },
+  {
+   "chapter": 12,
+   "word": "العليم",
+   "zh": "全知的",
+   "en": "the All-Knowing",
+   "ar": "العليم"
+  },
+  {
+   "chapter": 12,
+   "word": "فتيان",
+   "zh": "两个青年",
+   "en": "two young men",
+   "ar": "شابان"
+  },
+  {
+   "chapter": 12,
+   "word": "اعصر",
+   "zh": "我榨",
+   "en": "I press",
+   "ar": "أعصر"
+  },
+  {
+   "chapter": 12,
+   "word": "خمرا",
+   "zh": "酒（葡萄）",
+   "en": "wine (grapes)",
+   "ar": "عنبًا"
+  },
+  {
+   "chapter": 12,
+   "word": "راسي",
+   "zh": "我的头",
+   "en": "my head",
+   "ar": "رأسي"
+  },
+  {
+   "chapter": 12,
+   "word": "خبزا",
+   "zh": "面包",
+   "en": "bread",
+   "ar": "خبزًا"
+  },
+  {
+   "chapter": 12,
+   "word": "الطير",
+   "zh": "鸟",
+   "en": "birds",
+   "ar": "الطيور"
+  },
+  {
+   "chapter": 12,
+   "word": "بتاويله",
+   "zh": "它的解释",
+   "en": "its interpretation",
+   "ar": "بتفسيره"
+  },
+  {
+   "chapter": 12,
+   "word": "ملة",
+   "zh": "宗教、道",
+   "en": "the religion",
+   "ar": "الدين"
+  },
+  {
+   "chapter": 12,
+   "word": "اباءي",
+   "zh": "我的祖先",
+   "en": "my fathers",
+   "ar": "آبائي"
+  },
+  {
+   "chapter": 12,
+   "word": "ابراهيم",
+   "zh": "易卜拉欣",
+   "en": "Ibrahim (Abraham)",
+   "ar": "إبراهيم عليه السلام"
+  },
+  {
+   "chapter": 12,
+   "word": "واسحاق",
+   "zh": "与伊斯哈格",
+   "en": "and Ishaq (Isaac)",
+   "ar": "وإسحاق عليه السلام"
+  },
+  {
+   "chapter": 12,
+   "word": "ويعقوب",
+   "zh": "与叶尔孤白",
+   "en": "and Yaqub (Jacob)",
+   "ar": "ويعقوب عليه السلام"
+  },
+  {
+   "chapter": 12,
+   "word": "ياصاحبي",
+   "zh": "我的两位狱友啊",
+   "en": "O my two companions",
+   "ar": "يا صاحبيّ"
+  },
+  {
+   "chapter": 12,
+   "word": "ارباب",
+   "zh": "众主宰",
+   "en": "lords",
+   "ar": "آلهة"
+  },
+  {
+   "chapter": 12,
+   "word": "متفرقون",
+   "zh": "各不相同的",
+   "en": "separate (many)",
+   "ar": "متعددون"
+  },
+  {
+   "chapter": 12,
+   "word": "القهار",
+   "zh": "至强的",
+   "en": "the Prevailing",
+   "ar": "الغالب"
+  },
+  {
+   "chapter": 12,
+   "word": "الحكم",
+   "zh": "判决",
+   "en": "the judgement",
+   "ar": "الحكم"
+  },
+  {
+   "chapter": 12,
+   "word": "القيم",
+   "zh": "端正的",
+   "en": "the upright",
+   "ar": "المستقيم"
+  },
+  {
+   "chapter": 12,
+   "word": "فيسقي",
+   "zh": "他将斟",
+   "en": "he will serve",
+   "ar": "يسقي"
+  },
+  {
+   "chapter": 12,
+   "word": "فيصلب",
+   "zh": "他将被钉死",
+   "en": "he will be crucified",
+   "ar": "يُصلب"
+  },
+  {
+   "chapter": 12,
+   "word": "الملك",
+   "zh": "国王",
+   "en": "the king",
+   "ar": "الملك"
+  },
+  {
+   "chapter": 12,
+   "word": "بضع",
+   "zh": "几（年）",
+   "en": "several",
+   "ar": "ما بين الثلاث والتسع"
+  },
+  {
+   "chapter": 12,
+   "word": "سنين",
+   "zh": "年",
+   "en": "years",
+   "ar": "سنوات"
+  },
+  {
+   "chapter": 12,
+   "word": "بقرات",
+   "zh": "母牛",
+   "en": "cows",
+   "ar": "بقرات"
+  },
+  {
+   "chapter": 12,
+   "word": "سمان",
+   "zh": "肥的",
+   "en": "fat",
+   "ar": "سمينة"
+  },
+  {
+   "chapter": 12,
+   "word": "عجاف",
+   "zh": "瘦的",
+   "en": "lean",
+   "ar": "هزيلة"
+  },
+  {
+   "chapter": 12,
+   "word": "سنبلات",
+   "zh": "穗",
+   "en": "ears of grain",
+   "ar": "سنابل"
+  },
+  {
+   "chapter": 12,
+   "word": "يابسات",
+   "zh": "干枯的",
+   "en": "dry",
+   "ar": "جافة"
+  },
+  {
+   "chapter": 12,
+   "word": "اضغاث",
+   "zh": "混乱的",
+   "en": "confused (dreams)",
+   "ar": "أخلاط"
+  },
+  {
+   "chapter": 12,
+   "word": "احلام",
+   "zh": "梦",
+   "en": "dreams",
+   "ar": "أحلام"
+  },
+  {
+   "chapter": 12,
+   "word": "الصديق",
+   "zh": "诚实者",
+   "en": "the truthful one",
+   "ar": "كثير الصدق"
+  },
+  {
+   "chapter": 12,
+   "word": "تزرعون",
+   "zh": "你们耕种",
+   "en": "you will sow",
+   "ar": "تزرعون"
+  },
+  {
+   "chapter": 12,
+   "word": "دابا",
+   "zh": "如常、连续",
+   "en": "as usual",
+   "ar": "كعادتكم"
+  },
+  {
+   "chapter": 12,
+   "word": "حصدتم",
+   "zh": "你们收割",
+   "en": "you harvest",
+   "ar": "حصدتم"
+  },
+  {
+   "chapter": 12,
+   "word": "سنبله",
+   "zh": "它的穗",
+   "en": "its ear",
+   "ar": "سنبله"
+  },
+  {
+   "chapter": 12,
+   "word": "شداد",
+   "zh": "艰难的",
+   "en": "hard",
+   "ar": "شديدة"
+  },
+  {
+   "chapter": 12,
+   "word": "يغاث",
+   "zh": "得雨",
+   "en": "given rain",
+   "ar": "يُمطَر"
+  },
+  {
+   "chapter": 12,
+   "word": "يعصرون",
+   "zh": "他们榨（果汁）",
+   "en": "they press (juice)",
+   "ar": "يعصرون"
+  },
+  {
+   "chapter": 12,
+   "word": "اءتوني",
+   "zh": "把他带来",
+   "en": "bring him to me",
+   "ar": "أحضروه"
+  },
+  {
+   "chapter": 12,
+   "word": "الرسول",
+   "zh": "使者",
+   "en": "the messenger",
+   "ar": "الرسول"
+  },
+  {
+   "chapter": 12,
+   "word": "بال",
+   "zh": "情况",
+   "en": "the case",
+   "ar": "الحال"
+  },
+  {
+   "chapter": 12,
+   "word": "حصحص",
+   "zh": "显明了",
+   "en": "has become evident",
+   "ar": "ظهر وتبيّن"
+  },
+  {
+   "chapter": 12,
+   "word": "الحق",
+   "zh": "真相",
+   "en": "the truth",
+   "ar": "الحق"
+  },
+  {
+   "chapter": 12,
+   "word": "نفسي",
+   "zh": "我自己",
+   "en": "myself",
+   "ar": "نفسي"
+  },
+  {
+   "chapter": 12,
+   "word": "لامارة",
+   "zh": "确是怂恿",
+   "en": "inclined (to evil)",
+   "ar": "كثيرة الأمر"
+  },
+  {
+   "chapter": 12,
+   "word": "بالسوء",
+   "zh": "作恶",
+   "en": "to evil",
+   "ar": "بالشر"
+  },
+  {
+   "chapter": 12,
+   "word": "استخلصه",
+   "zh": "我专用他",
+   "en": "I will appoint him exclusively",
+   "ar": "أجعله خاصًا لي"
+  },
+  {
+   "chapter": 12,
+   "word": "مكين",
+   "zh": "有地位的",
+   "en": "established",
+   "ar": "ذو مكانة"
+  },
+  {
+   "chapter": 12,
+   "word": "امين",
+   "zh": "可信任的",
+   "en": "trusted",
+   "ar": "مأمون"
+  },
+  {
+   "chapter": 12,
+   "word": "خزاءن",
+   "zh": "仓库",
+   "en": "the storehouses",
+   "ar": "المخازن"
+  },
+  {
+   "chapter": 12,
+   "word": "الارض",
+   "zh": "大地",
+   "en": "the land",
+   "ar": "الأرض"
+  },
+  {
+   "chapter": 12,
+   "word": "حفيظ",
+   "zh": "善于保管的",
+   "en": "a guardian",
+   "ar": "حافظ"
+  },
+  {
+   "chapter": 12,
+   "word": "مكنا",
+   "zh": "我们使……有地位",
+   "en": "We established",
+   "ar": "مكّنّا"
+  },
+  {
+   "chapter": 12,
+   "word": "بالاخرة",
+   "zh": "后世",
+   "en": "the Hereafter",
+   "ar": "الآخرة"
+  },
+  {
+   "chapter": 12,
+   "word": "اخوة",
+   "zh": "兄弟们",
+   "en": "brothers",
+   "ar": "إخوة"
+  },
+  {
+   "chapter": 12,
+   "word": "فعرفهم",
+   "zh": "他认出他们",
+   "en": "he recognised them",
+   "ar": "عرفهم"
+  },
+  {
+   "chapter": 12,
+   "word": "منكرون",
+   "zh": "不认识的",
+   "en": "not recognising",
+   "ar": "لا يعرفونه"
+  },
+  {
+   "chapter": 12,
+   "word": "بجهازهم",
+   "zh": "他们的粮食",
+   "en": "their supplies",
+   "ar": "بمتاعهم"
+  },
+  {
+   "chapter": 12,
+   "word": "باخ",
+   "zh": "一个兄弟",
+   "en": "a brother",
+   "ar": "بأخ"
+  },
+  {
+   "chapter": 12,
+   "word": "الكيل",
+   "zh": "量器、粮食",
+   "en": "the measure",
+   "ar": "المكيال"
+  },
+  {
+   "chapter": 12,
+   "word": "المنزلين",
+   "zh": "款待者",
+   "en": "hosts",
+   "ar": "المضيفين"
+  },
+  {
+   "chapter": 12,
+   "word": "بضاعتهم",
+   "zh": "他们的货物（银钱）",
+   "en": "their merchandise",
+   "ar": "ثمن بضاعتهم"
+  },
+  {
+   "chapter": 12,
+   "word": "رحالهم",
+   "zh": "他们的行囊",
+   "en": "their saddlebags",
+   "ar": "أمتعتهم"
+  },
+  {
+   "chapter": 12,
+   "word": "موثقا",
+   "zh": "誓约",
+   "en": "a solemn pledge",
+   "ar": "عهدًا مؤكدًا"
+  },
+  {
+   "chapter": 12,
+   "word": "وكيل",
+   "zh": "监护者、见证",
+   "en": "a guardian (witness)",
+   "ar": "شاهد وحافظ"
+  },
+  {
+   "chapter": 12,
+   "word": "باب",
+   "zh": "门",
+   "en": "gate",
+   "ar": "باب"
+  },
+  {
+   "chapter": 12,
+   "word": "ابواب",
+   "zh": "各门",
+   "en": "gates",
+   "ar": "أبواب"
+  },
+  {
+   "chapter": 12,
+   "word": "العير",
+   "zh": "商队",
+   "en": "the caravan",
+   "ar": "القافلة"
+  },
+  {
+   "chapter": 12,
+   "word": "لسارقون",
+   "zh": "确是小偷",
+   "en": "are thieves",
+   "ar": "سارقون"
+  },
+  {
+   "chapter": 12,
+   "word": "صواع",
+   "zh": "量杯",
+   "en": "the cup",
+   "ar": "صواع"
+  },
+  {
+   "chapter": 12,
+   "word": "بعير",
+   "zh": "骆驼",
+   "en": "a camel",
+   "ar": "بعير"
+  },
+  {
+   "chapter": 12,
+   "word": "زعيم",
+   "zh": "担保人",
+   "en": "a guarantor",
+   "ar": "ضامن"
+  },
+  {
+   "chapter": 12,
+   "word": "الظالمين",
+   "zh": "不义的人",
+   "en": "the wrongdoers",
+   "ar": "الظالمين"
+  },
+  {
+   "chapter": 12,
+   "word": "شيخا",
+   "zh": "老人",
+   "en": "an old man",
+   "ar": "رجلًا كبيرًا"
+  },
+  {
+   "chapter": 12,
+   "word": "كبيرا",
+   "zh": "年老的",
+   "en": "aged",
+   "ar": "كبير السن"
+  },
+  {
+   "chapter": 12,
+   "word": "نجيا",
+   "zh": "密谈",
+   "en": "in private consultation",
+   "ar": "متناجين"
+  },
+  {
+   "chapter": 12,
+   "word": "ياابانا",
+   "zh": "我们的父亲啊",
+   "en": "O our father",
+   "ar": "يا أبانا"
+  },
+  {
+   "chapter": 12,
+   "word": "سرق",
+   "zh": "偷",
+   "en": "stole",
+   "ar": "سرق"
+  },
+  {
+   "chapter": 12,
+   "word": "الغيب",
+   "zh": "幽玄",
+   "en": "the unseen",
+   "ar": "الغيب"
+  },
+  {
+   "chapter": 12,
+   "word": "القرية",
+   "zh": "城镇",
+   "en": "the town",
+   "ar": "القرية"
+  },
+  {
+   "chapter": 12,
+   "word": "يااسفي",
+   "zh": "我多么悲伤啊",
+   "en": "O my sorrow",
+   "ar": "يا حزني"
+  },
+  {
+   "chapter": 12,
+   "word": "وابيضت",
+   "zh": "变白",
+   "en": "became white",
+   "ar": "ابيضّت"
+  },
+  {
+   "chapter": 12,
+   "word": "عيناه",
+   "zh": "他的双眼",
+   "en": "his eyes",
+   "ar": "عيناه"
+  },
+  {
+   "chapter": 12,
+   "word": "الحزن",
+   "zh": "悲伤",
+   "en": "grief",
+   "ar": "الحزن"
+  },
+  {
+   "chapter": 12,
+   "word": "كظيم",
+   "zh": "抑制的",
+   "en": "suppressing",
+   "ar": "كاتم"
+  },
+  {
+   "chapter": 12,
+   "word": "تفتا",
+   "zh": "你不停止",
+   "en": "you will not cease",
+   "ar": "لا تزال"
+  },
+  {
+   "chapter": 12,
+   "word": "حرضا",
+   "zh": "憔悴",
+   "en": "wasted away",
+   "ar": "هالكًا"
+  },
+  {
+   "chapter": 12,
+   "word": "الهالكين",
+   "zh": "死去的人",
+   "en": "those who perish",
+   "ar": "الهالكين"
+  },
+  {
+   "chapter": 12,
+   "word": "اشكوا",
+   "zh": "我诉说",
+   "en": "I complain",
+   "ar": "أشكو"
+  },
+  {
+   "chapter": 12,
+   "word": "بثي",
+   "zh": "我的忧愁",
+   "en": "my suffering",
+   "ar": "همّي"
+  },
+  {
+   "chapter": 12,
+   "word": "وحزني",
+   "zh": "与我的悲伤",
+   "en": "and my grief",
+   "ar": "وحزني"
+  },
+  {
+   "chapter": 12,
+   "word": "فتحسسوا",
+   "zh": "你们去打探",
+   "en": "go and find out",
+   "ar": "ابحثوا"
+  },
+  {
+   "chapter": 12,
+   "word": "روح",
+   "zh": "慈恩、宽慰",
+   "en": "the relief (mercy)",
+   "ar": "الفرج والرحمة"
+  },
+  {
+   "chapter": 12,
+   "word": "تايءسوا",
+   "zh": "你们绝望",
+   "en": "despair",
+   "ar": "تقنطوا"
+  },
+  {
+   "chapter": 12,
+   "word": "الضر",
+   "zh": "苦难",
+   "en": "the hardship",
+   "ar": "الشدة"
+  },
+  {
+   "chapter": 12,
+   "word": "مزجية",
+   "zh": "低劣的",
+   "en": "scant",
+   "ar": "قليلة رديئة"
+  },
+  {
+   "chapter": 12,
+   "word": "وتصدق",
+   "zh": "并施舍",
+   "en": "and be charitable",
+   "ar": "وتفضّل"
+  },
+  {
+   "chapter": 12,
+   "word": "المتصدقين",
+   "zh": "施舍者",
+   "en": "the charitable",
+   "ar": "المتصدقين"
+  },
+  {
+   "chapter": 12,
+   "word": "جاهلون",
+   "zh": "无知的",
+   "en": "ignorant",
+   "ar": "جاهلون"
+  },
+  {
+   "chapter": 12,
+   "word": "انت",
+   "zh": "你真是……吗",
+   "en": "are you indeed",
+   "ar": "أأنت"
+  },
+  {
+   "chapter": 12,
+   "word": "اخي",
+   "zh": "我的弟弟",
+   "en": "my brother",
+   "ar": "أخي"
+  },
+  {
+   "chapter": 12,
+   "word": "يتق",
+   "zh": "敬畏",
+   "en": "fears (God)",
+   "ar": "يتّقي"
+  },
+  {
+   "chapter": 12,
+   "word": "ويصبر",
+   "zh": "并坚忍",
+   "en": "and is patient",
+   "ar": "ويصبر"
+  },
+  {
+   "chapter": 12,
+   "word": "اثرك",
+   "zh": "他选拔了你",
+   "en": "He has preferred you",
+   "ar": "فضّلك"
+  },
+  {
+   "chapter": 12,
+   "word": "خاطءين",
+   "zh": "有过错的",
+   "en": "sinners",
+   "ar": "مذنبين"
+  },
+  {
+   "chapter": 12,
+   "word": "تثريب",
+   "zh": "责备",
+   "en": "blame",
+   "ar": "لوم"
+  },
+  {
+   "chapter": 12,
+   "word": "ارحم",
+   "zh": "最慈悯的",
+   "en": "the most merciful",
+   "ar": "أرحم"
+  },
+  {
+   "chapter": 12,
+   "word": "الراحمين",
+   "zh": "慈悯者们",
+   "en": "the merciful",
+   "ar": "الراحمين"
+  },
+  {
+   "chapter": 12,
+   "word": "بقميصي",
+   "zh": "我的衬衣",
+   "en": "my shirt",
+   "ar": "بقميصي"
+  },
+  {
+   "chapter": 12,
+   "word": "وجه",
+   "zh": "脸",
+   "en": "the face",
+   "ar": "وجه"
+  },
+  {
+   "chapter": 12,
+   "word": "ابي",
+   "zh": "我的父亲",
+   "en": "my father",
+   "ar": "أبي"
+  },
+  {
+   "chapter": 12,
+   "word": "بصيرا",
+   "zh": "能看见的",
+   "en": "seeing",
+   "ar": "مبصرًا"
+  },
+  {
+   "chapter": 12,
+   "word": "باهلكم",
+   "zh": "你们的家人",
+   "en": "your family",
+   "ar": "بأهلكم"
+  },
+  {
+   "chapter": 12,
+   "word": "ريح",
+   "zh": "气息",
+   "en": "the scent",
+   "ar": "رائحة"
+  },
+  {
+   "chapter": 12,
+   "word": "تفندون",
+   "zh": "你们说我糊涂",
+   "en": "you think me weak of mind",
+   "ar": "تنسبونني إلى الخرف"
+  },
+  {
+   "chapter": 12,
+   "word": "البشير",
+   "zh": "报喜者",
+   "en": "the bearer of good news",
+   "ar": "المبشّر"
+  },
+  {
+   "chapter": 12,
+   "word": "استغفر",
+   "zh": "求饶恕",
+   "en": "ask forgiveness",
+   "ar": "اطلب المغفرة"
+  },
+  {
+   "chapter": 12,
+   "word": "ذنوبنا",
+   "zh": "我们的罪",
+   "en": "our sins",
+   "ar": "ذنوبنا"
+  },
+  {
+   "chapter": 12,
+   "word": "ابويه",
+   "zh": "他的父母",
+   "en": "his parents",
+   "ar": "أبويه"
+  },
+  {
+   "chapter": 12,
+   "word": "امنين",
+   "zh": "平安地",
+   "en": "safe",
+   "ar": "آمنين"
+  },
+  {
+   "chapter": 12,
+   "word": "العرش",
+   "zh": "宝座",
+   "en": "the throne",
+   "ar": "السرير"
+  },
+  {
+   "chapter": 12,
+   "word": "سجدا",
+   "zh": "叩头",
+   "en": "in prostration",
+   "ar": "ساجدين"
+  },
+  {
+   "chapter": 12,
+   "word": "البدو",
+   "zh": "沙漠",
+   "en": "the bedouin life (desert)",
+   "ar": "البادية"
+  },
+  {
+   "chapter": 12,
+   "word": "لطيف",
+   "zh": "精微的、仁慈的",
+   "en": "Subtle (Kind)",
+   "ar": "رفيق"
+  },
+  {
+   "chapter": 12,
+   "word": "فاطر",
+   "zh": "创造者",
+   "en": "Creator",
+   "ar": "خالق"
+  },
+  {
+   "chapter": 12,
+   "word": "ولي",
+   "zh": "我的保护者",
+   "en": "my protector",
+   "ar": "وليّي"
+  },
+  {
+   "chapter": 12,
+   "word": "توفني",
+   "zh": "让我归真",
+   "en": "take me (in death)",
+   "ar": "أمتني"
+  },
+  {
+   "chapter": 12,
+   "word": "مسلما",
+   "zh": "归顺者",
+   "en": "as a Muslim",
+   "ar": "مسلمًا"
+  },
+  {
+   "chapter": 12,
+   "word": "بالصالحين",
+   "zh": "与善人们",
+   "en": "with the righteous",
+   "ar": "بالصالحين"
+  },
+  {
+   "chapter": 12,
+   "word": "انباء",
+   "zh": "消息",
+   "en": "news",
+   "ar": "أخبار"
+  },
+  {
+   "chapter": 12,
+   "word": "نوحيه",
+   "zh": "我们启示它",
+   "en": "We reveal it",
+   "ar": "نوحيه"
+  },
+  {
+   "chapter": 12,
+   "word": "يمكرون",
+   "zh": "他们密谋",
+   "en": "they plotted",
+   "ar": "يكيدون"
+  },
+  {
+   "chapter": 12,
+   "word": "حرصت",
+   "zh": "渴望的",
+   "en": "eager",
+   "ar": "شديد الرغبة"
+  },
+  {
+   "chapter": 12,
+   "word": "بمءمنين",
+   "zh": "归信的",
+   "en": "believers",
+   "ar": "مؤمنين"
+  },
+  {
+   "chapter": 12,
+   "word": "ذكر",
+   "zh": "教诲",
+   "en": "a reminder",
+   "ar": "التذكير"
+  },
+  {
+   "chapter": 12,
+   "word": "للعالمين",
+   "zh": "对众世界",
+   "en": "for the worlds",
+   "ar": "للعالمين"
+  },
+  {
+   "chapter": 12,
+   "word": "اية",
+   "zh": "迹象",
+   "en": "a sign",
+   "ar": "آية"
+  },
+  {
+   "chapter": 12,
+   "word": "معرضون",
+   "zh": "背弃的",
+   "en": "turning away",
+   "ar": "منصرفون"
+  },
+  {
+   "chapter": 12,
+   "word": "مشركون",
+   "zh": "以物配主的",
+   "en": "associating others (with God)",
+   "ar": "مشركون"
+  },
+  {
+   "chapter": 12,
+   "word": "غاشية",
+   "zh": "笼罩的（刑罚）",
+   "en": "an overwhelming (punishment)",
+   "ar": "عقوبة تغشاهم"
+  },
+  {
+   "chapter": 12,
+   "word": "بغتة",
+   "zh": "突然",
+   "en": "suddenly",
+   "ar": "فجأة"
+  },
+  {
+   "chapter": 12,
+   "word": "سبيلي",
+   "zh": "我的道",
+   "en": "my way",
+   "ar": "طريقي"
+  },
+  {
+   "chapter": 12,
+   "word": "بصيرة",
+   "zh": "明证",
+   "en": "insight",
+   "ar": "حجة واضحة"
+  },
+  {
+   "chapter": 12,
+   "word": "رجالا",
+   "zh": "男人们",
+   "en": "men",
+   "ar": "رجالًا"
+  },
+  {
+   "chapter": 12,
+   "word": "القري",
+   "zh": "城镇",
+   "en": "the towns",
+   "ar": "القرى"
+  },
+  {
+   "chapter": 12,
+   "word": "عاقبة",
+   "zh": "结局",
+   "en": "the end",
+   "ar": "النهاية"
+  },
+  {
+   "chapter": 12,
+   "word": "استيءس",
+   "zh": "绝望了",
+   "en": "despaired",
+   "ar": "يئس"
+  },
+  {
+   "chapter": 12,
+   "word": "نصرنا",
+   "zh": "我们的援助",
+   "en": "Our help",
+   "ar": "عوننا"
+  },
+  {
+   "chapter": 12,
+   "word": "باسنا",
+   "zh": "我们的惩罚",
+   "en": "Our punishment",
+   "ar": "عذابنا"
+  },
+  {
+   "chapter": 12,
+   "word": "عبرة",
+   "zh": "教训",
+   "en": "a lesson",
+   "ar": "عظة"
+  },
+  {
+   "chapter": 12,
+   "word": "الالباب",
+   "zh": "理智",
+   "en": "understanding",
+   "ar": "العقول"
+  },
+  {
+   "chapter": 12,
+   "word": "يفتري",
+   "zh": "被捏造",
+   "en": "invented",
+   "ar": "يُختلق"
+  },
+  {
+   "chapter": 12,
+   "word": "تصديق",
+   "zh": "证实",
+   "en": "a confirmation",
+   "ar": "تأكيد"
+  },
+  {
+   "chapter": 12,
+   "word": "وتفصيل",
+   "zh": "与详解",
+   "en": "and a detailed explanation",
+   "ar": "وبيان"
+  },
+  {
+   "chapter": 12,
+   "word": "وهدي",
+   "zh": "与引导",
+   "en": "and guidance",
+   "ar": "وإرشاد"
+  },
+  {
+   "chapter": 12,
+   "word": "ورحمة",
+   "zh": "与慈恩",
+   "en": "and mercy",
+   "ar": "ورحمة"
+  },
+  {
+   "chapter": 12,
+   "word": "يءمنون",
+   "zh": "他们归信",
+   "en": "they believe",
+   "ar": "يؤمنون"
+  }
+ ],
+ "themes": [
+  {
+   "chapter": 1,
+   "title": [
+    "赞颂、崇拜与祈求引导",
+    "Praise, worship and the plea for guidance",
+    "الحمد والعبادة وطلب الهداية"
+   ],
+   "body": [
+    "本章七节：先赞颂养育众世界的主（1-4），再表明唯独崇拜与求助（5），最后祈求端正的道路并说明该道路的特征（6-7）。教学上按「赞颂 → 崇拜 → 祈求」三段讲解。",
+    "Seven verses: praise of the Lord of the worlds (1-4), the declaration of exclusive worship and seeking help (5), and the plea for the straight path with its description (6-7). Teach in three movements: praise, worship, plea.",
+    "سبع آيات: الثناء على رب العالمين (1-4)، ثم إفراد العبادة والاستعانة (5)، ثم طلب الصراط المستقيم ووصفه (6-7). تُدرَّس في ثلاث حركات: الحمد، العبادة، الدعاء."
+   ]
+  },
+  {
+   "chapter": 103,
+   "title": [
+    "时光之誓与免于亏折的四个条件",
+    "The oath by time and the four conditions against loss",
+    "القسم بالعصر وشروط النجاة من الخسر"
+   ],
+   "body": [
+    "本章三节：以时光起誓（1），断言人处于亏折（2），例外条件是归信、行善、以真理互勉、以坚忍互勉（3）。教学重点：「一般判断 + 例外条件」的句式与四个条件的顺序。",
+    "Three verses: an oath by time (1), the general statement that mankind is in loss (2), and the exception: belief, righteous deeds, mutual counsel to truth and to patience (3). Focus: the pattern \"general rule + exception\" and the order of the four conditions.",
+    "ثلاث آيات: القسم بالعصر (1)، الحكم العام بأن الإنسان في خسر (2)، والاستثناء: الإيمان، العمل الصالح، التواصي بالحق، التواصي بالصبر (3). التركيز: بنية «حكم عام + استثناء» وترتيب الشروط الأربعة."
+   ]
+  },
+  {
+   "chapter": 108,
+   "title": [
+    "恩赐、礼拜与宰牲",
+    "The gift, prayer and sacrifice",
+    "العطاء والصلاة والنحر"
+   ],
+   "body": [
+    "三节结构：恩赐（1）→ 回应恩赐的行动：礼拜与宰牲（2）→ 对憎恨者的判定（3）。教学重点：因果关系「因为赐予，所以礼拜」。",
+    "Three verses: the gift (1), the response to it in prayer and sacrifice (2), and the judgement on the one who hates (3). Focus: the cause-effect link \"because He gave, therefore pray\".",
+    "ثلاث آيات: العطاء (1)، الاستجابة له بالصلاة والنحر (2)، والحكم على الشانئ (3). التركيز: علاقة السبب والنتيجة."
+   ]
+  },
+  {
+   "chapter": 112,
+   "title": [
+    "独一与无匹",
+    "Oneness and incomparability",
+    "التوحيد ونفي المثيل"
+   ],
+   "body": [
+    "四节从肯定（独一、被仰赖）到否定（不生、不被生、无匹敌）。教学重点：肯定句与否定句的对照，以及「أحد」在首尾两次出现。",
+    "Four verses moving from affirmation (One, the Eternal Refuge) to negation (does not beget, is not begotten, has no equal). Focus: affirmation versus negation, and the word \"أحد\" appearing at both the start and the end.",
+    "أربع آيات من الإثبات (أحد، الصمد) إلى النفي (لم يلد، لم يولد، لا كفو). التركيز: مقابلة الإثبات بالنفي، وتكرار كلمة «أحد» في البداية والنهاية."
+   ]
+  },
+  {
+   "chapter": 113,
+   "title": [
+    "向曙光之主求庇护",
+    "Seeking refuge with the Lord of daybreak",
+    "الاستعاذة برب الفلق"
+   ],
+   "body": [
+    "五节：求庇护的对象（1）与四种被求庇护之恶（2-5），其中三种以「وَمِن شَرِّ」重复开头，是识别重复结构的最短范例。",
+    "Five verses: the One with whom refuge is sought (1) and four kinds of harm (2-5), three of which open with the repeated phrase \"وَمِن شَرِّ\" – the shortest example of a repeated structure.",
+    "خمس آيات: المستعاذ به (1) وأربعة أنواع من الشر (2-5)، ثلاثة منها تبدأ بعبارة «وَمِن شَرِّ» المتكررة – أقصر مثال على البنية المتكررة."
+   ]
+  },
+  {
+   "chapter": 114,
+   "title": [
+    "向世人之主求庇护",
+    "Seeking refuge with the Lord of mankind",
+    "الاستعاذة برب الناس"
+   ],
+   "body": [
+    "六节：三个称谓（主、君王、神）层层递进（1-3），然后说明所求庇护的恶——潜伏的教唆者（4-6）。「ٱلنَّاسِ」一词在六节里出现五次，适合词频与结构练习。",
+    "Six verses: three ascending titles – Lord, King, God (1-3) – followed by the harm sought refuge from: the withdrawing whisperer (4-6). The word \"ٱلنَّاسِ\" appears five times in six verses, ideal for frequency and structure exercises.",
+    "ست آيات: ثلاثة أوصاف متدرجة – رب، ملك، إله (1-3) – ثم الشر المستعاذ منه: الوسواس الخناس (4-6). تتكرر كلمة «ٱلنَّاسِ» خمس مرات في ست آيات."
+   ]
+  },
+  {
+   "chapter": 49,
+   "title": [
+    "信士社群的礼节与准则",
+    "Manners and norms of the believing community",
+    "آداب المجتمع المؤمن وقواعده"
+   ],
+   "body": [
+    "十八节可分为五个教学单元：对先知的礼节（1-5）、核实消息（6-8）、和解与兄弟情谊（9-10）、禁止嘲笑猜疑窥探背谈与人类平等（11-13）、信仰与归顺的区别（14-18）。「يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟」呼语出现五次，是分段标志。",
+    "Eighteen verses in five teaching units: etiquette before the Prophet (1-5), verifying news (6-8), reconciliation and brotherhood (9-10), prohibition of mockery, suspicion, spying and backbiting plus human equality (11-13), and the difference between faith and submission (14-18). The address \"يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟\" occurs five times and marks the sections.",
+    "ثماني عشرة آية في خمس وحدات: الأدب مع النبي (1-5)، التثبت من الأخبار (6-8)، الإصلاح والأخوة (9-10)، النهي عن السخرية والظن والتجسس والغيبة ومساواة البشر (11-13)، والفرق بين الإيمان والإسلام (14-18). يتكرر النداء «يَـٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُوا۟» خمس مرات."
+   ]
+  },
+  {
+   "chapter": 67,
+   "title": [
+    "主权、创造的完美与警醒",
+    "Sovereignty, the perfection of creation and warning",
+    "الملك وإتقان الخلق والإنذار"
+   ],
+   "body": [
+    "三十节分六个单元：主权与创造的完美（1-5）、否认者的结局与忏悔（6-11）、畏惧与被驯服的大地（12-15）、警告与两种行走者的比喻（16-22）、感官的创造与复活的允诺（23-27）、结语（28-30）。多次出现「قُلْ」引导的反问，是本章的修辞特征。",
+    "Thirty verses in six units: sovereignty and flawless creation (1-5), the fate and confession of deniers (6-11), fear of the unseen and the subdued earth (12-15), warnings and the parable of two walkers (16-22), the creation of the senses and the promise of resurrection (23-27), and the conclusion (28-30). Rhetorical questions introduced by \"قُلْ\" recur throughout.",
+    "ثلاثون آية في ست وحدات: الملك وإتقان الخلق (1-5)، مصير المكذبين واعترافهم (6-11)، الخشية بالغيب والأرض الذلول (12-15)، الإنذار ومثل الماشيَين (16-22)، خلق الحواس ووعد الحشر (23-27)، والخاتمة (28-30). تتكرر الأسئلة الاستنكارية المبدوءة بـ«قُلْ»."
+   ]
+  },
+  {
+   "chapter": 55,
+   "title": [
+    "恩典的清单与重复的反问",
+    "The catalogue of favours and the repeated refrain",
+    "تعداد النعم واللازمة المتكررة"
+   ],
+   "body": [
+    "七十八节按五个单元讲授：教导与自然秩序（1-13）、人与精灵的创造、两海与船只（14-25）、万物消逝与审判（26-45）、两座乐园（46-61）、另外两座乐园与结语（62-78）。反问句「فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ」重复 31 次，是识别重复结构、避免机械逐节总结的核心案例。",
+    "Seventy-eight verses in five units: teaching and the natural order (1-13), the creation of humans and jinn, the two seas and ships (14-25), the passing of all things and judgement (26-45), the two gardens (46-61), and two further gardens with the conclusion (62-78). The refrain \"فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ\" repeats 31 times – the key case for recognising repeated structure instead of summarising verse by verse.",
+    "ثمان وسبعون آية في خمس وحدات: التعليم ونظام الكون (1-13)، خلق الإنسان والجان والبحران والسفن (14-25)، فناء الخلق والحساب (26-45)، الجنتان (46-61)، وجنتان أخريان والخاتمة (62-78). تتكرر اللازمة «فَبِأَىِّ ءَالَآءِ رَبِّكُمَا تُكَذِّبَانِ» 31 مرة."
+   ]
+  },
+  {
+   "chapter": 12,
+   "title": [
+    "优素福的故事：从梦到梦的实现",
+    "The story of Yusuf: from the dream to its fulfilment",
+    "قصة يوسف: من الرؤيا إلى تحققها"
+   ],
+   "body": [
+    "一百一十一节是一条连续叙事：开篇的梦（4-6）在结尾实现（100）。按事件顺序拆成十五个单元，人物关系（优素福、父亲、兄弟们、权贵及其妻子、狱友、国王）贯穿全篇，适合长上下文检索、跨节因果与事件排序练习。",
+    "One hundred and eleven verses form one continuous narrative: the opening dream (4-6) is fulfilled at the end (100). Divided into fifteen units by event, with the cast (Yusuf, his father, his brothers, the Aziz and his wife, the two prisoners, the king) running throughout – suited to long-context retrieval, cross-verse causation and event ordering.",
+    "مئة وإحدى عشرة آية تشكل سردًا متصلًا: رؤيا البداية (4-6) تتحقق في النهاية (100). مقسمة إلى خمس عشرة وحدة بحسب الأحداث، والشخصيات (يوسف، أبوه، إخوته، العزيز وامرأته، صاحبا السجن، الملك) حاضرة في كل القصة."
+   ]
+  }
+ ],
+ "units": [
+  {
+   "chapter": 1,
+   "from": 1,
+   "to": 4,
+   "title": [
+    "赞颂与主的属性",
+    "Praise and the attributes of the Lord",
+    "الحمد وصفات الرب"
+   ],
+   "theme": [
+    "以主之名开篇，赞颂养育众世界、至仁至慈、掌管报应日的主。",
+    "Opening in the name of God and praising the Lord of the worlds, Most Gracious, Most Merciful, Master of the Day of Recompense.",
+    "الافتتاح باسم الله والثناء على رب العالمين الرحمن الرحيم مالك يوم الدين."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "赞颂",
+     "Praise",
+     "الحمد"
+    ],
+    [
+     "养育众世界的主",
+     "Lord of the worlds",
+     "رب العالمين"
+    ],
+    [
+     "报应日",
+     "Day of Recompense",
+     "يوم الدين"
+    ]
+   ]
+  },
+  {
+   "chapter": 1,
+   "from": 5,
+   "to": 5,
+   "title": [
+    "唯独崇拜与求助",
+    "Exclusive worship and seeking help",
+    "إفراد العبادة والاستعانة"
+   ],
+   "theme": [
+    "把崇拜与求助专归于主；代词「إِيَّاكَ」前置表示专一。",
+    "Worship and seeking help are directed to God alone; the fronted pronoun \"إِيَّاكَ\" expresses exclusivity.",
+    "تخصيص العبادة والاستعانة بالله؛ تقديم «إِيَّاكَ» يفيد الحصر."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "专一崇拜",
+     "Exclusive worship",
+     "إفراد العبادة"
+    ],
+    [
+     "求助",
+     "Seeking help",
+     "الاستعانة"
+    ]
+   ]
+  },
+  {
+   "chapter": 1,
+   "from": 6,
+   "to": 7,
+   "title": [
+    "祈求端正的道路",
+    "The plea for the straight path",
+    "طلب الصراط المستقيم"
+   ],
+   "theme": [
+    "祈求引导到端正的道路，并以三类人说明这条道路：蒙恩者、被谴怒者、迷误者。",
+    "A plea for guidance to the straight path, described through three groups: those favoured, those who earned anger, those astray.",
+    "طلب الهداية إلى الصراط المستقيم ووصفه بثلاث فئات: المنعم عليهم، المغضوب عليهم، الضالين."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "端正的道路",
+     "The straight path",
+     "الصراط المستقيم"
+    ],
+    [
+     "三类人的对照",
+     "Contrast of three groups",
+     "مقابلة الفئات الثلاث"
+    ]
+   ]
+  },
+  {
+   "chapter": 103,
+   "from": 1,
+   "to": 2,
+   "title": [
+    "起誓与总判断",
+    "The oath and the general verdict",
+    "القسم والحكم العام"
+   ],
+   "theme": [
+    "以时光起誓，断言人处于亏折之中。",
+    "An oath by time, then the verdict that mankind is in loss.",
+    "القسم بالعصر ثم الحكم بأن الإنسان في خسر."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "以时光起誓",
+     "Oath by time",
+     "القسم بالعصر"
+    ],
+    [
+     "亏折",
+     "Loss",
+     "الخسر"
+    ]
+   ]
+  },
+  {
+   "chapter": 103,
+   "from": 3,
+   "to": 3,
+   "title": [
+    "例外：四个条件",
+    "The exception: four conditions",
+    "الاستثناء: الشروط الأربعة"
+   ],
+   "theme": [
+    "归信、行善、以真理互勉、以坚忍互勉——四个条件依次并列。",
+    "Belief, righteous deeds, mutual counsel to truth, mutual counsel to patience – four conditions in sequence.",
+    "الإيمان والعمل الصالح والتواصي بالحق والتواصي بالصبر – أربعة شروط متتابعة."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "归信与行善",
+     "Faith and righteous deeds",
+     "الإيمان والعمل الصالح"
+    ],
+    [
+     "以真理互勉",
+     "Counsel to truth",
+     "التواصي بالحق"
+    ],
+    [
+     "以坚忍互勉",
+     "Counsel to patience",
+     "التواصي بالصبر"
+    ]
+   ]
+  },
+  {
+   "chapter": 108,
+   "from": 1,
+   "to": 3,
+   "title": [
+    "恩赐与回应",
+    "The gift and the response",
+    "العطاء والاستجابة"
+   ],
+   "theme": [
+    "赐予多福 → 礼拜与宰牲 → 憎恨者才是断绝者。",
+    "The gift of abundance, the response of prayer and sacrifice, and the judgement that the hater is the one cut off.",
+    "عطاء الكوثر، ثم الصلاة والنحر، ثم الحكم بأن الشانئ هو الأبتر."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "多福",
+     "Abundance (al-Kawthar)",
+     "الكوثر"
+    ],
+    [
+     "礼拜与宰牲",
+     "Prayer and sacrifice",
+     "الصلاة والنحر"
+    ]
+   ]
+  },
+  {
+   "chapter": 112,
+   "from": 1,
+   "to": 2,
+   "title": [
+    "肯定：独一与被仰赖",
+    "Affirmation: One and Eternal Refuge",
+    "الإثبات: أحد وصمد"
+   ],
+   "theme": [
+    "两个肯定的称谓：独一、万物所仰赖。",
+    "Two affirmed attributes: the One, the Eternal Refuge.",
+    "صفتان مثبتتان: أحد، الصمد."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "独一",
+     "Oneness",
+     "الأحدية"
+    ],
+    [
+     "被仰赖者",
+     "The Eternal Refuge",
+     "الصمد"
+    ]
+   ]
+  },
+  {
+   "chapter": 112,
+   "from": 3,
+   "to": 4,
+   "title": [
+    "否定：不生不被生、无匹敌",
+    "Negation: neither begets nor is begotten, no equal",
+    "النفي: لم يلد ولم يولد ولا كفو"
+   ],
+   "theme": [
+    "三个否定句排除一切相似与匹敌。",
+    "Three negations exclude any likeness or equal.",
+    "ثلاثة نفي تستبعد كل مثيل ونظير."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "无匹敌",
+     "No equal",
+     "نفي الكفء"
+    ]
+   ]
+  },
+  {
+   "chapter": 113,
+   "from": 1,
+   "to": 1,
+   "title": [
+    "求庇护的对象",
+    "The One with whom refuge is sought",
+    "المستعاذ به"
+   ],
+   "theme": [
+    "向曙光之主求庇护。",
+    "Seeking refuge with the Lord of daybreak.",
+    "الاستعاذة برب الفلق."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "求庇护",
+     "Seeking refuge",
+     "الاستعاذة"
+    ]
+   ]
+  },
+  {
+   "chapter": 113,
+   "from": 2,
+   "to": 5,
+   "title": [
+    "四种恶",
+    "Four kinds of harm",
+    "أنواع الشر الأربعة"
+   ],
+   "theme": [
+    "受造物之恶、黑夜之恶、吹结者之恶、嫉妒者之恶——三节以「وَمِن شَرِّ」重复开头。",
+    "The harm of what is created, of darkness, of those who blow on knots, and of the envier – three verses open with \"وَمِن شَرِّ\".",
+    "شر ما خلق، شر الغاسق، شر النفاثات، شر الحاسد – ثلاث آيات تبدأ بـ«وَمِن شَرِّ»."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "重复结构「وَمِن شَرِّ」",
+     "Repeated opening \"وَمِن شَرِّ\"",
+     "البنية المتكررة «وَمِن شَرِّ»"
+    ],
+    [
+     "嫉妒",
+     "Envy",
+     "الحسد"
+    ]
+   ]
+  },
+  {
+   "chapter": 114,
+   "from": 1,
+   "to": 3,
+   "title": [
+    "三个递进的称谓",
+    "Three ascending titles",
+    "ثلاثة أوصاف متدرجة"
+   ],
+   "theme": [
+    "世人的主、世人的君王、世人的神。",
+    "Lord of mankind, King of mankind, God of mankind.",
+    "رب الناس، ملك الناس، إله الناس."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "主—君王—神的递进",
+     "Lord–King–God progression",
+     "تدرج رب–ملك–إله"
+    ]
+   ]
+  },
+  {
+   "chapter": 114,
+   "from": 4,
+   "to": 6,
+   "title": [
+    "所求庇护的恶",
+    "The harm sought refuge from",
+    "الشر المستعاذ منه"
+   ],
+   "theme": [
+    "潜伏的教唆者，在人心中低语，来自精灵与人。",
+    "The withdrawing whisperer who whispers in people's hearts, from jinn and men.",
+    "الوسواس الخناس الذي يوسوس في صدور الناس من الجنة والناس."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "教唆者",
+     "The whisperer",
+     "الوسواس"
+    ],
+    [
+     "精灵与人",
+     "Jinn and men",
+     "الجنة والناس"
+    ]
+   ]
+  },
+  {
+   "chapter": 49,
+   "from": 1,
+   "to": 5,
+   "title": [
+    "对先知的礼节",
+    "Etiquette before the Prophet",
+    "الأدب مع النبي"
+   ],
+   "theme": [
+    "不抢先、不高声、压低声音者受赞、在寝室外呼喊者不明理、耐心等待更好。",
+    "Do not go ahead, do not raise voices; those who lower their voices are praised; calling from outside the rooms shows lack of understanding; waiting is better.",
+    "عدم التقدم ورفع الصوت، مدح من يغض صوته، ذم من ينادي من وراء الحجرات، وفضل الصبر."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "礼节与尊重",
+     "Etiquette and respect",
+     "الأدب والاحترام"
+    ],
+    [
+     "压低声音",
+     "Lowering the voice",
+     "غض الصوت"
+    ]
+   ]
+  },
+  {
+   "chapter": 49,
+   "from": 6,
+   "to": 8,
+   "title": [
+    "核实消息",
+    "Verifying news",
+    "التثبت من الأخبار"
+   ],
+   "theme": [
+    "悖逆者带来消息要核实，以免因无知伤害他人而后悔；信仰被真主装饰在信士心中。",
+    "Verify news brought by a wrongdoer lest you harm people in ignorance; faith has been made beloved in the believers' hearts.",
+    "التثبت من خبر الفاسق حتى لا يُصاب قوم بجهالة، وتحبيب الإيمان في القلوب."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "核实消息",
+     "Verification of news",
+     "التثبت من الخبر"
+    ],
+    [
+     "信仰的装饰",
+     "Faith made beloved",
+     "تحبيب الإيمان"
+    ]
+   ]
+  },
+  {
+   "chapter": 49,
+   "from": 9,
+   "to": 10,
+   "title": [
+    "和解与兄弟情谊",
+    "Reconciliation and brotherhood",
+    "الإصلاح والأخوة"
+   ],
+   "theme": [
+    "两伙信士争斗当调解，以公正处理；信士皆为兄弟。",
+    "When two groups of believers fight, make peace justly; the believers are brothers.",
+    "الإصلاح بين الطائفتين بالعدل، والمؤمنون إخوة."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "和解",
+     "Reconciliation",
+     "الإصلاح"
+    ],
+    [
+     "公正",
+     "Justice",
+     "العدل"
+    ],
+    [
+     "信士的兄弟情谊",
+     "Brotherhood of believers",
+     "أخوة المؤمنين"
+    ]
+   ]
+  },
+  {
+   "chapter": 49,
+   "from": 11,
+   "to": 13,
+   "title": [
+    "禁止嘲笑、猜疑与背谈；人类平等",
+    "No mockery, suspicion or backbiting; human equality",
+    "النهي عن السخرية والظن والغيبة؛ مساواة البشر"
+   ],
+   "theme": [
+    "禁止嘲笑、指责、取绰号、过分猜疑、窥探、背谈；人类被造为民族与部落以便互相认识，最尊贵者是最敬畏者。",
+    "Prohibition of mockery, fault-finding, nicknames, excessive suspicion, spying and backbiting; humanity was made into peoples and tribes to know one another, and the most noble is the most righteous.",
+    "النهي عن السخرية واللمز والتنابز والظن والتجسس والغيبة؛ خُلق الناس شعوبًا وقبائل للتعارف، وأكرمهم أتقاهم."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "禁止嘲笑与绰号",
+     "No mockery or nicknames",
+     "النهي عن السخرية والتنابز"
+    ],
+    [
+     "猜疑、窥探、背谈",
+     "Suspicion, spying, backbiting",
+     "الظن والتجسس والغيبة"
+    ],
+    [
+     "人类平等与敬畏",
+     "Human equality and righteousness",
+     "المساواة والتقوى"
+    ]
+   ]
+  },
+  {
+   "chapter": 49,
+   "from": 14,
+   "to": 18,
+   "title": [
+    "信仰与归顺的区别",
+    "The difference between faith and submission",
+    "الفرق بين الإيمان والإسلام"
+   ],
+   "theme": [
+    "游牧人说「我们归信了」，应说「我们归顺了」；真信士是归信且不怀疑并奋斗者；不要以归顺施恩于先知；真主知幽玄。",
+    "The desert Arabs say \"we believe\" but should say \"we have submitted\"; true believers believe without doubt and strive; do not count your submission as a favour; God knows the unseen.",
+    "قول الأعراب آمنّا وحقه أسلمنا؛ المؤمنون حقًا من آمنوا ولم يرتابوا وجاهدوا؛ لا يُمنّ بالإسلام؛ الله يعلم الغيب."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "信仰与归顺",
+     "Faith versus submission",
+     "الإيمان والإسلام"
+    ],
+    [
+     "真诚的信士",
+     "The truthful believers",
+     "الصادقون"
+    ]
+   ]
+  },
+  {
+   "chapter": 67,
+   "from": 1,
+   "to": 5,
+   "title": [
+    "主权与创造的完美",
+    "Sovereignty and flawless creation",
+    "الملك وإتقان الخلق"
+   ],
+   "theme": [
+    "主权在主手中；创造死与生以考验谁行为最好；七层天毫无参差；星辰装饰天空。",
+    "Sovereignty is in His hand; death and life are created to test who is best in deed; seven heavens without flaw; stars adorn the sky.",
+    "الملك بيد الله؛ خلق الموت والحياة للابتلاء؛ سبع سماوات بلا تفاوت؛ زينة السماء بالمصابيح."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "主权",
+     "Sovereignty",
+     "الملك"
+    ],
+    [
+     "生死为考验",
+     "Life and death as a test",
+     "الابتلاء بالموت والحياة"
+    ],
+    [
+     "创造无缺陷",
+     "Flawless creation",
+     "إتقان الخلق"
+    ]
+   ]
+  },
+  {
+   "chapter": 67,
+   "from": 6,
+   "to": 11,
+   "title": [
+    "否认者的结局与忏悔",
+    "The fate and confession of deniers",
+    "مصير المكذبين واعترافهم"
+   ],
+   "theme": [
+    "火狱的情景；看守者的质问「难道没有警告者来过吗」；否认者承认自己不听不思。",
+    "The scene of Hell; the keepers ask \"did no warner come to you?\"; the deniers confess they neither listened nor reasoned.",
+    "مشهد جهنم؛ سؤال الخزنة «ألم يأتكم نذير»؛ اعتراف المكذبين بأنهم لم يسمعوا ولم يعقلوا."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "警告者",
+     "The warner",
+     "النذير"
+    ],
+    [
+     "听与思",
+     "Listening and reasoning",
+     "السمع والعقل"
+    ]
+   ]
+  },
+  {
+   "chapter": 67,
+   "from": 12,
+   "to": 15,
+   "title": [
+    "畏惧幽玄与被驯服的大地",
+    "Fear of the unseen and the subdued earth",
+    "الخشية بالغيب والأرض الذلول"
+   ],
+   "theme": [
+    "未见而畏惧者得饶恕；隐藏或公开皆被知晓；创造者岂能不知；大地被驯服供行走与获取给养。",
+    "Those who fear the unseen are forgiven; hidden or open speech is known; would the Creator not know; the earth is made subservient for walking and provision.",
+    "مغفرة لمن يخشى ربه بالغيب؛ السر والجهر معلومان؛ ألا يعلم من خلق؛ الأرض ذلول للمشي والرزق."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "畏惧幽玄",
+     "Fear of the unseen",
+     "الخشية بالغيب"
+    ],
+    [
+     "创造者的全知",
+     "The Creator's knowledge",
+     "علم الخالق"
+    ],
+    [
+     "大地的驯服",
+     "The subdued earth",
+     "الأرض الذلول"
+    ]
+   ]
+  },
+  {
+   "chapter": 67,
+   "from": 16,
+   "to": 22,
+   "title": [
+    "警告与两种行走者的比喻",
+    "Warnings and the parable of two walkers",
+    "الإنذار ومثل الماشيَين"
+   ],
+   "theme": [
+    "地陷与飞石的警告；鸟被至仁主托住；谁能援助与供给；俯伏而行者与端正而行者的对比。",
+    "Warnings of the earth swallowing and stones from the sky; birds held by the Most Gracious; who can help and provide; the one who walks on his face versus the one who walks upright.",
+    "الإنذار بالخسف والحاصب؛ الطير يمسكها الرحمن؛ من ينصر ويرزق؛ مثل من يمشي مكبًا ومن يمشي سويًا."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "警告",
+     "Warning",
+     "الإنذار"
+    ],
+    [
+     "鸟的迹象",
+     "The sign of the birds",
+     "آية الطير"
+    ],
+    [
+     "两种行走者",
+     "Two walkers",
+     "الماشيان"
+    ]
+   ]
+  },
+  {
+   "chapter": 67,
+   "from": 23,
+   "to": 27,
+   "title": [
+    "感官的创造与复活的允诺",
+    "The creation of the senses and the promise of resurrection",
+    "خلق الحواس ووعد الحشر"
+   ],
+   "theme": [
+    "听觉、视觉与心被创造而少有人感谢；被繁衍于大地并将被集合；否认者问允诺何时；见到时面容变色。",
+    "Hearing, sight and hearts were created yet few give thanks; spread on the earth and to be gathered; deniers ask when the promise is; when they see it their faces darken.",
+    "خلق السمع والأبصار والأفئدة وقلة الشكر؛ الذرء في الأرض والحشر؛ سؤال المكذبين عن الوعد؛ سوء وجوههم عند رؤيته."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "感官与感谢",
+     "Senses and gratitude",
+     "الحواس والشكر"
+    ],
+    [
+     "复活与集合",
+     "Resurrection and gathering",
+     "الحشر"
+    ]
+   ]
+  },
+  {
+   "chapter": 67,
+   "from": 28,
+   "to": 30,
+   "title": [
+    "结语：托靠与水的反问",
+    "Conclusion: reliance and the question of water",
+    "الخاتمة: التوكل وسؤال الماء"
+   ],
+   "theme": [
+    "无论先知被毁灭或被慈悯，谁能保护不信者；我们信仰并托靠至仁主；若水渗入地下谁能带来流泉。",
+    "Whether the Prophet is destroyed or shown mercy, who protects the disbelievers; we believe in and rely on the Most Gracious; if your water sank away, who would bring flowing water.",
+    "من يجير الكافرين؛ الإيمان بالرحمن والتوكل عليه؛ من يأتي بماء معين إذا غار الماء."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "托靠",
+     "Reliance on God",
+     "التوكل"
+    ],
+    [
+     "水的反问",
+     "The question of water",
+     "سؤال الماء"
+    ]
+   ]
+  },
+  {
+   "chapter": 55,
+   "from": 1,
+   "to": 13,
+   "title": [
+    "教导与自然秩序",
+    "Teaching and the natural order",
+    "التعليم ونظام الكون"
+   ],
+   "theme": [
+    "至仁主教授古兰、创造人、教他表达；日月依定数，星树叩头；天被升起、天平被设置；大地与果实为众生而设。",
+    "The Most Gracious taught the Quran, created man and taught him expression; sun and moon by calculation, stars and trees prostrate; the sky raised and the balance set; the earth and its fruits for all creatures.",
+    "الرحمن علّم القرآن وخلق الإنسان وعلّمه البيان؛ الشمس والقمر بحسبان؛ رفع السماء ووضع الميزان؛ الأرض وثمارها للأنام."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "教授古兰与表达",
+     "Teaching the Quran and expression",
+     "تعليم القرآن والبيان"
+    ],
+    [
+     "天平与公平",
+     "The balance and justice",
+     "الميزان والقسط"
+    ],
+    [
+     "大地的恩典",
+     "Favours of the earth",
+     "نعم الأرض"
+    ]
+   ]
+  },
+  {
+   "chapter": 55,
+   "from": 14,
+   "to": 25,
+   "title": [
+    "人与精灵的创造、两海与船只",
+    "Creation of man and jinn, the two seas and ships",
+    "خلق الإنسان والجان والبحران والسفن"
+   ],
+   "theme": [
+    "人由干泥、精灵由火焰而造；两个东方与两个西方之主；两海相遇而有屏障；珍珠与珊瑚；如山的船只。",
+    "Man from clay, jinn from a smokeless flame; Lord of the two easts and two wests; the two seas meet with a barrier between; pearls and coral; ships like mountains.",
+    "خلق الإنسان من صلصال والجان من مارج؛ رب المشرقين والمغربين؛ البحران وبينهما برزخ؛ اللؤلؤ والمرجان؛ السفن كالأعلام."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "人与精灵的造化",
+     "Creation of man and jinn",
+     "خلق الإنسان والجان"
+    ],
+    [
+     "两海与屏障",
+     "The two seas and the barrier",
+     "البحران والبرزخ"
+    ]
+   ]
+  },
+  {
+   "chapter": 55,
+   "from": 26,
+   "to": 45,
+   "title": [
+    "万物消逝与审判",
+    "The passing of all things and judgement",
+    "فناء الخلق والحساب"
+   ],
+   "theme": [
+    "大地上的一切都要消逝，唯主的尊颜永存；人与精灵不能穿越天地边缘；天破裂之日；罪人凭标记被认出。",
+    "All on earth will perish while the Lord's face remains; jinn and men cannot pass beyond the heavens and earth; the day the sky splits; criminals are known by their marks.",
+    "كل من عليها فان ويبقى وجه ربك؛ عجز الثقلين عن النفاذ؛ يوم تنشق السماء؛ يُعرف المجرمون بسيماهم."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "万物消逝",
+     "All things perish",
+     "الفناء"
+    ],
+    [
+     "审判日的景象",
+     "Scenes of judgement",
+     "مشاهد الحساب"
+    ]
+   ]
+  },
+  {
+   "chapter": 55,
+   "from": 46,
+   "to": 61,
+   "title": [
+    "两座乐园",
+    "The two gardens",
+    "الجنتان"
+   ],
+   "theme": [
+    "畏惧站在主面前者得两座乐园：枝条、双泉、双种果实、锦缎床褥；「善行的报酬只是善行」。",
+    "For whoever fears standing before his Lord are two gardens: branches, two springs, two kinds of every fruit, brocade beds; \"is the reward of good anything but good?\".",
+    "لمن خاف مقام ربه جنتان: أفنان، عينان، زوجان من كل فاكهة، فرش من إستبرق؛ «هل جزاء الإحسان إلا الإحسان»."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "畏惧与报酬",
+     "Fear and reward",
+     "الخوف والجزاء"
+    ],
+    [
+     "善行的报酬",
+     "The reward of good",
+     "جزاء الإحسان"
+    ]
+   ]
+  },
+  {
+   "chapter": 55,
+   "from": 62,
+   "to": 78,
+   "title": [
+    "另外两座乐园与结语",
+    "Two further gardens and the conclusion",
+    "جنتان أخريان والخاتمة"
+   ],
+   "theme": [
+    "另外两座深绿的乐园：喷涌的双泉、水果椰枣石榴、帐篷；结语赞颂具尊严与尊荣的主之名。",
+    "Two further dark-green gardens: gushing springs, fruit, palms and pomegranates, pavilions; the conclusion blesses the name of the Lord of majesty and honour.",
+    "جنتان مدهامتان: عينان نضاختان، فاكهة ونخل ورمان، خيام؛ الخاتمة: تبارك اسم ربك ذي الجلال والإكرام."
+   ],
+   "persons": [],
+   "concepts": [
+    [
+     "另外两座乐园",
+     "The further two gardens",
+     "الجنتان الأخريان"
+    ],
+    [
+     "尊严与尊荣",
+     "Majesty and honour",
+     "الجلال والإكرام"
+    ]
+   ]
+  },
+  {
+   "chapter": 12,
+   "from": 1,
+   "to": 3,
+   "title": [
+    "引言：明白的经典与最美的故事",
+    "Prologue: the clear Book and the best of stories",
+    "المقدمة: الكتاب المبين وأحسن القصص"
+   ],
+   "theme": [
+    "章首字母；阿拉伯语的古兰；「我们给你讲述最美的故事」。",
+    "Disconnected letters; an Arabic Quran; \"We relate to you the best of stories\".",
+    "الحروف المقطعة؛ قرآن عربي؛ «نحن نقص عليك أحسن القصص»."
+   ],
+   "persons": [
+    [
+     "先知穆罕默德（受话者）",
+     "Prophet Muhammad (the one addressed)",
+     "النبي محمد ﷺ (المخاطَب)"
+    ]
+   ],
+   "concepts": [
+    [
+     "最美的故事",
+     "The best of stories",
+     "أحسن القصص"
+    ]
+   ]
+  },
+  {
+   "chapter": 12,
+   "from": 4,
+   "to": 6,
+   "title": [
+    "优素福的梦与父亲的叮嘱",
+    "Yusuf's dream and his father's counsel",
+    "رؤيا يوسف ووصية أبيه"
+   ],
+   "theme": [
+    "优素福梦见十一颗星、太阳与月亮向他叩头；父亲叮嘱不要告诉兄弟们，并预言主将选拔他。",
+    "Yusuf dreams of eleven stars, the sun and the moon prostrating to him; his father warns him not to tell his brothers and foretells that God will choose him.",
+    "يوسف يرى أحد عشر كوكبًا والشمس والقمر ساجدين؛ أبوه يوصيه ألا يقص رؤياه على إخوته ويبشره بالاجتباء."
+   ],
+   "persons": [
+    [
+     "优素福",
+     "Yusuf",
+     "يوسف"
+    ],
+    [
+     "叶尔孤白（父亲）",
+     "Ya'qub (his father)",
+     "يعقوب (أبوه)"
+    ]
+   ],
+   "concepts": [
+    [
+     "梦",
+     "The dream",
+     "الرؤيا"
+    ],
+    [
+     "父亲的叮嘱",
+     "The father's counsel",
+     "وصية الأب"
+    ]
+   ]
+  },
+  {
+   "chapter": 12,
+   "from": 7,
+   "to": 18,
+   "title": [
+    "兄弟们的密谋与井",
+    "The brothers' plot and the well",
+    "مكر الإخوة والجب"
+   ],
+   "theme": [
+    "兄弟们嫉妒，商议杀他或扔进井里；请求带他出游；投入井中；带回染血的衬衣；父亲说「美好的坚忍」。",
+    "The brothers, jealous, plot to kill him or cast him into a well; they ask to take him out; they throw him in the well; they bring back a shirt with false blood; the father says \"beautiful patience\".",
+    "حسد الإخوة والتشاور في قتله أو طرحه؛ طلب أخذه معهم؛ إلقاؤه في الجب؛ القميص بدم كذب؛ قول الأب «فصبر جميل»."
+   ],
+   "persons": [
+    [
+     "优素福",
+     "Yusuf",
+     "يوسف"
+    ],
+    [
+     "兄弟们",
+     "His brothers",
+     "إخوته"
+    ],
+    [
+     "叶尔孤白",
+     "Ya'qub",
+     "يعقوب"
+    ]
+   ],
+   "concepts": [
+    [
+     "嫉妒与密谋",
+     "Envy and plotting",
+     "الحسد والمكر"
+    ],
+    [
+     "染血的衬衣",
+     "The blood-stained shirt",
+     "القميص بدم كذب"
+    ],
+    [
+     "美好的坚忍",
+     "Beautiful patience",
+     "الصبر الجميل"
+    ]
+   ]
+  },
+  {
+   "chapter": 12,
+   "from": 19,
+   "to": 22,
+   "title": [
+    "商队救起与被卖到埃及",
+    "Rescued by a caravan and sold in Egypt",
+    "القافلة وبيعه في مصر"
+   ],
+   "theme": [
+    "取水人发现少年；以低价卖出；埃及的买主让妻子善待他；优素福成年后获智慧与知识。",
+    "A water-drawer finds the boy; he is sold for a low price; the Egyptian buyer tells his wife to treat him well; on reaching maturity Yusuf is given judgement and knowledge.",
+    "الوارد يجد الغلام؛ بيعه بثمن بخس؛ المشتري المصري يوصي امرأته به؛ إيتاؤه الحكم والعلم."
+   ],
+   "persons": [
+    [
+     "优素福",
+     "Yusuf",
+     "يوسف"
+    ],
+    [
+     "商队",
+     "The caravan",
+     "القافلة"
+    ],
+    [
+     "埃及买主（权贵）",
+     "The Egyptian buyer (al-Aziz)",
+     "الذي اشتراه من مصر (العزيز)"
+    ]
+   ],
+   "concepts": [
+    [
+     "低价出卖",
+     "Sold for a low price",
+     "البيع بثمن بخس"
+    ],
+    [
+     "智慧与知识",
+     "Judgement and knowledge",
+     "الحكم والعلم"
+    ]
+   ]
+  },
+  {
+   "chapter": 12,
+   "from": 23,
+   "to": 29,
+   "title": [
+    "权贵之妻的诱惑与衬衣的证据",
+    "The wife's seduction and the evidence of the shirt",
+    "مراودة امرأة العزيز وشهادة القميص"
+   ],
+   "theme": [
+    "她锁门引诱，他求主庇护；两人奔向门口，衬衣从后面撕破；证人以衬衣裂口判断真伪。",
+    "She locks the doors and seeks to seduce him; he seeks refuge with God; both race to the door, the shirt is torn from behind; a witness judges by where the shirt is torn.",
+    "إغلاق الأبواب والمراودة؛ «معاذ الله»؛ السباق إلى الباب وقدّ القميص من دبر؛ شهادة الشاهد بموضع القدّ."
+   ],
+   "persons": [
+    [
+     "优素福",
+     "Yusuf",
+     "يوسف"
+    ],
+    [
+     "权贵之妻",
+     "The wife of al-Aziz",
+     "امرأة العزيز"
+    ],
+    [
+     "权贵",
+     "Al-Aziz",
+     "العزيز"
+    ],
+    [
+     "证人",
+     "The witness",
+     "الشاهد"
+    ]
+   ],
+   "concepts": [
+    [
+     "求主庇护",
+     "Seeking refuge with God",
+     "معاذ الله"
+    ],
+    [
+     "衬衣的证据",
+     "The evidence of the shirt",
+     "شهادة القميص"
+    ]
+   ]
+  },
+  {
+   "chapter": 12,
+   "from": 30,
+   "to": 35,
+   "title": [
+    "城中妇女的议论、宴会与入狱",
+    "The women of the city, the banquet and imprisonment",
+    "نسوة المدينة والمتكأ والسجن"
+   ],
+   "theme": [
+    "城中妇女议论；她设宴让她们看见优素福，她们割伤手；她公开威胁；优素福宁选监狱；他被关入狱。",
+    "The women of the city talk; she prepares a banquet and the women cut their hands on seeing him; she threatens openly; Yusuf prefers prison; he is imprisoned.",
+    "حديث النسوة؛ المتكأ وتقطيع الأيدي؛ التهديد بالسجن؛ «السجن أحب إلي»؛ سجنه."
+   ],
+   "persons": [
+    [
+     "优素福",
+     "Yusuf",
+     "يوسف"
+    ],
+    [
+     "权贵之妻",
+     "The wife of al-Aziz",
+     "امرأة العزيز"
+    ],
+    [
+     "城中妇女",
+     "The women of the city",
+     "نسوة المدينة"
+    ]
+   ],
+   "concepts": [
+    [
+     "宴会与割手",
+     "The banquet and the cut hands",
+     "المتكأ وتقطيع الأيدي"
+    ],
+    [
+     "宁选监狱",
+     "Preferring prison",
+     "اختيار السجن"
+    ]
+   ]
+  },
+  {
+   "chapter": 12,
+   "from": 36,
+   "to": 42,
+   "title": [
+    "狱中两名青年的梦与解梦",
+    "The two prisoners' dreams and their interpretation",
+    "رؤيا الفتيين وتأويلها"
+   ],
+   "theme": [
+    "两名青年各讲一梦；优素福先宣讲独一信仰，再解梦：一人斟酒、一人被钉死；请获释者在国王面前提起自己，却被遗忘数年。",
+    "Two young men each relate a dream; Yusuf first calls to the oneness of God, then interprets: one will serve wine, the other will be crucified; he asks the freed one to mention him to the king, but is forgotten for years.",
+    "رؤيا الفتيين؛ دعوة يوسف إلى التوحيد قبل التأويل؛ أحدهما يسقي ربه خمرًا والآخر يُصلب؛ النسيان بضع سنين."
+   ],
+   "persons": [
+    [
+     "优素福",
+     "Yusuf",
+     "يوسف"
+    ],
+    [
+     "两名狱友",
+     "Two fellow prisoners",
+     "صاحبا السجن"
+    ]
+   ],
+   "concepts": [
+    [
+     "先讲信仰再解梦",
+     "Faith before interpretation",
+     "الدعوة قبل التأويل"
+    ],
+    [
+     "解梦",
+     "Dream interpretation",
+     "تأويل الرؤيا"
+    ]
+   ]
+  },
+  {
+   "chapter": 12,
+   "from": 43,
+   "to": 49,
+   "title": [
+    "国王的梦与七年之解",
+    "The king's dream and the seven-year interpretation",
+    "رؤيا الملك وتأويل السنين السبع"
+   ],
+   "theme": [
+    "国王梦见七头肥牛被七头瘦牛吃掉、七穗青七穗枯；大臣们称为乱梦；获释者想起优素福；优素福解为七年丰收、七年荒旱、一年得雨。",
+    "The king dreams of seven fat cows eaten by seven lean ones and seven green ears and seven dry; the courtiers call it confused dreams; the freed man remembers Yusuf; Yusuf interprets seven years of plenty, seven of hardship, then a year of rain.",
+    "رؤيا الملك: سبع بقرات سمان يأكلهن سبع عجاف وسبع سنبلات؛ «أضغاث أحلام»؛ تذكّر الناجي؛ تأويل يوسف: سبع سنين دأبًا ثم سبع شداد ثم عام يغاث فيه الناس."
+   ],
+   "persons": [
+    [
+     "国王",
+     "The King",
+     "الملك"
+    ],
+    [
+     "大臣们",
+     "The chiefs",
+     "الملأ"
+    ],
+    [
+     "获释的狱友",
+     "The released prisoner",
+     "الذي نجا من السجن"
+    ],
+    [
+     "优素福",
+     "Yusuf",
+     "يوسف"
+    ]
+   ],
+   "concepts": [
+    [
+     "国王的梦",
+     "The king's dream",
+     "رؤيا الملك"
+    ],
+    [
+     "七年丰歉",
+     "Seven years of plenty and hardship",
+     "سنوات الرخاء والشدة"
+    ]
+   ]
+  },
+  {
+   "chapter": 12,
+   "from": 50,
+   "to": 57,
+   "title": [
+    "昭雪清白与掌管国库",
+    "Vindication and charge of the storehouses",
+    "ظهور البراءة وتولي الخزائن"
+   ],
+   "theme": [
+    "优素福要求先查明妇女割手之事；她们承认无过；权贵之妻承认真相；优素福说「我不能自称清白」；国王重用他；他请求掌管国库。",
+    "Yusuf asks that the matter of the women be examined first; they declare his innocence; the Aziz's wife confesses the truth; Yusuf says he does not claim himself innocent; the king appoints him; he asks to be put over the storehouses.",
+    "طلب يوسف التحقيق في أمر النسوة؛ اعترافهن ببراءته؛ اعتراف امرأة العزيز؛ «وما أبرئ نفسي»؛ تمكين الملك له؛ «اجعلني على خزائن الأرض»."
+   ],
+   "persons": [
+    [
+     "优素福",
+     "Yusuf",
+     "يوسف"
+    ],
+    [
+     "国王",
+     "The King",
+     "الملك"
+    ],
+    [
+     "权贵之妻",
+     "The wife of al-Aziz",
+     "امرأة العزيز"
+    ],
+    [
+     "城中妇女",
+     "The women of the city",
+     "نسوة المدينة"
+    ]
+   ],
+   "concepts": [
+    [
+     "昭雪清白",
+     "Vindication",
+     "إثبات البراءة"
+    ],
+    [
+     "掌管国库",
+     "Charge of the storehouses",
+     "تولي الخزائن"
+    ]
+   ]
+  },
+  {
+   "chapter": 12,
+   "from": 58,
+   "to": 68,
+   "title": [
+    "兄弟们第一次来埃及与父亲的叮嘱",
+    "The brothers' first visit and the father's counsel",
+    "قدوم الإخوة الأول ووصية الأب"
+   ],
+   "theme": [
+    "兄弟们来买粮，优素福认出他们；要求带来同母弟弟；把货款放回行囊；父亲要求誓约才让弟弟去；叮嘱从不同的门进城。",
+    "The brothers come for grain and Yusuf recognises them; he asks them to bring their brother; their goods are returned in their bags; the father demands a pledge before letting the brother go; he tells them to enter by different gates.",
+    "قدوم الإخوة وعرفهم يوسف؛ طلب الأخ من الأب؛ رد البضاعة في الرحال؛ الموثق من الله؛ الدخول من أبواب متفرقة."
+   ],
+   "persons": [
+    [
+     "优素福",
+     "Yusuf",
+     "يوسف"
+    ],
+    [
+     "兄弟们",
+     "His brothers",
+     "إخوته"
+    ],
+    [
+     "叶尔孤白",
+     "Ya'qub",
+     "يعقوب"
+    ]
+   ],
+   "concepts": [
+    [
+     "认出兄弟",
+     "Recognising the brothers",
+     "معرفة الإخوة"
+    ],
+    [
+     "誓约",
+     "The pledge",
+     "الموثق"
+    ],
+    [
+     "不同的门",
+     "Different gates",
+     "الأبواب المتفرقة"
+    ]
+   ]
+  },
+  {
+   "chapter": 12,
+   "from": 69,
+   "to": 79,
+   "title": [
+    "量杯与本雅明留下",
+    "The cup and the brother kept back",
+    "الصواع واحتجاز الأخ"
+   ],
+   "theme": [
+    "优素福与弟弟相认；量杯被放进弟弟的行囊；宣告失窃；按他们自己的说法处置；弟弟被留下；兄弟们请求代替被拒。",
+    "Yusuf makes himself known to his brother; the cup is placed in the brother's bag; theft is announced; the brothers' own proposed penalty applies; the brother is kept; their offer of a substitute is refused.",
+    "تعريف يوسف أخاه بنفسه؛ جعل الصواع في رحل أخيه؛ النداء بالسرقة؛ الحكم بشرعهم؛ احتجاز الأخ؛ رفض البديل."
+   ],
+   "persons": [
+    [
+     "优素福",
+     "Yusuf",
+     "يوسف"
+    ],
+    [
+     "弟弟",
+     "His younger brother",
+     "أخوه الأصغر"
+    ],
+    [
+     "兄弟们",
+     "His brothers",
+     "إخوته"
+    ]
+   ],
+   "concepts": [
+    [
+     "量杯之计",
+     "The stratagem of the cup",
+     "كيد الصواع"
+    ],
+    [
+     "公正的处置",
+     "Just judgement",
+     "الحكم بالعدل"
+    ]
+   ]
+  },
+  {
+   "chapter": 12,
+   "from": 80,
+   "to": 87,
+   "title": [
+    "返回、父亲的悲伤与坚忍",
+    "The return, the father's grief and patience",
+    "العودة وحزن الأب وصبره"
+   ],
+   "theme": [
+    "长兄留在埃及；兄弟们回报父亲；父亲再说「美好的坚忍」，因悲伤双眼变白；他只向主诉说忧愁；命儿子们去打探优素福与弟弟，不要对主的慈恩绝望。",
+    "The eldest stays in Egypt; the brothers report to their father; he again says \"beautiful patience\" and his eyes turn white with grief; he complains only to God; he sends his sons to search for Yusuf and his brother and not to despair of God's mercy.",
+    "بقاء الأخ الكبير؛ إخبار الأب؛ «فصبر جميل» وابيضاض عينيه؛ «إنما أشكو بثي وحزني إلى الله»؛ الأمر بالتحسس وعدم اليأس من روح الله."
+   ],
+   "persons": [
+    [
+     "叶尔孤白",
+     "Ya'qub",
+     "يعقوب"
+    ],
+    [
+     "兄弟们",
+     "His brothers",
+     "إخوته"
+    ]
+   ],
+   "concepts": [
+    [
+     "坚忍与悲伤",
+     "Patience and grief",
+     "الصبر والحزن"
+    ],
+    [
+     "不对主的慈恩绝望",
+     "Not despairing of God's mercy",
+     "عدم اليأس من روح الله"
+    ]
+   ]
+  },
+  {
+   "chapter": 12,
+   "from": 88,
+   "to": 93,
+   "title": [
+    "相认与宽恕",
+    "Recognition and forgiveness",
+    "التعارف والعفو"
+   ],
+   "theme": [
+    "兄弟们带着低劣的货物求施舍；优素福表明身份；兄弟们承认过错；「今天对你们没有责备」；他让他们带衬衣去父亲脸上使其复明。",
+    "The brothers come with scant goods asking for charity; Yusuf reveals himself; they admit their wrong; \"no blame on you today\"; he sends his shirt to be cast on his father's face to restore his sight.",
+    "بضاعة مزجاة؛ «أنا يوسف وهذا أخي»؛ اعتراف الإخوة؛ «لا تثريب عليكم اليوم»؛ إرسال القميص ليرتد الأب بصيرًا."
+   ],
+   "persons": [
+    [
+     "优素福",
+     "Yusuf",
+     "يوسف"
+    ],
+    [
+     "兄弟们",
+     "His brothers",
+     "إخوته"
+    ]
+   ],
+   "concepts": [
+    [
+     "表明身份",
+     "Revealing identity",
+     "التعريف بالنفس"
+    ],
+    [
+     "宽恕",
+     "Forgiveness",
+     "العفو"
+    ]
+   ]
+  },
+  {
+   "chapter": 12,
+   "from": 94,
+   "to": 101,
+   "title": [
+    "父亲复明、全家团聚与梦的实现",
+    "The father's sight restored, reunion and the dream fulfilled",
+    "ارتداد البصر واللقاء وتحقق الرؤيا"
+   ],
+   "theme": [
+    "父亲闻到优素福的气息；衬衣使他复明；儿子们求父亲为他们求饶；全家到埃及；父母登上宝座，众人叩头——梦实现；优素福的祈祷。",
+    "The father senses Yusuf's scent; the shirt restores his sight; the sons ask him to seek forgiveness for them; the family comes to Egypt; his parents are raised on the throne and all fall in prostration – the dream fulfilled; Yusuf's prayer.",
+    "وجد الأب ريح يوسف؛ ارتداد البصر بالقميص؛ طلب الاستغفار؛ دخول مصر؛ رفع الأبوين على العرش والسجود – تحقق الرؤيا؛ دعاء يوسف."
+   ],
+   "persons": [
+    [
+     "优素福",
+     "Yusuf",
+     "يوسف"
+    ],
+    [
+     "叶尔孤白",
+     "Ya'qub",
+     "يعقوب"
+    ],
+    [
+     "父母",
+     "His parents",
+     "أبواه"
+    ],
+    [
+     "兄弟们",
+     "His brothers",
+     "إخوته"
+    ]
+   ],
+   "concepts": [
+    [
+     "梦的实现",
+     "Fulfilment of the dream",
+     "تحقق الرؤيا"
+    ],
+    [
+     "团聚",
+     "Reunion",
+     "اللقاء"
+    ],
+    [
+     "优素福的祈祷",
+     "Yusuf's prayer",
+     "دعاء يوسف"
+    ]
+   ]
+  },
+  {
+   "chapter": 12,
+   "from": 102,
+   "to": 111,
+   "title": [
+    "结语：幽玄的消息与历史的教训",
+    "Epilogue: news of the unseen and the lesson of history",
+    "الخاتمة: أنباء الغيب وعبرة التاريخ"
+   ],
+   "theme": [
+    "这是幽玄的消息；多数人不信；天地间的迹象被忽视；使者的道路是明证；先前使者的结局；「他们的故事里确有教训」。",
+    "This is news of the unseen; most people do not believe; signs in the heavens and earth are passed by; the messengers' way is with insight; the end of earlier messengers; \"in their stories there is a lesson\".",
+    "ذلك من أنباء الغيب؛ أكثر الناس لا يؤمنون؛ الإعراض عن الآيات؛ الدعوة على بصيرة؛ عاقبة الرسل السابقين؛ «لقد كان في قصصهم عبرة»."
+   ],
+   "persons": [
+    [
+     "先知穆罕默德（受话者）",
+     "Prophet Muhammad (the one addressed)",
+     "النبي محمد ﷺ (المخاطَب)"
+    ]
+   ],
+   "concepts": [
+    [
+     "幽玄的消息",
+     "News of the unseen",
+     "أنباء الغيب"
+    ],
+    [
+     "历史的教训",
+     "The lesson of history",
+     "عبرة القصص"
+    ]
+   ]
+  }
+ ]
+}

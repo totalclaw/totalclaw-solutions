@@ -1,0 +1,39 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 2,
+    "solutions": {},
+    "host": [
+      "renderer/components/PageBackButton.vue",
+      "renderer/stores/notification.ts",
+      "renderer/utils/humanize.ts",
+      "renderer/utils/usMarketSession.ts"
+    ],
+    "packages": [
+      "@totalclaw/i18n",
+      "vitest",
+      "vue"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/views/IndustryWatchView.vue",
+      "from": "renderer/views/IndustryWatchView.vue"
+    },
+    {
+      "path": "src/shared/marketIntel.ts",
+      "from": "shared/marketIntel.ts"
+    },
+    {
+      "path": "src/shared/marketIntel.test.ts",
+      "from": "shared/marketIntel.test.ts"
+    }
+  ]
+}

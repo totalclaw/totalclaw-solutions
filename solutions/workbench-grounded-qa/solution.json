@@ -1,0 +1,59 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-grounded-qa",
+  "name": "知识问答助手",
+  "aliases": [
+    "grounded-qa",
+    "伊斯兰宣教知识助手"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "知识服务",
+  "icon": "icon-solutions",
+  "order": 40,
+  "description": "只依据已审批的宣教资料回答，每条结论标注来源页码，教法裁决与超纲问题自动拒答并转人工。",
+  "detail": "导入机构已审批的宣教资料建成知识库，助手只依据其中原文作答并标注来源文件与页码，可点击核对；涉及教法裁决、派别争议或个人宗教处境的问题直接拒答，转交具备资质的学者或内容负责人；资料未覆盖时明确说明依据不足，绝不编造；支持中英阿三语，全过程留痕可审计。",
+  "shortcuts": [
+    "导入宣教资料",
+    "受控问答",
+    "查看拒答记录"
+  ],
+  "highlights": [
+    "只依据已审批资料作答",
+    "每条结论标注来源页码",
+    "超纲问题自动拒答转人工"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/grounded-qa",
+    "renderer": "src/renderer/views/GroundedQaWorkbenchView.vue",
+    "main": "src/main/ipc/groundedQa.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-edu-hub"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "grounded-qa/"
+    ],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-grounded-qa"
+  }
+}

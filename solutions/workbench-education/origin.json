@@ -1,0 +1,48 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 1,
+    "solutions": {},
+    "host": [
+      "main/ipc/shared.ts",
+      "main/ipc/workbenchApi.ts",
+      "renderer/components/PageBackButton.vue",
+      "renderer/components/StepRunAlert.vue",
+      "renderer/composables/useStepWatchdog.ts",
+      "renderer/i18n.ts",
+      "renderer/utils/humanize.ts",
+      "renderer/utils/markdown.ts"
+    ],
+    "packages": [
+      "@totalclaw/i18n",
+      "@totalclaw/ipc-contracts",
+      "@vue/test-utils",
+      "electron",
+      "vitest",
+      "vue",
+      "vue-i18n",
+      "vue-router"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/views/EducationWorkbenchView.vue",
+      "from": "renderer/views/EducationWorkbenchView.vue"
+    },
+    {
+      "path": "src/renderer/views/EducationWorkbenchView.genWatchdog.test.ts",
+      "from": "renderer/views/EducationWorkbenchView.genWatchdog.test.ts"
+    },
+    {
+      "path": "src/main/ipc/educationWorkbench.ipc.ts",
+      "from": "main/ipc/educationWorkbench.ipc.ts"
+    }
+  ]
+}

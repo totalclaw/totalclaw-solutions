@@ -1,0 +1,15 @@
+{
+  "name": "@totalclaw/solution-installer",
+  "version": "1.0.0",
+  "description": "TotalClaw 解决方案安装器：按 id/名称从方案仓库下载、校验、原子安装、自动升级、数据迁移",
+  "type": "module",
+  "main": "./src/index.mjs",
+  "exports": {
+    ".": "./src/index.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}

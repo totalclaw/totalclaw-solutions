@@ -1,0 +1,10 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "confirm.overdueDays": { "value": 10, "label": "函证发出后多少天未回函进待办", "source": { "file": "docs/finance-audit-solution.md", "section": "5.2 工作台首页（函证超期未回）" } },
+    "confirm.matchTol": { "value": 1, "label": "回函与账面金额一致的容差（分）", "source": { "file": "finance-skills/skills/audit-support/skills/confirmation-management/SKILL.md", "section": "回函核对" } },
+    "confirm.diffEscalate": { "value": 10000000, "label": "函证差异升级门槛 10 万元（分）；源技能写「> [X] 万」未给数值，取保守默认", "source": { "file": "finance-skills/skills/audit-support/references/判断框架.md", "section": "升级触发条件" } },
+    "confirm.minResponseRate": { "value": 0.8, "label": "回函率低于多少须审计合伙人关注（小数）；源技能未给数值", "source": { "file": "finance-skills/skills/audit-support/skills/confirmation-management/SKILL.md", "section": "升级触发条件" } },
+    "adjust.profitEscalate": { "value": 10000000, "label": "审计调整影响利润超过多少须 CFO 审批 10 万元（分）；源技能未给数值", "source": { "file": "finance-skills/skills/audit-support/skills/audit-adjustment-review/SKILL.md", "section": "升级触发条件" } }
+  }
+}

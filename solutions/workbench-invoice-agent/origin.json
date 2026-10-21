@@ -1,0 +1,132 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 24,
+    "solutions": {
+      "workbench-service-settlement": [
+        "main/services/serviceSettlement/excel.ts",
+        "renderer/workbenches/service-settlement/StepCard.vue",
+        "renderer/workbenches/service-settlement/StickyProgress.vue",
+        "renderer/workbenches/service-settlement/shared.ts",
+        "renderer/workbenches/service-settlement/styles.css"
+      ]
+    },
+    "host": [
+      "main/ipc/workbenchApi.ts",
+      "main/services/accountScope.ts",
+      "main/services/documentExtractor.ts",
+      "main/services/foregroundBrowserCdp.ts",
+      "main/services/foregroundBrowserProc.ts",
+      "main/services/runtimeLocation.ts",
+      "main/services/workbenchLlm.ts",
+      "main/utils/userFacingError.ts",
+      "renderer/components/PageBackButton.vue",
+      "renderer/i18n.ts",
+      "renderer/stores/notification.ts",
+      "renderer/utils/ipcPlain.ts"
+    ],
+    "packages": [
+      "@totalclaw/i18n",
+      "@totalclaw/ipc-contracts",
+      "adm-zip",
+      "electron",
+      "vitest",
+      "vue",
+      "vue-router",
+      "xlsx"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/views/InvoiceAgentWorkbenchView.vue",
+      "from": "renderer/views/InvoiceAgentWorkbenchView.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/invoice-agent/ArchiveTab.vue",
+      "from": "renderer/workbenches/invoice-agent/ArchiveTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/invoice-agent/IssueTab.vue",
+      "from": "renderer/workbenches/invoice-agent/IssueTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/invoice-agent/LedgerTab.vue",
+      "from": "renderer/workbenches/invoice-agent/LedgerTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/invoice-agent/SettingsTab.vue",
+      "from": "renderer/workbenches/invoice-agent/SettingsTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/invoice-agent/shared.ts",
+      "from": "renderer/workbenches/invoice-agent/shared.ts"
+    },
+    {
+      "path": "src/main/ipc/invoiceAgent.ipc.ts",
+      "from": "main/ipc/invoiceAgent.ipc.ts"
+    },
+    {
+      "path": "src/main/services/invoiceAgent/columnKeywords.json",
+      "from": "main/services/invoiceAgent/columnKeywords.json"
+    },
+    {
+      "path": "src/main/services/invoiceAgent/etaxBrowser.ts",
+      "from": "main/services/invoiceAgent/etaxBrowser.ts"
+    },
+    {
+      "path": "src/main/services/invoiceAgent/etaxPage.test.ts",
+      "from": "main/services/invoiceAgent/etaxPage.test.ts"
+    },
+    {
+      "path": "src/main/services/invoiceAgent/etaxPage.ts",
+      "from": "main/services/invoiceAgent/etaxPage.ts"
+    },
+    {
+      "path": "src/main/services/invoiceAgent/logic.test.ts",
+      "from": "main/services/invoiceAgent/logic.test.ts"
+    },
+    {
+      "path": "src/main/services/invoiceAgent/logic.ts",
+      "from": "main/services/invoiceAgent/logic.ts"
+    },
+    {
+      "path": "src/main/services/invoiceAgent/nuonuo.test.ts",
+      "from": "main/services/invoiceAgent/nuonuo.test.ts"
+    },
+    {
+      "path": "src/main/services/invoiceAgent/nuonuo.ts",
+      "from": "main/services/invoiceAgent/nuonuo.ts"
+    },
+    {
+      "path": "src/main/services/invoiceAgent/prompts.ts",
+      "from": "main/services/invoiceAgent/prompts.ts"
+    },
+    {
+      "path": "src/main/services/invoiceAgent/store.ts",
+      "from": "main/services/invoiceAgent/store.ts"
+    },
+    {
+      "path": "src/main/services/invoiceAgent/template.test.ts",
+      "from": "main/services/invoiceAgent/template.test.ts"
+    },
+    {
+      "path": "src/main/services/invoiceAgent/template.ts",
+      "from": "main/services/invoiceAgent/template.ts"
+    },
+    {
+      "path": "src/contracts/invoiceAgent.ts",
+      "from": "packages/ipc-contracts/src/invoiceAgent.ts"
+    },
+    {
+      "path": "resources/invoice-agent/etax-batch-template-V260401.xlsx",
+      "from": "resources/invoice-agent/etax-batch-template-V260401.xlsx"
+    }
+  ]
+}

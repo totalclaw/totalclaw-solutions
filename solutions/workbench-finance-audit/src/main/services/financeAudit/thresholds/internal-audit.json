@@ -1,0 +1,12 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "days.high": { "value": 20, "label": "高风险领域每个预计人天；源技能未给数值，取常用默认", "source": { "file": "finance-skills/skills/internal-audit/skills/annual-audit-planning/SKILL.md", "section": "资源分配（高 / 中 / 低风险领域人天）" } },
+    "days.medium": { "value": 10, "label": "中风险领域每个预计人天", "source": { "file": "finance-skills/skills/internal-audit/skills/annual-audit-planning/SKILL.md", "section": "资源分配" } },
+    "days.low": { "value": 5, "label": "低风险领域每个预计人天", "source": { "file": "finance-skills/skills/internal-audit/skills/annual-audit-planning/SKILL.md", "section": "资源分配" } },
+    "plan.availableDays": { "value": 240, "label": "年度可用审计人天（运行时可改）", "source": { "file": "finance-skills/skills/internal-audit/skills/annual-audit-planning/SKILL.md", "section": "可用人天" } },
+    "overdue.remindDays": { "value": 1, "label": "整改超期多少天提醒被审计单位负责人", "source": { "file": "finance-skills/skills/internal-audit/references/判断框架.md", "section": "超期未整改处理" } },
+    "overdue.cfoDays": { "value": 30, "label": "整改超期多少天升级 CFO；源技能未给数值，取保守默认", "source": { "file": "finance-skills/skills/internal-audit/references/判断框架.md", "section": "超期未整改处理" } },
+    "overdue.committeeDays": { "value": 60, "label": "整改超期多少天升级审计委员会；源技能未给数值，取保守默认", "source": { "file": "finance-skills/skills/internal-audit/references/判断框架.md", "section": "超期未整改处理" } }
+  }
+}

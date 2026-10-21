@@ -1,0 +1,114 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 22,
+    "solutions": {
+      "workbench-foreign-trade": [
+        "renderer/workbenches/foreign-trade/styles.css"
+      ],
+      "workbench-service-settlement": [
+        "renderer/workbenches/service-settlement/StepCard.vue",
+        "renderer/workbenches/service-settlement/StickyProgress.vue",
+        "renderer/workbenches/service-settlement/shared.ts",
+        "renderer/workbenches/service-settlement/styles.css"
+      ]
+    },
+    "host": [
+      "main/ipc/workbenchApi.ts",
+      "main/services/accountScope.ts",
+      "main/services/cowriteEditor.ts",
+      "main/services/openWithApps.ts",
+      "main/services/workbenchLlm.ts",
+      "main/utils/userFacingError.ts",
+      "renderer/components/PageBackButton.vue",
+      "renderer/i18n.ts",
+      "renderer/stores/notification.ts",
+      "renderer/utils/ipcPlain.ts",
+      "renderer/utils/markdown.ts"
+    ],
+    "packages": [
+      "@totalclaw/i18n",
+      "@totalclaw/ipc-contracts",
+      "electron",
+      "vitest",
+      "vue"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/views/AcademicWriterWorkbenchView.vue",
+      "from": "renderer/views/AcademicWriterWorkbenchView.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/academic-writer/DocViewer.vue",
+      "from": "renderer/workbenches/academic-writer/DocViewer.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/academic-writer/ExportTab.vue",
+      "from": "renderer/workbenches/academic-writer/ExportTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/academic-writer/LibraryTab.vue",
+      "from": "renderer/workbenches/academic-writer/LibraryTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/academic-writer/OutlineTab.vue",
+      "from": "renderer/workbenches/academic-writer/OutlineTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/academic-writer/SearchTab.vue",
+      "from": "renderer/workbenches/academic-writer/SearchTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/academic-writer/SettingsTab.vue",
+      "from": "renderer/workbenches/academic-writer/SettingsTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/academic-writer/WriteTab.vue",
+      "from": "renderer/workbenches/academic-writer/WriteTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/academic-writer/shared.ts",
+      "from": "renderer/workbenches/academic-writer/shared.ts"
+    },
+    {
+      "path": "src/main/ipc/academicWriter.ipc.ts",
+      "from": "main/ipc/academicWriter.ipc.ts"
+    },
+    {
+      "path": "src/main/services/academicWriter/academicWriter.test.ts",
+      "from": "main/services/academicWriter/academicWriter.test.ts"
+    },
+    {
+      "path": "src/main/services/academicWriter/citationWords.json",
+      "from": "main/services/academicWriter/citationWords.json"
+    },
+    {
+      "path": "src/main/services/academicWriter/citations.ts",
+      "from": "main/services/academicWriter/citations.ts"
+    },
+    {
+      "path": "src/main/services/academicWriter/prompts.ts",
+      "from": "main/services/academicWriter/prompts.ts"
+    },
+    {
+      "path": "src/main/services/academicWriter/sources.ts",
+      "from": "main/services/academicWriter/sources.ts"
+    },
+    {
+      "path": "src/main/services/academicWriter/store.ts",
+      "from": "main/services/academicWriter/store.ts"
+    },
+    {
+      "path": "src/contracts/academicWriter.ts",
+      "from": "packages/ipc-contracts/src/academicWriter.ts"
+    }
+  ]
+}

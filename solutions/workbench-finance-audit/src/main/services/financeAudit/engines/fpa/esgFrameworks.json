@@ -1,0 +1,23 @@
+{
+  "_note": "ESG 披露框架的核心量化指标清单（数据，不是界面文案）：按公开指引整理的最小核查集，用于「数据完整性核查」，不是完整的披露要求；框架以最新版本为准，正式披露前须人工核实。keywords 用于和导入指标名逐字比较（中 / 英 / 阿）。",
+  "indicators": {
+    "scope1": { "category": "E", "keywords": ["范围一", "范围1", "scope 1", "scope1", "直接排放", "النطاق 1", "الانبعاثات المباشرة"] },
+    "scope2": { "category": "E", "keywords": ["范围二", "范围2", "scope 2", "scope2", "间接排放", "النطاق 2"] },
+    "scope3": { "category": "E", "keywords": ["范围三", "范围3", "scope 3", "scope3", "价值链排放", "النطاق 3"] },
+    "energy": { "category": "E", "keywords": ["能源", "能耗", "用电", "energy", "electricity", "الطاقة", "استهلاك الكهرباء"] },
+    "water": { "category": "E", "keywords": ["用水", "水资源", "取水", "water", "المياه"] },
+    "waste": { "category": "E", "keywords": ["废弃物", "废物", "waste", "النفايات"] },
+    "employees": { "category": "S", "keywords": ["员工人数", "员工总数", "员工", "headcount", "employees", "عدد الموظفين", "الموظفين"] },
+    "safety": { "category": "S", "keywords": ["工伤", "安全事故", "安全生产", "injury", "injuries", "ltifr", "safety", "إصابات العمل", "السلامة"] },
+    "turnover": { "category": "S", "keywords": ["离职率", "流失率", "turnover", "attrition", "معدل الدوران"] },
+    "gender": { "category": "S", "keywords": ["女性", "性别", "gender", "female", "women", "النساء", "التنوع بين الجنسين"] },
+    "boardIndependence": { "category": "G", "keywords": ["独立董事", "董事会独立", "independent director", "board independence", "أعضاء مستقلين", "استقلالية المجلس"] },
+    "anticorruption": { "category": "G", "keywords": ["反腐", "反贿赂", "商业道德", "anti-corruption", "anti-bribery", "ethics", "مكافحة الفساد", "الأخلاقيات"] }
+  },
+  "frameworks": {
+    "issb": ["scope1", "scope2", "scope3", "energy"],
+    "gri": ["scope1", "scope2", "energy", "water", "waste", "employees", "safety", "gender", "anticorruption"],
+    "cn": ["scope1", "scope2", "energy", "water", "waste", "employees", "safety", "anticorruption"],
+    "sa": ["scope1", "scope2", "energy", "water", "gender", "turnover", "boardIndependence", "anticorruption"]
+  }
+}

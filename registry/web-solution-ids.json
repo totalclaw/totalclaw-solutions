@@ -1,0 +1,190 @@
+{
+  "$comment": "totalclaw-web ADMIN_SOLUTION_CATALOG 的 id 快照；requiresSolutionGrant=true 的方案 id 必须在此列表中。由 tools/import-from-qiye.mjs 刷新。",
+  "source": "totalclaw-web/server/user-info-api/backend/src/admin/solution-catalog.ts",
+  "items": [
+    {
+      "id": "workbench-edu-hub",
+      "name": "AI 学习中心（文档生成教案）",
+      "category": "教育",
+      "description": "导入教材一键生成教案、学生要点与小测；启动校内服务，学生扫码用浏览器学习，进展实时回看。"
+    },
+    {
+      "id": "rd-workflow",
+      "name": "研发工作流",
+      "category": "研发",
+      "description": "客户需求 → AI 产品经理(选项式头脑风暴) → AI 开发(工作区写代码) → 代码评审 → 测试 → 运维，逐节点真执行、实时看状态与文件改动、缺料随时暂停补充。"
+    },
+    {
+      "id": "workbench-education",
+      "name": "职教与高校工作台",
+      "category": "教育",
+      "description": "多 Agent 协同备课、实训辅导、学情分析、教学配图与教师审核。"
+    },
+    {
+      "id": "workbench-grounded-qa",
+      "name": "伊斯兰宣教知识助手",
+      "category": "知识服务",
+      "description": "只依据已审批的宣教资料回答，每条结论标注来源页码；教法裁决、派别争议与超纲问题自动拒答并转人工；支持中英阿三语，全过程留痕可审计。"
+    },
+    {
+      "id": "workbench-healthcare",
+      "name": "智慧医院运营工作台",
+      "category": "智慧医院",
+      "description": "患者服务、院内工单、隐私保护、服务质量与人工复核。"
+    },
+    {
+      "id": "workbench-warehouse",
+      "name": "产销存协同工作台",
+      "category": "产销存",
+      "description": "多源数据归一、销售与库存对账、采购到货、补货调拨和出入库执行。"
+    },
+    {
+      "id": "workbench-global-ads",
+      "name": "阿联酋广告代投放工作台",
+      "category": "UAE 增长",
+      "description": "Facebook、Instagram、Google Ads 与 YouTube 全链路投放、复盘和账户优化。"
+    },
+    {
+      "id": "workbench-industry-watch",
+      "name": "盘面情报台",
+      "category": "24 小时情报",
+      "description": "加密与美股 7×24 情报流：行情异动与多源新闻快讯同一条时间线，每条可回溯原文，随时 AI 研判。"
+    },
+    {
+      "id": "workbench-rfq-quote",
+      "name": "AI 询价与报价数字员工",
+      "category": "询价报价",
+      "description": "从询价收件、产品匹配、供应与外协，到可见公式的报价与审批文件，全程留痕。"
+    },
+    {
+      "id": "workbench-bid-decision",
+      "name": "AI 招投标决策数字员工",
+      "category": "招投标",
+      "description": "多来源标书去重、Addendum 差异、硬性门槛与能力匹配，输出可拍板的 Bid/No-Bid 建议。"
+    },
+    {
+      "id": "workbench-advisory-report",
+      "name": "AI 客户问题与方案报告数字员工",
+      "category": "客户咨询",
+      "description": "邮件、网页表单工单与 WhatsApp 三渠道统一收件，检索获准来源后产出简短回复与七段咨询报告。"
+    },
+    {
+      "id": "workbench-digital-human",
+      "name": "数字人口播与直播工作台",
+      "category": "数字人",
+      "description": "文稿或 LLM 输出交给数字人念出来：离线出成片，或起一路实时会话做直播与教课。"
+    },
+    {
+      "id": "workbench-service-settlement",
+      "name": "服务商结算与激励核算",
+      "category": "服务结算",
+      "description": "京东/天猫好评激励核算、服务费用结案汇总与邮件下发、发票监听与付款跟踪、报废台账更新、服务营销激励季度结案（含个税申报表与结案报告）。"
+    },
+    {
+      "id": "workbench-bid-writer",
+      "name": "标书制作智能体",
+      "category": "招投标",
+      "description": "填投标目标与目标投标网站，自动抓公告拆成逐条要求；模板可上传也可从知识库找；公司资料取自知识库，逐章成文后自检废标风险，导出 Word / PDF。"
+    },
+    {
+      "id": "workbench-charity-content",
+      "name": "慈善活动内容工场",
+      "category": "公益",
+      "description": "把一次慈善活动的素材（照片、现场记录、捐赠数据）一键做成多语种宣传内容：活动海报与配图、短视频成片、社媒帖文与捐赠者感谢信，按平台画幅与语言分别导出，全程留痕可审核。",
+      "descriptionEn": "Turn one charity event's raw material (photos, field notes, donation data) into multilingual campaign content in one pass: posters and illustrations, short-video cuts, social posts and donor thank-you letters, exported per platform aspect ratio and language, with a reviewable trail.",
+      "descriptionAr": "حوّل مواد فعالية خيرية واحدة (الصور، السجلات الميدانية، بيانات التبرعات) إلى محتوى ترويجي متعدد اللغات بخطوة واحدة: ملصقات وصور، مقاطع فيديو قصيرة، منشورات للتواصل الاجتماعي ورسائل شكر للمتبرعين، تُصدَّر حسب مقاس كل منصة ولغتها مع سجل كامل قابل للمراجعة."
+    },
+    {
+      "id": "workbench-quran-teaching",
+      "name": "古兰经智能教学演示",
+      "category": "教育",
+      "description": "面向大学的人工智能教学闭环演示：锁定经文语料导入、教学内容生成、理解图谱、动态评测、学习分析与强化练习，全程只依据已导入语料。",
+      "descriptionEn": "A university-facing demonstration of a closed AI teaching loop: locked scripture corpus import, lesson generation, comprehension maps, adaptive assessment, learning analytics and reinforcement, grounded strictly in the imported corpus.",
+      "descriptionAr": "عرض توضيحي لحلقة تعليم مغلقة بالذكاء الاصطناعي موجّه للجامعات: استيراد مدونة نصية مُقفلة، توليد الدروس، خرائط الفهم، تقييم تكيفي، تحليلات التعلم والتعزيز، مع الالتزام الكامل بالمدونة المستوردة."
+    },
+    {
+      "id": "workbench-foreign-trade",
+      "name": "外贸业务智能体",
+      "category": "外贸",
+      "description": "多邮箱接管，覆盖平台运营、客户开发、询盘处理、客户背调、跟进、内容生产、网站社媒、报价、订单推进与数据整理十项日常工作；每个模块可单独指定模型。"
+    },
+    {
+      "id": "workbench-finance-agent",
+      "name": "财务智能体",
+      "category": "财务",
+      "description": "凭证、税务申报与申报上报、费用报销、往来对账、财务报表、风险巡检、预算、成本、合同审核、财税问答，多账套持续跟进。不自动提交申报、不电子签名、不改正式账套，结果由财务人员复核确认。"
+    },
+    {
+      "id": "workbench-academic-writer",
+      "name": "学术写作智能体",
+      "category": "学术科研",
+      "description": "内置 PubMed、Europe PMC、arXiv、Crossref、OpenAlex 检索与知网、万方等学术网站，抓取文献、精读、拟提纲、分节成稿，接人机双写编辑器一起改论文；参考文献只来自真实文献库。"
+    },
+    {
+      "id": "workbench-apparel-store",
+      "name": "服装实体店智能体",
+      "category": "服装零售",
+      "description": "AI 一键换装：顾客手机扫门店码或店员电脑上传照片，自选背景、姿势、发型生成试穿图，手机电脑同时查看；试穿码到店核销、尺码助手、试穿数据看板。照片只存门店电脑，到期自动删除。"
+    },
+    {
+      "id": "workbench-biz-automation",
+      "name": "经营自动化智能体",
+      "category": "经营自动化",
+      "description": "短视频生成并发布抖音、快手、小红书、视频号；数字人出镜介绍企业；商品图文按渠道自动上下架；收银与费用数据取数统计并推送经营日报。发布与上架默认停在提交前由人确认，财务数据只读。"
+    },
+    {
+      "id": "workbench-invoice-agent",
+      "name": "发票智能体",
+      "category": "财税",
+      "description": "拿着付款单或一张开票申请表批量开票：自动识别列、逐行校验税号与金额、按规则组票拆票算税，生成电子税务局批量导入文件，台账自动回填发票号码。金额由规则计算，开具由人确认。"
+    },
+    {
+      "id": "workbench-zcy-agent",
+      "name": "政采云智能体",
+      "category": "政府采购",
+      "description": "给它企业材料和政采云账号，在内置浏览器里代做供应商的日常工作：商品上架前的合规与比价检查、询价单读回与报价测算、订单接单发货预警、待开票订单转开票。提交类操作停在最后一步由人确认。"
+    },
+    {
+      "id": "workbench-flow-sla",
+      "name": "流程时效监控智能体",
+      "category": "流程管理",
+      "description": "导入 OA、费控、CSS 三个系统的流程报表，按时效规则算出每个流程和每位审核人是否超时，自动出时效看板、周报和月度分析报告，并跟进在途流程和改善建议。数字由规则计算，邮件发送前由人确认。"
+    },
+    {
+      "id": "workbench-parts-alert",
+      "name": "配件预警与补库智能体",
+      "category": "配件管理",
+      "description": "投喂配件历史发货、采购提前期、采购在途和实时库存四类数据，算出每个配件是呆滞、冗余、健康、将缺货还是已缺货，给出处理建议和补库清单，人工检验后转采购订单，并可定时循环运算预警。"
+    },
+    {
+      "id": "workbench-campus-ai",
+      "name": "高校一体化AI智能体",
+      "category": "高校",
+      "description": "校级 AI 中心一体化平台：统一校园知识库，师生扫码就能问、答案带出处、答不了的转部门；按成绩和考勤算学业预警，辅导员复核后出谈话提纲与通知；模型服务、调用审计与数据保留统一运维。"
+    },
+    {
+      "id": "workbench-finance-audit",
+      "name": "财会审计解决方案",
+      "category": "财会审计",
+      "description": "月结关账、对账、审计与内控、税务合规、管理报告、资金风险与投融资估值，48 个模块分步出底稿，人工签核后归档；中英阿三语，适配中国、国际、沙特与阿联酋准则税制。"
+    },
+    {
+      "id": "material-to-table",
+      "name": "办公材料整理智能体",
+      "category": "数据整理",
+      "description": "把一个文件夹里不同类型的办公材料（截图、对话截图、图片、Excel、CSV）自动分组，每组按各自的字段整理成表格，适合多部门、多类素材混在一起的归集场景。"
+    },
+    {
+      "id": "embedded-bid-desk",
+      "name": "项目工作台",
+      "category": "内置",
+      "description": "从 RFQ/BOQ 到审批文件的可追溯业务闭环。"
+    },
+    {
+      "id": "embedded-video-studio",
+      "name": "短视频创作与发布工作台",
+      "category": "内置",
+      "description": "从素材整理、脚本、配音配乐到成片审核和多平台发布。"
+    }
+  ]
+}

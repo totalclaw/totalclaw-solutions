@@ -1,0 +1,132 @@
+{
+  "id": "workbench-biz-automation",
+  "version": "1.0.0",
+  "treeDigest": "74139e088a6664929ee3a8f689326b5f70fc8bd002aca9f3650ebb211cc0b9a3",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 132,
+      "sha256": "6a49cd632e0155eb2d8cf83e3bc9c336cdbf5c6acfe7180d0f9d6fe93f67b159"
+    },
+    {
+      "path": "README.md",
+      "size": 1480,
+      "sha256": "e131bc295f356bbe3294d4a09d00a5722c91bd0fccf803e788cbd92dda0cd012"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "origin.json",
+      "size": 5301,
+      "sha256": "6b5073b1e8a89ce53e9c74ffed27eef1083318fac6eb1a5d9729488a2d296d67"
+    },
+    {
+      "path": "solution.json",
+      "size": 1991,
+      "sha256": "41a6a63ebc47e2b60e67976d0d83227fbb840748d6f9b765b358ac79aca26e1b"
+    },
+    {
+      "path": "src/contracts/bizAutomation.ts",
+      "size": 12390,
+      "sha256": "4668e66f59a683aba54e5be148c9306c5a6747817f394c1b6e76228286e1de93"
+    },
+    {
+      "path": "src/main/ipc/bizAutomation.ipc.ts",
+      "size": 86939,
+      "sha256": "59b02ccb9e2f88162797a7cd6a0ff78b0f1133f774b907e2f48841b568e4f0e2"
+    },
+    {
+      "path": "src/main/services/bizAutomation/bannedWords.json",
+      "size": 863,
+      "sha256": "297b6bf79ef95f7f8f7c101afdc18e01fe81d2ce17f2f4e3669c0d00e1bba61d"
+    },
+    {
+      "path": "src/main/services/bizAutomation/columnKeywords.json",
+      "size": 1738,
+      "sha256": "889104ce455a34567718d03074b5aef7c19c56e71afe0b6b24ae4c7431e7cfcb"
+    },
+    {
+      "path": "src/main/services/bizAutomation/logic.test.ts",
+      "size": 10241,
+      "sha256": "447b318a5b5c37d1560b67cc75abf4612b4c6f07771a45279fc348cccec653ab"
+    },
+    {
+      "path": "src/main/services/bizAutomation/logic.ts",
+      "size": 27929,
+      "sha256": "530f0353ddea419ed79af680b764773d07b4167d0cbb354c71c859c1485a324c"
+    },
+    {
+      "path": "src/main/services/bizAutomation/prompts.ts",
+      "size": 7499,
+      "sha256": "477e8587b95cd5d2f6910662f3ac8e433e3366034ec2483e6f15569b6c419f53"
+    },
+    {
+      "path": "src/main/services/bizAutomation/store.ts",
+      "size": 8407,
+      "sha256": "670bd300f6c753e9397c739e8138dc52fd7fb99f293015998fa678db4a628e38"
+    },
+    {
+      "path": "src/main/services/bizAutomation/videoRender.ts",
+      "size": 5952,
+      "sha256": "d052ef41b2193d2a377630573d1f98664a5acafabce233770b46cf5f96e16386"
+    },
+    {
+      "path": "src/renderer/views/BizAutomationWorkbenchView.vue",
+      "size": 14739,
+      "sha256": "566b58f2079bdd24592252bf0944c9ffd2798023dda5fe80ee55d49c7e6b67be"
+    },
+    {
+      "path": "src/renderer/workbenches/biz-automation/AvatarTab.vue",
+      "size": 15216,
+      "sha256": "18488a0c5f008c74ee036c725e76c19a9421501c7ea2fb0a69ba9d96c1c97d4a"
+    },
+    {
+      "path": "src/renderer/workbenches/biz-automation/FinanceTab.vue",
+      "size": 24028,
+      "sha256": "ac9111577cc480d74cbcc52187cc8ce0084cad16446fe6950c3c95c3dafd03bb"
+    },
+    {
+      "path": "src/renderer/workbenches/biz-automation/HistoryTab.vue",
+      "size": 19403,
+      "sha256": "c3b6a3c46f78c0e557c5129519a3f3e28c9eaea184730e3690aa88688b81295e"
+    },
+    {
+      "path": "src/renderer/workbenches/biz-automation/ListingTab.vue",
+      "size": 20402,
+      "sha256": "ee27b52bcebc49a11d22dcb981affdfd4bb4d6ff76d0e7e0e92e989584c0f7b5"
+    },
+    {
+      "path": "src/renderer/workbenches/biz-automation/ModuleHeader.vue",
+      "size": 3427,
+      "sha256": "48776253896a303880494da2febb74322c758d037deb4a15887cd73c35ad704f"
+    },
+    {
+      "path": "src/renderer/workbenches/biz-automation/ScheduleTab.vue",
+      "size": 9559,
+      "sha256": "bc5262d43e456d39ad98b17fbd7c03870f3052baf0a1dfe09cb4f2b710721d07"
+    },
+    {
+      "path": "src/renderer/workbenches/biz-automation/SettingsTab.vue",
+      "size": 8972,
+      "sha256": "3006c5854fbcc398f727cca46c0335c7a61931caefa59779607498746da59e88"
+    },
+    {
+      "path": "src/renderer/workbenches/biz-automation/VideoTab.vue",
+      "size": 30579,
+      "sha256": "dcf273a98947738e41bf7ebf33743f47eafceb3f8e343ecab81db983884409c2"
+    },
+    {
+      "path": "src/renderer/workbenches/biz-automation/renderWatchdog.test.ts",
+      "size": 9701,
+      "sha256": "40c09cf1761280f430715119092c0a070ca95def17a897aff6cbae595a457393"
+    },
+    {
+      "path": "src/renderer/workbenches/biz-automation/shared.ts",
+      "size": 9013,
+      "sha256": "2e839f17700086d21a5a423a050877a480dc76fb99bd2497509148a021bc7bb9"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "kit-saudi-workbench",
+  "name": "沙特数字员工底座",
+  "aliases": [],
+  "version": "1.0.0",
+  "kind": "kit",
+  "category": "内置组件",
+  "icon": "icon-solutions",
+  "order": 1000,
+  "description": "rfq-quote / bid-decision / advisory-report 三个数字员工共用的统一收件 + 三栏工作台底座与案件存储。",
+  "access": {
+    "requiresSolutionGrant": false,
+    "feature": null,
+    "hidden": true
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "kit",
+    "route": null,
+    "renderer": null,
+    "main": null
+  },
+  "dependsOn": [],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "totalclaw-agent/cases/case-store.json",
+      "totalclaw-agent/saudi/data-pack.json"
+    ],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/kit-saudi-workbench"
+  }
+}

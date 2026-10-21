@@ -1,0 +1,61 @@
+{
+ "explanation": {
+  "concept": [
+   "强化单元针对概念「{label}」（{cls}）。它在批准资料中对应 {refs}：{body}。学习路径：先重读这些经文并对照理解图，再看复习卡，最后完成强化练习与复测。",
+   "Reinforcement targets the concept \"{label}\" ({cls}). In the approved materials it maps to {refs}: {body}. Path: re-read these verses against the understanding map, study the review cards, then complete the practice and retest.",
+   "يستهدف التعزيز مفهوم «{label}» ({cls}). يقابله في المواد المعتمدة {refs}: {body}. المسار: أعد قراءة هذه الآيات مع خريطة الفهم، ثم بطاقات المراجعة، ثم التدريب وإعادة الاختبار."
+  ],
+  "vocabulary": [
+   "强化单元针对词汇「{label}」（{cls}）。批准词表释义：{body}；出现于 {refs}。学习路径：词汇卡 → 同节填空 → 匹配复测。",
+   "Reinforcement targets the word \"{label}\" ({cls}). Approved gloss: {body}; occurs in {refs}. Path: vocabulary card → fill-in on the same verse → matching retest.",
+   "يستهدف التعزيز المفردة «{label}» ({cls}). المعنى المعتمد: {body}؛ ترد في {refs}. المسار: بطاقة مفردات ← ملء فراغ ← إعادة اختبار بالمطابقة."
+  ],
+  "verse": [
+   "强化单元针对经文 {label}（{cls}）。学习路径：逐词诵读 → 词序排列 → 识别与上下节顺序练习 → 复测。",
+   "Reinforcement targets verse {label} ({cls}). Path: word-by-word recitation → word ordering → recognition and adjacent-verse order practice → retest.",
+   "يستهدف التعزيز الآية {label} ({cls}). المسار: تلاوة كلمة كلمة ← ترتيب الكلمات ← تدريب على التعرّف وترتيب الآيات المجاورة ← إعادة اختبار."
+  ],
+  "type": [
+   "强化单元针对题型「{label}」（{cls}）。先用低难度同类题熟悉作答方式，再逐步提高难度。",
+   "Reinforcement targets the question type \"{label}\" ({cls}). Start with easier items of the same type, then raise the difficulty.",
+   "يستهدف التعزيز نوع السؤال «{label}» ({cls}). ابدأ بأسئلة أسهل من النوع نفسه ثم ارفع الصعوبة."
+  ]
+ },
+ "card": {
+  "verse": [
+   "经文 {ref}",
+   "Verse {ref}",
+   "الآية {ref}"
+  ],
+  "conceptTitle": [
+   "概念：{label}",
+   "Concept: {label}",
+   "المفهوم: {label}"
+  ],
+  "conceptBody": [
+   "对应经文 {refs}。{body}",
+   "Maps to {refs}. {body}",
+   "يقابل {refs}. {body}"
+  ],
+  "vocabTitle": [
+   "词汇：{word}",
+   "Word: {word}",
+   "المفردة: {word}"
+  ],
+  "vocabBody": [
+   "基础释义：{meaning}（批准词表）。出处：{refs}。",
+   "Basic meaning: {meaning} (approved glossary). Found in {refs}.",
+   "المعنى الأساسي: {meaning} (القائمة المعتمدة). ترد في {refs}."
+  ],
+  "unitTitle": [
+   "单元：{title}",
+   "Unit: {title}",
+   "الوحدة: {title}"
+  ]
+ },
+ "targetLabel": [
+  "{label}",
+  "{label}",
+  "{label}"
+ ]
+}

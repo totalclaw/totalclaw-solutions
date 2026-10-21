@@ -1,0 +1,9 @@
+{
+  "_note": "付款类别 → 优先级的关键词（中 / 英 / 阿），来自 finance-skills cash-management/payment-scheduling-cm「付款优先级定义」。匹配用户数据用，不是界面文案，不进 i18n 词典。没命中按 P2（常规付款）。",
+  "payPriority": {
+    "P0": ["工资", "薪酬", "社保", "公积金", "税", "贷款", "本息", "还款", "判决", "仲裁", "salary", "payroll", "social security", "tax", "loan", "interest", "court", "رواتب", "ضريبة", "قرض", "تأمينات"],
+    "P1": ["租金", "水电", "物业", "紧急", "催款", "rent", "utilities", "urgent", "إيجار", "مرافق", "عاجل"],
+    "P3": ["差旅", "非紧急", "一般运营", "travel", "non-urgent", "سفر", "غير عاجل"],
+    "P4": ["可延后", "协商", "展期", "非必要", "deferrable", "negotiable", "discretionary", "قابل للتأجيل"]
+  }
+}

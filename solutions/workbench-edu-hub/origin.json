@@ -1,0 +1,118 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 30,
+    "solutions": {
+      "workbench-digital-human": [
+        "main/services/digitalHumanProc.ts"
+      ],
+      "workbench-quran-teaching": [
+        "renderer/workbenches/quran-teaching/QuranPlatform.vue"
+      ]
+    },
+    "host": [
+      "main/ipc/shared.ts",
+      "main/services/accountScope.ts",
+      "main/services/agentPython.ts",
+      "main/services/councilChatRouter.ts",
+      "main/services/lanServer.ts",
+      "main/services/qiyeApiClient.ts",
+      "main/services/runtimeLocation.ts",
+      "renderer/components/PageBackButton.vue",
+      "renderer/components/StepRunAlert.vue",
+      "renderer/composables/useDialog.ts",
+      "renderer/composables/useStepWatchdog.ts",
+      "renderer/i18n.ts",
+      "renderer/utils/eduHubProgress.ts",
+      "renderer/utils/humanize.ts",
+      "renderer/workbenches/solutionAccess.ts"
+    ],
+    "packages": [
+      "@totalclaw/core-domain",
+      "@totalclaw/i18n",
+      "@totalclaw/ipc-contracts",
+      "@totalclaw/logger",
+      "@vue/test-utils",
+      "child_process",
+      "crypto",
+      "electron",
+      "fs",
+      "os",
+      "path",
+      "qrcode",
+      "sanitize-html",
+      "vitest",
+      "vue",
+      "vue-router"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/views/EduHubWorkbenchView.vue",
+      "from": "renderer/views/EduHubWorkbenchView.vue"
+    },
+    {
+      "path": "src/renderer/views/EduHubWorkbenchView.genWatchdog.test.ts",
+      "from": "renderer/views/EduHubWorkbenchView.genWatchdog.test.ts"
+    },
+    {
+      "path": "src/main/ipc/eduHub.ipc.ts",
+      "from": "main/ipc/eduHub.ipc.ts"
+    },
+    {
+      "path": "src/main/services/eduHubProc.ts",
+      "from": "main/services/eduHubProc.ts"
+    },
+    {
+      "path": "src/main/services/eduHubProc.test.ts",
+      "from": "main/services/eduHubProc.test.ts"
+    },
+    {
+      "path": "src/main/services/eduHubStore.ts",
+      "from": "main/services/eduHubStore.ts"
+    },
+    {
+      "path": "src/main/services/eduHubStore.langSwitch.test.ts",
+      "from": "main/services/eduHubStore.langSwitch.test.ts"
+    },
+    {
+      "path": "src/main/services/eduHubStore.p0logic.test.ts",
+      "from": "main/services/eduHubStore.p0logic.test.ts"
+    },
+    {
+      "path": "src/main/services/eduHubStore.submitLang.test.ts",
+      "from": "main/services/eduHubStore.submitLang.test.ts"
+    },
+    {
+      "path": "src/main/services/eduHubStudentPage.ts",
+      "from": "main/services/eduHubStudentPage.ts"
+    },
+    {
+      "path": "src/main/services/eduHubAnalyze.test.ts",
+      "from": "main/services/eduHubAnalyze.test.ts"
+    },
+    {
+      "path": "src/main/services/eduHubDelete.test.ts",
+      "from": "main/services/eduHubDelete.test.ts"
+    },
+    {
+      "path": "src/main/services/eduHubGenerateRetry.test.ts",
+      "from": "main/services/eduHubGenerateRetry.test.ts"
+    },
+    {
+      "path": "src/main/services/eduHubJson.test.ts",
+      "from": "main/services/eduHubJson.test.ts"
+    },
+    {
+      "path": "src/main/services/eduHubReparse.test.ts",
+      "from": "main/services/eduHubReparse.test.ts"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-global-ads",
+  "name": "阿联酋广告代投放工作台",
+  "aliases": [
+    "global-ads"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "UAE 增长",
+  "icon": "icon-solutions",
+  "order": 70,
+  "description": "Facebook、Instagram、Google Ads 与 YouTube 全链路投放、复盘和账户优化。",
+  "detail": "面向中东市场的全链路代投放：连接 Facebook、Instagram、Google Ads 与 YouTube 账户，从素材成片、按平台画幅适配、真实上架发布到投放复盘与账户优化，一个工作台全部完成。",
+  "shortcuts": [
+    "素材成片",
+    "投放复盘",
+    "账户优化"
+  ],
+  "highlights": [
+    "Facebook/Instagram/Google/YouTube 全链路",
+    "按平台画幅适配",
+    "真实上架发布"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/global-ads",
+    "renderer": "src/renderer/views/GlobalAdsWorkbenchView.vue",
+    "main": "src/main/ipc/globalAdsWorkbench.ipc.ts"
+  },
+  "dependsOn": [
+    "kit-automation-ops",
+    "workbench-charity-content"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "global-ads-run-state.json",
+      "ads-slideshow/"
+    ],
+    "localStorage": [
+      "totalclaw:global-ads-"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-global-ads"
+  }
+}

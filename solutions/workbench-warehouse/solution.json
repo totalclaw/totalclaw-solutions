@@ -1,0 +1,58 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-warehouse",
+  "name": "产销存协同工作台",
+  "aliases": [
+    "warehouse"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "产销存",
+  "icon": "icon-solutions",
+  "order": 60,
+  "description": "多源数据归一、销售与库存对账、采购到货、补货调拨和出入库执行。",
+  "detail": "把 ERP、电商后台与线下台账的多源数据归一后，自动完成销售与库存对账、采购到货核验、补货调拨建议与出入库执行单，差异项逐条留痕、全程可追溯。",
+  "shortcuts": [
+    "销售库存对账",
+    "采购到货核验",
+    "补货调拨建议"
+  ],
+  "highlights": [
+    "多源数据自动归一",
+    "差异项逐条留痕",
+    "全程可追溯"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/warehouse",
+    "renderer": "src/renderer/views/WarehouseWorkbenchView.vue",
+    "main": "src/main/ipc/warehouseWorkbench.ipc.ts"
+  },
+  "dependsOn": [
+    "kit-automation-ops"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [],
+    "localStorage": [
+      "totalclaw:warehouse"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-warehouse"
+  }
+}

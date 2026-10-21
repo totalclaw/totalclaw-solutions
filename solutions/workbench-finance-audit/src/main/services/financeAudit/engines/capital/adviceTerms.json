@@ -1,0 +1,16 @@
+{
+  "_note": "不做投资建议（第 9.1 节）：研究 / 市场 / 财富叙述里出现这些买卖评级或交易建议措辞时，段落标「未核实」，签核人须逐条知悉并删改。是匹配模型输出用的数据，不是界面文案，不进 i18n 词典。",
+  "patterns": [
+    "\\b(buy|sell|hold|overweight|underweight|outperform|underperform|accumulate)\\s+(rating|recommendation)\\b",
+    "\\bstrong\\s+(buy|sell)\\b",
+    "\\b(we|i)\\s+(recommend|suggest|advise)\\s+(buying|selling|investing|clients?\\s+to)\\b",
+    "\\brat(e|es|ed|ing)\\s+(the\\s+)?(stock|shares)\\s+(as\\s+)?(a\\s+)?(buy|sell|hold)\\b",
+    "(买入|卖出|增持|减持|中性|推荐)评级",
+    "给予.{0,8}(买入|卖出|增持|减持|推荐)",
+    "建议(客户)?(买入|卖出|增持|减持|抛售|加仓|减仓)",
+    "强烈推荐",
+    "توصية\\s*(بالشراء|بالبيع|بالاحتفاظ)",
+    "ننصح\\s*(بشراء|ببيع|بالاستثمار)",
+    "تصنيف\\s*(شراء|بيع)"
+  ]
+}

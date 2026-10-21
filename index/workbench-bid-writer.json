@@ -1,0 +1,137 @@
+{
+  "id": "workbench-bid-writer",
+  "version": "1.0.0",
+  "treeDigest": "3bc9d3b6763bb96255db8cd58ac64ef4d07bdddb4207757533bb40b4b32b97d2",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 129,
+      "sha256": "ce9923dd36fd5a4fbf08764d492cc526753e7f63930c63f33574fdc18f93f76b"
+    },
+    {
+      "path": "README.md",
+      "size": 1588,
+      "sha256": "e6c52b6280641f663de8c2c0195d80e5d12f55d4974f5a942cde753697e9663f"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "origin.json",
+      "size": 4269,
+      "sha256": "c5d979d861ce82037138da733a1e401597067c9a8485dbf882ecb9603d0a2b03"
+    },
+    {
+      "path": "solution.json",
+      "size": 2270,
+      "sha256": "4a8684475999965d3db3e0b2b856b4d22badc6058ef62065b219aefb549ae07a"
+    },
+    {
+      "path": "src/main/ipc/bidWriter.ipc.ts",
+      "size": 45843,
+      "sha256": "b264f0cdcb0aed433b49644531220ab2212132bfafda43bbb627ae57efb65341"
+    },
+    {
+      "path": "src/main/services/bidWriter/bidWriter.test.ts",
+      "size": 27504,
+      "sha256": "9867d5257943b41c72b00b1f4208811153b77d706f15827da082f1a7ee711f02"
+    },
+    {
+      "path": "src/main/services/bidWriter/compliance.ts",
+      "size": 11029,
+      "sha256": "b498a84d85924280bf8749eb940bafc72d6039de41acd1788c952b3329dd0791"
+    },
+    {
+      "path": "src/main/services/bidWriter/docx.ts",
+      "size": 15119,
+      "sha256": "f7cecee1aa1d071e8b47ae6f97fecec051385c1cda69fcc29eea5155e807fc0e"
+    },
+    {
+      "path": "src/main/services/bidWriter/llmReply.ts",
+      "size": 1664,
+      "sha256": "de7f1d5f307a784fb53c4d5ad129fb6cab323d1043a6023cd92b0cad95712a3c"
+    },
+    {
+      "path": "src/main/services/bidWriter/matchPatterns.ts",
+      "size": 16114,
+      "sha256": "98d921794855ed5bea3869648dab72ca98cd3f693098052fa5ce91b123a8fff3"
+    },
+    {
+      "path": "src/main/services/bidWriter/noticeFetch.ts",
+      "size": 6409,
+      "sha256": "71074251aa64a928ba285c2e02c79bc9efd946539bd55aa6eabcceddc8af7f3d"
+    },
+    {
+      "path": "src/main/services/bidWriter/noticeRules.ts",
+      "size": 13430,
+      "sha256": "dc5d3ff3ed8368304ebc09368969606ea65d4a3a3cb749c4fcc2cd43020d5bf7"
+    },
+    {
+      "path": "src/main/services/bidWriter/noticeSearch.ts",
+      "size": 7701,
+      "sha256": "783e53755df6d9391d85e447cb42fc630cc45b3e584122a31a6e67745e0fa56c"
+    },
+    {
+      "path": "src/main/services/bidWriter/outline.ts",
+      "size": 9253,
+      "sha256": "7d11fcf8c281ed4add6404abe28301810313d7dc2eef1b349b1a245365b511dc"
+    },
+    {
+      "path": "src/main/services/bidWriter/prompts.ts",
+      "size": 11975,
+      "sha256": "0be947230a5d38377f30f710c1d001f4f387c3b66b9dcff7cd3a93bbc4805664"
+    },
+    {
+      "path": "src/main/services/bidWriter/store.ts",
+      "size": 5825,
+      "sha256": "8c69f5e15c4f80ba4c29dab3323fe1b9ffd8bbaf3c1a4df1dcd04fd96de90bf7"
+    },
+    {
+      "path": "src/renderer/views/BidWriterWorkbenchView.vue",
+      "size": 67746,
+      "sha256": "82593eaf881f9279880b246e2368926c7a0fc791e5d2d8f90d103f69db509e7f"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/BwGapForm.vue",
+      "size": 8661,
+      "sha256": "2ef7592b3da56c221e58b6d3224b7451b24beb73f1ba3f7a5e8b9970a2d1a236"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/BwProgress.test.ts",
+      "size": 2208,
+      "sha256": "d4f84603abaa0e616de5bc04849e9b902f77cfbb0fc272ce080dd63081d49e7d"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/BwProgress.vue",
+      "size": 4249,
+      "sha256": "090ac2c11d63194c3ae646d1d6d54481ca3e1d922a437cb5fe42e4fd9bc1562b"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/BwStep.vue",
+      "size": 1968,
+      "sha256": "d3d4c7325f8ffd9fd91bd289308d7d7ad3ffb6950604f16da208e3a01c6c541c"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/persistence.test.ts",
+      "size": 1310,
+      "sha256": "1b5c447d9c434638b3d8a99ff336815dfc6239882c0f71f82f620889870825cb"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/placeholder.ts",
+      "size": 3301,
+      "sha256": "3ec8bc33d9ce9375aae5362d8d2be57182f804b41bb4de77dd47b087cf315d32"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/shared.ts",
+      "size": 15204,
+      "sha256": "64ea76e04cdf8a3c644560f05b6cdb85e374447df261edfedd832315faa77f4f"
+    },
+    {
+      "path": "src/renderer/workbenches/bid-writer/styles.css",
+      "size": 10860,
+      "sha256": "32c0ae227f9b65451d794edfc0a235b05ee01216c0a67c5097d7dd292ad86dda"
+    }
+  ]
+}

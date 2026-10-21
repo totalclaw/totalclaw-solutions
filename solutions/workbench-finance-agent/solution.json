@@ -1,0 +1,61 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-finance-agent",
+  "name": "财务智能体",
+  "aliases": [
+    "finance-agent"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "财务",
+  "icon": "icon-solutions",
+  "order": 160,
+  "description": "凭证、税务申报、费用报销、往来对账、财务报表、风险巡检、预算、成本、合同审核、财税问答十个智能体，多账套持续跟进。",
+  "detail": "帮财务做重复、核对、信息提取和预审分析：票据识别生成凭证草稿，税额按规则计算并出申报表草稿与风险预检，报销单按制度预审，往来逐笔对账并出对账函、催款函，报表自动勾稽，全量巡检财税风险，预算与成本自动核算，合同涉税条款审核，财税问题按内置政策库与企业制度作答。不提交申报、不电子签名、不改正式账套，结果由财务人员复核确认。",
+  "shortcuts": [
+    "票据生成凭证",
+    "往来对账",
+    "财税风险巡检"
+  ],
+  "highlights": [
+    "十个财务智能体",
+    "多账套持续跟进",
+    "结果由财务复核确认"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/finance-agent",
+    "renderer": "src/renderer/views/FinanceAgentWorkbenchView.vue",
+    "main": "src/main/ipc/financeAgent.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-foreign-trade",
+    "workbench-service-settlement"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "finance-agent/"
+    ],
+    "localStorage": [
+      "totalclaw:finance-agent"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-finance-agent"
+  }
+}

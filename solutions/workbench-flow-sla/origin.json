@@ -1,0 +1,171 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 66,
+    "solutions": {
+      "workbench-charity-content": [
+        "main/services/charityContent/render.ts"
+      ],
+      "workbench-service-settlement": [
+        "main/services/serviceSettlement/excel.ts",
+        "renderer/workbenches/service-settlement/FileDropField.vue",
+        "renderer/workbenches/service-settlement/StepCard.vue",
+        "renderer/workbenches/service-settlement/StickyProgress.vue",
+        "renderer/workbenches/service-settlement/TableMapping.vue",
+        "renderer/workbenches/service-settlement/shared.ts",
+        "renderer/workbenches/service-settlement/styles.css"
+      ]
+    },
+    "host": [
+      "main/ipc/workbenchApi.ts",
+      "main/services/accountScope.ts",
+      "main/services/caseMailSender.ts",
+      "main/services/spreadsheetRead.ts",
+      "main/services/workbenchLlm.ts",
+      "main/util/quitRegistry.ts",
+      "main/utils/userFacingError.ts",
+      "renderer/components/PageBackButton.vue",
+      "renderer/i18n.ts",
+      "renderer/stores/notification.ts",
+      "renderer/utils/ipcPlain.ts"
+    ],
+    "packages": [
+      "@totalclaw/i18n",
+      "@totalclaw/ipc-contracts",
+      "@vue/test-utils",
+      "echarts",
+      "electron",
+      "pinia",
+      "vitest",
+      "vue",
+      "vue-echarts",
+      "vue-router",
+      "xlsx"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/views/FlowSlaWorkbenchView.vue",
+      "from": "renderer/views/FlowSlaWorkbenchView.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/flow-sla/BoardTab.vue",
+      "from": "renderer/workbenches/flow-sla/BoardTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/flow-sla/BulletinTab.test.ts",
+      "from": "renderer/workbenches/flow-sla/BulletinTab.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/flow-sla/BulletinTab.vue",
+      "from": "renderer/workbenches/flow-sla/BulletinTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/flow-sla/LedgerTab.vue",
+      "from": "renderer/workbenches/flow-sla/LedgerTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/flow-sla/RulesTab.vue",
+      "from": "renderer/workbenches/flow-sla/RulesTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/flow-sla/TrackTab.vue",
+      "from": "renderer/workbenches/flow-sla/TrackTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/flow-sla/shared.test.ts",
+      "from": "renderer/workbenches/flow-sla/shared.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/flow-sla/shared.ts",
+      "from": "renderer/workbenches/flow-sla/shared.ts"
+    },
+    {
+      "path": "src/main/ipc/flowSla.ipc.ts",
+      "from": "main/ipc/flowSla.ipc.ts"
+    },
+    {
+      "path": "src/main/ipc/flowSla.ipc.test.ts",
+      "from": "main/ipc/flowSla.ipc.test.ts"
+    },
+    {
+      "path": "src/main/services/flowSla/calc.test.ts",
+      "from": "main/services/flowSla/calc.test.ts"
+    },
+    {
+      "path": "src/main/services/flowSla/calc.ts",
+      "from": "main/services/flowSla/calc.ts"
+    },
+    {
+      "path": "src/main/services/flowSla/columnKeywords.json",
+      "from": "main/services/flowSla/columnKeywords.json"
+    },
+    {
+      "path": "src/main/services/flowSla/defaultRules.json",
+      "from": "main/services/flowSla/defaultRules.json"
+    },
+    {
+      "path": "src/main/services/flowSla/demoData.ts",
+      "from": "main/services/flowSla/demoData.ts"
+    },
+    {
+      "path": "src/main/services/flowSla/ingest.test.ts",
+      "from": "main/services/flowSla/ingest.test.ts"
+    },
+    {
+      "path": "src/main/services/flowSla/ingest.ts",
+      "from": "main/services/flowSla/ingest.ts"
+    },
+    {
+      "path": "src/main/services/flowSla/proc.test.ts",
+      "from": "main/services/flowSla/proc.test.ts"
+    },
+    {
+      "path": "src/main/services/flowSla/proc.ts",
+      "from": "main/services/flowSla/proc.ts"
+    },
+    {
+      "path": "src/main/services/flowSla/prompts.ts",
+      "from": "main/services/flowSla/prompts.ts"
+    },
+    {
+      "path": "src/main/services/flowSla/reasons.test.ts",
+      "from": "main/services/flowSla/reasons.test.ts"
+    },
+    {
+      "path": "src/main/services/flowSla/reasons.ts",
+      "from": "main/services/flowSla/reasons.ts"
+    },
+    {
+      "path": "src/main/services/flowSla/report.test.ts",
+      "from": "main/services/flowSla/report.test.ts"
+    },
+    {
+      "path": "src/main/services/flowSla/report.ts",
+      "from": "main/services/flowSla/report.ts"
+    },
+    {
+      "path": "src/main/services/flowSla/rulesImport.test.ts",
+      "from": "main/services/flowSla/rulesImport.test.ts"
+    },
+    {
+      "path": "src/main/services/flowSla/rulesImport.ts",
+      "from": "main/services/flowSla/rulesImport.ts"
+    },
+    {
+      "path": "src/main/services/flowSla/store.ts",
+      "from": "main/services/flowSla/store.ts"
+    },
+    {
+      "path": "src/contracts/flowSla.ts",
+      "from": "packages/ipc-contracts/src/flowSla.ts"
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+schemaVersion: 2
+
+business:
+  company: "待确认"
+  offer: "待确认"
+  buyers: []
+  markets: []
+  languages: ["en"]
+  primaryConversion: "request_quote"
+  qualifiedInquiryFields:
+    - "product"
+    - "quantity"
+    - "country"
+    - "requirements"
+
+evidence:
+  verified: []
+  pending: []
+  forbiddenPlaceholders:
+    - "fake_customer_logo"
+    - "unverified_certificate"
+    - "invented_capacity"
+
+architecture:
+  stack: "vite-react-typescript"
+  rendering: "static-prerender"
+  generator: "react-build-time"
+  browserRuntime: "progressive-enhancement"
+  contentSource: "repository"
+  samplePages:
+    - "/"
+    - "/products/example-category/"
+    - "/products/example-product/"
+  routesManifest: "./routes.json"
+  outputDirectory: "./dist"
+
+designSystem:
+  briefFile: "./DESIGN.md"
+  directionStatus: "proposed" # proposed | pending | approved
+  defaultDirection: "professional-premium-b2b-corporate" # 以客户品牌与产品为准，不硬套模板
+  acquisitionReferences: [] # 分类/搜索意图/询盘路径的证据来源
+  visualReferences: [] # 排版/摄影/留白的参考，与获客证据分开
+  styling: "tailwind-v4"
+  vitePlugin: "@tailwindcss/vite"
+  semanticTokensRequired: true
+  tokenGroups:
+    - "color"
+    - "typography"
+    - "spacing"
+    - "radius"
+    - "shadow"
+    - "container"
+  componentSource: "project-owned"
+  shadcnMode: "selective" # selective | none
+  avoidUnusedClientJavascript: true
+  sampleUsesProductionRenderer: true
+  sampleApprovalSource: null # 真实用户确认来源，不以 Agent 自查代替
+  visualReviewFile: "./qa/visual-review.md"
+  approvedScope: []
+  externalDesignSkillsRequired: false
+
+contentHandoff:
+  trigger: "after-style-approval"
+  proactive: true
+  fullAssetPackRequiredToStart: false
+  acceptExistingBrochuresSpreadsheetsAndPhotos: true
+  customerContentApprovalRef: null
+  pendingMaterialsRef: null
+  productionRequiresVerifiedContent: true
+
+media:
+  mode: "local" # local | r2
+  manifestFile: null # 填项目实际内容模型/素材清单路径，不重复维护
+  logicalAssetIds: true
+  verifiedBusinessImagesRequired: true # 正式产品与企业证据；前期允许标记的设计示意
+  preview:
+    allowed: true
+    useAvailableImageGeneration: true # 无可用工具不谎称生成，不要求先注册生图服务
+    requireClearUsageRights: true
+    svgAsProductPhotoReplacement: false
+    labelRequired: true
+    noindexRequired: true
+    replaceProductIllustrationsBeforeProduction: true
+  localDirectory: "./public/assets"
+  r2:
+    bucket: null
+    publicDomain: null
+    customerOwned: true
+
+domain:
+  registrar: "待确认"
+  registrantControlledByCustomer: true
+  authoritativeDns: "cloudflare" # cloudflare | external
+  cloudflareAccountOwnedByCustomer: true
+  existingDnsExported: false
+  existingMailRecordsVerified: false
+  nameserversDelegated: false
+  dnssecReenabled: false
+
+inquiries:
+  endpoint: "/api/inquiry"
+  successRedirect: "/thank-you/"
+  database: "d1"
+  notification: "resend"
+  turnstile: true
+  saveBeforeNotify: true
+  redirectOnlyAfterStore: true
+  recipient: "待确认"
+  conversion:
+    event: "inquiry_submit_success"
+    idSource: "inquiry_id"
+    preventDuplicate: true
+    allowPii: false
+
+liveChat:
+  provider: "none" # none | tidio
+  enabled: false
+  configFile: "./tidio.json"
+  accountOwnedByCustomer: true
+  publicKey: null # public identifier, never use a sample project's key
+  installScope: "all-public-pages" # all-public-pages | selected-routes
+  includeRoutes: []
+  excludeRoutes:
+    - "/thank-you/"
+  privacyMode: "待确认" # immediate | consent-gated | disabled
+  productionOnly: true
+  validatedInBuiltHtml: false
+  testMessageConfirmedInCustomerInbox: false
+  performanceRetestedAfterEnable: false
+
+emailDelivery:
+  provider: "resend"
+  accountOwnedByCustomer: true
+  sendingDomain: "待确认" # e.g. notify.example.com
+  domainVerified: false
+  apiKeyPermission: "sending_access"
+  apiKeyRestrictedToDomain: true
+  secretName: "RESEND_API_KEY"
+  fromAddress: "待确认"
+  replyToUsesValidatedVisitorEmail: true
+
+deployment:
+  provider: "cloudflare-pages"
+  projectName: "待确认"
+  productionDomain: "待确认"
+  buildCommand: "npm run quality"
+  outputDirectory: "./dist"
+  blockOnQualityFailure: true
+  authorized: false
+
+onboarding:
+  proactiveAtLaunch: true
+  registrationTiming: "when-current-step-needs-service"
+  registrationRequiredForDesign: false
+  intakeTemplate: "onboarding-intake.example.yaml"
+  stateFile: "./launch-state.yaml"
+  installMissingRequiredTools: true
+  secretInputMode: "detect-or-provider-dashboard"
+  ordinaryChatSecretsAllowed: false
+  verifyCustomerReceipt: true
+  askForLiveChatOnlyIfUndecided: true
+
+acceptance:
+  routeManifestRequired: true
+  htmlContainsPrimaryContent: true
+  javascriptOptionalForReading: true
+  real404: true
+  inquiryStoredOnEmailFailure: true
+  thankYouNoindex: true
+  thankYouExcludedFromSitemap: true
+  conversionOnlyAfterInquiryStored: true
+  viewports: [360, 390, 768, 1440]
+  pageSpeedClaimRequiresEvidence: true
+  productionOutputPreviewRequired: true
+  visualEvidenceRequired: true
+  visualReviewStatus: "not-run" # not-run | issues-found | verified | user-approved
+  uniqueIndexableTitles: true
+  selfCanonicalMatchesRoute: true
+  sitemapMatchesIndexableCanonicals: true

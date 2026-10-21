@@ -1,0 +1,72 @@
+{
+  "id": "workbench-warehouse",
+  "version": "1.0.0",
+  "treeDigest": "2bb3adea6ebc07a082c9b7862743d8ae64cd1340259fa8708534cfb4de733a20",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 132,
+      "sha256": "47ab4c501c1d41cce0031f88804d9171dcc9a7dade1cac761a7fdc30d50ba3a1"
+    },
+    {
+      "path": "README.md",
+      "size": 843,
+      "sha256": "671b3731a1307bae41282b9239bbf0abe55edd49cd67eadfb6539bb8cef01424"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "origin.json",
+      "size": 2198,
+      "sha256": "6cbc8d5085196ed9df2105d648d3454b56ee1ad9185ffcec15601bc857e7cc8e"
+    },
+    {
+      "path": "solution.json",
+      "size": 1510,
+      "sha256": "205000021a8181c1d0049c6dab9c6234d2c8bcc74d1621fa47bf36dd9038cb2e"
+    },
+    {
+      "path": "src/main/ipc/warehouseWorkbench.ipc.ts",
+      "size": 11260,
+      "sha256": "7da7faeba71e1cdaabf3846759fd8303f15cc08e52d7da59b92045dfa818ca67"
+    },
+    {
+      "path": "src/main/services/warehouseNormalization.test.ts",
+      "size": 4810,
+      "sha256": "b235aa9eab17f2fd5356c91ab643f39ac0846d4dbb7b04316b14d0d627764067"
+    },
+    {
+      "path": "src/main/services/warehouseNormalization.ts",
+      "size": 14676,
+      "sha256": "36687b7449a9f412adcf7b4248ca2572505e597e22b16f3e2604401fcf204bea"
+    },
+    {
+      "path": "src/renderer/components/WarehouseDataNormalization.test.ts",
+      "size": 1938,
+      "sha256": "b458e24d090a4d76f1efae5814c8044b4d273b6f18aeb8ba9a20ad66e3e367df"
+    },
+    {
+      "path": "src/renderer/components/WarehouseDataNormalization.vue",
+      "size": 46460,
+      "sha256": "9a62d6098fea82ec8190b3e6e3aacc7f4d8150b4682f64f48592a538207d3cff"
+    },
+    {
+      "path": "src/renderer/views/WarehouseWorkbenchView.vue",
+      "size": 64619,
+      "sha256": "3110cf4835a803ffa0492b7dff3fa46ed22f62840577b4704914cc08d921c678"
+    },
+    {
+      "path": "src/renderer/workbenches/warehouse/format.test.ts",
+      "size": 4940,
+      "sha256": "9aa2ba731ee59a8ffcc657f0bc5af9ca6c07264c11b86489e0b4490bf7d0b57b"
+    },
+    {
+      "path": "src/renderer/workbenches/warehouse/format.ts",
+      "size": 2337,
+      "sha256": "1675a1095c00f97f10306a9d043cfb29fff42841cff686a8b0672f17171a6814"
+    }
+  ]
+}

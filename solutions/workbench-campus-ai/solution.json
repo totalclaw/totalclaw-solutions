@@ -1,0 +1,51 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-campus-ai",
+  "name": "高校一体化AI智能体",
+  "aliases": [
+    "campus-ai"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "高校",
+  "icon": "icon-solutions",
+  "order": 220,
+  "description": "校级 AI 中心一体化平台：统一校园知识库，师生扫码就能问、答案带出处、答不了的转部门；按成绩和考勤算学业预警，辅导员复核后出谈话提纲与通知；模型服务、调用审计与数据保留统一运维。",
+  "detail": "五个模块：① 平台总览——问答量、自动答复率、待办转办与待复核预警；② 校园知识库——各部门文档与 FAQ 导入、本机建索引、检索自测；③ 校园智能问答——FAQ 命中直接给审定答案，检索证据够才依据原文作答，没依据不编、转给对应部门，敏感问题立即给求助方式，学生手机扫码提问；④ 学业预警——名单、成绩、考勤三张表按规则算红橙黄三级，每人附依据，辅导员复核后生成谈话提纲与通知（发给模型的内容不含姓名学号），导出或确认后发邮件；⑤ 运维——模型服务状态、调用审计、问答记录保留与清理。",
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/campus-ai",
+    "renderer": "src/renderer/views/CampusAiWorkbenchView.vue",
+    "main": "src/main/ipc/campusAi.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-grounded-qa",
+    "workbench-service-settlement"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "campus-ai/"
+    ],
+    "localStorage": [
+      "totalclaw:campus-ai"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-campus-ai"
+  }
+}

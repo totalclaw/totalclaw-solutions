@@ -1,0 +1,56 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-bid-decision",
+  "name": "AI 招投标决策数字员工",
+  "aliases": [
+    "bid-decision"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "招投标",
+  "icon": "icon-solutions",
+  "order": 90,
+  "description": "多来源标书去重、Addendum 差异、硬性门槛与能力匹配，输出可拍板的 Bid/No-Bid 建议。",
+  "detail": "汇聚多来源标书并自动去重，比对 Addendum 版本差异，逐条核对硬性门槛与自身能力的匹配度，最终输出可直接拍板的 Bid / No-Bid 建议与风险清单。",
+  "shortcuts": [
+    "标书去重比对",
+    "Addendum 差异核对",
+    "Bid/No-Bid 建议"
+  ],
+  "highlights": [
+    "多来源标书自动去重",
+    "硬性门槛匹配核对",
+    "输出可拍板建议"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/bid-decision",
+    "renderer": "src/renderer/views/BidDecisionWorkbenchView.vue",
+    "main": null
+  },
+  "dependsOn": [
+    "kit-saudi-workbench"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-bid-decision"
+  }
+}

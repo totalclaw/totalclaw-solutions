@@ -1,0 +1,54 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-quran-teaching",
+  "name": "人工智能《古兰经》智能教学平台（演示）",
+  "aliases": [
+    "quran-teaching",
+    "古兰经智能教学演示"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "教育",
+  "icon": "icon-solutions",
+  "order": 270,
+  "description": "固定语料导入与校验、章节结构解析、提纲与课程生成、理解图、动态出题、5 名学生个人与群体薄弱点分析、强化教学与复测、图片卡片与视频脚本，中英阿三语。",
+  "descriptionEn": "A university-facing demonstration of a closed AI teaching loop: locked scripture corpus import, lesson generation, comprehension maps, adaptive assessment, learning analytics and reinforcement, grounded strictly in the imported corpus.",
+  "descriptionAr": "عرض توضيحي لحلقة تعليم مغلقة بالذكاء الاصطناعي موجّه للجامعات: استيراد مدونة نصية مُقفلة، توليد الدروس، خرائط الفهم، تقييم تكيفي، تحليلات التعلم والتعزيز، مع الالتزام الكامل بالمدونة المستوردة.",
+  "detail": "围绕一条完整教学闭环：标准经文语料包（10 章 265 节，逐文件校验、原文冻结）进入平台后，AI 拆分章/节/词汇/概念/教学单元，按学生水平与课时生成提纲、课程安排与单课计划，形成可点击的理解图；基于锁定经文与批准资料动态生成不同版本的练习与考试（每题可追溯来源）；5 名演示学生产生不同结果，自动识别个人薄弱点与群体共同问题，改一个答案即重算；针对薄弱点生成强化教学、练习与复测并展示前后变化；知识卡片、章节结构图、视频脚本分镜与成片样例；教师端 / 学生端 / 管理层三入口，阿拉伯语 RTL。",
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": true
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/quran-teaching",
+    "renderer": "src/renderer/workbenches/quran-teaching/ManagerDashboard.vue",
+    "main": "src/main/ipc/quranTeaching.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-edu-hub",
+    "workbench-service-settlement"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "quran-teaching/"
+    ],
+    "localStorage": [
+      "qt-teacher-steps-v1"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-quran-teaching"
+  }
+}

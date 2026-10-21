@@ -1,0 +1,56 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-advisory-report",
+  "name": "AI 客户问题与方案报告数字员工",
+  "aliases": [
+    "advisory-report"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "客户咨询",
+  "icon": "icon-solutions",
+  "order": 110,
+  "description": "邮件、网页表单工单与 WhatsApp 三渠道统一收件，检索获准来源后产出简短回复与七段咨询报告。",
+  "detail": "邮件、网页表单工单与 WhatsApp 三渠道统一收件，AI 只检索获准来源，先给客户简短回复稳住时效，再产出结构化的七段咨询报告供顾问定稿发出。",
+  "shortcuts": [
+    "三渠道统一收件",
+    "生成简短回复",
+    "七段咨询报告"
+  ],
+  "highlights": [
+    "邮件/表单/WhatsApp 统一收件",
+    "只检索获准来源",
+    "结构化七段报告"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/advisory-report",
+    "renderer": "src/renderer/views/AdvisoryReportWorkbenchView.vue",
+    "main": null
+  },
+  "dependsOn": [
+    "kit-saudi-workbench"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-advisory-report"
+  }
+}

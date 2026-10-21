@@ -1,0 +1,57 @@
+{
+  "id": "embedded-bid-desk",
+  "version": "1.0.0",
+  "treeDigest": "997f397885c272ab017afb44352bda0e2707c84c91c1ba158cc2180e28cf9105",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 123,
+      "sha256": "6b8fc6d718029d968bd5913fe0682bd2677c239535a92831051f8ade40e55f03"
+    },
+    {
+      "path": "README.md",
+      "size": 721,
+      "sha256": "025425c2d208fd807fd6539704e07200d0799d6748953bdcf8fdd727621cf5ec"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "origin.json",
+      "size": 1763,
+      "sha256": "7c7e9c0e7114d3b99a6f628add17934789e35bd7d536bc2a28c77a45f90b153a"
+    },
+    {
+      "path": "solution.json",
+      "size": 1367,
+      "sha256": "56f0cd7d246f0f00dcd914adc53a9260310ecc673f3850f034eff5a0a6f60a54"
+    },
+    {
+      "path": "src/main/ipc/bidDesk.ipc.ts",
+      "size": 33354,
+      "sha256": "321fd19b0ed0421c1fa135bd519548431bbd84c0fea40baf2f65f4375415d8f2"
+    },
+    {
+      "path": "src/renderer/composables/bidDeskLocale.test.ts",
+      "size": 4284,
+      "sha256": "7e38e9e865d1363db35d6b380f117a991b6af52163603fbc80ee2a2c2859d093"
+    },
+    {
+      "path": "src/renderer/composables/bidDeskLocale.ts",
+      "size": 21217,
+      "sha256": "de9e874c37a2461551172176060f13c546f26b61611ebcf4ad10d95cc185e1b6"
+    },
+    {
+      "path": "src/renderer/views/BidDeskView.vue",
+      "size": 88947,
+      "sha256": "c7aefbe7e31b45139f36460be113a3966414b0f847a5a309e51ff37e18ea2e23"
+    },
+    {
+      "path": "src/shared/bidDeskWorkflow.ts",
+      "size": 9421,
+      "sha256": "59b21c638736d14b8a6001b7e32d1db4cd1dc36ad3642af42c71636c6c9158d0"
+    }
+  ]
+}

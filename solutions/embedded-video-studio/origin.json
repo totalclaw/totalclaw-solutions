@@ -1,0 +1,71 @@
+{
+  "$comment": "来源追溯（生成物）：从 qiye-app 复制的文件映射与 import 依赖分析。host = 宿主公共代码（阶段 B 由 @totalclaw/solution-sdk 提供），solutions = 依赖的其他方案。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "gaoxiaofenzhi",
+    "commit": "dc861832edcff1a4a9935bea06e4aac546258a34"
+  },
+  "missingSeeds": [],
+  "imports": {
+    "internal": 5,
+    "solutions": {},
+    "host": [
+      "renderer/components/PageBackButton.vue",
+      "renderer/components/StepRunAlert.vue",
+      "renderer/components/workflow/HumanConfirmCard.vue",
+      "renderer/composables/publishPlatforms.ts",
+      "renderer/composables/useLocale.ts",
+      "renderer/composables/useNativeBrowserModalLock.ts",
+      "renderer/composables/useStepWatchdog.ts",
+      "renderer/composables/workflowAutoRun.ts",
+      "renderer/i18n.ts",
+      "renderer/stores/notification.ts",
+      "renderer/utils/humanize.ts",
+      "renderer/utils/humanizeChatError.ts",
+      "renderer/utils/seedanceShots.ts",
+      "renderer/utils/videoProductionEstimate.ts"
+    ],
+    "packages": [
+      "@totalclaw/ipc-contracts",
+      "@vue/test-utils",
+      "vitest",
+      "vue",
+      "vue-router"
+    ]
+  },
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/renderer/views/VideoStudioView.vue",
+      "from": "renderer/views/VideoStudioView.vue"
+    },
+    {
+      "path": "src/renderer/views/VideoStudioView.layout.test.ts",
+      "from": "renderer/views/VideoStudioView.layout.test.ts"
+    },
+    {
+      "path": "src/renderer/views/VideoStudioView.noShowcase.test.ts",
+      "from": "renderer/views/VideoStudioView.noShowcase.test.ts"
+    },
+    {
+      "path": "src/renderer/views/VideoStudioView.republish.test.ts",
+      "from": "renderer/views/VideoStudioView.republish.test.ts"
+    },
+    {
+      "path": "src/renderer/views/VideoStudioView.shotListPrompt.test.ts",
+      "from": "renderer/views/VideoStudioView.shotListPrompt.test.ts"
+    },
+    {
+      "path": "src/renderer/views/VideoStudioView.slideshowFailure.test.ts",
+      "from": "renderer/views/VideoStudioView.slideshowFailure.test.ts"
+    },
+    {
+      "path": "src/renderer/views/VideoStudioView.watchdog.test.ts",
+      "from": "renderer/views/VideoStudioView.watchdog.test.ts"
+    },
+    {
+      "path": "src/renderer/composables/videoStudioRunState.ts",
+      "from": "renderer/composables/videoStudioRunState.ts"
+    }
+  ]
+}

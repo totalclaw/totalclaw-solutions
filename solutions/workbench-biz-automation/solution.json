@@ -1,0 +1,54 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-biz-automation",
+  "name": "经营自动化智能体",
+  "aliases": [
+    "biz-automation"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "经营自动化",
+  "icon": "icon-solutions",
+  "order": 180,
+  "description": "短视频生成并发抖音、快手、小红书、视频号；数字人出镜介绍企业；商品图文自动上下架；收银与财务数据自动取数、统计并推送经营日报。",
+  "detail": "四个模块：① 从商品库与试穿图一键生成新品上新、一衣多搭、促销等短视频，审核后发布到国内四个平台；② 从知识库取公司资料写讲稿，数字人口播成片并加 AI 生成标识；③ 按平台生成商品主图与标题详情，交给数字员工在网店后台上架，售罄、断码、过季按规则下架或提醒；④ 导入收银、费用数据，按固定口径算营业额、毛利、客单价、连带率、售罄率，模型只写解读，日报定时推送。发布、上架默认停在提交前由人确认，财务数据只读。",
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/biz-automation",
+    "renderer": "src/renderer/views/BizAutomationWorkbenchView.vue",
+    "main": "src/main/ipc/bizAutomation.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-apparel-store",
+    "workbench-charity-content",
+    "workbench-digital-human",
+    "workbench-foreign-trade",
+    "workbench-service-settlement"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "biz-automation/"
+    ],
+    "localStorage": [
+      "totalclaw:biz-automation"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-biz-automation"
+  }
+}

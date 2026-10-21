@@ -1,0 +1,27 @@
+{
+  "id": "dev-pipeline",
+  "version": "1.1.0",
+  "treeDigest": "09f052a8d36cc574373d4a6e35505caebfde854e5818f5a474fdc80e6e068136",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 246,
+      "sha256": "249f862b54e141f9f218b935707fa8d8d8c84413041f4f24ecbf5d779dd2f417"
+    },
+    {
+      "path": "README.md",
+      "size": 656,
+      "sha256": "01dbc4c0014b7833d1268e4e35e001940064abf6dd1a7d2110265f807e9a8682"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2011,
+      "sha256": "ea261cee84ef174dc6d8409d71ec06acf95555f2d2abfd52833df7fb6c776cd5"
+    }
+  ]
+}

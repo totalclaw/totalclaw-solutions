@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gitee.com/jlzdyx/totalclaw-solutions/schema/solution.schema.json",
+  "title": "TotalClaw 方案清单 solution.json（manifestVersion 2）",
+  "description": "tools/validate.mjs 实现了等价校验；本文件供编辑器提示与外部系统参考。runner / pipeline 类方案还保留 v1 的 runner、prefill、analysis、workflow 等字段（additionalProperties 允许）。",
+  "type": "object",
+  "required": ["manifestVersion", "schemaVersion", "id", "name", "aliases", "version", "kind", "category", "icon", "order", "description", "access", "compat", "runtime", "dependsOn", "data", "capabilities", "largeAssets"],
+  "properties": {
+    "manifestVersion": { "const": 2, "description": "清单格式版本" },
+    "schemaVersion": { "const": 1, "description": "旧版 qiye-app SolutionRunView 的 runner 兼容版本，保持 1" },
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,79}$", "description": "稳定 id，== 目录名 == totalclaw-web 方案 id，永不改名" },
+    "name": { "type": "string", "minLength": 1, "description": "显示名（totalclaw-web 目录同步此字段）" },
+    "aliases": { "type": "array", "items": { "type": "string" }, "description": "按名称安装时的匹配词" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$" },
+    "kind": { "enum": ["workbench", "runner", "pipeline", "kit"], "description": "workbench=行业工作台；runner/pipeline=市场方案包；kit=被多个方案共享的内部组件（不单独展示）" },
+    "category": { "type": "string" },
+    "icon": { "type": "string" },
+    "order": { "type": "integer", "description": "目录排序" },
+    "description": { "type": "string" },
+    "descriptionEn": { "type": "string" },
+    "descriptionAr": { "type": "string" },
+    "detail": { "type": "string", "description": "卡片背面详情" },
+    "shortcuts": { "type": "array", "items": { "type": "string" } },
+    "highlights": { "type": "array", "items": { "type": "string" } },
+    "access": {
+      "type": "object",
+      "required": ["requiresSolutionGrant", "feature", "hidden"],
+      "properties": {
+        "requiresSolutionGrant": { "type": "boolean", "description": "true：需要账号 enabledSolutionIds 授权；id 必须在 totalclaw-web 目录中" },
+        "feature": { "type": ["string", "null"], "description": "版本门禁 feature id（edition-features）" },
+        "hidden": { "type": "boolean", "description": "不在方案列表中单独展示" }
+      }
+    },
+    "compat": {
+      "type": "object",
+      "required": ["minAppVersion", "hostApi"],
+      "properties": {
+        "minAppVersion": { "type": "string", "description": "宿主最低版本；不满足时不安装/不自动升级" },
+        "hostApi": { "type": "integer", "minimum": 1, "description": "宿主 SDK 版本（阶段 B 动态加载生效）" }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "required": ["mode", "runner"],
+      "properties": {
+        "mode": { "enum": ["bundled", "dynamic"], "description": "bundled：代码随宿主构建；dynamic：宿主从安装目录动态加载" },
+        "runner": { "type": "string", "description": "workbench | kit | material-table | oneclick-video | agent-pipeline …" },
+        "route": { "type": ["string", "null"], "description": "工作台入口路由（directPath）" },
+        "renderer": { "type": ["string", "null"], "description": "渲染层入口（包内相对路径）" },
+        "main": { "type": ["string", "null"], "description": "主进程入口（包内相对路径）" }
+      }
+    },
+    "dependsOn": { "type": "array", "items": { "type": "string" }, "description": "安装时一并安装的方案 / kit" },
+    "data": {
+      "type": "object",
+      "required": ["schemaVersion", "paths"],
+      "properties": {
+        "schemaVersion": { "type": "integer", "minimum": 1, "description": "数据结构版本；>1 时 migrations/ 必须提供迁移链" },
+        "paths": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "账号目录（accounts/<key>/）下属于本方案的数据路径；目录以 / 结尾；`file#key` 表示宿主共享文件中的键（不参与快照/删除）。安装器永不写这些路径。"
+        },
+        "localStorage": { "type": "array", "items": { "type": "string" }, "description": "渲染层 localStorage 键或前缀" }
+      }
+    },
+    "capabilities": { "type": "array", "items": { "type": "string" }, "description": "所需宿主能力；升级时新增能力需用户确认" },
+    "largeAssets": {
+      "type": "array",
+      "description": "未入 git 的大文件（>2MB），安装后按需懒下载",
+      "items": {
+        "type": "object",
+        "required": ["path", "size", "sha256"],
+        "properties": {
+          "path": { "type": "string" },
+          "size": { "type": "integer" },
+          "sha256": { "type": "string" },
+          "origin": { "type": "string" },
+          "url": { "type": "string" }
+        }
+      }
+    },
+    "distribution": {
+      "type": "object",
+      "properties": { "channel": { "type": "string" }, "path": { "type": "string" } }
+    }
+  }
+}

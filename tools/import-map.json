@@ -1,0 +1,544 @@
+{
+  "$comment": "qiye-app → 方案仓库 源码映射。seeds 前缀：src: = apps/desktop-shell/src，pkg: = packages，res: = resources。目录递归复制；文件会自动带上同名测试（<name>.test.ts / <name>.*.test.ts）。复制后保持相对 apps/desktop-shell/src 的原有路径（落在 solutions/<id>/src/ 下），这样方案内部的相对 import 不变。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "appRoot": "apps/desktop-shell"
+  },
+  "kits": {
+    "kit-saudi-workbench": {
+      "name": "沙特数字员工底座",
+      "category": "内置组件",
+      "description": "rfq-quote / bid-decision / advisory-report 三个数字员工共用的统一收件 + 三栏工作台底座与案件存储。",
+      "seeds": [
+        "src:renderer/workbenches/saudi",
+        "src:main/services/saudiCaseStore.ts",
+        "src:main/services/saudiDataPack.ts",
+        "src:main/services/saudiOutputBuilder.ts",
+        "src:main/services/saudiEndToEnd.test.ts",
+        "src:main/services/saudiPackIngestion.test.ts",
+        "res:saudi-demo"
+      ],
+      "data": {
+        "paths": [
+          "totalclaw-agent/cases/case-store.json",
+          "totalclaw-agent/saudi/data-pack.json"
+        ],
+        "localStorage": []
+      }
+    },
+    "kit-automation-ops": {
+      "name": "自动化运营控制台",
+      "category": "内置组件",
+      "description": "智慧医院 / 产销存工作台共用的自动化场景控制台、执行结果与演示场景。",
+      "seeds": [
+        "src:renderer/components/AutomationOpsConsole.vue",
+        "src:renderer/workbenches/automationScenarios.ts",
+        "src:renderer/workbenches/automationExecution.ts",
+        "src:renderer/workbenches/workflowResult.ts"
+      ],
+      "data": {
+        "paths": [],
+        "localStorage": []
+      }
+    }
+  },
+  "solutions": {
+    "workbench-edu-hub": {
+      "order": 10,
+      "seeds": [
+        "src:renderer/views/EduHubWorkbenchView.vue",
+        "src:main/ipc/eduHub.ipc.ts",
+        "src:main/services/eduHubProc.ts",
+        "src:main/services/eduHubStore.ts",
+        "src:main/services/eduHubStudentPage.ts",
+        "src:main/services/eduHubAnalyze.test.ts",
+        "src:main/services/eduHubDelete.test.ts",
+        "src:main/services/eduHubGenerateRetry.test.ts",
+        "src:main/services/eduHubJson.test.ts",
+        "src:main/services/eduHubReparse.test.ts"
+      ],
+      "data": {
+        "paths": [
+          "edu-hub/"
+        ],
+        "localStorage": [
+          "totalclaw:edu-hub"
+        ]
+      }
+    },
+    "rd-workflow": {
+      "order": 20,
+      "seeds": [
+        "src:renderer/views/RdWorkflowWorkbenchView.vue",
+        "src:renderer/workbenches/rd-workflow",
+        "src:renderer/components/rd",
+        "src:renderer/composables/rdWorkflow.ts",
+        "src:main/ipc/rdWorkflow.ipc.ts"
+      ],
+      "data": {
+        "paths": [],
+        "localStorage": [
+          "rdw.history.v1"
+        ]
+      }
+    },
+    "workbench-education": {
+      "order": 30,
+      "seeds": [
+        "src:renderer/views/EducationWorkbenchView.vue",
+        "src:main/ipc/educationWorkbench.ipc.ts"
+      ],
+      "data": {
+        "paths": [],
+        "localStorage": [
+          "totalclaw:education"
+        ]
+      }
+    },
+    "workbench-grounded-qa": {
+      "order": 40,
+      "seeds": [
+        "src:renderer/views/GroundedQaWorkbenchView.vue",
+        "src:main/ipc/groundedQa.ipc.ts",
+        "src:main/services/groundedQa.logic.ts",
+        "src:main/services/groundedQaStore.ts",
+        "src:main/services/groundedQaStopwords.json"
+      ],
+      "data": {
+        "paths": [
+          "grounded-qa/"
+        ],
+        "localStorage": []
+      }
+    },
+    "workbench-healthcare": {
+      "order": 50,
+      "dependsOn": [
+        "kit-automation-ops"
+      ],
+      "seeds": [
+        "src:renderer/views/HealthcareWorkbenchView.vue",
+        "src:renderer/workbenches/healthcare",
+        "src:main/ipc/healthcareWorkbench.ipc.ts"
+      ],
+      "data": {
+        "paths": [],
+        "localStorage": [
+          "totalclaw:healthcare"
+        ]
+      }
+    },
+    "workbench-warehouse": {
+      "order": 60,
+      "dependsOn": [
+        "kit-automation-ops"
+      ],
+      "seeds": [
+        "src:renderer/views/WarehouseWorkbenchView.vue",
+        "src:renderer/workbenches/warehouse",
+        "src:renderer/components/WarehouseDataNormalization.vue",
+        "src:main/ipc/warehouseWorkbench.ipc.ts",
+        "src:main/services/warehouseNormalization.ts"
+      ],
+      "data": {
+        "paths": [],
+        "localStorage": [
+          "totalclaw:warehouse"
+        ]
+      }
+    },
+    "workbench-global-ads": {
+      "order": 70,
+      "seeds": [
+        "src:renderer/views/GlobalAdsWorkbenchView.vue",
+        "src:renderer/workbenches/adsDailyMetrics.ts",
+        "src:renderer/composables/adsRunState.ts",
+        "src:main/ipc/globalAdsWorkbench.ipc.ts"
+      ],
+      "data": {
+        "paths": [
+          "global-ads-run-state.json",
+          "ads-slideshow/"
+        ],
+        "localStorage": [
+          "totalclaw:global-ads-"
+        ]
+      }
+    },
+    "workbench-rfq-quote": {
+      "order": 80,
+      "dependsOn": [
+        "kit-saudi-workbench"
+      ],
+      "seeds": [
+        "src:renderer/views/RfqQuoteWorkbenchView.vue"
+      ],
+      "data": {
+        "paths": [],
+        "localStorage": []
+      }
+    },
+    "workbench-bid-decision": {
+      "order": 90,
+      "dependsOn": [
+        "kit-saudi-workbench"
+      ],
+      "seeds": [
+        "src:renderer/views/BidDecisionWorkbenchView.vue"
+      ],
+      "data": {
+        "paths": [],
+        "localStorage": []
+      }
+    },
+    "workbench-bid-writer": {
+      "order": 100,
+      "seeds": [
+        "src:renderer/views/BidWriterWorkbenchView.vue",
+        "src:renderer/workbenches/bid-writer",
+        "src:main/ipc/bidWriter.ipc.ts",
+        "src:main/services/bidWriter"
+      ],
+      "data": {
+        "paths": [
+          "bid-writer/"
+        ],
+        "localStorage": []
+      }
+    },
+    "workbench-advisory-report": {
+      "order": 110,
+      "dependsOn": [
+        "kit-saudi-workbench"
+      ],
+      "seeds": [
+        "src:renderer/views/AdvisoryReportWorkbenchView.vue"
+      ],
+      "data": {
+        "paths": [],
+        "localStorage": []
+      }
+    },
+    "workbench-industry-watch": {
+      "order": 120,
+      "seeds": [
+        "src:renderer/views/IndustryWatchView.vue",
+        "src:shared/marketIntel.ts"
+      ],
+      "data": {
+        "paths": [],
+        "localStorage": [
+          "totalclaw.market-intel.watchlist.v1"
+        ]
+      }
+    },
+    "workbench-digital-human": {
+      "order": 130,
+      "seeds": [
+        "src:renderer/views/DigitalHumanWorkbenchView.vue",
+        "src:renderer/workbenches/digital-human",
+        "src:main/ipc/digitalHuman.ipc.ts",
+        "src:main/services/digitalHumanProc.ts"
+      ],
+      "data": {
+        "paths": [],
+        "localStorage": []
+      }
+    },
+    "workbench-foreign-trade": {
+      "order": 140,
+      "seeds": [
+        "src:renderer/views/ForeignTradeWorkbenchView.vue",
+        "src:renderer/workbenches/foreign-trade",
+        "src:main/ipc/foreignTrade.ipc.ts",
+        "src:main/services/foreignTrade",
+        "src:shared/foreignTradeSkills.ts",
+        "pkg:ipc-contracts/src/foreignTrade.ts",
+        "res:foreign-trade",
+        "res:bundled-skills/foreign-trade"
+      ],
+      "data": {
+        "paths": [
+          "foreign-trade/"
+        ],
+        "localStorage": [
+          "totalclaw:foreign-trade"
+        ]
+      }
+    },
+    "workbench-academic-writer": {
+      "order": 150,
+      "seeds": [
+        "src:renderer/views/AcademicWriterWorkbenchView.vue",
+        "src:renderer/workbenches/academic-writer",
+        "src:main/ipc/academicWriter.ipc.ts",
+        "src:main/services/academicWriter",
+        "pkg:ipc-contracts/src/academicWriter.ts"
+      ],
+      "data": {
+        "paths": [
+          "academic-writer/"
+        ],
+        "localStorage": [
+          "totalclaw:academic-writer"
+        ]
+      }
+    },
+    "workbench-finance-agent": {
+      "order": 160,
+      "seeds": [
+        "src:renderer/views/FinanceAgentWorkbenchView.vue",
+        "src:renderer/workbenches/finance-agent",
+        "src:main/ipc/financeAgent.ipc.ts",
+        "src:main/services/financeAgent",
+        "pkg:ipc-contracts/src/financeAgent.ts"
+      ],
+      "data": {
+        "paths": [
+          "finance-agent/"
+        ],
+        "localStorage": [
+          "totalclaw:finance-agent"
+        ]
+      }
+    },
+    "workbench-apparel-store": {
+      "order": 170,
+      "seeds": [
+        "src:renderer/views/ApparelStoreWorkbenchView.vue",
+        "src:renderer/workbenches/apparel-store",
+        "src:main/ipc/apparelStore.ipc.ts",
+        "src:main/services/apparelStore",
+        "pkg:ipc-contracts/src/apparelStore.ts"
+      ],
+      "data": {
+        "paths": [
+          "apparel-store/"
+        ],
+        "localStorage": [
+          "totalclaw:apparel-store"
+        ]
+      }
+    },
+    "workbench-biz-automation": {
+      "order": 180,
+      "seeds": [
+        "src:renderer/views/BizAutomationWorkbenchView.vue",
+        "src:renderer/workbenches/biz-automation",
+        "src:main/ipc/bizAutomation.ipc.ts",
+        "src:main/services/bizAutomation",
+        "pkg:ipc-contracts/src/bizAutomation.ts"
+      ],
+      "data": {
+        "paths": [
+          "biz-automation/"
+        ],
+        "localStorage": [
+          "totalclaw:biz-automation"
+        ]
+      }
+    },
+    "workbench-invoice-agent": {
+      "order": 190,
+      "seeds": [
+        "src:renderer/views/InvoiceAgentWorkbenchView.vue",
+        "src:renderer/workbenches/invoice-agent",
+        "src:main/ipc/invoiceAgent.ipc.ts",
+        "src:main/services/invoiceAgent",
+        "pkg:ipc-contracts/src/invoiceAgent.ts",
+        "res:invoice-agent"
+      ],
+      "data": {
+        "paths": [
+          "invoice-agent/"
+        ],
+        "localStorage": [
+          "totalclaw:invoice-agent"
+        ]
+      }
+    },
+    "workbench-flow-sla": {
+      "order": 200,
+      "seeds": [
+        "src:renderer/views/FlowSlaWorkbenchView.vue",
+        "src:renderer/workbenches/flow-sla",
+        "src:main/ipc/flowSla.ipc.ts",
+        "src:main/services/flowSla",
+        "pkg:ipc-contracts/src/flowSla.ts"
+      ],
+      "data": {
+        "paths": [
+          "flow-sla/"
+        ],
+        "localStorage": [
+          "totalclaw:flow-sla"
+        ]
+      }
+    },
+    "workbench-parts-alert": {
+      "order": 210,
+      "seeds": [
+        "src:renderer/views/PartsAlertWorkbenchView.vue",
+        "src:renderer/workbenches/parts-alert",
+        "src:main/ipc/partsAlert.ipc.ts",
+        "src:main/services/partsAlert",
+        "pkg:ipc-contracts/src/partsAlert.ts"
+      ],
+      "data": {
+        "paths": [
+          "parts-alert/"
+        ],
+        "localStorage": [
+          "totalclaw:parts-alert"
+        ]
+      }
+    },
+    "workbench-campus-ai": {
+      "order": 220,
+      "seeds": [
+        "src:renderer/views/CampusAiWorkbenchView.vue",
+        "src:renderer/workbenches/campus-ai",
+        "src:main/ipc/campusAi.ipc.ts",
+        "src:main/ipc/campusAi.modules.ts",
+        "src:main/services/campusAi",
+        "pkg:ipc-contracts/src/campusAi.ts"
+      ],
+      "data": {
+        "paths": [
+          "campus-ai/"
+        ],
+        "localStorage": [
+          "totalclaw:campus-ai"
+        ]
+      }
+    },
+    "workbench-zcy-agent": {
+      "order": 230,
+      "seeds": [
+        "src:renderer/views/ZcyAgentWorkbenchView.vue",
+        "src:renderer/workbenches/zcy-agent",
+        "src:main/ipc/zcyAgent.ipc.ts",
+        "src:main/services/zcyAgent",
+        "pkg:ipc-contracts/src/zcyAgent.ts"
+      ],
+      "data": {
+        "paths": [
+          "zcy-agent/"
+        ],
+        "localStorage": [
+          "totalclaw:zcy-agent"
+        ]
+      }
+    },
+    "workbench-service-settlement": {
+      "order": 240,
+      "seeds": [
+        "src:renderer/views/ServiceSettlementWorkbenchView.vue",
+        "src:renderer/workbenches/service-settlement",
+        "src:main/ipc/serviceSettlement.ipc.ts",
+        "src:main/services/serviceSettlement"
+      ],
+      "data": {
+        "paths": [
+          "service-settlement.json"
+        ],
+        "localStorage": [
+          "totalclaw:service-settlement"
+        ]
+      }
+    },
+    "workbench-finance-audit": {
+      "order": 250,
+      "seeds": [
+        "src:renderer/views/FinanceAuditWorkbenchView.vue",
+        "src:renderer/workbenches/finance-audit",
+        "src:main/ipc/financeAudit.ipc.ts",
+        "src:main/ipc/financeAudit",
+        "src:main/services/financeAudit",
+        "src:shared/financeAudit",
+        "pkg:ipc-contracts/src/financeAudit.ts",
+        "res:finance-audit",
+        "res:bundled-skills/finance-audit"
+      ],
+      "data": {
+        "paths": [
+          "finance-audit/",
+          "finance-audit-trial/"
+        ],
+        "localStorage": [
+          "totalclaw:finance-audit"
+        ]
+      }
+    },
+    "workbench-charity-content": {
+      "order": 260,
+      "seeds": [
+        "src:renderer/views/CharityContentWorkbenchView.vue",
+        "src:renderer/workbenches/charity-content",
+        "src:main/ipc/charityContent.ipc.ts",
+        "src:main/services/charityContent",
+        "src:shared/charityPrompts.ts",
+        "res:bundled-solutions/charity-content"
+      ],
+      "data": {
+        "paths": [
+          "charity-content/"
+        ],
+        "localStorage": [
+          "charity-content."
+        ]
+      }
+    },
+    "workbench-quran-teaching": {
+      "order": 270,
+      "dependsOn": [
+        "workbench-edu-hub"
+      ],
+      "seeds": [
+        "src:renderer/workbenches/quran-teaching",
+        "src:main/ipc/quranTeaching.ipc.ts",
+        "src:main/services/quranTeaching",
+        "src:shared/quranPaperVariant.ts",
+        "res:quran-demo-corpus",
+        "res:quran-demo-fonts",
+        "res:quran-demo-videos"
+      ],
+      "data": {
+        "paths": [
+          "quran-teaching/"
+        ],
+        "localStorage": [
+          "qt-teacher-steps-v1"
+        ]
+      }
+    },
+    "embedded-bid-desk": {
+      "order": 280,
+      "seeds": [
+        "src:renderer/views/BidDeskView.vue",
+        "src:renderer/composables/bidDeskLocale.ts",
+        "src:main/ipc/bidDesk.ipc.ts",
+        "src:shared/bidDeskWorkflow.ts"
+      ],
+      "data": {
+        "paths": [
+          "bid-desk.json"
+        ],
+        "localStorage": []
+      }
+    },
+    "embedded-video-studio": {
+      "order": 290,
+      "seeds": [
+        "src:renderer/views/VideoStudioView.vue",
+        "src:renderer/composables/videoStudioRunState.ts"
+      ],
+      "data": {
+        "paths": [],
+        "localStorage": [
+          "totalclaw:video-studio"
+        ]
+      }
+    }
+  }
+}

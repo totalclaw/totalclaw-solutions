@@ -1,0 +1,127 @@
+{
+  "id": "workbench-zcy-agent",
+  "version": "1.0.0",
+  "treeDigest": "602ba3aeeb15f2f9baa5cb1759c81a3aafde5c15725a7d7659b61cdc6e34ca75",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 126,
+      "sha256": "993c6cd5bc9ca2778f30f55188b39d80369d9cac4d45b140ca582e37c89043e3"
+    },
+    {
+      "path": "README.md",
+      "size": 1432,
+      "sha256": "4098ffce1cdc7eee563f8386ed362d6a308fa4b92a2d973878fc3638e222f940"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "origin.json",
+      "size": 4035,
+      "sha256": "3f9c2bfc248f36c32f83f5b9dd50873d12d3a1a42881edd709c9d0c8807a4921"
+    },
+    {
+      "path": "solution.json",
+      "size": 1932,
+      "sha256": "17ace2eb1eb624ba5900a5cde8fad0b19e329bcf08891c7b78f2fadb29b8c6bf"
+    },
+    {
+      "path": "src/contracts/zcyAgent.ts",
+      "size": 7498,
+      "sha256": "23933d7fbe02ab5e573b8f1267a8bccab04b147b915b3df6b4fa4a60adea28ef"
+    },
+    {
+      "path": "src/main/ipc/zcyAgent.ipc.ts",
+      "size": 35348,
+      "sha256": "ca52047da36d88b451484d07847d1dbf20a1ce78e0be1346decd4b784dda9ec4"
+    },
+    {
+      "path": "src/main/services/zcyAgent/keywords.json",
+      "size": 2195,
+      "sha256": "7408c3aeb666999f1d1f7229bc077e1f68f6df33dee835304c235ea32e239eea"
+    },
+    {
+      "path": "src/main/services/zcyAgent/logic.test.ts",
+      "size": 11792,
+      "sha256": "025cc350772bf5ff4ea9605db153b7d3e6e18d1baf37311836fad7bf21958045"
+    },
+    {
+      "path": "src/main/services/zcyAgent/logic.ts",
+      "size": 21232,
+      "sha256": "8b08b60f0abf2eb5c0e5a58ef2744e679a301fd8adfd554fc394ae32f78a318f"
+    },
+    {
+      "path": "src/main/services/zcyAgent/login.test.ts",
+      "size": 2539,
+      "sha256": "279bfb8e42194e736e0907b6314249292fb9c9fe996c36e4a29a9e1c7e9a54d5"
+    },
+    {
+      "path": "src/main/services/zcyAgent/login.ts",
+      "size": 1787,
+      "sha256": "2eef91c100acc25e426e0397aeda4ab585a0b8098cea95f5660256bf8500beb5"
+    },
+    {
+      "path": "src/main/services/zcyAgent/prompts.ts",
+      "size": 7836,
+      "sha256": "b8bede6f37816745c6822ff497e8b46b44ea0603c3cb42cd7a550380449d47d2"
+    },
+    {
+      "path": "src/main/services/zcyAgent/store.ts",
+      "size": 4567,
+      "sha256": "cf41ce32152d3f11c706aa6654ea92b206f1476f0fa871c6a90bbf755cfc1da8"
+    },
+    {
+      "path": "src/main/services/zcyAgent/zcyPage.test.ts",
+      "size": 6466,
+      "sha256": "ee7a4cbfed486eda1b4537cb255b3b9d828f3f9e0b2b6d69093a9816bc15f080"
+    },
+    {
+      "path": "src/main/services/zcyAgent/zcyPage.ts",
+      "size": 9748,
+      "sha256": "e3da0dd6ac71c7a20898ece666f5a724d5e4cd6f75ddf165b6515a45defd1620"
+    },
+    {
+      "path": "src/renderer/views/ZcyAgentWorkbenchView.vue",
+      "size": 14025,
+      "sha256": "80ca753c4f49f1082157f5ef307f3a5f66d3d68f0a919b02571824d293116b2c"
+    },
+    {
+      "path": "src/renderer/workbenches/zcy-agent/AccountTab.vue",
+      "size": 21606,
+      "sha256": "ef4274a33a29d21c17bcfc7194a186344fbee8db784dcaf12e65eaf025a94f28"
+    },
+    {
+      "path": "src/renderer/workbenches/zcy-agent/ListingTab.vue",
+      "size": 20269,
+      "sha256": "dda4d34d21f27f31fdf2a67b79f02e78827f2a307d21482c1ccba4a21c032cf2"
+    },
+    {
+      "path": "src/renderer/workbenches/zcy-agent/OrdersTab.vue",
+      "size": 13888,
+      "sha256": "2929d249f23e9d5e7a31b93ecafd440b63c3c1ddf1c3e241a1cda761786141a8"
+    },
+    {
+      "path": "src/renderer/workbenches/zcy-agent/QuoteTab.vue",
+      "size": 16051,
+      "sha256": "4b679e073b11ca9741a75998e113220a694394a6ee7206d7162520d0b68c1b16"
+    },
+    {
+      "path": "src/renderer/workbenches/zcy-agent/ReadBack.vue",
+      "size": 4271,
+      "sha256": "d670900ca050f22c224c102aa07d22785be587f06440d8b475e6b8b97c789c93"
+    },
+    {
+      "path": "src/renderer/workbenches/zcy-agent/SettingsTab.vue",
+      "size": 8899,
+      "sha256": "26f67d7e18e2392a24dc280180a9b2d4cb9f4cc2b99651b22012eb62d1f475be"
+    },
+    {
+      "path": "src/renderer/workbenches/zcy-agent/shared.ts",
+      "size": 4523,
+      "sha256": "f9e2aeefd9ecf3535aac3118fd4e184da6285a904dd9222479c0a3b25732eff8"
+    }
+  ]
+}

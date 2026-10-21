@@ -1,0 +1,106 @@
+{
+  "_note": "内置尽调规则的数据部分（不是界面文案）。高风险司法辖区取 FATF「需采取行动的高风险司法辖区」公开名单（ISO 3166-1 两位码），名单会变，入库前须按 FATF 最新公告核实；企业上传了规则表时以规则表为准。",
+  "highRiskJurisdictions": [
+    "KP",
+    "IR",
+    "MM"
+  ],
+  "requiredDocs": {
+    "individual": [
+      "identity",
+      "address"
+    ],
+    "entity": [
+      "formation",
+      "ownership",
+      "address"
+    ],
+    "trust": [
+      "formation",
+      "ownership"
+    ]
+  },
+  "sanctionListWords": [
+    "sanction",
+    "ofac",
+    "sdn",
+    "un consolidated",
+    "制裁",
+    "عقوبات"
+  ],
+  "fieldAliases": {
+    "applicantType": [
+      "applicanttype",
+      "申请人类型",
+      "主体类型"
+    ],
+    "jurisdiction": [
+      "jurisdiction",
+      "country",
+      "司法辖区",
+      "国家"
+    ],
+    "pepDeclared": [
+      "pep",
+      "pepdeclared",
+      "政治公众人物"
+    ],
+    "sourceOfFunds": [
+      "sourceoffunds",
+      "资金来源"
+    ],
+    "beneficialOwners": [
+      "beneficialowners",
+      "ubo",
+      "ubocount",
+      "受益所有人"
+    ],
+    "legalName": [
+      "legalname",
+      "name",
+      "名称"
+    ],
+    "address": [
+      "address",
+      "地址"
+    ]
+  },
+  "opAliases": {
+    "missing": [
+      "missing",
+      "缺失",
+      "为空"
+    ],
+    "exists": [
+      "exists",
+      "存在"
+    ],
+    "equals": [
+      "equals",
+      "=",
+      "等于"
+    ],
+    "in": [
+      "in",
+      "属于"
+    ],
+    "contains": [
+      "contains",
+      "包含"
+    ],
+    "gt": [
+      "gt",
+      ">",
+      "大于"
+    ],
+    "lt": [
+      "lt",
+      "<",
+      "小于"
+    ],
+    "true": [
+      "true",
+      "是"
+    ]
+  }
+}

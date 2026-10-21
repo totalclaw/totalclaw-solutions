@@ -1,0 +1,78 @@
+/* 财会审计工作台 · 非 scoped 样式。只用逻辑属性（inline-start / inline-end / text-align: start），阿语 RTL 自动镜像。 */
+/* 外层 page-wrap / main-content 都是 overflow:hidden，本页根节点自己当滚动容器（同其它工作台） */
+.fau-page { display: grid; gap: 14px; padding: 18px 22px 40px; max-width: 1440px; margin-inline: auto; width: 100%; box-sizing: border-box; flex: 1; min-height: 0; overflow-y: auto; align-content: start; }
+.fau-head { display: flex; align-items: flex-start; gap: 14px; flex-wrap: wrap; }
+.fau-head h1 { margin: 0; font-size: 20px; }
+.fau-head .fau-sub { margin: 2px 0 0; color: var(--color-text-secondary); font-size: 12.5px; line-height: 1.5; max-width: 900px; }
+.fau-head .grow { flex: 1; min-width: 200px; }
+.fau-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 10px 14px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg-card); font-size: 12.5px; }
+.fau-bar select { height: 32px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; padding-inline: 8px; max-width: 220px; }
+.fau-bar .fau-boundary { flex-basis: 100%; color: var(--color-warning); font-weight: 700; }
+.fau-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 999px; background: color-mix(in srgb, var(--color-brand) 12%, transparent); color: var(--color-brand); font-weight: 700; font-size: 12px; }
+.fau-badge.muted { background: var(--color-bg-hover); color: var(--color-text-secondary); }
+.fau-badge.warn { background: color-mix(in srgb, var(--color-warning) 16%, transparent); color: var(--color-warning); }
+.fau-badge.bad { background: color-mix(in srgb, var(--color-danger) 14%, transparent); color: var(--color-danger); }
+.fau-badge.ok { background: color-mix(in srgb, var(--color-success) 16%, transparent); color: var(--color-success); }
+
+.fau-panels { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.fau-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 12px 14px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.fau-panel h3 { margin: 0; font-size: 13.5px; display: flex; align-items: center; gap: 8px; }
+.fau-panel h3 .grow { flex: 1; }
+.fau-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.fau-list li { display: flex; align-items: center; gap: 8px; font-size: 12.5px; padding: 6px 8px; border-radius: 8px; cursor: pointer; }
+.fau-list li:hover { background: var(--color-bg-hover); }
+.fau-list li .grow { flex: 1; min-width: 0; }
+.fau-dot { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; background: var(--color-brand); }
+.fau-dot.warn { background: var(--color-warning); }
+.fau-dot.danger { background: var(--color-danger); }
+
+.fau-groups { display: grid; gap: 12px; }
+.fau-group > header { display: flex; align-items: center; gap: 8px; margin-block-end: 8px; }
+.fau-group > header h3 { margin: 0; font-size: 14px; }
+.fau-mods { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); }
+.fau-mod { border: 1px solid var(--color-border); border-radius: 12px; padding: 10px 12px; background: var(--color-bg-card); display: grid; gap: 4px; text-align: start; font: inherit; color: inherit; cursor: pointer; }
+.fau-mod:hover { border-color: var(--color-brand); }
+.fau-mod.planned { cursor: default; background: var(--color-bg-primary); }
+.fau-mod.planned:hover { border-color: var(--color-border); }
+.fau-mod strong { font-size: 13px; display: flex; gap: 6px; align-items: center; }
+.fau-mod small { color: var(--color-text-secondary); font-size: 11.5px; line-height: 1.45; }
+.fau-mod .fau-code { font-weight: 800; color: var(--color-brand); }
+.fau-prov { margin: 4px 0 0; padding-inline-start: 16px; font-size: 11px; color: var(--color-text-secondary); max-height: 160px; overflow: auto; }
+
+.fau-table-wrap { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 10px; background: var(--color-bg-card); max-height: 420px; }
+.fau-table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+.fau-table th, .fau-table td { padding: 6px 10px; border-block-end: 1px solid var(--color-border); text-align: start; vertical-align: middle; white-space: nowrap; }
+.fau-table th { background: var(--color-bg-hover); font-weight: 700; position: sticky; top: 0; }
+.fau-table td.num, .fau-table th.num { text-align: end; font-variant-numeric: tabular-nums; }
+.fau-table td.wrap { white-space: normal; min-width: 220px; }
+.fau-table tr.bad td { background: color-mix(in srgb, var(--color-danger) 7%, transparent); }
+.fau-table tr.warn td { background: color-mix(in srgb, var(--color-warning) 8%, transparent); }
+.fau-num { direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
+.fau-true { color: var(--color-success); font-weight: 800; }
+.fau-false { color: var(--color-danger); font-weight: 800; }
+
+.fau-drawer-mask { position: fixed; inset: 0; background: rgba(0, 0, 0, .25); z-index: 60; }
+.fau-drawer { position: fixed; inset-block: 0; inset-inline-end: 0; width: min(680px, 100vw); background: var(--color-bg-primary); border-inline-start: 1px solid var(--color-border); z-index: 61; display: grid; grid-template-rows: auto 1fr; box-shadow: 0 0 30px rgba(0, 0, 0, .18); }
+.fau-drawer > header { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-block-end: 1px solid var(--color-border); }
+.fau-drawer > header h3 { margin: 0; font-size: 15px; flex: 1; }
+.fau-drawer > .fau-drawer__body { overflow: auto; padding: 14px 16px; display: grid; gap: 12px; align-content: start; }
+
+.fau-seg { display: inline-flex; border: 1px solid var(--color-border); border-radius: 9px; overflow: hidden; }
+.fau-seg button { border: none; background: transparent; color: var(--color-text-secondary); padding: 5px 10px; font: inherit; font-size: 12px; cursor: pointer; }
+.fau-seg button + button { border-inline-start: 1px solid var(--color-border); }
+.fau-seg button.on { background: var(--color-brand); color: #fff; }
+.fau-seg button:disabled { opacity: .5; cursor: not-allowed; }
+
+.fau-steps { display: grid; gap: 12px; }
+.fau-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.fau-row .grow { flex: 1; min-width: 0; }
+.fau-kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; font-size: 12.5px; }
+.fau-kv dt { color: var(--color-text-secondary); }
+.fau-kv dd { margin: 0; }
+.fau-input { display: grid; gap: 8px; border: 1px dashed var(--color-border); border-radius: 12px; padding: 10px 12px; }
+.fau-input.need { border-style: solid; }
+.fau-input.ok { border-color: color-mix(in srgb, var(--color-success) 55%, var(--color-border)); }
+.fau-input > header { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.fau-input > header strong { font-size: 13px; }
+
+[dir="rtl"] .fau-dir-icon { transform: scaleX(-1); }

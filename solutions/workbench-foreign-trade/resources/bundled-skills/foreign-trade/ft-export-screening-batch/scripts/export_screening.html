@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美国出口管制筛查工具 v2 / 米国輸出規制スクリーニングツール v2</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#f5f6fa;color:#222;line-height:1.6}
+.c{max-width:1200px;margin:0 auto;padding:20px}
+h1{font-size:22px;margin-bottom:4px}
+h2{font-size:16px;margin-bottom:12px;color:#555}
+.card{background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:20px;margin-bottom:16px}
+.row{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap}
+.fg{display:flex;flex-direction:column;gap:3px;flex:1;min-width:180px}
+.fg label{font-size:13px;font-weight:600;color:#444}
+.fg input{padding:8px 10px;border:1px solid #ccc;border-radius:5px;font-size:14px}
+.fg .hint{font-size:11px;color:#999}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:9px 18px;border:none;border-radius:5px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-blue{background:#2266dd;color:#fff}
+.btn-outline{background:#fff;color:#2266dd;border:1.5px solid #2266dd}
+.btn-green{background:#0a7;color:#fff}
+.btn-sm{padding:5px 12px;font-size:13px}
+input[type=file]{font-size:14px;padding:8px;border:1px solid #ccc;border-radius:5px;background:#fff;max-width:100%}
+.progress{height:5px;background:#e0e0e0;border-radius:3px;overflow:hidden;margin:10px 0}
+.progress div{height:100%;background:#2266dd;border-radius:3px;width:0;transition:width .3s}
+.log{background:#1e1e1e;color:#bbb;border-radius:6px;padding:10px 14px;max-height:180px;overflow-y:auto;font-family:Consolas,monospace;font-size:12px;line-height:1.5}
+.log .g{color:#4ec9b0}.log .y{color:#dcdcaa}.log .r{color:#f14c4c}.log .b{color:#9cdcfe}
+.tbl{overflow-x:auto;max-height:280px;overflow-y:auto}
+.tbl table{width:100%;border-collapse:collapse;font-size:12px}
+.tbl th,.tbl td{padding:7px 9px;text-align:left;border-bottom:1px solid #e0e0e0}
+.tbl th{background:#f5f6fa;font-weight:600;white-space:nowrap}
+.badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:11px;font-weight:600}
+.badge-r{background:#fde8e8;color:#c81e1e}
+.badge-g{background:#e6f5ee;color:#057a55}
+.badge-y{background:#fef3c7;color:#b45309}
+.stats{display:flex;gap:12px;flex-wrap:wrap;margin:8px 0}
+.st{padding:6px 14px;border-radius:6px;font-size:13px;font-weight:600}
+.st1{background:#fde8e8;color:#c81e1e}
+.st2{background:#e6f5ee;color:#057a55}
+.st3{background:#fef3c7;color:#b45309}
+.st4{background:#eee;color:#555}
+.hide{display:none!important}
+#statusBanner{padding:10px 16px;border-radius:6px;font-size:14px;margin-bottom:12px}
+#statusBanner.loading{background:#fff3cd;color:#856404}
+#statusBanner.ready{background:#d4edda;color:#155724}
+#statusBanner.error{background:#f8d7da;color:#721c24}
+</style>
+</head>
+<body>
+
+<div class="c">
+
+<div id="statusBanner" class="loading">
+  <strong>状态 / 状態：</strong><span id="statusText">XLSX库加载中 / 読込中...</span>
+</div>
+
+<h1>美国出口管制筛查工具 / 米国輸出規制スクリーニングツール</h1>
+<h2>Consolidated Screening List &mdash; U.S. Department of Commerce</h2>
+
+<!-- Step 1 -->
+<div class="card">
+  <h2>1. API 密钥与设置 / APIキーと設定</h2>
+  <div class="row">
+    <div class="fg" style="flex:2;min-width:260px">
+      <label>API Key</label>
+      <input type="password" id="apiKey" placeholder="输入 trade.gov API key... / APIキーを入力">
+      <div class="hint">在 developer.trade.gov 注册获取 / developer.trade.govで登録取得</div>
+    </div>
+    <div class="fg" style="flex:0 0 auto;min-width:auto">
+      <label>请求间隔 (ms) / 間隔</label>
+      <input type="number" id="delay" value="300" min="100" max="3000" step="50" style="width:90px">
+    </div>
+  </div>
+</div>
+
+<!-- Step 2 -->
+<div class="card">
+  <h2>2. 下载模板 &amp; 上传 / テンプレートダウンロード &amp; アップロード</h2>
+  <div style="margin-bottom:12px">
+    <button class="btn btn-outline btn-sm" id="btnTemplate">下载 Excel 模板 / テンプレートダウンロード</button>
+  </div>
+  <div class="row">
+    <label class="btn btn-outline btn-sm" for="fileInput" id="fileLabel" style="cursor:pointer">选择文件 / ファイルを選択</label>
+    <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" style="display:none">
+    <span id="fileHint" style="font-size:13px;color:#999">未选择文件 / ファイル未選択</span>
+  </div>
+  <div id="previewBlock" class="hide" style="margin-top:12px">
+    <div class="tbl" id="previewTable"></div>
+    <button class="btn btn-outline btn-sm" style="margin-top:8px" id="btnReset">重新选择 / 再選択</button>
+  </div>
+</div>
+
+<!-- Step 3 -->
+<div class="card">
+  <h2>3. 执行筛查 / スクリーニング実行</h2>
+  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <button class="btn btn-blue" id="btnRun" disabled>开始筛查 / 開始</button>
+    <button class="btn btn-outline btn-sm" id="btnStop" disabled>停止 / 停止</button>
+    <span id="progLabel" style="font-size:13px;color:#999"></span>
+  </div>
+  <div class="progress hide" id="progWrap"><div id="progFill"></div></div>
+  <div class="stats hide" id="statsBar"></div>
+</div>
+
+<!-- Log -->
+<div class="card">
+  <h2>运行日志 / 実行ログ</h2>
+  <div class="log" id="logBox"><span class="b">等待开始 / 待機中...</span></div>
+</div>
+
+<!-- Results -->
+<div class="card hide" id="resultCard">
+  <h2>筛查结果 / スクリーニング結果</h2>
+  <div class="stats" id="resultStats"></div>
+  <div class="tbl" id="resultTable" style="max-height:400px"></div>
+  <div style="margin-top:14px;display:flex;gap:10px">
+    <button class="btn btn-green" id="btnDownload">下载结果 Excel / 結果ダウンロード</button>
+    <button class="btn btn-outline btn-sm" id="btnLog">下载日志 / ログダウンロード</button>
+  </div>
+</div>
+
+<!-- Reference -->
+<div class="card">
+  <h2>管制清单代码参考 / 制裁リストコードの説明</h2>
+  <table style="font-size:12px;width:100%">
+    <tr><th>コード</th><th>名称</th><th>日本語概要</th><th>所轄機関</th></tr>
+    <tr><td>DPL</td><td>Denied Persons List</td><td>輸出権限をはく奪された個人および企業リスト</td><td>BIS (商務省)</td></tr>
+    <tr><td>EL</td><td>Entity List</td><td>エンティティリスト。大量破壊兵器拡散の懸念がある、または米国の安全保障・外交政策上の利益に反する企業・団体のリスト</td><td>BIS (商務省)</td></tr>
+    <tr><td>UVL</td><td>Unverified List</td><td>輸出許可前の確認や出荷後の検証を十分に実施することができない企業・団体のリスト</td><td>BIS (商務省)</td></tr>
+    <tr><td>MEU</td><td>Military End-User List</td><td>米国製品を軍事転用する恐れがある外国事業体を特定したリスト</td><td>BIS (商務省)</td></tr>
+    <tr><td>DTC</td><td>AECA/ITAR Debarred List</td><td>武器輸出管理法（AECA）の違反者リスト。国際武器取引規則（ITAR）に従って「法定資格剥奪」の対象となる。</td><td>DDTC (国務省)</td></tr>
+    <tr><td>ISN</td><td>Nonproliferation Sanctions</td><td>核拡散行為に従事する個人、民間団体、政府のリスト。</td><td>ISN (国務省)</td></tr>
+    <tr><td>SDN</td><td>Specially Designated Nationals</td><td>国家の安全保障を脅かすものと指定した国や企業、個人などのリスト。資産凍結、輸出取引禁止。</td><td>OFAC (財務省)</td></tr>
+    <tr><td>FSE</td><td>Foreign Sanctions Evaders</td><td>シリアまたはイランに対する米国の制裁に違反した外国人個人および団体のリスト</td><td>OFAC (財務省)</td></tr>
+    <tr><td>SSI</td><td>Sectoral Sanctions Identifications</td><td>ロシア経済の特定セクターで活動する個人のリスト。</td><td>OFAC (財務省)</td></tr>
+    <tr><td>CMIC（NS-CMIC）</td><td>Non-SDN Chinese Military Companies</td><td>監視技術分野を含む中国の軍事産業に関わる中国企業のリスト</td><td>OFAC (財務省)</td></tr>
+  </table>
+
+  <p style="font-size:11px;color:#999;margin:12px 0 0">制裁リストの概要は<a href="https://www.jetro.go.jp/ext_images/_Reports/01/58823025944a7244/20220040_01.pdf" target="_blank">https://www.jetro.go.jp/ext_images/_Reports/01/58823025944a7244/20220040_01.pdf</a>にご覧ください。</p>
+</div>
+
+</div>
+
+<script>
+// ============================================================
+// STEP 0: Load XLSX dynamically
+// ============================================================
+(function(){
+  var CDNS = [
+    "xlsx.full.min.js"
+  ];
+  var idx = 0;
+  var banner = document.getElementById("statusBanner");
+  var stext = document.getElementById("statusText");
+
+  function tryLoad(){
+    if (idx >= CDNS.length){
+      banner.className = "error";
+      stext.textContent = "XLSX库加载失败 / XLSXライブラリ読込失敗！请检查网络连接。已尝试：" + CDNS.join(", ");
+      return;
+    }
+    stext.textContent = "XLSX库加载中 / 読込中... (" + (idx+1) + "/" + CDNS.length + ")";
+    var s = document.createElement("script");
+    s.src = CDNS[idx];
+    s.onload = function(){
+      banner.className = "ready";
+      stext.textContent = "XLSX库加载成功 / 読込完了 (v" + (XLSX.version||"?") + ")，页面就绪";
+      initApp();
+    };
+    s.onerror = function(){
+      idx++;
+      tryLoad();
+    };
+    document.head.appendChild(s);
+  }
+  tryLoad();
+})();
+
+// ============================================================
+// App initialization (called after XLSX loads)
+// ============================================================
+var uploadedData = null;
+var results = [];
+var stopFlag = false;
+var logLines = [];
+
+// 清单名称对照 / リスト名称対照 (中文 / 日本語)
+var SRC = {
+  DPL:"被拒人员清单 / 被拒人員リスト",EL:"实体清单 / エンティティ・リスト",UVL:"未经核实清单 / 未検証リスト",MEU:"军事最终用户清单 / 軍事エンドユーザーリスト",
+  DTC:"AECA禁止清单 / AECA禁止リスト",ISN:"防扩散制裁清单 / 不拡散制裁リスト",SDN:"特别指定国民清单 / 特別指定国民リスト",
+  FSE:"外国制裁规避者清单 / 外国制裁回避者リスト",SSI:"行业制裁识别清单 / セクター別制裁識別リスト",
+  PLC:"巴勒斯坦立法委员会清单 / パレスチナ立法評議会リスト",CAPTA:"代理账户清单 / 代理口座リスト","CMIC":"中国军工企业清单（CMIC/NS-CMIC）/ 中国軍事企業リスト","NS-CMIC":"中国军工企业清单（CMIC/NS-CMIC）/ 中国軍事企業リスト"
+};
+
+function L(level,msg){
+  var t = new Date().toLocaleTimeString("zh-CN",{hour12:false});
+  var line = "["+t+"] "+msg;
+  logLines.push("["+level.toUpperCase()+"] "+line);
+  var cl={ok:"g",warn:"y",error:"r",info:"b"}[level]||"b";
+  var box=document.getElementById("logBox");
+  if(box.querySelector(".b")&&box.querySelector(".b").textContent.indexOf("待機中")>=0)box.innerHTML="";
+  box.innerHTML+='<span class="'+cl+'">'+esc(line)+'</span>\n';
+  box.scrollTop=box.scrollHeight;
+}
+function esc(s){var d=document.createElement("span");d.textContent=s;return d.innerHTML;}
+
+// Template download
+function downloadTemplate(){
+  var wb=XLSX.utils.book_new();
+  var h=["序号No.","实体中文名 中国語名","实体英文名 / Entity Name","中文地址 中国語住所","英文地址 / Address","实体类型 / Type","备注 / Notes","检索结果 検索結果","涉及清单 / Source","详细信息 詳細情報"];
+  var rows=[
+    [1,"华为技术有限公司","Huawei Technologies Co., Ltd.","广东省深圳市龙岗区坂田","Bantian, Longgang District, Shenzhen","实体/Entity","示例行-可删除 削除可","","",""],
+    [2,"中兴通讯股份有限公司","ZTE Corporation","广东省深圳市","ZTE Plaza, Shenzhen","实体/Entity","示例行-可删除 削除可","","",""]
+  ];
+  var ws=XLSX.utils.aoa_to_sheet([h].concat(rows));
+  ws["!cols"]=[{wch:6},{wch:22},{wch:38},{wch:22},{wch:36},{wch:16},{wch:18},{wch:16},{wch:30},{wch:55}];
+  XLSX.utils.book_append_sheet(wb,ws,"Template");
+  XLSX.writeFile(wb,"出口管制筛查模板_ExportScreeningTemplate.xlsx");
+  L("ok","模板已下载 / テンプレートダウンロード完了");
+}
+
+// File handling
+function handleFile(file){
+  document.getElementById("fileLabel").textContent=file.name;
+  document.getElementById("fileHint").textContent="读取中 / 読込中...";
+  var reader=new FileReader();
+  reader.onload=function(ev){
+    try{
+      var data=new Uint8Array(ev.target.result);
+      var wb=XLSX.read(data,{type:"array"});
+      var ws=wb.Sheets[wb.SheetNames[0]];
+      var rows=XLSX.utils.sheet_to_json(ws,{header:1,defval:""});
+      if(rows.length<2)throw new Error("Excel为空或仅含表头 / Excelが空かヘッダーのみ");
+
+      var entities=[];
+      for(var i=1;i<rows.length;i++){
+        var r=rows[i];
+        var en=String(r[2]||"").trim();
+        if(!en)continue;
+        var rt=String(r[5]||"").trim();
+        var nt=rt;
+        if(rt.indexOf("Entity")>=0)nt="Entity";
+        else if(rt.indexOf("Individual")>=0)nt="Individual";
+        entities.push({
+          序号:entities.length+1,
+          中文名:String(r[1]||"").trim(),
+          英文名:en,
+          中文地址:String(r[3]||"").trim(),
+          地址:String(r[4]||"").trim(),
+          类型:rt,
+          _类型:nt,
+          备注:String(r[6]||"").trim()
+        });
+      }
+      if(entities.length===0)throw new Error("未找到有效数据（C列英文名为空）/ 有効データなし（C列英語名が空）");
+
+      uploadedData=entities;
+      document.getElementById("fileHint").textContent="已加载 / 読込完了: "+file.name+" ("+entities.length+" 条)";
+      document.getElementById("fileHint").style.color="green";
+      document.getElementById("btnRun").disabled=false;
+
+      // Preview
+      var prev=entities.slice(0,10);
+      var h='<table><tr><th>序号 No.</th><th>中文名</th><th>英文名</th><th>中文地址</th><th>英文地址</th><th>类型</th></tr>';
+      prev.forEach(function(e){
+        h+='<tr><td>'+e.序号+'</td><td>'+esc(e.中文名)+'</td><td>'+esc(e.英文名)+'</td><td>'+esc(e.中文地址)+'</td><td>'+esc(e.地址)+'</td><td>'+esc(e.类型)+'</td></tr>';
+      });
+      if(entities.length>10)h+='<tr><td colspan="6" style="color:#999;text-align:center">... 还有 / 他 '+(entities.length-10)+' 条</td></tr>';
+      h+='</table>';
+      document.getElementById("previewTable").innerHTML=h;
+      document.getElementById("previewBlock").classList.remove("hide");
+
+      L("ok","已加载 / 読込完了: "+file.name+" ("+entities.length+" 条)");
+    }catch(err){
+      alert("读取失败 / 読込失敗: "+err.message);
+      document.getElementById("fileHint").textContent="读取失败 / 読込失敗: "+err.message;
+      document.getElementById("fileHint").style.color="red";
+      L("error","读取失败 / 読込失敗: "+err.message);
+    }
+  };
+  reader.onerror=function(){
+    document.getElementById("fileHint").textContent="文件读取失败 / ファイル読込失敗";
+    document.getElementById("fileHint").style.color="red";
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+// Screening
+function buildUrl(entity){
+  var key=document.getElementById("apiKey").value.trim();
+  if(!key)throw new Error("请先输入 API Key / 先にAPIキーを入力");
+  var p=new URLSearchParams();
+  p.set("api_key",key);p.set("size","100");
+  p.set("name",entity.英文名);p.set("fuzzy_name","true");
+  if(entity.地址)p.set("address",entity.地址);
+  if(entity._类型&&(entity._类型==="Entity"||entity._类型==="Individual"))p.set("type",entity._类型);
+  return"/api/consolidated_screening_list/v1/search?"+p.toString();
+}
+
+async function searchEntity(entity,retry){
+  if(retry===undefined)retry=0;
+  var url=buildUrl(entity);
+  try{
+    var resp=await fetch(url,{headers:{"Accept":"application/json"}});
+    if(!resp.ok){
+      if(resp.status===429&&retry<1){await sleep(2000);return searchEntity(entity,1);}
+      if(resp.status===401||resp.status===403)throw new Error("API Key无效 / APIキー無効 ("+resp.status+")");
+      throw new Error("API返回 / エラー "+resp.status);
+    }
+    var data=JSON.parse(await resp.text());
+    if(data.error)throw new Error("API错误 / APIエラー: "+data.error);
+    if(!Array.isArray(data.results)){
+      if(Array.isArray(data))data={results:data,total:data.length};
+      else throw new Error("API响应异常 / API応答異常");
+    }
+    var total=typeof data.total==="number"?data.total:data.results.length;
+    if(total===0||data.results.length===0){
+      if(!data.hasOwnProperty("results"))throw new Error("API空响应 / API空応答");
+      return{hit:false,sources:[],details:[]};
+    }
+    var srcs={},details=[];
+    for(var j=0;j<data.results.length;j++){
+      var it=data.results[j];
+      if(it.source){
+        var code=it.source;
+        var m=it.source.match(/\(([^)]+)\)/);
+        if(m)code=m[1];
+        srcs[code]=true;
+        var parts=[];
+        if(it.name)parts.push(it.name);
+        if(it.addresses&&it.addresses.length){
+          var a=it.addresses[0];
+          parts.push([a.address,a.city,a.state,a.country].filter(Boolean).join(", "));
+        }
+        if(it.start_date)parts.push("生效/発効:"+it.start_date);
+        details.push("["+code+"] "+parts.join(" | "));
+      }
+    }
+    return{hit:true,sources:Object.keys(srcs),details:details.slice(0,5)};
+  }catch(err){
+    if(retry<1&&(err.message.indexOf("fetch")>=0||err.message.indexOf("Network")>=0)){
+      await sleep(1000);return searchEntity(entity,1);
+    }
+    return{hit:false,error:err.message,sources:[],details:[]};
+  }
+}
+
+async function runScreening(){
+  if(!uploadedData||uploadedData.length===0){alert("请先上传 Excel / 先にExcelをアップロード");return;}
+  if(!document.getElementById("apiKey").value.trim()){alert("请先输入 API Key / 先にAPIキーを入力");return;}
+
+  stopFlag=false;results=[];
+  var delay=parseInt(document.getElementById("delay").value)||300;
+  document.getElementById("btnRun").disabled=true;
+  document.getElementById("btnStop").disabled=false;
+  document.getElementById("progWrap").classList.remove("hide");
+  document.getElementById("resultCard").classList.add("hide");
+  document.getElementById("logBox").innerHTML="";
+
+  var total=uploadedData.length;
+  L("info","开始筛查 / スクリーニング開始 "+total+" 个实体, 间隔 "+delay+"ms");
+
+  var hit=0,clean=0,errs=0;
+  for(var i=0;i<total;i++){
+    if(stopFlag){L("warn","用户停止 / ユーザー停止");break;}
+    var e=uploadedData[i];
+    L("info","["+(i+1)+"/"+total+"] "+e.英文名);
+
+    var r=await searchEntity(e);
+    if(r.error){
+      e.检索结果="检索失败 / 検索失敗";e.涉及清单=r.error;e.命中详情="";e._ok=false;
+      errs++;L("error","  检索失败 / 検索失敗: "+r.error);
+    }else if(r.hit){
+      e.检索结果="命中 / ヒット";e.涉及清单=r.sources.join(", ");e.命中详情=r.details.join("; ");
+      e._ok=true;hit++;L("ok","  命中 / ヒット! "+r.sources.join(", "));
+    }else{
+      e.检索结果="未被管制 / 非該当";e.涉及清单="";e.命中详情="";e._ok=true;
+      clean++;L("ok","  未被管制 / 非該当");
+    }
+    results.push(e);
+    document.getElementById("progFill").style.width=Math.round((i+1)/total*100)+"%";
+    document.getElementById("progLabel").textContent=(i+1)+"/"+total;
+    if(i<total-1)await sleep(delay);
+  }
+  showResults(hit,clean,errs);
+  document.getElementById("btnRun").disabled=false;
+  document.getElementById("btnStop").disabled=true;
+}
+
+function stopScreening(){stopFlag=true;}
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms);});}
+
+// Results
+function showResults(hit,clean,errs){
+  document.getElementById("resultCard").classList.remove("hide");
+  document.getElementById("resultStats").innerHTML=
+    '<span class="st st4">总计 / 合計:'+results.length+'</span> '+
+    '<span class="st st1">命中 / ヒット:'+hit+'</span> '+
+    '<span class="st st2">未管制 / 非該当:'+clean+'</span> '+
+    '<span class="st st3">失败 / 失敗:'+errs+'</span>';
+
+  var h='<table><tr><th>序号 No.</th><th>中文名</th><th>英文名</th><th>中文地址</th><th>英文地址</th><th>类型</th><th>结果 結果</th><th>涉及清单 Source</th><th>详情 詳細</th></tr>';
+  results.forEach(function(r,i){
+    var b="";
+    if(r.检索结果.indexOf("命中")>=0)b='<span class="badge badge-r">命中 / ヒット</span>';
+    else if(r.检索结果.indexOf("未被管制")>=0)b='<span class="badge badge-g">未管制 / 非該当</span>';
+    else b='<span class="badge badge-y">'+esc(r.检索结果)+'</span>';
+    h+='<tr><td>'+(i+1)+'</td><td>'+esc(r.中文名)+'</td><td>'+esc(r.英文名)+'</td><td>'+esc(r.中文地址)+'</td><td>'+esc(r.地址)+'</td><td>'+esc(r.类型)+'</td><td>'+b+'</td><td>'+esc(r.涉及清单)+'</td><td style="max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+esc(r.命中详情)+'">'+esc(r.命中详情)+'</td></tr>';
+  });
+  h+='</table>';
+  document.getElementById("resultTable").innerHTML=h;
+}
+
+function downloadResults(){
+  if(!results.length){alert("无结果 / 結果なし");return;}
+  var wb=XLSX.utils.book_new();
+  var hd=["序号No.","实体中文名 中国語名","实体英文名 / Entity Name","中文地址 中国語住所","英文地址 / Address","实体类型 / Type","备注 / Notes","检索结果 検索結果","涉及清单 / Source","详细信息 詳細情報"];
+  var rows=[hd];
+  results.forEach(function(r,i){
+    rows.push([i+1,r.中文名,r.英文名,r.中文地址,r.地址,r.类型,r.备注,r.检索结果,r.涉及清单,r.命中详情]);
+  });
+  var ws=XLSX.utils.aoa_to_sheet(rows);
+  ws["!cols"]=[{wch:6},{wch:22},{wch:38},{wch:22},{wch:36},{wch:16},{wch:18},{wch:22},{wch:30},{wch:55}];
+  XLSX.utils.book_append_sheet(wb,ws,"筛查结果 Results");
+  XLSX.writeFile(wb,"出口管制筛查结果_ExportScreeningResult_"+new Date().toISOString().slice(0,10)+".xlsx");
+  L("ok","结果已下载 / 結果ダウンロード完了 (.xlsx)");
+}
+
+// ============================================================
+// INIT: wire up all events
+// ============================================================
+function initApp(){
+  document.getElementById("btnTemplate").addEventListener("click",downloadTemplate);
+
+  document.getElementById("fileInput").addEventListener("change",function(e){
+    var f=e.target.files[0];
+    if(!f)return;
+    handleFile(f);
+  });
+
+  document.getElementById("btnReset").addEventListener("click",function(){
+    uploadedData=null;results=[];
+    document.getElementById("fileInput").value="";
+    document.getElementById("fileLabel").textContent="选择文件 / ファイルを選択";
+    document.getElementById("fileHint").textContent="未选择文件 / ファイル未選択";
+    document.getElementById("previewBlock").classList.add("hide");
+    document.getElementById("btnRun").disabled=true;
+    document.getElementById("progWrap").classList.add("hide");
+    document.getElementById("resultCard").classList.add("hide");
+    document.getElementById("progLabel").textContent="";
+    document.getElementById("progFill").style.width="0";
+  });
+
+  document.getElementById("btnRun").addEventListener("click",runScreening);
+  document.getElementById("btnStop").addEventListener("click",stopScreening);
+
+  document.getElementById("btnDownload").addEventListener("click",downloadResults);
+  document.getElementById("btnLog").addEventListener("click",function(){
+    var blob=new Blob([logLines.join("\n")],{type:"text/plain;charset=utf-8"});
+    var a=document.createElement("a");a.href=URL.createObjectURL(blob);
+    a.download="筛查日志_ScreeningLog_"+new Date().toISOString().slice(0,10)+".txt";a.click();
+  });
+
+  L("ok","页面就绪，请下载模板并填写后上传 / 準備完了、テンプレートをダウンロードして入力後アップロード");
+}
+</script>
+
+</body>
+</html>

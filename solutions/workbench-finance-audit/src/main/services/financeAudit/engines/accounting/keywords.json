@@ -1,0 +1,33 @@
+{
+  "_note": "规则引擎拿去和导入数据逐字比较的中英阿关键词（数据，不是界面文案，不进 i18n 词典）。",
+  "depreciationCodes": ["1602"],
+  "depreciationNames": ["累计折旧", "accumulated depreciation", "مجمع الإهلاك", "مجمع الاستهلاك"],
+  "bankCodePrefixes": ["1002"],
+  "bankNames": ["银行存款", "bank", "البنك", "بنك"],
+  "cashCodePrefixes": ["1001", "1002", "1012"],
+  "cashNames": ["库存现金", "银行存款", "其他货币资金", "现金", "cash", "bank", "النقد", "البنك"],
+  "revenueCodePrefixes": ["6001", "6051"],
+  "revenueNames": ["主营业务收入", "其他业务收入", "营业收入", "revenue", "sales", "الإيرادات", "المبيعات"],
+  "laborCodePrefixes": ["2211"],
+  "laborNames": ["应付职工薪酬", "工资", "薪酬", "薪金", "salary", "salaries", "wages", "payroll", "staff cost", "employee benefit", "الرواتب", "الأجور"],
+  "retainedNames": ["未分配利润", "利润分配", "本年利润", "retained earnings", "accumulated profits", "الأرباح المبقاة"],
+  "rollForward": {
+    "reversal": ["冲回", "冲销", "转回", "reverse", "reversal", "عكس"],
+    "accrual": ["计提", "预提", "accru", "استحقاق"],
+    "payment": ["支付", "付款", "还款", "发放", "缴纳", "收回", "收款", "pay", "settle", "receipt", "سداد", "دفع", "تحصيل"],
+    "reclass": ["重分类", "转入", "转出", "reclass", "إعادة تصنيف"],
+    "fx": ["汇兑", "折算", "汇率", "revaluation", "translation", "fx", "فروق العملة", "سعر الصرف"]
+  },
+  "bankCause": {
+    "fee": ["手续费", "服务费", "管理费", "年费", "fee", "charge", "commission", "رسوم", "عمولة"],
+    "interest": ["利息", "结息", "interest", "فائدة", "فوائد"],
+    "tax": ["利息税", "税", "tax", "ضريبة"]
+  },
+  "ifrsNature": {
+    "asset": ["cash", "bank", "receivable", "inventory", "inventories", "prepayment", "property", "plant", "equipment", "intangible", "right-of-use", "asset", "deposit", "investment"],
+    "liability": ["payable", "accrual", "accrued", "loan", "borrowing", "liabilit", "provision", "deferred revenue", "lease liabilit", "tax payable"],
+    "equity": ["share capital", "capital", "retained earnings", "reserve", "equity"],
+    "revenue": ["revenue", "sales", "other income", "finance income", "gain"],
+    "expense": ["expense", "cost of sales", "cost", "depreciation", "amortisation", "amortization", "salaries", "wages", "loss", "tax expense"]
+  }
+}

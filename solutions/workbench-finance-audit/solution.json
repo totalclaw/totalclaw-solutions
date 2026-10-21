@@ -1,0 +1,65 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-finance-audit",
+  "name": "财会审计解决方案",
+  "aliases": [
+    "finance-audit"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "财会审计",
+  "icon": "icon-solutions",
+  "order": 250,
+  "description": "月结关账、对账、审计与内控、税务合规、管理报告、资金风险与投融资估值，48 个模块分步出底稿，人工签核后归档；中英阿三语，适配中国、国际、沙特与阿联酋准则税制。",
+  "detail": "上传序时账、科目余额表、银行流水、合同与发票，按模块分步完成校验、计算与分析，生成 Excel 底稿、调节表、差异说明、审计备忘录与管理层报告。金额与勾稽由规则计算，模型只做抽取和写说明，引用的数字逐条回原文核对。覆盖会计核算、审计与内控、税务合规（中国增值税与金税，沙特 ZATCA 增值税、电子发票、天课与预提税，阿联酋 FTA 增值税与企业所得税）、财务分析与管理报告、资金与金融风险、投融资与估值。所有产出均为草稿：不过账、不付款、不提交申报、不发送函证、不出具审计意见，经编制、复核、批准三级签核后归档。",
+  "shortcuts": [
+    "月结关账",
+    "银企对账",
+    "内控测试",
+    "纳税申报准备"
+  ],
+  "highlights": [
+    "48 个财会审计模块",
+    "规则算数 · 人工签核",
+    "中英阿三语 · 中国 / 沙特 / 阿联酋准则"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "finance_audit",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/finance-audit",
+    "renderer": "src/renderer/views/FinanceAuditWorkbenchView.vue",
+    "main": "src/main/ipc/financeAudit.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-bid-writer",
+    "workbench-finance-agent",
+    "workbench-invoice-agent",
+    "workbench-service-settlement"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "finance-audit/",
+      "finance-audit-trial/"
+    ],
+    "localStorage": [
+      "totalclaw:finance-audit"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-finance-audit"
+  }
+}

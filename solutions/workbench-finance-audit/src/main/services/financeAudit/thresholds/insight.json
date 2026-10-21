@@ -1,0 +1,29 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "trend.minPeriods": {
+      "value": 3,
+      "label": "少于 3 期数据不做趋势判断（洞察降为待验证）",
+      "source": {
+        "file": "finance-skills/skills/business-insight/skills/trend-analysis/SKILL.md",
+        "section": "时间序列分解（源技能未给数值，取常用默认）"
+      }
+    },
+    "anomaly.zScore": {
+      "value": 2,
+      "label": "环比变动偏离均值超过 2 个标准差：异常点",
+      "source": {
+        "file": "finance-skills/skills/business-insight/skills/trend-analysis/SKILL.md",
+        "section": "异常检测（源技能未给数值，取常用默认）"
+      }
+    },
+    "season.minPeriods": {
+      "value": 24,
+      "label": "至少 24 个月数据才计算季节性指数",
+      "source": {
+        "file": "finance-skills/skills/business-insight/skills/trend-analysis/SKILL.md",
+        "section": "季节性识别（源技能未给数值，取常用默认）"
+      }
+    }
+  }
+}

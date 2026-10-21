@@ -1,0 +1,27 @@
+{
+  "name": "totalclaw-solutions",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TotalClaw 解决方案仓库：全部项目工作台方案的源码、清单与目录；qiye-app 按 id/名称下载安装并自动升级",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "import": "node tools/import-from-qiye.mjs",
+    "index": "node tools/build-index.mjs",
+    "index:check": "node tools/build-index.mjs --check",
+    "validate": "node tools/validate.mjs",
+    "validate:pr": "node tools/validate.mjs --since origin/master",
+    "pack": "node tools/pack.mjs",
+    "pack:all": "node tools/pack.mjs --all",
+    "test": "node --test test/*.test.mjs",
+    "tcsol": "node bin/tcsol.mjs"
+  },
+  "bin": {
+    "tcsol": "bin/tcsol.mjs"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

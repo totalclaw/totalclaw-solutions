@@ -1,0 +1,317 @@
+{
+  "countries": {
+    "UK": {
+      "name": "United Kingdom",
+      "name_zh": "英国",
+      "company_registries": [
+        {
+          "name": "Companies House",
+          "url": "https://find-and-update.company-information.service.gov.uk",
+          "api_url": "https://api.company-information.service.gov.uk",
+          "search_url": "https://find-and-update.company-information.service.gov.uk/companies?companyName={company_name}",
+          "officers_url": "https://find-and-update.company-information.service.gov.uk/company/{company_number}/officers",
+          "type": "official",
+          "requires_api_key": true,
+          "api_key_env": "COMPANIES_HOUSE_API_KEY",
+          "company_id_format": "8位数字",
+          "data_available": ["注册号", "公司名称", "状态", "地址", "董事", "年报", "股东"]
+        },
+        {
+          "name": "Endole",
+          "url": "https://suite.endole.co.uk/portal/company/{company_number}",
+          "type": "commercial",
+          "requires_api_key": false,
+          "data_available": ["公司详情", "财务摘要", "董事信息"]
+        }
+      ],
+      "phone_code": "44",
+      "phone_format": "+44 7XXX XXX XXX (mobile), +44 1XXX XXX XXX (landline)"
+    },
+    "FR": {
+      "name": "France",
+      "name_zh": "法国",
+      "company_registries": [
+        {
+          "name": "Recherche Entreprises (API)",
+          "url": "https://recherche-entreprises.api.gouv.fr",
+          "api_url": "https://recherche-entreprises.api.gouv.fr/search?q={company_name}",
+          "type": "official",
+          "requires_api_key": false,
+          "company_id_format": "SIREN (9位) / SIRET (14位)",
+          "data_available": ["公司名称", "地址", "SIREN/SIRET", "业务类型"]
+        },
+        {
+          "name": "societe.com",
+          "url": "https://www.societe.com",
+          "search_url": "https://www.societe.com/cgi-bin/search?champs={company_name}",
+          "type": "commercial",
+          "requires_api_key": false,
+          "data_available": ["公司信息", "财务", "董事"]
+        },
+        {
+          "name": "Pages Jaunes",
+          "url": "https://www.pagesjaunes.fr",
+          "search_url": "https://www.pagesjaunes.fr/recherche/{city}/{company_name}",
+          "type": "directory",
+          "requires_api_key": false,
+          "data_available": ["企业黄页", "联系方式"]
+        }
+      ],
+      "phone_code": "33",
+      "phone_format": "+33 X XX XX XX XX"
+    },
+    "SE": {
+      "name": "Sweden",
+      "name_zh": "瑞典",
+      "company_registries": [
+        {
+          "name": "Bolagsverket",
+          "url": "https://www.bolagsverket.se",
+          "type": "official",
+          "requires_api_key": false,
+          "company_id_format": "Organisationsnummer (10位)",
+          "data_available": ["公司注册", "状态"]
+        },
+        {
+          "name": "Allabolag",
+          "url": "https://www.allabolag.se",
+          "search_url": "https://www.allabolag.se/what/{company_name}",
+          "type": "commercial",
+          "requires_api_key": false,
+          "data_available": ["公司信息", "财务", "员工"]
+        },
+        {
+          "name": "Hitta",
+          "url": "https://www.hitta.se",
+          "search_url": "https://www.hitta.se/sök/{company_name}",
+          "type": "directory",
+          "requires_api_key": false,
+          "data_available": ["企业搜索", "联系方式"]
+        }
+      ],
+      "phone_code": "46",
+      "phone_format": "+46 XX XXX XXXX"
+    },
+    "US": {
+      "name": "United States",
+      "name_zh": "美国",
+      "company_registries": [
+        {
+          "name": "Secretary of State",
+          "note": "各州有独立注册机构",
+          "example_states": {
+            "DE": "https://icis.corp.delaware.gov/Ecorp/EntitySearch/NameSearch.aspx",
+            "CA": "https://bizfileonline.sos.ca.gov/search/business",
+            "NY": "https://apps.dos.ny.gov/publicInquiry/",
+            "TX": "https://mycpa.cpa.state.tx.us/coa/",
+            "FL": "https://dos.myflorida.com/sunbiz/search/"
+          },
+          "type": "official",
+          "requires_api_key": false,
+          "company_id_format": "州特定格式",
+          "data_available": ["公司注册", "状态", "代理人"]
+        },
+        {
+          "name": "Better Business Bureau",
+          "url": "https://www.bbb.org",
+          "search_url": "https://www.bbb.org/search?find_country=USA&find_text={company_name}",
+          "type": "commercial",
+          "requires_api_key": false,
+          "data_available": ["商业信誉", "投诉记录", "评级"]
+        }
+      ],
+      "phone_code": "1",
+      "phone_format": "+1 XXX XXX XXXX"
+    },
+    "DE": {
+      "name": "Germany",
+      "name_zh": "德国",
+      "company_registries": [
+        {
+          "name": "Bundesanzeiger",
+          "url": "https://www.bundesanzeiger.de",
+          "type": "official",
+          "requires_api_key": false,
+          "company_id_format": "Handelsregister (HRA/HRB + 数字)",
+          "data_available": ["公司注册", "年报"]
+        },
+        {
+          "name": "Unternehmensregister",
+          "url": "https://www.unternehmensregister.de",
+          "type": "official",
+          "requires_api_key": false,
+          "data_available": ["公司信息"]
+        }
+      ],
+      "phone_code": "49",
+      "phone_format": "+49 XXX XXXXXXX"
+    },
+    "AU": {
+      "name": "Australia",
+      "name_zh": "澳大利亚",
+      "company_registries": [
+        {
+          "name": "ASIC",
+          "url": "https://connectonline.asic.gov.au/RegistrySearch/faces/landing/SearchRegisters.jspx",
+          "type": "official",
+          "requires_api_key": false,
+          "company_id_format": "ACN (9位) / ABN (11位)",
+          "data_available": ["公司注册", "状态", "董事"]
+        }
+      ],
+      "phone_code": "61",
+      "phone_format": "+61 X XXXX XXXX"
+    },
+    "CA": {
+      "name": "Canada",
+      "name_zh": "加拿大",
+      "company_registries": [
+        {
+          "name": "ISED Canada",
+          "url": "https://ised-isde.canada.ca/app/scr/cc/CorporationsCanadaFESR",
+          "type": "official",
+          "requires_api_key": false,
+          "company_id_format": "Corporation Number",
+          "data_available": ["公司注册", "状态"]
+        }
+      ],
+      "phone_code": "1",
+      "phone_format": "+1 XXX XXX XXXX"
+    },
+    "JP": {
+      "name": "Japan",
+      "name_zh": "日本",
+      "company_registries": [
+        {
+          "name": "国税庁法人番号公表サイト",
+          "url": "https://www.houjin-bangou.nta.go.jp",
+          "type": "official",
+          "requires_api_key": false,
+          "company_id_format": "法人番号 (13位)",
+          "data_available": ["公司名称", "地址", "法人番号"]
+        }
+      ],
+      "phone_code": "81",
+      "phone_format": "+81 X XXXX XXXX"
+    },
+    "NL": {
+      "name": "Netherlands",
+      "name_zh": "荷兰",
+      "company_registries": [
+        {
+          "name": "Kamer van Koophandel (KvK)",
+          "url": "https://www.kvk.nl",
+          "search_url": "https://www.kvk.nl/zoeken/handelsnaam/{company_name}",
+          "type": "official",
+          "requires_api_key": false,
+          "company_id_format": "KvK-nummer (8位)",
+          "data_available": ["公司注册", "贸易名称"]
+        }
+      ],
+      "phone_code": "31",
+      "phone_format": "+31 X XXXXXXXX"
+    },
+    "IT": {
+      "name": "Italy",
+      "name_zh": "意大利",
+      "company_registries": [
+        {
+          "name": "Registro Imprese",
+          "url": "https://www.registroimprese.it",
+          "type": "official",
+          "requires_api_key": false,
+          "company_id_format": "Codice Fiscale / Partita IVA",
+          "data_available": ["公司注册", "状态"]
+        }
+      ],
+      "phone_code": "39",
+      "phone_format": "+39 XXX XXXXXXX"
+    },
+    "ES": {
+      "name": "Spain",
+      "name_zh": "西班牙",
+      "company_registries": [
+        {
+          "name": "Registro Mercantil",
+          "url": "https://www.registradores.org",
+          "type": "official",
+          "requires_api_key": false,
+          "company_id_format": "NIF / CIF",
+          "data_available": ["公司注册"]
+        }
+      ],
+      "phone_code": "34",
+      "phone_format": "+34 XXX XXX XXX"
+    },
+    "SG": {
+      "name": "Singapore",
+      "name_zh": "新加坡",
+      "company_registries": [
+        {
+          "name": "ACRA",
+          "url": "https://www.bizfile.gov.sg",
+          "type": "official",
+          "requires_api_key": true,
+          "company_id_format": "UEN",
+          "data_available": ["公司注册", "状态", "董事"]
+        }
+      ],
+      "phone_code": "65",
+      "phone_format": "+65 XXXX XXXX"
+    },
+    "HK": {
+      "name": "Hong Kong",
+      "name_zh": "香港",
+      "company_registries": [
+        {
+          "name": "Companies Registry",
+          "url": "https://www.icris.cr.gov.hk",
+          "type": "official",
+          "requires_api_key": false,
+          "company_id_format": "公司注册号 (8位)",
+          "data_available": ["公司注册", "状态"]
+        }
+      ],
+      "phone_code": "852",
+      "phone_format": "+852 XXXX XXXX"
+    }
+  },
+  "trade_data_sources": [
+    {
+      "name": "ImportGenius",
+      "url": "https://www.importgenius.com",
+      "coverage": ["美国", "拉美", "亚洲"],
+      "requires_subscription": true,
+      "data_available": ["进口记录", "供应商", "采购量"]
+    },
+    {
+      "name": "Panjiva",
+      "url": "https://panjiva.com",
+      "coverage": ["全球"],
+      "requires_subscription": true,
+      "data_available": ["航运记录", "供应商", "采购频率"]
+    },
+    {
+      "name": "Tradesparq",
+      "url": "https://www.tradesparq.com",
+      "coverage": ["中美贸易"],
+      "requires_subscription": false,
+      "free_tier": true,
+      "data_available": ["海关数据", "供应商"]
+    },
+    {
+      "name": "Datamyne",
+      "url": "https://www.datamyne.com",
+      "coverage": ["东亚", "东南亚"],
+      "requires_subscription": true,
+      "data_available": ["贸易数据"]
+    },
+    {
+      "name": "US Customs Data",
+      "url": "https://www.cbp.gov",
+      "coverage": ["美国"],
+      "requires_subscription": false,
+      "data_available": ["美国进口商"]
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "daily.minorDiffMax": {
+      "value": 1000000,
+      "label": "三方余额差异 < 1 万元为轻微差异（分）",
+      "source": {
+        "file": "finance-skills/skills/cash-management/skills/cash-position-monitoring/SKILL.md",
+        "section": "第二步：三方核对（⚠️ 轻微差异 < 1 万）"
+      }
+    },
+    "daily.diffEscalate": {
+      "value": 10000000,
+      "label": "三方余额差异 > 10 万元：升级（分）",
+      "source": {
+        "file": "finance-skills/skills/cash-management/skills/cash-position-monitoring/SKILL.md",
+        "section": "升级触发条件（三方数据差异 > [如 10 万]）"
+      }
+    },
+    "forecast.weeks": {
+      "value": 13,
+      "label": "现金预测周数",
+      "source": {
+        "file": "docs/finance-audit-solution.md",
+        "section": "5.6 E1：13 周现金预测"
+      }
+    },
+    "forecast.optInFactor": {
+      "value": 1.2,
+      "label": "乐观情景：非确定流入 × 1.2",
+      "source": {
+        "file": "finance-skills/skills/cash-management/skills/cash-flow-forecasting/SKILL.md",
+        "section": "第五步：乐观情景（收入 +20% / 支出 -10%）"
+      }
+    },
+    "forecast.optOutFactor": {
+      "value": 0.9,
+      "label": "乐观情景：非确定流出 × 0.9",
+      "source": {
+        "file": "finance-skills/skills/cash-management/skills/cash-flow-forecasting/SKILL.md",
+        "section": "第五步：乐观情景（收入 +20% / 支出 -10%）"
+      }
+    },
+    "forecast.pesInFactor": {
+      "value": 0.8,
+      "label": "悲观情景：非确定流入 × 0.8",
+      "source": {
+        "file": "finance-skills/skills/cash-management/skills/cash-flow-forecasting/SKILL.md",
+        "section": "第五步：悲观情景（收入 -20% / 支出 +10%）"
+      }
+    },
+    "forecast.pesOutFactor": {
+      "value": 1.1,
+      "label": "悲观情景：非确定流出 × 1.1",
+      "source": {
+        "file": "finance-skills/skills/cash-management/skills/cash-flow-forecasting/SKILL.md",
+        "section": "第五步：悲观情景（收入 -20% / 支出 +10%）"
+      }
+    },
+    "forecast.gapSmallMax": {
+      "value": 50000000,
+      "label": "小额缺口上限 50 万元（分）",
+      "source": {
+        "file": "finance-skills/skills/cash-management/references/判断框架.md",
+        "section": "类型一：资金缺口（小额 < 50 万）"
+      }
+    },
+    "forecast.gapLargeMax": {
+      "value": 200000000,
+      "label": "大额缺口上限 200 万元，以上为超大额（分）",
+      "source": {
+        "file": "finance-skills/skills/cash-management/references/判断框架.md",
+        "section": "类型一：资金缺口（大额 50–200 万，超大额 > 200 万）"
+      }
+    },
+    "forecast.pessimisticGapEscalate": {
+      "value": 200000000,
+      "label": "悲观情景缺口 > 200 万元：升级（分）",
+      "source": {
+        "file": "finance-skills/skills/cash-management/skills/cash-flow-forecasting/SKILL.md",
+        "section": "升级触发条件（悲观情景缺口 > [如 200 万]）"
+      }
+    },
+    "forecast.baseGapEscalate": {
+      "value": 100000000,
+      "label": "基准情景缺口 > 100 万元且可用授信不足：升级（分）",
+      "source": {
+        "file": "finance-skills/skills/cash-management/references/判断框架.md",
+        "section": "升级触发条件（资金缺口 > [如 100 万] 且无资金来源）"
+      }
+    },
+    "forecast.concentrationWatch": {
+      "value": 0.3,
+      "label": "单一付款方收款占比 ≥ 30%：关注（小数）",
+      "source": {
+        "file": "finance-skills/skills/cash-management/references/判断框架.md",
+        "section": "类型四：资金集中度风险"
+      }
+    },
+    "forecast.concentrationBreach": {
+      "value": 0.5,
+      "label": "单一付款方收款占比 > 50%：高风险（小数）",
+      "source": {
+        "file": "finance-skills/skills/cash-management/references/判断框架.md",
+        "section": "类型四：资金集中度风险"
+      }
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{
+ "cardTitle": {
+  "vocab": [
+   "词汇卡 · {chapter} {range}",
+   "Vocabulary card · {chapter} {range}",
+   "بطاقة مفردات · {chapter} {range}"
+  ],
+  "concept_map": [
+   "概念图 · {chapter} {range}",
+   "Concept map · {chapter} {range}",
+   "خريطة المفاهيم · {chapter} {range}"
+  ],
+  "timeline": [
+   "事件时间线 · {chapter}",
+   "Event timeline · {chapter}",
+   "الخط الزمني للأحداث · {chapter}"
+  ],
+  "review": [
+   "复习卡 · {chapter} {range}",
+   "Review card · {chapter} {range}",
+   "بطاقة مراجعة · {chapter} {range}"
+  ],
+  "structure": [
+   "章节结构图 · {chapter}",
+   "Chapter structure · {chapter}",
+   "بنية السورة · {chapter}"
+  ]
+ },
+ "footer": [
+  "经文文字取自锁定语料 {version}（校验通过）· 释义来自批准资料 · 本图由平台模板生成",
+  "Quranic text from locked corpus {version} (verified) · meanings from approved materials · generated from a platform template",
+  "نص القرآن من المدونة المقفلة {version} (مُتحقّق منه) · المعاني من المواد المعتمدة · مُولَّد من قالب المنصة"
+ ],
+ "aiBadge": [
+  "AI 生成 · 待教师确认",
+  "AI-generated · pending teacher confirmation",
+  "مولَّد بالذكاء الاصطناعي · بانتظار تأكيد المعلم"
+ ],
+ "script": {
+  "title": [
+   "{chapter} {range} · 教学短片",
+   "{chapter} {range} · Teaching short",
+   "{chapter} {range} · مقطع تعليمي"
+  ],
+  "objective": [
+   "用 {sec} 秒讲清 {chapter} {range} 的结构与核心概念，配合锁定经文的文字层与批准词表的释义。",
+   "In {sec} seconds, explain the structure and core concepts of {chapter} {range}, with the locked text as a text layer and approved-glossary meanings.",
+   "في {sec} ثانية، شرح بنية {chapter} {range} ومفاهيمه الأساسية مع طبقة نصية للنص المقفل ومعاني القائمة المعتمدة."
+  ],
+  "intro": {
+   "visual": [
+    "标题卡：章名 + 节范围，深色背景与几何纹样，无人物",
+    "Title card: chapter name + verse range, dark background with geometric pattern, no figures",
+    "بطاقة عنوان: اسم السورة ونطاق الآيات، خلفية داكنة بزخرفة هندسية، دون أشخاص"
+   ],
+   "narration": [
+    "本节课我们学习{chapter}第 {range} 节。",
+    "In this lesson we study {chapter}, verses {range}.",
+    "في هذا الدرس ندرس سورة {chapter}، الآيات {range}."
+   ],
+   "subtitle": [
+    "{chapter} · {range}",
+    "{chapter} · {range}",
+    "{chapter} · {range}"
+   ]
+  },
+  "unit": {
+   "visual": [
+    "单元卡：标题 + 经文 {refs} 以文字层逐节浮现",
+    "Unit card: title + verses {refs} appear line by line as a text layer",
+    "بطاقة وحدة: العنوان + الآيات {refs} تظهر سطرًا سطرًا كطبقة نصية"
+   ],
+   "narration": [
+    "第 {n} 个单元：{title}。{theme}",
+    "Unit {n}: {title}. {theme}",
+    "الوحدة {n}: {title}. {theme}"
+   ]
+  },
+  "vocab": {
+   "visual": [
+    "词汇卡：{words} 三词并排，下方是批准释义",
+    "Vocabulary card: {words} side by side with approved meanings below",
+    "بطاقة مفردات: {words} جنبًا إلى جنب مع المعاني المعتمدة تحتها"
+   ],
+   "narration": [
+    "核心词汇：{list}。",
+    "Core vocabulary: {list}.",
+    "المفردات الأساسية: {list}."
+   ],
+   "subtitle": [
+    "{words}",
+    "{words}",
+    "{words}"
+   ]
+  },
+  "map": {
+   "visual": [
+    "理解图动画：章 → 单元 → 概念 → 经文 逐层展开",
+    "Understanding map animation: chapter → units → concepts → verses unfold layer by layer",
+    "حركة خريطة الفهم: السورة ← الوحدات ← المفاهيم ← الآيات طبقة طبقة"
+   ],
+   "narration": [
+    "把概念和经文连起来：{concepts}。",
+    "Linking concepts to verses: {concepts}.",
+    "ربط المفاهيم بالآيات: {concepts}."
+   ],
+   "subtitle": [
+    "{concepts}",
+    "{concepts}",
+    "{concepts}"
+   ]
+  },
+  "review": {
+   "visual": [
+    "复习卡：两道复习题逐条出现",
+    "Review card: two review questions appear one by one",
+    "بطاقة مراجعة: سؤالان يظهران تباعًا"
+   ],
+   "narration": [
+    "课后复习：{q1} {q2}",
+    "Review after class: {q1} {q2}",
+    "مراجعة بعد الدرس: {q1} {q2}"
+   ],
+   "subtitle": [
+    "复习",
+    "Review",
+    "مراجعة"
+   ]
+  },
+  "reviewQ": [
+   [
+    "第 {ref} 节讲的是什么主题？",
+    "What is the theme of verse {ref}?",
+    "ما موضوع الآية {ref}؟"
+   ],
+   [
+    "「{word}」的基础词义是什么？",
+    "What is the basic meaning of \"{word}\"?",
+    "ما المعنى الأساسي لـ«{word}»؟"
+   ],
+   [
+    "本范围有几个教学单元？各自的重点是什么？",
+    "How many teaching units are there, and what is each about?",
+    "كم عدد الوحدات التعليمية وما محور كل منها؟"
+   ]
+  ]
+ }
+}

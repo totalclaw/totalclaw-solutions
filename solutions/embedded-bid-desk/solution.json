@@ -1,0 +1,56 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "embedded-bid-desk",
+  "name": "项目工作台",
+  "aliases": [
+    "bid-desk"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "内置",
+  "icon": "icon-solutions",
+  "order": 280,
+  "description": "从 RFQ/BOQ 到审批文件的可追溯业务闭环",
+  "detail": "从 RFQ / BOQ 导入到技术澄清、成本核算与审批文件产出的完整项目闭环，每个环节的输入输出都可追溯，适合工程项目投标团队日常协作。",
+  "shortcuts": [
+    "导入 RFQ/BOQ",
+    "技术澄清",
+    "成本核算"
+  ],
+  "highlights": [
+    "从导入到审批文件闭环",
+    "输入输出全程可追溯",
+    "适合投标团队协作"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "workflow_engine_ipc",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/bid-desk",
+    "renderer": "src/renderer/views/BidDeskView.vue",
+    "main": "src/main/ipc/bidDesk.ipc.ts"
+  },
+  "dependsOn": [],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "bid-desk.json"
+    ],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/embedded-bid-desk"
+  }
+}

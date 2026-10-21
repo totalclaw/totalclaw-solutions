@@ -1,0 +1,37 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "deviation.moderatePct": {
+      "value": 0.1,
+      "label": "战略目标偏差超过 10%：中度偏差；源技能写「偏差 [X%]」未给数值，取常用默认",
+      "source": {
+        "file": "finance-skills/skills/strategic-planning/references/判断框架.md",
+        "section": "类型二：年度目标与战略规划偏差过大"
+      }
+    },
+    "deviation.severePct": {
+      "value": 0.2,
+      "label": "战略目标偏差超过 20%：重度偏差，须批准人确认纠偏方案",
+      "source": {
+        "file": "finance-skills/skills/strategic-planning/references/判断框架.md",
+        "section": "类型三：战略规划执行严重滞后"
+      }
+    },
+    "risk.highScore": {
+      "value": 15,
+      "label": "风险评分（可能性 × 影响，各 1–5）≥ 15：高风险",
+      "source": {
+        "file": "finance-skills/skills/strategic-planning/skills/strategic-risk-assessment/SKILL.md",
+        "section": "影响 / 可能性评估（源技能未给数值，取 5×5 矩阵常用分档）"
+      }
+    },
+    "risk.mediumScore": {
+      "value": 8,
+      "label": "风险评分 8–14：中风险；低于 8：低风险",
+      "source": {
+        "file": "finance-skills/skills/strategic-planning/skills/strategic-risk-assessment/SKILL.md",
+        "section": "影响 / 可能性评估"
+      }
+    }
+  }
+}

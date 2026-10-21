@@ -1,0 +1,20 @@
+{
+  "version": "2026-10-19",
+  "items": {
+    "trial.ignoreMax": { "value": 1, "label": "试算借贷差异 ≤ 0.01 元：精度误差，可忽略（分）", "source": { "file": "finance-skills/skills/month-end-close/references/判断框架.md", "section": "类型一：试算表不平衡" } },
+    "trial.locateMax": { "value": 10000, "label": "试算借贷差异 0.01–100 元：定位来源，通知总账会计（分）", "source": { "file": "finance-skills/skills/month-end-close/references/判断框架.md", "section": "类型一：试算表不平衡" } },
+    "trial.stopMax": { "value": 100000, "label": "试算借贷差异 100–1000 元：停止结账；超过则停止并通知财务经理（分）", "source": { "file": "finance-skills/skills/month-end-close/references/判断框架.md", "section": "类型一：试算表不平衡" } },
+    "tie.tolerance": { "value": 1, "label": "报表勾稽、期初衔接的容差（分）", "source": { "file": "finance-skills/skills/month-end-close/skills/close-verification/SKILL.md", "section": "三表钩稽 + 试算平衡 + 期初/期末衔接" } },
+    "checklist.maxFail": { "value": 1, "label": "关账清单 ❌ 项上限（含）", "source": { "file": "finance-skills/skills/month-end-close/skills/close-checklist-executor/SKILL.md", "section": "第四步：判断是否可以开始结账" } },
+    "checklist.maxWarn": { "value": 3, "label": "关账清单 ⚠️ 项上限（含）", "source": { "file": "finance-skills/skills/month-end-close/skills/close-checklist-executor/SKILL.md", "section": "第四步：判断是否可以开始结账" } },
+    "cross.amountTier1": { "value": 10000, "label": "跨期金额第 1 档上限 100 元（分）", "source": { "file": "finance-skills/skills/month-end-close/skills/cross-period-adjustment/SKILL.md", "section": "第二步：金额阈值判断" } },
+    "cross.amountTier2": { "value": 500000, "label": "跨期金额第 2 档上限 5000 元（分）；以上必须本期调整", "source": { "file": "finance-skills/skills/month-end-close/skills/cross-period-adjustment/SKILL.md", "section": "第二步：金额阈值判断" } },
+    "cross.amountTier3": { "value": 5000000, "label": "跨期金额第 3 档上限 5 万元（分）；以上须财务经理确认", "source": { "file": "finance-skills/skills/month-end-close/skills/cross-period-adjustment/SKILL.md", "section": "第二步：金额阈值判断；第四步：调整审批路径" } },
+    "cross.dayTier1": { "value": 5, "label": "跨期天数第 1 档上限（天）：合理延迟", "source": { "file": "finance-skills/skills/month-end-close/skills/cross-period-adjustment/SKILL.md", "section": "第二步：时间阈值判断" } },
+    "cross.dayTier2": { "value": 30, "label": "跨期天数第 2 档上限（天）；以上必须调整", "source": { "file": "finance-skills/skills/month-end-close/skills/cross-period-adjustment/SKILL.md", "section": "第二步：时间阈值判断" } },
+    "cross.dayTier3": { "value": 90, "label": "跨期天数第 3 档上限（天）；以上须财务经理审批", "source": { "file": "finance-skills/skills/month-end-close/skills/cross-period-adjustment/SKILL.md", "section": "第二步：时间阈值判断；跨期调整特殊规则" } },
+    "flux.pct": { "value": 0.05, "label": "波动说明百分比阈值（与金额下限取大）", "source": { "file": "financial-services/plugins/vertical-plugins/fund-admin/skills/variance-commentary/SKILL.md", "section": "Threshold" } },
+    "flux.floor": { "value": 1000000, "label": "波动说明金额下限 1 万元（分）；源技能未给数值，取保守默认，可在首次配置里改", "source": { "file": "financial-services/plugins/vertical-plugins/fund-admin/skills/variance-commentary/SKILL.md", "section": "Threshold（fixed floor）" } },
+    "flux.topN": { "value": 3, "label": "每行交给模型写驱动原因的分录条数", "source": { "file": "financial-services/plugins/vertical-plugins/fund-admin/skills/variance-commentary/SKILL.md", "section": "Sourcing the driver" } }
+  }
+}

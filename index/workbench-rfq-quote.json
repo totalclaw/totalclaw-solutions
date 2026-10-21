@@ -1,0 +1,37 @@
+{
+  "id": "workbench-rfq-quote",
+  "version": "1.0.0",
+  "treeDigest": "e44e9cfa81b7c737aa2fd5239d177179cef340e0d769bf20c666362f51055bd8",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 138,
+      "sha256": "66c355b88df7fdc58b7204e828065d2b456026e95f85e5480f8115dc50876f3f"
+    },
+    {
+      "path": "README.md",
+      "size": 861,
+      "sha256": "a332e7f6436a6e5f390e5a4dfe0bdeb1c8a8566303a97ccb640ded8cf171844f"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "origin.json",
+      "size": 754,
+      "sha256": "8c92cc3f10dbc25b5059fec25d26c97a50770bbfd9a298733d4597fbfb81f41a"
+    },
+    {
+      "path": "solution.json",
+      "size": 1464,
+      "sha256": "95762efd2de6ea57f1b0da105448e4995b3677134400893e40f69f605eff1e7d"
+    },
+    {
+      "path": "src/renderer/views/RfqQuoteWorkbenchView.vue",
+      "size": 375,
+      "sha256": "1661ecad2a9c21d11dff12708ef5c4dcf7f2400c9aec79aead44b8389647e458"
+    }
+  ]
+}

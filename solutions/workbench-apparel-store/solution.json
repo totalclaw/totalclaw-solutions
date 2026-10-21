@@ -1,0 +1,52 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-apparel-store",
+  "name": "服装实体店智能体",
+  "aliases": [
+    "apparel-store"
+  ],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "服装零售",
+  "icon": "icon-solutions",
+  "order": 170,
+  "description": "AI 一键换装：顾客手机扫码或店员电脑上传照片，自选背景、姿势、发型生成试穿图，手机电脑同时查看；试穿码到店核销，试穿数据看板指导主推款。",
+  "detail": "七步固定流程：选衣服（AI 自动打标签）→ 顾客照片与授权 → AI 形象分析推荐造型 → 选背景（30 项）/ 姿势（20 项）/ 发型（25 项）及细分场景 → AI 合成试穿图 → 手机与电脑同时查看、带门店名与试穿码保存 → 到店凭码试实物（尺码助手提前备货）。门店手机端是店内 Wi-Fi 下的网页，不需要小程序与试衣镜；照片只存在门店电脑，到期自动删除，顾客可随时一键删除。",
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/apparel-store",
+    "renderer": "src/renderer/views/ApparelStoreWorkbenchView.vue",
+    "main": "src/main/ipc/apparelStore.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-bid-writer",
+    "workbench-foreign-trade",
+    "workbench-service-settlement"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "apparel-store/"
+    ],
+    "localStorage": [
+      "totalclaw:apparel-store"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-apparel-store"
+  }
+}

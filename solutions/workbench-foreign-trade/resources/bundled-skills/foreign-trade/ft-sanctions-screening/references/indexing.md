@@ -1,0 +1,73 @@
+---
+layout: page
+title: Indexing and TF-IDF
+hide_hero: true
+show_sidebar: false
+menubar: docs-menu
+---
+
+# Advanced Search Indexing for Superior Performance
+
+Downloaded lists (OFAC, EU, UK, UN, …) live in an in-memory corpus that rebuilds on each successful refresh. [Ingested files](/watchman/ingest/) use a second corpus with the same indexes. A per-source checksum from the database decides whether that corpus is still current, so search does not reread every ingested row on each query.
+
+## What is built on refresh
+
+When lists finish downloading and preparing, Watchman constructs an in-memory **search corpus** from every entity:
+
+1. **Prepared fields** — normalized names, tokenized name fields (stopwords removed), alt names, former names, addresses, and contact data (see [pipeline](/watchman/pipeline/) and entity `Normalize()`).
+2. **Source × type partitions** — index slices keyed by list source and entity type so queries with `source` / `type` only score the relevant subset. Empty source or type values are not double-counted into the “all” partition.
+3. **Name-token inverted index** — maps each significant prepared name token to entity positions (primary name, alternate names, and historical “Former Name” values). Each entity is posted **once per distinct token** even if the token repeats across name fields.
+4. **Exact prepared-name map** — maps the full prepared name string to entity positions for exact-name shortcuts.
+5. **Crypto address index** — exact lookup by `CURRENCY:address` for fast crypto screening.
+6. **Blocking keys** — PII-safe composite hashes (`GOVID:`, `ADDR:`, hashed Soundex `NAME:` tokens, and related kinds) plus their coarse-to-fine prefixes. Government-ID queries use exact `GOVID:` lookup; address-only queries use the finest `ADDR:` prefix that still prunes the partition. The keys never store names, ID numbers, or addresses. See [Record linkage](/watchman/record-linkage/).
+7. **Plaintext identifier indexes** — IMO, MMSI, aircraft serial, email, phone, website, and SWIFT/BIC values for prefix and QWERTY-near typed queries. Websites are stored as the prepared host (scheme, path, `www.`, and default ports removed). SWIFT/BIC is stored as the canonical code and the 8-character head-office form.
+8. **Domain index** — exact lookup of DNS names extracted from websites and email hosts (consumer mail providers skipped). Each host is stored at every label down to eTLD+1 (Public Suffix List). Dots are kept. Public suffixes themselves are not stored.
+9. **Optional TF-IDF weights** — when enabled, term weights for each entity’s name fields are stored on the entity so search does not recompute them per comparison.
+
+These structures are immutable for readers until the next successful refresh replaces the corpus atomically. Search scores candidate **indices** against that generation and copies entity values only for the top-N results.
+
+## Candidate selection at search time
+
+Before Jaro-Winkler scoring, Watchman selects a **candidate set**:
+
+| Query shape | Candidate strategy |
+|-------------|-------------------|
+| `type` and/or `source` set | Start from that partition only |
+| Known source, empty type (no entities of that type) | **Empty result** — does not scan other types or sources |
+| Unknown / unregistered source | **Empty result** — does not fall back to the full corpus |
+| Name tokens present | Intersect inverted-index hits for **distinctive** tokens, using document frequency in this partition (not a language-specific suffix list). Tokens with no postings are skipped. A token that is much more common than the rest of the query (Limited, ООО, GmbH, 有限公司, …) is optional, so "Ocean Shipping Limited" still matches a DBA of "Ocean Shipping". If the intersection is empty, use the union of those hitting tokens. |
+| No token hits (e.g. heavy typos) | **Fall back to the full partition** (preserves recall within that source/type) |
+| Crypto address only | Exact crypto hits only (does not expand to the full partition) |
+| Crypto + name tokens | Union of crypto hits and name-token candidates |
+| Government ID (no name) | Exact hashed `GOVID:` hits; if none, fall back to the partition |
+| IMO / MMSI / aircraft serial / email / phone / website / SWIFT/BIC (no name) | Prefix and single QWERTY-adjacent typo on the normalized identifier (min length 3–4). If none, fall back to the partition |
+| Domain (no name) | Exact match on each PSL-walked label down to eTLD+1. If none, fall back to the partition |
+| Those identifiers + name tokens | Union of identifier hits and name-token candidates |
+| Address only (no name tokens) | Finest hashed `ADDR:` prefix that still prunes the partition; otherwise the partition |
+| Exact prepared name (no tokens after stopwords) | Binary-search exact-name postings against the partition |
+| Name-less / identifier-oriented (no crypto, no GOVID/address hits) | Full partition for the filtered source/type |
+
+If name-token candidates would cover most of the partition (default threshold: half the partition size), Watchman scores the full partition instead—token pruning would not save work.
+
+Candidate index membership checks intersect sorted posting lists with the (sorted) partition. Duplicate postings are removed with sort + compact.
+
+Always pass **`type`** (and **`source`** when appropriate) on `/v2/search` for the best latency. See [Performance](/watchman/performance/) for concurrency, admission control, and tuning.
+
+## TF-IDF
+
+Starting with `v0.57.0` Watchman builds an in-memory [TF-IDF](https://en.wikipedia.org/wiki/Tf%E2%80%93idf)
+(Term Frequency–Inverse Document Frequency) index over the corpus of searchable entities, treating each entity's
+normalized name (including primary names and alternate known-as entries from lists like OFAC SDN) as a "document"
+composed of tokenized terms. This precomputes IDF values to weight terms inversely by their commonality across
+the entire watchlist—rare terms (e.g., unique surnames or identifiers) receive higher weights, while common
+ones (e.g., "bank" or frequent first names) are downweighted.
+
+During name searches, TF-IDF weighting is optionally applied to boost the contribution of discriminative rare terms
+in similarity scoring, improving match precision for fuzzy name matching against global sanctions and watchlists
+without overemphasizing ubiquitous words.
+
+When TF-IDF is enabled, weights for indexed entities are **materialized at corpus build time** and attached to each
+entity’s prepared fields. Query-side weights are computed once per search request.
+
+The feature is opt-in via [configuration, with tunable parameters](/watchman/config/#tf-idf-configuration) like
+smoothing and IDF bounds to adapt to corpus size and growth.

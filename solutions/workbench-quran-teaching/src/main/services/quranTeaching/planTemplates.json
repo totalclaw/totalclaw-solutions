@@ -1,0 +1,185 @@
+{
+ "level": {
+  "beginner": [
+   "初级：以记忆、词汇与顺序为主，理解题占少数",
+   "Beginner: memory, vocabulary and order first, few comprehension items",
+   "مبتدئ: التركيز على الحفظ والمفردات والترتيب، وقليل من أسئلة الفهم"
+  ],
+  "intermediate": [
+   "中级：记忆与理解并重，加入概念关系",
+   "Intermediate: memory and comprehension balanced, concept relations added",
+   "متوسط: توازن بين الحفظ والفهم مع إضافة العلاقات المفاهيمية"
+  ],
+  "advanced": [
+   "高级：跨节理解、事件顺序与综合概念为主",
+   "Advanced: cross-verse comprehension, event order and synthesis",
+   "متقدم: فهم عبر الآيات وترتيب الأحداث والتركيب المفاهيمي"
+  ]
+ },
+ "adaptation": [
+  "面向{grade}（{level}）。所选范围 {chapter} {range} 共 {verses} 节、{units} 个教学单元，按每周 {spw} 次、每次 {mins} 分钟、共 {weeks} 周排成 {sessions} 课；平均每课覆盖 {perSession} 节，最后一课为综合复习与测试。",
+  "For {grade} ({level}). The selected range {chapter} {range} has {verses} verses in {units} teaching units, scheduled as {sessions} sessions ({spw} per week, {mins} minutes each, {weeks} weeks); about {perSession} verses per session, with the final session for review and testing.",
+  "لـ{grade} ({level}). يضم النطاق المختار {chapter} {range} {verses} آية في {units} وحدات، مقسمة إلى {sessions} حصة ({spw} أسبوعيًا، {mins} دقيقة لكل حصة، {weeks} أسابيع)؛ نحو {perSession} آية في الحصة، والحصة الأخيرة للمراجعة والاختبار."
+ ],
+ "overview": [
+  "总课程计划：{sessions} 课覆盖 {chapter} {range}。前 {teach} 课逐单元教学（诵读 → 词汇 → 理解 → 练习），第 {sessions} 课综合复习与测试。每课都以锁定经文为中心，解释只依据批准资料。",
+  "Course plan: {sessions} sessions covering {chapter} {range}. Sessions 1-{teach} teach unit by unit (recitation → vocabulary → comprehension → practice); session {sessions} is review and testing. Every session centres on the locked text; explanations rely only on approved materials.",
+  "خطة المقرر: {sessions} حصص تغطي {chapter} {range}. الحصص 1-{teach} تدرّس وحدة بوحدة (تلاوة ← مفردات ← فهم ← تدريب)؛ الحصة {sessions} مراجعة واختبار. كل حصة تتمحور حول النص المقفل، والشرح وفق المواد المعتمدة فقط."
+ ],
+ "objectives": [
+  [
+   "能按章/节准确识别与诵读 {chapter} {range} 的经文",
+   "Accurately identify and recite the verses of {chapter} {range} by chapter and verse",
+   "التعرّف على آيات {chapter} {range} وتلاوتها بدقة حسب السورة والآية"
+  ],
+  [
+   "掌握批准词表中的 {vocab} 个核心词汇的基础词义",
+   "Master the basic meanings of {vocab} core words from the approved glossary",
+   "إتقان المعاني الأساسية لـ{vocab} كلمة محورية من القائمة المعتمدة"
+  ],
+  [
+   "理解各教学单元的主题与经文间的基本关系",
+   "Understand each unit's theme and the basic relations between verses",
+   "فهم موضوع كل وحدة والعلاقات الأساسية بين الآيات"
+  ],
+  [
+   "能在理解图中说明概念与经文的对应关系",
+   "Explain concept-to-verse correspondences on the understanding map",
+   "توضيح تقابل المفاهيم والآيات في خريطة الفهم"
+  ]
+ ],
+ "segments": {
+  "warmup": [
+   "复习与导入",
+   "Review & warm-up",
+   "مراجعة وتمهيد"
+  ],
+  "recite": [
+   "诵读与识别（锁定经文）",
+   "Recitation & recognition (locked text)",
+   "تلاوة وتعرّف (النص المقفل)"
+  ],
+  "vocab": [
+   "词汇讲解（批准词表）",
+   "Vocabulary (approved glossary)",
+   "مفردات (القائمة المعتمدة)"
+  ],
+  "meaning": [
+   "主题与理解（批准资料）",
+   "Theme & comprehension (approved materials)",
+   "الموضوع والفهم (المواد المعتمدة)"
+  ],
+  "map": [
+   "理解图讲解",
+   "Understanding map",
+   "خريطة الفهم"
+  ],
+  "practice": [
+   "随堂练习（动态出题）",
+   "In-class practice (dynamic items)",
+   "تدريب صفي (أسئلة ديناميكية)"
+  ],
+  "wrap": [
+   "小结与作业",
+   "Wrap-up & homework",
+   "خلاصة وواجب"
+  ],
+  "review": [
+   "综合复习",
+   "Comprehensive review",
+   "مراجعة شاملة"
+  ],
+  "test": [
+   "单元测试（动态试卷）",
+   "Unit test (dynamic paper)",
+   "اختبار الوحدة (ورقة ديناميكية)"
+  ],
+  "feedback": [
+   "讲评与薄弱点反馈",
+   "Feedback on weak points",
+   "تغذية راجعة حول نقاط الضعف"
+  ]
+ },
+ "activity": {
+  "warmup": [
+   "回顾上一课的经文与词汇，提问 2-3 个复习问题",
+   "Recall last session's verses and words; ask 2-3 review questions",
+   "استرجاع آيات ومفردات الحصة السابقة مع 2-3 أسئلة مراجعة"
+  ],
+  "recite": [
+   "逐节展示 {refs}，学生跟读并按节号识别",
+   "Display {refs} verse by verse; students repeat and identify by verse number",
+   "عرض {refs} آية آية؛ يردد الطلاب ويتعرفون على رقم الآية"
+  ],
+  "vocab": [
+   "讲解 {words}",
+   "Explain {words}",
+   "شرح {words}"
+  ],
+  "meaning": [
+   "按批准资料讲解单元主题：{theme}",
+   "Explain the unit theme from approved materials: {theme}",
+   "شرح موضوع الوحدة من المواد المعتمدة: {theme}"
+  ],
+  "map": [
+   "在理解图中打开本单元节点，展示概念 ↔ 经文关联",
+   "Open this unit's node on the map and show concept ↔ verse links",
+   "فتح عقدة الوحدة في الخريطة وعرض روابط المفهوم بالآية"
+  ],
+  "practice": [
+   "现场生成 5 题（识别 / 填空 / 排序），即时讲评",
+   "Generate 5 items live (identify / fill / order) and review immediately",
+   "توليد 5 أسئلة فوريًا (تعرّف / فراغ / ترتيب) مع تصحيح فوري"
+  ],
+  "wrap": [
+   "总结要点，布置背诵 {refs}",
+   "Summarise key points; assign memorising {refs}",
+   "تلخيص النقاط الرئيسة وتكليف بحفظ {refs}"
+  ],
+  "review": [
+   "按单元串讲 {range} 全部经文与概念",
+   "Walk through all verses and concepts of {range} unit by unit",
+   "مراجعة جميع آيات ومفاهيم {range} وحدة بوحدة"
+  ],
+  "test": [
+   "生成一套 10 题动态试卷并作答",
+   "Generate and take a 10-item dynamic paper",
+   "توليد ورقة ديناميكية من 10 أسئلة وحلها"
+  ],
+  "feedback": [
+   "查看个人与群体薄弱点，决定强化内容",
+   "Review individual and group weak points; decide on reinforcement",
+   "مراجعة نقاط الضعف الفردية والجماعية وتحديد التعزيز"
+  ]
+ },
+ "reviewGoal": [
+  "能复述本课经文并说出 {n} 个核心词的词义",
+  "Recite this session's verses and give the meaning of {n} core words",
+  "تلاوة آيات الحصة وذكر معنى {n} كلمات محورية"
+ ],
+ "testGoal": [
+  "识别 / 填空 / 排序题正确率 ≥ 80%",
+  "≥ 80% on identify / fill / order items",
+  "≥ 80% في أسئلة التعرّف / الفراغ / الترتيب"
+ ],
+ "finalReviewGoal": [
+  "能说明各单元主题与概念 ↔ 经文的对应",
+  "Explain each unit's theme and concept ↔ verse mapping",
+  "توضيح موضوع كل وحدة وتقابل المفاهيم بالآيات"
+ ],
+ "finalTestGoal": [
+  "综合试卷总分 ≥ 75%，无维度低于 60%",
+  "Overall ≥ 75% with no dimension below 60%",
+  "المجموع ≥ 75% ودون أي بُعد تحت 60%"
+ ],
+ "sessionTitle": [
+  "第 {n} 课 · {title}",
+  "Session {n} · {title}",
+  "الحصة {n} · {title}"
+ ],
+ "finalTitle": [
+  "第 {n} 课 · 综合复习与测试",
+  "Session {n} · Review & test",
+  "الحصة {n} · مراجعة واختبار"
+ ]
+}

@@ -1,0 +1,56 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "rd-workflow",
+  "name": "研发工作流",
+  "aliases": [],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "研发",
+  "icon": "icon-solutions",
+  "order": 20,
+  "description": "客户需求 → AI 产品经理(选项式头脑风暴) → AI 开发(工作区写代码) → 代码评审 → 测试 → 运维，逐节点真执行、实时看状态与文件改动、缺料随时暂停补充。",
+  "detail": "把一句客户需求变成可交付的项目：AI 产品经理先做选项式头脑风暴与需求澄清，随后 AI 开发在真实工作区写代码，代码评审与测试逐节点把关，全程可暂停补料、实时查看节点状态与文件改动。",
+  "shortcuts": [
+    "提交客户需求",
+    "查看开发进度",
+    "查看代码改动"
+  ],
+  "highlights": [
+    "选项式头脑风暴需求澄清",
+    "逐节点真执行可暂停",
+    "实时看状态与文件改动"
+  ],
+  "access": {
+    "requiresSolutionGrant": false,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "workbench",
+    "route": "/workbenches/rd-workflow",
+    "renderer": "src/renderer/views/RdWorkflowWorkbenchView.vue",
+    "main": "src/main/ipc/rdWorkflow.ipc.ts"
+  },
+  "dependsOn": [
+    "workbench-service-settlement"
+  ],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [],
+    "localStorage": [
+      "rdw.history.v1"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/rd-workflow"
+  }
+}
