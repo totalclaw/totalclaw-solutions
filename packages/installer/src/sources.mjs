@@ -8,7 +8,7 @@
 //   fetchArchive?(ref, prefix)       → Map<相对 prefix 的路径, Buffer>（可选，整包兜底）
 import { execFileSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { isAbsolute, join } from 'node:path';
 import { assertSafeRelPath, safeJoin } from './fsutil.mjs';
 import { readTar } from './tar.mjs';
 
@@ -176,6 +176,10 @@ export function sourceFromSpec(spec, opts = {}) {
   const m = /^gitee:([^/]+)\/([^@]+)(?:@(.+))?$/.exec(spec);
   if (m) return new GiteeSource({ ...opts, owner: m[1], repo: m[2], branch: m[3] || 'master' });
   if (/\.(tgz|tar\.gz)$/.test(spec)) return new TarballSource(spec);
-  if (existsSync(join(spec, 'index.json'))) return new LocalSource(spec);
+  // 目录：即使此刻不存在 / 不可读也照样建 LocalSource —— 读取失败按网络类错误处理（宿主可退回离线基线），
+  // 不能让一个配错的路径在构造阶段就把整个安装服务弄挂
+  if (existsSync(join(spec, 'index.json')) || isAbsolute(spec) || spec.startsWith('.') || spec.includes('/') || spec.includes('\\')) {
+    return new LocalSource(spec);
+  }
   throw new Error(`无法识别的来源: ${spec}`);
 }

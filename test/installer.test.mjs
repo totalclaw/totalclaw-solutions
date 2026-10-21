@@ -286,3 +286,11 @@ test('签名目录：公钥验签通过才使用；篡改 / 缺签名拒绝', as
   writeFileSync(join(repo, 'index.json'), JSON.stringify(idx));
   await assert.rejects(mk().install('alpha'), { code: 'SIGNATURE_INVALID' });
 });
+
+test('sourceFromSpec：不存在的目录也建 LocalSource（读取时才失败，宿主可兜底）', async () => {
+  const { sourceFromSpec } = await import('../packages/installer/src/sources.mjs');
+  const src = sourceFromSpec(join(tmp(), 'nope'));
+  assert.equal(src.describe().type, 'local');
+  await assert.rejects(src.fetchIndex('x'));
+  assert.throws(() => sourceFromSpec('not-a-spec'));
+});
