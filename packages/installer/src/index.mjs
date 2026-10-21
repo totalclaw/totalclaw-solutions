@@ -6,3 +6,4 @@ export { readLock } from './lock.mjs';
 export { digestDir, treeDigest, sha256, walkFiles } from './digest.mjs';
 export { readTar, writeTarGz } from './tar.mjs';
 export * as semver from './semver.mjs';
+export { verifyIndexSignature, signIndex, generateSigningKeyPair } from './signature.mjs';

@@ -32,7 +32,7 @@ test/                    node:test
 
 ## 方案一览
 
-共 36 个目录：totalclaw-web 授权目录中的 **30 个方案** + 2 个共享 kit + 4 个免授权市场流水线包。
+共 37 个目录：totalclaw-web 授权目录中的 **30 个方案** + 2 个共享 kit + 4 个免授权市场流水线包 + 1 个动态方案开发模板。
 
 | id | 名称 | 类型 |
 |---|---|---|
@@ -69,6 +69,7 @@ test/                    node:test
 | kit-saudi-workbench | 沙特数字员工底座 | kit |
 | kit-automation-ops | 自动化运营控制台 | kit |
 | oneclick-video / daizhang-accounting / dev-pipeline / website-test | 市场流水线包 | runner / pipeline |
+| demo-dynamic-workbench | 动态方案样例（开发者模板，hidden） | workbench（dynamic） |
 
 ## 常用命令
 
@@ -77,6 +78,8 @@ npm test                 # 全部测试（安装器 + 真实仓库端到端）
 npm run validate         # 校验清单、id 对账、CHANGELOG、文件安全、生成物最新
 npm run index            # 重新生成 index.json / index/*.json / catalog.json
 npm run pack -- <id>     # 打发布包 dist/<id>-<version>.tgz（--all 打全部）
+npm run sign             # 给 index.json 签名（TCSOL_SIGNING_KEY=私钥路径），生成 index.json.sig
+npm run sign:verify      # 用 registry/solution-index.pub 校验签名
 npm run import           # 从 qiye-app 重新同步源码（迁移期使用）
 
 # 安装器 CLI
@@ -127,6 +130,15 @@ export default {
 ## 下架
 
 在 `removed.json` 加 `{ "id": "...", "reason": "...", "versions": ["1.2.0"] }`（不写 versions 表示整个方案），`npm run index` 后提交。客户端停止新装，已装的标记已下架，不删数据。
+
+## 动态方案（不随 App 发版）
+
+`runtime.mode = "dynamic"` 的方案，界面（ESM）和主进程逻辑（CommonJS）都在方案包里。qiye-app 装好就能运行，升级时热替换，不用改 App。
+
+- 宿主 SDK 契约：`packages/solution-sdk/README.md`
+- 参考模板：`solutions/demo-dynamic-workbench`
+
+新方案建议直接按 dynamic 开发。
 
 ## 当前阶段说明
 

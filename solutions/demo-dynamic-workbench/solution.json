@@ -1,0 +1,45 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "demo-dynamic-workbench",
+  "name": "动态方案样例（开发者模板）",
+  "aliases": ["动态方案样例", "dynamic-demo"],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "开发者",
+  "icon": "icon-solutions",
+  "order": 9000,
+  "description": "runtime.mode=dynamic 的参考实现：界面与主进程逻辑都来自方案包，不随 App 编译；安装即可运行、升级即热替换。新方案照此结构开发。",
+  "access": {
+    "requiresSolutionGrant": false,
+    "feature": null,
+    "hidden": true
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "dynamic",
+    "runner": "workbench",
+    "route": "/workbenches/demo-dynamic",
+    "renderer": "src/renderer/index.mjs",
+    "main": "src/main/index.cjs",
+    "entries": {
+      "renderer": "src/renderer/index.mjs",
+      "main": "src/main/index.cjs"
+    }
+  },
+  "dependsOn": [],
+  "data": {
+    "schemaVersion": 1,
+    "paths": ["demo-dynamic-workbench/"],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/demo-dynamic-workbench"
+  }
+}

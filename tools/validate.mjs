@@ -18,6 +18,8 @@ const err = (id, msg) => errors.push(`[${id}] ${msg}`);
 const warn = (id, msg) => warnings.push(`[${id}] ${msg}`);
 
 const KINDS = new Set(['workbench', 'runner', 'pipeline', 'kit']);
+/** 宿主 SDK 最高版本（qiye-app SOLUTION_HOST_API） */
+const MAX_HOST_API = 1;
 const RUNTIME_MODES = new Set(['bundled', 'dynamic']);
 /** 宿主公共数据：任何方案都不得声明为自己的数据（卸载清数据时会误删） */
 const HOST_DATA_ROOTS = new Set(['', '.', 'memory', 'conversations', 'totalclaw-agent', 'knowledge', 'workspaces', 'solutions', 'solution-packages', 'connectors', '.solution-data', '.solution-backups']);
@@ -94,6 +96,20 @@ for (const id of ids) {
   for (const k of ['renderer', 'main']) {
     const p = m.runtime?.[k];
     if (p && !existsSync(join(dir, p))) err(id, `runtime.${k} 指向不存在的文件：${p}`);
+  }
+  if (m.runtime?.mode === 'dynamic') {
+    if (m.compat?.hostApi > MAX_HOST_API) err(id, `compat.hostApi=${m.compat.hostApi} 超过宿主 SDK 最高版本 ${MAX_HOST_API}`);
+    const entries = m.runtime.entries || {};
+    if (!entries.renderer && !entries.main) err(id, 'dynamic 方案必须声明 runtime.entries.renderer 或 runtime.entries.main');
+    if (m.kind === 'workbench' && !entries.renderer) err(id, 'dynamic 工作台必须有 runtime.entries.renderer');
+    if (entries.renderer && !/\.m?js$/.test(entries.renderer)) err(id, 'runtime.entries.renderer 必须是 .mjs/.js（ESM）');
+    if (entries.main && !/\.c?js$/.test(entries.main)) err(id, 'runtime.entries.main 必须是 .cjs/.js（CommonJS）');
+    for (const [k, p] of Object.entries(entries)) {
+      if (!existsSync(join(dir, p))) err(id, `runtime.entries.${k} 指向不存在的文件：${p}`);
+    }
+    if (entries.renderer && existsSync(join(dir, entries.renderer)) && /^\s*import\s[^;]*?from\s+['"]vue['"]/m.test(readFileSync(join(dir, entries.renderer), 'utf8'))) {
+      err(id, `渲染入口不能 import 'vue'，请用 sdk.vue（或构建时改写为 globalThis.__TOTALCLAW_SDK__.vue）`);
+    }
   }
 
   // 数据声明

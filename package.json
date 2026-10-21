@@ -13,6 +13,8 @@
     "index:check": "node tools/build-index.mjs --check",
     "validate": "node tools/validate.mjs",
     "validate:pr": "node tools/validate.mjs --since origin/master",
+    "sign": "node tools/sign-index.mjs",
+    "sign:verify": "node tools/sign-index.mjs --verify",
     "pack": "node tools/pack.mjs",
     "pack:all": "node tools/pack.mjs --all",
     "test": "node --test test/*.test.mjs",

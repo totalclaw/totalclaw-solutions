@@ -10,6 +10,7 @@
 // 安装器只写 root 内的路径；用户数据（账号目录）只在 uninstall({purgeData}) 时按清单声明删除，
 // 迁移在 migrate.mjs，由宿主在账号进入方案时调用。
 import { randomUUID } from 'node:crypto';
+import { verifyIndexSignature } from './signature.mjs';
 import { existsSync, mkdirSync, readdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { digestDir, sha256, treeDigest } from './digest.mjs';
@@ -61,10 +62,10 @@ export class SolutionManager {
    * @param {(evt:object)=>void} [opts.onProgress]
    * @param {(msg:string)=>void} [opts.log]
    */
-  constructor({ root, source, appVersion = '999.0.0', hostApi = 1, concurrency = 6, archiveThreshold = 300, onProgress, log } = {}) {
+  constructor({ root, source, appVersion = '999.0.0', hostApi = 1, concurrency = 6, archiveThreshold = 300, publicKey = null, onProgress, log } = {}) {
     if (!root) throw new Error('SolutionManager 需要 root');
     if (!source) throw new Error('SolutionManager 需要 source');
-    Object.assign(this, { root, source, appVersion, hostApi, concurrency, archiveThreshold });
+    Object.assign(this, { root, source, appVersion, hostApi, concurrency, archiveThreshold, publicKey });
     this.onProgress = onProgress || (() => {});
     this.log = log || (() => {});
     this.lockFile = new DirLock(ensureDir(root));
@@ -77,10 +78,26 @@ export class SolutionManager {
   async catalog({ refresh = false } = {}) {
     if (!refresh && this.catalogCache && Date.now() - this.catalogCache.at < CATALOG_TTL_MS) return this.catalogCache;
     const ref = await this.source.resolveRef();
-    const index = await this.source.fetchIndex(ref);
+    const index = this.publicKey ? await this._fetchSignedIndex(ref) : await this.source.fetchIndex(ref);
     if (!index || !Array.isArray(index.items)) throw new SolutionError('BAD_INDEX', '方案目录格式错误');
     this.catalogCache = { ref, index, at: Date.now() };
     return this.catalogCache;
+  }
+
+  /**
+   * 验签读取 index.json：index.json.sig 是对 index.json 原始字节的 ed25519 签名（base64）。
+   * index 里每个方案的 treeDigest 又锁定了 index/<id>.json 与全部文件哈希，所以验过 index 即覆盖整条链。
+   */
+  async _fetchSignedIndex(ref) {
+    const raw = await this.source.fetchFile(ref, 'index.json');
+    let sig;
+    try {
+      sig = Buffer.from((await this.source.fetchFile(ref, 'index.json.sig')).toString('utf8').trim(), 'base64');
+    } catch {
+      throw new SolutionError('SIGNATURE_MISSING', '方案目录缺少签名（index.json.sig）');
+    }
+    if (!verifyIndexSignature(raw, sig, this.publicKey)) throw new SolutionError('SIGNATURE_INVALID', '方案目录签名校验失败');
+    return JSON.parse(raw.toString('utf8'));
   }
 
   /**

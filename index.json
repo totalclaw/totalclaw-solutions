@@ -1786,6 +1786,56 @@
       "largeAssets": [],
       "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
       "filesRef": "index/kit-saudi-workbench.json"
+    },
+    {
+      "id": "demo-dynamic-workbench",
+      "name": "动态方案样例（开发者模板）",
+      "aliases": [
+        "动态方案样例",
+        "dynamic-demo"
+      ],
+      "kind": "workbench",
+      "category": "开发者",
+      "icon": "icon-solutions",
+      "order": 9000,
+      "description": "runtime.mode=dynamic 的参考实现：界面与主进程逻辑都来自方案包，不随 App 编译；安装即可运行、升级即热替换。新方案照此结构开发。",
+      "version": "1.0.0",
+      "compat": {
+        "minAppVersion": "2.0.5",
+        "hostApi": 1
+      },
+      "access": {
+        "requiresSolutionGrant": false,
+        "feature": null,
+        "hidden": true
+      },
+      "runtime": {
+        "mode": "dynamic",
+        "runner": "workbench",
+        "route": "/workbenches/demo-dynamic",
+        "renderer": "src/renderer/index.mjs",
+        "main": "src/main/index.cjs",
+        "entries": {
+          "renderer": "src/renderer/index.mjs",
+          "main": "src/main/index.cjs"
+        }
+      },
+      "dependsOn": [],
+      "data": {
+        "schemaVersion": 1,
+        "paths": [
+          "demo-dynamic-workbench/"
+        ],
+        "localStorage": []
+      },
+      "capabilities": [],
+      "path": "solutions/demo-dynamic-workbench",
+      "fileCount": 6,
+      "size": 9029,
+      "treeDigest": "43c68bd27f1ac74f51cf113a37bdb7b999f07d71f334a417bdee99a8301da3e1",
+      "largeAssets": [],
+      "changelog": "- 首个 runtime.mode=dynamic 方案：渲染入口 ESM + 主进程 CommonJS 模块，经宿主 SDK（hostApi=1）通信，数据存账号目录。",
+      "filesRef": "index/demo-dynamic-workbench.json"
     }
   ]
 }
