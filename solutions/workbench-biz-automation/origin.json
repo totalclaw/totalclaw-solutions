@@ -109,10 +109,6 @@
       "from": "renderer/workbenches/biz-automation/renderWatchdog.test.ts"
     },
     {
-      "path": "src/renderer/workbenches/biz-automation/shared.ts",
-      "from": "renderer/workbenches/biz-automation/shared.ts"
-    },
-    {
       "path": "src/main/ipc/bizAutomation.ipc.ts",
       "from": "main/ipc/bizAutomation.ipc.ts"
     },
@@ -143,6 +139,12 @@
     {
       "path": "src/main/services/bizAutomation/videoRender.ts",
       "from": "main/services/bizAutomation/videoRender.ts"
+    }
+  ],
+  "sdkFiles": [
+    {
+      "path": "src/renderer/workbenches/biz-automation/shared.ts",
+      "from": "renderer/workbenches/biz-automation/shared.ts"
     },
     {
       "path": "src/contracts/bizAutomation.ts",

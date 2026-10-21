@@ -6,7 +6,7 @@
   "aliases": [
     "finance-audit"
   ],
-  "version": "1.0.0",
+  "version": "2.0.0",
   "kind": "workbench",
   "category": "财会审计",
   "icon": "icon-solutions",
@@ -31,21 +31,33 @@
   },
   "compat": {
     "minAppVersion": "2.0.5",
-    "hostApi": 1
+    "hostApi": 2
   },
   "runtime": {
-    "mode": "bundled",
+    "mode": "dynamic",
     "runner": "workbench",
     "route": "/workbenches/finance-audit",
     "renderer": "src/renderer/views/FinanceAuditWorkbenchView.vue",
-    "main": "src/main/ipc/financeAudit.ipc.ts"
+    "main": "src/main/ipc/financeAudit.ipc.ts",
+    "hotSwap": false,
+    "routes": [
+      {
+        "path": "/workbenches/finance-audit",
+        "name": "FinanceAuditWorkbench"
+      },
+      {
+        "path": "/workbenches/finance-audit/m/:moduleId",
+        "name": "FinanceAuditModule"
+      }
+    ],
+    "entries": {
+      "renderer": "dist/renderer.mjs",
+      "style": "dist/style.css",
+      "main": "dist/main.cjs",
+      "hostModules": "dist/host-modules.json"
+    }
   },
-  "dependsOn": [
-    "workbench-bid-writer",
-    "workbench-finance-agent",
-    "workbench-invoice-agent",
-    "workbench-service-settlement"
-  ],
+  "dependsOn": [],
   "data": {
     "schemaVersion": 1,
     "paths": [
@@ -60,6 +72,13 @@
   "largeAssets": [],
   "distribution": {
     "channel": "stable",
-    "path": "solutions/workbench-finance-audit"
+    "path": "solutions/workbench-finance-audit",
+    "files": [
+      "solution.json",
+      "README.md",
+      "CHANGELOG.md",
+      "dist/",
+      "migrations/"
+    ]
   }
 }

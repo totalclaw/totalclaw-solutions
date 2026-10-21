@@ -92,7 +92,9 @@
     {
       "path": "src/renderer/composables/adsRunState.ts",
       "from": "renderer/composables/adsRunState.ts"
-    },
+    }
+  ],
+  "sdkFiles": [
     {
       "path": "src/main/ipc/globalAdsWorkbench.ipc.ts",
       "from": "main/ipc/globalAdsWorkbench.ipc.ts"

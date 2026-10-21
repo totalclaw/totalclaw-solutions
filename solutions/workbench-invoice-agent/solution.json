@@ -6,7 +6,7 @@
   "aliases": [
     "invoice-agent"
   ],
-  "version": "1.0.0",
+  "version": "2.0.0",
   "kind": "workbench",
   "category": "财税",
   "icon": "icon-solutions",
@@ -20,18 +20,28 @@
   },
   "compat": {
     "minAppVersion": "2.0.5",
-    "hostApi": 1
+    "hostApi": 2
   },
   "runtime": {
-    "mode": "bundled",
+    "mode": "dynamic",
     "runner": "workbench",
     "route": "/workbenches/invoice-agent",
     "renderer": "src/renderer/views/InvoiceAgentWorkbenchView.vue",
-    "main": "src/main/ipc/invoiceAgent.ipc.ts"
+    "main": null,
+    "hotSwap": false,
+    "routes": [
+      {
+        "path": "/workbenches/invoice-agent",
+        "name": "InvoiceAgentWorkbench"
+      }
+    ],
+    "entries": {
+      "renderer": "dist/renderer.mjs",
+      "style": "dist/style.css",
+      "hostModules": "dist/host-modules.json"
+    }
   },
-  "dependsOn": [
-    "workbench-service-settlement"
-  ],
+  "dependsOn": [],
   "data": {
     "schemaVersion": 1,
     "paths": [
@@ -45,6 +55,13 @@
   "largeAssets": [],
   "distribution": {
     "channel": "stable",
-    "path": "solutions/workbench-invoice-agent"
+    "path": "solutions/workbench-invoice-agent",
+    "files": [
+      "solution.json",
+      "README.md",
+      "CHANGELOG.md",
+      "dist/",
+      "migrations/"
+    ]
   }
 }

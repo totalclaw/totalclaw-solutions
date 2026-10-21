@@ -1,12 +1,12 @@
 {
   "id": "workbench-global-ads",
-  "version": "1.0.0",
-  "treeDigest": "ea4bc00cedc3dc3a674f3f8ec98c79232d8f00ed082734a8a60ba26da89518ae",
+  "version": "2.0.0",
+  "treeDigest": "489f7b8af551018d5242d4687114be51fc17e86675cfa1592fe1bf98759304ed",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 141,
-      "sha256": "cf5a267de3b4702ded7beb7e0e1ac9689e5035bf1e9d46eabd4805ae4b77e982"
+      "size": 464,
+      "sha256": "1373d3e526ef3b795d8caddc445e3aa2bd63e7be8e4eb1b80d641f681d92caa8"
     },
     {
       "path": "README.md",
@@ -14,64 +14,29 @@
       "sha256": "3945e9c072472ea0fcac5fa38c2e494d4619074c5f17ebf41f90937dc9ac5b08"
     },
     {
+      "path": "dist/host-modules.json",
+      "size": 1063,
+      "sha256": "08c6da672bb13b786f8b5e84055e086c5a15474f97575f793451d16c22df501c"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 347115,
+      "sha256": "eb2448347aadf21e538c34429d0510e84363546f86f642ffdd24527a13e5ef2c"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 65860,
+      "sha256": "203a9411fc71325243fec2451d5078838ae6fc93e5d4ee6ad67bb306e23d70f6"
+    },
+    {
       "path": "migrations/README.md",
       "size": 296,
       "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
     },
     {
-      "path": "origin.json",
-      "size": 3360,
-      "sha256": "42495e98cbae85792d2c35ceb45bc841cbb9a1ecf07a2ae1d18495cae71149e1"
-    },
-    {
       "path": "solution.json",
-      "size": 1643,
-      "sha256": "f46487adfc57aeb8aa24fe6b16737952bcd6d7f7f4313ec8577e8b9271d31587"
-    },
-    {
-      "path": "src/main/ipc/globalAdsWorkbench.ipc.ts",
-      "size": 63171,
-      "sha256": "3378e653b6aac56797be2db9c99dd2fa4cc8d1f16d00a83768bcf50c95cdf597"
-    },
-    {
-      "path": "src/renderer/composables/adsRunState.ts",
-      "size": 12235,
-      "sha256": "b2ccb36dca7a944b3ae50d2517cb61e65be30551432f1ea38a9001c148be4c74"
-    },
-    {
-      "path": "src/renderer/views/GlobalAdsWorkbenchView.captionLang.test.ts",
-      "size": 4381,
-      "sha256": "c1c37dc0fb3307747cd192612f7fc72392adf12a076d00530d82244e2fc68e58"
-    },
-    {
-      "path": "src/renderer/views/GlobalAdsWorkbenchView.genCancel.test.ts",
-      "size": 7709,
-      "sha256": "0c1c912fd0583b26d5a06f6a73c12f02a22f7f13601488db6c6babd6a0b5e2e2"
-    },
-    {
-      "path": "src/renderer/views/GlobalAdsWorkbenchView.genFailureRecovery.test.ts",
-      "size": 8216,
-      "sha256": "b8f0e450a9dac0495c221680fafffbc81edac9a0d8c81310d744df3877de23a7"
-    },
-    {
-      "path": "src/renderer/views/GlobalAdsWorkbenchView.genWatchdog.test.ts",
-      "size": 13976,
-      "sha256": "32eb3bc15ed8b631e06b7e02271644f6eb0fa774191ce7dbaeeb7a388658d27b"
-    },
-    {
-      "path": "src/renderer/views/GlobalAdsWorkbenchView.vue",
-      "size": 326921,
-      "sha256": "455114488c61ff075cb2f777b42c490361d347afe01f3045335b177471b5f4e1"
-    },
-    {
-      "path": "src/renderer/workbenches/adsDailyMetrics.test.ts",
-      "size": 1497,
-      "sha256": "b5854383296777ae5776758fc0f65a7a0743575e927c6ace5d363531ee8071d3"
-    },
-    {
-      "path": "src/renderer/workbenches/adsDailyMetrics.ts",
-      "size": 1605,
-      "sha256": "e69beedb27886aa770a8651a7a3f4a7277bc54068f2e2ada645b148aac3c0074"
+      "size": 1950,
+      "sha256": "6b580d9018c02774ecfeee9ffd7138e3047666e1d2941bba2a1f5bdfdb36c748"
     }
   ]
 }

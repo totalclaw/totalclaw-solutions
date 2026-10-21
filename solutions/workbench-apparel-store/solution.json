@@ -6,7 +6,7 @@
   "aliases": [
     "apparel-store"
   ],
-  "version": "1.0.0",
+  "version": "2.0.0",
   "kind": "workbench",
   "category": "服装零售",
   "icon": "icon-solutions",
@@ -20,20 +20,28 @@
   },
   "compat": {
     "minAppVersion": "2.0.5",
-    "hostApi": 1
+    "hostApi": 2
   },
   "runtime": {
-    "mode": "bundled",
+    "mode": "dynamic",
     "runner": "workbench",
     "route": "/workbenches/apparel-store",
     "renderer": "src/renderer/views/ApparelStoreWorkbenchView.vue",
-    "main": "src/main/ipc/apparelStore.ipc.ts"
+    "main": null,
+    "hotSwap": false,
+    "routes": [
+      {
+        "path": "/workbenches/apparel-store",
+        "name": "ApparelStoreWorkbench"
+      }
+    ],
+    "entries": {
+      "renderer": "dist/renderer.mjs",
+      "style": "dist/style.css",
+      "hostModules": "dist/host-modules.json"
+    }
   },
-  "dependsOn": [
-    "workbench-bid-writer",
-    "workbench-foreign-trade",
-    "workbench-service-settlement"
-  ],
+  "dependsOn": [],
   "data": {
     "schemaVersion": 1,
     "paths": [
@@ -47,6 +55,13 @@
   "largeAssets": [],
   "distribution": {
     "channel": "stable",
-    "path": "solutions/workbench-apparel-store"
+    "path": "solutions/workbench-apparel-store",
+    "files": [
+      "solution.json",
+      "README.md",
+      "CHANGELOG.md",
+      "dist/",
+      "migrations/"
+    ]
   }
 }

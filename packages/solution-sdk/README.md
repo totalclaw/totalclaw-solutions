@@ -1,4 +1,13 @@
-# 宿主 SDK（hostApi = 1）
+# 宿主 SDK
+
+| hostApi | 适用 | 做法 |
+|---|---|---|
+| 1 | **新方案（推荐）** | 只用本文的最小 SDK：渲染层用 `sdk.vue` / `invoke` / `on`，主进程用 `ctx.handle` / `readJson` / `writeJson`。支持热替换。 |
+| 2 | 存量工作台 | 源码原样保留，由 qiye-app `solutions-build` 打包。对宿主模块的引用改从注册表取（`__TOTALCLAW_SDK__.modules`、`require('host:…')`）；主进程 `activate(ctx)` 调原来的 `registerXxxHandlers(ctx.host.deps)`。升级后重启生效。 |
+
+宿主当前支持 hostApi ≤ 2。以下是 hostApi 1 的说明。
+
+## hostApi = 1
 
 动态方案（`solution.json` 中 `runtime.mode = "dynamic"`）的界面和主进程逻辑都放在方案包里，qiye-app 安装后直接加载，不用改 App，也不用发版。类型声明见 `index.d.ts`，参考实现见 `solutions/demo-dynamic-workbench`。
 

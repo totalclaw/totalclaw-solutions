@@ -1,12 +1,12 @@
 {
   "id": "workbench-service-settlement",
-  "version": "1.0.0",
-  "treeDigest": "647228ee3bbe3b882f21f326ad6b47c629016c805ec4232e48bd362e8c4e3b20",
+  "version": "2.0.0",
+  "treeDigest": "1b9fed9ae00ec6bc0cdc2cdc73205de4d1b660bfae7ebf0536dff86bdce20ac5",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 138,
-      "sha256": "bb839ff421d76ec7750f8c7c8301b112d9ffa7d9ce5036282a534d809ac8b11f"
+      "size": 461,
+      "sha256": "1532546ff12a484739f15099e47a8933b7560a7a12b90d35a8ad31818162f292"
     },
     {
       "path": "README.md",
@@ -14,259 +14,34 @@
       "sha256": "772dc57fcf56d2ebd13d0c0774df7851eb08d5a0224203d2799586b03caae32e"
     },
     {
+      "path": "dist/host-modules.json",
+      "size": 1633,
+      "sha256": "8adcea6522a34ac505b4d60c80aba02e8f61882a3c056ced868a36fbe8951bea"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 308327,
+      "sha256": "743c9c16454e8a3034e7acdc6fc6d5ac60b4d785a2514dc6fcb776eb3c1c890d"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 463600,
+      "sha256": "7970260edac6a653c0d0db962d991e59eedc6c56cd9e3f782f4f6e8b507d3a11"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 13878,
+      "sha256": "9703509ca68c6b8ce3cc2015d3ee36509887e9aadf693a1cf116a16d9bd38b47"
+    },
+    {
       "path": "migrations/README.md",
       "size": 296,
       "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
     },
     {
-      "path": "origin.json",
-      "size": 9294,
-      "sha256": "2ae402cf774f05900d17ed559d5004284ea8f7b219ad47b14aad2988eb6da26f"
-    },
-    {
       "path": "solution.json",
-      "size": 1770,
-      "sha256": "178a99f3d1d8aba1f7af0f88bd56b9003a3caaf0e501fdab3cec36ac357f58ea"
-    },
-    {
-      "path": "src/main/ipc/serviceSettlement.ipc.ts",
-      "size": 75464,
-      "sha256": "5c556deef7590f0cf991e9c9dc77f6ef183c1edba4b360bc7499e4d3dfeb29f0"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/columnKeywords.json",
-      "size": 4664,
-      "sha256": "a2950deda8c9e5f075007bf0a0327f69a86dd94f895dd8cb7cdd74d323c60c11"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/dataKeywords.json",
-      "size": 1410,
-      "sha256": "8d12df9cdc6b14f406e829a19d948d507330fc256448ec90f116ce13850f67c8"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/edgeCases.test.ts",
-      "size": 4277,
-      "sha256": "137957556f8d0c5de8f970b3e78ef8035f7990d4b1741b80e1de41bc4e48dfdf"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/excel.ts",
-      "size": 23636,
-      "sha256": "13fb79c046b23f52cbc302daafb2476505b0c4ee1c1ea1b7ba16ff77978c5479"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/mailReceiptEvidence.test.ts",
-      "size": 3692,
-      "sha256": "e719430fb5802d224a30ca8082ce07166870fa6725a06e79aa412cd18aa3d68f"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/mailReceiptEvidence.ts",
-      "size": 3753,
-      "sha256": "0950558c48484c062b83290619a1b1f4aff81d061b5b31d1f2a901042de3d403"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/mailReceiptScan.test.ts",
-      "size": 5669,
-      "sha256": "c0b4136af5ce2ae1db0442dfdbe750a348d6cd496838da52ab8af744031b4397"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/marketingIncentive.autodetect.test.ts",
-      "size": 20704,
-      "sha256": "4a79b1b69cd56d5368cc46b8fb3db4321be972ec4a2e8aefa8ba67f84b1025b4"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/marketingIncentive.rules.test.ts",
-      "size": 47026,
-      "sha256": "b63e805d9bb4d9e2ae8224b08ac7a50cc505f5eadab1f7d484787e9e1a6e9496"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/marketingIncentive.ts",
-      "size": 85205,
-      "sha256": "b3d85ff276f675cd52aa7aa2899e8a51c2f58bcef157d1314b07defd52761180"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/policyExtraction.test.ts",
-      "size": 9842,
-      "sha256": "aa189f056b8b8a5eaffa29d12805a0d50771580d8d5840651b39112a73c9bc1f"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/policyExtraction.ts",
-      "size": 15871,
-      "sha256": "c748317ba4c7b35d32607015a8debfcb9a75404f7660d7901a851aa0648e7772"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/policyReview.test.ts",
-      "size": 1257,
-      "sha256": "fe74dfbaf7e0f19887849a7a3d44e497a139b5d78ca1cce979a0c2426e2f2b58"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/policyReview.ts",
-      "size": 956,
-      "sha256": "c9d34c422d0f1560a5cc81d3e339133f5a3525c35933555fd3f6f9ae3ce1bfd2"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/policyReviewPersistence.test.ts",
-      "size": 1430,
-      "sha256": "87b9294bd1d61069d3f1681a790da43930d6344b5866b8c31e86ebc397335fde"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/proc.test.ts",
-      "size": 24403,
-      "sha256": "663b25b0339610cac974a28f232481d8f7b01de8bfeb0d3afef71951a1796d34"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/proc.ts",
-      "size": 37249,
-      "sha256": "1c6da66fd16f812fb6dfafea298d98aef39b284fd70b7203d52f46a6eec73049"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/realdataFixes.test.ts",
-      "size": 30253,
-      "sha256": "c79d6b1cbddff030aeda696c2a6e38f82085939abe5fb816f1e05c6e3138f1b6"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/reviewIncentive.ts",
-      "size": 29320,
-      "sha256": "2f4c979eccd57fb8ca213913af29f32dbcfecef0fd273635e4a76c398415c84d"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/rulesPdfSources.test.ts",
-      "size": 1479,
-      "sha256": "3f3cf025c574daa7183373a9b31e1b35d751f7abd3dc576569e9e846fdb8b446"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/rulesPdfSources.ts",
-      "size": 1467,
-      "sha256": "8cd8bbf241dd3ec15df5350e4948311b7e411e655a98c925ff85ac5c03be39a6"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/scrapLedger.ts",
-      "size": 8016,
-      "sha256": "a2cf02fcbeab074587b66ab01a1a25e5235b8785d845b795ef07b6d1b175e35c"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/scrapTemplate.schema.json",
-      "size": 5422,
-      "sha256": "bf5de7fa757a04a278fdfe0cf9cebe2905d47c0c63cf8eac7387b58552b97694"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/scrapTemplate.test.ts",
-      "size": 58148,
-      "sha256": "e3b2237a46a53071eced4d7421b50fcfacf086bb354e54c64cf0d441117dd91f"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/scrapTemplate.ts",
-      "size": 59730,
-      "sha256": "b48a5a4d96fc544c1f2118372dde83bc48c0d480b138e193c6a4b12327d59d4d"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/serviceSettlement.test.ts",
-      "size": 27538,
-      "sha256": "55b1d9fb55d9478f7ea86d0d71da9c8e24ffe99cedcc6e10cad46ac2cbabc9e0"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/settlementSummary.ts",
-      "size": 21618,
-      "sha256": "ff84c0848ca8746fc06980f6c4e838a543d38fe7359510056bd748ace22c9202"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/store.ts",
-      "size": 14072,
-      "sha256": "290d14b69907d6ee26706f39c813226a7658d99415fccea581f7a5b15ad755ee"
-    },
-    {
-      "path": "src/renderer/views/ServiceSettlementWorkbenchView.test.ts",
-      "size": 4786,
-      "sha256": "21fa1d03c900b2fbbf89c8a30a0331c36e3be9744380cd0363772a3baa803593"
-    },
-    {
-      "path": "src/renderer/views/ServiceSettlementWorkbenchView.vue",
-      "size": 19020,
-      "sha256": "d999f88be853a40a900d925e658140a87d1bb6ba89bb8475447ab3eb4da5c8aa"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/FileDropField.vue",
-      "size": 5059,
-      "sha256": "7808397dd35c95cdd4d06701c40845425bdd42808fb45c42944c106bc03a0ab6"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/MarketingIncentiveModule.test.ts",
-      "size": 5609,
-      "sha256": "bdff138436169cd1660564d51fb069f57d707e27b0457121e98f4381699aaf2e"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/MarketingIncentiveModule.vue",
-      "size": 88324,
-      "sha256": "d6528c7852055508b12176d28c9afe29ecf3b3c45e74e2e92f7c02152eb246ed"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/ReviewIncentiveModule.vue",
-      "size": 32695,
-      "sha256": "4a48c18c3765d31f1a22b619f59154244840271cb9051e9646d04b60d62ef717"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/ScrapLedgerModule.test.ts",
-      "size": 15499,
-      "sha256": "18b953a20d3d845250095e3f3b38d89147e9391ddff4b7242e212ea52137c133"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/ScrapLedgerModule.vue",
-      "size": 32619,
-      "sha256": "07cd18a50b2c09b04b7961995c96d789da63b230477afc3e085397be71a44690"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/SettlementModule.vue",
-      "size": 41666,
-      "sha256": "2950a83d3b525cc81e3bef98209023cb0082e92ef51eee7c82472de37cb08330"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/StepCard.vue",
-      "size": 8026,
-      "sha256": "3a05be80db3fe4151e771423242f0c0a6b5144e80eb7a97f9cbce25370262a79"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/StepCard.watchdog.test.ts",
-      "size": 6943,
-      "sha256": "f6cd7409d18fea46bdf5a6a48be205253338ed8e8194df0184d7890703ff5ff6"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/StickyProgress.vue",
-      "size": 5751,
-      "sha256": "3cdd2ab4b1de07cd067318229d61ed4e85ae580d974e4261d57d4b2127f73cea"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/TableMapping.vue",
-      "size": 5754,
-      "sha256": "29c8f1e7b694c6eb7b1ffee7882ff14a809a0647b02a01d7b5a879444a682c78"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/dataKeywords.json",
-      "size": 542,
-      "sha256": "b42fc45dff1386598d3e4031c6dd51d23e67b750296be1bd1d70d92deacbea0f"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/shared.format.test.ts",
-      "size": 9329,
-      "sha256": "17c3863075cbae07cd30e88016ef0237f67b3b80b040829595f2e3fa28b84d9d"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/shared.openPath.test.ts",
-      "size": 1159,
-      "sha256": "b35c3bd4d882ae4b38ccf830c0f8f49d947ca2222be7585e0cda062f6ddefbb0"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/shared.test.ts",
-      "size": 1889,
-      "sha256": "e2273bb84746561dd38667cb5359feecb6b52b960ccd7f0dac434d053da62098"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/shared.ts",
-      "size": 11630,
-      "sha256": "63406ec99eef21380027901d6bc32fd49238249a0a7f8946d050107ed5e83842"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/styles.css",
-      "size": 7266,
-      "sha256": "faa2b48d6cd722ce11260d7a35ecc597074772a588b847b0e86eb5e299a3892e"
+      "size": 2221,
+      "sha256": "5ba767682e2ddbb34043ba7a79a3276fc1b567750e0ea0e1f4dce04de51cd46a"
     }
   ]
 }

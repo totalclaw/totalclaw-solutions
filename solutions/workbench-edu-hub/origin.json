@@ -75,6 +75,12 @@
       "from": "main/services/eduHubProc.test.ts"
     },
     {
+      "path": "src/main/services/eduHubStudentPage.ts",
+      "from": "main/services/eduHubStudentPage.ts"
+    }
+  ],
+  "sdkFiles": [
+    {
       "path": "src/main/services/eduHubStore.ts",
       "from": "main/services/eduHubStore.ts"
     },
@@ -89,10 +95,6 @@
     {
       "path": "src/main/services/eduHubStore.submitLang.test.ts",
       "from": "main/services/eduHubStore.submitLang.test.ts"
-    },
-    {
-      "path": "src/main/services/eduHubStudentPage.ts",
-      "from": "main/services/eduHubStudentPage.ts"
     },
     {
       "path": "src/main/services/eduHubAnalyze.test.ts",

@@ -1,12 +1,12 @@
 {
   "id": "workbench-education",
-  "version": "1.0.0",
-  "treeDigest": "4db5d8b27e59fd7b473c4f3594abcc8e326e0e720e8c457842d191a9e25016d4",
+  "version": "2.0.0",
+  "treeDigest": "4638ba85d8e632e07bb0cf6d30209791de5a6a44a667df09ade73436eb58cade",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 132,
-      "sha256": "1e50566903eada4d9d1144c129fb5b603efc40c6811a8a70ca2add1c56499599"
+      "size": 455,
+      "sha256": "5a68f8d92c226d683d88eed9f14f5b962423e770eb7e8ed61d90400761571684"
     },
     {
       "path": "README.md",
@@ -14,34 +14,34 @@
       "sha256": "05c7b4dceb06f4a348df7e7b1883b76cf49e690dd28a6c616f996e54a89b69c4"
     },
     {
+      "path": "dist/host-modules.json",
+      "size": 646,
+      "sha256": "2b1f6d93455c20215d45eca749071a5f9d470f8a19dae7effdf4162593970abd"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 14857,
+      "sha256": "a29061f19f5698cbd005efe1def7ac4d4dda7022961134820b50164efe62b05a"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 98605,
+      "sha256": "2e1a510b19e4bf28a1dd46d2dbf830c8b898acfc80cc10e85e9d52e24ab0e40c"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 23658,
+      "sha256": "45a8b607a0a2ee923681fbf7d88b65122816a547d1126dfcbb341b99cc59db6c"
+    },
+    {
       "path": "migrations/README.md",
       "size": 296,
       "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
     },
     {
-      "path": "origin.json",
-      "size": 1422,
-      "sha256": "dee088ff3bd2be49ba307d5309ce7c54e66138bd4288a143a0ae578c04ee5e43"
-    },
-    {
       "path": "solution.json",
-      "size": 1490,
-      "sha256": "5f1c8ce785ade159f8033254b05adf90b5f44381e0976f681c34fe3c24dbce3d"
-    },
-    {
-      "path": "src/main/ipc/educationWorkbench.ipc.ts",
-      "size": 8813,
-      "sha256": "302c293b656b3aa4647cdaa48961f42796f6f48f7c9af2360436a15d58526da2"
-    },
-    {
-      "path": "src/renderer/views/EducationWorkbenchView.genWatchdog.test.ts",
-      "size": 6938,
-      "sha256": "61ced857921e95d66bd5053e8f53d8ea2e593dcdeaa6e4df01d935b9652e2f05"
-    },
-    {
-      "path": "src/renderer/views/EducationWorkbenchView.vue",
-      "size": 79088,
-      "sha256": "8de94c9d158ac60eab1d55210fee946f3980509c3ce5657516055e967f09610f"
+      "size": 1924,
+      "sha256": "18763c4dae2a358bdb98ca224b5a20a781f21739b6a8a7cb1f05878fd48836d1"
     }
   ]
 }

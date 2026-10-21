@@ -7,7 +7,7 @@
     "grounded-qa",
     "伊斯兰宣教知识助手"
   ],
-  "version": "1.0.0",
+  "version": "2.0.0",
   "kind": "workbench",
   "category": "知识服务",
   "icon": "icon-solutions",
@@ -31,18 +31,29 @@
   },
   "compat": {
     "minAppVersion": "2.0.5",
-    "hostApi": 1
+    "hostApi": 2
   },
   "runtime": {
-    "mode": "bundled",
+    "mode": "dynamic",
     "runner": "workbench",
     "route": "/workbenches/grounded-qa",
     "renderer": "src/renderer/views/GroundedQaWorkbenchView.vue",
-    "main": "src/main/ipc/groundedQa.ipc.ts"
+    "main": "src/main/ipc/groundedQa.ipc.ts",
+    "hotSwap": false,
+    "routes": [
+      {
+        "path": "/workbenches/grounded-qa",
+        "name": "GroundedQaWorkbench"
+      }
+    ],
+    "entries": {
+      "renderer": "dist/renderer.mjs",
+      "style": "dist/style.css",
+      "main": "dist/main.cjs",
+      "hostModules": "dist/host-modules.json"
+    }
   },
-  "dependsOn": [
-    "workbench-edu-hub"
-  ],
+  "dependsOn": [],
   "data": {
     "schemaVersion": 1,
     "paths": [
@@ -54,6 +65,13 @@
   "largeAssets": [],
   "distribution": {
     "channel": "stable",
-    "path": "solutions/workbench-grounded-qa"
+    "path": "solutions/workbench-grounded-qa",
+    "files": [
+      "solution.json",
+      "README.md",
+      "CHANGELOG.md",
+      "dist/",
+      "migrations/"
+    ]
   }
 }

@@ -42,20 +42,22 @@
       "from": "main/ipc/groundedQa.ipc.ts"
     },
     {
-      "path": "src/main/services/groundedQa.logic.ts",
-      "from": "main/services/groundedQa.logic.ts"
-    },
-    {
-      "path": "src/main/services/groundedQa.logic.test.ts",
-      "from": "main/services/groundedQa.logic.test.ts"
-    },
-    {
       "path": "src/main/services/groundedQaStore.ts",
       "from": "main/services/groundedQaStore.ts"
     },
     {
       "path": "src/main/services/groundedQaStore.test.ts",
       "from": "main/services/groundedQaStore.test.ts"
+    }
+  ],
+  "sdkFiles": [
+    {
+      "path": "src/main/services/groundedQa.logic.ts",
+      "from": "main/services/groundedQa.logic.ts"
+    },
+    {
+      "path": "src/main/services/groundedQa.logic.test.ts",
+      "from": "main/services/groundedQa.logic.test.ts"
     },
     {
       "path": "src/main/services/groundedQaStopwords.json",

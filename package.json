@@ -18,7 +18,8 @@
     "pack": "node tools/pack.mjs",
     "pack:all": "node tools/pack.mjs --all",
     "test": "node --test test/*.test.mjs",
-    "tcsol": "node bin/tcsol.mjs"
+    "tcsol": "node bin/tcsol.mjs",
+    "release": "node tools/build-index.mjs && node tools/sign-index.mjs && node tools/validate.mjs --require-signature"
   },
   "bin": {
     "tcsol": "bin/tcsol.mjs"

@@ -6,7 +6,7 @@
   "aliases": [
     "industry-watch"
   ],
-  "version": "1.0.0",
+  "version": "2.0.0",
   "kind": "workbench",
   "category": "24 小时情报",
   "icon": "icon-solutions",
@@ -30,14 +30,26 @@
   },
   "compat": {
     "minAppVersion": "2.0.5",
-    "hostApi": 1
+    "hostApi": 2
   },
   "runtime": {
-    "mode": "bundled",
+    "mode": "dynamic",
     "runner": "workbench",
     "route": "/industry-watch",
     "renderer": "src/renderer/views/IndustryWatchView.vue",
-    "main": null
+    "main": null,
+    "hotSwap": false,
+    "routes": [
+      {
+        "path": "/industry-watch",
+        "name": "IndustryWatch"
+      }
+    ],
+    "entries": {
+      "renderer": "dist/renderer.mjs",
+      "style": "dist/style.css",
+      "hostModules": "dist/host-modules.json"
+    }
   },
   "dependsOn": [],
   "data": {
@@ -51,6 +63,13 @@
   "largeAssets": [],
   "distribution": {
     "channel": "stable",
-    "path": "solutions/workbench-industry-watch"
+    "path": "solutions/workbench-industry-watch",
+    "files": [
+      "solution.json",
+      "README.md",
+      "CHANGELOG.md",
+      "dist/",
+      "migrations/"
+    ]
   }
 }

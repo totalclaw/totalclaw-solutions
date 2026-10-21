@@ -6,7 +6,7 @@
   "aliases": [
     "service-settlement"
   ],
-  "version": "1.0.0",
+  "version": "2.0.0",
   "kind": "workbench",
   "category": "服务结算",
   "icon": "icon-solutions",
@@ -30,14 +30,27 @@
   },
   "compat": {
     "minAppVersion": "2.0.5",
-    "hostApi": 1
+    "hostApi": 2
   },
   "runtime": {
-    "mode": "bundled",
+    "mode": "dynamic",
     "runner": "workbench",
     "route": "/workbenches/service-settlement",
     "renderer": "src/renderer/views/ServiceSettlementWorkbenchView.vue",
-    "main": "src/main/ipc/serviceSettlement.ipc.ts"
+    "main": "src/main/ipc/serviceSettlement.ipc.ts",
+    "hotSwap": false,
+    "routes": [
+      {
+        "path": "/workbenches/service-settlement",
+        "name": "ServiceSettlementWorkbench"
+      }
+    ],
+    "entries": {
+      "renderer": "dist/renderer.mjs",
+      "style": "dist/style.css",
+      "main": "dist/main.cjs",
+      "hostModules": "dist/host-modules.json"
+    }
   },
   "dependsOn": [],
   "data": {
@@ -53,6 +66,13 @@
   "largeAssets": [],
   "distribution": {
     "channel": "stable",
-    "path": "solutions/workbench-service-settlement"
+    "path": "solutions/workbench-service-settlement",
+    "files": [
+      "solution.json",
+      "README.md",
+      "CHANGELOG.md",
+      "dist/",
+      "migrations/"
+    ]
   }
 }

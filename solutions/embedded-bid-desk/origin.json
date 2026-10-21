@@ -53,7 +53,9 @@
     {
       "path": "src/main/ipc/bidDesk.ipc.ts",
       "from": "main/ipc/bidDesk.ipc.ts"
-    },
+    }
+  ],
+  "sdkFiles": [
     {
       "path": "src/shared/bidDeskWorkflow.ts",
       "from": "shared/bidDeskWorkflow.ts"

@@ -1,12 +1,12 @@
 {
   "id": "workbench-flow-sla",
-  "version": "1.0.0",
-  "treeDigest": "5087505fa4d17165badcef924b261c50e1b86270cafe53003a3321e6e7ae6cd1",
+  "version": "2.0.0",
+  "treeDigest": "a9d21c68407b7d8432a25e85e198067e7a781d6dca4ddfcae6dda8ccfbf28435",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 135,
-      "sha256": "9f728883313f4d1316cdb094b50f7f00d881d3991a554fd0f5a69055038a0e40"
+      "size": 458,
+      "sha256": "bd8ea5207549be4622196d0285532b29cb56eaf2c53c7c7021a501bee6b2a91d"
     },
     {
       "path": "README.md",
@@ -14,164 +14,34 @@
       "sha256": "8c63c444d323fb6ad6adaac03c62378b2d0a1726113bc83c9728aa9ec3e961cb"
     },
     {
+      "path": "dist/host-modules.json",
+      "size": 1486,
+      "sha256": "3d64647b984ff017c3c8aea9c78237e48df6c3d896803932c02e0a621542d83e"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 326229,
+      "sha256": "19de48ce57d3f919d451a575c36166e2ae853002cd4d7ca19c1a292a760d1bcb"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 337627,
+      "sha256": "6a06367c1694c0cedb8afe0afe7f0b620a57b842841e41a4dea571ece85133a4"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 19869,
+      "sha256": "08a2ef8ade00f28047002fa3d4f474878c896415198bc2fbb26c874325b34ad3"
+    },
+    {
       "path": "migrations/README.md",
       "size": 296,
       "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
     },
     {
-      "path": "origin.json",
-      "size": 5361,
-      "sha256": "f5fd9f5550d44660551e31fad7b3691a3ef0747b45dcdb5d02a3f6329d3082a6"
-    },
-    {
       "path": "solution.json",
-      "size": 1789,
-      "sha256": "8dc81695b4c88bc3dc092fcd58c2ab3e36860d43b8e31d65fe48d2819ec4a6f7"
-    },
-    {
-      "path": "src/contracts/flowSla.ts",
-      "size": 12806,
-      "sha256": "5e777d02def308703ff32d63c60fce7b3787683e044b89fe13d7e42199996aca"
-    },
-    {
-      "path": "src/main/ipc/flowSla.ipc.test.ts",
-      "size": 33764,
-      "sha256": "9ad068d331e9a5754635e0f1acd4d4eb1da579b19d7bf5c6038a1755627ea5b2"
-    },
-    {
-      "path": "src/main/ipc/flowSla.ipc.ts",
-      "size": 46237,
-      "sha256": "b10133da659cb77fd2b074855622e3126e20fcb9b715628ed3cf0a8cc8cc963e"
-    },
-    {
-      "path": "src/main/services/flowSla/calc.test.ts",
-      "size": 17957,
-      "sha256": "79da423613c6ec4d36b5b0cebfd5b2e9c661870e244a092fb979c188f2441c97"
-    },
-    {
-      "path": "src/main/services/flowSla/calc.ts",
-      "size": 31690,
-      "sha256": "6afe1dbd28de93e264a7b1214f0bde100e6e5aa6237e521a4762ed6e6581e584"
-    },
-    {
-      "path": "src/main/services/flowSla/columnKeywords.json",
-      "size": 8446,
-      "sha256": "881fcf463b4d1228a30b743103220a8a9f518d1a38a6a598898120b32f97e83e"
-    },
-    {
-      "path": "src/main/services/flowSla/defaultRules.json",
-      "size": 73952,
-      "sha256": "686c97f4bec46764c20ae902148ed4f856bcf925bd57d17d3d84d5ab78bb9614"
-    },
-    {
-      "path": "src/main/services/flowSla/demoData.ts",
-      "size": 14089,
-      "sha256": "033b17e92e86ed1d7d03b9762f65acd4f26214d9e3120c775c8d725352b5b8be"
-    },
-    {
-      "path": "src/main/services/flowSla/ingest.test.ts",
-      "size": 24668,
-      "sha256": "fc810cf940860121fe1db3a0a1a01fa3cd4166545295ea5310fcc0260d55d74a"
-    },
-    {
-      "path": "src/main/services/flowSla/ingest.ts",
-      "size": 30682,
-      "sha256": "05b08c82177c134696b1208c59b02c8cf1443dc0c8f5c1843ed785ecd863e089"
-    },
-    {
-      "path": "src/main/services/flowSla/proc.test.ts",
-      "size": 15654,
-      "sha256": "006d4d1667b16a3d5afb0e9d0b49edf06e2adaf569bd83e6c786290c10fdb225"
-    },
-    {
-      "path": "src/main/services/flowSla/proc.ts",
-      "size": 12641,
-      "sha256": "773acab37f110b8516834a9d834d561fccc04d21608da6772435ccf42ba0fe62"
-    },
-    {
-      "path": "src/main/services/flowSla/prompts.ts",
-      "size": 3679,
-      "sha256": "89ca073d4ad100f193c0bad8754818698c6573e323940bd27abe0855415af390"
-    },
-    {
-      "path": "src/main/services/flowSla/reasons.test.ts",
-      "size": 9950,
-      "sha256": "e0959ae78a2850e32e308336b337396471bf93779a0af9efefc9a9ab560822be"
-    },
-    {
-      "path": "src/main/services/flowSla/reasons.ts",
-      "size": 12708,
-      "sha256": "7c379a93a618f81db236388b78a962a3fb7187131624b53eefbfd42ab5a231ce"
-    },
-    {
-      "path": "src/main/services/flowSla/report.test.ts",
-      "size": 14971,
-      "sha256": "4730abc7922779053c4ff132d51f3ab040a62f01235277188fd7fd41e01ad1dc"
-    },
-    {
-      "path": "src/main/services/flowSla/report.ts",
-      "size": 43202,
-      "sha256": "308bfe002729042d805adbb9dfe1ed6018ef967925f297d1950ce4e8b62a5b6c"
-    },
-    {
-      "path": "src/main/services/flowSla/rulesImport.test.ts",
-      "size": 6532,
-      "sha256": "75dd1ec092d0ff099192c28923869e64484ad9a4fad051b7cf86e4b5014b5399"
-    },
-    {
-      "path": "src/main/services/flowSla/rulesImport.ts",
-      "size": 8418,
-      "sha256": "932ca0fea696100cf722ccae3e212a759432adaea470a78785f73593bf8bd27d"
-    },
-    {
-      "path": "src/main/services/flowSla/store.ts",
-      "size": 7446,
-      "sha256": "cf2eab69b1d87920d3770c259e3bb6e055829ca04bef8753bbb12c17f7e39fd5"
-    },
-    {
-      "path": "src/renderer/views/FlowSlaWorkbenchView.vue",
-      "size": 15026,
-      "sha256": "c24024bc5eb06a8c753a99bdb950cc8b49d735b4384aaf41850894aa4ca4f261"
-    },
-    {
-      "path": "src/renderer/workbenches/flow-sla/BoardTab.vue",
-      "size": 16643,
-      "sha256": "e9b59a8837d0d266c308fb8f97ccd808faddd79c93106e1479db7f53c78265e4"
-    },
-    {
-      "path": "src/renderer/workbenches/flow-sla/BulletinTab.test.ts",
-      "size": 14789,
-      "sha256": "51fc819ba442e65afc31cc48a3ebc7798b932e3a433db6704052aae21d7346b7"
-    },
-    {
-      "path": "src/renderer/workbenches/flow-sla/BulletinTab.vue",
-      "size": 63315,
-      "sha256": "53ab497617a732926650951047ab46f2c39eed243044eca6e73cc7322432171c"
-    },
-    {
-      "path": "src/renderer/workbenches/flow-sla/LedgerTab.vue",
-      "size": 12542,
-      "sha256": "79d98338ecb667d184d499c388d058a9f04d0a682baadbf621df5a4ff0f244d8"
-    },
-    {
-      "path": "src/renderer/workbenches/flow-sla/RulesTab.vue",
-      "size": 16120,
-      "sha256": "cc68f5e1d6306dae55ebbebf4cbfad961769df59086c4c7fe1dcfdffe9b99435"
-    },
-    {
-      "path": "src/renderer/workbenches/flow-sla/TrackTab.vue",
-      "size": 12471,
-      "sha256": "03236612573887f6c83914940c6e12ea91fdd5a6a7cf90354f2ebd8fed292c46"
-    },
-    {
-      "path": "src/renderer/workbenches/flow-sla/shared.test.ts",
-      "size": 6702,
-      "sha256": "a9db522c6d049d7a7f9025a8524d339df657efba241cf845f9a3806625104a40"
-    },
-    {
-      "path": "src/renderer/workbenches/flow-sla/shared.ts",
-      "size": 10161,
-      "sha256": "7d399a091c0994b04dd68a5346d5cb5f3c4d61fbebe969928fd78cc08fc03d81"
+      "size": 2149,
+      "sha256": "27f070579404b40261c59ea13eaaf90c8bbe94d3851a11a1706fed729323ddef"
     }
   ]
 }

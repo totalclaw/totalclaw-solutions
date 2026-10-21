@@ -68,5 +68,6 @@
       "path": "src/main/services/warehouseNormalization.test.ts",
       "from": "main/services/warehouseNormalization.test.ts"
     }
-  ]
+  ],
+  "sdkFiles": []
 }

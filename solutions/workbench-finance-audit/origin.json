@@ -325,14 +325,6 @@
       "from": "main/ipc/financeAudit/capital.flow.test.ts"
     },
     {
-      "path": "src/main/ipc/financeAudit/common.actions.ts",
-      "from": "main/ipc/financeAudit/common.actions.ts"
-    },
-    {
-      "path": "src/main/ipc/financeAudit/context.ts",
-      "from": "main/ipc/financeAudit/context.ts"
-    },
-    {
       "path": "src/main/ipc/financeAudit/financeAudit.accounting.flow.test.ts",
       "from": "main/ipc/financeAudit/financeAudit.accounting.flow.test.ts"
     },
@@ -383,10 +375,6 @@
     {
       "path": "src/main/ipc/financeAudit/treasury.flow.test.ts",
       "from": "main/ipc/financeAudit/treasury.flow.test.ts"
-    },
-    {
-      "path": "src/main/ipc/financeAudit/workflowTools.ts",
-      "from": "main/ipc/financeAudit/workflowTools.ts"
     },
     {
       "path": "src/main/services/financeAudit/THIRD_PARTY_NOTICES.md",
@@ -447,14 +435,6 @@
     {
       "path": "src/main/services/financeAudit/__fixtures__/treasury/toXlsx.ts",
       "from": "main/services/financeAudit/__fixtures__/treasury/toXlsx.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/accountMap.ts",
-      "from": "main/services/financeAudit/accountMap.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/archive.ts",
-      "from": "main/services/financeAudit/archive.ts"
     },
     {
       "path": "src/main/services/financeAudit/boundary.test.ts",
@@ -533,10 +513,6 @@
       "from": "main/services/financeAudit/engines/accounting/closeRunner.ts"
     },
     {
-      "path": "src/main/services/financeAudit/engines/accounting/common.ts",
-      "from": "main/services/financeAudit/engines/accounting/common.ts"
-    },
-    {
       "path": "src/main/services/financeAudit/engines/accounting/expense/engine.ts",
       "from": "main/services/financeAudit/engines/accounting/expense/engine.ts"
     },
@@ -585,10 +561,6 @@
       "from": "main/services/financeAudit/engines/accounting/intercompany.test.ts"
     },
     {
-      "path": "src/main/services/financeAudit/engines/accounting/keywords.json",
-      "from": "main/services/financeAudit/engines/accounting/keywords.json"
-    },
-    {
       "path": "src/main/services/financeAudit/engines/accounting/payroll/engine.ts",
       "from": "main/services/financeAudit/engines/accounting/payroll/engine.ts"
     },
@@ -629,20 +601,12 @@
       "from": "main/services/financeAudit/engines/accounting/validate.test.ts"
     },
     {
-      "path": "src/main/services/financeAudit/engines/audit/columnKeywords.json",
-      "from": "main/services/financeAudit/engines/audit/columnKeywords.json"
-    },
-    {
       "path": "src/main/services/financeAudit/engines/audit/common.ts",
       "from": "main/services/financeAudit/engines/audit/common.ts"
     },
     {
       "path": "src/main/services/financeAudit/engines/audit/docs.ts",
       "from": "main/services/financeAudit/engines/audit/docs.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/engines/audit/extAudit/confirm.ts",
-      "from": "main/services/financeAudit/engines/audit/extAudit/confirm.ts"
     },
     {
       "path": "src/main/services/financeAudit/engines/audit/extAudit/output.ts",
@@ -655,10 +619,6 @@
     {
       "path": "src/main/services/financeAudit/engines/audit/extAudit/sendGuard.ts",
       "from": "main/services/financeAudit/engines/audit/extAudit/sendGuard.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/engines/audit/extAudit/sentLog.ts",
-      "from": "main/services/financeAudit/engines/audit/extAudit/sentLog.ts"
     },
     {
       "path": "src/main/services/financeAudit/engines/audit/extAudit/support.ts",
@@ -727,10 +687,6 @@
     {
       "path": "src/main/services/financeAudit/engines/audit/internalAudit/output.ts",
       "from": "main/services/financeAudit/engines/audit/internalAudit/output.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/engines/audit/internalAudit/plan.ts",
-      "from": "main/services/financeAudit/engines/audit/internalAudit/plan.ts"
     },
     {
       "path": "src/main/services/financeAudit/engines/audit/internalAudit.test.ts",
@@ -813,24 +769,8 @@
       "from": "main/services/financeAudit/engines/audit/reviewRunner.ts"
     },
     {
-      "path": "src/main/services/financeAudit/engines/audit/table.ts",
-      "from": "main/services/financeAudit/engines/audit/table.ts"
-    },
-    {
       "path": "src/main/services/financeAudit/engines/audit/testTable.ts",
       "from": "main/services/financeAudit/engines/audit/testTable.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/engines/audit/thresholdFiles.ts",
-      "from": "main/services/financeAudit/engines/audit/thresholdFiles.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/engines/audit/thresholdLabels.ts",
-      "from": "main/services/financeAudit/engines/audit/thresholdLabels.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/engines/audit/todos.ts",
-      "from": "main/services/financeAudit/engines/audit/todos.ts"
     },
     {
       "path": "src/main/services/financeAudit/engines/capital/adviceTerms.json",
@@ -1089,56 +1029,12 @@
       "from": "main/services/financeAudit/engines/treasury/runners.ts"
     },
     {
-      "path": "src/main/services/financeAudit/engines/treasury/thresholds.ts",
-      "from": "main/services/financeAudit/engines/treasury/thresholds.ts"
-    },
-    {
       "path": "src/main/services/financeAudit/engines/treasury/treasuryOps.ts",
       "from": "main/services/financeAudit/engines/treasury/treasuryOps.ts"
     },
     {
-      "path": "src/main/services/financeAudit/engines/treasury/types.ts",
-      "from": "main/services/financeAudit/engines/treasury/types.ts"
-    },
-    {
       "path": "src/main/services/financeAudit/engines/treasury/workingCapital.ts",
       "from": "main/services/financeAudit/engines/treasury/workingCapital.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/fpaTypes.ts",
-      "from": "main/services/financeAudit/fpaTypes.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/handoff.ts",
-      "from": "main/services/financeAudit/handoff.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/ifrsAccountWords.json",
-      "from": "main/services/financeAudit/ifrsAccountWords.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/bankStatement.ts",
-      "from": "main/services/financeAudit/intake/bankStatement.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/camt053.ts",
-      "from": "main/services/financeAudit/intake/camt053.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/columnKeywords.json",
-      "from": "main/services/financeAudit/intake/columnKeywords.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/columns.ts",
-      "from": "main/services/financeAudit/intake/columns.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/common.ts",
-      "from": "main/services/financeAudit/intake/common.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/erpProfiles.json",
-      "from": "main/services/financeAudit/intake/erpProfiles.json"
     },
     {
       "path": "src/main/services/financeAudit/intake/erpPull.test.ts",
@@ -1149,108 +1045,16 @@
       "from": "main/services/financeAudit/intake/erpPull.ts"
     },
     {
-      "path": "src/main/services/financeAudit/intake/fpa.ts",
-      "from": "main/services/financeAudit/intake/fpa.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/fpaColumnKeywords.json",
-      "from": "main/services/financeAudit/intake/fpaColumnKeywords.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/fromFinanceAgent.test.ts",
-      "from": "main/services/financeAudit/intake/fromFinanceAgent.test.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/fromFinanceAgent.ts",
-      "from": "main/services/financeAudit/intake/fromFinanceAgent.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/index.ts",
-      "from": "main/services/financeAudit/intake/index.ts"
-    },
-    {
       "path": "src/main/services/financeAudit/intake/intake.test.ts",
       "from": "main/services/financeAudit/intake/intake.test.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/journal.ts",
-      "from": "main/services/financeAudit/intake/journal.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/mt940.ts",
-      "from": "main/services/financeAudit/intake/mt940.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/policyWords.json",
-      "from": "main/services/financeAudit/intake/policyWords.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/statementFile.ts",
-      "from": "main/services/financeAudit/intake/statementFile.ts"
     },
     {
       "path": "src/main/services/financeAudit/intake/statements.test.ts",
       "from": "main/services/financeAudit/intake/statements.test.ts"
     },
     {
-      "path": "src/main/services/financeAudit/intake/subledger.ts",
-      "from": "main/services/financeAudit/intake/subledger.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/subledgerKeywords.json",
-      "from": "main/services/financeAudit/intake/subledgerKeywords.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/subledgerRoles.ts",
-      "from": "main/services/financeAudit/intake/subledgerRoles.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/subledgers.ts",
-      "from": "main/services/financeAudit/intake/subledgers.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/tables.ts",
-      "from": "main/services/financeAudit/intake/tables.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/tax.ts",
-      "from": "main/services/financeAudit/intake/tax.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/taxColumnKeywords.json",
-      "from": "main/services/financeAudit/intake/taxColumnKeywords.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/taxIntake.test.ts",
-      "from": "main/services/financeAudit/intake/taxIntake.test.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/taxValueWords.json",
-      "from": "main/services/financeAudit/intake/taxValueWords.json"
-    },
-    {
       "path": "src/main/services/financeAudit/intake/treasury.test.ts",
       "from": "main/services/financeAudit/intake/treasury.test.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/treasury.ts",
-      "from": "main/services/financeAudit/intake/treasury.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/treasuryKeywords.json",
-      "from": "main/services/financeAudit/intake/treasuryKeywords.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/intake/trialBalance.ts",
-      "from": "main/services/financeAudit/intake/trialBalance.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/language.test.ts",
-      "from": "main/services/financeAudit/language.test.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/language.ts",
-      "from": "main/services/financeAudit/language.ts"
     },
     {
       "path": "src/main/services/financeAudit/outputs/ap.ts",
@@ -1271,18 +1075,6 @@
     {
       "path": "src/main/services/financeAudit/outputs/capitalModels.ts",
       "from": "main/services/financeAudit/outputs/capitalModels.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/outputs/close.ts",
-      "from": "main/services/financeAudit/outputs/close.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/outputs/common.ts",
-      "from": "main/services/financeAudit/outputs/common.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/outputs/docx.ts",
-      "from": "main/services/financeAudit/outputs/docx.ts"
     },
     {
       "path": "src/main/services/financeAudit/outputs/expense.ts",
@@ -1325,14 +1117,6 @@
       "from": "main/services/financeAudit/outputs/projectMd.ts"
     },
     {
-      "path": "src/main/services/financeAudit/outputs/recon.ts",
-      "from": "main/services/financeAudit/outputs/recon.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/outputs/signoffPage.ts",
-      "from": "main/services/financeAudit/outputs/signoffPage.ts"
-    },
-    {
       "path": "src/main/services/financeAudit/outputs/subledger.ts",
       "from": "main/services/financeAudit/outputs/subledger.ts"
     },
@@ -1343,10 +1127,6 @@
     {
       "path": "src/main/services/financeAudit/outputs/tax.ts",
       "from": "main/services/financeAudit/outputs/tax.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/outputs/xlsx.ts",
-      "from": "main/services/financeAudit/outputs/xlsx.ts"
     },
     {
       "path": "src/main/services/financeAudit/prompts/capital.ts",
@@ -1397,10 +1177,6 @@
       "from": "main/services/financeAudit/prompts/treasury.ts"
     },
     {
-      "path": "src/main/services/financeAudit/runner.ts",
-      "from": "main/services/financeAudit/runner.ts"
-    },
-    {
       "path": "src/main/services/financeAudit/sampleData/accounting/bank.ts",
       "from": "main/services/financeAudit/sampleData/accounting/bank.ts"
     },
@@ -1449,284 +1225,12 @@
       "from": "main/services/financeAudit/sampleData/treasury/toXlsx.ts"
     },
     {
-      "path": "src/main/services/financeAudit/samples/close.standard.json",
-      "from": "main/services/financeAudit/samples/close.standard.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/samples/index.ts",
-      "from": "main/services/financeAudit/samples/index.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/samples/recon.bank.json",
-      "from": "main/services/financeAudit/samples/recon.bank.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/samples/tax.sa_zakat.json",
-      "from": "main/services/financeAudit/samples/tax.sa_zakat.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/signoff.test.ts",
-      "from": "main/services/financeAudit/signoff.test.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/signoff.ts",
-      "from": "main/services/financeAudit/signoff.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/skillRunner.test.ts",
-      "from": "main/services/financeAudit/skillRunner.test.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/skillRunner.ts",
-      "from": "main/services/financeAudit/skillRunner.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/skills.test.ts",
-      "from": "main/services/financeAudit/skills.test.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/store.ts",
-      "from": "main/services/financeAudit/store.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/subledgerTypes.ts",
-      "from": "main/services/financeAudit/subledgerTypes.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/accountingLabels.ts",
-      "from": "main/services/financeAudit/thresholds/accountingLabels.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/ap.json",
-      "from": "main/services/financeAudit/thresholds/ap.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/ar.json",
-      "from": "main/services/financeAudit/thresholds/ar.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/budget.json",
-      "from": "main/services/financeAudit/thresholds/budget.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/cash.json",
-      "from": "main/services/financeAudit/thresholds/cash.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/close.json",
-      "from": "main/services/financeAudit/thresholds/close.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/cost.json",
-      "from": "main/services/financeAudit/thresholds/cost.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/esg.json",
-      "from": "main/services/financeAudit/thresholds/esg.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/expense.json",
-      "from": "main/services/financeAudit/thresholds/expense.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/ext-audit.json",
-      "from": "main/services/financeAudit/thresholds/ext-audit.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/fin-analysis.json",
-      "from": "main/services/financeAudit/thresholds/fin-analysis.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/financing.json",
-      "from": "main/services/financeAudit/thresholds/financing.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/fixed-assets.json",
-      "from": "main/services/financeAudit/thresholds/fixed-assets.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/fpa.ts",
-      "from": "main/services/financeAudit/thresholds/fpa.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/fpaLabels.ts",
-      "from": "main/services/financeAudit/thresholds/fpaLabels.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/fraud.json",
-      "from": "main/services/financeAudit/thresholds/fraud.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/fx.json",
-      "from": "main/services/financeAudit/thresholds/fx.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/icfr.json",
-      "from": "main/services/financeAudit/thresholds/icfr.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/ifrs9.json",
-      "from": "main/services/financeAudit/thresholds/ifrs9.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/insight.json",
-      "from": "main/services/financeAudit/thresholds/insight.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/intercompany.json",
-      "from": "main/services/financeAudit/thresholds/intercompany.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/internal-audit.json",
-      "from": "main/services/financeAudit/thresholds/internal-audit.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/investments.json",
-      "from": "main/services/financeAudit/thresholds/investments.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/kpi.json",
-      "from": "main/services/financeAudit/thresholds/kpi.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/kyc.json",
-      "from": "main/services/financeAudit/thresholds/kyc.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/labels.ts",
-      "from": "main/services/financeAudit/thresholds/labels.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/mgmt-report.json",
-      "from": "main/services/financeAudit/thresholds/mgmt-report.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/payroll.json",
-      "from": "main/services/financeAudit/thresholds/payroll.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/recon.json",
-      "from": "main/services/financeAudit/thresholds/recon.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/regulatory.json",
-      "from": "main/services/financeAudit/thresholds/regulatory.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/review.json",
-      "from": "main/services/financeAudit/thresholds/review.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/sourceLabels.ts",
-      "from": "main/services/financeAudit/thresholds/sourceLabels.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/strategy.json",
-      "from": "main/services/financeAudit/thresholds/strategy.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/tax.json",
-      "from": "main/services/financeAudit/thresholds/tax.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/taxLabels.ts",
-      "from": "main/services/financeAudit/thresholds/taxLabels.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/transfer-pricing.json",
-      "from": "main/services/financeAudit/thresholds/transfer-pricing.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/treasury.json",
-      "from": "main/services/financeAudit/thresholds/treasury.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/valuation.json",
-      "from": "main/services/financeAudit/thresholds/valuation.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds/working-capital.json",
-      "from": "main/services/financeAudit/thresholds/working-capital.json"
-    },
-    {
-      "path": "src/main/services/financeAudit/thresholds.ts",
-      "from": "main/services/financeAudit/thresholds.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/todo.ts",
-      "from": "main/services/financeAudit/todo.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/types.ts",
-      "from": "main/services/financeAudit/types.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/verify.test.ts",
-      "from": "main/services/financeAudit/verify.test.ts"
-    },
-    {
-      "path": "src/main/services/financeAudit/verify.ts",
-      "from": "main/services/financeAudit/verify.ts"
-    },
-    {
       "path": "src/shared/financeAudit/accountingLabels.ts",
       "from": "shared/financeAudit/accountingLabels.ts"
     },
     {
-      "path": "src/shared/financeAudit/auditLabels.ts",
-      "from": "shared/financeAudit/auditLabels.ts"
-    },
-    {
-      "path": "src/shared/financeAudit/auditTables.ts",
-      "from": "shared/financeAudit/auditTables.ts"
-    },
-    {
       "path": "src/shared/financeAudit/capital/capital.test.ts",
       "from": "shared/financeAudit/capital/capital.test.ts"
-    },
-    {
-      "path": "src/shared/financeAudit/capital/specs.ts",
-      "from": "shared/financeAudit/capital/specs.ts"
-    },
-    {
-      "path": "src/shared/financeAudit/catalog/accounting.ts",
-      "from": "shared/financeAudit/catalog/accounting.ts"
-    },
-    {
-      "path": "src/shared/financeAudit/catalog/audit.ts",
-      "from": "shared/financeAudit/catalog/audit.ts"
-    },
-    {
-      "path": "src/shared/financeAudit/catalog/capital.ts",
-      "from": "shared/financeAudit/catalog/capital.ts"
-    },
-    {
-      "path": "src/shared/financeAudit/catalog/catalog.test.ts",
-      "from": "shared/financeAudit/catalog/catalog.test.ts"
-    },
-    {
-      "path": "src/shared/financeAudit/catalog/fpa.ts",
-      "from": "shared/financeAudit/catalog/fpa.ts"
-    },
-    {
-      "path": "src/shared/financeAudit/catalog/index.ts",
-      "from": "shared/financeAudit/catalog/index.ts"
-    },
-    {
-      "path": "src/shared/financeAudit/catalog/platform.ts",
-      "from": "shared/financeAudit/catalog/platform.ts"
-    },
-    {
-      "path": "src/shared/financeAudit/catalog/tax.ts",
-      "from": "shared/financeAudit/catalog/tax.ts"
-    },
-    {
-      "path": "src/shared/financeAudit/catalog/treasury.ts",
-      "from": "shared/financeAudit/catalog/treasury.ts"
-    },
-    {
-      "path": "src/shared/financeAudit/catalog/types.ts",
-      "from": "shared/financeAudit/catalog/types.ts"
     },
     {
       "path": "src/shared/financeAudit/dataSources.json",
@@ -1737,20 +1241,8 @@
       "from": "shared/financeAudit/dataSources.ts"
     },
     {
-      "path": "src/shared/financeAudit/regions.ts",
-      "from": "shared/financeAudit/regions.ts"
-    },
-    {
-      "path": "src/shared/financeAudit/sourceInventory.json",
-      "from": "shared/financeAudit/sourceInventory.json"
-    },
-    {
       "path": "src/shared/financeAudit/treasuryLabels.ts",
       "from": "shared/financeAudit/treasuryLabels.ts"
-    },
-    {
-      "path": "src/contracts/financeAudit.ts",
-      "from": "packages/ipc-contracts/src/financeAudit.ts"
     },
     {
       "path": "resources/finance-audit/templates/board-deck.ar.pptx",
@@ -4991,6 +4483,516 @@
     {
       "path": "resources/bundled-skills/finance-audit/fa-xlsx-author/SKILL.md",
       "from": "resources/bundled-skills/finance-audit/fa-xlsx-author/SKILL.md"
+    }
+  ],
+  "sdkFiles": [
+    {
+      "path": "src/main/ipc/financeAudit/common.actions.ts",
+      "from": "main/ipc/financeAudit/common.actions.ts"
+    },
+    {
+      "path": "src/main/ipc/financeAudit/context.ts",
+      "from": "main/ipc/financeAudit/context.ts"
+    },
+    {
+      "path": "src/main/ipc/financeAudit/workflowTools.ts",
+      "from": "main/ipc/financeAudit/workflowTools.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/accountMap.ts",
+      "from": "main/services/financeAudit/accountMap.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/archive.ts",
+      "from": "main/services/financeAudit/archive.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/engines/accounting/common.ts",
+      "from": "main/services/financeAudit/engines/accounting/common.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/engines/accounting/keywords.json",
+      "from": "main/services/financeAudit/engines/accounting/keywords.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/engines/audit/columnKeywords.json",
+      "from": "main/services/financeAudit/engines/audit/columnKeywords.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/engines/audit/extAudit/confirm.ts",
+      "from": "main/services/financeAudit/engines/audit/extAudit/confirm.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/engines/audit/extAudit/sentLog.ts",
+      "from": "main/services/financeAudit/engines/audit/extAudit/sentLog.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/engines/audit/internalAudit/plan.ts",
+      "from": "main/services/financeAudit/engines/audit/internalAudit/plan.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/engines/audit/table.ts",
+      "from": "main/services/financeAudit/engines/audit/table.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/engines/audit/thresholdFiles.ts",
+      "from": "main/services/financeAudit/engines/audit/thresholdFiles.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/engines/audit/thresholdLabels.ts",
+      "from": "main/services/financeAudit/engines/audit/thresholdLabels.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/engines/audit/todos.ts",
+      "from": "main/services/financeAudit/engines/audit/todos.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/engines/treasury/thresholds.ts",
+      "from": "main/services/financeAudit/engines/treasury/thresholds.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/engines/treasury/types.ts",
+      "from": "main/services/financeAudit/engines/treasury/types.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/fpaTypes.ts",
+      "from": "main/services/financeAudit/fpaTypes.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/handoff.ts",
+      "from": "main/services/financeAudit/handoff.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/ifrsAccountWords.json",
+      "from": "main/services/financeAudit/ifrsAccountWords.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/bankStatement.ts",
+      "from": "main/services/financeAudit/intake/bankStatement.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/camt053.ts",
+      "from": "main/services/financeAudit/intake/camt053.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/columnKeywords.json",
+      "from": "main/services/financeAudit/intake/columnKeywords.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/columns.ts",
+      "from": "main/services/financeAudit/intake/columns.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/common.ts",
+      "from": "main/services/financeAudit/intake/common.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/erpProfiles.json",
+      "from": "main/services/financeAudit/intake/erpProfiles.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/fpa.ts",
+      "from": "main/services/financeAudit/intake/fpa.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/fpaColumnKeywords.json",
+      "from": "main/services/financeAudit/intake/fpaColumnKeywords.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/fromFinanceAgent.test.ts",
+      "from": "main/services/financeAudit/intake/fromFinanceAgent.test.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/fromFinanceAgent.ts",
+      "from": "main/services/financeAudit/intake/fromFinanceAgent.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/index.ts",
+      "from": "main/services/financeAudit/intake/index.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/journal.ts",
+      "from": "main/services/financeAudit/intake/journal.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/mt940.ts",
+      "from": "main/services/financeAudit/intake/mt940.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/policyWords.json",
+      "from": "main/services/financeAudit/intake/policyWords.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/statementFile.ts",
+      "from": "main/services/financeAudit/intake/statementFile.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/subledger.ts",
+      "from": "main/services/financeAudit/intake/subledger.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/subledgerKeywords.json",
+      "from": "main/services/financeAudit/intake/subledgerKeywords.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/subledgerRoles.ts",
+      "from": "main/services/financeAudit/intake/subledgerRoles.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/subledgers.ts",
+      "from": "main/services/financeAudit/intake/subledgers.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/tables.ts",
+      "from": "main/services/financeAudit/intake/tables.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/tax.ts",
+      "from": "main/services/financeAudit/intake/tax.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/taxColumnKeywords.json",
+      "from": "main/services/financeAudit/intake/taxColumnKeywords.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/taxIntake.test.ts",
+      "from": "main/services/financeAudit/intake/taxIntake.test.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/taxValueWords.json",
+      "from": "main/services/financeAudit/intake/taxValueWords.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/treasury.ts",
+      "from": "main/services/financeAudit/intake/treasury.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/treasuryKeywords.json",
+      "from": "main/services/financeAudit/intake/treasuryKeywords.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/intake/trialBalance.ts",
+      "from": "main/services/financeAudit/intake/trialBalance.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/language.test.ts",
+      "from": "main/services/financeAudit/language.test.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/language.ts",
+      "from": "main/services/financeAudit/language.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/outputs/close.ts",
+      "from": "main/services/financeAudit/outputs/close.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/outputs/common.ts",
+      "from": "main/services/financeAudit/outputs/common.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/outputs/docx.ts",
+      "from": "main/services/financeAudit/outputs/docx.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/outputs/recon.ts",
+      "from": "main/services/financeAudit/outputs/recon.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/outputs/signoffPage.ts",
+      "from": "main/services/financeAudit/outputs/signoffPage.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/outputs/xlsx.ts",
+      "from": "main/services/financeAudit/outputs/xlsx.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/runner.ts",
+      "from": "main/services/financeAudit/runner.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/samples/close.standard.json",
+      "from": "main/services/financeAudit/samples/close.standard.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/samples/index.ts",
+      "from": "main/services/financeAudit/samples/index.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/samples/recon.bank.json",
+      "from": "main/services/financeAudit/samples/recon.bank.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/samples/tax.sa_zakat.json",
+      "from": "main/services/financeAudit/samples/tax.sa_zakat.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/signoff.test.ts",
+      "from": "main/services/financeAudit/signoff.test.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/signoff.ts",
+      "from": "main/services/financeAudit/signoff.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/skillRunner.test.ts",
+      "from": "main/services/financeAudit/skillRunner.test.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/skillRunner.ts",
+      "from": "main/services/financeAudit/skillRunner.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/skills.test.ts",
+      "from": "main/services/financeAudit/skills.test.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/store.ts",
+      "from": "main/services/financeAudit/store.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/subledgerTypes.ts",
+      "from": "main/services/financeAudit/subledgerTypes.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/accountingLabels.ts",
+      "from": "main/services/financeAudit/thresholds/accountingLabels.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/ap.json",
+      "from": "main/services/financeAudit/thresholds/ap.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/ar.json",
+      "from": "main/services/financeAudit/thresholds/ar.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/budget.json",
+      "from": "main/services/financeAudit/thresholds/budget.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/cash.json",
+      "from": "main/services/financeAudit/thresholds/cash.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/close.json",
+      "from": "main/services/financeAudit/thresholds/close.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/cost.json",
+      "from": "main/services/financeAudit/thresholds/cost.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/esg.json",
+      "from": "main/services/financeAudit/thresholds/esg.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/expense.json",
+      "from": "main/services/financeAudit/thresholds/expense.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/ext-audit.json",
+      "from": "main/services/financeAudit/thresholds/ext-audit.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/fin-analysis.json",
+      "from": "main/services/financeAudit/thresholds/fin-analysis.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/financing.json",
+      "from": "main/services/financeAudit/thresholds/financing.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/fixed-assets.json",
+      "from": "main/services/financeAudit/thresholds/fixed-assets.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/fpa.ts",
+      "from": "main/services/financeAudit/thresholds/fpa.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/fpaLabels.ts",
+      "from": "main/services/financeAudit/thresholds/fpaLabels.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/fraud.json",
+      "from": "main/services/financeAudit/thresholds/fraud.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/fx.json",
+      "from": "main/services/financeAudit/thresholds/fx.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/icfr.json",
+      "from": "main/services/financeAudit/thresholds/icfr.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/ifrs9.json",
+      "from": "main/services/financeAudit/thresholds/ifrs9.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/insight.json",
+      "from": "main/services/financeAudit/thresholds/insight.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/intercompany.json",
+      "from": "main/services/financeAudit/thresholds/intercompany.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/internal-audit.json",
+      "from": "main/services/financeAudit/thresholds/internal-audit.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/investments.json",
+      "from": "main/services/financeAudit/thresholds/investments.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/kpi.json",
+      "from": "main/services/financeAudit/thresholds/kpi.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/kyc.json",
+      "from": "main/services/financeAudit/thresholds/kyc.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/labels.ts",
+      "from": "main/services/financeAudit/thresholds/labels.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/mgmt-report.json",
+      "from": "main/services/financeAudit/thresholds/mgmt-report.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/payroll.json",
+      "from": "main/services/financeAudit/thresholds/payroll.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/recon.json",
+      "from": "main/services/financeAudit/thresholds/recon.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/regulatory.json",
+      "from": "main/services/financeAudit/thresholds/regulatory.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/review.json",
+      "from": "main/services/financeAudit/thresholds/review.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/sourceLabels.ts",
+      "from": "main/services/financeAudit/thresholds/sourceLabels.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/strategy.json",
+      "from": "main/services/financeAudit/thresholds/strategy.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/tax.json",
+      "from": "main/services/financeAudit/thresholds/tax.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/taxLabels.ts",
+      "from": "main/services/financeAudit/thresholds/taxLabels.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/transfer-pricing.json",
+      "from": "main/services/financeAudit/thresholds/transfer-pricing.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/treasury.json",
+      "from": "main/services/financeAudit/thresholds/treasury.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/valuation.json",
+      "from": "main/services/financeAudit/thresholds/valuation.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds/working-capital.json",
+      "from": "main/services/financeAudit/thresholds/working-capital.json"
+    },
+    {
+      "path": "src/main/services/financeAudit/thresholds.ts",
+      "from": "main/services/financeAudit/thresholds.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/todo.ts",
+      "from": "main/services/financeAudit/todo.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/types.ts",
+      "from": "main/services/financeAudit/types.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/verify.test.ts",
+      "from": "main/services/financeAudit/verify.test.ts"
+    },
+    {
+      "path": "src/main/services/financeAudit/verify.ts",
+      "from": "main/services/financeAudit/verify.ts"
+    },
+    {
+      "path": "src/shared/financeAudit/auditLabels.ts",
+      "from": "shared/financeAudit/auditLabels.ts"
+    },
+    {
+      "path": "src/shared/financeAudit/auditTables.ts",
+      "from": "shared/financeAudit/auditTables.ts"
+    },
+    {
+      "path": "src/shared/financeAudit/capital/specs.ts",
+      "from": "shared/financeAudit/capital/specs.ts"
+    },
+    {
+      "path": "src/shared/financeAudit/catalog/accounting.ts",
+      "from": "shared/financeAudit/catalog/accounting.ts"
+    },
+    {
+      "path": "src/shared/financeAudit/catalog/audit.ts",
+      "from": "shared/financeAudit/catalog/audit.ts"
+    },
+    {
+      "path": "src/shared/financeAudit/catalog/capital.ts",
+      "from": "shared/financeAudit/catalog/capital.ts"
+    },
+    {
+      "path": "src/shared/financeAudit/catalog/catalog.test.ts",
+      "from": "shared/financeAudit/catalog/catalog.test.ts"
+    },
+    {
+      "path": "src/shared/financeAudit/catalog/fpa.ts",
+      "from": "shared/financeAudit/catalog/fpa.ts"
+    },
+    {
+      "path": "src/shared/financeAudit/catalog/index.ts",
+      "from": "shared/financeAudit/catalog/index.ts"
+    },
+    {
+      "path": "src/shared/financeAudit/catalog/platform.ts",
+      "from": "shared/financeAudit/catalog/platform.ts"
+    },
+    {
+      "path": "src/shared/financeAudit/catalog/tax.ts",
+      "from": "shared/financeAudit/catalog/tax.ts"
+    },
+    {
+      "path": "src/shared/financeAudit/catalog/treasury.ts",
+      "from": "shared/financeAudit/catalog/treasury.ts"
+    },
+    {
+      "path": "src/shared/financeAudit/catalog/types.ts",
+      "from": "shared/financeAudit/catalog/types.ts"
+    },
+    {
+      "path": "src/shared/financeAudit/regions.ts",
+      "from": "shared/financeAudit/regions.ts"
+    },
+    {
+      "path": "src/shared/financeAudit/sourceInventory.json",
+      "from": "shared/financeAudit/sourceInventory.json"
+    },
+    {
+      "path": "src/contracts/financeAudit.ts",
+      "from": "packages/ipc-contracts/src/financeAudit.ts"
     }
   ]
 }

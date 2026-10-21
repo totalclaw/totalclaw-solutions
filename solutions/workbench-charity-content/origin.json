@@ -119,6 +119,86 @@
   ],
   "files": [
     {
+      "path": "resources/bundled-solutions/charity-content/charity-demo-pack.json",
+      "from": "resources/bundled-solutions/charity-content/charity-demo-pack.json"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-archive.json",
+      "from": "resources/bundled-solutions/charity-content/demo-archive.json"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-materials/5527e40e0a9ecd35a71e83d1b58a9ae8.jpg",
+      "from": "resources/bundled-solutions/charity-content/demo-materials/5527e40e0a9ecd35a71e83d1b58a9ae8.jpg"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-materials/636815265de590c9960263134c345a22.jpg",
+      "from": "resources/bundled-solutions/charity-content/demo-materials/636815265de590c9960263134c345a22.jpg"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-materials/de85f80e5d63df4e5a91e817365c2a10.jpg",
+      "from": "resources/bundled-solutions/charity-content/demo-materials/de85f80e5d63df4e5a91e817365c2a10.jpg"
+    },
+    {
+      "path": "resources/bundled-solutions/charity-content/demo-materials/新穆斯林生活指南-信仰不隔亲情.pdf",
+      "from": "resources/bundled-solutions/charity-content/demo-materials/新穆斯林生活指南-信仰不隔亲情.pdf"
+    },
+    {
+      "path": "src/main/ipc/charityContent.brain.test.ts",
+      "from": "main/ipc/charityContent.brain.test.ts"
+    },
+    {
+      "path": "src/main/ipc/charityContent.ipc.test.ts",
+      "from": "main/ipc/charityContent.ipc.test.ts"
+    },
+    {
+      "path": "src/main/ipc/charityContent.ipc.ts",
+      "from": "main/ipc/charityContent.ipc.ts"
+    },
+    {
+      "path": "src/main/ipc/falKeyUnified.test.ts",
+      "from": "main/ipc/falKeyUnified.test.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/charityContent.test.ts",
+      "from": "main/services/charityContent/charityContent.test.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/demoMaterials.test.ts",
+      "from": "main/services/charityContent/demoMaterials.test.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/demoMaterials.ts",
+      "from": "main/services/charityContent/demoMaterials.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/demoPack.test.ts",
+      "from": "main/services/charityContent/demoPack.test.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/demoPack.ts",
+      "from": "main/services/charityContent/demoPack.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/prebakeEntry.ts",
+      "from": "main/services/charityContent/prebakeEntry.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/prebaked.ts",
+      "from": "main/services/charityContent/prebaked.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/prebakedOverwrite.test.ts",
+      "from": "main/services/charityContent/prebakedOverwrite.test.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/runtime.ts",
+      "from": "main/services/charityContent/runtime.ts"
+    },
+    {
+      "path": "src/main/services/charityContent/validate.ts",
+      "from": "main/services/charityContent/validate.ts"
+    },
+    {
       "path": "src/renderer/views/CharityContentWorkbenchView.vue",
       "from": "renderer/views/CharityContentWorkbenchView.vue"
     },
@@ -171,20 +251,18 @@
       "from": "renderer/workbenches/charity-content/styles.css"
     },
     {
-      "path": "src/main/ipc/charityContent.ipc.ts",
-      "from": "main/ipc/charityContent.ipc.ts"
+      "path": "src/renderer/workbenches/openPathFeedback.test.ts",
+      "from": "renderer/workbenches/openPathFeedback.test.ts"
     },
     {
-      "path": "src/main/ipc/charityContent.ipc.test.ts",
-      "from": "main/ipc/charityContent.ipc.test.ts"
-    },
+      "path": "src/renderer/workbenches/solutionsI18n.test.ts",
+      "from": "renderer/workbenches/solutionsI18n.test.ts"
+    }
+  ],
+  "sdkFiles": [
     {
       "path": "src/main/services/charityContent/archive.ts",
       "from": "main/services/charityContent/archive.ts"
-    },
-    {
-      "path": "src/main/services/charityContent/charityContent.test.ts",
-      "from": "main/services/charityContent/charityContent.test.ts"
     },
     {
       "path": "src/main/services/charityContent/concurrency.test.ts",
@@ -193,22 +271,6 @@
     {
       "path": "src/main/services/charityContent/concurrency.ts",
       "from": "main/services/charityContent/concurrency.ts"
-    },
-    {
-      "path": "src/main/services/charityContent/demoMaterials.test.ts",
-      "from": "main/services/charityContent/demoMaterials.test.ts"
-    },
-    {
-      "path": "src/main/services/charityContent/demoMaterials.ts",
-      "from": "main/services/charityContent/demoMaterials.ts"
-    },
-    {
-      "path": "src/main/services/charityContent/demoPack.test.ts",
-      "from": "main/services/charityContent/demoPack.test.ts"
-    },
-    {
-      "path": "src/main/services/charityContent/demoPack.ts",
-      "from": "main/services/charityContent/demoPack.ts"
     },
     {
       "path": "src/main/services/charityContent/describeParse.test.ts",
@@ -231,18 +293,6 @@
       "from": "main/services/charityContent/pipeline.ts"
     },
     {
-      "path": "src/main/services/charityContent/prebakeEntry.ts",
-      "from": "main/services/charityContent/prebakeEntry.ts"
-    },
-    {
-      "path": "src/main/services/charityContent/prebaked.ts",
-      "from": "main/services/charityContent/prebaked.ts"
-    },
-    {
-      "path": "src/main/services/charityContent/prebakedOverwrite.test.ts",
-      "from": "main/services/charityContent/prebakedOverwrite.test.ts"
-    },
-    {
       "path": "src/main/services/charityContent/render.ts",
       "from": "main/services/charityContent/render.ts"
     },
@@ -255,16 +305,8 @@
       "from": "main/services/charityContent/reportText.ts"
     },
     {
-      "path": "src/main/services/charityContent/runtime.ts",
-      "from": "main/services/charityContent/runtime.ts"
-    },
-    {
       "path": "src/main/services/charityContent/subtitles.ts",
       "from": "main/services/charityContent/subtitles.ts"
-    },
-    {
-      "path": "src/main/services/charityContent/validate.ts",
-      "from": "main/services/charityContent/validate.ts"
     },
     {
       "path": "src/main/services/charityContent/videoAi.test.ts",
@@ -277,30 +319,6 @@
     {
       "path": "src/shared/charityPrompts.test.ts",
       "from": "shared/charityPrompts.test.ts"
-    },
-    {
-      "path": "resources/bundled-solutions/charity-content/charity-demo-pack.json",
-      "from": "resources/bundled-solutions/charity-content/charity-demo-pack.json"
-    },
-    {
-      "path": "resources/bundled-solutions/charity-content/demo-archive.json",
-      "from": "resources/bundled-solutions/charity-content/demo-archive.json"
-    },
-    {
-      "path": "resources/bundled-solutions/charity-content/demo-materials/5527e40e0a9ecd35a71e83d1b58a9ae8.jpg",
-      "from": "resources/bundled-solutions/charity-content/demo-materials/5527e40e0a9ecd35a71e83d1b58a9ae8.jpg"
-    },
-    {
-      "path": "resources/bundled-solutions/charity-content/demo-materials/636815265de590c9960263134c345a22.jpg",
-      "from": "resources/bundled-solutions/charity-content/demo-materials/636815265de590c9960263134c345a22.jpg"
-    },
-    {
-      "path": "resources/bundled-solutions/charity-content/demo-materials/de85f80e5d63df4e5a91e817365c2a10.jpg",
-      "from": "resources/bundled-solutions/charity-content/demo-materials/de85f80e5d63df4e5a91e817365c2a10.jpg"
-    },
-    {
-      "path": "resources/bundled-solutions/charity-content/demo-materials/新穆斯林生活指南-信仰不隔亲情.pdf",
-      "from": "resources/bundled-solutions/charity-content/demo-materials/新穆斯林生活指南-信仰不隔亲情.pdf"
     }
   ]
 }

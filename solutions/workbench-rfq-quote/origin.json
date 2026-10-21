@@ -22,5 +22,6 @@
       "path": "src/renderer/views/RfqQuoteWorkbenchView.vue",
       "from": "renderer/views/RfqQuoteWorkbenchView.vue"
     }
-  ]
+  ],
+  "sdkFiles": []
 }

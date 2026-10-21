@@ -30,7 +30,7 @@ test('catalog.json 兼容旧版 qiye-app（parseCatalog 必填字段）', () => 
 });
 
 test('全部方案可从本地仓库安装并通过校验', { timeout: 180_000 }, async () => {
-  const mgr = new SolutionManager({ root: tmp('tcsol-all-'), source: new LocalSource(REPO_ROOT), appVersion: '2.0.5' });
+  const mgr = new SolutionManager({ root: tmp('tcsol-all-'), source: new LocalSource(REPO_ROOT), appVersion: '2.0.5', hostApi: 2 });
   for (const it of index.items) await mgr.install(it.id);
   assert.equal(mgr.list().length, index.items.length);
   const bad = mgr.verify().filter((v) => !v.ok);
@@ -42,7 +42,7 @@ test('发布包：pack → 离线安装', async () => {
   execFileSync(process.execPath, [join(REPO_ROOT, 'tools', 'pack.mjs'), 'material-to-table', 'workbench-academic-writer', '--out', out], { cwd: REPO_ROOT, stdio: 'pipe' });
   for (const id of ['material-to-table', 'workbench-academic-writer']) {
     const it = index.items.find((x) => x.id === id);
-    const mgr = new SolutionManager({ root: tmp(), source: new TarballSource(join(out, `${id}-${it.version}.tgz`)) });
+    const mgr = new SolutionManager({ root: tmp(), source: new TarballSource(join(out, `${id}-${it.version}.tgz`)), hostApi: 2 });
     assert.equal((await mgr.install(id, { withDependencies: false })).status, 'installed');
     assert.ok(mgr.verify(id)[0].ok);
   }

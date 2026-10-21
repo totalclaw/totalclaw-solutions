@@ -6,7 +6,7 @@
   "aliases": [
     "warehouse"
   ],
-  "version": "1.0.0",
+  "version": "2.0.0",
   "kind": "workbench",
   "category": "产销存",
   "icon": "icon-solutions",
@@ -30,18 +30,29 @@
   },
   "compat": {
     "minAppVersion": "2.0.5",
-    "hostApi": 1
+    "hostApi": 2
   },
   "runtime": {
-    "mode": "bundled",
+    "mode": "dynamic",
     "runner": "workbench",
     "route": "/workbenches/warehouse",
     "renderer": "src/renderer/views/WarehouseWorkbenchView.vue",
-    "main": "src/main/ipc/warehouseWorkbench.ipc.ts"
+    "main": "src/main/ipc/warehouseWorkbench.ipc.ts",
+    "hotSwap": false,
+    "routes": [
+      {
+        "path": "/workbenches/warehouse",
+        "name": "WarehouseWorkbench"
+      }
+    ],
+    "entries": {
+      "renderer": "dist/renderer.mjs",
+      "style": "dist/style.css",
+      "main": "dist/main.cjs",
+      "hostModules": "dist/host-modules.json"
+    }
   },
-  "dependsOn": [
-    "kit-automation-ops"
-  ],
+  "dependsOn": [],
   "data": {
     "schemaVersion": 1,
     "paths": [],
@@ -53,6 +64,13 @@
   "largeAssets": [],
   "distribution": {
     "channel": "stable",
-    "path": "solutions/workbench-warehouse"
+    "path": "solutions/workbench-warehouse",
+    "files": [
+      "solution.json",
+      "README.md",
+      "CHANGELOG.md",
+      "dist/",
+      "migrations/"
+    ]
   }
 }

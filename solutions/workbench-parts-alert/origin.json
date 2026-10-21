@@ -146,7 +146,9 @@
     {
       "path": "src/main/services/partsAlert/store.ts",
       "from": "main/services/partsAlert/store.ts"
-    },
+    }
+  ],
+  "sdkFiles": [
     {
       "path": "src/contracts/partsAlert.ts",
       "from": "packages/ipc-contracts/src/partsAlert.ts"

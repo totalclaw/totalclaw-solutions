@@ -1,12 +1,12 @@
 {
   "id": "rd-workflow",
-  "version": "1.0.0",
-  "treeDigest": "b96ba103d167f101e3a337779c1ac3a69e6cf3de1c30163f00b12f74fcf1a588",
+  "version": "2.0.0",
+  "treeDigest": "2b20a848dcd9d24e777913308fff0fe0d78bff22192e92d5d5687ba3ee98492c",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 123,
-      "sha256": "8b590b72c76f53062ea5a6a81a8ba9ad3ab1572e284ce9b20d7494cb236fcc50"
+      "size": 446,
+      "sha256": "6f2bbc72bb05b2025c72394729859c6379aa2c97909311bd964e6ff343152303"
     },
     {
       "path": "README.md",
@@ -14,44 +14,34 @@
       "sha256": "941ecf4df1def25615f9ca7b462b16835db704f491ed78f66e2e06bafe3e1fb3"
     },
     {
+      "path": "dist/host-modules.json",
+      "size": 553,
+      "sha256": "f3822cdfa54ab38b1bf8ffc0519b5b384997d9a4fbd04cfc9a63815d610ead92"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 4780,
+      "sha256": "7c3eca0e66c5264016190c632dda82e4d1bd97072a49f66a6859ab10b185f67f"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 57553,
+      "sha256": "96918be8d0e8e41f5ca5234b263bc5b956c8ec4f3075d8275e629c9a5ab6a8a6"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 25469,
+      "sha256": "eeb270665d10cbb908125b0926a8a153d13182125b306577b16b83fa6ade11b5"
+    },
+    {
       "path": "migrations/README.md",
       "size": 296,
       "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
     },
     {
-      "path": "origin.json",
-      "size": 1700,
-      "sha256": "1bc4461b36bc6f059ab77a374cb9cba4c3ea5c561b18482dfb632911fe8b3d4c"
-    },
-    {
       "path": "solution.json",
-      "size": 1667,
-      "sha256": "2b46b437d320be408fe37bf65216dbe491b0c2d136390f3e9e8f8e9f4bb83692"
-    },
-    {
-      "path": "src/main/ipc/rdWorkflow.ipc.ts",
-      "size": 2848,
-      "sha256": "a26da636b005d607d445acd287a21782e60ca0933dc502e038b91b8a0dffdcde"
-    },
-    {
-      "path": "src/renderer/components/rd/FileDiffViewer.vue",
-      "size": 5265,
-      "sha256": "163c4f1849667d4304a399c7087b160d4237f38461192520bbbeaef3bd930d18"
-    },
-    {
-      "path": "src/renderer/composables/rdWorkflow.ts",
-      "size": 14581,
-      "sha256": "576828d36d7cbb58dd6c9918c455afbadd18a121c64d3e8f0bcd309dfa244b5d"
-    },
-    {
-      "path": "src/renderer/views/RdWorkflowWorkbenchView.vue",
-      "size": 55019,
-      "sha256": "c232349763adbb8757f28ddb484e20e62332351fc1dc02916bd6bac520c53bee"
-    },
-    {
-      "path": "src/renderer/workbenches/rd-workflow/FileDiffViewer.vue",
-      "size": 5265,
-      "sha256": "163c4f1849667d4304a399c7087b160d4237f38461192520bbbeaef3bd930d18"
+      "size": 2066,
+      "sha256": "5503737a65dc2c8e0df5ad2646ce8ab3bdefb5b26b285bbcffe12132e83539eb"
     }
   ]
 }

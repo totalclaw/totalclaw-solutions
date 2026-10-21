@@ -1,12 +1,12 @@
 {
   "id": "workbench-grounded-qa",
-  "version": "1.0.0",
-  "treeDigest": "b61184245000837239739734ab9a96de184c2202d4780fb27d59b160b1939b0b",
+  "version": "2.0.0",
+  "treeDigest": "e7b2299b901a9ece39b32f4b7a301d4b4e9f23e3c4333d8215dd65a1b3bfbf5f",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 126,
-      "sha256": "5266fcc54b574ab546871b1f63cccd1ddab83d463206ded948a8f30d116c839b"
+      "size": 449,
+      "sha256": "a1839cb1ee8cc432025d2a3d5ee76e30b331c08dabfa3f31e7f80e0de190b72c"
     },
     {
       "path": "README.md",
@@ -14,54 +14,34 @@
       "sha256": "6066ac9c3c9923daf0ab65b70e65daaa3e2eef4dcd6b5285e16777c531df46cb"
     },
     {
+      "path": "dist/host-modules.json",
+      "size": 581,
+      "sha256": "3ca60e20f4dbea116fa49d162174724cc394fdc93a2f97c5ca9cce1e2c4c5650"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 27294,
+      "sha256": "47163b160016856a825f62995ade479f4fc17b76c0cb3938438ca8d3137df645"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 27013,
+      "sha256": "149cfa0eb8ae87af7aa2f997e68193feb38875997f36796ac40964571d471920"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 7003,
+      "sha256": "42a285e860ef32a96c977b9531f996827d36707f4bc6d66574885d71e49334ba"
+    },
+    {
       "path": "migrations/README.md",
       "size": 296,
       "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
     },
     {
-      "path": "origin.json",
-      "size": 1850,
-      "sha256": "870d761d408e56be2412cdd1977491709d9d0bf72e930350a8000850686bb31a"
-    },
-    {
       "path": "solution.json",
-      "size": 1768,
-      "sha256": "4d74127a8ae9020955823a3d3d809cccd9cbed3b6b59c8c42b688603898f1111"
-    },
-    {
-      "path": "src/main/ipc/groundedQa.ipc.ts",
-      "size": 15658,
-      "sha256": "dbe0d325c154b86ce85e5b383aaf8f5fde4388925424afd1f47c24417f9b28da"
-    },
-    {
-      "path": "src/main/services/groundedQa.logic.test.ts",
-      "size": 14962,
-      "sha256": "c1df548741252f5bdea9301f5a66011dd9afb6eafa976f7d7655dc288584b609"
-    },
-    {
-      "path": "src/main/services/groundedQa.logic.ts",
-      "size": 37976,
-      "sha256": "350f79c45f4a630bb2f64503086374be3c3a3a4059e9acdb468c7bf1c1ffc8c1"
-    },
-    {
-      "path": "src/main/services/groundedQaStopwords.json",
-      "size": 2144,
-      "sha256": "87102d18e79f4961050c75975d12c4f710d20e2d83e9c3ec655b82820429f1b0"
-    },
-    {
-      "path": "src/main/services/groundedQaStore.test.ts",
-      "size": 11423,
-      "sha256": "5303513e2e13680535b9ac360ce000895de91bdac719553bf922d6724830a6ba"
-    },
-    {
-      "path": "src/main/services/groundedQaStore.ts",
-      "size": 18538,
-      "sha256": "d38dffa8d0b9d24bf80600f72aeb4f89b9d2e3c61fe651fe440952c755af7700"
-    },
-    {
-      "path": "src/renderer/views/GroundedQaWorkbenchView.vue",
-      "size": 20854,
-      "sha256": "8c994b23aa326a132aee13436e54ff7e568bcfed2a0af2faa847004a6171395a"
+      "size": 2178,
+      "sha256": "41107a5403cf33d7c5839691dffa5c3ac6847b8aab6155afa1b674f4d8922d6d"
     }
   ]
 }

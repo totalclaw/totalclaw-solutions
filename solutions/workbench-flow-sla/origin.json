@@ -162,7 +162,9 @@
     {
       "path": "src/main/services/flowSla/store.ts",
       "from": "main/services/flowSla/store.ts"
-    },
+    }
+  ],
+  "sdkFiles": [
     {
       "path": "src/contracts/flowSla.ts",
       "from": "packages/ipc-contracts/src/flowSla.ts"

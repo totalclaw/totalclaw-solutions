@@ -1,12 +1,12 @@
 {
   "id": "workbench-finance-agent",
-  "version": "1.0.0",
-  "treeDigest": "43673fd0ab0e0a137c0ee9d7d59e7474257f09e13753aeb58502f40fe3fa25fc",
+  "version": "2.0.0",
+  "treeDigest": "0363c3948da92449f5936efbea6f5e4d94325397872ceb376bb814e2bcdfeaa6",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 123,
-      "sha256": "259cb1d6e5ed08e3d869194cf4cab3057519d8abb4477cfc666ad824423be8d0"
+      "size": 446,
+      "sha256": "daf374dd8729bd04b77f3e4f17fd7b32cdb6469fda4d85328fc701f43dc569bc"
     },
     {
       "path": "README.md",
@@ -14,244 +14,34 @@
       "sha256": "faa28dbc8faa493e690e6bee9080ea22105a8e5c2db351bbae1bd4f6f4c3a16d"
     },
     {
+      "path": "dist/host-modules.json",
+      "size": 1869,
+      "sha256": "a00282a085a39440621e6cb8bb4c483757bb0ad664f5c24f6cd91bf0f316d94b"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 141647,
+      "sha256": "5993d8484383298cae72e7378a50392fbf57ce6cff090c0975bc4dae12b3c1ac"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 582957,
+      "sha256": "9f7314b795afcdd6e962d7e5e08380f3b7a418dd442e0a06a42ad68a96689f64"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 42108,
+      "sha256": "1e83090506f84a48fd7e9a5e2f23278f8981d1935e2b9fee965384697451e91a"
+    },
+    {
       "path": "migrations/README.md",
       "size": 296,
       "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
     },
     {
-      "path": "origin.json",
-      "size": 7782,
-      "sha256": "0c3daeba3ae687da06e4fae8b05406c2fc8830c479498e770fd284bd4893389c"
-    },
-    {
       "path": "solution.json",
-      "size": 1941,
-      "sha256": "7eacc9e6cae589a29376d2d4eebf25ba762000a6847c43ed67599ae685aa83ba"
-    },
-    {
-      "path": "src/contracts/financeAgent.ts",
-      "size": 19380,
-      "sha256": "71e19d8591cf570ce4783c71ec8273a9bbc4fc25ee8877f3e7cdfd0bfae71871"
-    },
-    {
-      "path": "src/main/ipc/financeAgent.ipc.ts",
-      "size": 71644,
-      "sha256": "28e29685cefb7e7007cf38f744c34f2da16555c84477b8afb310abd00b2c9073"
-    },
-    {
-      "path": "src/main/services/financeAgent/apiReceiver.ts",
-      "size": 3227,
-      "sha256": "a6e8c661ededced474c4778043e4aa391edf12a156ef01c3f59a57d572680f52"
-    },
-    {
-      "path": "src/main/services/financeAgent/budget.ts",
-      "size": 4748,
-      "sha256": "74445ab63ece0b47256f58dd866caf8bb611cc8f42193773cd6874b2be23ff55"
-    },
-    {
-      "path": "src/main/services/financeAgent/categoryRules.json",
-      "size": 3909,
-      "sha256": "27a6e3cf25651488ff93c939aaa3f724dea3c0879ccd75412f5f866e1b45df16"
-    },
-    {
-      "path": "src/main/services/financeAgent/chart.json",
-      "size": 4081,
-      "sha256": "c3b51f6defca8249619876b122bf1423735136f86805343b4516e41063300327"
-    },
-    {
-      "path": "src/main/services/financeAgent/columnKeywords.json",
-      "size": 3335,
-      "sha256": "91d260ca3bdda6eb6cbc5c03db7ea05f36a984682fd348eb9b06907353a12680"
-    },
-    {
-      "path": "src/main/services/financeAgent/common.ts",
-      "size": 8361,
-      "sha256": "cb6d308bdb828c945e675339b2d3a819a5aedf7e71ffe841f9dd96e4da0cc62c"
-    },
-    {
-      "path": "src/main/services/financeAgent/contract.ts",
-      "size": 8396,
-      "sha256": "d0e94ec45e4b7b4014a35d95eb7c2e9dac4cb56400c98bf9c8ef501eaf390991"
-    },
-    {
-      "path": "src/main/services/financeAgent/contractRules.json",
-      "size": 4513,
-      "sha256": "18ff6b427c97e04641bfff5adc5d39a60efedb754c1c7bb8cf5117136faf59d2"
-    },
-    {
-      "path": "src/main/services/financeAgent/cost.ts",
-      "size": 6446,
-      "sha256": "8a410e4366c9d91e79ca35b5e6b21f0c3d613558ba2f47912299001cf102fe18"
-    },
-    {
-      "path": "src/main/services/financeAgent/expense.ts",
-      "size": 7292,
-      "sha256": "2eb01e3a69460f5943fb33ecbcc46f862a880a570e601c42b8f2766850b29222"
-    },
-    {
-      "path": "src/main/services/financeAgent/filing.ts",
-      "size": 6528,
-      "sha256": "922227d99e1e895d2e97daea9e05de4646943c17c41fc3b0518120133531e3f9"
-    },
-    {
-      "path": "src/main/services/financeAgent/invoice.ts",
-      "size": 14524,
-      "sha256": "5791d74cb5bc2849f6fb459ac1c7f55dfbc0a5329e954d31bfffcc54288890b9"
-    },
-    {
-      "path": "src/main/services/financeAgent/knowledge.ts",
-      "size": 2706,
-      "sha256": "48245e760646aaf8f6fe97ea0a6366a3d870211bf4a5613336bc69b02fe9e3e8"
-    },
-    {
-      "path": "src/main/services/financeAgent/logic.test.ts",
-      "size": 19225,
-      "sha256": "dfd28e50f695c66c14251e74df2224559357d37fdfb981ad2a48c6e05352a69b"
-    },
-    {
-      "path": "src/main/services/financeAgent/prompts.ts",
-      "size": 8932,
-      "sha256": "4e5aec7d062e0e911dd3d1c694028774ac5d1fc307119e479a35aeb7ce050c30"
-    },
-    {
-      "path": "src/main/services/financeAgent/radicalMap.json",
-      "size": 873,
-      "sha256": "c07716032853f2146622251fa7064f58cc141e61170b0165f46568234e9bd604"
-    },
-    {
-      "path": "src/main/services/financeAgent/reconcile.ts",
-      "size": 10017,
-      "sha256": "da03d5c66a8f0971107d41956279d826100ef4a64036f1da4f89ea366f02d5a6"
-    },
-    {
-      "path": "src/main/services/financeAgent/reportMap.json",
-      "size": 4565,
-      "sha256": "e1e863c26599e9a150c482e7f4cf360bb9ce1616c46c05d6b882d1fee8f97a1c"
-    },
-    {
-      "path": "src/main/services/financeAgent/risk.ts",
-      "size": 12453,
-      "sha256": "73eadebec653e986a4970810fb656cc4e71c87e6154f6189ce51dc8584e95e58"
-    },
-    {
-      "path": "src/main/services/financeAgent/statements.ts",
-      "size": 18487,
-      "sha256": "3a4649c74a1c18a55fd02538dac78c084f532d397a285bfb17f9f5f699bde4d7"
-    },
-    {
-      "path": "src/main/services/financeAgent/store.ts",
-      "size": 7044,
-      "sha256": "d34ba1cc07c2b06d01aa77e09869cb2fb629f57cdb77f33a36512d4a5d24712e"
-    },
-    {
-      "path": "src/main/services/financeAgent/tables.ts",
-      "size": 12514,
-      "sha256": "5fd08b41d2e796677bfca173480ec21f81bfe78e45b99159e0b4a234d6732509"
-    },
-    {
-      "path": "src/main/services/financeAgent/tax.ts",
-      "size": 15157,
-      "sha256": "a572bf85fe1977c04bb93f1224c5fb8b64eed0ebfb41f93f0e965b1ada6207fe"
-    },
-    {
-      "path": "src/main/services/financeAgent/taxKnowledge.json",
-      "size": 21338,
-      "sha256": "f9f7c32663ae2ca4d556dccc4943612a2977130478206f1b4e94961ba688a69d"
-    },
-    {
-      "path": "src/main/services/financeAgent/voucher.ts",
-      "size": 7607,
-      "sha256": "928f7cf39d8153a032581c8104ba5f7787a9f797d8bf5273c1d8366e739ad64d"
-    },
-    {
-      "path": "src/renderer/views/FinanceAgentWorkbenchView.vue",
-      "size": 17896,
-      "sha256": "9b7956523305caa5fd028e1813b655615b0e832a71f83e1c9fa986480f0fe6c1"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/BudgetTab.vue",
-      "size": 15931,
-      "sha256": "b23ad88eb65bd12ef66dd5d1e3e63545c99f6c5a5a2c0645267bb248e8ad93e8"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/ContractTab.vue",
-      "size": 11760,
-      "sha256": "1d686382d5dca87ac8a500abf38435a504f9ae8b71a06ffa48296579fa1fc17e"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/CostTab.vue",
-      "size": 19595,
-      "sha256": "ec2591c59cca669bb7e89b1bac220f0156bb7a624b6f79de24f8d6dd78c9919e"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/DataSourcePanel.vue",
-      "size": 5051,
-      "sha256": "e38c9005b8e1c4f16842d3ccc9c702fc1d75dd2c096fc8526c0931f44acc36ea"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/ExpenseTab.vue",
-      "size": 18237,
-      "sha256": "e4c82736cd982679ce086b1ceca955e839166695aa50efc2cd01685c8b2412be"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/FileDrop.vue",
-      "size": 2865,
-      "sha256": "3cc45dd5a4e9126adb34c511cc0d3aed18bbc182739e347bf2372a0afcbe4841"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/FilingTab.vue",
-      "size": 23153,
-      "sha256": "0185836174e7536c8dd368c65022c2e1da95c8cd0a78e1fd849535d7c5a6a169"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/ModuleHeader.vue",
-      "size": 3437,
-      "sha256": "5b45a39e90c1ab6876833292cc99af2635f901e788de8098416295314613771c"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/OverviewTab.vue",
-      "size": 10555,
-      "sha256": "5522b50a03902825cdaab25aca9ebb94e6d9c74fdc2f41e3f31a2279c49446f3"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/QaTab.vue",
-      "size": 11486,
-      "sha256": "93ddb7644dca9b2a40b47f8c8c4d381e7eee04dee7ffe50fdd19467846836695"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/ReconcileTab.vue",
-      "size": 25024,
-      "sha256": "462deacdd3a8cd8f0d9c57cda6d7e80e5c079fd6903af02721827dc17cf1405f"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/RiskTab.vue",
-      "size": 13431,
-      "sha256": "b7a43ec9f5c6576dc8dc7a3be598116479b64703763b0b80353ba4991fd86506"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/SettingsTab.vue",
-      "size": 17260,
-      "sha256": "a4f9813c93b8be48190a0346cb2c4d8218ffa8431418b2db2079dfc5c6ecdf13"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/StatementsTab.vue",
-      "size": 14738,
-      "sha256": "5cce2e1b8840ef1c342d45c290a41245ca049d17f3ead8da4514cb7bf405f2ff"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/TaxTab.vue",
-      "size": 25283,
-      "sha256": "cd2d1022958734d0dd6f3a6c47794825458c914e65c34980d4d57c8e26a45a1e"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/VoucherTab.vue",
-      "size": 29921,
-      "sha256": "8a9776ab2010700cddd9a9c48b7a86b4e628d2da901b8a4ca99f5376976a7f03"
-    },
-    {
-      "path": "src/renderer/workbenches/finance-agent/shared.ts",
-      "size": 9387,
-      "sha256": "b149bc39d4ace29b1d380a1b20d96706c23d66265481aaae6ae4cd8b2f8d1ce0"
+      "size": 2313,
+      "sha256": "d5876f3f2319cc344ddce03ec6ad349fd57616f6dbe2a289318034f671e352bf"
     }
   ]
 }

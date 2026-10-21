@@ -44,5 +44,6 @@
       "path": "src/main/ipc/educationWorkbench.ipc.ts",
       "from": "main/ipc/educationWorkbench.ipc.ts"
     }
-  ]
+  ],
+  "sdkFiles": []
 }

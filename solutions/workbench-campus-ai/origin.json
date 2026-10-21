@@ -189,7 +189,9 @@
     {
       "path": "src/main/services/campusAi/warning.ts",
       "from": "main/services/campusAi/warning.ts"
-    },
+    }
+  ],
+  "sdkFiles": [
     {
       "path": "src/contracts/campusAi.ts",
       "from": "packages/ipc-contracts/src/campusAi.ts"

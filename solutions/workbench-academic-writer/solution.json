@@ -6,7 +6,7 @@
   "aliases": [
     "academic-writer"
   ],
-  "version": "1.0.0",
+  "version": "2.0.0",
   "kind": "workbench",
   "category": "学术科研",
   "icon": "icon-solutions",
@@ -30,19 +30,29 @@
   },
   "compat": {
     "minAppVersion": "2.0.5",
-    "hostApi": 1
+    "hostApi": 2
   },
   "runtime": {
-    "mode": "bundled",
+    "mode": "dynamic",
     "runner": "workbench",
     "route": "/workbenches/academic-writer",
     "renderer": "src/renderer/views/AcademicWriterWorkbenchView.vue",
-    "main": "src/main/ipc/academicWriter.ipc.ts"
+    "main": "src/main/ipc/academicWriter.ipc.ts",
+    "hotSwap": false,
+    "routes": [
+      {
+        "path": "/workbenches/academic-writer",
+        "name": "AcademicWriterWorkbench"
+      }
+    ],
+    "entries": {
+      "renderer": "dist/renderer.mjs",
+      "style": "dist/style.css",
+      "main": "dist/main.cjs",
+      "hostModules": "dist/host-modules.json"
+    }
   },
-  "dependsOn": [
-    "workbench-foreign-trade",
-    "workbench-service-settlement"
-  ],
+  "dependsOn": [],
   "data": {
     "schemaVersion": 1,
     "paths": [
@@ -56,6 +66,13 @@
   "largeAssets": [],
   "distribution": {
     "channel": "stable",
-    "path": "solutions/workbench-academic-writer"
+    "path": "solutions/workbench-academic-writer",
+    "files": [
+      "solution.json",
+      "README.md",
+      "CHANGELOG.md",
+      "dist/",
+      "migrations/"
+    ]
   }
 }

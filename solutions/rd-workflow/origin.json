@@ -54,5 +54,6 @@
       "path": "src/main/ipc/rdWorkflow.ipc.ts",
       "from": "main/ipc/rdWorkflow.ipc.ts"
     }
-  ]
+  ],
+  "sdkFiles": []
 }

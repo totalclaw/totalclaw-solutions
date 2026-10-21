@@ -1,12 +1,12 @@
 {
   "id": "workbench-academic-writer",
-  "version": "1.0.0",
-  "treeDigest": "26ce79e0d955d3456e29da3b45ef98e45a9ec6b68cbebe380734e9fcf32f83c7",
+  "version": "2.0.0",
+  "treeDigest": "1d2d71f9f87c30c6628358959794072813e002f6b776f32a82fb1df07a7db184",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 129,
-      "sha256": "bb5612f96fdd4f84258786ad1b80dad7021a3a8bc354cf78b57198213ced7ec2"
+      "size": 452,
+      "sha256": "aa4175274be993887fee9eeccf24a5dccf3ae68fd36c478cae74eea8e2625e28"
     },
     {
       "path": "README.md",
@@ -14,104 +14,34 @@
       "sha256": "1d8ef2c748023db6ed3ac4d1c1dab5697f82cb3318ae76a4bacf76b7b9fafe2b"
     },
     {
+      "path": "dist/host-modules.json",
+      "size": 1014,
+      "sha256": "a01477e8f3249e526b57a9b3e1fd59ffd2ad0d08d072dbda0c142fc1293dcc8a"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 56028,
+      "sha256": "eee9d1e3e3acda8b1a278a87e3184520fca2e5b2b40ef687eaae162802e9e6c2"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 157136,
+      "sha256": "f7e7f98906069895012fdb62144c341145f2a1fc0fe203545f2eb6c240c44170"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 21339,
+      "sha256": "d47535b3c2f739f8eca776c516416526f79c63a3c0e0ee21ed09381a5b9b5dc5"
+    },
+    {
       "path": "migrations/README.md",
       "size": 296,
       "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
     },
     {
-      "path": "origin.json",
-      "size": 3876,
-      "sha256": "c93f86e7712cc227c6ef6b73e85a9bbd71f42839de8713d143f668c37a4d32b4"
-    },
-    {
       "path": "solution.json",
-      "size": 1972,
-      "sha256": "9730d39457c4c2eed268a0b11ae3e3a38e5e46fc36f6dc2db4e00b12aa59f0b0"
-    },
-    {
-      "path": "src/contracts/academicWriter.ts",
-      "size": 4147,
-      "sha256": "983a4005e9d8bf72d55a33e366c1332a37a5c33a79031c81ad5c0a13f9d41b3a"
-    },
-    {
-      "path": "src/main/ipc/academicWriter.ipc.ts",
-      "size": 23948,
-      "sha256": "8f083c60e230916af7ac0c6722b670404345b4149653ab133d4deda1e84cd1bf"
-    },
-    {
-      "path": "src/main/services/academicWriter/academicWriter.test.ts",
-      "size": 7136,
-      "sha256": "9fde39ade1c5f2c18435ce79d539cf699e0795c34052e4144c682e5eaeb7cda2"
-    },
-    {
-      "path": "src/main/services/academicWriter/citationWords.json",
-      "size": 169,
-      "sha256": "b5f44fff400c417b77bd4ba78f5aba8a7ee9962ac20880c32bba5652a5fc4522"
-    },
-    {
-      "path": "src/main/services/academicWriter/citations.ts",
-      "size": 7801,
-      "sha256": "7dba5af9cd8d68291a30dcebf6d343028d430c97eff032f1534b2ca63e85ec56"
-    },
-    {
-      "path": "src/main/services/academicWriter/prompts.ts",
-      "size": 6345,
-      "sha256": "36ba168de004d13912e787d799845325be7163c4d0482aaa84df76832c6ad64b"
-    },
-    {
-      "path": "src/main/services/academicWriter/sources.ts",
-      "size": 16561,
-      "sha256": "6778a75658ea3b24f4d7dc8b7e0ce225370e412fcd1d6f8a9424955d6f8f2f45"
-    },
-    {
-      "path": "src/main/services/academicWriter/store.ts",
-      "size": 3101,
-      "sha256": "cc4f014a71f127f41ad692ee3cac14c1464a4f885845c4340035c85c5c869e44"
-    },
-    {
-      "path": "src/renderer/views/AcademicWriterWorkbenchView.vue",
-      "size": 14156,
-      "sha256": "b8c2ad45e62786787c60afa47550e8be08c150d97fb713dc0191ddff3e3d0e68"
-    },
-    {
-      "path": "src/renderer/workbenches/academic-writer/DocViewer.vue",
-      "size": 7707,
-      "sha256": "2e5516544b942925e58427e07ad8845c4ea417877549596288a2cdacedd73db8"
-    },
-    {
-      "path": "src/renderer/workbenches/academic-writer/ExportTab.vue",
-      "size": 11589,
-      "sha256": "a06a1025bd1d5cfda7391cb67edff2d7a7c4267115419d96ad218521ff39aeae"
-    },
-    {
-      "path": "src/renderer/workbenches/academic-writer/LibraryTab.vue",
-      "size": 13279,
-      "sha256": "e49fce6f1f435e42278987dc32e4145fb03d36e0ea772d457a27b69be1cfc8bc"
-    },
-    {
-      "path": "src/renderer/workbenches/academic-writer/OutlineTab.vue",
-      "size": 9421,
-      "sha256": "0290a83284105a90f18405b9dba3cca4f3c63ea986dab2b53dc5a622ba1253ed"
-    },
-    {
-      "path": "src/renderer/workbenches/academic-writer/SearchTab.vue",
-      "size": 16273,
-      "sha256": "efa9916c802b4bc26cbbcb045e2c03a82bdc2f97cf863484c6cb6eb5b0e8ffcb"
-    },
-    {
-      "path": "src/renderer/workbenches/academic-writer/SettingsTab.vue",
-      "size": 3972,
-      "sha256": "9a628353d625d6c132808aab6ada27bb35a2c00f6e0adae82a6e56e9a7f05836"
-    },
-    {
-      "path": "src/renderer/workbenches/academic-writer/WriteTab.vue",
-      "size": 10782,
-      "sha256": "98d72ac62752cfc5b7ba66b3e762cf29debf71bffc0bbbe0156f4b7af7418795"
-    },
-    {
-      "path": "src/renderer/workbenches/academic-writer/shared.ts",
-      "size": 6359,
-      "sha256": "15ab905da585c107908fdaa14899c3e1f9a17ca24ed6664d7e26615c36e58426"
+      "size": 2348,
+      "sha256": "22c7e3dd38bc8e4a7b613097e04a37aa700b4d59eaeafe5721642c96436ad1ff"
     }
   ]
 }

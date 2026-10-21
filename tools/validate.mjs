@@ -19,7 +19,7 @@ const warn = (id, msg) => warnings.push(`[${id}] ${msg}`);
 
 const KINDS = new Set(['workbench', 'runner', 'pipeline', 'kit']);
 /** 宿主 SDK 最高版本（qiye-app SOLUTION_HOST_API） */
-const MAX_HOST_API = 1;
+const MAX_HOST_API = 2;
 const RUNTIME_MODES = new Set(['bundled', 'dynamic']);
 /** 宿主公共数据：任何方案都不得声明为自己的数据（卸载清数据时会误删） */
 const HOST_DATA_ROOTS = new Set(['', '.', 'memory', 'conversations', 'totalclaw-agent', 'knowledge', 'workspaces', 'solutions', 'solution-packages', 'connectors', '.solution-data', '.solution-backups']);
@@ -97,14 +97,27 @@ for (const id of ids) {
     const p = m.runtime?.[k];
     if (p && !existsSync(join(dir, p))) err(id, `runtime.${k} 指向不存在的文件：${p}`);
   }
+  if (Array.isArray(m.distribution?.files)) {
+    if (!m.distribution.files.includes('solution.json')) err(id, 'distribution.files 必须包含 solution.json');
+    for (const k of ['renderer', 'main', 'style', 'hostModules']) {
+      const p = m.runtime?.entries?.[k];
+      if (p && !m.distribution.files.some((d) => (d.endsWith('/') ? p.startsWith(d) : p === d))) err(id, `runtime.entries.${k}（${p}）不在 distribution.files 发布范围内`);
+    }
+  }
+  if (m.runtime?.mode === 'dynamic' && m.compat?.hostApi >= 2) {
+    const hm = m.runtime.entries?.hostModules;
+    if (!hm || !existsSync(join(dir, hm))) err(id, 'hostApi=2 方案必须有 runtime.entries.hostModules（dist/host-modules.json）');
+    if (m.runtime.hotSwap !== false) err(id, 'hostApi=2 方案（存量工作台）必须 runtime.hotSwap=false');
+  }
   if (m.runtime?.mode === 'dynamic') {
     if (m.compat?.hostApi > MAX_HOST_API) err(id, `compat.hostApi=${m.compat.hostApi} 超过宿主 SDK 最高版本 ${MAX_HOST_API}`);
     const entries = m.runtime.entries || {};
     if (!entries.renderer && !entries.main) err(id, 'dynamic 方案必须声明 runtime.entries.renderer 或 runtime.entries.main');
-    if (m.kind === 'workbench' && !entries.renderer) err(id, 'dynamic 工作台必须有 runtime.entries.renderer');
+    if (m.kind === 'workbench' && !entries.renderer && !entries.main) err(id, 'dynamic 工作台至少要有 runtime.entries.renderer 或 main');
     if (entries.renderer && !/\.m?js$/.test(entries.renderer)) err(id, 'runtime.entries.renderer 必须是 .mjs/.js（ESM）');
+    if (entries.style && !/\.css$/.test(entries.style)) err(id, 'runtime.entries.style 必须是 .css');
     if (entries.main && !/\.c?js$/.test(entries.main)) err(id, 'runtime.entries.main 必须是 .cjs/.js（CommonJS）');
-    for (const [k, p] of Object.entries(entries)) {
+    for (const [k, p] of Object.entries(entries).filter(([, v]) => v)) {
       if (!existsSync(join(dir, p))) err(id, `runtime.entries.${k} 指向不存在的文件：${p}`);
     }
     if (entries.renderer && existsSync(join(dir, entries.renderer)) && /^\s*import\s[^;]*?from\s+['"]vue['"]/m.test(readFileSync(join(dir, entries.renderer), 'utf8'))) {
@@ -180,6 +193,18 @@ if (args.since) {
     if (!old) continue; // 新方案
     const oldVersion = JSON.parse(old).version;
     if (!semver.gt(m.version, oldVersion)) err(id, `文件有变化但版本未提升（${args.since}: ${oldVersion} → 当前 ${m.version}）`);
+  }
+}
+
+// 目录签名：配置了公钥（registry/solution-index.pub）时，index.json.sig 必须与当前 index.json 匹配。
+// 日常开发（没有私钥）只告警；发布（--require-signature，npm run release）必须通过。
+{
+  const pub = join(REPO_ROOT, 'registry', 'solution-index.pub');
+  const sig = join(REPO_ROOT, 'index.json.sig');
+  if (existsSync(pub)) {
+    const { verifyIndexSignature } = await import('../packages/installer/src/signature.mjs');
+    const ok = existsSync(sig) && verifyIndexSignature(readFileSync(join(REPO_ROOT, 'index.json')), Buffer.from(readFileSync(sig, 'utf8').trim(), 'base64'), readFileSync(pub, 'utf8'));
+    if (!ok) (args['require-signature'] ? err : warn)('sign', 'index.json.sig 缺失或与当前 index.json 不匹配：发布前运行 npm run release（需要私钥 TCSOL_SIGNING_KEY）');
   }
 }
 

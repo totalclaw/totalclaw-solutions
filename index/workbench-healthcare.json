@@ -1,12 +1,12 @@
 {
   "id": "workbench-healthcare",
-  "version": "1.0.0",
-  "treeDigest": "8fcf75aea30294edc822062aa8f6e127e70877beb2b01fc1544fe7dec2e7b435",
+  "version": "2.0.0",
+  "treeDigest": "4e529c5bdc1a10d410149552eeb8b4e25daf52193f43f33d290f0a3702ed0ed1",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 135,
-      "sha256": "78e9ecd5f4be219bd506647f3715c5f25f57d16aa4d3273f7998cdcfc0848723"
+      "size": 458,
+      "sha256": "41e12d6205fa9d35f47d2c83b353cfacceb1fec73bf9594b6d5d90e45c80f836"
     },
     {
       "path": "README.md",
@@ -14,39 +14,34 @@
       "sha256": "d571a881cf302a822b94664108b29774d91bf7ba70801fccf292222b75f452e5"
     },
     {
+      "path": "dist/host-modules.json",
+      "size": 786,
+      "sha256": "24e67da9522fa50e9b251a00cf76140aec675a3ae6a540d9d5f153dcf966b222"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 13102,
+      "sha256": "a292477303fff464da3416edfd42818d15bc036cc13ccb8e0cd1b97d342aa25a"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 116578,
+      "sha256": "450c53cf6e1809de110f8f5a03ef45e3e1e44d3d44caf7f36759e31d6e8cf7ae"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 15272,
+      "sha256": "9ec5733286407e412fee7708dc1a79d97e56ea9b2144df370be6b4a087ac06f5"
+    },
+    {
       "path": "migrations/README.md",
       "size": 296,
       "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
     },
     {
-      "path": "origin.json",
-      "size": 1708,
-      "sha256": "255c45e9f6c1c5e1f3d7e811307b6871b036285cd51c1aaa2d60f132f1e1c960"
-    },
-    {
       "path": "solution.json",
-      "size": 1546,
-      "sha256": "6f50e1ec2376cd9158a29edeedf51b2256e2068f3d68ae7b5fe6cfda57b30b80"
-    },
-    {
-      "path": "src/main/ipc/healthcareWorkbench.ipc.ts",
-      "size": 8694,
-      "sha256": "97fa68c47f139d2df7fef78dd42a4ca892f746a326f496fa69615867659c8ba1"
-    },
-    {
-      "path": "src/renderer/views/HealthcareWorkbenchView.vue",
-      "size": 114907,
-      "sha256": "23a3b2e63390dc4e03eb101829a49f65fcc3901b3054862d3e48328344a50fc8"
-    },
-    {
-      "path": "src/renderer/workbenches/healthcare/steps.test.ts",
-      "size": 7904,
-      "sha256": "4ce3320c69a40966df5a6fd4fa25d9cb782f81ae4aa508cac69c344c37f8a0a3"
-    },
-    {
-      "path": "src/renderer/workbenches/healthcare/steps.ts",
-      "size": 3684,
-      "sha256": "420d21a9223cb4c552981ec3152baf0ff713221ca77d73d208a717b3409427f1"
+      "size": 1954,
+      "sha256": "f46f768d5c7b0267f8375feb1142e5cb6e2d9c7a8b80894e1a637a72c4651b5f"
     }
   ]
 }

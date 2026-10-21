@@ -26,7 +26,9 @@
     {
       "path": "src/renderer/views/IndustryWatchView.vue",
       "from": "renderer/views/IndustryWatchView.vue"
-    },
+    }
+  ],
+  "sdkFiles": [
     {
       "path": "src/shared/marketIntel.ts",
       "from": "shared/marketIntel.ts"

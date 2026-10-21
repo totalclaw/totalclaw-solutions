@@ -1,12 +1,12 @@
 {
   "id": "workbench-invoice-agent",
-  "version": "1.0.0",
-  "treeDigest": "98cbbc376e7b6946c78a4b1e79bf64425dbde6b8ee4b71a947da99dfbfc2848d",
+  "version": "2.0.0",
+  "treeDigest": "933f2f43632f1bfbe46e4381078048d07e07ae1517468e4acc04bea468814285",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 123,
-      "sha256": "e8fdbf5fb09be1cdafe9e31600b2f3a1622cb2b58caeedf16eb5842a4658f73b"
+      "size": 446,
+      "sha256": "b60b8d228d0497aad6098f0a88e6415ad8b6db91f045775353970819fd474c03"
     },
     {
       "path": "README.md",
@@ -14,124 +14,29 @@
       "sha256": "6cec55d692eeff8699dbbf58eed23d0e5c525ca44db3519f9bb09b034128f88e"
     },
     {
+      "path": "dist/host-modules.json",
+      "size": 613,
+      "sha256": "792a84ca18f56cb48ef4ac78f0fce552078860ca8723915ed8b2b897d106dfd1"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 212696,
+      "sha256": "05cdbd3bde448395478acd13b6fe8a6b9115d7b844e8516c0286adc332b7b3c7"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 15675,
+      "sha256": "6db07d5b9617b50632049843aa2d1fd2cf3545023ae39697d9792ddce16ff139"
+    },
+    {
       "path": "migrations/README.md",
       "size": 296,
       "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
     },
     {
-      "path": "origin.json",
-      "size": 4365,
-      "sha256": "15b03916aceb28e783a1f06afc1b8dee52d3960a71da878ceb260cddd5896794"
-    },
-    {
-      "path": "resources/invoice-agent/etax-batch-template-V260401.xlsx",
-      "size": 657864,
-      "sha256": "5d52c2ba5addcfec95754bc5f6765184ca194993e5f46b6c4581ea2cb170c878"
-    },
-    {
       "path": "solution.json",
-      "size": 1790,
-      "sha256": "909fef4e1418f8d8aa333053e7961c0296c47eb689cbadce26d25c977acd1b83"
-    },
-    {
-      "path": "src/contracts/invoiceAgent.ts",
-      "size": 8791,
-      "sha256": "bba61fc635240851e9ff1015314167fe51015faa422804c80f1d8b169eba9171"
-    },
-    {
-      "path": "src/main/ipc/invoiceAgent.ipc.ts",
-      "size": 48553,
-      "sha256": "5f48382a545a8152b0c9b448e5d6584cfbe7287c05d145f9185b6043d029b3c2"
-    },
-    {
-      "path": "src/main/services/invoiceAgent/columnKeywords.json",
-      "size": 1871,
-      "sha256": "c341e9f264577c6d0423bfacef880ce5a55c62208ee08fac9b0639fe03772264"
-    },
-    {
-      "path": "src/main/services/invoiceAgent/etaxBrowser.ts",
-      "size": 9226,
-      "sha256": "35c0c28c595bdca1bacb3cd137ea9968b31712ea8f31b34401f09dfd8a538081"
-    },
-    {
-      "path": "src/main/services/invoiceAgent/etaxPage.test.ts",
-      "size": 7018,
-      "sha256": "06c46697737f02080fd91fb19f9ec22d8effa8ad28e9d087e6633f9fa692f597"
-    },
-    {
-      "path": "src/main/services/invoiceAgent/etaxPage.ts",
-      "size": 10111,
-      "sha256": "111aed1d2b67718e01820a7f2ae373515dfd9a61bb4697176f88a642331c4905"
-    },
-    {
-      "path": "src/main/services/invoiceAgent/logic.test.ts",
-      "size": 15791,
-      "sha256": "e6c8f8452aaad89c8cc0d33c520bd5f15172bd0a8559bbae4ae126149c2a83c9"
-    },
-    {
-      "path": "src/main/services/invoiceAgent/logic.ts",
-      "size": 32825,
-      "sha256": "68eba2185c33e21b855457d22377f437d412fa72b2159bdeab577942ec4af21a"
-    },
-    {
-      "path": "src/main/services/invoiceAgent/nuonuo.test.ts",
-      "size": 10397,
-      "sha256": "139469754cca5b4156678fddaf4474d683a8bc2e1a8ae826d53822d5b95434ac"
-    },
-    {
-      "path": "src/main/services/invoiceAgent/nuonuo.ts",
-      "size": 12997,
-      "sha256": "ad3df0818450663d785ddc58aaa31ef15d96ff5899bfaa99e7c43288f8659f54"
-    },
-    {
-      "path": "src/main/services/invoiceAgent/prompts.ts",
-      "size": 2386,
-      "sha256": "74a57398e17e769f87d138a0161e08102d59bdaa6e3655f3cb2bacea91e2d441"
-    },
-    {
-      "path": "src/main/services/invoiceAgent/store.ts",
-      "size": 4503,
-      "sha256": "0ccd7cdddfa1e992ca4e6c5836488ba808f113d0851193c14a9f922b248264b7"
-    },
-    {
-      "path": "src/main/services/invoiceAgent/template.test.ts",
-      "size": 8353,
-      "sha256": "32a4412c4b24361530694e5d3aab6cca7b15d147d0d6f909ac17a02f097cb4ff"
-    },
-    {
-      "path": "src/main/services/invoiceAgent/template.ts",
-      "size": 6758,
-      "sha256": "4aa4a05c7310324624c68b526c6e0e10f7b993b37a86f3d661b7ffd4663b876f"
-    },
-    {
-      "path": "src/renderer/views/InvoiceAgentWorkbenchView.vue",
-      "size": 11233,
-      "sha256": "d356b1c14da81ca98ee1efa88608654fdda6ee20c56ffa8febdc8024c83d748f"
-    },
-    {
-      "path": "src/renderer/workbenches/invoice-agent/ArchiveTab.vue",
-      "size": 7602,
-      "sha256": "46c68e612a08e5ef2439a327c06b19e49da2c0c0b4ab321ac50a35b5ba2c80ac"
-    },
-    {
-      "path": "src/renderer/workbenches/invoice-agent/IssueTab.vue",
-      "size": 57084,
-      "sha256": "98622ab2205c2c1d716f91e4f14c420d9fee165eae0a4bf42dd54c8f040f0fb4"
-    },
-    {
-      "path": "src/renderer/workbenches/invoice-agent/LedgerTab.vue",
-      "size": 8072,
-      "sha256": "fde823042129fa7561d5a5069569918754aa70fedc7619235b1b5a3249d3d781"
-    },
-    {
-      "path": "src/renderer/workbenches/invoice-agent/SettingsTab.vue",
-      "size": 7393,
-      "sha256": "0f959c2e9f7b60ac9d61052ce08d7a0015669e18e98b623c0a4f1e7282c8a1b3"
-    },
-    {
-      "path": "src/renderer/workbenches/invoice-agent/shared.ts",
-      "size": 3009,
-      "sha256": "7d0140badc60fa563d9b87e922d663e1f2f1e9e9a1003b49416102232db62d30"
+      "size": 2132,
+      "sha256": "0cadee4a66e883d365149648097ce9bdd7d8216d736a19b83731d7606295c347"
     }
   ]
 }

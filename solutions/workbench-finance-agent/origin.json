@@ -128,6 +128,32 @@
       "from": "main/services/financeAgent/apiReceiver.ts"
     },
     {
+      "path": "src/main/services/financeAgent/contract.ts",
+      "from": "main/services/financeAgent/contract.ts"
+    },
+    {
+      "path": "src/main/services/financeAgent/contractRules.json",
+      "from": "main/services/financeAgent/contractRules.json"
+    },
+    {
+      "path": "src/main/services/financeAgent/logic.test.ts",
+      "from": "main/services/financeAgent/logic.test.ts"
+    },
+    {
+      "path": "src/main/services/financeAgent/prompts.ts",
+      "from": "main/services/financeAgent/prompts.ts"
+    },
+    {
+      "path": "src/main/services/financeAgent/reconcile.ts",
+      "from": "main/services/financeAgent/reconcile.ts"
+    },
+    {
+      "path": "src/main/services/financeAgent/tables.ts",
+      "from": "main/services/financeAgent/tables.ts"
+    }
+  ],
+  "sdkFiles": [
+    {
       "path": "src/main/services/financeAgent/budget.ts",
       "from": "main/services/financeAgent/budget.ts"
     },
@@ -146,14 +172,6 @@
     {
       "path": "src/main/services/financeAgent/common.ts",
       "from": "main/services/financeAgent/common.ts"
-    },
-    {
-      "path": "src/main/services/financeAgent/contract.ts",
-      "from": "main/services/financeAgent/contract.ts"
-    },
-    {
-      "path": "src/main/services/financeAgent/contractRules.json",
-      "from": "main/services/financeAgent/contractRules.json"
     },
     {
       "path": "src/main/services/financeAgent/cost.ts",
@@ -176,20 +194,8 @@
       "from": "main/services/financeAgent/knowledge.ts"
     },
     {
-      "path": "src/main/services/financeAgent/logic.test.ts",
-      "from": "main/services/financeAgent/logic.test.ts"
-    },
-    {
-      "path": "src/main/services/financeAgent/prompts.ts",
-      "from": "main/services/financeAgent/prompts.ts"
-    },
-    {
       "path": "src/main/services/financeAgent/radicalMap.json",
       "from": "main/services/financeAgent/radicalMap.json"
-    },
-    {
-      "path": "src/main/services/financeAgent/reconcile.ts",
-      "from": "main/services/financeAgent/reconcile.ts"
     },
     {
       "path": "src/main/services/financeAgent/reportMap.json",
@@ -206,10 +212,6 @@
     {
       "path": "src/main/services/financeAgent/store.ts",
       "from": "main/services/financeAgent/store.ts"
-    },
-    {
-      "path": "src/main/services/financeAgent/tables.ts",
-      "from": "main/services/financeAgent/tables.ts"
     },
     {
       "path": "src/main/services/financeAgent/tax.ts",

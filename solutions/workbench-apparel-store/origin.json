@@ -95,7 +95,9 @@
     {
       "path": "src/renderer/workbenches/apparel-store/tryonWatchdog.test.ts",
       "from": "renderer/workbenches/apparel-store/tryonWatchdog.test.ts"
-    },
+    }
+  ],
+  "sdkFiles": [
     {
       "path": "src/main/ipc/apparelStore.ipc.ts",
       "from": "main/ipc/apparelStore.ipc.ts"

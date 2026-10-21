@@ -9,6 +9,9 @@
 //   res:<p>  = <qiye>/resources/<p>             →  solutions/<id>/resources/<p>
 // 保持相对 apps/desktop-shell/src 的原路径，方案内部的相对 import 不变。
 // 已存在的 solution.json 只刷新元数据，保留 version / data.schemaVersion（版本由开发者手动提升）。
+//
+// ⚠ 切换日之后方案源码只在方案仓库维护，本工具仅用于迁移期 / 历史追溯：
+//   会跳过 qiye-app apps/desktop-shell/solution-sdk.json 里的宿主 SDK 文件，也不再生成 kit。
 import { execFileSync } from 'node:child_process';
 import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { basename, dirname, join, posix, resolve } from 'node:path';
@@ -159,11 +162,16 @@ function expandSeeds(seeds) {
   return { files: files.filter((f) => (seen.has(f.abs) ? false : seen.add(f.abs))), missing };
 }
 
+const sdkFile = join(APP, 'solution-sdk.json');
+const sdkSet = existsSync(sdkFile) ? new Set(readJson(sdkFile).files.map((f) => join(QIYE, f))) : null;
 const entries = [
-  ...Object.entries(map.kits).map(([id, cfg]) => ({ id, kind: 'kit', cfg })),
+  ...(sdkSet ? [] : Object.entries(map.kits).map(([id, cfg]) => ({ id, kind: 'kit', cfg }))),
   ...Object.entries(map.solutions).map(([id, cfg]) => ({ id, kind: 'workbench', cfg })),
 ];
-for (const e of entries) Object.assign(e, expandSeeds(e.cfg.seeds));
+for (const e of entries) {
+  Object.assign(e, expandSeeds(e.cfg.seeds));
+  if (sdkSet) e.files = e.files.filter((f) => !sdkSet.has(f.abs));
+}
 
 // 所有权：源文件绝对路径 → 方案 id（用于跨方案依赖识别）
 const owner = new Map();

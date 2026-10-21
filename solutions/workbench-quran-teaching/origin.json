@@ -51,58 +51,6 @@
   "largeAssets": [],
   "files": [
     {
-      "path": "src/renderer/workbenches/quran-teaching/ManagerDashboard.vue",
-      "from": "renderer/workbenches/quran-teaching/ManagerDashboard.vue"
-    },
-    {
-      "path": "src/renderer/workbenches/quran-teaching/QtGraph.vue",
-      "from": "renderer/workbenches/quran-teaching/QtGraph.vue"
-    },
-    {
-      "path": "src/renderer/workbenches/quran-teaching/QtProgress.test.ts",
-      "from": "renderer/workbenches/quran-teaching/QtProgress.test.ts"
-    },
-    {
-      "path": "src/renderer/workbenches/quran-teaching/QtProgress.vue",
-      "from": "renderer/workbenches/quran-teaching/QtProgress.vue"
-    },
-    {
-      "path": "src/renderer/workbenches/quran-teaching/QtQuestion.vue",
-      "from": "renderer/workbenches/quran-teaching/QtQuestion.vue"
-    },
-    {
-      "path": "src/renderer/workbenches/quran-teaching/QtStep.vue",
-      "from": "renderer/workbenches/quran-teaching/QtStep.vue"
-    },
-    {
-      "path": "src/renderer/workbenches/quran-teaching/QtVerse.vue",
-      "from": "renderer/workbenches/quran-teaching/QtVerse.vue"
-    },
-    {
-      "path": "src/renderer/workbenches/quran-teaching/QuranPlatform.vue",
-      "from": "renderer/workbenches/quran-teaching/QuranPlatform.vue"
-    },
-    {
-      "path": "src/renderer/workbenches/quran-teaching/StudentPortal.vue",
-      "from": "renderer/workbenches/quran-teaching/StudentPortal.vue"
-    },
-    {
-      "path": "src/renderer/workbenches/quran-teaching/TeacherFlow.vue",
-      "from": "renderer/workbenches/quran-teaching/TeacherFlow.vue"
-    },
-    {
-      "path": "src/renderer/workbenches/quran-teaching/shared.ts",
-      "from": "renderer/workbenches/quran-teaching/shared.ts"
-    },
-    {
-      "path": "src/renderer/workbenches/quran-teaching/styles.css",
-      "from": "renderer/workbenches/quran-teaching/styles.css"
-    },
-    {
-      "path": "src/renderer/workbenches/quran-teaching/teacherSteps.test.ts",
-      "from": "renderer/workbenches/quran-teaching/teacherSteps.test.ts"
-    },
-    {
       "path": "src/main/ipc/quranTeaching.ipc.ts",
       "from": "main/ipc/quranTeaching.ipc.ts"
     },
@@ -239,10 +187,6 @@
       "from": "main/services/quranTeaching/videoPipeline.test.ts"
     },
     {
-      "path": "src/shared/quranPaperVariant.ts",
-      "from": "shared/quranPaperVariant.ts"
-    },
-    {
       "path": "resources/quran-demo-corpus/00_README.txt",
       "from": "resources/quran-demo-corpus/00_README.txt"
     },
@@ -321,6 +265,64 @@
     {
       "path": "resources/quran-demo-videos/quran-demo-103-ar.mp4",
       "from": "resources/quran-demo-videos/quran-demo-103-ar.mp4"
+    }
+  ],
+  "sdkFiles": [
+    {
+      "path": "src/renderer/workbenches/quran-teaching/ManagerDashboard.vue",
+      "from": "renderer/workbenches/quran-teaching/ManagerDashboard.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/QtGraph.vue",
+      "from": "renderer/workbenches/quran-teaching/QtGraph.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/QtProgress.test.ts",
+      "from": "renderer/workbenches/quran-teaching/QtProgress.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/QtProgress.vue",
+      "from": "renderer/workbenches/quran-teaching/QtProgress.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/QtQuestion.vue",
+      "from": "renderer/workbenches/quran-teaching/QtQuestion.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/QtStep.vue",
+      "from": "renderer/workbenches/quran-teaching/QtStep.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/QtVerse.vue",
+      "from": "renderer/workbenches/quran-teaching/QtVerse.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/QuranPlatform.vue",
+      "from": "renderer/workbenches/quran-teaching/QuranPlatform.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/StudentPortal.vue",
+      "from": "renderer/workbenches/quran-teaching/StudentPortal.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/TeacherFlow.vue",
+      "from": "renderer/workbenches/quran-teaching/TeacherFlow.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/shared.ts",
+      "from": "renderer/workbenches/quran-teaching/shared.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/styles.css",
+      "from": "renderer/workbenches/quran-teaching/styles.css"
+    },
+    {
+      "path": "src/renderer/workbenches/quran-teaching/teacherSteps.test.ts",
+      "from": "renderer/workbenches/quran-teaching/teacherSteps.test.ts"
+    },
+    {
+      "path": "src/shared/quranPaperVariant.ts",
+      "from": "shared/quranPaperVariant.ts"
     }
   ]
 }

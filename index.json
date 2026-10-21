@@ -21,10 +21,10 @@
       "icon": "icon-solutions",
       "order": 10,
       "description": "导入教材一键生成教案、学生要点与小测；启动校内服务，学生扫码用浏览器学习，进展实时回看。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": false,
@@ -32,16 +32,26 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/edu-hub",
         "renderer": "src/renderer/views/EduHubWorkbenchView.vue",
-        "main": "src/main/ipc/eduHub.ipc.ts"
+        "main": "src/main/ipc/eduHub.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/edu-hub",
+            "name": "EduHubWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-digital-human",
-        "workbench-quran-teaching"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -53,11 +63,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-edu-hub",
-      "fileCount": 20,
-      "size": 380836,
-      "treeDigest": "7aaf456769e04819feab49bc5b8eafdaee117cbe4a7f1506f80f3d708b107d43",
+      "fileCount": 8,
+      "size": 227401,
+      "treeDigest": "11ddb2ceffc239aa4f79ccd76d236de4d5e3967dde376a2bf665911aae2cfec2",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-edu-hub.json"
     },
     {
@@ -69,10 +79,10 @@
       "icon": "icon-solutions",
       "order": 20,
       "description": "客户需求 → AI 产品经理(选项式头脑风暴) → AI 开发(工作区写代码) → 代码评审 → 测试 → 运维，逐节点真执行、实时看状态与文件改动、缺料随时暂停补充。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": false,
@@ -80,15 +90,26 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/rd-workflow",
         "renderer": "src/renderer/views/RdWorkflowWorkbenchView.vue",
-        "main": "src/main/ipc/rdWorkflow.ipc.ts"
+        "main": "src/main/ipc/rdWorkflow.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/rd-workflow",
+            "name": "RdWorkflowWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-service-settlement"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [],
@@ -98,11 +119,11 @@
       },
       "capabilities": [],
       "path": "solutions/rd-workflow",
-      "fileCount": 10,
-      "size": 87747,
-      "treeDigest": "b96ba103d167f101e3a337779c1ac3a69e6cf3de1c30163f00b12f74fcf1a588",
+      "fileCount": 8,
+      "size": 92146,
+      "treeDigest": "2b20a848dcd9d24e777913308fff0fe0d78bff22192e92d5d5687ba3ee98492c",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/rd-workflow.json"
     },
     {
@@ -116,10 +137,10 @@
       "icon": "icon-solutions",
       "order": 30,
       "description": "多 Agent 协同备课、实训辅导、学情分析、教学配图与教师审核。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -127,11 +148,24 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/education",
         "renderer": "src/renderer/views/EducationWorkbenchView.vue",
-        "main": "src/main/ipc/educationWorkbench.ipc.ts"
+        "main": "src/main/ipc/educationWorkbench.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/education",
+            "name": "EducationWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
       "dependsOn": [],
       "data": {
@@ -144,10 +178,10 @@
       "capabilities": [],
       "path": "solutions/workbench-education",
       "fileCount": 8,
-      "size": 98991,
-      "treeDigest": "4db5d8b27e59fd7b473c4f3594abcc8e326e0e720e8c457842d191a9e25016d4",
+      "size": 141253,
+      "treeDigest": "4638ba85d8e632e07bb0cf6d30209791de5a6a44a667df09ade73436eb58cade",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-education.json"
     },
     {
@@ -162,10 +196,10 @@
       "icon": "icon-solutions",
       "order": 40,
       "description": "只依据已审批的宣教资料回答，每条结论标注来源页码，教法裁决与超纲问题自动拒答并转人工。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -173,15 +207,26 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/grounded-qa",
         "renderer": "src/renderer/views/GroundedQaWorkbenchView.vue",
-        "main": "src/main/ipc/groundedQa.ipc.ts"
+        "main": "src/main/ipc/groundedQa.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/grounded-qa",
+            "name": "GroundedQaWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-edu-hub"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -191,11 +236,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-grounded-qa",
-      "fileCount": 12,
-      "size": 126635,
-      "treeDigest": "b61184245000837239739734ab9a96de184c2202d4780fb27d59b160b1939b0b",
+      "fileCount": 8,
+      "size": 65854,
+      "treeDigest": "e7b2299b901a9ece39b32f4b7a301d4b4e9f23e3c4333d8215dd65a1b3bfbf5f",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-grounded-qa.json"
     },
     {
@@ -209,10 +254,10 @@
       "icon": "icon-solutions",
       "order": 50,
       "description": "患者服务、院内工单、隐私保护、服务质量与人工复核，不涉及诊断治疗。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -220,15 +265,26 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/healthcare",
         "renderer": "src/renderer/views/HealthcareWorkbenchView.vue",
-        "main": "src/main/ipc/healthcareWorkbench.ipc.ts"
+        "main": "src/main/ipc/healthcareWorkbench.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/healthcare",
+            "name": "HealthcareWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "kit-automation-ops"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [],
@@ -238,11 +294,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-healthcare",
-      "fileCount": 9,
-      "size": 139735,
-      "treeDigest": "8fcf75aea30294edc822062aa8f6e127e70877beb2b01fc1544fe7dec2e7b435",
+      "fileCount": 8,
+      "size": 149307,
+      "treeDigest": "4e529c5bdc1a10d410149552eeb8b4e25daf52193f43f33d290f0a3702ed0ed1",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-healthcare.json"
     },
     {
@@ -256,10 +312,10 @@
       "icon": "icon-solutions",
       "order": 60,
       "description": "多源数据归一、销售与库存对账、采购到货、补货调拨和出入库执行。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -267,15 +323,26 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/warehouse",
         "renderer": "src/renderer/views/WarehouseWorkbenchView.vue",
-        "main": "src/main/ipc/warehouseWorkbench.ipc.ts"
+        "main": "src/main/ipc/warehouseWorkbench.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/warehouse",
+            "name": "WarehouseWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "kit-automation-ops"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [],
@@ -285,11 +352,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-warehouse",
-      "fileCount": 13,
-      "size": 156019,
-      "treeDigest": "2bb3adea6ebc07a082c9b7862743d8ae64cd1340259fa8708534cfb4de733a20",
+      "fileCount": 8,
+      "size": 190982,
+      "treeDigest": "b8efd3eb8c35cc16f16172e3ac432d15c17d5645e4b23745ea33b47bf34e3dc3",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-warehouse.json"
     },
     {
@@ -303,10 +370,10 @@
       "icon": "icon-solutions",
       "order": 70,
       "description": "Facebook、Instagram、Google Ads 与 YouTube 全链路投放、复盘和账户优化。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -314,16 +381,25 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/global-ads",
         "renderer": "src/renderer/views/GlobalAdsWorkbenchView.vue",
-        "main": "src/main/ipc/globalAdsWorkbench.ipc.ts"
+        "main": null,
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/global-ads",
+            "name": "GlobalAdsWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "kit-automation-ops",
-        "workbench-charity-content"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -336,11 +412,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-global-ads",
-      "fileCount": 14,
-      "size": 446091,
-      "treeDigest": "ea4bc00cedc3dc3a674f3f8ec98c79232d8f00ed082734a8a60ba26da89518ae",
+      "fileCount": 7,
+      "size": 417688,
+      "treeDigest": "489f7b8af551018d5242d4687114be51fc17e86675cfa1592fe1bf98759304ed",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-global-ads.json"
     },
     {
@@ -354,10 +430,10 @@
       "icon": "icon-solutions",
       "order": 80,
       "description": "从询价收件、产品匹配、供应与外协到可见公式的报价与审批文件，全程留痕。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -365,15 +441,24 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/rfq-quote",
         "renderer": "src/renderer/views/RfqQuoteWorkbenchView.vue",
-        "main": null
+        "main": null,
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/rfq-quote",
+            "name": "RfqQuoteWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "kit-saudi-workbench"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [],
@@ -382,10 +467,10 @@
       "capabilities": [],
       "path": "solutions/workbench-rfq-quote",
       "fileCount": 6,
-      "size": 3888,
-      "treeDigest": "e44e9cfa81b7c737aa2fd5239d177179cef340e0d769bf20c666362f51055bd8",
+      "size": 4311,
+      "treeDigest": "968f0b959c97b6a8095ca394318cce29b9935f77414baf1cd343c4e33c085ecb",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-rfq-quote.json"
     },
     {
@@ -399,10 +484,10 @@
       "icon": "icon-solutions",
       "order": 90,
       "description": "多来源标书去重、Addendum 差异、硬性门槛与能力匹配，输出可拍板的 Bid/No-Bid 建议。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -410,15 +495,24 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/bid-decision",
         "renderer": "src/renderer/views/BidDecisionWorkbenchView.vue",
-        "main": null
+        "main": null,
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/bid-decision",
+            "name": "BidDecisionWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "kit-saudi-workbench"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [],
@@ -427,10 +521,10 @@
       "capabilities": [],
       "path": "solutions/workbench-bid-decision",
       "fileCount": 6,
-      "size": 3938,
-      "treeDigest": "1291ea26ba36dfc58ef56b729c4302f1e255967321789b746eab86fd4efe21ad",
+      "size": 4352,
+      "treeDigest": "45fd740b80310201fd931dc673e56b6826bbfe5cd0572ea3968b3c1d7e2a1910",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-bid-decision.json"
     },
     {
@@ -444,10 +538,10 @@
       "icon": "icon-solutions",
       "order": 100,
       "description": "填投标目标与目标投标网站，自动抓公告拆成逐条要求；模板可上传也可从知识库找；公司资料取自知识库，逐章成文后自检废标风险，导出 Word / PDF。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -455,15 +549,26 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/bid-writer",
         "renderer": "src/renderer/views/BidWriterWorkbenchView.vue",
-        "main": "src/main/ipc/bidWriter.ipc.ts"
+        "main": "src/main/ipc/bidWriter.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/bid-writer",
+            "name": "BidWriterWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-service-settlement"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -473,11 +578,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-bid-writer",
-      "fileCount": 26,
-      "size": 295925,
-      "treeDigest": "3bc9d3b6763bb96255db8cd58ac64ef4d07bdddb4207757533bb40b4b32b97d2",
+      "fileCount": 8,
+      "size": 274841,
+      "treeDigest": "78a12addc504a2b1559716fc33fca7179b645a96f401ca6cdce3a5e818ce8e2e",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-bid-writer.json"
     },
     {
@@ -491,10 +596,10 @@
       "icon": "icon-solutions",
       "order": 110,
       "description": "邮件、网页表单工单与 WhatsApp 三渠道统一收件，检索获准来源后产出简短回复与七段咨询报告。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -502,15 +607,24 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/advisory-report",
         "renderer": "src/renderer/views/AdvisoryReportWorkbenchView.vue",
-        "main": null
+        "main": null,
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/advisory-report",
+            "name": "AdvisoryReportWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "kit-saudi-workbench"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [],
@@ -519,10 +633,10 @@
       "capabilities": [],
       "path": "solutions/workbench-advisory-report",
       "fileCount": 6,
-      "size": 4153,
-      "treeDigest": "b58c34471b1fae76dc5e408fa8b86094d28b4acb485adb4a08ed6ba93855b369",
+      "size": 4486,
+      "treeDigest": "3868bd28f046fe2734f289151356119d66b67c61046013e7d5a4dea2fd84991a",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-advisory-report.json"
     },
     {
@@ -536,10 +650,10 @@
       "icon": "icon-solutions",
       "order": 120,
       "description": "加密与美股 7×24 情报流：gate.io 行情异动与多源新闻快讯同一条时间线，每条可回溯原文，随时 AI 研判。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -547,11 +661,23 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/industry-watch",
         "renderer": "src/renderer/views/IndustryWatchView.vue",
-        "main": null
+        "main": null,
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/industry-watch",
+            "name": "IndustryWatch"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "hostModules": "dist/host-modules.json"
+        }
       },
       "dependsOn": [],
       "data": {
@@ -563,11 +689,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-industry-watch",
-      "fileCount": 8,
-      "size": 71448,
-      "treeDigest": "4830cdafdd45d08d57de9da4bc76bd935f1853991880ef55e282c99efda8e64f",
+      "fileCount": 7,
+      "size": 53816,
+      "treeDigest": "8f28c49b8c510251c80f098f99dc1c7e76b74e7827f4eef6893c0d43e8a8966a",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-industry-watch.json"
     },
     {
@@ -581,10 +707,10 @@
       "icon": "icon-solutions",
       "order": 130,
       "description": "文稿或 LLM 输出交给数字人念出来：离线出成片，或起一路实时会话做直播与教课。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": false,
@@ -592,11 +718,24 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/digital-human",
         "renderer": "src/renderer/views/DigitalHumanWorkbenchView.vue",
-        "main": "src/main/ipc/digitalHuman.ipc.ts"
+        "main": "src/main/ipc/digitalHuman.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/digital-human",
+            "name": "DigitalHumanWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
       "dependsOn": [],
       "data": {
@@ -606,11 +745,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-digital-human",
-      "fileCount": 12,
-      "size": 115689,
-      "treeDigest": "b6d742ff5901d31fa9abcdb786d1f26b799153325424cfbe11d6ea7d7624a96a",
+      "fileCount": 8,
+      "size": 106393,
+      "treeDigest": "5023476334adc605ee232adf18b2a7585ebdcae593c41339710761030079275b",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-digital-human.json"
     },
     {
@@ -624,10 +763,10 @@
       "icon": "icon-solutions",
       "order": 140,
       "description": "多邮箱接管，覆盖平台运营、客户开发、询盘处理、客户背调、跟进、内容生产、网站社媒、报价、订单推进与数据整理十项日常工作。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -635,16 +774,26 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/foreign-trade",
         "renderer": "src/renderer/views/ForeignTradeWorkbenchView.vue",
-        "main": "src/main/ipc/foreignTrade.ipc.ts"
+        "main": "src/main/ipc/foreignTrade.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/foreign-trade",
+            "name": "ForeignTradeWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-bid-writer",
-        "workbench-service-settlement"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -656,9 +805,9 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-foreign-trade",
-      "fileCount": 1981,
-      "size": 21523685,
-      "treeDigest": "3749a898ca11a4fb0a5fca46cdba493cbd2b27dafb08a1bd8ee53413bb686c62",
+      "fileCount": 8,
+      "size": 909586,
+      "treeDigest": "78be5d81a6cbd59a16a4a2968358f74f62b61774a245826c5d4126c516c79fcd",
       "largeAssets": [
         {
           "path": "resources/bundled-skills/foreign-trade/ft-trade-knowledge-base/references/领英获客.pdf",
@@ -667,7 +816,7 @@
           "origin": "resources/bundled-skills/foreign-trade/ft-trade-knowledge-base/references/领英获客.pdf"
         }
       ],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-foreign-trade.json"
     },
     {
@@ -681,10 +830,10 @@
       "icon": "icon-solutions",
       "order": 150,
       "description": "内置 PubMed、Europe PMC、arXiv、Crossref、OpenAlex 检索与知网、万方等学术网站，抓取文献、精读、拟提纲、分节成稿，接人机双写编辑器一起改论文。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -692,16 +841,26 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/academic-writer",
         "renderer": "src/renderer/views/AcademicWriterWorkbenchView.vue",
-        "main": "src/main/ipc/academicWriter.ipc.ts"
+        "main": "src/main/ipc/academicWriter.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/academic-writer",
+            "name": "AcademicWriterWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-foreign-trade",
-        "workbench-service-settlement"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -713,11 +872,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-academic-writer",
-      "fileCount": 22,
-      "size": 170279,
-      "treeDigest": "26ce79e0d955d3456e29da3b45ef98e45a9ec6b68cbebe380734e9fcf32f83c7",
+      "fileCount": 8,
+      "size": 239873,
+      "treeDigest": "1d2d71f9f87c30c6628358959794072813e002f6b776f32a82fb1df07a7db184",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-academic-writer.json"
     },
     {
@@ -731,10 +890,10 @@
       "icon": "icon-solutions",
       "order": 160,
       "description": "凭证、税务申报、费用报销、往来对账、财务报表、风险巡检、预算、成本、合同审核、财税问答十个智能体，多账套持续跟进。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -742,16 +901,26 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/finance-agent",
         "renderer": "src/renderer/views/FinanceAgentWorkbenchView.vue",
-        "main": "src/main/ipc/financeAgent.ipc.ts"
+        "main": "src/main/ipc/financeAgent.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/finance-agent",
+            "name": "FinanceAgentWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-foreign-trade",
-        "workbench-service-settlement"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -763,11 +932,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-finance-agent",
-      "fileCount": 50,
-      "size": 593679,
-      "treeDigest": "43673fd0ab0e0a137c0ee9d7d59e7474257f09e13753aeb58502f40fe3fa25fc",
+      "fileCount": 8,
+      "size": 772861,
+      "treeDigest": "0363c3948da92449f5936efbea6f5e4d94325397872ceb376bb814e2bcdfeaa6",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-finance-agent.json"
     },
     {
@@ -781,10 +950,10 @@
       "icon": "icon-solutions",
       "order": 170,
       "description": "AI 一键换装：顾客手机扫码或店员电脑上传照片，自选背景、姿势、发型生成试穿图，手机电脑同时查看；试穿码到店核销，试穿数据看板指导主推款。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -792,17 +961,25 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/apparel-store",
         "renderer": "src/renderer/views/ApparelStoreWorkbenchView.vue",
-        "main": "src/main/ipc/apparelStore.ipc.ts"
+        "main": null,
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/apparel-store",
+            "name": "ApparelStoreWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-bid-writer",
-        "workbench-foreign-trade",
-        "workbench-service-settlement"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -814,11 +991,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-apparel-store",
-      "fileCount": 27,
-      "size": 270659,
-      "treeDigest": "6abbf70f8be544d06672cea5c9f60e9788b2e7d20d92d6b69bf3c90dc3dadac5",
+      "fileCount": 7,
+      "size": 215306,
+      "treeDigest": "39436a471d2876d66c073f69fbc0ee340f26255ea2278effe7f7c443078d01e2",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-apparel-store.json"
     },
     {
@@ -832,10 +1009,10 @@
       "icon": "icon-solutions",
       "order": 180,
       "description": "短视频生成并发抖音、快手、小红书、视频号；数字人出镜介绍企业；商品图文自动上下架；收银与财务数据自动取数、统计并推送经营日报。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -843,19 +1020,26 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/biz-automation",
         "renderer": "src/renderer/views/BizAutomationWorkbenchView.vue",
-        "main": "src/main/ipc/bizAutomation.ipc.ts"
+        "main": "src/main/ipc/bizAutomation.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/biz-automation",
+            "name": "BizAutomationWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-apparel-store",
-        "workbench-charity-content",
-        "workbench-digital-human",
-        "workbench-foreign-trade",
-        "workbench-service-settlement"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -867,11 +1051,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-biz-automation",
-      "fileCount": 25,
-      "size": 336197,
-      "treeDigest": "74139e088a6664929ee3a8f689326b5f70fc8bd002aca9f3650ebb211cc0b9a3",
+      "fileCount": 8,
+      "size": 455931,
+      "treeDigest": "467816736f54bd52b802364072f2d47555a9b7fb027a553e96637be53fcbb13d",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-biz-automation.json"
     },
     {
@@ -885,10 +1069,10 @@
       "icon": "icon-solutions",
       "order": 190,
       "description": "拿着付款单或一张开票申请表（很多行、很多家购买方）批量开票：自动识别列、逐行校验税号与金额、按规则组票拆票算税，生成电子税务局批量导入文件或由数字员工逐张填写，台账自动回填发票号码。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -896,15 +1080,25 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/invoice-agent",
         "renderer": "src/renderer/views/InvoiceAgentWorkbenchView.vue",
-        "main": "src/main/ipc/invoiceAgent.ipc.ts"
+        "main": null,
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/invoice-agent",
+            "name": "InvoiceAgentWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-service-settlement"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -916,11 +1110,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-invoice-agent",
-      "fileCount": 26,
-      "size": 939696,
-      "treeDigest": "98cbbc376e7b6946c78a4b1e79bf64425dbde6b8ee4b71a947da99dfbfc2848d",
+      "fileCount": 7,
+      "size": 233143,
+      "treeDigest": "933f2f43632f1bfbe46e4381078048d07e07ae1517468e4acc04bea468814285",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-invoice-agent.json"
     },
     {
@@ -934,10 +1128,10 @@
       "icon": "icon-solutions",
       "order": 200,
       "description": "导入 OA、费控、CSS 三个系统的流程报表，按时效规则算出每个流程和每位审核人是否超时，自动出时效看板、周报和月度分析报告，并跟进在途流程和改善建议。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -945,16 +1139,26 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/flow-sla",
         "renderer": "src/renderer/views/FlowSlaWorkbenchView.vue",
-        "main": "src/main/ipc/flowSla.ipc.ts"
+        "main": "src/main/ipc/flowSla.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/flow-sla",
+            "name": "FlowSlaWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-charity-content",
-        "workbench-service-settlement"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -966,11 +1170,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-flow-sla",
-      "fileCount": 34,
-      "size": 606151,
-      "treeDigest": "5087505fa4d17165badcef924b261c50e1b86270cafe53003a3321e6e7ae6cd1",
+      "fileCount": 8,
+      "size": 689423,
+      "treeDigest": "a9d21c68407b7d8432a25e85e198067e7a781d6dca4ddfcae6dda8ccfbf28435",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-flow-sla.json"
     },
     {
@@ -984,10 +1188,10 @@
       "icon": "icon-solutions",
       "order": 210,
       "description": "投喂配件历史发货、采购提前期、采购在途和实时库存四类数据，算出每个配件是呆滞、冗余、健康、将缺货还是已缺货，给出处理建议和补库清单，人工检验后转采购订单，并可定时循环运算预警。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -995,15 +1199,26 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/parts-alert",
         "renderer": "src/renderer/views/PartsAlertWorkbenchView.vue",
-        "main": "src/main/ipc/partsAlert.ipc.ts"
+        "main": "src/main/ipc/partsAlert.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/parts-alert",
+            "name": "PartsAlertWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-service-settlement"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -1015,11 +1230,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-parts-alert",
-      "fileCount": 32,
-      "size": 296024,
-      "treeDigest": "475f17f84f1b285dd369520d8743a24b2c35ad9875383a9e8024afedeb519c39",
+      "fileCount": 8,
+      "size": 297869,
+      "treeDigest": "3263f3bcd651867ccf20b87cba02a04dc6cbe9106e39641c8d06a2ee7a365b51",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-parts-alert.json"
     },
     {
@@ -1033,10 +1248,10 @@
       "icon": "icon-solutions",
       "order": 220,
       "description": "校级 AI 中心一体化平台：统一校园知识库，师生扫码就能问、答案带出处、答不了的转部门；按成绩和考勤算学业预警，辅导员复核后出谈话提纲与通知；模型服务、调用审计与数据保留统一运维。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -1044,16 +1259,26 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/campus-ai",
         "renderer": "src/renderer/views/CampusAiWorkbenchView.vue",
-        "main": "src/main/ipc/campusAi.ipc.ts"
+        "main": "src/main/ipc/campusAi.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/campus-ai",
+            "name": "CampusAiWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-grounded-qa",
-        "workbench-service-settlement"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -1065,11 +1290,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-campus-ai",
-      "fileCount": 41,
-      "size": 458360,
-      "treeDigest": "a7eca9863b40efa6077e289d34195a51c5f179dba6b82ec2d8a233998804c497",
+      "fileCount": 8,
+      "size": 651387,
+      "treeDigest": "e15c047f1c937cb45334dcbe10fed296a3f4221a0358bcbf47cccde0f1a2eca2",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-campus-ai.json"
     },
     {
@@ -1083,10 +1308,10 @@
       "icon": "icon-solutions",
       "order": 230,
       "description": "给它企业材料和政采云账号，在内置浏览器里代做供应商的日常工作：商品上架前的合规与比价检查、询价单读回与报价测算、订单接单发货预警、待开票订单转开票。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -1094,18 +1319,26 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/zcy-agent",
         "renderer": "src/renderer/views/ZcyAgentWorkbenchView.vue",
-        "main": "src/main/ipc/zcyAgent.ipc.ts"
+        "main": "src/main/ipc/zcyAgent.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/zcy-agent",
+            "name": "ZcyAgentWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-biz-automation",
-        "workbench-foreign-trade",
-        "workbench-invoice-agent",
-        "workbench-service-settlement"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -1117,11 +1350,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-zcy-agent",
-      "fileCount": 24,
-      "size": 222361,
-      "treeDigest": "602ba3aeeb15f2f9baa5cb1759c81a3aafde5c15725a7d7659b61cdc6e34ca75",
+      "fileCount": 8,
+      "size": 312236,
+      "treeDigest": "8f0b4000d0fbc0fae59ca1bfeb978c951b9243511241cdb06a111428a7d6b859",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-zcy-agent.json"
     },
     {
@@ -1135,10 +1368,10 @@
       "icon": "icon-solutions",
       "order": 240,
       "description": "京东/天猫好评激励核算、服务费用结案汇总与邮件下发、发票监听与付款跟踪、报废台账更新、服务营销激励季度结案（含个税申报表与结案报告）。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -1146,11 +1379,24 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/service-settlement",
         "renderer": "src/renderer/views/ServiceSettlementWorkbenchView.vue",
-        "main": "src/main/ipc/serviceSettlement.ipc.ts"
+        "main": "src/main/ipc/serviceSettlement.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/service-settlement",
+            "name": "ServiceSettlementWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
       "dependsOn": [],
       "data": {
@@ -1164,11 +1410,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-service-settlement",
-      "fileCount": 53,
-      "size": 939671,
-      "treeDigest": "647228ee3bbe3b882f21f326ad6b47c629016c805ec4232e48bd362e8c4e3b20",
+      "fileCount": 8,
+      "size": 791452,
+      "treeDigest": "1b9fed9ae00ec6bc0cdc2cdc73205de4d1b660bfae7ebf0536dff86bdce20ac5",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-service-settlement.json"
     },
     {
@@ -1182,10 +1428,10 @@
       "icon": "icon-solutions",
       "order": 250,
       "description": "月结关账、对账、审计与内控、税务合规、管理报告、资金风险与投融资估值，48 个模块分步出底稿，人工签核后归档；中英阿三语，适配中国、国际、沙特与阿联酋准则税制。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -1193,18 +1439,30 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/finance-audit",
         "renderer": "src/renderer/views/FinanceAuditWorkbenchView.vue",
-        "main": "src/main/ipc/financeAudit.ipc.ts"
+        "main": "src/main/ipc/financeAudit.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/finance-audit",
+            "name": "FinanceAuditWorkbench"
+          },
+          {
+            "path": "/workbenches/finance-audit/m/:moduleId",
+            "name": "FinanceAuditModule"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-bid-writer",
-        "workbench-finance-agent",
-        "workbench-invoice-agent",
-        "workbench-service-settlement"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -1217,11 +1475,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-finance-audit",
-      "fileCount": 1231,
-      "size": 7485903,
-      "treeDigest": "874d943b5ea811d870bceb0605b171a18d131180e723f6b6d60ec9c398f0a550",
+      "fileCount": 8,
+      "size": 2395958,
+      "treeDigest": "5c5895217418df30ccc535300872faa7c42fc0f470770d5077ec47ba0557809d",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-finance-audit.json"
     },
     {
@@ -1237,10 +1495,10 @@
       "description": "放进活动照片与视频：自动生成活动档案、中英阿三语报告 PDF 与海报、高保真语音、9:16 宣传短视频，一键完整流程。",
       "descriptionEn": "Turn one charity event's raw material (photos, field notes, donation data) into multilingual campaign content in one pass: posters and illustrations, short-video cuts, social posts and donor thank-you letters, exported per platform aspect ratio and language, with a reviewable trail.",
       "descriptionAr": "حوّل مواد فعالية خيرية واحدة (الصور، السجلات الميدانية، بيانات التبرعات) إلى محتوى ترويجي متعدد اللغات بخطوة واحدة: ملصقات وصور، مقاطع فيديو قصيرة، منشورات للتواصل الاجتماعي ورسائل شكر للمتبرعين، تُصدَّر حسب مقاس كل منصة ولغتها مع سجل كامل قابل للمراجعة.",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -1248,15 +1506,26 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/charity-content",
         "renderer": "src/renderer/views/CharityContentWorkbenchView.vue",
-        "main": "src/main/ipc/charityContent.ipc.ts"
+        "main": "src/main/ipc/charityContent.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/charity-content",
+            "name": "CharityContentWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-service-settlement"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -1268,9 +1537,9 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-charity-content",
-      "fileCount": 51,
-      "size": 2418740,
-      "treeDigest": "46b2ebe7e9fdf6117d9ba75a61b204ade425c3bae288da8ca434a2e278c06652",
+      "fileCount": 8,
+      "size": 316840,
+      "treeDigest": "d0d0122384f67de49160d3e05859d093b316b1f9d94e3b8e1a58581b79b8c08c",
       "largeAssets": [
         {
           "path": "resources/bundled-solutions/charity-content/demo-materials/58865d8353e8b485e0ce7db1b3a23559.mp4",
@@ -1327,7 +1596,7 @@
           "origin": "resources/bundled-solutions/charity-content/prebaked/video-zh.mp4"
         }
       ],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-charity-content.json"
     },
     {
@@ -1344,10 +1613,10 @@
       "description": "固定语料导入与校验、章节结构解析、提纲与课程生成、理解图、动态出题、5 名学生个人与群体薄弱点分析、强化教学与复测、图片卡片与视频脚本，中英阿三语。",
       "descriptionEn": "A university-facing demonstration of a closed AI teaching loop: locked scripture corpus import, lesson generation, comprehension maps, adaptive assessment, learning analytics and reinforcement, grounded strictly in the imported corpus.",
       "descriptionAr": "عرض توضيحي لحلقة تعليم مغلقة بالذكاء الاصطناعي موجّه للجامعات: استيراد مدونة نصية مُقفلة، توليد الدروس، خرائط الفهم، تقييم تكيفي، تحليلات التعلم والتعزيز، مع الالتزام الكامل بالمدونة المستوردة.",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -1355,16 +1624,19 @@
         "hidden": true
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/workbenches/quran-teaching",
-        "renderer": "src/renderer/workbenches/quran-teaching/ManagerDashboard.vue",
-        "main": "src/main/ipc/quranTeaching.ipc.ts"
+        "renderer": null,
+        "main": "src/main/ipc/quranTeaching.ipc.ts",
+        "hotSwap": false,
+        "routes": [],
+        "entries": {
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
-      "dependsOn": [
-        "workbench-edu-hub",
-        "workbench-service-settlement"
-      ],
+      "dependsOn": [],
       "data": {
         "schemaVersion": 1,
         "paths": [
@@ -1376,11 +1648,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-quran-teaching",
-      "fileCount": 73,
-      "size": 1827957,
-      "treeDigest": "04c79c5cf7daf4bcf3732729b10f3c1997547885ad9993bb3fe3ac6aab532f41",
+      "fileCount": 6,
+      "size": 525431,
+      "treeDigest": "059e19d892ca393335986ebbbababd0afd47bb6508b59d95544721494675a2dd",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/workbench-quran-teaching.json"
     },
     {
@@ -1394,10 +1666,10 @@
       "icon": "icon-solutions",
       "order": 280,
       "description": "从 RFQ/BOQ 到审批文件的可追溯业务闭环",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -1405,11 +1677,24 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/bid-desk",
         "renderer": "src/renderer/views/BidDeskView.vue",
-        "main": "src/main/ipc/bidDesk.ipc.ts"
+        "main": "src/main/ipc/bidDesk.ipc.ts",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/bid-desk",
+            "name": "BidDesk"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "main": "dist/main.cjs",
+          "hostModules": "dist/host-modules.json"
+        }
       },
       "dependsOn": [],
       "data": {
@@ -1421,11 +1706,11 @@
       },
       "capabilities": [],
       "path": "solutions/embedded-bid-desk",
-      "fileCount": 10,
-      "size": 161493,
-      "treeDigest": "997f397885c272ab017afb44352bda0e2707c84c91c1ba158cc2180e28cf9105",
+      "fileCount": 8,
+      "size": 217717,
+      "treeDigest": "f640edd755a059b09c75da27a87c33931a322ea2e26d192a0ebdef6140996f44",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/embedded-bid-desk.json"
     },
     {
@@ -1439,10 +1724,10 @@
       "icon": "icon-solutions",
       "order": 290,
       "description": "从素材整理、脚本、配音配乐到成片审核，一次准备抖音、快手、小红书和微信视频号版本。",
-      "version": "1.0.0",
+      "version": "2.0.0",
       "compat": {
         "minAppVersion": "2.0.5",
-        "hostApi": 1
+        "hostApi": 2
       },
       "access": {
         "requiresSolutionGrant": true,
@@ -1450,11 +1735,23 @@
         "hidden": false
       },
       "runtime": {
-        "mode": "bundled",
+        "mode": "dynamic",
         "runner": "workbench",
         "route": "/video-studio",
         "renderer": "src/renderer/views/VideoStudioView.vue",
-        "main": null
+        "main": null,
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/video-studio",
+            "name": "VideoStudio"
+          }
+        ],
+        "entries": {
+          "renderer": "dist/renderer.mjs",
+          "style": "dist/style.css",
+          "hostModules": "dist/host-modules.json"
+        }
       },
       "dependsOn": [],
       "data": {
@@ -1466,11 +1763,11 @@
       },
       "capabilities": [],
       "path": "solutions/embedded-video-studio",
-      "fileCount": 13,
-      "size": 258059,
-      "treeDigest": "33be82c3fd1dfcf309c819e0219c61ef955194af6594c9d290effdf537646393",
+      "fileCount": 7,
+      "size": 205314,
+      "treeDigest": "f68e2cea95a9bae4999442f37fe6d781bc600c79536c8023cd6cc5a3a3e7dbc6",
       "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
+      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
       "filesRef": "index/embedded-video-studio.json"
     },
     {
@@ -1701,91 +1998,6 @@
       "largeAssets": [],
       "changelog": "- 清单升级为方案仓库 v2 格式（manifestVersion=2）：补充别名、类型、授权、兼容性、数据声明，供按 id/名称安装与自动升级。",
       "filesRef": "index/website-test.json"
-    },
-    {
-      "id": "kit-automation-ops",
-      "name": "自动化运营控制台",
-      "aliases": [],
-      "kind": "kit",
-      "category": "内置组件",
-      "icon": "icon-solutions",
-      "order": 1000,
-      "description": "智慧医院 / 产销存工作台共用的自动化场景控制台、执行结果与演示场景。",
-      "version": "1.0.0",
-      "compat": {
-        "minAppVersion": "2.0.5",
-        "hostApi": 1
-      },
-      "access": {
-        "requiresSolutionGrant": false,
-        "feature": null,
-        "hidden": true
-      },
-      "runtime": {
-        "mode": "bundled",
-        "runner": "kit",
-        "route": null,
-        "renderer": null,
-        "main": null
-      },
-      "dependsOn": [],
-      "data": {
-        "schemaVersion": 1,
-        "paths": [],
-        "localStorage": []
-      },
-      "capabilities": [],
-      "path": "solutions/kit-automation-ops",
-      "fileCount": 11,
-      "size": 104490,
-      "treeDigest": "c638a2a9b70f8d398c9971eaa8c320c87ab2902979ff2f4a46b5343f221aa5a6",
-      "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
-      "filesRef": "index/kit-automation-ops.json"
-    },
-    {
-      "id": "kit-saudi-workbench",
-      "name": "沙特数字员工底座",
-      "aliases": [],
-      "kind": "kit",
-      "category": "内置组件",
-      "icon": "icon-solutions",
-      "order": 1000,
-      "description": "rfq-quote / bid-decision / advisory-report 三个数字员工共用的统一收件 + 三栏工作台底座与案件存储。",
-      "version": "1.0.0",
-      "compat": {
-        "minAppVersion": "2.0.5",
-        "hostApi": 1
-      },
-      "access": {
-        "requiresSolutionGrant": false,
-        "feature": null,
-        "hidden": true
-      },
-      "runtime": {
-        "mode": "bundled",
-        "runner": "kit",
-        "route": null,
-        "renderer": null,
-        "main": null
-      },
-      "dependsOn": [],
-      "data": {
-        "schemaVersion": 1,
-        "paths": [
-          "totalclaw-agent/cases/case-store.json",
-          "totalclaw-agent/saudi/data-pack.json"
-        ],
-        "localStorage": []
-      },
-      "capabilities": [],
-      "path": "solutions/kit-saudi-workbench",
-      "fileCount": 45,
-      "size": 692712,
-      "treeDigest": "303febb96dadad4852cb63d6b166bc4a954c360fa54adff136ee58bc5a338194",
-      "largeAssets": [],
-      "changelog": "- 首次入库：从 qiye-app `gaoxiaofenzhi` @ `dc861832` 迁入方案仓库。",
-      "filesRef": "index/kit-saudi-workbench.json"
     },
     {
       "id": "demo-dynamic-workbench",

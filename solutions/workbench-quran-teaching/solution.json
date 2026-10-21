@@ -7,7 +7,7 @@
     "quran-teaching",
     "古兰经智能教学演示"
   ],
-  "version": "1.0.0",
+  "version": "2.0.0",
   "kind": "workbench",
   "category": "教育",
   "icon": "icon-solutions",
@@ -23,19 +23,22 @@
   },
   "compat": {
     "minAppVersion": "2.0.5",
-    "hostApi": 1
+    "hostApi": 2
   },
   "runtime": {
-    "mode": "bundled",
+    "mode": "dynamic",
     "runner": "workbench",
     "route": "/workbenches/quran-teaching",
-    "renderer": "src/renderer/workbenches/quran-teaching/ManagerDashboard.vue",
-    "main": "src/main/ipc/quranTeaching.ipc.ts"
+    "renderer": null,
+    "main": "src/main/ipc/quranTeaching.ipc.ts",
+    "hotSwap": false,
+    "routes": [],
+    "entries": {
+      "main": "dist/main.cjs",
+      "hostModules": "dist/host-modules.json"
+    }
   },
-  "dependsOn": [
-    "workbench-edu-hub",
-    "workbench-service-settlement"
-  ],
+  "dependsOn": [],
   "data": {
     "schemaVersion": 1,
     "paths": [
@@ -49,6 +52,13 @@
   "largeAssets": [],
   "distribution": {
     "channel": "stable",
-    "path": "solutions/workbench-quran-teaching"
+    "path": "solutions/workbench-quran-teaching",
+    "files": [
+      "solution.json",
+      "README.md",
+      "CHANGELOG.md",
+      "dist/",
+      "migrations/"
+    ]
   }
 }

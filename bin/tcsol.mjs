@@ -19,6 +19,7 @@
 //   --root <dir>       安装根目录（默认 ~/.totalclaw/solution-packages）
 //   --source <spec>    gitee | gitee:owner/repo@branch | <本地仓库目录> | <发布包.tgz>（默认 gitee）
 //   --app-version <v>  宿主版本（默认 999.0.0，不做 minAppVersion 限制）
+//   --host-api <n>     宿主 SDK 版本（默认 2）
 //   --json             输出 JSON
 import { homedir } from 'node:os';
 import { join, resolve } from 'node:path';
@@ -51,6 +52,7 @@ function manager() {
     root,
     source,
     appVersion: args['app-version'] || '999.0.0',
+    hostApi: Number(args['host-api'] || 2),
     onProgress: ({ id, done, total }) => {
       if (json || !process.stderr.isTTY) return;
       const line = `  ${id} ${done}/${total}`;

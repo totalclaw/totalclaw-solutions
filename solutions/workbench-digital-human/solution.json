@@ -6,7 +6,7 @@
   "aliases": [
     "digital-human"
   ],
-  "version": "1.0.0",
+  "version": "2.0.0",
   "kind": "workbench",
   "category": "数字人",
   "icon": "icon-solutions",
@@ -30,14 +30,27 @@
   },
   "compat": {
     "minAppVersion": "2.0.5",
-    "hostApi": 1
+    "hostApi": 2
   },
   "runtime": {
-    "mode": "bundled",
+    "mode": "dynamic",
     "runner": "workbench",
     "route": "/workbenches/digital-human",
     "renderer": "src/renderer/views/DigitalHumanWorkbenchView.vue",
-    "main": "src/main/ipc/digitalHuman.ipc.ts"
+    "main": "src/main/ipc/digitalHuman.ipc.ts",
+    "hotSwap": false,
+    "routes": [
+      {
+        "path": "/workbenches/digital-human",
+        "name": "DigitalHumanWorkbench"
+      }
+    ],
+    "entries": {
+      "renderer": "dist/renderer.mjs",
+      "style": "dist/style.css",
+      "main": "dist/main.cjs",
+      "hostModules": "dist/host-modules.json"
+    }
   },
   "dependsOn": [],
   "data": {
@@ -49,6 +62,13 @@
   "largeAssets": [],
   "distribution": {
     "channel": "stable",
-    "path": "solutions/workbench-digital-human"
+    "path": "solutions/workbench-digital-human",
+    "files": [
+      "solution.json",
+      "README.md",
+      "CHANGELOG.md",
+      "dist/",
+      "migrations/"
+    ]
   }
 }

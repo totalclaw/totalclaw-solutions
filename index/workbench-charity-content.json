@@ -1,12 +1,12 @@
 {
   "id": "workbench-charity-content",
-  "version": "1.0.0",
-  "treeDigest": "46b2ebe7e9fdf6117d9ba75a61b204ade425c3bae288da8ca434a2e278c06652",
+  "version": "2.0.0",
+  "treeDigest": "d0d0122384f67de49160d3e05859d093b316b1f9d94e3b8e1a58581b79b8c08c",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 132,
-      "sha256": "cab79a31b4c62025664b81c9314bb2bfb2c1d01bb1b3be16d3ee2546a5fe44aa"
+      "size": 455,
+      "sha256": "1a062fd9207adbc0d14a20515aa5b8eaa051124ac839eb04e09115f650f90a24"
     },
     {
       "path": "README.md",
@@ -14,249 +14,34 @@
       "sha256": "fbb5f2fe44fc4d0dead109627f80154865ef539ea8ad4e174209a6f682573bc0"
     },
     {
+      "path": "dist/host-modules.json",
+      "size": 2492,
+      "sha256": "2b18190e4cfc35d2b12974a9d07520f4b985e305418182da67da0ace9165b218"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 59905,
+      "sha256": "3cd14a110d6560ec5411376040a9f841c58ad0891f7285f2f7b6d2eb8d1198f0"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 214961,
+      "sha256": "7bb9703fb227bf22d8c0fbb84f3482f0d3ad40c6ccec185387f66678598ae9d5"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 31884,
+      "sha256": "0226d5071b35d264d934d89296b16c23966c513f4c83e5cf578196a7c9b8f5f0"
+    },
+    {
       "path": "migrations/README.md",
       "size": 296,
       "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
     },
     {
-      "path": "origin.json",
-      "size": 11936,
-      "sha256": "413ae8170e26453e9aa2454f6adc3f87897baa025af576313df9979ab137163e"
-    },
-    {
-      "path": "resources/bundled-solutions/charity-content/charity-demo-pack.json",
-      "size": 3783,
-      "sha256": "69f6845d6f00997360de7725e57f6ea9816581478d8c4cceeaa9797faf2f29d1"
-    },
-    {
-      "path": "resources/bundled-solutions/charity-content/demo-archive.json",
-      "size": 1786,
-      "sha256": "0bdac553267961dffc5f8467c094b817ad037142362a1e1f543fcce518741c27"
-    },
-    {
-      "path": "resources/bundled-solutions/charity-content/demo-materials/5527e40e0a9ecd35a71e83d1b58a9ae8.jpg",
-      "size": 184233,
-      "sha256": "c00bff25af5c7e205727490fd755f0ae5dbba0c59bf9526146fa993243c9a9b1"
-    },
-    {
-      "path": "resources/bundled-solutions/charity-content/demo-materials/636815265de590c9960263134c345a22.jpg",
-      "size": 165815,
-      "sha256": "85515f529f67babc9524ad1dcb48bf57fb4bbd54a1d67be31ce0e1df582027fa"
-    },
-    {
-      "path": "resources/bundled-solutions/charity-content/demo-materials/de85f80e5d63df4e5a91e817365c2a10.jpg",
-      "size": 165236,
-      "sha256": "fea664847d5cffc879a5d093099231e0077702755c57cb0a394a71836a47e65a"
-    },
-    {
-      "path": "resources/bundled-solutions/charity-content/demo-materials/新穆斯林生活指南-信仰不隔亲情.pdf",
-      "size": 1269172,
-      "sha256": "5eb4ef3705685b12b103c8e108d9714e6fc20b47a2b6cdf66f1cd09762fb8e8f"
-    },
-    {
       "path": "solution.json",
-      "size": 5372,
-      "sha256": "ea1cc7415374de384a085ee870b791405cde729cf4a86415d7abff052bcb350e"
-    },
-    {
-      "path": "src/main/ipc/charityContent.ipc.test.ts",
-      "size": 23733,
-      "sha256": "2bb464032f3f744ace58f26a41d9d723ccb19644667cc22f247fe48e65166e76"
-    },
-    {
-      "path": "src/main/ipc/charityContent.ipc.ts",
-      "size": 37142,
-      "sha256": "96520d254125114443e4c6695cb336f818a215f9a70731dec1c4cc835ef45152"
-    },
-    {
-      "path": "src/main/services/charityContent/archive.ts",
-      "size": 14821,
-      "sha256": "adaa6dadeb61aff40b84c896f1cdc5f3cc3e6df9a8b438ef542542eef2ae1923"
-    },
-    {
-      "path": "src/main/services/charityContent/charityContent.test.ts",
-      "size": 20816,
-      "sha256": "c61c88385b2a49add3e6d7cff8a5fdd698b5b28fe53dc8d667653f564f4e82b1"
-    },
-    {
-      "path": "src/main/services/charityContent/concurrency.test.ts",
-      "size": 5164,
-      "sha256": "76f97c3f2b682dec466974b1c5b2180529c5e459225d094f8089f9ddeeac32b9"
-    },
-    {
-      "path": "src/main/services/charityContent/concurrency.ts",
-      "size": 4026,
-      "sha256": "2fa7dc5a00338743a541ad9a6e230001dffb779d0e7ebe7cefc8ed389b3dbc4e"
-    },
-    {
-      "path": "src/main/services/charityContent/demoMaterials.test.ts",
-      "size": 5656,
-      "sha256": "424ebe70a5adcfd255560c5f73ef351723c7d075ceb6db5aeef760d2a668ffc7"
-    },
-    {
-      "path": "src/main/services/charityContent/demoMaterials.ts",
-      "size": 3674,
-      "sha256": "5f0e49386bd7c21a7fa0e59e0a37cc705597506cb89dc71ec70938100f323435"
-    },
-    {
-      "path": "src/main/services/charityContent/demoPack.test.ts",
-      "size": 11893,
-      "sha256": "219dd2fd7bda2ab02290ec01a8beaa05bb6fd5a4c1862fc9945bb082987710f0"
-    },
-    {
-      "path": "src/main/services/charityContent/demoPack.ts",
-      "size": 12533,
-      "sha256": "27e5c82334409646fc889ace08042cace8d8e3642b5ebfb75cff7121bf6a2e4d"
-    },
-    {
-      "path": "src/main/services/charityContent/describeParse.test.ts",
-      "size": 10446,
-      "sha256": "856c82f3d41383fdfa1e9b434c1cb12878dfba82f898be086398107636e4dc40"
-    },
-    {
-      "path": "src/main/services/charityContent/falBridge.ts",
-      "size": 4806,
-      "sha256": "d22049a01b16484f3df216a1205f304399d56458bec14b470fd1c25e90cdaf05"
-    },
-    {
-      "path": "src/main/services/charityContent/media.ts",
-      "size": 18562,
-      "sha256": "f81fe736756d7412d1fc2d7c040b67de5e5b93d4a6d6679d026ca9d397dc4915"
-    },
-    {
-      "path": "src/main/services/charityContent/narrationCaptions.test.ts",
-      "size": 22835,
-      "sha256": "a5576b05b2bf6119c75fc0db7828566765f41613cc96053b1e078aac7a803508"
-    },
-    {
-      "path": "src/main/services/charityContent/pipeline.ts",
-      "size": 66828,
-      "sha256": "c96242dbfed55bbea337fb623ccfd730365f85712fc97127a984ff715ac9c110"
-    },
-    {
-      "path": "src/main/services/charityContent/prebakeEntry.ts",
-      "size": 26306,
-      "sha256": "8c8197f902be0f4868dbcc0aba46387bc27ce9016fcf4433c3eab6a1653531c8"
-    },
-    {
-      "path": "src/main/services/charityContent/prebaked.ts",
-      "size": 6664,
-      "sha256": "b29eeef48618881c1111b87bacf0049e2baada2fbdcff59977345887ddd2f4e7"
-    },
-    {
-      "path": "src/main/services/charityContent/prebakedOverwrite.test.ts",
-      "size": 3100,
-      "sha256": "2f8e8bbb15c19bb02fb578ee44a334dfbedcbafe87fec01018e8e66c3ac31e07"
-    },
-    {
-      "path": "src/main/services/charityContent/render.ts",
-      "size": 3488,
-      "sha256": "90c119ef4597f66c2762a68e701659f062407f63b1feba9edf6e58fde3739125"
-    },
-    {
-      "path": "src/main/services/charityContent/reportHtml.ts",
-      "size": 9941,
-      "sha256": "f99980e319f209b74248b0ef76e291fd8df4e0a1ac737e41c1eff01d14152cac"
-    },
-    {
-      "path": "src/main/services/charityContent/reportText.ts",
-      "size": 15310,
-      "sha256": "99338271bcf9cebe026a99dc088380727619852a1a372d2acce9cd57df86d7c8"
-    },
-    {
-      "path": "src/main/services/charityContent/runtime.ts",
-      "size": 5330,
-      "sha256": "cf8eba8cf9f7d3bd6405d2747d5cd1f752bdb990c6dd8e2d8ede8364ce146ab4"
-    },
-    {
-      "path": "src/main/services/charityContent/subtitles.ts",
-      "size": 21726,
-      "sha256": "3655394950e244c3bcc9ae4e549f92ce807316f152b4e24a96eadf62cc774bdb"
-    },
-    {
-      "path": "src/main/services/charityContent/validate.ts",
-      "size": 4252,
-      "sha256": "d79d0cb25e4e0e152b3ba24188a1cf4b99980632a96f7bc1054a0600c7f8bb85"
-    },
-    {
-      "path": "src/main/services/charityContent/videoAi.test.ts",
-      "size": 22050,
-      "sha256": "85e97de1116b008c80209857778072fec411af3eb7e17be9ec3cb0b1d6e253ec"
-    },
-    {
-      "path": "src/renderer/views/CharityContentWorkbenchView.vue",
-      "size": 90683,
-      "sha256": "3bb6385fef388af718c8d7e2db5f70e218e702f73d8e70353b3f26a0617c5d0a"
-    },
-    {
-      "path": "src/renderer/workbenches/charity-content/AssetActions.vue",
-      "size": 1795,
-      "sha256": "94c9ba041587fc133c00015fc593f4c9bf0542697419a1ea114e8a484c9ce681"
-    },
-    {
-      "path": "src/renderer/workbenches/charity-content/AudioWave.vue",
-      "size": 3881,
-      "sha256": "15b638086784219e38ad74e18861f5689b5e7cf5834798b4e7bbae83acaf22fa"
-    },
-    {
-      "path": "src/renderer/workbenches/charity-content/CcProgress.vue",
-      "size": 5112,
-      "sha256": "d790f88fba0f053e908d6a019df8f7f03c01d1783d39eb8d6185b72f06efcb4f"
-    },
-    {
-      "path": "src/renderer/workbenches/charity-content/CcPromptBox.vue",
-      "size": 1849,
-      "sha256": "41de77f237fdfde4d3055fef96d79dc06cd3cc8ea07a89dbbbca634f64f0ecf6"
-    },
-    {
-      "path": "src/renderer/workbenches/charity-content/CcStep.vue",
-      "size": 4957,
-      "sha256": "8e5eb73bc28fb3e2d6080d44e915a9cde9f6f960b06746eef2f32d8de377fe54"
-    },
-    {
-      "path": "src/renderer/workbenches/charity-content/CcVideoPhases.vue",
-      "size": 2365,
-      "sha256": "0c2485337a0bc12f61912851815986dff72151a637e6651441a0149314e43346"
-    },
-    {
-      "path": "src/renderer/workbenches/charity-content/LangChips.vue",
-      "size": 967,
-      "sha256": "97ac16ad0ba090773c7677da8ffb1aa023417f1f5486c22c42f5c9ebeff8ac5f"
-    },
-    {
-      "path": "src/renderer/workbenches/charity-content/MaterialGrid.vue",
-      "size": 3227,
-      "sha256": "4653f02f3a37175893b7437348e40f1b53efc240f19b19160671513bf5129a2c"
-    },
-    {
-      "path": "src/renderer/workbenches/charity-content/charityContent.test.ts",
-      "size": 25040,
-      "sha256": "a16a23b7453e93dd90adf8d88f73fa925bce4a2e3aa0d115c2f141b0fa05b554"
-    },
-    {
-      "path": "src/renderer/workbenches/charity-content/charityContent.watchdog.test.ts",
-      "size": 8165,
-      "sha256": "eaa631a2969dcaef5344a125f82af8ade7187b702f165f38a2c83375c8c696f0"
-    },
-    {
-      "path": "src/renderer/workbenches/charity-content/shared.ts",
-      "size": 18395,
-      "sha256": "65829fa8a9daa52110c158d4a22273ac1e2f527837cf56510da73a6f3a004ad0"
-    },
-    {
-      "path": "src/renderer/workbenches/charity-content/styles.css",
-      "size": 38548,
-      "sha256": "d0a6222a4bec3e9df92f5946492ad9bd24108da6a4863e5775a5663975c35eb9"
-    },
-    {
-      "path": "src/shared/charityPrompts.test.ts",
-      "size": 8492,
-      "sha256": "70d3b98a39b89f6a34e5335b8ce138815f3ffd31ec825dfa229766d5669ed040"
-    },
-    {
-      "path": "src/shared/charityPrompts.ts",
-      "size": 15333,
-      "sha256": "055853ef253724a1c4e2f53ba3f775d35ccf088bd108f5a99ad23fb7823df895"
+      "size": 5779,
+      "sha256": "2ea913a5ef1cfbfa6c6429a6b09cda95dc435dd19e4289c94b70ed5f147f616a"
     }
   ]
 }

@@ -4,7 +4,7 @@
   "id": "rd-workflow",
   "name": "研发工作流",
   "aliases": [],
-  "version": "1.0.0",
+  "version": "2.0.0",
   "kind": "workbench",
   "category": "研发",
   "icon": "icon-solutions",
@@ -28,18 +28,29 @@
   },
   "compat": {
     "minAppVersion": "2.0.5",
-    "hostApi": 1
+    "hostApi": 2
   },
   "runtime": {
-    "mode": "bundled",
+    "mode": "dynamic",
     "runner": "workbench",
     "route": "/workbenches/rd-workflow",
     "renderer": "src/renderer/views/RdWorkflowWorkbenchView.vue",
-    "main": "src/main/ipc/rdWorkflow.ipc.ts"
+    "main": "src/main/ipc/rdWorkflow.ipc.ts",
+    "hotSwap": false,
+    "routes": [
+      {
+        "path": "/workbenches/rd-workflow",
+        "name": "RdWorkflowWorkbench"
+      }
+    ],
+    "entries": {
+      "renderer": "dist/renderer.mjs",
+      "style": "dist/style.css",
+      "main": "dist/main.cjs",
+      "hostModules": "dist/host-modules.json"
+    }
   },
-  "dependsOn": [
-    "workbench-service-settlement"
-  ],
+  "dependsOn": [],
   "data": {
     "schemaVersion": 1,
     "paths": [],
@@ -51,6 +62,13 @@
   "largeAssets": [],
   "distribution": {
     "channel": "stable",
-    "path": "solutions/rd-workflow"
+    "path": "solutions/rd-workflow",
+    "files": [
+      "solution.json",
+      "README.md",
+      "CHANGELOG.md",
+      "dist/",
+      "migrations/"
+    ]
   }
 }

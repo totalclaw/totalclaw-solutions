@@ -1,12 +1,12 @@
 {
   "id": "embedded-video-studio",
-  "version": "1.0.0",
-  "treeDigest": "33be82c3fd1dfcf309c819e0219c61ef955194af6594c9d290effdf537646393",
+  "version": "2.0.0",
+  "treeDigest": "f68e2cea95a9bae4999442f37fe6d781bc600c79536c8023cd6cc5a3a3e7dbc6",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 141,
-      "sha256": "b059b42236fda5e0cf443fa7bd41de4040fbdddbf2f0baf0691b5855ec37eb49"
+      "size": 464,
+      "sha256": "e1c4f3d1b09ef4c44d7e32c487070672dc996104fb6c687006177f7322bbab0e"
     },
     {
       "path": "README.md",
@@ -14,59 +14,29 @@
       "sha256": "b437c4f378dea73cc3bec69f5a1aeb4ba406ab16a24dbde83d0f3e4b09b6e6db"
     },
     {
+      "path": "dist/host-modules.json",
+      "size": 1027,
+      "sha256": "8a62b0164c1bf54d846e51dcd0189e16f81890094c4cf19f797f5cd962da1d32"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 165063,
+      "sha256": "1012021c34f9c2a8bc585a6242f71173ba9d3c2a33d3a6ecfe3b3be85ae703ec"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 35753,
+      "sha256": "b13cdf8aff37f8a8c75dcaf5e1fade8a6d35e367e4db45144d418844d0275ea4"
+    },
+    {
       "path": "migrations/README.md",
       "size": 296,
       "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
     },
     {
-      "path": "origin.json",
-      "size": 2445,
-      "sha256": "e37db2acea3de3f5136f75936561dafc0e2b6d47195d03b5b5d5d09bf5aa330e"
-    },
-    {
       "path": "solution.json",
-      "size": 1486,
-      "sha256": "abf343c262b2485b153f244e318a1439dfdce51afbb66fea110988f9eee52777"
-    },
-    {
-      "path": "src/renderer/composables/videoStudioRunState.ts",
-      "size": 6893,
-      "sha256": "f7c5b89f74de2e6e2c7089aaab5877189d07bf6d7b20320046cdd4554bb223dc"
-    },
-    {
-      "path": "src/renderer/views/VideoStudioView.layout.test.ts",
-      "size": 2769,
-      "sha256": "13c7ff955fb7bd421200b3e248e5a43f76059c0be5ece6aa531fac9fbfc7b00e"
-    },
-    {
-      "path": "src/renderer/views/VideoStudioView.noShowcase.test.ts",
-      "size": 3814,
-      "sha256": "39ed368c77c4dadddc07185b9e0fbc7c7c259b4318208e37912e2e26913a744d"
-    },
-    {
-      "path": "src/renderer/views/VideoStudioView.republish.test.ts",
-      "size": 3689,
-      "sha256": "07a3df8184410380ae42010c91a6823e39b1efa6af627a49b64d9094452c2075"
-    },
-    {
-      "path": "src/renderer/views/VideoStudioView.shotListPrompt.test.ts",
-      "size": 6375,
-      "sha256": "8cbe150845f93cc8ec1f370ecefab7da5f1353f7cab0f4313fc66aff5addd7bc"
-    },
-    {
-      "path": "src/renderer/views/VideoStudioView.slideshowFailure.test.ts",
-      "size": 12315,
-      "sha256": "367d89d0be0ad06d37d415dcc0cafd01b8e9d73878021d0b1177635198f48b59"
-    },
-    {
-      "path": "src/renderer/views/VideoStudioView.vue",
-      "size": 200533,
-      "sha256": "cc0d530bcbb4aac70896dc4d9389df670d01c3fa73e91cf0b2859afa86340d82"
-    },
-    {
-      "path": "src/renderer/views/VideoStudioView.watchdog.test.ts",
-      "size": 16465,
-      "sha256": "b00863677d392967d2befadc2edd7421cc1f5bc0388e4149c06475cc4c05a509"
+      "size": 1873,
+      "sha256": "003c5e3df834ee477ad63ef24d33225f3e05abe7451445a8d149c02d59a3b0dd"
     }
   ]
 }

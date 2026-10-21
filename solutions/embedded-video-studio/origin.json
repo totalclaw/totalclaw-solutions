@@ -67,5 +67,6 @@
       "path": "src/renderer/composables/videoStudioRunState.ts",
       "from": "renderer/composables/videoStudioRunState.ts"
     }
-  ]
+  ],
+  "sdkFiles": []
 }

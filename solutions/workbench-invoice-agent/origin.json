@@ -69,6 +69,12 @@
       "from": "renderer/workbenches/invoice-agent/shared.ts"
     },
     {
+      "path": "resources/invoice-agent/etax-batch-template-V260401.xlsx",
+      "from": "resources/invoice-agent/etax-batch-template-V260401.xlsx"
+    }
+  ],
+  "sdkFiles": [
+    {
       "path": "src/main/ipc/invoiceAgent.ipc.ts",
       "from": "main/ipc/invoiceAgent.ipc.ts"
     },
@@ -123,10 +129,6 @@
     {
       "path": "src/contracts/invoiceAgent.ts",
       "from": "packages/ipc-contracts/src/invoiceAgent.ts"
-    },
-    {
-      "path": "resources/invoice-agent/etax-batch-template-V260401.xlsx",
-      "from": "resources/invoice-agent/etax-batch-template-V260401.xlsx"
     }
   ]
 }

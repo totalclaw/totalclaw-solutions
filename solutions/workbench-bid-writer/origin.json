@@ -94,6 +94,24 @@
       "from": "main/services/bidWriter/compliance.ts"
     },
     {
+      "path": "src/main/services/bidWriter/noticeRules.ts",
+      "from": "main/services/bidWriter/noticeRules.ts"
+    },
+    {
+      "path": "src/main/services/bidWriter/outline.ts",
+      "from": "main/services/bidWriter/outline.ts"
+    },
+    {
+      "path": "src/main/services/bidWriter/prompts.ts",
+      "from": "main/services/bidWriter/prompts.ts"
+    },
+    {
+      "path": "src/main/services/bidWriter/store.ts",
+      "from": "main/services/bidWriter/store.ts"
+    }
+  ],
+  "sdkFiles": [
+    {
       "path": "src/main/services/bidWriter/docx.ts",
       "from": "main/services/bidWriter/docx.ts"
     },
@@ -110,24 +128,8 @@
       "from": "main/services/bidWriter/noticeFetch.ts"
     },
     {
-      "path": "src/main/services/bidWriter/noticeRules.ts",
-      "from": "main/services/bidWriter/noticeRules.ts"
-    },
-    {
       "path": "src/main/services/bidWriter/noticeSearch.ts",
       "from": "main/services/bidWriter/noticeSearch.ts"
-    },
-    {
-      "path": "src/main/services/bidWriter/outline.ts",
-      "from": "main/services/bidWriter/outline.ts"
-    },
-    {
-      "path": "src/main/services/bidWriter/prompts.ts",
-      "from": "main/services/bidWriter/prompts.ts"
-    },
-    {
-      "path": "src/main/services/bidWriter/store.ts",
-      "from": "main/services/bidWriter/store.ts"
     }
   ]
 }

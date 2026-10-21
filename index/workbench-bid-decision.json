@@ -1,12 +1,12 @@
 {
   "id": "workbench-bid-decision",
-  "version": "1.0.0",
-  "treeDigest": "1291ea26ba36dfc58ef56b729c4302f1e255967321789b746eab86fd4efe21ad",
+  "version": "2.0.0",
+  "treeDigest": "45fd740b80310201fd931dc673e56b6826bbfe5cd0572ea3968b3c1d7e2a1910",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 138,
-      "sha256": "7b1663e4cfbb5e624dd84d6ffdb033551800da5b9965ac1465245aab4cf6eb13"
+      "size": 461,
+      "sha256": "84d83b76f47b9960b336b487c6ef9532bd2b6d6d988d4f3eb97a86a5ad3e46d9"
     },
     {
       "path": "README.md",
@@ -14,24 +14,24 @@
       "sha256": "88bc187527e4a0f0151202309da29d170ad8c52d690ff6359ea1760c04479c76"
     },
     {
+      "path": "dist/host-modules.json",
+      "size": 144,
+      "sha256": "d5c4136c2ca5d7d0a8615c41b348e88e2f3fc5be4a32d41c921611126462494f"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 751,
+      "sha256": "3260377f7fbba858c39a555b9067d71886b5766c78171c73b62bc3d785eac10c"
+    },
+    {
       "path": "migrations/README.md",
       "size": 296,
       "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
     },
     {
-      "path": "origin.json",
-      "size": 760,
-      "sha256": "9c0b32663c810a2a13224c95072d7284e833cb43855f24c61aca5299a517eedc"
-    },
-    {
       "path": "solution.json",
-      "size": 1481,
-      "sha256": "9deda4f5de4f955571169b9c4614d6517fba6c9152bc801c2a51289578c27f4a"
-    },
-    {
-      "path": "src/renderer/views/BidDecisionWorkbenchView.vue",
-      "size": 390,
-      "sha256": "586ae23198b24a378fae9e4bf8d60d84084b22767eeca1a3c5d302b07a02a2b1"
+      "size": 1827,
+      "sha256": "af6c4de45085d3ba81fa1e359f4a3ff743156c7405c2695fc46fcad673165afe"
     }
   ]
 }

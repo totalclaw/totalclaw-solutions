@@ -60,10 +60,6 @@
       "from": "renderer/views/ServiceSettlementWorkbenchView.test.ts"
     },
     {
-      "path": "src/renderer/workbenches/service-settlement/FileDropField.vue",
-      "from": "renderer/workbenches/service-settlement/FileDropField.vue"
-    },
-    {
       "path": "src/renderer/workbenches/service-settlement/MarketingIncentiveModule.test.ts",
       "from": "renderer/workbenches/service-settlement/MarketingIncentiveModule.test.ts"
     },
@@ -88,64 +84,16 @@
       "from": "renderer/workbenches/service-settlement/SettlementModule.vue"
     },
     {
-      "path": "src/renderer/workbenches/service-settlement/StepCard.vue",
-      "from": "renderer/workbenches/service-settlement/StepCard.vue"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/StepCard.watchdog.test.ts",
-      "from": "renderer/workbenches/service-settlement/StepCard.watchdog.test.ts"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/StickyProgress.vue",
-      "from": "renderer/workbenches/service-settlement/StickyProgress.vue"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/TableMapping.vue",
-      "from": "renderer/workbenches/service-settlement/TableMapping.vue"
-    },
-    {
       "path": "src/renderer/workbenches/service-settlement/dataKeywords.json",
       "from": "renderer/workbenches/service-settlement/dataKeywords.json"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/shared.format.test.ts",
-      "from": "renderer/workbenches/service-settlement/shared.format.test.ts"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/shared.openPath.test.ts",
-      "from": "renderer/workbenches/service-settlement/shared.openPath.test.ts"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/shared.test.ts",
-      "from": "renderer/workbenches/service-settlement/shared.test.ts"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/shared.ts",
-      "from": "renderer/workbenches/service-settlement/shared.ts"
-    },
-    {
-      "path": "src/renderer/workbenches/service-settlement/styles.css",
-      "from": "renderer/workbenches/service-settlement/styles.css"
     },
     {
       "path": "src/main/ipc/serviceSettlement.ipc.ts",
       "from": "main/ipc/serviceSettlement.ipc.ts"
     },
     {
-      "path": "src/main/services/serviceSettlement/columnKeywords.json",
-      "from": "main/services/serviceSettlement/columnKeywords.json"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/dataKeywords.json",
-      "from": "main/services/serviceSettlement/dataKeywords.json"
-    },
-    {
       "path": "src/main/services/serviceSettlement/edgeCases.test.ts",
       "from": "main/services/serviceSettlement/edgeCases.test.ts"
-    },
-    {
-      "path": "src/main/services/serviceSettlement/excel.ts",
-      "from": "main/services/serviceSettlement/excel.ts"
     },
     {
       "path": "src/main/services/serviceSettlement/mailReceiptEvidence.test.ts",
@@ -242,6 +190,60 @@
     {
       "path": "src/main/services/serviceSettlement/store.ts",
       "from": "main/services/serviceSettlement/store.ts"
+    }
+  ],
+  "sdkFiles": [
+    {
+      "path": "src/renderer/workbenches/service-settlement/FileDropField.vue",
+      "from": "renderer/workbenches/service-settlement/FileDropField.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/StepCard.vue",
+      "from": "renderer/workbenches/service-settlement/StepCard.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/StepCard.watchdog.test.ts",
+      "from": "renderer/workbenches/service-settlement/StepCard.watchdog.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/StickyProgress.vue",
+      "from": "renderer/workbenches/service-settlement/StickyProgress.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/TableMapping.vue",
+      "from": "renderer/workbenches/service-settlement/TableMapping.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/shared.format.test.ts",
+      "from": "renderer/workbenches/service-settlement/shared.format.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/shared.openPath.test.ts",
+      "from": "renderer/workbenches/service-settlement/shared.openPath.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/shared.test.ts",
+      "from": "renderer/workbenches/service-settlement/shared.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/shared.ts",
+      "from": "renderer/workbenches/service-settlement/shared.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/service-settlement/styles.css",
+      "from": "renderer/workbenches/service-settlement/styles.css"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/columnKeywords.json",
+      "from": "main/services/serviceSettlement/columnKeywords.json"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/dataKeywords.json",
+      "from": "main/services/serviceSettlement/dataKeywords.json"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/excel.ts",
+      "from": "main/services/serviceSettlement/excel.ts"
     }
   ]
 }

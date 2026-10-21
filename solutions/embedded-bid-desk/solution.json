@@ -6,7 +6,7 @@
   "aliases": [
     "bid-desk"
   ],
-  "version": "1.0.0",
+  "version": "2.0.0",
   "kind": "workbench",
   "category": "内置",
   "icon": "icon-solutions",
@@ -30,14 +30,27 @@
   },
   "compat": {
     "minAppVersion": "2.0.5",
-    "hostApi": 1
+    "hostApi": 2
   },
   "runtime": {
-    "mode": "bundled",
+    "mode": "dynamic",
     "runner": "workbench",
     "route": "/bid-desk",
     "renderer": "src/renderer/views/BidDeskView.vue",
-    "main": "src/main/ipc/bidDesk.ipc.ts"
+    "main": "src/main/ipc/bidDesk.ipc.ts",
+    "hotSwap": false,
+    "routes": [
+      {
+        "path": "/bid-desk",
+        "name": "BidDesk"
+      }
+    ],
+    "entries": {
+      "renderer": "dist/renderer.mjs",
+      "style": "dist/style.css",
+      "main": "dist/main.cjs",
+      "hostModules": "dist/host-modules.json"
+    }
   },
   "dependsOn": [],
   "data": {
@@ -51,6 +64,13 @@
   "largeAssets": [],
   "distribution": {
     "channel": "stable",
-    "path": "solutions/embedded-bid-desk"
+    "path": "solutions/embedded-bid-desk",
+    "files": [
+      "solution.json",
+      "README.md",
+      "CHANGELOG.md",
+      "dist/",
+      "migrations/"
+    ]
   }
 }

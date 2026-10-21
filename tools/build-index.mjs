@@ -5,7 +5,7 @@
 //   --check  只比对，生成物与已提交内容不一致时退出码 1（CI 用）
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import { REPO_ROOT, SOLUTIONS_DIR, fileManifest, listSolutionDirs, parseArgs, readJson } from './lib/common.mjs';
+import { REPO_ROOT, SOLUTIONS_DIR, fileManifest, listSolutionDirs, parseArgs, readJson, treeDigest as treeDigestOf } from './lib/common.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 
@@ -35,7 +35,11 @@ export function buildIndex() {
   for (const id of listSolutionDirs()) {
     const dir = join(SOLUTIONS_DIR, id);
     const m = readJson(join(dir, 'solution.json'));
-    const { files, treeDigest } = fileManifest(dir);
+    // distribution.files：只把运行所需文件发布给客户端（源码、测试、来源追溯留在仓库）
+    const publish = Array.isArray(m.distribution?.files) ? m.distribution.files : null;
+    const all = fileManifest(dir).files;
+    const files = publish ? all.filter((f) => publish.some((p) => (p.endsWith('/') ? f.path.startsWith(p) : f.path === p))) : all;
+    const treeDigest = treeDigestOf(files);
     items.push({
       id: m.id,
       name: m.name,

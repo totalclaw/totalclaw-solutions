@@ -97,14 +97,6 @@
       "from": "main/services/zcyAgent/logic.ts"
     },
     {
-      "path": "src/main/services/zcyAgent/login.test.ts",
-      "from": "main/services/zcyAgent/login.test.ts"
-    },
-    {
-      "path": "src/main/services/zcyAgent/login.ts",
-      "from": "main/services/zcyAgent/login.ts"
-    },
-    {
       "path": "src/main/services/zcyAgent/prompts.ts",
       "from": "main/services/zcyAgent/prompts.ts"
     },
@@ -119,6 +111,16 @@
     {
       "path": "src/main/services/zcyAgent/zcyPage.ts",
       "from": "main/services/zcyAgent/zcyPage.ts"
+    }
+  ],
+  "sdkFiles": [
+    {
+      "path": "src/main/services/zcyAgent/login.test.ts",
+      "from": "main/services/zcyAgent/login.test.ts"
+    },
+    {
+      "path": "src/main/services/zcyAgent/login.ts",
+      "from": "main/services/zcyAgent/login.ts"
     },
     {
       "path": "src/contracts/zcyAgent.ts",

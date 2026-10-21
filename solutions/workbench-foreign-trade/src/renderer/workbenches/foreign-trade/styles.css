@@ -1,4 +1,0 @@
-/* 外贸工作台 · 非 scoped 的面板样式（按钮 / 表格 / 表单沿用结算工作台的 styles.css） */
-.ss-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 12px 14px; display: grid; gap: 10px; }
-.ss-panel > header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; }
-.ss-panel > header .grow { flex: 1; }

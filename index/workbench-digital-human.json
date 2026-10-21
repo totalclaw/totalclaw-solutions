@@ -1,12 +1,12 @@
 {
   "id": "workbench-digital-human",
-  "version": "1.0.0",
-  "treeDigest": "b6d742ff5901d31fa9abcdb786d1f26b799153325424cfbe11d6ea7d7624a96a",
+  "version": "2.0.0",
+  "treeDigest": "5023476334adc605ee232adf18b2a7585ebdcae593c41339710761030079275b",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 141,
-      "sha256": "b1df7eb723b04c871ea40e1f9c1c5c7845f73da4ccef3c7c4c9f470cf743ac3b"
+      "size": 464,
+      "sha256": "1737f53608026c188e15e4c58459ba553becabaa0e7b8df9dc832a9647df304f"
     },
     {
       "path": "README.md",
@@ -14,54 +14,34 @@
       "sha256": "0419193895661078436beafa51975bdb364d9d3293b9ccdae365558cd6f1bd71"
     },
     {
+      "path": "dist/host-modules.json",
+      "size": 658,
+      "sha256": "a9c58664fcc8d70bdd87ea2668f5fad986194d7912f0d3ef745b962122836c2e"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 8520,
+      "sha256": "8bffa90b098235a59ed4710d40944661d63b72880e293f96db4348df4d5fd157"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 77969,
+      "sha256": "cdfd69aa9256d37f1aeff3c615431e6087e1038ac6ba93d2b5c00b77e69f2d0b"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 15718,
+      "sha256": "68ad68ec2a313220e70257952f761499ff671d2670ecf614a0cd718ee8321edb"
+    },
+    {
       "path": "migrations/README.md",
       "size": 296,
       "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
     },
     {
-      "path": "origin.json",
-      "size": 1967,
-      "sha256": "5dea82ba762f0a6ad7b8dbc1a97653d3540cdd481e242a41f8959804b86ea525"
-    },
-    {
       "path": "solution.json",
-      "size": 1493,
-      "sha256": "bc5f852f4f0e5f873fee4bd1022bb31f4e15f232b46afd94d39063c8f4ad905d"
-    },
-    {
-      "path": "src/main/ipc/digitalHuman.ipc.ts",
-      "size": 8606,
-      "sha256": "5901960ef03b7c7029b1334e37587282d27e5ce48b3ac735b6fc99e9ad6d712a"
-    },
-    {
-      "path": "src/main/services/digitalHumanProc.test.ts",
-      "size": 7127,
-      "sha256": "f235e643a66373a595dc4c119d8c170a1d81798d25a342fc8b373b6268acbc44"
-    },
-    {
-      "path": "src/main/services/digitalHumanProc.ts",
-      "size": 10048,
-      "sha256": "1022bcc38ec421dbb9d7365ce35e0ceda8c1200b68192265418408fa3f4ef165"
-    },
-    {
-      "path": "src/renderer/views/DigitalHumanWorkbenchView.offlineWatchdog.test.ts",
-      "size": 10387,
-      "sha256": "a7dd0bbdb67ae77e4df8df89e9498ce8f24e8b823e71843ea1b43b59d7a45e3d"
-    },
-    {
-      "path": "src/renderer/views/DigitalHumanWorkbenchView.vue",
-      "size": 54862,
-      "sha256": "7c5d0c1b63e0e3ece39585d4364d55fedeadd64fb2a35ce0294192cedc0f1a66"
-    },
-    {
-      "path": "src/renderer/workbenches/digital-human/PyExtInstaller.test.ts",
-      "size": 8170,
-      "sha256": "1dda153d1e8063051fb0df307e75c99575fc2e88faa236fe8b8fa7a9a9cb481c"
-    },
-    {
-      "path": "src/renderer/workbenches/digital-human/PyExtInstaller.vue",
-      "size": 11758,
-      "sha256": "c30f4e6b9f9e9f8c6cbd6d0e8ba4f61cf854da4cc2ce580a1c563b4c8ad5aed1"
+      "size": 1934,
+      "sha256": "f86889f1563cf8f37cd53ac4eb5a44ee36bb9cf3475a8e1149f08bf79b8a986b"
     }
   ]
 }

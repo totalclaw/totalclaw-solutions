@@ -1,12 +1,12 @@
 {
   "id": "workbench-parts-alert",
-  "version": "1.0.0",
-  "treeDigest": "475f17f84f1b285dd369520d8743a24b2c35ad9875383a9e8024afedeb519c39",
+  "version": "2.0.0",
+  "treeDigest": "3263f3bcd651867ccf20b87cba02a04dc6cbe9106e39641c8d06a2ee7a365b51",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 138,
-      "sha256": "31afe5978b2c0e9e70b74477500166e65b72bcfade37457ec18753768e149fba"
+      "size": 461,
+      "sha256": "1cf1f6581d25e1636f02f9fe8269bad32693aa84e7e94085941a9dcda8eaa285"
     },
     {
       "path": "README.md",
@@ -14,154 +14,34 @@
       "sha256": "f2ca7337bcceabcc668f2ec2dc64fceb01a1b3e53fe99319b21b79fd6ad6c376"
     },
     {
+      "path": "dist/host-modules.json",
+      "size": 1184,
+      "sha256": "361026637c835464ac93e0a7a74569d2fd9b674050a293f0bb62c55494f8515f"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 98767,
+      "sha256": "9e694dd1c3875db67447a0ee97bf83d0ef199f9538423da89360c801b4c6a700"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 173139,
+      "sha256": "d14cd38f9cd339667098d5365d7b3b2c60a6a67ed92a6ce9faf29d8ab1390b6b"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 20602,
+      "sha256": "69bdd2ece237d6d26c3611b916cd54bbeb5af2d78819bc27376080e52cbd630b"
+    },
+    {
       "path": "migrations/README.md",
       "size": 296,
       "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
     },
     {
-      "path": "origin.json",
-      "size": 5048,
-      "sha256": "2b922329fcbe5ded05a583126c326570fdc62f4e875818667127cf1a01ef98fd"
-    },
-    {
       "path": "solution.json",
-      "size": 1753,
-      "sha256": "2e2ce6675f2fa8403ed703794858a59e34e2b898561ff4ed2557a366d9d9630c"
-    },
-    {
-      "path": "src/contracts/partsAlert.ts",
-      "size": 7554,
-      "sha256": "62edb88d3cf72c66dfae071ac8c409bf848b5f9cc2aa34cbe7a167ca11bd3b7d"
-    },
-    {
-      "path": "src/main/ipc/partsAlert.ipc.ts",
-      "size": 27469,
-      "sha256": "ce91b94c1df924412882a7fa5f9192f4e06722ce7bda7e4e13210d9a71b909b9"
-    },
-    {
-      "path": "src/main/services/partsAlert/calc.test.ts",
-      "size": 11696,
-      "sha256": "6b55d0b2d038bcd4819da69c0a8083d723269766ad1aec6f9bbcaa82b6cfe65e"
-    },
-    {
-      "path": "src/main/services/partsAlert/calc.ts",
-      "size": 21815,
-      "sha256": "44251bfe2c4502ce4e6e2d7e96c1a0fffb5346d24a9e63f8f63b7f3cbb97dc9b"
-    },
-    {
-      "path": "src/main/services/partsAlert/columnKeywords.json",
-      "size": 3169,
-      "sha256": "1a815748c41a7e450b013c57cd531607eae926e67385bc0ba47f642e42ae3974"
-    },
-    {
-      "path": "src/main/services/partsAlert/demoData.ts",
-      "size": 9515,
-      "sha256": "6860d9635452efbbaa65cc80c853341062252bdbf929de2a744189bed4e9a416"
-    },
-    {
-      "path": "src/main/services/partsAlert/demoParts.json",
-      "size": 2609,
-      "sha256": "dfa0d8560a32d3cde0d51eb6b3b0c0f2cdfa4094a6608199b85d826d3c7c8bd3"
-    },
-    {
-      "path": "src/main/services/partsAlert/exporter.test.ts",
-      "size": 10718,
-      "sha256": "b091677cc04f69756ad755bec4fb1a795984826b0f723447faba69877c360bce"
-    },
-    {
-      "path": "src/main/services/partsAlert/exporter.ts",
-      "size": 6128,
-      "sha256": "c740fa9879f5fe00d47d8f2d09e579cf87824b909021a87601d33c0e2d36ed0f"
-    },
-    {
-      "path": "src/main/services/partsAlert/ingest.test.ts",
-      "size": 13037,
-      "sha256": "af865e6f79db9ac330bfbb3f681c1c319d0c84714e8860d96b43faa1a5d0a166"
-    },
-    {
-      "path": "src/main/services/partsAlert/ingest.ts",
-      "size": 18778,
-      "sha256": "0a7cb5496d046b0f2173da1a5223452e63ccd90ad2d96183423d80ada5ae74d4"
-    },
-    {
-      "path": "src/main/services/partsAlert/ipcFlow.test.ts",
-      "size": 11399,
-      "sha256": "f0e33ce833f14a32c884415ba28ba2c31ee4ec11cb9b6aa253df46873b50502a"
-    },
-    {
-      "path": "src/main/services/partsAlert/plan.ts",
-      "size": 5839,
-      "sha256": "ba7161e748647bcf1926b46058df777042baa55584b97a330dcc2e9b1cd7bb54"
-    },
-    {
-      "path": "src/main/services/partsAlert/schedule.ts",
-      "size": 2450,
-      "sha256": "4d8fda918a2883da06fc08cbdc08207fcb368f6e3a8deaf5949148698027e462"
-    },
-    {
-      "path": "src/main/services/partsAlert/store.ts",
-      "size": 8099,
-      "sha256": "ca5083176c55f0bc1c60983eaf310d73105e1d4149b3241c1fc55c9873604e7a"
-    },
-    {
-      "path": "src/renderer/views/PartsAlertWorkbenchView.vue",
-      "size": 13017,
-      "sha256": "f45699b91c0fc40df42805873baca8b0ca1b2c9e8490f455892b4f607e891577"
-    },
-    {
-      "path": "src/renderer/workbenches/parts-alert/BoardTab.vue",
-      "size": 12547,
-      "sha256": "eba65088c14a5536b591f31b42fc613d5c245495a8347a358b239e4aec9fedce"
-    },
-    {
-      "path": "src/renderer/workbenches/parts-alert/DataSlot.vue",
-      "size": 5950,
-      "sha256": "19490a609213d50d5d46b5e7d926276b64487f9e57407b554d21e57142028d6c"
-    },
-    {
-      "path": "src/renderer/workbenches/parts-alert/PlanReview.vue",
-      "size": 8552,
-      "sha256": "994c00982d9d1247220652ba975422b450d52623b1716323f203bcd071192d99"
-    },
-    {
-      "path": "src/renderer/workbenches/parts-alert/ResultTable.vue",
-      "size": 7018,
-      "sha256": "c1d089b3c78a4d50087e8f9cdd6b797553590b8d53b5c245de845e1613f8b015"
-    },
-    {
-      "path": "src/renderer/workbenches/parts-alert/RulesTab.vue",
-      "size": 8737,
-      "sha256": "739cebbf6c99b29767e7381c6082acb9980dad967f606138ef212a9637a20c2e"
-    },
-    {
-      "path": "src/renderer/workbenches/parts-alert/RunTab.test.ts",
-      "size": 11702,
-      "sha256": "cd6e229484157c018bf1f147d7a809275d2b81981e7b3c144a35d1e27481e603"
-    },
-    {
-      "path": "src/renderer/workbenches/parts-alert/RunTab.vue",
-      "size": 21471,
-      "sha256": "cee9670d0c0c566bc215c42fb8a5efb8bd2df28c248b9044f844d946c88a2111"
-    },
-    {
-      "path": "src/renderer/workbenches/parts-alert/ScheduleTab.vue",
-      "size": 11655,
-      "sha256": "143a7f841984699184903c8560a6365aa6d0e66d1a5fb6d8891421b46ce46758"
-    },
-    {
-      "path": "src/renderer/workbenches/parts-alert/shared.test.ts",
-      "size": 7473,
-      "sha256": "c703dbd5d9a92f5c69622c0102f7049eca2be8ca245b4e9f3c9359fbeb08828a"
-    },
-    {
-      "path": "src/renderer/workbenches/parts-alert/shared.ts",
-      "size": 10850,
-      "sha256": "241c778a0261b9df7339ed95e08d93a1f91e749e2058c1bf43d292decfa7fe33"
-    },
-    {
-      "path": "src/renderer/workbenches/parts-alert/tabs.test.ts",
-      "size": 8274,
-      "sha256": "e4f5c6cf904b15eac08d6e60ba2b67ebcf4e43ec831a71df36808f2771932fe9"
+      "size": 2152,
+      "sha256": "7666ed461a385eab5a7b3b6e93a75ea1b2e95abaa98b7b6ac3efab351b091d0b"
     }
   ]
 }

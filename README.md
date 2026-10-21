@@ -140,6 +140,19 @@ export default {
 
 新方案建议直接按 dynamic 开发。
 
+## 存量工作台（hostApi = 2）的开发与发布
+
+29 个存量工作台已经改成动态方案：源码只在本仓库 `solutions/<id>/src/` 维护，客户端下载的是构建产物 `dist/`。
+
+1. 改源码：
+   - 在 qiye-app 根目录执行 `pnpm solutions:pull`，把源码叠加回 App 原路径（已被 .gitignore 忽略），在 App 里照常开发、跑测试。
+   - 改完用 `pnpm solutions:sync --push` 把改动带回本仓库。
+2. 构建：在 qiye-app 执行 `pnpm solutions:build --only <id>`，产物写进本仓库的 `solutions/<id>/dist/`，宿主模块注册表随之重新生成。
+3. 发版：提升 `version`、写 CHANGELOG，再执行 `npm run release`（重建目录 → 签名 → 校验，需要私钥 `TCSOL_SIGNING_KEY`），然后提交。
+4. 客户端：存量工作台下次启动时升级到新版本。新开发的方案（hostApi 1）可以热替换。
+
+共享代码（被宿主或多个方案使用的部分）属于宿主 SDK，留在 qiye-app，清单见 `apps/desktop-shell/solution-sdk.json`。修改这部分要随 App 发版。
+
 ## 当前阶段说明
 
-29 个内置工作台目前 `runtime.mode = "bundled"`：代码仍由 qiye-app 构建期编译（后续由 qiye-app `solutions:sync` 从本仓库同步），安装器负责版本跟踪、资源/技能/模板分发、数据迁移与自动升级。宿主 SDK 与动态加载就绪后，逐个方案切换为 `dynamic`，届时下载即运行。见 ARCHITECTURE.md §8。
+已完成切换（2026-10-21）：29 个存量工作台都是 `runtime.mode = "dynamic"`、`compat.hostApi = 2`，qiye-app 不再携带它们的源码，安装后直接从方案包加载运行。资源文件本期仍随 App 安装包分发。详见 ARCHITECTURE.md §8「实际落地」。

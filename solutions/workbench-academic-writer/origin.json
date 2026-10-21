@@ -105,7 +105,9 @@
     {
       "path": "src/main/services/academicWriter/store.ts",
       "from": "main/services/academicWriter/store.ts"
-    },
+    }
+  ],
+  "sdkFiles": [
     {
       "path": "src/contracts/academicWriter.ts",
       "from": "packages/ipc-contracts/src/academicWriter.ts"

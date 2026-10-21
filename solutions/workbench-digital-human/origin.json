@@ -40,16 +40,18 @@
       "from": "renderer/views/DigitalHumanWorkbenchView.offlineWatchdog.test.ts"
     },
     {
+      "path": "src/main/ipc/digitalHuman.ipc.ts",
+      "from": "main/ipc/digitalHuman.ipc.ts"
+    }
+  ],
+  "sdkFiles": [
+    {
       "path": "src/renderer/workbenches/digital-human/PyExtInstaller.test.ts",
       "from": "renderer/workbenches/digital-human/PyExtInstaller.test.ts"
     },
     {
       "path": "src/renderer/workbenches/digital-human/PyExtInstaller.vue",
       "from": "renderer/workbenches/digital-human/PyExtInstaller.vue"
-    },
-    {
-      "path": "src/main/ipc/digitalHuman.ipc.ts",
-      "from": "main/ipc/digitalHuman.ipc.ts"
     },
     {
       "path": "src/main/services/digitalHumanProc.ts",
