@@ -3,7 +3,7 @@
  * 不 import 'vue'：用 sdk.vue。
  */
 export default function createSolution(sdk) {
-  const { defineComponent, h, ref, reactive, computed, onMounted, onUnmounted } = sdk.vue;
+  const { defineComponent, h, ref, reactive, computed, onMounted, onUnmounted, watch } = sdk.vue;
   const t = (s, p) => sdk.t(s, p);
 
   const CSS = `
@@ -111,6 +111,13 @@ export default function createSolution(sdk) {
       onUnmounted(() => offs.forEach((f) => f && f()));
 
       const sel = computed(() => job.value?.candidates.find((c) => c.id === selId.value) || null);
+      // HR6：发邀约的收件地址（null = 用简历里的邮箱）与「确认发送」状态；换候选人就复位
+      const sendTo = ref(null);
+      const sendAsk = ref('');
+      watch(selId, () => {
+        sendTo.value = null;
+        sendAsk.value = '';
+      });
       const steps = computed(() => {
         const j = job.value;
         const cs = j?.candidates || [];
@@ -296,7 +303,7 @@ export default function createSolution(sdk) {
         const c = sel.value;
         const inv = c?.invite;
         return h('div', { class: 'hra-card', id: 'hra-s5' }, [
-          ...head(s, t('生成个性化邀约邮件草稿；面试时间留「【请填写】」由你补。发送前人工确认——这里只出草稿，复制到邮箱发送，发完标记状态。')),
+          ...head(s, t('生成个性化邀约邮件草稿；面试时间留「【请填写】」由你补。补完、保存后点「发送邮件」再确认一次才会真发（用你在「设置 → 邮件」配的邮箱，没配走官方代发）；也可以复制到自己邮箱发。')),
           !c ? h('div', { class: 'hra-empty' }, t('先选一位候选人')) : h('button', { class: 'hra-btn pri', disabled: busy.inv, onClick: () => run('inv', 'invite.generate', { id: cp.id(), candidateId: c.id }) }, busy.inv ? t('生成中…') : inv ? t('重新生成') : t('生成邀约邮件')),
           errLine('inv'),
           inv
@@ -309,6 +316,20 @@ export default function createSolution(sdk) {
                   h('select', { class: 'hra-in', value: inv.status, onChange: (e) => run('inv', 'invite.save', { id: cp.id(), candidateId: c.id, subject: inv.subject, body: inv.body, status: e.target.value }) }, [h('option', { value: 'draft' }, t('草稿')), h('option', { value: 'sent' }, t('已发送')), h('option', { value: 'replied' }, t('已回复'))]),
                   h('button', { class: 'hra-btn', onClick: () => run('inv', 'invite.save', { id: cp.id(), candidateId: c.id, subject: inv.subject, body: inv.body, status: inv.status }) }, t('保存修改')),
                 ]),
+                h('div', { class: 'hra-row' }, [
+                  h('input', { class: 'hra-in', style: 'width:240px', placeholder: t('收件邮箱'), value: sendTo.value ?? (c.resume?.basics?.email || ''), onInput: (e) => (sendTo.value = e.target.value) }),
+                  sendAsk.value === c.id
+                    ? h('span', [
+                        h('span', { class: 'hra-ev' }, t('确认把这封邀约发给 {p0}？', { p0: sendTo.value ?? (c.resume?.basics?.email || '') })),
+                        ' ',
+                        h('button', { class: 'hra-btn pri', disabled: busy.inv, onClick: async () => { sendAsk.value = ''; await run('inv', 'invite.send', { id: cp.id(), candidateId: c.id, to: sendTo.value ?? (c.resume?.basics?.email || ''), resend: inv.status === 'sent' }); } }, t('确认发送')),
+                        ' ',
+                        h('button', { class: 'hra-btn', onClick: () => (sendAsk.value = '') }, t('取消')),
+                      ])
+                    : h('button', { class: 'hra-btn pri', disabled: busy.inv, onClick: () => (sendAsk.value = c.id) }, inv.status === 'sent' ? t('再次发送') : t('发送邮件')),
+                  inv.sentAt ? h('span', { class: 'hra-ev' }, t('已于 {p0} 发给 {p1}{p2}', { p0: new Date(inv.sentAt).toLocaleString(), p1: inv.sentTo, p2: inv.via === 'official' ? t('（官方代发）') : '' })) : null,
+                ]),
+                inv.notice ? h('div', { class: 'hra-ev' }, inv.notice) : null,
               ])
             : null,
         ]);

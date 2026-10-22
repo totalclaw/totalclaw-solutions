@@ -43,11 +43,16 @@ async function pool(items, limit, fn) {
 }
 
 let llmOverride = null;
+let mailOverride = null;
 
 module.exports = {
   hostApi: 2,
   __setLlmForTests(fn) {
     llmOverride = fn;
+  },
+  /** 单测注入发信 */
+  __setMailSenderForTests(fn) {
+    mailOverride = fn;
   },
 
   activate(ctx) {
@@ -67,6 +72,17 @@ module.exports = {
         pdf = (file) => extractDocument(file);
       } catch {
         /* 无 PDF 抽取 */
+      }
+    }
+    // HR6 发邀约：与宿主其它工作台同一套（自己的 SMTP 优先，没配走官方代发）；单测可经 __setMailSenderForTests 注入
+    let mailHost = null;
+    if (deps) {
+      try {
+        const { sendCaseMail } = require('host:apps/desktop-shell/src/main/services/caseMailSender.ts');
+        const relay = deps.serviceAuth?.relaySendMail ? { send: (i) => deps.serviceAuth.relaySendMail(i) } : null;
+        mailHost = (input) => sendCaseMail(deps.readEmailCredentials?.() ?? {}, input, relay);
+      } catch {
+        /* 宿主没有发信模块：只能复制草稿 */
       }
     }
     const llm = async (prompt, timeoutMs) => {
@@ -278,7 +294,7 @@ module.exports = {
       }),
     );
 
-    // ⑤ 邀约（只出草稿，人工复制发送）
+    // ⑤ 邀约：生成草稿 → 人改 → 人点两次确认才真发（invite.send）；也可复制到自己邮箱发
     h('invite.generate', async (p) => {
       const j = load(p?.id);
       const c = cand(j, p.candidateId);
@@ -287,9 +303,28 @@ module.exports = {
         x.invite = { subject: String(r.subject || '').slice(0, 120), body: String(r.body || '').slice(0, 4000), status: 'draft' };
       });
     });
+    h('invite.send', async (p) => {
+      const send = mailOverride || mailHost;
+      if (!send) throw new Error('本机没有发信通道，请复制草稿到邮箱发送');
+      const j = load(p?.id);
+      const c = cand(j, p.candidateId);
+      const inv = c.invite;
+      if (!inv || !inv.subject || !inv.body) throw new Error('先生成并保存邀约邮件');
+      if (/【请填写】/.test(inv.subject + inv.body)) throw new Error('正文里还有「【请填写】」没补，补完再发');
+      const to = String(p.to || c.resume?.basics?.email || '').trim();
+      if (!/^[\w.+-]+@[\w-]+(\.[\w-]+)+$/.test(to)) throw new Error('收件地址不对，请填候选人的邮箱');
+      if (inv.status === 'sent' && p.resend !== true) throw new Error('已经发过了；确实要再发一次请点「再次发送」');
+      const r = await send({ to: [to], subject: inv.subject, body: inv.body });
+      if (!r || !r.ok) throw new Error(r?.message || '发送失败');
+      ctx.log.info(`邀约已发送（${r.via || 'self'}）`);
+      return patchCandidate(j.id, c.id, (x) => {
+        x.invite = { ...x.invite, status: 'sent', sentTo: to, sentAt: Date.now(), via: r.via || 'self', messageId: r.messageId || '', notice: r.notice || '' };
+        if (x.stage === 'screening' || x.stage === 'sourcing') x.stage = 'interview';
+      });
+    });
     h('invite.save', (p) =>
       patchCandidate(p.id, p.candidateId, (c) => {
-        c.invite = { subject: String(p.subject || '').slice(0, 120), body: String(p.body || '').slice(0, 4000), status: ['draft', 'sent', 'replied'].includes(p.status) ? p.status : 'draft' };
+        c.invite = { ...(c.invite || {}), subject: String(p.subject || '').slice(0, 120), body: String(p.body || '').slice(0, 4000), status: ['draft', 'sent', 'replied'].includes(p.status) ? p.status : 'draft' };
       }),
     );
 

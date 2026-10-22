@@ -206,6 +206,7 @@ test('法务端到端：上传示例合同 → 七步 → 导出修订稿与意�
     assert.ok(readdirSync(join(dataRoot, 'legal-agent')).includes('files'));
   } finally {
     mod.__setLlmForTests(null);
+    mod.__setMailSenderForTests?.(null);
   }
 });
 
@@ -288,6 +289,21 @@ test('人事端到端：建岗位 → JD → 导入 10 份虚构简历 → 解�
     j = handlers.get('interview.score')({ id: j.id, candidateId: c0.id, dimension: '前端技术', score: 4 });
     assert.equal(j.candidates.find((c) => c.id === c0.id).interview.total, w1);
     j = await handlers.get('invite.generate')({ id: j.id, candidateId: c0.id });
+    // HR6 发邀约：占位没补 / 地址不对不发；补完真发一次；已发过不重发（除非明确再次发送）
+    const sent = [];
+    mod.__setMailSenderForTests(async (m) => (sent.push(m), { ok: true, via: 'official', messageId: 'm1', notice: '回信会回到官方邮箱' }));
+    await assert.rejects(handlers.get('invite.send')({ id: j.id, candidateId: c0.id, to: 'a@b.com' }), /请填写/);
+    j = handlers.get('invite.save')({ id: j.id, candidateId: c0.id, subject: '面试邀请', body: '您好，面试时间 11 月 3 日 14:00。', status: 'draft' });
+    await assert.rejects(handlers.get('invite.send')({ id: j.id, candidateId: c0.id, to: 'not-an-email' }), /收件地址/);
+    j = await handlers.get('invite.send')({ id: j.id, candidateId: c0.id, to: 'cand@example.com' });
+    const inv = j.candidates.find((c) => c.id === c0.id).invite;
+    assert.deepEqual([inv.status, inv.sentTo, inv.via], ['sent', 'cand@example.com', 'official']);
+    assert.deepEqual(sent[0], { to: ['cand@example.com'], subject: '面试邀请', body: '您好，面试时间 11 月 3 日 14:00。' });
+    await assert.rejects(handlers.get('invite.send')({ id: j.id, candidateId: c0.id, to: 'cand@example.com' }), /已经发过/);
+    j = handlers.get('invite.save')({ id: j.id, candidateId: c0.id, subject: inv.subject, body: inv.body, status: 'sent' });
+    assert.equal(j.candidates.find((c) => c.id === c0.id).invite.sentTo, 'cand@example.com', '保存修改不丢发送记录');
+    mod.__setMailSenderForTests(async () => ({ ok: false, message: '未配置发信服务器（SMTP）' }));
+    await assert.rejects(handlers.get('invite.send')({ id: j.id, candidateId: c0.id, to: 'cand@example.com', resend: true }), /SMTP/);
     j = await handlers.get('offer.generate')({ id: j.id, candidateId: c0.id, salary: '20k', startDate: '2026-11-01', probation: '3 个月' });
     j = handlers.get('candidate.stage')({ id: j.id, candidateId: c0.id, stage: 'onboarding' });
     j = handlers.get('onboarding.toggle')({ id: j.id, candidateId: c0.id, index: 0, done: true });
@@ -300,6 +316,7 @@ test('人事端到端：建岗位 → JD → 导入 10 份虚构简历 → 解�
     assert.equal(text.trim().split('\r\n').length, 11);
   } finally {
     mod.__setLlmForTests(null);
+    mod.__setMailSenderForTests?.(null);
   }
 });
 

@@ -1,17 +1,17 @@
 {
   "id": "workbench-hr-agent",
   "version": "1.0.0",
-  "treeDigest": "ddd0391ab39a885cd851337d6e82f02363f739bdf0fb8de5880745ae3dfe71de",
+  "treeDigest": "d66bec4ebdc487a1b25ff459af223fb6eb596ddfae29ab93a901a0de9062a163",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 390,
-      "sha256": "fd2e9342c67f637b487792376678a9269afe1f2bb2e746b767d14181dfec7aed"
+      "size": 435,
+      "sha256": "b6cbaa764f86f95d9445598c477acdb098ab0705a126a42344a5ff5618a88b8f"
     },
     {
       "path": "README.md",
-      "size": 1498,
-      "sha256": "2470584a060496c00b947e53002a3e85442a695254ec4b3146df53fa72504ee9"
+      "size": 1696,
+      "sha256": "bf4155ea8a2d3d0a0a239535aaee9ca06724e8ef47500e35b3643551b54c4138"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
@@ -25,8 +25,8 @@
     },
     {
       "path": "src/host-modules.json",
-      "size": 178,
-      "sha256": "0a60c3c63112a775db4a3a75a080aa0e488ff758a5e3d69e2cbc19d0756d820b"
+      "size": 240,
+      "sha256": "0d5eed619316e4edee0512140513fa2d0a384b810d0da1b2c33dd6f347fc61eb"
     },
     {
       "path": "src/main/docText.cjs",
@@ -40,8 +40,8 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 17831,
-      "sha256": "49a07d02169455cd014a4bce4e0e6df0331cabcc0a9daa38dc3f6b0f2eb90a2f"
+      "size": 20004,
+      "sha256": "64081ff7938a175601c940da7a0b6b2b67c836d4d95d16bd72d60423782f3327"
     },
     {
       "path": "src/main/screening.cjs",
@@ -55,15 +55,15 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 29214,
-      "sha256": "6c3914b073fc264854011bbfac38069010be1cd0308e545623a9a28105926c09"
+      "size": 31079,
+      "sha256": "352bec71af7af1d0c1f5b6b0fc4303f55e8d83d4f02398e0db4165fe81f9c4a8"
     }
   ],
   "versions": [
     {
       "version": "1.0.0",
       "ref": "workbench-hr-agent@1.0.0",
-      "treeDigest": "ddd0391ab39a885cd851337d6e82f02363f739bdf0fb8de5880745ae3dfe71de",
+      "treeDigest": "d66bec4ebdc487a1b25ff459af223fb6eb596ddfae29ab93a901a0de9062a163",
       "filesRef": "index/workbench-hr-agent/1.0.0.json",
       "channel": "stable",
       "rollout": 100,
