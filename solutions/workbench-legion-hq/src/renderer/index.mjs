@@ -647,6 +647,9 @@ export default function createSolution(sdk) {
             rep ? h('span', { class: 'lhq-badge' }, t('已作答 {p0}/{p1} · 通过 {p2} · 部分 {p3} · 不通过 {p4} · 通过+部分 {p5}%', { p0: rep.answered, p1: rep.total, p2: rep.count.pass, p3: rep.count.partial, p4: rep.count.fail, p5: rep.usablePct })) : null,
             rep ? h('button', { class: 'lhq-btn', onClick: async () => { try { const r = await sdk.invoke('exam.export'); if (!r.canceled) sdk.notify.success(t('已导出：{p0}', { p0: r.path })); } catch (e) { sdk.notify.warn(e.message); } } }, t('导出覆盖率报告')) : null,
           ]),
+          rep?.gaps?.length
+            ? h('div', { class: 'lhq-sub', style: 'margin:6px 0' }, t('先补：{p0}', { p0: rep.gaps.slice(0, 5).map((g) => `${g.id} ${g.task}`).join('；') }))
+            : null,
           ex
             ? h('table', { class: 'lhq-tbl' }, [
                 h('tr', [h('th', t('题')), h('th', t('领域 / 事务')), h('th', t('状态')), h('th', '')]),

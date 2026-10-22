@@ -206,7 +206,20 @@ function examReport(exam, results, coverage) {
       return `| ${q.id} | ${q.task} | ${cov ? coverage.statusLabels[cov.status] : '—'} | ${label} | ${checks} | ${String(r.note || '').replace(/\|/g, '/').slice(0, 60)} |`;
     }),
   ];
-  return { total, answered, count, usable, usablePct: pct(usable), byDomain: Object.values(byDomain), markdown: lines.join('\n') + '\n' };
+  // O13 缺口排序：不通过在前，部分通过按检查点通过率从低到高；只排已作答的
+  const ratio = (q) => {
+    const c = results[q.id]?.checks;
+    return Array.isArray(c) && q.checks.length ? c.filter(Boolean).length / q.checks.length : 0;
+  };
+  const gaps = exam.items
+    .filter((q) => ['fail', 'partial'].includes(results[q.id]?.verdict))
+    .sort((a, b) => (results[a.id].verdict === results[b.id].verdict ? ratio(a) - ratio(b) : results[a.id].verdict === 'fail' ? -1 : 1))
+    .map((q, i) => ({ rank: i + 1, id: q.id, task: q.task, domain: q.domain, verdict: results[q.id].verdict, checkRatio: Math.round(ratio(q) * 100) }));
+  lines.push('', '## 缺口排序（先补这些）', '');
+  if (gaps.length) lines.push(...gaps.map((g) => `${g.rank}. ${g.id} ${g.task}（${g.domain}，${g.verdict === 'fail' ? '不通过' : '部分'}，检查点 ${g.checkRatio}%）`));
+  else lines.push(answered ? '已作答的题没有不通过或部分通过的。' : '还没有作答。');
+  if (Array.isArray(exam.knownGaps) && exam.knownGaps.length) lines.push('', '已知缺口（考卷外）：' + exam.knownGaps.join('；'));
+  return { total, answered, count, usable, usablePct: pct(usable), byDomain: Object.values(byDomain), gaps, markdown: lines.join('\n') + '\n' };
 }
 
 module.exports = { loadDemoPack, parseMailFile, scanMailFolder, mailToTask, decodeHeader, tuningRows, costBoard, COST_DEFAULTS, examReport, VERDICTS };

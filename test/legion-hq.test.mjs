@@ -559,6 +559,8 @@ test('调优表 / 成本看板 / 考卷汇总', () => {
   const rep = X.examReport(exam, { q01: { verdict: 'pass', checks: [true, true, true] }, q02: { verdict: 'partial' }, q03: { verdict: 'fail' } }, coverage);
   assert.deepEqual([rep.answered, rep.count.pass, rep.count.partial, rep.count.fail, rep.count.todo], [3, 1, 1, 1, 36]);
   assert.match(rep.markdown, /未全部作答，结论不成立/);
+  assert.deepEqual(rep.gaps.map((g) => g.id), ['q03', 'q02'], '不通过排在部分通过前面');
+  assert.match(rep.markdown, /缺口排序[\s\S]*已知缺口（考卷外）：客户跟进/);
 });
 
 test('机器列表只算员工机（另一台主控不承载部门）；员工机回传的执行阶段转成步骤进度', async () => {
