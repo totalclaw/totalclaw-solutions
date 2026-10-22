@@ -1,12 +1,12 @@
 {
   "id": "workbench-legal-agent",
   "version": "1.0.0",
-  "treeDigest": "1239161bf5d8216c1a8e98fe563b3bce93b2fa312ebc8b8e6f4c14132dc0f4f2",
+  "treeDigest": "bc0c2faae9f9d08642f454ac48c0c6652d4ab7b87a479b96ee80e20bfd947ce8",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 554,
-      "sha256": "3d2d6f77aaadb0129ac3af44ef6a651d9fdca9c6c28b16f8e4757d202a1cf201"
+      "size": 685,
+      "sha256": "0070cc718867a3b726ea1e25b8685afa88f25f6be27d384a88a7019fafad4095"
     },
     {
       "path": "README.md",

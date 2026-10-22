@@ -41,6 +41,7 @@ class Fleet {
     this.busy = new Map(); // machineId → 在途步骤数
     this.order = []; // 见过的员工机顺序（决定 A/B/C 字母）
     this.lastMachines = [];
+    this.pkg = new Map(); // `${nodeId}|${legionId}` → { state: 'installing'|'ok'|'failed'|'unsupported', error }（L3 员工机装部门包）
   }
 
   self() {
@@ -112,6 +113,8 @@ class Fleet {
           activities: Array.isArray(st.activities) ? st.activities.slice(0, 8).map((a) => ({ taskNo: a.taskNo ?? null, legionId: String(a.legionId || ''), phase: String(a.phase || '').slice(0, 40) })) : [],
           // LG7 / HR7：员工机工作台的细步骤（宿主 workbenchActivity）
           workbench: cleanWorkbench(st.workbench),
+          // L3：员工机实际装了的部门方案包
+          installedLegions: Array.isArray(st.installedLegions) ? st.installedLegions.filter((x) => typeof x === 'string').slice(0, 40) : null,
         };
       } catch {
         load = c?.load || null;
@@ -162,6 +165,7 @@ class Fleet {
         hosts: c?.legions || [],
         busy: this.busy.get(n.nodeId) || 0,
         load: c?.load || null,
+        packages: this.packagesOf(n.nodeId, c?.load?.installedLegions),
         note: c?.error ? `读取部门失败：${c.error}` : null,
       });
     }
@@ -191,7 +195,39 @@ class Fleet {
     // 只传 capabilities：员工机画像里的模型不动（config.set 对缺省字段保留原值）
     await this.rpc(machineId, 'config.set', { capabilities: [...keep, ...[...legions].map((l) => TAG + l)] });
     await this.readCaps(node, true);
+    // L3：承载标签立即生效；部门方案包在后台让员工机自己从方案仓库装（可能要下载，不阻塞勾选）。
+    // 撤出时不卸包：包留着无害，数据也不动；要卸到「部门与机器」里点「卸包」
+    if (on) void this.installPackage(machineId, legionId);
     return this.machines();
+  }
+
+  /** L3：让员工机安装部门方案包（及其免开通的工作台）；旧版员工机不认这个指令时标 unsupported */
+  async installPackage(machineId, legionId, uninstall = false) {
+    const key = `${machineId}|${legionId}`;
+    this.pkg.set(key, { state: 'installing', error: null });
+    try {
+      const out = await this.rpc(machineId, uninstall ? 'legion.uninstall' : 'legion.install', { ids: [legionId] }, 5 * 60_000);
+      const mine = (out.items || []).find((x) => x.id === legionId);
+      if (mine && mine.ok) this.pkg.set(key, { state: uninstall ? 'removed' : 'ok', error: null });
+      else this.pkg.set(key, { state: 'failed', error: mine?.error || '安装失败' });
+    } catch (e) {
+      const msg = String(e?.message || e);
+      this.pkg.set(key, { state: /未知 roleId|unknown roleId/i.test(msg) ? 'unsupported' : 'failed', error: msg });
+    }
+    const node = this.onlineNodes().find((n) => n.nodeId === machineId);
+    if (node) await this.readCaps(node, true).catch(() => {});
+    return this.pkg.get(key);
+  }
+
+  /** 每个部门在这台员工机上的包状态：installed（status.report 回读）/ 进行中 / 失败 / 旧版不支持 */
+  packagesOf(nodeId, installed) {
+    const out = {};
+    for (const [key, v] of this.pkg) {
+      const [nid, lid] = key.split('|');
+      if (nid === nodeId) out[lid] = v.state === 'ok' ? 'installed' : v.state;
+    }
+    if (Array.isArray(installed)) for (const lid of installed) if (out[lid] !== 'installing') out[lid] = 'installed';
+    return out;
   }
 
   rename(machineId, name) {

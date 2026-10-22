@@ -1,12 +1,12 @@
 {
   "id": "workbench-legion-hq",
   "version": "1.0.0",
-  "treeDigest": "2d19637e1870beedea9eca5d347692c72a49a7f00f51ebc3d22cd7d3926adad8",
+  "treeDigest": "d34260c3255ebb7de0c6bd7182699ca6e0fcfb6d339dc8cd9cd2ea32bc3965c5",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 2228,
-      "sha256": "e6f5e7079da59668ec56a09f848e691a00237f7c71961a186dd6018db2612f6f"
+      "size": 2390,
+      "sha256": "0245fd7eae4f49ea64c0a9b59a91d0f48a16878e2fc0ed2c505155ec64240039"
     },
     {
       "path": "README.md",
@@ -130,13 +130,13 @@
     },
     {
       "path": "src/main/fleet.cjs",
-      "size": 10371,
-      "sha256": "3d73c3c847ea3b747ae83c11af9c9dc9bb5dfad08985c3b572dc6a88771d5e43"
+      "size": 12651,
+      "sha256": "5bb5ad294ced2a4755315eacb88878be5205d6850ef1ca5cf6144428f8da12a9"
     },
     {
       "path": "src/main/index.cjs",
-      "size": 33510,
-      "sha256": "80e5d9d90e9891a5c44a0c99ca496458d472399950ed0d4ee6b5407939e9df8f"
+      "size": 34065,
+      "sha256": "00629eb347f21a34f70f4499e41de516191e3c7d3caa19f39c5a93d631fe6659"
     },
     {
       "path": "src/main/legions.cjs",
@@ -185,15 +185,15 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 57835,
-      "sha256": "15c076d60b39182dca0834f5c1512594d5517069f62fe697a1cc0f830e8c6e10"
+      "size": 59400,
+      "sha256": "f1046530a00d392f0efb343dea85a9887b2d2e140a55e3aa6072ebea52554d4a"
     }
   ],
   "versions": [
     {
       "version": "1.0.0",
       "ref": "workbench-legion-hq@1.0.0",
-      "treeDigest": "2d19637e1870beedea9eca5d347692c72a49a7f00f51ebc3d22cd7d3926adad8",
+      "treeDigest": "d34260c3255ebb7de0c6bd7182699ca6e0fcfb6d339dc8cd9cd2ea32bc3965c5",
       "filesRef": "index/workbench-legion-hq/1.0.0.json",
       "channel": "stable",
       "rollout": 100,

@@ -328,6 +328,26 @@ export default function createSolution(sdk) {
           .flatMap((x) => x.steps.filter((s) => s.legionId === legionId && s.status === 'running' && (!machineName || s.machine === machineName)).map((s) => ({ no: x.no, goal: s.goal, phase: s.phase })));
       }
 
+      function pkgLine(m, L) {
+        const st = m.packages?.[L.id];
+        const label = { installed: t('包已装'), installing: t('装包中…'), failed: t('装包失败'), unsupported: t('员工机版本旧，不能装包'), removed: t('包已卸') }[st] || t('包未装');
+        const color = st === 'installed' ? 'var(--color-success,#16a34a)' : st === 'failed' || st === 'unsupported' ? 'var(--color-danger,#dc2626)' : 'var(--color-text-secondary,#6b7280)';
+        const act = (action) => async () => {
+          try {
+            const r = await sdk.invoke('fleet.package', { machineId: m.id, legionId: L.id, action });
+            machines.value = r.machines;
+            if (r.error) sdk.notify.warn(r.error);
+          } catch (e) {
+            sdk.notify.warn(e.message);
+          }
+        };
+        return h('div', { style: `font-size:11px;color:${color};margin-top:2px`, title: st === 'failed' ? t('点「重装」再试；员工机要能访问方案仓库') : '' }, [
+          label,
+          st !== 'installing' ? h('a', { style: 'cursor:pointer;margin-left:6px;color:var(--color-brand,#6366f1)', onClick: act('install') }, st === 'installed' ? t('重装') : t('装包')) : null,
+          st === 'installed' ? h('a', { style: 'cursor:pointer;margin-left:6px;color:var(--color-text-secondary,#6b7280)', onClick: act('uninstall') }, t('卸包')) : null,
+        ]);
+      }
+
       function viewFleet(s) {
         const legions = info.value?.legions || [];
         const mode = info.value?.mode;
@@ -373,6 +393,8 @@ export default function createSolution(sdk) {
                         on ? (run.length ? h('span', { style: `color:${L.color};font-weight:600` }, t('执行 {p0}', { p0: run.length })) : t('待命')) : '',
                       ]),
                       ...run.map((r) => h('div', { style: 'font-size:11.5px;color:var(--color-text-secondary,#6b7280)' }, `#${r.no} ${r.phase || r.goal}`)),
+                      // L3：员工机上部门方案包的真实安装状态
+                      !m.local && (on || m.packages?.[L.id]) ? pkgLine(m, L) : null,
                     ]);
                   }),
                 ]),

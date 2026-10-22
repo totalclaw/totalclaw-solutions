@@ -749,3 +749,34 @@ test('LG7 / HR7 员工机回报的工作台细步骤进机器负载（字段清�
   const ms = await fleet.refresh({ force: true });
   assert.deepEqual(ms.find((m) => m.id === 'A').load.workbench, [{ legionId: 'legion-hr', label: '筛选', done: 37, total: 100 }]);
 });
+
+test('L3 勾选承载后让员工机装部门方案包（后台进行）；状态回读；旧版员工机标「不支持」；可卸包', async () => {
+  const cluster = fakeCluster({ nodes: [{ nodeId: 'A', host: '10.0.0.2' }, { nodeId: 'OLD', host: '10.0.0.3' }] });
+  const installed = new Set();
+  const orig = cluster.proc.dispatchTask;
+  cluster.proc.dispatchTask = async (d) => {
+    if (d.roleId === 'legion.install') {
+      if (d.targetNodeId === 'OLD') return { status: 'failed', error: '未知 roleId: legion.install' };
+      d.payload.ids.forEach((id) => installed.add(id));
+      return { status: 'success', output: { items: d.payload.ids.map((id) => ({ id, ok: true, status: 'installed' })) } };
+    }
+    if (d.roleId === 'legion.uninstall') {
+      d.payload.ids.forEach((id) => installed.delete(id));
+      return { status: 'success', output: { items: d.payload.ids.map((id) => ({ id, ok: true })) } };
+    }
+    if (d.roleId === 'status.report') return { status: 'success', output: { busyAgents: 0, installedLegions: d.targetNodeId === 'A' ? [...installed] : undefined } };
+    return orig(d);
+  };
+  const { fleet } = makeRunner({ cluster });
+  await fleet.refresh();
+  await fleet.assign('legion-legal', 'A', true);
+  await fleet.assign('legion-legal', 'OLD', true);
+  await until(() => fleet.machines().find((m) => m.id === 'A').packages['legion-legal'] === 'installed');
+  await until(() => fleet.machines().find((m) => m.id === 'OLD').packages['legion-legal'] === 'unsupported');
+  assert.ok(installed.has('legion-legal'));
+  await fleet.assign('legion-legal', 'A', false);
+  assert.ok(installed.has('legion-legal'), '撤出承载不卸包');
+  const st = await fleet.installPackage('A', 'legion-legal', true);
+  assert.equal(st.state, 'removed');
+  assert.equal(fleet.machines().find((m) => m.id === 'A').packages['legion-legal'], 'removed');
+});

@@ -1,12 +1,12 @@
 {
   "id": "workbench-hr-agent",
   "version": "1.0.0",
-  "treeDigest": "23a90d1653dd8ce2c7a0940d54cc029be3d101d4871572bd1616469e00ae0049",
+  "treeDigest": "fe938f490941fd47cab8469814a508a5922702bd30b35297d35742e7c878ddc7",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 435,
-      "sha256": "b6cbaa764f86f95d9445598c477acdb098ab0705a126a42344a5ff5618a88b8f"
+      "size": 566,
+      "sha256": "90826200995e7c744fa61799087a23db4d69f0a60aa01fc94abd82f5a41e07f9"
     },
     {
       "path": "README.md",

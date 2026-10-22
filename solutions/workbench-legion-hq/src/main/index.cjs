@@ -144,10 +144,10 @@ module.exports = {
     };
     const publishFleet = (raw) => {
       const machines = withLocalWorkbench(raw);
-      const key = JSON.stringify(machines.map((m) => [m.id, m.name, m.online, m.hosts, m.busy, m.load, m.note]));
+      const key = JSON.stringify(machines.map((m) => [m.id, m.name, m.online, m.hosts, m.busy, m.load, m.note, m.packages]));
       if (key === lastFleetKey) return;
       lastFleetKey = key;
-      bus.publish('fleet:changed', { machines: machines.map((m) => ({ id: m.id, name: m.name, ip: m.ip, local: m.local, online: m.online, hosts: m.hosts, busy: m.busy, load: m.load || null, note: m.note || null })) });
+      bus.publish('fleet:changed', { machines: machines.map((m) => ({ id: m.id, name: m.name, ip: m.ip, local: m.local, online: m.online, hosts: m.hosts, busy: m.busy, load: m.load || null, packages: m.packages || null, note: m.note || null })) });
     };
     const refreshFleet = async (force = false) => {
       const machines = await fleet.refresh({ force });
@@ -418,6 +418,14 @@ module.exports = {
       const machines = await fleet.assign(L.id, String(p.machineId), !!p.on);
       publishFleet(machines);
       return machines;
+    });
+    // L3：重装 / 卸载员工机上的部门方案包（勾选承载时已自动装过一次）
+    h('fleet.package', async (p) => {
+      const L = legions.find((x) => x.id === p?.legionId);
+      if (!L) throw new Error('本机没有装这个部门');
+      const st = await fleet.installPackage(String(p.machineId), L.id, p?.action === 'uninstall');
+      publishFleet(fleet.machines());
+      return { state: st?.state, error: st?.error || null, machines: withLocalWorkbench(fleet.machines()) };
     });
     h('fleet.rename', (p) => {
       const machines = fleet.rename(String(p?.machineId), p?.name);
