@@ -606,8 +606,12 @@ test('activate：资料包进提示词、来信文件夹、导出 Word、考卷�
     assert.equal(rec.source, 'mail');
     const ex = await handlers.get('tasks.export')({ taskId: rec.id });
     assert.ok(readFileSync(ex.path).length > 500);
+    await handlers.get('settings.save')({ demoPack: false });
     const run = handlers.get('exam.run')({ id: 'q10' });
     assert.ok(run.taskId);
+    assert.equal(run.demoPackOn, true, '考卷作答自动开启演示资料包');
+    assert.equal((await handlers.get('info')()).settings.demoPack, true);
+    assert.equal(handlers.get('exam.run')({ id: 'q10' }).demoPackOn, false);
     handlers.get('exam.score')({ id: 'q10', verdict: 'partial', checks: [true, false, true], note: '底价对' });
     const rep = handlers.get('exam.report')();
     assert.equal(rep.count.partial, 1);

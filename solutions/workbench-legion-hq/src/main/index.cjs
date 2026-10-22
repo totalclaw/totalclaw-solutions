@@ -723,7 +723,10 @@ module.exports = {
     h('exam.run', (p) => {
       const q = exam().items.find((x) => x.id === p?.id);
       if (!q) throw new Error('没有这道题');
-      const r = runner.submit({ text: q.prompt, title: `考卷 ${q.id}：${q.task}`, source: 'boss' });
+      // 考题按「示例科技」资料包出（成本 186 元、逾期应收、三款产品等）；没开资料包作答各部门看不到这些数，答卷没有意义
+      const demoPackOn = !settings().demoPack;
+      if (demoPackOn) saveSettings({ demoPack: true });
+      const r = { ...runner.submit({ text: q.prompt, title: `考卷 ${q.id}：${q.task}`, source: 'boss' }), demoPackOn };
       const all = examResults();
       all[q.id] = { ...(all[q.id] || {}), taskId: r.taskId, ranAt: Date.now() };
       ctx.writeJson(EXAM, all);

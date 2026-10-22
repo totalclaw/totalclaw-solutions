@@ -795,7 +795,7 @@ export default function createSolution(sdk) {
                       h('td', [h('b', t(q.task)), h('div', { class: 'lhq-sub', style: 'margin:0' }, t(q.domain))]),
                       h('td', r.verdict ? VL[r.verdict] : r.taskId ? t('已下发') : t('未作答')),
                       h('td', { style: 'white-space:nowrap' }, [
-                        h('button', { class: 'lhq-btn', onClick: async () => { try { await sdk.invoke('exam.run', { id: q.id }); examData.value = await sdk.invoke('exam.list'); sdk.notify.info(t('已交给 AI 总经理')); } catch (e) { sdk.notify.warn(e.message); } } }, r.taskId ? t('重跑') : t('作答')),
+                        h('button', { class: 'lhq-btn', onClick: async () => { try { const run = await sdk.invoke('exam.run', { id: q.id }); examData.value = await sdk.invoke('exam.list'); sdk.notify.info(run.demoPackOn ? t('考题基于演示资料包，已自动开启；已交给 AI 总经理') : t('已交给 AI 总经理')); } catch (e) { sdk.notify.warn(e.message); } } }, r.taskId ? t('重跑') : t('作答')),
                         ' ',
                         h('button', { class: 'lhq-btn', onClick: () => (examOpen.value = examOpen.value === q.id ? '' : q.id) }, t('打分')),
                       ]),
