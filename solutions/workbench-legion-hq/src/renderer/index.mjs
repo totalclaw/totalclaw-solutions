@@ -583,6 +583,16 @@ export default function createSolution(sdk) {
               ? h('label', { style: 'display:flex;gap:6px;align-items:center' }, [h('input', { type: 'checkbox', checked: !!info.value?.settings?.imPush, onChange: (e) => saveSettings({ imPush: e.target.checked }) }), t('同时发到老板 IM')])
               : null,
           ]),
+          info.value?.settings?.mailboxAvailable
+            ? h('div', { class: 'lhq-row' }, [
+                h('label', { style: 'display:flex;gap:6px;align-items:center' }, [h('input', { type: 'checkbox', checked: !!info.value?.settings?.mailboxIntake, onChange: (e) => saveSettings({ mailboxIntake: e.target.checked }) }), h('b', t('公司邮箱来信交给 AI 总经理'))]),
+                h('span', { class: 'lhq-sub', style: 'margin:0' }, (() => {
+                  const st = info.value?.settings?.mailboxStatus?.state;
+                  if (!st || st === 'not_configured') return t('先在「设置 → 邮件」填收件服务器（IMAP）；推广、群发和自动回复不会进来');
+                  return { ready: t('收件通道正常，每分钟自动收取'), degraded: t('收件通道部分可用，详情见「设置 → 邮件」'), error: t('收件通道出错，详情见「设置 → 邮件」') }[st] || st;
+                })()),
+              ])
+            : null,
           h('p', { class: 'lhq-sub' }, t('把邮件导出的 .eml（或 .txt / .md）放进来信文件夹，每 20 秒检查一次，新来信自动成为「来信」任务，由 AI 总经理分拣给部门；原文件不改动。')),
           h('table', { class: 'lhq-tbl' }, [
             h('tr', [h('th', t('启用')), h('th', t('事项')), h('th', t('时间')), h('th', t('涉及{p0}', { p0: term.value })), h('th', t('上次')), h('th', '')]),

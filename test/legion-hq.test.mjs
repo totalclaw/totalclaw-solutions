@@ -705,3 +705,40 @@ test('L12 legionKeys.set / list：界面只拿打码后的 key；不改 key 时�
     await mod.deactivate();
   }
 });
+
+test('O6 公司邮箱来信：开关打开后，宿主收件箱新到的真实邮件成为来信任务；模拟数据 / 其它通道 / 重复不收；关掉不收', async () => {
+  const { EventEmitter } = await import('node:events');
+  const intake = new EventEmitter();
+  const dataRoot = mkdtempSync(join(tmpdir(), 'lhq-mbox-'));
+  const handlers = new Map();
+  const ctx = {
+    id: 'workbench-legion-hq', version: '1.0.0', appVersion: '2.0.5', log: { info() {}, warn() {} },
+    host: { deps: { intakeService: intake, mailIntakeProc: { getStatus: () => ({ channel: 'email', state: 'ready', detail: '' }) } } },
+    dataPath: (rel) => join(dataRoot, rel),
+    readJson: (rel, fb) => { try { return JSON.parse(readFileSync(join(dataRoot, rel), 'utf8')); } catch { return fb; } },
+    writeJson: (rel, v) => { mkdirSync(join(dataRoot, rel, '..'), { recursive: true }); writeFileSync(join(dataRoot, rel), JSON.stringify(v)); },
+    packagePath: (rel) => join(DIR, rel), handle: (a, fn) => handlers.set(a, fn), emit: () => {},
+  };
+  const mod = require('./index.cjs');
+  await mod.activate(ctx);
+  try {
+    const mail = { id: 'it-1', channel: 'email', simulated: false, from: { name: '华东经销商', address: 'a@b.com' }, subject: '询价 X1', body: '请报 500 台价格' };
+    intake.emit('item-added', mail);
+    assert.equal(handlers.get('tasks.list')().length, 0, '默认关');
+    const s = handlers.get('info')().settings;
+    assert.deepEqual([s.mailboxAvailable, s.mailboxStatus.state], [true, 'ready']);
+    await handlers.get('settings.save')({ mailboxIntake: true });
+    intake.emit('item-added', mail);
+    intake.emit('item-added', mail);
+    intake.emit('item-added', { ...mail, id: 'it-2', simulated: true });
+    intake.emit('item-added', { ...mail, id: 'it-3', channel: 'whatsapp' });
+    const list = await until(() => { const l = handlers.get('tasks.list')(); return l.length && l; });
+    await tick(50);
+    assert.equal(handlers.get('tasks.list')().length, 1);
+    assert.equal(list[0].source, 'mail');
+    assert.match(list[0].title, /华东经销商.*询价 X1/);
+  } finally {
+    await mod.deactivate();
+  }
+  assert.equal(intake.listenerCount('item-added'), 0, '停用时取消订阅');
+});

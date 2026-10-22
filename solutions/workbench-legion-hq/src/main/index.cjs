@@ -289,6 +289,26 @@ module.exports = {
     }, 20_000);
     if (mailTimer.unref) mailTimer.unref();
 
+    // O6 直连邮箱：宿主 IMAP 收件（设置 → 邮件 配了收件服务器）新到的真实邮件交给 AI 总经理；
+    // 宿主已滤掉 noreply / 群发 / 自动回复。按收件箱条目 id 去重；员工机不收
+    const MAILBOX_SEEN = `${D}/mailbox-seen.json`;
+    const intake = deps?.intakeService && typeof deps.intakeService.on === 'function' ? deps.intakeService : null;
+    const onIntakeItem = (item) => {
+      try {
+        if (settings().mailboxIntake !== true || fleet.mode() === 'employee') return;
+        if (!item || item.channel !== 'email' || item.simulated) return;
+        const seen = new Set(ctx.readJson(MAILBOX_SEEN, []));
+        if (seen.has(item.id)) return;
+        seen.add(item.id);
+        ctx.writeJson(MAILBOX_SEEN, [...seen].slice(-2000));
+        const task = X.mailToTask({ from: item.from?.name || item.from?.address || '', subject: item.subject || '（无主题）', body: String(item.body || '') });
+        runner.submit(task);
+      } catch (e) {
+        ctx.log.warn(`邮箱来信转任务失败：${e.message}`);
+      }
+    };
+    if (intake) intake.on('item-added', onIntakeItem);
+
     // 子机视角：本机承载的部门 + 主控派来的正在跑的任务
     const employee = new EmployeeWatch({
       proc: () => deps?.clusterDiscoveryProc || null,
@@ -311,6 +331,7 @@ module.exports = {
     disposers = [
       () => clearInterval(fleetTimer),
       () => clearInterval(mailTimer),
+      () => intake && typeof intake.off === 'function' && intake.off('item-added', onIntakeItem),
       () => procRef && typeof procRef.off === 'function' && procRef.off('task:received', onInbound),
       () => employee.stop(),
       () => stateTimer && clearTimeout(stateTimer),
@@ -342,6 +363,15 @@ module.exports = {
         imPush: settings().imPush === true,
         imPushAvailable: !!pushToOwner,
         mailFolder: settings().mailFolder || '',
+        mailboxIntake: settings().mailboxIntake === true,
+        mailboxAvailable: !!intake,
+        mailboxStatus: (() => {
+          try {
+            return deps?.mailIntakeProc?.getStatus?.() || null;
+          } catch {
+            return null;
+          }
+        })(),
         cost: { ...X.COST_DEFAULTS, ...(settings().cost || {}) },
       },
       screen: screen.status(),
@@ -423,6 +453,7 @@ module.exports = {
       if (typeof p?.notify === 'boolean') patch.notify = p.notify;
       if (typeof p?.imPush === 'boolean') patch.imPush = p.imPush;
       if (p?.mailFolder === '' || p?.mailFolder === null) patch.mailFolder = '';
+      if (typeof p?.mailboxIntake === 'boolean') patch.mailboxIntake = p.mailboxIntake;
       if (p?.cost && typeof p.cost === 'object') {
         const c = {};
         for (const k of Object.keys(X.COST_DEFAULTS)) if (Number.isFinite(Number(p.cost[k])) && Number(p.cost[k]) >= 0) c[k] = Number(p.cost[k]);

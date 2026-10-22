@@ -1,7 +1,7 @@
 {
   "id": "workbench-legion-hq",
   "version": "1.0.0",
-  "treeDigest": "29932aa66f03135aa611af2c3a68861a54bb07cfe8e77512655b7182257afe95",
+  "treeDigest": "fbd696c31cb07c9b46b81f0ea0a8000fc1e2b76df9425222e309e0209c386902",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -135,8 +135,8 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 30980,
-      "sha256": "8b7cb36ca8bae5720e9cdb55b2c2a4410d09133d2be0455d1a2606d90c16f811"
+      "size": 32595,
+      "sha256": "a5e12fd50bbb7c94f55bc2dccc53c18b9085937b9a8459aeb03271155cd977fd"
     },
     {
       "path": "src/main/legions.cjs",
@@ -185,8 +185,8 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 56836,
-      "sha256": "acc00d91e22548bfbe4779e9bdc02941ac8db6d197fab1b0b7a2d9b57c3d0aca"
+      "size": 57835,
+      "sha256": "15c076d60b39182dca0834f5c1512594d5517069f62fe697a1cc0f830e8c6e10"
     }
   ]
 }
