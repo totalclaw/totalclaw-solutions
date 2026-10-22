@@ -204,18 +204,6 @@ if (args.since) {
   }
 }
 
-// 目录签名：配置了公钥（registry/solution-index.pub）时，index.json.sig 必须与当前 index.json 匹配。
-// 日常开发（没有私钥）只告警；发布（--require-signature，npm run release）必须通过。
-{
-  const pub = join(REPO_ROOT, 'registry', 'solution-index.pub');
-  const sig = join(REPO_ROOT, 'index.json.sig');
-  if (existsSync(pub)) {
-    const { verifyIndexSignature } = await import('../packages/installer/src/signature.mjs');
-    const ok = existsSync(sig) && verifyIndexSignature(readFileSync(join(REPO_ROOT, 'index.json')), Buffer.from(readFileSync(sig, 'utf8').trim(), 'base64'), readFileSync(pub, 'utf8'));
-    if (!ok) (args['require-signature'] ? err : warn)('sign', 'index.json.sig 缺失或与当前 index.json 不匹配：发布前运行 npm run release（需要私钥 TCSOL_SIGNING_KEY）');
-  }
-}
-
 // 发布文件必须能进版本库：被 .gitignore 忽略的文件客户端从 gitee 下载不到（2026-10-21 dist/ 规则误伤的教训）
 try {
   const published = [];

@@ -166,7 +166,7 @@ test('坏版本：激活失败 → 自动回滚并隔离，之后跳过它，直
   assert.equal(m.get('alpha').pendingHealth, false);
 });
 
-test('同版本内容变化：计划为 repair，按目录重装（签名目录下视为重发修正）', async () => {
+test('同版本内容变化：计划为 repair，按目录重装（视为重发修正）', async () => {
   const repo = setup();
   const m = mgr(repo);
   await m.install('alpha');

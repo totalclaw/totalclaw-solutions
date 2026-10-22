@@ -11,7 +11,6 @@
 // 迁移在 migrate.mjs，由宿主在账号进入方案时调用。
 import { randomUUID } from 'node:crypto';
 import { forcedReason, isDelisted, normalizePolicy, selectVersion, versionsOf } from './release.mjs';
-import { verifyIndexSignature } from './signature.mjs';
 import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { dirname, join, relative } from 'node:path';
 import { digestDir, sha256, treeDigest } from './digest.mjs';
@@ -63,10 +62,10 @@ export class SolutionManager {
    * @param {(evt:object)=>void} [opts.onProgress]
    * @param {(msg:string)=>void} [opts.log]
    */
-  constructor({ root, source, appVersion = '999.0.0', hostApi = 1, concurrency = 6, archiveThreshold = 300, publicKey = null, deviceId = null, policy = null, onProgress, log } = {}) {
+  constructor({ root, source, appVersion = '999.0.0', hostApi = 1, concurrency = 6, archiveThreshold = 300, deviceId = null, policy = null, onProgress, log } = {}) {
     if (!root) throw new Error('SolutionManager 需要 root');
     if (!source) throw new Error('SolutionManager 需要 source');
-    Object.assign(this, { root, source, appVersion, hostApi, concurrency, archiveThreshold, publicKey, deviceId });
+    Object.assign(this, { root, source, appVersion, hostApi, concurrency, archiveThreshold, deviceId });
     /** 账号更新策略（渠道 / 自动更新 / 单方案覆盖），可为对象或返回对象的函数（账号切换后随之变化） */
     this._policy = policy;
     this.onProgress = onProgress || (() => {});
@@ -91,27 +90,11 @@ export class SolutionManager {
   async catalog({ refresh = false } = {}) {
     if (!refresh && this.catalogCache && Date.now() - this.catalogCache.at < CATALOG_TTL_MS) return this.catalogCache;
     const ref = await this.source.resolveRef();
-    const index = this.publicKey ? await this._fetchSignedIndex(ref) : await this.source.fetchIndex(ref);
+    const index = await this.source.fetchIndex(ref);
     if (!index || !Array.isArray(index.items)) throw new SolutionError('BAD_INDEX', '方案目录格式错误');
     this.catalogCache = { ref, index, at: Date.now() };
     this._detailCache?.clear();
     return this.catalogCache;
-  }
-
-  /**
-   * 验签读取 index.json：index.json.sig 是对 index.json 原始字节的 ed25519 签名（base64）。
-   * index 里每个方案的 treeDigest 又锁定了 index/<id>.json 与全部文件哈希，所以验过 index 即覆盖整条链。
-   */
-  async _fetchSignedIndex(ref) {
-    const raw = await this.source.fetchFile(ref, 'index.json');
-    let sig;
-    try {
-      sig = Buffer.from((await this.source.fetchFile(ref, 'index.json.sig')).toString('utf8').trim(), 'base64');
-    } catch {
-      throw new SolutionError('SIGNATURE_MISSING', '方案目录缺少签名（index.json.sig）');
-    }
-    if (!verifyIndexSignature(raw, sig, this.publicKey)) throw new SolutionError('SIGNATURE_INVALID', '方案目录签名校验失败');
-    return JSON.parse(raw.toString('utf8'));
   }
 
   /**

@@ -78,8 +78,6 @@ npm test                 # 全部测试（安装器 + 真实仓库端到端）
 npm run validate         # 校验清单、id 对账、CHANGELOG、文件安全、生成物最新
 npm run index            # 重新生成 index.json / index/*.json / catalog.json
 npm run pack -- <id>     # 打发布包 dist/<id>-<version>.tgz（--all 打全部）
-npm run sign             # 给 index.json 签名（TCSOL_SIGNING_KEY=私钥路径），生成 index.json.sig
-npm run sign:verify      # 用 registry/solution-index.pub 校验签名
 npm run import           # 从 qiye-app 重新同步源码（迁移期使用）
 
 # 安装器 CLI
@@ -164,7 +162,7 @@ export default {
 2. 构建：在 qiye-app 执行 `pnpm solutions:build --only <id>`，产物写进本仓库的 `solutions/<id>/dist/`，宿主模块注册表随之重新生成。
 3. 发版：
    1. 提升 `version`、写 CHANGELOG。
-   2. 执行 `npm run release`（重建目录 → 签名 → 校验，需要私钥 `TCSOL_SIGNING_KEY`）。
+   2. 执行 `npm run release`（重建目录 → 校验）。
    3. 提交。
    4. 执行 `npm run tag`，为新版本打不可变 tag `<id>@<version>`，与提交一起推送（`git push --tags`）。旧客户端会按 tag 取它兼容的历史版本。
 4. 客户端：存量工作台下次启动时升级到新版本。新开发的方案（hostApi 1）可以热替换。

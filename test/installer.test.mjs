@@ -269,24 +269,6 @@ test('并发安装请求串行执行，锁文件不损坏', async () => {
   assert.deepEqual(Object.keys(readLock(mgr.root).items).sort(), ['alpha', 'beta']);
 });
 
-test('签名目录：公钥验签通过才使用；篡改 / 缺签名拒绝', async () => {
-  const { generateSigningKeyPair, signIndex } = await import('../packages/installer/src/signature.mjs');
-  const { repo } = setup();
-  const { publicKey, privateKey } = generateSigningKeyPair();
-  const sign = () => writeFileSync(join(repo, 'index.json.sig'), signIndex(readFileSync(join(repo, 'index.json')), privateKey));
-  const mk = () => new SolutionManager({ root: tmp(), source: new LocalSource(repo), publicKey });
-
-  await assert.rejects(mk().install('alpha'), { code: 'SIGNATURE_MISSING' });
-  sign();
-  assert.equal((await mk().install('alpha')).status, 'installed');
-
-  // 签名后改目录（例如把某方案的 treeDigest 换掉）→ 拒绝
-  const idx = JSON.parse(readFileSync(join(repo, 'index.json'), 'utf8'));
-  idx.items[0].version = '9.9.9';
-  writeFileSync(join(repo, 'index.json'), JSON.stringify(idx));
-  await assert.rejects(mk().install('alpha'), { code: 'SIGNATURE_INVALID' });
-});
-
 test('sourceFromSpec：不存在的目录也建 LocalSource（读取时才失败，宿主可兜底）', async () => {
   const { sourceFromSpec } = await import('../packages/installer/src/sources.mjs');
   const src = sourceFromSpec(join(tmp(), 'nope'));
