@@ -780,3 +780,44 @@ test('L3 勾选承载后让员工机装部门方案包（后台进行）；状�
   assert.equal(st.state, 'removed');
   assert.equal(fleet.machines().find((m) => m.id === 'A').packages['legion-legal'], 'removed');
 });
+
+test('E1 宿主工作流事件进大屏动态：开始 / 派到员工机（带部门颜色）/ 回落本机 / 完成；token 流不进', async () => {
+  const { EventEmitter } = await import('node:events');
+  const wf = new EventEmitter();
+  const Module = createRequire(import.meta.url)('node:module');
+  const origLoad = Module._load;
+  Module._load = function (req, ...rest) {
+    if (req === 'host:apps/desktop-shell/src/main/services/workflowEventBus.ts') return { workflowEventBus: wf };
+    return origLoad.call(this, req, ...rest);
+  };
+  const dataRoot = mkdtempSync(join(tmpdir(), 'lhq-wf-'));
+  const handlers = new Map();
+  const ctx = {
+    id: 'workbench-legion-hq', version: '1.0.0', appVersion: '2.0.5', log: { info() {}, warn() {} },
+    dataPath: (rel) => join(dataRoot, rel),
+    readJson: (rel, fb) => { try { return JSON.parse(readFileSync(join(dataRoot, rel), 'utf8')); } catch { return fb; } },
+    writeJson: (rel, v) => { mkdirSync(join(dataRoot, rel, '..'), { recursive: true }); writeFileSync(join(dataRoot, rel), JSON.stringify(v)); },
+    packagePath: (rel) => join(DIR, rel), handle: (a, fn) => handlers.set(a, fn), emit: () => {},
+  };
+  const path = require.resolve('./index.cjs');
+  delete require.cache[path];
+  const mod = require('./index.cjs');
+  try {
+    await mod.activate(ctx);
+    wf.emit('event', { kind: 'run:started', runId: 'run-abcd' });
+    wf.emit('event', { kind: 'node:token', runId: 'run-abcd', delta: 'xx' });
+    wf.emit('event', { kind: 'node:dispatched', dispatchStatus: 'dispatched', dispatchTargetId: 'node-z', dispatchRole: 'legal-contract-reviewer', dispatchLegionId: 'legion-legal' });
+    wf.emit('event', { kind: 'node:dispatched', dispatchStatus: 'fallback' });
+    wf.emit('event', { kind: 'run:completed', runId: 'run-abcd' });
+    const feed = handlers.get('state')().feed;
+    assert.deepEqual(feed.map((f) => f.who).reverse().slice(-4), ['wf', 'legion-legal', 'wf', 'wf']);
+    const texts = feed.map((f) => f.text).reverse().join('|');
+    assert.match(texts, /集群工作流开始（…abcd）\|工作流节点 → node-z（legal-contract-reviewer）\|工作流节点没有可派的员工机，在主控本机执行\|集群工作流完成（…abcd）/);
+    assert.ok(!texts.includes('xx'));
+  } finally {
+    await mod.deactivate();
+    Module._load = origLoad;
+    delete require.cache[path];
+  }
+  assert.equal(wf.listenerCount('event'), 0, '停用时取消订阅');
+});

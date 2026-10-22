@@ -302,6 +302,31 @@ module.exports = {
     }, 20_000);
     if (mailTimer.unref) mailTimer.unref();
 
+    // E1：宿主工作流页（集群工作流）的运行也上大屏动态 —— 开始 / 节点派到哪台员工机（带部门）/ 完成或失败
+    let wfBus = null;
+    try {
+      wfBus = require('host:apps/desktop-shell/src/main/services/workflowEventBus.ts').workflowEventBus;
+    } catch {
+      wfBus = null; // 旧宿主没有工作流事件总线
+    }
+    const machineName = (id) => (fleet.machines().find((m) => m.id === id) || {}).name || id;
+    const onWorkflowEvent = (ev) => {
+      try {
+        if (!ev || fleet.mode() === 'employee' || ev.kind === 'node:token') return;
+        const run = String(ev.runId || '').slice(-4);
+        let text = '';
+        if (ev.kind === 'run:started') text = `集群工作流开始（…${run}）`;
+        else if (ev.kind === 'node:dispatched' && ev.dispatchStatus === 'dispatched') text = `工作流节点 → ${machineName(ev.dispatchTargetId)}${ev.dispatchRole ? `（${ev.dispatchRole}）` : ''}`;
+        else if (ev.kind === 'node:dispatched' && ev.dispatchStatus === 'fallback') text = '工作流节点没有可派的员工机，在主控本机执行';
+        else if (ev.kind === 'run:completed') text = `集群工作流完成（…${run}）`;
+        else if (ev.kind === 'run:failed') text = `集群工作流失败（…${run}）：${String(ev.error || '').slice(0, 40)}`;
+        if (text) bus.publish('workflow:external', { text, legionId: ev.dispatchLegionId || null });
+      } catch {
+        /* 动态写不进不影响工作流 */
+      }
+    };
+    if (wfBus) wfBus.on('event', onWorkflowEvent);
+
     // O6 直连邮箱：宿主 IMAP 收件（设置 → 邮件 配了收件服务器）新到的真实邮件交给 AI 总经理；
     // 宿主已滤掉 noreply / 群发 / 自动回复。按收件箱条目 id 去重；员工机不收
     const MAILBOX_SEEN = `${D}/mailbox-seen.json`;
@@ -349,6 +374,7 @@ module.exports = {
       () => clearInterval(wbTimer),
       () => clearInterval(mailTimer),
       () => intake && typeof intake.off === 'function' && intake.off('item-added', onIntakeItem),
+      () => wfBus && wfBus.off('event', onWorkflowEvent),
       () => procRef && typeof procRef.off === 'function' && procRef.off('task:received', onInbound),
       () => employee.stop(),
       () => stateTimer && clearTimeout(stateTimer),

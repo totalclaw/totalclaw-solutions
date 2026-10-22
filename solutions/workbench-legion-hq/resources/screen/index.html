@@ -293,7 +293,7 @@ function renderPanels(){
  // 实时动态（S7 只显示真实事件）
  const top=(S.feed||[]).slice(0,15);const key=top.map(f=>f.ts+f.text).join('|');
  if(key!==lastFeedTop){const first=lastFeedTop.split('|')[0];lastFeedTop=key;
-  $('feed').innerHTML=top.map((f,i)=>{const L=LG[f.who];const c=f.who==='core'?'#22D3EE':f.who==='hand'?'#FDE047':f.who==='boss'?'#FBBF24':L?L.color:'#94A3B8';const n=f.who==='core'?(LANG==='en'?'GM':'总经理'):f.who==='hand'?(LANG==='en'?'Handoff':'交接'):f.who==='boss'?(LANG==='en'?'Boss':'老板'):L?L.short:'';
+  $('feed').innerHTML=top.map((f,i)=>{const L=LG[f.who];const c=f.who==='core'?'#22D3EE':f.who==='hand'?'#FDE047':f.who==='boss'?'#FBBF24':f.who==='wf'?'#A3E635':L?L.color:'#94A3B8';const n=f.who==='core'?(LANG==='en'?'GM':'总经理'):f.who==='hand'?(LANG==='en'?'Handoff':'交接'):f.who==='boss'?(LANG==='en'?'Boss':'老板'):f.who==='wf'?(LANG==='en'?'Workflow':'工作流'):L?L.short:'';
    return `<div class="${i===0&&(f.ts+f.text)!==first?'new':''}"><span class="t">${new Date(f.ts).toTimeString().slice(0,8)}</span><b style="color:${c}">[${esc(n)}]</b> ${esc(f.text)}</div>`}).join('');}
  // 部门负载
  const lh=ORDER.map(id=>{const L=LG[id];const ld=(S.legionLoad||{})[id]||{active:0,done:0};return `<div class="lrow"><span style="color:${L.color};font-weight:700">${esc(LANG==='en'&&L.shortEn?L.shortEn:L.name)}</span><div class="bar"><i style="width:${Math.min(100,ld.active*34)}%;background:${L.color}"></i></div><em>${L.placed?(ld.active?tr('busyN',{n:ld.active}):tr('idle')):tr('notPlaced')} · ${ld.done}</em></div>`}).join('');

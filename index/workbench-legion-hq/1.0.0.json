@@ -1,17 +1,17 @@
 {
   "id": "workbench-legion-hq",
   "version": "1.0.0",
-  "treeDigest": "d34260c3255ebb7de0c6bd7182699ca6e0fcfb6d339dc8cd9cd2ea32bc3965c5",
+  "treeDigest": "146d5ab5cf48635ff2a17bb7ae192b8d74b0718e6057f355cf0bde902143b4f3",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 2390,
-      "sha256": "0245fd7eae4f49ea64c0a9b59a91d0f48a16878e2fc0ed2c505155ec64240039"
+      "size": 2479,
+      "sha256": "c9ad92110030c1ebe5ac386753f5ce7670c5e5d1681d092a7baa3c45d34c03b0"
     },
     {
       "path": "README.md",
-      "size": 6072,
-      "sha256": "f7a0605a3f663c4c63381b1c6e60ad4220c4034a057c857553d9aa1ba6d3c3cb"
+      "size": 6260,
+      "sha256": "2a69d42ce7d31bea3177b1402e12ba20815344fe59faeb44d182db7dbc13adec"
     },
     {
       "path": "resources/company-logo.png",
@@ -55,8 +55,8 @@
     },
     {
       "path": "resources/screen/index.html",
-      "size": 45363,
-      "sha256": "455ff6adc5365acbd42daf17460cfd0050a6be10680184e91c7d3be98f0f5d5e"
+      "size": 45436,
+      "sha256": "d1dd5bb18c42706cfdb9ecf4ebe11bbd0ce3e41faddde61e37029726add009ae"
     },
     {
       "path": "resources/screen/remote.html",
@@ -90,8 +90,8 @@
     },
     {
       "path": "src/host-modules.json",
-      "size": 230,
-      "sha256": "d4369169b6754a801858efb21007a62ef82162ec08c1226648b8d6adbbda7a92"
+      "size": 294,
+      "sha256": "ecfd50bfe18d461371662db4da9281d7245005556cfb3ff601983aed23dda699"
     },
     {
       "path": "src/main/bus.cjs",
@@ -135,8 +135,8 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 34065,
-      "sha256": "00629eb347f21a34f70f4499e41de516191e3c7d3caa19f39c5a93d631fe6659"
+      "size": 35704,
+      "sha256": "1a39dd5936375ed993bc5115886d4cdf3a1b3dd53fe463fd38c5875df1ab2b25"
     },
     {
       "path": "src/main/legions.cjs",
@@ -170,8 +170,8 @@
     },
     {
       "path": "src/main/screenState.cjs",
-      "size": 8740,
-      "sha256": "2771cac04a2955ddaac6268f0d49be9a457caaf3663d9fb68df516f58c8e0b0e"
+      "size": 9054,
+      "sha256": "12cd3a8821f5ce151e78f9b7e04ea5dc31f1567ae53c14535de5601c20915db9"
     },
     {
       "path": "src/main/triage.cjs",

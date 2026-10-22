@@ -71,6 +71,10 @@ function applyEvent(state, ev) {
     case 'screen:reset':
       Object.assign(state, { tasks: [], feed: [], stats: {}, doneToday: 0, replay: !!ev.replay });
       return true;
+    // E1：宿主工作流页（集群工作流）的运行，进动态（谁 = 'wf'，带部门时用部门颜色）
+    case 'workflow:external':
+      pushFeed(state, ev, ev.legionId && state.legions.some((x) => x.id === ev.legionId) ? ev.legionId : 'wf', short(String(ev.text || ''), 80));
+      return true;
     default:
       break;
   }
