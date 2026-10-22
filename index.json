@@ -145,13 +145,13 @@
       "icon": "icon-solutions",
       "order": 30,
       "description": "多 Agent 协同备课、实训辅导、学情分析、教学配图与教师审核。",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -190,10 +190,10 @@
       "capabilities": [],
       "path": "solutions/workbench-education",
       "fileCount": 8,
-      "size": 141604,
-      "treeDigest": "fed516f5f0f4aa7c83fbb5a885d83023aa77ec3d88cd6e2657f3fe18cced389e",
+      "size": 142247,
+      "treeDigest": "37be4c91f923143ae32929f0291f28f7982659c63cb85fde158eae0ad7448940",
       "largeAssets": [],
-      "changelog": "- 修复：实训导师回复不流式显示（要等整段结束才出现，长回复像卡住）。\n- 方案入口导出 deactivate：宿主卸载 / 停用 / 升级时按统一流程释放（本方案没有后台任务，行为不变）。\n- 界面跟随 App 当前语言（设置里切换中文 / 英语 / 阿拉伯语），不再一进入就把整个 App 切成阿拉伯语、改成从右到左排版；教案输出语言默认取 App 语言。",
+      "changelog": "- 平台能力区的无障碍标签随品牌显示（同步 qiye-app yitiji 分支的品牌统一改动）。\n- 需要 App 2.0.6 起（宿主模块注册表新增 renderer/utils/brand.ts）；更早的 App 继续使用 2.0.1。",
       "filesRef": "index/workbench-education.json"
     },
     {
@@ -270,7 +270,7 @@
       "icon": "icon-solutions",
       "order": 50,
       "description": "患者服务、院内工单、隐私保护、服务质量与人工复核，不涉及诊断治疗。",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -315,10 +315,10 @@
       "capabilities": [],
       "path": "solutions/workbench-healthcare",
       "fileCount": 8,
-      "size": 149858,
-      "treeDigest": "e976b3217ac5a4f5d34a9d897917c21b7d8c63a314adcdaf991cd3d3489f9dc6",
+      "size": 150148,
+      "treeDigest": "f6f575e480bf0d13c48a608823902d7c3a5f56f5f4cf34f48dda7eecfe3f47f4",
       "largeAssets": [],
-      "changelog": "- 英文 / 阿拉伯语界面：补齐漏翻的界面文案与给模型的指令（输出语言跟随界面语言），中文不变。\n- 方案入口导出 deactivate：宿主卸载 / 停用 / 升级时按统一流程释放（本方案没有后台任务，行为不变）。",
+      "changelog": "- 演示样例地址加品牌字面量豁免标注（无行为变化）（同步 qiye-app yitiji 分支的品牌统一改动）。",
       "filesRef": "index/workbench-healthcare.json"
     },
     {
@@ -409,13 +409,13 @@
       "icon": "icon-solutions",
       "order": 60,
       "description": "多源数据归一、销售与库存对账、采购到货、补货调拨和出入库执行。",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -454,10 +454,10 @@
       "capabilities": [],
       "path": "solutions/workbench-warehouse",
       "fileCount": 8,
-      "size": 191606,
-      "treeDigest": "3d8e642045b4adb6f3b612280810527ab6e7eb87107c8cdf3df2a4ef4303c738",
+      "size": 192304,
+      "treeDigest": "79a85133933cc9bff7260f3be5742c5317759eaaa00989853db928628f1faf4b",
       "largeAssets": [],
-      "changelog": "- 英文 / 阿拉伯语界面：补齐漏翻的界面文案与给模型的指令（输出语言跟随界面语言），中文不变。\n- 方案入口导出 deactivate：宿主卸载 / 停用 / 升级时按统一流程释放（本方案没有后台任务，行为不变）。",
+      "changelog": "- 数据归一页的产品名随品牌显示（白标版不再写死 TotalClaw）（同步 qiye-app yitiji 分支的品牌统一改动）。\n- 需要 App 2.0.6 起（宿主模块注册表新增 renderer/utils/brand.ts）；更早的 App 继续使用 2.0.1。",
       "filesRef": "index/workbench-warehouse.json"
     },
     {
@@ -1601,7 +1601,7 @@
       "icon": "icon-solutions",
       "order": 250,
       "description": "月结关账、对账、审计与内控、税务合规、管理报告、资金风险与投融资估值，48 个模块分步出底稿，人工签核后归档；中英阿三语，适配中国、国际、沙特与阿联酋准则税制。",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1653,10 +1653,10 @@
       "capabilities": [],
       "path": "solutions/workbench-finance-audit",
       "fileCount": 8,
-      "size": 2396542,
-      "treeDigest": "38ca4ddf78dccfa9c71c08e0c5f2403b773ddb232442173d3c19f103de72b261",
+      "size": 2396691,
+      "treeDigest": "35fb60d64ddf74f657a1405842a6676de8fffaf073d315968f6054019de27351",
       "largeAssets": [],
-      "changelog": "- 英文 / 阿拉伯语界面：阈值表与判断依据里的阈值说明、出处章节按当前语言显示（中文不变）。\n- 方案入口导出 deactivate：宿主卸载 / 停用 / 升级时按统一流程释放（本方案没有后台任务，行为不变）。",
+      "changelog": "- 样例数据加品牌字面量豁免标注（无行为变化）（同步 qiye-app yitiji 分支的品牌统一改动）。",
       "filesRef": "index/workbench-finance-audit.json"
     },
     {
@@ -1672,7 +1672,7 @@
       "description": "放进活动照片与视频：自动生成活动档案、中英阿三语报告 PDF 与海报、高保真语音、9:16 宣传短视频，一键完整流程。",
       "descriptionEn": "Turn one charity event's raw material (photos, field notes, donation data) into multilingual campaign content in one pass: posters and illustrations, short-video cuts, social posts and donor thank-you letters, exported per platform aspect ratio and language, with a reviewable trail.",
       "descriptionAr": "حوّل مواد فعالية خيرية واحدة (الصور، السجلات الميدانية، بيانات التبرعات) إلى محتوى ترويجي متعدد اللغات بخطوة واحدة: ملصقات وصور، مقاطع فيديو قصيرة، منشورات للتواصل الاجتماعي ورسائل شكر للمتبرعين، تُصدَّر حسب مقاس كل منصة ولغتها مع سجل كامل قابل للمراجعة.",
-      "version": "2.0.2",
+      "version": "2.0.3",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1719,8 +1719,8 @@
       "capabilities": [],
       "path": "solutions/workbench-charity-content",
       "fileCount": 8,
-      "size": 317673,
-      "treeDigest": "eaa28eebe0a71355b60a0134e29ca0850ce7172731c67d23a77e6af82b524ba5",
+      "size": 317825,
+      "treeDigest": "680ee6e2480a2b3a58385b8d80eacba26ccb548e7ea33898c571c6bed4d10b85",
       "largeAssets": [
         {
           "path": "resources/bundled-solutions/charity-content/demo-materials/58865d8353e8b485e0ce7db1b3a23559.mp4",
@@ -1777,7 +1777,7 @@
           "origin": "resources/bundled-solutions/charity-content/prebaked/video-zh.mp4"
         }
       ],
-      "changelog": "- 方案入口导出 deactivate：宿主卸载 / 停用 / 升级时按统一流程释放（本方案没有后台任务，行为不变）。",
+      "changelog": "- 文档目录名加品牌字面量豁免标注（无行为变化）（同步 qiye-app yitiji 分支的品牌统一改动）。",
       "filesRef": "index/workbench-charity-content.json"
     },
     {
@@ -1979,13 +1979,13 @@
       "icon": "icon-solutions",
       "order": 280,
       "description": "从 RFQ/BOQ 到审批文件的可追溯业务闭环",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -2024,10 +2024,10 @@
       "capabilities": [],
       "path": "solutions/embedded-bid-desk",
       "fileCount": 8,
-      "size": 219874,
-      "treeDigest": "4bf4001f763701ef77f537895cb4bf63063395ece763b9fcca821d33c9eef888",
+      "size": 220499,
+      "treeDigest": "af113910c44325529213be0ede6455993b29f8222f44b5a794c286faa3a9ebe8",
       "largeAssets": [],
-      "changelog": "- 英文 / 阿拉伯语界面：负责人、审计记录里带参数的内置文案按当前语言显示。\n- 英文 / 阿拉伯语界面：演示案例（名称、文件、BOQ、符合性、风险、证据摘录等）按当前语言显示；用户录入的内容原样显示。\n- 方案入口导出 deactivate：宿主卸载 / 停用 / 升级时按统一流程释放（本方案没有后台任务，行为不变）。\n- 修复：主进程里按需加载的宿主模块 / npm 包（文档解析、邮件收发、PDF 等）运行时加载失败 —— 动态 import 改为经宿主模块注册表取得。",
+      "changelog": "- 能力卡片标题随品牌显示（白标版不再写死 TotalClaw）（同步 qiye-app yitiji 分支的品牌统一改动）。\n- 需要 App 2.0.6 起（宿主模块注册表新增 renderer/utils/brand.ts）；更早的 App 继续使用 2.0.1。",
       "filesRef": "index/embedded-bid-desk.json"
     },
     {

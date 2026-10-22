@@ -337,6 +337,7 @@ const wt = ["dir"], bt = { class: "hero" }, St = { class: "hero-copy" }, Et = { 
         birthdateMonth: "6",
         birthdateYear: "1998",
         address1: "TotalClaw Demo Street",
+        // brand-literal-ok 演示样例地址
         address2: "Demo Unit 1201",
         cityVillage: "Dubai",
         stateProvince: "Dubai",
@@ -656,6 +657,7 @@ const wt = ["dir"], bt = { class: "hero" }, St = { class: "hero-copy" }, Et = { 
         n.stage = "address";
         const h = [
           "TotalClaw Demo Street",
+          // brand-literal-ok 演示样例地址
           "Demo Unit 1201",
           "Dubai",
           "Dubai",
@@ -818,7 +820,7 @@ const wt = ["dir"], bt = { class: "hero" }, St = { class: "hero-copy" }, Et = { 
             gender: 'M',
             birthdate: '1998-06-15T00:00:00.000+0000',
             addresses: [{
-              address1: 'TotalClaw Demo Street',
+              address1: 'TotalClaw Demo Street', // brand-literal-ok 演示样例地址
               cityVillage: 'Dubai',
               stateProvince: 'Dubai',
               country: 'United Arab Emirates',
@@ -2814,7 +2816,7 @@ const wt = ["dir"], bt = { class: "hero" }, St = { class: "hero-copy" }, Et = { 
   for (const [w, le] of j)
     ee[w] = le;
   return ee;
-}, Xn = /* @__PURE__ */ Zn(Gn, [["__scopeId", "data-v-8631b14d"]]);
+}, Xn = /* @__PURE__ */ Zn(Gn, [["__scopeId", "data-v-1016ea8b"]]);
 export {
   Xn as default
 };

@@ -5,6 +5,7 @@
     "apps/desktop-shell/src/renderer/components/StepRunAlert.vue",
     "apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts",
     "apps/desktop-shell/src/renderer/i18n.ts",
+    "apps/desktop-shell/src/renderer/utils/brand.ts",
     "apps/desktop-shell/src/renderer/utils/humanize.ts",
     "apps/desktop-shell/src/renderer/utils/markdown.ts",
     "npm:vue",

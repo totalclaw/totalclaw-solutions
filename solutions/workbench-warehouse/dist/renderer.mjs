@@ -1,48 +1,51 @@
 const e = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue"];
 if (!e) throw new Error("宿主模块未就绪：npm:vue");
 e.default;
-const ve = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-i18n"];
-if (!ve) throw new Error("宿主模块未就绪：npm:vue-i18n");
-ve.default;
-const Ee = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
-if (!Ee) throw new Error("宿主模块未就绪：npm:vue-router");
+const Ee = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-i18n"];
+if (!Ee) throw new Error("宿主模块未就绪：npm:vue-i18n");
 Ee.default;
-const he = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/PageBackButton.vue"];
-if (!he) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/PageBackButton.vue");
-const De = he.default, l = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/i18n.ts"];
+const Ne = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
+if (!Ne) throw new Error("宿主模块未就绪：npm:vue-router");
+Ne.default;
+const we = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/PageBackButton.vue"];
+if (!we) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/PageBackButton.vue");
+const _e = we.default, l = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/i18n.ts"];
 if (!l) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/i18n.ts");
 l.default;
 const ae = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/humanize.ts"];
 if (!ae) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/humanize.ts");
 ae.default;
-const we = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/AutomationOpsConsole.vue"];
-if (!we) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/AutomationOpsConsole.vue");
-const _e = we.default, L = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:xlsx"];
+const ke = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/AutomationOpsConsole.vue"];
+if (!ke) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/AutomationOpsConsole.vue");
+const $e = ke.default, L = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:xlsx"];
 if (!L) throw new Error("宿主模块未就绪：npm:xlsx");
 L.default;
-const $e = { class: "normalization-lab" }, Ae = { class: "lab-header" }, Ce = { class: "lab-layout" }, Te = { class: "source-column" }, Be = { class: "column-title" }, Oe = ["onClick"], Le = { class: "source-icon" }, Re = { class: "source-copy" }, Pe = { key: 0 }, Ue = { class: "upload-card" }, Ie = { class: "ledger-slots" }, Ke = ["disabled"], Me = { class: "mapping-column" }, We = { class: "source-toolbar" }, qe = { class: "format-tag" }, ze = ["disabled"], Je = { class: "data-tabs" }, je = {
+const me = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/brand.ts"];
+if (!me) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/brand.ts");
+me.default;
+const Ae = { class: "normalization-lab" }, Ce = { class: "lab-header" }, Te = { class: "eyebrow" }, Be = { class: "lab-layout" }, Oe = { class: "source-column" }, Le = { class: "column-title" }, Re = ["onClick"], Pe = { class: "source-icon" }, Ue = { class: "source-copy" }, Ie = { key: 0 }, Ke = { class: "upload-card" }, We = { class: "ledger-slots" }, Me = ["disabled"], qe = { class: "mapping-column" }, ze = { class: "source-toolbar" }, Je = { class: "format-tag" }, je = ["disabled"], Fe = { class: "data-tabs" }, He = {
   key: 0,
   class: "tab-panel raw-panel"
-}, Fe = { class: "data-facts" }, He = {
+}, Ze = { class: "data-facts" }, Xe = {
   key: 0,
   class: "message error"
-}, Ze = {
+}, Qe = {
   key: 1,
   class: "tab-panel mapping-panel"
-}, Xe = { class: "mapping-intro" }, Qe = { class: "mapping-grid" }, Ge = ["onUpdate:modelValue"], Ye = { value: "" }, xe = ["value"], et = { class: "unit-rules" }, tt = ["onUpdate:modelValue"], lt = {
+}, Ge = { class: "mapping-intro" }, Ye = { class: "mapping-grid" }, xe = ["onUpdate:modelValue"], et = { value: "" }, tt = ["value"], lt = { class: "unit-rules" }, nt = ["onUpdate:modelValue"], ot = {
   key: 2,
   class: "tab-panel result-panel"
-}, nt = { class: "result-metrics" }, ot = { class: "normalized-table" }, at = { class: "unit-chip" }, rt = {
+}, at = { class: "result-metrics" }, rt = { class: "normalized-table" }, st = { class: "unit-chip" }, it = {
   key: 0,
   class: "evidence-list",
   open: ""
-}, st = {
+}, ct = {
   key: 1,
   class: "empty-result"
-}, it = { class: "mapping-actions" }, ct = ["disabled"], ut = ["disabled"], dt = ["disabled"], mt = { class: "trace-column" }, pt = { class: "trace-header" }, yt = { class: "trace-list" }, gt = { class: "trace-node" }, vt = {
+}, ut = { class: "mapping-actions" }, dt = ["disabled"], mt = ["disabled"], pt = ["disabled"], yt = { class: "trace-column" }, gt = { class: "trace-header" }, vt = { class: "trace-list" }, Et = { class: "trace-node" }, Nt = {
   key: 0,
   class: "compare-receipt"
-}, Et = { class: "trace-footnote" }, Nt = /* @__PURE__ */ e.defineComponent({
+}, Vt = { class: "trace-footnote" }, St = /* @__PURE__ */ e.defineComponent({
   __name: "WarehouseDataNormalization",
   emits: ["normalizedReconcile"],
   setup(re, { emit: Q }) {
@@ -217,7 +220,7 @@ const $e = { class: "normalization-lab" }, Ae = { class: "lab-header" }, Ce = { 
       CTN: 12,
       DOZ: 12,
       PALLET: 120
-    }), A = e.ref(!1), y = e.ref(!1), N = e.ref(""), m = e.ref(null), C = e.ref(null), T = e.ref(null), B = e.ref(null), le = e.ref([]), me = e.ref(0), se = `TC-NORM-${(/* @__PURE__ */ new Date()).toISOString().slice(2, 10).replace(/-/g, "")}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`, D = e.computed(() => V.find((o) => o.id === _.value) ?? V[0]), v = e.computed(() => A.value || y.value);
+    }), A = e.ref(!1), y = e.ref(!1), N = e.ref(""), m = e.ref(null), C = e.ref(null), T = e.ref(null), B = e.ref(null), le = e.ref([]), pe = e.ref(0), se = `TC-NORM-${(/* @__PURE__ */ new Date()).toISOString().slice(2, 10).replace(/-/g, "")}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`, D = e.computed(() => V.find((o) => o.id === _.value) ?? V[0]), v = e.computed(() => A.value || y.value);
     function ne() {
       return new Intl.DateTimeFormat(document.documentElement.lang || "zh-CN", {
         hour: "2-digit",
@@ -227,7 +230,7 @@ const $e = { class: "normalization-lab" }, Ae = { class: "lab-header" }, Ce = { 
       }).format(/* @__PURE__ */ new Date());
     }
     function S(o, a, n = "done") {
-      const i = ++me.value;
+      const i = ++pe.value;
       return le.value.unshift({ id: i, time: ne(), title: o, detail: a, state: n }), i;
     }
     function z(o, a, n = "done") {
@@ -283,7 +286,7 @@ const $e = { class: "normalization-lab" }, Ae = { class: "lab-header" }, Ce = { 
         $.value = [], b.value = [], N.value = ae.humanizeErrorMessage(n, l.t("数据解析失败，请检查文件格式是否正确")), z(a, N.value, "error");
       }
     }
-    async function pe() {
+    async function ye() {
       const o = window.electronAPI?.workbenches?.warehouse;
       if (!o?.normalize) {
         S(l.t("归一化失败"), l.t("仓储归一化主进程接口不可用"), "error");
@@ -400,16 +403,16 @@ Size: {p1} bytes
     function te(o) {
       return o === "error" ? "ri-close-circle-line" : o === "warning" ? "ri-alert-line" : "ri-information-line";
     }
-    return e.onMounted(() => Y()), (o, a) => (e.openBlock(), e.createElementBlock("section", $e, [
-      e.createElementVNode("header", Ae, [
+    return e.onMounted(() => Y()), (o, a) => (e.openBlock(), e.createElementBlock("section", Ae, [
+      e.createElementVNode("header", Ce, [
         e.createElementVNode("div", null, [
-          a[5] || (a[5] = e.createElementVNode(
+          e.createElementVNode(
             "span",
-            { class: "eyebrow" },
-            "TOTALCLAW DATA PIPELINE",
-            -1
-            /* CACHED */
-          )),
+            Te,
+            e.toDisplayString(e.unref(me.brandName)().toUpperCase()) + " DATA PIPELINE",
+            1
+            /* TEXT */
+          ),
           e.createElementVNode(
             "h2",
             null,
@@ -450,9 +453,9 @@ Size: {p1} bytes
           /* CLASS */
         )
       ]),
-      e.createElementVNode("div", Ce, [
-        e.createElementVNode("aside", Te, [
-          e.createElementVNode("div", Be, [
+      e.createElementVNode("div", Be, [
+        e.createElementVNode("aside", Oe, [
+          e.createElementVNode("div", Le, [
             e.createElementVNode(
               "span",
               null,
@@ -477,7 +480,7 @@ Size: {p1} bytes
               class: e.normalizeClass(["source-card", { active: n.id === _.value }]),
               onClick: (i) => ce(n.id)
             }, [
-              e.createElementVNode("span", Le, [
+              e.createElementVNode("span", Pe, [
                 e.createElementVNode(
                   "i",
                   {
@@ -488,7 +491,7 @@ Size: {p1} bytes
                   /* CLASS */
                 )
               ]),
-              e.createElementVNode("span", Re, [
+              e.createElementVNode("span", Ue, [
                 e.createElementVNode(
                   "strong",
                   null,
@@ -504,7 +507,7 @@ Size: {p1} bytes
                   ),
                   n.id.startsWith("upload-") ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
                     "span",
-                    Pe,
+                    Ie,
                     "· " + e.toDisplayString(o.$t("格式样例")),
                     1
                     /* TEXT */
@@ -518,18 +521,18 @@ Size: {p1} bytes
                   /* TEXT */
                 )
               ]),
-              a[6] || (a[6] = e.createElementVNode(
+              a[5] || (a[5] = e.createElementVNode(
                 "i",
                 { class: "ri-arrow-right-s-line" },
                 null,
                 -1
                 /* CACHED */
               ))
-            ], 10, Oe))),
+            ], 10, Re))),
             128
             /* KEYED_FRAGMENT */
           )),
-          e.createElementVNode("label", Ue, [
+          e.createElementVNode("label", Ke, [
             e.createElementVNode(
               "input",
               {
@@ -542,7 +545,7 @@ Size: {p1} bytes
               544
               /* NEED_HYDRATION, NEED_PATCH */
             ),
-            a[8] || (a[8] = e.createElementVNode(
+            a[7] || (a[7] = e.createElementVNode(
               "i",
               { class: "ri-upload-cloud-2-line" },
               null,
@@ -557,7 +560,7 @@ Size: {p1} bytes
                 1
                 /* TEXT */
               ),
-              a[7] || (a[7] = e.createElementVNode(
+              a[6] || (a[6] = e.createElementVNode(
                 "small",
                 null,
                 "CSV / Excel / JSON / XML / NDJSON",
@@ -566,7 +569,7 @@ Size: {p1} bytes
               ))
             ])
           ]),
-          e.createElementVNode("div", Ie, [
+          e.createElementVNode("div", We, [
             e.createElementVNode(
               "span",
               null,
@@ -580,7 +583,7 @@ Size: {p1} bytes
                 class: e.normalizeClass({ filled: !!C.value })
               },
               [
-                a[9] || (a[9] = e.createElementVNode(
+                a[8] || (a[8] = e.createElementVNode(
                   "b",
                   null,
                   "A",
@@ -611,7 +614,7 @@ Size: {p1} bytes
                 class: e.normalizeClass({ filled: !!T.value })
               },
               [
-                a[10] || (a[10] = e.createElementVNode(
+                a[9] || (a[9] = e.createElementVNode(
                   "b",
                   null,
                   "B",
@@ -642,7 +645,7 @@ Size: {p1} bytes
               disabled: v.value || !C.value || !T.value,
               onClick: O
             }, [
-              a[11] || (a[11] = e.createElementVNode(
+              a[10] || (a[10] = e.createElementVNode(
                 "i",
                 { class: "ri-git-merge-line" },
                 null,
@@ -654,15 +657,15 @@ Size: {p1} bytes
                 1
                 /* TEXT */
               )
-            ], 8, Ke)
+            ], 8, Me)
           ])
         ]),
-        e.createElementVNode("main", Me, [
-          e.createElementVNode("div", We, [
+        e.createElementVNode("main", qe, [
+          e.createElementVNode("div", ze, [
             e.createElementVNode("div", null, [
               e.createElementVNode(
                 "span",
-                qe,
+                Je,
                 e.toDisplayString(D.value.format.toUpperCase()),
                 1
                 /* TEXT */
@@ -687,7 +690,7 @@ Size: {p1} bytes
               disabled: v.value,
               onClick: Y
             }, [
-              a[12] || (a[12] = e.createElementVNode(
+              a[11] || (a[11] = e.createElementVNode(
                 "i",
                 { class: "ri-radar-line" },
                 null,
@@ -699,9 +702,9 @@ Size: {p1} bytes
                 1
                 /* TEXT */
               )
-            ], 8, ze)
+            ], 8, je)
           ]),
-          e.createElementVNode("div", Je, [
+          e.createElementVNode("div", Fe, [
             e.createElementVNode(
               "button",
               {
@@ -759,10 +762,10 @@ Size: {p1} bytes
               /* CLASS */
             )
           ]),
-          g.value === "raw" ? (e.openBlock(), e.createElementBlock("section", je, [
-            e.createElementVNode("div", Fe, [
+          g.value === "raw" ? (e.openBlock(), e.createElementBlock("section", He, [
+            e.createElementVNode("div", Ze, [
               e.createElementVNode("span", null, [
-                a[13] || (a[13] = e.createElementVNode(
+                a[12] || (a[12] = e.createElementVNode(
                   "i",
                   { class: "ri-file-code-line" },
                   null,
@@ -776,7 +779,7 @@ Size: {p1} bytes
                 )
               ]),
               e.createElementVNode("span", null, [
-                a[14] || (a[14] = e.createElementVNode(
+                a[13] || (a[13] = e.createElementVNode(
                   "i",
                   { class: "ri-database-line" },
                   null,
@@ -790,7 +793,7 @@ Size: {p1} bytes
                 )
               ]),
               e.createElementVNode("span", null, [
-                a[15] || (a[15] = e.createElementVNode(
+                a[14] || (a[14] = e.createElementVNode(
                   "i",
                   { class: "ri-braces-line" },
                   null,
@@ -804,7 +807,7 @@ Size: {p1} bytes
                 )
               ]),
               e.createElementVNode("span", null, [
-                a[16] || (a[16] = e.createElementVNode(
+                a[15] || (a[15] = e.createElementVNode(
                   "i",
                   { class: "ri-shield-check-line" },
                   null,
@@ -825,8 +828,8 @@ Size: {p1} bytes
               1
               /* TEXT */
             ),
-            N.value ? (e.openBlock(), e.createElementBlock("div", He, [
-              a[17] || (a[17] = e.createElementVNode(
+            N.value ? (e.openBlock(), e.createElementBlock("div", Xe, [
+              a[16] || (a[16] = e.createElementVNode(
                 "i",
                 { class: "ri-error-warning-line" },
                 null,
@@ -839,8 +842,8 @@ Size: {p1} bytes
                 /* TEXT */
               )
             ])) : e.createCommentVNode("v-if", !0)
-          ])) : g.value === "mapping" ? (e.openBlock(), e.createElementBlock("section", Ze, [
-            e.createElementVNode("div", Xe, [
+          ])) : g.value === "mapping" ? (e.openBlock(), e.createElementBlock("section", Qe, [
+            e.createElementVNode("div", Ge, [
               e.createElementVNode("div", null, [
                 e.createElementVNode(
                   "strong",
@@ -857,7 +860,7 @@ Size: {p1} bytes
                   /* TEXT */
                 )
               ]),
-              a[18] || (a[18] = e.createElementVNode(
+              a[17] || (a[17] = e.createElementVNode(
                 "span",
                 { class: "model-badge" },
                 "InventoryRecord v1",
@@ -865,7 +868,7 @@ Size: {p1} bytes
                 /* CACHED */
               ))
             ]),
-            e.createElementVNode("div", Qe, [
+            e.createElementVNode("div", Ye, [
               (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 null,
@@ -894,7 +897,7 @@ Size: {p1} bytes
                     }, [
                       e.createElementVNode(
                         "option",
-                        Ye,
+                        et,
                         e.toDisplayString(o.$t("不映射")),
                         1
                         /* TEXT */
@@ -905,14 +908,14 @@ Size: {p1} bytes
                         e.renderList(b.value, (i) => (e.openBlock(), e.createElementBlock("option", {
                           key: i,
                           value: i
-                        }, e.toDisplayString(i), 9, xe))),
+                        }, e.toDisplayString(i), 9, tt))),
                         128
                         /* KEYED_FRAGMENT */
                       ))
-                    ], 8, Ge), [
+                    ], 8, xe), [
                       [e.vModelSelect, h[n.key]]
                     ]),
-                    a[19] || (a[19] = e.createElementVNode(
+                    a[18] || (a[18] = e.createElementVNode(
                       "i",
                       { class: "ri-arrow-right-line" },
                       null,
@@ -932,7 +935,7 @@ Size: {p1} bytes
                 /* STABLE_FRAGMENT */
               ))
             ]),
-            e.createElementVNode("div", et, [
+            e.createElementVNode("div", lt, [
               e.createElementVNode("div", null, [
                 e.createElementVNode(
                   "strong",
@@ -967,7 +970,7 @@ Size: {p1} bytes
                     type: "number",
                     min: "0.0001",
                     step: "0.01"
-                  }, null, 8, tt), [
+                  }, null, 8, nt), [
                     [
                       e.vModelText,
                       w[n.code],
@@ -975,7 +978,7 @@ Size: {p1} bytes
                       { number: !0 }
                     ]
                   ]),
-                  a[20] || (a[20] = e.createElementVNode(
+                  a[19] || (a[19] = e.createElementVNode(
                     "em",
                     null,
                     "PCS",
@@ -987,12 +990,12 @@ Size: {p1} bytes
                 /* STABLE_FRAGMENT */
               ))
             ])
-          ])) : (e.openBlock(), e.createElementBlock("section", lt, [
+          ])) : (e.openBlock(), e.createElementBlock("section", ot, [
             m.value ? (e.openBlock(), e.createElementBlock(
               e.Fragment,
               { key: 0 },
               [
-                e.createElementVNode("div", nt, [
+                e.createElementVNode("div", at, [
                   e.createElementVNode("div", null, [
                     e.createElementVNode(
                       "span",
@@ -1082,7 +1085,7 @@ Size: {p1} bytes
                     )
                   ])
                 ]),
-                e.createElementVNode("div", ot, [
+                e.createElementVNode("div", rt, [
                   e.createElementVNode("table", null, [
                     e.createElementVNode("thead", null, [
                       e.createElementVNode("tr", null, [
@@ -1093,7 +1096,7 @@ Size: {p1} bytes
                           1
                           /* TEXT */
                         ),
-                        a[21] || (a[21] = e.createElementVNode(
+                        a[20] || (a[20] = e.createElementVNode(
                           "th",
                           null,
                           "SKU",
@@ -1184,7 +1187,7 @@ Size: {p1} bytes
                           e.createElementVNode("td", null, [
                             e.createElementVNode(
                               "span",
-                              at,
+                              st,
                               e.toDisplayString(n.unit),
                               1
                               /* TEXT */
@@ -1218,7 +1221,7 @@ Size: {p1} bytes
                     ])
                   ])
                 ]),
-                m.value.evidence.length ? (e.openBlock(), e.createElementBlock("details", rt, [
+                m.value.evidence.length ? (e.openBlock(), e.createElementBlock("details", it, [
                   e.createElementVNode(
                     "summary",
                     null,
@@ -1263,8 +1266,8 @@ Size: {p1} bytes
               ],
               64
               /* STABLE_FRAGMENT */
-            )) : (e.openBlock(), e.createElementBlock("div", st, [
-              a[22] || (a[22] = e.createElementVNode(
+            )) : (e.openBlock(), e.createElementBlock("div", ct, [
+              a[21] || (a[21] = e.createElementVNode(
                 "i",
                 { class: "ri-filter-3-line" },
                 null,
@@ -1287,7 +1290,7 @@ Size: {p1} bytes
               )
             ]))
           ])),
-          e.createElementVNode("footer", it, [
+          e.createElementVNode("footer", ut, [
             e.createElementVNode("div", null, [
               e.createElementVNode(
                 "span",
@@ -1299,7 +1302,7 @@ Size: {p1} bytes
               e.createElementVNode(
                 "strong",
                 null,
-                e.toDisplayString(D.value.system) + " → TotalClaw → InventoryRecord v1",
+                e.toDisplayString(D.value.system) + " → " + e.toDisplayString(e.unref(me.brandName)()) + " → InventoryRecord v1",
                 1
                 /* TEXT */
               )
@@ -1309,18 +1312,18 @@ Size: {p1} bytes
               class: "secondary",
               disabled: v.value || !m.value,
               onClick: a[3] || (a[3] = (n) => oe("baseline"))
-            }, e.toDisplayString(o.$t("设为基准账 A")), 9, ct),
+            }, e.toDisplayString(o.$t("设为基准账 A")), 9, dt),
             e.createElementVNode("button", {
               type: "button",
               class: "secondary",
               disabled: v.value || !m.value,
               onClick: a[4] || (a[4] = (n) => oe("comparison"))
-            }, e.toDisplayString(o.$t("设为待核账 B")), 9, ut),
+            }, e.toDisplayString(o.$t("设为待核账 B")), 9, mt),
             e.createElementVNode("button", {
               type: "button",
               class: "primary",
               disabled: v.value || $.value.length === 0,
-              onClick: pe
+              onClick: ye
             }, [
               e.createElementVNode(
                 "i",
@@ -1336,11 +1339,11 @@ Size: {p1} bytes
                 1
                 /* TEXT */
               )
-            ], 8, dt)
+            ], 8, pt)
           ])
         ]),
-        e.createElementVNode("aside", mt, [
-          e.createElementVNode("div", pt, [
+        e.createElementVNode("aside", yt, [
+          e.createElementVNode("div", gt, [
             e.createElementVNode("div", null, [
               e.createElementVNode(
                 "span",
@@ -1351,7 +1354,7 @@ Size: {p1} bytes
               ),
               e.createElementVNode("strong", null, e.toDisplayString(se))
             ]),
-            a[23] || (a[23] = e.createElementVNode(
+            a[22] || (a[22] = e.createElementVNode(
               "span",
               { class: "live-dot" },
               [
@@ -1362,7 +1365,7 @@ Size: {p1} bytes
               /* CACHED */
             ))
           ]),
-          e.createElementVNode("ol", yt, [
+          e.createElementVNode("ol", vt, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
@@ -1373,7 +1376,7 @@ Size: {p1} bytes
                   class: e.normalizeClass(n.state)
                 },
                 [
-                  e.createElementVNode("span", gt, [
+                  e.createElementVNode("span", Et, [
                     e.createElementVNode(
                       "i",
                       {
@@ -1415,7 +1418,7 @@ Size: {p1} bytes
               /* KEYED_FRAGMENT */
             ))
           ]),
-          B.value ? (e.openBlock(), e.createElementBlock("div", vt, [
+          B.value ? (e.openBlock(), e.createElementBlock("div", Nt, [
             e.createElementVNode(
               "span",
               null,
@@ -1461,8 +1464,8 @@ Size: {p1} bytes
               )
             ])
           ])) : e.createCommentVNode("v-if", !0),
-          e.createElementVNode("div", Et, [
-            a[24] || (a[24] = e.createElementVNode(
+          e.createElementVNode("div", Vt, [
+            a[23] || (a[23] = e.createElementVNode(
               "i",
               { class: "ri-lock-line" },
               null,
@@ -1481,53 +1484,53 @@ Size: {p1} bytes
       ])
     ]));
   }
-}), ke = (re, Q) => {
+}), be = (re, Q) => {
   const G = re.__vccOpts || re;
   for (const [R, P] of Q)
     G[R] = P;
   return G;
-}, Vt = /* @__PURE__ */ ke(Nt, [["__scopeId", "data-v-958e1931"]]), Z = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/workflowResult.ts"];
+}, ft = /* @__PURE__ */ be(St, [["__scopeId", "data-v-e23751e6"]]), Z = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/workflowResult.ts"];
 if (!Z) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/workflowResult.ts");
 Z.default;
-const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" }, wt = { class: "eyebrow" }, kt = { class: "subtitle" }, bt = { class: "header-actions" }, Dt = ["disabled"], _t = {
+const ht = ["dir"], wt = { class: "workbench-header" }, kt = { class: "heading" }, bt = { class: "eyebrow" }, Dt = { class: "subtitle" }, _t = { class: "header-actions" }, $t = ["disabled"], At = {
   key: 0,
   class: "three-way-result"
-}, $t = { class: "three-way-summary" }, At = { class: "impact" }, Ct = { class: "three-way-findings" }, Tt = { key: 0 }, Bt = { key: 1 }, Ot = { class: "capability-console-heading" }, Lt = {
+}, Ct = { class: "three-way-summary" }, Tt = { class: "impact" }, Bt = { class: "three-way-findings" }, Ot = { key: 0 }, Lt = { key: 1 }, Rt = { class: "capability-console-heading" }, Pt = {
   class: "guardrail-banner",
   "aria-live": "polite"
-}, Rt = { class: "guardrail-chip" }, Pt = {
+}, Ut = { class: "guardrail-chip" }, It = {
   class: "capability-grid",
   "aria-label": "ERP capabilities"
-}, Ut = { class: "capability-card" }, It = { key: 0 }, Kt = { key: 1 }, Mt = { class: "capability-card" }, Wt = { key: 0 }, qt = { class: "capability-card" }, zt = { class: "capability-card" }, Jt = {
+}, Kt = { class: "capability-card" }, Wt = { key: 0 }, Mt = { key: 1 }, qt = { class: "capability-card" }, zt = { key: 0 }, Jt = { class: "capability-card" }, jt = { class: "capability-card" }, Ft = {
   key: 0,
   class: "error-copy"
-}, jt = {
+}, Ht = {
   key: 1,
   class: "provider-strip"
-}, Ft = { class: "section-label" }, Ht = { class: "provider-list" }, Zt = { class: "workbench-main" }, Xt = { class: "panel reconcile-panel" }, Qt = { class: "panel-heading" }, Gt = { class: "section-label" }, Yt = { class: "deterministic-badge" }, xt = { class: "reconcile-options" }, el = ["placeholder", "disabled"], tl = ["placeholder", "disabled"], ll = ["disabled"], nl = { class: "json-input-grid" }, ol = { class: "json-field" }, al = ["disabled"], rl = { key: 0 }, sl = { class: "json-field" }, il = ["disabled"], cl = { key: 0 }, ul = { class: "action-row" }, dl = { class: "action-buttons" }, ml = ["disabled"], pl = ["disabled"], yl = {
+}, Zt = { class: "section-label" }, Xt = { class: "provider-list" }, Qt = { class: "workbench-main" }, Gt = { class: "panel reconcile-panel" }, Yt = { class: "panel-heading" }, xt = { class: "section-label" }, el = { class: "deterministic-badge" }, tl = { class: "reconcile-options" }, ll = ["placeholder", "disabled"], nl = ["placeholder", "disabled"], ol = ["disabled"], al = { class: "json-input-grid" }, rl = { class: "json-field" }, sl = ["disabled"], il = { key: 0 }, cl = { class: "json-field" }, ul = ["disabled"], dl = { key: 0 }, ml = { class: "action-row" }, pl = { class: "action-buttons" }, yl = ["disabled"], gl = ["disabled"], vl = {
   key: 0,
   class: "inline-message error",
   role: "alert"
-}, gl = {
+}, El = {
   key: 1,
   class: "result-block",
   "aria-live": "polite"
-}, vl = { class: "result-heading" }, El = { class: "section-label" }, Nl = {
+}, Nl = { class: "result-heading" }, Vl = { class: "section-label" }, Sl = {
   key: 0,
   class: "summary-grid"
-}, Vl = { class: "residual" }, Sl = {
+}, fl = { class: "residual" }, hl = {
   key: 1,
   class: "difference-section"
-}, fl = { class: "table-scroll" }, hl = { class: "difference-value" }, wl = {
+}, wl = { class: "table-scroll" }, kl = { class: "difference-value" }, bl = {
   key: 2,
   class: "residual-grid"
-}, kl = { key: 0 }, bl = { key: 1 }, Dl = { class: "raw-result" }, _l = { class: "side-column" }, $l = { class: "panel integration-panel" }, Al = { class: "panel-heading compact" }, Cl = { class: "section-label" }, Tl = { class: "integration-list" }, Bl = { class: "integration-footnote" }, fe = `[
+}, Dl = { key: 0 }, _l = { key: 1 }, $l = { class: "raw-result" }, Al = { class: "side-column" }, Cl = { class: "panel integration-panel" }, Tl = { class: "panel-heading compact" }, Bl = { class: "section-label" }, Ol = { class: "integration-list" }, Ll = { class: "integration-footnote" }, he = `[
   { "sku": "SKU-001", "amount": 0 }
-]`, Ol = /* @__PURE__ */ e.defineComponent({
+]`, Rl = /* @__PURE__ */ e.defineComponent({
   __name: "WarehouseWorkbenchView",
   setup(re) {
-    const { locale: Q } = ve.useI18n();
-    Ee.useRouter();
+    const { locale: Q } = Ee.useI18n();
+    Ne.useRouter();
     const G = e.computed(() => Q.value === "ar"), R = e.ref(null), P = e.ref([]), U = e.ref(!1), V = e.ref(""), _ = e.ref("[]"), g = e.ref("[]"), $ = e.ref(""), b = e.ref("amount"), h = e.ref(0.01), w = e.ref(!1), A = e.ref(""), y = e.ref(null), N = e.ref(null), m = e.computed(() => window.electronAPI?.workbenches?.warehouse ?? null), C = e.computed(() => R.value?.enabled === !0), T = e.computed(() => {
       const t = R.value?.defaultProvider;
       return typeof t == "string" ? t : "";
@@ -1556,7 +1559,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
         { sku: "SKU-004", warehouse: "JED-B", quantity: 2, amount: 310 }
       ], null, 2), $.value = "sku", b.value = "amount", h.value = 0.01, y.value = null, A.value = "";
     }
-    function me(t) {
+    function pe(t) {
       _.value = JSON.stringify(t.left, null, 2), g.value = JSON.stringify(t.right, null, 2), $.value = "sku, warehouse, batch", b.value = "amount", h.value = 0.01, y.value = t.result, A.value = "";
     }
     async function se(t, s, r) {
@@ -1722,27 +1725,27 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
           throw new Error(l.t("仓储多 Agent 工作流接口不可用"));
         const K = c?.runId || `warehouse-${Date.now()}`, k = c?.registerCancellation(async () => {
           await u.cancelWorkflow?.({ runId: K });
-        }), M = await u.runWorkflow({
+        }), W = await u.runWorkflow({
           runId: K,
           taskType: "three_way",
           reconcileResult: JSON.parse(JSON.stringify(f))
         }).finally(() => k?.());
         c?.throwIfCancelled();
-        const W = Z.workflowOutput(M, ["reviewed_plan"]), q = Z.workflowRunId(M) || c?.runId || "";
+        const M = Z.workflowOutput(W, ["reviewed_plan"]), q = Z.workflowRunId(W) || c?.runId || "";
         return r?.(3, l.t("产销计划、库存风险和证据审计 Agent 已在工作流中并行生成处置意见"), {
           actor: l.t("产销存多 Agent 工作流"),
           actorId: "supply-planner",
           actorType: "agent",
           tool: "/v1/workflows/dynamic/run",
           evidence: q,
-          output: W.slice(0, 320)
+          output: M.slice(0, 320)
         }), r?.(4, l.t("工作流已合成并复核处置方案，五项动作停在计划员人工确认"), {
           actor: l.t("审计留痕 Agent"),
           actorId: "evidence-auditor",
           actorType: "agent",
           tool: "Dynamic AST · parallel + reduce",
           evidence: q,
-          output: W.slice(0, 320)
+          output: M.slice(0, 320)
         }), {
           note: l.t("三方确定性引擎、产销计划 Agent 和证据审计 Agent 已真实接力。"),
           progressManaged: !0
@@ -1789,7 +1792,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
         })()`) !== !0) throw new Error(l.t("本地 Odoo 登录字段无法填写"));
             await ne(d, "Log in");
           }
-          await new Promise((Se) => window.setTimeout(Se, 1e3));
+          await new Promise((fe) => window.setTimeout(fe, 1e3));
         }
         let f = !1;
         for (let F = 0; F < 30 && (c?.throwIfCancelled(), f = await v(d, `Boolean(
@@ -1817,50 +1820,50 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
         text: (document.body?.innerText || '').replace(/\\s+/g, ' ').slice(0, 2200)
       })`), !(/\bValidate\b/i.test(String(k?.text || "")) && /WH\/IN\//i.test(String(k?.text || "")) && /\bProduct\b/i.test(String(k?.text || "")))); F += 1)
           await new Promise((H) => window.setTimeout(H, 1e3));
-        const M = String(k?.url || ""), W = String(k?.title || "Odoo"), q = String(k?.text || "");
-        if (!/odoo/i.test(M) || /login|sign in|404|not found|internal server error/i.test(`${W} ${q}`))
-          throw new Error(l.t("Odoo 未进入可操作的收货单页面，已停止执行：{url}", { url: M || "unknown" }));
+        const W = String(k?.url || ""), M = String(k?.title || "Odoo"), q = String(k?.text || "");
+        if (!/odoo/i.test(W) || /login|sign in|404|not found|internal server error/i.test(`${M} ${q}`))
+          throw new Error(l.t("Odoo 未进入可操作的收货单页面，已停止执行：{url}", { url: W || "unknown" }));
         if (await v(d, `Boolean(
       [...document.querySelectorAll('button')].some((el) =>
         /^(validate|确认|验证)$/i.test((el.textContent || '').trim()) ||
         el.getAttribute('name') === 'button_validate')
     )`) !== !0)
           throw new Error(l.t("当前 Odoo 页面没有可验证的收货单或 Validate 按钮，已停止执行"));
-        if (r?.(1, l.t("已回读右侧 Odoo 页面：{title}", { title: W }), {
+        if (r?.(1, l.t("已回读右侧 Odoo 页面：{title}", { title: M }), {
           actor: l.t("库存执行 Agent"),
           actorId: "inventory-executor",
           actorType: "agent",
           tool: "browser.eval",
-          evidence: M,
+          evidence: W,
           output: q.slice(0, 320)
         }), typeof u.runWorkflow != "function") throw new Error(l.t("仓储多 Agent 工作流接口不可用"));
-        const ge = c?.runId || `warehouse-odoo-${Date.now()}`, be = c?.registerCancellation(async () => {
-          await u.cancelWorkflow?.({ runId: ge });
-        }), Ne = await u.runWorkflow({
-          runId: ge,
+        const ve = c?.runId || `warehouse-odoo-${Date.now()}`, De = c?.registerCancellation(async () => {
+          await u.cancelWorkflow?.({ runId: ve });
+        }), Ve = await u.runWorkflow({
+          runId: ve,
           taskType: "odoo_receipt",
           reconcileResult: {
-            pageUrl: M,
-            pageTitle: W,
+            pageUrl: W,
+            pageTitle: M,
             pageText: q,
             validateAvailable: !0
           }
-        }).finally(() => be?.());
+        }).finally(() => De?.());
         c?.throwIfCancelled();
-        const Ve = Z.workflowOutput(Ne, ["reviewed_plan"]);
+        const Se = Z.workflowOutput(Ve, ["reviewed_plan"]);
         return r?.(2, l.t("库存执行、采购协同和证据审计 Agent 已基于浏览器回执完成并行复核"), {
           actor: l.t("Odoo 收货多 Agent 工作流"),
           actorId: "inventory-executor",
           actorType: "agent",
           tool: "/v1/workflows/dynamic/run",
-          evidence: Z.workflowRunId(Ne) || ge,
-          output: Ve.slice(0, 320)
+          evidence: Z.workflowRunId(Ve) || ve,
+          output: Se.slice(0, 320)
         }), r?.(3, l.t("工作流已确认页面可操作；Validate 状态变更已停在人工闸门"), {
           actor: l.t("现场演示人员"),
           actorType: "human",
           tool: "Human Gate",
           evidence: l.t("尚未修改 Odoo 状态"),
-          output: Ve.slice(0, 320)
+          output: Se.slice(0, 320)
         }), {
           note: `${p.note} ${l.t("页面状态已回读，等待人工确认。")}`,
           progressManaged: !0
@@ -1928,28 +1931,28 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
           evidence: l.t("{count} 个 SKU", { count: p.length }),
           output: JSON.stringify(K).slice(0, 320)
         }), typeof u.runWorkflow != "function") throw new Error(l.t("仓储多 Agent 工作流接口不可用"));
-        const k = c?.runId || `warehouse-gap-${Date.now()}`, M = c?.registerCancellation(async () => {
+        const k = c?.runId || `warehouse-gap-${Date.now()}`, W = c?.registerCancellation(async () => {
           await u.cancelWorkflow?.({ runId: k });
-        }), W = await u.runWorkflow({
+        }), M = await u.runWorkflow({
           runId: k,
           taskType: "supply_gap",
           reconcileResult: JSON.parse(JSON.stringify(K))
-        }).finally(() => M?.());
+        }).finally(() => W?.());
         c?.throwIfCancelled();
-        const q = Z.workflowOutput(W, ["reviewed_plan"]), ye = Z.workflowRunId(W) || k;
+        const q = Z.workflowOutput(M, ["reviewed_plan"]), ge = Z.workflowRunId(M) || k;
         return r?.(3, l.t("产销计划、库存风险和采购协同 Agent 已并行生成补货、调拨与在途覆盖待办"), {
           actor: l.t("产销缺口多 Agent 工作流"),
           actorId: "supply-planner",
           actorType: "agent",
           tool: "/v1/workflows/dynamic/run",
-          evidence: ye,
+          evidence: ge,
           output: q.slice(0, 320)
         }), r?.(4, l.t("主管 Agent 已完成方案复核，采购和调拨动作停在计划员人工确认"), {
           actor: l.t("产销协同主管 Agent"),
           actorId: "supply-supervisor",
           actorType: "agent",
           tool: "Dynamic AST · reduce + final review",
-          evidence: ye,
+          evidence: ge,
           output: q.slice(0, 320)
         }), {
           note: l.t("产销存四类数据已进入真实确定性对账链；补货与调拨只生成待办。"),
@@ -1958,7 +1961,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
       }
       return t === "supply-gap" && s === "commit" ? (r?.(4, l.t("计划员确认已写入执行记录；补货、调拨与拆单仍保持为待办，不自动下单")), { note: l.t("产销协同方案已确认并留痕。"), progressManaged: !0 }) : { note: l.t("人工闸门已确认，处置结果写入本次任务审计。") };
     }
-    const J = e.computed(() => B(_.value)), X = e.computed(() => B(g.value)), ie = e.computed(() => _.value.trim() === "[]" ? "" : J.value.error), ce = e.computed(() => g.value.trim() === "[]" ? "" : X.value.error), Y = e.computed(() => J.value.records ? l.t("{count} 条", { count: J.value.records.length }) : "—"), pe = e.computed(() => X.value.records ? l.t("{count} 条", { count: X.value.records.length }) : "—"), oe = e.computed(() => !w.value && !!m.value && !!J.value.records?.length && !!X.value.records?.length && Number.isFinite(Number(h.value)) && Number(h.value) >= 0), O = e.computed(() => y.value?.summary ?? null), x = e.computed(() => O.value?.clean === !0), ue = e.computed(() => Array.isArray(y.value?.amountMismatch) ? y.value.amountMismatch : []), ee = e.computed(() => Array.isArray(y.value?.onlyLeft) ? y.value.onlyLeft : []), te = e.computed(() => Array.isArray(y.value?.onlyRight) ? y.value.onlyRight : []);
+    const J = e.computed(() => B(_.value)), X = e.computed(() => B(g.value)), ie = e.computed(() => _.value.trim() === "[]" ? "" : J.value.error), ce = e.computed(() => g.value.trim() === "[]" ? "" : X.value.error), Y = e.computed(() => J.value.records ? l.t("{count} 条", { count: J.value.records.length }) : "—"), ye = e.computed(() => X.value.records ? l.t("{count} 条", { count: X.value.records.length }) : "—"), oe = e.computed(() => !w.value && !!m.value && !!J.value.records?.length && !!X.value.records?.length && Number.isFinite(Number(h.value)) && Number(h.value) >= 0), O = e.computed(() => y.value?.summary ?? null), x = e.computed(() => O.value?.clean === !0), ue = e.computed(() => Array.isArray(y.value?.amountMismatch) ? y.value.amountMismatch : []), ee = e.computed(() => Array.isArray(y.value?.onlyLeft) ? y.value.onlyLeft : []), te = e.computed(() => Array.isArray(y.value?.onlyRight) ? y.value.onlyRight : []);
     function o(t) {
       return ae.humanizeErrorMessage(t, l.t("未知错误"));
     }
@@ -2037,9 +2040,9 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
       class: "warehouse-workbench",
       dir: G.value ? "rtl" : "ltr"
     }, [
-      e.createElementVNode("header", ft, [
-        e.createElementVNode("div", ht, [
-          e.createVNode(De),
+      e.createElementVNode("header", wt, [
+        e.createElementVNode("div", kt, [
+          e.createVNode(_e),
           s[5] || (s[5] = e.createElementVNode(
             "span",
             { class: "heading-icon" },
@@ -2052,7 +2055,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
           e.createElementVNode("div", null, [
             e.createElementVNode(
               "p",
-              wt,
+              bt,
               e.toDisplayString(t.$t("行业工作台")),
               1
               /* TEXT */
@@ -2066,14 +2069,14 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
             ),
             e.createElementVNode(
               "p",
-              kt,
+              Dt,
               e.toDisplayString(t.$t("由产销计划、数据归一、库存控制、出入库执行和审计 Agent 协同连接销售、采购、库存与履约数据。")),
               1
               /* TEXT */
             )
           ])
         ]),
-        e.createElementVNode("div", bt, [
+        e.createElementVNode("div", _t, [
           e.createElementVNode("button", {
             class: "button ghost",
             disabled: U.value,
@@ -2093,14 +2096,14 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
               1
               /* TEXT */
             )
-          ], 8, Dt)
+          ], 8, $t)
         ])
       ]),
-      e.createVNode(_e, {
+      e.createVNode($e, {
         domain: "warehouse",
         execute: z
       }),
-      N.value ? (e.openBlock(), e.createElementBlock("section", _t, [
+      N.value ? (e.openBlock(), e.createElementBlock("section", At, [
         e.createElementVNode("header", null, [
           e.createElementVNode("div", null, [
             e.createElementVNode(
@@ -2126,7 +2129,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
             /* TEXT */
           )
         ]),
-        e.createElementVNode("div", $t, [
+        e.createElementVNode("div", Ct, [
           e.createElementVNode("article", null, [
             e.createElementVNode(
               "span",
@@ -2175,7 +2178,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
               /* TEXT */
             )
           ]),
-          e.createElementVNode("article", At, [
+          e.createElementVNode("article", Tt, [
             e.createElementVNode(
               "span",
               null,
@@ -2192,7 +2195,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
             )
           ])
         ]),
-        e.createElementVNode("div", Ct, [
+        e.createElementVNode("div", Bt, [
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
@@ -2221,13 +2224,13 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 ]),
                 r.impactSar ? (e.openBlock(), e.createElementBlock(
                   "em",
-                  Tt,
+                  Ot,
                   "SAR " + e.toDisplayString(i(r.impactSar)),
                   1
                   /* TEXT */
                 )) : (e.openBlock(), e.createElementBlock(
                   "span",
-                  Bt,
+                  Lt,
                   e.toDisplayString(r.type),
                   1
                   /* TEXT */
@@ -2248,7 +2251,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
           ))
         ])
       ])) : e.createCommentVNode("v-if", !0),
-      e.createElementVNode("div", Ot, [
+      e.createElementVNode("div", Rt, [
         e.createElementVNode(
           "span",
           null,
@@ -2264,7 +2267,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
           /* TEXT */
         )
       ]),
-      e.createElementVNode("section", Lt, [
+      e.createElementVNode("section", Pt, [
         s[7] || (s[7] = e.createElementVNode(
           "i",
           { class: "ri-shield-keyhole-line" },
@@ -2290,15 +2293,15 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
         ]),
         e.createElementVNode(
           "span",
-          Rt,
+          Ut,
           e.toDisplayString(t.$t("仅检查")),
           1
           /* TEXT */
         )
       ]),
-      e.createVNode(Vt, { onNormalizedReconcile: me }),
-      e.createElementVNode("section", Pt, [
-        e.createElementVNode("article", Ut, [
+      e.createVNode(ft, { onNormalizedReconcile: pe }),
+      e.createElementVNode("section", It, [
+        e.createElementVNode("article", Kt, [
           e.createElementVNode(
             "span",
             {
@@ -2326,20 +2329,20 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
             ),
             U.value ? (e.openBlock(), e.createElementBlock(
               "strong",
-              It,
+              Wt,
               e.toDisplayString(t.$t("探测中…")),
               1
               /* TEXT */
             )) : (e.openBlock(), e.createElementBlock(
               "strong",
-              Kt,
+              Mt,
               e.toDisplayString(C.value ? t.$t("已启用") : t.$t("未启用或不可用")),
               1
               /* TEXT */
             ))
           ])
         ]),
-        e.createElementVNode("article", Mt, [
+        e.createElementVNode("article", qt, [
           s[9] || (s[9] = e.createElementVNode(
             "span",
             { class: "capability-icon" },
@@ -2366,14 +2369,14 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
             ),
             T.value ? (e.openBlock(), e.createElementBlock(
               "span",
-              Wt,
+              zt,
               e.toDisplayString(t.$t("默认：")) + e.toDisplayString(T.value),
               1
               /* TEXT */
             )) : e.createCommentVNode("v-if", !0)
           ])
         ]),
-        e.createElementVNode("article", qt, [
+        e.createElementVNode("article", Jt, [
           s[10] || (s[10] = e.createElementVNode(
             "span",
             { class: "capability-icon success" },
@@ -2407,7 +2410,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
             )
           ])
         ]),
-        e.createElementVNode("article", zt, [
+        e.createElementVNode("article", jt, [
           e.createElementVNode(
             "span",
             {
@@ -2444,7 +2447,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
             ),
             V.value ? (e.openBlock(), e.createElementBlock(
               "span",
-              Jt,
+              Ft,
               e.toDisplayString(V.value),
               1
               /* TEXT */
@@ -2452,15 +2455,15 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
           ])
         ])
       ]),
-      P.value.length ? (e.openBlock(), e.createElementBlock("section", jt, [
+      P.value.length ? (e.openBlock(), e.createElementBlock("section", Ht, [
         e.createElementVNode(
           "span",
-          Ft,
+          Zt,
           e.toDisplayString(t.$t("Provider 能力")),
           1
           /* TEXT */
         ),
-        e.createElementVNode("div", Ht, [
+        e.createElementVNode("div", Xt, [
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
@@ -2486,13 +2489,13 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
           ))
         ])
       ])) : e.createCommentVNode("v-if", !0),
-      e.createElementVNode("main", Zt, [
-        e.createElementVNode("section", Xt, [
-          e.createElementVNode("div", Qt, [
+      e.createElementVNode("main", Qt, [
+        e.createElementVNode("section", Gt, [
+          e.createElementVNode("div", Yt, [
             e.createElementVNode("div", null, [
               e.createElementVNode(
                 "span",
-                Gt,
+                xt,
                 e.toDisplayString(t.$t("确定性引擎")),
                 1
                 /* TEXT */
@@ -2512,7 +2515,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("span", Yt, [
+            e.createElementVNode("span", el, [
               s[12] || (s[12] = e.createElementVNode(
                 "i",
                 { class: "ri-code-box-line" },
@@ -2527,7 +2530,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
               )
             ])
           ]),
-          e.createElementVNode("div", xt, [
+          e.createElementVNode("div", tl, [
             e.createElementVNode("label", null, [
               e.createElementVNode(
                 "span",
@@ -2541,7 +2544,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 type: "text",
                 placeholder: t.$t("例如：sku, batch"),
                 disabled: w.value
-              }, null, 8, el), [
+              }, null, 8, ll), [
                 [e.vModelText, $.value]
               ])
             ]),
@@ -2558,7 +2561,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 type: "text",
                 placeholder: t.$t("例如：quantity 或 amount"),
                 disabled: w.value
-              }, null, 8, tl), [
+              }, null, 8, nl), [
                 [e.vModelText, b.value]
               ])
             ]),
@@ -2576,7 +2579,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 min: "0",
                 step: "0.01",
                 disabled: w.value
-              }, null, 8, ll), [
+              }, null, 8, ol), [
                 [
                   e.vModelText,
                   h.value,
@@ -2586,8 +2589,8 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
               ])
             ])
           ]),
-          e.createElementVNode("div", nl, [
-            e.createElementVNode("label", ol, [
+          e.createElementVNode("div", al, [
+            e.createElementVNode("label", rl, [
               e.createElementVNode("span", null, [
                 e.createElementVNode(
                   "b",
@@ -2608,19 +2611,19 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 "onUpdate:modelValue": s[3] || (s[3] = (r) => _.value = r),
                 spellcheck: "false",
                 disabled: w.value,
-                placeholder: fe
-              }, null, 8, al), [
+                placeholder: he
+              }, null, 8, sl), [
                 [e.vModelText, _.value]
               ]),
               ie.value ? (e.openBlock(), e.createElementBlock(
                 "em",
-                rl,
+                il,
                 e.toDisplayString(ie.value),
                 1
                 /* TEXT */
               )) : e.createCommentVNode("v-if", !0)
             ]),
-            e.createElementVNode("label", sl, [
+            e.createElementVNode("label", cl, [
               e.createElementVNode("span", null, [
                 e.createElementVNode(
                   "b",
@@ -2632,7 +2635,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 e.createElementVNode(
                   "small",
                   null,
-                  e.toDisplayString(pe.value),
+                  e.toDisplayString(ye.value),
                   1
                   /* TEXT */
                 )
@@ -2641,20 +2644,20 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 "onUpdate:modelValue": s[4] || (s[4] = (r) => g.value = r),
                 spellcheck: "false",
                 disabled: w.value,
-                placeholder: fe
-              }, null, 8, il), [
+                placeholder: he
+              }, null, 8, ul), [
                 [e.vModelText, g.value]
               ]),
               ce.value ? (e.openBlock(), e.createElementBlock(
                 "em",
-                cl,
+                dl,
                 e.toDisplayString(ce.value),
                 1
                 /* TEXT */
               )) : e.createCommentVNode("v-if", !0)
             ])
           ]),
-          e.createElementVNode("div", ul, [
+          e.createElementVNode("div", ml, [
             e.createElementVNode("p", null, [
               s[13] || (s[13] = e.createElementVNode(
                 "i",
@@ -2669,7 +2672,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", dl, [
+            e.createElementVNode("div", pl, [
               e.createElementVNode("button", {
                 class: "button secondary",
                 type: "button",
@@ -2688,7 +2691,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                   1
                   /* TEXT */
                 )
-              ], 8, ml),
+              ], 8, yl),
               e.createElementVNode("button", {
                 class: "button primary",
                 disabled: !oe.value,
@@ -2708,10 +2711,10 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                   1
                   /* TEXT */
                 )
-              ], 8, pl)
+              ], 8, gl)
             ])
           ]),
-          A.value ? (e.openBlock(), e.createElementBlock("div", yl, [
+          A.value ? (e.openBlock(), e.createElementBlock("div", vl, [
             s[15] || (s[15] = e.createElementVNode(
               "i",
               { class: "ri-error-warning-line" },
@@ -2727,12 +2730,12 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
               /* TEXT */
             )
           ])) : e.createCommentVNode("v-if", !0),
-          y.value ? (e.openBlock(), e.createElementBlock("section", gl, [
-            e.createElementVNode("div", vl, [
+          y.value ? (e.openBlock(), e.createElementBlock("section", El, [
+            e.createElementVNode("div", Nl, [
               e.createElementVNode("div", null, [
                 e.createElementVNode(
                   "span",
-                  El,
+                  Vl,
                   e.toDisplayString(t.$t("真实返回结果")),
                   1
                   /* TEXT */
@@ -2770,7 +2773,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 /* CLASS */
               )
             ]),
-            O.value ? (e.openBlock(), e.createElementBlock("div", Nl, [
+            O.value ? (e.openBlock(), e.createElementBlock("div", Sl, [
               e.createElementVNode("div", null, [
                 e.createElementVNode(
                   "span",
@@ -2867,7 +2870,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                   /* TEXT */
                 )
               ]),
-              e.createElementVNode("div", Vl, [
+              e.createElementVNode("div", fl, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -2884,7 +2887,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 )
               ])
             ])) : e.createCommentVNode("v-if", !0),
-            ue.value.length ? (e.openBlock(), e.createElementBlock("div", Sl, [
+            ue.value.length ? (e.openBlock(), e.createElementBlock("div", hl, [
               e.createElementVNode(
                 "h4",
                 null,
@@ -2892,7 +2895,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 1
                 /* TEXT */
               ),
-              e.createElementVNode("div", fl, [
+              e.createElementVNode("div", wl, [
                 e.createElementVNode("table", null, [
                   e.createElementVNode("thead", null, [
                     e.createElementVNode("tr", null, [
@@ -2965,7 +2968,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                         ),
                         e.createElementVNode(
                           "td",
-                          hl,
+                          kl,
                           e.toDisplayString(n(r.diff)),
                           1
                           /* TEXT */
@@ -2996,8 +2999,8 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 ])
               ])
             ])) : e.createCommentVNode("v-if", !0),
-            ee.value.length || te.value.length ? (e.openBlock(), e.createElementBlock("div", wl, [
-              ee.value.length ? (e.openBlock(), e.createElementBlock("article", kl, [
+            ee.value.length || te.value.length ? (e.openBlock(), e.createElementBlock("div", bl, [
+              ee.value.length ? (e.openBlock(), e.createElementBlock("article", Dl, [
                 e.createElementVNode("h4", null, [
                   e.createTextVNode(
                     e.toDisplayString(t.$t("仅左侧存在")) + " ",
@@ -3020,7 +3023,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                   /* TEXT */
                 )
               ])) : e.createCommentVNode("v-if", !0),
-              te.value.length ? (e.openBlock(), e.createElementBlock("article", bl, [
+              te.value.length ? (e.openBlock(), e.createElementBlock("article", _l, [
                 e.createElementVNode("h4", null, [
                   e.createTextVNode(
                     e.toDisplayString(t.$t("仅右侧存在")) + " ",
@@ -3044,7 +3047,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 )
               ])) : e.createCommentVNode("v-if", !0)
             ])) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("details", Dl, [
+            e.createElementVNode("details", $l, [
               e.createElementVNode(
                 "summary",
                 null,
@@ -3062,13 +3065,13 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
             ])
           ])) : e.createCommentVNode("v-if", !0)
         ]),
-        e.createElementVNode("aside", _l, [
-          e.createElementVNode("section", $l, [
-            e.createElementVNode("div", Al, [
+        e.createElementVNode("aside", Al, [
+          e.createElementVNode("section", Cl, [
+            e.createElementVNode("div", Tl, [
               e.createElementVNode("div", null, [
                 e.createElementVNode(
                   "span",
-                  Cl,
+                  Bl,
                   e.toDisplayString(t.$t("接入路径")),
                   1
                   /* TEXT */
@@ -3082,7 +3085,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 )
               ])
             ]),
-            e.createElementVNode("ol", Tl, [
+            e.createElementVNode("ol", Ol, [
               e.createElementVNode("li", null, [
                 s[16] || (s[16] = e.createElementVNode(
                   "span",
@@ -3180,7 +3183,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
                 ])
               ])
             ]),
-            e.createElementVNode("div", Bl, [
+            e.createElementVNode("div", Ll, [
               s[19] || (s[19] = e.createElementVNode(
                 "i",
                 { class: "ri-lock-2-line" },
@@ -3197,9 +3200,9 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
           ])
         ])
       ])
-    ], 8, St));
+    ], 8, ht));
   }
-}), Rl = /* @__PURE__ */ ke(Ol, [["__scopeId", "data-v-adbd8ad3"]]);
+}), Ul = /* @__PURE__ */ be(Rl, [["__scopeId", "data-v-adbd8ad3"]]);
 export {
-  Rl as default
+  Ul as default
 };

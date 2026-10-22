@@ -1,12 +1,12 @@
 {
   "id": "workbench-charity-content",
-  "version": "2.0.2",
-  "treeDigest": "eaa28eebe0a71355b60a0134e29ca0850ce7172731c67d23a77e6af82b524ba5",
+  "version": "2.0.3",
+  "treeDigest": "680ee6e2480a2b3a58385b8d80eacba26ccb548e7ea33898c571c6bed4d10b85",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 816,
-      "sha256": "2592378cd564506af64fb96b86d97f8567c995ad77964dff2a2a0fe9bc3cbb10"
+      "size": 968,
+      "sha256": "61746ab01b193e5582706e0c633cf86222f9cc67eb2bb6efed963c19239dc22f"
     },
     {
       "path": "README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 5779,
-      "sha256": "e8a1cc67baddaf3bb765049f463a67f7ba31132750889b4bee70a0d5f96c0ad8"
+      "sha256": "5f608edfc7b60723d8885916ee14c202e4e74f1f82f70a6372b5cb9b715128bd"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.3",
+      "ref": "workbench-charity-content@2.0.3",
+      "treeDigest": "680ee6e2480a2b3a58385b8d80eacba26ccb548e7ea33898c571c6bed4d10b85",
+      "filesRef": "index/workbench-charity-content/2.0.3.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.2",
       "ref": "workbench-charity-content@2.0.2",

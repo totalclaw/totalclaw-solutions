@@ -3,127 +3,127 @@ if (!e) throw new Error("宿主模块未就绪：npm:vue");
 e.default;
 const $e = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/PageBackButton.vue"];
 if (!$e) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/PageBackButton.vue");
-const xe = $e.default, _e = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/StepRunAlert.vue"];
-if (!_e) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/StepRunAlert.vue");
-const O = _e.default, x = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts"];
+const et = $e.default, ve = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/brand.ts"];
+if (!ve) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/brand.ts");
+ve.default;
+const Te = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/StepRunAlert.vue"];
+if (!Te) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/StepRunAlert.vue");
+const O = Te.default, x = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts"];
 if (!x) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts");
 x.default;
 const ee = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/humanize.ts"];
 if (!ee) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/humanize.ts");
 ee.default;
-const ve = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-i18n"];
-if (!ve) throw new Error("宿主模块未就绪：npm:vue-i18n");
-ve.default;
-const ge = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
-if (!ge) throw new Error("宿主模块未就绪：npm:vue-router");
+const ge = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-i18n"];
+if (!ge) throw new Error("宿主模块未就绪：npm:vue-i18n");
 ge.default;
+const Ee = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
+if (!Ee) throw new Error("宿主模块未就绪：npm:vue-router");
+Ee.default;
 const o = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/i18n.ts"];
 if (!o) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/i18n.ts");
 o.default;
-const Ee = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/markdown.ts"];
-if (!Ee) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/markdown.ts");
-Ee.default;
-const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { class: "eyebrow" }, ot = { class: "hero-actions" }, at = ["disabled"], st = { class: "demo-banner" }, rt = ["disabled"], it = {
-  class: "education-platform-flow",
-  "aria-label": "TotalClaw platform capabilities"
-}, dt = { class: "teacher-chat" }, ct = { class: "teacher-profile" }, ut = { class: "teacher-avatar" }, mt = { class: "teacher-online" }, pt = { class: "teacher-capabilities" }, vt = { class: "chat-workspace" }, gt = { class: "chat-topbar" }, Et = { class: "message-avatar" }, Vt = { class: "message-meta" }, Nt = ["title", "onClick"], ft = ["innerHTML"], yt = {
+const Ve = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/markdown.ts"];
+if (!Ve) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/markdown.ts");
+Ve.default;
+const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { class: "eyebrow" }, at = { class: "hero-actions" }, st = ["disabled"], rt = { class: "demo-banner" }, it = ["disabled"], dt = ["aria-label"], ct = { class: "teacher-chat" }, ut = { class: "teacher-profile" }, pt = { class: "teacher-avatar" }, mt = { class: "teacher-online" }, vt = { class: "teacher-capabilities" }, gt = { class: "chat-workspace" }, Et = { class: "chat-topbar" }, Vt = { class: "message-avatar" }, Nt = { class: "message-meta" }, ft = ["title", "onClick"], yt = ["innerHTML"], ht = {
   key: 0,
   class: "teacher-message assistant"
-}, ht = { class: "message-avatar" }, kt = { class: "teacher-prompts" }, bt = ["onClick"], St = ["placeholder", "disabled", "onKeydown"], Dt = ["disabled", "title"], wt = ["disabled"], $t = {
+}, kt = { class: "message-avatar" }, bt = { class: "teacher-prompts" }, St = ["onClick"], Dt = ["placeholder", "disabled", "onKeydown"], wt = ["disabled", "title"], _t = ["disabled"], $t = {
   key: 0,
   class: "teacher-recording"
-}, _t = {
+}, Tt = {
   key: 1,
   class: "teacher-error"
-}, Tt = {
+}, Bt = {
   class: "boundary-banner",
   "aria-live": "polite"
-}, Bt = { class: "panel capability-panel" }, Ct = { class: "section-heading" }, At = { class: "section-kicker" }, Lt = {
+}, At = { class: "panel capability-panel" }, Lt = { class: "section-heading" }, Ct = { class: "section-kicker" }, Mt = {
   key: 0,
   class: "message error",
   role: "alert"
-}, Mt = { class: "capability-grid" }, zt = { class: "capability-copy" }, Ut = { class: "capability-title-row" }, Wt = { key: 0 }, Ot = ["aria-label"], Rt = {
+}, zt = { class: "capability-grid" }, Ut = { class: "capability-copy" }, Wt = { class: "capability-title-row" }, Ot = { key: 0 }, Kt = ["aria-label"], Rt = {
   key: 0,
   class: "panel workspace-panel"
-}, Kt = { class: "section-heading" }, It = { class: "section-kicker" }, Pt = { class: "segmented" }, Ft = {
+}, It = { class: "section-heading" }, Pt = { class: "section-kicker" }, Ft = { class: "segmented" }, Ht = {
   key: 0,
   class: "form-layout"
-}, Ht = { class: "form-card" }, qt = { class: "field-grid two" }, jt = { class: "field" }, Gt = { class: "field" }, Jt = { value: "zh" }, Qt = { value: "ar" }, Xt = { value: "en" }, Yt = { class: "field" }, Zt = ["placeholder"], xt = { class: "file-picker" }, el = { class: "check-field" }, tl = ["disabled"], ll = { class: "result-card" }, nl = { class: "result-title" }, ol = {
+}, qt = { class: "form-card" }, jt = { class: "field-grid two" }, Gt = { class: "field" }, Jt = { class: "field" }, Qt = { value: "zh" }, Xt = { value: "ar" }, Yt = { value: "en" }, Zt = { class: "field" }, xt = ["placeholder"], el = { class: "file-picker" }, tl = { class: "check-field" }, ll = ["disabled"], nl = { class: "result-card" }, ol = { class: "result-title" }, al = {
   key: 0,
   class: "message error",
   role: "alert"
-}, al = {
+}, sl = {
   key: 1,
   class: "utterance-list"
-}, sl = { class: "utterance-meta" }, rl = { key: 0 }, il = {
+}, rl = { class: "utterance-meta" }, il = { key: 0 }, dl = {
   key: 2,
   class: "empty-state"
-}, dl = { class: "result-note" }, cl = {
+}, cl = { class: "result-note" }, ul = {
   key: 1,
   class: "form-layout"
-}, ul = { class: "form-card" }, ml = { class: "field-grid two" }, pl = { class: "field" }, vl = ["value"], gl = { class: "field" }, El = { value: "zh" }, Vl = { value: "ar" }, Nl = { value: "en" }, fl = { class: "field" }, yl = ["placeholder"], hl = { class: "field-grid two" }, kl = { class: "field" }, bl = ["placeholder"], Sl = { class: "field" }, Dl = ["disabled"], wl = {
+}, pl = { class: "form-card" }, ml = { class: "field-grid two" }, vl = { class: "field" }, gl = ["value"], El = { class: "field" }, Vl = { value: "zh" }, Nl = { value: "ar" }, fl = { value: "en" }, yl = { class: "field" }, hl = ["placeholder"], kl = { class: "field-grid two" }, bl = { class: "field" }, Sl = ["placeholder"], Dl = { class: "field" }, wl = ["disabled"], _l = {
   key: 0,
   class: "step-elapsed",
   "data-test": "tts-elapsed"
-}, $l = { class: "result-card" }, _l = { class: "result-title" }, Tl = {
+}, $l = { class: "result-card" }, Tl = { class: "result-title" }, Bl = {
   key: 2,
   class: "message error",
   role: "alert"
-}, Bl = {
+}, Al = {
   key: 3,
   class: "audio-result"
-}, Cl = ["src"], Al = ["href", "download"], Ll = {
+}, Ll = ["src"], Cl = ["href", "download"], Ml = {
   key: 4,
   class: "empty-state"
-}, Ml = {
+}, zl = {
   key: 1,
   class: "panel workspace-panel"
-}, zl = { class: "section-heading" }, Ul = { class: "section-kicker" }, Wl = { class: "lesson-layout" }, Ol = { class: "field" }, Rl = ["placeholder"], Kl = { class: "field-grid two" }, Il = { class: "field" }, Pl = ["placeholder"], Fl = { class: "field" }, Hl = { value: "入门" }, ql = { value: "基础" }, jl = { value: "进阶" }, Gl = { value: "综合实训" }, Jl = { class: "field-grid two" }, Ql = { class: "field" }, Xl = { class: "field" }, Yl = { value: "zh-CN" }, Zl = { value: "en-US" }, xl = { value: "ar" }, en = ["disabled"], tn = {
+}, Ul = { class: "section-heading" }, Wl = { class: "section-kicker" }, Ol = { class: "lesson-layout" }, Kl = { class: "field" }, Rl = ["placeholder"], Il = { class: "field-grid two" }, Pl = { class: "field" }, Fl = ["placeholder"], Hl = { class: "field" }, ql = { value: "入门" }, jl = { value: "基础" }, Gl = { value: "进阶" }, Jl = { value: "综合实训" }, Ql = { class: "field-grid two" }, Xl = { class: "field" }, Yl = { class: "field" }, Zl = { value: "zh-CN" }, xl = { value: "en-US" }, en = { value: "ar" }, tn = ["disabled"], ln = {
   key: 0,
   class: "step-elapsed",
   "data-test": "lesson-elapsed"
-}, ln = { class: "result-card lesson-result" }, nn = { class: "result-title" }, on = {
+}, nn = { class: "result-card lesson-result" }, on = { class: "result-title" }, an = {
   key: 2,
   class: "message error",
   role: "alert"
-}, an = {
+}, sn = {
   key: 3,
   class: "lesson-output"
-}, sn = {
+}, rn = {
   key: 4,
   class: "empty-state"
-}, rn = {
+}, dn = {
   key: 2,
   class: "panel workspace-panel"
-}, dn = { class: "section-heading" }, cn = { class: "section-kicker" }, un = { class: "model-summary" }, mn = { key: 0 }, pn = { class: "form-layout" }, vn = { class: "form-card" }, gn = {
+}, cn = { class: "section-heading" }, un = { class: "section-kicker" }, pn = { class: "model-summary" }, mn = { key: 0 }, vn = { class: "form-layout" }, gn = { class: "form-card" }, En = {
   key: 0,
   class: "message"
-}, En = {
+}, Vn = {
   key: 1,
   class: "message error"
-}, Vn = { class: "field-grid two" }, Nn = { class: "field" }, fn = ["disabled"], yn = ["value"], hn = { class: "field" }, kn = ["placeholder"], bn = { class: "field" }, Sn = ["placeholder"], Dn = { class: "field-grid two" }, wn = { class: "field" }, $n = ["placeholder"], _n = { class: "field" }, Tn = ["disabled"], Bn = {
+}, Nn = { class: "field-grid two" }, fn = { class: "field" }, yn = ["disabled"], hn = ["value"], kn = { class: "field" }, bn = ["placeholder"], Sn = { class: "field" }, Dn = ["placeholder"], wn = { class: "field-grid two" }, _n = { class: "field" }, $n = ["placeholder"], Tn = { class: "field" }, Bn = ["disabled"], An = {
   key: 2,
   class: "step-elapsed",
   "data-test": "image-elapsed"
-}, Cn = { class: "result-card" }, An = { class: "result-title" }, Ln = {
+}, Ln = { class: "result-card" }, Cn = { class: "result-title" }, Mn = {
   key: 2,
   class: "message error",
   role: "alert"
-}, Mn = {
+}, zn = {
   key: 3,
   class: "teaching-image-grid"
-}, zn = ["href"], Un = ["src", "alt"], Wn = {
+}, Un = ["href"], Wn = ["src", "alt"], On = {
   key: 4,
   class: "empty-state"
-}, On = /* @__PURE__ */ e.defineComponent({
+}, Kn = /* @__PURE__ */ e.defineComponent({
   __name: "EducationWorkbenchView",
   setup(te) {
-    const { locale: R } = ve.useI18n(), j = ge.useRouter(), le = e.computed(() => R.value === "ar"), y = e.ref("practice"), K = e.ref("asr"), A = e.ref(!1), U = e.ref(""), I = e.ref(null), D = e.ref([]), T = e.ref(""), m = e.ref(!1), k = e.ref(""), P = e.ref(""), F = e.ref(""), h = e.ref(!1), L = e.ref(!1), V = e.ref(""), G = e.ref(!1), Ve = e.ref(null), Te = e.computed(() => F.value ? o.t("使用全局模型 {provider} 实时回复", { provider: F.value }) : o.t("使用全局当前大模型实时回复")), Be = e.computed(() => h.value ? o.t("正在听取学生语音") : L.value ? o.t("正在把语音转成文本") : m.value ? o.t("实训导师正在回复") : V.value ? o.t("正在朗读教学消息") : o.t("多 Agent 教学链已就绪")), Ce = e.computed(() => [
+    const { locale: K } = ge.useI18n(), j = Ee.useRouter(), le = e.computed(() => K.value === "ar"), y = e.ref("practice"), R = e.ref("asr"), L = e.ref(!1), U = e.ref(""), I = e.ref(null), D = e.ref([]), T = e.ref(""), p = e.ref(!1), k = e.ref(""), P = e.ref(""), F = e.ref(""), h = e.ref(!1), C = e.ref(!1), V = e.ref(""), G = e.ref(!1), Ne = e.ref(null), Be = e.computed(() => F.value ? o.t("使用全局模型 {provider} 实时回复", { provider: F.value }) : o.t("使用全局当前大模型实时回复")), Ae = e.computed(() => h.value ? o.t("正在听取学生语音") : C.value ? o.t("正在把语音转成文本") : p.value ? o.t("实训导师正在回复") : V.value ? o.t("正在朗读教学消息") : o.t("多 Agent 教学链已就绪")), Le = e.computed(() => [
       o.t("带我完成一次跨境电商商品上架策划"),
       o.t("模拟新能源汽车检修工单分析"),
       o.t("帮我拆解毕业设计的本周任务"),
       o.t("根据作品草稿给我形成性反馈")
-    ]), Ne = () => o.t("你好！我是你的实训导师。请告诉我你的专业、课程和想完成的岗位任务；我会分步骤引导，并把关键评价点交给教师确认。"), Ae = e.computed(() => A.value ? o.t("检查中") : U.value ? o.t("不可用") : I.value?.ok ? o.t("服务已连接") : o.t("尚未检查")), Le = e.computed(() => A.value ? "loading" : U.value ? "danger" : I.value?.ok ? "success" : "neutral"), Me = e.computed(() => [
+    ]), fe = () => o.t("你好！我是你的实训导师。请告诉我你的专业、课程和想完成的岗位任务；我会分步骤引导，并把关键评价点交给教师确认。"), Ce = e.computed(() => L.value ? o.t("检查中") : U.value ? o.t("不可用") : I.value?.ok ? o.t("服务已连接") : o.t("尚未检查")), Me = e.computed(() => L.value ? "loading" : U.value ? "danger" : I.value?.ok ? "success" : "neutral"), ze = e.computed(() => [
       {
         id: "conversation",
         label: o.t("实训导师对话"),
@@ -166,9 +166,9 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
         description: o.t("需要学校教务系统授权和教师确认，当前未接入。"),
         icon: "ri-brush-2-line"
       }
-    ]), ze = e.computed(() => {
+    ]), Ue = e.computed(() => {
       const t = I.value?.capabilities || {};
-      return Me.value.map((l) => {
+      return ze.value.map((l) => {
         const n = t[l.id];
         return {
           ...l,
@@ -207,12 +207,12 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
         }
       };
     }
-    const p = ne("tts", 2e4), g = ne("llm", 18e4), E = ne("image", 6e4), d = e.reactive({
+    const m = ne("tts", 2e4), g = ne("llm", 18e4), E = ne("image", 6e4), d = e.reactive({
       backend: "deepgram",
       language: "zh",
       audioUrl: "",
       diarization: !1
-    }), oe = e.ref(""), N = e.ref(!1), v = e.ref(""), J = e.ref([]), Ue = e.ref(["elevenlabs", "xunfei", "azure"]), u = e.reactive({
+    }), oe = e.ref(""), N = e.ref(!1), v = e.ref(""), J = e.ref([]), We = e.ref(["elevenlabs", "xunfei", "azure"]), u = e.reactive({
       backend: "elevenlabs",
       text: o.t("你好，我叫穆罕默德。"),
       voice: "",
@@ -224,13 +224,13 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
       learnerLevel: o.t("入门"),
       durationMinutes: 45,
       outputLanguage: "zh-CN"
-    }), ae = e.ref(!1), se = e.ref([]), z = e.ref(!1), $ = e.ref(""), re = e.ref(""), H = e.ref([]), s = e.reactive({
+    }), ae = e.ref(!1), se = e.ref([]), z = e.ref(!1), _ = e.ref(""), re = e.ref(""), H = e.ref([]), s = e.reactive({
       backend: "",
       model: "",
       prompt: "",
       style: o.t("教材插画"),
       size: "1024x1024"
-    }), W = e.computed(() => se.value.find((t) => t.kind === "image")), C = e.computed(() => W.value?.providers.filter((t) => t.configured) || []), We = e.computed(() => {
+    }), W = e.computed(() => se.value.find((t) => t.kind === "image")), A = e.computed(() => W.value?.providers.filter((t) => t.configured) || []), Oe = e.computed(() => {
       const t = W.value;
       return t?.activeProvider ? t.providers.find((l) => l.id === t.activeProvider)?.label || t.activeProvider : o.t("未设置默认引擎");
     }), q = e.computed(() => {
@@ -241,22 +241,22 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
         ;
       return typeof l == "string" ? l : JSON.stringify(l, null, 2);
     });
-    function fe() {
+    function ye() {
       return window.electronAPI?.workbenches?.education;
     }
     function X() {
       return window.electronAPI?.qiyeApi;
     }
-    let _ = null, Y = null, ie = [];
+    let $ = null, Y = null, ie = [];
     async function de() {
       const t = P.value;
-      if (P.value = "", D.value = [{ id: `teacher-${Date.now()}`, role: "assistant", content: Ne() }], T.value = "", k.value = "", t)
+      if (P.value = "", D.value = [{ id: `teacher-${Date.now()}`, role: "assistant", content: fe() }], T.value = "", k.value = "", t)
         try {
           await window.electronAPI?.deleteSession?.({ sessionId: t });
         } catch {
         }
     }
-    async function Oe() {
+    async function Ke() {
       try {
         const l = (await window.electronAPI?.modelsList?.())?.configuration;
         F.value = [l?.activeProvider, l?.activeModel].filter(Boolean).join(" / ");
@@ -274,31 +274,31 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
     }
     async function ce() {
       await e.nextTick();
-      const t = Ve.value;
+      const t = Ne.value;
       t && (t.scrollTop = t.scrollHeight);
     }
     async function Z() {
       const t = T.value.trim();
-      if (!t || m.value) return;
-      k.value = "", D.value.push({ id: `user-${Date.now()}`, role: "user", content: t }), T.value = "", m.value = !0, await ce();
+      if (!t || p.value) return;
+      k.value = "", D.value.push({ id: `user-${Date.now()}`, role: "user", content: t }), T.value = "", p.value = !0, await ce();
       const l = window.electronAPI;
       let n, a, r;
       try {
         if (!l?.sendMessage || !l?.onStreamToken) throw new Error(o.t("全局对话服务不可用"));
         const f = await Re();
-        let c = "", me = "";
+        let c = "", pe = "";
         D.value.push({
           id: `assistant-${Date.now()}`,
           role: "assistant",
           content: ""
         });
-        const pe = D.value[D.value.length - 1];
+        const me = D.value[D.value.length - 1];
         if (n = l.onStreamToken((S) => {
-          S?.sessionId === f && (c += String(S?.text || ""), pe.content = c, ce());
+          S?.sessionId === f && (c += String(S?.text || ""), me.content = c, ce());
         }), a = l.onStreamComplete?.((S) => {
           S?.sessionId !== f || c.trim() || (c = String(S?.finalMessage ?? S?.message ?? S?.content ?? ""));
         }), r = l.onStreamError?.((S) => {
-          S?.sessionId === f && (me = String(ee.humanizeErrorMessage(S, o.t("实训导师回复失败"))));
+          S?.sessionId === f && (pe = String(ee.humanizeErrorMessage(S, o.t("实训导师回复失败"))));
         }), await l.sendMessage({
           sessionId: f,
           content: [
@@ -308,38 +308,38 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             o.t("【学生消息】{text}", { text: t })
           ].join(`
 `)
-        }), me) throw new Error(me);
+        }), pe) throw new Error(pe);
         if (c = c.trim(), !c) throw new Error(o.t("实训导师没有返回有效内容"));
-        pe.content = c, G.value && (G.value = !1, await e.nextTick(), he(pe));
+        me.content = c, G.value && (G.value = !1, await e.nextTick(), ke(me));
       } catch (f) {
         G.value = !1;
         const c = D.value.at(-1);
         c?.role === "assistant" && !c.content && D.value.pop(), k.value = b(f, o.t("实训导师回复失败"));
       } finally {
-        n?.(), a?.(), r?.(), m.value = !1, await ce();
+        n?.(), a?.(), r?.(), p.value = !1, await ce();
       }
     }
-    function ye(t) {
+    function he(t) {
       T.value = t, Z();
     }
-    async function Ke() {
-      y.value = "practice", await de(), G.value = !0, ye(o.t("我是跨境电商专业学生。请以“为阿联酋市场策划一款校园智能水杯的商品上架”为实训任务，先给我任务背景、岗位角色、第一步操作和提交要求；不要一次替我完成全部作业。"));
+    async function Ie() {
+      y.value = "practice", await de(), G.value = !0, he(o.t("我是跨境电商专业学生。请以“为阿联酋市场策划一款校园智能水杯的商品上架”为实训任务，先给我任务背景、岗位角色、第一步操作和提交要求；不要一次替我完成全部作业。"));
     }
     function ue() {
       Y?.getTracks().forEach((t) => t.stop()), Y = null;
     }
-    function Ie(t) {
+    function Pe(t) {
       return new Promise((l, n) => {
         const a = new FileReader();
         a.onload = () => l(String(a.result || "")), a.onerror = () => n(a.error || new Error(o.t("读取录音失败"))), a.readAsDataURL(t);
       });
     }
-    async function Pe(t) {
-      L.value = !0, k.value = "";
+    async function Fe(t) {
+      C.value = !0, k.value = "";
       try {
         const l = X();
         if (!l?.speechAsr) throw new Error(o.t("语音识别接口不可用"));
-        const n = await Ie(t), a = await l.speechAsr({
+        const n = await Pe(t), a = await l.speechAsr({
           backend: d.backend || "deepgram",
           audioUrl: n,
           language: d.language || "zh",
@@ -350,31 +350,31 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
       } catch (l) {
         k.value = b(l, o.t("语音识别失败"));
       } finally {
-        L.value = !1;
+        C.value = !1;
       }
     }
-    async function Fe() {
+    async function He() {
       k.value = "";
       try {
         await window.electronAPI?.appPermissions?.requestMicrophone?.(), Y = await navigator.mediaDevices.getUserMedia({ audio: !0 }), ie = [];
         const t = MediaRecorder.isTypeSupported("audio/webm;codecs=opus") ? "audio/webm;codecs=opus" : "audio/webm";
-        _ = new MediaRecorder(Y, { mimeType: t }), _.addEventListener("dataavailable", (l) => {
+        $ = new MediaRecorder(Y, { mimeType: t }), $.addEventListener("dataavailable", (l) => {
           l.data.size > 0 && ie.push(l.data);
-        }), _.addEventListener("stop", () => {
-          const l = new Blob(ie, { type: _?.mimeType || t });
-          ue(), l.size > 0 && Pe(l);
-        }, { once: !0 }), _.start(), h.value = !0;
+        }), $.addEventListener("stop", () => {
+          const l = new Blob(ie, { type: $?.mimeType || t });
+          ue(), l.size > 0 && Fe(l);
+        }, { once: !0 }), $.start(), h.value = !0;
       } catch (t) {
         ue(), h.value = !1, k.value = b(t, o.t("无法使用麦克风，请检查系统权限"));
       }
     }
-    function He() {
-      _?.state === "recording" && _.stop(), h.value = !1;
-    }
     function qe() {
-      h.value ? He() : Fe();
+      $?.state === "recording" && $.stop(), h.value = !1;
     }
-    function he(t) {
+    function je() {
+      h.value ? qe() : He();
+    }
+    function ke(t) {
       if (!("speechSynthesis" in window)) {
         k.value = o.t("当前系统不支持语音朗读");
         return;
@@ -396,41 +396,41 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
     function b(t, l) {
       return ee.humanizeErrorMessage(t, l);
     }
-    async function ke() {
-      A.value = !0, U.value = "";
+    async function be() {
+      L.value = !0, U.value = "";
       try {
-        const t = fe();
+        const t = ye();
         if (!t?.status) throw new Error(o.t("教育工作台接口不可用"));
         I.value = await t.status();
       } catch (t) {
         I.value = null, U.value = b(t, o.t("能力状态检查失败"));
       } finally {
-        A.value = !1;
+        L.value = !1;
       }
     }
-    function je(t) {
+    function Ge(t) {
       return new Promise((l, n) => {
         const a = new FileReader();
         a.onload = () => l(String(a.result || "")), a.onerror = () => n(a.error || new Error(o.t("读取音频文件失败"))), a.readAsDataURL(t);
       });
     }
-    async function Ge(t) {
+    async function Je(t) {
       const n = t.target.files?.[0];
       if (n) {
         v.value = "", oe.value = n.name;
         try {
-          d.audioUrl = await je(n);
+          d.audioUrl = await Ge(n);
         } catch (a) {
           oe.value = "", d.audioUrl = "", v.value = b(a, o.t("读取音频文件失败"));
         }
       }
     }
-    async function Je() {
+    async function Qe() {
       if (!d.audioUrl.trim()) {
         v.value = o.t("请选择音频文件或填写音频地址");
         return;
       }
-      N.value = !0, v.value = "", p.failed.value = !1, J.value = [];
+      N.value = !0, v.value = "", m.failed.value = !1, J.value = [];
       try {
         const t = X();
         if (!t?.speechAsr) throw new Error(o.t("语音识别接口不可用"));
@@ -447,13 +447,13 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
         N.value = !1;
       }
     }
-    async function be() {
+    async function Se() {
       if (!u.text.trim()) {
         v.value = o.t("请输入示范文本");
         return;
       }
       if (N.value) return;
-      const t = p.begin();
+      const t = m.begin();
       N.value = !0, v.value = "", B.value = null;
       try {
         const l = X();
@@ -465,20 +465,20 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
           language: u.language || void 0,
           format: u.format
         });
-        if (!p.current(t)) return;
+        if (!m.current(t)) return;
         B.value = {
           dataUrl: `data:${n.mimeType};base64,${n.audioBase64}`,
           format: n.format,
           bytes: Number(n.bytes || 0)
         };
       } catch (l) {
-        if (!p.current(t)) return;
-        p.failed.value = !0, v.value = b(l, o.t("语音合成失败"));
+        if (!m.current(t)) return;
+        m.failed.value = !0, v.value = b(l, o.t("语音合成失败"));
       } finally {
-        p.current(t) && (N.value = !1, p.end(t));
+        m.current(t) && (N.value = !1, m.end(t));
       }
     }
-    async function Se() {
+    async function De() {
       if (!i.topic.trim() || !i.grade.trim()) {
         M.value = o.t("请填写课程主题和学段");
         return;
@@ -487,7 +487,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
       const t = g.begin();
       w.value = !0, M.value = "", Q.value = null;
       try {
-        const l = fe();
+        const l = ye();
         if (!l?.prepareLesson) throw new Error(o.t("教育备课接口不可用"));
         const n = await l.prepareLesson({
           topic: i.topic.trim(),
@@ -505,37 +505,37 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
         g.current(t) && (w.value = !1, g.end(t));
       }
     }
-    async function Qe() {
+    async function Xe() {
       ae.value = !0;
       try {
         const t = await window.electronAPI?.mediaModel?.get?.();
         se.value = Array.isArray(t?.kinds) ? t.kinds : [];
         const l = W.value, n = l?.providers.find((a) => a.id === l.activeProvider && a.configured);
-        s.backend = n?.id || C.value[0]?.id || "", s.model = l?.activeModel || "";
+        s.backend = n?.id || A.value[0]?.id || "", s.model = l?.activeModel || "";
       } catch (t) {
-        se.value = [], $.value = b(t, o.t("读取图片模型配置失败"));
+        se.value = [], _.value = b(t, o.t("读取图片模型配置失败"));
       } finally {
         ae.value = !1;
       }
     }
-    function Xe() {
+    function Ye() {
       j.push({
         path: "/settings",
         query: { section: "ai-models", media: "image" }
       });
     }
-    async function De() {
+    async function we() {
       if (!s.backend) {
-        $.value = o.t("请先配置图片模型");
+        _.value = o.t("请先配置图片模型");
         return;
       }
       if (!s.prompt.trim()) {
-        $.value = o.t("请输入教学配图提示词");
+        _.value = o.t("请输入教学配图提示词");
         return;
       }
       if (z.value) return;
       const t = E.begin();
-      z.value = !0, $.value = "", H.value = [], re.value = "";
+      z.value = !0, _.value = "", H.value = [], re.value = "";
       try {
         const [l, n] = s.size.split("x").map(Number), a = X();
         if (!a?.imageGenerate) throw new Error(o.t("图片生成接口不可用"));
@@ -553,36 +553,36 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
           throw new Error(o.t("图片服务未返回可展示的图片"));
       } catch (l) {
         if (!E.current(t)) return;
-        E.failed.value = !0, $.value = b(l, o.t("教学配图生成失败"));
+        E.failed.value = !0, _.value = b(l, o.t("教学配图生成失败"));
       } finally {
         E.current(t) && (z.value = !1, E.end(t));
       }
     }
-    function we(t) {
+    function _e(t) {
       const l = Number(t);
       return Number.isFinite(l) ? `${(l / 1e3).toFixed(1)}s` : "—";
     }
-    function Ye(t) {
+    function Ze(t) {
       const l = Number(t);
       return Number.isFinite(l) ? (l * 100).toFixed(1) : "—";
     }
-    function Ze(t) {
+    function xe(t) {
       return !Number.isFinite(t) || t <= 0 ? "0 KB" : `${(t / 1024).toFixed(1)} KB`;
     }
     return e.onMounted(() => {
-      i.outputLanguage = R.value === "ar" ? "ar" : R.value === "en-US" ? "en-US" : "zh-CN", ke(), de(), Oe(), Qe();
+      i.outputLanguage = K.value === "ar" ? "ar" : K.value === "en-US" ? "en-US" : "zh-CN", be(), de(), Ke(), Xe();
     }), e.onBeforeUnmount(() => {
-      _?.state === "recording" && _.stop(), ue(), window.speechSynthesis?.cancel();
+      $?.state === "recording" && $.stop(), ue(), window.speechSynthesis?.cancel();
     }), (t, l) => (e.openBlock(), e.createElementBlock("div", {
       class: "workbench education-workbench",
       dir: le.value ? "rtl" : "ltr"
     }, [
-      e.createElementVNode("header", tt, [
-        e.createVNode(xe),
-        e.createElementVNode("div", lt, [
+      e.createElementVNode("header", lt, [
+        e.createVNode(et),
+        e.createElementVNode("div", nt, [
           e.createElementVNode(
             "div",
-            nt,
+            ot,
             e.toDisplayString(t.$t("教育工作台")),
             1
             /* TEXT */
@@ -602,31 +602,31 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             /* TEXT */
           )
         ]),
-        e.createElementVNode("div", ot, [
+        e.createElementVNode("div", at, [
           e.createElementVNode("button", {
             class: "button secondary",
             type: "button",
-            disabled: A.value,
-            onClick: ke
+            disabled: L.value,
+            onClick: be
           }, [
             e.createElementVNode(
               "i",
               {
-                class: e.normalizeClass(A.value ? "ri-loader-4-line spin" : "ri-refresh-line")
+                class: e.normalizeClass(L.value ? "ri-loader-4-line spin" : "ri-refresh-line")
               },
               null,
               2
               /* CLASS */
             ),
             e.createTextVNode(
-              " " + e.toDisplayString(A.value ? t.$t("正在检查…") : t.$t("刷新能力状态")),
+              " " + e.toDisplayString(L.value ? t.$t("正在检查…") : t.$t("刷新能力状态")),
               1
               /* TEXT */
             )
-          ], 8, at)
+          ], 8, st)
         ])
       ]),
-      e.createElementVNode("section", st, [
+      e.createElementVNode("section", rt, [
         l[32] || (l[32] = e.createElementVNode(
           "i",
           { class: "ri-chat-smile-3-line" },
@@ -653,8 +653,8 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
         e.createElementVNode("button", {
           class: "button primary compact",
           type: "button",
-          disabled: m.value,
-          onClick: Ke
+          disabled: p.value,
+          onClick: Ie
         }, [
           l[31] || (l[31] = e.createElementVNode(
             "i",
@@ -664,13 +664,16 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             /* CACHED */
           )),
           e.createTextVNode(
-            e.toDisplayString(m.value ? t.$t("老师正在回复…") : t.$t("开始真实演示")),
+            e.toDisplayString(p.value ? t.$t("老师正在回复…") : t.$t("开始真实演示")),
             1
             /* TEXT */
           )
-        ], 8, rt)
+        ], 8, it)
       ]),
-      e.createElementVNode("section", it, [
+      e.createElementVNode("section", {
+        class: "education-platform-flow",
+        "aria-label": e.unref(ve.brandName)() + " platform capabilities"
+      }, [
         e.createElementVNode("header", null, [
           e.createElementVNode("div", null, [
             e.createElementVNode("span", null, [
@@ -698,7 +701,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
           e.createElementVNode(
             "em",
             {
-              class: e.normalizeClass({ active: m.value || h.value || L.value || !!V.value })
+              class: e.normalizeClass({ active: p.value || h.value || C.value || !!V.value })
             },
             [
               l[34] || (l[34] = e.createElementVNode(
@@ -709,7 +712,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(Be.value),
+                e.toDisplayString(Ae.value),
                 1
                 /* TEXT */
               )
@@ -764,7 +767,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
           e.createElementVNode(
             "article",
             {
-              class: e.normalizeClass({ active: m.value, done: D.value.some((n) => n.role === "assistant" && n.content !== Ne()) })
+              class: e.normalizeClass({ active: p.value, done: D.value.some((n) => n.role === "assistant" && n.content !== fe()) })
             },
             [
               l[38] || (l[38] = e.createElementVNode(
@@ -806,7 +809,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
           e.createElementVNode(
             "article",
             {
-              class: e.normalizeClass({ active: h.value || L.value })
+              class: e.normalizeClass({ active: h.value || C.value })
             },
             [
               l[40] || (l[40] = e.createElementVNode(
@@ -890,7 +893,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
           e.createElementVNode(
             "article",
             {
-              class: e.normalizeClass({ done: q.value || C.value.length > 0 })
+              class: e.normalizeClass({ done: q.value || A.value.length > 0 })
             },
             [
               l[45] || (l[45] = e.createElementVNode(
@@ -930,12 +933,12 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             /* CLASS */
           )
         ])
-      ]),
-      e.createElementVNode("section", dt, [
-        e.createElementVNode("aside", ct, [
+      ], 8, dt),
+      e.createElementVNode("section", ct, [
+        e.createElementVNode("aside", ut, [
           e.createElementVNode(
             "div",
-            ut,
+            pt,
             e.toDisplayString(t.$t("教")),
             1
             /* TEXT */
@@ -968,7 +971,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             1
             /* TEXT */
           ),
-          e.createElementVNode("div", pt, [
+          e.createElementVNode("div", vt, [
             e.createElementVNode("span", null, [
               l[47] || (l[47] = e.createElementVNode(
                 "i",
@@ -1013,8 +1016,8 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             ])
           ])
         ]),
-        e.createElementVNode("div", vt, [
-          e.createElementVNode("div", gt, [
+        e.createElementVNode("div", gt, [
+          e.createElementVNode("div", Et, [
             e.createElementVNode("div", null, [
               e.createElementVNode(
                 "strong",
@@ -1026,7 +1029,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
               e.createElementVNode(
                 "span",
                 null,
-                e.toDisplayString(Te.value),
+                e.toDisplayString(Be.value),
                 1
                 /* TEXT */
               )
@@ -1053,7 +1056,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             "div",
             {
               ref_key: "teacherMessageList",
-              ref: Ve,
+              ref: Ne,
               class: "teacher-messages"
             },
             [
@@ -1069,13 +1072,13 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                   [
                     e.createElementVNode(
                       "span",
-                      Et,
+                      Vt,
                       e.toDisplayString(n.role === "assistant" ? t.$t("教") : t.$t("学")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode("div", null, [
-                      e.createElementVNode("div", Vt, [
+                      e.createElementVNode("div", Nt, [
                         e.createElementVNode(
                           "small",
                           null,
@@ -1086,7 +1089,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                         e.createElementVNode("button", {
                           type: "button",
                           title: V.value === n.id ? t.$t("停止朗读") : t.$t("朗读这条消息"),
-                          onClick: (a) => he(n)
+                          onClick: (a) => ke(n)
                         }, [
                           e.createElementVNode(
                             "i",
@@ -1102,13 +1105,13 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                             1
                             /* TEXT */
                           )
-                        ], 8, Nt)
+                        ], 8, ft)
                       ]),
                       e.createElementVNode("div", {
                         class: "teacher-message-markdown",
                         dir: "auto",
-                        innerHTML: e.unref(Ee.renderMarkdown)(n.content)
-                      }, null, 8, ft)
+                        innerHTML: e.unref(Ve.renderMarkdown)(n.content)
+                      }, null, 8, yt)
                     ])
                   ],
                   2
@@ -1117,10 +1120,10 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 128
                 /* KEYED_FRAGMENT */
               )),
-              m.value ? (e.openBlock(), e.createElementBlock("article", yt, [
+              p.value ? (e.openBlock(), e.createElementBlock("article", ht, [
                 e.createElementVNode(
                   "span",
-                  ht,
+                  kt,
                   e.toDisplayString(t.$t("教")),
                   1
                   /* TEXT */
@@ -1150,15 +1153,15 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             512
             /* NEED_PATCH */
           ),
-          e.createElementVNode("div", kt, [
+          e.createElementVNode("div", bt, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(Ce.value, (n) => (e.openBlock(), e.createElementBlock("button", {
+              e.renderList(Le.value, (n) => (e.openBlock(), e.createElementBlock("button", {
                 key: n,
                 type: "button",
-                onClick: (a) => ye(n)
-              }, e.toDisplayString(n), 9, bt))),
+                onClick: (a) => he(n)
+              }, e.toDisplayString(n), 9, St))),
               128
               /* KEYED_FRAGMENT */
             ))
@@ -1174,49 +1177,49 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 "onUpdate:modelValue": l[0] || (l[0] = (n) => T.value = n),
                 rows: "2",
                 placeholder: t.$t("输入课程问题或实训任务，例如：带我完成一次跨境电商商品上架策划"),
-                disabled: m.value,
+                disabled: p.value,
                 onKeydown: e.withKeys(e.withModifiers(Z, ["exact", "prevent"]), ["enter"])
-              }, null, 40, St), [
+              }, null, 40, Dt), [
                 [e.vModelText, T.value]
               ]),
               e.createElementVNode("div", null, [
                 e.createElementVNode("button", {
                   class: e.normalizeClass(["composer-tool", { recording: h.value }]),
                   type: "button",
-                  disabled: m.value || L.value,
+                  disabled: p.value || C.value,
                   title: h.value ? t.$t("停止录音并发送") : t.$t("按下后直接说话"),
-                  onClick: qe
+                  onClick: je
                 }, [
                   e.createElementVNode(
                     "i",
                     {
-                      class: e.normalizeClass(h.value ? "ri-stop-circle-fill" : L.value ? "ri-loader-4-line spin" : "ri-mic-line")
+                      class: e.normalizeClass(h.value ? "ri-stop-circle-fill" : C.value ? "ri-loader-4-line spin" : "ri-mic-line")
                     },
                     null,
                     2
                     /* CLASS */
                   )
-                ], 10, Dt),
+                ], 10, wt),
                 e.createElementVNode("button", {
                   class: "composer-send",
                   type: "submit",
-                  disabled: m.value || !T.value.trim()
+                  disabled: p.value || !T.value.trim()
                 }, [
                   e.createElementVNode(
                     "i",
                     {
-                      class: e.normalizeClass(m.value ? "ri-loader-4-line spin" : "ri-send-plane-fill")
+                      class: e.normalizeClass(p.value ? "ri-loader-4-line spin" : "ri-send-plane-fill")
                     },
                     null,
                     2
                     /* CLASS */
                   ),
                   e.createTextVNode(
-                    " " + e.toDisplayString(m.value ? t.$t("导师正在回复…") : t.$t("发送")),
+                    " " + e.toDisplayString(p.value ? t.$t("导师正在回复…") : t.$t("发送")),
                     1
                     /* TEXT */
                   )
-                ], 8, wt)
+                ], 8, _t)
               ])
             ],
             32
@@ -1236,7 +1239,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
               /* TEXT */
             )
           ])) : e.createCommentVNode("v-if", !0),
-          k.value ? (e.openBlock(), e.createElementBlock("p", _t, [
+          k.value ? (e.openBlock(), e.createElementBlock("p", Tt, [
             l[53] || (l[53] = e.createElementVNode(
               "i",
               { class: "ri-error-warning-line" },
@@ -1252,7 +1255,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
           ])) : e.createCommentVNode("v-if", !0)
         ])
       ]),
-      e.createElementVNode("section", Tt, [
+      e.createElementVNode("section", Bt, [
         l[54] || (l[54] = e.createElementVNode(
           "i",
           { class: "ri-information-line" },
@@ -1277,12 +1280,12 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
           )
         ])
       ]),
-      e.createElementVNode("section", Bt, [
-        e.createElementVNode("div", Ct, [
+      e.createElementVNode("section", At, [
+        e.createElementVNode("div", Lt, [
           e.createElementVNode("div", null, [
             e.createElementVNode(
               "span",
-              At,
+              Ct,
               e.toDisplayString(t.$t("能力概览")),
               1
               /* TEXT */
@@ -1298,7 +1301,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
           e.createElementVNode(
             "span",
             {
-              class: e.normalizeClass(["status-pill", Le.value])
+              class: e.normalizeClass(["status-pill", Me.value])
             },
             [
               l[55] || (l[55] = e.createElementVNode(
@@ -1309,7 +1312,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 /* CACHED */
               )),
               e.createTextVNode(
-                " " + e.toDisplayString(Ae.value),
+                " " + e.toDisplayString(Ce.value),
                 1
                 /* TEXT */
               )
@@ -1318,7 +1321,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             /* CLASS */
           )
         ]),
-        U.value ? (e.openBlock(), e.createElementBlock("div", Lt, [
+        U.value ? (e.openBlock(), e.createElementBlock("div", Mt, [
           l[56] || (l[56] = e.createElementVNode(
             "i",
             { class: "ri-error-warning-line" },
@@ -1334,11 +1337,11 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             /* TEXT */
           )
         ])) : e.createCommentVNode("v-if", !0),
-        e.createElementVNode("div", Mt, [
+        e.createElementVNode("div", zt, [
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(ze.value, (n) => (e.openBlock(), e.createElementBlock("article", {
+            e.renderList(Ue.value, (n) => (e.openBlock(), e.createElementBlock("article", {
               key: n.id,
               class: "capability-card"
             }, [
@@ -1361,8 +1364,8 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 2
                 /* CLASS */
               ),
-              e.createElementVNode("div", zt, [
-                e.createElementVNode("div", Ut, [
+              e.createElementVNode("div", Ut, [
+                e.createElementVNode("div", Wt, [
                   e.createElementVNode(
                     "strong",
                     null,
@@ -1389,7 +1392,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 ),
                 n.reason ? (e.openBlock(), e.createElementBlock(
                   "small",
-                  Wt,
+                  Ot,
                   e.toDisplayString(t.$t(n.reason)),
                   1
                   /* TEXT */
@@ -1477,13 +1480,13 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
           2
           /* CLASS */
         )
-      ], 8, Ot),
+      ], 8, Kt),
       y.value === "practice" ? (e.openBlock(), e.createElementBlock("section", Rt, [
-        e.createElementVNode("div", Kt, [
+        e.createElementVNode("div", It, [
           e.createElementVNode("div", null, [
             e.createElementVNode(
               "span",
-              It,
+              Pt,
               e.toDisplayString(t.$t("学生练习")),
               1
               /* TEXT */
@@ -1503,13 +1506,13 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
               /* TEXT */
             )
           ]),
-          e.createElementVNode("div", Pt, [
+          e.createElementVNode("div", Ft, [
             e.createElementVNode(
               "button",
               {
                 type: "button",
-                class: e.normalizeClass({ active: K.value === "asr" }),
-                onClick: l[4] || (l[4] = (n) => K.value = "asr")
+                class: e.normalizeClass({ active: R.value === "asr" }),
+                onClick: l[4] || (l[4] = (n) => R.value = "asr")
               },
               e.toDisplayString(t.$t("语音转写")),
               3
@@ -1519,8 +1522,8 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
               "button",
               {
                 type: "button",
-                class: e.normalizeClass({ active: K.value === "tts" }),
-                onClick: l[5] || (l[5] = (n) => K.value = "tts")
+                class: e.normalizeClass({ active: R.value === "tts" }),
+                onClick: l[5] || (l[5] = (n) => R.value = "tts")
               },
               e.toDisplayString(t.$t("示范朗读")),
               3
@@ -1528,10 +1531,10 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             )
           ])
         ]),
-        K.value === "asr" ? (e.openBlock(), e.createElementBlock("div", Ft, [
-          e.createElementVNode("div", Ht, [
-            e.createElementVNode("div", qt, [
-              e.createElementVNode("label", jt, [
+        R.value === "asr" ? (e.openBlock(), e.createElementBlock("div", Ht, [
+          e.createElementVNode("div", qt, [
+            e.createElementVNode("div", jt, [
+              e.createElementVNode("label", Gt, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -1573,7 +1576,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                   [e.vModelSelect, d.backend]
                 ])
               ]),
-              e.createElementVNode("label", Gt, [
+              e.createElementVNode("label", Jt, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -1589,21 +1592,21 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                   [
                     e.createElementVNode(
                       "option",
-                      Jt,
+                      Qt,
                       e.toDisplayString(t.$t("中文")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      Qt,
+                      Xt,
                       e.toDisplayString(t.$t("阿拉伯语")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      Xt,
+                      Yt,
                       e.toDisplayString(t.$t("英语")),
                       1
                       /* TEXT */
@@ -1616,7 +1619,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 ])
               ])
             ]),
-            e.createElementVNode("label", Yt, [
+            e.createElementVNode("label", Zt, [
               e.createElementVNode(
                 "span",
                 null,
@@ -1628,17 +1631,17 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 "onUpdate:modelValue": l[8] || (l[8] = (n) => d.audioUrl = n),
                 type: "url",
                 placeholder: t.$t("填写 https:// 地址，或在下方选择本地音频文件")
-              }, null, 8, Zt), [
+              }, null, 8, xt), [
                 [e.vModelText, d.audioUrl]
               ])
             ]),
-            e.createElementVNode("label", xt, [
+            e.createElementVNode("label", el, [
               e.createElementVNode(
                 "input",
                 {
                   type: "file",
                   accept: "audio/*",
-                  onChange: Ge
+                  onChange: Je
                 },
                 null,
                 32
@@ -1668,7 +1671,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 )
               ])
             ]),
-            e.createElementVNode("label", el, [
+            e.createElementVNode("label", tl, [
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
@@ -1693,7 +1696,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
               class: "button primary",
               type: "button",
               disabled: N.value,
-              onClick: Je
+              onClick: Qe
             }, [
               e.createElementVNode(
                 "i",
@@ -1709,10 +1712,10 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 1
                 /* TEXT */
               )
-            ], 8, tl)
+            ], 8, ll)
           ]),
-          e.createElementVNode("div", ll, [
-            e.createElementVNode("div", nl, [
+          e.createElementVNode("div", nl, [
+            e.createElementVNode("div", ol, [
               e.createElementVNode(
                 "strong",
                 null,
@@ -1730,27 +1733,27 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             ]),
             v.value ? (e.openBlock(), e.createElementBlock(
               "div",
-              ol,
+              al,
               e.toDisplayString(v.value),
               1
               /* TEXT */
-            )) : J.value.length ? (e.openBlock(), e.createElementBlock("div", al, [
+            )) : J.value.length ? (e.openBlock(), e.createElementBlock("div", sl, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
                 e.renderList(J.value, (n, a) => (e.openBlock(), e.createElementBlock("article", { key: a }, [
-                  e.createElementVNode("div", sl, [
+                  e.createElementVNode("div", rl, [
                     e.createElementVNode(
                       "span",
                       null,
-                      e.toDisplayString(we(n.startMs)) + " – " + e.toDisplayString(we(n.endMs)),
+                      e.toDisplayString(_e(n.startMs)) + " – " + e.toDisplayString(_e(n.endMs)),
                       1
                       /* TEXT */
                     ),
                     n.confidence != null ? (e.openBlock(), e.createElementBlock(
                       "span",
-                      rl,
-                      e.toDisplayString(t.$t("转写置信度 {value}%", { value: Ye(n.confidence) })),
+                      il,
+                      e.toDisplayString(t.$t("转写置信度 {value}%", { value: Ze(n.confidence) })),
                       1
                       /* TEXT */
                     )) : e.createCommentVNode("v-if", !0)
@@ -1766,7 +1769,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 128
                 /* KEYED_FRAGMENT */
               ))
-            ])) : (e.openBlock(), e.createElementBlock("div", il, [
+            ])) : (e.openBlock(), e.createElementBlock("div", dl, [
               l[62] || (l[62] = e.createElementVNode(
                 "i",
                 { class: "ri-chat-voice-line" },
@@ -1782,7 +1785,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 /* TEXT */
               )
             ])),
-            e.createElementVNode("div", dl, [
+            e.createElementVNode("div", cl, [
               l[63] || (l[63] = e.createElementVNode(
                 "i",
                 { class: "ri-shield-check-line" },
@@ -1797,10 +1800,10 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
               )
             ])
           ])
-        ])) : (e.openBlock(), e.createElementBlock("div", cl, [
-          e.createElementVNode("div", ul, [
+        ])) : (e.openBlock(), e.createElementBlock("div", ul, [
+          e.createElementVNode("div", pl, [
             e.createElementVNode("div", ml, [
-              e.createElementVNode("label", pl, [
+              e.createElementVNode("label", vl, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -1817,10 +1820,10 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                     (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       null,
-                      e.renderList(Ue.value, (n) => (e.openBlock(), e.createElementBlock("option", {
+                      e.renderList(We.value, (n) => (e.openBlock(), e.createElementBlock("option", {
                         key: n,
                         value: n
-                      }, e.toDisplayString(n), 9, vl))),
+                      }, e.toDisplayString(n), 9, gl))),
                       128
                       /* KEYED_FRAGMENT */
                     ))
@@ -1831,7 +1834,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                   [e.vModelSelect, u.backend]
                 ])
               ]),
-              e.createElementVNode("label", gl, [
+              e.createElementVNode("label", El, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -1847,21 +1850,21 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                   [
                     e.createElementVNode(
                       "option",
-                      El,
+                      Vl,
                       e.toDisplayString(t.$t("中文")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      Vl,
+                      Nl,
                       e.toDisplayString(t.$t("阿拉伯语")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      Nl,
+                      fl,
                       e.toDisplayString(t.$t("英语")),
                       1
                       /* TEXT */
@@ -1874,7 +1877,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 ])
               ])
             ]),
-            e.createElementVNode("label", fl, [
+            e.createElementVNode("label", yl, [
               e.createElementVNode(
                 "span",
                 null,
@@ -1886,12 +1889,12 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 "onUpdate:modelValue": l[12] || (l[12] = (n) => u.text = n),
                 rows: "6",
                 placeholder: t.$t("例如：你好，我叫穆罕默德。")
-              }, null, 8, yl), [
+              }, null, 8, hl), [
                 [e.vModelText, u.text]
               ])
             ]),
-            e.createElementVNode("div", hl, [
-              e.createElementVNode("label", kl, [
+            e.createElementVNode("div", kl, [
+              e.createElementVNode("label", bl, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -1903,11 +1906,11 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                   "onUpdate:modelValue": l[13] || (l[13] = (n) => u.voice = n),
                   type: "text",
                   placeholder: t.$t("留空使用服务默认音色")
-                }, null, 8, bl), [
+                }, null, 8, Sl), [
                   [e.vModelText, u.voice]
                 ])
               ]),
-              e.createElementVNode("label", Sl, [
+              e.createElementVNode("label", Dl, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -1961,7 +1964,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
               class: "button primary",
               type: "button",
               disabled: N.value,
-              onClick: be
+              onClick: Se
             }, [
               e.createElementVNode(
                 "i",
@@ -1977,17 +1980,17 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 1
                 /* TEXT */
               )
-            ], 8, Dl),
-            e.unref(p).startedAt.value ? (e.openBlock(), e.createElementBlock(
+            ], 8, wl),
+            e.unref(m).startedAt.value ? (e.openBlock(), e.createElementBlock(
               "span",
-              wl,
-              e.toDisplayString(e.unref(p).elapsedLabel()),
+              _l,
+              e.toDisplayString(e.unref(m).elapsedLabel()),
               1
               /* TEXT */
             )) : e.createCommentVNode("v-if", !0)
           ]),
           e.createElementVNode("div", $l, [
-            e.createElementVNode("div", _l, [
+            e.createElementVNode("div", Tl, [
               e.createElementVNode(
                 "strong",
                 null,
@@ -2004,28 +2007,28 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
               )
             ]),
             e.createCommentVNode(" 没有取消通道：可能已超时只给 继续等待 / 查看日志；失败给原因 + 重新生成（同一函数再跑一次） "),
-            e.unref(p).watchdog.suspect.value ? (e.openBlock(), e.createBlock(O, {
+            e.unref(m).watchdog.suspect.value ? (e.openBlock(), e.createBlock(O, {
               key: 0,
               state: "suspect",
               "hide-retry": "",
-              "elapsed-sec": e.unref(p).watchdog.elapsedSec.value,
-              "estimate-sec": e.unref(p).estimateSec,
+              "elapsed-sec": e.unref(m).watchdog.elapsedSec.value,
+              "estimate-sec": e.unref(m).estimateSec,
               message: t.$t("服务端最长等待 5 分钟，超过会自动报错。"),
-              onKeepWaiting: l[15] || (l[15] = (n) => e.unref(p).watchdog.keepWaiting())
+              onKeepWaiting: l[15] || (l[15] = (n) => e.unref(m).watchdog.keepWaiting())
             }, null, 8, ["elapsed-sec", "estimate-sec", "message"])) : e.createCommentVNode("v-if", !0),
-            v.value && e.unref(p).failed.value ? (e.openBlock(), e.createBlock(O, {
+            v.value && e.unref(m).failed.value ? (e.openBlock(), e.createBlock(O, {
               key: 1,
               state: "failed",
               message: v.value,
               busy: N.value,
-              onRetry: l[16] || (l[16] = (n) => be())
+              onRetry: l[16] || (l[16] = (n) => Se())
             }, null, 8, ["message", "busy"])) : v.value ? (e.openBlock(), e.createElementBlock(
               "div",
-              Tl,
+              Bl,
               e.toDisplayString(v.value),
               1
               /* TEXT */
-            )) : B.value ? (e.openBlock(), e.createElementBlock("div", Bl, [
+            )) : B.value ? (e.openBlock(), e.createElementBlock("div", Al, [
               l[66] || (l[66] = e.createElementVNode(
                 "i",
                 { class: "ri-volume-up-line" },
@@ -2036,11 +2039,11 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
               e.createElementVNode("audio", {
                 src: B.value.dataUrl,
                 controls: ""
-              }, null, 8, Cl),
+              }, null, 8, Ll),
               e.createElementVNode(
                 "small",
                 null,
-                e.toDisplayString(B.value.format) + " · " + e.toDisplayString(Ze(B.value.bytes)),
+                e.toDisplayString(B.value.format) + " · " + e.toDisplayString(xe(B.value.bytes)),
                 1
                 /* TEXT */
               ),
@@ -2061,8 +2064,8 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                   1
                   /* TEXT */
                 )
-              ], 8, Al)
-            ])) : (e.openBlock(), e.createElementBlock("div", Ll, [
+              ], 8, Cl)
+            ])) : (e.openBlock(), e.createElementBlock("div", Ml, [
               l[67] || (l[67] = e.createElementVNode(
                 "i",
                 { class: "ri-headphone-line" },
@@ -2080,12 +2083,12 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             ]))
           ])
         ]))
-      ])) : y.value === "lesson" ? (e.openBlock(), e.createElementBlock("section", Ml, [
-        e.createElementVNode("div", zl, [
+      ])) : y.value === "lesson" ? (e.openBlock(), e.createElementBlock("section", zl, [
+        e.createElementVNode("div", Ul, [
           e.createElementVNode("div", null, [
             e.createElementVNode(
               "span",
-              Ul,
+              Wl,
               e.toDisplayString(t.$t("教师备课")),
               1
               /* TEXT */
@@ -2106,15 +2109,15 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             )
           ])
         ]),
-        e.createElementVNode("div", Wl, [
+        e.createElementVNode("div", Ol, [
           e.createElementVNode(
             "form",
             {
               class: "form-card",
-              onSubmit: e.withModifiers(Se, ["prevent"])
+              onSubmit: e.withModifiers(De, ["prevent"])
             },
             [
-              e.createElementVNode("label", Ol, [
+              e.createElementVNode("label", Kl, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -2130,8 +2133,8 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                   [e.vModelText, i.topic]
                 ])
               ]),
-              e.createElementVNode("div", Kl, [
-                e.createElementVNode("label", Il, [
+              e.createElementVNode("div", Il, [
+                e.createElementVNode("label", Pl, [
                   e.createElementVNode(
                     "span",
                     null,
@@ -2143,11 +2146,11 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                     "onUpdate:modelValue": l[18] || (l[18] = (n) => i.grade = n),
                     type: "text",
                     placeholder: t.$t("例如：跨境电商专业大二")
-                  }, null, 8, Pl), [
+                  }, null, 8, Fl), [
                     [e.vModelText, i.grade]
                   ])
                 ]),
-                e.createElementVNode("label", Fl, [
+                e.createElementVNode("label", Hl, [
                   e.createElementVNode(
                     "span",
                     null,
@@ -2163,28 +2166,28 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                     [
                       e.createElementVNode(
                         "option",
-                        Hl,
+                        ql,
                         e.toDisplayString(t.$t("入门")),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "option",
-                        ql,
+                        jl,
                         e.toDisplayString(t.$t("基础")),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "option",
-                        jl,
+                        Gl,
                         e.toDisplayString(t.$t("进阶")),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "option",
-                        Gl,
+                        Jl,
                         e.toDisplayString(t.$t("综合实训")),
                         1
                         /* TEXT */
@@ -2197,8 +2200,8 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                   ])
                 ])
               ]),
-              e.createElementVNode("div", Jl, [
-                e.createElementVNode("label", Ql, [
+              e.createElementVNode("div", Ql, [
+                e.createElementVNode("label", Xl, [
                   e.createElementVNode(
                     "span",
                     null,
@@ -2226,7 +2229,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                     ]
                   ])
                 ]),
-                e.createElementVNode("label", Xl, [
+                e.createElementVNode("label", Yl, [
                   e.createElementVNode(
                     "span",
                     null,
@@ -2242,21 +2245,21 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                     [
                       e.createElementVNode(
                         "option",
-                        Yl,
+                        Zl,
                         e.toDisplayString(t.$t("中文")),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "option",
-                        Zl,
+                        xl,
                         e.toDisplayString(t.$t("英语")),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "option",
-                        xl,
+                        en,
                         e.toDisplayString(t.$t("阿拉伯语")),
                         1
                         /* TEXT */
@@ -2288,10 +2291,10 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                   1
                   /* TEXT */
                 )
-              ], 8, en),
+              ], 8, tn),
               e.unref(g).startedAt.value ? (e.openBlock(), e.createElementBlock(
                 "span",
-                tn,
+                ln,
                 e.toDisplayString(e.unref(g).elapsedLabel()),
                 1
                 /* TEXT */
@@ -2300,8 +2303,8 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             32
             /* NEED_HYDRATION */
           ),
-          e.createElementVNode("div", ln, [
-            e.createElementVNode("div", nn, [
+          e.createElementVNode("div", nn, [
+            e.createElementVNode("div", on, [
               e.createElementVNode(
                 "strong",
                 null,
@@ -2331,14 +2334,14 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
               state: "failed",
               message: M.value,
               busy: w.value,
-              onRetry: l[23] || (l[23] = (n) => Se())
+              onRetry: l[23] || (l[23] = (n) => De())
             }, null, 8, ["message", "busy"])) : M.value ? (e.openBlock(), e.createElementBlock(
               "div",
-              on,
+              an,
               e.toDisplayString(M.value),
               1
               /* TEXT */
-            )) : q.value ? (e.openBlock(), e.createElementBlock("div", an, [
+            )) : q.value ? (e.openBlock(), e.createElementBlock("div", sn, [
               e.createElementVNode(
                 "pre",
                 null,
@@ -2346,7 +2349,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 1
                 /* TEXT */
               )
-            ])) : (e.openBlock(), e.createElementBlock("div", sn, [
+            ])) : (e.openBlock(), e.createElementBlock("div", rn, [
               l[68] || (l[68] = e.createElementVNode(
                 "i",
                 { class: "ri-file-list-3-line" },
@@ -2364,12 +2367,12 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             ]))
           ])
         ])
-      ])) : (e.openBlock(), e.createElementBlock("section", rn, [
-        e.createElementVNode("div", dn, [
+      ])) : (e.openBlock(), e.createElementBlock("section", dn, [
+        e.createElementVNode("div", cn, [
           e.createElementVNode("div", null, [
             e.createElementVNode(
               "span",
-              cn,
+              un,
               e.toDisplayString(t.$t("教师素材")),
               1
               /* TEXT */
@@ -2392,7 +2395,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
           e.createElementVNode("button", {
             class: "button secondary",
             type: "button",
-            onClick: Xe
+            onClick: Ye
           }, [
             l[69] || (l[69] = e.createElementVNode(
               "i",
@@ -2408,7 +2411,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             )
           ])
         ]),
-        e.createElementVNode("div", un, [
+        e.createElementVNode("div", pn, [
           e.createElementVNode("div", null, [
             e.createElementVNode(
               "span",
@@ -2420,7 +2423,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             e.createElementVNode(
               "strong",
               null,
-              e.toDisplayString(We.value),
+              e.toDisplayString(Oe.value),
               1
               /* TEXT */
             ),
@@ -2435,7 +2438,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
           e.createElementVNode(
             "span",
             {
-              class: e.normalizeClass(["status-pill", C.value.length ? "success" : "danger"])
+              class: e.normalizeClass(["status-pill", A.value.length ? "success" : "danger"])
             },
             [
               l[70] || (l[70] = e.createElementVNode(
@@ -2446,7 +2449,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 /* CACHED */
               )),
               e.createTextVNode(
-                " " + e.toDisplayString(C.value.length ? t.$t("已有可用引擎") : t.$t("尚未配置")),
+                " " + e.toDisplayString(A.value.length ? t.$t("已有可用引擎") : t.$t("尚未配置")),
                 1
                 /* TEXT */
               )
@@ -2455,9 +2458,9 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             /* CLASS */
           )
         ]),
-        e.createElementVNode("div", pn, [
-          e.createElementVNode("div", vn, [
-            ae.value ? (e.openBlock(), e.createElementBlock("div", gn, [
+        e.createElementVNode("div", vn, [
+          e.createElementVNode("div", gn, [
+            ae.value ? (e.openBlock(), e.createElementBlock("div", En, [
               l[71] || (l[71] = e.createElementVNode(
                 "i",
                 { class: "ri-loader-4-line spin" },
@@ -2470,7 +2473,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 1
                 /* TEXT */
               )
-            ])) : C.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("div", En, [
+            ])) : A.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("div", Vn, [
               l[72] || (l[72] = e.createElementVNode(
                 "i",
                 { class: "ri-error-warning-line" },
@@ -2484,8 +2487,8 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 /* TEXT */
               )
             ])),
-            e.createElementVNode("div", Vn, [
-              e.createElementVNode("label", Nn, [
+            e.createElementVNode("div", Nn, [
+              e.createElementVNode("label", fn, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -2495,23 +2498,23 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 ),
                 e.withDirectives(e.createElementVNode("select", {
                   "onUpdate:modelValue": l[24] || (l[24] = (n) => s.backend = n),
-                  disabled: !C.value.length
+                  disabled: !A.value.length
                 }, [
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(C.value, (n) => (e.openBlock(), e.createElementBlock("option", {
+                    e.renderList(A.value, (n) => (e.openBlock(), e.createElementBlock("option", {
                       key: n.id,
                       value: n.id
-                    }, e.toDisplayString(t.$t(n.label)), 9, yn))),
+                    }, e.toDisplayString(t.$t(n.label)), 9, hn))),
                     128
                     /* KEYED_FRAGMENT */
                   ))
-                ], 8, fn), [
+                ], 8, yn), [
                   [e.vModelSelect, s.backend]
                 ])
               ]),
-              e.createElementVNode("label", hn, [
+              e.createElementVNode("label", kn, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -2523,12 +2526,12 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                   "onUpdate:modelValue": l[25] || (l[25] = (n) => s.model = n),
                   type: "text",
                   placeholder: W.value?.activeModel || t.$t("留空使用引擎默认模型")
-                }, null, 8, kn), [
+                }, null, 8, bn), [
                   [e.vModelText, s.model]
                 ])
               ])
             ]),
-            e.createElementVNode("label", bn, [
+            e.createElementVNode("label", Sn, [
               e.createElementVNode(
                 "span",
                 null,
@@ -2540,12 +2543,12 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 "onUpdate:modelValue": l[26] || (l[26] = (n) => s.prompt = n),
                 rows: "6",
                 placeholder: t.$t("例如：适合职业院校课堂的智能仓储拣选流程教学图，不含文字，步骤清晰。")
-              }, null, 8, Sn), [
+              }, null, 8, Dn), [
                 [e.vModelText, s.prompt]
               ])
             ]),
-            e.createElementVNode("div", Dn, [
-              e.createElementVNode("label", wn, [
+            e.createElementVNode("div", wn, [
+              e.createElementVNode("label", _n, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -2561,7 +2564,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                   [e.vModelText, s.style]
                 ])
               ]),
-              e.createElementVNode("label", _n, [
+              e.createElementVNode("label", Tn, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -2607,8 +2610,8 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
             e.createElementVNode("button", {
               class: "button primary",
               type: "button",
-              disabled: z.value || !C.value.length,
-              onClick: De
+              disabled: z.value || !A.value.length,
+              onClick: we
             }, [
               e.createElementVNode(
                 "i",
@@ -2624,17 +2627,17 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                 1
                 /* TEXT */
               )
-            ], 8, Tn),
+            ], 8, Bn),
             e.unref(E).startedAt.value ? (e.openBlock(), e.createElementBlock(
               "span",
-              Bn,
+              An,
               e.toDisplayString(e.unref(E).elapsedLabel()),
               1
               /* TEXT */
             )) : e.createCommentVNode("v-if", !0)
           ]),
-          e.createElementVNode("div", Cn, [
-            e.createElementVNode("div", An, [
+          e.createElementVNode("div", Ln, [
+            e.createElementVNode("div", Cn, [
               e.createElementVNode(
                 "strong",
                 null,
@@ -2659,19 +2662,19 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
               message: t.$t("服务端最长等待 5 分钟，超过会自动报错。"),
               onKeepWaiting: l[29] || (l[29] = (n) => e.unref(E).watchdog.keepWaiting())
             }, null, 8, ["elapsed-sec", "estimate-sec", "message"])) : e.createCommentVNode("v-if", !0),
-            $.value && e.unref(E).failed.value ? (e.openBlock(), e.createBlock(O, {
+            _.value && e.unref(E).failed.value ? (e.openBlock(), e.createBlock(O, {
               key: 1,
               state: "failed",
-              message: $.value,
+              message: _.value,
               busy: z.value,
-              onRetry: l[30] || (l[30] = (n) => De())
-            }, null, 8, ["message", "busy"])) : $.value ? (e.openBlock(), e.createElementBlock(
+              onRetry: l[30] || (l[30] = (n) => we())
+            }, null, 8, ["message", "busy"])) : _.value ? (e.openBlock(), e.createElementBlock(
               "div",
-              Ln,
-              e.toDisplayString($.value),
+              Mn,
+              e.toDisplayString(_.value),
               1
               /* TEXT */
-            )) : H.value.length ? (e.openBlock(), e.createElementBlock("div", Mn, [
+            )) : H.value.length ? (e.openBlock(), e.createElementBlock("div", zn, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
@@ -2684,7 +2687,7 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                   e.createElementVNode("img", {
                     src: n.url,
                     alt: n.revisedPrompt || s.prompt
-                  }, null, 8, Un),
+                  }, null, 8, Wn),
                   e.createElementVNode(
                     "small",
                     null,
@@ -2692,11 +2695,11 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
                     1
                     /* TEXT */
                   )
-                ], 8, zn))),
+                ], 8, Un))),
                 128
                 /* KEYED_FRAGMENT */
               ))
-            ])) : (e.openBlock(), e.createElementBlock("div", Wn, [
+            ])) : (e.openBlock(), e.createElementBlock("div", On, [
               l[74] || (l[74] = e.createElementVNode(
                 "i",
                 { class: "ri-gallery-line" },
@@ -2715,14 +2718,14 @@ const et = ["dir"], tt = { class: "hero" }, lt = { class: "hero-copy" }, nt = { 
           ])
         ])
       ]))
-    ], 8, et));
+    ], 8, tt));
   }
-}), Rn = (te, R) => {
+}), Rn = (te, K) => {
   const j = te.__vccOpts || te;
-  for (const [le, y] of R)
+  for (const [le, y] of K)
     j[le] = y;
   return j;
-}, Kn = /* @__PURE__ */ Rn(On, [["__scopeId", "data-v-3c4b5cb8"]]);
+}, In = /* @__PURE__ */ Rn(Kn, [["__scopeId", "data-v-94635c7c"]]);
 export {
-  Kn as default
+  In as default
 };

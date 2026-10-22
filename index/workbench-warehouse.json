@@ -1,12 +1,12 @@
 {
   "id": "workbench-warehouse",
-  "version": "2.0.1",
-  "treeDigest": "3d8e642045b4adb6f3b612280810527ab6e7eb87107c8cdf3df2a4ef4303c738",
+  "version": "2.0.2",
+  "treeDigest": "79a85133933cc9bff7260f3be5742c5317759eaaa00989853db928628f1faf4b",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 741,
-      "sha256": "828e1a5aff02a32efe7b5b52443b6728c917e6768fd67aaa1a4d5dfe01490867"
+      "size": 1024,
+      "sha256": "5cb89f7c72f22c10fb2a040083605ff1e7b16614c15606f505c595c55007f7f7"
     },
     {
       "path": "README.md",
@@ -15,8 +15,8 @@
     },
     {
       "path": "dist/host-modules.json",
-      "size": 612,
-      "sha256": "acb006a4173c14ec02a76ed5664f6952a6ad8d23fad57865869f5ee85a901699"
+      "size": 666,
+      "sha256": "f1a965736f8299dd3ea91dcae9edcdc075427ab464aef701d537736f12a17808"
     },
     {
       "path": "dist/main.cjs",
@@ -25,13 +25,13 @@
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 122287,
-      "sha256": "df3913a13e5eee7888086f84da2f7bf0cf682eb47ee5414abfef0b88bdbd5fe0"
+      "size": 122648,
+      "sha256": "ee2704afe121145cebe8d5778752afa5f00e298bf05e7204b7c723a809353616"
     },
     {
       "path": "dist/style.css",
       "size": 33852,
-      "sha256": "41d5ad3b47d0dca13aba8d625b2ea935f4c38c1e26cd7c901a89366b49f5f3b3"
+      "sha256": "f9815a3c218447cc3f18b46f4f877489182ee0b7316ed2396ed4138d868e2d23"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 1916,
-      "sha256": "7efec9cfa7bcb5d0add93fce9776f191165f5aab5fc36f317e6997571bb11c3c"
+      "sha256": "9adfac2d91a03b9fd103f2b4f3d81dca1d1370d35f2ae3da12ca536f44ef3a7c"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-warehouse@2.0.2",
+      "treeDigest": "79a85133933cc9bff7260f3be5742c5317759eaaa00989853db928628f1faf4b",
+      "filesRef": "index/workbench-warehouse/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.6",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-warehouse@2.0.1",

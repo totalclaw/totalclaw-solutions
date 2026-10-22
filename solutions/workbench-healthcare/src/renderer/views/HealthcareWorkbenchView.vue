@@ -766,7 +766,7 @@ async function populateOpenMrsRegistration(patient: OpenMrsDemoPatient): Promise
       birthdateDay: '15',
       birthdateMonth: '6',
       birthdateYear: '1998',
-      address1: 'TotalClaw Demo Street',
+      address1: 'TotalClaw Demo Street', // brand-literal-ok 演示样例地址
       address2: 'Demo Unit 1201',
       cityVillage: 'Dubai',
       stateProvince: 'Dubai',
@@ -1104,7 +1104,7 @@ async function populateOpenMrsRegistration(patient: OpenMrsDemoPatient): Promise
   if (isAddressStage) {
     (result as any).stage = 'address';
     const addressValues = [
-      'TotalClaw Demo Street',
+      'TotalClaw Demo Street', // brand-literal-ok 演示样例地址
       'Demo Unit 1201',
       'Dubai',
       'Dubai',
@@ -1302,7 +1302,7 @@ async function persistOpenMrsPatientViaRest(patient: OpenMrsDemoPatient): Promis
             gender: 'M',
             birthdate: '1998-06-15T00:00:00.000+0000',
             addresses: [{
-              address1: 'TotalClaw Demo Street',
+              address1: 'TotalClaw Demo Street', // brand-literal-ok 演示样例地址
               cityVillage: 'Dubai',
               stateProvince: 'Dubai',
               country: 'United Arab Emirates',

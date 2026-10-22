@@ -25,7 +25,7 @@ export function demoMaterialsSourceDir(shellResources: string): string {
 }
 
 /** documentsDir = app.getPath('documents')（mac ~/Documents，Windows 文档库，含 OneDrive 重定向） */
-export function demoMaterialsTargetDir(documentsDir: string, appFolder = 'TotalClaw'): string {
+export function demoMaterialsTargetDir(documentsDir: string, appFolder = 'TotalClaw'): string { // brand-literal-ok 文档目录名（身份，见 brandPaths.ts）
   return join(documentsDir, appFolder, DEMO_MATERIALS_DIR_NAME);
 }
 
@@ -36,7 +36,7 @@ export const ARTICLE_DIR_NAME = matchLiteral('慈善文章配音');
  * 文章转语音线没有素材目录，产物也得有个固定落点：<文稿>/TotalClaw/慈善文章配音/，
  * 其下照常是 输出/<runId>/。与演示素材分开放，免得两条线的历史混在一个列表里。
  */
-export function articleWorkDir(documentsDir: string, appFolder = 'TotalClaw'): string {
+export function articleWorkDir(documentsDir: string, appFolder = 'TotalClaw'): string { // brand-literal-ok 文档目录名（身份，见 brandPaths.ts）
   return join(documentsDir, appFolder, ARTICLE_DIR_NAME);
 }
 

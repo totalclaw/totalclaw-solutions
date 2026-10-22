@@ -1,0 +1,47 @@
+{
+  "id": "workbench-charity-content",
+  "version": "2.0.3",
+  "treeDigest": "680ee6e2480a2b3a58385b8d80eacba26ccb548e7ea33898c571c6bed4d10b85",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 968,
+      "sha256": "61746ab01b193e5582706e0c633cf86222f9cc67eb2bb6efed963c19239dc22f"
+    },
+    {
+      "path": "README.md",
+      "size": 1068,
+      "sha256": "fbb5f2fe44fc4d0dead109627f80154865ef539ea8ad4e174209a6f682573bc0"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 2550,
+      "sha256": "651d31c8e77087be6cf6b31708a5e2c42375d3f48a8c46b02dc75ee5c0f4277d"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 60319,
+      "sha256": "2a32f5d92c597547e25bf7130f3014cc21ffe52d9713659be3e19032fe69cfed"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 214961,
+      "sha256": "7bb9703fb227bf22d8c0fbb84f3482f0d3ad40c6ccec185387f66678598ae9d5"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 31884,
+      "sha256": "0226d5071b35d264d934d89296b16c23966c513f4c83e5cf578196a7c9b8f5f0"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 5779,
+      "sha256": "5f608edfc7b60723d8885916ee14c202e4e74f1f82f70a6372b5cb9b715128bd"
+    }
+  ]
+}

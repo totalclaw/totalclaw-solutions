@@ -26,7 +26,7 @@
       </button>
     </section>
 
-    <section class="education-platform-flow" aria-label="TotalClaw platform capabilities">
+    <section class="education-platform-flow" :aria-label="brandName() + ' platform capabilities'">
       <header>
         <div>
           <span><i class="ri-apps-2-line"></i> {{ $t('TotalClaw 职教与高校多 Agent 教学链') }}</span>
@@ -626,6 +626,7 @@
 <script setup lang="ts">
 import { computed, nextTick, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 import PageBackButton from '../components/PageBackButton.vue';
+import { brandName } from '../utils/brand';
 import StepRunAlert from '../components/StepRunAlert.vue';
 import { formatStepDuration, useStepWatchdog, type StepKind } from '../composables/useStepWatchdog';
 import { humanizeErrorMessage } from '../utils/humanize';

@@ -2,7 +2,7 @@
   <section class="normalization-lab">
     <header class="lab-header">
       <div>
-        <span class="eyebrow">TOTALCLAW DATA PIPELINE</span>
+        <span class="eyebrow">{{ brandName().toUpperCase() }} DATA PIPELINE</span>
         <h2>{{ $t('多源库存接入与数据归一') }}</h2>
         <p>{{ $t('内置来源为格式样例；上传文件后使用你的数据，通过真实解析与对账接口执行。') }}</p>
       </div>
@@ -196,7 +196,7 @@
         <footer class="mapping-actions">
           <div>
             <span>{{ $t('当前链路') }}</span>
-            <strong>{{ selectedSource.system }} → TotalClaw → InventoryRecord v1</strong>
+            <strong>{{ selectedSource.system }} → {{ brandName() }} → InventoryRecord v1</strong>
           </div>
           <button type="button" class="secondary" :disabled="busy || !normalizeResult" @click="assignLedger('baseline')">
             {{ $t('设为基准账 A') }}
@@ -252,6 +252,7 @@ import { computed, onMounted, reactive, ref } from 'vue';
 import { humanizeErrorMessage } from '../utils/humanize';
 import * as XLSX from 'xlsx';
 import { t as i18nT } from '../i18n';
+import { brandName } from '../utils/brand';
 
 type JsonRecord = Record<string, unknown>;
 type SourceFormat = 'csv' | 'xlsx' | 'json' | 'xml' | 'ndjson';

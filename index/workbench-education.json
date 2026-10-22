@@ -1,12 +1,12 @@
 {
   "id": "workbench-education",
-  "version": "2.0.1",
-  "treeDigest": "fed516f5f0f4aa7c83fbb5a885d83023aa77ec3d88cd6e2657f3fe18cced389e",
+  "version": "2.0.2",
+  "treeDigest": "37be4c91f923143ae32929f0291f28f7982659c63cb85fde158eae0ad7448940",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 915,
-      "sha256": "455f831d7b3944ec3d25975afa0357d613de44350768e6f21c4daf4a43864f69"
+      "size": 1167,
+      "sha256": "b2eaf5301ab6eca6f74db2be5f0f38e56ddb1e5b4c916762dca63a7366da0b46"
     },
     {
       "path": "README.md",
@@ -15,8 +15,8 @@
     },
     {
       "path": "dist/host-modules.json",
-      "size": 646,
-      "sha256": "2b1f6d93455c20215d45eca749071a5f9d470f8a19dae7effdf4162593970abd"
+      "size": 700,
+      "sha256": "d59fb93cda5254a73e2f832acd33f0b569caa23bcdf2a1f4c4f600f4eb8be33d"
     },
     {
       "path": "dist/main.cjs",
@@ -25,13 +25,13 @@
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 98312,
-      "sha256": "2e3214f1a0e55ce55ed8dd8991ba931970db8b3d648fe311792bdf12ebf4260b"
+      "size": 98649,
+      "sha256": "78f58fca0ac3c97592d6b6eb05657a69db1307df92cdeff5d4565b7276a2d6d8"
     },
     {
       "path": "dist/style.css",
       "size": 23658,
-      "sha256": "858f60caca769f19f71bcf9d5315f5774ceee732bd74664f7d3d601bcf393362"
+      "sha256": "5f20f9ca7b10b522eceb5d2c15886849706acf7d12713971b30a784aef0e55c2"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 1924,
-      "sha256": "149d405e73f33edae029476f7c41db26ba57ada265767aa2a2bf265c05f78e2c"
+      "sha256": "bd7cf56efdc8099aa0ff2d427a46452d81de8e9ee1e170b0320f4d3d95a04e71"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-education@2.0.2",
+      "treeDigest": "37be4c91f923143ae32929f0291f28f7982659c63cb85fde158eae0ad7448940",
+      "filesRef": "index/workbench-education/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.6",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-education@2.0.1",

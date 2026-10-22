@@ -1,12 +1,12 @@
 {
   "id": "embedded-bid-desk",
-  "version": "2.0.1",
-  "treeDigest": "4bf4001f763701ef77f537895cb4bf63063395ece763b9fcca821d33c9eef888",
+  "version": "2.0.2",
+  "treeDigest": "af113910c44325529213be0ede6455993b29f8222f44b5a794c286faa3a9ebe8",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1062,
-      "sha256": "93e07b0decba0d8bca50adaf7b7f993b15b8eef45051ccc1ba51b4eaf485657f"
+      "size": 1336,
+      "sha256": "ac9b561db8ba79c936facef1e82de350d9963be8dfa82de588d6e8dd2693ce4d"
     },
     {
       "path": "README.md",
@@ -15,8 +15,8 @@
     },
     {
       "path": "dist/host-modules.json",
-      "size": 901,
-      "sha256": "cfd06345dffc6e110f5a54034b622440a0c7923425c1b6715cd069bc19c8ce87"
+      "size": 955,
+      "sha256": "9619c86192dfa7aa25c608dfb5fbe7c5500f53b7c6d29464e5bf65cf547a3a92"
     },
     {
       "path": "dist/main.cjs",
@@ -25,13 +25,13 @@
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 148521,
-      "sha256": "3ca81c03eedf3f2496308319c7a5fcaa673f49d36c49a043b58ff5b28fe63d0f"
+      "size": 148818,
+      "sha256": "1ec6816097c22ba6aa77e32feb578d1a232ba9f4c8a3ac49bf117a706dc244af"
     },
     {
       "path": "dist/style.css",
       "size": 30585,
-      "sha256": "a1ad9d475f99b3a2e728c09072a4b9305f99966877e193a2140bdb68cac91543"
+      "sha256": "393b0a1c3d0137d6ae7e7af983578b4b25dd0928e5cc49b90a7537c502b145f0"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 1777,
-      "sha256": "83ee3d2b384e7c37097135715f8ea9ed29c9cd41c764292a921eaf6aaf0e319c"
+      "sha256": "2d910181e7bcd38c7223f2202c4113cf7121138747149607254640572a45b4ec"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "embedded-bid-desk@2.0.2",
+      "treeDigest": "af113910c44325529213be0ede6455993b29f8222f44b5a794c286faa3a9ebe8",
+      "filesRef": "index/embedded-bid-desk/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.6",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.1",
       "ref": "embedded-bid-desk@2.0.1",

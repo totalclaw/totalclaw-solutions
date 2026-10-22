@@ -145,7 +145,7 @@
 
             <article class="panel capability-panel">
               <div class="panel-head">
-                <div><span class="section-kicker">{{ bt('actualCapability') }}</span><h3>TotalClaw Core</h3></div>
+                <div><span class="section-kicker">{{ bt('actualCapability') }}</span><h3>{{ brandName() }} Core</h3></div>
                 <i class="ri-shield-check-line capability-icon"></i>
               </div>
               <p>{{ bt('actualCapabilityText') }}</p>
@@ -503,6 +503,7 @@
 import { localizeBuiltinText } from '../composables/bidDeskAuditText';
 import { computed, onMounted, onUnmounted, reactive, ref, watch } from 'vue';
 import PageBackButton from '../components/PageBackButton.vue';
+import { brandName } from '../utils/brand';
 import { humanizeErrorMessage } from '../utils/humanize';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';

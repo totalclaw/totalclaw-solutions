@@ -1,7 +1,7 @@
 const e = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue"];
 if (!e) throw new Error("宿主模块未就绪：npm:vue");
 e.default;
-const dt = [
+const ut = [
   "{p0} 已归类为 {purpose}。",
   "{p0} 已真实解析：{p1} 字符、{p2} 个工作表；已建立证据与知识索引。",
   "品项“{p0}”已标记为{statusLabel}。",
@@ -15,40 +15,43 @@ const dt = [
   "真实工作流运行 {p0} 已完成，结果已回写项目工作台。",
   "要求“{p0}”的人工结论为{decisionLabel}。"
 ].map((v) => {
-  const s = [], c = v.replace(/[.*+?^$()|[\]\\]/g, "\\$&").replace(/\{(\w+)\}/g, (f, _) => (s.push(_), "(.+?)"));
+  const s = [], c = v.replace(/[.*+?^$()|[\]\\]/g, "\\$&").replace(/\{(\w+)\}/g, (f, S) => (s.push(S), "(.+?)"));
   return { key: v, names: s, re: new RegExp(`^${c}$`) };
 });
-function ut(v, s) {
-  for (const c of dt) {
+function pt(v, s) {
+  for (const c of ut) {
     const f = c.re.exec(v);
-    if (f) return s(c.key, Object.fromEntries(c.names.map((_, b) => [_, s(f[b + 1])])));
+    if (f) return s(c.key, Object.fromEntries(c.names.map((S, b) => [S, s(f[b + 1])])));
   }
   return s(v);
 }
 const Re = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/PageBackButton.vue"];
 if (!Re) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/PageBackButton.vue");
-const pt = Re.default, z = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/humanize.ts"];
+const mt = Re.default, re = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/brand.ts"];
+if (!re) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/brand.ts");
+re.default;
+const z = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/humanize.ts"];
 if (!z) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/humanize.ts");
 z.default;
-const re = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:pinia"];
-if (!re) throw new Error("宿主模块未就绪：npm:pinia");
-re.default;
-const se = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
-if (!se) throw new Error("宿主模块未就绪：npm:vue-router");
+const se = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:pinia"];
+if (!se) throw new Error("宿主模块未就绪：npm:pinia");
 se.default;
-const ce = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
-if (!ce) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/stores/notification.ts");
+const ce = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
+if (!ce) throw new Error("宿主模块未就绪：npm:vue-router");
 ce.default;
-const de = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/workflowAutoRun.ts"];
-if (!de) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/workflowAutoRun.ts");
+const de = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
+if (!de) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/stores/notification.ts");
 de.default;
+const ue = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/workflowAutoRun.ts"];
+if (!ue) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/workflowAutoRun.ts");
+ue.default;
 const k = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/bidDesk.ts"];
 if (!k) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/stores/bidDesk.ts");
 k.default;
 const n = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/i18n.ts"];
 if (!n) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/i18n.ts");
 n.default;
-const Be = {
+const Te = {
   "zh-CN": {
     title: n.t("AI 项目工作台"),
     subtitle: n.t("从 RFQ/BOQ 到审批文件的可追溯业务闭环"),
@@ -506,84 +509,84 @@ const Be = {
     allocateBoq: "توزيع قيمة العرض الحالي على بنود BOQ"
   }
 };
-function mt() {
+function ft() {
   const v = e.computed(() => {
     const f = String(n.i18n.global.locale.value);
     return f === "ar" || f === "en-US" ? f : "zh-CN";
   }), s = e.computed(() => v.value === "ar");
-  return { locale: v, isRtl: s, bt: (f) => Be[v.value][f] || Be["zh-CN"][f] };
+  return { locale: v, isRtl: s, bt: (f) => Te[v.value][f] || Te["zh-CN"][f] };
 }
-const ue = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/bidDeskArtifacts.ts"];
-if (!ue) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/bidDeskArtifacts.ts");
-ue.default;
-const pe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/workspaceTaskRegistration.ts"];
-if (!pe) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/workspaceTaskRegistration.ts");
+const pe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/bidDeskArtifacts.ts"];
+if (!pe) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/bidDeskArtifacts.ts");
 pe.default;
-const ft = ["dir"], vt = { class: "bid-header" }, gt = { class: "bid-title" }, kt = { class: "header-actions" }, Et = ["disabled"], wt = {
+const me = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/workspaceTaskRegistration.ts"];
+if (!me) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/workspaceTaskRegistration.ts");
+me.default;
+const vt = ["dir"], gt = { class: "bid-header" }, kt = { class: "bid-title" }, Et = { class: "header-actions" }, wt = ["disabled"], Nt = {
   key: 0,
   class: "bid-body"
-}, Nt = { class: "case-hero" }, Vt = { class: "case-identity" }, yt = ["value"], St = { class: "version-pill" }, _t = { class: "case-copy" }, Dt = { class: "case-meta" }, bt = { class: "metric-grid" }, ht = { class: "metric" }, Ct = { class: "metric" }, At = { class: "metric" }, Bt = { class: "metric" }, Rt = { class: "metric" }, Tt = { class: "workflow-band" }, Lt = { class: "workflow-band-head" }, xt = { class: "section-kicker" }, Wt = { class: "workflow-actions" }, Pt = { class: "workflow-result-hint" }, Ft = ["disabled"], Ot = ["disabled"], $t = { class: "stage-track" }, It = { class: "stage-dot" }, Ut = {
+}, Vt = { class: "case-hero" }, yt = { class: "case-identity" }, _t = ["value"], St = { class: "version-pill" }, Dt = { class: "case-copy" }, bt = { class: "case-meta" }, ht = { class: "metric-grid" }, Ct = { class: "metric" }, At = { class: "metric" }, Bt = { class: "metric" }, Tt = { class: "metric" }, Rt = { class: "metric" }, Lt = { class: "workflow-band" }, xt = { class: "workflow-band-head" }, Wt = { class: "section-kicker" }, Pt = { class: "workflow-actions" }, Ft = { class: "workflow-result-hint" }, Ot = ["disabled"], $t = ["disabled"], It = { class: "stage-track" }, Ut = { class: "stage-dot" }, Mt = {
   key: 0,
   class: "ri-arrow-right-line stage-arrow"
-}, Mt = {
+}, jt = {
   class: "bid-tabs",
   "aria-label": "Bid Desk"
-}, jt = ["onClick"], zt = {
+}, zt = ["onClick"], Kt = {
   key: 0,
   class: "tab-badge"
-}, Qt = { class: "tab-panel" }, Kt = { class: "content-grid two" }, qt = { class: "panel" }, Jt = { class: "panel-head" }, Ht = { class: "section-kicker" }, Gt = {
+}, Qt = { class: "tab-panel" }, qt = { class: "content-grid two" }, Jt = { class: "panel" }, Ht = { class: "panel-head" }, Gt = { class: "section-kicker" }, Xt = {
   key: 0,
   class: "form-grid"
-}, Xt = { class: "form-action" }, Yt = {
+}, Yt = { class: "form-action" }, Zt = {
   key: 1,
   class: "summary-list"
-}, Zt = { class: "panel capability-panel" }, en = { class: "panel-head" }, tn = { class: "section-kicker" }, nn = { class: "content-grid two lower" }, on = { class: "panel" }, ln = { class: "panel-head" }, an = { class: "section-kicker" }, rn = { class: "doc-list compact-list" }, sn = {
+}, en = { class: "panel capability-panel" }, tn = { class: "panel-head" }, nn = { class: "section-kicker" }, on = { class: "content-grid two lower" }, ln = { class: "panel" }, an = { class: "panel-head" }, rn = { class: "section-kicker" }, sn = { class: "doc-list compact-list" }, cn = {
   key: 0,
   class: "empty"
-}, cn = { class: "panel" }, dn = { class: "panel-head" }, un = { class: "section-kicker" }, pn = { class: "audit-list mini" }, mn = { class: "panel upload-panel" }, fn = { class: "panel-head" }, vn = { class: "section-kicker" }, gn = { class: "btn primary compact file-button" }, kn = { class: "doc-grid" }, En = ["value", "onChange"], wn = ["value"], Nn = {
+}, dn = { class: "panel" }, un = { class: "panel-head" }, pn = { class: "section-kicker" }, mn = { class: "audit-list mini" }, fn = { class: "panel upload-panel" }, vn = { class: "panel-head" }, gn = { class: "section-kicker" }, kn = { class: "btn primary compact file-button" }, En = { class: "doc-grid" }, wn = ["value", "onChange"], Nn = ["value"], Vn = {
   key: 0,
   class: "document-warning"
-}, Vn = { class: "panel table-panel" }, yn = { class: "panel-head" }, Sn = { class: "section-kicker" }, _n = { class: "data-table" }, Dn = { class: "table-row table-head fields" }, bn = { class: "field-key" }, hn = ["onUpdate:modelValue"], Cn = { class: "confidence" }, An = ["onClick"], Bn = { class: "row-actions" }, Rn = ["title", "onClick"], Tn = ["title", "onClick"], Ln = { class: "panel table-panel" }, xn = { class: "panel-head" }, Wn = { class: "section-kicker" }, Pn = { class: "data-table" }, Fn = { class: "table-row table-head items" }, On = ["onUpdate:modelValue"], $n = ["onUpdate:modelValue"], In = ["onUpdate:modelValue"], Un = ["onClick"], Mn = ["onClick"], jn = { class: "risk-summary" }, zn = { class: "finding-list" }, Qn = { class: "finding-top" }, Kn = { class: "severity-pill" }, qn = { class: "finding-status" }, Jn = { class: "finding-columns" }, Hn = ["onClick"], Gn = {
+}, yn = { class: "panel table-panel" }, _n = { class: "panel-head" }, Sn = { class: "section-kicker" }, Dn = { class: "data-table" }, bn = { class: "table-row table-head fields" }, hn = { class: "field-key" }, Cn = ["onUpdate:modelValue"], An = { class: "confidence" }, Bn = ["onClick"], Tn = { class: "row-actions" }, Rn = ["title", "onClick"], Ln = ["title", "onClick"], xn = { class: "panel table-panel" }, Wn = { class: "panel-head" }, Pn = { class: "section-kicker" }, Fn = { class: "data-table" }, On = { class: "table-row table-head items" }, $n = ["onUpdate:modelValue"], In = ["onUpdate:modelValue"], Un = ["onUpdate:modelValue"], Mn = ["onClick"], jn = ["onClick"], zn = { class: "risk-summary" }, Kn = { class: "finding-list" }, Qn = { class: "finding-top" }, qn = { class: "severity-pill" }, Jn = { class: "finding-status" }, Hn = { class: "finding-columns" }, Gn = ["onClick"], Xn = {
   key: 0,
   class: "finding-decision"
-}, Xn = ["onUpdate:modelValue"], Yn = { value: "compliant" }, Zn = { value: "conditional" }, eo = { value: "missing" }, to = { value: "deviation" }, no = { value: "major_deviation" }, oo = { value: "pending" }, lo = ["onUpdate:modelValue", "placeholder"], io = ["disabled", "onClick"], ao = {
+}, Yn = ["onUpdate:modelValue"], Zn = { value: "compliant" }, eo = { value: "conditional" }, to = { value: "missing" }, no = { value: "deviation" }, oo = { value: "major_deviation" }, lo = { value: "pending" }, io = ["onUpdate:modelValue", "placeholder"], ao = ["disabled", "onClick"], ro = {
   key: 1,
   class: "finding-conclusion",
   "aria-live": "polite"
-}, ro = { class: "finding-conclusion-copy" }, so = ["onClick"], co = {
+}, so = { class: "finding-conclusion-copy" }, co = ["onClick"], uo = {
   key: 3,
   class: "content-grid pricing-layout"
-}, uo = { class: "panel" }, po = { class: "panel-head" }, mo = { class: "section-kicker" }, fo = { class: "pricing-form" }, vo = { class: "number-input" }, go = ["onUpdate:modelValue", "step"], ko = { key: 0 }, Eo = { class: "panel-actions" }, wo = ["placeholder"], No = { class: "panel scenario-panel" }, Vo = { class: "panel-head" }, yo = { class: "section-kicker" }, So = {
+}, po = { class: "panel" }, mo = { class: "panel-head" }, fo = { class: "section-kicker" }, vo = { class: "pricing-form" }, go = { class: "number-input" }, ko = ["onUpdate:modelValue", "step"], Eo = { key: 0 }, wo = { class: "panel-actions" }, No = ["placeholder"], Vo = { class: "panel scenario-panel" }, yo = { class: "panel-head" }, _o = { class: "section-kicker" }, So = {
   key: 0,
   class: "empty"
-}, _o = { class: "scenario-title" }, Do = { class: "scenario-numbers" }, bo = {
+}, Do = { class: "scenario-title" }, bo = { class: "scenario-numbers" }, ho = {
   key: 0,
   class: "rule-alert"
-}, ho = {
+}, Co = {
   key: 4,
   class: "decision-layout"
-}, Co = { class: "decision-card" }, Ao = { class: "decision-card-head" }, Bo = { class: "section-kicker" }, Ro = { class: "decision-metrics" }, To = { class: "decision-evidence" }, Lo = { class: "decision-summary" }, xo = {
+}, Ao = { class: "decision-card" }, Bo = { class: "decision-card-head" }, To = { class: "section-kicker" }, Ro = { class: "decision-metrics" }, Lo = { class: "decision-evidence" }, xo = { class: "decision-summary" }, Wo = {
   key: 0,
   class: "decision-summary-list"
-}, Wo = { class: "decision-scenario" }, Po = ["value"], Fo = { class: "comment-field" }, Oo = {
+}, Po = { class: "decision-scenario" }, Fo = ["value"], Oo = { class: "comment-field" }, $o = {
   key: 0,
   class: "approval-blockers"
-}, $o = { class: "decision-actions" }, Io = ["disabled"], Uo = { class: "panel output-panel" }, Mo = { class: "panel-head" }, jo = { class: "section-kicker" }, zo = ["disabled"], Qo = { class: "artifact-list" }, Ko = ["onClick"], qo = ["disabled", "onClick"], Jo = { class: "output-lock" }, Ho = {
+}, Io = { class: "decision-actions" }, Uo = ["disabled"], Mo = { class: "panel output-panel" }, jo = { class: "panel-head" }, zo = { class: "section-kicker" }, Ko = ["disabled"], Qo = { class: "artifact-list" }, qo = ["onClick"], Jo = ["disabled", "onClick"], Ho = { class: "output-lock" }, Go = {
   key: 5,
   class: "panel audit-panel"
-}, Go = { class: "panel-head" }, Xo = { class: "section-kicker" }, Yo = {
+}, Xo = { class: "panel-head" }, Yo = { class: "section-kicker" }, Zo = {
   key: 0,
   class: "audit-list"
-}, Zo = { class: "audit-title" }, el = { key: 0 }, tl = {
+}, el = { class: "audit-title" }, tl = { key: 0 }, nl = {
   key: 1,
   class: "empty"
-}, nl = { class: "evidence-modal" }, ol = { class: "panel-head" }, ll = { class: "artifact-modal" }, il = { class: "artifact-modal-head" }, al = { class: "artifact-modal-title" }, rl = { class: "section-kicker" }, sl = { class: "artifact-modal-actions" }, cl = ["disabled"], dl = ["aria-label", "title"], ul = ["title", "srcdoc"], pl = {
+}, ol = { class: "evidence-modal" }, ll = { class: "panel-head" }, il = { class: "artifact-modal" }, al = { class: "artifact-modal-head" }, rl = { class: "artifact-modal-title" }, sl = { class: "section-kicker" }, cl = { class: "artifact-modal-actions" }, dl = ["disabled"], ul = ["aria-label", "title"], pl = ["title", "srcdoc"], ml = {
   key: 1,
   class: "artifact-source"
-}, ml = /* @__PURE__ */ e.defineComponent({
+}, fl = /* @__PURE__ */ e.defineComponent({
   __name: "BidDeskView",
   setup(v) {
-    const s = k.useBidDeskStore(), c = ce.useNotificationStore(), f = se.useRouter(), { cases: _, activeCaseId: b, activeCase: a } = re.storeToRefs(s), { locale: y, isRtl: Te, bt: i } = mt(), E = e.ref("overview"), P = e.ref(!1), h = e.ref(!1), Q = e.ref(!1), C = e.ref(!1), F = e.ref(!1), K = e.ref(/* @__PURE__ */ new Set()), A = e.ref(null), w = e.ref(null), O = e.ref(!1), Z = e.ref(n.t("推荐报价方案")), S = e.ref(""), $ = e.ref(""), g = e.reactive({ customer: "", project: "", rfqNumber: "", owner: "", deadline: "" }), I = e.reactive({
+    const s = k.useBidDeskStore(), c = de.useNotificationStore(), f = ce.useRouter(), { cases: S, activeCaseId: b, activeCase: a } = se.storeToRefs(s), { locale: y, isRtl: Le, bt: i } = ft(), E = e.ref("overview"), P = e.ref(!1), h = e.ref(!1), K = e.ref(!1), C = e.ref(!1), F = e.ref(!1), Q = e.ref(/* @__PURE__ */ new Set()), A = e.ref(null), w = e.ref(null), O = e.ref(!1), Z = e.ref(n.t("推荐报价方案")), _ = e.ref(""), $ = e.ref(""), g = e.reactive({ customer: "", project: "", rfqNumber: "", owner: "", deadline: "" }), I = e.reactive({
       productCostUsd: 0,
       exchangeRate: 3.75,
       supplierQuoteSar: 0,
@@ -601,9 +604,9 @@ const ft = ["dir"], vt = { class: "bid-header" }, gt = { class: "bid-title" }, k
       targetMarginRate: 0.2,
       minimumMarginRate: 0.15,
       discountRate: 0
-    }), q = e.reactive({}), J = e.reactive({}), B = e.reactive({}), R = e.reactive({}), T = e.ref(/* @__PURE__ */ new Set()), L = e.ref(""), U = e.ref("");
+    }), q = e.reactive({}), J = e.reactive({}), B = e.reactive({}), T = e.reactive({}), R = e.ref(/* @__PURE__ */ new Set()), L = e.ref(""), U = e.ref("");
     let M;
-    const Le = [
+    const xe = [
       { value: "rfq", label: n.t("本次招标/RFQ") },
       { value: "boq", label: n.t("工程量清单/BOQ") },
       { value: "catalog", label: n.t("产品与技术资料") },
@@ -628,32 +631,32 @@ const ft = ["dir"], vt = { class: "bid-header" }, gt = { class: "bid-title" }, k
             unitPriceSar: l.unitPriceSar || 0
           };
         for (const l of a.value.findings)
-          R[l.id] = {
+          T[l.id] = {
             decision: l.humanDecision || l.status,
             clarification: l.clarification ? d(l.clarification) : ""
           };
-        S.value = a.value.decision.frozenScenarioId || a.value.scenarios[0]?.id || "", $.value = a.value.decision.comment || "";
+        _.value = a.value.decision.frozenScenarioId || a.value.scenarios[0]?.id || "", $.value = a.value.decision.comment || "";
       }
     }
     x(), e.watch(b, () => {
-      T.value = /* @__PURE__ */ new Set(), L.value = "", U.value = "", x();
+      R.value = /* @__PURE__ */ new Set(), L.value = "", U.value = "", x();
       const l = a.value ? k.bidDeskWorkflowDefinition(Date.now(), a.value).id : "";
-      h.value = !!(l && K.value.has(l));
+      h.value = !!(l && Q.value.has(l));
     }), e.watch(() => a.value?.updatedAt, () => {
       P.value || x();
     });
-    const me = e.computed(() => a.value ? a.value.fields.filter((l) => l.reviewStatus === "pending").length + a.value.lineItems.filter((l) => l.reviewStatus === "pending").length + a.value.findings.filter((l) => !l.humanDecision).length : 0), ee = e.computed(() => a.value?.findings.filter((l) => l.severity === "critical" || l.severity === "high").length || 0), xe = e.computed(() => a.value?.findings.filter((l) => ["deviation", "major_deviation"].includes(l.humanDecision || l.status)).length || 0), fe = e.computed(() => {
+    const fe = e.computed(() => a.value ? a.value.fields.filter((l) => l.reviewStatus === "pending").length + a.value.lineItems.filter((l) => l.reviewStatus === "pending").length + a.value.findings.filter((l) => !l.humanDecision).length : 0), ee = e.computed(() => a.value?.findings.filter((l) => l.severity === "critical" || l.severity === "high").length || 0), We = e.computed(() => a.value?.findings.filter((l) => ["deviation", "major_deviation"].includes(l.humanDecision || l.status)).length || 0), ve = e.computed(() => {
       if (!a.value) return 0;
       const l = [...a.value.fields, ...a.value.findings];
       return l.length ? Math.round(l.filter((o) => o.evidence?.length).length / l.length * 100) : 0;
-    }), D = e.computed(() => a.value && (a.value.scenarios.find((l) => l.id === S.value) || a.value.scenarios[0]) || null), H = e.computed(() => s.approvalBlockers(S.value || void 0, $.value)), We = e.computed(() => a.value?.workflowStages.filter((l) => l.status === "completed").length || 0), te = e.computed(() => a.value ? ue.buildBidArtifacts(a.value, y.value) : []), Pe = e.computed(() => [
+    }), D = e.computed(() => a.value && (a.value.scenarios.find((l) => l.id === _.value) || a.value.scenarios[0]) || null), H = e.computed(() => s.approvalBlockers(_.value || void 0, $.value)), Pe = e.computed(() => a.value?.workflowStages.filter((l) => l.status === "completed").length || 0), te = e.computed(() => a.value ? pe.buildBidArtifacts(a.value, y.value) : []), Fe = e.computed(() => [
       { id: "overview", icon: "ri-dashboard-3-line", label: i("overview") },
-      { id: "documents", icon: "ri-file-search-line", label: i("documents"), badge: me.value || void 0 },
+      { id: "documents", icon: "ri-file-search-line", label: i("documents"), badge: fe.value || void 0 },
       { id: "compliance", icon: "ri-shield-check-line", label: i("compliance"), badge: ee.value || void 0 },
       { id: "pricing", icon: "ri-calculator-line", label: i("pricing") },
       { id: "approval", icon: "ri-stamp-line", label: i("approval") },
       { id: "timeline", icon: "ri-history-line", label: i("timeline") }
-    ]), Fe = e.computed(() => [
+    ]), Oe = e.computed(() => [
       { key: "productCostUsd", label: i("productCost") },
       { key: "exchangeRate", label: i("exchangeRate") },
       { key: "supplierQuoteSar", label: i("supplierQuote") },
@@ -671,35 +674,35 @@ const ft = ["dir"], vt = { class: "bid-header" }, gt = { class: "bid-title" }, k
       { key: "targetMarginRate", label: i("targetMargin"), rate: !0 },
       { key: "minimumMarginRate", label: i("minimumMargin"), rate: !0 },
       { key: "discountRate", label: i("discount"), rate: !0 }
-    ]), Oe = e.computed(() => {
+    ]), $e = e.computed(() => {
       const l = { compliant: 0, conditional: 0, missing: 0, deviation: 0, major_deviation: 0, pending: 0 };
       for (const o of a.value?.findings || []) l[o.humanDecision || o.status] += 1;
       return Object.entries(l).map(([o, t]) => ({ key: o, count: t, label: N(o) }));
     });
-    async function $e() {
+    async function Ie() {
       s.updateCaseMeta({ ...g }), P.value = !1, a.value && await X(a.value);
     }
-    function ve(l, o) {
+    function ge(l, o) {
       s.reviewField(l, q[l] || "", o);
     }
-    function Ie(l) {
+    function Ue(l) {
       s.reviewLineItem(l, J[l] || "", "accepted");
       const o = B[l] || { unitCostSar: 0, unitPriceSar: 0 };
       s.updateLinePricing(l, o.unitCostSar, o.unitPriceSar);
     }
-    function Ue(l, o) {
+    function Me(l, o) {
       const t = o.target.value;
       s.updateDocumentPurpose(l, t);
     }
-    function ge(l) {
-      return l.humanDecision === void 0 || T.value.has(l.id);
-    }
-    function Me(l) {
-      T.value = new Set(T.value).add(l);
+    function ke(l) {
+      return l.humanDecision === void 0 || R.value.has(l.id);
     }
     function je(l) {
+      R.value = new Set(R.value).add(l);
+    }
+    function ze(l) {
       if (L.value) return;
-      const o = R[l];
+      const o = T[l];
       if (!o) {
         c.error(i("saveDecisionFailed"));
         return;
@@ -707,8 +710,8 @@ const ft = ["dir"], vt = { class: "bid-header" }, gt = { class: "bid-title" }, k
       L.value = l;
       try {
         if (!s.decideFinding(l, o.decision, o.clarification.trim())) throw new Error(i("saveDecisionFailed"));
-        const r = new Set(T.value);
-        r.delete(l), T.value = r, U.value = l, c.success(`${i("decisionSaved")} · ${N(o.decision)}`), M && window.clearTimeout(M), M = window.setTimeout(() => {
+        const r = new Set(R.value);
+        r.delete(l), R.value = r, U.value = l, c.success(`${i("decisionSaved")} · ${N(o.decision)}`), M && window.clearTimeout(M), M = window.setTimeout(() => {
           U.value === l && (U.value = "");
         }, 1600);
       } catch (t) {
@@ -717,37 +720,37 @@ const ft = ["dir"], vt = { class: "bid-header" }, gt = { class: "bid-title" }, k
         L.value = "";
       }
     }
-    function ze() {
+    function Ke() {
       s.updatePricing({ ...I }), c.success(i("savePricing"));
     }
     function Qe() {
       s.updatePricing({ ...I });
       const l = s.createScenario(Z.value);
-      l && (S.value = l.id);
+      l && (_.value = l.id);
     }
     function G(l) {
-      const o = s.decideCase(l, S.value || void 0, $.value);
+      const o = s.decideCase(l, _.value || void 0, $.value);
       if (!o.ok) {
         c.warn(o.blockers.join(n.t("；")));
         return;
       }
       c.success(l === "approved" ? n.t("当前版本已批准并冻结，可以导出正式文件。") : n.t("处理意见已记录。"));
     }
-    function Ke() {
+    function qe() {
       E.value = "documents", c.info(n.t("请修改字段、产品匹配或报价后重新进入审批；所有变更都会写入审计记录。"));
     }
-    function qe() {
-      if (!S.value || !s.allocateLinePrices(S.value)) {
+    function Je() {
+      if (!_.value || !s.allocateLinePrices(_.value)) {
         c.warn(n.t("请先选择有效的报价场景。"));
         return;
       }
       x(), c.success(n.t("BOQ 客户单价已按成本权重分摊，并写入审计记录。"));
     }
-    function Je(l) {
+    function He(l) {
       const o = new Blob([l.content], { type: l.mime }), t = URL.createObjectURL(o), r = document.createElement("a");
       r.href = t, r.download = l.filename, document.body.appendChild(r), r.click(), r.remove(), window.setTimeout(() => URL.revokeObjectURL(t), 1e3);
     }
-    async function ke(l) {
+    async function Ee(l) {
       if (a.value?.decision.decision !== "approved") {
         c.warn(i("outputLocked"));
         return;
@@ -769,7 +772,7 @@ const ft = ["dir"], vt = { class: "bid-header" }, gt = { class: "bid-title" }, k
             s.recordOutputs(p.paths || []), c.success(`${i("exportSuccess")} · ${m}`);
             return;
           }
-          for (const m of l || te.value) Je(m);
+          for (const m of l || te.value) He(m);
           c.success(i("exportSuccess"));
         } catch (o) {
           c.fromException(i("exportFailed"), o);
@@ -778,17 +781,17 @@ const ft = ["dir"], vt = { class: "bid-header" }, gt = { class: "bid-title" }, k
         }
       }
     }
-    function He() {
+    function Ge() {
       if (a.value?.decision.decision !== "approved") {
         c.warn(i("outputLocked"));
         return;
       }
-      ke();
+      Ee();
     }
-    function Ee(l) {
-      ke([l]);
+    function we(l) {
+      Ee([l]);
     }
-    async function Ge(l) {
+    async function Xe(l) {
       const o = l.target, t = Array.from(o.files || []);
       if (!t.length) return;
       const r = window.electronAPI, m = s.addDocuments(t.map((u) => ({
@@ -801,15 +804,15 @@ const ft = ["dir"], vt = { class: "bid-header" }, gt = { class: "bid-title" }, k
         const p = t[u], V = m[u];
         if (V) {
           if (p.type.startsWith("image/")) {
-            Ze(p, V);
+            et(p, V);
             continue;
           }
-          Xe(V);
+          Ye(V);
         }
       }
       o.value = "";
     }
-    async function Xe(l) {
+    async function Ye(l) {
       const o = window.electronAPI?.bidDesk;
       if (!o?.parseDocument || !l.path) {
         s.recordParsedDocument(l.id, { warnings: [n.t("未取得真实文件路径，无法解析。")] }, !0);
@@ -821,7 +824,7 @@ const ft = ["dir"], vt = { class: "bid-header" }, gt = { class: "bid-title" }, k
           const r = [];
           for (const m of t.pageImages)
             try {
-              const u = await we(m.dataUrl);
+              const u = await Ne(m.dataUrl);
               u.trim() && r.push(n.t(`[第 {p0} 页 · OCR]
 {p1}`, { p0: m.page, p1: u.trim() }));
             } catch (u) {
@@ -842,7 +845,7 @@ ${r.join(`
       }
     }
     let j = "";
-    async function Ye(l) {
+    async function Ze(l) {
       if (j) return j;
       try {
         const o = await l.chatProviders?.();
@@ -852,35 +855,35 @@ ${r.join(`
       }
       return j;
     }
-    async function we(l) {
+    async function Ne(l) {
       const o = window.electronAPI?.qiyeApi;
       if (!o?.vlm) throw new Error(n.t("当前没有可用的视觉识别服务"));
       const t = await o.vlm({
-        provider: await Ye(o),
+        provider: await Ze(o),
         operation: "extract_text",
         imageUrl: l,
         maxTokens: 1800
       });
       return String(t?.text || "");
     }
-    async function Ze(l, o) {
+    async function et(l, o) {
       try {
-        const t = await et(l);
-        s.recordDocumentAnalysis(o.id, await we(t));
+        const t = await tt(l);
+        s.recordDocumentAnalysis(o.id, await Ne(t));
       } catch (t) {
         s.recordDocumentAnalysis(o.id, z.humanizeErrorMessage(t), !0);
       }
     }
-    function et(l) {
+    function tt(l) {
       return new Promise((o, t) => {
         const r = new FileReader();
         r.onload = () => o(String(r.result || "")), r.onerror = () => t(r.error || new Error("File read failed")), r.readAsDataURL(l);
       });
     }
-    function Ne(l, o) {
+    function Ve(l, o) {
       return l ? l?.origin?.kind !== "bid-desk" ? !1 : Number(l.origin.definitionVersion || 0) < Number(o.origin.definitionVersion) : !0;
     }
-    function Ve(l, o) {
+    function ye(l, o) {
       return l?.origin?.kind === "bid-desk" && (l.name !== o.name || l.description !== o.description || l.origin.caseId !== o.origin.caseId);
     }
     async function X(l = a.value) {
@@ -890,22 +893,22 @@ ${r.join(`
       C.value = !0;
       try {
         const t = k.bidDeskWorkflowDefinition(Date.now(), l), r = await o.listWorkflows(), m = Array.isArray(r) ? r.find((u) => u.id === t.id) : void 0;
-        return Ne(m, t) ? await o.saveWorkflow(JSON.parse(JSON.stringify({
+        return Ve(m, t) ? await o.saveWorkflow(JSON.parse(JSON.stringify({
           ...t,
           createdAt: Number(m?.createdAt) || t.createdAt
-        }))) : Ve(m, t) && await o.saveWorkflow(JSON.parse(JSON.stringify({
+        }))) : ye(m, t) && await o.saveWorkflow(JSON.parse(JSON.stringify({
           ...m,
           name: t.name,
           description: t.description,
           origin: t.origin
-        }))), K.value = new Set(K.value).add(t.id), l.id === b.value && (h.value = !0), s.markWorkflowSaved(t.id, l.id), !0;
+        }))), Q.value = new Set(Q.value).add(t.id), l.id === b.value && (h.value = !0), s.markWorkflowSaved(t.id, l.id), !0;
       } catch (t) {
         return c.fromException(i("workflow"), t), !1;
       } finally {
         C.value = !1;
       }
     }
-    async function ye() {
+    async function _e() {
       const l = window.electronAPI;
       if (!(!l?.saveWorkflow || !l?.listWorkflows)) {
         C.value = !0;
@@ -913,15 +916,15 @@ ${r.join(`
           const o = await l.listWorkflows(), t = new Map(
             (Array.isArray(o) ? o : []).map((u) => [String(u.id), u])
           ), r = /* @__PURE__ */ new Set();
-          for (const u of _.value) {
+          for (const u of S.value) {
             const p = k.bidDeskWorkflowDefinition(Date.now(), u), V = t.get(p.id);
-            if (Ne(V, p)) {
+            if (Ve(V, p)) {
               const ae = await l.saveWorkflow({
                 ...p,
                 createdAt: Number(V?.createdAt) || p.createdAt
               });
               t.set(p.id, ae || p);
-            } else if (Ve(V, p)) {
+            } else if (ye(V, p)) {
               const ae = await l.saveWorkflow({
                 ...V,
                 name: p.name,
@@ -932,7 +935,7 @@ ${r.join(`
             }
             r.add(p.id), s.markWorkflowSaved(p.id, u.id);
           }
-          K.value = r;
+          Q.value = r;
           const m = a.value ? k.bidDeskWorkflowDefinition(Date.now(), a.value).id : "";
           h.value = !!(m && r.has(m));
         } catch (o) {
@@ -942,7 +945,7 @@ ${r.join(`
         }
       }
     }
-    async function tt() {
+    async function nt() {
       if (!F.value) {
         F.value = !0;
         try {
@@ -959,7 +962,7 @@ ${r.join(`
     }
     async function Se(l) {
       const o = k.bidDeskWorkflowDefinition(Date.now(), l);
-      await pe.registerWorkspaceTask({
+      await me.registerWorkspaceTask({
         departmentName: n.t("投标项目"),
         departmentDescription: n.t("招标文件解析、符合性检查、商业报价、审批与投标文件输出任务。"),
         taskName: o.name,
@@ -973,7 +976,7 @@ ${r.join(`
         }
       });
     }
-    async function nt() {
+    async function ot() {
       if (!a.value || !await X(a.value)) return;
       const l = k.bidDeskWorkflowDefinition(Date.now(), a.value).id;
       await f.push({
@@ -981,7 +984,7 @@ ${r.join(`
         query: { wf: l, view: "edit", source: "bid-desk" }
       });
     }
-    async function ot() {
+    async function lt() {
       const l = window.electronAPI;
       if (!l?.saveWorkflow || !l?.runWorkflow || !a.value) {
         c.warn(i("workflowUnavailable"));
@@ -995,7 +998,7 @@ ${r.join(`
         return;
       }
       const o = k.bidDeskWorkflowDefinition(Date.now(), a.value), t = a.value.id;
-      s.prepareWorkflowRun(o.id, t), de.setWorkflowAutoRun(o.id, {
+      s.prepareWorkflowRun(o.id, t), ue.setWorkflowAutoRun(o.id, {
         caseId: t,
         bidCaseId: t,
         workflowSource: "bid-desk",
@@ -1018,13 +1021,13 @@ ${r.join(`
         clientLocale: y.value
       }), await f.push({ path: "/workflow" });
     }
-    let _e = null;
+    let De = null;
     e.onMounted(async () => {
       await s.hydrate(), x();
       const l = window.electronAPI;
-      await ne(!1), Q.value = !!(l?.saveWorkflow && l?.listWorkflows && l?.runWorkflow), l?.onWorkflowEvent && (_e = l.onWorkflowEvent((o) => s.applyWorkflowEvent(o))), Q.value && await ye();
+      await ne(!1), K.value = !!(l?.saveWorkflow && l?.listWorkflows && l?.runWorkflow), l?.onWorkflowEvent && (De = l.onWorkflowEvent((o) => s.applyWorkflowEvent(o))), K.value && await _e();
     }), e.onUnmounted(() => {
-      _e?.(), M && window.clearTimeout(M);
+      De?.(), M && window.clearTimeout(M);
     });
     async function ne(l = !0) {
       const o = window.electronAPI?.solution;
@@ -1038,8 +1041,8 @@ ${r.join(`
         return l && c.fromException(n.t("创建中文招标源文件失败"), t), !1;
       }
     }
-    async function lt() {
-      s.resetDemo(), x(), await ne(), await ye();
+    async function it() {
+      s.resetDemo(), x(), await ne(), await _e();
     }
     function W(l) {
       return new Intl.NumberFormat(y.value === "ar" ? "ar-SA" : y.value, {
@@ -1051,14 +1054,14 @@ ${r.join(`
     function oe(l) {
       return `${(l * 100).toFixed(1)}%`;
     }
-    function De(l) {
+    function be(l) {
       return l < 1024 ? `${l} B` : l < 1024 * 1024 ? `${(l / 1024).toFixed(1)} KB` : `${(l / 1024 / 1024).toFixed(1)} MB`;
     }
     function le(l) {
       return new Date(l).toLocaleString(y.value === "ar" ? "ar-SA" : y.value);
     }
     function d(l) {
-      return ut(String(l ?? ""), n.t);
+      return pt(String(l ?? ""), n.t);
     }
     function ie(l) {
       const o = a.value?.documents.find((t) => t.id === l)?.name;
@@ -1067,7 +1070,7 @@ ${r.join(`
     function Y(l) {
       return l ? l.sheet ? `${ie(l.fileId)} · ${l.sheet}!${l.cell || ""}` : `${ie(l.fileId)}${l.page ? ` · p.${l.page}` : ""}` : "—";
     }
-    function be(l) {
+    function he(l) {
       return {
         pdf: "ri-file-pdf-2-line",
         word: "ri-file-word-2-line",
@@ -1076,7 +1079,7 @@ ${r.join(`
         other: "ri-file-line"
       }[l];
     }
-    function it(l) {
+    function at(l) {
       return {
         html: "ri-file-code-line",
         csv: "ri-file-excel-2-line",
@@ -1084,10 +1087,10 @@ ${r.join(`
         json: "ri-braces-line"
       }[l];
     }
-    function he(l) {
+    function Ce(l) {
       return i(l === "completed" ? "parseCompleted" : l === "review" ? "parseReview" : l === "failed" ? "stageFailed" : "parseQueued");
     }
-    function at(l) {
+    function rt(l) {
       return {
         pending: "ri-time-line",
         running: "ri-loader-2-line spin",
@@ -1096,7 +1099,7 @@ ${r.join(`
         failed: "ri-close-line"
       }[l];
     }
-    function rt(l) {
+    function st(l) {
       return {
         pending: i("stagePending"),
         running: i("stageRunning"),
@@ -1105,7 +1108,7 @@ ${r.join(`
         failed: i("stageFailed")
       }[l];
     }
-    function st(l) {
+    function ct(l) {
       return {
         document_analysis: i("stageIngest"),
         field_review: i("stageFieldReview"),
@@ -1116,7 +1119,7 @@ ${r.join(`
         document_output: i("stageOutput")
       }[l.nodeId] || l.name;
     }
-    function Ce(l) {
+    function Ae(l) {
       return {
         new: i("statusNew"),
         under_review: i("statusUnderReview"),
@@ -1128,7 +1131,7 @@ ${r.join(`
         closed: i("statusClosed")
       }[l];
     }
-    function ct(l) {
+    function dt(l) {
       return {
         draft: i("decisionDraft"),
         approved: i("decisionApproved"),
@@ -1137,7 +1140,7 @@ ${r.join(`
         more_information: i("moreInformation")
       }[l];
     }
-    function Ae(l) {
+    function Be(l) {
       const o = {
         "workflow.completed": n.t("真实工作流已完成"),
         "workflow.started": n.t("真实工作流已启动"),
@@ -1189,11 +1192,11 @@ ${r.join(`
     }
     return (l, o) => (e.openBlock(), e.createElementBlock("div", {
       class: "bid-desk",
-      dir: e.unref(Te) ? "rtl" : "ltr"
+      dir: e.unref(Le) ? "rtl" : "ltr"
     }, [
-      e.createElementVNode("header", vt, [
-        e.createElementVNode("div", gt, [
-          e.createVNode(pt),
+      e.createElementVNode("header", gt, [
+        e.createElementVNode("div", kt, [
+          e.createVNode(mt),
           o[21] || (o[21] = e.createElementVNode(
             "span",
             { class: "bid-logo" },
@@ -1220,10 +1223,10 @@ ${r.join(`
             )
           ])
         ]),
-        e.createElementVNode("div", kt, [
+        e.createElementVNode("div", Et, [
           e.createElementVNode("button", {
             class: "btn ghost",
-            onClick: lt
+            onClick: it
           }, [
             o[22] || (o[22] = e.createElementVNode(
               "i",
@@ -1241,7 +1244,7 @@ ${r.join(`
           e.createElementVNode("button", {
             class: "btn primary",
             disabled: F.value,
-            onClick: tt
+            onClick: nt
           }, [
             e.createElementVNode(
               "i",
@@ -1257,12 +1260,12 @@ ${r.join(`
               1
               /* TEXT */
             )
-          ], 8, Et)
+          ], 8, wt)
         ])
       ]),
-      e.unref(a) ? (e.openBlock(), e.createElementBlock("div", wt, [
-        e.createElementVNode("section", Nt, [
-          e.createElementVNode("div", Vt, [
+      e.unref(a) ? (e.openBlock(), e.createElementBlock("div", Nt, [
+        e.createElementVNode("section", Vt, [
+          e.createElementVNode("div", yt, [
             e.withDirectives(e.createElementVNode(
               "select",
               {
@@ -1273,10 +1276,10 @@ ${r.join(`
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(e.unref(_), (t) => (e.openBlock(), e.createElementBlock("option", {
+                  e.renderList(e.unref(S), (t) => (e.openBlock(), e.createElementBlock("option", {
                     key: t.id,
                     value: t.id
-                  }, e.toDisplayString(t.id) + " · " + e.toDisplayString(d(t.customer)), 9, yt))),
+                  }, e.toDisplayString(t.id) + " · " + e.toDisplayString(d(t.customer)), 9, _t))),
                   128
                   /* KEYED_FRAGMENT */
                 ))
@@ -1291,7 +1294,7 @@ ${r.join(`
               {
                 class: e.normalizeClass(["status-pill", `status-${e.unref(a).status}`])
               },
-              e.toDisplayString(Ce(e.unref(a).status)),
+              e.toDisplayString(Ae(e.unref(a).status)),
               3
               /* TEXT, CLASS */
             ),
@@ -1303,7 +1306,7 @@ ${r.join(`
               /* TEXT */
             )
           ]),
-          e.createElementVNode("div", _t, [
+          e.createElementVNode("div", Dt, [
             e.createElementVNode(
               "h2",
               null,
@@ -1319,7 +1322,7 @@ ${r.join(`
               /* TEXT */
             )
           ]),
-          e.createElementVNode("div", Dt, [
+          e.createElementVNode("div", bt, [
             e.createElementVNode("div", null, [
               e.createElementVNode(
                 "span",
@@ -1370,8 +1373,8 @@ ${r.join(`
             ])
           ])
         ]),
-        e.createElementVNode("section", bt, [
-          e.createElementVNode("article", ht, [
+        e.createElementVNode("section", ht, [
+          e.createElementVNode("article", Ct, [
             o[23] || (o[23] = e.createElementVNode(
               "span",
               { class: "metric-icon blue" },
@@ -1398,7 +1401,7 @@ ${r.join(`
               )
             ])
           ]),
-          e.createElementVNode("article", Ct, [
+          e.createElementVNode("article", At, [
             o[24] || (o[24] = e.createElementVNode(
               "span",
               { class: "metric-icon amber" },
@@ -1412,7 +1415,7 @@ ${r.join(`
               e.createElementVNode(
                 "strong",
                 null,
-                e.toDisplayString(me.value),
+                e.toDisplayString(fe.value),
                 1
                 /* TEXT */
               ),
@@ -1425,7 +1428,7 @@ ${r.join(`
               )
             ])
           ]),
-          e.createElementVNode("article", At, [
+          e.createElementVNode("article", Bt, [
             o[25] || (o[25] = e.createElementVNode(
               "span",
               { class: "metric-icon red" },
@@ -1452,7 +1455,7 @@ ${r.join(`
               )
             ])
           ]),
-          e.createElementVNode("article", Bt, [
+          e.createElementVNode("article", Tt, [
             o[26] || (o[26] = e.createElementVNode(
               "span",
               { class: "metric-icon green" },
@@ -1493,7 +1496,7 @@ ${r.join(`
               e.createElementVNode(
                 "strong",
                 null,
-                e.toDisplayString(fe.value) + "%",
+                e.toDisplayString(ve.value) + "%",
                 1
                 /* TEXT */
               ),
@@ -1507,12 +1510,12 @@ ${r.join(`
             ])
           ])
         ]),
-        e.createElementVNode("section", Tt, [
-          e.createElementVNode("div", Lt, [
+        e.createElementVNode("section", Lt, [
+          e.createElementVNode("div", xt, [
             e.createElementVNode("div", null, [
               e.createElementVNode(
                 "span",
-                xt,
+                Wt,
                 e.toDisplayString(e.unref(i)("workflow")),
                 1
                 /* TEXT */
@@ -1520,15 +1523,15 @@ ${r.join(`
               e.createElementVNode(
                 "strong",
                 null,
-                e.toDisplayString(h.value ? e.unref(i)("workflowReady") : Q.value ? e.unref(i)("workflowAvailable") : e.unref(i)("workflowUnavailable")),
+                e.toDisplayString(h.value ? e.unref(i)("workflowReady") : K.value ? e.unref(i)("workflowAvailable") : e.unref(i)("workflowUnavailable")),
                 1
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", Wt, [
+            e.createElementVNode("div", Pt, [
               e.createElementVNode(
                 "span",
-                Pt,
+                Ft,
                 e.toDisplayString(e.unref(i)("workflowResultsHint")),
                 1
                 /* TEXT */
@@ -1537,7 +1540,7 @@ ${r.join(`
                 key: 0,
                 class: "btn secondary compact",
                 disabled: C.value,
-                onClick: nt
+                onClick: ot
               }, [
                 o[28] || (o[28] = e.createElementVNode(
                   "i",
@@ -1551,11 +1554,11 @@ ${r.join(`
                   1
                   /* TEXT */
                 )
-              ], 8, Ft)) : e.createCommentVNode("v-if", !0),
+              ], 8, Ot)) : e.createCommentVNode("v-if", !0),
               e.createElementVNode("button", {
                 class: "btn primary compact",
-                disabled: C.value || !Q.value,
-                onClick: ot
+                disabled: C.value || !K.value,
+                onClick: lt
               }, [
                 e.createElementVNode(
                   "i",
@@ -1571,10 +1574,10 @@ ${r.join(`
                   1
                   /* TEXT */
                 )
-              ], 8, Ot)
+              ], 8, $t)
             ])
           ]),
-          e.createElementVNode("div", $t, [
+          e.createElementVNode("div", It, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
@@ -1590,11 +1593,11 @@ ${r.join(`
                       class: e.normalizeClass(["stage", `stage-${t.status}`])
                     },
                     [
-                      e.createElementVNode("span", It, [
+                      e.createElementVNode("span", Ut, [
                         e.createElementVNode(
                           "i",
                           {
-                            class: e.normalizeClass(at(t.status))
+                            class: e.normalizeClass(rt(t.status))
                           },
                           null,
                           2
@@ -1605,14 +1608,14 @@ ${r.join(`
                         e.createElementVNode(
                           "strong",
                           null,
-                          e.toDisplayString(st(t)),
+                          e.toDisplayString(ct(t)),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "small",
                           null,
-                          e.toDisplayString(rt(t.status)),
+                          e.toDisplayString(st(t.status)),
                           1
                           /* TEXT */
                         )
@@ -1621,7 +1624,7 @@ ${r.join(`
                     2
                     /* CLASS */
                   ),
-                  r < e.unref(a).workflowStages.length - 1 ? (e.openBlock(), e.createElementBlock("i", Ut)) : e.createCommentVNode("v-if", !0)
+                  r < e.unref(a).workflowStages.length - 1 ? (e.openBlock(), e.createElementBlock("i", Mt)) : e.createCommentVNode("v-if", !0)
                 ],
                 64
                 /* STABLE_FRAGMENT */
@@ -1631,11 +1634,11 @@ ${r.join(`
             ))
           ])
         ]),
-        e.createElementVNode("nav", Mt, [
+        e.createElementVNode("nav", jt, [
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(Pe.value, (t) => (e.openBlock(), e.createElementBlock("button", {
+            e.renderList(Fe.value, (t) => (e.openBlock(), e.createElementBlock("button", {
               key: t.id,
               class: e.normalizeClass({ active: E.value === t.id }),
               onClick: (r) => E.value = t.id
@@ -1656,12 +1659,12 @@ ${r.join(`
               ),
               t.badge ? (e.openBlock(), e.createElementBlock(
                 "span",
-                zt,
+                Kt,
                 e.toDisplayString(t.badge),
                 1
                 /* TEXT */
               )) : e.createCommentVNode("v-if", !0)
-            ], 10, jt))),
+            ], 10, zt))),
             128
             /* KEYED_FRAGMENT */
           ))
@@ -1671,13 +1674,13 @@ ${r.join(`
             e.Fragment,
             { key: 0 },
             [
-              e.createElementVNode("section", Kt, [
-                e.createElementVNode("article", qt, [
-                  e.createElementVNode("div", Jt, [
+              e.createElementVNode("section", qt, [
+                e.createElementVNode("article", Jt, [
+                  e.createElementVNode("div", Ht, [
                     e.createElementVNode("div", null, [
                       e.createElementVNode(
                         "span",
-                        Ht,
+                        Gt,
                         e.toDisplayString(e.unref(i)("overview")),
                         1
                         /* TEXT */
@@ -1703,7 +1706,7 @@ ${r.join(`
                       )
                     ])])
                   ]),
-                  P.value ? (e.openBlock(), e.createElementBlock("div", Gt, [
+                  P.value ? (e.openBlock(), e.createElementBlock("div", Xt, [
                     e.createElementVNode("label", null, [
                       e.createElementVNode(
                         "span",
@@ -1805,19 +1808,19 @@ ${r.join(`
                         [e.vModelText, g.owner]
                       ])
                     ]),
-                    e.createElementVNode("div", Xt, [
+                    e.createElementVNode("div", Yt, [
                       e.createElementVNode(
                         "button",
                         {
                           class: "btn primary compact",
-                          onClick: $e
+                          onClick: Ie
                         },
                         e.toDisplayString(e.unref(i)("accept")),
                         1
                         /* TEXT */
                       )
                     ])
-                  ])) : (e.openBlock(), e.createElementBlock("dl", Yt, [
+                  ])) : (e.openBlock(), e.createElementBlock("dl", Zt, [
                     e.createElementVNode("div", null, [
                       e.createElementVNode(
                         "dt",
@@ -1893,32 +1896,32 @@ ${r.join(`
                       e.createElementVNode(
                         "dd",
                         null,
-                        e.toDisplayString(Ce(e.unref(a).status)),
+                        e.toDisplayString(Ae(e.unref(a).status)),
                         1
                         /* TEXT */
                       )
                     ])
                   ]))
                 ]),
-                e.createElementVNode("article", Zt, [
-                  e.createElementVNode("div", en, [
+                e.createElementVNode("article", en, [
+                  e.createElementVNode("div", tn, [
                     e.createElementVNode("div", null, [
                       e.createElementVNode(
                         "span",
-                        tn,
+                        nn,
                         e.toDisplayString(e.unref(i)("actualCapability")),
                         1
                         /* TEXT */
                       ),
-                      o[32] || (o[32] = e.createElementVNode(
+                      e.createElementVNode(
                         "h3",
                         null,
-                        "TotalClaw Core",
-                        -1
-                        /* CACHED */
-                      ))
+                        e.toDisplayString(e.unref(re.brandName)()) + " Core",
+                        1
+                        /* TEXT */
+                      )
                     ]),
-                    o[33] || (o[33] = e.createElementVNode(
+                    o[32] || (o[32] = e.createElementVNode(
                       "i",
                       { class: "ri-shield-check-line capability-icon" },
                       null,
@@ -1933,7 +1936,7 @@ ${r.join(`
                     1
                     /* TEXT */
                   ),
-                  o[34] || (o[34] = e.createElementVNode(
+                  o[33] || (o[33] = e.createElementVNode(
                     "div",
                     { class: "capability-chips" },
                     [
@@ -1949,13 +1952,13 @@ ${r.join(`
                   ))
                 ])
               ]),
-              e.createElementVNode("section", nn, [
-                e.createElementVNode("article", on, [
-                  e.createElementVNode("div", ln, [
+              e.createElementVNode("section", on, [
+                e.createElementVNode("article", ln, [
+                  e.createElementVNode("div", an, [
                     e.createElementVNode("div", null, [
                       e.createElementVNode(
                         "span",
-                        an,
+                        rn,
                         e.toDisplayString(e.unref(i)("documents")),
                         1
                         /* TEXT */
@@ -1979,7 +1982,7 @@ ${r.join(`
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", rn, [
+                  e.createElementVNode("div", sn, [
                     (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       null,
@@ -1990,7 +1993,7 @@ ${r.join(`
                         e.createElementVNode(
                           "i",
                           {
-                            class: e.normalizeClass(be(t.kind))
+                            class: e.normalizeClass(he(t.kind))
                           },
                           null,
                           2
@@ -2007,7 +2010,7 @@ ${r.join(`
                           e.createElementVNode(
                             "small",
                             null,
-                            e.toDisplayString(De(t.size)),
+                            e.toDisplayString(be(t.size)),
                             1
                             /* TEXT */
                           )
@@ -2017,7 +2020,7 @@ ${r.join(`
                           {
                             class: e.normalizeClass(`parse-${t.parseStatus}`)
                           },
-                          e.toDisplayString(he(t.parseStatus)),
+                          e.toDisplayString(Ce(t.parseStatus)),
                           3
                           /* TEXT, CLASS */
                         )
@@ -2027,19 +2030,19 @@ ${r.join(`
                     )),
                     e.unref(a).documents.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
                       "p",
-                      sn,
+                      cn,
                       e.toDisplayString(e.unref(i)("noDocuments")),
                       1
                       /* TEXT */
                     ))
                   ])
                 ]),
-                e.createElementVNode("article", cn, [
-                  e.createElementVNode("div", dn, [
+                e.createElementVNode("article", dn, [
+                  e.createElementVNode("div", un, [
                     e.createElementVNode("div", null, [
                       e.createElementVNode(
                         "span",
-                        un,
+                        pn,
                         e.toDisplayString(e.unref(i)("timeline")),
                         1
                         /* TEXT */
@@ -2063,7 +2066,7 @@ ${r.join(`
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", pn, [
+                  e.createElementVNode("div", mn, [
                     (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       null,
@@ -2071,7 +2074,7 @@ ${r.join(`
                         key: t.id,
                         class: "audit-row"
                       }, [
-                        o[35] || (o[35] = e.createElementVNode(
+                        o[34] || (o[34] = e.createElementVNode(
                           "span",
                           { class: "audit-dot" },
                           null,
@@ -2082,7 +2085,7 @@ ${r.join(`
                           e.createElementVNode(
                             "strong",
                             null,
-                            e.toDisplayString(Ae(t.action)),
+                            e.toDisplayString(Be(t.action)),
                             1
                             /* TEXT */
                           ),
@@ -2115,12 +2118,12 @@ ${r.join(`
             e.Fragment,
             { key: 1 },
             [
-              e.createElementVNode("section", mn, [
-                e.createElementVNode("div", fn, [
+              e.createElementVNode("section", fn, [
+                e.createElementVNode("div", vn, [
                   e.createElementVNode("div", null, [
                     e.createElementVNode(
                       "span",
-                      vn,
+                      gn,
                       e.toDisplayString(e.unref(i)("documents")),
                       1
                       /* TEXT */
@@ -2133,8 +2136,8 @@ ${r.join(`
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("label", gn, [
-                    o[36] || (o[36] = e.createElementVNode(
+                  e.createElementVNode("label", kn, [
+                    o[35] || (o[35] = e.createElementVNode(
                       "i",
                       { class: "ri-upload-cloud-2-line" },
                       null,
@@ -2152,7 +2155,7 @@ ${r.join(`
                         type: "file",
                         multiple: "",
                         accept: ".pdf,.doc,.docx,.xls,.xlsx,.csv,.png,.jpg,.jpeg,.webp,.tiff",
-                        onChange: Ge
+                        onChange: Xe
                       },
                       null,
                       32
@@ -2160,7 +2163,7 @@ ${r.join(`
                     )
                   ])
                 ]),
-                e.createElementVNode("div", kn, [
+                e.createElementVNode("div", En, [
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
@@ -2171,7 +2174,7 @@ ${r.join(`
                       e.createElementVNode(
                         "i",
                         {
-                          class: e.normalizeClass(be(t.kind))
+                          class: e.normalizeClass(he(t.kind))
                         },
                         null,
                         2
@@ -2188,29 +2191,29 @@ ${r.join(`
                         e.createElementVNode(
                           "p",
                           null,
-                          e.toDisplayString(t.kind.toUpperCase()) + " · " + e.toDisplayString(De(t.size)) + " · " + e.toDisplayString(d(t.uploadedBy)),
+                          e.toDisplayString(t.kind.toUpperCase()) + " · " + e.toDisplayString(be(t.size)) + " · " + e.toDisplayString(d(t.uploadedBy)),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode("select", {
                           class: "purpose-select",
                           value: t.purpose,
-                          onChange: (r) => Ue(t.id, r)
+                          onChange: (r) => Me(t.id, r)
                         }, [
                           (e.openBlock(), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(Le, (r) => e.createElementVNode("option", {
+                            e.renderList(xe, (r) => e.createElementVNode("option", {
                               key: r.value,
                               value: r.value
-                            }, e.toDisplayString(l.$t(r.label)), 9, wn)),
+                            }, e.toDisplayString(l.$t(r.label)), 9, Nn)),
                             64
                             /* STABLE_FRAGMENT */
                           ))
-                        ], 40, En),
+                        ], 40, wn),
                         t.warnings?.length ? (e.openBlock(), e.createElementBlock(
                           "small",
-                          Nn,
+                          Vn,
                           e.toDisplayString(t.warnings.join(l.$t("；"))),
                           1
                           /* TEXT */
@@ -2221,7 +2224,7 @@ ${r.join(`
                         {
                           class: e.normalizeClass(`parse-${t.parseStatus}`)
                         },
-                        e.toDisplayString(he(t.parseStatus)),
+                        e.toDisplayString(Ce(t.parseStatus)),
                         3
                         /* TEXT, CLASS */
                       )
@@ -2231,8 +2234,8 @@ ${r.join(`
                   ))
                 ])
               ]),
-              e.createElementVNode("section", Vn, [
-                e.createElementVNode("div", yn, [
+              e.createElementVNode("section", yn, [
+                e.createElementVNode("div", _n, [
                   e.createElementVNode("div", null, [
                     e.createElementVNode(
                       "span",
@@ -2250,8 +2253,8 @@ ${r.join(`
                     )
                   ])
                 ]),
-                e.createElementVNode("div", _n, [
-                  e.createElementVNode("div", Dn, [
+                e.createElementVNode("div", Dn, [
+                  e.createElementVNode("div", bn, [
                     e.createElementVNode(
                       "span",
                       null,
@@ -2280,7 +2283,7 @@ ${r.join(`
                       1
                       /* TEXT */
                     ),
-                    o[37] || (o[37] = e.createElementVNode(
+                    o[36] || (o[36] = e.createElementVNode(
                       "span",
                       null,
                       null,
@@ -2297,17 +2300,17 @@ ${r.join(`
                     }, [
                       e.createElementVNode(
                         "span",
-                        bn,
+                        hn,
                         e.toDisplayString(t.key),
                         1
                         /* TEXT */
                       ),
                       e.withDirectives(e.createElementVNode("input", {
                         "onUpdate:modelValue": (r) => q[t.id] = r
-                      }, null, 8, hn), [
+                      }, null, 8, Cn), [
                         [e.vModelText, q[t.id]]
                       ]),
-                      e.createElementVNode("span", Cn, [
+                      e.createElementVNode("span", An, [
                         e.createElementVNode(
                           "i",
                           {
@@ -2326,13 +2329,13 @@ ${r.join(`
                       e.createElementVNode("button", {
                         class: "evidence-link",
                         onClick: (r) => A.value = t.evidence
-                      }, e.toDisplayString(Y(t.evidence[0])), 9, An),
-                      e.createElementVNode("div", Bn, [
+                      }, e.toDisplayString(Y(t.evidence[0])), 9, Bn),
+                      e.createElementVNode("div", Tn, [
                         e.createElementVNode("button", {
                           class: "icon-action success",
                           title: e.unref(i)("accept"),
-                          onClick: (r) => ve(t.id, "accepted")
-                        }, [...o[38] || (o[38] = [
+                          onClick: (r) => ge(t.id, "accepted")
+                        }, [...o[37] || (o[37] = [
                           e.createElementVNode(
                             "i",
                             { class: "ri-check-line" },
@@ -2344,8 +2347,8 @@ ${r.join(`
                         e.createElementVNode("button", {
                           class: "icon-action danger",
                           title: e.unref(i)("reject"),
-                          onClick: (r) => ve(t.id, "rejected")
-                        }, [...o[39] || (o[39] = [
+                          onClick: (r) => ge(t.id, "rejected")
+                        }, [...o[38] || (o[38] = [
                           e.createElementVNode(
                             "i",
                             { class: "ri-close-line" },
@@ -2353,7 +2356,7 @@ ${r.join(`
                             -1
                             /* CACHED */
                           )
-                        ])], 8, Tn)
+                        ])], 8, Ln)
                       ])
                     ]))),
                     128
@@ -2361,17 +2364,17 @@ ${r.join(`
                   ))
                 ])
               ]),
-              e.createElementVNode("section", Ln, [
-                e.createElementVNode("div", xn, [
+              e.createElementVNode("section", xn, [
+                e.createElementVNode("div", Wn, [
                   e.createElementVNode("div", null, [
                     e.createElementVNode(
                       "span",
-                      Wn,
+                      Pn,
                       e.toDisplayString(e.unref(i)("lineItems")),
                       1
                       /* TEXT */
                     ),
-                    o[40] || (o[40] = e.createElementVNode(
+                    o[39] || (o[39] = e.createElementVNode(
                       "h3",
                       null,
                       "BOQ",
@@ -2380,8 +2383,8 @@ ${r.join(`
                     ))
                   ])
                 ]),
-                e.createElementVNode("div", Pn, [
-                  e.createElementVNode("div", Fn, [
+                e.createElementVNode("div", Fn, [
+                  e.createElementVNode("div", On, [
                     e.createElementVNode(
                       "span",
                       null,
@@ -2424,7 +2427,7 @@ ${r.join(`
                       1
                       /* TEXT */
                     ),
-                    o[41] || (o[41] = e.createElementVNode(
+                    o[40] || (o[40] = e.createElementVNode(
                       "span",
                       null,
                       null,
@@ -2464,7 +2467,7 @@ ${r.join(`
                       ),
                       e.withDirectives(e.createElementVNode("input", {
                         "onUpdate:modelValue": (r) => J[t.id] = r
-                      }, null, 8, On), [
+                      }, null, 8, $n), [
                         [e.vModelText, J[t.id]]
                       ]),
                       e.withDirectives(e.createElementVNode("input", {
@@ -2472,7 +2475,7 @@ ${r.join(`
                         type: "number",
                         min: "0",
                         step: "100"
-                      }, null, 8, $n), [
+                      }, null, 8, In), [
                         [
                           e.vModelText,
                           B[t.id].unitCostSar,
@@ -2485,7 +2488,7 @@ ${r.join(`
                         type: "number",
                         min: "0",
                         step: "100"
-                      }, null, 8, In), [
+                      }, null, 8, Un), [
                         [
                           e.vModelText,
                           B[t.id].unitPriceSar,
@@ -2496,11 +2499,11 @@ ${r.join(`
                       e.createElementVNode("button", {
                         class: "evidence-link",
                         onClick: (r) => A.value = t.evidence
-                      }, e.toDisplayString(Y(t.evidence[0])), 9, Un),
+                      }, e.toDisplayString(Y(t.evidence[0])), 9, Mn),
                       e.createElementVNode("button", {
                         class: "icon-action success",
-                        onClick: (r) => Ie(t.id)
-                      }, [...o[42] || (o[42] = [
+                        onClick: (r) => Ue(t.id)
+                      }, [...o[41] || (o[41] = [
                         e.createElementVNode(
                           "i",
                           { class: "ri-check-line" },
@@ -2508,7 +2511,7 @@ ${r.join(`
                           -1
                           /* CACHED */
                         )
-                      ])], 8, Mn)
+                      ])], 8, jn)
                     ]))),
                     128
                     /* KEYED_FRAGMENT */
@@ -2522,11 +2525,11 @@ ${r.join(`
             e.Fragment,
             { key: 2 },
             [
-              e.createElementVNode("section", jn, [
+              e.createElementVNode("section", zn, [
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(Oe.value, (t) => (e.openBlock(), e.createElementBlock(
+                  e.renderList($e.value, (t) => (e.openBlock(), e.createElementBlock(
                     "div",
                     {
                       key: t.key,
@@ -2555,7 +2558,7 @@ ${r.join(`
                   /* KEYED_FRAGMENT */
                 ))
               ]),
-              e.createElementVNode("section", zn, [
+              e.createElementVNode("section", Kn, [
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
@@ -2566,7 +2569,7 @@ ${r.join(`
                       class: e.normalizeClass(["finding-card", [
                         `severity-${t.severity}`,
                         {
-                          "conclusion-saved": !ge(t),
+                          "conclusion-saved": !ke(t),
                           "just-saved": U.value === t.id
                         }
                       ]])
@@ -2576,7 +2579,7 @@ ${r.join(`
                         e.createElementVNode("div", null, [
                           e.createElementVNode(
                             "span",
-                            Kn,
+                            qn,
                             e.toDisplayString(t.severity),
                             1
                             /* TEXT */
@@ -2591,13 +2594,13 @@ ${r.join(`
                         ]),
                         e.createElementVNode(
                           "span",
-                          qn,
+                          Jn,
                           e.toDisplayString(N(t.humanDecision || t.status)),
                           1
                           /* TEXT */
                         )
                       ]),
-                      e.createElementVNode("div", Jn, [
+                      e.createElementVNode("div", Hn, [
                         e.createElementVNode("div", null, [
                           e.createElementVNode(
                             "span",
@@ -2625,68 +2628,68 @@ ${r.join(`
                           e.createElementVNode("button", {
                             class: "evidence-link",
                             onClick: (r) => A.value = t.evidence
-                          }, e.toDisplayString(Y(t.evidence[0])), 9, Hn)
+                          }, e.toDisplayString(Y(t.evidence[0])), 9, Gn)
                         ])
                       ]),
-                      ge(t) ? (e.openBlock(), e.createElementBlock("div", Gn, [
+                      ke(t) ? (e.openBlock(), e.createElementBlock("div", Xn, [
                         e.withDirectives(e.createElementVNode("select", {
-                          "onUpdate:modelValue": (r) => R[t.id].decision = r
+                          "onUpdate:modelValue": (r) => T[t.id].decision = r
                         }, [
                           e.createElementVNode(
                             "option",
-                            Yn,
+                            Zn,
                             e.toDisplayString(N("compliant")),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "option",
-                            Zn,
+                            eo,
                             e.toDisplayString(N("conditional")),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "option",
-                            eo,
+                            to,
                             e.toDisplayString(N("missing")),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "option",
-                            to,
+                            no,
                             e.toDisplayString(N("deviation")),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "option",
-                            no,
+                            oo,
                             e.toDisplayString(N("major_deviation")),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "option",
-                            oo,
+                            lo,
                             e.toDisplayString(N("pending")),
                             1
                             /* TEXT */
                           )
-                        ], 8, Xn), [
-                          [e.vModelSelect, R[t.id].decision]
+                        ], 8, Yn), [
+                          [e.vModelSelect, T[t.id].decision]
                         ]),
                         e.withDirectives(e.createElementVNode("input", {
-                          "onUpdate:modelValue": (r) => R[t.id].clarification = r,
+                          "onUpdate:modelValue": (r) => T[t.id].clarification = r,
                           placeholder: e.unref(i)("clarification")
-                        }, null, 8, lo), [
-                          [e.vModelText, R[t.id].clarification]
+                        }, null, 8, io), [
+                          [e.vModelText, T[t.id].clarification]
                         ]),
                         e.createElementVNode("button", {
                           class: "btn primary compact finding-save-btn",
                           disabled: L.value === t.id,
-                          onClick: (r) => je(t.id)
+                          onClick: (r) => ze(t.id)
                         }, [
                           e.createElementVNode(
                             "i",
@@ -2702,9 +2705,9 @@ ${r.join(`
                             1
                             /* TEXT */
                           )
-                        ], 8, io)
-                      ])) : (e.openBlock(), e.createElementBlock("div", ao, [
-                        o[44] || (o[44] = e.createElementVNode(
+                        ], 8, ao)
+                      ])) : (e.openBlock(), e.createElementBlock("div", ro, [
+                        o[43] || (o[43] = e.createElementVNode(
                           "span",
                           { class: "finding-conclusion-icon" },
                           [
@@ -2713,7 +2716,7 @@ ${r.join(`
                           -1
                           /* CACHED */
                         )),
-                        e.createElementVNode("div", ro, [
+                        e.createElementVNode("div", so, [
                           e.createElementVNode(
                             "span",
                             null,
@@ -2738,9 +2741,9 @@ ${r.join(`
                         ]),
                         e.createElementVNode("button", {
                           class: "btn secondary compact",
-                          onClick: (r) => Me(t.id)
+                          onClick: (r) => je(t.id)
                         }, [
-                          o[43] || (o[43] = e.createElementVNode(
+                          o[42] || (o[42] = e.createElementVNode(
                             "i",
                             { class: "ri-edit-line" },
                             null,
@@ -2752,7 +2755,7 @@ ${r.join(`
                             1
                             /* TEXT */
                           )
-                        ], 8, so)
+                        ], 8, co)
                       ]))
                     ],
                     2
@@ -2765,13 +2768,13 @@ ${r.join(`
             ],
             64
             /* STABLE_FRAGMENT */
-          )) : E.value === "pricing" ? (e.openBlock(), e.createElementBlock("section", co, [
-            e.createElementVNode("article", uo, [
-              e.createElementVNode("div", po, [
+          )) : E.value === "pricing" ? (e.openBlock(), e.createElementBlock("section", uo, [
+            e.createElementVNode("article", po, [
+              e.createElementVNode("div", mo, [
                 e.createElementVNode("div", null, [
                   e.createElementVNode(
                     "span",
-                    mo,
+                    fo,
                     e.toDisplayString(e.unref(i)("pricingInputs")),
                     1
                     /* TEXT */
@@ -2785,11 +2788,11 @@ ${r.join(`
                   )
                 ])
               ]),
-              e.createElementVNode("div", fo, [
+              e.createElementVNode("div", vo, [
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(Fe.value, (t) => (e.openBlock(), e.createElementBlock("label", {
+                  e.renderList(Oe.value, (t) => (e.openBlock(), e.createElementBlock("label", {
                     key: t.key
                   }, [
                     e.createElementVNode(
@@ -2799,12 +2802,12 @@ ${r.join(`
                       1
                       /* TEXT */
                     ),
-                    e.createElementVNode("div", vo, [
+                    e.createElementVNode("div", go, [
                       e.withDirectives(e.createElementVNode("input", {
                         "onUpdate:modelValue": (r) => I[t.key] = r,
                         type: "number",
                         step: t.rate ? "0.01" : "100"
-                      }, null, 8, go), [
+                      }, null, 8, ko), [
                         [
                           e.vModelText,
                           I[t.key],
@@ -2812,19 +2815,19 @@ ${r.join(`
                           { number: !0 }
                         ]
                       ]),
-                      t.rate ? (e.openBlock(), e.createElementBlock("small", ko, "× 100%")) : e.createCommentVNode("v-if", !0)
+                      t.rate ? (e.openBlock(), e.createElementBlock("small", Eo, "× 100%")) : e.createCommentVNode("v-if", !0)
                     ])
                   ]))),
                   128
                   /* KEYED_FRAGMENT */
                 ))
               ]),
-              e.createElementVNode("div", Eo, [
+              e.createElementVNode("div", wo, [
                 e.createElementVNode(
                   "button",
                   {
                     class: "btn ghost",
-                    onClick: ze
+                    onClick: Ke
                   },
                   e.toDisplayString(e.unref(i)("savePricing")),
                   1
@@ -2834,14 +2837,14 @@ ${r.join(`
                   "onUpdate:modelValue": o[9] || (o[9] = (t) => Z.value = t),
                   class: "scenario-name",
                   placeholder: e.unref(i)("scenarioName")
-                }, null, 8, wo), [
+                }, null, 8, No), [
                   [e.vModelText, Z.value]
                 ]),
                 e.createElementVNode("button", {
                   class: "btn primary",
                   onClick: Qe
                 }, [
-                  o[45] || (o[45] = e.createElementVNode(
+                  o[44] || (o[44] = e.createElementVNode(
                     "i",
                     { class: "ri-calculator-line" },
                     null,
@@ -2856,12 +2859,12 @@ ${r.join(`
                 ])
               ])
             ]),
-            e.createElementVNode("article", No, [
-              e.createElementVNode("div", Vo, [
+            e.createElementVNode("article", Vo, [
+              e.createElementVNode("div", yo, [
                 e.createElementVNode("div", null, [
                   e.createElementVNode(
                     "span",
-                    yo,
+                    _o,
                     e.toDisplayString(e.unref(i)("scenarios")),
                     1
                     /* TEXT */
@@ -2892,7 +2895,7 @@ ${r.join(`
                     class: e.normalizeClass(["scenario-card", { warning: t.belowMinimumMargin }])
                   },
                   [
-                    e.createElementVNode("div", _o, [
+                    e.createElementVNode("div", Do, [
                       e.createElementVNode(
                         "strong",
                         null,
@@ -2908,7 +2911,7 @@ ${r.join(`
                         /* TEXT */
                       )
                     ]),
-                    e.createElementVNode("div", Do, [
+                    e.createElementVNode("div", bo, [
                       e.createElementVNode("div", null, [
                         e.createElementVNode(
                           "span",
@@ -2958,8 +2961,8 @@ ${r.join(`
                         )
                       ])
                     ]),
-                    t.belowMinimumMargin ? (e.openBlock(), e.createElementBlock("p", bo, [
-                      o[46] || (o[46] = e.createElementVNode(
+                    t.belowMinimumMargin ? (e.openBlock(), e.createElementBlock("p", ho, [
+                      o[45] || (o[45] = e.createElementVNode(
                         "i",
                         { class: "ri-alarm-warning-line" },
                         null,
@@ -2980,13 +2983,13 @@ ${r.join(`
                 /* KEYED_FRAGMENT */
               ))
             ])
-          ])) : E.value === "approval" ? (e.openBlock(), e.createElementBlock("section", ho, [
-            e.createElementVNode("article", Co, [
-              e.createElementVNode("div", Ao, [
+          ])) : E.value === "approval" ? (e.openBlock(), e.createElementBlock("section", Co, [
+            e.createElementVNode("article", Ao, [
+              e.createElementVNode("div", Bo, [
                 e.createElementVNode("div", null, [
                   e.createElementVNode(
                     "span",
-                    Bo,
+                    To,
                     e.toDisplayString(e.unref(i)("decisionCard")),
                     1
                     /* TEXT */
@@ -3011,7 +3014,7 @@ ${r.join(`
                   {
                     class: e.normalizeClass(["decision-state", `decision-${e.unref(a).decision.decision}`])
                   },
-                  e.toDisplayString(ct(e.unref(a).decision.decision)),
+                  e.toDisplayString(dt(e.unref(a).decision.decision)),
                   3
                   /* TEXT, CLASS */
                 )
@@ -3076,15 +3079,15 @@ ${r.join(`
                   e.createElementVNode(
                     "strong",
                     null,
-                    e.toDisplayString(xe.value),
+                    e.toDisplayString(We.value),
                     1
                     /* TEXT */
                   )
                 ])
               ]),
-              e.createElementVNode("div", To, [
+              e.createElementVNode("div", Lo, [
                 e.createElementVNode("p", null, [
-                  o[47] || (o[47] = e.createElementVNode(
+                  o[46] || (o[46] = e.createElementVNode(
                     "i",
                     { class: "ri-shield-check-line" },
                     null,
@@ -3092,13 +3095,13 @@ ${r.join(`
                     /* CACHED */
                   )),
                   e.createTextVNode(
-                    e.toDisplayString(fe.value) + "% " + e.toDisplayString(e.unref(i)("evidenceCoverage")),
+                    e.toDisplayString(ve.value) + "% " + e.toDisplayString(e.unref(i)("evidenceCoverage")),
                     1
                     /* TEXT */
                   )
                 ]),
                 e.createElementVNode("p", null, [
-                  o[48] || (o[48] = e.createElementVNode(
+                  o[47] || (o[47] = e.createElementVNode(
                     "i",
                     { class: "ri-flow-chart" },
                     null,
@@ -3106,13 +3109,13 @@ ${r.join(`
                     /* CACHED */
                   )),
                   e.createTextVNode(
-                    e.toDisplayString(We.value) + "/" + e.toDisplayString(e.unref(a).workflowStages.length) + " " + e.toDisplayString(e.unref(i)("workflow")),
+                    e.toDisplayString(Pe.value) + "/" + e.toDisplayString(e.unref(a).workflowStages.length) + " " + e.toDisplayString(e.unref(i)("workflow")),
                     1
                     /* TEXT */
                   )
                 ])
               ]),
-              e.createElementVNode("section", Lo, [
+              e.createElementVNode("section", xo, [
                 e.createElementVNode(
                   "strong",
                   null,
@@ -3127,12 +3130,12 @@ ${r.join(`
                   1
                   /* TEXT */
                 ),
-                e.unref(a).decisionSummary.risks.length ? (e.openBlock(), e.createElementBlock("div", xo, [
+                e.unref(a).decisionSummary.risks.length ? (e.openBlock(), e.createElementBlock("div", Wo, [
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
                     e.renderList(e.unref(a).decisionSummary.risks, (t) => (e.openBlock(), e.createElementBlock("span", { key: t }, [
-                      o[49] || (o[49] = e.createElementVNode(
+                      o[48] || (o[48] = e.createElementVNode(
                         "i",
                         { class: "ri-error-warning-line" },
                         null,
@@ -3150,7 +3153,7 @@ ${r.join(`
                   ))
                 ])) : e.createCommentVNode("v-if", !0)
               ]),
-              e.createElementVNode("label", Wo, [
+              e.createElementVNode("label", Po, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -3161,10 +3164,10 @@ ${r.join(`
                 e.withDirectives(e.createElementVNode(
                   "select",
                   {
-                    "onUpdate:modelValue": o[10] || (o[10] = (t) => S.value = t)
+                    "onUpdate:modelValue": o[10] || (o[10] = (t) => _.value = t)
                   },
                   [
-                    o[50] || (o[50] = e.createElementVNode(
+                    o[49] || (o[49] = e.createElementVNode(
                       "option",
                       { value: "" },
                       "—",
@@ -3177,7 +3180,7 @@ ${r.join(`
                       e.renderList(e.unref(a).scenarios, (t) => (e.openBlock(), e.createElementBlock("option", {
                         key: t.id,
                         value: t.id
-                      }, e.toDisplayString(d(t.name)) + " · " + e.toDisplayString(W(t.offeredPriceSar)) + " · " + e.toDisplayString(oe(t.marginRate)), 9, Po))),
+                      }, e.toDisplayString(d(t.name)) + " · " + e.toDisplayString(W(t.offeredPriceSar)) + " · " + e.toDisplayString(oe(t.marginRate)), 9, Fo))),
                       128
                       /* KEYED_FRAGMENT */
                     ))
@@ -3185,10 +3188,10 @@ ${r.join(`
                   512
                   /* NEED_PATCH */
                 ), [
-                  [e.vModelSelect, S.value]
+                  [e.vModelSelect, _.value]
                 ])
               ]),
-              e.createElementVNode("label", Fo, [
+              e.createElementVNode("label", Oo, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -3209,9 +3212,9 @@ ${r.join(`
                   [e.vModelText, $.value]
                 ])
               ]),
-              H.value.length ? (e.openBlock(), e.createElementBlock("div", Oo, [
+              H.value.length ? (e.openBlock(), e.createElementBlock("div", $o, [
                 e.createElementVNode("strong", null, [
-                  o[51] || (o[51] = e.createElementVNode(
+                  o[50] || (o[50] = e.createElementVNode(
                     "i",
                     { class: "ri-lock-line" },
                     null,
@@ -3240,9 +3243,9 @@ ${r.join(`
                 H.value.some((t) => t.includes(l.$t("逐行金额合计"))) ? (e.openBlock(), e.createElementBlock("button", {
                   key: 0,
                   class: "btn secondary compact",
-                  onClick: qe
+                  onClick: Je
                 }, [
-                  o[52] || (o[52] = e.createElementVNode(
+                  o[51] || (o[51] = e.createElementVNode(
                     "i",
                     { class: "ri-scales-3-line" },
                     null,
@@ -3256,12 +3259,12 @@ ${r.join(`
                   )
                 ])) : e.createCommentVNode("v-if", !0)
               ])) : e.createCommentVNode("v-if", !0),
-              e.createElementVNode("div", $o, [
+              e.createElementVNode("div", Io, [
                 e.createElementVNode("button", {
                   class: "btn danger",
                   onClick: o[12] || (o[12] = (t) => G("rejected"))
                 }, [
-                  o[53] || (o[53] = e.createElementVNode(
+                  o[52] || (o[52] = e.createElementVNode(
                     "i",
                     { class: "ri-close-circle-line" },
                     null,
@@ -3278,7 +3281,7 @@ ${r.join(`
                   class: "btn ghost",
                   onClick: o[13] || (o[13] = (t) => G("returned"))
                 }, [
-                  o[54] || (o[54] = e.createElementVNode(
+                  o[53] || (o[53] = e.createElementVNode(
                     "i",
                     { class: "ri-arrow-go-back-line" },
                     null,
@@ -3295,7 +3298,7 @@ ${r.join(`
                   class: "btn ghost",
                   onClick: o[14] || (o[14] = (t) => G("more_information"))
                 }, [
-                  o[55] || (o[55] = e.createElementVNode(
+                  o[54] || (o[54] = e.createElementVNode(
                     "i",
                     { class: "ri-question-answer-line" },
                     null,
@@ -3310,9 +3313,9 @@ ${r.join(`
                 ]),
                 e.createElementVNode("button", {
                   class: "btn secondary",
-                  onClick: Ke
+                  onClick: qe
                 }, [
-                  o[56] || (o[56] = e.createElementVNode(
+                  o[55] || (o[55] = e.createElementVNode(
                     "i",
                     { class: "ri-edit-line" },
                     null,
@@ -3330,7 +3333,7 @@ ${r.join(`
                   disabled: H.value.length > 0,
                   onClick: o[15] || (o[15] = (t) => G("approved"))
                 }, [
-                  o[57] || (o[57] = e.createElementVNode(
+                  o[56] || (o[56] = e.createElementVNode(
                     "i",
                     { class: "ri-checkbox-circle-line" },
                     null,
@@ -3342,15 +3345,15 @@ ${r.join(`
                     1
                     /* TEXT */
                   )
-                ], 8, Io)
+                ], 8, Uo)
               ])
             ]),
-            e.createElementVNode("article", Uo, [
-              e.createElementVNode("div", Mo, [
+            e.createElementVNode("article", Mo, [
+              e.createElementVNode("div", jo, [
                 e.createElementVNode("div", null, [
                   e.createElementVNode(
                     "span",
-                    jo,
+                    zo,
                     e.toDisplayString(e.unref(i)("outputManifest")),
                     1
                     /* TEXT */
@@ -3366,7 +3369,7 @@ ${r.join(`
                 e.createElementVNode("button", {
                   class: "btn primary compact",
                   disabled: e.unref(a).decision.decision !== "approved" || O.value,
-                  onClick: He
+                  onClick: Ge
                 }, [
                   e.createElementVNode(
                     "i",
@@ -3382,7 +3385,7 @@ ${r.join(`
                     1
                     /* TEXT */
                   )
-                ], 8, zo)
+                ], 8, Ko)
               ]),
               e.createElementVNode(
                 "p",
@@ -3401,7 +3404,7 @@ ${r.join(`
                     e.createElementVNode(
                       "i",
                       {
-                        class: e.normalizeClass(it(t.kind))
+                        class: e.normalizeClass(at(t.kind))
                       },
                       null,
                       2
@@ -3427,7 +3430,7 @@ ${r.join(`
                       class: "link-btn",
                       onClick: (r) => w.value = t
                     }, [
-                      o[58] || (o[58] = e.createElementVNode(
+                      o[57] || (o[57] = e.createElementVNode(
                         "i",
                         { class: "ri-eye-line" },
                         null,
@@ -3439,13 +3442,13 @@ ${r.join(`
                         1
                         /* TEXT */
                       )
-                    ], 8, Ko),
+                    ], 8, qo),
                     e.createElementVNode("button", {
                       class: "link-btn",
                       disabled: O.value || e.unref(a).decision.decision !== "approved",
-                      onClick: (r) => Ee(t)
+                      onClick: (r) => we(t)
                     }, [
-                      o[59] || (o[59] = e.createElementVNode(
+                      o[58] || (o[58] = e.createElementVNode(
                         "i",
                         { class: "ri-download-line" },
                         null,
@@ -3457,13 +3460,13 @@ ${r.join(`
                         1
                         /* TEXT */
                       )
-                    ], 8, qo)
+                    ], 8, Jo)
                   ]))),
                   128
                   /* KEYED_FRAGMENT */
                 ))
               ]),
-              e.createElementVNode("div", Jo, [
+              e.createElementVNode("div", Ho, [
                 e.createElementVNode(
                   "i",
                   {
@@ -3480,12 +3483,12 @@ ${r.join(`
                 )
               ])
             ])
-          ])) : (e.openBlock(), e.createElementBlock("section", Ho, [
-            e.createElementVNode("div", Go, [
+          ])) : (e.openBlock(), e.createElementBlock("section", Go, [
+            e.createElementVNode("div", Xo, [
               e.createElementVNode("div", null, [
                 e.createElementVNode(
                   "span",
-                  Xo,
+                  Yo,
                   e.toDisplayString(e.unref(i)("timeline")),
                   1
                   /* TEXT */
@@ -3499,7 +3502,7 @@ ${r.join(`
                 )
               ])
             ]),
-            e.unref(a).audit.length ? (e.openBlock(), e.createElementBlock("div", Yo, [
+            e.unref(a).audit.length ? (e.openBlock(), e.createElementBlock("div", Zo, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
@@ -3507,7 +3510,7 @@ ${r.join(`
                   key: t.id,
                   class: "audit-row"
                 }, [
-                  o[60] || (o[60] = e.createElementVNode(
+                  o[59] || (o[59] = e.createElementVNode(
                     "span",
                     { class: "audit-dot" },
                     null,
@@ -3515,11 +3518,11 @@ ${r.join(`
                     /* CACHED */
                   )),
                   e.createElementVNode("div", null, [
-                    e.createElementVNode("div", Zo, [
+                    e.createElementVNode("div", el, [
                       e.createElementVNode(
                         "strong",
                         null,
-                        e.toDisplayString(Ae(t.action)),
+                        e.toDisplayString(Be(t.action)),
                         1
                         /* TEXT */
                       ),
@@ -3545,7 +3548,7 @@ ${r.join(`
                       1
                       /* TEXT */
                     ),
-                    t.before !== void 0 || t.after !== void 0 ? (e.openBlock(), e.createElementBlock("details", el, [
+                    t.before !== void 0 || t.after !== void 0 ? (e.openBlock(), e.createElementBlock("details", tl, [
                       e.createElementVNode(
                         "summary",
                         null,
@@ -3568,7 +3571,7 @@ ${r.join(`
               ))
             ])) : (e.openBlock(), e.createElementBlock(
               "p",
-              tl,
+              nl,
               e.toDisplayString(e.unref(i)("auditEmpty")),
               1
               /* TEXT */
@@ -3581,8 +3584,8 @@ ${r.join(`
         class: "modal-backdrop",
         onClick: o[17] || (o[17] = e.withModifiers((t) => A.value = null, ["self"]))
       }, [
-        e.createElementVNode("section", nl, [
-          e.createElementVNode("div", ol, [
+        e.createElementVNode("section", ol, [
+          e.createElementVNode("div", ll, [
             e.createElementVNode(
               "h3",
               null,
@@ -3593,7 +3596,7 @@ ${r.join(`
             e.createElementVNode("button", {
               class: "link-btn",
               onClick: o[16] || (o[16] = (t) => A.value = null)
-            }, [...o[61] || (o[61] = [
+            }, [...o[60] || (o[60] = [
               e.createElementVNode(
                 "i",
                 { class: "ri-close-line" },
@@ -3639,12 +3642,12 @@ ${r.join(`
         class: "modal-backdrop artifact-backdrop",
         onClick: o[20] || (o[20] = e.withModifiers((t) => w.value = null, ["self"]))
       }, [
-        e.createElementVNode("section", ll, [
-          e.createElementVNode("div", il, [
-            e.createElementVNode("div", al, [
+        e.createElementVNode("section", il, [
+          e.createElementVNode("div", al, [
+            e.createElementVNode("div", rl, [
               e.createElementVNode(
                 "span",
-                rl,
+                sl,
                 e.toDisplayString(e.unref(i)("preview")),
                 1
                 /* TEXT */
@@ -3657,13 +3660,13 @@ ${r.join(`
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", sl, [
+            e.createElementVNode("div", cl, [
               e.createElementVNode("button", {
                 class: "btn primary compact",
                 disabled: e.unref(a)?.decision.decision !== "approved",
-                onClick: o[18] || (o[18] = (t) => Ee(w.value))
+                onClick: o[18] || (o[18] = (t) => we(w.value))
               }, [
-                o[62] || (o[62] = e.createElementVNode(
+                o[61] || (o[61] = e.createElementVNode(
                   "i",
                   { class: "ri-download-line" },
                   null,
@@ -3675,13 +3678,13 @@ ${r.join(`
                   1
                   /* TEXT */
                 )
-              ], 8, cl),
+              ], 8, dl),
               e.createElementVNode("button", {
                 class: "artifact-close",
                 "aria-label": e.unref(n.t)("关闭预览"),
                 title: e.unref(n.t)("关闭预览"),
                 onClick: o[19] || (o[19] = (t) => w.value = null)
-              }, [...o[63] || (o[63] = [
+              }, [...o[62] || (o[62] = [
                 e.createElementVNode(
                   "i",
                   { class: "ri-close-line" },
@@ -3689,7 +3692,7 @@ ${r.join(`
                   -1
                   /* CACHED */
                 )
-              ])], 8, dl)
+              ])], 8, ul)
             ])
           ]),
           e.createCommentVNode(` 报价/方案是纯静态模板，不需要脚本。不加 sandbox 时 srcdoc 继承主窗口源，
@@ -3701,23 +3704,23 @@ ${r.join(`
             srcdoc: w.value.content,
             sandbox: "",
             referrerpolicy: "no-referrer"
-          }, null, 8, ul)) : (e.openBlock(), e.createElementBlock(
+          }, null, 8, pl)) : (e.openBlock(), e.createElementBlock(
             "pre",
-            pl,
+            ml,
             e.toDisplayString(w.value.content),
             1
             /* TEXT */
           ))
         ])
       ])) : e.createCommentVNode("v-if", !0)
-    ], 8, ft));
+    ], 8, vt));
   }
-}), fl = (v, s) => {
+}), vl = (v, s) => {
   const c = v.__vccOpts || v;
-  for (const [f, _] of s)
-    c[f] = _;
+  for (const [f, S] of s)
+    c[f] = S;
   return c;
-}, vl = /* @__PURE__ */ fl(ml, [["__scopeId", "data-v-d127baa4"]]);
+}, gl = /* @__PURE__ */ vl(fl, [["__scopeId", "data-v-25970284"]]);
 export {
-  vl as default
+  gl as default
 };
