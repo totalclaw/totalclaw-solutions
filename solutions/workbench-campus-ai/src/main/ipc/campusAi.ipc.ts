@@ -30,6 +30,7 @@ import { computeWarnings, detectMapping, missingRoles, parseAttendance, parseGra
 import { draftNotice, fillName, levelLabel } from '../services/campusAi/notice';
 import { writeDemoKb, writeDemoStudents } from '../services/campusAi/demoData';
 import { moduleActions, moduleState, type ModuleCtx } from './campusAi.modules';
+import { documentsFolderName } from '../services/brandPaths';
 
 const store = new CampusAiStore();
 
@@ -52,7 +53,7 @@ export function registerCampusAiHandlers(deps: WorkbenchIpcDeps): void {
 
   const outputDir = (sub?: string): string => {
     const s = store.read().settings;
-    const root = s.outputDir && existsSync(s.outputDir) ? s.outputDir : join(app.getPath('documents'), 'TotalClaw', i18nT('高校一体化AI智能体'));
+    const root = s.outputDir && existsSync(s.outputDir) ? s.outputDir : join(app.getPath('documents'), documentsFolderName(), i18nT('高校一体化AI智能体'));
     const dir = sub ? join(root, sub) : root;
     mkdirSync(dir, { recursive: true });
     return dir;

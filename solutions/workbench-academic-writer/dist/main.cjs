@@ -597,6 +597,7 @@ function webExtractPrompt(url, text) {
 }
 
 // ../../../totalclaw-solutions/solutions/workbench-academic-writer/src/main/ipc/academicWriter.ipc.ts
+var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var store = new AcademicWriterStore();
 var ACADEMIC_BROWSER_CONTEXT = "academic-writer";
 function norm(s) {
@@ -622,7 +623,7 @@ function registerAcademicWriterHandlers(deps) {
   const pushState = () => broadcast("state");
   const outputRoot = () => {
     const s = store.read().settings;
-    const root = s.outputDir && (0, import_node_fs2.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path2.join)(import_electron.app.getPath("documents"), "TotalClaw", (0, import_i18n3.t)("\u5B66\u672F\u5199\u4F5C"));
+    const root = s.outputDir && (0, import_node_fs2.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path2.join)(import_electron.app.getPath("documents"), (0, import_brandPaths.documentsFolderName)(), (0, import_i18n3.t)("\u5B66\u672F\u5199\u4F5C"));
     (0, import_node_fs2.mkdirSync)(root, { recursive: true });
     return root;
   };

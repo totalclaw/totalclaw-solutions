@@ -42,6 +42,7 @@ import { copyPrebakedFiles, loadPrebaked, mapPrebakedDescriptions, prebakedCompl
 import { demoPackStatus, ensureDemoPack } from '../services/charityContent/demoPack';
 import { narrationTrackPath } from '../services/charityContent/subtitles';
 import { articleWorkDir, demoMaterialsSourceDir, demoMaterialsTargetDir, prepareDemoMaterials } from '../services/charityContent/demoMaterials';
+import { documentsFolderName } from '../services/brandPaths';
 import { audioToDataUrl, imageToDataUrl, renderHtmlToImage, renderHtmlToPdf } from '../services/charityContent/render';
 import {
   requireAbs, requireCaptions, requireLangs, requireMode, requireOutDir, requirePaths, requirePrompt, requireQuality, requireRunId, requireTriText,
@@ -162,7 +163,7 @@ export function registerCharityContentHandlers(deps: WorkbenchIpcDeps): void {
    */
   ipcMain.handle(IPC_CHANNELS.WORKBENCH_CHARITY_START_RUN, async (_e, req: CharityStartRunRequest): Promise<CharityStartRunResponse> => {
     try {
-      const dir = req?.dir ? requireAbs(req.dir, i18nT('工作目录')) : articleWorkDir(app.getPath('documents'));
+      const dir = req?.dir ? requireAbs(req.dir, i18nT('工作目录')) : articleWorkDir(app.getPath('documents'), documentsFolderName());
       mkdirSync(dir, { recursive: true });
       const runId = makeRunId();
       // 输出目录只算路径不建：与素材扫描一致，到真正生成才建，避免留一堆空目录
@@ -540,7 +541,7 @@ export function registerCharityContentHandlers(deps: WorkbenchIpcDeps): void {
   // ── 演示素材：随包素材复制到 <文稿>/TotalClaw/慈善演示素材/（幂等），渲染层再按普通目录扫描 ──
   ipcMain.handle(IPC_CHANNELS.WORKBENCH_CHARITY_DEMO_MATERIALS, async (): Promise<CharityDemoMaterialsResponse> => {
     try {
-      const r = prepareDemoMaterials(demoMaterialsSourceDir(resourcesDir()), demoMaterialsTargetDir(app.getPath('documents')));
+      const r = prepareDemoMaterials(demoMaterialsSourceDir(resourcesDir()), demoMaterialsTargetDir(app.getPath('documents'), documentsFolderName()));
       deps.logger?.info?.('charity-content', '演示素材就绪', { dir: r.dir, copied: r.copied.length, skipped: r.skipped.length });
       return { ok: true, dir: r.dir, copied: r.copied.length };
     } catch (e: any) {

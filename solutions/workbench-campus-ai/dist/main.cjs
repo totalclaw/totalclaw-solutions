@@ -3234,6 +3234,7 @@ function moduleActions(ctx) {
 }
 
 // ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/ipc/campusAi.ipc.ts
+var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var store = new CampusAiStore();
 function registerCampusAiHandlers(deps) {
   const logger = deps.logger;
@@ -3258,7 +3259,7 @@ function registerCampusAiHandlers(deps) {
   const mobile = new CampusMobileServer(svc, logger);
   const outputDir = (sub) => {
     const s = store.read().settings;
-    const root = s.outputDir && (0, import_node_fs6.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path7.join)(import_electron.app.getPath("documents"), "TotalClaw", (0, import_i18n12.t)("\u9AD8\u6821\u4E00\u4F53\u5316AI\u667A\u80FD\u4F53"));
+    const root = s.outputDir && (0, import_node_fs6.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path7.join)(import_electron.app.getPath("documents"), (0, import_brandPaths.documentsFolderName)(), (0, import_i18n12.t)("\u9AD8\u6821\u4E00\u4F53\u5316AI\u667A\u80FD\u4F53"));
     const dir = sub ? (0, import_node_path7.join)(root, sub) : root;
     (0, import_node_fs6.mkdirSync)(dir, { recursive: true });
     return dir;

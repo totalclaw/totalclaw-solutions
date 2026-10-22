@@ -25,6 +25,8 @@ vi.mock('electron', () => ({
   BrowserWindow: class {},
   nativeImage: { createFromPath: () => ({ isEmpty: () => true }) },
 }));
+// 主线品牌：文稿目录名固定 TotalClaw（app 被模拟成已打包，真实 getBrand 会去读 process.resourcesPath）
+vi.mock('../services/brandPaths', () => ({ documentsFolderName: () => 'TotalClaw' }));
 vi.mock('../services/qiyeApiBridge', () => ({ qiyeApiBridge: { chatCompletionsForVision: vi.fn(), chatCompletionsForText: vi.fn() }, getConfiguredDefaultProvider: () => 'deepseek' }));
 vi.mock('../services/councilChatRouter', () => ({ runOneshotChat: vi.fn(async () => '{}') }));
 vi.mock('../services/agentPython', () => ({ resolveAgentPython: () => null }));

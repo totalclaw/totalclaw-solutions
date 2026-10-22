@@ -21,6 +21,7 @@
   ],
   "main": [
     "apps/desktop-shell/src/main/services/accountScope.ts",
+    "apps/desktop-shell/src/main/services/brandPaths.ts",
     "apps/desktop-shell/src/main/services/caseMailSender.ts",
     "apps/desktop-shell/src/main/services/charityContent/render.ts",
     "apps/desktop-shell/src/main/services/serviceSettlement/excel.ts",

@@ -983,6 +983,7 @@ function filingInstruction(input) {
 
 // ../../../totalclaw-solutions/solutions/workbench-finance-agent/src/main/ipc/financeAgent.ipc.ts
 var import_filing = require("host:apps/desktop-shell/src/main/services/financeAgent/filing.ts");
+var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var store = new import_store.FinanceAgentStore();
 var IMAGE_RE = /\.(jpe?g|png|heic|webp|bmp|tiff?)$/i;
 var DOC_FILTERS = {
@@ -1052,7 +1053,7 @@ function registerFinanceAgentHandlers(deps) {
   const ledger = () => store.activeLedger();
   const outputRoot = () => {
     const s = settings();
-    const root = s.outputDir && (0, import_node_fs.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path.join)(import_electron.app.getPath("documents"), "TotalClaw", (0, import_i18n4.t)("\u8D22\u52A1\u667A\u80FD\u4F53"));
+    const root = s.outputDir && (0, import_node_fs.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path.join)(import_electron.app.getPath("documents"), (0, import_brandPaths.documentsFolderName)(), (0, import_i18n4.t)("\u8D22\u52A1\u667A\u80FD\u4F53"));
     (0, import_node_fs.mkdirSync)(root, { recursive: true });
     return root;
   };

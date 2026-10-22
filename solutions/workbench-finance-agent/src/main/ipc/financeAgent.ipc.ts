@@ -51,6 +51,7 @@ import * as P from '../services/financeAgent/prompts';
 import {
   buildFilingItems, checklistItems, portalUrl, provinces, taxLabel, upcomingDeadlines,
 } from '../services/financeAgent/filing';
+import { documentsFolderName } from '../services/brandPaths';
 
 const store = new FinanceAgentStore();
 
@@ -126,7 +127,7 @@ export function registerFinanceAgentHandlers(deps: WorkbenchIpcDeps): void {
 
   const outputRoot = (): string => {
     const s = settings();
-    const root = s.outputDir && existsSync(s.outputDir) ? s.outputDir : join(app.getPath('documents'), 'TotalClaw', i18nT('财务智能体'));
+    const root = s.outputDir && existsSync(s.outputDir) ? s.outputDir : join(app.getPath('documents'), documentsFolderName(), i18nT('财务智能体'));
     mkdirSync(root, { recursive: true });
     return root;
   };

@@ -46,6 +46,7 @@ import {
 } from '../services/flowSla/report';
 import { FlowSlaProc, ledgerStatus, nextFollowAt, syncTracking } from '../services/flowSla/proc';
 import * as P from '../services/flowSla/prompts';
+import { documentsFolderName } from '../services/brandPaths';
 
 const store = new FlowSlaStore();
 let proc: FlowSlaProc | null = null;
@@ -76,7 +77,7 @@ export function registerFlowSlaHandlers(deps: WorkbenchIpcDeps): void {
 
   const outputRoot = (): string => {
     const s = store.read().settings;
-    return s.outputDir && existsSync(s.outputDir) ? s.outputDir : join(app.getPath('documents'), 'TotalClaw', i18nT('流程时效监控'));
+    return s.outputDir && existsSync(s.outputDir) ? s.outputDir : join(app.getPath('documents'), documentsFolderName(), i18nT('流程时效监控'));
   };
   const outputDir = (sub?: string): string => {
     const dir = sub ? join(outputRoot(), safeFileName(sub)) : outputRoot();

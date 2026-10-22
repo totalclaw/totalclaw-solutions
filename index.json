@@ -815,7 +815,7 @@
       "icon": "icon-solutions",
       "order": 140,
       "description": "多邮箱接管，覆盖平台运营、客户开发、询盘处理、客户背调、跟进、内容生产、网站社媒、报价、订单推进与数据整理十项日常工作。",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -862,8 +862,8 @@
       "capabilities": [],
       "path": "solutions/workbench-foreign-trade",
       "fileCount": 8,
-      "size": 909586,
-      "treeDigest": "78be5d81a6cbd59a16a4a2968358f74f62b61774a245826c5d4126c516c79fcd",
+      "size": 909979,
+      "treeDigest": "fa7dee4c83fbd9ca7f231ad88f88a98574cf4fdfdb55b84ec4b90065028e15bf",
       "largeAssets": [
         {
           "path": "resources/bundled-skills/foreign-trade/ft-trade-knowledge-base/references/领英获客.pdf",
@@ -872,7 +872,7 @@
           "origin": "resources/bundled-skills/foreign-trade/ft-trade-knowledge-base/references/领英获客.pdf"
         }
       ],
-      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
+      "changelog": "- 默认输出目录跟随 App 品牌：主线仍为「文稿/TotalClaw」，工信版等白标版本使用各自的目录，与同机安装的主线互不相串（同步 qiye-app 主干改动）。",
       "filesRef": "index/workbench-foreign-trade.json"
     },
     {
@@ -886,7 +886,7 @@
       "icon": "icon-solutions",
       "order": 150,
       "description": "内置 PubMed、Europe PMC、arXiv、Crossref、OpenAlex 检索与知网、万方等学术网站，抓取文献、精读、拟提纲、分节成稿，接人机双写编辑器一起改论文。",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -933,10 +933,10 @@
       "capabilities": [],
       "path": "solutions/workbench-academic-writer",
       "fileCount": 8,
-      "size": 239873,
-      "treeDigest": "1d2d71f9f87c30c6628358959794072813e002f6b776f32a82fb1df07a7db184",
+      "size": 240266,
+      "treeDigest": "1589740584123668a2ae8a1feaaee1ac21d2d5995bcbe6fa5ed71d363556b2c4",
       "largeAssets": [],
-      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
+      "changelog": "- 默认输出目录跟随 App 品牌：主线仍为「文稿/TotalClaw」，工信版等白标版本使用各自的目录，与同机安装的主线互不相串（同步 qiye-app 主干改动）。",
       "filesRef": "index/workbench-academic-writer.json"
     },
     {
@@ -950,7 +950,7 @@
       "icon": "icon-solutions",
       "order": 160,
       "description": "凭证、税务申报、费用报销、往来对账、财务报表、风险巡检、预算、成本、合同审核、财税问答十个智能体，多账套持续跟进。",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -997,10 +997,10 @@
       "capabilities": [],
       "path": "solutions/workbench-finance-agent",
       "fileCount": 8,
-      "size": 772861,
-      "treeDigest": "0363c3948da92449f5936efbea6f5e4d94325397872ceb376bb814e2bcdfeaa6",
+      "size": 773254,
+      "treeDigest": "f7f858cd92128ec3e34844fd21e14959b2c50ae9793d8ca505fa823f48282adf",
       "largeAssets": [],
-      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
+      "changelog": "- 默认输出目录跟随 App 品牌：主线仍为「文稿/TotalClaw」，工信版等白标版本使用各自的目录，与同机安装的主线互不相串（同步 qiye-app 主干改动）。",
       "filesRef": "index/workbench-finance-agent.json"
     },
     {
@@ -1077,7 +1077,7 @@
       "icon": "icon-solutions",
       "order": 180,
       "description": "短视频生成并发抖音、快手、小红书、视频号；数字人出镜介绍企业；商品图文自动上下架；收银与财务数据自动取数、统计并推送经营日报。",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1124,10 +1124,10 @@
       "capabilities": [],
       "path": "solutions/workbench-biz-automation",
       "fileCount": 8,
-      "size": 455931,
-      "treeDigest": "467816736f54bd52b802364072f2d47555a9b7fb027a553e96637be53fcbb13d",
+      "size": 456324,
+      "treeDigest": "25328c64272870ae7e20bfc084fdbb835168c615789c1732452cb8c33bb3cf73",
       "largeAssets": [],
-      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
+      "changelog": "- 默认输出目录跟随 App 品牌：主线仍为「文稿/TotalClaw」，工信版等白标版本使用各自的目录，与同机安装的主线互不相串（同步 qiye-app 主干改动）。",
       "filesRef": "index/workbench-biz-automation.json"
     },
     {
@@ -1204,7 +1204,7 @@
       "icon": "icon-solutions",
       "order": 200,
       "description": "导入 OA、费控、CSS 三个系统的流程报表，按时效规则算出每个流程和每位审核人是否超时，自动出时效看板、周报和月度分析报告，并跟进在途流程和改善建议。",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1251,10 +1251,10 @@
       "capabilities": [],
       "path": "solutions/workbench-flow-sla",
       "fileCount": 8,
-      "size": 689423,
-      "treeDigest": "a9d21c68407b7d8432a25e85e198067e7a781d6dca4ddfcae6dda8ccfbf28435",
+      "size": 689816,
+      "treeDigest": "cc583f148475a0c21caf144d4f9c4b769179ded2e3ee13dab0d603607426ce41",
       "largeAssets": [],
-      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
+      "changelog": "- 默认输出目录跟随 App 品牌：主线仍为「文稿/TotalClaw」，工信版等白标版本使用各自的目录，与同机安装的主线互不相串（同步 qiye-app 主干改动）。",
       "filesRef": "index/workbench-flow-sla.json"
     },
     {
@@ -1268,7 +1268,7 @@
       "icon": "icon-solutions",
       "order": 210,
       "description": "投喂配件历史发货、采购提前期、采购在途和实时库存四类数据，算出每个配件是呆滞、冗余、健康、将缺货还是已缺货，给出处理建议和补库清单，人工检验后转采购订单，并可定时循环运算预警。",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1315,10 +1315,10 @@
       "capabilities": [],
       "path": "solutions/workbench-parts-alert",
       "fileCount": 8,
-      "size": 297869,
-      "treeDigest": "3263f3bcd651867ccf20b87cba02a04dc6cbe9106e39641c8d06a2ee7a365b51",
+      "size": 298262,
+      "treeDigest": "b4881b389f82d185b689f810624dde3201d645ef6cf052edb0db4eecdc00f26c",
       "largeAssets": [],
-      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
+      "changelog": "- 默认输出目录跟随 App 品牌：主线仍为「文稿/TotalClaw」，工信版等白标版本使用各自的目录，与同机安装的主线互不相串（同步 qiye-app 主干改动）。",
       "filesRef": "index/workbench-parts-alert.json"
     },
     {
@@ -1332,7 +1332,7 @@
       "icon": "icon-solutions",
       "order": 220,
       "description": "校级 AI 中心一体化平台：统一校园知识库，师生扫码就能问、答案带出处、答不了的转部门；按成绩和考勤算学业预警，辅导员复核后出谈话提纲与通知；模型服务、调用审计与数据保留统一运维。",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1379,10 +1379,10 @@
       "capabilities": [],
       "path": "solutions/workbench-campus-ai",
       "fileCount": 8,
-      "size": 651387,
-      "treeDigest": "e15c047f1c937cb45334dcbe10fed296a3f4221a0358bcbf47cccde0f1a2eca2",
+      "size": 651780,
+      "treeDigest": "80c52361050b3a82d20fbf7e4c119d864e9a23b22f1145ea3edbad3086180f94",
       "largeAssets": [],
-      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
+      "changelog": "- 默认输出目录跟随 App 品牌：主线仍为「文稿/TotalClaw」，工信版等白标版本使用各自的目录，与同机安装的主线互不相串（同步 qiye-app 主干改动）。",
       "filesRef": "index/workbench-campus-ai.json"
     },
     {
@@ -1460,7 +1460,7 @@
       "icon": "icon-solutions",
       "order": 240,
       "description": "京东/天猫好评激励核算、服务费用结案汇总与邮件下发、发票监听与付款跟踪、报废台账更新、服务营销激励季度结案（含个税申报表与结案报告）。",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1507,10 +1507,10 @@
       "capabilities": [],
       "path": "solutions/workbench-service-settlement",
       "fileCount": 8,
-      "size": 791452,
-      "treeDigest": "1b9fed9ae00ec6bc0cdc2cdc73205de4d1b660bfae7ebf0536dff86bdce20ac5",
+      "size": 791845,
+      "treeDigest": "014dc09fd71b4ba211815d3be7e0df27f5087cddcb73382b3cf8d39a73c19e69",
       "largeAssets": [],
-      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
+      "changelog": "- 默认输出目录跟随 App 品牌：主线仍为「文稿/TotalClaw」，工信版等白标版本使用各自的目录，与同机安装的主线互不相串（同步 qiye-app 主干改动）。",
       "filesRef": "index/workbench-service-settlement.json"
     },
     {
@@ -1595,7 +1595,7 @@
       "description": "放进活动照片与视频：自动生成活动档案、中英阿三语报告 PDF 与海报、高保真语音、9:16 宣传短视频，一键完整流程。",
       "descriptionEn": "Turn one charity event's raw material (photos, field notes, donation data) into multilingual campaign content in one pass: posters and illustrations, short-video cuts, social posts and donor thank-you letters, exported per platform aspect ratio and language, with a reviewable trail.",
       "descriptionAr": "حوّل مواد فعالية خيرية واحدة (الصور، السجلات الميدانية، بيانات التبرعات) إلى محتوى ترويجي متعدد اللغات بخطوة واحدة: ملصقات وصور، مقاطع فيديو قصيرة، منشورات للتواصل الاجتماعي ورسائل شكر للمتبرعين، تُصدَّر حسب مقاس كل منصة ولغتها مع سجل كامل قابل للمراجعة.",
-      "version": "2.0.0",
+      "version": "2.0.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1642,8 +1642,8 @@
       "capabilities": [],
       "path": "solutions/workbench-charity-content",
       "fileCount": 8,
-      "size": 316840,
-      "treeDigest": "d0d0122384f67de49160d3e05859d093b316b1f9d94e3b8e1a58581b79b8c08c",
+      "size": 317338,
+      "treeDigest": "ac10697916ead7e110520e0749201b87ecfdc6302dd40f248c3bba27976b54e8",
       "largeAssets": [
         {
           "path": "resources/bundled-solutions/charity-content/demo-materials/58865d8353e8b485e0ce7db1b3a23559.mp4",
@@ -1700,7 +1700,7 @@
           "origin": "resources/bundled-solutions/charity-content/prebaked/video-zh.mp4"
         }
       ],
-      "changelog": "- 改为动态方案（runtime.mode=dynamic，hostApi=2）：界面与主进程逻辑来自方案包，不再随 App 编译；升级在重启后生效。\n- 共用代码（被宿主或多个方案使用的部分）移入宿主 SDK，由宿主模块注册表提供。\n- 上一版本：1.0.0（随 App 构建）。",
+      "changelog": "- 默认输出目录跟随 App 品牌：主线仍为「文稿/TotalClaw」，工信版等白标版本使用各自的目录，与同机安装的主线互不相串（同步 qiye-app 主干改动）。",
       "filesRef": "index/workbench-charity-content.json"
     },
     {

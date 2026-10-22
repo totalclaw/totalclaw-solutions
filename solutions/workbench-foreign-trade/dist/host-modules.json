@@ -17,6 +17,7 @@
     "apps/desktop-shell/src/main/services/bidWriter/docx.ts",
     "apps/desktop-shell/src/main/services/bidWriter/noticeFetch.ts",
     "apps/desktop-shell/src/main/services/bidWriter/noticeSearch.ts",
+    "apps/desktop-shell/src/main/services/brandPaths.ts",
     "apps/desktop-shell/src/main/services/documentExtraction.ts",
     "apps/desktop-shell/src/main/services/documentExtractor.ts",
     "apps/desktop-shell/src/main/services/fxRateService.ts",

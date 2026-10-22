@@ -1434,6 +1434,7 @@ var PartsAlertStore = class {
 };
 
 // ../../../totalclaw-solutions/solutions/workbench-parts-alert/src/main/ipc/partsAlert.ipc.ts
+var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var store = new PartsAlertStore();
 var datasetLabel = (k) => ({
   monthly: (0, import_i18n4.t)("\u5386\u53F2\u53D1\u8D27\uFF08\u6309\u6708\uFF09"),
@@ -1491,7 +1492,7 @@ function registerPartsAlertHandlers(deps) {
   const now = () => (/* @__PURE__ */ new Date()).toISOString();
   const outputDir = (sub) => {
     const s = store.read().settings;
-    const root = s.outputDir && (0, import_node_fs6.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path6.join)(import_electron.app.getPath("documents"), "TotalClaw", (0, import_i18n4.t)("\u914D\u4EF6\u9884\u8B66\u4E0E\u8865\u5E93"));
+    const root = s.outputDir && (0, import_node_fs6.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path6.join)(import_electron.app.getPath("documents"), (0, import_brandPaths.documentsFolderName)(), (0, import_i18n4.t)("\u914D\u4EF6\u9884\u8B66\u4E0E\u8865\u5E93"));
     const dir = sub ? (0, import_node_path6.join)(root, sub) : root;
     (0, import_node_fs6.mkdirSync)(dir, { recursive: true });
     return dir;

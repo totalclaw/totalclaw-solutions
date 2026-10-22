@@ -4251,6 +4251,7 @@ function writeScrapSummaryWorkbook(outPath, result) {
 }
 
 // ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/ipc/serviceSettlement.ipc.ts
+var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var store = new ServiceSettlementStore();
 var proc = null;
 function todayIso2() {
@@ -4317,7 +4318,7 @@ function registerServiceSettlementHandlers(deps) {
     } catch {
     }
   };
-  const defaultOutputDir = () => (0, import_path4.join)(import_electron2.app.getPath("documents"), "TotalClaw", (0, import_i18n11.t)("\u670D\u52A1\u5546\u7ED3\u7B97"));
+  const defaultOutputDir = () => (0, import_path4.join)(import_electron2.app.getPath("documents"), (0, import_brandPaths.documentsFolderName)(), (0, import_i18n11.t)("\u670D\u52A1\u5546\u7ED3\u7B97"));
   const sendMail = async (input) => {
     const { sendCaseMail } = await import("host:apps/desktop-shell/src/main/services/caseMailSender.ts");
     const relay = deps.serviceAuth ? { send: (i) => deps.serviceAuth.relaySendMail(i) } : null;

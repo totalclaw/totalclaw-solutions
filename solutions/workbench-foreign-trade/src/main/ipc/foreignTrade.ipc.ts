@@ -49,6 +49,7 @@ import { normalizeName, ScreeningLists, SCREENING_IDS, SCREENING_STALE_DAYS } fr
 import { buildHsTable, hsSearch, parseHsCsv, validateHsCode, type HsTable } from '../services/foreignTrade/hsCodes';
 import { shellResourcesPath } from '../services/runtimeLocation';
 import * as P from '../services/foreignTrade/prompts';
+import { documentsFolderName } from '../services/brandPaths';
 
 const store = new ForeignTradeStore();
 const POLL_INTERVAL_MS = 120_000;
@@ -110,7 +111,7 @@ export function registerForeignTradeHandlers(deps: WorkbenchIpcDeps): void {
 
   const outputDir = (sub?: string): string => {
     const s = store.read().settings;
-    const root = s.outputDir && existsSync(s.outputDir) ? s.outputDir : join(app.getPath('documents'), 'TotalClaw', i18nT('外贸业务'));
+    const root = s.outputDir && existsSync(s.outputDir) ? s.outputDir : join(app.getPath('documents'), documentsFolderName(), i18nT('外贸业务'));
     const dir = sub ? join(root, sub) : root;
     if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
     return dir;

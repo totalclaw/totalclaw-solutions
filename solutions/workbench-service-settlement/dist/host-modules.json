@@ -15,6 +15,7 @@
   "main": [
     "apps/desktop-shell/src/main/ipc/workbenchApi.ts",
     "apps/desktop-shell/src/main/services/accountScope.ts",
+    "apps/desktop-shell/src/main/services/brandPaths.ts",
     "apps/desktop-shell/src/main/services/caseMailSender.ts",
     "apps/desktop-shell/src/main/services/councilChatRouter.ts",
     "apps/desktop-shell/src/main/services/cronResultNotifier.ts",

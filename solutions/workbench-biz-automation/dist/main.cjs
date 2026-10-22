@@ -1002,6 +1002,7 @@ var import_retrieval = require("host:apps/desktop-shell/src/main/services/knowle
 var import_fieldCatalog = require("host:apps/desktop-shell/src/main/services/knowledgeBase/fieldCatalog.ts");
 var import_apparelStore = require("host:apps/desktop-shell/src/main/ipc/apparelStore.ipc.ts");
 var import_logic4 = require("host:apps/desktop-shell/src/main/services/apparelStore/logic.ts");
+var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var BIZ_SOLUTION_ID = "workbench-biz-automation";
 var store = new BizAutomationStore();
 var VIDEO_TYPE_LABEL = () => ({
@@ -1048,7 +1049,7 @@ function registerBizAutomationHandlers(deps) {
   });
   const outputDir = (sub, create = true) => {
     const s = store.read().settings;
-    const root = s.outputDir && (0, import_node_fs3.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path3.join)(import_electron.app.getPath("documents"), "TotalClaw", (0, import_i18n4.t)("\u7ECF\u8425\u81EA\u52A8\u5316"));
+    const root = s.outputDir && (0, import_node_fs3.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path3.join)(import_electron.app.getPath("documents"), (0, import_brandPaths.documentsFolderName)(), (0, import_i18n4.t)("\u7ECF\u8425\u81EA\u52A8\u5316"));
     const dir = sub ? (0, import_node_path3.join)(root, sub) : root;
     if (create) (0, import_node_fs3.mkdirSync)(dir, { recursive: true });
     return dir;

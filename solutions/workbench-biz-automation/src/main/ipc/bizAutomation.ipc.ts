@@ -52,6 +52,7 @@ import { rankFacts } from '../services/knowledgeBase/retrieval';
 import { fieldLabel } from '../services/knowledgeBase/fieldCatalog';
 import { apparelService } from './apparelStore.ipc';
 import { sizeChartRows } from '../services/apparelStore/logic';
+import { documentsFolderName } from '../services/brandPaths';
 
 export const BIZ_SOLUTION_ID = 'workbench-biz-automation';
 const store = new BizAutomationStore();
@@ -92,7 +93,7 @@ export function registerBizAutomationHandlers(deps: WorkbenchIpcDeps): void {
   /** 导出目录；create=false 只算路径（展示用），真正写文件时才建 */
   const outputDir = (sub?: string, create = true): string => {
     const s = store.read().settings;
-    const root = s.outputDir && existsSync(s.outputDir) ? s.outputDir : join(app.getPath('documents'), 'TotalClaw', i18nT('经营自动化'));
+    const root = s.outputDir && existsSync(s.outputDir) ? s.outputDir : join(app.getPath('documents'), documentsFolderName(), i18nT('经营自动化'));
     const dir = sub ? join(root, sub) : root;
     if (create) mkdirSync(dir, { recursive: true });
     return dir;

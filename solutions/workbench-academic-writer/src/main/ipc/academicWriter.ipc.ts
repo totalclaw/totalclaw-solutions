@@ -25,6 +25,7 @@ import { doiExists, mergePapers, normDoi, normTitle, searchSource, sourceLabel, 
 import { extractCites, renderManuscript, toBibtex, wordCount } from '../services/academicWriter/citations';
 import { appsForFile, openWithApp, type OpenWithApp } from '../services/openWithApps';
 import * as P from '../services/academicWriter/prompts';
+import { documentsFolderName } from '../services/brandPaths';
 
 const store = new AcademicWriterStore();
 /** 学术网站在内置浏览器里的登录上下文：学校 / 机构账号登录一次，所有论文项目共用 */
@@ -52,7 +53,7 @@ export function registerAcademicWriterHandlers(deps: WorkbenchIpcDeps): void {
 
   const outputRoot = (): string => {
     const s = store.read().settings;
-    const root = s.outputDir && existsSync(s.outputDir) ? s.outputDir : join(app.getPath('documents'), 'TotalClaw', i18nT('学术写作'));
+    const root = s.outputDir && existsSync(s.outputDir) ? s.outputDir : join(app.getPath('documents'), documentsFolderName(), i18nT('学术写作'));
     mkdirSync(root, { recursive: true });
     return root;
   };

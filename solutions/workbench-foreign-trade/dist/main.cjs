@@ -2958,6 +2958,7 @@ function hsRerankPrompt(product, candidates) {
 }
 
 // ../../../totalclaw-solutions/solutions/workbench-foreign-trade/src/main/ipc/foreignTrade.ipc.ts
+var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var store = new ForeignTradeStore();
 var POLL_INTERVAL_MS = 12e4;
 var TICK_INTERVAL_MS = 6e4;
@@ -3033,7 +3034,7 @@ function registerForeignTradeHandlers(deps) {
   const progress = (key, message) => broadcast("progress", { key, message });
   const outputDir = (sub) => {
     const s = store.read().settings;
-    const root = s.outputDir && (0, import_node_fs4.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path4.join)(import_electron.app.getPath("documents"), "TotalClaw", (0, import_i18n5.t)("\u5916\u8D38\u4E1A\u52A1"));
+    const root = s.outputDir && (0, import_node_fs4.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path4.join)(import_electron.app.getPath("documents"), (0, import_brandPaths.documentsFolderName)(), (0, import_i18n5.t)("\u5916\u8D38\u4E1A\u52A1"));
     const dir = sub ? (0, import_node_path4.join)(root, sub) : root;
     if (!(0, import_node_fs4.existsSync)(dir)) (0, import_node_fs4.mkdirSync)(dir, { recursive: true });
     return dir;

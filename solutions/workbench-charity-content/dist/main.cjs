@@ -423,12 +423,12 @@ var DEMO_FILE_RE = /\.(jpe?g|png|webp|mp4|mov|m4v|webm|pdf)$/i;
 function demoMaterialsSourceDir(shellResources) {
   return (0, import_node_path3.join)(shellResources, DEMO_MATERIALS_REL);
 }
-function demoMaterialsTargetDir(documentsDir) {
-  return (0, import_node_path3.join)(documentsDir, "TotalClaw", DEMO_MATERIALS_DIR_NAME);
+function demoMaterialsTargetDir(documentsDir, appFolder = "TotalClaw") {
+  return (0, import_node_path3.join)(documentsDir, appFolder, DEMO_MATERIALS_DIR_NAME);
 }
 var ARTICLE_DIR_NAME = (0, import_matchTokens.matchLiteral)("\u6148\u5584\u6587\u7AE0\u914D\u97F3");
-function articleWorkDir(documentsDir) {
-  return (0, import_node_path3.join)(documentsDir, "TotalClaw", ARTICLE_DIR_NAME);
+function articleWorkDir(documentsDir, appFolder = "TotalClaw") {
+  return (0, import_node_path3.join)(documentsDir, appFolder, ARTICLE_DIR_NAME);
 }
 function prepareDemoMaterials(srcDir, destDir) {
   const files = (0, import_node_fs2.existsSync)(srcDir) ? (0, import_node_fs2.readdirSync)(srcDir).filter((n) => !n.startsWith(".") && DEMO_FILE_RE.test(n)).sort() : [];
@@ -464,6 +464,7 @@ function prepareDemoMaterials(srcDir, destDir) {
 }
 
 // ../../../totalclaw-solutions/solutions/workbench-charity-content/src/main/ipc/charityContent.ipc.ts
+var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var import_render2 = require("host:apps/desktop-shell/src/main/services/charityContent/render.ts");
 
 // ../../../totalclaw-solutions/solutions/workbench-charity-content/src/main/services/charityContent/validate.ts
@@ -638,7 +639,7 @@ function registerCharityContentHandlers(deps) {
   });
   import_electron2.ipcMain.handle(import_ipc_contracts.IPC_CHANNELS.WORKBENCH_CHARITY_START_RUN, async (_e, req) => {
     try {
-      const dir = req?.dir ? requireAbs(req.dir, (0, import_i18n6.t)("\u5DE5\u4F5C\u76EE\u5F55")) : articleWorkDir(import_electron2.app.getPath("documents"));
+      const dir = req?.dir ? requireAbs(req.dir, (0, import_i18n6.t)("\u5DE5\u4F5C\u76EE\u5F55")) : articleWorkDir(import_electron2.app.getPath("documents"), (0, import_brandPaths.documentsFolderName)());
       (0, import_node_fs3.mkdirSync)(dir, { recursive: true });
       const runId = (0, import_pipeline2.makeRunId)();
       return { ok: true, dir, outDir: (0, import_pipeline2.outDirFor)(dir, runId), runId };
@@ -1025,7 +1026,7 @@ function registerCharityContentHandlers(deps) {
   });
   import_electron2.ipcMain.handle(import_ipc_contracts.IPC_CHANNELS.WORKBENCH_CHARITY_DEMO_MATERIALS, async () => {
     try {
-      const r = prepareDemoMaterials(demoMaterialsSourceDir(resourcesDir()), demoMaterialsTargetDir(import_electron2.app.getPath("documents")));
+      const r = prepareDemoMaterials(demoMaterialsSourceDir(resourcesDir()), demoMaterialsTargetDir(import_electron2.app.getPath("documents"), (0, import_brandPaths.documentsFolderName)()));
       deps.logger?.info?.("charity-content", "\u6F14\u793A\u7D20\u6750\u5C31\u7EEA", { dir: r.dir, copied: r.copied.length, skipped: r.skipped.length });
       return { ok: true, dir: r.dir, copied: r.copied.length };
     } catch (e) {

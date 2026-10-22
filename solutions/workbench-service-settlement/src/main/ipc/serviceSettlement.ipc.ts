@@ -48,6 +48,7 @@ import {
   validateLeader, parseLeaderInfoFromTable, addDays, normalizeDate, readProviderInfoTable,
   type AchievementResult, type LeaderInfo, type IncentiveResult, type IncentiveExtras, type ProviderInfoData,
 } from '../services/serviceSettlement/marketingIncentive';
+import { documentsFolderName } from '../services/brandPaths';
 
 const store = new ServiceSettlementStore();
 let proc: ServiceSettlementProc | null = null;
@@ -127,7 +128,7 @@ export function registerServiceSettlementHandlers(deps: WorkbenchIpcDeps): void 
   const broadcast = (event: { type: string; payload?: unknown }): void => {
     try { win()?.webContents.send(IPC_CHANNELS.WORKBENCH_SS_EVENT, event); } catch { /* 窗口已关 */ }
   };
-  const defaultOutputDir = (): string => join(app.getPath('documents'), 'TotalClaw', i18nT('服务商结算'));
+  const defaultOutputDir = (): string => join(app.getPath('documents'), documentsFolderName(), i18nT('服务商结算'));
 
   const sendMail = async (input: { to: string[]; subject: string; body: string; attachments?: { filename: string; path: string }[]; headers?: Record<string, string> }) => {
     const { sendCaseMail } = await import('../services/caseMailSender');

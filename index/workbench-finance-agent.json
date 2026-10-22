@@ -1,12 +1,12 @@
 {
   "id": "workbench-finance-agent",
-  "version": "2.0.0",
-  "treeDigest": "0363c3948da92449f5936efbea6f5e4d94325397872ceb376bb814e2bcdfeaa6",
+  "version": "2.0.1",
+  "treeDigest": "f7f858cd92128ec3e34844fd21e14959b2c50ae9793d8ca505fa823f48282adf",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 446,
-      "sha256": "daf374dd8729bd04b77f3e4f17fd7b32cdb6469fda4d85328fc701f43dc569bc"
+      "size": 656,
+      "sha256": "89252474f68318f961f274ead0a99aa886361caea6d3ef02d7805159da513659"
     },
     {
       "path": "README.md",
@@ -15,13 +15,13 @@
     },
     {
       "path": "dist/host-modules.json",
-      "size": 1869,
-      "sha256": "a00282a085a39440621e6cb8bb4c483757bb0ad664f5c24f6cd91bf0f316d94b"
+      "size": 1927,
+      "sha256": "f60520c6252d76121a55d540e27b084d3ece734e2f2039866d42c685e11a4554"
     },
     {
       "path": "dist/main.cjs",
-      "size": 141647,
-      "sha256": "5993d8484383298cae72e7378a50392fbf57ce6cff090c0975bc4dae12b3c1ac"
+      "size": 141772,
+      "sha256": "1dcc20a2b0d6b57885152a1265ea8be70a35613ee0b8b52c0be9f5583f905d5b"
     },
     {
       "path": "dist/renderer.mjs",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2313,
-      "sha256": "d5876f3f2319cc344ddce03ec6ad349fd57616f6dbe2a289318034f671e352bf"
+      "sha256": "5805e05e30e15cf5064b8d94574a9655b84ceae9124394c80fe515a6a6bc4348"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.1",
+      "ref": "workbench-finance-agent@2.0.1",
+      "treeDigest": "f7f858cd92128ec3e34844fd21e14959b2c50ae9793d8ca505fa823f48282adf",
+      "filesRef": "index/workbench-finance-agent/2.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.0",
       "ref": "workbench-finance-agent@2.0.0",

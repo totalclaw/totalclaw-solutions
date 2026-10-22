@@ -7531,6 +7531,7 @@ function summaryPrompt(kind, facts, names) {
 }
 
 // ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/ipc/flowSla.ipc.ts
+var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var store = new FlowSlaStore();
 var proc = null;
 function requireFound(v, what) {
@@ -7560,7 +7561,7 @@ function registerFlowSlaHandlers(deps) {
   const { llmJson } = (0, import_workbenchLlm.createWorkbenchLlm)(deps, { logTag: "flow-sla", moduleModel: () => "" });
   const outputRoot = () => {
     const s = store.read().settings;
-    return s.outputDir && (0, import_node_fs3.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path5.join)(import_electron.app.getPath("documents"), "TotalClaw", (0, import_i18n6.t)("\u6D41\u7A0B\u65F6\u6548\u76D1\u63A7"));
+    return s.outputDir && (0, import_node_fs3.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path5.join)(import_electron.app.getPath("documents"), (0, import_brandPaths.documentsFolderName)(), (0, import_i18n6.t)("\u6D41\u7A0B\u65F6\u6548\u76D1\u63A7"));
   };
   const outputDir = (sub) => {
     const dir = sub ? (0, import_node_path5.join)(outputRoot(), (0, import_excel3.safeFileName)(sub)) : outputRoot();

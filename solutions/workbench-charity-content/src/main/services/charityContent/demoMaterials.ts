@@ -25,8 +25,8 @@ export function demoMaterialsSourceDir(shellResources: string): string {
 }
 
 /** documentsDir = app.getPath('documents')（mac ~/Documents，Windows 文档库，含 OneDrive 重定向） */
-export function demoMaterialsTargetDir(documentsDir: string): string {
-  return join(documentsDir, 'TotalClaw', DEMO_MATERIALS_DIR_NAME);
+export function demoMaterialsTargetDir(documentsDir: string, appFolder = 'TotalClaw'): string {
+  return join(documentsDir, appFolder, DEMO_MATERIALS_DIR_NAME);
 }
 
 /** 文章转语音线的工作目录名：同样固定不随界面语言变，否则切语言后历史成品「消失」 */
@@ -36,8 +36,8 @@ export const ARTICLE_DIR_NAME = matchLiteral('慈善文章配音');
  * 文章转语音线没有素材目录，产物也得有个固定落点：<文稿>/TotalClaw/慈善文章配音/，
  * 其下照常是 输出/<runId>/。与演示素材分开放，免得两条线的历史混在一个列表里。
  */
-export function articleWorkDir(documentsDir: string): string {
-  return join(documentsDir, 'TotalClaw', ARTICLE_DIR_NAME);
+export function articleWorkDir(documentsDir: string, appFolder = 'TotalClaw'): string {
+  return join(documentsDir, appFolder, ARTICLE_DIR_NAME);
 }
 
 export interface DemoMaterialsResult { dir: string; copied: string[]; skipped: string[] }

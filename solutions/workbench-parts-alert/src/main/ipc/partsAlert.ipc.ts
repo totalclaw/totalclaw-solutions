@@ -31,6 +31,7 @@ import { dueToday, localDay, pickNewestFiles } from '../services/partsAlert/sche
 import {
   PartsAlertStore, defaultKeywords, defaultRules, emptyData, newId, normalizeRules, normalizeSchedule,
 } from '../services/partsAlert/store';
+import { documentsFolderName } from '../services/brandPaths';
 
 const store = new PartsAlertStore();
 
@@ -72,7 +73,7 @@ export function registerPartsAlertHandlers(deps: WorkbenchIpcDeps): void {
 
   const outputDir = (sub?: string): string => {
     const s = store.read().settings;
-    const root = s.outputDir && existsSync(s.outputDir) ? s.outputDir : join(app.getPath('documents'), 'TotalClaw', i18nT('配件预警与补库'));
+    const root = s.outputDir && existsSync(s.outputDir) ? s.outputDir : join(app.getPath('documents'), documentsFolderName(), i18nT('配件预警与补库'));
     const dir = sub ? join(root, sub) : root;
     mkdirSync(dir, { recursive: true });
     return dir;

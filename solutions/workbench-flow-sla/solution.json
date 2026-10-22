@@ -6,7 +6,7 @@
   "aliases": [
     "flow-sla"
   ],
-  "version": "2.0.0",
+  "version": "2.0.1",
   "kind": "workbench",
   "category": "流程管理",
   "icon": "icon-solutions",

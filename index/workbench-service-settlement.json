@@ -1,12 +1,12 @@
 {
   "id": "workbench-service-settlement",
-  "version": "2.0.0",
-  "treeDigest": "1b9fed9ae00ec6bc0cdc2cdc73205de4d1b660bfae7ebf0536dff86bdce20ac5",
+  "version": "2.0.1",
+  "treeDigest": "014dc09fd71b4ba211815d3be7e0df27f5087cddcb73382b3cf8d39a73c19e69",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 461,
-      "sha256": "1532546ff12a484739f15099e47a8933b7560a7a12b90d35a8ad31818162f292"
+      "size": 671,
+      "sha256": "c26b45c1de0bc5efb7129b7b82c4c025d599c1e08bc998c90def18dd197d4601"
     },
     {
       "path": "README.md",
@@ -15,13 +15,13 @@
     },
     {
       "path": "dist/host-modules.json",
-      "size": 1633,
-      "sha256": "8adcea6522a34ac505b4d60c80aba02e8f61882a3c056ced868a36fbe8951bea"
+      "size": 1691,
+      "sha256": "3cb853e7a12f27d33f2adf978004a5d1430444732371ee9f729c13339b4f44c0"
     },
     {
       "path": "dist/main.cjs",
-      "size": 308327,
-      "sha256": "743c9c16454e8a3034e7acdc6fc6d5ac60b4d785a2514dc6fcb776eb3c1c890d"
+      "size": 308452,
+      "sha256": "6530d29ba475b4488ce3cdcbddab5aa0d398c2329f6f582b7a395795eedcd9af"
     },
     {
       "path": "dist/renderer.mjs",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2221,
-      "sha256": "5ba767682e2ddbb34043ba7a79a3276fc1b567750e0ea0e1f4dce04de51cd46a"
+      "sha256": "06c70800ce0734cce932341ae818345ae5902a3d53223a214863e05c63c33a30"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.1",
+      "ref": "workbench-service-settlement@2.0.1",
+      "treeDigest": "014dc09fd71b4ba211815d3be7e0df27f5087cddcb73382b3cf8d39a73c19e69",
+      "filesRef": "index/workbench-service-settlement/2.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.0",
       "ref": "workbench-service-settlement@2.0.0",
