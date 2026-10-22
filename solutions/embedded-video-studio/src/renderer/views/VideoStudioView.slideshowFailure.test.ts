@@ -25,6 +25,7 @@ vi.mock('../stores/notification', () => ({
 vi.mock('../i18n', () => ({
   t: (s: string, _p?: any) => s,
   localizeWorkflowText: (s: string) => s,
+  i18nKey: (s: string) => s,
   // humanize.ts（humanizeChatError 兜底链）读 i18n.global.locale —— 补齐避免 mock 缺口
   i18n: { global: { locale: { value: 'zh-CN' } } },
 }));

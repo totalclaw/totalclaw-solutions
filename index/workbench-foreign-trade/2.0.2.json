@@ -1,0 +1,47 @@
+{
+  "id": "workbench-foreign-trade",
+  "version": "2.0.2",
+  "treeDigest": "b2c8d247718f565f05b4c6617f858da79264b105a190ab44f07b0b6defa3f1bf",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 1179,
+      "sha256": "3058c9d1adc31c104220200ce04203eaeed619e9006f4abe12cbda3ee03a7850"
+    },
+    {
+      "path": "README.md",
+      "size": 1154,
+      "sha256": "f16ab2c9fad95189fa855556378ef3e3e8672f1f3a0f3f6f14897895a2ac5546"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 1805,
+      "sha256": "9cbc827e5c5d008aa767971b868109ecefc9c89a8c6289d75efd1828402563fe"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 261803,
+      "sha256": "f7660635d18258f8084b29fa23fbca329ddca21fa6e9f0b4b2ab2bbfb5974be5"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 617662,
+      "sha256": "54169f915d8e9734c3f08f1ccb298c5101f90b3df6913e0144428ae9f8474333"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 25830,
+      "sha256": "f40087c70e71401fdbb275f2ad394aab32cdaf04e9191463b74af07471de787d"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2577,
+      "sha256": "54ddd6633fa0c3e1bf39426329e5fbb8bb6982d3b7ef091401af4e970974df4c"
+    }
+  ]
+}

@@ -20,6 +20,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -569,12 +570,19 @@ async function ensureSuggestionsInLang(deps, kb, lang) {
 // node_modules/.cache/solutions-build/workbench-grounded-qa/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerGroundedQaHandlers";
+var cleanup;
 function activate(ctx) {
-  registerGroundedQaHandlers(ctx.host.deps);
+  cleanup = registerGroundedQaHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });

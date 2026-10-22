@@ -133,7 +133,7 @@ export function registerHealthcareWorkbenchHandlers(deps: WorkbenchIpcDeps): voi
           {
             type: 'agent',
             bind: 'reviewed_service_plan',
-            goal: '你是医院服务主管 Agent。将 {{service_plan}} 整理成简洁 Markdown：已验证证据、服务待办、风险与人工确认；明确不包含诊断、处方或治疗建议，也不得声称 HIS 写入已完成。',
+            goal: i18nT('你是医院服务主管 Agent。将 {servicePlan} 整理成简洁 Markdown：已验证证据、服务待办、风险与人工确认；明确不包含诊断、处方或治疗建议，也不得声称 HIS 写入已完成。', { servicePlan: '{{service_plan}}' }),
           },
           { type: 'log', message: i18nT('医疗运营工作流 {scenarioId} 完成', { scenarioId }) },
         ],

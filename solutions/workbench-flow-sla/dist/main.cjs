@@ -30,6 +30,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -40,13 +41,14 @@ var import_electron = require("electron");
 var import_node_fs3 = require("node:fs");
 var import_node_path5 = require("node:path");
 var import_ipc_contracts3 = require("npm:@totalclaw/ipc-contracts");
-var import_i18n6 = require("npm:@totalclaw/i18n");
+var import_i18n7 = require("npm:@totalclaw/i18n");
 var import_userFacingError = require("host:apps/desktop-shell/src/main/utils/userFacingError.ts");
 var import_quitRegistry = require("host:apps/desktop-shell/src/main/util/quitRegistry.ts");
 var import_workbenchLlm = require("host:apps/desktop-shell/src/main/services/workbenchLlm.ts");
 var import_excel3 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
 // ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/calc.ts
+var import_i18n = require("npm:@totalclaw/i18n");
 var DAY = 864e5;
 function r2(n) {
   return Math.round(n * 100) / 100;
@@ -408,12 +410,13 @@ function computeSla(flows, nodes, rules, opt) {
   const reviewerRank = rankPeople(reviews.map((r) => ({ name: r.handler, identity: r.identity, dept: r.dept, ok: r.compliant, days: r.days })));
   const initiatorRank = rankPeople(done.filter((f) => f.overtime !== null && f.initiator).map((f) => ({ name: f.initiator, identity: managers.has(f.initiator) ? "\u7BA1\u7406\u5E72\u90E8" : "\u975E\u7BA1\u7406\u5E72\u90E8", dept: f.dept, ok: !f.overtime, days: f.days })));
   const runInit = /* @__PURE__ */ new Map();
+  const unfilled = (0, import_i18n.t)("\uFF08\u672A\u586B\uFF09");
   for (const f of running) {
-    const cur = runInit.get(f.initiator || "\uFF08\u672A\u586B\uFF09") ?? { count: 0, overdue: 0, risk: 0 };
+    const cur = runInit.get(f.initiator || unfilled) ?? { count: 0, overdue: 0, risk: 0 };
     cur.count += 1;
     if (f.runningLabel === "overdue") cur.overdue += 1;
     if (f.runningLabel === "risk") cur.risk += 1;
-    runInit.set(f.initiator || "\uFF08\u672A\u586B\uFF09", cur);
+    runInit.set(f.initiator || unfilled, cur);
   }
   const judgedAll = done.filter((f) => f.overtime !== null);
   const overAll = judgedAll.filter((f) => f.overtime).length;
@@ -472,8 +475,8 @@ function compareWithPrevious(cur, prev, rules) {
     const avgDelta = t.avgDays !== null && p?.avgDays != null ? r2(t.avgDays - p.avgDays) : null;
     const rateDelta = t.complianceRate !== null && p?.complianceRate != null ? Math.round((t.complianceRate - p.complianceRate) * 1e4) / 1e4 : null;
     const reasons = [];
-    if (avgDelta !== null && avgDelta > rules.abnormal.avgIncreaseDays) reasons.push(`\u5E73\u5747\u7528\u65F6\u73AF\u6BD4\u589E\u52A0 ${avgDelta} \u5929\uFF0C\u8D85\u8FC7 ${rules.abnormal.avgIncreaseDays} \u5929`);
-    if (t.complianceRate !== null && t.complianceRate < rules.abnormal.minComplianceRate) reasons.push(`\u5408\u89C4\u7387 ${(t.complianceRate * 100).toFixed(1)}%\uFF0C\u4F4E\u4E8E ${(rules.abnormal.minComplianceRate * 100).toFixed(0)}%`);
+    if (avgDelta !== null && avgDelta > rules.abnormal.avgIncreaseDays) reasons.push((0, import_i18n.t)("\u5E73\u5747\u7528\u65F6\u73AF\u6BD4\u589E\u52A0 {delta} \u5929\uFF0C\u8D85\u8FC7 {limit} \u5929", { delta: avgDelta, limit: rules.abnormal.avgIncreaseDays }));
+    if (t.complianceRate !== null && t.complianceRate < rules.abnormal.minComplianceRate) reasons.push((0, import_i18n.t)("\u5408\u89C4\u7387 {rate}%\uFF0C\u4F4E\u4E8E {min}%", { rate: (t.complianceRate * 100).toFixed(1), min: (rules.abnormal.minComplianceRate * 100).toFixed(0) }));
     return {
       category: t.category,
       flowType: t.flowType,
@@ -541,7 +544,7 @@ function yearOverdueRunning(res, now) {
 
 // ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/ingest.ts
 var import_node_path = require("node:path");
-var import_i18n = require("npm:@totalclaw/i18n");
+var import_i18n2 = require("npm:@totalclaw/i18n");
 var import_spreadsheetRead = require("host:apps/desktop-shell/src/main/services/spreadsheetRead.ts");
 var import_excel = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
@@ -1017,7 +1020,7 @@ function text(v) {
 function readRawTable(path, sheet) {
   const wb = (0, import_spreadsheetRead.openSpreadsheetFile)(path, { cellDates: false, raw: false });
   const names = wb.SheetNames || [];
-  if (!names.length) throw new Error((0, import_i18n.t)("\u6587\u4EF6\u6CA1\u6709\u4EFB\u4F55\u5DE5\u4F5C\u8868\uFF1A{p0}", { p0: (0, import_node_path.basename)(path) }));
+  if (!names.length) throw new Error((0, import_i18n2.t)("\u6587\u4EF6\u6CA1\u6709\u4EFB\u4F55\u5DE5\u4F5C\u8868\uFF1A{p0}", { p0: (0, import_node_path.basename)(path) }));
   const sheetName = (sheet && names.includes(sheet) ? sheet : "") || names.find((n) => wb.Sheets[n]?.["!ref"]) || names[0];
   const data = (0, import_spreadsheetRead.readWorksheetData)(wb.Sheets[sheetName], { raw: true, defval: null });
   const aoa = data.rows;
@@ -1025,7 +1028,7 @@ function readRawTable(path, sheet) {
   const headerIdx = (0, import_excel.detectHeaderRow)(aoa);
   const seen = /* @__PURE__ */ new Map();
   const headers = (aoa[headerIdx] || []).map((h, i) => {
-    let name = text(h) || (0, import_i18n.t)("\u5217{p0}", { p0: i + 1 });
+    let name = text(h) || (0, import_i18n2.t)("\u5217{p0}", { p0: i + 1 });
     const count = seen.get(name) || 0;
     seen.set(name, count + 1);
     if (count > 0) name = `${name}(${count + 1})`;
@@ -1214,20 +1217,20 @@ function parseFlows(t, mapping, system, skips, warn) {
     const flowNo = text(get(line, "flowNo"));
     const flowName = text(get(line, "flowName"));
     if (!flowNo) {
-      skips.add(t.fileName, (0, import_i18n.t)("\u6CA1\u6709\u5355\u53F7"), rowNo);
+      skips.add(t.fileName, (0, import_i18n2.t)("\u6CA1\u6709\u5355\u53F7"), rowNo);
       return;
     }
     if (!flowName) {
-      skips.add(t.fileName, (0, import_i18n.t)("\u6CA1\u6709\u6D41\u7A0B\u540D\u79F0"), rowNo);
+      skips.add(t.fileName, (0, import_i18n2.t)("\u6CA1\u6709\u6D41\u7A0B\u540D\u79F0"), rowNo);
       return;
     }
     if (seen.has(flowNo)) {
-      skips.add(t.fileName, (0, import_i18n.t)("\u5355\u53F7\u91CD\u590D\uFF0C\u53EA\u7559\u7B2C\u4E00\u884C"), rowNo);
+      skips.add(t.fileName, (0, import_i18n2.t)("\u5355\u53F7\u91CD\u590D\uFF0C\u53EA\u7559\u7B2C\u4E00\u884C"), rowNo);
       return;
     }
     const startAt = parseDate(get(line, "startAt"));
     if (startAt == null) {
-      skips.add(t.fileName, (0, import_i18n.t)("\u5F00\u59CB\u65F6\u95F4\u8BFB\u4E0D\u51FA\u6765"), rowNo);
+      skips.add(t.fileName, (0, import_i18n2.t)("\u5F00\u59CB\u65F6\u95F4\u8BFB\u4E0D\u51FA\u6765"), rowNo);
       return;
     }
     const endRaw = get(line, "endAt");
@@ -1236,11 +1239,11 @@ function parseFlows(t, mapping, system, skips, warn) {
     const st = resolveStatus(system, text(get(line, "status")), handlerText, endAt !== void 0);
     if (st.guessed) guessed += 1;
     if (st.status === "done" && endAt === void 0) {
-      skips.add(t.fileName, (0, import_i18n.t)("\u5DF2\u529E\u7ED3\u4F46\u7ED3\u675F\u65F6\u95F4\u8BFB\u4E0D\u51FA\u6765"), rowNo);
+      skips.add(t.fileName, (0, import_i18n2.t)("\u5DF2\u529E\u7ED3\u4F46\u7ED3\u675F\u65F6\u95F4\u8BFB\u4E0D\u51FA\u6765"), rowNo);
       return;
     }
     if (endAt !== void 0 && endAt < startAt) {
-      skips.add(t.fileName, (0, import_i18n.t)("\u7ED3\u675F\u65F6\u95F4\u65E9\u4E8E\u5F00\u59CB\u65F6\u95F4"), rowNo);
+      skips.add(t.fileName, (0, import_i18n2.t)("\u7ED3\u675F\u65F6\u95F4\u65E9\u4E8E\u5F00\u59CB\u65F6\u95F4"), rowNo);
       return;
     }
     seen.add(flowNo);
@@ -1261,7 +1264,7 @@ function parseFlows(t, mapping, system, skips, warn) {
       currentHandler: st.status === "running" && !handlerIsStatus ? handlerText || void 0 : void 0
     });
   });
-  if (guessed) warn((0, import_i18n.t)("{p0}\uFF1A{p1} \u884C\u7684\u72B6\u6001\u6CA1\u6709\u8BA4\u51FA\u6765\uFF0C\u6309\u6709\u6CA1\u6709\u7ED3\u675F\u65F6\u95F4\u5224\u65AD\u662F\u5426\u529E\u7ED3", { p0: t.fileName, p1: guessed }));
+  if (guessed) warn((0, import_i18n2.t)("{p0}\uFF1A{p1} \u884C\u7684\u72B6\u6001\u6CA1\u6709\u8BA4\u51FA\u6765\uFF0C\u6309\u6709\u6CA1\u6709\u7ED3\u675F\u65F6\u95F4\u5224\u65AD\u662F\u5426\u529E\u7ED3", { p0: t.fileName, p1: guessed }));
   return out;
 }
 function parseNodes(t, mapping, system, skips, warn, derive) {
@@ -1273,7 +1276,7 @@ function parseNodes(t, mapping, system, skips, warn, derive) {
     const rowNo = t.rowNumbers[i];
     const flowNo = text(get(line, "flowNo"));
     if (!flowNo) {
-      skips.add(t.fileName, (0, import_i18n.t)("\u6CA1\u6709\u5355\u53F7"), rowNo);
+      skips.add(t.fileName, (0, import_i18n2.t)("\u6CA1\u6709\u5355\u53F7"), rowNo);
       return;
     }
     const g = groups.get(flowNo) ?? { lines: [], rowNo, nodes: [] };
@@ -1281,26 +1284,26 @@ function parseNodes(t, mapping, system, skips, warn, derive) {
     groups.set(flowNo, g);
     const node = text(get(line, "node"));
     if (!node) {
-      skips.add(t.fileName, (0, import_i18n.t)("\u6CA1\u6709\u8282\u70B9\u540D\u79F0"), rowNo);
+      skips.add(t.fileName, (0, import_i18n2.t)("\u6CA1\u6709\u8282\u70B9\u540D\u79F0"), rowNo);
       return;
     }
     const startAt = parseDate(get(line, "nodeStart"));
     if (startAt == null) {
-      skips.add(t.fileName, (0, import_i18n.t)("\u8282\u70B9\u5F00\u59CB\u65F6\u95F4\u8BFB\u4E0D\u51FA\u6765"), rowNo);
+      skips.add(t.fileName, (0, import_i18n2.t)("\u8282\u70B9\u5F00\u59CB\u65F6\u95F4\u8BFB\u4E0D\u51FA\u6765"), rowNo);
       return;
     }
     const endRaw = get(line, "nodeEnd");
     const endAt = parseDate(endRaw) ?? void 0;
     if (endAt === void 0 && text(endRaw) && !/^[-/—–\\]+$/.test(text(endRaw))) badEnd += 1;
     if (endAt !== void 0 && endAt < startAt) {
-      skips.add(t.fileName, (0, import_i18n.t)("\u8282\u70B9\u7ED3\u675F\u65F6\u95F4\u65E9\u4E8E\u5F00\u59CB\u65F6\u95F4"), rowNo);
+      skips.add(t.fileName, (0, import_i18n2.t)("\u8282\u70B9\u7ED3\u675F\u65F6\u95F4\u65E9\u4E8E\u5F00\u59CB\u65F6\u95F4"), rowNo);
       return;
     }
     const row = { system, flowNo, flowName: text(get(line, "flowName")), feeType: text(get(line, "feeType")) || void 0, node, handler: text(get(line, "handler")), startAt, endAt };
     nodes.push(row);
     g.nodes.push(row);
   });
-  if (badEnd) warn((0, import_i18n.t)("{p0}\uFF1A{p1} \u884C\u7684\u8282\u70B9\u7ED3\u675F\u65F6\u95F4\u8BFB\u4E0D\u51FA\u6765\uFF0C\u6309\u8FD8\u6CA1\u5904\u7406\u5B8C\u8BA1", { p0: t.fileName, p1: badEnd }));
+  if (badEnd) warn((0, import_i18n2.t)("{p0}\uFF1A{p1} \u884C\u7684\u8282\u70B9\u7ED3\u675F\u65F6\u95F4\u8BFB\u4E0D\u51FA\u6765\uFF0C\u6309\u8FD8\u6CA1\u5904\u7406\u5B8C\u8BA1", { p0: t.fileName, p1: badEnd }));
   const derived = [];
   if (derive) {
     let guessed = 0;
@@ -1321,7 +1324,7 @@ function parseNodes(t, mapping, system, skips, warn, derive) {
       };
       const flowName = first("flowName");
       if (!flowName) {
-        skips.add(t.fileName, (0, import_i18n.t)("\u6CA1\u6709\u6D41\u7A0B\u540D\u79F0"), g.rowNo);
+        skips.add(t.fileName, (0, import_i18n2.t)("\u6CA1\u6709\u6D41\u7A0B\u540D\u79F0"), g.rowNo);
         continue;
       }
       const sorted = [...g.nodes].sort((a, b) => a.startAt - b.startAt);
@@ -1332,7 +1335,7 @@ function parseNodes(t, mapping, system, skips, warn, derive) {
       }
       if (startAt == null) startAt = sorted[0]?.startAt ?? null;
       if (startAt == null) {
-        skips.add(t.fileName, (0, import_i18n.t)("\u5F00\u59CB\u65F6\u95F4\u8BFB\u4E0D\u51FA\u6765"), g.rowNo);
+        skips.add(t.fileName, (0, import_i18n2.t)("\u5F00\u59CB\u65F6\u95F4\u8BFB\u4E0D\u51FA\u6765"), g.rowNo);
         continue;
       }
       let endAt;
@@ -1346,7 +1349,7 @@ function parseNodes(t, mapping, system, skips, warn, derive) {
       const st = resolveStatus(system, last("status"), handlerText, allEnded && endAt !== void 0);
       if (st.guessed) guessed += 1;
       if (st.status === "done" && endAt === void 0) {
-        skips.add(t.fileName, (0, import_i18n.t)("\u5DF2\u529E\u7ED3\u4F46\u7ED3\u675F\u65F6\u95F4\u8BFB\u4E0D\u51FA\u6765"), g.rowNo);
+        skips.add(t.fileName, (0, import_i18n2.t)("\u5DF2\u529E\u7ED3\u4F46\u7ED3\u675F\u65F6\u95F4\u8BFB\u4E0D\u51FA\u6765"), g.rowNo);
         continue;
       }
       const open = [...sorted].reverse().find((n) => n.endAt === void 0);
@@ -1367,7 +1370,7 @@ function parseNodes(t, mapping, system, skips, warn, derive) {
         currentHandler: st.status === "running" ? (matchStatus(handlerText) ? "" : handlerText) || open?.handler || void 0 : void 0
       });
     }
-    if (guessed) warn((0, import_i18n.t)("{p0}\uFF1A{p1} \u4E2A\u6D41\u7A0B\u7684\u72B6\u6001\u6CA1\u6709\u8BA4\u51FA\u6765\uFF0C\u6309\u8282\u70B9\u662F\u5426\u5168\u90E8\u5904\u7406\u5B8C\u5224\u65AD\u662F\u5426\u529E\u7ED3", { p0: t.fileName, p1: guessed }));
+    if (guessed) warn((0, import_i18n2.t)("{p0}\uFF1A{p1} \u4E2A\u6D41\u7A0B\u7684\u72B6\u6001\u6CA1\u6709\u8BA4\u51FA\u6765\uFF0C\u6309\u8282\u70B9\u662F\u5426\u5168\u90E8\u5904\u7406\u5B8C\u5224\u65AD\u662F\u5426\u529E\u7ED3", { p0: t.fileName, p1: guessed }));
   }
   return { nodes, derived };
 }
@@ -1378,11 +1381,11 @@ function parseRoster(t, mapping, skips) {
   t.rows.forEach((line, i) => {
     const name = text(get(line, "name"));
     if (!name) {
-      skips.add(t.fileName, (0, import_i18n.t)("\u6CA1\u6709\u59D3\u540D"), t.rowNumbers[i]);
+      skips.add(t.fileName, (0, import_i18n2.t)("\u6CA1\u6709\u59D3\u540D"), t.rowNumbers[i]);
       return;
     }
     if (seen.has(name)) {
-      skips.add(t.fileName, (0, import_i18n.t)("\u59D3\u540D\u91CD\u590D\uFF0C\u53EA\u7559\u7B2C\u4E00\u884C"), t.rowNumbers[i]);
+      skips.add(t.fileName, (0, import_i18n2.t)("\u59D3\u540D\u91CD\u590D\uFF0C\u53EA\u7559\u7B2C\u4E00\u884C"), t.rowNumbers[i]);
       return;
     }
     seen.add(name);
@@ -1410,7 +1413,7 @@ function ingestAll(input, nowIso = (/* @__PURE__ */ new Date()).toISOString()) {
       const t = readRawTable(spec.flow.path, spec.flow.sheet);
       files.push(spec.flow.path);
       const miss = missingRoles("flow", spec.flow.mapping);
-      if (miss.length) throw new Error((0, import_i18n.t)("{p0}\uFF1A\u8FD8\u6709\u5FC5\u586B\u5217\u6CA1\u6709\u5BF9\u5E94\u4E0A", { p0: t.fileName }));
+      if (miss.length) throw new Error((0, import_i18n2.t)("{p0}\uFF1A\u8FD8\u6709\u5FC5\u586B\u5217\u6CA1\u6709\u5BF9\u5E94\u4E0A", { p0: t.fileName }));
       if (isNodeLevel(spec.flow.mapping)) {
         const r = parseNodes(t, spec.flow.mapping, system, skips, warn, true);
         sysNodes.push(...r.nodes);
@@ -1424,7 +1427,7 @@ function ingestAll(input, nowIso = (/* @__PURE__ */ new Date()).toISOString()) {
       const t = readRawTable(spec.node.path, spec.node.sheet);
       files.push(spec.node.path);
       const miss = missingRoles("node", spec.node.mapping, { hasFlowTable: !!spec.flow });
-      if (miss.length) throw new Error((0, import_i18n.t)("{p0}\uFF1A\u8FD8\u6709\u5FC5\u586B\u5217\u6CA1\u6709\u5BF9\u5E94\u4E0A", { p0: t.fileName }));
+      if (miss.length) throw new Error((0, import_i18n2.t)("{p0}\uFF1A\u8FD8\u6709\u5FC5\u586B\u5217\u6CA1\u6709\u5BF9\u5E94\u4E0A", { p0: t.fileName }));
       const r = parseNodes(t, spec.node.mapping, system, skips, warn, !spec.flow);
       sysNodes.push(...r.nodes);
       if (!spec.flow) {
@@ -1446,7 +1449,7 @@ function ingestAll(input, nowIso = (/* @__PURE__ */ new Date()).toISOString()) {
       }
       return true;
     });
-    if (orphan) warn((0, import_i18n.t)("{p0} \u6709 {p1} \u884C\u8282\u70B9\u8BB0\u5F55\u5728\u6D41\u7A0B\u8868\u91CC\u627E\u4E0D\u5230\u5355\u53F7\u3001\u81EA\u5DF1\u4E5F\u6CA1\u6709\u6D41\u7A0B\u540D\u79F0\uFF0C\u6CA1\u6709\u6536", { p0: system, p1: orphan }));
+    if (orphan) warn((0, import_i18n2.t)("{p0} \u6709 {p1} \u884C\u8282\u70B9\u8BB0\u5F55\u5728\u6D41\u7A0B\u8868\u91CC\u627E\u4E0D\u5230\u5355\u53F7\u3001\u81EA\u5DF1\u4E5F\u6CA1\u6709\u6D41\u7A0B\u540D\u79F0\uFF0C\u6CA1\u6709\u6536", { p0: system, p1: orphan }));
     flows.push(...sysFlows);
     nodes.push(...kept);
     systems.push({
@@ -1463,10 +1466,10 @@ function ingestAll(input, nowIso = (/* @__PURE__ */ new Date()).toISOString()) {
   if (input.roster) {
     const t = readRawTable(input.roster.path, input.roster.sheet);
     files.push(input.roster.path);
-    if (missingRoles("roster", input.roster.mapping).length) throw new Error((0, import_i18n.t)("{p0}\uFF1A\u8FD8\u6709\u5FC5\u586B\u5217\u6CA1\u6709\u5BF9\u5E94\u4E0A", { p0: t.fileName }));
+    if (missingRoles("roster", input.roster.mapping).length) throw new Error((0, import_i18n2.t)("{p0}\uFF1A\u8FD8\u6709\u5FC5\u586B\u5217\u6CA1\u6709\u5BF9\u5E94\u4E0A", { p0: t.fileName }));
     roster = parseRoster(t, input.roster.mapping, skips);
   }
-  if (!flows.length) throw new Error((0, import_i18n.t)("\u6CA1\u6709\u8BFB\u5230\u4EFB\u4F55\u6D41\u7A0B\uFF0C\u8BF7\u68C0\u67E5\u9009\u62E9\u7684\u6587\u4EF6\u548C\u5217\u5BF9\u5E94"));
+  if (!flows.length) throw new Error((0, import_i18n2.t)("\u6CA1\u6709\u8BFB\u5230\u4EFB\u4F55\u6D41\u7A0B\uFF0C\u8BF7\u68C0\u67E5\u9009\u62E9\u7684\u6587\u4EF6\u548C\u5217\u5BF9\u5E94"));
   return {
     flows,
     nodes,
@@ -6217,7 +6220,7 @@ var FlowSlaStore = class {
 
 // ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/rulesImport.ts
 var import_node_path3 = require("node:path");
-var import_i18n2 = require("npm:@totalclaw/i18n");
+var import_i18n3 = require("npm:@totalclaw/i18n");
 var import_spreadsheetRead2 = require("host:apps/desktop-shell/src/main/services/spreadsheetRead.ts");
 var str = (v) => v == null ? "" : String(v).trim();
 var flat = (v) => str(v).replace(/\s+/g, "");
@@ -6241,14 +6244,14 @@ function parseRulesWorkbook(path, base) {
   const warnings = [];
   const sheet = (re, label) => {
     const name = names.find((n) => re.test(n.replace(/\s+/g, "")));
-    if (!name) throw new Error((0, import_i18n2.t)("\u5DE5\u4F5C\u7C3F\u91CC\u6CA1\u6709\u627E\u5230\u300C{p0}\u300D\u8FD9\u5F20\u8868\uFF0C\u8BF7\u786E\u8BA4\u5BFC\u5165\u7684\u662F\u300A\u65F6\u6548\u770B\u677F\u6307\u6807\u300B", { p0: label }));
+    if (!name) throw new Error((0, import_i18n3.t)("\u5DE5\u4F5C\u7C3F\u91CC\u6CA1\u6709\u627E\u5230\u300C{p0}\u300D\u8FD9\u5F20\u8868\uFF0C\u8BF7\u786E\u8BA4\u5BFC\u5165\u7684\u662F\u300A\u65F6\u6548\u770B\u677F\u6307\u6807\u300B", { p0: label }));
     return (0, import_spreadsheetRead2.readWorksheetData)(wb.Sheets[name], { raw: true, defval: null }).rows;
   };
   const need = (loc, label) => {
-    if (!loc) throw new Error((0, import_i18n2.t)("\u300C{p0}\u300D\u8868\u91CC\u6CA1\u6709\u627E\u5230\u8868\u5934\u884C\uFF0C\u5217\u540D\u53EF\u80FD\u6539\u8FC7", { p0: label }));
+    if (!loc) throw new Error((0, import_i18n3.t)("\u300C{p0}\u300D\u8868\u91CC\u6CA1\u6709\u627E\u5230\u8868\u5934\u884C\uFF0C\u5217\u540D\u53EF\u80FD\u6539\u8FC7", { p0: label }));
     return loc;
   };
-  const e2eLabel = (0, import_i18n2.t)("\u7AEF\u5230\u7AEF\u7528\u65F6");
+  const e2eLabel = (0, import_i18n3.t)("\u7AEF\u5230\u7AEF\u7528\u65F6");
   const e2eLoc = need(locate(sheet(/端到端/, e2eLabel), [/^大类$/, /流程细类/, /时效要求/]), e2eLabel);
   const [cCat, cType, cSys, cLimit] = [e2eLoc.col(/^大类$/), e2eLoc.col(/流程细类/), e2eLoc.col(/系统/), e2eLoc.col(/时效要求/)];
   const e2e = [];
@@ -6263,12 +6266,12 @@ function parseRulesWorkbook(path, base) {
     if (rule.limitDays === null && limitText && limitText !== "/") {
       const variants = limitText.split(/[\n；;]+/).map((line) => /^(\D+?)(\d+(?:\.\d+)?)天/.exec(line.trim())).filter(Boolean).map((m) => ({ keyword: m[1].trim(), limitDays: Number(m[2]) }));
       if (variants.length) rule.variants = variants;
-      else warnings.push((0, import_i18n2.t)("\u7AEF\u5230\u7AEF\u7528\u65F6\u300C{p0}\u300D\u7684\u65F6\u6548\u8981\u6C42\u300C{p1}\u300D\u8BFB\u4E0D\u6210\u5929\u6570\uFF0C\u6309\u6CA1\u6709\u65F6\u6548\u8981\u6C42\u5904\u7406", { p0: flowType, p1: limitText }));
+      else warnings.push((0, import_i18n3.t)("\u7AEF\u5230\u7AEF\u7528\u65F6\u300C{p0}\u300D\u7684\u65F6\u6548\u8981\u6C42\u300C{p1}\u300D\u8BFB\u4E0D\u6210\u5929\u6570\uFF0C\u6309\u6CA1\u6709\u65F6\u6548\u8981\u6C42\u5904\u7406", { p0: flowType, p1: limitText }));
     }
     if (/除了以上/.test(flowType)) rule.fallback = true;
     e2e.push(rule);
   }
-  const cssLabel = (0, import_i18n2.t)("CSS\u5404\u8282\u70B9\u65F6\u6548\u8981\u6C42");
+  const cssLabel = (0, import_i18n3.t)("CSS\u5404\u8282\u70B9\u65F6\u6548\u8981\u6C42");
   const cssLoc = need(locate(sheet(/css.*节点/i, cssLabel), [/^事务类型$/, /^审批节点名$/]), cssLabel);
   const k0 = cssLoc.col(/^事务类型$/);
   const [kFee, kNode, kAttr, kLimit] = [cssLoc.col(/^费用类型$/), cssLoc.col(/^审批节点名$/), cssLoc.col(/是否计入/), cssLoc.col(/单节点要求/)];
@@ -6285,10 +6288,10 @@ function parseRulesWorkbook(path, base) {
       node,
       internal: /内部/.test(str(row[kAttr])),
       limitWorkdays: limit,
-      note: limit === null && limitText && limitText !== "/" ? limitText.split(/\n+/).map((x) => x.trim()).filter(Boolean).join((0, import_i18n2.t)("\uFF1B")) : ""
+      note: limit === null && limitText && limitText !== "/" ? limitText.split(/\n+/).map((x) => x.trim()).filter(Boolean).join((0, import_i18n3.t)("\uFF1B")) : ""
     });
   }
-  const nodeLabel = (0, import_i18n2.t)("oa\u3001\u8D39\u63A7\u8282\u70B9\u5185\u5916\u90E8");
+  const nodeLabel = (0, import_i18n3.t)("oa\u3001\u8D39\u63A7\u8282\u70B9\u5185\u5916\u90E8");
   const nodeLoc = need(locate(sheet(/节点内外部/, nodeLabel), [/^流程名/, /环节名称/, /节点属性/]), nodeLabel);
   const [nFlow, nNode, nAttr] = [nodeLoc.col(/^流程名/), nodeLoc.col(/环节名称/), nodeLoc.col(/节点属性/)];
   const oaFkNodes = [];
@@ -6301,8 +6304,8 @@ function parseRulesWorkbook(path, base) {
     if (!/内部|外部/.test(attr)) badAttr += 1;
     oaFkNodes.push([flow, node, /内部/.test(attr)]);
   }
-  if (badAttr) warnings.push((0, import_i18n2.t)("\u8282\u70B9\u5185\u5916\u90E8\u8868\u6709 {p0} \u884C\u7684\u8282\u70B9\u5C5E\u6027\u65E2\u4E0D\u662F\u5185\u90E8\u4E5F\u4E0D\u662F\u5916\u90E8\uFF0C\u6309\u5916\u90E8\u5904\u7406", { p0: badAttr }));
-  const perLabel = (0, import_i18n2.t)("oa\u8D39\u63A7\u4E2A\u4EBA\u8282\u70B9\u65F6\u6548\u8981\u6C42");
+  if (badAttr) warnings.push((0, import_i18n3.t)("\u8282\u70B9\u5185\u5916\u90E8\u8868\u6709 {p0} \u884C\u7684\u8282\u70B9\u5C5E\u6027\u65E2\u4E0D\u662F\u5185\u90E8\u4E5F\u4E0D\u662F\u5916\u90E8\uFF0C\u6309\u5916\u90E8\u5904\u7406", { p0: badAttr }));
+  const perLabel = (0, import_i18n3.t)("oa\u8D39\u63A7\u4E2A\u4EBA\u8282\u70B9\u65F6\u6548\u8981\u6C42");
   const perLoc = need(locate(sheet(/个人节点/, perLabel), [/审核人身份/, /流程细类/, /时效要求/]), perLabel);
   const [pId, pCat, pType, pPlat, pAmt, pImp, pLimit] = [perLoc.col(/审核人身份/), perLoc.col(/^大类$/), perLoc.col(/流程细类/), perLoc.col(/平台/), perLoc.col(/金额/), perLoc.col(/重要性/), perLoc.col(/时效要求/)];
   const personal = [];
@@ -6321,7 +6324,7 @@ function parseRulesWorkbook(path, base) {
       limitDays: days(row[pLimit])
     });
   }
-  const mgrLabel = (0, import_i18n2.t)("\u5BA1\u6838\u4EBA\u8EAB\u4EFD");
+  const mgrLabel = (0, import_i18n3.t)("\u5BA1\u6838\u4EBA\u8EAB\u4EFD");
   const mgrLoc = need(locate(sheet(/审核人身份/, mgrLabel), [/^姓名$/, /^身份$/]), mgrLabel);
   const [mName, mId] = [mgrLoc.col(/^姓名$/), mgrLoc.col(/^身份$/)];
   const managers = [];
@@ -6330,9 +6333,9 @@ function parseRulesWorkbook(path, base) {
     const id = flat(row[mId]);
     if (name && /管理干部/.test(id) && !/非管理/.test(id) && !managers.includes(name)) managers.push(name);
   }
-  if (!e2e.length) throw new Error((0, import_i18n2.t)("\u300C{p0}\u300D\u8868\u91CC\u6CA1\u6709\u8BFB\u5230\u4EFB\u4F55\u89C4\u5219", { p0: e2eLabel }));
-  if (!personal.length) throw new Error((0, import_i18n2.t)("\u300C{p0}\u300D\u8868\u91CC\u6CA1\u6709\u8BFB\u5230\u4EFB\u4F55\u89C4\u5219", { p0: perLabel }));
-  if (!e2e.some((r) => r.fallback)) warnings.push((0, import_i18n2.t)("\u7AEF\u5230\u7AEF\u7528\u65F6\u8868\u91CC\u6CA1\u6709\u300C\u9664\u4E86\u4EE5\u4E0A\u6D41\u7A0B\u300D\u8FD9\u4E00\u884C\uFF0C\u5BF9\u4E0D\u4E0A\u7684 OA / \u8D39\u63A7\u6D41\u7A0B\u4F1A\u5F52\u5230\u300C\u5E38\u89C4\u6D41\u7A0B\u300D"));
+  if (!e2e.length) throw new Error((0, import_i18n3.t)("\u300C{p0}\u300D\u8868\u91CC\u6CA1\u6709\u8BFB\u5230\u4EFB\u4F55\u89C4\u5219", { p0: e2eLabel }));
+  if (!personal.length) throw new Error((0, import_i18n3.t)("\u300C{p0}\u300D\u8868\u91CC\u6CA1\u6709\u8BFB\u5230\u4EFB\u4F55\u89C4\u5219", { p0: perLabel }));
+  if (!e2e.some((r) => r.fallback)) warnings.push((0, import_i18n3.t)("\u7AEF\u5230\u7AEF\u7528\u65F6\u8868\u91CC\u6CA1\u6709\u300C\u9664\u4E86\u4EE5\u4E0A\u6D41\u7A0B\u300D\u8FD9\u4E00\u884C\uFF0C\u5BF9\u4E0D\u4E0A\u7684 OA / \u8D39\u63A7\u6D41\u7A0B\u4F1A\u5F52\u5230\u300C\u5E38\u89C4\u6D41\u7A0B\u300D"));
   return {
     rules: {
       version: (0, import_node_path3.basename)(path, (0, import_node_path3.extname)(path)),
@@ -6545,45 +6548,45 @@ function writeDemo(root, rules, now) {
 }
 
 // ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/reasons.ts
-var import_i18n3 = require("npm:@totalclaw/i18n");
+var import_i18n4 = require("npm:@totalclaw/i18n");
 var import_ipc_contracts2 = require("npm:@totalclaw/ipc-contracts");
 var REASON_KW = columnKeywords_default.reasonKeywords;
 function categoryLabel(id) {
   switch (id) {
     case "materials":
-      return (0, import_i18n3.t)("\u8D44\u6599\u4E0D\u5168\u9000\u56DE");
+      return (0, import_i18n4.t)("\u8D44\u6599\u4E0D\u5168\u9000\u56DE");
     case "absence":
-      return (0, import_i18n3.t)("\u5BA1\u6279\u4EBA\u51FA\u5DEE/\u4F11\u5047");
+      return (0, import_i18n4.t)("\u5BA1\u6279\u4EBA\u51FA\u5DEE/\u4F11\u5047");
     case "cross_dept":
-      return (0, import_i18n3.t)("\u8DE8\u90E8\u95E8\u6C9F\u901A\u7B49\u5F85");
+      return (0, import_i18n4.t)("\u8DE8\u90E8\u95E8\u6C9F\u901A\u7B49\u5F85");
     case "external":
-      return (0, import_i18n3.t)("\u5916\u90E8\u5355\u4F4D\u672A\u53CD\u9988");
+      return (0, import_i18n4.t)("\u5916\u90E8\u5355\u4F4D\u672A\u53CD\u9988");
     case "system":
-      return (0, import_i18n3.t)("\u7CFB\u7EDF/\u64CD\u4F5C\u95EE\u9898");
+      return (0, import_i18n4.t)("\u7CFB\u7EDF/\u64CD\u4F5C\u95EE\u9898");
     case "design":
-      return (0, import_i18n3.t)("\u6D41\u7A0B\u8BBE\u8BA1\u73AF\u8282\u8FC7\u591A");
+      return (0, import_i18n4.t)("\u6D41\u7A0B\u8BBE\u8BA1\u73AF\u8282\u8FC7\u591A");
     case "other":
-      return (0, import_i18n3.t)("\u5176\u4ED6");
+      return (0, import_i18n4.t)("\u5176\u4ED6");
     default:
-      return (0, import_i18n3.t)("\u672A\u5F52\u7C7B");
+      return (0, import_i18n4.t)("\u672A\u5F52\u7C7B");
   }
 }
 function defaultRootCause(id) {
   switch (id) {
     case "materials":
-      return (0, import_i18n3.t)("\u53D1\u8D77\u65F6\u8D44\u6599\u4E0D\u5B8C\u6574\u6216\u586B\u5199\u6709\u8BEF\uFF0C\u88AB\u9000\u56DE\u8865\u5145\u540E\u91CD\u65B0\u6D41\u8F6C\uFF0C\u540C\u4E00\u8282\u70B9\u91CD\u590D\u5360\u7528\u65F6\u95F4\u3002\u6839\u56E0\u5728\u53D1\u8D77\u73AF\u8282\u7F3A\u5C11\u63D0\u4EA4\u524D\u7684\u8D44\u6599\u6E05\u5355\u548C\u81EA\u67E5\u3002");
+      return (0, import_i18n4.t)("\u53D1\u8D77\u65F6\u8D44\u6599\u4E0D\u5B8C\u6574\u6216\u586B\u5199\u6709\u8BEF\uFF0C\u88AB\u9000\u56DE\u8865\u5145\u540E\u91CD\u65B0\u6D41\u8F6C\uFF0C\u540C\u4E00\u8282\u70B9\u91CD\u590D\u5360\u7528\u65F6\u95F4\u3002\u6839\u56E0\u5728\u53D1\u8D77\u73AF\u8282\u7F3A\u5C11\u63D0\u4EA4\u524D\u7684\u8D44\u6599\u6E05\u5355\u548C\u81EA\u67E5\u3002");
     case "absence":
-      return (0, import_i18n3.t)("\u5BA1\u6279\u4EBA\u51FA\u5DEE\u3001\u4F11\u5047\u6216\u5F00\u4F1A\u671F\u95F4\u6CA1\u6709\u6307\u5B9A\u4EE3\u7406\u4EBA\uFF0C\u5F85\u529E\u4E00\u76F4\u505C\u5728\u672C\u4EBA\u540D\u4E0B\u3002\u6839\u56E0\u5728\u5BA1\u6279\u6388\u6743\u548C\u4EE3\u7406\u673A\u5236\u6CA1\u6709\u843D\u5B9E\u3002");
+      return (0, import_i18n4.t)("\u5BA1\u6279\u4EBA\u51FA\u5DEE\u3001\u4F11\u5047\u6216\u5F00\u4F1A\u671F\u95F4\u6CA1\u6709\u6307\u5B9A\u4EE3\u7406\u4EBA\uFF0C\u5F85\u529E\u4E00\u76F4\u505C\u5728\u672C\u4EBA\u540D\u4E0B\u3002\u6839\u56E0\u5728\u5BA1\u6279\u6388\u6743\u548C\u4EE3\u7406\u673A\u5236\u6CA1\u6709\u843D\u5B9E\u3002");
     case "cross_dept":
-      return (0, import_i18n3.t)("\u9700\u8981\u5176\u4ED6\u90E8\u95E8\u786E\u8BA4\u6216\u4F1A\u7B7E\uFF0C\u6765\u56DE\u6C9F\u901A\u7B49\u5F85\u65F6\u95F4\u957F\u3002\u6839\u56E0\u5728\u8DE8\u90E8\u95E8\u8282\u70B9\u6CA1\u6709\u7EA6\u5B9A\u7B54\u590D\u65F6\u9650\u548C\u5BF9\u63A5\u4EBA\u3002");
+      return (0, import_i18n4.t)("\u9700\u8981\u5176\u4ED6\u90E8\u95E8\u786E\u8BA4\u6216\u4F1A\u7B7E\uFF0C\u6765\u56DE\u6C9F\u901A\u7B49\u5F85\u65F6\u95F4\u957F\u3002\u6839\u56E0\u5728\u8DE8\u90E8\u95E8\u8282\u70B9\u6CA1\u6709\u7EA6\u5B9A\u7B54\u590D\u65F6\u9650\u548C\u5BF9\u63A5\u4EBA\u3002");
     case "external":
-      return (0, import_i18n3.t)("\u7B49\u5F85\u670D\u52A1\u5546\u3001\u4F9B\u5E94\u5546\u6216\u5BA2\u6237\u53CD\u9988\u3001\u76D6\u7AE0\u3001\u5BC4\u56DE\u8D44\u6599\uFF0C\u65F6\u95F4\u4E0D\u53D7\u5185\u90E8\u63A7\u5236\u3002\u6839\u56E0\u5728\u5916\u90E8\u8282\u70B9\u7F3A\u5C11\u50AC\u529E\u8282\u594F\u548C\u8D85\u671F\u5347\u7EA7\u529E\u6CD5\u3002");
+      return (0, import_i18n4.t)("\u7B49\u5F85\u670D\u52A1\u5546\u3001\u4F9B\u5E94\u5546\u6216\u5BA2\u6237\u53CD\u9988\u3001\u76D6\u7AE0\u3001\u5BC4\u56DE\u8D44\u6599\uFF0C\u65F6\u95F4\u4E0D\u53D7\u5185\u90E8\u63A7\u5236\u3002\u6839\u56E0\u5728\u5916\u90E8\u8282\u70B9\u7F3A\u5C11\u50AC\u529E\u8282\u594F\u548C\u8D85\u671F\u5347\u7EA7\u529E\u6CD5\u3002");
     case "system":
-      return (0, import_i18n3.t)("\u7CFB\u7EDF\u6545\u969C\u3001\u5F85\u529E\u63D0\u9192\u6CA1\u6536\u5230\u6216\u64CD\u4F5C\u4E0D\u719F\u7EC3\u5BFC\u81F4\u505C\u7559\u3002\u6839\u56E0\u5728\u5F85\u529E\u63D0\u9192\u548C\u64CD\u4F5C\u6307\u5F15\u4E0D\u5230\u4F4D\u3002");
+      return (0, import_i18n4.t)("\u7CFB\u7EDF\u6545\u969C\u3001\u5F85\u529E\u63D0\u9192\u6CA1\u6536\u5230\u6216\u64CD\u4F5C\u4E0D\u719F\u7EC3\u5BFC\u81F4\u505C\u7559\u3002\u6839\u56E0\u5728\u5F85\u529E\u63D0\u9192\u548C\u64CD\u4F5C\u6307\u5F15\u4E0D\u5230\u4F4D\u3002");
     case "design":
-      return (0, import_i18n3.t)("\u5BA1\u6279\u5C42\u7EA7\u6216\u8282\u70B9\u504F\u591A\uFF0C\u5B58\u5728\u91CD\u590D\u5BA1\u6279\u3002\u6839\u56E0\u5728\u6D41\u7A0B\u672C\u8EAB\uFF0C\u9700\u8981\u8BC4\u4F30\u80FD\u5426\u5408\u5E76\u6216\u51CF\u5C11\u8282\u70B9\u3002");
+      return (0, import_i18n4.t)("\u5BA1\u6279\u5C42\u7EA7\u6216\u8282\u70B9\u504F\u591A\uFF0C\u5B58\u5728\u91CD\u590D\u5BA1\u6279\u3002\u6839\u56E0\u5728\u6D41\u7A0B\u672C\u8EAB\uFF0C\u9700\u8981\u8BC4\u4F30\u80FD\u5426\u5408\u5E76\u6216\u51CF\u5C11\u8282\u70B9\u3002");
     default:
-      return (0, import_i18n3.t)("\u539F\u56E0\u6BD4\u8F83\u5206\u6563\uFF0C\u6CA1\u6709\u5F62\u6210\u96C6\u4E2D\u7684\u95EE\u9898\uFF0C\u9700\u8981\u9010\u5355\u8DDF\u8FDB\u3002");
+      return (0, import_i18n4.t)("\u539F\u56E0\u6BD4\u8F83\u5206\u6563\uFF0C\u6CA1\u6709\u5F62\u6210\u96C6\u4E2D\u7684\u95EE\u9898\uFF0C\u9700\u8981\u9010\u5355\u8DDF\u8FDB\u3002");
   }
 }
 function classifyByRule(reason) {
@@ -6653,12 +6656,12 @@ function buildCases(res, roster, previous = []) {
   const running = res.flows.filter((f) => f.status === "running" && f.runningLabel === "overdue").map((f) => make(f, "running"));
   return [...running, ...overtime].sort((a, b) => a.owner.localeCompare(b.owner, "zh") || b.overdueDays - a.overdueDays);
 }
-var kindLabel = (k) => k === "running" ? (0, import_i18n3.t)("\u5728\u9014\u5DF2\u903E\u671F") : (0, import_i18n3.t)("\u5DF2\u529E\u7ED3\u8D85\u65F6");
+var kindLabel = (k) => k === "running" ? (0, import_i18n4.t)("\u5728\u9014\u5DF2\u903E\u671F") : (0, import_i18n4.t)("\u5DF2\u529E\u7ED3\u8D85\u65F6");
 function ownerMails(cases, period, sender) {
   const groups = /* @__PURE__ */ new Map();
   for (const c of cases) groups.set(c.owner, [...groups.get(c.owner) ?? [], c]);
   return [...groups.entries()].map(([owner, list]) => {
-    const lines = list.map((c, i) => (0, import_i18n3.t)("{n}. [{sys}] {no} {name}{title}\uFF1A{kind}\uFF0C\u5DF2\u7528 {days} \u5929\uFF0C\u65F6\u6548\u8981\u6C42 {limit} \u5929\uFF0C\u8D85\u51FA {over} \u5929{node}", {
+    const lines = list.map((c, i) => (0, import_i18n4.t)("{n}. [{sys}] {no} {name}{title}\uFF1A{kind}\uFF0C\u5DF2\u7528 {days} \u5929\uFF0C\u65F6\u6548\u8981\u6C42 {limit} \u5929\uFF0C\u8D85\u51FA {over} \u5929{node}", {
       n: i + 1,
       sys: c.system,
       no: c.flowNo,
@@ -6668,27 +6671,27 @@ function ownerMails(cases, period, sender) {
       days: c.days,
       limit: c.limitDays ?? "-",
       over: c.overdueDays,
-      node: c.currentNode ? (0, import_i18n3.t)("\uFF0C\u5F53\u524D\u505C\u5728\u300C{p0}\u300D", { p0: c.currentNode }) : ""
+      node: c.currentNode ? (0, import_i18n4.t)("\uFF0C\u5F53\u524D\u505C\u5728\u300C{p0}\u300D", { p0: c.currentNode }) : ""
     }));
     const body = [
-      (0, import_i18n3.t)("{p0}\uFF0C\u4F60\u597D\uFF1A", { p0: owner || (0, import_i18n3.t)("\u540C\u4E8B") }),
+      (0, import_i18n4.t)("{p0}\uFF0C\u4F60\u597D\uFF1A", { p0: owner || (0, import_i18n4.t)("\u540C\u4E8B") }),
       "",
-      (0, import_i18n3.t)("\u6D41\u7A0B\u65F6\u6548\u901A\u62A5\uFF08{p0}\uFF09\u91CC\uFF0C\u4E0B\u9762 {p1} \u4E2A\u6D41\u7A0B\u8D85\u51FA\u4E86\u65F6\u6548\u8981\u6C42\uFF0C\u8BF7\u9010\u6761\u56DE\u590D\u8D85\u65F6\u539F\u56E0\u548C\u9884\u8BA1\u529E\u7ED3\u65F6\u95F4\uFF1A", { p0: period.label, p1: list.length }),
+      (0, import_i18n4.t)("\u6D41\u7A0B\u65F6\u6548\u901A\u62A5\uFF08{p0}\uFF09\u91CC\uFF0C\u4E0B\u9762 {p1} \u4E2A\u6D41\u7A0B\u8D85\u51FA\u4E86\u65F6\u6548\u8981\u6C42\uFF0C\u8BF7\u9010\u6761\u56DE\u590D\u8D85\u65F6\u539F\u56E0\u548C\u9884\u8BA1\u529E\u7ED3\u65F6\u95F4\uFF1A", { p0: period.label, p1: list.length }),
       "",
       ...lines,
       "",
-      (0, import_i18n3.t)("\u53EF\u4EE5\u76F4\u63A5\u56DE\u590D\u8FD9\u5C01\u90AE\u4EF6\uFF0C\u6216\u5728\u9644\u4EF6\u8868\u683C\u7684\u300C\u8D85\u65F6\u539F\u56E0\u300D\u4E00\u5217\u586B\u597D\u540E\u53D1\u56DE\u3002"),
+      (0, import_i18n4.t)("\u53EF\u4EE5\u76F4\u63A5\u56DE\u590D\u8FD9\u5C01\u90AE\u4EF6\uFF0C\u6216\u5728\u9644\u4EF6\u8868\u683C\u7684\u300C\u8D85\u65F6\u539F\u56E0\u300D\u4E00\u5217\u586B\u597D\u540E\u53D1\u56DE\u3002"),
       ...sender ? ["", sender] : []
     ].join("\n");
-    return { owner, email: list[0].ownerEmail, count: list.length, subject: (0, import_i18n3.t)("\u3010\u6D41\u7A0B\u65F6\u6548\u3011\u8BF7\u53CD\u9988 {p0} \u4E2A\u8D85\u65F6\u6D41\u7A0B\u7684\u539F\u56E0\uFF08{p1}\uFF09", { p0: list.length, p1: period.label }), body, mailedAt: list.every((c) => c.mailedAt) ? list[0].mailedAt : "" };
+    return { owner, email: list[0].ownerEmail, count: list.length, subject: (0, import_i18n4.t)("\u3010\u6D41\u7A0B\u65F6\u6548\u3011\u8BF7\u53CD\u9988 {p0} \u4E2A\u8D85\u65F6\u6D41\u7A0B\u7684\u539F\u56E0\uFF08{p1}\uFF09", { p0: list.length, p1: period.label }), body, mailedAt: list.every((c) => c.mailedAt) ? list[0].mailedAt : "" };
   }).sort((a, b) => b.count - a.count || a.owner.localeCompare(b.owner, "zh"));
 }
 function reasonSheetHeaders() {
-  return [(0, import_i18n3.t)("\u7CFB\u7EDF"), (0, import_i18n3.t)("\u5355\u53F7"), (0, import_i18n3.t)("\u6D41\u7A0B\u540D\u79F0"), (0, import_i18n3.t)("\u6807\u9898"), (0, import_i18n3.t)("\u7C7B\u578B"), (0, import_i18n3.t)("\u5DF2\u7528\u65F6\uFF08\u5929\uFF09"), (0, import_i18n3.t)("\u65F6\u6548\u8981\u6C42\uFF08\u5929\uFF09"), (0, import_i18n3.t)("\u8D85\u51FA\uFF08\u5929\uFF09"), (0, import_i18n3.t)("\u5F53\u524D\u8282\u70B9"), (0, import_i18n3.t)("\u8D23\u4EFB\u4EBA"), (0, import_i18n3.t)("\u8D85\u65F6\u539F\u56E0")];
+  return [(0, import_i18n4.t)("\u7CFB\u7EDF"), (0, import_i18n4.t)("\u5355\u53F7"), (0, import_i18n4.t)("\u6D41\u7A0B\u540D\u79F0"), (0, import_i18n4.t)("\u6807\u9898"), (0, import_i18n4.t)("\u7C7B\u578B"), (0, import_i18n4.t)("\u5DF2\u7528\u65F6\uFF08\u5929\uFF09"), (0, import_i18n4.t)("\u65F6\u6548\u8981\u6C42\uFF08\u5929\uFF09"), (0, import_i18n4.t)("\u8D85\u51FA\uFF08\u5929\uFF09"), (0, import_i18n4.t)("\u5F53\u524D\u8282\u70B9"), (0, import_i18n4.t)("\u8D23\u4EFB\u4EBA"), (0, import_i18n4.t)("\u8D85\u65F6\u539F\u56E0")];
 }
 function reasonSheet(cases) {
   return {
-    name: (0, import_i18n3.t)("\u8D85\u65F6\u539F\u56E0\u6536\u96C6"),
+    name: (0, import_i18n4.t)("\u8D85\u65F6\u539F\u56E0\u6536\u96C6"),
     headers: reasonSheetHeaders(),
     rows: cases.map((c) => [c.system, c.flowNo, c.flowName, c.title, kindLabel(c.kind), c.days, c.limitDays ?? "", c.overdueDays, c.currentNode, c.owner, c.reason])
   };
@@ -6768,14 +6771,14 @@ function categoryCounts(cases) {
 }
 
 // ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/report.ts
-var import_i18n4 = require("npm:@totalclaw/i18n");
+var import_i18n5 = require("npm:@totalclaw/i18n");
 var fmtRate = (r) => r == null ? "-" : `${(Math.round(r * 1e3) / 10).toFixed(1)}%`;
 var fmtDays = (d) => d == null ? "-" : String(Math.round(d * 100) / 100);
 var signed = (n, unit = "") => n == null ? "-" : `${n > 0 ? "+" : ""}${Math.round(n * 100) / 100}${unit}`;
 var signedRate = (n) => n == null ? "-" : `${n > 0 ? "+" : ""}${(Math.round(n * 1e3) / 10).toFixed(1)}`;
 var esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-var yesNo = (b) => b == null ? "-" : b ? (0, import_i18n4.t)("\u662F") : (0, import_i18n4.t)("\u5426");
-var runLabel = (f) => f.runningLabel === "overdue" ? (0, import_i18n4.t)("\u5DF2\u903E\u671F") : f.runningLabel === "risk" ? (0, import_i18n4.t)("\u8F83\u5927\u903E\u671F\u98CE\u9669") : f.runningLabel === "no_limit" ? (0, import_i18n4.t)("\u65E0\u65F6\u6548\u8981\u6C42") : (0, import_i18n4.t)("\u6B63\u5E38");
+var yesNo = (b) => b == null ? "-" : b ? (0, import_i18n5.t)("\u662F") : (0, import_i18n5.t)("\u5426");
+var runLabel = (f) => f.runningLabel === "overdue" ? (0, import_i18n5.t)("\u5DF2\u903E\u671F") : f.runningLabel === "risk" ? (0, import_i18n5.t)("\u8F83\u5927\u903E\u671F\u98CE\u9669") : f.runningLabel === "no_limit" ? (0, import_i18n5.t)("\u65E0\u65F6\u6548\u8981\u6C42") : (0, import_i18n5.t)("\u6B63\u5E38");
 function overallDelta(cur, prev) {
   const d = (a, b, digits) => {
     if (a == null || b == null) return null;
@@ -6803,11 +6806,11 @@ function bottomReviewers(rank, n, minCount = 3) {
 function buildFacts(ctx) {
   const o = ctx.result.overall;
   const facts = [];
-  facts.push((0, import_i18n4.t)("\u7EDF\u8BA1\u5468\u671F {p0}\uFF1A\u529E\u7ED3 {p1} \u5355\uFF0C\u5E73\u5747\u7528\u65F6 {p2} \u5929\uFF0C\u6D41\u7A0B\u65F6\u6548\u5408\u89C4\u7387 {p3}\uFF08\u53C2\u4E0E\u5224\u5B9A {p4} \u5355\uFF0C\u8D85\u65F6 {p5} \u5355\uFF09\u3002", { p0: ctx.period.label, p1: o.doneCount, p2: fmtDays(o.avgDays), p3: fmtRate(o.complianceRate), p4: o.judged, p5: o.overtime }));
-  facts.push((0, import_i18n4.t)("\u5728\u9014 {p0} \u5355\uFF0C\u5176\u4E2D\u5DF2\u903E\u671F {p1} \u5355\u3001\u8F83\u5927\u903E\u671F\u98CE\u9669 {p2} \u5355\u3002", { p0: o.runningCount, p1: o.runningOverdue, p2: o.runningRisk }));
-  facts.push((0, import_i18n4.t)("\u4E2A\u4EBA\u5BA1\u6838 {p0} \u6B21\uFF0C\u5408\u89C4 {p1} \u6B21\uFF0C\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387 {p2}\u3002", { p0: o.reviewCount, p1: o.reviewCompliant, p2: fmtRate(o.reviewRate) }));
+  facts.push((0, import_i18n5.t)("\u7EDF\u8BA1\u5468\u671F {p0}\uFF1A\u529E\u7ED3 {p1} \u5355\uFF0C\u5E73\u5747\u7528\u65F6 {p2} \u5929\uFF0C\u6D41\u7A0B\u65F6\u6548\u5408\u89C4\u7387 {p3}\uFF08\u53C2\u4E0E\u5224\u5B9A {p4} \u5355\uFF0C\u8D85\u65F6 {p5} \u5355\uFF09\u3002", { p0: ctx.period.label, p1: o.doneCount, p2: fmtDays(o.avgDays), p3: fmtRate(o.complianceRate), p4: o.judged, p5: o.overtime }));
+  facts.push((0, import_i18n5.t)("\u5728\u9014 {p0} \u5355\uFF0C\u5176\u4E2D\u5DF2\u903E\u671F {p1} \u5355\u3001\u8F83\u5927\u903E\u671F\u98CE\u9669 {p2} \u5355\u3002", { p0: o.runningCount, p1: o.runningOverdue, p2: o.runningRisk }));
+  facts.push((0, import_i18n5.t)("\u4E2A\u4EBA\u5BA1\u6838 {p0} \u6B21\uFF0C\u5408\u89C4 {p1} \u6B21\uFF0C\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387 {p2}\u3002", { p0: o.reviewCount, p1: o.reviewCompliant, p2: fmtRate(o.reviewRate) }));
   if (ctx.previous) {
-    facts.push((0, import_i18n4.t)("\u4E0E\u4E0A\u4E00\u5468\u671F\uFF08{p0}\uFF09\u76F8\u6BD4\uFF1A\u5408\u89C4\u7387 {p1} \u4E2A\u767E\u5206\u70B9\uFF0C\u5E73\u5747\u7528\u65F6 {p2} \u5929\uFF0C\u529E\u7ED3\u91CF {p3} \u5355\uFF0C\u5728\u9014\u903E\u671F {p4} \u5355\u3002", {
+    facts.push((0, import_i18n5.t)("\u4E0E\u4E0A\u4E00\u5468\u671F\uFF08{p0}\uFF09\u76F8\u6BD4\uFF1A\u5408\u89C4\u7387 {p1} \u4E2A\u767E\u5206\u70B9\uFF0C\u5E73\u5747\u7528\u65F6 {p2} \u5929\uFF0C\u529E\u7ED3\u91CF {p3} \u5355\uFF0C\u5728\u9014\u903E\u671F {p4} \u5355\u3002", {
       p0: ctx.previous.label,
       p1: signedRate(ctx.delta.complianceRate),
       p2: signed(ctx.delta.avgDays),
@@ -6815,29 +6818,29 @@ function buildFacts(ctx) {
       p4: signed(ctx.delta.runningOverdue)
     }));
   } else {
-    facts.push((0, import_i18n4.t)("\u6CA1\u6709\u4E0A\u4E00\u5468\u671F\u7684\u6570\u636E\uFF0C\u672C\u671F\u4E0D\u505A\u73AF\u6BD4\u3002"));
+    facts.push((0, import_i18n5.t)("\u6CA1\u6709\u4E0A\u4E00\u5468\u671F\u7684\u6570\u636E\uFF0C\u672C\u671F\u4E0D\u505A\u73AF\u6BD4\u3002"));
   }
   const worse = ctx.compare.filter((t) => (t.avgDelta ?? 0) > 0 || (t.rateDelta ?? 0) < 0).length;
-  facts.push((0, import_i18n4.t)("\u5F02\u5E38\u5224\u5B9A\u6807\u51C6\uFF1A\u5E73\u5747\u7528\u65F6\u73AF\u6BD4\u589E\u52A0\u8D85\u8FC7 {p0} \u5929\uFF0C\u6216\u65F6\u6548\u5408\u89C4\u7387\u4F4E\u4E8E {p1}\u3002\u672C\u671F\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B {p2} \u4E2A\uFF0C\u7528\u65F6\u6216\u5408\u89C4\u7387\u6BD4\u4E0A\u4E00\u5468\u671F\u53D8\u5DEE\u7684\u6D41\u7A0B\u7C7B\u578B {p3} \u4E2A\u3002", { p0: ctx.thresholds.avgIncreaseDays, p1: fmtRate(ctx.thresholds.minComplianceRate), p2: ctx.abnormal.length, p3: worse }));
+  facts.push((0, import_i18n5.t)("\u5F02\u5E38\u5224\u5B9A\u6807\u51C6\uFF1A\u5E73\u5747\u7528\u65F6\u73AF\u6BD4\u589E\u52A0\u8D85\u8FC7 {p0} \u5929\uFF0C\u6216\u65F6\u6548\u5408\u89C4\u7387\u4F4E\u4E8E {p1}\u3002\u672C\u671F\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B {p2} \u4E2A\uFF0C\u7528\u65F6\u6216\u5408\u89C4\u7387\u6BD4\u4E0A\u4E00\u5468\u671F\u53D8\u5DEE\u7684\u6D41\u7A0B\u7C7B\u578B {p3} \u4E2A\u3002", { p0: ctx.thresholds.avgIncreaseDays, p1: fmtRate(ctx.thresholds.minComplianceRate), p2: ctx.abnormal.length, p3: worse }));
   for (const c of ctx.result.byCategory) {
-    facts.push((0, import_i18n4.t)("{p0}\uFF1A\u529E\u7ED3 {p1} \u5355\uFF0C\u5E73\u5747\u7528\u65F6 {p2} \u5929\uFF0C\u5408\u89C4\u7387 {p3}\uFF0C\u5728\u9014 {p4} \u5355\uFF08\u903E\u671F {p5} \u5355\uFF09\u3002", { p0: c.category, p1: c.doneCount, p2: fmtDays(c.avgDays), p3: fmtRate(c.complianceRate), p4: c.runningCount, p5: c.runningOverdue }));
+    facts.push((0, import_i18n5.t)("{p0}\uFF1A\u529E\u7ED3 {p1} \u5355\uFF0C\u5E73\u5747\u7528\u65F6 {p2} \u5929\uFF0C\u5408\u89C4\u7387 {p3}\uFF0C\u5728\u9014 {p4} \u5355\uFF08\u903E\u671F {p5} \u5355\uFF09\u3002", { p0: c.category, p1: c.doneCount, p2: fmtDays(c.avgDays), p3: fmtRate(c.complianceRate), p4: c.runningCount, p5: c.runningOverdue }));
   }
   for (const a of ctx.abnormal.slice(0, 8)) {
     const top = a.analysis.nodes[0];
-    facts.push((0, import_i18n4.t)("\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B\u300C{p0}\u300D\uFF08{p1}\uFF09\uFF1A\u529E\u7ED3 {p2} \u5355\uFF0C\u5E73\u5747\u7528\u65F6 {p3} \u5929\uFF0C\u5408\u89C4\u7387 {p4}\uFF1B{p5}", { p0: a.flowType, p1: a.system, p2: a.doneCount, p3: fmtDays(a.avgDays), p4: fmtRate(a.complianceRate), p5: a.reasons.join("\uFF1B") }) + (top ? (0, import_i18n4.t)("\uFF1B\u8017\u65F6\u6700\u957F\u7684\u8282\u70B9\u662F\u300C{p0}\u300D\uFF0C\u5E73\u5747 {p1} \u5929\uFF0C\u5360\u8BE5\u7C7B\u8282\u70B9\u603B\u8017\u65F6\u7684 {p2}\u3002", { p0: top.node, p1: fmtDays(top.avgDays), p2: fmtRate(top.share) }) : ""));
+    facts.push((0, import_i18n5.t)("\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B\u300C{p0}\u300D\uFF08{p1}\uFF09\uFF1A\u529E\u7ED3 {p2} \u5355\uFF0C\u5E73\u5747\u7528\u65F6 {p3} \u5929\uFF0C\u5408\u89C4\u7387 {p4}\uFF1B{p5}", { p0: a.flowType, p1: a.system, p2: a.doneCount, p3: fmtDays(a.avgDays), p4: fmtRate(a.complianceRate), p5: a.reasons.join("\uFF1B") }) + (top ? (0, import_i18n5.t)("\uFF1B\u8017\u65F6\u6700\u957F\u7684\u8282\u70B9\u662F\u300C{p0}\u300D\uFF0C\u5E73\u5747 {p1} \u5929\uFF0C\u5360\u8BE5\u7C7B\u8282\u70B9\u603B\u8017\u65F6\u7684 {p2}\u3002", { p0: top.node, p1: fmtDays(top.avgDays), p2: fmtRate(top.share) }) : ""));
   }
   const bottom = bottomReviewers(ctx.result.reviewerRank, 3);
-  if (bottom.length) facts.push((0, import_i18n4.t)("\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387\u9760\u540E\uFF1A{p0}\u3002", { p0: bottom.map((p) => (0, import_i18n4.t)("{p0}\uFF08{p1}\uFF0C\u5BA1\u6838 {p2} \u6B21\uFF0C\u5408\u89C4\u7387 {p3}\uFF09", { p0: p.name, p1: p.dept || p.identity, p2: p.count, p3: fmtRate(p.rate) })).join("\u3001") }));
+  if (bottom.length) facts.push((0, import_i18n5.t)("\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387\u9760\u540E\uFF1A{p0}\u3002", { p0: bottom.map((p) => (0, import_i18n5.t)("{p0}\uFF08{p1}\uFF0C\u5BA1\u6838 {p2} \u6B21\uFF0C\u5408\u89C4\u7387 {p3}\uFF09", { p0: p.name, p1: p.dept || p.identity, p2: p.count, p3: fmtRate(p.rate) })).join("\u3001") }));
   if (ctx.period.kind === "monthly") {
-    facts.push((0, import_i18n4.t)("\u672C\u5E74\u5EA6\u53D1\u8D77\u3001\u4ECD\u672A\u529E\u7ED3\u4E14\u5DF2\u8D85\u65F6\u7684\u5728\u9014\u6D41\u7A0B {p0} \u5355\u3002", { p0: ctx.yearOverdue.length }));
+    facts.push((0, import_i18n5.t)("\u672C\u5E74\u5EA6\u53D1\u8D77\u3001\u4ECD\u672A\u529E\u7ED3\u4E14\u5DF2\u8D85\u65F6\u7684\u5728\u9014\u6D41\u7A0B {p0} \u5355\u3002", { p0: ctx.yearOverdue.length }));
     for (const f of ctx.yearOverdue.slice(0, 5)) {
-      facts.push((0, import_i18n4.t)("\u5728\u9014\u8D85\u65F6\uFF1A[{p0}] {p1} {p2}\uFF0C\u5728\u9014 {p3} \u5929\uFF0C\u8D85\u65F6 {p4} \u5929\uFF0C\u5F53\u524D\u8282\u70B9\u300C{p5}\u300D\uFF0C\u5F53\u524D\u5904\u7406\u4EBA {p6}\u3002", { p0: f.system, p1: f.flowNo, p2: f.flowType, p3: fmtDays(f.days), p4: fmtDays(f.overdueDays), p5: f.currentNode || "-", p6: f.currentHandler || "-" }));
+      facts.push((0, import_i18n5.t)("\u5728\u9014\u8D85\u65F6\uFF1A[{p0}] {p1} {p2}\uFF0C\u5728\u9014 {p3} \u5929\uFF0C\u8D85\u65F6 {p4} \u5929\uFF0C\u5F53\u524D\u8282\u70B9\u300C{p5}\u300D\uFF0C\u5F53\u524D\u5904\u7406\u4EBA {p6}\u3002", { p0: f.system, p1: f.flowNo, p2: f.flowType, p3: fmtDays(f.days), p4: fmtDays(f.overdueDays), p5: f.currentNode || "-", p6: f.currentHandler || "-" }));
     }
   }
   const cats = categoryCounts(ctx.cases);
   const collected = ctx.cases.filter((c) => c.reason.trim()).length;
-  facts.push((0, import_i18n4.t)("\u9700\u8981\u8BF4\u660E\u539F\u56E0\u7684\u6D41\u7A0B {p0} \u5355\uFF0C\u5DF2\u6536\u5230\u539F\u56E0 {p1} \u5355\u3002", { p0: ctx.cases.length, p1: collected }));
-  if (cats.length) facts.push((0, import_i18n4.t)("\u8D85\u65F6\u539F\u56E0\u5206\u5E03\uFF1A{p0}\u3002", { p0: cats.map((c) => (0, import_i18n4.t)("{p0} {p1} \u5355", { p0: categoryLabel(c.id), p1: c.count })).join("\u3001") }));
+  facts.push((0, import_i18n5.t)("\u9700\u8981\u8BF4\u660E\u539F\u56E0\u7684\u6D41\u7A0B {p0} \u5355\uFF0C\u5DF2\u6536\u5230\u539F\u56E0 {p1} \u5355\u3002", { p0: ctx.cases.length, p1: collected }));
+  if (cats.length) facts.push((0, import_i18n5.t)("\u8D85\u65F6\u539F\u56E0\u5206\u5E03\uFF1A{p0}\u3002", { p0: cats.map((c) => (0, import_i18n5.t)("{p0} {p1} \u5355", { p0: categoryLabel(c.id), p1: c.count })).join("\u3001") }));
   return facts;
 }
 function ruleSummary(ctx) {
@@ -6845,12 +6848,12 @@ function ruleSummary(ctx) {
   const th = ctx.thresholds;
   const parts = [];
   const target = fmtRate(th.minComplianceRate);
-  parts.push((0, import_i18n4.t)("\u3010\u6574\u4F53\u8868\u73B0\u3011{p0}\u529E\u7ED3\u6D41\u7A0B {p1} \u5355\uFF0C\u5E73\u5747\u7528\u65F6 {p2} \u5929\uFF0C\u6D41\u7A0B\u65F6\u6548\u5408\u89C4\u7387 {p3}\uFF0C{p4}\u76EE\u6807\u7EBF {p5}\uFF1B\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387 {p6}\u3002\u5728\u9014\u6D41\u7A0B {p7} \u5355\uFF0C\u5DF2\u903E\u671F {p8} \u5355\uFF0C\u8F83\u5927\u903E\u671F\u98CE\u9669 {p9} \u5355\u3002", {
+  parts.push((0, import_i18n5.t)("\u3010\u6574\u4F53\u8868\u73B0\u3011{p0}\u529E\u7ED3\u6D41\u7A0B {p1} \u5355\uFF0C\u5E73\u5747\u7528\u65F6 {p2} \u5929\uFF0C\u6D41\u7A0B\u65F6\u6548\u5408\u89C4\u7387 {p3}\uFF0C{p4}\u76EE\u6807\u7EBF {p5}\uFF1B\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387 {p6}\u3002\u5728\u9014\u6D41\u7A0B {p7} \u5355\uFF0C\u5DF2\u903E\u671F {p8} \u5355\uFF0C\u8F83\u5927\u903E\u671F\u98CE\u9669 {p9} \u5355\u3002", {
     p0: ctx.period.label,
     p1: o.doneCount,
     p2: fmtDays(o.avgDays),
     p3: fmtRate(o.complianceRate),
-    p4: o.complianceRate == null ? "" : o.complianceRate >= th.minComplianceRate ? (0, import_i18n4.t)("\u8FBE\u5230") : (0, import_i18n4.t)("\u4F4E\u4E8E"),
+    p4: o.complianceRate == null ? "" : o.complianceRate >= th.minComplianceRate ? (0, import_i18n5.t)("\u8FBE\u5230") : (0, import_i18n5.t)("\u4F4E\u4E8E"),
     p5: target,
     p6: fmtRate(o.reviewRate),
     p7: o.runningCount,
@@ -6859,7 +6862,7 @@ function ruleSummary(ctx) {
   }));
   if (ctx.previous) {
     const worse = ctx.compare.filter((t) => (t.avgDelta ?? 0) > 0 || (t.rateDelta ?? 0) < 0).length;
-    parts.push((0, import_i18n4.t)("\u3010\u5F02\u5E38\u8D8B\u52BF\u3011\u4E0E {p0} \u76F8\u6BD4\uFF0C\u5408\u89C4\u7387\u53D8\u5316 {p1} \u4E2A\u767E\u5206\u70B9\uFF0C\u5E73\u5747\u7528\u65F6\u53D8\u5316 {p2} \u5929\uFF0C\u5728\u9014\u903E\u671F\u53D8\u5316 {p3} \u5355\u3002{p4} \u4E2A\u6D41\u7A0B\u7C7B\u578B\u7684\u7528\u65F6\u6216\u5408\u89C4\u7387\u53D8\u5DEE\uFF0C\u5176\u4E2D {p5} \u4E2A\u88AB\u5224\u4E3A\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B\u3002", {
+    parts.push((0, import_i18n5.t)("\u3010\u5F02\u5E38\u8D8B\u52BF\u3011\u4E0E {p0} \u76F8\u6BD4\uFF0C\u5408\u89C4\u7387\u53D8\u5316 {p1} \u4E2A\u767E\u5206\u70B9\uFF0C\u5E73\u5747\u7528\u65F6\u53D8\u5316 {p2} \u5929\uFF0C\u5728\u9014\u903E\u671F\u53D8\u5316 {p3} \u5355\u3002{p4} \u4E2A\u6D41\u7A0B\u7C7B\u578B\u7684\u7528\u65F6\u6216\u5408\u89C4\u7387\u53D8\u5DEE\uFF0C\u5176\u4E2D {p5} \u4E2A\u88AB\u5224\u4E3A\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B\u3002", {
       p0: ctx.previous.label,
       p1: signedRate(ctx.delta.complianceRate),
       p2: signed(ctx.delta.avgDays),
@@ -6868,24 +6871,24 @@ function ruleSummary(ctx) {
       p5: ctx.abnormal.length
     }));
   } else {
-    parts.push((0, import_i18n4.t)("\u3010\u5F02\u5E38\u8D8B\u52BF\u3011\u6CA1\u6709\u4E0A\u4E00\u5468\u671F\u7684\u6570\u636E\uFF0C\u672C\u671F\u4E0D\u505A\u73AF\u6BD4\uFF1B\u6309\u5408\u89C4\u7387\u4F4E\u4E8E {p0} \u7684\u6807\u51C6\uFF0C\u6709 {p1} \u4E2A\u6D41\u7A0B\u7C7B\u578B\u88AB\u5224\u4E3A\u5F02\u5E38\u3002", { p0: target, p1: ctx.abnormal.length }));
+    parts.push((0, import_i18n5.t)("\u3010\u5F02\u5E38\u8D8B\u52BF\u3011\u6CA1\u6709\u4E0A\u4E00\u5468\u671F\u7684\u6570\u636E\uFF0C\u672C\u671F\u4E0D\u505A\u73AF\u6BD4\uFF1B\u6309\u5408\u89C4\u7387\u4F4E\u4E8E {p0} \u7684\u6807\u51C6\uFF0C\u6709 {p1} \u4E2A\u6D41\u7A0B\u7C7B\u578B\u88AB\u5224\u4E3A\u5F02\u5E38\u3002", { p0: target, p1: ctx.abnormal.length }));
   }
   if (ctx.abnormal.length) {
     const lines = ctx.abnormal.slice(0, 5).map((a) => {
       const top = a.analysis.nodes[0];
-      return (0, import_i18n4.t)("\u300C{p0}\u300D\uFF08{p1}\uFF09{p2}", { p0: a.flowType, p1: a.system, p2: a.reasons.join("\uFF1B") }) + (top ? (0, import_i18n4.t)("\uFF0C\u8017\u65F6\u6700\u957F\u7684\u8282\u70B9\u662F\u300C{p0}\u300D\uFF08\u5E73\u5747 {p1} \u5929\uFF09", { p0: top.node, p1: fmtDays(top.avgDays) }) : "");
+      return (0, import_i18n5.t)("\u300C{p0}\u300D\uFF08{p1}\uFF09{p2}", { p0: a.flowType, p1: a.system, p2: a.reasons.join("\uFF1B") }) + (top ? (0, import_i18n5.t)("\uFF0C\u8017\u65F6\u6700\u957F\u7684\u8282\u70B9\u662F\u300C{p0}\u300D\uFF08\u5E73\u5747 {p1} \u5929\uFF09", { p0: top.node, p1: fmtDays(top.avgDays) }) : "");
     });
-    parts.push((0, import_i18n4.t)("\u3010\u91CD\u70B9\u95EE\u9898\u3011{p0}\u3002", { p0: lines.join("\uFF1B") }));
+    parts.push((0, import_i18n5.t)("\u3010\u91CD\u70B9\u95EE\u9898\u3011{p0}\u3002", { p0: lines.join("\uFF1B") }));
   } else {
-    parts.push((0, import_i18n4.t)("\u3010\u91CD\u70B9\u95EE\u9898\u3011\u672C\u671F\u6CA1\u6709\u6D41\u7A0B\u7C7B\u578B\u88AB\u5224\u4E3A\u5F02\u5E38\u3002"));
+    parts.push((0, import_i18n5.t)("\u3010\u91CD\u70B9\u95EE\u9898\u3011\u672C\u671F\u6CA1\u6709\u6D41\u7A0B\u7C7B\u578B\u88AB\u5224\u4E3A\u5F02\u5E38\u3002"));
   }
   const cats = categoryCounts(ctx.cases);
   const bottom = bottomReviewers(ctx.result.reviewerRank, 3);
   const resp = [];
-  if (cats.length) resp.push((0, import_i18n4.t)("\u5DF2\u6536\u96C6\u7684\u8D85\u65F6\u539F\u56E0\u91CC\uFF0C{p0}", { p0: cats.map((c) => (0, import_i18n4.t)("{p0} {p1} \u5355", { p0: categoryLabel(c.id), p1: c.count })).join("\u3001") }));
-  if (bottom.length) resp.push((0, import_i18n4.t)("\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387\u9760\u540E\u7684\u662F {p0}", { p0: bottom.map((p) => `${p.name}\uFF08${fmtRate(p.rate)}\uFF09`).join("\u3001") }));
-  if (ctx.period.kind === "monthly" && ctx.yearOverdue.length) resp.push((0, import_i18n4.t)("\u672C\u5E74\u5EA6\u4ECD\u6709 {p0} \u5355\u5728\u9014\u6D41\u7A0B\u5DF2\u8D85\u65F6\u672A\u529E\u7ED3", { p0: ctx.yearOverdue.length }));
-  parts.push(resp.length ? (0, import_i18n4.t)("\u3010\u8D23\u4EFB\u7EF4\u5EA6\u3011{p0}\u3002", { p0: resp.join("\uFF1B") }) : (0, import_i18n4.t)("\u3010\u8D23\u4EFB\u7EF4\u5EA6\u3011\u672C\u671F\u6CA1\u6709\u9700\u8981\u70B9\u540D\u7684\u8D23\u4EFB\u95EE\u9898\u3002"));
+  if (cats.length) resp.push((0, import_i18n5.t)("\u5DF2\u6536\u96C6\u7684\u8D85\u65F6\u539F\u56E0\u91CC\uFF0C{p0}", { p0: cats.map((c) => (0, import_i18n5.t)("{p0} {p1} \u5355", { p0: categoryLabel(c.id), p1: c.count })).join("\u3001") }));
+  if (bottom.length) resp.push((0, import_i18n5.t)("\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387\u9760\u540E\u7684\u662F {p0}", { p0: bottom.map((p) => `${p.name}\uFF08${fmtRate(p.rate)}\uFF09`).join("\u3001") }));
+  if (ctx.period.kind === "monthly" && ctx.yearOverdue.length) resp.push((0, import_i18n5.t)("\u672C\u5E74\u5EA6\u4ECD\u6709 {p0} \u5355\u5728\u9014\u6D41\u7A0B\u5DF2\u8D85\u65F6\u672A\u529E\u7ED3", { p0: ctx.yearOverdue.length }));
+  parts.push(resp.length ? (0, import_i18n5.t)("\u3010\u8D23\u4EFB\u7EF4\u5EA6\u3011{p0}\u3002", { p0: resp.join("\uFF1B") }) : (0, import_i18n5.t)("\u3010\u8D23\u4EFB\u7EF4\u5EA6\u3011\u672C\u671F\u6CA1\u6709\u9700\u8981\u70B9\u540D\u7684\u8D23\u4EFB\u95EE\u9898\u3002"));
   return parts.join("\n\n");
 }
 function ruleSuggestions(ctx) {
@@ -6895,33 +6898,33 @@ function ruleSuggestions(ctx) {
   for (const c of categoryCounts(ctx.cases).slice(0, 3)) {
     const mine = ctx.cases.filter((x) => x.categoryId === c.id && x.reason.trim());
     const requirement = {
-      materials: (0, import_i18n4.t)("\u6574\u7406\u672C\u7C7B\u6D41\u7A0B\u7684\u63D0\u4EA4\u8D44\u6599\u6E05\u5355\uFF0C\u53D1\u8D77\u524D\u81EA\u67E5\uFF1B\u9000\u56DE\u4E00\u6B21\u4EE5\u4E0A\u7684\u5355\u636E\u7531\u90E8\u95E8\u8D1F\u8D23\u4EBA\u590D\u6838\u540E\u518D\u63D0\u4EA4"),
-      absence: (0, import_i18n4.t)("\u5BA1\u6279\u4EBA\u51FA\u5DEE\u3001\u4F11\u5047\u524D\u5728\u7CFB\u7EDF\u91CC\u8BBE\u7F6E\u4EE3\u7406\u4EBA\uFF1B\u90E8\u95E8\u5185\u660E\u786E\u6BCF\u4E2A\u5BA1\u6279\u8282\u70B9\u7684\u5907\u5C97\u4EBA"),
-      cross_dept: (0, import_i18n4.t)("\u4E0E\u76F8\u5173\u90E8\u95E8\u7EA6\u5B9A\u4F1A\u7B7E\u3001\u786E\u8BA4\u7C7B\u8282\u70B9\u7684\u7B54\u590D\u65F6\u9650\u548C\u5BF9\u63A5\u4EBA\uFF0C\u8D85\u8FC7\u65F6\u9650\u7531\u90E8\u95E8\u8D1F\u8D23\u4EBA\u534F\u8C03"),
-      external: (0, import_i18n4.t)("\u5BF9\u5916\u90E8\u5355\u4F4D\u53CD\u9988\u7C7B\u8282\u70B9\u5EFA\u7ACB\u50AC\u529E\u8282\u594F\uFF0C\u8D85\u8FC7\u7EA6\u5B9A\u5929\u6570\u5347\u7EA7\u5230\u533A\u57DF\u7ECF\u7406\u8DDF\u8FDB"),
-      system: (0, import_i18n4.t)("\u6838\u5BF9\u5F85\u529E\u63D0\u9192\u662F\u5426\u5F00\u542F\uFF0C\u6574\u7406\u5E38\u89C1\u64CD\u4F5C\u95EE\u9898\u8BF4\u660E\uFF1B\u7CFB\u7EDF\u6545\u969C\u5F53\u5929\u62A5\u7ED9\u7CFB\u7EDF\u987E\u95EE"),
-      design: (0, import_i18n4.t)("\u68B3\u7406\u5BA1\u6279\u8282\u70B9\uFF0C\u8BC4\u4F30\u53EF\u4EE5\u5408\u5E76\u6216\u53D6\u6D88\u7684\u73AF\u8282\uFF0C\u5F62\u6210\u6D41\u7A0B\u4F18\u5316\u7533\u8BF7"),
-      other: (0, import_i18n4.t)("\u9010\u5355\u590D\u76D8\u539F\u56E0\uFF0C\u5F62\u6210\u53EF\u6267\u884C\u7684\u6539\u8FDB\u52A8\u4F5C")
+      materials: (0, import_i18n5.t)("\u6574\u7406\u672C\u7C7B\u6D41\u7A0B\u7684\u63D0\u4EA4\u8D44\u6599\u6E05\u5355\uFF0C\u53D1\u8D77\u524D\u81EA\u67E5\uFF1B\u9000\u56DE\u4E00\u6B21\u4EE5\u4E0A\u7684\u5355\u636E\u7531\u90E8\u95E8\u8D1F\u8D23\u4EBA\u590D\u6838\u540E\u518D\u63D0\u4EA4"),
+      absence: (0, import_i18n5.t)("\u5BA1\u6279\u4EBA\u51FA\u5DEE\u3001\u4F11\u5047\u524D\u5728\u7CFB\u7EDF\u91CC\u8BBE\u7F6E\u4EE3\u7406\u4EBA\uFF1B\u90E8\u95E8\u5185\u660E\u786E\u6BCF\u4E2A\u5BA1\u6279\u8282\u70B9\u7684\u5907\u5C97\u4EBA"),
+      cross_dept: (0, import_i18n5.t)("\u4E0E\u76F8\u5173\u90E8\u95E8\u7EA6\u5B9A\u4F1A\u7B7E\u3001\u786E\u8BA4\u7C7B\u8282\u70B9\u7684\u7B54\u590D\u65F6\u9650\u548C\u5BF9\u63A5\u4EBA\uFF0C\u8D85\u8FC7\u65F6\u9650\u7531\u90E8\u95E8\u8D1F\u8D23\u4EBA\u534F\u8C03"),
+      external: (0, import_i18n5.t)("\u5BF9\u5916\u90E8\u5355\u4F4D\u53CD\u9988\u7C7B\u8282\u70B9\u5EFA\u7ACB\u50AC\u529E\u8282\u594F\uFF0C\u8D85\u8FC7\u7EA6\u5B9A\u5929\u6570\u5347\u7EA7\u5230\u533A\u57DF\u7ECF\u7406\u8DDF\u8FDB"),
+      system: (0, import_i18n5.t)("\u6838\u5BF9\u5F85\u529E\u63D0\u9192\u662F\u5426\u5F00\u542F\uFF0C\u6574\u7406\u5E38\u89C1\u64CD\u4F5C\u95EE\u9898\u8BF4\u660E\uFF1B\u7CFB\u7EDF\u6545\u969C\u5F53\u5929\u62A5\u7ED9\u7CFB\u7EDF\u987E\u95EE"),
+      design: (0, import_i18n5.t)("\u68B3\u7406\u5BA1\u6279\u8282\u70B9\uFF0C\u8BC4\u4F30\u53EF\u4EE5\u5408\u5E76\u6216\u53D6\u6D88\u7684\u73AF\u8282\uFF0C\u5F62\u6210\u6D41\u7A0B\u4F18\u5316\u7533\u8BF7"),
+      other: (0, import_i18n5.t)("\u9010\u5355\u590D\u76D8\u539F\u56E0\uFF0C\u5F62\u6210\u53EF\u6267\u884C\u7684\u6539\u8FDB\u52A8\u4F5C")
     };
     out.push({
-      item: (0, import_i18n4.t)("\u51CF\u5C11\u300C{p0}\u300D\u9020\u6210\u7684\u8D85\u65F6\uFF08\u672C\u671F {p1} \u5355\uFF09", { p0: categoryLabel(c.id), p1: c.count }),
+      item: (0, import_i18n5.t)("\u51CF\u5C11\u300C{p0}\u300D\u9020\u6210\u7684\u8D85\u65F6\uFF08\u672C\u671F {p1} \u5355\uFF09", { p0: categoryLabel(c.id), p1: c.count }),
       dept: mostCommon(mine.map((x) => deptOf.get(x.key) || "")),
       owner: mostCommon(mine.map((x) => x.owner)),
       requirement: requirement[c.id],
       deadline,
-      acceptance: (0, import_i18n4.t)("\u4E0B\u4E00\u4E2A\u7EDF\u8BA1\u5468\u671F\u91CC\uFF0C\u8FD9\u4E00\u7C7B\u539F\u56E0\u9020\u6210\u7684\u8D85\u65F6\u6D41\u7A0B\u6570\u91CF\u4E0B\u964D")
+      acceptance: (0, import_i18n5.t)("\u4E0B\u4E00\u4E2A\u7EDF\u8BA1\u5468\u671F\u91CC\uFF0C\u8FD9\u4E00\u7C7B\u539F\u56E0\u9020\u6210\u7684\u8D85\u65F6\u6D41\u7A0B\u6570\u91CF\u4E0B\u964D")
     });
   }
   for (const a of ctx.abnormal.slice(0, 3)) {
     const flows = ctx.result.flows.filter((f) => f.flowType === a.flowType && f.system === a.system);
     const top = a.analysis.nodes[0];
     out.push({
-      item: (0, import_i18n4.t)("\u300C{p0}\u300D\u65F6\u6548\u8FBE\u6807\uFF08{p1}\uFF09", { p0: a.flowType, p1: a.reasons.join("\uFF1B") }),
+      item: (0, import_i18n5.t)("\u300C{p0}\u300D\u65F6\u6548\u8FBE\u6807\uFF08{p1}\uFF09", { p0: a.flowType, p1: a.reasons.join("\uFF1B") }),
       dept: mostCommon(flows.map((f) => f.dept)),
       owner: mostCommon(flows.filter((f) => f.overtime || f.runningLabel === "overdue").map((f) => f.currentHandler || f.initiator)),
-      requirement: top ? (0, import_i18n4.t)("\u91CD\u70B9\u538B\u7F29\u300C{p0}\u300D\u8282\u70B9\u7684\u505C\u7559\u65F6\u95F4\uFF08\u5F53\u524D\u5E73\u5747 {p1} \u5929\uFF09\uFF0C\u4E0E\u4E1A\u52A1\u786E\u8BA4\u505C\u7559\u539F\u56E0\u5E76\u7ED9\u51FA\u5904\u7406\u529E\u6CD5", { p0: top.node, p1: fmtDays(top.avgDays) }) : (0, import_i18n4.t)("\u590D\u76D8\u672C\u7C7B\u6D41\u7A0B\u7684\u8D85\u65F6\u5355\u636E\uFF0C\u786E\u8BA4\u539F\u56E0\u5E76\u7ED9\u51FA\u5904\u7406\u529E\u6CD5"),
+      requirement: top ? (0, import_i18n5.t)("\u91CD\u70B9\u538B\u7F29\u300C{p0}\u300D\u8282\u70B9\u7684\u505C\u7559\u65F6\u95F4\uFF08\u5F53\u524D\u5E73\u5747 {p1} \u5929\uFF09\uFF0C\u4E0E\u4E1A\u52A1\u786E\u8BA4\u505C\u7559\u539F\u56E0\u5E76\u7ED9\u51FA\u5904\u7406\u529E\u6CD5", { p0: top.node, p1: fmtDays(top.avgDays) }) : (0, import_i18n5.t)("\u590D\u76D8\u672C\u7C7B\u6D41\u7A0B\u7684\u8D85\u65F6\u5355\u636E\uFF0C\u786E\u8BA4\u539F\u56E0\u5E76\u7ED9\u51FA\u5904\u7406\u529E\u6CD5"),
       deadline,
-      acceptance: (0, import_i18n4.t)("\u8BE5\u6D41\u7A0B\u7C7B\u578B\u7684\u65F6\u6548\u5408\u89C4\u7387\u4E0D\u4F4E\u4E8E {p0}", { p0: fmtRate(ctx.thresholds.minComplianceRate) })
+      acceptance: (0, import_i18n5.t)("\u8BE5\u6D41\u7A0B\u7C7B\u578B\u7684\u65F6\u6548\u5408\u89C4\u7387\u4E0D\u4F4E\u4E8E {p0}", { p0: fmtRate(ctx.thresholds.minComplianceRate) })
     });
   }
   return out;
@@ -7007,74 +7010,74 @@ var N = (t) => ({ t, n: true });
 function kpis(ctx) {
   const o = ctx.result.overall;
   const d = ctx.delta;
-  const card = (label, value, delta) => `<div class="kpi"><small>${esc(label)}</small><b>${esc(value)}</b>${delta && delta !== "-" ? `<i>${esc((0, import_i18n4.t)("\u73AF\u6BD4 {p0}", { p0: delta }))}</i>` : ""}</div>`;
+  const card = (label, value, delta) => `<div class="kpi"><small>${esc(label)}</small><b>${esc(value)}</b>${delta && delta !== "-" ? `<i>${esc((0, import_i18n5.t)("\u73AF\u6BD4 {p0}", { p0: delta }))}</i>` : ""}</div>`;
   return `<div class="kpis">${[
-    card((0, import_i18n4.t)("\u529E\u7ED3\u6570"), String(o.doneCount), signed(d.doneCount)),
-    card((0, import_i18n4.t)("\u5E73\u5747\u7528\u65F6\uFF08\u5929\uFF09"), fmtDays(o.avgDays), signed(d.avgDays)),
-    card((0, import_i18n4.t)("\u6D41\u7A0B\u65F6\u6548\u5408\u89C4\u7387"), fmtRate(o.complianceRate), d.complianceRate == null ? "-" : (0, import_i18n4.t)("{p0} \u4E2A\u767E\u5206\u70B9", { p0: signedRate(d.complianceRate) })),
-    card((0, import_i18n4.t)("\u5728\u9014\u6570"), String(o.runningCount), signed(d.runningCount)),
-    card((0, import_i18n4.t)("\u5DF2\u903E\u671F"), String(o.runningOverdue), signed(d.runningOverdue)),
-    card((0, import_i18n4.t)("\u8F83\u5927\u903E\u671F\u98CE\u9669"), String(o.runningRisk)),
-    card((0, import_i18n4.t)("\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387"), fmtRate(o.reviewRate), d.reviewRate == null ? "-" : (0, import_i18n4.t)("{p0} \u4E2A\u767E\u5206\u70B9", { p0: signedRate(d.reviewRate) }))
+    card((0, import_i18n5.t)("\u529E\u7ED3\u6570"), String(o.doneCount), signed(d.doneCount)),
+    card((0, import_i18n5.t)("\u5E73\u5747\u7528\u65F6\uFF08\u5929\uFF09"), fmtDays(o.avgDays), signed(d.avgDays)),
+    card((0, import_i18n5.t)("\u6D41\u7A0B\u65F6\u6548\u5408\u89C4\u7387"), fmtRate(o.complianceRate), d.complianceRate == null ? "-" : (0, import_i18n5.t)("{p0} \u4E2A\u767E\u5206\u70B9", { p0: signedRate(d.complianceRate) })),
+    card((0, import_i18n5.t)("\u5728\u9014\u6570"), String(o.runningCount), signed(d.runningCount)),
+    card((0, import_i18n5.t)("\u5DF2\u903E\u671F"), String(o.runningOverdue), signed(d.runningOverdue)),
+    card((0, import_i18n5.t)("\u8F83\u5927\u903E\u671F\u98CE\u9669"), String(o.runningRisk)),
+    card((0, import_i18n5.t)("\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387"), fmtRate(o.reviewRate), d.reviewRate == null ? "-" : (0, import_i18n5.t)("{p0} \u4E2A\u767E\u5206\u70B9", { p0: signedRate(d.reviewRate) }))
   ].join("")}</div>`;
 }
 function typeTable(list, withType, min) {
   return table(
-    [(0, import_i18n4.t)("\u5927\u7C7B"), ...withType ? [(0, import_i18n4.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n4.t)("\u7CFB\u7EDF")] : [], N((0, import_i18n4.t)("\u529E\u7ED3")), N((0, import_i18n4.t)("\u5E73\u5747\u7528\u65F6\uFF08\u5929\uFF09")), N((0, import_i18n4.t)("\u65F6\u6548\u8981\u6C42\uFF08\u5929\uFF09")), N((0, import_i18n4.t)("\u8D85\u65F6")), N((0, import_i18n4.t)("\u5408\u89C4\u7387")), N((0, import_i18n4.t)("\u5728\u9014")), N((0, import_i18n4.t)("\u5728\u9014\u903E\u671F")), N((0, import_i18n4.t)("\u5728\u9014\u8D85\u65F6\u5360\u6BD4"))],
+    [(0, import_i18n5.t)("\u5927\u7C7B"), ...withType ? [(0, import_i18n5.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n5.t)("\u7CFB\u7EDF")] : [], N((0, import_i18n5.t)("\u529E\u7ED3")), N((0, import_i18n5.t)("\u5E73\u5747\u7528\u65F6\uFF08\u5929\uFF09")), N((0, import_i18n5.t)("\u65F6\u6548\u8981\u6C42\uFF08\u5929\uFF09")), N((0, import_i18n5.t)("\u8D85\u65F6")), N((0, import_i18n5.t)("\u5408\u89C4\u7387")), N((0, import_i18n5.t)("\u5728\u9014")), N((0, import_i18n5.t)("\u5728\u9014\u903E\u671F")), N((0, import_i18n5.t)("\u5728\u9014\u8D85\u65F6\u5360\u6BD4"))],
     list.map((t) => ({ bad: t.complianceRate !== null && t.complianceRate < min, cells: [t.category, ...withType ? [t.flowType, t.system] : [], t.doneCount, fmtDays(t.avgDays), t.limitDays ?? "-", t.overtime, fmtRate(t.complianceRate), t.runningCount, t.runningOverdue, fmtRate(t.runningOverdueRate)] })),
-    (0, import_i18n4.t)("\u6CA1\u6709\u6570\u636E")
+    (0, import_i18n5.t)("\u6CA1\u6709\u6570\u636E")
   );
 }
 function compareTable(list) {
   return table(
-    [(0, import_i18n4.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n4.t)("\u7CFB\u7EDF"), N((0, import_i18n4.t)("\u529E\u7ED3")), N((0, import_i18n4.t)("\u5E73\u5747\u7528\u65F6\uFF08\u5929\uFF09")), N((0, import_i18n4.t)("\u4E0A\u671F")), N((0, import_i18n4.t)("\u53D8\u5316")), N((0, import_i18n4.t)("\u5408\u89C4\u7387")), N((0, import_i18n4.t)("\u4E0A\u671F")), N((0, import_i18n4.t)("\u53D8\u5316\uFF08\u767E\u5206\u70B9\uFF09")), (0, import_i18n4.t)("\u5F02\u5E38\u539F\u56E0")],
-    list.map((t) => ({ bad: t.abnormal, cells: [t.flowType, t.system, t.doneCount, fmtDays(t.avgDays), fmtDays(t.prevAvgDays), signed(t.avgDelta), fmtRate(t.complianceRate), fmtRate(t.prevComplianceRate), signedRate(t.rateDelta), t.reasons.join((0, import_i18n4.t)("\uFF1B"))] })),
-    (0, import_i18n4.t)("\u6CA1\u6709\u6570\u636E")
+    [(0, import_i18n5.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n5.t)("\u7CFB\u7EDF"), N((0, import_i18n5.t)("\u529E\u7ED3")), N((0, import_i18n5.t)("\u5E73\u5747\u7528\u65F6\uFF08\u5929\uFF09")), N((0, import_i18n5.t)("\u4E0A\u671F")), N((0, import_i18n5.t)("\u53D8\u5316")), N((0, import_i18n5.t)("\u5408\u89C4\u7387")), N((0, import_i18n5.t)("\u4E0A\u671F")), N((0, import_i18n5.t)("\u53D8\u5316\uFF08\u767E\u5206\u70B9\uFF09")), (0, import_i18n5.t)("\u5F02\u5E38\u539F\u56E0")],
+    list.map((t) => ({ bad: t.abnormal, cells: [t.flowType, t.system, t.doneCount, fmtDays(t.avgDays), fmtDays(t.prevAvgDays), signed(t.avgDelta), fmtRate(t.complianceRate), fmtRate(t.prevComplianceRate), signedRate(t.rateDelta), t.reasons.join((0, import_i18n5.t)("\uFF1B"))] })),
+    (0, import_i18n5.t)("\u6CA1\u6709\u6570\u636E")
   );
 }
 function rankTable(list, countLabel) {
   return table(
-    [N((0, import_i18n4.t)("\u6392\u540D")), (0, import_i18n4.t)("\u59D3\u540D"), (0, import_i18n4.t)("\u90E8\u95E8"), (0, import_i18n4.t)("\u8EAB\u4EFD"), N(countLabel), N((0, import_i18n4.t)("\u5408\u89C4")), N((0, import_i18n4.t)("\u5408\u89C4\u7387")), N((0, import_i18n4.t)("\u5E73\u5747\u7528\u65F6"))],
+    [N((0, import_i18n5.t)("\u6392\u540D")), (0, import_i18n5.t)("\u59D3\u540D"), (0, import_i18n5.t)("\u90E8\u95E8"), (0, import_i18n5.t)("\u8EAB\u4EFD"), N(countLabel), N((0, import_i18n5.t)("\u5408\u89C4")), N((0, import_i18n5.t)("\u5408\u89C4\u7387")), N((0, import_i18n5.t)("\u5E73\u5747\u7528\u65F6"))],
     list.map((p) => ({ cells: [p.rank, p.name, p.dept, p.identity, p.count, p.compliant, fmtRate(p.rate), fmtDays(p.avgDays)] })),
-    (0, import_i18n4.t)("\u6CA1\u6709\u6570\u636E")
+    (0, import_i18n5.t)("\u6CA1\u6709\u6570\u636E")
   );
 }
 function runningTable(list, reasonOf) {
   return table(
-    [(0, import_i18n4.t)("\u7CFB\u7EDF"), (0, import_i18n4.t)("\u5355\u53F7"), (0, import_i18n4.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n4.t)("\u53D1\u8D77\u4EBA"), N((0, import_i18n4.t)("\u5728\u9014\uFF08\u5929\uFF09")), N((0, import_i18n4.t)("\u65F6\u6548\u8981\u6C42")), N((0, import_i18n4.t)("\u8D85\u65F6\uFF08\u5929\uFF09")), (0, import_i18n4.t)("\u5F53\u524D\u8282\u70B9"), (0, import_i18n4.t)("\u5F53\u524D\u5904\u7406\u4EBA"), N((0, import_i18n4.t)("\u8282\u70B9\u505C\u7559\uFF08\u5929\uFF09")), (0, import_i18n4.t)("\u539F\u56E0")],
+    [(0, import_i18n5.t)("\u7CFB\u7EDF"), (0, import_i18n5.t)("\u5355\u53F7"), (0, import_i18n5.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n5.t)("\u53D1\u8D77\u4EBA"), N((0, import_i18n5.t)("\u5728\u9014\uFF08\u5929\uFF09")), N((0, import_i18n5.t)("\u65F6\u6548\u8981\u6C42")), N((0, import_i18n5.t)("\u8D85\u65F6\uFF08\u5929\uFF09")), (0, import_i18n5.t)("\u5F53\u524D\u8282\u70B9"), (0, import_i18n5.t)("\u5F53\u524D\u5904\u7406\u4EBA"), N((0, import_i18n5.t)("\u8282\u70B9\u505C\u7559\uFF08\u5929\uFF09")), (0, import_i18n5.t)("\u539F\u56E0")],
     list.map((f) => {
       const c = reasonOf.get(`${f.system}|${f.flowNo}`);
       return { cells: [f.system, f.flowNo, f.flowType, f.initiator, fmtDays(f.days), f.limitDays ?? "-", fmtDays(f.overdueDays), f.currentNode, f.currentHandler, fmtDays(f.currentNodeDays), c?.reason ? `${c.categoryId ? `[${categoryLabel(c.categoryId)}] ` : ""}${c.reason}` : ""] };
     }),
-    (0, import_i18n4.t)("\u6CA1\u6709\u5728\u9014\u8D85\u65F6\u7684\u6D41\u7A0B")
+    (0, import_i18n5.t)("\u6CA1\u6709\u5728\u9014\u8D85\u65F6\u7684\u6D41\u7A0B")
   );
 }
 function nodeTable(a) {
   return table(
-    [(0, import_i18n4.t)("\u8282\u70B9"), (0, import_i18n4.t)("\u5185\u5916\u90E8"), N((0, import_i18n4.t)("\u5904\u7406\u6B21\u6570")), N((0, import_i18n4.t)("\u5E73\u5747\u8017\u65F6\uFF08\u5929\uFF09")), N((0, import_i18n4.t)("\u6700\u957F\uFF08\u5929\uFF09")), N((0, import_i18n4.t)("\u5E73\u5747\u7B49\u5F85\uFF08\u5929\uFF09")), N((0, import_i18n4.t)("\u8017\u65F6\u5360\u6BD4")), N((0, import_i18n4.t)("\u5728\u9014\u505C\u7559\u6570")), N((0, import_i18n4.t)("\u5E73\u5747\u505C\u7559\uFF08\u5929\uFF09"))],
-    a.nodes.map((n) => ({ bad: n.node === a.longestNode, cells: [n.node, n.internal == null ? (0, import_i18n4.t)("\u672A\u767B\u8BB0") : n.internal ? (0, import_i18n4.t)("\u5185\u90E8") : (0, import_i18n4.t)("\u5916\u90E8"), n.count, fmtDays(n.avgDays), fmtDays(n.maxDays), fmtDays(n.avgWaitDays), fmtRate(n.share), n.stuckCount, fmtDays(n.avgStuckDays)] })),
-    (0, import_i18n4.t)("\u8FD9\u4E00\u7C7B\u6D41\u7A0B\u6CA1\u6709\u8282\u70B9\u660E\u7EC6")
+    [(0, import_i18n5.t)("\u8282\u70B9"), (0, import_i18n5.t)("\u5185\u5916\u90E8"), N((0, import_i18n5.t)("\u5904\u7406\u6B21\u6570")), N((0, import_i18n5.t)("\u5E73\u5747\u8017\u65F6\uFF08\u5929\uFF09")), N((0, import_i18n5.t)("\u6700\u957F\uFF08\u5929\uFF09")), N((0, import_i18n5.t)("\u5E73\u5747\u7B49\u5F85\uFF08\u5929\uFF09")), N((0, import_i18n5.t)("\u8017\u65F6\u5360\u6BD4")), N((0, import_i18n5.t)("\u5728\u9014\u505C\u7559\u6570")), N((0, import_i18n5.t)("\u5E73\u5747\u505C\u7559\uFF08\u5929\uFF09"))],
+    a.nodes.map((n) => ({ bad: n.node === a.longestNode, cells: [n.node, n.internal == null ? (0, import_i18n5.t)("\u672A\u767B\u8BB0") : n.internal ? (0, import_i18n5.t)("\u5185\u90E8") : (0, import_i18n5.t)("\u5916\u90E8"), n.count, fmtDays(n.avgDays), fmtDays(n.maxDays), fmtDays(n.avgWaitDays), fmtRate(n.share), n.stuckCount, fmtDays(n.avgStuckDays)] })),
+    (0, import_i18n5.t)("\u8FD9\u4E00\u7C7B\u6D41\u7A0B\u6CA1\u6709\u8282\u70B9\u660E\u7EC6")
   );
 }
 function reasonsBlock(ctx) {
   const cats = categoryCounts(ctx.cases);
-  if (!cats.length) return `<p class="note">${esc((0, import_i18n4.t)("\u8FD8\u6CA1\u6709\u6536\u96C6\u5230\u8D85\u65F6\u539F\u56E0"))}</p>`;
+  if (!cats.length) return `<p class="note">${esc((0, import_i18n5.t)("\u8FD8\u6CA1\u6709\u6536\u96C6\u5230\u8D85\u65F6\u539F\u56E0"))}</p>`;
   return table(
-    [(0, import_i18n4.t)("\u539F\u56E0\u7C7B\u522B"), N((0, import_i18n4.t)("\u6570\u91CF")), (0, import_i18n4.t)("\u6839\u56E0\u8BF4\u660E")],
+    [(0, import_i18n5.t)("\u539F\u56E0\u7C7B\u522B"), N((0, import_i18n5.t)("\u6570\u91CF")), (0, import_i18n5.t)("\u6839\u56E0\u8BF4\u660E")],
     cats.map((c) => ({ cells: [categoryLabel(c.id), c.count, ctx.rootCauses[c.id] || defaultRootCause(c.id)] })),
     ""
   );
 }
 function suggestionTable(list) {
   return table(
-    [(0, import_i18n4.t)("\u5EFA\u8BAE\u4E8B\u9879"), (0, import_i18n4.t)("\u8D23\u4EFB\u90E8\u95E8"), (0, import_i18n4.t)("\u8D23\u4EFB\u4EBA"), (0, import_i18n4.t)("\u6267\u884C\u8981\u6C42"), (0, import_i18n4.t)("\u6267\u884C\u671F\u9650"), (0, import_i18n4.t)("\u9A8C\u6536\u8981\u6C42")],
+    [(0, import_i18n5.t)("\u5EFA\u8BAE\u4E8B\u9879"), (0, import_i18n5.t)("\u8D23\u4EFB\u90E8\u95E8"), (0, import_i18n5.t)("\u8D23\u4EFB\u4EBA"), (0, import_i18n5.t)("\u6267\u884C\u8981\u6C42"), (0, import_i18n5.t)("\u6267\u884C\u671F\u9650"), (0, import_i18n5.t)("\u9A8C\u6536\u8981\u6C42")],
     list.map((s) => ({ cells: [s.item, s.dept, s.owner, s.requirement, s.deadline, s.acceptance] })),
-    (0, import_i18n4.t)("\u672C\u671F\u6CA1\u6709\u6539\u5584\u5EFA\u8BAE")
+    (0, import_i18n5.t)("\u672C\u671F\u6CA1\u6709\u6539\u5584\u5EFA\u8BAE")
   );
 }
 var page = (title, body) => `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title)}</title><style>${CSS}</style></head><body>${body}</body></html>`;
 function reportSubject(ctx) {
-  return ctx.period.kind === "monthly" ? (0, import_i18n4.t)("\u7EBF\u4E0A\u6D41\u7A0B\u65F6\u6548\u8FBE\u6210\u60C5\u51B5\u6708\u5EA6\u901A\u62A5\uFF08{p0}\uFF09", { p0: ctx.period.label }) : (0, import_i18n4.t)("\u7EBF\u4E0A\u6D41\u7A0B\u65F6\u6548\u8FBE\u6210\u60C5\u51B5\u5468\u901A\u62A5\uFF08{p0}\uFF09", { p0: ctx.period.label });
+  return ctx.period.kind === "monthly" ? (0, import_i18n5.t)("\u7EBF\u4E0A\u6D41\u7A0B\u65F6\u6548\u8FBE\u6210\u60C5\u51B5\u6708\u5EA6\u901A\u62A5\uFF08{p0}\uFF09", { p0: ctx.period.label }) : (0, import_i18n5.t)("\u7EBF\u4E0A\u6D41\u7A0B\u65F6\u6548\u8FBE\u6210\u60C5\u51B5\u5468\u901A\u62A5\uFF08{p0}\uFF09", { p0: ctx.period.label });
 }
 function weeklyMail(ctx) {
   const subject = reportSubject(ctx);
@@ -7084,73 +7087,73 @@ function weeklyMail(ctx) {
   const top = ctx.result.reviewerRank.filter((p) => p.count >= 3).slice(0, 5);
   const bottom = bottomReviewers(ctx.result.reviewerRank, 5);
   const text2 = [
-    (0, import_i18n4.t)("\u5404\u4F4D\u597D\uFF1A"),
+    (0, import_i18n5.t)("\u5404\u4F4D\u597D\uFF1A"),
     "",
-    (0, import_i18n4.t)("{p0} \u7EBF\u4E0A\u6D41\u7A0B\u65F6\u6548\u8FBE\u6210\u60C5\u51B5\u5982\u4E0B\uFF0C\u660E\u7EC6\u89C1\u9644\u4EF6\u3002", { p0: ctx.period.label }),
+    (0, import_i18n5.t)("{p0} \u7EBF\u4E0A\u6D41\u7A0B\u65F6\u6548\u8FBE\u6210\u60C5\u51B5\u5982\u4E0B\uFF0C\u660E\u7EC6\u89C1\u9644\u4EF6\u3002", { p0: ctx.period.label }),
     "",
-    (0, import_i18n4.t)("\u4E00\u3001\u5173\u952E\u6570\u5B57"),
-    (0, import_i18n4.t)("\u529E\u7ED3 {p0} \u5355\uFF0C\u5E73\u5747\u7528\u65F6 {p1} \u5929\uFF0C\u6D41\u7A0B\u65F6\u6548\u5408\u89C4\u7387 {p2}\uFF1B\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387 {p3}\u3002", { p0: o.doneCount, p1: fmtDays(o.avgDays), p2: fmtRate(o.complianceRate), p3: fmtRate(o.reviewRate) }),
-    (0, import_i18n4.t)("\u5728\u9014 {p0} \u5355\uFF0C\u5DF2\u903E\u671F {p1} \u5355\uFF0C\u8F83\u5927\u903E\u671F\u98CE\u9669 {p2} \u5355\u3002", { p0: o.runningCount, p1: o.runningOverdue, p2: o.runningRisk }),
+    (0, import_i18n5.t)("\u4E00\u3001\u5173\u952E\u6570\u5B57"),
+    (0, import_i18n5.t)("\u529E\u7ED3 {p0} \u5355\uFF0C\u5E73\u5747\u7528\u65F6 {p1} \u5929\uFF0C\u6D41\u7A0B\u65F6\u6548\u5408\u89C4\u7387 {p2}\uFF1B\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387 {p3}\u3002", { p0: o.doneCount, p1: fmtDays(o.avgDays), p2: fmtRate(o.complianceRate), p3: fmtRate(o.reviewRate) }),
+    (0, import_i18n5.t)("\u5728\u9014 {p0} \u5355\uFF0C\u5DF2\u903E\u671F {p1} \u5355\uFF0C\u8F83\u5927\u903E\u671F\u98CE\u9669 {p2} \u5355\u3002", { p0: o.runningCount, p1: o.runningOverdue, p2: o.runningRisk }),
     "",
-    (0, import_i18n4.t)("\u4E8C\u3001\u73AF\u6BD4\u53D8\u5316"),
-    ctx.previous ? (0, import_i18n4.t)("\u4E0E {p0} \u76F8\u6BD4\uFF1A\u5408\u89C4\u7387 {p1} \u4E2A\u767E\u5206\u70B9\uFF0C\u5E73\u5747\u7528\u65F6 {p2} \u5929\uFF0C\u529E\u7ED3\u91CF {p3} \u5355\uFF0C\u5728\u9014\u903E\u671F {p4} \u5355\u3002", { p0: ctx.previous.label, p1: signedRate(ctx.delta.complianceRate), p2: signed(ctx.delta.avgDays), p3: signed(ctx.delta.doneCount), p4: signed(ctx.delta.runningOverdue) }) : (0, import_i18n4.t)("\u6CA1\u6709\u4E0A\u4E00\u5468\u671F\u7684\u6570\u636E\uFF0C\u672C\u671F\u4E0D\u505A\u73AF\u6BD4\u3002"),
+    (0, import_i18n5.t)("\u4E8C\u3001\u73AF\u6BD4\u53D8\u5316"),
+    ctx.previous ? (0, import_i18n5.t)("\u4E0E {p0} \u76F8\u6BD4\uFF1A\u5408\u89C4\u7387 {p1} \u4E2A\u767E\u5206\u70B9\uFF0C\u5E73\u5747\u7528\u65F6 {p2} \u5929\uFF0C\u529E\u7ED3\u91CF {p3} \u5355\uFF0C\u5728\u9014\u903E\u671F {p4} \u5355\u3002", { p0: ctx.previous.label, p1: signedRate(ctx.delta.complianceRate), p2: signed(ctx.delta.avgDays), p3: signed(ctx.delta.doneCount), p4: signed(ctx.delta.runningOverdue) }) : (0, import_i18n5.t)("\u6CA1\u6709\u4E0A\u4E00\u5468\u671F\u7684\u6570\u636E\uFF0C\u672C\u671F\u4E0D\u505A\u73AF\u6BD4\u3002"),
     "",
-    (0, import_i18n4.t)("\u4E09\u3001\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B\uFF08{p0} \u4E2A\uFF09", { p0: ctx.abnormal.length }),
-    ...ctx.abnormal.length ? ctx.abnormal.map((a, i) => `${i + 1}. ${a.flowType}\uFF08${a.system}\uFF09\uFF1A${a.reasons.join((0, import_i18n4.t)("\uFF1B"))}`) : [(0, import_i18n4.t)("\u65E0")],
+    (0, import_i18n5.t)("\u4E09\u3001\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B\uFF08{p0} \u4E2A\uFF09", { p0: ctx.abnormal.length }),
+    ...ctx.abnormal.length ? ctx.abnormal.map((a, i) => `${i + 1}. ${a.flowType}\uFF08${a.system}\uFF09\uFF1A${a.reasons.join((0, import_i18n5.t)("\uFF1B"))}`) : [(0, import_i18n5.t)("\u65E0")],
     "",
-    (0, import_i18n4.t)("\u56DB\u3001\u5728\u9014\u5DF2\u903E\u671F\uFF08{p0} \u5355\uFF0C\u6309\u8D85\u65F6\u5929\u6570\u5217\u524D 10\uFF09", { p0: overdue.length }),
-    ...overdue.length ? overdue.slice(0, 10).map((f, i) => (0, import_i18n4.t)("{n}. [{sys}] {no} {type}\uFF1A\u5728\u9014 {days} \u5929\uFF0C\u8D85\u65F6 {over} \u5929\uFF0C\u5F53\u524D\u300C{node}\u300D{handler}", { n: i + 1, sys: f.system, no: f.flowNo, type: f.flowType, days: fmtDays(f.days), over: fmtDays(f.overdueDays), node: f.currentNode || "-", handler: f.currentHandler })) : [(0, import_i18n4.t)("\u65E0")],
-    ...ctx.summary.trim() ? ["", (0, import_i18n4.t)("\u4E94\u3001\u5C0F\u7ED3"), ctx.summary.trim()] : []
+    (0, import_i18n5.t)("\u56DB\u3001\u5728\u9014\u5DF2\u903E\u671F\uFF08{p0} \u5355\uFF0C\u6309\u8D85\u65F6\u5929\u6570\u5217\u524D 10\uFF09", { p0: overdue.length }),
+    ...overdue.length ? overdue.slice(0, 10).map((f, i) => (0, import_i18n5.t)("{n}. [{sys}] {no} {type}\uFF1A\u5728\u9014 {days} \u5929\uFF0C\u8D85\u65F6 {over} \u5929\uFF0C\u5F53\u524D\u300C{node}\u300D{handler}", { n: i + 1, sys: f.system, no: f.flowNo, type: f.flowType, days: fmtDays(f.days), over: fmtDays(f.overdueDays), node: f.currentNode || "-", handler: f.currentHandler })) : [(0, import_i18n5.t)("\u65E0")],
+    ...ctx.summary.trim() ? ["", (0, import_i18n5.t)("\u4E94\u3001\u5C0F\u7ED3"), ctx.summary.trim()] : []
   ].join("\n");
   const body = [
-    `<h1>${esc(subject)}</h1><p class="sub">${esc((0, import_i18n4.t)("\u7EDF\u8BA1\u5468\u671F {p0} \xB7 \u6570\u636E\u622A\u81F3 {p1}", { p0: ctx.period.label, p1: ymd(ctx.period.asOf) }))}</p>`,
-    `<h2>${esc((0, import_i18n4.t)("\u5173\u952E\u6570\u5B57"))}</h2>${kpis(ctx)}`,
-    `<h2>${esc((0, import_i18n4.t)("\u6309\u5927\u7C7B"))}</h2>${typeTable(ctx.result.byCategory, false, ctx.thresholds.minComplianceRate)}`,
-    `<h2>${esc((0, import_i18n4.t)("\u73AF\u6BD4\u53D8\u5316"))}</h2><p>${esc(ctx.previous ? (0, import_i18n4.t)("\u5BF9\u6BD4\u5468\u671F\uFF1A{p0}", { p0: ctx.previous.label }) : (0, import_i18n4.t)("\u6CA1\u6709\u4E0A\u4E00\u5468\u671F\u7684\u6570\u636E\uFF0C\u672C\u671F\u4E0D\u505A\u73AF\u6BD4\u3002"))}</p>${compareTable(ctx.compare)}`,
-    `<h2>${esc((0, import_i18n4.t)("\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B"))}</h2>${table([(0, import_i18n4.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n4.t)("\u7CFB\u7EDF"), (0, import_i18n4.t)("\u5F02\u5E38\u539F\u56E0"), (0, import_i18n4.t)("\u8017\u65F6\u6700\u957F\u7684\u8282\u70B9")], ctx.abnormal.map((a) => ({ bad: true, cells: [a.flowType, a.system, a.reasons.join((0, import_i18n4.t)("\uFF1B")), a.analysis.longestNode ? `${a.analysis.longestNode}\uFF08${fmtDays(a.analysis.nodes[0]?.avgDays)}\uFF09` : "-"] })), (0, import_i18n4.t)("\u672C\u671F\u6CA1\u6709\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B"))}`,
-    `<h2>${esc((0, import_i18n4.t)("\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387"))}</h2><h3>${esc((0, import_i18n4.t)("\u9760\u524D"))}</h3>${rankTable(top, (0, import_i18n4.t)("\u5BA1\u6838\u6B21\u6570"))}<h3>${esc((0, import_i18n4.t)("\u9760\u540E"))}</h3>${rankTable(bottom, (0, import_i18n4.t)("\u5BA1\u6838\u6B21\u6570"))}<p class="note">${esc((0, import_i18n4.t)("\u53EA\u5217\u5BA1\u6838\u6B21\u6570\u4E0D\u5C11\u4E8E 3 \u6B21\u7684\u4EBA\uFF1B\u5B8C\u6574\u6392\u540D\u89C1\u9644\u4EF6\u3002"))}</p>`,
-    `<h2>${esc((0, import_i18n4.t)("\u5728\u9014\u5DF2\u903E\u671F"))}</h2>${runningTable(overdue.slice(0, 30), reasonOf)}`,
-    `<h2>${esc((0, import_i18n4.t)("\u8D85\u65F6\u539F\u56E0"))}</h2>${reasonsBlock(ctx)}`,
-    ctx.summary.trim() ? `<h2>${esc((0, import_i18n4.t)("\u5C0F\u7ED3"))}</h2><p class="pre">${esc(ctx.summary.trim())}</p>` : ""
+    `<h1>${esc(subject)}</h1><p class="sub">${esc((0, import_i18n5.t)("\u7EDF\u8BA1\u5468\u671F {p0} \xB7 \u6570\u636E\u622A\u81F3 {p1}", { p0: ctx.period.label, p1: ymd(ctx.period.asOf) }))}</p>`,
+    `<h2>${esc((0, import_i18n5.t)("\u5173\u952E\u6570\u5B57"))}</h2>${kpis(ctx)}`,
+    `<h2>${esc((0, import_i18n5.t)("\u6309\u5927\u7C7B"))}</h2>${typeTable(ctx.result.byCategory, false, ctx.thresholds.minComplianceRate)}`,
+    `<h2>${esc((0, import_i18n5.t)("\u73AF\u6BD4\u53D8\u5316"))}</h2><p>${esc(ctx.previous ? (0, import_i18n5.t)("\u5BF9\u6BD4\u5468\u671F\uFF1A{p0}", { p0: ctx.previous.label }) : (0, import_i18n5.t)("\u6CA1\u6709\u4E0A\u4E00\u5468\u671F\u7684\u6570\u636E\uFF0C\u672C\u671F\u4E0D\u505A\u73AF\u6BD4\u3002"))}</p>${compareTable(ctx.compare)}`,
+    `<h2>${esc((0, import_i18n5.t)("\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B"))}</h2>${table([(0, import_i18n5.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n5.t)("\u7CFB\u7EDF"), (0, import_i18n5.t)("\u5F02\u5E38\u539F\u56E0"), (0, import_i18n5.t)("\u8017\u65F6\u6700\u957F\u7684\u8282\u70B9")], ctx.abnormal.map((a) => ({ bad: true, cells: [a.flowType, a.system, a.reasons.join((0, import_i18n5.t)("\uFF1B")), a.analysis.longestNode ? `${a.analysis.longestNode}\uFF08${fmtDays(a.analysis.nodes[0]?.avgDays)}\uFF09` : "-"] })), (0, import_i18n5.t)("\u672C\u671F\u6CA1\u6709\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B"))}`,
+    `<h2>${esc((0, import_i18n5.t)("\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387"))}</h2><h3>${esc((0, import_i18n5.t)("\u9760\u524D"))}</h3>${rankTable(top, (0, import_i18n5.t)("\u5BA1\u6838\u6B21\u6570"))}<h3>${esc((0, import_i18n5.t)("\u9760\u540E"))}</h3>${rankTable(bottom, (0, import_i18n5.t)("\u5BA1\u6838\u6B21\u6570"))}<p class="note">${esc((0, import_i18n5.t)("\u53EA\u5217\u5BA1\u6838\u6B21\u6570\u4E0D\u5C11\u4E8E 3 \u6B21\u7684\u4EBA\uFF1B\u5B8C\u6574\u6392\u540D\u89C1\u9644\u4EF6\u3002"))}</p>`,
+    `<h2>${esc((0, import_i18n5.t)("\u5728\u9014\u5DF2\u903E\u671F"))}</h2>${runningTable(overdue.slice(0, 30), reasonOf)}`,
+    `<h2>${esc((0, import_i18n5.t)("\u8D85\u65F6\u539F\u56E0"))}</h2>${reasonsBlock(ctx)}`,
+    ctx.summary.trim() ? `<h2>${esc((0, import_i18n5.t)("\u5C0F\u7ED3"))}</h2><p class="pre">${esc(ctx.summary.trim())}</p>` : ""
   ].join("");
   return { subject, text: text2, html: page(subject, body) };
 }
 function monthlyMailText(ctx) {
   const o = ctx.result.overall;
   return [
-    (0, import_i18n4.t)("\u5404\u4F4D\u597D\uFF1A"),
+    (0, import_i18n5.t)("\u5404\u4F4D\u597D\uFF1A"),
     "",
-    (0, import_i18n4.t)("{p0} \u7EBF\u4E0A\u6D41\u7A0B\u65F6\u6548\u8FBE\u6210\u60C5\u51B5\u6708\u5EA6\u5206\u6790\u62A5\u544A\u89C1\u9644\u4EF6\uFF08PDF \u62A5\u544A\u548C\u660E\u7EC6\u8868\uFF09\u3002", { p0: ctx.period.label }),
+    (0, import_i18n5.t)("{p0} \u7EBF\u4E0A\u6D41\u7A0B\u65F6\u6548\u8FBE\u6210\u60C5\u51B5\u6708\u5EA6\u5206\u6790\u62A5\u544A\u89C1\u9644\u4EF6\uFF08PDF \u62A5\u544A\u548C\u660E\u7EC6\u8868\uFF09\u3002", { p0: ctx.period.label }),
     "",
-    (0, import_i18n4.t)("\u672C\u6708\u529E\u7ED3 {p0} \u5355\uFF0C\u5E73\u5747\u7528\u65F6 {p1} \u5929\uFF0C\u6D41\u7A0B\u65F6\u6548\u5408\u89C4\u7387 {p2}\uFF0C\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387 {p3}\uFF1B\u5728\u9014 {p4} \u5355\uFF0C\u5DF2\u903E\u671F {p5} \u5355\u3002", { p0: o.doneCount, p1: fmtDays(o.avgDays), p2: fmtRate(o.complianceRate), p3: fmtRate(o.reviewRate), p4: o.runningCount, p5: o.runningOverdue }),
-    (0, import_i18n4.t)("\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B {p0} \u4E2A\uFF0C\u672C\u5E74\u5EA6\u5728\u9014\u8D85\u65F6\u672A\u529E\u7ED3 {p1} \u5355\uFF0C\u6539\u5584\u5EFA\u8BAE {p2} \u6761\u3002", { p0: ctx.abnormal.length, p1: ctx.yearOverdue.length, p2: ctx.suggestions.length }),
+    (0, import_i18n5.t)("\u672C\u6708\u529E\u7ED3 {p0} \u5355\uFF0C\u5E73\u5747\u7528\u65F6 {p1} \u5929\uFF0C\u6D41\u7A0B\u65F6\u6548\u5408\u89C4\u7387 {p2}\uFF0C\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387 {p3}\uFF1B\u5728\u9014 {p4} \u5355\uFF0C\u5DF2\u903E\u671F {p5} \u5355\u3002", { p0: o.doneCount, p1: fmtDays(o.avgDays), p2: fmtRate(o.complianceRate), p3: fmtRate(o.reviewRate), p4: o.runningCount, p5: o.runningOverdue }),
+    (0, import_i18n5.t)("\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B {p0} \u4E2A\uFF0C\u672C\u5E74\u5EA6\u5728\u9014\u8D85\u65F6\u672A\u529E\u7ED3 {p1} \u5355\uFF0C\u6539\u5584\u5EFA\u8BAE {p2} \u6761\u3002", { p0: ctx.abnormal.length, p1: ctx.yearOverdue.length, p2: ctx.suggestions.length }),
     "",
-    (0, import_i18n4.t)("\u8BF7\u5404\u90E8\u95E8\u5BF9\u7167\u62A5\u544A\u91CC\u7684\u5F02\u5E38\u6D41\u7A0B\u548C\u6539\u5584\u5EFA\u8BAE\u5B89\u6392\u6574\u6539\uFF0C\u6539\u5584\u5EFA\u8BAE\u5DF2\u8BB0\u5165\u6539\u5584\u53F0\u8D26\uFF0C\u5230\u671F\u524D\u4F1A\u4E0E\u8D23\u4EFB\u4EBA\u786E\u8BA4\u3002")
+    (0, import_i18n5.t)("\u8BF7\u5404\u90E8\u95E8\u5BF9\u7167\u62A5\u544A\u91CC\u7684\u5F02\u5E38\u6D41\u7A0B\u548C\u6539\u5584\u5EFA\u8BAE\u5B89\u6392\u6574\u6539\uFF0C\u6539\u5584\u5EFA\u8BAE\u5DF2\u8BB0\u5165\u6539\u5584\u53F0\u8D26\uFF0C\u5230\u671F\u524D\u4F1A\u4E0E\u8D23\u4EFB\u4EBA\u786E\u8BA4\u3002")
   ].join("\n");
 }
 function monthlyReportHtml(ctx) {
-  const title = (0, import_i18n4.t)("\u7EBF\u4E0A\u6D41\u7A0B\u65F6\u6548\u6708\u5EA6\u5206\u6790\u62A5\u544A\uFF08{p0}\uFF09", { p0: ctx.period.label });
+  const title = (0, import_i18n5.t)("\u7EBF\u4E0A\u6D41\u7A0B\u65F6\u6548\u6708\u5EA6\u5206\u6790\u62A5\u544A\uFF08{p0}\uFF09", { p0: ctx.period.label });
   const reasonOf = new Map(ctx.cases.map((c) => [c.key, c]));
   const th = ctx.thresholds;
   const catBars = svgBars(ctx.result.byCategory.map((c) => ({ label: c.category, value: c.complianceRate, text: fmtRate(c.complianceRate), warn: c.complianceRate !== null && c.complianceRate < th.minComplianceRate })), { max: 1, mark: { value: th.minComplianceRate, label: fmtRate(th.minComplianceRate) } });
   const typed = ctx.result.byType.filter((t) => t.doneCount > 0 && t.avgDays !== null).sort((a, b) => b.avgDays - a.avgDays).slice(0, 14);
-  const typeBars = svgBars(typed.map((t) => ({ label: t.flowType, value: t.avgDays, text: (0, import_i18n4.t)("{p0} \u5929", { p0: fmtDays(t.avgDays) }), warn: t.limitDays !== null && t.avgDays > t.limitDays })));
+  const typeBars = svgBars(typed.map((t) => ({ label: t.flowType, value: t.avgDays, text: (0, import_i18n5.t)("{p0} \u5929", { p0: fmtDays(t.avgDays) }), warn: t.limitDays !== null && t.avgDays > t.limitDays })));
   const rateLine = svgLine(ctx.trend.map((p) => ({ label: p.label, value: p.complianceRate, text: fmtRate(p.complianceRate) })), { min: Math.min(0.5, ...ctx.trend.map((p) => p.complianceRate ?? 1)), max: 1 });
   const dayLine = svgLine(ctx.trend.map((p) => ({ label: p.label, value: p.avgDays, text: fmtDays(p.avgDays) })), { color: "#f59e0b", min: 0 });
   const body = [
-    `<h1>${esc(title)}</h1><p class="sub">${esc((0, import_i18n4.t)("\u7EDF\u8BA1\u5468\u671F {p0} \xB7 \u6570\u636E\u622A\u81F3 {p1} \xB7 \u751F\u6210\u4E8E {p2}", { p0: ctx.period.label, p1: ymd(ctx.period.asOf), p2: ymd(ctx.generatedAt) }))}</p>`,
-    `<h2>${esc((0, import_i18n4.t)("\u4E00\u3001\u6574\u4F53\u6570\u636E"))}</h2>${kpis(ctx)}<p class="note">${esc(ctx.previous ? (0, import_i18n4.t)("\u73AF\u6BD4\u5BF9\u8C61\uFF1A{p0}", { p0: ctx.previous.label }) : (0, import_i18n4.t)("\u6CA1\u6709\u4E0A\u4E00\u5468\u671F\u7684\u6570\u636E\uFF0C\u672C\u671F\u4E0D\u505A\u73AF\u6BD4\u3002"))}</p>`,
-    `<h3>${esc((0, import_i18n4.t)("\u5404\u5927\u7C7B\u5408\u89C4\u7387"))}</h3>${catBars}${typeTable(ctx.result.byCategory, false, ctx.thresholds.minComplianceRate)}`,
-    `<h3>${esc((0, import_i18n4.t)("\u5408\u89C4\u7387\u4E0E\u5E73\u5747\u7528\u65F6\u8D8B\u52BF"))}</h3>${ctx.trend.length > 1 ? `${rateLine}${dayLine}` : `<p class="note">${esc((0, import_i18n4.t)("\u4FDD\u5B58\u4E24\u4E2A\u4EE5\u4E0A\u5468\u671F\u540E\u663E\u793A\u8D8B\u52BF\u3002"))}</p>`}`,
-    `<h2>${esc((0, import_i18n4.t)("\u4E8C\u3001\u5404\u7C7B\u6D41\u7A0B\u5E73\u5747\u7528\u65F6\u4E0E\u5408\u89C4\u7387"))}</h2>${typeBars}${typeTable(ctx.result.byType.filter((t) => t.doneCount > 0 || t.runningCount > 0), true, th.minComplianceRate)}`,
-    `<h2>${esc((0, import_i18n4.t)("\u4E09\u3001\u73AF\u6BD4\u4E0E\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B"))}</h2><p>${esc((0, import_i18n4.t)("\u5224\u5B9A\u6807\u51C6\uFF1A\u5E73\u5747\u7528\u65F6\u73AF\u6BD4\u589E\u52A0\u8D85\u8FC7 {p0} \u5929\uFF0C\u6216\u65F6\u6548\u5408\u89C4\u7387\u4F4E\u4E8E {p1}\u3002", { p0: th.avgIncreaseDays, p1: fmtRate(th.minComplianceRate) }))}</p>${compareTable(ctx.compare)}`,
-    `<h2>${esc((0, import_i18n4.t)("\u56DB\u3001\u5F02\u5E38\u6D41\u7A0B\u7684\u8282\u70B9\u5206\u6790"))}</h2>${ctx.abnormal.length ? ctx.abnormal.map((a) => `<h3>${esc(`${a.flowType}\uFF08${a.system}\uFF09`)} <span class="tag">${esc(a.reasons.join((0, import_i18n4.t)("\uFF1B")))}</span></h3><p>${esc(a.analysis.longestNode ? (0, import_i18n4.t)("\u8017\u65F6\u6700\u957F\u7684\u8282\u70B9\uFF1A{p0}", { p0: a.analysis.longestNode }) : (0, import_i18n4.t)("\u6CA1\u6709\u8282\u70B9\u660E\u7EC6\uFF0C\u65E0\u6CD5\u5B9A\u4F4D"))}</p>${nodeTable(a.analysis)}`).join("") : `<p class="note">${esc((0, import_i18n4.t)("\u672C\u671F\u6CA1\u6709\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B"))}</p>`}`,
-    `<h2>${esc((0, import_i18n4.t)("\u4E94\u3001\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387\u6392\u540D"))}</h2>${rankTable(ctx.result.reviewerRank, (0, import_i18n4.t)("\u5BA1\u6838\u6B21\u6570"))}`,
-    `<h2>${esc((0, import_i18n4.t)("\u516D\u3001\u53D1\u8D77\u4EBA\u5408\u89C4\u7387\u6392\u540D"))}</h2>${rankTable(ctx.result.initiatorRank, (0, import_i18n4.t)("\u529E\u7ED3\u6570"))}`,
-    `<h2>${esc((0, import_i18n4.t)("\u4E03\u3001\u672C\u5E74\u5EA6\u8D85\u65F6\u672A\u529E\u7ED3\u5728\u9014\u6D41\u7A0B"))}</h2>${runningTable(ctx.yearOverdue, reasonOf)}`,
-    `<h2>${esc((0, import_i18n4.t)("\u516B\u3001\u8D85\u65F6\u539F\u56E0\u5206\u6790"))}</h2>${reasonsBlock(ctx)}`,
-    `<h2>${esc((0, import_i18n4.t)("\u4E5D\u3001\u6708\u5EA6\u603B\u7ED3"))}</h2><p class="pre">${esc(ctx.summary.trim() || ruleSummary(ctx))}</p>`,
-    `<h2>${esc((0, import_i18n4.t)("\u5341\u3001\u6539\u5584\u5EFA\u8BAE"))}</h2>${suggestionTable(ctx.suggestions)}`
+    `<h1>${esc(title)}</h1><p class="sub">${esc((0, import_i18n5.t)("\u7EDF\u8BA1\u5468\u671F {p0} \xB7 \u6570\u636E\u622A\u81F3 {p1} \xB7 \u751F\u6210\u4E8E {p2}", { p0: ctx.period.label, p1: ymd(ctx.period.asOf), p2: ymd(ctx.generatedAt) }))}</p>`,
+    `<h2>${esc((0, import_i18n5.t)("\u4E00\u3001\u6574\u4F53\u6570\u636E"))}</h2>${kpis(ctx)}<p class="note">${esc(ctx.previous ? (0, import_i18n5.t)("\u73AF\u6BD4\u5BF9\u8C61\uFF1A{p0}", { p0: ctx.previous.label }) : (0, import_i18n5.t)("\u6CA1\u6709\u4E0A\u4E00\u5468\u671F\u7684\u6570\u636E\uFF0C\u672C\u671F\u4E0D\u505A\u73AF\u6BD4\u3002"))}</p>`,
+    `<h3>${esc((0, import_i18n5.t)("\u5404\u5927\u7C7B\u5408\u89C4\u7387"))}</h3>${catBars}${typeTable(ctx.result.byCategory, false, ctx.thresholds.minComplianceRate)}`,
+    `<h3>${esc((0, import_i18n5.t)("\u5408\u89C4\u7387\u4E0E\u5E73\u5747\u7528\u65F6\u8D8B\u52BF"))}</h3>${ctx.trend.length > 1 ? `${rateLine}${dayLine}` : `<p class="note">${esc((0, import_i18n5.t)("\u4FDD\u5B58\u4E24\u4E2A\u4EE5\u4E0A\u5468\u671F\u540E\u663E\u793A\u8D8B\u52BF\u3002"))}</p>`}`,
+    `<h2>${esc((0, import_i18n5.t)("\u4E8C\u3001\u5404\u7C7B\u6D41\u7A0B\u5E73\u5747\u7528\u65F6\u4E0E\u5408\u89C4\u7387"))}</h2>${typeBars}${typeTable(ctx.result.byType.filter((t) => t.doneCount > 0 || t.runningCount > 0), true, th.minComplianceRate)}`,
+    `<h2>${esc((0, import_i18n5.t)("\u4E09\u3001\u73AF\u6BD4\u4E0E\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B"))}</h2><p>${esc((0, import_i18n5.t)("\u5224\u5B9A\u6807\u51C6\uFF1A\u5E73\u5747\u7528\u65F6\u73AF\u6BD4\u589E\u52A0\u8D85\u8FC7 {p0} \u5929\uFF0C\u6216\u65F6\u6548\u5408\u89C4\u7387\u4F4E\u4E8E {p1}\u3002", { p0: th.avgIncreaseDays, p1: fmtRate(th.minComplianceRate) }))}</p>${compareTable(ctx.compare)}`,
+    `<h2>${esc((0, import_i18n5.t)("\u56DB\u3001\u5F02\u5E38\u6D41\u7A0B\u7684\u8282\u70B9\u5206\u6790"))}</h2>${ctx.abnormal.length ? ctx.abnormal.map((a) => `<h3>${esc(`${a.flowType}\uFF08${a.system}\uFF09`)} <span class="tag">${esc(a.reasons.join((0, import_i18n5.t)("\uFF1B")))}</span></h3><p>${esc(a.analysis.longestNode ? (0, import_i18n5.t)("\u8017\u65F6\u6700\u957F\u7684\u8282\u70B9\uFF1A{p0}", { p0: a.analysis.longestNode }) : (0, import_i18n5.t)("\u6CA1\u6709\u8282\u70B9\u660E\u7EC6\uFF0C\u65E0\u6CD5\u5B9A\u4F4D"))}</p>${nodeTable(a.analysis)}`).join("") : `<p class="note">${esc((0, import_i18n5.t)("\u672C\u671F\u6CA1\u6709\u5F02\u5E38\u6D41\u7A0B\u7C7B\u578B"))}</p>`}`,
+    `<h2>${esc((0, import_i18n5.t)("\u4E94\u3001\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387\u6392\u540D"))}</h2>${rankTable(ctx.result.reviewerRank, (0, import_i18n5.t)("\u5BA1\u6838\u6B21\u6570"))}`,
+    `<h2>${esc((0, import_i18n5.t)("\u516D\u3001\u53D1\u8D77\u4EBA\u5408\u89C4\u7387\u6392\u540D"))}</h2>${rankTable(ctx.result.initiatorRank, (0, import_i18n5.t)("\u529E\u7ED3\u6570"))}`,
+    `<h2>${esc((0, import_i18n5.t)("\u4E03\u3001\u672C\u5E74\u5EA6\u8D85\u65F6\u672A\u529E\u7ED3\u5728\u9014\u6D41\u7A0B"))}</h2>${runningTable(ctx.yearOverdue, reasonOf)}`,
+    `<h2>${esc((0, import_i18n5.t)("\u516B\u3001\u8D85\u65F6\u539F\u56E0\u5206\u6790"))}</h2>${reasonsBlock(ctx)}`,
+    `<h2>${esc((0, import_i18n5.t)("\u4E5D\u3001\u6708\u5EA6\u603B\u7ED3"))}</h2><p class="pre">${esc(ctx.summary.trim() || ruleSummary(ctx))}</p>`,
+    `<h2>${esc((0, import_i18n5.t)("\u5341\u3001\u6539\u5584\u5EFA\u8BAE"))}</h2>${suggestionTable(ctx.suggestions)}`
   ].join("");
   return page(title, body);
 }
@@ -7158,28 +7161,28 @@ var dt = (t) => t ? new Date(t) : "";
 function flowSheet(name, flows) {
   return {
     name,
-    headers: [(0, import_i18n4.t)("\u7CFB\u7EDF"), (0, import_i18n4.t)("\u5355\u53F7"), (0, import_i18n4.t)("\u6D41\u7A0B\u540D\u79F0"), (0, import_i18n4.t)("\u6807\u9898"), (0, import_i18n4.t)("\u5927\u7C7B"), (0, import_i18n4.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n4.t)("\u53D1\u8D77\u4EBA"), (0, import_i18n4.t)("\u90E8\u95E8"), (0, import_i18n4.t)("\u72B6\u6001"), (0, import_i18n4.t)("\u5F00\u59CB\u65F6\u95F4"), (0, import_i18n4.t)("\u7ED3\u675F\u65F6\u95F4"), (0, import_i18n4.t)("\u7528\u65F6\uFF08\u5929\uFF09"), (0, import_i18n4.t)("\u65F6\u6548\u8981\u6C42\uFF08\u5929\uFF09"), (0, import_i18n4.t)("\u662F\u5426\u8D85\u65F6"), (0, import_i18n4.t)("\u5728\u9014\u6807\u7B7E"), (0, import_i18n4.t)("\u8D85\u51FA\uFF08\u5929\uFF09"), (0, import_i18n4.t)("\u5F53\u524D\u8282\u70B9"), (0, import_i18n4.t)("\u5F53\u524D\u5904\u7406\u4EBA"), (0, import_i18n4.t)("\u8282\u70B9\u505C\u7559\uFF08\u5929\uFF09"), (0, import_i18n4.t)("\u5907\u6CE8")],
-    rows: flows.map((f) => [f.system, f.flowNo, f.flowName, f.title, f.category, f.flowType, f.initiator, f.dept, f.status === "done" ? (0, import_i18n4.t)("\u5DF2\u529E\u7ED3") : (0, import_i18n4.t)("\u5728\u9014"), dt(f.startAt), dt(f.endAt), f.days, f.limitDays ?? "", f.status === "done" ? yesNo(f.overtime) : "", f.status === "running" ? runLabel(f) : "", f.overdueDays || "", f.currentNode, f.currentHandler, f.currentNodeDays ?? "", f.approx ? (0, import_i18n4.t)("\u6CA1\u6709\u8282\u70B9\u660E\u7EC6\uFF0C\u6309\u7ED3\u675F\u51CF\u5F00\u59CB\u4F30\u7B97") : ""])
+    headers: [(0, import_i18n5.t)("\u7CFB\u7EDF"), (0, import_i18n5.t)("\u5355\u53F7"), (0, import_i18n5.t)("\u6D41\u7A0B\u540D\u79F0"), (0, import_i18n5.t)("\u6807\u9898"), (0, import_i18n5.t)("\u5927\u7C7B"), (0, import_i18n5.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n5.t)("\u53D1\u8D77\u4EBA"), (0, import_i18n5.t)("\u90E8\u95E8"), (0, import_i18n5.t)("\u72B6\u6001"), (0, import_i18n5.t)("\u5F00\u59CB\u65F6\u95F4"), (0, import_i18n5.t)("\u7ED3\u675F\u65F6\u95F4"), (0, import_i18n5.t)("\u7528\u65F6\uFF08\u5929\uFF09"), (0, import_i18n5.t)("\u65F6\u6548\u8981\u6C42\uFF08\u5929\uFF09"), (0, import_i18n5.t)("\u662F\u5426\u8D85\u65F6"), (0, import_i18n5.t)("\u5728\u9014\u6807\u7B7E"), (0, import_i18n5.t)("\u8D85\u51FA\uFF08\u5929\uFF09"), (0, import_i18n5.t)("\u5F53\u524D\u8282\u70B9"), (0, import_i18n5.t)("\u5F53\u524D\u5904\u7406\u4EBA"), (0, import_i18n5.t)("\u8282\u70B9\u505C\u7559\uFF08\u5929\uFF09"), (0, import_i18n5.t)("\u5907\u6CE8")],
+    rows: flows.map((f) => [f.system, f.flowNo, f.flowName, f.title, f.category, f.flowType, f.initiator, f.dept, f.status === "done" ? (0, import_i18n5.t)("\u5DF2\u529E\u7ED3") : (0, import_i18n5.t)("\u5728\u9014"), dt(f.startAt), dt(f.endAt), f.days, f.limitDays ?? "", f.status === "done" ? yesNo(f.overtime) : "", f.status === "running" ? runLabel(f) : "", f.overdueDays || "", f.currentNode, f.currentHandler, f.currentNodeDays ?? "", f.approx ? (0, import_i18n5.t)("\u6CA1\u6709\u8282\u70B9\u660E\u7EC6\uFF0C\u6309\u7ED3\u675F\u51CF\u5F00\u59CB\u4F30\u7B97") : ""])
   };
 }
 function typeSheet(name, list) {
   return {
     name,
-    headers: [(0, import_i18n4.t)("\u5927\u7C7B"), (0, import_i18n4.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n4.t)("\u7CFB\u7EDF"), (0, import_i18n4.t)("\u529E\u7ED3"), (0, import_i18n4.t)("\u5E73\u5747\u7528\u65F6\uFF08\u5929\uFF09"), (0, import_i18n4.t)("\u65F6\u6548\u8981\u6C42\uFF08\u5929\uFF09"), (0, import_i18n4.t)("\u53C2\u4E0E\u5224\u5B9A"), (0, import_i18n4.t)("\u8D85\u65F6"), (0, import_i18n4.t)("\u5408\u89C4\u7387"), (0, import_i18n4.t)("\u5728\u9014"), (0, import_i18n4.t)("\u5728\u9014\u903E\u671F"), (0, import_i18n4.t)("\u5728\u9014\u8D85\u65F6\u5360\u6BD4")],
+    headers: [(0, import_i18n5.t)("\u5927\u7C7B"), (0, import_i18n5.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n5.t)("\u7CFB\u7EDF"), (0, import_i18n5.t)("\u529E\u7ED3"), (0, import_i18n5.t)("\u5E73\u5747\u7528\u65F6\uFF08\u5929\uFF09"), (0, import_i18n5.t)("\u65F6\u6548\u8981\u6C42\uFF08\u5929\uFF09"), (0, import_i18n5.t)("\u53C2\u4E0E\u5224\u5B9A"), (0, import_i18n5.t)("\u8D85\u65F6"), (0, import_i18n5.t)("\u5408\u89C4\u7387"), (0, import_i18n5.t)("\u5728\u9014"), (0, import_i18n5.t)("\u5728\u9014\u903E\u671F"), (0, import_i18n5.t)("\u5728\u9014\u8D85\u65F6\u5360\u6BD4")],
     rows: list.map((t) => [t.category, t.flowType, t.system, t.doneCount, t.avgDays ?? "", t.limitDays ?? "", t.judged, t.overtime, fmtRate(t.complianceRate), t.runningCount, t.runningOverdue, fmtRate(t.runningOverdueRate)])
   };
 }
 function rankSheet(name, list, countLabel) {
   return {
     name,
-    headers: [(0, import_i18n4.t)("\u6392\u540D"), (0, import_i18n4.t)("\u59D3\u540D"), (0, import_i18n4.t)("\u90E8\u95E8"), (0, import_i18n4.t)("\u8EAB\u4EFD"), countLabel, (0, import_i18n4.t)("\u5408\u89C4"), (0, import_i18n4.t)("\u5408\u89C4\u7387"), (0, import_i18n4.t)("\u5E73\u5747\u7528\u65F6")],
+    headers: [(0, import_i18n5.t)("\u6392\u540D"), (0, import_i18n5.t)("\u59D3\u540D"), (0, import_i18n5.t)("\u90E8\u95E8"), (0, import_i18n5.t)("\u8EAB\u4EFD"), countLabel, (0, import_i18n5.t)("\u5408\u89C4"), (0, import_i18n5.t)("\u5408\u89C4\u7387"), (0, import_i18n5.t)("\u5E73\u5747\u7528\u65F6")],
     rows: list.map((p) => [p.rank, p.name, p.dept, p.identity, p.count, p.compliant, fmtRate(p.rate), p.avgDays ?? ""])
   };
 }
 function reviewSheet(name, list) {
   return {
     name,
-    headers: [(0, import_i18n4.t)("\u7CFB\u7EDF"), (0, import_i18n4.t)("\u5355\u53F7"), (0, import_i18n4.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n4.t)("\u8282\u70B9"), (0, import_i18n4.t)("\u5BA1\u6838\u4EBA"), (0, import_i18n4.t)("\u8EAB\u4EFD"), (0, import_i18n4.t)("\u90E8\u95E8"), (0, import_i18n4.t)("\u5230\u8FBE\u65F6\u95F4"), (0, import_i18n4.t)("\u5B8C\u6210\u65F6\u95F4"), (0, import_i18n4.t)("\u7528\u65F6"), (0, import_i18n4.t)("\u5355\u4F4D"), (0, import_i18n4.t)("\u65F6\u6548\u8981\u6C42"), (0, import_i18n4.t)("\u662F\u5426\u5408\u89C4")],
+    headers: [(0, import_i18n5.t)("\u7CFB\u7EDF"), (0, import_i18n5.t)("\u5355\u53F7"), (0, import_i18n5.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n5.t)("\u8282\u70B9"), (0, import_i18n5.t)("\u5BA1\u6838\u4EBA"), (0, import_i18n5.t)("\u8EAB\u4EFD"), (0, import_i18n5.t)("\u90E8\u95E8"), (0, import_i18n5.t)("\u5230\u8FBE\u65F6\u95F4"), (0, import_i18n5.t)("\u5B8C\u6210\u65F6\u95F4"), (0, import_i18n5.t)("\u7528\u65F6"), (0, import_i18n5.t)("\u5355\u4F4D"), (0, import_i18n5.t)("\u65F6\u6548\u8981\u6C42"), (0, import_i18n5.t)("\u662F\u5426\u5408\u89C4")],
     rows: list.map((r) => [r.system, r.flowNo, r.flowType, r.node, r.handler, r.identity, r.dept, dt(r.startAt), dt(r.endAt), r.days, r.unit, r.limit, yesNo(r.compliant)])
   };
 }
@@ -7188,57 +7191,57 @@ function detailSheets(ctx) {
   const o = res.overall;
   const sheets = [
     {
-      name: (0, import_i18n4.t)("\u6C47\u603B"),
-      headers: [(0, import_i18n4.t)("\u6307\u6807"), (0, import_i18n4.t)("\u672C\u671F"), (0, import_i18n4.t)("\u73AF\u6BD4")],
+      name: (0, import_i18n5.t)("\u6C47\u603B"),
+      headers: [(0, import_i18n5.t)("\u6307\u6807"), (0, import_i18n5.t)("\u672C\u671F"), (0, import_i18n5.t)("\u73AF\u6BD4")],
       rows: [
-        [(0, import_i18n4.t)("\u7EDF\u8BA1\u5468\u671F"), ctx.period.label, ctx.previous?.label ?? ""],
-        [(0, import_i18n4.t)("\u529E\u7ED3\u6570"), o.doneCount, ctx.delta.doneCount ?? ""],
-        [(0, import_i18n4.t)("\u5E73\u5747\u7528\u65F6\uFF08\u5929\uFF09"), o.avgDays ?? "", ctx.delta.avgDays ?? ""],
-        [(0, import_i18n4.t)("\u6D41\u7A0B\u65F6\u6548\u5408\u89C4\u7387"), fmtRate(o.complianceRate), ctx.delta.complianceRate == null ? "" : (0, import_i18n4.t)("{p0} \u4E2A\u767E\u5206\u70B9", { p0: signedRate(ctx.delta.complianceRate) })],
-        [(0, import_i18n4.t)("\u5728\u9014\u6570"), o.runningCount, ctx.delta.runningCount ?? ""],
-        [(0, import_i18n4.t)("\u5DF2\u903E\u671F"), o.runningOverdue, ctx.delta.runningOverdue ?? ""],
-        [(0, import_i18n4.t)("\u8F83\u5927\u903E\u671F\u98CE\u9669"), o.runningRisk, ""],
-        [(0, import_i18n4.t)("\u4E2A\u4EBA\u5BA1\u6838\u6B21\u6570"), o.reviewCount, ""],
-        [(0, import_i18n4.t)("\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387"), fmtRate(o.reviewRate), ctx.delta.reviewRate == null ? "" : (0, import_i18n4.t)("{p0} \u4E2A\u767E\u5206\u70B9", { p0: signedRate(ctx.delta.reviewRate) })]
+        [(0, import_i18n5.t)("\u7EDF\u8BA1\u5468\u671F"), ctx.period.label, ctx.previous?.label ?? ""],
+        [(0, import_i18n5.t)("\u529E\u7ED3\u6570"), o.doneCount, ctx.delta.doneCount ?? ""],
+        [(0, import_i18n5.t)("\u5E73\u5747\u7528\u65F6\uFF08\u5929\uFF09"), o.avgDays ?? "", ctx.delta.avgDays ?? ""],
+        [(0, import_i18n5.t)("\u6D41\u7A0B\u65F6\u6548\u5408\u89C4\u7387"), fmtRate(o.complianceRate), ctx.delta.complianceRate == null ? "" : (0, import_i18n5.t)("{p0} \u4E2A\u767E\u5206\u70B9", { p0: signedRate(ctx.delta.complianceRate) })],
+        [(0, import_i18n5.t)("\u5728\u9014\u6570"), o.runningCount, ctx.delta.runningCount ?? ""],
+        [(0, import_i18n5.t)("\u5DF2\u903E\u671F"), o.runningOverdue, ctx.delta.runningOverdue ?? ""],
+        [(0, import_i18n5.t)("\u8F83\u5927\u903E\u671F\u98CE\u9669"), o.runningRisk, ""],
+        [(0, import_i18n5.t)("\u4E2A\u4EBA\u5BA1\u6838\u6B21\u6570"), o.reviewCount, ""],
+        [(0, import_i18n5.t)("\u4E2A\u4EBA\u5BA1\u6838\u5408\u89C4\u7387"), fmtRate(o.reviewRate), ctx.delta.reviewRate == null ? "" : (0, import_i18n5.t)("{p0} \u4E2A\u767E\u5206\u70B9", { p0: signedRate(ctx.delta.reviewRate) })]
       ]
     },
-    typeSheet((0, import_i18n4.t)("\u6309\u5927\u7C7B"), res.byCategory),
-    typeSheet((0, import_i18n4.t)("\u6309\u7EC6\u7C7B"), res.byType),
+    typeSheet((0, import_i18n5.t)("\u6309\u5927\u7C7B"), res.byCategory),
+    typeSheet((0, import_i18n5.t)("\u6309\u7EC6\u7C7B"), res.byType),
     {
-      name: (0, import_i18n4.t)("\u73AF\u6BD4"),
-      headers: [(0, import_i18n4.t)("\u5927\u7C7B"), (0, import_i18n4.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n4.t)("\u7CFB\u7EDF"), (0, import_i18n4.t)("\u529E\u7ED3"), (0, import_i18n4.t)("\u5E73\u5747\u7528\u65F6\uFF08\u5929\uFF09"), (0, import_i18n4.t)("\u4E0A\u671F\u5E73\u5747\u7528\u65F6"), (0, import_i18n4.t)("\u7528\u65F6\u53D8\u5316"), (0, import_i18n4.t)("\u5408\u89C4\u7387"), (0, import_i18n4.t)("\u4E0A\u671F\u5408\u89C4\u7387"), (0, import_i18n4.t)("\u5408\u89C4\u7387\u53D8\u5316\uFF08\u767E\u5206\u70B9\uFF09"), (0, import_i18n4.t)("\u662F\u5426\u5F02\u5E38"), (0, import_i18n4.t)("\u5F02\u5E38\u539F\u56E0")],
-      rows: ctx.compare.map((t) => [t.category, t.flowType, t.system, t.doneCount, t.avgDays ?? "", t.prevAvgDays ?? "", t.avgDelta ?? "", fmtRate(t.complianceRate), fmtRate(t.prevComplianceRate), t.rateDelta == null ? "" : signedRate(t.rateDelta), yesNo(t.abnormal), t.reasons.join((0, import_i18n4.t)("\uFF1B"))])
+      name: (0, import_i18n5.t)("\u73AF\u6BD4"),
+      headers: [(0, import_i18n5.t)("\u5927\u7C7B"), (0, import_i18n5.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n5.t)("\u7CFB\u7EDF"), (0, import_i18n5.t)("\u529E\u7ED3"), (0, import_i18n5.t)("\u5E73\u5747\u7528\u65F6\uFF08\u5929\uFF09"), (0, import_i18n5.t)("\u4E0A\u671F\u5E73\u5747\u7528\u65F6"), (0, import_i18n5.t)("\u7528\u65F6\u53D8\u5316"), (0, import_i18n5.t)("\u5408\u89C4\u7387"), (0, import_i18n5.t)("\u4E0A\u671F\u5408\u89C4\u7387"), (0, import_i18n5.t)("\u5408\u89C4\u7387\u53D8\u5316\uFF08\u767E\u5206\u70B9\uFF09"), (0, import_i18n5.t)("\u662F\u5426\u5F02\u5E38"), (0, import_i18n5.t)("\u5F02\u5E38\u539F\u56E0")],
+      rows: ctx.compare.map((t) => [t.category, t.flowType, t.system, t.doneCount, t.avgDays ?? "", t.prevAvgDays ?? "", t.avgDelta ?? "", fmtRate(t.complianceRate), fmtRate(t.prevComplianceRate), t.rateDelta == null ? "" : signedRate(t.rateDelta), yesNo(t.abnormal), t.reasons.join((0, import_i18n5.t)("\uFF1B"))])
     },
     {
-      name: (0, import_i18n4.t)("\u5F02\u5E38\u8282\u70B9"),
-      headers: [(0, import_i18n4.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n4.t)("\u7CFB\u7EDF"), (0, import_i18n4.t)("\u8282\u70B9"), (0, import_i18n4.t)("\u5185\u5916\u90E8"), (0, import_i18n4.t)("\u5904\u7406\u6B21\u6570"), (0, import_i18n4.t)("\u5E73\u5747\u8017\u65F6\uFF08\u5929\uFF09"), (0, import_i18n4.t)("\u6700\u957F\uFF08\u5929\uFF09"), (0, import_i18n4.t)("\u5E73\u5747\u7B49\u5F85\uFF08\u5929\uFF09"), (0, import_i18n4.t)("\u8017\u65F6\u5360\u6BD4"), (0, import_i18n4.t)("\u5728\u9014\u505C\u7559\u6570"), (0, import_i18n4.t)("\u5E73\u5747\u505C\u7559\uFF08\u5929\uFF09"), (0, import_i18n4.t)("\u662F\u5426\u6700\u957F\u8282\u70B9")],
-      rows: ctx.abnormal.flatMap((a) => a.analysis.nodes.map((n) => [a.flowType, a.system, n.node, n.internal == null ? (0, import_i18n4.t)("\u672A\u767B\u8BB0") : n.internal ? (0, import_i18n4.t)("\u5185\u90E8") : (0, import_i18n4.t)("\u5916\u90E8"), n.count, n.avgDays, n.maxDays, n.avgWaitDays, fmtRate(n.share), n.stuckCount, n.avgStuckDays ?? "", yesNo(n.node === a.analysis.longestNode)]))
+      name: (0, import_i18n5.t)("\u5F02\u5E38\u8282\u70B9"),
+      headers: [(0, import_i18n5.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n5.t)("\u7CFB\u7EDF"), (0, import_i18n5.t)("\u8282\u70B9"), (0, import_i18n5.t)("\u5185\u5916\u90E8"), (0, import_i18n5.t)("\u5904\u7406\u6B21\u6570"), (0, import_i18n5.t)("\u5E73\u5747\u8017\u65F6\uFF08\u5929\uFF09"), (0, import_i18n5.t)("\u6700\u957F\uFF08\u5929\uFF09"), (0, import_i18n5.t)("\u5E73\u5747\u7B49\u5F85\uFF08\u5929\uFF09"), (0, import_i18n5.t)("\u8017\u65F6\u5360\u6BD4"), (0, import_i18n5.t)("\u5728\u9014\u505C\u7559\u6570"), (0, import_i18n5.t)("\u5E73\u5747\u505C\u7559\uFF08\u5929\uFF09"), (0, import_i18n5.t)("\u662F\u5426\u6700\u957F\u8282\u70B9")],
+      rows: ctx.abnormal.flatMap((a) => a.analysis.nodes.map((n) => [a.flowType, a.system, n.node, n.internal == null ? (0, import_i18n5.t)("\u672A\u767B\u8BB0") : n.internal ? (0, import_i18n5.t)("\u5185\u90E8") : (0, import_i18n5.t)("\u5916\u90E8"), n.count, n.avgDays, n.maxDays, n.avgWaitDays, fmtRate(n.share), n.stuckCount, n.avgStuckDays ?? "", yesNo(n.node === a.analysis.longestNode)]))
     },
-    rankSheet((0, import_i18n4.t)("\u5BA1\u6838\u4EBA\u6392\u540D"), res.reviewerRank, (0, import_i18n4.t)("\u5BA1\u6838\u6B21\u6570")),
-    rankSheet((0, import_i18n4.t)("\u53D1\u8D77\u4EBA\u6392\u540D"), res.initiatorRank, (0, import_i18n4.t)("\u529E\u7ED3\u6570")),
-    flowSheet((0, import_i18n4.t)("\u8D85\u65F6\u6D41\u7A0B"), res.flows.filter((f) => f.status === "done" && f.inPeriod && f.overtime === true)),
-    flowSheet((0, import_i18n4.t)("\u5728\u9014\u6D41\u7A0B"), res.flows.filter((f) => f.status === "running").sort((a, b) => b.overdueDays - a.overdueDays)),
+    rankSheet((0, import_i18n5.t)("\u5BA1\u6838\u4EBA\u6392\u540D"), res.reviewerRank, (0, import_i18n5.t)("\u5BA1\u6838\u6B21\u6570")),
+    rankSheet((0, import_i18n5.t)("\u53D1\u8D77\u4EBA\u6392\u540D"), res.initiatorRank, (0, import_i18n5.t)("\u529E\u7ED3\u6570")),
+    flowSheet((0, import_i18n5.t)("\u8D85\u65F6\u6D41\u7A0B"), res.flows.filter((f) => f.status === "done" && f.inPeriod && f.overtime === true)),
+    flowSheet((0, import_i18n5.t)("\u5728\u9014\u6D41\u7A0B"), res.flows.filter((f) => f.status === "running").sort((a, b) => b.overdueDays - a.overdueDays)),
     {
-      name: (0, import_i18n4.t)("\u8D85\u65F6\u539F\u56E0"),
-      headers: [(0, import_i18n4.t)("\u7CFB\u7EDF"), (0, import_i18n4.t)("\u5355\u53F7"), (0, import_i18n4.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n4.t)("\u7C7B\u578B"), (0, import_i18n4.t)("\u8D85\u51FA\uFF08\u5929\uFF09"), (0, import_i18n4.t)("\u8D23\u4EFB\u4EBA"), (0, import_i18n4.t)("\u8D85\u65F6\u539F\u56E0"), (0, import_i18n4.t)("\u539F\u56E0\u7C7B\u522B")],
-      rows: ctx.cases.map((c) => [c.system, c.flowNo, c.flowType, c.kind === "running" ? (0, import_i18n4.t)("\u5728\u9014\u5DF2\u903E\u671F") : (0, import_i18n4.t)("\u5DF2\u529E\u7ED3\u8D85\u65F6"), c.overdueDays, c.owner, c.reason, c.reason.trim() && c.categoryId ? categoryLabel(c.categoryId) : ""])
+      name: (0, import_i18n5.t)("\u8D85\u65F6\u539F\u56E0"),
+      headers: [(0, import_i18n5.t)("\u7CFB\u7EDF"), (0, import_i18n5.t)("\u5355\u53F7"), (0, import_i18n5.t)("\u6D41\u7A0B\u7EC6\u7C7B"), (0, import_i18n5.t)("\u7C7B\u578B"), (0, import_i18n5.t)("\u8D85\u51FA\uFF08\u5929\uFF09"), (0, import_i18n5.t)("\u8D23\u4EFB\u4EBA"), (0, import_i18n5.t)("\u8D85\u65F6\u539F\u56E0"), (0, import_i18n5.t)("\u539F\u56E0\u7C7B\u522B")],
+      rows: ctx.cases.map((c) => [c.system, c.flowNo, c.flowType, c.kind === "running" ? (0, import_i18n5.t)("\u5728\u9014\u5DF2\u903E\u671F") : (0, import_i18n5.t)("\u5DF2\u529E\u7ED3\u8D85\u65F6"), c.overdueDays, c.owner, c.reason, c.reason.trim() && c.categoryId ? categoryLabel(c.categoryId) : ""])
     }
   ];
   if (ctx.period.kind === "monthly") {
-    sheets.push(flowSheet((0, import_i18n4.t)("\u672C\u5E74\u5728\u9014\u8D85\u65F6"), ctx.yearOverdue));
+    sheets.push(flowSheet((0, import_i18n5.t)("\u672C\u5E74\u5728\u9014\u8D85\u65F6"), ctx.yearOverdue));
     sheets.push({
-      name: (0, import_i18n4.t)("\u6539\u5584\u5EFA\u8BAE"),
-      headers: [(0, import_i18n4.t)("\u5EFA\u8BAE\u4E8B\u9879"), (0, import_i18n4.t)("\u8D23\u4EFB\u90E8\u95E8"), (0, import_i18n4.t)("\u8D23\u4EFB\u4EBA"), (0, import_i18n4.t)("\u6267\u884C\u8981\u6C42"), (0, import_i18n4.t)("\u6267\u884C\u671F\u9650"), (0, import_i18n4.t)("\u9A8C\u6536\u8981\u6C42")],
+      name: (0, import_i18n5.t)("\u6539\u5584\u5EFA\u8BAE"),
+      headers: [(0, import_i18n5.t)("\u5EFA\u8BAE\u4E8B\u9879"), (0, import_i18n5.t)("\u8D23\u4EFB\u90E8\u95E8"), (0, import_i18n5.t)("\u8D23\u4EFB\u4EBA"), (0, import_i18n5.t)("\u6267\u884C\u8981\u6C42"), (0, import_i18n5.t)("\u6267\u884C\u671F\u9650"), (0, import_i18n5.t)("\u9A8C\u6536\u8981\u6C42")],
       rows: ctx.suggestions.map((s) => [s.item, s.dept, s.owner, s.requirement, s.deadline, s.acceptance])
     });
   }
-  sheets.push(reviewSheet((0, import_i18n4.t)("\u4E2A\u4EBA\u5BA1\u6838\u660E\u7EC6"), res.reviews));
-  sheets.push(flowSheet((0, import_i18n4.t)("\u529E\u7ED3\u660E\u7EC6"), res.flows.filter((f) => f.status === "done" && f.inPeriod)));
+  sheets.push(reviewSheet((0, import_i18n5.t)("\u4E2A\u4EBA\u5BA1\u6838\u660E\u7EC6"), res.reviews));
+  sheets.push(flowSheet((0, import_i18n5.t)("\u529E\u7ED3\u660E\u7EC6"), res.flows.filter((f) => f.status === "done" && f.inPeriod)));
   return sheets;
 }
 
 // ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/proc.ts
-var import_i18n5 = require("npm:@totalclaw/i18n");
+var import_i18n6 = require("npm:@totalclaw/i18n");
 var TICK_MS = 10 * 60 * 1e3;
 var FIRST_TICK_MS = 30 * 1e3;
 var MAX_CLOSED = 200;
@@ -7279,15 +7282,15 @@ function syncTracking(existing, input) {
       out.push({ ...item, closedAt: now, closeReason: reason, notes: [...item.notes, { at: now, text: reason, kind: "system" }] });
     };
     if (status === "done") {
-      close((0, import_i18n5.t)("\u6700\u65B0\u5BFC\u5165\u7684\u62A5\u8868\u663E\u793A\u6D41\u7A0B\u5DF2\u529E\u7ED3"));
+      close((0, import_i18n6.t)("\u6700\u65B0\u5BFC\u5165\u7684\u62A5\u8868\u663E\u793A\u6D41\u7A0B\u5DF2\u529E\u7ED3"));
       continue;
     }
     if (status === "terminated") {
-      close((0, import_i18n5.t)("\u6700\u65B0\u5BFC\u5165\u7684\u62A5\u8868\u663E\u793A\u6D41\u7A0B\u5DF2\u7EC8\u6B62"));
+      close((0, import_i18n6.t)("\u6700\u65B0\u5BFC\u5165\u7684\u62A5\u8868\u663E\u793A\u6D41\u7A0B\u5DF2\u7EC8\u6B62"));
       continue;
     }
     if (f && f.status === "running" && f.runningLabel !== "overdue") {
-      close((0, import_i18n5.t)("\u6309\u5F53\u524D\u65F6\u6548\u89C4\u5219\u4E0D\u518D\u903E\u671F"));
+      close((0, import_i18n6.t)("\u6309\u5F53\u524D\u65F6\u6548\u89C4\u5219\u4E0D\u518D\u903E\u671F"));
       continue;
     }
     openKeys.add(item.key);
@@ -7342,7 +7345,7 @@ function syncTracking(existing, input) {
       lastFollowAt: "",
       nextFollowAt: nextFollowAt(nowMs, interval),
       notifiedFor: "",
-      notes: [{ at: now, text: (0, import_i18n5.t)("\u8FDB\u5165\u8DDF\u8FDB\u540D\u5355\uFF1A\u5728\u9014 {p0} \u5929\uFF0C\u8D85\u51FA\u65F6\u6548\u8981\u6C42 {p1} \u5929", { p0: f.days, p1: f.overdueDays }), kind: "system" }],
+      notes: [{ at: now, text: (0, import_i18n6.t)("\u8FDB\u5165\u8DDF\u8FDB\u540D\u5355\uFF1A\u5728\u9014 {p0} \u5929\uFF0C\u8D85\u51FA\u65F6\u6548\u8981\u6C42 {p1} \u5929", { p0: f.days, p1: f.overdueDays }), kind: "system" }],
       closedAt: "",
       closeReason: ""
     });
@@ -7445,9 +7448,9 @@ var FlowSlaProc = class {
     this.deps.store.update((s) => {
       for (const t of s.tracking) if (keys.has(t.key) && !t.closedAt) t.notifiedFor = t.nextFollowAt;
     });
-    const lines = due.slice(0, 5).map((t) => (0, import_i18n5.t)("[{p0}] {p1} {p2}\uFF1A\u8D85\u65F6 {p3} \u5929\uFF0C\u5904\u7406\u4EBA {p4}", { p0: t.system, p1: t.flowNo, p2: t.flowType, p3: t.overdueDays, p4: t.handler || "-" }));
-    const more = due.length > 5 ? [(0, import_i18n5.t)("\u2026\u2026 \u53E6\u6709 {p0} \u6761", { p0: due.length - 5 })] : [];
-    return [this.fire("follow_up", (0, import_i18n5.t)("\u6709 {p0} \u6761\u5728\u9014\u6D41\u7A0B\u5230\u4E86\u8DDF\u8FDB\u65F6\u95F4", { p0: due.length }), [...lines, ...more].join("\n"))];
+    const lines = due.slice(0, 5).map((t) => (0, import_i18n6.t)("[{p0}] {p1} {p2}\uFF1A\u8D85\u65F6 {p3} \u5929\uFF0C\u5904\u7406\u4EBA {p4}", { p0: t.system, p1: t.flowNo, p2: t.flowType, p3: t.overdueDays, p4: t.handler || "-" }));
+    const more = due.length > 5 ? [(0, import_i18n6.t)("\u2026\u2026 \u53E6\u6709 {p0} \u6761", { p0: due.length - 5 })] : [];
+    return [this.fire("follow_up", (0, import_i18n6.t)("\u6709 {p0} \u6761\u5728\u9014\u6D41\u7A0B\u5230\u4E86\u8DDF\u8FDB\u65F6\u95F4", { p0: due.length }), [...lines, ...more].join("\n"))];
   }
   runLedger() {
     const now = this.nowMs();
@@ -7468,7 +7471,7 @@ var FlowSlaProc = class {
         const cur = s.ledger.find((x) => x.id === it.id);
         if (cur) cur.remindedFor = cur.deadline;
       });
-      out.push(this.fire("ledger_due", (0, import_i18n5.t)("\u6539\u5584\u4E8B\u9879\u8FD8\u6709 {p0} \u5929\u5230\u671F\uFF0C\u8BF7\u4E0E\u8D23\u4EFB\u4EBA\u786E\u8BA4\u6267\u884C\u60C5\u51B5", { p0: left }), (0, import_i18n5.t)("{p0}\uFF08{p1} {p2}\uFF09\uFF0C\u6267\u884C\u671F\u9650 {p3}\u3002\u9A8C\u6536\u8981\u6C42\uFF1A{p4}", { p0: it.item, p1: it.dept || "-", p2: it.owner || "-", p3: it.deadline, p4: it.acceptance || "-" })));
+      out.push(this.fire("ledger_due", (0, import_i18n6.t)("\u6539\u5584\u4E8B\u9879\u8FD8\u6709 {p0} \u5929\u5230\u671F\uFF0C\u8BF7\u4E0E\u8D23\u4EFB\u4EBA\u786E\u8BA4\u6267\u884C\u60C5\u51B5", { p0: left }), (0, import_i18n6.t)("{p0}\uFF08{p1} {p2}\uFF09\uFF0C\u6267\u884C\u671F\u9650 {p3}\u3002\u9A8C\u6536\u8981\u6C42\uFF1A{p4}", { p0: it.item, p1: it.dept || "-", p2: it.owner || "-", p3: it.deadline, p4: it.acceptance || "-" })));
     }
     for (const it of escalate) {
       const over = -(daysUntil(it.deadline, now) ?? 0);
@@ -7480,7 +7483,7 @@ var FlowSlaProc = class {
           cur.status = "overdue";
         }
       });
-      out.push(this.fire("ledger_overdue", (0, import_i18n5.t)("\u6539\u5584\u4E8B\u9879\u5DF2\u903E\u671F {p0} \u5929\uFF0C\u9700\u8981\u5347\u7EA7\u7763\u529E", { p0: over }), (0, import_i18n5.t)("{p0}\uFF08{p1} {p2}\uFF09\uFF0C\u6267\u884C\u671F\u9650 {p3}", { p0: it.item, p1: it.dept || "-", p2: it.owner || "-", p3: it.deadline })));
+      out.push(this.fire("ledger_overdue", (0, import_i18n6.t)("\u6539\u5584\u4E8B\u9879\u5DF2\u903E\u671F {p0} \u5929\uFF0C\u9700\u8981\u5347\u7EA7\u7763\u529E", { p0: over }), (0, import_i18n6.t)("{p0}\uFF08{p1} {p2}\uFF09\uFF0C\u6267\u884C\u671F\u9650 {p3}", { p0: it.item, p1: it.dept || "-", p2: it.owner || "-", p3: it.deadline })));
     }
     return out;
   }
@@ -7535,7 +7538,7 @@ var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brand
 var store = new FlowSlaStore();
 var proc = null;
 function requireFound(v, what) {
-  if (v == null) throw new Error((0, import_i18n6.t)("{p0}\u4E0D\u5B58\u5728\u6216\u5DF2\u5220\u9664", { p0: what }));
+  if (v == null) throw new Error((0, import_i18n7.t)("{p0}\u4E0D\u5B58\u5728\u6216\u5DF2\u5220\u9664", { p0: what }));
   return v;
 }
 function runCompute(data, rules, opt, aliases) {
@@ -7561,7 +7564,7 @@ function registerFlowSlaHandlers(deps) {
   const { llmJson } = (0, import_workbenchLlm.createWorkbenchLlm)(deps, { logTag: "flow-sla", moduleModel: () => "" });
   const outputRoot = () => {
     const s = store.read().settings;
-    return s.outputDir && (0, import_node_fs3.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path5.join)(import_electron.app.getPath("documents"), (0, import_brandPaths.documentsFolderName)(), (0, import_i18n6.t)("\u6D41\u7A0B\u65F6\u6548\u76D1\u63A7"));
+    return s.outputDir && (0, import_node_fs3.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path5.join)(import_electron.app.getPath("documents"), (0, import_brandPaths.documentsFolderName)(), (0, import_i18n7.t)("\u6D41\u7A0B\u65F6\u6548\u76D1\u63A7"));
   };
   const outputDir = (sub) => {
     const dir = sub ? (0, import_node_path5.join)(outputRoot(), (0, import_excel3.safeFileName)(sub)) : outputRoot();
@@ -7570,7 +7573,7 @@ function registerFlowSlaHandlers(deps) {
   };
   const stamp = (d = /* @__PURE__ */ new Date()) => `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, "0")}${String(d.getDate()).padStart(2, "0")}-${String(d.getHours()).padStart(2, "0")}${String(d.getMinutes()).padStart(2, "0")}`;
   const sendMail = async (input) => {
-    const { sendCaseMail } = await import("host:apps/desktop-shell/src/main/services/caseMailSender.ts");
+    const { sendCaseMail } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/caseMailSender.ts"), 1));
     const relay = deps.serviceAuth ? { send: (i) => deps.serviceAuth.relaySendMail(i) } : null;
     return sendCaseMail(deps.readEmailCredentials?.() ?? {}, input, relay);
   };
@@ -7593,12 +7596,13 @@ function registerFlowSlaHandlers(deps) {
     logger: { info: (m, c) => logger?.info?.("flow-sla", m, c), warn: (m, c) => logger?.warn?.("flow-sla", m, c) }
   });
   proc.start();
-  (0, import_quitRegistry.onAppWillQuit)("flow-sla", () => proc?.stop(), { once: true });
+  const stopBackground = () => proc?.stop();
+  (0, import_quitRegistry.onAppWillQuit)("flow-sla", stopBackground, { once: true });
   const compute = () => {
     const s = store.read();
     const data = store.data();
-    if (!data.flows.length) throw new Error((0, import_i18n6.t)("\u8FD8\u6CA1\u6709\u5BFC\u5165\u62A5\u8868\uFF0C\u8BF7\u5148\u5B8C\u6210\u7B2C 1 \u6B65"));
-    const period = requireFound(s.session.period, (0, import_i18n6.t)("\u7EDF\u8BA1\u5468\u671F"));
+    if (!data.flows.length) throw new Error((0, import_i18n7.t)("\u8FD8\u6CA1\u6709\u5BFC\u5165\u62A5\u8868\uFF0C\u8BF7\u5148\u5B8C\u6210\u7B2C 1 \u6B65"));
+    const period = requireFound(s.session.period, (0, import_i18n7.t)("\u7EDF\u8BA1\u5468\u671F"));
     const rules = effectiveRules(store.baseRules(), { thresholds: s.thresholds, decisions: s.nodeDecisions, roster: data.roster });
     const opt = {
       now: Math.min(period.asOf, Date.now()),
@@ -7692,8 +7696,8 @@ function registerFlowSlaHandlers(deps) {
       hasData: store.data().flows.length > 0
     };
   };
-  const caseOf = (key) => requireFound(store.read().session.cases.find((x) => x.key === key), (0, import_i18n6.t)("\u6D41\u7A0B"));
-  const periodDir = () => outputDir(store.read().session.period?.label.replace(/\s*~\s*/g, "_") || (0, import_i18n6.t)("\u672A\u547D\u540D\u5468\u671F"));
+  const caseOf = (key) => requireFound(store.read().session.cases.find((x) => x.key === key), (0, import_i18n7.t)("\u6D41\u7A0B"));
+  const periodDir = () => outputDir(store.read().session.period?.label.replace(/\s*~\s*/g, "_") || (0, import_i18n7.t)("\u672A\u547D\u540D\u5468\u671F"));
   const resetDownstream = (keepCases) => {
     store.update((s) => {
       const old = s.session;
@@ -7702,7 +7706,7 @@ function registerFlowSlaHandlers(deps) {
   };
   const commitIngest = (req) => {
     const p = req.period;
-    if (!p || !(p.end > p.start)) throw new Error((0, import_i18n6.t)("\u7EDF\u8BA1\u5468\u671F\u7684\u7ED3\u675F\u65E5\u671F\u5FC5\u987B\u665A\u4E8E\u5F00\u59CB\u65E5\u671F"));
+    if (!p || !(p.end > p.start)) throw new Error((0, import_i18n7.t)("\u7EDF\u8BA1\u5468\u671F\u7684\u7ED3\u675F\u65E5\u671F\u5FC5\u987B\u665A\u4E8E\u5F00\u59CB\u65E5\u671F"));
     const period = makePeriod(p.kind === "monthly" ? "monthly" : "weekly", p.start, p.end, Math.min(Number(p.asOf) || Date.now(), Date.now()));
     const r = ingestAll({ systems: req.systems || {}, roster: req.roster });
     store.setData({ flows: r.flows, nodes: r.nodes, roster: r.roster });
@@ -7745,7 +7749,7 @@ function registerFlowSlaHandlers(deps) {
           status: "doing",
           escalated: false,
           source,
-          progress: [{ at: now, text: (0, import_i18n6.t)("\u7531\u300C{p0}\u300D\u7684\u6539\u5584\u5EFA\u8BAE\u8BB0\u5165", { p0: source }) }],
+          progress: [{ at: now, text: (0, import_i18n7.t)("\u7531\u300C{p0}\u300D\u7684\u6539\u5584\u5EFA\u8BAE\u8BB0\u5165", { p0: source }) }],
           createdAt: now,
           updatedAt: now,
           remindedFor: "",
@@ -7778,7 +7782,7 @@ function registerFlowSlaHandlers(deps) {
       return r.canceled ? "" : r.filePaths[0] || "";
     },
     "path.open": async (p) => {
-      if (!p?.path || !(0, import_node_fs3.existsSync)(p.path)) throw new Error((0, import_i18n6.t)("\u6587\u4EF6\u4E0D\u5B58\u5728"));
+      if (!p?.path || !(0, import_node_fs3.existsSync)(p.path)) throw new Error((0, import_i18n7.t)("\u6587\u4EF6\u4E0D\u5B58\u5728"));
       if (p.reveal) {
         import_electron.shell.showItemInFolder(p.path);
         return true;
@@ -7789,7 +7793,7 @@ function registerFlowSlaHandlers(deps) {
     },
     // ── 第 1 步 导入 ──
     "ingest.preview": (p) => {
-      if (!p?.path || !(0, import_node_fs3.existsSync)(p.path)) throw new Error((0, import_i18n6.t)("\u6587\u4EF6\u4E0D\u5B58\u5728"));
+      if (!p?.path || !(0, import_node_fs3.existsSync)(p.path)) throw new Error((0, import_i18n7.t)("\u6587\u4EF6\u4E0D\u5B58\u5728"));
       const slot = p.slot === "node" || p.slot === "roster" ? p.slot : "flow";
       const t = previewTable(p.path, slot, p.sheet);
       return { ...t, missing: missingRoles(slot, t.mapping, { hasFlowTable: !!p.hasFlowTable }) };
@@ -7826,7 +7830,7 @@ function registerFlowSlaHandlers(deps) {
     "alias.set": (p) => {
       const k = aliasKey(p.system, p.flowName);
       const target = String(p.target || "");
-      if (target && target !== REGULAR && !store.baseRules().e2e.some((r) => r.flowType === target)) throw new Error((0, import_i18n6.t)("\u89C4\u5219\u8868\u91CC\u6CA1\u6709\u8FD9\u4E2A\u6D41\u7A0B\u7EC6\u7C7B\uFF1A{p0}", { p0: target }));
+      if (target && target !== REGULAR && !store.baseRules().e2e.some((r) => r.flowType === target)) throw new Error((0, import_i18n7.t)("\u89C4\u5219\u8868\u91CC\u6CA1\u6709\u8FD9\u4E2A\u6D41\u7A0B\u7EC6\u7C7B\uFF1A{p0}", { p0: target }));
       store.update((s) => {
         if (target) {
           s.aliases[k] = target;
@@ -7870,7 +7874,7 @@ function registerFlowSlaHandlers(deps) {
     "calc.view": () => calcView(compute()),
     "calc.export": () => {
       const c = compute();
-      const file = (0, import_node_path5.join)(periodDir(), `${(0, import_i18n6.t)("\u6D41\u7A0B\u65F6\u6548\u660E\u7EC6")}-${stamp()}.xlsx`);
+      const file = (0, import_node_path5.join)(periodDir(), `${(0, import_i18n7.t)("\u6D41\u7A0B\u65F6\u6548\u660E\u7EC6")}-${stamp()}.xlsx`);
       (0, import_excel3.writeWorkbook)(file, detailSheets(reportContext(c)));
       return file;
     },
@@ -7891,12 +7895,12 @@ function registerFlowSlaHandlers(deps) {
     // ── 第 5 步 原因 ──
     "cases.get": () => {
       const s = store.read();
-      const period = requireFound(s.session.period, (0, import_i18n6.t)("\u7EDF\u8BA1\u5468\u671F"));
+      const period = requireFound(s.session.period, (0, import_i18n7.t)("\u7EDF\u8BA1\u5468\u671F"));
       return { cases: s.session.cases, mails: ownerMails(s.session.cases, period, senderName()) };
     },
     "cases.setEmail": (p) => {
       const email = String(p?.email || "").trim();
-      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error((0, import_i18n6.t)("\u90AE\u7BB1\u683C\u5F0F\u4E0D\u5BF9\uFF1A{p0}", { p0: email }));
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error((0, import_i18n7.t)("\u90AE\u7BB1\u683C\u5F0F\u4E0D\u5BF9\uFF1A{p0}", { p0: email }));
       store.update((s) => {
         for (const c of s.session.cases) if (c.owner === p.owner) c.ownerEmail = email;
       });
@@ -7906,7 +7910,7 @@ function registerFlowSlaHandlers(deps) {
       caseOf(p.key);
       if (p.reason !== void 0) applyReasons([{ key: p.key, reason: String(p.reason).slice(0, 500) }]);
       if (p.categoryId !== void 0) {
-        if (p.categoryId && !import_ipc_contracts3.FS_REASON_CATEGORIES.includes(p.categoryId)) throw new Error((0, import_i18n6.t)("\u539F\u56E0\u7C7B\u522B\u4E0D\u5728\u540D\u5355\u91CC"));
+        if (p.categoryId && !import_ipc_contracts3.FS_REASON_CATEGORIES.includes(p.categoryId)) throw new Error((0, import_i18n7.t)("\u539F\u56E0\u7C7B\u522B\u4E0D\u5728\u540D\u5355\u91CC"));
         store.update((s) => {
           const c = s.session.cases.find((x) => x.key === p.key);
           c.categoryId = p.categoryId;
@@ -7917,44 +7921,44 @@ function registerFlowSlaHandlers(deps) {
     },
     "reasons.export": () => {
       const cases = store.read().session.cases;
-      if (!cases.length) throw new Error((0, import_i18n6.t)("\u6CA1\u6709\u9700\u8981\u6536\u96C6\u539F\u56E0\u7684\u6D41\u7A0B"));
-      const file = (0, import_node_path5.join)(periodDir(), `${(0, import_i18n6.t)("\u8D85\u65F6\u539F\u56E0\u6536\u96C6\u8868")}-${stamp()}.xlsx`);
+      if (!cases.length) throw new Error((0, import_i18n7.t)("\u6CA1\u6709\u9700\u8981\u6536\u96C6\u539F\u56E0\u7684\u6D41\u7A0B"));
+      const file = (0, import_node_path5.join)(periodDir(), `${(0, import_i18n7.t)("\u8D85\u65F6\u539F\u56E0\u6536\u96C6\u8868")}-${stamp()}.xlsx`);
       (0, import_excel3.writeWorkbook)(file, [reasonSheet(cases)]);
       return file;
     },
     "reasons.import": (p) => {
-      if (!p?.path || !(0, import_node_fs3.existsSync)(p.path)) throw new Error((0, import_i18n6.t)("\u6587\u4EF6\u4E0D\u5B58\u5728"));
+      if (!p?.path || !(0, import_node_fs3.existsSync)(p.path)) throw new Error((0, import_i18n7.t)("\u6587\u4EF6\u4E0D\u5B58\u5728"));
       const t = (0, import_excel3.readTable)(p.path);
       const r = readReasonRows(t.headers, t.rows, store.read().session.cases);
-      if (r.noColumn) throw new Error((0, import_i18n6.t)("\u8FD9\u5F20\u8868\u91CC\u6CA1\u6709\u627E\u5230\u300C\u5355\u53F7\u300D\u548C\u300C\u8D85\u65F6\u539F\u56E0\u300D\u4E24\u5217"));
+      if (r.noColumn) throw new Error((0, import_i18n7.t)("\u8FD9\u5F20\u8868\u91CC\u6CA1\u6709\u627E\u5230\u300C\u5355\u53F7\u300D\u548C\u300C\u8D85\u65F6\u539F\u56E0\u300D\u4E24\u5217"));
       const n = applyReasons(r.filled);
       return { filled: n, unmatched: r.unmatched, cases: store.read().session.cases };
     },
     /** 给选中的责任人各发一封原因收集邮件（由人点击触发）；没有邮箱的跳过并列出来 */
     "reasons.send": async (p) => {
       const s = store.read();
-      const period = requireFound(s.session.period, (0, import_i18n6.t)("\u7EDF\u8BA1\u5468\u671F"));
+      const period = requireFound(s.session.period, (0, import_i18n7.t)("\u7EDF\u8BA1\u5468\u671F"));
       const mails = ownerMails(s.session.cases, period, senderName()).filter((m) => (p?.owners || []).includes(m.owner));
-      if (!mails.length) throw new Error((0, import_i18n6.t)("\u8BF7\u5148\u52FE\u9009\u8981\u53D1\u9001\u7684\u8D23\u4EFB\u4EBA"));
+      if (!mails.length) throw new Error((0, import_i18n7.t)("\u8BF7\u5148\u52FE\u9009\u8981\u53D1\u9001\u7684\u8D23\u4EFB\u4EBA"));
       const sent = [];
       const skipped = [];
       const failed = [];
-      const dir = (0, import_node_path5.join)(periodDir(), (0, import_i18n6.t)("\u539F\u56E0\u6536\u96C6"));
+      const dir = (0, import_node_path5.join)(periodDir(), (0, import_i18n7.t)("\u539F\u56E0\u6536\u96C6"));
       (0, import_node_fs3.mkdirSync)(dir, { recursive: true });
       for (const m of mails) {
         if (!m.email) {
           skipped.push(m.owner);
           continue;
         }
-        const file = (0, import_node_path5.join)(dir, `${(0, import_i18n6.t)("\u8D85\u65F6\u539F\u56E0\u6536\u96C6\u8868")}-${(0, import_excel3.safeFileName)(m.owner)}.xlsx`);
+        const file = (0, import_node_path5.join)(dir, `${(0, import_i18n7.t)("\u8D85\u65F6\u539F\u56E0\u6536\u96C6\u8868")}-${(0, import_excel3.safeFileName)(m.owner)}.xlsx`);
         (0, import_excel3.writeWorkbook)(file, [reasonSheet(s.session.cases.filter((c) => c.owner === m.owner))]);
-        const r = await sendMail({ to: [m.email], subject: m.subject, body: m.body, attachments: [{ filename: `${(0, import_i18n6.t)("\u8D85\u65F6\u539F\u56E0\u6536\u96C6\u8868")}.xlsx`, path: file }] });
+        const r = await sendMail({ to: [m.email], subject: m.subject, body: m.body, attachments: [{ filename: `${(0, import_i18n7.t)("\u8D85\u65F6\u539F\u56E0\u6536\u96C6\u8868")}.xlsx`, path: file }] });
         if (r.ok) {
           sent.push(m.owner);
           store.update((st) => {
             for (const c of st.session.cases) if (c.owner === m.owner) c.mailedAt = nowIso();
           });
-        } else failed.push({ owner: m.owner, message: r.message || (0, import_i18n6.t)("\u53D1\u9001\u5931\u8D25") });
+        } else failed.push({ owner: m.owner, message: r.message || (0, import_i18n7.t)("\u53D1\u9001\u5931\u8D25") });
       }
       pushState();
       return { sent, skipped, failed };
@@ -7962,7 +7966,7 @@ function registerFlowSlaHandlers(deps) {
     /** 归类：先按关键字；useModel 时再让模型归类并写根因说明，通不过核对的保留关键字结果 */
     "reasons.classify": async (p) => {
       const withReason = store.read().session.cases.filter((c) => c.reason.trim());
-      if (!withReason.length) throw new Error((0, import_i18n6.t)("\u8FD8\u6CA1\u6709\u4EFB\u4F55\u6D41\u7A0B\u586B\u4E86\u8D85\u65F6\u539F\u56E0"));
+      if (!withReason.length) throw new Error((0, import_i18n7.t)("\u8FD8\u6CA1\u6709\u4EFB\u4F55\u6D41\u7A0B\u586B\u4E86\u8D85\u65F6\u539F\u56E0"));
       store.update((s2) => {
         for (const c of s2.session.cases) {
           if (!c.reason.trim()) {
@@ -8012,7 +8016,7 @@ function registerFlowSlaHandlers(deps) {
       return { by, modelError, rejected, cases: s.cases, rootCauses: s.rootCauses, labels: Object.fromEntries(import_ipc_contracts3.FS_REASON_CATEGORIES.map((id) => [id, categoryLabel(id)])) };
     },
     "rootCause.set": (p) => {
-      if (!import_ipc_contracts3.FS_REASON_CATEGORIES.includes(p?.id)) throw new Error((0, import_i18n6.t)("\u539F\u56E0\u7C7B\u522B\u4E0D\u5728\u540D\u5355\u91CC"));
+      if (!import_ipc_contracts3.FS_REASON_CATEGORIES.includes(p?.id)) throw new Error((0, import_i18n7.t)("\u539F\u56E0\u7C7B\u522B\u4E0D\u5728\u540D\u5355\u91CC"));
       store.update((s) => {
         s.session.rootCauses[p.id] = String(p.text || "").slice(0, 600);
       });
@@ -8073,20 +8077,20 @@ function registerFlowSlaHandlers(deps) {
       const dir = periodDir();
       const subject = reportSubject(ctx);
       const base = (0, import_excel3.safeFileName)(subject);
-      const xlsx = (0, import_node_path5.join)(dir, `${base}-${(0, import_i18n6.t)("\u660E\u7EC6")}.xlsx`);
+      const xlsx = (0, import_node_path5.join)(dir, `${base}-${(0, import_i18n7.t)("\u660E\u7EC6")}.xlsx`);
       (0, import_excel3.writeWorkbook)(xlsx, detailSheets(ctx));
       let preview;
       if (c.period.kind === "monthly") {
         const html = monthlyReportHtml(ctx);
         const pdf = (0, import_node_path5.join)(dir, `${base}.pdf`);
-        const { renderHtmlToPdf } = await import("host:apps/desktop-shell/src/main/services/charityContent/render.ts");
+        const { renderHtmlToPdf } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/charityContent/render.ts"), 1));
         await renderHtmlToPdf(html, pdf);
-        preview = { kind: "monthly", subject, text: monthlyMailText(ctx), html, files: [{ name: `${base}.pdf`, path: pdf }, { name: `${base}-${(0, import_i18n6.t)("\u660E\u7EC6")}.xlsx`, path: xlsx }] };
+        preview = { kind: "monthly", subject, text: monthlyMailText(ctx), html, files: [{ name: `${base}.pdf`, path: pdf }, { name: `${base}-${(0, import_i18n7.t)("\u660E\u7EC6")}.xlsx`, path: xlsx }] };
       } else {
         const m = weeklyMail(ctx);
         const htmlFile = (0, import_node_path5.join)(dir, `${base}.html`);
         (0, import_node_fs3.writeFileSync)(htmlFile, m.html, "utf-8");
-        preview = { kind: "weekly", subject, text: m.text, html: m.html, files: [{ name: `${base}.html`, path: htmlFile }, { name: `${base}-${(0, import_i18n6.t)("\u660E\u7EC6")}.xlsx`, path: xlsx }] };
+        preview = { kind: "weekly", subject, text: m.text, html: m.html, files: [{ name: `${base}.html`, path: htmlFile }, { name: `${base}-${(0, import_i18n7.t)("\u660E\u7EC6")}.xlsx`, path: xlsx }] };
       }
       store.update((s) => {
         s.session.reportFiles = preview.files.map((f) => f.path);
@@ -8096,26 +8100,26 @@ function registerFlowSlaHandlers(deps) {
     /** 发送通报（由人点击触发）。月报发出后把改善建议记入改善台账 */
     "report.send": async (p) => {
       const s = store.read();
-      const period = requireFound(s.session.period, (0, import_i18n6.t)("\u7EDF\u8BA1\u5468\u671F"));
+      const period = requireFound(s.session.period, (0, import_i18n7.t)("\u7EDF\u8BA1\u5468\u671F"));
       const files = s.session.reportFiles.filter((f) => (0, import_node_fs3.existsSync)(f));
-      if (!files.length) throw new Error((0, import_i18n6.t)("\u8BF7\u5148\u751F\u6210\u901A\u62A5\u5E76\u9884\u89C8"));
-      const { parseRecipients } = await import("host:apps/desktop-shell/src/main/services/caseMailSender.ts");
+      if (!files.length) throw new Error((0, import_i18n7.t)("\u8BF7\u5148\u751F\u6210\u901A\u62A5\u5E76\u9884\u89C8"));
+      const { parseRecipients } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/caseMailSender.ts"), 1));
       const rcpt = parseRecipients(String(p?.to || ""));
-      if (rcpt.invalid.length) throw new Error((0, import_i18n6.t)("\u8FD9\u4E9B\u6536\u4EF6\u4EBA\u5730\u5740\u4E0D\u5BF9\uFF1A{p0}", { p0: rcpt.invalid.join("\u3001") }));
-      if (!rcpt.list.length) throw new Error((0, import_i18n6.t)("\u8BF7\u586B\u5199\u6536\u4EF6\u4EBA"));
+      if (rcpt.invalid.length) throw new Error((0, import_i18n7.t)("\u8FD9\u4E9B\u6536\u4EF6\u4EBA\u5730\u5740\u4E0D\u5BF9\uFF1A{p0}", { p0: rcpt.invalid.join("\u3001") }));
+      if (!rcpt.list.length) throw new Error((0, import_i18n7.t)("\u8BF7\u586B\u5199\u6536\u4EF6\u4EBA"));
       store.update((st) => {
         if (period.kind === "monthly") st.settings.monthlyRecipients = String(p.to);
         else st.settings.weeklyRecipients = String(p.to);
       });
       const r = await sendMail({
         to: rcpt.list,
-        subject: String(p.subject || "").trim() || (0, import_i18n6.t)("\u7EBF\u4E0A\u6D41\u7A0B\u65F6\u6548\u8FBE\u6210\u60C5\u51B5\u901A\u62A5"),
+        subject: String(p.subject || "").trim() || (0, import_i18n7.t)("\u7EBF\u4E0A\u6D41\u7A0B\u65F6\u6548\u8FBE\u6210\u60C5\u51B5\u901A\u62A5"),
         body: String(p.text || ""),
         attachments: files.map((f) => ({ filename: f.split(/[\\/]/).pop() || "attachment", path: f }))
       });
-      if (!r.ok) throw new Error(r.message || (0, import_i18n6.t)("\u53D1\u9001\u5931\u8D25"));
+      if (!r.ok) throw new Error(r.message || (0, import_i18n7.t)("\u53D1\u9001\u5931\u8D25"));
       let ledgerAdded = 0;
-      if (period.kind === "monthly" && !store.read().session.ledgerWritten) ledgerAdded = writeLedgerFromSuggestions(store.read().session.suggestions, (0, import_i18n6.t)("{p0} \u6708\u5EA6\u901A\u62A5", { p0: period.label }));
+      if (period.kind === "monthly" && !store.read().session.ledgerWritten) ledgerAdded = writeLedgerFromSuggestions(store.read().session.suggestions, (0, import_i18n7.t)("{p0} \u6708\u5EA6\u901A\u62A5", { p0: period.label }));
       store.update((st) => {
         st.session.sentAt = nowIso();
       });
@@ -8125,9 +8129,9 @@ function registerFlowSlaHandlers(deps) {
     /** 不发邮件，只把改善建议记入台账（月报） */
     "report.toLedger": () => {
       const s = store.read();
-      if (s.session.ledgerWritten) throw new Error((0, import_i18n6.t)("\u8FD9\u4E00\u671F\u7684\u6539\u5584\u5EFA\u8BAE\u5DF2\u7ECF\u8BB0\u5165\u53F0\u8D26"));
-      if (!s.session.suggestions.length) throw new Error((0, import_i18n6.t)("\u6CA1\u6709\u6539\u5584\u5EFA\u8BAE"));
-      const n = writeLedgerFromSuggestions(s.session.suggestions, (0, import_i18n6.t)("{p0} \u6708\u5EA6\u901A\u62A5", { p0: s.session.period?.label || "" }));
+      if (s.session.ledgerWritten) throw new Error((0, import_i18n7.t)("\u8FD9\u4E00\u671F\u7684\u6539\u5584\u5EFA\u8BAE\u5DF2\u7ECF\u8BB0\u5165\u53F0\u8D26"));
+      if (!s.session.suggestions.length) throw new Error((0, import_i18n7.t)("\u6CA1\u6709\u6539\u5584\u5EFA\u8BAE"));
+      const n = writeLedgerFromSuggestions(s.session.suggestions, (0, import_i18n7.t)("{p0} \u6708\u5EA6\u901A\u62A5", { p0: s.session.period?.label || "" }));
       pushState();
       return n;
     },
@@ -8158,9 +8162,9 @@ function registerFlowSlaHandlers(deps) {
     // ── 在途跟进 ──
     "track.note": (p) => {
       const text2 = String(p?.text || "").trim();
-      if (!text2) throw new Error((0, import_i18n6.t)("\u8BF7\u586B\u5199\u8FDB\u5C55"));
+      if (!text2) throw new Error((0, import_i18n7.t)("\u8BF7\u586B\u5199\u8FDB\u5C55"));
       store.update((s) => {
-        const t = requireFound(s.tracking.find((x) => x.key === p.key && !x.closedAt), (0, import_i18n6.t)("\u8DDF\u8FDB\u6761\u76EE"));
+        const t = requireFound(s.tracking.find((x) => x.key === p.key && !x.closedAt), (0, import_i18n7.t)("\u8DDF\u8FDB\u6761\u76EE"));
         const now = Date.now();
         t.notes.push({ at: new Date(now).toISOString(), text: text2.slice(0, 500), kind: "note" });
         t.lastFollowAt = new Date(now).toISOString();
@@ -8171,38 +8175,38 @@ function registerFlowSlaHandlers(deps) {
     },
     "track.setEmail": (p) => {
       const email = String(p?.email || "").trim();
-      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error((0, import_i18n6.t)("\u90AE\u7BB1\u683C\u5F0F\u4E0D\u5BF9\uFF1A{p0}", { p0: email }));
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error((0, import_i18n7.t)("\u90AE\u7BB1\u683C\u5F0F\u4E0D\u5BF9\uFF1A{p0}", { p0: email }));
       store.update((s) => {
-        requireFound(s.tracking.find((x) => x.key === p.key), (0, import_i18n6.t)("\u8DDF\u8FDB\u6761\u76EE")).handlerEmail = email;
+        requireFound(s.tracking.find((x) => x.key === p.key), (0, import_i18n7.t)("\u8DDF\u8FDB\u6761\u76EE")).handlerEmail = email;
       });
       pushState();
       return true;
     },
     "track.mailPreview": (p) => {
-      const t = requireFound(store.read().tracking.find((x) => x.key === p.key && !x.closedAt), (0, import_i18n6.t)("\u8DDF\u8FDB\u6761\u76EE"));
+      const t = requireFound(store.read().tracking.find((x) => x.key === p.key && !x.closedAt), (0, import_i18n7.t)("\u8DDF\u8FDB\u6761\u76EE"));
       return {
         to: t.handlerEmail,
-        subject: (0, import_i18n6.t)("\u3010\u6D41\u7A0B\u65F6\u6548\u3011\u8BF7\u66F4\u65B0\u5728\u9014\u6D41\u7A0B\u7684\u5904\u7406\u8FDB\u5EA6\uFF1A{p0}", { p0: t.flowNo }),
+        subject: (0, import_i18n7.t)("\u3010\u6D41\u7A0B\u65F6\u6548\u3011\u8BF7\u66F4\u65B0\u5728\u9014\u6D41\u7A0B\u7684\u5904\u7406\u8FDB\u5EA6\uFF1A{p0}", { p0: t.flowNo }),
         body: [
-          (0, import_i18n6.t)("{p0}\uFF0C\u4F60\u597D\uFF1A", { p0: t.handler || (0, import_i18n6.t)("\u540C\u4E8B") }),
+          (0, import_i18n7.t)("{p0}\uFF0C\u4F60\u597D\uFF1A", { p0: t.handler || (0, import_i18n7.t)("\u540C\u4E8B") }),
           "",
-          (0, import_i18n6.t)("[{p0}] {p1} {p2}{p3} \u76EE\u524D\u5728\u9014 {p4} \u5929\uFF0C\u65F6\u6548\u8981\u6C42 {p5} \u5929\uFF0C\u5DF2\u8D85\u51FA {p6} \u5929\uFF0C\u505C\u5728\u300C{p7}\u300D\u3002", { p0: t.system, p1: t.flowNo, p2: t.flowName, p3: t.title ? `\uFF08${t.title}\uFF09` : "", p4: t.days, p5: t.limitDays ?? "-", p6: t.overdueDays, p7: t.currentNode || "-" }),
-          (0, import_i18n6.t)("\u8BF7\u56DE\u590D\u76EE\u524D\u7684\u5904\u7406\u8FDB\u5EA6\u3001\u5361\u4F4F\u7684\u539F\u56E0\u548C\u9884\u8BA1\u529E\u7ED3\u65F6\u95F4\u3002"),
+          (0, import_i18n7.t)("[{p0}] {p1} {p2}{p3} \u76EE\u524D\u5728\u9014 {p4} \u5929\uFF0C\u65F6\u6548\u8981\u6C42 {p5} \u5929\uFF0C\u5DF2\u8D85\u51FA {p6} \u5929\uFF0C\u505C\u5728\u300C{p7}\u300D\u3002", { p0: t.system, p1: t.flowNo, p2: t.flowName, p3: t.title ? `\uFF08${t.title}\uFF09` : "", p4: t.days, p5: t.limitDays ?? "-", p6: t.overdueDays, p7: t.currentNode || "-" }),
+          (0, import_i18n7.t)("\u8BF7\u56DE\u590D\u76EE\u524D\u7684\u5904\u7406\u8FDB\u5EA6\u3001\u5361\u4F4F\u7684\u539F\u56E0\u548C\u9884\u8BA1\u529E\u7ED3\u65F6\u95F4\u3002"),
           ...senderName() ? ["", senderName()] : []
         ].join("\n")
       };
     },
     /** 给处理人发一封进度提醒（由人点击触发），并顺延下次跟进时间 */
     "track.remind": async (p) => {
-      const t = requireFound(store.read().tracking.find((x) => x.key === p.key && !x.closedAt), (0, import_i18n6.t)("\u8DDF\u8FDB\u6761\u76EE"));
-      if (!t.handlerEmail) throw new Error((0, import_i18n6.t)("\u8FD9\u4F4D\u5904\u7406\u4EBA\u6CA1\u6709\u90AE\u7BB1\uFF0C\u8BF7\u5148\u8865\u4E0A"));
+      const t = requireFound(store.read().tracking.find((x) => x.key === p.key && !x.closedAt), (0, import_i18n7.t)("\u8DDF\u8FDB\u6761\u76EE"));
+      if (!t.handlerEmail) throw new Error((0, import_i18n7.t)("\u8FD9\u4F4D\u5904\u7406\u4EBA\u6CA1\u6709\u90AE\u7BB1\uFF0C\u8BF7\u5148\u8865\u4E0A"));
       const r = await sendMail({ to: [t.handlerEmail], subject: String(p.subject || ""), body: String(p.body || "") });
-      if (!r.ok) throw new Error(r.message || (0, import_i18n6.t)("\u53D1\u9001\u5931\u8D25"));
+      if (!r.ok) throw new Error(r.message || (0, import_i18n7.t)("\u53D1\u9001\u5931\u8D25"));
       store.update((s) => {
         const cur = s.tracking.find((x) => x.key === p.key && !x.closedAt);
         if (!cur) return;
         const now = Date.now();
-        cur.notes.push({ at: new Date(now).toISOString(), text: (0, import_i18n6.t)("\u5DF2\u53D1\u63D0\u9192\u90AE\u4EF6\u7ED9 {p0}", { p0: cur.handler || cur.handlerEmail }), kind: "mail" });
+        cur.notes.push({ at: new Date(now).toISOString(), text: (0, import_i18n7.t)("\u5DF2\u53D1\u63D0\u9192\u90AE\u4EF6\u7ED9 {p0}", { p0: cur.handler || cur.handlerEmail }), kind: "mail" });
         cur.lastFollowAt = new Date(now).toISOString();
         cur.nextFollowAt = nextFollowAt(now, cur.intervalDays);
       });
@@ -8211,9 +8215,9 @@ function registerFlowSlaHandlers(deps) {
     },
     "track.close": (p) => {
       store.update((s) => {
-        const t = requireFound(s.tracking.find((x) => x.key === p.key && !x.closedAt), (0, import_i18n6.t)("\u8DDF\u8FDB\u6761\u76EE"));
+        const t = requireFound(s.tracking.find((x) => x.key === p.key && !x.closedAt), (0, import_i18n7.t)("\u8DDF\u8FDB\u6761\u76EE"));
         t.closedAt = nowIso();
-        t.closeReason = String(p?.reason || "").trim().slice(0, 200) || (0, import_i18n6.t)("\u624B\u5DE5\u95ED\u73AF");
+        t.closeReason = String(p?.reason || "").trim().slice(0, 200) || (0, import_i18n7.t)("\u624B\u5DE5\u95ED\u73AF");
         t.notes.push({ at: t.closedAt, text: t.closeReason, kind: "system" });
       });
       pushState();
@@ -8231,15 +8235,15 @@ function registerFlowSlaHandlers(deps) {
     "ledger.save": (p) => {
       const it = p?.item || {};
       const item = String(it.item || "").trim();
-      if (!item) throw new Error((0, import_i18n6.t)("\u8BF7\u586B\u5199\u6539\u5584\u4E8B\u9879"));
+      if (!item) throw new Error((0, import_i18n7.t)("\u8BF7\u586B\u5199\u6539\u5584\u4E8B\u9879"));
       const deadline = String(it.deadline || "").trim();
-      if (deadline && !/^\d{4}-\d{2}-\d{2}$/.test(deadline)) throw new Error((0, import_i18n6.t)("\u6267\u884C\u671F\u9650\u8BF7\u5199\u6210 2026-10-31 \u8FD9\u6837\u7684\u65E5\u671F"));
+      if (deadline && !/^\d{4}-\d{2}-\d{2}$/.test(deadline)) throw new Error((0, import_i18n7.t)("\u6267\u884C\u671F\u9650\u8BF7\u5199\u6210 2026-10-31 \u8FD9\u6837\u7684\u65E5\u671F"));
       const status = it.status === "done" || it.status === "archived" || it.status === "doing" ? it.status : void 0;
       const now = nowIso();
       const saved = store.update((s) => {
         let cur = it.id ? s.ledger.find((x) => x.id === it.id) : void 0;
         if (!cur) {
-          cur = { id: newId("fsl"), item, dept: "", owner: "", requirement: "", deadline: "", acceptance: "", status: "doing", escalated: false, source: (0, import_i18n6.t)("\u624B\u5DE5\u767B\u8BB0"), progress: [], createdAt: now, updatedAt: now, remindedFor: "", escalatedFor: "" };
+          cur = { id: newId("fsl"), item, dept: "", owner: "", requirement: "", deadline: "", acceptance: "", status: "doing", escalated: false, source: (0, import_i18n7.t)("\u624B\u5DE5\u767B\u8BB0"), progress: [], createdAt: now, updatedAt: now, remindedFor: "", escalatedFor: "" };
           s.ledger.unshift(cur);
         }
         cur.item = item.slice(0, 300);
@@ -8249,7 +8253,7 @@ function registerFlowSlaHandlers(deps) {
         if (it.acceptance !== void 0) cur.acceptance = String(it.acceptance || "").slice(0, 300);
         if (it.deadline !== void 0) cur.deadline = deadline;
         if (status && status !== cur.status) {
-          cur.progress.push({ at: now, text: (0, import_i18n6.t)("\u72B6\u6001\u6539\u4E3A\uFF1A{p0}", { p0: status === "done" ? (0, import_i18n6.t)("\u5DF2\u5B8C\u6210") : status === "archived" ? (0, import_i18n6.t)("\u5DF2\u5F52\u6863") : (0, import_i18n6.t)("\u8FDB\u884C\u4E2D") }) });
+          cur.progress.push({ at: now, text: (0, import_i18n7.t)("\u72B6\u6001\u6539\u4E3A\uFF1A{p0}", { p0: status === "done" ? (0, import_i18n7.t)("\u5DF2\u5B8C\u6210") : status === "archived" ? (0, import_i18n7.t)("\u5DF2\u5F52\u6863") : (0, import_i18n7.t)("\u8FDB\u884C\u4E2D") }) });
           cur.status = status;
           if (status !== "doing") cur.escalated = false;
         }
@@ -8263,9 +8267,9 @@ function registerFlowSlaHandlers(deps) {
     },
     "ledger.progress": (p) => {
       const text2 = String(p?.text || "").trim();
-      if (!text2) throw new Error((0, import_i18n6.t)("\u8BF7\u586B\u5199\u8FDB\u5C55"));
+      if (!text2) throw new Error((0, import_i18n7.t)("\u8BF7\u586B\u5199\u8FDB\u5C55"));
       store.update((s) => {
-        const cur = requireFound(s.ledger.find((x) => x.id === p.id), (0, import_i18n6.t)("\u6539\u5584\u4E8B\u9879"));
+        const cur = requireFound(s.ledger.find((x) => x.id === p.id), (0, import_i18n7.t)("\u6539\u5584\u4E8B\u9879"));
         cur.progress.push({ at: nowIso(), text: text2.slice(0, 500) });
         cur.updatedAt = nowIso();
       });
@@ -8281,14 +8285,14 @@ function registerFlowSlaHandlers(deps) {
     },
     "ledger.export": () => {
       const list = store.read().ledger;
-      if (!list.length) throw new Error((0, import_i18n6.t)("\u53F0\u8D26\u8FD8\u662F\u7A7A\u7684"));
+      if (!list.length) throw new Error((0, import_i18n7.t)("\u53F0\u8D26\u8FD8\u662F\u7A7A\u7684"));
       const now = Date.now();
-      const label = (st) => ({ doing: (0, import_i18n6.t)("\u8FDB\u884C\u4E2D"), done: (0, import_i18n6.t)("\u5DF2\u5B8C\u6210"), overdue: (0, import_i18n6.t)("\u903E\u671F"), archived: (0, import_i18n6.t)("\u5DF2\u5F52\u6863") })[st];
-      const file = (0, import_node_path5.join)(outputDir((0, import_i18n6.t)("\u6539\u5584\u53F0\u8D26")), `${(0, import_i18n6.t)("\u6D41\u7A0B\u65F6\u6548\u6539\u5584\u53F0\u8D26")}-${stamp()}.xlsx`);
+      const label = (st) => ({ doing: (0, import_i18n7.t)("\u8FDB\u884C\u4E2D"), done: (0, import_i18n7.t)("\u5DF2\u5B8C\u6210"), overdue: (0, import_i18n7.t)("\u903E\u671F"), archived: (0, import_i18n7.t)("\u5DF2\u5F52\u6863") })[st];
+      const file = (0, import_node_path5.join)(outputDir((0, import_i18n7.t)("\u6539\u5584\u53F0\u8D26")), `${(0, import_i18n7.t)("\u6D41\u7A0B\u65F6\u6548\u6539\u5584\u53F0\u8D26")}-${stamp()}.xlsx`);
       (0, import_excel3.writeWorkbook)(file, [{
-        name: (0, import_i18n6.t)("\u6539\u5584\u53F0\u8D26"),
-        headers: [(0, import_i18n6.t)("\u6539\u5584\u4E8B\u9879"), (0, import_i18n6.t)("\u8D23\u4EFB\u90E8\u95E8"), (0, import_i18n6.t)("\u8D23\u4EFB\u4EBA"), (0, import_i18n6.t)("\u6267\u884C\u8981\u6C42"), (0, import_i18n6.t)("\u6267\u884C\u671F\u9650"), (0, import_i18n6.t)("\u9A8C\u6536\u8981\u6C42"), (0, import_i18n6.t)("\u72B6\u6001"), (0, import_i18n6.t)("\u662F\u5426\u5347\u7EA7\u7763\u529E"), (0, import_i18n6.t)("\u6765\u6E90"), (0, import_i18n6.t)("\u767B\u8BB0\u65F6\u95F4"), (0, import_i18n6.t)("\u8FDB\u5C55\u8BB0\u5F55")],
-        rows: list.map((l) => [l.item, l.dept, l.owner, l.requirement, l.deadline, l.acceptance, label(ledgerStatus(l, now)), l.escalated ? (0, import_i18n6.t)("\u662F") : (0, import_i18n6.t)("\u5426"), l.source, l.createdAt.slice(0, 10), l.progress.map((x) => `${x.at.slice(0, 10)} ${x.text}`).join("\n")])
+        name: (0, import_i18n7.t)("\u6539\u5584\u53F0\u8D26"),
+        headers: [(0, import_i18n7.t)("\u6539\u5584\u4E8B\u9879"), (0, import_i18n7.t)("\u8D23\u4EFB\u90E8\u95E8"), (0, import_i18n7.t)("\u8D23\u4EFB\u4EBA"), (0, import_i18n7.t)("\u6267\u884C\u8981\u6C42"), (0, import_i18n7.t)("\u6267\u884C\u671F\u9650"), (0, import_i18n7.t)("\u9A8C\u6536\u8981\u6C42"), (0, import_i18n7.t)("\u72B6\u6001"), (0, import_i18n7.t)("\u662F\u5426\u5347\u7EA7\u7763\u529E"), (0, import_i18n7.t)("\u6765\u6E90"), (0, import_i18n7.t)("\u767B\u8BB0\u65F6\u95F4"), (0, import_i18n7.t)("\u8FDB\u5C55\u8BB0\u5F55")],
+        rows: list.map((l) => [l.item, l.dept, l.owner, l.requirement, l.deadline, l.acceptance, label(ledgerStatus(l, now)), l.escalated ? (0, import_i18n7.t)("\u662F") : (0, import_i18n7.t)("\u5426"), l.source, l.createdAt.slice(0, 10), l.progress.map((x) => `${x.at.slice(0, 10)} ${x.text}`).join("\n")])
       }]);
       return file;
     },
@@ -8300,7 +8304,7 @@ function registerFlowSlaHandlers(deps) {
     },
     /** 导入更新后的《时效看板指标》工作簿，整体替换五张规则表 */
     "rules.import": (p) => {
-      if (!p?.path || !(0, import_node_fs3.existsSync)(p.path)) throw new Error((0, import_i18n6.t)("\u6587\u4EF6\u4E0D\u5B58\u5728"));
+      if (!p?.path || !(0, import_node_fs3.existsSync)(p.path)) throw new Error((0, import_i18n7.t)("\u6587\u4EF6\u4E0D\u5B58\u5728"));
       const r = parseRulesWorkbook(p.path, DEFAULT_RULES);
       store.setCustomRules(r.rules);
       resetDownstream(true);
@@ -8325,7 +8329,7 @@ function registerFlowSlaHandlers(deps) {
       const clean = (v) => [...new Set((Array.isArray(v) ? v : []).map((x) => String(x).trim()).filter(Boolean))].sort();
       const all = [...clean(p?.holidays), ...clean(p?.extraWorkdays)];
       const bad = all.filter((d) => !/^\d{4}-\d{2}-\d{2}$/.test(d) || Number.isNaN((/* @__PURE__ */ new Date(`${d}T00:00:00`)).getTime()));
-      if (bad.length) throw new Error((0, import_i18n6.t)("\u8FD9\u4E9B\u65E5\u671F\u5199\u5F97\u4E0D\u5BF9\uFF08\u5E94\u4E3A 2026-10-01 \u8FD9\u6837\uFF09\uFF1A{p0}", { p0: bad.slice(0, 5).join("\u3001") }));
+      if (bad.length) throw new Error((0, import_i18n7.t)("\u8FD9\u4E9B\u65E5\u671F\u5199\u5F97\u4E0D\u5BF9\uFF08\u5E94\u4E3A 2026-10-01 \u8FD9\u6837\uFF09\uFF1A{p0}", { p0: bad.slice(0, 5).join("\u3001") }));
       store.update((s) => {
         s.settings.holidays = clean(p?.holidays);
         s.settings.extraWorkdays = clean(p?.extraWorkdays);
@@ -8337,7 +8341,7 @@ function registerFlowSlaHandlers(deps) {
   };
   import_electron.ipcMain.handle(import_ipc_contracts3.IPC_CHANNELS.WORKBENCH_FS_INVOKE, async (_e, req) => {
     const fn = actions[String(req?.action || "")];
-    if (!fn) throw new Error((0, import_i18n6.t)("\u672A\u77E5\u64CD\u4F5C\uFF1A{p0}", { p0: String(req?.action || "") }));
+    if (!fn) throw new Error((0, import_i18n7.t)("\u672A\u77E5\u64CD\u4F5C\uFF1A{p0}", { p0: String(req?.action || "") }));
     try {
       return await fn(req.payload ?? {});
     } catch (error) {
@@ -8345,17 +8349,25 @@ function registerFlowSlaHandlers(deps) {
       throw new Error((0, import_userFacingError.userFacingError)(error));
     }
   });
+  return stopBackground;
 }
 
 // node_modules/.cache/solutions-build/workbench-flow-sla/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerFlowSlaHandlers";
+var cleanup;
 function activate(ctx) {
-  registerFlowSlaHandlers(ctx.host.deps);
+  cleanup = registerFlowSlaHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });

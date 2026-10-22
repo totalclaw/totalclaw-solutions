@@ -24,7 +24,7 @@
         <div class="case-identity">
           <select v-model="activeCaseId" class="case-selector">
             <option v-for="item in cases" :key="item.id" :value="item.id">
-              {{ item.id }} · {{ item.customer }}
+              {{ item.id }} · {{ displayText(item.customer) }}
             </option>
           </select>
           <span class="status-pill" :class="`status-${bidCase.status}`">
@@ -33,12 +33,12 @@
           <span class="version-pill">{{ bt('version') }} {{ bidCase.version }}</span>
         </div>
         <div class="case-copy">
-          <h2>{{ bidCase.project }}</h2>
-          <p>{{ bidCase.customer }} · {{ bidCase.rfqNumber || 'RFQ —' }}</p>
+          <h2>{{ displayText(bidCase.project) }}</h2>
+          <p>{{ displayText(bidCase.customer) }} · {{ bidCase.rfqNumber || 'RFQ —' }}</p>
         </div>
         <div class="case-meta">
           <div><span>{{ bt('deadline') }}</span><strong>{{ bidCase.deadline || '—' }}</strong></div>
-          <div><span>{{ bt('owner') }}</span><strong>{{ bidCase.owner || '—' }}</strong></div>
+          <div><span>{{ bt('owner') }}</span><strong>{{ bidCase.owner ? displayText(bidCase.owner) : '—' }}</strong></div>
           <div><span>{{ bt('currentLanguage') }}</span><strong>{{ locale }}</strong></div>
         </div>
       </section>
@@ -135,8 +135,8 @@
                 <div class="form-action"><button class="btn primary compact" @click="saveMeta">{{ bt('accept') }}</button></div>
               </div>
               <dl v-else class="summary-list">
-                <div><dt>{{ bt('customer') }}</dt><dd>{{ bidCase.customer }}</dd></div>
-                <div><dt>{{ bt('project') }}</dt><dd>{{ bidCase.project }}</dd></div>
+                <div><dt>{{ bt('customer') }}</dt><dd>{{ displayText(bidCase.customer) }}</dd></div>
+                <div><dt>{{ bt('project') }}</dt><dd>{{ displayText(bidCase.project) }}</dd></div>
                 <div><dt>RFQ</dt><dd>{{ bidCase.rfqNumber || '—' }}</dd></div>
                 <div><dt>{{ bt('deadline') }}</dt><dd>{{ bidCase.deadline || '—' }}</dd></div>
                 <div><dt>{{ bt('status') }}</dt><dd>{{ statusLabel(bidCase.status) }}</dd></div>
@@ -165,7 +165,7 @@
               <div class="doc-list compact-list">
                 <div v-for="doc in bidCase.documents.slice(0, 4)" :key="doc.id" class="doc-row">
                   <i :class="documentIcon(doc.kind)"></i>
-                  <div><strong>{{ doc.name }}</strong><small>{{ formatBytes(doc.size) }}</small></div>
+                  <div><strong>{{ displayText(doc.name) }}</strong><small>{{ formatBytes(doc.size) }}</small></div>
                   <span :class="`parse-${doc.parseStatus}`">{{ parseLabel(doc.parseStatus) }}</span>
                 </div>
                 <p v-if="!bidCase.documents.length" class="empty">{{ bt('noDocuments') }}</p>
@@ -199,8 +199,8 @@
               <article v-for="doc in bidCase.documents" :key="doc.id" class="doc-card">
                 <i :class="documentIcon(doc.kind)"></i>
                 <div>
-                  <strong>{{ doc.name }}</strong>
-                  <p>{{ doc.kind.toUpperCase() }} · {{ formatBytes(doc.size) }} · {{ doc.uploadedBy }}</p>
+                  <strong>{{ displayText(doc.name) }}</strong>
+                  <p>{{ doc.kind.toUpperCase() }} · {{ formatBytes(doc.size) }} · {{ displayText(doc.uploadedBy) }}</p>
                   <select
                     class="purpose-select"
                     :value="doc.purpose"
@@ -242,7 +242,7 @@
                 <span>{{ bt('unitCost') }}</span><span>{{ bt('customerUnitPrice') }}</span><span>{{ bt('sourceEvidence') }}</span><span></span>
               </div>
               <div v-for="item in bidCase.lineItems" :key="item.id" class="table-row items">
-                <span><strong>{{ item.description }}</strong><small>{{ item.model }}</small></span>
+                <span><strong>{{ displayText(item.description) }}</strong><small>{{ displayText(item.model) }}</small></span>
                 <span>{{ item.quantity }} {{ item.unit }}</span>
                 <input v-model="productDrafts[item.id]" />
                 <input v-model.number="linePricingDrafts[item.id].unitCostSar" type="number" min="0" step="100" />
@@ -276,12 +276,12 @@
               <div class="finding-top">
                 <div>
                   <span class="severity-pill">{{ finding.severity }}</span>
-                  <h3>{{ finding.requirement }}</h3>
+                  <h3>{{ displayText(finding.requirement) }}</h3>
                 </div>
                 <span class="finding-status">{{ complianceLabel(finding.humanDecision || finding.status) }}</span>
               </div>
               <div class="finding-columns">
-                <div><span>{{ bt('response') }}</span><p>{{ finding.response }}</p></div>
+                <div><span>{{ bt('response') }}</span><p>{{ displayText(finding.response) }}</p></div>
                 <div>
                   <span>{{ bt('sourceEvidence') }}</span>
                   <button class="evidence-link" @click="selectedEvidence = finding.evidence">{{ evidenceLabel(finding.evidence[0]) }}</button>
@@ -311,7 +311,7 @@
                 <div class="finding-conclusion-copy">
                   <span>{{ bt('decisionSaved') }}</span>
                   <strong>{{ complianceLabel(finding.humanDecision || finding.status) }}</strong>
-                  <p>{{ finding.clarification || bt('noClarification') }}</p>
+                  <p>{{ finding.clarification ? displayText(finding.clarification) : bt('noClarification') }}</p>
                 </div>
                 <button class="btn secondary compact" @click="editFinding(finding.id)">
                   <i class="ri-edit-line"></i>{{ bt('editDecision') }}
@@ -362,7 +362,7 @@
               <div class="decision-card-head">
                 <div>
                   <span class="section-kicker">{{ bt('decisionCard') }}</span>
-                  <h2>{{ bidCase.customer }} · {{ bidCase.project }}</h2>
+                  <h2>{{ displayText(bidCase.customer) }} · {{ displayText(bidCase.project) }}</h2>
                   <small>{{ bidCase.id }} · {{ bidCase.rfqNumber }}</small>
                 </div>
                 <span class="decision-state" :class="`decision-${bidCase.decision.decision}`">{{ decisionLabel(bidCase.decision.decision) }}</span>
@@ -381,7 +381,7 @@
                 <strong>{{ bt('aiRecommendation') }}</strong>
                 <p>{{ displayText(bidCase.decisionSummary.aiRecommendation || i18nT('等待工作流生成建议。')) }}</p>
                 <div v-if="bidCase.decisionSummary.risks.length" class="decision-summary-list">
-                  <span v-for="risk in bidCase.decisionSummary.risks" :key="risk"><i class="ri-error-warning-line"></i>{{ risk }}</span>
+                  <span v-for="risk in bidCase.decisionSummary.risks" :key="risk"><i class="ri-error-warning-line"></i>{{ displayText(risk) }}</span>
                 </div>
               </section>
               <label class="decision-scenario">
@@ -469,7 +469,7 @@
         <article v-for="(evidence, index) in selectedEvidence" :key="index">
           <strong>{{ documentName(evidence.fileId) }}</strong>
           <p>{{ evidenceLabel(evidence) }}</p>
-          <blockquote>{{ evidence.excerpt }}</blockquote>
+          <blockquote>{{ displayText(evidence.excerpt) }}</blockquote>
         </article>
       </section>
     </div>
@@ -500,6 +500,7 @@
 </template>
 
 <script setup lang="ts">
+import { localizeBuiltinText } from '../composables/bidDeskAuditText';
 import { computed, onMounted, onUnmounted, reactive, ref, watch } from 'vue';
 import PageBackButton from '../components/PageBackButton.vue';
 import { humanizeErrorMessage } from '../utils/humanize';
@@ -578,14 +579,14 @@ const documentPurposes: Array<{ value: SourceDocument['purpose']; label: string 
 function syncDrafts() {
   if (!bidCase.value) return;
   Object.assign(metaDraft, {
-    customer: bidCase.value.customer,
-    project: bidCase.value.project,
+    customer: displayText(bidCase.value.customer),
+    project: displayText(bidCase.value.project),
     rfqNumber: bidCase.value.rfqNumber,
-    owner: bidCase.value.owner,
+    owner: displayText(bidCase.value.owner),
     deadline: bidCase.value.deadline,
   });
   Object.assign(pricingDraft, bidCase.value.pricingInput);
-  for (const field of bidCase.value.fields) fieldDrafts[field.id] = field.value;
+  for (const field of bidCase.value.fields) fieldDrafts[field.id] = displayText(field.value);
   for (const item of bidCase.value.lineItems) {
     productDrafts[item.id] = item.matchedProduct || '';
     linePricingDrafts[item.id] = {
@@ -596,7 +597,7 @@ function syncDrafts() {
   for (const finding of bidCase.value.findings) {
     findingDrafts[finding.id] = {
       decision: finding.humanDecision || finding.status,
-      clarification: finding.clarification || '',
+      clarification: finding.clarification ? displayText(finding.clarification) : '',
     };
   }
   selectedScenarioId.value =
@@ -1151,8 +1152,13 @@ function formatBytes(value: number) {
   return `${(value / 1024 / 1024).toFixed(1)} MB`;
 }
 function formatDate(value: number) { return new Date(value).toLocaleString(locale.value === 'ar' ? 'ar-SA' : locale.value); }
-function displayText(value: unknown) { return i18nT(String(value ?? '')); }
-function documentName(id: string) { return bidCase.value?.documents.find((item) => item.id === id)?.name || id; }
+/**
+ * 内置演示案例（createCompletedDemoCase / seedCase）的文案在创建时按当时界面语言落盘，切换语言后会残留中文。
+ * 显示时按词典精确匹配翻译：只命中词典里登记过的内置文案，用户自己录入的客户名、文件名等不在词典里，原样显示。
+ */
+function displayText(value: unknown): string { return localizeBuiltinText(String(value ?? ''), i18nT); }
+
+function documentName(id: string) { const name = bidCase.value?.documents.find((item) => item.id === id)?.name; return name ? displayText(name) : id; }
 function evidenceLabel(evidence?: EvidenceAnchor) {
   if (!evidence) return '—';
   if (evidence.sheet) return `${documentName(evidence.fileId)} · ${evidence.sheet}!${evidence.cell || ''}`;

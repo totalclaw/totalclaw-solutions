@@ -25,6 +25,7 @@ vi.mock('../i18n', () => ({
   t: (s: string, p?: Record<string, unknown>) => (p
     ? s.replace(/\{(\w+)\}/g, (_m, k) => String(p[k] ?? `{${k}}`)) : s),
   localizeWorkflowText: (s: string) => s,
+  i18nKey: (s: string) => s,
   i18n: { global: { locale: { value: 'zh-CN' } } },
 }));
 vi.mock('../composables/useLocale', () => ({

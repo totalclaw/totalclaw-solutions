@@ -94,7 +94,8 @@ export function noticeExtractPrompt(text: string): string {
 export function qualificationPrompt(requirements: BidWriterRequirement[], facts: BidWriterCompanyField[]): string {
   return [
     i18nT('下面是一份招标公告的资格要求，以及我方公司在知识库里登记的事实。请逐条判断我方是否满足。'),
-    i18nT('只输出 JSON：{"checks":[{"requirementId":"...","verdict":"met|unmet|unknown","evidence":"依据哪条公司事实（原文引用）","note":"一句话说明"}]}'),
+    // JSON 结构不能进 key（花括号是 vue-i18n 占位符语法），作为参数拼回去
+    i18nT('只输出 JSON：{schema}', { schema: '{"checks":[{"requirementId":"...","verdict":"met|unmet|unknown","evidence":"依据哪条公司事实（原文引用）","note":"一句话说明"}]}' }),
     i18nT('判定规则：只能依据下面列出的公司事实；事实里没有提到的一律判 unknown，绝不推测。事实明确不满足（如要求三年业绩而我方成立不足三年）才判 unmet。'),
     i18nT('资格要求：'),
     ...requirements.map((r) => `- [${r.id}] ${r.text}`),

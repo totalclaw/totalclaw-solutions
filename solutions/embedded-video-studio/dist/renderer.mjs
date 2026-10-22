@@ -913,7 +913,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
       });
       try {
         const c = await o.solution?.materialScan?.({ materialDir: a, aspect: r.aspectRatio || "9:16" }).catch((C) => ({ ok: !1, error: String(C?.message || C) }));
-        if (!c?.ok) throw new Error(l.t("素材扫描失败：{p0}", { p0: String(c?.error || "未知原因").slice(0, 120) }));
+        if (!c?.ok) throw new Error(l.t("素材扫描失败：{p0}", { p0: String(c?.error || l.t("未知原因")).slice(0, 120) }));
         const s = (c.included || []).filter((C) => C?.kind === "image" && C?.path).map((C) => String(C.path));
         if (!s.length) throw new Error(l.t("素材目录里没有可用图片，请先添加清晰的参考素材"));
         if (ie.value)
@@ -1024,7 +1024,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         } catch {
           o = null;
         }
-        return o && (o.suggestModelConfig || o.suggestRecharge) ? h.actionable("warn", `${l.t("创建视频制作任务失败")}：${o.message}`, {
+        return o && (o.suggestModelConfig || o.suggestRecharge) ? h.actionable("warn", l.t("创建视频制作任务失败：{p0}", { p0: o.message }), {
           label: o.suggestRecharge ? l.t("去充值") : l.t("去配置"),
           onClick: () => X.push({ path: "/settings", query: { section: "ai-models" } })
         }) : h.fromException(l.t("创建视频制作任务失败"), t), !1;
@@ -3669,7 +3669,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
   for (const [X, h] of y)
     P[X] = h;
   return P;
-}, _a = /* @__PURE__ */ ka(Sa, [["__scopeId", "data-v-5cfb8f2c"]]);
+}, _a = /* @__PURE__ */ ka(Sa, [["__scopeId", "data-v-bfd81787"]]);
 export {
   _a as default
 };

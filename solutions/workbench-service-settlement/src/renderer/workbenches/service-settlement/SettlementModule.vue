@@ -72,7 +72,7 @@
         <p v-else-if="!email.smtpConfigured" class="ss-note warn"><i class="ri-mail-send-line"></i>{{ $t('未配置自己的 SMTP，将用 TotalClaw 官方代发（发件人不是你的邮箱，已读回执不可用）。建议到「设置 · 邮件」配置。') }}</p>
         <p v-else class="ss-note ok"><i class="ri-mail-check-line"></i>{{ $t('发件邮箱：{addr}；已读回执已开启（对方邮件客户端同意回执时会自动打「已读」）。', { addr: email.address }) }}</p>
         <div class="ss-grid">
-          <label class="ss-field"><span>{{ $t('邮件主题（可用 {服务商} {结算期} {应付合计}）') }}</span><input v-model="mailSubject" type="text" /></label>
+          <label class="ss-field"><span>{{ $t('邮件主题（可用 {provider} {period} {payable}）', TEMPLATE_VAR_LABELS) }}</span><input v-model="mailSubject" type="text" /></label>
         </div>
         <label class="ss-field"><span>{{ $t('邮件正文') }}</span><textarea v-model="mailBody"></textarea></label>
         <div class="ss-subhead">{{ $t('收件人（服务商邮箱，多个用逗号隔开；填好后自动记住，下个月不用再填）') }}</div>
@@ -112,7 +112,7 @@
           <button type="button" class="ss-btn sm ghost" @click="showNudgeTpl = !showNudgeTpl"><i class="ri-edit-line"></i>{{ showNudgeTpl ? $t('收起催办模板') : $t('编辑催办模板') }}</button>
         </div>
         <div v-if="showNudgeTpl" class="ss-grid">
-          <label class="ss-field"><span>{{ $t('催办主题（可用 {服务商} {结算期} {应付合计} {发送日期}）') }}</span><input v-model="nudgeSubject" type="text" @change="saveNudgeTemplate" /></label>
+          <label class="ss-field"><span>{{ $t('催办主题（可用 {provider} {period} {payable} {sentDate}）', TEMPLATE_VAR_LABELS) }}</span><input v-model="nudgeSubject" type="text" @change="saveNudgeTemplate" /></label>
           <label class="ss-field"><span>{{ $t('催办正文') }}</span><textarea v-model="nudgeBody" @change="saveNudgeTemplate"></textarea></label>
         </div>
         <div class="ss-actions">
@@ -143,7 +143,7 @@
           <span class="lbl">{{ $t('发票文件命名规则') }}</span>
           <input v-model="invoiceTemplate" type="text" style="width: 300px; text-align: left;" @change="saveTemplate" />
           <span class="lbl">{{ $t('可用占位：') }}</span>
-          <button v-for="ph in ['{服务商}', '{结算期}', '{序号}', '{日期}', '{原文件名}']" :key="ph" type="button" class="ss-chip brand" @click="invoiceTemplate += ph; saveTemplate()">{{ ph }}</button>
+          <button v-for="ph in INVOICE_TOKENS" :key="ph" type="button" class="ss-chip brand" @click="invoiceTemplate += ph; saveTemplate()">{{ ph }}</button>
           <span class="ss-muted">{{ $t('示例：{ex}', { ex: exampleInvoiceName }) }}</span>
         </div>
         <div class="ss-table-wrap" style="max-height: 340px; overflow: auto;">
@@ -227,7 +227,8 @@
  */
 import { computed, reactive, ref, watch } from 'vue';
 import { useNotificationStore } from '../../stores/notification';
-import { t as i18nT } from '../../i18n';
+import { i18n, t as i18nT } from '../../i18n';
+import { templateToken, normalizeTemplateTokens, VAR } from '../../../main/services/serviceSettlement/templateTokens';
 import StepCard from './StepCard.vue';
 import DK from './dataKeywords.json';
 import FileDropField from './FileDropField.vue';
@@ -237,6 +238,12 @@ import {
   api, useSteps, scrollToStep, inspectTable, fmtMoney, fmtDate, fmtDateTime, openPath, currentPeriod, errorMessage, pickFiles,
   droppedPaths, INVOICE_RE, openEmbeddedBrowser, type PickedTable,
 } from './shared';
+
+/** 模板变量名按当前界面语言显示（{服务商} / {Provider} / …；主进程三种写法都认），经参数传入 $t */
+const uiLocale = (): string => String((i18n.global.locale as any)?.value ?? i18n.global.locale);
+const tok = (zh: string): string => templateToken(zh, uiLocale());
+const TEMPLATE_VAR_LABELS = computed(() => ({ provider: tok(VAR.provider), period: tok(VAR.period), payable: tok(VAR.payable), sentDate: tok(VAR.sentDate) }));
+const INVOICE_TOKENS = computed(() => [VAR.provider, VAR.period, VAR.seq, VAR.date, VAR.originalName].map(tok));
 
 const props = defineProps<{ state: any; email: any; trackingFlags: Record<string, any>; dir?: string }>();
 const emit = defineEmits<{ (e: 'refresh'): void }>();
@@ -444,8 +451,8 @@ function readChipClass(r: any): string {
 }
 
 // ── 发票 ──
-const invoiceTemplate = ref(props.state?.settlement?.invoiceNameTemplate || '{服务商}_{结算期}_发票{序号}');
-const exampleInvoiceName = computed(() => invoiceTemplate.value.replace('{服务商}', i18nT('某某服务商')).replace('{结算期}', period.value).replace('{序号}', '01').replace('{日期}', '20260901').replace('{原文件名}', 'scan') + '.pdf');
+const invoiceTemplate = ref(props.state?.settlement?.invoiceNameTemplate || `${tok(VAR.provider)}_${tok(VAR.period)}_${i18nT('发票')}${tok(VAR.seq)}`);
+const exampleInvoiceName = computed(() => normalizeTemplateTokens(invoiceTemplate.value).replace('{服务商}', i18nT('某某服务商')).replace('{结算期}', period.value).replace('{序号}', '01').replace('{日期}', '20260901').replace('{原文件名}', 'scan') + '.pdf');
 const invoiceDir = computed(() => props.dir || props.state?.outputDir || '');
 async function saveTemplate(): Promise<void> { try { await api().statePatch({ settlement: { invoiceNameTemplate: invoiceTemplate.value } }); } catch (e) { notif.error(errorMessage(e)); } }
 async function pickInvoice(provider: string): Promise<void> {

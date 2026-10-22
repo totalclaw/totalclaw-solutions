@@ -52,13 +52,22 @@ export const RD_NODE_METAS: RdNodeMeta[] = [
   { id: 'ops', name: i18nT('AI 运维工程师'), roleId: 'ai-ops', icon: 'server', duty: i18nT('自动化部署发布、监控告警、故障自愈与成本优化'), writesFiles: false },
 ];
 
+// 工作流引擎占位符（${projectName} 等）写在提示词原文里：翻译后的文本经 vue-i18n 编译时，{projectName} 会被当成
+// 命名参数、没传值就替换成空（英文 / 阿语下变成「$/$/」，节点拿不到需求和上游结果）。把每个占位符名原样传回去，
+// 译文里仍是 ${projectName}，留给引擎替换。
+const ENGINE_VARS = Object.fromEntries(
+  ['projectName', 'devType', 'requirement', 'constraints', 'techStack', 'outputDir',
+    'node_pm_result', 'node_brainstorm_choice', 'node_dev_result', 'node_reviewer_result', 'node_qa_result']
+    .map((k) => [k, `{${k}}`]),
+);
+
 // 缺料标注通则（拼进每个 AI 节点提示词）。遇缺关键信息不臆造，用醒目约定标注供用户补充；
 // PM 后的 human_confirm 闸门是真正的交互暂停点（选项式 + 自填）。
 const WAIT_HUMAN_RULE = i18nT('\n\n【缺料规则】遇到必须由用户拍板或补充才能继续的关键信息（缺账号/密钥/接口文档/目标平台细节/歧义需求等），不要臆造，在回复**开头**用一行 `【需要补充】` 列出缺什么、为什么，并只在已知信息范围内先给出可交付的部分，把待补项清楚标出，等用户补齐后可在下一轮继续。');
 
 // 工作区约定（拼进写文件的节点）：当前工作目录 = 用户在表单里选定的「产出地址」，
 // 所有代码落在其下的 <projectName>/ 子目录，便于隔离与查看（相对路径即可，无需绝对路径）。
-const WORKSPACE_RULE = i18nT('\n\n【工作区·必须遵守】你的**当前工作目录就是本项目产出目录**「${outputDir}/${projectName}/」（已自动创建好，可直接写入，不用自己再建）。用文件工具（write_file/patch/read_file）把代码真实写进来：**直接用相对路径即可**（例如 write_file 到 `src/index.html`、`README.md`），也可用完整绝对路径「${outputDir}/${projectName}/src/index.html」。不要把文件写到工作目录之外。每个文件用规范项目结构 + 必要注释；改动前先 read_file 看现状再 patch。');
+const WORKSPACE_RULE = i18nT('\n\n【工作区·必须遵守】你的**当前工作目录就是本项目产出目录**「${outputDir}/${projectName}/」（已自动创建好，可直接写入，不用自己再建）。用文件工具（write_file/patch/read_file）把代码真实写进来：**直接用相对路径即可**（例如 write_file 到 `src/index.html`、`README.md`），也可用完整绝对路径「${outputDir}/${projectName}/src/index.html」。不要把文件写到工作目录之外。每个文件用规范项目结构 + 必要注释；改动前先 read_file 看现状再 patch。', ENGINE_VARS);
 
 // 机器可读方向清单：PM 在产出末尾附一段固定 sentinel 包裹的候选方向，供 brainstorm 闸门把"可选项"
 // 动态换成模型真实生成的方向（而非写死的通用三项）。sentinel 与 workflow-engine 抽取端严格对齐。
@@ -67,23 +76,23 @@ const BRAINSTORM_OPTIONS_RULE = i18nT('\n\n【机器可读方向清单·必须�
 const RD_NODES: Array<{ id: string; name: string; roleId: string; goal: string }> = [
   {
     id: 'pm', name: i18nT('② AI 产品经理 · 需求与规划'), roleId: 'ai-pm',
-    goal: i18nT('你是资深 AI 产品经理，负责需求分析与产品规划。项目「${projectName}」，开发类型：${devType}。基于客户需求，产出（Markdown）：\n1. 需求澄清：列 3-6 个关键待确认问题；\n2. **选项式头脑风暴（重要）**：给出 3-5 个候选产品方向/功能组合，每个含「一句话卖点 + 适用场景 + 粗略工作量」，清晰编号列出供用户选择（工作流会在你产出后暂停，让用户勾选一个方向或自填后再继续）；\n3. 供用户拍板：给出你推荐的方向与理由，以及基于该方向的 MVP 范围(本期做/不做)、用户故事(含验收标准)、编号任务拆解(标 P0/P1/P2 与依赖)、产品路线图。\n结构化、可直接交付开发。信息不足处显式标「缺：X」，不编造。\n\n客户需求：\n${requirement}\n\n约束：${constraints}') + BRAINSTORM_OPTIONS_RULE + WAIT_HUMAN_RULE,
+    goal: i18nT('你是资深 AI 产品经理，负责需求分析与产品规划。项目「${projectName}」，开发类型：${devType}。基于客户需求，产出（Markdown）：\n1. 需求澄清：列 3-6 个关键待确认问题；\n2. **选项式头脑风暴（重要）**：给出 3-5 个候选产品方向/功能组合，每个含「一句话卖点 + 适用场景 + 粗略工作量」，清晰编号列出供用户选择（工作流会在你产出后暂停，让用户勾选一个方向或自填后再继续）；\n3. 供用户拍板：给出你推荐的方向与理由，以及基于该方向的 MVP 范围(本期做/不做)、用户故事(含验收标准)、编号任务拆解(标 P0/P1/P2 与依赖)、产品路线图。\n结构化、可直接交付开发。信息不足处显式标「缺：X」，不编造。\n\n客户需求：\n${requirement}\n\n约束：${constraints}', ENGINE_VARS) + BRAINSTORM_OPTIONS_RULE + WAIT_HUMAN_RULE,
   },
   {
     id: 'dev', name: i18nT('③ AI 开发工程师 · 技术方案 + 编码'), roleId: 'ai-dev',
-    goal: i18nT('你是资深 AI 开发工程师。基于产品经理的规划，开发类型「${devType}」，技术栈偏好「${techStack}」（未指定则按开发类型选主流栈并说明理由）：\n1. 给《技术设计》：架构、模块划分、数据模型、关键接口、依赖选型；\n2. **真实编写代码**：按任务逐模块用文件工具把可运行代码写进工作区，遵循该语言/框架规范；\n3. 基础自测：给自测步骤或简单自测用例与预期。\n未实现/待定/需第三方凭据处标「缺：X」。\n\n产品规划：\n${node_pm_result}\n\n【用户已拍板的产品方向 —— 必须严格按此方向开发，不要另选方向】\n${node_brainstorm_choice}') + WORKSPACE_RULE + WAIT_HUMAN_RULE,
+    goal: i18nT('你是资深 AI 开发工程师。基于产品经理的规划，开发类型「${devType}」，技术栈偏好「${techStack}」（未指定则按开发类型选主流栈并说明理由）：\n1. 给《技术设计》：架构、模块划分、数据模型、关键接口、依赖选型；\n2. **真实编写代码**：按任务逐模块用文件工具把可运行代码写进工作区，遵循该语言/框架规范；\n3. 基础自测：给自测步骤或简单自测用例与预期。\n未实现/待定/需第三方凭据处标「缺：X」。\n\n产品规划：\n${node_pm_result}\n\n【用户已拍板的产品方向 —— 必须严格按此方向开发，不要另选方向】\n${node_brainstorm_choice}', ENGINE_VARS) + WORKSPACE_RULE + WAIT_HUMAN_RULE,
   },
   {
     id: 'reviewer', name: i18nT('④ AI 代码评审员 · 评审 + 单测'), roleId: 'ai-reviewer',
-    goal: i18nT('你是严格的 AI 代码评审员。read_file 读开发写入工作区的代码，逐项审查：\n1. 潜在 Bug（问题/场景/影响/修法）、边界与错误处理；\n2. 安全审查（注入/越权/密钥硬编码/依赖漏洞…按 P0/P1/P2 排）；\n3. 规范与可维护性，给具体修改建议；\n4. **用文件工具为核心逻辑写真实可运行的单元测试**（标框架，覆盖正常/边界/异常）。\n给出是否可进入测试的结论与必须先改的 P0 阻塞项（有 P0 建议打回开发）。\n\n技术方案：\n${node_dev_result}') + WORKSPACE_RULE + WAIT_HUMAN_RULE,
+    goal: i18nT('你是严格的 AI 代码评审员。read_file 读开发写入工作区的代码，逐项审查：\n1. 潜在 Bug（问题/场景/影响/修法）、边界与错误处理；\n2. 安全审查（注入/越权/密钥硬编码/依赖漏洞…按 P0/P1/P2 排）；\n3. 规范与可维护性，给具体修改建议；\n4. **用文件工具为核心逻辑写真实可运行的单元测试**（标框架，覆盖正常/边界/异常）。\n给出是否可进入测试的结论与必须先改的 P0 阻塞项（有 P0 建议打回开发）。\n\n技术方案：\n${node_dev_result}', ENGINE_VARS) + WORKSPACE_RULE + WAIT_HUMAN_RULE,
   },
   {
     id: 'qa', name: i18nT('⑤ AI 测试工程师 · 测试用例 + 执行'), roleId: 'ai-qa',
-    goal: i18nT('你是 AI 测试工程师。基于规划、代码与评审：\n1. 按验收标准编写功能/边界/异常/兼容测试用例（表格：编号/前置/步骤/预期/优先级）；\n2. 设计集成与回归用例；\n3. **用文件工具把可执行的自动化测试写进工作区并尽量执行**，记录通过/失败，失败项自动生成 Bug 报告（标题/复现/期望vs实际/严重度/指向模块）；\n4. 给发布准入准出结论，未达标列阻断项。\n缺可执行环境/测试数据标「缺：X」。\n\n规划：\n${node_pm_result}\n\n评审：\n${node_reviewer_result}') + WORKSPACE_RULE + WAIT_HUMAN_RULE,
+    goal: i18nT('你是 AI 测试工程师。基于规划、代码与评审：\n1. 按验收标准编写功能/边界/异常/兼容测试用例（表格：编号/前置/步骤/预期/优先级）；\n2. 设计集成与回归用例；\n3. **用文件工具把可执行的自动化测试写进工作区并尽量执行**，记录通过/失败，失败项自动生成 Bug 报告（标题/复现/期望vs实际/严重度/指向模块）；\n4. 给发布准入准出结论，未达标列阻断项。\n缺可执行环境/测试数据标「缺：X」。\n\n规划：\n${node_pm_result}\n\n评审：\n${node_reviewer_result}', ENGINE_VARS) + WORKSPACE_RULE + WAIT_HUMAN_RULE,
   },
   {
     id: 'ops', name: i18nT('⑥ AI 运维工程师 · 部署运维'), roleId: 'ai-ops',
-    goal: i18nT('你是 AI 运维工程师，负责自动化部署与发布、监控告警、故障自愈与成本优化。基于已通过测试的产物、开发类型「${devType}」：\n1. 自动化部署与发布：环境、构建、CI/CD 步骤、回滚策略（结合平台给容器/Serverless/静态托管/应用商店等具体做法，可写 CI 配置/部署脚本到工作区）；\n2. 智能监控与告警：关键指标(可用/延迟/错误率/资源/成本)、阈值、通知方式；\n3. 故障自愈：常见故障与自愈动作(重启/扩缩容/熔断/切流)及人工介入边界；\n4. 成本优化 + 上线检查清单。\n缺目标环境/云账号/密钥标「缺：X」，不臆造真实凭据。\n\n测试结论：\n${node_qa_result}\n\n技术方案：\n${node_dev_result}') + WAIT_HUMAN_RULE,
+    goal: i18nT('你是 AI 运维工程师，负责自动化部署与发布、监控告警、故障自愈与成本优化。基于已通过测试的产物、开发类型「${devType}」：\n1. 自动化部署与发布：环境、构建、CI/CD 步骤、回滚策略（结合平台给容器/Serverless/静态托管/应用商店等具体做法，可写 CI 配置/部署脚本到工作区）；\n2. 智能监控与告警：关键指标(可用/延迟/错误率/资源/成本)、阈值、通知方式；\n3. 故障自愈：常见故障与自愈动作(重启/扩缩容/熔断/切流)及人工介入边界；\n4. 成本优化 + 上线检查清单。\n缺目标环境/云账号/密钥标「缺：X」，不臆造真实凭据。\n\n测试结论：\n${node_qa_result}\n\n技术方案：\n${node_dev_result}', ENGINE_VARS) + WAIT_HUMAN_RULE,
   },
 ];
 
@@ -105,7 +114,7 @@ export function buildRdWorkflow(prefill?: {
     id: 'brainstorm', type: 'human_confirm', name: i18nT('确认产品方向（可自填）'),
     config: {
       question: i18nT('从产品经理提出的候选方向里勾选一个，或在下方回答它的澄清问题 / 自填你的方向与优先级'),
-      detail: i18nT('AI 产品经理的候选方向与澄清问题如下，请勾选一个方向，并可在下方补充框回答上面的澄清问题：\n\n${node_pm_result}'),
+      detail: i18nT('AI 产品经理的候选方向与澄清问题如下，请勾选一个方向，并可在下方补充框回答上面的澄清问题：\n\n${node_pm_result}', ENGINE_VARS),
       // optionsFrom：运行时从 PM 产出（node_pm_result）里抽取模型真实给出的候选方向当选项；
       // 抽不到（模型没按格式输出）才回落下面这组静态通用项。这样"可选项"永远贴合模型实际产出。
       optionsFrom: 'node_pm_result',

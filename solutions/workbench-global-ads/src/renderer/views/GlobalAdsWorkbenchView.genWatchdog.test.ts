@@ -21,6 +21,7 @@ vi.mock('../stores/notification', () => ({
   useNotificationStore: () => holder.notif,
 }));
 vi.mock('../i18n', () => ({
+  i18nKey: (s: string) => s,
   t: (s: string, p?: Record<string, unknown>) => (p
     ? s.replace(/\{(\w+)\}/g, (_m, k) => String(p[k] ?? `{${k}}`)) : s),
   i18n: { global: { locale: { value: 'zh-CN' } } },

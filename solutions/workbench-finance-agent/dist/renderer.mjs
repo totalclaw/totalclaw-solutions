@@ -13875,13 +13875,14 @@ const Fi = { class: "ss-module" }, zi = { class: "ss-note warn" }, Ai = { class:
             disabled: $.value,
             onChange: n[0] || (n[0] = (h) => B(h.target.value))
           }, [
+            e.createCommentVNode(" 首个账套名是创建时按当时语言写进数据的「默认账套」：显示时按当前语言；用户起的名字原样 "),
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
               e.renderList(e.unref(p).ledgers, (h) => (e.openBlock(), e.createElementBlock("option", {
                 key: h.id,
                 value: h.id
-              }, e.toDisplayString(h.name), 9, _N))),
+              }, e.toDisplayString(h.name === "默认账套" ? f.$t("默认账套") : h.name), 9, _N))),
               128
               /* KEYED_FRAGMENT */
             ))
@@ -14418,7 +14419,7 @@ const Fi = { class: "ss-module" }, zi = { class: "ss-note warn" }, Ai = { class:
       ]))
     ]));
   }
-}), s1 = /* @__PURE__ */ oe(a1, [["__scopeId", "data-v-505319cf"]]);
+}), s1 = /* @__PURE__ */ oe(a1, [["__scopeId", "data-v-fa08e47a"]]);
 export {
   s1 as default
 };

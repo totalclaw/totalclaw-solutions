@@ -102,7 +102,7 @@
                   </td>
                 </tr>
                 <tr v-for="it in m.items" v-show="isThOpen(m.id)" :key="it.key">
-                  <td class="wrap"><div>{{ it.label ? $t(it.label) : it.original }}</div><small class="ss-muted" :title="$t('以原文为准')">{{ it.original }}</small></td>
+                  <td class="wrap"><div>{{ thresholdNameText(it) }}</div><small class="ss-muted" :title="$t('以原文为准')">{{ thresholdOriginalText(it) }}</small></td>
                   <td class="num"><FauNum :value="thresholdText(it, it.value)" /> <small>{{ thresholdUnit(it, form.currency) }}</small></td>
                   <td class="fau-th-input">
                     <input type="number" step="any" min="0" dir="ltr" :value="form.thresholds[it.key] == null ? '' : thresholdInput(it, form.thresholds[it.key])" :placeholder="String(thresholdInput(it, it.value))" :data-test="`fau-th-input-${it.key}`" @change="setOverride(it, ($event.target as HTMLInputElement).value)" />
@@ -172,7 +172,7 @@ import { scrollToStep, useSteps } from '../service-settlement/shared';
 import FauFileDrop from './FauFileDrop.vue';
 import FauNum from './FauNum.vue';
 import OutputLocalePicker from './OutputLocalePicker.vue';
-import { LEVEL_LABEL, errorMessage, fau, lastMonth, thresholdBasisText, thresholdInput, thresholdStore, thresholdText, thresholdUnit, type ThresholdItem } from './shared';
+import { LEVEL_LABEL, errorMessage, fau, lastMonth, thresholdBasisText, thresholdInput, thresholdNameText, thresholdOriginalText, thresholdStore, thresholdText, thresholdUnit, type ThresholdItem } from './shared';
 
 const props = defineProps<{ company: FauCompany | null; /** 从首页「去完善」进来时直接落到这一步 */ startAt?: string }>();
 const emit = defineEmits<{ (e: 'saved', c: FauCompany): void; (e: 'cancel'): void; (e: 'sample'): void }>();
@@ -235,7 +235,7 @@ const thGroups = computed(() => {
   for (const m of FAU_MODULES) {
     if (!form.packages.includes(m.package)) continue;
     const all = thresholds.value.filter((it) => it.module === m.id);
-    const hit = (it: ThresholdItem) => !q || [i18nT(m.name), m.code, it.label ? i18nT(it.label) : '', it.original, thresholdBasisText(it)].some((s) => s.toLowerCase().includes(q));
+    const hit = (it: ThresholdItem) => !q || [i18nT(m.name), m.code, it.label ? i18nT(it.label) : '', it.original, thresholdOriginalText(it), thresholdBasisText(it)].some((s) => s.toLowerCase().includes(q));
     const items = all.filter(hit);
     if (!items.length) continue;
     const changed = all.filter((it) => form.thresholds[it.key] != null && form.thresholds[it.key] !== it.value).length;

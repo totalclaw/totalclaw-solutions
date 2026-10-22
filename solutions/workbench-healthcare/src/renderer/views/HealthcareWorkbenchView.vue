@@ -486,7 +486,7 @@ const stepDefs = computed<WorkbenchStep[]>(() => [
 function loadMaskSample(): void {
   maskText.value = [
     i18nT('预约人张同学，手机号 13800001234，申请改期并需要无障碍协助。'),
-    '同行家属李女士，联系方式 +971501234567，邮箱 li.demo@example.com。',
+    i18nT('同行家属李女士，联系方式 +971501234567，邮箱 {email}。', { email: 'li.demo@example.com' }),
     i18nT('OpenMRS ID: 100HWA，本次就诊为报告领取，不含诊疗内容。'),
   ].join('\n');
   maskError.value = '';

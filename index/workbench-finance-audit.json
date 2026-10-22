@@ -1,12 +1,12 @@
 {
   "id": "workbench-finance-audit",
-  "version": "2.0.0",
-  "treeDigest": "5c5895217418df30ccc535300872faa7c42fc0f470770d5077ec47ba0557809d",
+  "version": "2.0.1",
+  "treeDigest": "38ca4ddf78dccfa9c71c08e0c5f2403b773ddb232442173d3c19f103de72b261",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 455,
-      "sha256": "04a9b168994d2874b2f96dcccc02d9f4139ab5170db0d68489da30e825b0a966"
+      "size": 738,
+      "sha256": "618ce7cd500bf5a8a5b8d28328e135a68ebecbff8d435a960b22768a8bbab713"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 1494973,
-      "sha256": "ec70e6b1d26cd3583cf36d514ec62ad148a03d87fa78c39ea67c25e4679efbda"
+      "size": 1495157,
+      "sha256": "fc071af8e078b7b91194bc18a10d2675e19d10868a5f994624f248ca8a15f72e"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 859719,
-      "sha256": "cac171e123753cfe87727bda128c4bb2a85dda24719bbc5b944895520a926047"
+      "size": 859836,
+      "sha256": "2e7acec18844ff015baf6cb2610448be3113aca81c4ac922411961f079e3166f"
     },
     {
       "path": "dist/style.css",
       "size": 31250,
-      "sha256": "4be0ff69a857128434ccda5284106dd22d33a3163665bf2332a124dc3a1f6374"
+      "sha256": "375d3145d2648decd12fd2119286a88c11417a77dde1901356fffead66de7242"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2831,
-      "sha256": "aa6176572080ea3de8f9b9e8aa5161f94100532369f53f1e16cda449ffec3080"
+      "sha256": "0f097ae7cbcebeafdc61f76e5bdb39236820466cb86ab6024027270db3a26173"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.1",
+      "ref": "workbench-finance-audit@2.0.1",
+      "treeDigest": "38ca4ddf78dccfa9c71c08e0c5f2403b773ddb232442173d3c19f103de72b261",
+      "filesRef": "index/workbench-finance-audit/2.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.0",
       "ref": "workbench-finance-audit@2.0.0",

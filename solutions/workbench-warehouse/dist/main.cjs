@@ -20,6 +20,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -462,7 +463,7 @@ function registerWarehouseWorkbenchHandlers(deps) {
           {
             type: "agent",
             bind: "reviewed_plan",
-            goal: "\u4F60\u662F\u4ED3\u50A8\u4E3B\u7BA1 Agent\u3002\u628A {{action_plan}} \u5408\u6210\u7B80\u6D01 Markdown\uFF1A\u5DF2\u9A8C\u8BC1\u4E8B\u5B9E\u3001Validate \u524D\u68C0\u67E5\u3001\u98CE\u9669\u3001\u4EBA\u5DE5\u786E\u8BA4\u9879\u548C\u8BC1\u636E\u7D22\u5F15\uFF1B\u4E0D\u5F97\u58F0\u79F0\u5C1A\u672A\u6267\u884C\u7684\u5165\u5E93\u5DF2\u5B8C\u6210\u3002"
+            goal: (0, import_i18n2.t)("\u4F60\u662F\u4ED3\u50A8\u4E3B\u7BA1 Agent\u3002\u628A {actionPlan} \u5408\u6210\u7B80\u6D01 Markdown\uFF1A\u5DF2\u9A8C\u8BC1\u4E8B\u5B9E\u3001Validate \u524D\u68C0\u67E5\u3001\u98CE\u9669\u3001\u4EBA\u5DE5\u786E\u8BA4\u9879\u548C\u8BC1\u636E\u7D22\u5F15\uFF1B\u4E0D\u5F97\u58F0\u79F0\u5C1A\u672A\u6267\u884C\u7684\u5165\u5E93\u5DF2\u5B8C\u6210\u3002", { actionPlan: "{{action_plan}}" })
           },
           { type: "log", message: (0, import_i18n2.t)("Odoo \u6536\u8D27\u534F\u540C\u5DE5\u4F5C\u6D41\u5B8C\u6210") }
         ]
@@ -492,7 +493,7 @@ function registerWarehouseWorkbenchHandlers(deps) {
           {
             type: "agent",
             bind: "reviewed_plan",
-            goal: "\u4F60\u662F\u4EA7\u9500\u534F\u540C\u4E3B\u7BA1 Agent\u3002\u628A {{action_plan}} \u6574\u7406\u6210\u7B80\u6D01 Markdown\uFF1A\u4F9B\u9700\u53D1\u73B0\u3001\u4E1A\u52A1\u5F71\u54CD\u3001\u5EFA\u8BAE\u52A8\u4F5C\u3001\u8BC1\u636E\u548C\u5F85\u8BA1\u5212\u5458\u786E\u8BA4\u9879\u3002"
+            goal: (0, import_i18n2.t)("\u4F60\u662F\u4EA7\u9500\u534F\u540C\u4E3B\u7BA1 Agent\u3002\u628A {actionPlan} \u6574\u7406\u6210\u7B80\u6D01 Markdown\uFF1A\u4F9B\u9700\u53D1\u73B0\u3001\u4E1A\u52A1\u5F71\u54CD\u3001\u5EFA\u8BAE\u52A8\u4F5C\u3001\u8BC1\u636E\u548C\u5F85\u8BA1\u5212\u5458\u786E\u8BA4\u9879\u3002", { actionPlan: "{{action_plan}}" })
           },
           { type: "log", message: (0, import_i18n2.t)("\u4EA7\u9500\u7F3A\u53E3\u5904\u7F6E\u5DE5\u4F5C\u6D41\u5B8C\u6210") }
         ]
@@ -523,7 +524,7 @@ function registerWarehouseWorkbenchHandlers(deps) {
           {
             type: "agent",
             bind: "reviewed_plan",
-            goal: "\u4F60\u662F\u4EA7\u9500\u534F\u540C\u4E3B\u7BA1 Agent\u3002\u628A {{action_plan}} \u6574\u7406\u6210\u7B80\u6D01 Markdown\uFF1A\u786E\u5B9A\u6027\u53D1\u73B0\u3001\u4E1A\u52A1\u5F71\u54CD\u3001\u5EFA\u8BAE\u52A8\u4F5C\u3001\u8BC1\u636E\u7D22\u5F15\u3001\u7B49\u5F85\u8BA1\u5212\u5458\u786E\u8BA4\u3002\u4E0D\u5F97\u628A\u5EFA\u8BAE\u5199\u6210\u5DF2\u6267\u884C\u3002"
+            goal: (0, import_i18n2.t)("\u4F60\u662F\u4EA7\u9500\u534F\u540C\u4E3B\u7BA1 Agent\u3002\u628A {actionPlan} \u6574\u7406\u6210\u7B80\u6D01 Markdown\uFF1A\u786E\u5B9A\u6027\u53D1\u73B0\u3001\u4E1A\u52A1\u5F71\u54CD\u3001\u5EFA\u8BAE\u52A8\u4F5C\u3001\u8BC1\u636E\u7D22\u5F15\u3001\u7B49\u5F85\u8BA1\u5212\u5458\u786E\u8BA4\u3002\u4E0D\u5F97\u628A\u5EFA\u8BAE\u5199\u6210\u5DF2\u6267\u884C\u3002", { actionPlan: "{{action_plan}}" })
           },
           { type: "log", message: (0, import_i18n2.t)("\u4EA7\u9500\u5B58\u5904\u7F6E\u5DE5\u4F5C\u6D41\u5B8C\u6210") }
         ]
@@ -576,12 +577,19 @@ function registerWarehouseWorkbenchHandlers(deps) {
 // node_modules/.cache/solutions-build/workbench-warehouse/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerWarehouseWorkbenchHandlers";
+var cleanup;
 function activate(ctx) {
-  registerWarehouseWorkbenchHandlers(ctx.host.deps);
+  cleanup = registerWarehouseWorkbenchHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });

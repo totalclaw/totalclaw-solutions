@@ -1,12 +1,12 @@
 {
   "id": "workbench-digital-human",
-  "version": "2.0.0",
-  "treeDigest": "5023476334adc605ee232adf18b2a7585ebdcae593c41339710761030079275b",
+  "version": "2.0.1",
+  "treeDigest": "9ac99dc1472f46833563f061592e16016ef21d5a82e84a2733175582030dc2b5",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 464,
-      "sha256": "1737f53608026c188e15e4c58459ba553becabaa0e7b8df9dc832a9647df304f"
+      "size": 660,
+      "sha256": "50969f9648a2729e02f730cba1e97d555ed7b89c36d99e36a5335a11c279483b"
     },
     {
       "path": "README.md",
@@ -20,8 +20,8 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 8520,
-      "sha256": "8bffa90b098235a59ed4710d40944661d63b72880e293f96db4348df4d5fd157"
+      "size": 8912,
+      "sha256": "5a9ff41e6c0204da043def6dd649d1a653d172a3c7cb88c06beffdf1b0e87c43"
     },
     {
       "path": "dist/renderer.mjs",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 1934,
-      "sha256": "f86889f1563cf8f37cd53ac4eb5a44ee36bb9cf3475a8e1149f08bf79b8a986b"
+      "sha256": "5ebb31cd45dd4d5fcf3518300817f0cb89c333ca0b545c01335e2084556ca55c"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.1",
+      "ref": "workbench-digital-human@2.0.1",
+      "treeDigest": "9ac99dc1472f46833563f061592e16016ef21d5a82e84a2733175582030dc2b5",
+      "filesRef": "index/workbench-digital-human/2.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.0",
       "ref": "workbench-digital-human@2.0.0",

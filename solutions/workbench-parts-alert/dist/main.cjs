@@ -30,6 +30,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -102,7 +103,7 @@ function forecastDailyDemand(byMonth, asOfMonthIdx, seasonal) {
   }
   const monthly = base * seasonFactor2;
   const daily = monthly / DAYS_PER_MONTH;
-  const basis = (0, import_i18n.t)("\u6708\u5747\u9700\u6C42 = (\u8FD13\u6708\u5747 {p0} \xD7 0.5 + \u8FD16\u6708\u5747 {p1} \xD7 0.3 + \u8FD112\u6708\u5747 {p2} \xD7 0.2)", { p0: round(a3), p1: round(a6), p2: round(a12) }) + (0, import_i18n.t)("{p0} = {p1}\uFF1B\u65E5\u5747 = {p2}", { p0: seasonFactor2 !== 1 ? ` \xD7 \u5B63\u8282\u7CFB\u6570 ${round(seasonFactor2)}` : "", p1: round(monthly), p2: round(daily, 3) });
+  const basis = (0, import_i18n.t)("\u6708\u5747\u9700\u6C42 = (\u8FD13\u6708\u5747 {p0} \xD7 0.5 + \u8FD16\u6708\u5747 {p1} \xD7 0.3 + \u8FD112\u6708\u5747 {p2} \xD7 0.2)", { p0: round(a3), p1: round(a6), p2: round(a12) }) + (0, import_i18n.t)("{p0} = {p1}\uFF1B\u65E5\u5747 = {p2}", { p0: seasonFactor2 !== 1 ? ` \xD7 ${(0, import_i18n.t)("\u5B63\u8282\u7CFB\u6570 {p0}", { p0: round(seasonFactor2) })}` : "", p1: round(monthly), p2: round(daily, 3) });
   return { daily, base, seasonFactor: seasonFactor2, basis };
 }
 function projectStockout(stockQty, dailyDemand, arrivals, asOf, horizonDays) {
@@ -283,7 +284,7 @@ function computePartsAlert(input, params) {
         }
         if (suggestQty > 0) actions.push({ kind: "top_up_order", text: (0, import_i18n.t)("\u5728\u9014\u91CF\u4E0D\u591F\u8986\u76D6\uFF0C\u8FFD\u52A0\u8865\u5E93 {suggestQty}", { suggestQty }) });
       } else {
-        actions.push({ kind: "place_order", text: (0, import_i18n.t)("\u6CA1\u6709\u91C7\u8D2D\u5728\u9014\uFF0C{p0}\u4E0B\u5355\u8865\u5E93 {suggestQty}", { p0: Number.isFinite(latestOrderAt) && latestOrderAt > asOf ? `\u6700\u8FDF ${fmtDay(latestOrderAt)} \u524D` : "\u7ACB\u5373", suggestQty }) });
+        actions.push({ kind: "place_order", text: (0, import_i18n.t)("\u6CA1\u6709\u91C7\u8D2D\u5728\u9014\uFF0C{p0}\u4E0B\u5355\u8865\u5E93 {suggestQty}", { p0: Number.isFinite(latestOrderAt) && latestOrderAt > asOf ? (0, import_i18n.t)("\u6700\u8FDF {date} \u524D", { date: fmtDay(latestOrderAt) }) : (0, import_i18n.t)("\u7ACB\u5373"), suggestQty }) });
         actions.push({ kind: "transfer_in", text: (0, import_i18n.t)("\u5230\u8D27\u524D\u4ECE\u5176\u4ED6\u4ED3\u5E93\u8C03\u62E8\uFF0C\u6216\u542F\u7528\u66FF\u4EE3\u4EF6") });
       }
       if (state === "out_of_stock") actions.push({ kind: "backorder_notice", text: (0, import_i18n.t)("\u901A\u77E5\u670D\u52A1\u7F51\u70B9\u8BE5\u914D\u4EF6\u7F3A\u8D27\u53CA\u9884\u8BA1\u5230\u8D27\u65F6\u95F4\uFF0C\u767B\u8BB0\u6B20\u4EF6\u5DE5\u5355") });
@@ -1498,7 +1499,7 @@ function registerPartsAlertHandlers(deps) {
     return dir;
   };
   const sendMail = async (input) => {
-    const { sendCaseMail } = await import("host:apps/desktop-shell/src/main/services/caseMailSender.ts");
+    const { sendCaseMail } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/caseMailSender.ts"), 1));
     const relay = deps.serviceAuth ? { send: (i) => deps.serviceAuth.relaySendMail(i) } : null;
     return sendCaseMail(deps.readEmailCredentials?.() ?? {}, input, relay);
   };
@@ -1696,9 +1697,10 @@ ${(0, import_i18n4.t)("\u90AE\u4EF6\u6CA1\u6709\u53D1\u51FA\uFF1A{p0}", { p0: ma
     void tick();
   }, 6e4);
   timer.unref?.();
-  (0, import_quitRegistry.onAppWillQuit)("parts-alert", () => {
+  const stopBackground = () => {
     clearInterval(timer);
-  }, { once: true });
+  };
+  (0, import_quitRegistry.onAppWillQuit)("parts-alert", stopBackground, { once: true });
   const actions = {
     "state.get": () => publicState(),
     "results.get": (p) => {
@@ -1944,17 +1946,25 @@ ${(0, import_i18n4.t)("\u90AE\u4EF6\u6CA1\u6709\u53D1\u51FA\uFF1A{p0}", { p0: ma
       throw new Error((0, import_userFacingError.userFacingError)(error));
     }
   });
+  return stopBackground;
 }
 
 // node_modules/.cache/solutions-build/workbench-parts-alert/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerPartsAlertHandlers";
+var cleanup;
 function activate(ctx) {
-  registerPartsAlertHandlers(ctx.host.deps);
+  cleanup = registerPartsAlertHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });

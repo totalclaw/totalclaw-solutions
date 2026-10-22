@@ -20,6 +20,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -136,7 +137,7 @@ function registerHealthcareWorkbenchHandlers(deps) {
           {
             type: "agent",
             bind: "reviewed_service_plan",
-            goal: "\u4F60\u662F\u533B\u9662\u670D\u52A1\u4E3B\u7BA1 Agent\u3002\u5C06 {{service_plan}} \u6574\u7406\u6210\u7B80\u6D01 Markdown\uFF1A\u5DF2\u9A8C\u8BC1\u8BC1\u636E\u3001\u670D\u52A1\u5F85\u529E\u3001\u98CE\u9669\u4E0E\u4EBA\u5DE5\u786E\u8BA4\uFF1B\u660E\u786E\u4E0D\u5305\u542B\u8BCA\u65AD\u3001\u5904\u65B9\u6216\u6CBB\u7597\u5EFA\u8BAE\uFF0C\u4E5F\u4E0D\u5F97\u58F0\u79F0 HIS \u5199\u5165\u5DF2\u5B8C\u6210\u3002"
+            goal: (0, import_i18n.t)("\u4F60\u662F\u533B\u9662\u670D\u52A1\u4E3B\u7BA1 Agent\u3002\u5C06 {servicePlan} \u6574\u7406\u6210\u7B80\u6D01 Markdown\uFF1A\u5DF2\u9A8C\u8BC1\u8BC1\u636E\u3001\u670D\u52A1\u5F85\u529E\u3001\u98CE\u9669\u4E0E\u4EBA\u5DE5\u786E\u8BA4\uFF1B\u660E\u786E\u4E0D\u5305\u542B\u8BCA\u65AD\u3001\u5904\u65B9\u6216\u6CBB\u7597\u5EFA\u8BAE\uFF0C\u4E5F\u4E0D\u5F97\u58F0\u79F0 HIS \u5199\u5165\u5DF2\u5B8C\u6210\u3002", { servicePlan: "{{service_plan}}" })
           },
           { type: "log", message: (0, import_i18n.t)("\u533B\u7597\u8FD0\u8425\u5DE5\u4F5C\u6D41 {scenarioId} \u5B8C\u6210", { scenarioId }) }
         ]
@@ -184,12 +185,19 @@ function registerHealthcareWorkbenchHandlers(deps) {
 // node_modules/.cache/solutions-build/workbench-healthcare/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerHealthcareWorkbenchHandlers";
+var cleanup;
 function activate(ctx) {
-  registerHealthcareWorkbenchHandlers(ctx.host.deps);
+  cleanup = registerHealthcareWorkbenchHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });

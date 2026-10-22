@@ -1,12 +1,12 @@
 {
   "id": "workbench-edu-hub",
-  "version": "2.0.0",
-  "treeDigest": "11ddb2ceffc239aa4f79ccd76d236de4d5e3967dde376a2bf665911aae2cfec2",
+  "version": "2.0.1",
+  "treeDigest": "d322d3fa5a4b50155989b1bc5da98082b1dc7d4fafc14af59b516e6e88f8c5a9",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 470,
-      "sha256": "13f8a21ee073299b9ee1847265ca13911db25fe2a095109c497a996b49198dd9"
+      "size": 914,
+      "sha256": "9f1e66655ace2f140f4426ab4e0bbb8aa3294ecf1b8512af17ecda5a9776797e"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 89025,
-      "sha256": "9e4028b67cb35aabcb26eb6762d96bdc3442b8338723dc34083b21d5def8f9bd"
+      "size": 89312,
+      "sha256": "485811c23fc9b1ddcc9a3b61181247e2aaeac5bfccfbc7a12a2c303ccabc4164"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 110282,
-      "sha256": "fa95161b1de87e652b1222d30a0b5fd358f4649c427028000ca32b8e3fa980db"
+      "size": 110494,
+      "sha256": "62ee9f75df98e45dfe0a9d9e5ec49cd04e811b6754089e75fbf51ea03c146a66"
     },
     {
       "path": "dist/style.css",
       "size": 23119,
-      "sha256": "7822f5bf492d3d941b52e7a00fc3eb575b51ccbe9fe1cd1e03abf0b5b68b68d1"
+      "sha256": "de68a7911dd9b2ebf96b84f03fe41ea1cd5d88696bc304c50d4d9131368fe4df"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2044,
-      "sha256": "c5824233a58fd659f47d967406240e7ba48d91f8b0342bbf41683a96c3be5a69"
+      "sha256": "81023c4d2a21ba960b1c64634f4f18a143cc2f5ea2d13c18827b671b89ef3c0a"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.1",
+      "ref": "workbench-edu-hub@2.0.1",
+      "treeDigest": "d322d3fa5a4b50155989b1bc5da98082b1dc7d4fafc14af59b516e6e88f8c5a9",
+      "filesRef": "index/workbench-edu-hub/2.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.0",
       "ref": "workbench-edu-hub@2.0.0",

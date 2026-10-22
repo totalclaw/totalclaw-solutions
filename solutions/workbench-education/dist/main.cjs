@@ -20,6 +20,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -139,12 +140,19 @@ function registerEducationWorkbenchHandlers(deps) {
 // node_modules/.cache/solutions-build/workbench-education/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerEducationWorkbenchHandlers";
+var cleanup;
 function activate(ctx) {
-  registerEducationWorkbenchHandlers(ctx.host.deps);
+  cleanup = registerEducationWorkbenchHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });

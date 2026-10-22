@@ -137,7 +137,7 @@ function ensure(deps: IpcDeps): QuranTeachingStore {
   return store;
 }
 
-export function registerQuranTeachingHandlers(deps: IpcDeps): void {
+export function registerQuranTeachingHandlers(deps: IpcDeps): () => void {
   ipcMain.handle(IPC_CHANNELS.WORKBENCH_QURAN_STATUS, async () => ensure(deps).status());
 
   ipcMain.handle(IPC_CHANNELS.WORKBENCH_QURAN_PICK_DIR, async () => {
@@ -352,4 +352,9 @@ export function registerQuranTeachingHandlers(deps: IpcDeps): void {
     lan(deps).setActivePaper(String(payload?.paperId || ''), lang(payload?.lang), {
       chapter: num(payload?.chapter), from: num(payload?.from), to: num(payload?.to),
     }));
+  // 卸载 / 停用：停掉局域网学生端服务、丢掉单例（重新安装后懒建）
+  return () => {
+    const old = lanSvc; lanSvc = null; store = null;
+    void old?.stop();
+  };
 }

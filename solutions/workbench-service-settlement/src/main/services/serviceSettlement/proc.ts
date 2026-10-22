@@ -22,7 +22,7 @@ import {
   parseRecipients, fillTemplate, followUpDue, FOLLOW_UP_MAX_ROUNDS,
   type ProviderTrackingRecord,
 } from './settlementSummary';
-import { DEFAULT_NUDGE_SUBJECT, DEFAULT_NUDGE_BODY } from './store';
+import { defaultNudgeSubject, defaultNudgeBody } from './store';
 import { parseLeaderInfoFromText, parseLeaderInfoFromTable, validateLeader, secondNoticeDue, type LeaderInfo } from './marketingIncentive';
 import { readTable, safeFileName, writeWorkbook } from './excel';
 
@@ -333,7 +333,7 @@ export class ServiceSettlementProc extends EventEmitter {
     const headers: Record<string, string> = {};
     if (rec.messageId) { headers['In-Reply-To'] = rec.messageId; headers.References = rec.messageId; }
     const r = await this.deps.sendMail({
-      to, subject: fillTemplate(s.settlement.nudgeSubjectTemplate || DEFAULT_NUDGE_SUBJECT, vars), body: fillTemplate(s.settlement.nudgeBodyTemplate || DEFAULT_NUDGE_BODY, vars), headers,
+      to, subject: fillTemplate(s.settlement.nudgeSubjectTemplate || defaultNudgeSubject(), vars), body: fillTemplate(s.settlement.nudgeBodyTemplate || defaultNudgeBody(), vars), headers,
     });
     if (r.ok) this.deps.store.upsertTracking(period, provider, { nudgedAt: this.nowIso(), nudgeCount: (rec.nudgeCount || 0) + 1 });
     return { provider, email: to.join(', '), ok: r.ok, message: r.message, messageId: r.messageId, via: r.via };

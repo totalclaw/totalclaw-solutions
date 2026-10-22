@@ -795,7 +795,10 @@ async function executeWarehouseAutomation(
     if (!/odoo/i.test(pageUrl) || /login|sign in|404|not found|internal server error/i.test(`${pageTitle} ${pageText}`)) {
       throw new Error(i18nT('Odoo 未进入可操作的收货单页面，已停止执行：{url}', { url: pageUrl || 'unknown' }));
     }
-    const hasValidate = await warehouseBrowserEval(contextId, i18nT("Boolean(\n      [...document.querySelectorAll('button')].some((el) =>\n        /^(validate|确认|验证)$/i.test((el.textContent || '').trim()) ||\n        el.getAttribute('name') === 'button_validate')\n    )"));
+    // i18n-ignore：这是注入 Odoo 页面执行的脚本，「确认/验证」是中文版 Odoo 按钮原文，
+    // 不能进翻译（之前包了 i18nT，英文/阿语界面下会把脚本当成 vue-i18n 消息编译、改坏）。
+    const validateProbe = "Boolean(\n      [...document.querySelectorAll('button')].some((el) =>\n        /^(validate|确认|验证)$/i.test((el.textContent || '').trim()) ||\n        el.getAttribute('name') === 'button_validate')\n    )";
+    const hasValidate = await warehouseBrowserEval(contextId, validateProbe);
     if (hasValidate !== true) {
       throw new Error(i18nT('当前 Odoo 页面没有可验证的收货单或 Validate 按钮，已停止执行'));
     }

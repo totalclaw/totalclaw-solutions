@@ -1,12 +1,12 @@
 {
   "id": "workbench-biz-automation",
-  "version": "2.0.1",
-  "treeDigest": "25328c64272870ae7e20bfc084fdbb835168c615789c1732452cb8c33bb3cf73",
+  "version": "2.0.2",
+  "treeDigest": "1f51c49f19791c53b3a1eb0717eb0e152a5b5baf867b6e856bc0ca2b06b0a532",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 665,
-      "sha256": "46b7fcc86a170e7fa664de8bc55bc611f3dd7a006c3cb2b2e1f45f901e45a000"
+      "size": 1305,
+      "sha256": "90ce3455f2b3e8aeb32ed20a2c0c64814aa11a9630fcb3c04b0f4813efba8427"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 141768,
-      "sha256": "4615517301672dfbd79f37a90ef421d6c850c8875d8a6b298428df95b77f1d46"
+      "size": 142396,
+      "sha256": "7048a7c0fc51c35feb92612052eacc62c3e0fe00170458d482995dbf74c413bd"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 278389,
-      "sha256": "db5823d6a3a1bd7b34faba0571d8eae0231945496606378ed6fa0c1b655b49e8"
+      "size": 278636,
+      "sha256": "ef527a69e3468df418bc4550fc0015f41afda99a87149fd42c2323d93c97456e"
     },
     {
       "path": "dist/style.css",
       "size": 29337,
-      "sha256": "253c7bf6e488a255661f7460c9f75c05587eac2c86b3294c2de7b4cd4013e683"
+      "sha256": "3e7d785a9a5270c229688caf720f4eb5bba8a8ce62532b07df54f6da9c16b1ab"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2270,
-      "sha256": "4d0cc9869ecafd43a525b5f74c69e6f1bdb3d8a3010817232fb99d64f241c885"
+      "sha256": "e58afb33050927e98a1b40915113b27a07fbac134a7d941b42119c87b7154f99"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-biz-automation@2.0.2",
+      "treeDigest": "1f51c49f19791c53b3a1eb0717eb0e152a5b5baf867b6e856bc0ca2b06b0a532",
+      "filesRef": "index/workbench-biz-automation/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-biz-automation@2.0.1",

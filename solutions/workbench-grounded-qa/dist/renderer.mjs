@@ -47,73 +47,73 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
   class: "gqa__cites"
 }, Ve = { class: "gqa__cites-label" }, Ne = ["title"], fe = { class: "gqa__samples" }, be = { class: "gqa__muted" }, Se = ["title", "disabled", "onClick"], Be = { class: "gqa__composer" }, we = ["placeholder", "disabled"], De = ["disabled"], Te = /* @__PURE__ */ e.defineComponent({
   __name: "GroundedQaWorkbenchView",
-  setup(y) {
-    const { t: p } = b.useI18n(), i = e.ref([]), r = e.ref(null), s = e.ref(!1), d = e.ref(""), V = e.ref(null), m = e.ref(!1), c = e.ref([]), g = e.ref(""), u = e.ref(!1), E = e.ref(null);
+  setup(V) {
+    const { t: p } = b.useI18n(), i = e.ref([]), r = e.ref(null), s = e.ref(!1), d = e.ref(""), m = e.ref(null), g = e.ref(!1), c = e.ref([]), v = e.ref(""), u = e.ref(!1), k = e.ref(null);
     let $ = 0;
-    const v = e.ref([]), B = e.computed(() => i.value.filter((t) => t.approved).length);
+    const h = e.ref([]), B = e.computed(() => i.value.filter((t) => t.approved).length);
     function _() {
       return window.electronAPI?.workbenches?.groundedQa;
     }
-    const h = (t) => S.humanizeErrorMessage(t, p("操作失败，请重试"));
+    const E = (t) => S.humanizeErrorMessage(t, p("操作失败，请重试"));
     function C(t) {
       return p(t === "restricted" ? "权限不足" : t === "out_of_scope" ? "超出职责范围" : "资料中无依据");
     }
-    async function k() {
+    async function y() {
       try {
         if (!_()?.list) throw new Error(p("知识问答接口不可用"));
         const t = await _().list();
-        i.value = t?.docs || [], r.value = t?.folder ?? null, v.value = t?.suggestions || [];
+        i.value = t?.docs || [], r.value = t?.folder ?? null, h.value = t?.suggestions || [];
       } catch (t) {
-        d.value = h(t);
+        d.value = E(t);
       }
     }
     async function L() {
-      s.value = !0, d.value = "";
+      s.value = !0, d.value = "", m.value = null;
       try {
         const t = await _().pickFolder();
-        t && !t.canceled && (r.value = t.folder ?? null, t.suggestions && (v.value = t.suggestions));
+        t && !t.canceled && (r.value = t.folder ?? null, t.suggestions && (h.value = t.suggestions));
       } catch (t) {
-        d.value = h(t);
+        d.value = E(t);
       } finally {
-        s.value = !1, await k();
+        s.value = !1, m.value = null, await y();
       }
     }
     async function N() {
-      s.value = !0, d.value = "";
+      s.value = !0, d.value = "", m.value = null;
       try {
         const t = await _().import();
         r.value = t?.folder ?? null;
       } catch (t) {
-        d.value = h(t);
+        d.value = E(t);
       } finally {
-        s.value = !1, await k();
+        s.value = !1, m.value = null, await y();
       }
     }
     async function A(t) {
       try {
         await _().approve({ id: String(t.id), approved: !t.approved });
       } catch (l) {
-        d.value = h(l);
+        d.value = E(l);
       }
-      await k();
+      await y();
     }
     function w() {
       e.nextTick(() => {
-        E.value && (E.value.scrollTop = E.value.scrollHeight);
+        k.value && (k.value.scrollTop = k.value.scrollHeight);
       });
     }
     async function f(t) {
-      const l = (t ?? g.value).trim();
+      const l = (t ?? v.value).trim();
       if (!l || u.value) return;
       const n = c.value.filter((a) => a.status === "answered" || a.status === "refused").map((a) => ({ question: String(a.question), ...a.answer ? { answer: String(a.answer) } : {} }));
       c.value.push({ id: ++$, question: l, status: "pending", citations: [] });
       const o = c.value[c.value.length - 1];
-      g.value = "", u.value = !0, w();
+      v.value = "", u.value = !0, w();
       try {
         const a = await _().ask({ question: l, history: n });
         o.lang = a.lang, o.citations = a.citations || [], a.answered ? (o.status = "answered", o.answer = a.answer) : (o.status = "refused", o.refusal = a.refusal, o.reason = a.reason);
       } catch (a) {
-        o.status = "failed", o.error = h(a);
+        o.status = "failed", o.error = E(a);
       } finally {
         u.value = !1, w();
       }
@@ -121,11 +121,11 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
     let D, T;
     return e.onMounted(async () => {
       D = _()?.onImportProgress?.((t) => {
-        V.value = t;
+        m.value = t;
       }), T = _()?.onSuggestionsReady?.((t) => {
         const l = new Set(t.ready || []);
-        v.value = v.value.map((n) => ({ ...n, ready: l.has(n.q) }));
-      }), await k(), await N();
+        h.value = h.value.map((n) => ({ ...n, ready: l.has(n.q) }));
+      }), await y(), await N();
     }), e.onUnmounted(() => {
       D?.(), T?.();
     }), (t, l) => (e.openBlock(), e.createElementBlock("div", O, [
@@ -194,14 +194,14 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
         e.createElementVNode(
           "section",
           {
-            class: e.normalizeClass(["gqa__panel", { open: m.value }])
+            class: e.normalizeClass(["gqa__panel", { open: g.value }])
           },
           [
             e.createElementVNode("button", {
               type: "button",
               class: "gqa__panel-head",
-              "aria-expanded": m.value,
-              onClick: l[0] || (l[0] = (n) => m.value = !m.value)
+              "aria-expanded": g.value,
+              onClick: l[0] || (l[0] = (n) => g.value = !g.value)
             }, [
               l[7] || (l[7] = e.createElementVNode(
                 "i",
@@ -234,12 +234,12 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
                   -1
                   /* CACHED */
                 )),
-                V.value ? (e.openBlock(), e.createElementBlock(
+                m.value ? (e.openBlock(), e.createElementBlock(
                   e.Fragment,
                   { key: 0 },
                   [
                     e.createTextVNode(
-                      e.toDisplayString(t.$t("正在识别 {file}（{done}/{total} 页）", V.value)),
+                      e.toDisplayString(t.$t("正在识别 {file}（{done}/{total} 页）", m.value)),
                       1
                       /* TEXT */
                     )
@@ -441,7 +441,7 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
               512
               /* NEED_PATCH */
             ), [
-              [e.vShow, m.value]
+              [e.vShow, g.value]
             ])
           ],
           2
@@ -489,7 +489,7 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
             "div",
             {
               ref_key: "listEl",
-              ref: E,
+              ref: k,
               class: "gqa__messages"
             },
             [
@@ -642,7 +642,7 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(v.value, (n) => (e.openBlock(), e.createElementBlock("button", {
+              e.renderList(h.value, (n) => (e.openBlock(), e.createElementBlock("button", {
                 key: n.q,
                 class: e.normalizeClass(["chip", { "chip--boundary": !n.inScope, "chip--ready": n.ready }]),
                 title: n.inScope ? n.ready ? t.$t("答案已就绪，点击立即显示") : "" : t.$t("这个问题不在资料范围内，用来看助手怎么拒答"),
@@ -655,7 +655,7 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
           ]),
           e.createElementVNode("div", Be, [
             e.withDirectives(e.createElementVNode("textarea", {
-              "onUpdate:modelValue": l[2] || (l[2] = (n) => g.value = n),
+              "onUpdate:modelValue": l[2] || (l[2] = (n) => v.value = n),
               class: "gqa__input",
               rows: "2",
               dir: "auto",
@@ -663,11 +663,11 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
               disabled: u.value,
               onKeydown: l[3] || (l[3] = e.withKeys(e.withModifiers((n) => f(), ["exact", "prevent"]), ["enter"]))
             }, null, 40, we), [
-              [e.vModelText, g.value]
+              [e.vModelText, v.value]
             ]),
             e.createElementVNode("button", {
               class: "btn primary",
-              disabled: u.value || !g.value.trim(),
+              disabled: u.value || !v.value.trim(),
               onClick: l[4] || (l[4] = (n) => f())
             }, [
               e.createElementVNode(
@@ -690,12 +690,12 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
       ])
     ]));
   }
-}), qe = (y, p) => {
-  const i = y.__vccOpts || y;
+}), qe = (V, p) => {
+  const i = V.__vccOpts || V;
   for (const [r, s] of p)
     i[r] = s;
   return i;
-}, $e = /* @__PURE__ */ qe(Te, [["__scopeId", "data-v-94e51c46"]]);
+}, $e = /* @__PURE__ */ qe(Te, [["__scopeId", "data-v-df004b41"]]);
 export {
   $e as default
 };

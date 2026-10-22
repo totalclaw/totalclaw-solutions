@@ -1820,11 +1820,11 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
         const M = String(k?.url || ""), W = String(k?.title || "Odoo"), q = String(k?.text || "");
         if (!/odoo/i.test(M) || /login|sign in|404|not found|internal server error/i.test(`${W} ${q}`))
           throw new Error(l.t("Odoo 未进入可操作的收货单页面，已停止执行：{url}", { url: M || "unknown" }));
-        if (await v(d, l.t(`Boolean(
+        if (await v(d, `Boolean(
       [...document.querySelectorAll('button')].some((el) =>
         /^(validate|确认|验证)$/i.test((el.textContent || '').trim()) ||
         el.getAttribute('name') === 'button_validate')
-    )`)) !== !0)
+    )`) !== !0)
           throw new Error(l.t("当前 Odoo 页面没有可验证的收货单或 Validate 按钮，已停止执行"));
         if (r?.(1, l.t("已回读右侧 Odoo 页面：{title}", { title: W }), {
           actor: l.t("库存执行 Agent"),
@@ -3199,7 +3199,7 @@ const St = ["dir"], ft = { class: "workbench-header" }, ht = { class: "heading" 
       ])
     ], 8, St));
   }
-}), Ll = /* @__PURE__ */ ke(Ol, [["__scopeId", "data-v-8aef4b88"]]);
+}), Rl = /* @__PURE__ */ ke(Ol, [["__scopeId", "data-v-adbd8ad3"]]);
 export {
-  Ll as default
+  Rl as default
 };

@@ -30,6 +30,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -1033,7 +1034,7 @@ ${String(page?.text || "")}`.trim();
           path = (0, import_node_path2.join)(dir, `${safeName(pr.title)}-${stamp}.md`);
           (0, import_node_fs2.writeFileSync)(path, body, "utf-8");
         } else {
-          const { buildDocx } = await import("host:apps/desktop-shell/src/main/services/cowriteEditor.ts");
+          const { buildDocx } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/cowriteEditor.ts"), 1));
           path = (0, import_node_path2.join)(dir, `${safeName(pr.title)}-${stamp}.docx`);
           const plain = body.replace(/^# .*\n+/, "").replace(/^#{1,6}\s*/gm, "").replace(/\*\*(.+?)\*\*/g, "$1");
           (0, import_node_fs2.writeFileSync)(path, buildDocx(pr.title, plain));
@@ -1062,12 +1063,19 @@ ${String(page?.text || "")}`.trim();
 // node_modules/.cache/solutions-build/workbench-academic-writer/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerAcademicWriterHandlers";
+var cleanup;
 function activate(ctx) {
-  registerAcademicWriterHandlers(ctx.host.deps);
+  cleanup = registerAcademicWriterHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });

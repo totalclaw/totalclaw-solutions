@@ -30,6 +30,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -612,7 +613,8 @@ function noticeExtractPrompt(text) {
 function qualificationPrompt(requirements, facts) {
   return [
     (0, import_i18n4.t)("\u4E0B\u9762\u662F\u4E00\u4EFD\u62DB\u6807\u516C\u544A\u7684\u8D44\u683C\u8981\u6C42\uFF0C\u4EE5\u53CA\u6211\u65B9\u516C\u53F8\u5728\u77E5\u8BC6\u5E93\u91CC\u767B\u8BB0\u7684\u4E8B\u5B9E\u3002\u8BF7\u9010\u6761\u5224\u65AD\u6211\u65B9\u662F\u5426\u6EE1\u8DB3\u3002"),
-    (0, import_i18n4.t)('\u53EA\u8F93\u51FA JSON\uFF1A{"checks":[{"requirementId":"...","verdict":"met|unmet|unknown","evidence":"\u4F9D\u636E\u54EA\u6761\u516C\u53F8\u4E8B\u5B9E\uFF08\u539F\u6587\u5F15\u7528\uFF09","note":"\u4E00\u53E5\u8BDD\u8BF4\u660E"}]}'),
+    // JSON 结构不能进 key（花括号是 vue-i18n 占位符语法），作为参数拼回去
+    (0, import_i18n4.t)("\u53EA\u8F93\u51FA JSON\uFF1A{schema}", { schema: '{"checks":[{"requirementId":"...","verdict":"met|unmet|unknown","evidence":"\u4F9D\u636E\u54EA\u6761\u516C\u53F8\u4E8B\u5B9E\uFF08\u539F\u6587\u5F15\u7528\uFF09","note":"\u4E00\u53E5\u8BDD\u8BF4\u660E"}]}' }),
     (0, import_i18n4.t)("\u5224\u5B9A\u89C4\u5219\uFF1A\u53EA\u80FD\u4F9D\u636E\u4E0B\u9762\u5217\u51FA\u7684\u516C\u53F8\u4E8B\u5B9E\uFF1B\u4E8B\u5B9E\u91CC\u6CA1\u6709\u63D0\u5230\u7684\u4E00\u5F8B\u5224 unknown\uFF0C\u7EDD\u4E0D\u63A8\u6D4B\u3002\u4E8B\u5B9E\u660E\u786E\u4E0D\u6EE1\u8DB3\uFF08\u5982\u8981\u6C42\u4E09\u5E74\u4E1A\u7EE9\u800C\u6211\u65B9\u6210\u7ACB\u4E0D\u8DB3\u4E09\u5E74\uFF09\u624D\u5224 unmet\u3002"),
     (0, import_i18n4.t)("\u8D44\u683C\u8981\u6C42\uFF1A"),
     ...requirements.map((r) => `- [${r.id}] ${r.text}`),
@@ -1540,12 +1542,19 @@ function registerBidWriterHandlers(deps) {
 // node_modules/.cache/solutions-build/workbench-bid-writer/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerBidWriterHandlers";
+var cleanup;
 function activate(ctx) {
-  registerBidWriterHandlers(ctx.host.deps);
+  cleanup = registerBidWriterHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });

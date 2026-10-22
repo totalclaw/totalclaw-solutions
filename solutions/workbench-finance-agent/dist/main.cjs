@@ -30,6 +30,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -1006,13 +1007,13 @@ async function extractText(path) {
 async function extractTextRaw(path) {
   const ext = (0, import_node_path.extname)(path).toLowerCase();
   if (IMAGE_RE.test(path)) {
-    const { ocrAvailable, ocrImageFiles } = await import("host:apps/desktop-shell/src/main/services/pdfOcr.ts");
+    const { ocrAvailable, ocrImageFiles } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/pdfOcr.ts"), 1));
     if (!ocrAvailable()) return { text: "", ocr: false, warning: (0, import_i18n4.t)("\u672C\u673A\u4E0D\u652F\u6301\u56FE\u7247\u8BC6\u522B\uFF0C\u8BF7\u4E0A\u4F20 PDF \u7535\u5B50\u53D1\u7968\uFF0C\u6216\u8BC6\u522B\u540E\u624B\u5DE5\u8865\u5168\u5B57\u6BB5") };
     const m = await ocrImageFiles([path]);
     return { text: m.get(path) || "", ocr: true, warning: m.get(path) ? void 0 : (0, import_i18n4.t)("\u56FE\u7247\u91CC\u6CA1\u6709\u8BC6\u522B\u51FA\u6587\u5B57") };
   }
   if (ext === ".ofd") {
-    const AdmZip = (await import("npm:adm-zip")).default;
+    const AdmZip = (await Promise.resolve().then(() => __toESM(require("npm:adm-zip"), 1))).default;
     const zip = new AdmZip(path);
     const entries = zip.getEntries().filter((e) => /Pages\/Page_\d+\/Content\.xml$/i.test(e.entryName) || /original_invoice\.xml$/i.test(e.entryName));
     const text = entries.map((e) => [...e.getData().toString("utf-8").matchAll(/<ofd:TextCode[^>]*>([^<]*)<\/ofd:TextCode>|<(\w+)>([^<]{1,200})<\/\2>/g)].map((m) => m[1] != null ? m[1] : `${m[2]}: ${m[3]}`).join("\n")).join("\n");
@@ -1023,11 +1024,11 @@ async function extractTextRaw(path) {
     const text = [...raw.matchAll(/<(\w+)>([^<]{1,300})<\/\1>/g)].map((m) => `${m[1]}: ${m[2].trim()}`).join("\n");
     return { text, ocr: false };
   }
-  const { extractDocument, mergeOcrPages } = await import("host:apps/desktop-shell/src/main/services/documentExtractor.ts");
+  const { extractDocument, mergeOcrPages } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/documentExtractor.ts"), 1));
   let doc = await extractDocument(path, (0, import_node_path.basename)(path));
   let ocr = false;
   if (doc.kind === "pdf" && doc.scannedPages?.length) {
-    const { ocrAvailable, ocrPdfPages } = await import("host:apps/desktop-shell/src/main/services/pdfOcr.ts");
+    const { ocrAvailable, ocrPdfPages } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/pdfOcr.ts"), 1));
     if (ocrAvailable()) {
       const pages = await ocrPdfPages(path, doc.scannedPages.slice(0, 20));
       if (pages.size) {
@@ -1185,7 +1186,7 @@ function registerFinanceAgentHandlers(deps) {
     return doc;
   }
   async function writeXlsx(module2, name, sheets) {
-    const { writeWorkbook } = await import("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
+    const { writeWorkbook } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts"), 1));
     const path = (0, import_node_path.join)(outDir(module2), `${safeName(name)}-${stamp()}.xlsx`);
     writeWorkbook(path, sheets.map((s) => {
       const headers = [...new Set(s.rows.flatMap((r) => Object.keys(r)))];
@@ -2355,21 +2356,30 @@ ${f.detail}`).join("\n\n")));
     });
   }, 3e3);
   apiTimer.unref?.();
-  (0, import_quitRegistry.onAppWillQuit)("finance-agent", () => {
+  const stopBackground = () => {
     clearTimeout(apiTimer);
     void api.stop();
-  }, { once: true });
+  };
+  (0, import_quitRegistry.onAppWillQuit)("finance-agent", stopBackground, { once: true });
+  return stopBackground;
 }
 
 // node_modules/.cache/solutions-build/workbench-finance-agent/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerFinanceAgentHandlers";
+var cleanup;
 function activate(ctx) {
-  registerFinanceAgentHandlers(ctx.host.deps);
+  cleanup = registerFinanceAgentHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });

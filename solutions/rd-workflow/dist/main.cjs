@@ -30,6 +30,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -66,7 +67,7 @@ function registerRdWorkflowHandlers(_deps) {
       ]
     });
     if (picked.canceled || !picked.filePaths.length) return { ok: false, canceled: true };
-    const { extractDocument } = await import("host:apps/desktop-shell/src/main/services/documentExtractor.ts");
+    const { extractDocument } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/documentExtractor.ts"), 1));
     const files = [];
     for (const fp of picked.filePaths) {
       const name = (0, import_path.basename)(fp);
@@ -91,12 +92,19 @@ ${f.text}`).join("\n\n");
 // node_modules/.cache/solutions-build/rd-workflow/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerRdWorkflowHandlers";
+var cleanup;
 function activate(ctx) {
-  registerRdWorkflowHandlers(ctx.host.deps);
+  cleanup = registerRdWorkflowHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });

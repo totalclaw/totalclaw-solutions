@@ -1,5 +1,5 @@
 <template>
-  <div class="rdw" dir="ltr">
+  <div class="rdw">
     <header class="rdw-top">
       <PageBackButton />
       <div class="rdw-title">{{ $t('研发工作流') }}</div>
@@ -393,6 +393,9 @@ async function start() {
   } catch (e: any) {
     startError.value = e?.message || String(e);
     running.value = false;
+    runStatus.value = 'failed';
+    // 启动失败（没配模型等）：历史里先留的那条不能一直停在「执行中」
+    if (activeHistoryId) updateHistory(activeHistoryId, { status: 'failed' });
     unsubscribe();
   } finally {
     starting.value = false;

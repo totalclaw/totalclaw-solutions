@@ -42,7 +42,7 @@ function requireFound<T>(v: T | undefined | null, what: string): T {
   return v;
 }
 
-export function registerZcyAgentHandlers(deps: WorkbenchIpcDeps): void {
+export function registerZcyAgentHandlers(deps: WorkbenchIpcDeps): () => void {
   const logger = deps.logger;
   const win = (): BrowserWindow | null => deps.getMainWindow?.() ?? null;
   const pushState = (): void => { try { win()?.webContents.send(IPC_CHANNELS.WORKBENCH_ZC_EVENT, { type: 'state' }); } catch { /* 窗口已关 */ } };
@@ -137,7 +137,8 @@ export function registerZcyAgentHandlers(deps: WorkbenchIpcDeps): void {
       try { win()?.webContents.send(IPC_CHANNELS.WORKBENCH_ZC_EVENT, { type: 'patrol-due' }); } catch { /* 窗口已关 */ }
     } catch (e) { logger?.warn?.('zcy-agent', 'patrol tick failed', { error: (e as Error)?.message }); }
   }, 60_000);
-  onAppWillQuit('zcy-agent', () => clearInterval(timer), { once: true });
+  const stopBackground = () => clearInterval(timer);
+  onAppWillQuit('zcy-agent', stopBackground, { once: true });
 
   const actions: Record<string, (p: any) => unknown> = {
     'state.get': () => publicState(),
@@ -527,6 +528,8 @@ export function registerZcyAgentHandlers(deps: WorkbenchIpcDeps): void {
       throw new Error(userFacingError(error));
     }
   });
+  // 卸载 / 停用时由方案入口 deactivate 调用（宿主只撤 IPC 通道，后台任务要自己停）
+  return stopBackground;
 }
 
 const productStatusLabel = (s: ZcProductStatus): string => ({ draft: i18nT('草稿'), confirmed: i18nT('已确认'), handed: i18nT('数字员工处理中'), submitted: i18nT('已提交审核'), listed: i18nT('已上架'), rejected: i18nT('被驳回'), delisted: i18nT('已下架') }[s]);

@@ -222,9 +222,19 @@ async function toFinance(): Promise<void> {
   if (!window.confirm(i18nT('把 {a} ~ {b} 的营业额、成本、费用汇总成序时账草稿，导入财务智能体当前账套？金额为含税，价税分离与科目请在财务智能体里复核。', { a: current.value.metrics.from, b: current.value.metrics.to }))) return;
   const ok = await run('f-push', async () => {
     const file = await ba<string>('finance.toJournal', { id: current.value!.id });
-    const fa = (window as any).electronAPI?.workbenches?.financeAgent;
-    if (!fa?.invoke) throw new Error(i18nT('财务智能体未开通，序时账已导出：{p0}', { p0: file }));
-    await fa.invoke('data.importJournal', { path: file, append: true });
+    const api = (window as any).electronAPI;
+    const fa = api?.workbenches?.financeAgent;
+    const notReady = new Error(i18nT('财务智能体未开通，序时账已导出：{p0}', { p0: file }));
+    // 财务智能体是独立方案：接口由它的主进程注册，preload 上的 invoke 一直在。先确保它已开通并装上
+    // （没装按需安装；用户卸载过 / 未开通就不装），装不上或接口还没注册都给出导出路径，不抛英文原始错误
+    const prep = await api?.solutionPkg?.prepare?.({ id: 'workbench-finance-agent' }).catch(() => null);
+    if (!fa?.invoke || (prep && prep.ok === false)) throw notReady;
+    try {
+      await fa.invoke('data.importJournal', { path: file, append: true });
+    } catch (e) {
+      if (/No handler registered/i.test(String((e as Error)?.message))) throw notReady;
+      throw e;
+    }
   });
   if (ok) { notif.success(i18nT('已导入财务智能体')); void router.push('/workbenches/finance-agent'); }
 }

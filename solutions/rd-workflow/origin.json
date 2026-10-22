@@ -53,6 +53,10 @@
     {
       "path": "src/main/ipc/rdWorkflow.ipc.ts",
       "from": "main/ipc/rdWorkflow.ipc.ts"
+    },
+    {
+      "path": "src/renderer/composables/rdWorkflow.locale.test.ts",
+      "from": "renderer/composables/rdWorkflow.locale.test.ts"
     }
   ],
   "sdkFiles": []

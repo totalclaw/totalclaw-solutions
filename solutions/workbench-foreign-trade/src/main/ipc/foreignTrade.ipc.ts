@@ -101,7 +101,7 @@ function requireFound<T>(value: T | undefined, what: string): T {
   return value;
 }
 
-export function registerForeignTradeHandlers(deps: WorkbenchIpcDeps): void {
+export function registerForeignTradeHandlers(deps: WorkbenchIpcDeps): () => void {
   const logger = deps.logger;
   const win = (): BrowserWindow | null => deps.getMainWindow?.() ?? null;
   const broadcast = (type: 'state' | 'mailbox' | 'inquiry' | 'progress', payload?: unknown): void => {
@@ -1737,5 +1737,8 @@ export function registerForeignTradeHandlers(deps: WorkbenchIpcDeps): void {
   const pollTimer = setInterval(() => { void pollAll().then(pushState); }, POLL_INTERVAL_MS);
   const tickTimer = setInterval(() => { void tick(); }, TICK_INTERVAL_MS);
   for (const t of [firstPoll, pollTimer, tickTimer]) (t as any).unref?.();
-  onAppWillQuit('foreign-trade', () => { clearTimeout(firstPoll); clearInterval(pollTimer); clearInterval(tickTimer); }, { once: true });
+  const stopBackground = () => { clearTimeout(firstPoll); clearInterval(pollTimer); clearInterval(tickTimer); };
+  onAppWillQuit('foreign-trade', stopBackground, { once: true });
+  // 卸载 / 停用时由方案入口 deactivate 调用（宿主只撤 IPC 通道，后台任务要自己停）
+  return stopBackground;
 }

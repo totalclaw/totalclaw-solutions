@@ -107,7 +107,7 @@ export function registerWarehouseWorkbenchHandlers(deps: WorkbenchIpcDeps): void
           {
             type: 'agent',
             bind: 'reviewed_plan',
-            goal: '你是仓储主管 Agent。把 {{action_plan}} 合成简洁 Markdown：已验证事实、Validate 前检查、风险、人工确认项和证据索引；不得声称尚未执行的入库已完成。',
+            goal: i18nT('你是仓储主管 Agent。把 {actionPlan} 合成简洁 Markdown：已验证事实、Validate 前检查、风险、人工确认项和证据索引；不得声称尚未执行的入库已完成。', { actionPlan: '{{action_plan}}' }),
           },
           { type: 'log', message: i18nT('Odoo 收货协同工作流完成') },
         ],
@@ -137,7 +137,7 @@ export function registerWarehouseWorkbenchHandlers(deps: WorkbenchIpcDeps): void
           {
             type: 'agent',
             bind: 'reviewed_plan',
-            goal: '你是产销协同主管 Agent。把 {{action_plan}} 整理成简洁 Markdown：供需发现、业务影响、建议动作、证据和待计划员确认项。',
+            goal: i18nT('你是产销协同主管 Agent。把 {actionPlan} 整理成简洁 Markdown：供需发现、业务影响、建议动作、证据和待计划员确认项。', { actionPlan: '{{action_plan}}' }),
           },
           { type: 'log', message: i18nT('产销缺口处置工作流完成') },
         ],
@@ -168,7 +168,7 @@ export function registerWarehouseWorkbenchHandlers(deps: WorkbenchIpcDeps): void
           {
             type: 'agent',
             bind: 'reviewed_plan',
-            goal: '你是产销协同主管 Agent。把 {{action_plan}} 整理成简洁 Markdown：确定性发现、业务影响、建议动作、证据索引、等待计划员确认。不得把建议写成已执行。',
+            goal: i18nT('你是产销协同主管 Agent。把 {actionPlan} 整理成简洁 Markdown：确定性发现、业务影响、建议动作、证据索引、等待计划员确认。不得把建议写成已执行。', { actionPlan: '{{action_plan}}' }),
           },
           { type: 'log', message: i18nT('产销存处置工作流完成') },
         ],

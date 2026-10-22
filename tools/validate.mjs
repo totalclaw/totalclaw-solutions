@@ -92,6 +92,8 @@ for (const id of ids) {
   if (!RUNTIME_MODES.has(m.runtime?.mode)) err(id, 'runtime.mode 必须是 bundled/dynamic');
   if (!m.runtime?.runner) err(id, 'runtime.runner 必填');
   if (m.kind === 'workbench' && !m.runtime?.route) err(id, 'workbench 必须有 runtime.route');
+  // 工作台界面只能随方案包下发（dynamic）：bundled 工作台的界面编进 App，新增的发布出去客户端也显示不了，要等发新版 App
+  if (m.kind === 'workbench' && m.runtime?.mode !== 'dynamic') err(id, 'workbench 必须是 runtime.mode=dynamic（界面随方案包下发）；bundled 工作台需要发新版 App 才能显示');
   if ((m.kind === 'runner' || m.kind === 'pipeline') && m.runner !== m.runtime?.runner) err(id, '市场包顶层 runner 必须与 runtime.runner 一致（旧版 solutionStore 读取顶层 runner）');
   for (const k of ['renderer', 'main']) {
     const p = m.runtime?.[k];
@@ -108,6 +110,11 @@ for (const id of ids) {
     const hm = m.runtime.entries?.hostModules;
     if (!hm || !existsSync(join(dir, hm))) err(id, 'hostApi=2 方案必须有 runtime.entries.hostModules（dist/host-modules.json）');
     if (m.runtime.hotSwap !== false) err(id, 'hostApi=2 方案（存量工作台）必须 runtime.hotSwap=false');
+    // 宿主用 new Function 执行 main.cjs 并注入 require；原生 import("host:…") / import("npm:…") 绕过它，运行时必定失败
+    const mainRel = m.runtime.entries?.main;
+    if (mainRel && existsSync(join(dir, mainRel)) && /\bimport\(\s*["'](?:host|npm):/.test(readFileSync(join(dir, mainRel), 'utf8'))) {
+      err(id, `${mainRel} 里有动态 import("host:…") / import("npm:…")，宿主加载器取不到，须编成 require（qiye-app solutions-build.mjs 已处理，重新构建即可）`);
+    }
   }
   if (m.runtime?.mode === 'dynamic') {
     if (m.compat?.hostApi > MAX_HOST_API) err(id, `compat.hostApi=${m.compat.hostApi} 超过宿主 SDK 最高版本 ${MAX_HOST_API}`);

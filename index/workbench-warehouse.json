@@ -1,12 +1,12 @@
 {
   "id": "workbench-warehouse",
-  "version": "2.0.0",
-  "treeDigest": "b8efd3eb8c35cc16f16172e3ac432d15c17d5645e4b23745ea33b47bf34e3dc3",
+  "version": "2.0.1",
+  "treeDigest": "3d8e642045b4adb6f3b612280810527ab6e7eb87107c8cdf3df2a4ef4303c738",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 455,
-      "sha256": "b673ae3a3138ee608b23b5f77081a47633a8365349700b45a432a90fcf0d1094"
+      "size": 741,
+      "sha256": "828e1a5aff02a32efe7b5b52443b6728c917e6768fd67aaa1a4d5dfe01490867"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 30716,
-      "sha256": "82764708e2349686d4473d2a9181574543519822ad877d5ff95ed2a987b8c797"
+      "size": 31059,
+      "sha256": "d5001bfae1612d95ffa1fd6fe3dd5a5a9ff2f7e1402476c428ad1f2e570454a7"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 122292,
-      "sha256": "4bda0171400af3d310024a7a0059c6f59d7de8c94f0d9d2b2cc6782d9d5400dc"
+      "size": 122287,
+      "sha256": "df3913a13e5eee7888086f84da2f7bf0cf682eb47ee5414abfef0b88bdbd5fe0"
     },
     {
       "path": "dist/style.css",
       "size": 33852,
-      "sha256": "be78820db9f575f5add53901c09ee044c2feb0c21a6b940eeb1b3bf14c2eee45"
+      "sha256": "41d5ad3b47d0dca13aba8d625b2ea935f4c38c1e26cd7c901a89366b49f5f3b3"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 1916,
-      "sha256": "7fa0b750f6699f81ce53176c221292c92c6ba7f42538bb1807c3c1ceede7188b"
+      "sha256": "7efec9cfa7bcb5d0add93fce9776f191165f5aab5fc36f317e6997571bb11c3c"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.1",
+      "ref": "workbench-warehouse@2.0.1",
+      "treeDigest": "3d8e642045b4adb6f3b612280810527ab6e7eb87107c8cdf3df2a4ef4303c738",
+      "filesRef": "index/workbench-warehouse/2.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.0",
       "ref": "workbench-warehouse@2.0.0",

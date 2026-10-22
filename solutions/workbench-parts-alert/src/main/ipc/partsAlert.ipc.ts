@@ -64,7 +64,7 @@ export function loadDatasetFile<K extends PaDatasetKey>(
   return { meta, rows: parsed.rows as DatasetRows[K] };
 }
 
-export function registerPartsAlertHandlers(deps: WorkbenchIpcDeps): void {
+export function registerPartsAlertHandlers(deps: WorkbenchIpcDeps): () => void {
   const logger = deps.logger;
   const win = (): BrowserWindow | null => deps.getMainWindow?.() ?? null;
   const send = (event: { type: string; payload?: unknown }): void => { try { win()?.webContents.send(IPC_CHANNELS.WORKBENCH_PA_EVENT, event); } catch { /* 窗口已关 */ } };
@@ -244,7 +244,8 @@ export function registerPartsAlertHandlers(deps: WorkbenchIpcDeps): void {
   };
   const timer = setInterval(() => { void tick(); }, 60_000);
   timer.unref?.();
-  onAppWillQuit('parts-alert', () => { clearInterval(timer); }, { once: true });
+  const stopBackground = () => { clearInterval(timer); };
+  onAppWillQuit('parts-alert', stopBackground, { once: true });
 
   // ── 动作表 ────────────────────────────────────────────────────────────────
 
@@ -477,4 +478,6 @@ export function registerPartsAlertHandlers(deps: WorkbenchIpcDeps): void {
       throw new Error(userFacingError(error));
     }
   });
+  // 卸载 / 停用时由方案入口 deactivate 调用（宿主只撤 IPC 通道，后台任务要自己停）
+  return stopBackground;
 }

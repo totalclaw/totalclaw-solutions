@@ -14,8 +14,8 @@
           <tbody>
             <tr v-for="it in items" :key="it.key">
               <td class="wrap">
-                <div>{{ it.label ? $t(it.label) : it.original }}</div>
-                <small class="ss-muted" :title="$t('以原文为准')">{{ it.original }}</small>
+                <div>{{ thresholdNameText(it) }}</div>
+                <small class="ss-muted" :title="$t('以原文为准')">{{ thresholdOriginalText(it) }}</small>
               </td>
               <td class="num">
                 <FauNum :value="thresholdText(it, it.override ?? it.value)" /> {{ thresholdUnit(it, currency || '') }}
@@ -34,7 +34,7 @@
 /** 「判断依据」抽屉：阈值表（三语名称）+ 原文（中文，标「以原文为准」）+ 可读的依据名与章节（第 6.5 节；不显示上游仓库路径） */
 import { ref, watch } from 'vue';
 import FauNum from './FauNum.vue';
-import { errorMessage, fau, thresholdBasisText, thresholdText, thresholdUnit, type ThresholdItem } from './shared';
+import { errorMessage, fau, thresholdBasisText, thresholdNameText, thresholdOriginalText, thresholdText, thresholdUnit, type ThresholdItem } from './shared';
 
 const props = defineProps<{ open: boolean; modules: string[]; currency?: string }>();
 const emit = defineEmits<{ (e: 'close'): void }>();

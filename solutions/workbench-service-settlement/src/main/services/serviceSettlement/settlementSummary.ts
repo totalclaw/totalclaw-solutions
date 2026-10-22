@@ -11,6 +11,7 @@
 import { canonicalProvider, toNumber, type SheetTable, type OutSheet, tableToOutSheet, safeFileName } from './excel';
 import type { MappedTable } from './reviewIncentive';
 import { t as i18nT } from '@totalclaw/i18n';
+import { normalizeTemplateTokens } from './templateTokens';
 
 export interface FeeItemSource extends MappedTable {
   /** 费用项名称（子表名），默认取文件名 / sheet 名，用户可改 */
@@ -326,7 +327,7 @@ export function formatRecipients(raw: string | undefined | null): string {
 }
 
 export function fillTemplate(tpl: string, vars: Record<string, string | number | undefined>): string {
-  return String(tpl || '').replace(/\{([^{}]+)\}/g, (m, key: string) => {
+  return normalizeTemplateTokens(tpl).replace(/\{([^{}]+)\}/g, (m, key: string) => {
     const v = vars[key.trim()];
     return v == null ? m : String(v);
   });
@@ -431,7 +432,7 @@ export function unpaidRows(records: ProviderTrackingRecord[], now = Date.now()):
 // ── 发票文件命名 ────────────────────────────────────────────────────────────────
 
 /**
- * 发票重命名规则：模板里用 {服务商} {结算期} {序号} {日期} {原文件名} 占位。
+ * 发票重命名规则：模板里用 {服务商} {结算期} {序号} {日期} {原文件名} 占位（英文 / 阿语写法同样认，见 templateTokens）。
  * 默认 `{服务商}_{结算期}_发票{序号}`，扩展名沿用原文件。
  */
 export const DEFAULT_INVOICE_NAME_TEMPLATE = '{服务商}_{结算期}_发票{序号}';
@@ -442,7 +443,7 @@ export function renderInvoiceFileName(
 ): string {
   const ext = (ctx.originalName.match(/\.[A-Za-z0-9]{1,6}$/) || [''])[0];
   const stem = ctx.originalName.slice(0, ctx.originalName.length - ext.length);
-  const body = (template || DEFAULT_INVOICE_NAME_TEMPLATE)
+  const body = normalizeTemplateTokens(template || DEFAULT_INVOICE_NAME_TEMPLATE)
     .replace(/\{服务商\}/g, ctx.provider)
     .replace(/\{结算期\}/g, ctx.period)
     .replace(/\{序号\}/g, String(ctx.index).padStart(2, '0'))

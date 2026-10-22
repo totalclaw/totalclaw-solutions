@@ -6,6 +6,8 @@
  * 环比与异常流程类型、节点分析。所有数字都在这里算，报告和邮件只引用这里的结果。
  */
 
+import { t as i18nT } from '@totalclaw/i18n';
+
 export type SystemName = 'OA' | '费控' | 'CSS';
 export type FlowStatus = 'done' | 'running' | 'terminated';
 
@@ -527,10 +529,11 @@ export function computeSla(flows: FlowRow[], nodes: NodeRow[], rules: SlaRules, 
     .map((f) => ({ name: f.initiator, identity: managers.has(f.initiator) ? '管理干部' : '非管理干部', dept: f.dept, ok: !f.overtime, days: f.days })));
 
   const runInit = new Map<string, { count: number; overdue: number; risk: number }>();
+  const unfilled = i18nT('（未填）');
   for (const f of running) {
-    const cur = runInit.get(f.initiator || '（未填）') ?? { count: 0, overdue: 0, risk: 0 };
+    const cur = runInit.get(f.initiator || unfilled) ?? { count: 0, overdue: 0, risk: 0 };
     cur.count += 1; if (f.runningLabel === 'overdue') cur.overdue += 1; if (f.runningLabel === 'risk') cur.risk += 1;
-    runInit.set(f.initiator || '（未填）', cur);
+    runInit.set(f.initiator || unfilled, cur);
   }
 
   const judgedAll = done.filter((f) => f.overtime !== null);
@@ -620,8 +623,8 @@ export function compareWithPrevious(cur: SlaResult, prev: PeriodSnapshot | null,
     const avgDelta = t.avgDays !== null && p?.avgDays != null ? r2(t.avgDays - p.avgDays) : null;
     const rateDelta = t.complianceRate !== null && p?.complianceRate != null ? Math.round((t.complianceRate - p.complianceRate) * 10000) / 10000 : null;
     const reasons: string[] = [];
-    if (avgDelta !== null && avgDelta > rules.abnormal.avgIncreaseDays) reasons.push(`平均用时环比增加 ${avgDelta} 天，超过 ${rules.abnormal.avgIncreaseDays} 天`);
-    if (t.complianceRate !== null && t.complianceRate < rules.abnormal.minComplianceRate) reasons.push(`合规率 ${(t.complianceRate * 100).toFixed(1)}%，低于 ${(rules.abnormal.minComplianceRate * 100).toFixed(0)}%`);
+    if (avgDelta !== null && avgDelta > rules.abnormal.avgIncreaseDays) reasons.push(i18nT('平均用时环比增加 {delta} 天，超过 {limit} 天', { delta: avgDelta, limit: rules.abnormal.avgIncreaseDays }));
+    if (t.complianceRate !== null && t.complianceRate < rules.abnormal.minComplianceRate) reasons.push(i18nT('合规率 {rate}%，低于 {min}%', { rate: (t.complianceRate * 100).toFixed(1), min: (rules.abnormal.minComplianceRate * 100).toFixed(0) }));
     return {
       category: t.category, flowType: t.flowType, system: t.system, doneCount: t.doneCount,
       avgDays: t.avgDays, prevAvgDays: p?.avgDays ?? null, avgDelta,

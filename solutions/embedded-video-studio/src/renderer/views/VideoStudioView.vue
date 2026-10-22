@@ -2102,7 +2102,7 @@ async function runSeedanceDirect(project: string): Promise<boolean> {
     // ① 素材扫描（同工作流时代的直连预检：路径/画幅是 ffprobe 实读，不让模型猜）
     const scan = await api.solution?.materialScan?.({ materialDir, aspect: draft.aspectRatio || '9:16' })
       .catch((e: any) => ({ ok: false, error: String(e?.message || e) }));
-    if (!scan?.ok) throw new Error(i18nT('素材扫描失败：{p0}', { p0: String(scan?.error || '未知原因').slice(0, 120) }));
+    if (!scan?.ok) throw new Error(i18nT('素材扫描失败：{p0}', { p0: String(scan?.error || i18nT('未知原因')).slice(0, 120) }));
     const images = (scan.included || [])
       .filter((m: any) => m?.kind === 'image' && m?.path)
       .map((m: any) => String(m.path));
@@ -2309,7 +2309,7 @@ async function startProduction(): Promise<boolean> {
     let h: ReturnType<typeof humanizeChatError> | null = null;
     try { h = humanizeChatError(error); } catch { h = null; }
     if (h && (h.suggestModelConfig || h.suggestRecharge)) {
-      notif.actionable('warn', `${i18nT('创建视频制作任务失败')}：${h.message}`, {
+      notif.actionable('warn', i18nT('创建视频制作任务失败：{p0}', { p0: h.message }), {
         label: h.suggestRecharge ? i18nT('去充值') : i18nT('去配置'),
         onClick: () => router.push({ path: '/settings', query: { section: 'ai-models' } }),
       });

@@ -30,6 +30,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -9297,7 +9298,7 @@ function textHasTerm(text, term) {
   return text.toLowerCase().includes(term.toLowerCase());
 }
 async function runFfmpeg(bin, args) {
-  const { execFile } = await import("node:child_process");
+  const { execFile } = await Promise.resolve().then(() => __toESM(require("node:child_process")));
   await new Promise((resolve, reject) => {
     execFile(bin, args, { timeout: 18e4, maxBuffer: 16 * 1024 * 1024 }, (err, _out, stderr) => {
       if (err) reject(new Error(`ffmpeg: ${String(stderr || err.message).slice(-400)}`));
@@ -10765,17 +10766,30 @@ function registerQuranTeachingHandlers(deps) {
       to: num(payload?.to)
     })
   ));
+  return () => {
+    const old = lanSvc;
+    lanSvc = null;
+    store = null;
+    void old?.stop();
+  };
 }
 
 // node_modules/.cache/solutions-build/workbench-quran-teaching/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerQuranTeachingHandlers";
+var cleanup;
 function activate(ctx) {
-  registerQuranTeachingHandlers(ctx.host.deps);
+  cleanup = registerQuranTeachingHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });

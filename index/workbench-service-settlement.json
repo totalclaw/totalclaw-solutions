@@ -1,12 +1,12 @@
 {
   "id": "workbench-service-settlement",
-  "version": "2.0.1",
-  "treeDigest": "014dc09fd71b4ba211815d3be7e0df27f5087cddcb73382b3cf8d39a73c19e69",
+  "version": "2.0.2",
+  "treeDigest": "6bcf970d0e804d45c14ac26c497e8d219c1ec1a82a35fb4802ff7a2373445ff6",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 671,
-      "sha256": "c26b45c1de0bc5efb7129b7b82c4c025d599c1e08bc998c90def18dd197d4601"
+      "size": 1390,
+      "sha256": "03bc1a194a4a76560f41285f1206801c810b5da5c69cf50460a0993e93b47fa1"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 308452,
-      "sha256": "6530d29ba475b4488ce3cdcbddab5aa0d398c2329f6f582b7a395795eedcd9af"
+      "size": 311754,
+      "sha256": "6dbf0fabfdaf34321ab92b6004f65871a6b54bdadd2651874414912d5e53e50a"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 463600,
-      "sha256": "7970260edac6a653c0d0db962d991e59eedc6c56cd9e3f782f4f6e8b507d3a11"
+      "size": 464987,
+      "sha256": "b6b6d359533ba4f75139abf6b5d66e06b7327974b20ce421a84fa6e463f7ddda"
     },
     {
       "path": "dist/style.css",
       "size": 13878,
-      "sha256": "9703509ca68c6b8ce3cc2015d3ee36509887e9aadf693a1cf116a16d9bd38b47"
+      "sha256": "89a8574a80639dadcb1c21c30e2861d81138da85dbd708be95802c8bfb5e4af1"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2221,
-      "sha256": "06c70800ce0734cce932341ae818345ae5902a3d53223a214863e05c63c33a30"
+      "sha256": "442e34765dc7c71557ccff7ffbb24027a532ff99ee75fac64ea9c71d54db1057"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-service-settlement@2.0.2",
+      "treeDigest": "6bcf970d0e804d45c14ac26c497e8d219c1ec1a82a35fb4802ff7a2373445ff6",
+      "filesRef": "index/workbench-service-settlement/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-service-settlement@2.0.1",

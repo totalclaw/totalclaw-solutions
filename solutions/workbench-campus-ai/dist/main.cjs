@@ -30,6 +30,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -3325,10 +3326,11 @@ function registerCampusAiHandlers(deps) {
     }
   }, 6 * 60 * 6e4);
   purgeTimer.unref?.();
-  (0, import_quitRegistry.onAppWillQuit)("campus-ai", () => {
+  const stopBackground = () => {
     clearInterval(purgeTimer);
     void mobile.stop();
-  }, { once: true });
+  };
+  (0, import_quitRegistry.onAppWillQuit)("campus-ai", stopBackground, { once: true });
   const markStale = (reason) => {
     store.update((s) => {
       if (s.warn && !s.warn.stale) {
@@ -3538,7 +3540,7 @@ function registerCampusAiHandlers(deps) {
     return [...groups.values()].map((g) => ({ ...g, students: g.ids.length }));
   }
   const sendMail = async (input) => {
-    const { sendCaseMail } = await import("host:apps/desktop-shell/src/main/services/caseMailSender.ts");
+    const { sendCaseMail } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/caseMailSender.ts"), 1));
     const relay = deps.serviceAuth ? { send: (i) => deps.serviceAuth.relaySendMail(i) } : null;
     return sendCaseMail(deps.readEmailCredentials?.() ?? {}, input, relay);
   };
@@ -3765,17 +3767,25 @@ function registerCampusAiHandlers(deps) {
       throw new Error((0, import_userFacingError.userFacingError)(error));
     }
   });
+  return stopBackground;
 }
 
 // node_modules/.cache/solutions-build/workbench-campus-ai/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerCampusAiHandlers";
+var cleanup;
 function activate(ctx) {
-  registerCampusAiHandlers(ctx.host.deps);
+  cleanup = registerCampusAiHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });

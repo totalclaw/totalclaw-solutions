@@ -65,14 +65,14 @@ const AVATAR_TOPIC_LABEL = (): Record<BaAvatarTopic, string> => ({
 });
 const PLATFORM_PARAM: Record<BaPublishPlatform, string> = { douyin: 'douyin', kuaishou: 'kuaishou', xiaohongshu: 'xiaohongshu', wxchannels: 'wxchannels' };
 const PLATFORM_LABEL = (): Record<string, string> => ({ douyin: i18nT('抖音'), kuaishou: i18nT('快手'), xiaohongshu: i18nT('小红书'), wxchannels: i18nT('视频号') });
-const platformNames = (ids: string[]): string => ids.map((x) => PLATFORM_LABEL()[x] || x).join('、');
+const platformNames = (ids: string[]): string => ids.map((x) => PLATFORM_LABEL()[x] || x).join(i18nT('、'));
 
 function requireFound<T>(v: T | undefined | null, what: string): T {
   if (v == null) throw new Error(i18nT('{p0}不存在或已删除', { p0: what }));
   return v;
 }
 
-export function registerBizAutomationHandlers(deps: WorkbenchIpcDeps): void {
+export function registerBizAutomationHandlers(deps: WorkbenchIpcDeps): () => void {
   const logger = deps.logger;
   const win = (): BrowserWindow | null => deps.getMainWindow?.() ?? null;
   const broadcast = (type: 'state' | 'progress', payload?: unknown): void => {
@@ -208,10 +208,10 @@ export function registerBizAutomationHandlers(deps: WorkbenchIpcDeps): void {
     const text = [...v.scenes.map((s) => s.line), ...Object.values(v.copies).flatMap((c) => [c?.title, c?.caption])].join('\n');
     const w: string[] = [];
     const banned = bannedHits(text);
-    if (banned.length) w.push(i18nT('含广告法极限词：{p0}', { p0: banned.join('、') }));
+    if (banned.length) w.push(i18nT('含广告法极限词：{p0}', { p0: banned.join(i18nT('、')) }));
     const prices = v.garmentIds.map((id) => garment(id)?.price || 0).filter(Boolean);
     const stray = strayPrices(text, v.brief, prices);
-    if (stray.length) w.push(i18nT('出现活动信息里没有的价格 / 折扣：{p0}', { p0: stray.join('、') }));
+    if (stray.length) w.push(i18nT('出现活动信息里没有的价格 / 折扣：{p0}', { p0: stray.join(i18nT('、')) }));
     return w;
   };
 
@@ -311,7 +311,7 @@ export function registerBizAutomationHandlers(deps: WorkbenchIpcDeps): void {
     const ph = placeholders(script);
     if (ph.length) w.push(i18nT('还有 {n} 处【待补充】，补完才能成片', { n: ph.length }));
     const banned = bannedHits(script);
-    if (banned.length) w.push(i18nT('含广告法极限词：{p0}', { p0: banned.join('、') }));
+    if (banned.length) w.push(i18nT('含广告法极限词：{p0}', { p0: banned.join(i18nT('、')) }));
     return w;
   };
   const downloadTo = async (url: string, dest: string): Promise<void> => {
@@ -485,7 +485,7 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? '#f4f4f4' : '#fff'}"><td s
 
   const listingWarnings = (l: Pick<BaListing, 'title' | 'sellingPoints' | 'detail'>): string[] => {
     const banned = bannedHits([l.title, ...l.sellingPoints, l.detail].join('\n'));
-    return banned.length ? [i18nT('含广告法极限词：{p0}', { p0: banned.join('、') })] : [];
+    return banned.length ? [i18nT('含广告法极限词：{p0}', { p0: banned.join(i18nT('、')) })] : [];
   };
   const evaluate = () => {
     const svc = apparelService();
@@ -519,7 +519,7 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? '#f4f4f4' : '#fff'}"><td s
       const day = new Date().toISOString().slice(0, 10);
       const imp = { id: newId('bai'), kind, source, file: table.fileName, rows: parsed.rows.length, skipped: parsed.skipped + unmatched.length, mapping: parsed.mapping, from: day, to: day, importedAt: new Date().toISOString() };
       store.update((s) => { s.imports.unshift(imp); s.imports = s.imports.slice(0, 50); });
-      log('finance', i18nT('同步库存：{p0}，更新 {n} 款{p1}', { p0: table.fileName, n: updates.length, p1: unmatched.length ? i18nT('，{m} 个货号在商品库里找不到：{p2}', { m: unmatched.length, p2: unmatched.slice(0, 5).join('、') }) : '' }));
+      log('finance', i18nT('同步库存：{p0}，更新 {n} 款{p1}', { p0: table.fileName, n: updates.length, p1: unmatched.length ? i18nT('，{m} 个货号在商品库里找不到：{p2}', { m: unmatched.length, p2: unmatched.slice(0, 5).join(i18nT('、')) }) : '' }));
       evaluate(); // 库存变了，规则跟着重算（售罄的门店手机端自动下架）
       pushState();
       return { ...imp, unmatched };
@@ -608,12 +608,12 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? '#f4f4f4' : '#fff'}"><td s
       i18nT('毛利 {p0} 元（毛利率 {p1}，成本覆盖 {p2}）｜费用 {p3}｜净利润 {p4}', { p0: m.grossProfit, p1: pct(m.grossMargin), p2: pct(m.costCoverage), p3: m.expenses, p4: m.netProfit }),
     ];
     if (r.staleNote) lines.unshift(`⚠ ${r.staleNote}`);
-    if (m.items.length) lines.push(i18nT('畅销前 5：{p0}', { p0: m.items.slice(0, 5).map((x) => `${x.label} ${x.qty}${i18nT('件')} / ${x.amount}`).join('、') }));
+    if (m.items.length) lines.push(i18nT('畅销前 5：{p0}', { p0: m.items.slice(0, 5).map((x) => `${x.label} ${x.qty}${i18nT('件')} / ${x.amount}`).join(i18nT('、')) }));
     if (m.turnoverDays != null) lines.push(i18nT('库存金额约 {p0} 元，周转约 {p1} 天', { p0: m.inventoryValue, p1: m.turnoverDays }));
     const warn = store.read().ruleHits.filter((h) => h.rule === 'soldout' || h.rule === 'broken_size').slice(0, 5);
     if (warn.length) lines.push(i18nT('库存预警：{p0}', { p0: warn.map((h) => `${garment(h.garmentId)?.name || ''}（${h.detail}）`).join('；') }));
     if (r.commentary) lines.push('', r.commentary);
-    if (r.unverified.length) lines.push('', i18nT('⚠ 解读中这些数字未能在数据中核对到：{p0}', { p0: r.unverified.join('、') }));
+    if (r.unverified.length) lines.push('', i18nT('⚠ 解读中这些数字未能在数据中核对到：{p0}', { p0: r.unverified.join(i18nT('、')) }));
     return lines.join('\n');
   };
 
@@ -638,7 +638,7 @@ ${r.staleNote ? `<p class="warn">⚠ ${esc(r.staleNote)}</p>` : ''}
 <h2>${esc(i18nT('品类'))}</h2>${table([i18nT('品类'), i18nT('金额'), i18nT('占比')], m.byCategory.map((x) => [x.label, x.value, pct(x.share || 0)]))}
 <h2>${esc(i18nT('款式排行'))}</h2>${table([i18nT('商品'), i18nT('销量'), i18nT('金额'), i18nT('毛利'), i18nT('售罄率')], m.items.slice(0, 20).map((x) => [x.label, x.qty, x.amount, x.grossProfit ?? '—', x.sellThrough == null ? '—' : pct(x.sellThrough)]))}
 <h2>${esc(i18nT('滞销清单（有库存、本期卖出不超过 1 件）'))}</h2>${m.slowMovers.length ? table([i18nT('商品'), i18nT('库存'), i18nT('本期销量')], m.slowMovers.map((x) => [x.label, x.stock, x.qty])) : `<p>${esc(i18nT('无'))}</p>`}
-<h2>${esc(i18nT('经营解读'))}</h2><pre>${esc(r.commentary)}</pre>${r.unverified.length ? `<p class="warn">${esc(i18nT('未能核对的数字：{p0}', { p0: r.unverified.join('、') }))}</p>` : ''}`;
+<h2>${esc(i18nT('经营解读'))}</h2><pre>${esc(r.commentary)}</pre>${r.unverified.length ? `<p class="warn">${esc(i18nT('未能核对的数字：{p0}', { p0: r.unverified.join(i18nT('、')) }))}</p>` : ''}`;
   };
 
   // ── 定时 ─────────────────────────────────────────
@@ -740,7 +740,7 @@ ${r.staleNote ? `<p class="warn">⚠ ${esc(r.staleNote)}</p>` : ''}
           const picks = m.topItems.map((x) => garments().find((g) => g.name === x.label || g.sku === x.key)).filter(Boolean).slice(0, 3) as ApGarment[];
           const ids = picks.length ? picks.map((g) => g.id) : garments().slice(0, 3).map((g) => g.id);
           if (!ids.length) throw new Error(i18nT('商品库是空的'));
-          const v = createVideo({ type: 'new_arrival', garmentIds: ids, brief: i18nT('本周主推：{p0}（按上周销量）', { p0: ids.map((id) => garment(id)!.name).join('、') }), name: i18nT('本周主推 {p0}', { p0: today }) });
+          const v = createVideo({ type: 'new_arrival', garmentIds: ids, brief: i18nT('本周主推：{p0}（按上周销量）', { p0: ids.map((id) => garment(id)!.name).join(i18nT('、')) }), name: i18nT('本周主推 {p0}', { p0: today }) });
           await scriptVideo(v.id);
           log('schedule', i18nT('已生成本周主推视频脚本，待审核后成片发布'));
         } catch (e) { log('schedule', i18nT('本周主推视频没有生成：{p0}', { p0: userFacingError(e) }), false); }
@@ -754,10 +754,11 @@ ${r.staleNote ? `<p class="warn">⚠ ${esc(r.staleNote)}</p>` : ''}
   };
   const timer = setInterval(() => { void tick(); }, 60_000);
   timer.unref?.();
-  onAppWillQuit('biz-automation', () => {
+  const stopBackground = () => {
     clearInterval(timer);
     for (const r of runs.values()) { r.controller.abort(); for (const c of r.children) killTree(c); }
-  }, { once: true });
+  };
+  onAppWillQuit('biz-automation', stopBackground, { once: true });
 
   // ── 动作表 ─────────────────────────────────────────
 
@@ -1075,7 +1076,7 @@ ${r.staleNote ? `<p class="warn">⚠ ${esc(r.staleNote)}</p>` : ''}
         i18nT('属性：品类 {p0}，面料 {p1}，季节 {p2}，风格 {p3}，颜色 {p4}', { p0: g?.category || '—', p1: g?.fabric || '—', p2: g?.season || '—', p3: g?.style || '—', p4: g?.color || '—' }),
         i18nT('卖点：{p0}', { p0: l.sellingPoints.join('；') }),
         i18nT('详情：{p0}', { p0: l.detail }),
-        i18nT('搜索关键词：{p0}', { p0: l.keywords.join('、') }),
+        i18nT('搜索关键词：{p0}', { p0: l.keywords.join(i18nT('、')) }),
         i18nT('图片（按顺序上传，第一张为主图）：'),
         ...l.images.map((x, i) => `${i + 1}. ${x}`),
       ].join('\n');
@@ -1130,7 +1131,7 @@ ${r.staleNote ? `<p class="warn">⚠ ${esc(r.staleNote)}</p>` : ''}
         { name: i18nT('品类'), headers: [i18nT('品类'), i18nT('金额'), i18nT('占比')], rows: m.byCategory.map((x) => [x.label, x.value, x.share ?? 0]) },
         { name: i18nT('畅销款'), headers: [i18nT('商品'), i18nT('金额')], rows: m.topItems.map((x) => [x.label, x.value]) },
         { name: i18nT('售罄率'), headers: [i18nT('商品'), i18nT('售罄率')], rows: m.sellThrough.map((x) => [x.label, x.value]) },
-        { name: i18nT('经营解读'), headers: [i18nT('内容')], rows: [...r.commentary.split('\n').map((x) => [x]), ...(r.unverified.length ? [[i18nT('未能核对的数字：{p0}', { p0: r.unverified.join('、') })]] : [])] },
+        { name: i18nT('经营解读'), headers: [i18nT('内容')], rows: [...r.commentary.split('\n').map((x) => [x]), ...(r.unverified.length ? [[i18nT('未能核对的数字：{p0}', { p0: r.unverified.join(i18nT('、')) })]] : [])] },
       ]);
       store.update((s) => { const x = s.reports.find((y) => y.id === r.id); if (x) x.exportPath = file; });
       pushState();
@@ -1201,4 +1202,6 @@ ${r.staleNote ? `<p class="warn">⚠ ${esc(r.staleNote)}</p>` : ''}
       throw new Error(userFacingError(error));
     }
   });
+  // 卸载 / 停用时由方案入口 deactivate 调用（宿主只撤 IPC 通道，后台任务要自己停）
+  return stopBackground;
 }

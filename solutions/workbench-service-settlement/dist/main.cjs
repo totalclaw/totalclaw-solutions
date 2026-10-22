@@ -30,6 +30,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -276,6 +277,35 @@ var import_excel3 = require("host:apps/desktop-shell/src/main/services/serviceSe
 // ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/settlementSummary.ts
 var import_excel = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 var import_i18n4 = require("npm:@totalclaw/i18n");
+
+// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/templateTokens.ts
+var VAR = { provider: "\u670D\u52A1\u5546", period: "\u7ED3\u7B97\u671F", payable: "\u5E94\u4ED8\u5408\u8BA1", sentDate: "\u53D1\u9001\u65E5\u671F", seq: "\u5E8F\u53F7", date: "\u65E5\u671F", originalName: "\u539F\u6587\u4EF6\u540D" };
+var TEMPLATE_TOKENS = {
+  \u670D\u52A1\u5546: { "en-US": "Provider", ar: "\u0645\u0632\u0648\u062F_\u0627\u0644\u062E\u062F\u0645\u0629" },
+  \u7ED3\u7B97\u671F: { "en-US": "Period", ar: "\u0641\u062A\u0631\u0629_\u0627\u0644\u062A\u0633\u0648\u064A\u0629" },
+  \u5E94\u4ED8\u5408\u8BA1: { "en-US": "Payable", ar: "\u0627\u0644\u0645\u0633\u062A\u062D\u0642" },
+  \u53D1\u9001\u65E5\u671F: { "en-US": "SentDate", ar: "\u062A\u0627\u0631\u064A\u062E_\u0627\u0644\u0625\u0631\u0633\u0627\u0644" },
+  \u5E8F\u53F7: { "en-US": "Seq", ar: "\u0627\u0644\u0631\u0642\u0645" },
+  \u65E5\u671F: { "en-US": "Date", ar: "\u0627\u0644\u062A\u0627\u0631\u064A\u062E" },
+  \u539F\u6587\u4EF6\u540D: { "en-US": "OriginalName", ar: "\u0627\u0633\u0645_\u0627\u0644\u0645\u0644\u0641" }
+};
+function templateToken(zh, locale) {
+  const alias = locale === "en-US" || locale === "ar" ? TEMPLATE_TOKENS[zh]?.[locale] : void 0;
+  return `{${alias || zh}}`;
+}
+var ALIAS_TO_ZH = /* @__PURE__ */ new Map();
+for (const [zh, names] of Object.entries(TEMPLATE_TOKENS)) {
+  ALIAS_TO_ZH.set(names["en-US"].toLowerCase(), zh);
+  ALIAS_TO_ZH.set(names.ar, zh);
+}
+function normalizeTemplateTokens(tpl) {
+  return String(tpl || "").replace(/\{([^{}]+)\}/g, (m, name) => {
+    const zh = ALIAS_TO_ZH.get(name.trim()) ?? ALIAS_TO_ZH.get(name.trim().toLowerCase());
+    return zh ? `{${zh}}` : m;
+  });
+}
+
+// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/settlementSummary.ts
 var round2 = (n) => Math.round(n * 100) / 100;
 function isBogusProvider(name) {
   const s = String(name || "").trim();
@@ -460,7 +490,7 @@ function formatRecipients(raw) {
   return [...valid, ...invalid].join(", ");
 }
 function fillTemplate(tpl, vars) {
-  return String(tpl || "").replace(/\{([^{}]+)\}/g, (m, key) => {
+  return normalizeTemplateTokens(tpl).replace(/\{([^{}]+)\}/g, (m, key) => {
     const v = vars[key.trim()];
     return v == null ? m : String(v);
   });
@@ -573,7 +603,7 @@ var DEFAULT_INVOICE_NAME_TEMPLATE = "{\u670D\u52A1\u5546}_{\u7ED3\u7B97\u671F}_\
 function renderInvoiceFileName(template, ctx) {
   const ext = (ctx.originalName.match(/\.[A-Za-z0-9]{1,6}$/) || [""])[0];
   const stem = ctx.originalName.slice(0, ctx.originalName.length - ext.length);
-  const body = (template || DEFAULT_INVOICE_NAME_TEMPLATE).replace(/\{服务商\}/g, ctx.provider).replace(/\{结算期\}/g, ctx.period).replace(/\{序号\}/g, String(ctx.index).padStart(2, "0")).replace(/\{日期\}/g, ctx.date).replace(/\{原文件名\}/g, stem);
+  const body = normalizeTemplateTokens(template || DEFAULT_INVOICE_NAME_TEMPLATE).replace(/\{服务商\}/g, ctx.provider).replace(/\{结算期\}/g, ctx.period).replace(/\{序号\}/g, String(ctx.index).padStart(2, "0")).replace(/\{日期\}/g, ctx.date).replace(/\{原文件名\}/g, stem);
   return `${(0, import_excel.safeFileName)(body, "invoice")}${ext.toLowerCase()}`;
 }
 var INVOICE_EXTENSIONS = /* @__PURE__ */ new Set([".pdf", ".ofd", ".jpg", ".jpeg", ".png", ".xlsx", ".xls", ".zip"]);
@@ -1792,39 +1822,55 @@ function addDays(dateIso, days) {
 
 // ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/store.ts
 var import_i18n6 = require("npm:@totalclaw/i18n");
-var DEFAULT_MAIL_SUBJECT = "\u3010{\u7ED3\u7B97\u671F}\u3011{\u670D\u52A1\u5546} \u670D\u52A1\u8D39\u7528\u7ED3\u7B97\u660E\u7EC6";
-var DEFAULT_MAIL_BODY = [
-  "{\u670D\u52A1\u5546} \u60A8\u597D\uFF1A",
-  "",
-  "\u9644\u4EF6\u4E3A {\u7ED3\u7B97\u671F} \u670D\u52A1\u8D39\u7528\u7ED3\u7B97\u660E\u7EC6\uFF08\u542B\u5DE5\u5355\u7ED3\u7B97\u3001\u5404\u9879\u6FC0\u52B1\u4E0E\u8865\u6263\u5B50\u8868\uFF09\uFF0C\u8BF7\u67E5\u6536\u6838\u5BF9\u3002",
-  (0, import_i18n6.t)("\u5982\u65E0\u5F02\u8BAE\uFF0C\u8BF7\u6309\u660E\u7EC6\u91D1\u989D\u5F00\u5177\u53D1\u7968\u5E76\u56DE\u590D\u672C\u90AE\u4EF6\uFF08\u6216\u901A\u8FC7\u4F01\u5FAE\u53D1\u9001\u53D1\u7968\u9644\u4EF6\uFF09\uFF0C\u6211\u4EEC\u6536\u5230\u53D1\u7968\u540E\u5C06\u53D1\u8D77\u6838\u9500\u4ED8\u6B3E\u6D41\u7A0B\u3002"),
-  "",
-  "\u5E94\u4ED8\u5408\u8BA1\uFF1A{\u5E94\u4ED8\u5408\u8BA1} \u5143",
-  "",
-  (0, import_i18n6.t)("\u8C22\u8C22\uFF01")
-].join("\n");
-var DEFAULT_NUDGE_SUBJECT = "\u3010\u50AC\u529E\u3011{\u7ED3\u7B97\u671F} {\u670D\u52A1\u5546} \u7ED3\u7B97\u660E\u7EC6\u8BF7\u5C3D\u5FEB\u5F00\u7968";
-var DEFAULT_NUDGE_BODY = [
-  "{\u670D\u52A1\u5546} \u60A8\u597D\uFF1A",
-  "",
-  (0, import_i18n6.t)("{\u7ED3\u7B97\u671F} \u670D\u52A1\u8D39\u7528\u7ED3\u7B97\u660E\u7EC6\u5DF2\u4E8E {\u53D1\u9001\u65E5\u671F} \u53D1\u9001\u5E76\u786E\u8BA4\u9001\u8FBE\uFF0C\u81F3\u4ECA\u672A\u6536\u5230\u8D35\u53F8\u53D1\u7968\u3002"),
-  (0, import_i18n6.t)("\u8BF7\u5C3D\u5FEB\u6309\u660E\u7EC6\u91D1\u989D\u5F00\u5177\u53D1\u7968\u5E76\u56DE\u590D\u672C\u90AE\u4EF6\uFF08\u6216\u901A\u8FC7\u4F01\u5FAE\u53D1\u9001\u53D1\u7968\u9644\u4EF6\uFF09\uFF0C\u4EE5\u4FBF\u6211\u4EEC\u53D1\u8D77\u6838\u9500\u4ED8\u6B3E\u6D41\u7A0B\u3002"),
-  "",
-  "\u5E94\u4ED8\u5408\u8BA1\uFF1A{\u5E94\u4ED8\u5408\u8BA1} \u5143",
-  "",
-  (0, import_i18n6.t)("\u8C22\u8C22\uFF01")
-].join("\n");
+var templateVars = () => {
+  const loc = (0, import_i18n6.getLocale)();
+  return { provider: templateToken(VAR.provider, loc), period: templateToken(VAR.period, loc), payable: templateToken(VAR.payable, loc), sentDate: templateToken(VAR.sentDate, loc) };
+};
+function defaultInvoiceNameTemplate() {
+  const loc = (0, import_i18n6.getLocale)();
+  return `${templateToken(VAR.provider, loc)}_${templateToken(VAR.period, loc)}_${(0, import_i18n6.t)("\u53D1\u7968")}${templateToken(VAR.seq, loc)}`;
+}
+function defaultMailSubject() {
+  return (0, import_i18n6.t)("\u3010{period}\u3011{provider} \u670D\u52A1\u8D39\u7528\u7ED3\u7B97\u660E\u7EC6", templateVars());
+}
+function defaultMailBody() {
+  return [
+    (0, import_i18n6.t)("{provider} \u60A8\u597D\uFF1A", templateVars()),
+    "",
+    (0, import_i18n6.t)("\u9644\u4EF6\u4E3A {period} \u670D\u52A1\u8D39\u7528\u7ED3\u7B97\u660E\u7EC6\uFF08\u542B\u5DE5\u5355\u7ED3\u7B97\u3001\u5404\u9879\u6FC0\u52B1\u4E0E\u8865\u6263\u5B50\u8868\uFF09\uFF0C\u8BF7\u67E5\u6536\u6838\u5BF9\u3002", templateVars()),
+    (0, import_i18n6.t)("\u5982\u65E0\u5F02\u8BAE\uFF0C\u8BF7\u6309\u660E\u7EC6\u91D1\u989D\u5F00\u5177\u53D1\u7968\u5E76\u56DE\u590D\u672C\u90AE\u4EF6\uFF08\u6216\u901A\u8FC7\u4F01\u5FAE\u53D1\u9001\u53D1\u7968\u9644\u4EF6\uFF09\uFF0C\u6211\u4EEC\u6536\u5230\u53D1\u7968\u540E\u5C06\u53D1\u8D77\u6838\u9500\u4ED8\u6B3E\u6D41\u7A0B\u3002"),
+    "",
+    (0, import_i18n6.t)("\u5E94\u4ED8\u5408\u8BA1\uFF1A{payable} \u5143", templateVars()),
+    "",
+    (0, import_i18n6.t)("\u8C22\u8C22\uFF01")
+  ].join("\n");
+}
+function defaultNudgeSubject() {
+  return (0, import_i18n6.t)("\u3010\u50AC\u529E\u3011{period} {provider} \u7ED3\u7B97\u660E\u7EC6\u8BF7\u5C3D\u5FEB\u5F00\u7968", templateVars());
+}
+function defaultNudgeBody() {
+  return [
+    (0, import_i18n6.t)("{provider} \u60A8\u597D\uFF1A", templateVars()),
+    "",
+    (0, import_i18n6.t)("{period} \u670D\u52A1\u8D39\u7528\u7ED3\u7B97\u660E\u7EC6\u5DF2\u4E8E {sentDate} \u53D1\u9001\u5E76\u786E\u8BA4\u9001\u8FBE\uFF0C\u81F3\u4ECA\u672A\u6536\u5230\u8D35\u53F8\u53D1\u7968\u3002", templateVars()),
+    (0, import_i18n6.t)("\u8BF7\u5C3D\u5FEB\u6309\u660E\u7EC6\u91D1\u989D\u5F00\u5177\u53D1\u7968\u5E76\u56DE\u590D\u672C\u90AE\u4EF6\uFF08\u6216\u901A\u8FC7\u4F01\u5FAE\u53D1\u9001\u53D1\u7968\u9644\u4EF6\uFF09\uFF0C\u4EE5\u4FBF\u6211\u4EEC\u53D1\u8D77\u6838\u9500\u4ED8\u6B3E\u6D41\u7A0B\u3002"),
+    "",
+    (0, import_i18n6.t)("\u5E94\u4ED8\u5408\u8BA1\uFF1A{payable} \u5143", templateVars()),
+    "",
+    (0, import_i18n6.t)("\u8C22\u8C22\uFF01")
+  ].join("\n");
+}
 function defaultState() {
   return {
     version: 1,
     providerDirectory: [],
     review: { paymentReminder: { enabled: true, day: 10, hour: 9 } },
     settlement: {
-      invoiceNameTemplate: DEFAULT_INVOICE_NAME_TEMPLATE,
-      mailSubjectTemplate: DEFAULT_MAIL_SUBJECT,
-      mailBodyTemplate: DEFAULT_MAIL_BODY,
-      nudgeSubjectTemplate: DEFAULT_NUDGE_SUBJECT,
-      nudgeBodyTemplate: DEFAULT_NUDGE_BODY,
+      invoiceNameTemplate: defaultInvoiceNameTemplate(),
+      mailSubjectTemplate: defaultMailSubject(),
+      mailBodyTemplate: defaultMailBody(),
+      nudgeSubjectTemplate: defaultNudgeSubject(),
+      nudgeBodyTemplate: defaultNudgeBody(),
       followUp: { ...DEFAULT_FOLLOW_UP },
       records: [],
       processedIntakeIds: [],
@@ -2341,8 +2387,8 @@ var ServiceSettlementProc = class extends import_events.EventEmitter {
     }
     const r = await this.deps.sendMail({
       to,
-      subject: fillTemplate(s.settlement.nudgeSubjectTemplate || DEFAULT_NUDGE_SUBJECT, vars),
-      body: fillTemplate(s.settlement.nudgeBodyTemplate || DEFAULT_NUDGE_BODY, vars),
+      subject: fillTemplate(s.settlement.nudgeSubjectTemplate || defaultNudgeSubject(), vars),
+      body: fillTemplate(s.settlement.nudgeBodyTemplate || defaultNudgeBody(), vars),
       headers
     });
     if (r.ok) this.deps.store.upsertTracking(period, provider, { nudgedAt: this.nowIso(), nudgeCount: (rec.nudgeCount || 0) + 1 });
@@ -2568,7 +2614,7 @@ ${item.body}`;
     let updated = 0;
     let client = null;
     try {
-      const { ImapFlow } = await import("npm:imapflow");
+      const { ImapFlow } = await Promise.resolve().then(() => __toESM(require("npm:imapflow")));
       client = new ImapFlow({ host, port, secure: port === 993, auth: { user: address, pass: password }, logger: false, connectionTimeout: 15e3, greetingTimeout: 15e3, socketTimeout: 6e4, tls: { rejectUnauthorized: false } });
       await client.connect();
       const lock = await client.getMailboxLock("INBOX", { readOnly: true });
@@ -4320,14 +4366,14 @@ function registerServiceSettlementHandlers(deps) {
   };
   const defaultOutputDir = () => (0, import_path4.join)(import_electron2.app.getPath("documents"), (0, import_brandPaths.documentsFolderName)(), (0, import_i18n11.t)("\u670D\u52A1\u5546\u7ED3\u7B97"));
   const sendMail = async (input) => {
-    const { sendCaseMail } = await import("host:apps/desktop-shell/src/main/services/caseMailSender.ts");
+    const { sendCaseMail } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/caseMailSender.ts"), 1));
     const relay = deps.serviceAuth ? { send: (i) => deps.serviceAuth.relaySendMail(i) } : null;
     return sendCaseMail(deps.readEmailCredentials?.() ?? {}, input, relay);
   };
   const pushOutlets = async (title, body) => {
     const settings = deps.cronNotifyStore?.get();
     if (!settings || !Object.values(settings.outlets || {}).some(Boolean)) return [];
-    const { notifyCronResult } = await import("host:apps/desktop-shell/src/main/services/cronResultNotifier.ts");
+    const { notifyCronResult } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/cronResultNotifier.ts"), 1));
     const jobId = "service-settlement";
     const outcomes = await notifyCronResult(
       { outlets: settings.outlets, enabledJobs: { [jobId]: true } },
@@ -4353,7 +4399,8 @@ function registerServiceSettlementHandlers(deps) {
     defaultOutputDir
   });
   proc.start();
-  (0, import_quitRegistry.onAppWillQuit)("service-settlement", () => proc?.stop(), { once: true });
+  const stopBackground = () => proc?.stop();
+  (0, import_quitRegistry.onAppWillQuit)("service-settlement", stopBackground, { once: true });
   const outDir = (sub) => proc.outputDir(sub);
   const emailStatus = () => {
     const c = deps.readEmailCredentials?.() ?? {};
@@ -4856,7 +4903,7 @@ function registerServiceSettlementHandlers(deps) {
       });
       return { reviewRevision, rules: sanitizeMarketingRules(current), excerpt: excerpt2, notes: "", llmNote: "", extracted: [], error: activeFileName ? `${activeFileName}\uFF1A${error}` : error };
     };
-    const { extractDocument } = await import("host:apps/desktop-shell/src/main/services/documentExtractor.ts");
+    const { extractDocument } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/documentExtractor.ts"), 1));
     for (const path of paths) {
       activeFileName = (0, import_path4.basename)(path);
       const fileName2 = activeFileName;
@@ -4867,7 +4914,7 @@ function registerServiceSettlementHandlers(deps) {
         return failed((0, import_i18n11.t)("PDF \u8BFB\u53D6\u5931\u8D25\uFF1A{p0}", { p0: error.message }));
       }
       const proc2 = deps.qiyeApiProc;
-      const { QiyeApiClient } = await import("host:apps/desktop-shell/src/main/services/qiyeApiClient.ts");
+      const { QiyeApiClient } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/qiyeApiClient.ts"), 1));
       const client = proc2 && proc2.getStatus() === "ready" ? new QiyeApiClient({ baseUrl: proc2.getBaseUrl(), getBearerToken: () => proc2.getBearerToken(), defaultTimeoutMs: 6e5 }) : null;
       try {
         doc = await readPolicyPages(doc, path, {
@@ -4877,8 +4924,8 @@ function registerServiceSettlementHandlers(deps) {
           },
           vision: async (pages) => {
             if (!client) throw new Error((0, import_i18n11.t)("\u89C6\u89C9\u8BC6\u522B\u670D\u52A1\u672A\u5C31\u7EEA"));
-            const { qiyeApiBridge } = await import("host:apps/desktop-shell/src/main/services/qiyeApiBridge.ts");
-            const { renderScannedPages } = await import("host:apps/desktop-shell/src/main/services/documentExtractor.ts");
+            const { qiyeApiBridge } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/qiyeApiBridge.ts"), 1));
+            const { renderScannedPages } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/documentExtractor.ts"), 1));
             const out = [];
             for (let i = 0; i < pages.length; i += 12) {
               const images = await renderScannedPages(path, pages.slice(i, i + 12));
@@ -4913,7 +4960,7 @@ function registerServiceSettlementHandlers(deps) {
       return failed(error.message);
     }
     const excerpt = text;
-    const { runOneshotChat } = await import("host:apps/desktop-shell/src/main/services/councilChatRouter.ts");
+    const { runOneshotChat } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/councilChatRouter.ts"), 1));
     const prompt = (0, import_i18n11.t)("{POLICY_PROMPT}\n===== \u6587\u4EF6\u5185\u5BB9 =====\n{excerpt}", { POLICY_PROMPT, excerpt });
     let raw = "";
     try {
@@ -5210,7 +5257,7 @@ function registerServiceSettlementHandlers(deps) {
     let markdown = "";
     let llmNote = "";
     try {
-      const { runOneshotChat } = await import("host:apps/desktop-shell/src/main/services/councilChatRouter.ts");
+      const { runOneshotChat } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/councilChatRouter.ts"), 1));
       const prompt = [
         (0, import_i18n11.t)("\u4F60\u662F\u670D\u52A1\u8425\u9500\u7ED3\u7B97\u4E13\u5458\u3002\u8BF7\u6839\u636E\u4E0B\u9762\u7684\u6838\u7B97\u4E8B\u5B9E\u5199\u4E00\u4EFD\u300A\u5B63\u5EA6\u670D\u52A1\u8425\u9500\u6FC0\u52B1\u7ED3\u6848\u62A5\u544A\u300B\uFF0CMarkdown \u683C\u5F0F\uFF0C\u4E2D\u6587\uFF0C\u7ED3\u6784\uFF1A"),
         (0, import_i18n11.t)("1. \u7ED3\u6848\u6982\u89C8\uFF08\u5B63\u5EA6\u3001\u8303\u56F4\u3001\u603B\u91D1\u989D\uFF09"),
@@ -5233,7 +5280,7 @@ function registerServiceSettlementHandlers(deps) {
     if (!markdown.trim()) markdown = templateReport;
     const dir = outDir((0, import_path4.join)((0, import_i18n11.t)("\u8425\u9500\u6FC0\u52B1\u7ED3\u6848"), q.label));
     const outputPath = (0, import_path4.join)(dir, `${(0, import_i18n11.t)("\u5B63\u5EA6\u7ED3\u6848\u62A5\u544A")}-${q.label}.md`);
-    const { writeFileSync } = await import("fs");
+    const { writeFileSync } = await Promise.resolve().then(() => __toESM(require("fs"), 1));
     writeFileSync(outputPath, markdown, "utf-8");
     store.update((st) => {
       st.marketing.lastReportPath = outputPath;
@@ -5330,17 +5377,25 @@ function registerServiceSettlementHandlers(deps) {
       startDate: result.startDate
     };
   });
+  return stopBackground;
 }
 
 // node_modules/.cache/solutions-build/workbench-service-settlement/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerServiceSettlementHandlers";
+var cleanup;
 function activate(ctx) {
-  registerServiceSettlementHandlers(ctx.host.deps);
+  cleanup = registerServiceSettlementHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });

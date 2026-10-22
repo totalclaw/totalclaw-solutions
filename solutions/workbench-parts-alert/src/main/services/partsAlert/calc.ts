@@ -176,7 +176,7 @@ export function forecastDailyDemand(
   const monthly = base * seasonFactor;
   const daily = monthly / DAYS_PER_MONTH;
   const basis = i18nT('月均需求 = (近3月均 {p0} × 0.5 + 近6月均 {p1} × 0.3 + 近12月均 {p2} × 0.2)', { p0: round(a3), p1: round(a6), p2: round(a12) })
-    + i18nT('{p0} = {p1}；日均 = {p2}', { p0: seasonFactor !== 1 ? ` × 季节系数 ${round(seasonFactor)}` : '', p1: round(monthly), p2: round(daily, 3) });
+    + i18nT('{p0} = {p1}；日均 = {p2}', { p0: seasonFactor !== 1 ? ` × ${i18nT('季节系数 {p0}', { p0: round(seasonFactor) })}` : '', p1: round(monthly), p2: round(daily, 3) });
   return { daily, base, seasonFactor, basis };
 }
 
@@ -390,7 +390,7 @@ export function computePartsAlert(input: PartsAlertInput, params: PartsAlertPara
         }
         if (suggestQty > 0) actions.push({ kind: 'top_up_order', text: i18nT('在途量不够覆盖，追加补库 {suggestQty}', { suggestQty }) });
       } else {
-        actions.push({ kind: 'place_order', text: i18nT('没有采购在途，{p0}下单补库 {suggestQty}', { p0: Number.isFinite(latestOrderAt) && latestOrderAt > asOf ? `最迟 ${fmtDay(latestOrderAt)} 前` : '立即', suggestQty }) });
+        actions.push({ kind: 'place_order', text: i18nT('没有采购在途，{p0}下单补库 {suggestQty}', { p0: Number.isFinite(latestOrderAt) && latestOrderAt > asOf ? i18nT('最迟 {date} 前', { date: fmtDay(latestOrderAt) }) : i18nT('立即'), suggestQty }) });
         actions.push({ kind: 'transfer_in', text: i18nT('到货前从其他仓库调拨，或启用替代件') });
       }
       if (state === 'out_of_stock') actions.push({ kind: 'backorder_notice', text: i18nT('通知服务网点该配件缺货及预计到货时间，登记欠件工单') });

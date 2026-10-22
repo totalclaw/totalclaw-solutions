@@ -20,6 +20,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -830,7 +831,8 @@ function registerZcyAgentHandlers(deps) {
       logger?.warn?.("zcy-agent", "patrol tick failed", { error: e?.message });
     }
   }, 6e4);
-  (0, import_quitRegistry.onAppWillQuit)("zcy-agent", () => clearInterval(timer), { once: true });
+  const stopBackground = () => clearInterval(timer);
+  (0, import_quitRegistry.onAppWillQuit)("zcy-agent", stopBackground, { once: true });
   const actions = {
     "state.get": () => publicState(),
     "models.list": () => modelOptions(),
@@ -1354,6 +1356,7 @@ ${prod.brand}`);
       throw new Error((0, import_userFacingError.userFacingError)(error));
     }
   });
+  return stopBackground;
 }
 var productStatusLabel = (s) => ({ draft: (0, import_i18n2.t)("\u8349\u7A3F"), confirmed: (0, import_i18n2.t)("\u5DF2\u786E\u8BA4"), handed: (0, import_i18n2.t)("\u6570\u5B57\u5458\u5DE5\u5904\u7406\u4E2D"), submitted: (0, import_i18n2.t)("\u5DF2\u63D0\u4EA4\u5BA1\u6838"), listed: (0, import_i18n2.t)("\u5DF2\u4E0A\u67B6"), rejected: (0, import_i18n2.t)("\u88AB\u9A73\u56DE"), delisted: (0, import_i18n2.t)("\u5DF2\u4E0B\u67B6") })[s];
 var inquiryStatusLabel = (s) => ({ new: (0, import_i18n2.t)("\u5F85\u7B97\u4EF7"), priced: (0, import_i18n2.t)("\u5DF2\u7B97\u4EF7"), confirmed: (0, import_i18n2.t)("\u5DF2\u786E\u8BA4"), handed: (0, import_i18n2.t)("\u6570\u5B57\u5458\u5DE5\u5904\u7406\u4E2D"), submitted: (0, import_i18n2.t)("\u5DF2\u63D0\u4EA4\u62A5\u4EF7"), won: (0, import_i18n2.t)("\u5DF2\u6210\u4EA4"), lost: (0, import_i18n2.t)("\u672A\u6210\u4EA4"), skipped: (0, import_i18n2.t)("\u4E0D\u53C2\u4E0E") })[s];
@@ -1361,12 +1364,19 @@ var inquiryStatusLabel = (s) => ({ new: (0, import_i18n2.t)("\u5F85\u7B97\u4EF7"
 // node_modules/.cache/solutions-build/workbench-zcy-agent/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerZcyAgentHandlers";
+var cleanup;
 function activate(ctx) {
-  registerZcyAgentHandlers(ctx.host.deps);
+  cleanup = registerZcyAgentHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });

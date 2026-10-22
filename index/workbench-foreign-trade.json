@@ -1,12 +1,12 @@
 {
   "id": "workbench-foreign-trade",
-  "version": "2.0.1",
-  "treeDigest": "fa7dee4c83fbd9ca7f231ad88f88a98574cf4fdfdb55b84ec4b90065028e15bf",
+  "version": "2.0.2",
+  "treeDigest": "b2c8d247718f565f05b4c6617f858da79264b105a190ab44f07b0b6defa3f1bf",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 662,
-      "sha256": "fb0120cb0032e3f4f0d9554915e403cc32bfa5f7f90970c22049b00229e67350"
+      "size": 1179,
+      "sha256": "3058c9d1adc31c104220200ce04203eaeed619e9006f4abe12cbda3ee03a7850"
     },
     {
       "path": "README.md",
@@ -20,8 +20,8 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 259993,
-      "sha256": "03f8374dda98f4dff1a57ac53d8e7e055821ad704e373f23be21d010d01aeb4c"
+      "size": 261803,
+      "sha256": "f7660635d18258f8084b29fa23fbca329ddca21fa6e9f0b4b2ab2bbfb5974be5"
     },
     {
       "path": "dist/renderer.mjs",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2577,
-      "sha256": "aed1ee1e31f894d6754615c3748330bddba2cd964eab86a5fcc2054c8069ca2e"
+      "sha256": "54ddd6633fa0c3e1bf39426329e5fbb8bb6982d3b7ef091401af4e970974df4c"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-foreign-trade@2.0.2",
+      "treeDigest": "b2c8d247718f565f05b4c6617f858da79264b105a190ab44f07b0b6defa3f1bf",
+      "filesRef": "index/workbench-foreign-trade/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-foreign-trade@2.0.1",

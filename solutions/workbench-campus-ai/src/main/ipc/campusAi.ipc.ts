@@ -34,7 +34,7 @@ import { documentsFolderName } from '../services/brandPaths';
 
 const store = new CampusAiStore();
 
-export function registerCampusAiHandlers(deps: WorkbenchIpcDeps): void {
+export function registerCampusAiHandlers(deps: WorkbenchIpcDeps): () => void {
   const logger = deps.logger;
   const win = (): BrowserWindow | null => deps.getMainWindow?.() ?? null;
   const send = (type: 'state' | 'progress', payload?: unknown): void => {
@@ -111,7 +111,8 @@ export function registerCampusAiHandlers(deps: WorkbenchIpcDeps): void {
   try { svc.purgeExpired(); } catch (e) { logger?.warn?.('campus-ai', 'purge failed', { error: (e as Error)?.message }); }
   const purgeTimer = setInterval(() => { try { svc.purgeExpired(); } catch { /* 下次再清 */ } }, 6 * 60 * 60_000);
   purgeTimer.unref?.();
-  onAppWillQuit('campus-ai', () => { clearInterval(purgeTimer); void mobile.stop(); }, { once: true });
+  const stopBackground = () => { clearInterval(purgeTimer); void mobile.stop(); };
+  onAppWillQuit('campus-ai', stopBackground, { once: true });
 
   // ── 学业预警 ──────────────────────────────────────────────────────────
 
@@ -480,4 +481,6 @@ export function registerCampusAiHandlers(deps: WorkbenchIpcDeps): void {
       throw new Error(userFacingError(error));
     }
   });
+  // 卸载 / 停用时由方案入口 deactivate 调用（宿主只撤 IPC 通道，后台任务要自己停）
+  return stopBackground;
 }

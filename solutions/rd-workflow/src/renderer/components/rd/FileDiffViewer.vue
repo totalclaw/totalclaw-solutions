@@ -7,7 +7,8 @@
   一次一个文件改动。多文件由父级列表渲染多个本组件。
 -->
 <template>
-  <div class="fdv">
+  <!-- 代码 diff 始终左到右（界面整体随语言 RTL 时也一样） -->
+  <div class="fdv" dir="ltr">
     <div class="fdv-head" @click="collapsed = !collapsed">
       <span class="fdv-caret">{{ collapsed ? '▸' : '▾' }}</span>
       <span class="fdv-action" :class="action">{{ actionLabel }}</span>

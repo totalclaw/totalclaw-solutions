@@ -30,6 +30,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -111,7 +112,7 @@ function parseSpreadsheet(path) {
   return { text, sheets };
 }
 async function parsePdf(path) {
-  const pdfjs = await import("npm:pdfjs-dist/legacy/build/pdf.mjs");
+  const pdfjs = await Promise.resolve().then(() => __toESM(require("npm:pdfjs-dist/legacy/build/pdf.mjs"), 1));
   const task = pdfjs.getDocument({
     data: new Uint8Array((0, import_node_fs.readFileSync)(path)),
     useSystemFonts: true
@@ -129,7 +130,7 @@ async function parsePdf(path) {
     }
     const pageImages = [];
     if (scannedPageNumbers.length) {
-      const { createCanvas } = await import("npm:@napi-rs/canvas");
+      const { createCanvas } = await Promise.resolve().then(() => __toESM(require("npm:@napi-rs/canvas"), 1));
       for (const pageNumber of scannedPageNumbers.slice(0, 12)) {
         const page = await document.getPage(pageNumber);
         const baseViewport = page.getViewport({ scale: 1 });
@@ -628,12 +629,19 @@ function registerBidDeskHandlers(deps) {
 // node_modules/.cache/solutions-build/embedded-bid-desk/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerBidDeskHandlers";
+var cleanup;
 function activate(ctx) {
-  registerBidDeskHandlers(ctx.host.deps);
+  cleanup = registerBidDeskHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });

@@ -231,6 +231,7 @@ async function refresh(): Promise<void> {
 async function pickFolder(): Promise<void> {
   syncing.value = true;
   syncError.value = '';
+  progress.value = null; // 上一轮的「正在识别 xx（12/12 页）」不能留到这一轮
   try {
     const r = await api().pickFolder();
     if (r && !r.canceled) {
@@ -241,6 +242,7 @@ async function pickFolder(): Promise<void> {
     syncError.value = errText(e);
   } finally {
     syncing.value = false;
+    progress.value = null;
     await refresh();
   }
 }
@@ -248,6 +250,7 @@ async function pickFolder(): Promise<void> {
 async function syncHandbook(): Promise<void> {
   syncing.value = true;
   syncError.value = '';
+  progress.value = null; // 上一轮的「正在识别 xx（12/12 页）」不能留到这一轮
   try {
     const r = await api().import();
     folder.value = r?.folder ?? null;
@@ -255,6 +258,7 @@ async function syncHandbook(): Promise<void> {
     syncError.value = errText(e);
   } finally {
     syncing.value = false;
+    progress.value = null;
     await refresh();
   }
 }

@@ -14,7 +14,7 @@ import { validatePayload } from './shared';
 
 type Result = { ok: boolean; message?: string; [k: string]: unknown };
 
-export function registerDigitalHumanHandlers(deps: IpcDeps): void {
+export function registerDigitalHumanHandlers(deps: IpcDeps): () => void {
   const { logger } = deps;
 
   const proc = () => deps.digitalHumanProc ?? null;
@@ -145,10 +145,18 @@ export function registerDigitalHumanHandlers(deps: IpcDeps): void {
   });
 
   // 会话数 / 状态变化推给渲染层：「N 路会话进行中」必须一直看得见（计费提醒）
-  proc()?.on('sessions', (sessions: unknown) => {
+  const onSessions = (sessions: unknown) => {
     try { deps.getMainWindow()?.webContents.send(IPC_CHANNELS.DIGITAL_HUMAN_EVENT, { type: 'sessions', sessions }); } catch { /* */ }
-  });
-  proc()?.on('status', (snapshot: unknown) => {
+  };
+  const onStatus = (snapshot: unknown) => {
     try { deps.getMainWindow()?.webContents.send(IPC_CHANNELS.DIGITAL_HUMAN_EVENT, { type: 'status', snapshot }); } catch { /* */ }
-  });
+  };
+  const p = proc();
+  p?.on('sessions', onSessions);
+  p?.on('status', onStatus);
+  // 卸载 / 停用：摘掉监听（服务进程归宿主管，不停它），否则重装后每个事件推两遍
+  return () => {
+    p?.off?.('sessions', onSessions);
+    p?.off?.('status', onStatus);
+  };
 }

@@ -122,7 +122,7 @@ function inspect(req: SsInspectTableRequest): SsInspectTableResponse {
   };
 }
 
-export function registerServiceSettlementHandlers(deps: WorkbenchIpcDeps): void {
+export function registerServiceSettlementHandlers(deps: WorkbenchIpcDeps): () => void {
   const logger = deps.logger;
   const win = (): BrowserWindow | null => deps.getMainWindow?.() ?? null;
   const broadcast = (event: { type: string; payload?: unknown }): void => {
@@ -166,7 +166,8 @@ export function registerServiceSettlementHandlers(deps: WorkbenchIpcDeps): void 
     defaultOutputDir,
   });
   proc.start();
-  onAppWillQuit('service-settlement', () => proc?.stop(), { once: true });
+  const stopBackground = () => proc?.stop();
+  onAppWillQuit('service-settlement', stopBackground, { once: true });
 
   const outDir = (sub?: string): string => proc!.outputDir(sub);
   const emailStatus = () => {
@@ -1096,4 +1097,6 @@ export function registerServiceSettlementHandlers(deps: WorkbenchIpcDeps): void 
       unmatched: result.unmatched.slice(0, 200), templateUsed: result.templateUsed, startDate: result.startDate,
     };
   });
+  // 卸载 / 停用时由方案入口 deactivate 调用（宿主只撤 IPC 通道，后台任务要自己停）
+  return stopBackground;
 }

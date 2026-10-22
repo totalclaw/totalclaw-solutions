@@ -21,7 +21,8 @@
         <i class="ri-building-2-line"></i>
         <span>{{ $t('账套') }}</span>
         <select :value="state.activeLedgerId" :disabled="switching" @change="switchLedger(($event.target as HTMLSelectElement).value)">
-          <option v-for="l in state.ledgers" :key="l.id" :value="l.id">{{ l.name }}</option>
+          <!-- 首个账套名是创建时按当时语言写进数据的「默认账套」：显示时按当前语言；用户起的名字原样 -->
+          <option v-for="l in state.ledgers" :key="l.id" :value="l.id">{{ l.name === '默认账套' ? $t('默认账套') : l.name }}</option>
         </select>
         <em class="ss-chip">{{ ledger?.taxpayerType === 'general' ? $t('一般纳税人') : $t('小规模纳税人') }}</em>
         <button type="button" class="ss-link" @click="editLedger(ledger)">{{ $t('编辑') }}</button>

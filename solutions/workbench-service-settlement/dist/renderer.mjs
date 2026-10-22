@@ -1,20 +1,20 @@
 const e = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue"];
 if (!e) throw new Error("宿主模块未就绪：npm:vue");
 e.default;
-const vt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
-if (!vt) throw new Error("宿主模块未就绪：npm:vue-router");
-vt.default;
-const Ke = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
-if (!Ke) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/stores/notification.ts");
-Ke.default;
-const i = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/i18n.ts"];
-if (!i) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/i18n.ts");
-i.default;
-const Nt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/PageBackButton.vue"];
-if (!Nt) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/PageBackButton.vue");
-const Ot = Nt.default, Vt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/StepCard.vue"];
-if (!Vt) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/StepCard.vue");
-const Z = Vt.default, It = "匹配客户 Excel 工作表名 / 表头用的中文关键字，不是界面文案：放 JSON 里避免被 i18n codemod 包成 t()，切英文界面也要认得出「售后」这一页", qt = {
+const Nt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
+if (!Nt) throw new Error("宿主模块未就绪：npm:vue-router");
+Nt.default;
+const qe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
+if (!qe) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/stores/notification.ts");
+qe.default;
+const s = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/i18n.ts"];
+if (!s) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/i18n.ts");
+s.default;
+const ht = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/PageBackButton.vue"];
+if (!ht) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/PageBackButton.vue");
+const Kt = ht.default, kt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/StepCard.vue"];
+if (!kt) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/StepCard.vue");
+const te = kt.default, zt = "匹配客户 Excel 工作表名 / 表头用的中文关键字，不是界面文案：放 JSON 里避免被 i18n codemod 包成 t()，切英文界面也要认得出「售后」这一页", jt = {
   jdInstall: [
     "安装评价",
     "安装"
@@ -33,173 +33,173 @@ const Z = Vt.default, It = "匹配客户 Excel 工作表名 / 表头用的中文
     "完工",
     "单量"
   ]
-}, Kt = [
+}, Wt = [
   "外发"
-], zt = "电动止回阀", jt = "客户备注", Ze = {
-  _comment: It,
-  sheetHints: qt,
-  feeSheetPrefer: Kt,
-  qualifierPattern: zt,
-  orderProviderFallbackColumn: jt
-}, Et = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/FileDropField.vue"];
-if (!Et) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/FileDropField.vue");
-const ie = Et.default, ht = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/TableMapping.vue"];
-if (!ht) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/TableMapping.vue");
-const Ee = ht.default, kt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/StickyProgress.vue"];
-if (!kt) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/StickyProgress.vue");
-const rt = kt.default, r = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/shared.ts"];
+], Yt = "电动止回阀", xt = "客户备注", Ge = {
+  _comment: zt,
+  sheetHints: jt,
+  feeSheetPrefer: Wt,
+  qualifierPattern: Yt,
+  orderProviderFallbackColumn: xt
+}, bt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/FileDropField.vue"];
+if (!bt) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/FileDropField.vue");
+const ce = bt.default, $t = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/TableMapping.vue"];
+if (!$t) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/TableMapping.vue");
+const ke = $t.default, St = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/StickyProgress.vue"];
+if (!St) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/StickyProgress.vue");
+const rt = St.default, r = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/shared.ts"];
 if (!r) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/shared.ts");
 r.default;
-const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss-grid" }, Xt = { class: "ss-field" }, Qt = { class: "ss-source" }, Jt = { class: "ss-subhead" }, Zt = { class: "ss-source" }, Gt = { class: "ss-subhead" }, Ht = { class: "ss-source" }, en = { class: "ss-subhead" }, tn = { class: "ss-actions" }, nn = ["disabled"], ln = { class: "ss-muted" }, on = { class: "ss-note info" }, an = { class: "ss-source" }, sn = { class: "ss-subhead" }, rn = { class: "ss-actions" }, dn = ["disabled"], un = { class: "ss-kpis" }, cn = { class: "ss-kpi" }, mn = { class: "ss-kpi" }, pn = { class: "ss-kpi" }, vn = { class: "ss-kpi" }, yn = { class: "ss-kpi" }, fn = {
+const Xt = { class: "ss-module" }, Qt = { class: "ss-steps" }, Jt = { class: "ss-grid" }, Zt = { class: "ss-field" }, Gt = { class: "ss-source" }, Ht = { class: "ss-subhead" }, en = { class: "ss-source" }, tn = { class: "ss-subhead" }, nn = { class: "ss-source" }, ln = { class: "ss-subhead" }, on = { class: "ss-actions" }, an = ["disabled"], sn = { class: "ss-muted" }, rn = { class: "ss-note info" }, dn = { class: "ss-source" }, un = { class: "ss-subhead" }, cn = { class: "ss-actions" }, mn = ["disabled"], pn = { class: "ss-kpis" }, vn = { class: "ss-kpi" }, yn = { class: "ss-kpi" }, fn = { class: "ss-kpi" }, gn = { class: "ss-kpi" }, Nn = { class: "ss-kpi" }, Vn = {
   class: "ss-table-wrap",
   style: { "max-height": "360px", overflow: "auto" }
-}, gn = { class: "ss-table" }, Nn = { class: "num" }, Vn = { class: "num" }, En = { class: "num" }, hn = { class: "num" }, kn = { class: "num" }, bn = { class: "num" }, $n = { class: "num" }, Sn = { class: "num" }, Dn = { class: "num" }, wn = { class: "num" }, Bn = { class: "num" }, Tn = { class: "num" }, Cn = { class: "ss-rules" }, _n = { class: "ss-rule-row" }, Pn = { class: "lbl" }, Rn = { class: "lbl" }, Mn = { class: "lbl" }, An = { class: "lbl" }, Un = { class: "lbl" }, Fn = { class: "lbl" }, Ln = ["onUpdate:modelValue"], On = ["value"], In = { class: "lbl" }, qn = ["onUpdate:modelValue"], Kn = { class: "ss-rule-row" }, zn = { class: "lbl" }, jn = { class: "lbl" }, Wn = { class: "lbl" }, Yn = { class: "lbl" }, xn = {
+}, En = { class: "ss-table" }, hn = { class: "num" }, kn = { class: "num" }, bn = { class: "num" }, $n = { class: "num" }, Sn = { class: "num" }, Dn = { class: "num" }, wn = { class: "num" }, Bn = { class: "num" }, Tn = { class: "num" }, Cn = { class: "num" }, _n = { class: "num" }, Pn = { class: "num" }, Rn = { class: "ss-rules" }, Mn = { class: "ss-rule-row" }, An = { class: "lbl" }, Un = { class: "lbl" }, Ln = { class: "lbl" }, Fn = { class: "lbl" }, On = { class: "lbl" }, In = { class: "lbl" }, qn = ["onUpdate:modelValue"], Kn = ["value"], zn = { class: "lbl" }, jn = ["onUpdate:modelValue"], Wn = { class: "ss-rule-row" }, Yn = { class: "lbl" }, xn = { class: "lbl" }, Xn = { class: "lbl" }, Qn = { class: "lbl" }, Jn = {
   key: 0,
   class: "ss-rule-row"
-}, Xn = { class: "lbl" }, Qn = { value: 5 }, Jn = { value: 4 }, Zn = { class: "lbl" }, Gn = { value: 1 }, Hn = { value: 2 }, el = { value: 3 }, tl = { class: "lbl" }, nl = { value: "rated" }, ll = { value: "evaluable" }, ol = { class: "ss-note info" }, al = { class: "ss-actions" }, sl = ["disabled"], rl = { class: "ss-actions" }, il = ["disabled"], dl = { class: "ss-kpis" }, ul = { class: "ss-kpi" }, cl = { class: "ss-kpi" }, ml = { class: "ss-kpi" }, pl = { class: "ss-kpi" }, vl = { class: "ss-kpi accent" }, yl = {
+}, Zn = { class: "lbl" }, Gn = { value: 5 }, Hn = { value: 4 }, el = { class: "lbl" }, tl = { value: 1 }, nl = { value: 2 }, ll = { value: 3 }, ol = { class: "lbl" }, al = { value: "rated" }, sl = { value: "evaluable" }, rl = { class: "ss-note info" }, il = { class: "ss-actions" }, dl = ["disabled"], ul = { class: "ss-actions" }, cl = ["disabled"], ml = { class: "ss-kpis" }, pl = { class: "ss-kpi" }, vl = { class: "ss-kpi" }, yl = { class: "ss-kpi" }, fl = { class: "ss-kpi" }, gl = { class: "ss-kpi accent" }, Nl = {
   class: "ss-table-wrap",
   style: { "max-height": "420px", overflow: "auto" }
-}, fl = { class: "ss-table" }, gl = { class: "num" }, Nl = { class: "num" }, Vl = { class: "num" }, El = { class: "num" }, hl = { class: "num" }, kl = { class: "num" }, bl = { class: "num" }, $l = { class: "num" }, Sl = { class: "num" }, Dl = { class: "num" }, wl = { class: "num" }, Bl = { class: "num" }, Tl = { class: "num" }, Cl = { class: "num" }, _l = { class: "num" }, Pl = { class: "num" }, Rl = { class: "num" }, Ml = { class: "num" }, Al = { class: "num" }, Ul = { class: "num" }, Fl = { class: "num" }, Ll = { class: "num" }, Ol = { class: "num" }, Il = { class: "num" }, ql = { class: "num" }, Kl = { class: "total" }, zl = { class: "num" }, jl = { class: "num" }, Wl = { class: "num" }, Yl = { class: "num" }, xl = { class: "num" }, Xl = { class: "num" }, Ql = { class: "num" }, Jl = { class: "num" }, Zl = { class: "ss-file-out" }, Gl = ["title"], Hl = { class: "ss-rule-row" }, eo = { class: "ss-switch" }, to = { class: "lbl" }, no = { class: "lbl" }, lo = { class: "lbl" }, oo = ["disabled"], ao = { class: "ss-note" }, so = {
+}, Vl = { class: "ss-table" }, El = { class: "num" }, hl = { class: "num" }, kl = { class: "num" }, bl = { class: "num" }, $l = { class: "num" }, Sl = { class: "num" }, Dl = { class: "num" }, wl = { class: "num" }, Bl = { class: "num" }, Tl = { class: "num" }, Cl = { class: "num" }, _l = { class: "num" }, Pl = { class: "num" }, Rl = { class: "num" }, Ml = { class: "num" }, Al = { class: "num" }, Ul = { class: "num" }, Ll = { class: "num" }, Fl = { class: "num" }, Ol = { class: "num" }, Il = { class: "num" }, ql = { class: "num" }, Kl = { class: "num" }, zl = { class: "num" }, jl = { class: "num" }, Wl = { class: "total" }, Yl = { class: "num" }, xl = { class: "num" }, Xl = { class: "num" }, Ql = { class: "num" }, Jl = { class: "num" }, Zl = { class: "num" }, Gl = { class: "num" }, Hl = { class: "num" }, eo = { class: "ss-file-out" }, to = ["title"], no = { class: "ss-rule-row" }, lo = { class: "ss-switch" }, oo = { class: "lbl" }, ao = { class: "lbl" }, so = { class: "lbl" }, ro = ["disabled"], io = { class: "ss-note" }, uo = {
   key: 0,
   class: "ss-note ok"
-}, ro = /* @__PURE__ */ e.defineComponent({
+}, co = /* @__PURE__ */ e.defineComponent({
   __name: "ReviewIncentiveModule",
   props: {
     state: {}
   },
   emits: ["refresh"],
-  setup(Ce, { expose: we, emit: ne }) {
-    const S = Ce, z = ne, V = Ke.useNotificationStore(), a = r.useSteps([
-      { key: "import", title: i.t("导入评价明细"), hint: i.t("把京东 / 天猫后台导出的评价明细 Excel 放进来，系统自动认列") },
-      { key: "rates", title: i.t("计算京东安装评价率"), hint: i.t("评价率 = 完工中好评价量（非差评）÷ 完工总单量；放 CSS 完工单量表或平台评价率报表，逐家算出 Y 与差评率 X") },
-      { key: "rules", title: i.t("确认计算规则"), hint: i.t("默认就是政策规则表里的数字，看一眼没问题就下一步") },
-      { key: "run", title: i.t("核算并输出激励结果表"), hint: i.t("统计各服务商安装评价率、差评率，按规则算出①②③与总激励") },
-      { key: "remind", title: i.t("每月 10 日付款提醒"), hint: i.t("到点自动提醒安排付款") }
-    ]), M = [
+  setup(pe, { expose: ie, emit: Z }) {
+    const U = pe, X = Z, k = qe.useNotificationStore(), u = r.useSteps([
+      { key: "import", title: s.t("导入评价明细"), hint: s.t("把京东 / 天猫后台导出的评价明细 Excel 放进来，系统自动认列") },
+      { key: "rates", title: s.t("计算京东安装评价率"), hint: s.t("评价率 = 完工中好评价量（非差评）÷ 完工总单量；放 CSS 完工单量表或平台评价率报表，逐家算出 Y 与差评率 X") },
+      { key: "rules", title: s.t("确认计算规则"), hint: s.t("默认就是政策规则表里的数字，看一眼没问题就下一步") },
+      { key: "run", title: s.t("核算并输出激励结果表"), hint: s.t("统计各服务商安装评价率、差评率，按规则算出①②③与总激励") },
+      { key: "remind", title: s.t("每月 10 日付款提醒"), hint: s.t("到点自动提醒安排付款") }
+    ]), $ = [
       { key: "provider", required: !0 },
       // 星级与「是否差评」二选一:京东安装真实导出没有星级列,只有 差评/非差评 布尔列
-      { key: "rating", label: i.t("评价星级/结果") },
-      { key: "badFlag", label: i.t("是否差评（与星级二选一）") },
+      { key: "rating", label: s.t("评价星级/结果") },
+      { key: "badFlag", label: s.t("是否差评（与星级二选一）") },
       { key: "evaluable" },
       { key: "counted" },
       { key: "rated" },
       { key: "sku" },
       { key: "orderNo" }
-    ], Y = [{ key: "provider", required: !0 }, { key: "satisfaction", required: !0 }, { key: "orderNo" }], Q = [{ key: "provider", required: !0 }, { key: "rating", required: !0, label: i.t("评价（好评/中评/差评）") }, { key: "counted", label: i.t("是否好评激励") }, { key: "orderNo" }], D = [
+    ], K = [{ key: "provider", required: !0 }, { key: "satisfaction", required: !0 }, { key: "orderNo" }], C = [{ key: "provider", required: !0 }, { key: "rating", required: !0, label: s.t("评价（好评/中评/差评）") }, { key: "counted", label: s.t("是否好评激励") }, { key: "orderNo" }], V = [
       { key: "provider", required: !0 },
-      { key: "evaluableCount", label: i.t("京东安装完工总单量") },
-      { key: "midGoodCount", label: i.t("完工中好评价量（可选）") },
+      { key: "evaluableCount", label: s.t("京东安装完工总单量") },
+      { key: "midGoodCount", label: s.t("完工中好评价量（可选）") },
       { key: "rateY" },
       { key: "badRateX" }
-    ], F = e.ref(S.state?.review?.period || r.currentPeriod()), _ = e.reactive([]), J = e.reactive([]), q = e.reactive([]), de = e.reactive([]), fe = { jdInstall: _, jdAfterSales: J, tmall: q, evaluable: de }, he = {
-      jdInstall: M.map((u) => u.key),
-      jdAfterSales: Y.map((u) => u.key),
-      tmall: Q.map((u) => u.key),
-      evaluable: D.map((u) => u.key)
-    }, $ = e.computed(() => _.length + J.length + q.length > 0);
-    function I(u) {
-      return u.map((m) => ({ path: m.path, name: m.fileName, note: i.t("{n} 行", { n: m.rowCount }) }));
+    ], G = e.ref(U.state?.review?.period || r.currentPeriod()), L = e.reactive([]), ne = e.reactive([]), w = e.reactive([]), Y = e.reactive([]), Q = { jdInstall: L, jdAfterSales: ne, tmall: w, evaluable: Y }, be = {
+      jdInstall: $.map((c) => c.key),
+      jdAfterSales: K.map((c) => c.key),
+      tmall: C.map((c) => c.key),
+      evaluable: V.map((c) => c.key)
+    }, S = e.computed(() => L.length + ne.length + w.length > 0);
+    function j(c) {
+      return c.map((m) => ({ path: m.path, name: m.fileName, note: s.t("{n} 行", { n: m.rowCount }) }));
     }
-    const C = Ze.sheetHints;
-    async function x(u, m) {
-      const f = fe[u];
-      for (const k of m)
-        if (!f.some((U) => U.path === k))
+    const F = Ge.sheetHints;
+    async function H(c, m) {
+      const f = Q[c];
+      for (const b of m)
+        if (!f.some((R) => R.path === b))
           try {
-            f.push(await r.inspectTable(k, he[u], void 0, C[u]));
-          } catch (U) {
-            V.error(i.t("读取失败：{msg}", { msg: r.errorMessage(U) }));
+            f.push(await r.inspectTable(b, be[c], void 0, F[c]));
+          } catch (R) {
+            k.error(s.t("读取失败：{msg}", { msg: r.errorMessage(R) }));
           }
-      le(u);
+      ae(c);
     }
-    function le(u) {
-      const m = u === "evaluable" ? "rates" : "import";
-      a.runtime[m].state !== "todo" && (a.reset(m), a.resetAfter(m)), m === "import" && (A.value = null), m === "rates" && (A.value = null), L.value = null;
+    function ae(c) {
+      const m = c === "evaluable" ? "rates" : "import";
+      u.runtime[m].state !== "todo" && (u.reset(m), u.resetAfter(m)), m === "import" && (x.value = null), m === "rates" && (x.value = null), I.value = null;
     }
-    function G(u, m) {
-      const f = fe[u], k = f.findIndex((U) => U.path === m);
-      k >= 0 && (f.splice(k, 1), le(u));
+    function de(c, m) {
+      const f = Q[c], b = f.findIndex((R) => R.path === m);
+      b >= 0 && (f.splice(b, 1), ae(c));
     }
-    async function K(u, m, f) {
-      const k = fe[u], U = k[m];
+    async function le(c, m, f) {
+      const b = Q[c], R = b[m];
       try {
-        k[m] = await r.inspectTable(U.path, he[u], f);
-      } catch (Be) {
-        V.error(r.errorMessage(Be));
+        b[m] = await r.inspectTable(R.path, be[c], f);
+      } catch (Se) {
+        k.error(r.errorMessage(Se));
       }
     }
-    async function H(u) {
-      F.value = u.period;
-      for (const m of Object.keys(fe)) fe[m].splice(0, fe[m].length);
-      for (const m of a.metas) a.reset(m.key);
-      A.value = null, a.currentKey.value = "import";
-      for (const m of ["jdInstall", "jdAfterSales", "tmall"]) await x(m, [u.workbook]);
-      if (u.rateReport?.workbook)
+    async function Ve(c) {
+      G.value = c.period;
+      for (const m of Object.keys(Q)) Q[m].splice(0, Q[m].length);
+      for (const m of u.metas) u.reset(m.key);
+      x.value = null, u.currentKey.value = "import";
+      for (const m of ["jdInstall", "jdAfterSales", "tmall"]) await H(m, [c.workbook]);
+      if (c.rateReport?.workbook)
         try {
-          de.push(await r.inspectTable(u.rateReport.workbook, he.evaluable, u.rateReport.sheet));
+          Y.push(await r.inspectTable(c.rateReport.workbook, be.evaluable, c.rateReport.sheet));
         } catch (m) {
-          V.error(i.t("读取失败：{msg}", { msg: r.errorMessage(m) }));
+          k.error(s.t("读取失败：{msg}", { msg: r.errorMessage(m) }));
         }
     }
-    we({ prefillDemo: H });
-    const A = e.ref(null), oe = (u) => ({ path: u.path, sheetName: u.sheetName, mapping: u.mapping });
-    function j(u) {
-      switch (u) {
+    ie({ prefillDemo: Ve });
+    const x = e.ref(null), J = (c) => ({ path: c.path, sheetName: c.sheetName, mapping: c.mapping });
+    function T(c) {
+      switch (c) {
         case "css":
-          return i.t("完工总单量表算出");
+          return s.t("完工总单量表算出");
         case "report":
-          return i.t("平台报表直接给的");
+          return s.t("平台报表直接给的");
         case "detail":
-          return i.t("评价明细算出");
+          return s.t("评价明细算出");
         default:
-          return i.t("无分母，未知");
+          return s.t("无分母，未知");
       }
     }
-    async function ee() {
-      a.start("rates");
-      const u = de.filter((f) => !f.mapping.provider), m = de.filter((f) => !f.mapping.evaluableCount && !f.mapping.rateY && !f.mapping.badRateX);
-      if (u.length) {
-        a.fail("rates", i.t("{files} 没有选「服务商」列", { files: u.map((f) => f.fileName).join("、") }));
+    async function O() {
+      u.start("rates");
+      const c = Y.filter((f) => !f.mapping.provider), m = Y.filter((f) => !f.mapping.evaluableCount && !f.mapping.rateY && !f.mapping.badRateX);
+      if (c.length) {
+        u.fail("rates", s.t("{files} 没有选「服务商」列", { files: c.map((f) => f.fileName).join("、") }));
         return;
       }
       if (m.length) {
-        a.fail("rates", i.t("{files} 没有选「完工总单量」或「评价率 / 差评率」列", { files: m.map((f) => f.fileName).join("、") }));
+        u.fail("rates", s.t("{files} 没有选「完工总单量」或「评价率 / 差评率」列", { files: m.map((f) => f.fileName).join("、") }));
         return;
       }
       try {
-        const f = await r.api().reviewRates({ jdInstall: _.map(oe), evaluable: de.map(oe) });
-        A.value = f, a.resetAfter("rates"), L.value = null;
-        const k = f.summary;
-        a.done("rates", de.length ? i.t("{n} 家服务商：{k} 家算出评价率（完工总单量 {c} 家、平台报表 {r} 家），{u} 家无分母按最低档", { n: k.providerCount, k: k.withRate, c: k.fromCss, r: k.fromReport, u: k.unknown }) : i.t("{n} 家服务商没有完工总单量，评价率按未知、系数取最低档；拿到 CSS 完工单量表后回到这一步重算", { n: k.providerCount }));
+        const f = await r.api().reviewRates({ jdInstall: L.map(J), evaluable: Y.map(J) });
+        x.value = f, u.resetAfter("rates"), I.value = null;
+        const b = f.summary;
+        u.done("rates", Y.length ? s.t("{n} 家服务商：{k} 家算出评价率（完工总单量 {c} 家、平台报表 {r} 家），{u} 家无分母按最低档", { n: b.providerCount, k: b.withRate, c: b.fromCss, r: b.fromReport, u: b.unknown }) : s.t("{n} 家服务商没有完工总单量，评价率按未知、系数取最低档；拿到 CSS 完工单量表后回到这一步重算", { n: b.providerCount }));
       } catch (f) {
-        a.fail("rates", f);
+        u.fail("rates", f);
       }
     }
-    function ae() {
-      a.start("import");
-      const u = [..._, ...J, ...q], m = u.filter((k) => !k.mapping.provider);
+    function W() {
+      u.start("import");
+      const c = [...L, ...ne, ...w], m = c.filter((b) => !b.mapping.provider);
       if (m.length) {
-        a.fail("import", i.t("{files} 没有选「服务商」列", { files: m.map((k) => k.fileName).join("、") }));
+        u.fail("import", s.t("{files} 没有选「服务商」列", { files: m.map((b) => b.fileName).join("、") }));
         return;
       }
       const f = [
-        ..._.filter((k) => !k.mapping.rating && !k.mapping.rated && !k.mapping.badFlag),
-        ...q.filter((k) => !k.mapping.rating && !k.mapping.badFlag),
-        ...J.filter((k) => !k.mapping.satisfaction && !k.mapping.rating)
+        ...L.filter((b) => !b.mapping.rating && !b.mapping.rated && !b.mapping.badFlag),
+        ...w.filter((b) => !b.mapping.rating && !b.mapping.badFlag),
+        ...ne.filter((b) => !b.mapping.satisfaction && !b.mapping.rating)
       ];
       if (f.length) {
-        a.fail("import", i.t("{files} 没有选评价 / 差评 / 满意度列。一个工作簿有多页时，请先在上面把工作表切到对应那一页（安装 / 售后 / 天猫）", {
-          files: f.map((k) => `${k.fileName}（${i.t("工作表")}「${k.sheetName}」）`).join("、")
+        u.fail("import", s.t("{files} 没有选评价 / 差评 / 满意度列。一个工作簿有多页时，请先在上面把工作表切到对应那一页（安装 / 售后 / 天猫）", {
+          files: f.map((b) => s.t("{file}（工作表「{sheet}」）", { file: b.fileName, sheet: b.sheetName })).join("、")
         }));
         return;
       }
-      if (!/^\d{4}-\d{2}$/.test(F.value)) {
-        a.fail("import", i.t("请选择结算月份"));
+      if (!/^\d{4}-\d{2}$/.test(G.value)) {
+        u.fail("import", s.t("请选择结算月份"));
         return;
       }
-      a.resetAfter("import"), L.value = null, a.done("import", i.t("{a} 份京东安装、{b} 份京东售后、{c} 份天猫明细，共 {rows} 行", { a: _.length, b: J.length, c: q.length, rows: u.reduce((k, U) => k + U.rowCount, 0) }));
+      u.resetAfter("import"), I.value = null, u.done("import", s.t("{a} 份京东安装、{b} 份京东售后、{c} 份天猫明细，共 {rows} 行", { a: L.length, b: ne.length, c: w.length, rows: c.reduce((b, R) => b + R.rowCount, 0) }));
     }
-    const X = () => ({
+    const oe = () => ({
       badRateThresholdPct: 0.6,
       baseAmountAboveThreshold: 5,
       baseAmountWithinThreshold: 10,
@@ -210,21 +210,21 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
       // 京东口径：1 星=差评、2–3 星=中评、4–5 星=好评（天猫是 1–2 星差评，口径设置里可改）
       badStarsMax: 1,
       badRateDenominator: "rated"
-    }), v = e.reactive(X()), g = e.ref(!1);
-    function b() {
-      const u = S.state?.review?.rules;
-      u && (u.badRateThreshold != null && (v.badRateThresholdPct = Math.round(u.badRateThreshold * 1e4) / 100), u.baseAmountAboveThreshold != null && (v.baseAmountAboveThreshold = u.baseAmountAboveThreshold), u.baseAmountWithinThreshold != null && (v.baseAmountWithinThreshold = u.baseAmountWithinThreshold), Array.isArray(u.coefTiers) && u.coefTiers.length && (v.coefTiers = u.coefTiers.map((m) => ({ minRatePct: Math.round(m.minRate * 100), coef: m.coef }))), u.afterSalesPerOrder != null && (v.afterSalesPerOrder = u.afterSalesPerOrder), u.tmallPerOrder != null && (v.tmallPerOrder = u.tmallPerOrder), u.goodStarsMin != null && (v.goodStarsMin = u.goodStarsMin), u.badStarsMax != null && (v.badStarsMax = u.badStarsMax), u.badRateDenominator && (v.badRateDenominator = u.badRateDenominator));
+    }), v = e.reactive(oe()), g = e.ref(!1);
+    function D() {
+      const c = U.state?.review?.rules;
+      c && (c.badRateThreshold != null && (v.badRateThresholdPct = Math.round(c.badRateThreshold * 1e4) / 100), c.baseAmountAboveThreshold != null && (v.baseAmountAboveThreshold = c.baseAmountAboveThreshold), c.baseAmountWithinThreshold != null && (v.baseAmountWithinThreshold = c.baseAmountWithinThreshold), Array.isArray(c.coefTiers) && c.coefTiers.length && (v.coefTiers = c.coefTiers.map((m) => ({ minRatePct: Math.round(m.minRate * 100), coef: m.coef }))), c.afterSalesPerOrder != null && (v.afterSalesPerOrder = c.afterSalesPerOrder), c.tmallPerOrder != null && (v.tmallPerOrder = c.tmallPerOrder), c.goodStarsMin != null && (v.goodStarsMin = c.goodStarsMin), c.badStarsMax != null && (v.badStarsMax = c.badStarsMax), c.badRateDenominator && (v.badRateDenominator = c.badRateDenominator));
     }
-    b();
+    D();
     function P() {
-      Object.assign(v, X());
+      Object.assign(v, oe());
     }
-    function ue() {
+    function $e() {
       return {
         badRateThreshold: Number(v.badRateThresholdPct) / 100,
         baseAmountAboveThreshold: Number(v.baseAmountAboveThreshold),
         baseAmountWithinThreshold: Number(v.baseAmountWithinThreshold),
-        coefTiers: v.coefTiers.map((u, m) => ({ minRate: m === 0 ? 0 : Number(u.minRatePct) / 100, coef: Number(u.coef) })),
+        coefTiers: v.coefTiers.map((c, m) => ({ minRate: m === 0 ? 0 : Number(c.minRatePct) / 100, coef: Number(c.coef) })),
         afterSalesPerOrder: Number(v.afterSalesPerOrder),
         tmallPerOrder: Number(v.tmallPerOrder),
         goodStarsMin: v.goodStarsMin,
@@ -232,16 +232,16 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
         badRateDenominator: v.badRateDenominator
       };
     }
-    function $e() {
-      if (a.start("rules"), [v.baseAmountAboveThreshold, v.baseAmountWithinThreshold, v.afterSalesPerOrder, v.tmallPerOrder, v.badRateThresholdPct].some((m) => !Number.isFinite(Number(m)) || Number(m) < 0)) {
-        a.fail("rules", i.t("金额 / 阈值必须是非负数字"));
+    function me() {
+      if (u.start("rules"), [v.baseAmountAboveThreshold, v.baseAmountWithinThreshold, v.afterSalesPerOrder, v.tmallPerOrder, v.badRateThresholdPct].some((m) => !Number.isFinite(Number(m)) || Number(m) < 0)) {
+        u.fail("rules", s.t("金额 / 阈值必须是非负数字"));
         return;
       }
       if (v.coefTiers.some((m) => !Number.isFinite(Number(m.coef)) || Number(m.coef) < 0)) {
-        a.fail("rules", i.t("系数必须是非负数字"));
+        u.fail("rules", s.t("系数必须是非负数字"));
         return;
       }
-      a.resetAfter("rules"), L.value = null, a.done("rules", i.t("X>{x}% → {a} 元，X≤{x}% → {b} 元；系数 {coefs}；售后 {c} 元/单；天猫 {d} 元/单", {
+      u.resetAfter("rules"), I.value = null, u.done("rules", s.t("X>{x}% → {a} 元，X≤{x}% → {b} 元；系数 {coefs}；售后 {c} 元/单；天猫 {d} 元/单", {
         x: v.badRateThresholdPct,
         a: v.baseAmountAboveThreshold,
         b: v.baseAmountWithinThreshold,
@@ -250,172 +250,172 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
         d: v.tmallPerOrder
       }));
     }
-    const L = e.ref(null), ce = e.ref("");
-    async function Re() {
-      a.start("run"), L.value = null;
+    const I = e.ref(null), ee = e.ref("");
+    async function fe() {
+      u.start("run"), I.value = null;
       try {
-        const u = await r.api().reviewRun({
-          period: F.value,
-          jdInstall: _.map(oe),
-          jdAfterSales: J.map(oe),
-          tmall: q.map(oe),
-          evaluable: de.map(oe),
-          rules: ue()
+        const c = await r.api().reviewRun({
+          period: G.value,
+          jdInstall: L.map(J),
+          jdAfterSales: ne.map(J),
+          tmall: w.map(J),
+          evaluable: Y.map(J),
+          rules: $e()
         });
-        L.value = u.result, ce.value = u.outputPath, a.done("run", i.t("{n} 家服务商，本项总激励 ¥{total}，结果表已生成", { n: u.result.totals.providerCount, total: r.fmtMoney(u.result.totals.total) })), V.success(i.t("好评激励结果表已生成")), z("refresh");
-      } catch (u) {
-        a.fail("run", u);
+        I.value = c.result, ee.value = c.outputPath, u.done("run", s.t("{n} 家服务商，本项总激励 ¥{total}，结果表已生成", { n: c.result.totals.providerCount, total: r.fmtMoney(c.result.totals.total) })), k.success(s.t("好评激励结果表已生成")), X("refresh");
+      } catch (c) {
+        u.fail("run", c);
       }
     }
-    const B = e.reactive({ enabled: !0, day: 10, hour: 9 });
-    e.watch(() => S.state?.review?.paymentReminder, (u) => {
-      u && Object.assign(B, { enabled: u.enabled, day: u.day, hour: u.hour });
+    const M = e.reactive({ enabled: !0, day: 10, hour: 9 });
+    e.watch(() => U.state?.review?.paymentReminder, (c) => {
+      c && Object.assign(M, { enabled: c.enabled, day: c.day, hour: c.hour });
     }, { immediate: !0 });
-    async function me() {
-      a.start("remind"), (!Number.isFinite(Number(B.day)) || Number(B.day) < 1) && (B.day = 10), (!Number.isFinite(Number(B.hour)) || B.hour === "") && (B.hour = 9);
+    async function Ee() {
+      u.start("remind"), (!Number.isFinite(Number(M.day)) || Number(M.day) < 1) && (M.day = 10), (!Number.isFinite(Number(M.hour)) || M.hour === "") && (M.hour = 9);
       try {
-        await r.api().statePatch({ review: { period: F.value, paymentReminder: { ...B } } }), a.done("remind", B.enabled ? i.t("已开启：每月 {d} 日 {h} 点提醒付款", { d: B.day, h: B.hour }) : i.t("提醒已关闭")), z("refresh");
-      } catch (u) {
-        a.fail("remind", u);
+        await r.api().statePatch({ review: { period: G.value, paymentReminder: { ...M } } }), u.done("remind", M.enabled ? s.t("已开启：每月 {d} 日 {h} 点提醒付款", { d: M.day, h: M.hour }) : s.t("提醒已关闭")), X("refresh");
+      } catch (c) {
+        u.fail("remind", c);
       }
     }
-    const pe = e.computed(() => {
-      const u = S.state?.review;
-      return u?.lastRunAt ? { at: u.lastRunAt, count: u.lastSummary?.providerCount ?? 0, total: u.lastSummary?.total ?? 0, path: u.lastOutputPath } : null;
+    const we = e.computed(() => {
+      const c = U.state?.review;
+      return c?.lastRunAt ? { at: c.lastRunAt, count: c.lastSummary?.providerCount ?? 0, total: c.lastSummary?.total ?? 0, path: c.lastOutputPath } : null;
     });
-    return (u, m) => (e.openBlock(), e.createElementBlock("section", Wt, [
+    return (c, m) => (e.openBlock(), e.createElementBlock("section", Xt, [
       e.createVNode(rt, {
-        title: u.$t("服务电商好评激励核算"),
-        metas: e.unref(a).metas,
-        runtime: e.unref(a).runtime,
-        "current-key": e.unref(a).currentKey.value,
+        title: c.$t("服务电商好评激励核算"),
+        metas: e.unref(u).metas,
+        runtime: e.unref(u).runtime,
+        "current-key": e.unref(u).currentKey.value,
         onJump: e.unref(r.scrollToStep)
       }, null, 8, ["title", "metas", "runtime", "current-key", "onJump"]),
-      e.createElementVNode("div", Yt, [
+      e.createElementVNode("div", Qt, [
         e.createCommentVNode(" 第 1 步：导入评价明细 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "import",
           index: 0,
-          title: e.unref(a).metas[0].title,
-          hint: e.unref(a).metas[0].hint,
-          runtime: e.unref(a).runtime.import,
-          "is-current": e.unref(a).currentKey.value === "import"
+          title: e.unref(u).metas[0].title,
+          hint: e.unref(u).metas[0].hint,
+          runtime: e.unref(u).runtime.import,
+          "is-current": e.unref(u).currentKey.value === "import"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", xt, [
-              e.createElementVNode("label", Xt, [
+            e.createElementVNode("div", Jt, [
+              e.createElementVNode("label", Zt, [
                 e.createElementVNode(
                   "span",
                   null,
-                  e.toDisplayString(u.$t("结算月份")),
+                  e.toDisplayString(c.$t("结算月份")),
                   1
                   /* TEXT */
                 ),
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": m[0] || (m[0] = (f) => F.value = f),
+                    "onUpdate:modelValue": m[0] || (m[0] = (f) => G.value = f),
                     type: "month"
                   },
                   null,
                   512
                   /* NEED_PATCH */
                 ), [
-                  [e.vModelText, F.value]
+                  [e.vModelText, G.value]
                 ])
               ])
             ]),
-            e.createElementVNode("div", Qt, [
+            e.createElementVNode("div", Gt, [
               e.createElementVNode(
                 "div",
-                Jt,
-                e.toDisplayString(u.$t("① 京东安装评价明细（自营 + POP，可同时选多个文件，系统合并计算）")),
+                Ht,
+                e.toDisplayString(c.$t("① 京东安装评价明细（自营 + POP，可同时选多个文件，系统合并计算）")),
                 1
                 /* TEXT */
               ),
-              e.createVNode(ie, {
-                label: u.$t("京东安装评价明细 Excel"),
-                hint: u.$t("京东后台导出的安装评价明细，自营与 POP 各一份都拖进来"),
-                files: I(_),
-                onPicked: m[1] || (m[1] = (f) => x("jdInstall", f)),
-                onRemove: m[2] || (m[2] = (f) => G("jdInstall", f))
+              e.createVNode(ce, {
+                label: c.$t("京东安装评价明细 Excel"),
+                hint: c.$t("京东后台导出的安装评价明细，自营与 POP 各一份都拖进来"),
+                files: j(L),
+                onPicked: m[1] || (m[1] = (f) => H("jdInstall", f)),
+                onRemove: m[2] || (m[2] = (f) => de("jdInstall", f))
               }, null, 8, ["label", "hint", "files"]),
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(_, (f, k) => (e.openBlock(), e.createBlock(Ee, {
+                e.renderList(L, (f, b) => (e.openBlock(), e.createBlock(ke, {
                   key: f.path + f.sheetName,
                   table: f,
-                  roles: M,
-                  onUpdate: (U) => _[k].mapping = U,
-                  onSheet: (U) => K("jdInstall", k, U)
+                  roles: $,
+                  onUpdate: (R) => L[b].mapping = R,
+                  onSheet: (R) => le("jdInstall", b, R)
                 }, null, 8, ["table", "onUpdate", "onSheet"]))),
                 128
                 /* KEYED_FRAGMENT */
               ))
             ]),
-            e.createElementVNode("div", Zt, [
+            e.createElementVNode("div", en, [
               e.createElementVNode(
                 "div",
-                Gt,
-                e.toDisplayString(u.$t("② 京东售后评价明细（维修工单满意度）")),
+                tn,
+                e.toDisplayString(c.$t("② 京东售后评价明细（维修工单满意度）")),
                 1
                 /* TEXT */
               ),
-              e.createVNode(ie, {
-                label: u.$t("京东售后评价明细 Excel"),
-                files: I(J),
-                onPicked: m[3] || (m[3] = (f) => x("jdAfterSales", f)),
-                onRemove: m[4] || (m[4] = (f) => G("jdAfterSales", f))
+              e.createVNode(ce, {
+                label: c.$t("京东售后评价明细 Excel"),
+                files: j(ne),
+                onPicked: m[3] || (m[3] = (f) => H("jdAfterSales", f)),
+                onRemove: m[4] || (m[4] = (f) => de("jdAfterSales", f))
               }, null, 8, ["label", "files"]),
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(J, (f, k) => (e.openBlock(), e.createBlock(Ee, {
+                e.renderList(ne, (f, b) => (e.openBlock(), e.createBlock(ke, {
                   key: f.path + f.sheetName,
                   table: f,
-                  roles: Y,
-                  onUpdate: (U) => J[k].mapping = U,
-                  onSheet: (U) => K("jdAfterSales", k, U)
+                  roles: K,
+                  onUpdate: (R) => ne[b].mapping = R,
+                  onSheet: (R) => le("jdAfterSales", b, R)
                 }, null, 8, ["table", "onUpdate", "onSheet"]))),
                 128
                 /* KEYED_FRAGMENT */
               ))
             ]),
-            e.createElementVNode("div", Ht, [
+            e.createElementVNode("div", nn, [
               e.createElementVNode(
                 "div",
-                en,
-                e.toDisplayString(u.$t("③ 天猫平台评价明细")),
+                ln,
+                e.toDisplayString(c.$t("③ 天猫平台评价明细")),
                 1
                 /* TEXT */
               ),
-              e.createVNode(ie, {
-                label: u.$t("天猫评价明细 Excel"),
-                files: I(q),
-                onPicked: m[5] || (m[5] = (f) => x("tmall", f)),
-                onRemove: m[6] || (m[6] = (f) => G("tmall", f))
+              e.createVNode(ce, {
+                label: c.$t("天猫评价明细 Excel"),
+                files: j(w),
+                onPicked: m[5] || (m[5] = (f) => H("tmall", f)),
+                onRemove: m[6] || (m[6] = (f) => de("tmall", f))
               }, null, 8, ["label", "files"]),
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(q, (f, k) => (e.openBlock(), e.createBlock(Ee, {
+                e.renderList(w, (f, b) => (e.openBlock(), e.createBlock(ke, {
                   key: f.path + f.sheetName,
                   table: f,
-                  roles: Q,
-                  onUpdate: (U) => q[k].mapping = U,
-                  onSheet: (U) => K("tmall", k, U)
+                  roles: C,
+                  onUpdate: (R) => w[b].mapping = R,
+                  onSheet: (R) => le("tmall", b, R)
                 }, null, 8, ["table", "onUpdate", "onSheet"]))),
                 128
                 /* KEYED_FRAGMENT */
               ))
             ]),
-            e.createElementVNode("div", tn, [
+            e.createElementVNode("div", on, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !$.value || e.unref(a).isRunning(),
-                onClick: ae
+                disabled: !S.value || e.unref(u).isRunning(),
+                onClick: W
               }, [
                 m[24] || (m[24] = e.createElementVNode(
                   "i",
@@ -425,15 +425,15 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(u.$t("文件都选好了，下一步")),
+                  e.toDisplayString(c.$t("文件都选好了，下一步")),
                   1
                   /* TEXT */
                 )
-              ], 8, nn),
+              ], 8, an),
               e.createElementVNode(
                 "span",
-                ln,
-                e.toDisplayString(u.$t("已选 {n} 份明细", { n: _.length + J.length + q.length })),
+                sn,
+                e.toDisplayString(c.$t("已选 {n} 份明细", { n: L.length + ne.length + w.length })),
                 1
                 /* TEXT */
               )
@@ -443,16 +443,16 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 第 2 步：京东安装评价率（客户 2026-09-09 要求：先把评价率算出来、单独成块） "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "rates",
           index: 1,
-          title: e.unref(a).metas[1].title,
-          hint: e.unref(a).metas[1].hint,
-          runtime: e.unref(a).runtime.rates,
-          "is-current": e.unref(a).currentKey.value === "rates"
+          title: e.unref(u).metas[1].title,
+          hint: e.unref(u).metas[1].hint,
+          runtime: e.unref(u).runtime.rates,
+          "is-current": e.unref(u).currentKey.value === "rates"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("p", on, [
+            e.createElementVNode("p", rn, [
               m[25] || (m[25] = e.createElementVNode(
                 "i",
                 { class: "ri-information-line" },
@@ -461,71 +461,71 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(u.$t("京东安装评价率 = 京东安装完工中好评价量 ÷ 京东安装完工总单量（中好评价 = 非差评）。完工总单量在 CSS 里，评价明细里没有：把 CSS 导出的完工单量表放进来就按这个公式算；平台已经给了「评价率 / 差评率」列则直接用。")),
+                e.toDisplayString(c.$t("京东安装评价率 = 京东安装完工中好评价量 ÷ 京东安装完工总单量（中好评价 = 非差评）。完工总单量在 CSS 里，评价明细里没有：把 CSS 导出的完工单量表放进来就按这个公式算；平台已经给了「评价率 / 差评率」列则直接用。")),
                 1
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", an, [
+            e.createElementVNode("div", dn, [
               e.createElementVNode(
                 "div",
-                sn,
-                e.toDisplayString(u.$t("④ 京东安装完工总单量（CSS）或平台评价率报表")),
+                un,
+                e.toDisplayString(c.$t("④ 京东安装完工总单量（CSS）或平台评价率报表")),
                 1
                 /* TEXT */
               ),
-              e.createVNode(ie, {
-                label: u.$t("完工总单量 / 评价率报表 Excel"),
-                hint: u.$t("要有「服务商」列，再加「完工总单量」或「评价率 / 差评率」列任一；「中好评价量」列可选（没有就用明细里的非差评数）"),
-                files: I(de),
-                onPicked: m[7] || (m[7] = (f) => x("evaluable", f)),
-                onRemove: m[8] || (m[8] = (f) => G("evaluable", f))
+              e.createVNode(ce, {
+                label: c.$t("完工总单量 / 评价率报表 Excel"),
+                hint: c.$t("要有「服务商」列，再加「完工总单量」或「评价率 / 差评率」列任一；「中好评价量」列可选（没有就用明细里的非差评数）"),
+                files: j(Y),
+                onPicked: m[7] || (m[7] = (f) => H("evaluable", f)),
+                onRemove: m[8] || (m[8] = (f) => de("evaluable", f))
               }, null, 8, ["label", "hint", "files"]),
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(de, (f, k) => (e.openBlock(), e.createBlock(Ee, {
+                e.renderList(Y, (f, b) => (e.openBlock(), e.createBlock(ke, {
                   key: f.path + f.sheetName,
                   table: f,
-                  roles: D,
-                  onUpdate: (U) => de[k].mapping = U,
-                  onSheet: (U) => K("evaluable", k, U)
+                  roles: V,
+                  onUpdate: (R) => Y[b].mapping = R,
+                  onSheet: (R) => le("evaluable", b, R)
                 }, null, 8, ["table", "onUpdate", "onSheet"]))),
                 128
                 /* KEYED_FRAGMENT */
               ))
             ]),
-            e.createElementVNode("div", rn, [
+            e.createElementVNode("div", cn, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: e.unref(a).runtime.import.state !== "done" || e.unref(a).isRunning(),
-                onClick: ee
+                disabled: e.unref(u).runtime.import.state !== "done" || e.unref(u).isRunning(),
+                onClick: O
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(e.unref(a).runtime.rates.state === "running" ? "ri-loader-4-line spin" : "ri-percent-line")
+                    class: e.normalizeClass(e.unref(u).runtime.rates.state === "running" ? "ri-loader-4-line spin" : "ri-percent-line")
                   },
                   null,
                   2
                   /* CLASS */
                 ),
                 e.createTextVNode(
-                  e.toDisplayString(de.length ? u.$t("计算评价率，下一步") : u.$t("没有这张表，评价率按未知继续")),
+                  e.toDisplayString(Y.length ? c.$t("计算评价率，下一步") : c.$t("没有这张表，评价率按未知继续")),
                   1
                   /* TEXT */
                 )
-              ], 8, dn)
+              ], 8, mn)
             ]),
-            A.value ? (e.openBlock(), e.createElementBlock(
+            x.value ? (e.openBlock(), e.createElementBlock(
               e.Fragment,
               { key: 0 },
               [
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(A.value.warnings, (f) => (e.openBlock(), e.createElementBlock("p", {
+                  e.renderList(x.value.warnings, (f) => (e.openBlock(), e.createElementBlock("p", {
                     key: f,
                     class: "ss-note warn"
                   }, [
@@ -545,67 +545,19 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   128
                   /* KEYED_FRAGMENT */
                 )),
-                e.createElementVNode("div", un, [
-                  e.createElementVNode("div", cn, [
-                    e.createElementVNode(
-                      "span",
-                      null,
-                      e.toDisplayString(u.$t("服务商")),
-                      1
-                      /* TEXT */
-                    ),
-                    e.createElementVNode(
-                      "strong",
-                      null,
-                      e.toDisplayString(A.value.summary.providerCount),
-                      1
-                      /* TEXT */
-                    )
-                  ]),
-                  e.createElementVNode("div", mn, [
-                    e.createElementVNode(
-                      "span",
-                      null,
-                      e.toDisplayString(u.$t("已算出评价率")),
-                      1
-                      /* TEXT */
-                    ),
-                    e.createElementVNode(
-                      "strong",
-                      null,
-                      e.toDisplayString(A.value.summary.withRate),
-                      1
-                      /* TEXT */
-                    )
-                  ]),
-                  e.createElementVNode("div", pn, [
-                    e.createElementVNode(
-                      "span",
-                      null,
-                      e.toDisplayString(u.$t("按完工总单量算")),
-                      1
-                      /* TEXT */
-                    ),
-                    e.createElementVNode(
-                      "strong",
-                      null,
-                      e.toDisplayString(A.value.summary.fromCss),
-                      1
-                      /* TEXT */
-                    )
-                  ]),
+                e.createElementVNode("div", pn, [
                   e.createElementVNode("div", vn, [
                     e.createElementVNode(
                       "span",
                       null,
-                      e.toDisplayString(u.$t("平台直接给的")),
+                      e.toDisplayString(c.$t("服务商")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "strong",
                       null,
-                      e.toDisplayString(A.value.summary.fromReport),
+                      e.toDisplayString(x.value.summary.providerCount),
                       1
                       /* TEXT */
                     )
@@ -614,83 +566,131 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "span",
                       null,
-                      e.toDisplayString(u.$t("无分母（系数最低档）")),
+                      e.toDisplayString(c.$t("已算出评价率")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "strong",
                       null,
-                      e.toDisplayString(A.value.summary.unknown),
+                      e.toDisplayString(x.value.summary.withRate),
+                      1
+                      /* TEXT */
+                    )
+                  ]),
+                  e.createElementVNode("div", fn, [
+                    e.createElementVNode(
+                      "span",
+                      null,
+                      e.toDisplayString(c.$t("按完工总单量算")),
+                      1
+                      /* TEXT */
+                    ),
+                    e.createElementVNode(
+                      "strong",
+                      null,
+                      e.toDisplayString(x.value.summary.fromCss),
+                      1
+                      /* TEXT */
+                    )
+                  ]),
+                  e.createElementVNode("div", gn, [
+                    e.createElementVNode(
+                      "span",
+                      null,
+                      e.toDisplayString(c.$t("平台直接给的")),
+                      1
+                      /* TEXT */
+                    ),
+                    e.createElementVNode(
+                      "strong",
+                      null,
+                      e.toDisplayString(x.value.summary.fromReport),
+                      1
+                      /* TEXT */
+                    )
+                  ]),
+                  e.createElementVNode("div", Nn, [
+                    e.createElementVNode(
+                      "span",
+                      null,
+                      e.toDisplayString(c.$t("无分母（系数最低档）")),
+                      1
+                      /* TEXT */
+                    ),
+                    e.createElementVNode(
+                      "strong",
+                      null,
+                      e.toDisplayString(x.value.summary.unknown),
                       1
                       /* TEXT */
                     )
                   ])
                 ]),
-                e.createElementVNode("div", fn, [
-                  e.createElementVNode("table", gn, [
+                e.createElementVNode("div", Vn, [
+                  e.createElementVNode("table", En, [
                     e.createElementVNode("thead", null, [
                       e.createElementVNode("tr", null, [
                         e.createElementVNode(
                           "th",
                           null,
-                          e.toDisplayString(u.$t("服务商")),
-                          1
-                          /* TEXT */
-                        ),
-                        e.createElementVNode(
-                          "th",
-                          Nn,
-                          e.toDisplayString(u.$t("完工总单量")),
-                          1
-                          /* TEXT */
-                        ),
-                        e.createElementVNode(
-                          "th",
-                          Vn,
-                          e.toDisplayString(u.$t("已评价")),
-                          1
-                          /* TEXT */
-                        ),
-                        e.createElementVNode(
-                          "th",
-                          En,
-                          e.toDisplayString(u.$t("中好评价（非差评）")),
+                          e.toDisplayString(c.$t("服务商")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
                           hn,
-                          e.toDisplayString(u.$t("评价率Y")),
-                          1
-                          /* TEXT */
-                        ),
-                        e.createElementVNode(
-                          "th",
-                          null,
-                          e.toDisplayString(u.$t("来源")),
+                          e.toDisplayString(c.$t("完工总单量")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
                           kn,
-                          e.toDisplayString(u.$t("差评")),
+                          e.toDisplayString(c.$t("已评价")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
                           bn,
-                          e.toDisplayString(u.$t("差评率X")),
+                          e.toDisplayString(c.$t("中好评价（非差评）")),
+                          1
+                          /* TEXT */
+                        ),
+                        e.createElementVNode(
+                          "th",
+                          $n,
+                          e.toDisplayString(c.$t("评价率Y")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
                           null,
-                          e.toDisplayString(u.$t("来源")),
+                          e.toDisplayString(c.$t("来源")),
+                          1
+                          /* TEXT */
+                        ),
+                        e.createElementVNode(
+                          "th",
+                          Sn,
+                          e.toDisplayString(c.$t("差评")),
+                          1
+                          /* TEXT */
+                        ),
+                        e.createElementVNode(
+                          "th",
+                          Dn,
+                          e.toDisplayString(c.$t("差评率X")),
+                          1
+                          /* TEXT */
+                        ),
+                        e.createElementVNode(
+                          "th",
+                          null,
+                          e.toDisplayString(c.$t("来源")),
                           1
                           /* TEXT */
                         )
@@ -700,7 +700,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(A.value.providers, (f) => (e.openBlock(), e.createElementBlock("tr", {
+                        e.renderList(x.value.providers, (f) => (e.openBlock(), e.createElementBlock("tr", {
                           key: f.provider
                         }, [
                           e.createElementVNode(
@@ -712,28 +712,28 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                           ),
                           e.createElementVNode(
                             "td",
-                            $n,
+                            wn,
                             e.toDisplayString(f.completedOrders ?? "—"),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            Sn,
+                            Bn,
                             e.toDisplayString(f.ratedOrders),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            Dn,
+                            Tn,
                             e.toDisplayString(f.midGoodOrders),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            wn,
+                            Cn,
                             e.toDisplayString(f.rateY == null ? "—" : e.unref(r.fmtPct)(f.rateY)),
                             1
                             /* TEXT */
@@ -741,20 +741,20 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                           e.createElementVNode(
                             "td",
                             null,
-                            e.toDisplayString(j(f.rateYSource)),
+                            e.toDisplayString(T(f.rateYSource)),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            Bn,
+                            _n,
                             e.toDisplayString(f.badOrders),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            Tn,
+                            Pn,
                             e.toDisplayString(e.unref(r.fmtPct)(f.badRateX)),
                             1
                             /* TEXT */
@@ -762,7 +762,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                           e.createElementVNode(
                             "td",
                             null,
-                            e.toDisplayString(j(f.badRateXSource)),
+                            e.toDisplayString(T(f.badRateXSource)),
                             1
                             /* TEXT */
                           )
@@ -782,16 +782,16 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 第 3 步：确认规则 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "rules",
           index: 2,
-          title: e.unref(a).metas[2].title,
-          hint: e.unref(a).metas[2].hint,
-          runtime: e.unref(a).runtime.rules,
-          "is-current": e.unref(a).currentKey.value === "rules"
+          title: e.unref(u).metas[2].title,
+          hint: e.unref(u).metas[2].hint,
+          runtime: e.unref(u).runtime.rules,
+          "is-current": e.unref(u).currentKey.value === "rules"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", Cn, [
+            e.createElementVNode("div", Rn, [
               e.createElementVNode("h4", null, [
                 m[27] || (m[27] = e.createElementVNode(
                   "i",
@@ -801,7 +801,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(u.$t("京东安装：基础激励金额（按安装差评率 X）")),
+                  e.toDisplayString(c.$t("京东安装：基础激励金额（按安装差评率 X）")),
                   1
                   /* TEXT */
                 ),
@@ -812,16 +812,16 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     class: "ss-link",
                     onClick: P
                   },
-                  e.toDisplayString(u.$t("恢复文档默认")),
+                  e.toDisplayString(c.$t("恢复文档默认")),
                   1
                   /* TEXT */
                 )
               ]),
-              e.createElementVNode("div", _n, [
+              e.createElementVNode("div", Mn, [
                 e.createElementVNode(
                   "span",
-                  Pn,
-                  e.toDisplayString(u.$t("差评率 X >")),
+                  An,
+                  e.toDisplayString(c.$t("差评率 X >")),
                   1
                   /* TEXT */
                 ),
@@ -878,22 +878,22 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ]),
                 e.createElementVNode(
                   "span",
-                  Rn,
-                  e.toDisplayString(u.$t("元/单")),
+                  Un,
+                  e.toDisplayString(c.$t("元/单")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "span",
-                  Mn,
-                  e.toDisplayString(u.$t("；")),
+                  Ln,
+                  e.toDisplayString(c.$t("；")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "span",
-                  An,
-                  e.toDisplayString(u.$t("X ≤ 阈值")),
+                  Fn,
+                  e.toDisplayString(c.$t("X ≤ 阈值")),
                   1
                   /* TEXT */
                 ),
@@ -924,8 +924,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ]),
                 e.createElementVNode(
                   "span",
-                  Un,
-                  e.toDisplayString(u.$t("元/单")),
+                  On,
+                  e.toDisplayString(c.$t("元/单")),
                   1
                   /* TEXT */
                 )
@@ -939,7 +939,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(u.$t("京东安装：评价率激励系数（按安装评价率 Y）")),
+                  e.toDisplayString(c.$t("京东安装：评价率激励系数（按安装评价率 Y）")),
                   1
                   /* TEXT */
                 )
@@ -947,24 +947,24 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(v.coefTiers, (f, k) => (e.openBlock(), e.createElementBlock("div", {
-                  key: k,
+                e.renderList(v.coefTiers, (f, b) => (e.openBlock(), e.createElementBlock("div", {
+                  key: b,
                   class: "ss-rule-row"
                 }, [
                   e.createElementVNode(
                     "span",
-                    Fn,
-                    e.toDisplayString(k === 0 ? u.$t("Y <") : u.$t("Y ≥")),
+                    In,
+                    e.toDisplayString(b === 0 ? c.$t("Y <") : c.$t("Y ≥")),
                     1
                     /* TEXT */
                   ),
-                  k > 0 ? e.withDirectives((e.openBlock(), e.createElementBlock("input", {
+                  b > 0 ? e.withDirectives((e.openBlock(), e.createElementBlock("input", {
                     key: 0,
-                    "onUpdate:modelValue": (U) => f.minRatePct = U,
+                    "onUpdate:modelValue": (R) => f.minRatePct = R,
                     type: "number",
                     min: "0",
                     max: "100"
-                  }, null, 8, Ln)), [
+                  }, null, 8, qn)), [
                     [
                       e.vModelText,
                       f.minRatePct,
@@ -976,7 +976,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     value: v.coefTiers[1]?.minRatePct ?? 50,
                     type: "number",
                     disabled: ""
-                  }, null, 8, On)),
+                  }, null, 8, Kn)),
                   m[32] || (m[32] = e.createElementVNode(
                     "span",
                     { class: "lbl" },
@@ -986,17 +986,17 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   )),
                   e.createElementVNode(
                     "span",
-                    In,
-                    "→ " + e.toDisplayString(u.$t("系数")),
+                    zn,
+                    "→ " + e.toDisplayString(c.$t("系数")),
                     1
                     /* TEXT */
                   ),
                   e.withDirectives(e.createElementVNode("input", {
-                    "onUpdate:modelValue": (U) => f.coef = U,
+                    "onUpdate:modelValue": (R) => f.coef = R,
                     type: "number",
                     step: "0.1",
                     min: "0"
-                  }, null, 8, qn), [
+                  }, null, 8, jn), [
                     [
                       e.vModelText,
                       f.coef,
@@ -1017,16 +1017,16 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(u.$t("京东售后 / 天猫")),
+                  e.toDisplayString(c.$t("京东售后 / 天猫")),
                   1
                   /* TEXT */
                 )
               ]),
-              e.createElementVNode("div", Kn, [
+              e.createElementVNode("div", Wn, [
                 e.createElementVNode(
                   "span",
-                  zn,
-                  e.toDisplayString(u.$t("售后「非常满意 / 满意」每单")),
+                  Yn,
+                  e.toDisplayString(c.$t("售后「非常满意 / 满意」每单")),
                   1
                   /* TEXT */
                 ),
@@ -1050,15 +1050,15 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ]),
                 e.createElementVNode(
                   "span",
-                  jn,
-                  e.toDisplayString(u.$t("元")),
+                  xn,
+                  e.toDisplayString(c.$t("元")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "span",
-                  Wn,
-                  e.toDisplayString(u.$t("；{p0}", { p0: u.$t("天猫好评每单") })),
+                  Xn,
+                  e.toDisplayString(c.$t("；{p0}", { p0: c.$t("天猫好评每单") })),
                   1
                   /* TEXT */
                 ),
@@ -1082,8 +1082,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ]),
                 e.createElementVNode(
                   "span",
-                  Yn,
-                  e.toDisplayString(u.$t("元")),
+                  Qn,
+                  e.toDisplayString(c.$t("元")),
                   1
                   /* TEXT */
                 )
@@ -1095,15 +1095,15 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   class: "ss-link",
                   onClick: m[14] || (m[14] = (f) => g.value = !g.value)
                 },
-                e.toDisplayString(g.value ? u.$t("收起口径设置") : u.$t("口径设置（一般不用改）")),
+                e.toDisplayString(g.value ? c.$t("收起口径设置") : c.$t("口径设置（一般不用改）")),
                 1
                 /* TEXT */
               ),
-              g.value ? (e.openBlock(), e.createElementBlock("div", xn, [
+              g.value ? (e.openBlock(), e.createElementBlock("div", Jn, [
                 e.createElementVNode(
                   "span",
-                  Xn,
-                  e.toDisplayString(u.$t("有效好评 ≥")),
+                  Zn,
+                  e.toDisplayString(c.$t("有效好评 ≥")),
                   1
                   /* TEXT */
                 ),
@@ -1115,15 +1115,15 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   [
                     e.createElementVNode(
                       "option",
-                      Qn,
-                      "5 " + e.toDisplayString(u.$t("星")),
+                      Gn,
+                      "5 " + e.toDisplayString(c.$t("星")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      Jn,
-                      "4 " + e.toDisplayString(u.$t("星")),
+                      Hn,
+                      "4 " + e.toDisplayString(c.$t("星")),
                       1
                       /* TEXT */
                     )
@@ -1140,8 +1140,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ]),
                 e.createElementVNode(
                   "span",
-                  Zn,
-                  e.toDisplayString(u.$t("；{p0}", { p0: u.$t("差评 ≤") })),
+                  el,
+                  e.toDisplayString(c.$t("；{p0}", { p0: c.$t("差评 ≤") })),
                   1
                   /* TEXT */
                 ),
@@ -1153,22 +1153,22 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   [
                     e.createElementVNode(
                       "option",
-                      Gn,
-                      "1 " + e.toDisplayString(u.$t("星")),
+                      tl,
+                      "1 " + e.toDisplayString(c.$t("星")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      Hn,
-                      "2 " + e.toDisplayString(u.$t("星")),
+                      nl,
+                      "2 " + e.toDisplayString(c.$t("星")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      el,
-                      "3 " + e.toDisplayString(u.$t("星")),
+                      ll,
+                      "3 " + e.toDisplayString(c.$t("星")),
                       1
                       /* TEXT */
                     )
@@ -1185,8 +1185,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ]),
                 e.createElementVNode(
                   "span",
-                  tl,
-                  e.toDisplayString(u.$t("；{p0}", { p0: u.$t("差评率分母") })),
+                  ol,
+                  e.toDisplayString(c.$t("；{p0}", { p0: c.$t("差评率分母") })),
                   1
                   /* TEXT */
                 ),
@@ -1198,15 +1198,15 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   [
                     e.createElementVNode(
                       "option",
-                      nl,
-                      e.toDisplayString(u.$t("已评价单数")),
+                      al,
+                      e.toDisplayString(c.$t("已评价单数")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      ll,
-                      e.toDisplayString(u.$t("完工总单量")),
+                      sl,
+                      e.toDisplayString(c.$t("完工总单量")),
                       1
                       /* TEXT */
                     )
@@ -1217,7 +1217,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   [e.vModelSelect, v.badRateDenominator]
                 ])
               ])) : e.createCommentVNode("v-if", !0),
-              e.createElementVNode("p", ol, [
+              e.createElementVNode("p", rl, [
                 m[34] || (m[34] = e.createElementVNode(
                   "i",
                   { class: "ri-information-line" },
@@ -1226,18 +1226,18 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(u.$t("本项总激励 = ①有效好评单数 × 基础激励 × 系数 + ②（非常满意 + 满意工单数）× 售后单价 + ③天猫好评单数 × 天猫单价。安装差评率与评价率按自营 + POP 合并计算，标记「不计取」的 SKU 不进统计。")),
+                  e.toDisplayString(c.$t("本项总激励 = ①有效好评单数 × 基础激励 × 系数 + ②（非常满意 + 满意工单数）× 售后单价 + ③天猫好评单数 × 天猫单价。安装差评率与评价率按自营 + POP 合并计算，标记「不计取」的 SKU 不进统计。")),
                   1
                   /* TEXT */
                 )
               ])
             ]),
-            e.createElementVNode("div", al, [
+            e.createElementVNode("div", il, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: e.unref(a).runtime.rates.state !== "done" || e.unref(a).isRunning(),
-                onClick: $e
+                disabled: e.unref(u).runtime.rates.state !== "done" || e.unref(u).isRunning(),
+                onClick: me
               }, [
                 m[35] || (m[35] = e.createElementVNode(
                   "i",
@@ -1247,56 +1247,56 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(u.$t("规则没问题，下一步")),
+                  e.toDisplayString(c.$t("规则没问题，下一步")),
                   1
                   /* TEXT */
                 )
-              ], 8, sl)
+              ], 8, dl)
             ])
           ]),
           _: 1
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 第 4 步：核算 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "run",
           index: 3,
-          title: e.unref(a).metas[3].title,
-          hint: e.unref(a).metas[3].hint,
-          runtime: e.unref(a).runtime.run,
-          "is-current": e.unref(a).currentKey.value === "run"
+          title: e.unref(u).metas[3].title,
+          hint: e.unref(u).metas[3].hint,
+          runtime: e.unref(u).runtime.run,
+          "is-current": e.unref(u).currentKey.value === "run"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", rl, [
+            e.createElementVNode("div", ul, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: e.unref(a).runtime.rules.state !== "done" || e.unref(a).isRunning(),
-                onClick: Re
+                disabled: e.unref(u).runtime.rules.state !== "done" || e.unref(u).isRunning(),
+                onClick: fe
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(e.unref(a).runtime.run.state === "running" ? "ri-loader-4-line spin" : "ri-calculator-line")
+                    class: e.normalizeClass(e.unref(u).runtime.run.state === "running" ? "ri-loader-4-line spin" : "ri-calculator-line")
                   },
                   null,
                   2
                   /* CLASS */
                 ),
                 e.createTextVNode(
-                  e.toDisplayString(e.unref(a).runtime.run.state === "done" ? u.$t("重新核算") : u.$t("开始核算并生成结果表")),
+                  e.toDisplayString(e.unref(u).runtime.run.state === "done" ? c.$t("重新核算") : c.$t("开始核算并生成结果表")),
                   1
                   /* TEXT */
                 )
-              ], 8, il),
-              L.value ? (e.openBlock(), e.createElementBlock(
+              ], 8, cl),
+              I.value ? (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 { key: 0 },
                 [
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn",
-                    onClick: m[18] || (m[18] = (f) => e.unref(r.openPath)(ce.value))
+                    onClick: m[18] || (m[18] = (f) => e.unref(r.openPath)(ee.value))
                   }, [
                     m[36] || (m[36] = e.createElementVNode(
                       "i",
@@ -1306,7 +1306,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       /* CACHED */
                     )),
                     e.createTextVNode(
-                      e.toDisplayString(u.$t("打开结果表")),
+                      e.toDisplayString(c.$t("打开结果表")),
                       1
                       /* TEXT */
                     )
@@ -1314,7 +1314,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn ghost",
-                    onClick: m[19] || (m[19] = (f) => e.unref(r.openPath)(ce.value, !0))
+                    onClick: m[19] || (m[19] = (f) => e.unref(r.openPath)(ee.value, !0))
                   }, [
                     m[37] || (m[37] = e.createElementVNode(
                       "i",
@@ -1324,7 +1324,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       /* CACHED */
                     )),
                     e.createTextVNode(
-                      e.toDisplayString(u.$t("打开所在文件夹")),
+                      e.toDisplayString(c.$t("打开所在文件夹")),
                       1
                       /* TEXT */
                     )
@@ -1334,71 +1334,23 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* STABLE_FRAGMENT */
               )) : e.createCommentVNode("v-if", !0)
             ]),
-            L.value ? (e.openBlock(), e.createElementBlock(
+            I.value ? (e.openBlock(), e.createElementBlock(
               e.Fragment,
               { key: 0 },
               [
-                e.createElementVNode("div", dl, [
-                  e.createElementVNode("div", ul, [
-                    e.createElementVNode(
-                      "small",
-                      null,
-                      e.toDisplayString(u.$t("服务商数")),
-                      1
-                      /* TEXT */
-                    ),
-                    e.createElementVNode(
-                      "strong",
-                      null,
-                      e.toDisplayString(L.value.totals.providerCount),
-                      1
-                      /* TEXT */
-                    )
-                  ]),
-                  e.createElementVNode("div", cl, [
-                    e.createElementVNode(
-                      "small",
-                      null,
-                      e.toDisplayString(u.$t("①京东安装好评激励")),
-                      1
-                      /* TEXT */
-                    ),
-                    e.createElementVNode(
-                      "strong",
-                      null,
-                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(L.value.totals.installIncentive)),
-                      1
-                      /* TEXT */
-                    )
-                  ]),
-                  e.createElementVNode("div", ml, [
-                    e.createElementVNode(
-                      "small",
-                      null,
-                      e.toDisplayString(u.$t("②京东售后好评激励")),
-                      1
-                      /* TEXT */
-                    ),
-                    e.createElementVNode(
-                      "strong",
-                      null,
-                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(L.value.totals.afterSalesIncentive)),
-                      1
-                      /* TEXT */
-                    )
-                  ]),
+                e.createElementVNode("div", ml, [
                   e.createElementVNode("div", pl, [
                     e.createElementVNode(
                       "small",
                       null,
-                      e.toDisplayString(u.$t("③天猫好评激励")),
+                      e.toDisplayString(c.$t("服务商数")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "strong",
                       null,
-                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(L.value.totals.tmallIncentive)),
+                      e.toDisplayString(I.value.totals.providerCount),
                       1
                       /* TEXT */
                     )
@@ -1407,14 +1359,62 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "small",
                       null,
-                      e.toDisplayString(u.$t("本项总激励")),
+                      e.toDisplayString(c.$t("①京东安装好评激励")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "strong",
                       null,
-                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(L.value.totals.total)),
+                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(I.value.totals.installIncentive)),
+                      1
+                      /* TEXT */
+                    )
+                  ]),
+                  e.createElementVNode("div", yl, [
+                    e.createElementVNode(
+                      "small",
+                      null,
+                      e.toDisplayString(c.$t("②京东售后好评激励")),
+                      1
+                      /* TEXT */
+                    ),
+                    e.createElementVNode(
+                      "strong",
+                      null,
+                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(I.value.totals.afterSalesIncentive)),
+                      1
+                      /* TEXT */
+                    )
+                  ]),
+                  e.createElementVNode("div", fl, [
+                    e.createElementVNode(
+                      "small",
+                      null,
+                      e.toDisplayString(c.$t("③天猫好评激励")),
+                      1
+                      /* TEXT */
+                    ),
+                    e.createElementVNode(
+                      "strong",
+                      null,
+                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(I.value.totals.tmallIncentive)),
+                      1
+                      /* TEXT */
+                    )
+                  ]),
+                  e.createElementVNode("div", gl, [
+                    e.createElementVNode(
+                      "small",
+                      null,
+                      e.toDisplayString(c.$t("本项总激励")),
+                      1
+                      /* TEXT */
+                    ),
+                    e.createElementVNode(
+                      "strong",
+                      null,
+                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(I.value.totals.total)),
                       1
                       /* TEXT */
                     )
@@ -1423,7 +1423,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(L.value.warnings, (f) => (e.openBlock(), e.createElementBlock("p", {
+                  e.renderList(I.value.warnings, (f) => (e.openBlock(), e.createElementBlock("p", {
                     key: f,
                     class: "ss-note warn"
                   }, [
@@ -1443,70 +1443,70 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   128
                   /* KEYED_FRAGMENT */
                 )),
-                e.createElementVNode("div", yl, [
-                  e.createElementVNode("table", fl, [
+                e.createElementVNode("div", Nl, [
+                  e.createElementVNode("table", Vl, [
                     e.createElementVNode("thead", null, [
                       e.createElementVNode("tr", null, [
                         e.createElementVNode(
                           "th",
                           null,
-                          e.toDisplayString(u.$t("服务商")),
-                          1
-                          /* TEXT */
-                        ),
-                        e.createElementVNode(
-                          "th",
-                          gl,
-                          e.toDisplayString(u.$t("完工总单量")),
-                          1
-                          /* TEXT */
-                        ),
-                        e.createElementVNode(
-                          "th",
-                          Nl,
-                          e.toDisplayString(u.$t("已评价")),
-                          1
-                          /* TEXT */
-                        ),
-                        e.createElementVNode(
-                          "th",
-                          Vl,
-                          e.toDisplayString(u.$t("评价率Y")),
+                          e.toDisplayString(c.$t("服务商")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
                           El,
-                          e.toDisplayString(u.$t("差评")),
+                          e.toDisplayString(c.$t("完工总单量")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
                           hl,
-                          e.toDisplayString(u.$t("差评率X")),
+                          e.toDisplayString(c.$t("已评价")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
                           kl,
-                          e.toDisplayString(u.$t("有效好评")),
+                          e.toDisplayString(c.$t("评价率Y")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
                           bl,
-                          e.toDisplayString(u.$t("基础")),
+                          e.toDisplayString(c.$t("差评")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
                           $l,
-                          e.toDisplayString(u.$t("系数")),
+                          e.toDisplayString(c.$t("差评率X")),
+                          1
+                          /* TEXT */
+                        ),
+                        e.createElementVNode(
+                          "th",
+                          Sl,
+                          e.toDisplayString(c.$t("有效好评")),
+                          1
+                          /* TEXT */
+                        ),
+                        e.createElementVNode(
+                          "th",
+                          Dl,
+                          e.toDisplayString(c.$t("基础")),
+                          1
+                          /* TEXT */
+                        ),
+                        e.createElementVNode(
+                          "th",
+                          wl,
+                          e.toDisplayString(c.$t("系数")),
                           1
                           /* TEXT */
                         ),
@@ -1519,8 +1519,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         )),
                         e.createElementVNode(
                           "th",
-                          Sl,
-                          e.toDisplayString(u.$t("售后满意")),
+                          Bl,
+                          e.toDisplayString(c.$t("售后满意")),
                           1
                           /* TEXT */
                         ),
@@ -1533,8 +1533,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         )),
                         e.createElementVNode(
                           "th",
-                          Dl,
-                          e.toDisplayString(u.$t("天猫好评")),
+                          Tl,
+                          e.toDisplayString(c.$t("天猫好评")),
                           1
                           /* TEXT */
                         ),
@@ -1547,8 +1547,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         )),
                         e.createElementVNode(
                           "th",
-                          wl,
-                          e.toDisplayString(u.$t("总激励")),
+                          Cl,
+                          e.toDisplayString(c.$t("总激励")),
                           1
                           /* TEXT */
                         )
@@ -1558,7 +1558,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(L.value.providers, (f) => (e.openBlock(), e.createElementBlock("tr", {
+                        e.renderList(I.value.providers, (f) => (e.openBlock(), e.createElementBlock("tr", {
                           key: f.provider
                         }, [
                           e.createCommentVNode(" 评价率未知（没给可评价单数表）时可评价数只是 = 已评价数，和导出表一样显示「—」 "),
@@ -1571,96 +1571,96 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                           ),
                           e.createElementVNode(
                             "td",
-                            Bl,
+                            _l,
                             e.toDisplayString(f.rateYKnown ? f.evaluableOrders : "—"),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            Tl,
+                            Pl,
                             e.toDisplayString(f.ratedOrders),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            Cl,
+                            Rl,
                             e.toDisplayString(f.rateYKnown ? e.unref(r.fmtPct)(f.rateY) : "—"),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            _l,
+                            Ml,
                             e.toDisplayString(f.badOrders),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            Pl,
+                            Al,
                             e.toDisplayString(e.unref(r.fmtPct)(f.badRateX)),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            Rl,
+                            Ul,
                             e.toDisplayString(f.goodOrders),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            Ml,
+                            Ll,
                             e.toDisplayString(f.baseAmount),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            Al,
+                            Fl,
                             e.toDisplayString(f.coef),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            Ul,
+                            Ol,
                             e.toDisplayString(e.unref(r.fmtMoney)(f.installIncentive)),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            Fl,
+                            Il,
                             e.toDisplayString(f.afterSalesSatisfied),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            Ll,
+                            ql,
                             e.toDisplayString(e.unref(r.fmtMoney)(f.afterSalesIncentive)),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            Ol,
+                            Kl,
                             e.toDisplayString(f.tmallGood),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            Il,
+                            zl,
                             e.toDisplayString(e.unref(r.fmtMoney)(f.tmallIncentive)),
                             1
                             /* TEXT */
                           ),
-                          e.createElementVNode("td", ql, [
+                          e.createElementVNode("td", jl, [
                             e.createElementVNode(
                               "strong",
                               null,
@@ -1673,25 +1673,25 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         128
                         /* KEYED_FRAGMENT */
                       )),
-                      e.createElementVNode("tr", Kl, [
+                      e.createElementVNode("tr", Wl, [
                         e.createElementVNode(
                           "td",
                           null,
-                          e.toDisplayString(u.$t("合计")),
+                          e.toDisplayString(c.$t("合计")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "td",
-                          zl,
-                          e.toDisplayString(L.value.totals.evaluableOrders),
+                          Yl,
+                          e.toDisplayString(I.value.totals.evaluableOrders),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "td",
-                          jl,
-                          e.toDisplayString(L.value.totals.ratedOrders),
+                          xl,
+                          e.toDisplayString(I.value.totals.ratedOrders),
                           1
                           /* TEXT */
                         ),
@@ -1704,8 +1704,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         )),
                         e.createElementVNode(
                           "td",
-                          Wl,
-                          e.toDisplayString(L.value.totals.badOrders),
+                          Xl,
+                          e.toDisplayString(I.value.totals.badOrders),
                           1
                           /* TEXT */
                         ),
@@ -1718,8 +1718,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         )),
                         e.createElementVNode(
                           "td",
-                          Yl,
-                          e.toDisplayString(L.value.totals.goodOrders),
+                          Ql,
+                          e.toDisplayString(I.value.totals.goodOrders),
                           1
                           /* TEXT */
                         ),
@@ -1739,8 +1739,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         )),
                         e.createElementVNode(
                           "td",
-                          xl,
-                          e.toDisplayString(e.unref(r.fmtMoney)(L.value.totals.installIncentive)),
+                          Jl,
+                          e.toDisplayString(e.unref(r.fmtMoney)(I.value.totals.installIncentive)),
                           1
                           /* TEXT */
                         ),
@@ -1753,8 +1753,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         )),
                         e.createElementVNode(
                           "td",
-                          Xl,
-                          e.toDisplayString(e.unref(r.fmtMoney)(L.value.totals.afterSalesIncentive)),
+                          Zl,
+                          e.toDisplayString(e.unref(r.fmtMoney)(I.value.totals.afterSalesIncentive)),
                           1
                           /* TEXT */
                         ),
@@ -1767,15 +1767,15 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         )),
                         e.createElementVNode(
                           "td",
-                          Ql,
-                          e.toDisplayString(e.unref(r.fmtMoney)(L.value.totals.tmallIncentive)),
+                          Gl,
+                          e.toDisplayString(e.unref(r.fmtMoney)(I.value.totals.tmallIncentive)),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "td",
-                          Jl,
-                          e.toDisplayString(e.unref(r.fmtMoney)(L.value.totals.total)),
+                          Hl,
+                          e.toDisplayString(e.unref(r.fmtMoney)(I.value.totals.total)),
                           1
                           /* TEXT */
                         )
@@ -1783,7 +1783,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     ])
                   ])
                 ]),
-                e.createElementVNode("div", Zl, [
+                e.createElementVNode("div", eo, [
                   m[48] || (m[48] = e.createElementVNode(
                     "i",
                     { class: "ri-file-excel-2-line" },
@@ -1791,7 +1791,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     -1
                     /* CACHED */
                   )),
-                  e.createElementVNode("code", { title: ce.value }, e.toDisplayString(ce.value), 9, Gl)
+                  e.createElementVNode("code", { title: ee.value }, e.toDisplayString(ee.value), 9, to)
                 ])
               ],
               64
@@ -1802,48 +1802,48 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 第 5 步：付款提醒 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "remind",
           index: 4,
-          title: e.unref(a).metas[4].title,
-          hint: e.unref(a).metas[4].hint,
-          runtime: e.unref(a).runtime.remind,
-          "is-current": e.unref(a).currentKey.value === "remind"
+          title: e.unref(u).metas[4].title,
+          hint: e.unref(u).metas[4].hint,
+          runtime: e.unref(u).runtime.remind,
+          "is-current": e.unref(u).currentKey.value === "remind"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", Hl, [
-              e.createElementVNode("label", eo, [
+            e.createElementVNode("div", no, [
+              e.createElementVNode("label", lo, [
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": m[20] || (m[20] = (f) => B.enabled = f),
+                    "onUpdate:modelValue": m[20] || (m[20] = (f) => M.enabled = f),
                     type: "checkbox"
                   },
                   null,
                   512
                   /* NEED_PATCH */
                 ), [
-                  [e.vModelCheckbox, B.enabled]
+                  [e.vModelCheckbox, M.enabled]
                 ]),
                 e.createElementVNode(
                   "span",
                   null,
-                  e.toDisplayString(u.$t("开启付款提醒")),
+                  e.toDisplayString(c.$t("开启付款提醒")),
                   1
                   /* TEXT */
                 )
               ]),
               e.createElementVNode(
                 "span",
-                to,
-                e.toDisplayString(u.$t("每月")),
+                oo,
+                e.toDisplayString(c.$t("每月")),
                 1
                 /* TEXT */
               ),
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": m[21] || (m[21] = (f) => B.day = f),
+                  "onUpdate:modelValue": m[21] || (m[21] = (f) => M.day = f),
                   type: "number",
                   min: "1",
                   max: "28"
@@ -1854,22 +1854,22 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               ), [
                 [
                   e.vModelText,
-                  B.day,
+                  M.day,
                   void 0,
                   { number: !0 }
                 ]
               ]),
               e.createElementVNode(
                 "span",
-                no,
-                e.toDisplayString(u.$t("日")),
+                ao,
+                e.toDisplayString(c.$t("日")),
                 1
                 /* TEXT */
               ),
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": m[22] || (m[22] = (f) => B.hour = f),
+                  "onUpdate:modelValue": m[22] || (m[22] = (f) => M.hour = f),
                   type: "number",
                   min: "0",
                   max: "23"
@@ -1880,23 +1880,23 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               ), [
                 [
                   e.vModelText,
-                  B.hour,
+                  M.hour,
                   void 0,
                   { number: !0 }
                 ]
               ]),
               e.createElementVNode(
                 "span",
-                lo,
-                e.toDisplayString(u.$t("点提醒")),
+                so,
+                e.toDisplayString(c.$t("点提醒")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn sm primary",
-                disabled: e.unref(a).isRunning(),
-                onClick: me
+                disabled: e.unref(u).isRunning(),
+                onClick: Ee
               }, [
                 m[49] || (m[49] = e.createElementVNode(
                   "i",
@@ -1906,13 +1906,13 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(u.$t("保存提醒设置")),
+                  e.toDisplayString(c.$t("保存提醒设置")),
                   1
                   /* TEXT */
                 )
-              ], 8, oo)
+              ], 8, ro)
             ]),
-            e.createElementVNode("p", ao, [
+            e.createElementVNode("p", io, [
               m[50] || (m[50] = e.createElementVNode(
                 "i",
                 { class: "ri-notification-3-line" },
@@ -1921,12 +1921,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(u.$t("到点会在应用内弹提醒并发系统通知；如果在「定时任务 · 结果推送」里配了企微/钉钉/邮箱出口，也会一并推送到手机。上次提醒：{last}", { last: S.state?.review?.paymentReminder?.lastFiredMonth || u.$t("尚未触发") })),
+                e.toDisplayString(c.$t("到点会在应用内弹提醒并发系统通知；如果在「定时任务 · 结果推送」里配了企微/钉钉/邮箱出口，也会一并推送到手机。上次提醒：{last}", { last: U.state?.review?.paymentReminder?.lastFiredMonth || c.$t("尚未触发") })),
                 1
                 /* TEXT */
               )
             ]),
-            pe.value ? (e.openBlock(), e.createElementBlock("div", so, [
+            we.value ? (e.openBlock(), e.createElementBlock("div", uo, [
               m[51] || (m[51] = e.createElementVNode(
                 "i",
                 { class: "ri-history-line" },
@@ -1935,7 +1935,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(u.$t("上次核算：{at}，{n} 家服务商，合计 ¥{total}", { at: e.unref(r.fmtDateTime)(pe.value.at), n: pe.value.count, total: e.unref(r.fmtMoney)(pe.value.total) })),
+                e.toDisplayString(c.$t("上次核算：{at}，{n} 家服务商，合计 ¥{total}", { at: e.unref(r.fmtDateTime)(we.value.at), n: we.value.count, total: e.unref(r.fmtMoney)(we.value.total) })),
                 1
                 /* TEXT */
               ),
@@ -1945,9 +1945,9 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   type: "button",
                   class: "ss-link",
                   style: { "margin-inline-start": "8px" },
-                  onClick: m[23] || (m[23] = (f) => e.unref(r.openPath)(pe.value.path))
+                  onClick: m[23] || (m[23] = (f) => e.unref(r.openPath)(we.value.path))
                 },
-                e.toDisplayString(u.$t("打开上次结果表")),
+                e.toDisplayString(c.$t("打开上次结果表")),
                 1
                 /* TEXT */
               )
@@ -1959,73 +1959,94 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
       ])
     ]));
   }
-}), nt = (Ce, we) => {
-  const ne = Ce.__vccOpts || Ce;
-  for (const [S, z] of we)
-    ne[S] = z;
-  return ne;
-}, io = /* @__PURE__ */ nt(ro, [["__scopeId", "data-v-759e1171"]]), uo = { class: "ss-module" }, co = { class: "ss-steps" }, mo = { class: "ss-grid" }, po = { class: "ss-field" }, vo = { class: "ss-source" }, yo = { class: "ss-subhead" }, fo = { class: "ss-source" }, go = { class: "ss-subhead" }, No = { class: "ss-rule-row" }, Vo = { class: "lbl" }, Eo = ["onUpdate:modelValue"], ho = ["onUpdate:modelValue"], ko = { value: 1 }, bo = { value: -1 }, $o = { class: "ss-actions" }, So = ["disabled"], Do = { class: "ss-kpis" }, wo = { class: "ss-kpi" }, Bo = { class: "ss-kpi" }, To = { class: "ss-kpi" }, Co = { class: "ss-kpi" }, _o = { class: "ss-kpi accent" }, Po = { class: "ss-note" }, Ro = {
+}), tt = (pe, ie) => {
+  const Z = pe.__vccOpts || pe;
+  for (const [U, X] of ie)
+    Z[U] = X;
+  return Z;
+}, mo = /* @__PURE__ */ tt(co, [["__scopeId", "data-v-5b5a726c"]]), Ce = { provider: "服务商", period: "结算期", payable: "应付合计", sentDate: "发送日期", seq: "序号", date: "日期", originalName: "原文件名" }, Dt = {
+  服务商: { "en-US": "Provider", ar: "مزود_الخدمة" },
+  结算期: { "en-US": "Period", ar: "فترة_التسوية" },
+  应付合计: { "en-US": "Payable", ar: "المستحق" },
+  发送日期: { "en-US": "SentDate", ar: "تاريخ_الإرسال" },
+  序号: { "en-US": "Seq", ar: "الرقم" },
+  日期: { "en-US": "Date", ar: "التاريخ" },
+  原文件名: { "en-US": "OriginalName", ar: "اسم_الملف" }
+};
+function po(pe, ie) {
+  return `{${(ie === "en-US" || ie === "ar" ? Dt[pe]?.[ie] : void 0) || pe}}`;
+}
+const st = /* @__PURE__ */ new Map();
+for (const [pe, ie] of Object.entries(Dt))
+  st.set(ie["en-US"].toLowerCase(), pe), st.set(ie.ar, pe);
+function vo(pe) {
+  return String(pe || "").replace(/\{([^{}]+)\}/g, (ie, Z) => {
+    const U = st.get(Z.trim()) ?? st.get(Z.trim().toLowerCase());
+    return U ? `{${U}}` : ie;
+  });
+}
+const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss-grid" }, No = { class: "ss-field" }, Vo = { class: "ss-source" }, Eo = { class: "ss-subhead" }, ho = { class: "ss-source" }, ko = { class: "ss-subhead" }, bo = { class: "ss-rule-row" }, $o = { class: "lbl" }, So = ["onUpdate:modelValue"], Do = ["onUpdate:modelValue"], wo = { value: 1 }, Bo = { value: -1 }, To = { class: "ss-actions" }, Co = ["disabled"], _o = { class: "ss-kpis" }, Po = { class: "ss-kpi" }, Ro = { class: "ss-kpi" }, Mo = { class: "ss-kpi" }, Ao = { class: "ss-kpi" }, Uo = { class: "ss-kpi accent" }, Lo = { class: "ss-note" }, Fo = {
   key: 0,
   class: "ss-table-wrap",
   style: { "max-height": "300px", overflow: "auto" }
-}, Mo = { class: "ss-table" }, Ao = ["onClick"], Uo = { class: "ss-actions" }, Fo = ["disabled"], Lo = ["disabled"], Oo = {
+}, Oo = { class: "ss-table" }, Io = ["onClick"], qo = { class: "ss-actions" }, Ko = ["disabled"], zo = ["disabled"], jo = {
   key: 0,
   class: "ss-note danger"
-}, Io = {
+}, Wo = {
   key: 1,
   class: "ss-note warn"
-}, qo = {
+}, Yo = {
   key: 2,
   class: "ss-note ok"
-}, Ko = { class: "ss-grid" }, zo = { class: "ss-field" }, jo = { class: "ss-field" }, Wo = { class: "ss-subhead" }, Yo = {
+}, xo = { class: "ss-grid" }, Xo = { class: "ss-field" }, Qo = { class: "ss-field" }, Jo = { class: "ss-subhead" }, Zo = {
   class: "ss-table-wrap",
   style: { "max-height": "320px", overflow: "auto" }
-}, xo = { class: "ss-table" }, Xo = { class: "num" }, Qo = ["onUpdate:modelValue"], Jo = { class: "num" }, Zo = ["value", "placeholder", "onChange"], Go = ["onClick"], Ho = {
+}, Go = { class: "ss-table" }, Ho = { class: "num" }, ea = ["onUpdate:modelValue"], ta = { class: "num" }, na = ["value", "placeholder", "onChange"], la = ["onClick"], oa = {
   key: 0,
   class: "ss-chip ok"
-}, ea = ["title"], ta = {
+}, aa = ["title"], sa = {
   key: 2,
   class: "ss-chip"
-}, na = ["title"], la = ["title"], oa = ["disabled", "title", "onClick"], aa = { key: 0 }, sa = {
+}, ra = ["title"], ia = ["title"], da = ["disabled", "title", "onClick"], ua = { key: 0 }, ca = {
   colspan: "7",
   class: "ss-muted"
-}, ra = { class: "ss-rule-row" }, ia = { class: "ss-switch" }, da = { class: "lbl" }, ua = ["disabled"], ca = { class: "lbl" }, ma = {
+}, ma = { class: "ss-rule-row" }, pa = { class: "ss-switch" }, va = { class: "lbl" }, ya = ["disabled"], fa = { class: "lbl" }, ga = {
   key: 3,
   class: "ss-grid"
-}, pa = { class: "ss-field" }, va = { class: "ss-field" }, ya = { class: "ss-actions" }, fa = ["disabled"], ga = ["disabled"], Na = { key: 0 }, Va = { key: 1 }, Ea = { class: "ss-rule-row" }, ha = { class: "lbl" }, ka = { class: "lbl" }, ba = ["onClick"], $a = { class: "ss-muted" }, Sa = {
+}, Na = { class: "ss-field" }, Va = { class: "ss-field" }, Ea = { class: "ss-actions" }, ha = ["disabled"], ka = ["disabled"], ba = { key: 0 }, $a = { key: 1 }, Sa = { class: "ss-rule-row" }, Da = { class: "lbl" }, wa = { class: "lbl" }, Ba = ["onClick"], Ta = { class: "ss-muted" }, Ca = {
   class: "ss-table-wrap",
   style: { "max-height": "340px", overflow: "auto" }
-}, Da = { class: "ss-table" }, wa = ["onDrop"], Ba = {
+}, _a = { class: "ss-table" }, Pa = ["onDrop"], Ra = {
   key: 0,
   class: "ss-chip ok"
-}, Ta = {
+}, Ma = {
   key: 1,
   class: "ss-chip bad"
-}, Ca = {
+}, Aa = {
   key: 2,
   class: "ss-chip warn"
-}, _a = {
+}, Ua = {
   key: 3,
   class: "ss-chip"
-}, Pa = ["onClick"], Ra = {
+}, La = ["onClick"], Fa = {
   key: 1,
   class: "ss-muted"
-}, Ma = ["onClick"], Aa = { class: "ss-actions" }, Ua = ["disabled"], Fa = { class: "ss-muted" }, La = { class: "ss-rule-row" }, Oa = { class: "lbl" }, Ia = ["placeholder"], qa = ["disabled"], Ka = { class: "ss-note" }, za = {
+}, Oa = ["onClick"], Ia = { class: "ss-actions" }, qa = ["disabled"], Ka = { class: "ss-muted" }, za = { class: "ss-rule-row" }, ja = { class: "lbl" }, Wa = ["placeholder"], Ya = ["disabled"], xa = { class: "ss-note" }, Xa = {
   class: "ss-table-wrap",
   style: { "max-height": "380px", overflow: "auto" }
-}, ja = { class: "ss-table" }, Wa = { class: "num" }, Ya = { class: "num" }, xa = ["value", "onChange"], Xa = ["value", "onChange"], Qa = ["value", "onChange"], Ja = {
+}, Qa = { class: "ss-table" }, Ja = { class: "num" }, Za = { class: "num" }, Ga = ["value", "onChange"], Ha = ["value", "onChange"], es = ["value", "onChange"], ts = {
   key: 0,
   class: "ss-chip bad"
-}, Za = {
+}, ns = {
   key: 1,
   class: "ss-chip bad"
-}, Ga = {
+}, ls = {
   key: 2,
   class: "ss-chip ok"
-}, Ha = { class: "ss-rule-row" }, es = { class: "ss-switch" }, ts = { class: "lbl" }, ns = ["value"], ls = { class: "lbl" }, os = ["disabled"], as = {
+}, os = { class: "ss-rule-row" }, as = { class: "ss-switch" }, ss = { class: "lbl" }, rs = ["value"], is = { class: "lbl" }, ds = ["disabled"], us = {
   key: 0,
   class: "ss-file-out"
-}, ss = /* @__PURE__ */ e.defineComponent({
+}, cs = /* @__PURE__ */ e.defineComponent({
   __name: "SettlementModule",
   props: {
     state: {},
@@ -2034,311 +2055,311 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
     dir: {}
   },
   emits: ["refresh"],
-  setup(Ce, { expose: we, emit: ne }) {
-    const S = Ce, z = ne, V = Ke.useNotificationStore(), a = r.useSteps([
-      { key: "summary", title: i.t("读取表格并生成结算总汇总表"), hint: i.t("工单结算明细 + 各项激励 / 补扣表 → 服务商结算总汇总表") },
-      { key: "split", title: i.t("按服务商拆分附件"), hint: i.t("每家一个 Excel，文件名 = 服务商，子表 = 各补扣费用") },
-      { key: "send", title: i.t("邮件下发并记录已读状态"), hint: i.t("逐家发送到服务商邮箱（可多个），回执 / 回信自动打「已读」；未获阅读确认 N 天自动重发、已读 N 天未开票自动催办") },
-      { key: "invoice", title: i.t("监听发票回传并归档"), hint: i.t("邮箱 / 企微回传发票 → 自动下载 → 按规则重命名") },
-      { key: "track", title: i.t("核销提醒、付款回写与未付款报表"), hint: i.t("3 天未核销提醒 · 核销结束 = 付款时间 · 20 天未开票预警 · 定期报表") }
-    ]), M = [{ key: "provider", required: !0 }, { key: "amount", required: !0, label: i.t("结算金额") }, { key: "orderNo" }], Y = [{ key: "provider", required: !0 }, { key: "amount", required: !0, label: i.t("金额") }], Q = [i.t("周日"), i.t("周一"), i.t("周二"), i.t("周三"), i.t("周四"), i.t("周五"), i.t("周六")], D = e.ref(S.state?.settlement?.period || r.currentPeriod()), F = e.reactive([]), _ = e.reactive([]), J = (o) => o.map((c) => ({ path: c.path, name: c.fileName, note: i.t("{n} 行", { n: c.rowCount }) })), q = (o) => (o || "").split(/[\\/]/).pop() || "";
-    async function de(o) {
-      for (const c of o)
-        if (!F.some((d) => d.path === c))
+  setup(pe, { expose: ie, emit: Z }) {
+    const U = () => String(s.i18n.global.locale?.value ?? s.i18n.global.locale), X = (o) => po(o, U()), k = e.computed(() => ({ provider: X(Ce.provider), period: X(Ce.period), payable: X(Ce.payable), sentDate: X(Ce.sentDate) })), u = e.computed(() => [Ce.provider, Ce.period, Ce.seq, Ce.date, Ce.originalName].map(X)), $ = pe, K = Z, C = qe.useNotificationStore(), V = r.useSteps([
+      { key: "summary", title: s.t("读取表格并生成结算总汇总表"), hint: s.t("工单结算明细 + 各项激励 / 补扣表 → 服务商结算总汇总表") },
+      { key: "split", title: s.t("按服务商拆分附件"), hint: s.t("每家一个 Excel，文件名 = 服务商，子表 = 各补扣费用") },
+      { key: "send", title: s.t("邮件下发并记录已读状态"), hint: s.t("逐家发送到服务商邮箱（可多个），回执 / 回信自动打「已读」；未获阅读确认 N 天自动重发、已读 N 天未开票自动催办") },
+      { key: "invoice", title: s.t("监听发票回传并归档"), hint: s.t("邮箱 / 企微回传发票 → 自动下载 → 按规则重命名") },
+      { key: "track", title: s.t("核销提醒、付款回写与未付款报表"), hint: s.t("3 天未核销提醒 · 核销结束 = 付款时间 · 20 天未开票预警 · 定期报表") }
+    ]), G = [{ key: "provider", required: !0 }, { key: "amount", required: !0, label: s.t("结算金额") }, { key: "orderNo" }], L = [{ key: "provider", required: !0 }, { key: "amount", required: !0, label: s.t("金额") }], ne = [s.t("周日"), s.t("周一"), s.t("周二"), s.t("周三"), s.t("周四"), s.t("周五"), s.t("周六")], w = e.ref($.state?.settlement?.period || r.currentPeriod()), Y = e.reactive([]), Q = e.reactive([]), be = (o) => o.map((d) => ({ path: d.path, name: d.fileName, note: s.t("{n} 行", { n: d.rowCount }) })), S = (o) => (o || "").split(/[\\/]/).pop() || "";
+    async function j(o) {
+      for (const d of o)
+        if (!Y.some((i) => i.path === d))
           try {
-            F.push(await r.inspectTable(c, M.map((d) => d.key)));
-          } catch (d) {
-            V.error(r.errorMessage(d));
+            Y.push(await r.inspectTable(d, G.map((i) => i.key)));
+          } catch (i) {
+            C.error(r.errorMessage(i));
           }
     }
-    function fe(o) {
-      const c = o.replace(/^已录补扣[-—_ ]*/, "");
-      return /激励|补贴|奖励|返利|返点|减免|核销|补发|奖金/.test(c) ? 1 : /补扣|扣款|扣罚|罚款|扣除|考核扣|违约|赔付|扣减/.test(c) ? -1 : 1;
+    function F(o) {
+      const d = o.replace(/^已录补扣[-—_ ]*/, "");
+      return /激励|补贴|奖励|返利|返点|减免|核销|补发|奖金/.test(d) ? 1 : /补扣|扣款|扣罚|罚款|扣除|考核扣|违约|赔付|扣减/.test(d) ? -1 : 1;
     }
-    async function he(o) {
-      for (const c of o)
-        if (!_.some((d) => d.path === c))
+    async function H(o) {
+      for (const d of o)
+        if (!Q.some((i) => i.path === d))
           try {
-            const d = await r.inspectTable(c, Y.map((R) => R.key), void 0, Ze.feeSheetPrefer), E = d.fileName.replace(/\.(xlsx|xls|xlsm|csv)$/i, "").replace(/^已录补扣[-—_ ]*/, "").replace(/^\d{4}[-_.]?\d{1,2}[-_.]?/, "").slice(0, 31);
-            _.push({ ...d, name: E, sign: fe(E) });
-          } catch (d) {
-            V.error(r.errorMessage(d));
+            const i = await r.inspectTable(d, L.map((q) => q.key), void 0, Ge.feeSheetPrefer), E = i.fileName.replace(/\.(xlsx|xls|xlsm|csv)$/i, "").replace(/^已录补扣[-—_ ]*/, "").replace(/^\d{4}[-_.]?\d{1,2}[-_.]?/, "").slice(0, 31);
+            Q.push({ ...i, name: E, sign: F(E) });
+          } catch (i) {
+            C.error(r.errorMessage(i));
           }
     }
-    function $(o, c) {
-      const d = o.findIndex((E) => E.path === c);
-      d >= 0 && o.splice(d, 1);
+    function ae(o, d) {
+      const i = o.findIndex((E) => E.path === d);
+      i >= 0 && o.splice(i, 1);
     }
-    async function I(o, c, d, E) {
-      const R = o[c];
+    async function de(o, d, i, E) {
+      const q = o[d];
       try {
-        const Ne = await r.inspectTable(R.path, E.map((te) => te.key), d);
-        o[c] = { ...Ne, ...R.name ? { name: R.name, sign: R.sign } : {} };
-      } catch (Ne) {
-        V.error(r.errorMessage(Ne));
+        const Pe = await r.inspectTable(q.path, E.map((A) => A.key), i);
+        o[d] = { ...Pe, ...q.name ? { name: q.name, sign: q.sign } : {} };
+      } catch (Pe) {
+        C.error(r.errorMessage(Pe));
       }
     }
-    const C = e.ref(null), x = e.ref(""), le = e.ref(S.state?.settlement?.lastSplitDir || ""), G = e.ref([]), K = e.ref(S.state?.settlement?.records || []);
-    e.watch(() => S.state?.settlement?.records, (o) => {
-      Array.isArray(o) && (K.value = o);
+    const le = e.ref(null), Ve = e.ref(""), x = e.ref($.state?.settlement?.lastSplitDir || ""), J = e.ref([]), T = e.ref($.state?.settlement?.records || []);
+    e.watch(() => $.state?.settlement?.records, (o) => {
+      Array.isArray(o) && (T.value = o);
     });
-    const H = e.computed(() => K.value.filter((o) => o.period === D.value).sort((o, c) => o.provider.localeCompare(c.provider, "zh-CN"))), A = (o) => S.trackingFlags?.[`${o.period}|${o.provider}`] || oe(o);
+    const O = e.computed(() => T.value.filter((o) => o.period === w.value).sort((o, d) => o.provider.localeCompare(d.provider, "zh-CN"))), W = (o) => $.trackingFlags?.[`${o.period}|${o.provider}`] || oe(o);
     function oe(o) {
-      const c = Date.now(), d = (te) => te ? Math.floor((c - Date.parse(te)) / 864e5) : void 0, E = d(o.sentAt), R = d(o.invoiceReceivedAt), Ne = !!o.writeoffCompletedAt;
+      const d = Date.now(), i = (A) => A ? Math.floor((d - Date.parse(A)) / 864e5) : void 0, E = i(o.sentAt), q = i(o.invoiceReceivedAt), Pe = !!o.writeoffCompletedAt;
       return {
-        paid: Ne,
+        paid: Pe,
         daysSinceSent: E,
-        daysSinceInvoice: R,
+        daysSinceInvoice: q,
         invoiceOverdue: !!o.sentAt && !o.invoiceReceivedAt && (E ?? 0) >= 20,
-        writeoffReminderDue: !!o.invoiceReceivedAt && !o.writeoffStartedAt && (R ?? 0) >= 3,
-        stage: Ne ? "paid" : o.writeoffStartedAt ? "writeoff_in_progress" : o.invoiceReceivedAt ? "awaiting_writeoff" : o.sentAt ? "awaiting_invoice" : "unsent",
+        writeoffReminderDue: !!o.invoiceReceivedAt && !o.writeoffStartedAt && (q ?? 0) >= 3,
+        stage: Pe ? "paid" : o.writeoffStartedAt ? "writeoff_in_progress" : o.invoiceReceivedAt ? "awaiting_writeoff" : o.sentAt ? "awaiting_invoice" : "unsent",
         readState: o.repliedAt ? "replied" : o.readAt ? "read" : o.sentAt ? "sent" : o.sendError ? "failed" : "unsent"
       };
     }
-    async function j(o) {
-      D.value = o.period, F.splice(0, F.length), _.splice(0, _.length);
-      for (const c of a.metas) a.reset(c.key);
-      a.currentKey.value = "summary", await he(o.feeFiles);
+    async function v(o) {
+      w.value = o.period, Y.splice(0, Y.length), Q.splice(0, Q.length);
+      for (const d of V.metas) V.reset(d.key);
+      V.currentKey.value = "summary", await H(o.feeFiles);
     }
-    we({ prefillDemo: j });
-    async function ee() {
-      a.start("summary"), C.value = null;
+    ie({ prefillDemo: v });
+    async function g() {
+      V.start("summary"), le.value = null;
       try {
-        if (!/^\d{4}-\d{2}$/.test(D.value)) throw new Error(i.t("请选择结算期"));
-        const o = [...F, ..._].filter((E) => !E.mapping.provider || !E.mapping.amount);
-        if (o.length) throw new Error(i.t("{files} 缺少服务商列或金额列", { files: o.map((E) => E.fileName).join("、") }));
-        const c = (E) => ({ path: E.path, sheetName: E.sheetName, mapping: E.mapping }), d = await r.api().settlementRun({
-          period: D.value,
-          workOrders: F.map(c),
-          feeItems: _.map((E) => ({ ...c(E), name: E.name, sign: E.sign }))
+        if (!/^\d{4}-\d{2}$/.test(w.value)) throw new Error(s.t("请选择结算期"));
+        const o = [...Y, ...Q].filter((E) => !E.mapping.provider || !E.mapping.amount);
+        if (o.length) throw new Error(s.t("{files} 缺少服务商列或金额列", { files: o.map((E) => E.fileName).join("、") }));
+        const d = (E) => ({ path: E.path, sheetName: E.sheetName, mapping: E.mapping }), i = await r.api().settlementRun({
+          period: w.value,
+          workOrders: Y.map(d),
+          feeItems: Q.map((E) => ({ ...d(E), name: E.name, sign: E.sign }))
         });
-        C.value = d.result, x.value = d.summaryPath, le.value = d.splitDir, G.value = d.files, K.value = [...K.value.filter((E) => E.period !== D.value), ...d.records];
-        for (const E of d.records) g[E.provider] === void 0 && (g[E.provider] = !0);
-        a.done("summary", i.t("{n} 家服务商，应付合计 ¥{total}，汇总表与 {m} 个拆分附件已生成", { n: d.result.totals.providerCount, total: r.fmtMoney(d.result.totals.netTotal), m: d.files.length })), a.done("split", i.t("{m} 个服务商附件，子表按费用项命名", { m: d.files.length })), a.currentKey.value = "split", await r.api().statePatch({ settlement: { period: D.value } }), z("refresh");
+        le.value = i.result, Ve.value = i.summaryPath, x.value = i.splitDir, J.value = i.files, T.value = [...T.value.filter((E) => E.period !== w.value), ...i.records];
+        for (const E of i.records) me[E.provider] === void 0 && (me[E.provider] = !0);
+        V.done("summary", s.t("{n} 家服务商，应付合计 ¥{total}，汇总表与 {m} 个拆分附件已生成", { n: i.result.totals.providerCount, total: r.fmtMoney(i.result.totals.netTotal), m: i.files.length })), V.done("split", s.t("{m} 个服务商附件，子表按费用项命名", { m: i.files.length })), V.currentKey.value = "split", await r.api().statePatch({ settlement: { period: w.value } }), K("refresh");
       } catch (o) {
-        a.fail("summary", o);
+        V.fail("summary", o);
       }
     }
-    function ae() {
-      a.done("split", i.t("{m} 个服务商附件已确认", { m: G.value.length }));
+    function D() {
+      V.done("split", s.t("{m} 个服务商附件已确认", { m: J.value.length }));
     }
-    const X = e.ref(S.state?.settlement?.mailSubjectTemplate || ""), v = e.ref(S.state?.settlement?.mailBodyTemplate || ""), g = e.reactive({}), b = e.computed(() => H.value.filter((o) => g[o.provider]).map((o) => o.provider)), P = e.ref([]), ue = e.computed(() => S.email || {});
-    function $e(o) {
-      for (const c of H.value) g[c.provider] = o;
+    const P = e.ref($.state?.settlement?.mailSubjectTemplate || ""), $e = e.ref($.state?.settlement?.mailBodyTemplate || ""), me = e.reactive({}), I = e.computed(() => O.value.filter((o) => me[o.provider]).map((o) => o.provider)), ee = e.ref([]), fe = e.computed(() => $.email || {});
+    function M(o) {
+      for (const d of O.value) me[d.provider] = o;
     }
-    async function L(o, c) {
+    async function Ee(o, d) {
       try {
-        const d = await r.api().settlementTrackUpdate({ period: D.value, provider: o, patch: { email: c.trim() } }), E = K.value.findIndex((R) => R.period === D.value && R.provider === o);
-        E >= 0 && (K.value[E] = d.record);
-      } catch (d) {
-        V.error(r.errorMessage(d));
+        const i = await r.api().settlementTrackUpdate({ period: w.value, provider: o, patch: { email: d.trim() } }), E = T.value.findIndex((q) => q.period === w.value && q.provider === o);
+        E >= 0 && (T.value[E] = i.record);
+      } catch (i) {
+        C.error(r.errorMessage(i));
       }
     }
-    async function ce() {
-      const o = await r.pickFiles("excel", !1, i.t("选择服务商通讯录 Excel（含服务商、邮箱列）"));
+    async function we() {
+      const o = await r.pickFiles("excel", !1, s.t("选择服务商通讯录 Excel（含服务商、邮箱列）"));
       if (o[0])
         try {
-          const c = await r.api().contactsImport({ path: o[0] });
-          V.success(i.t("已导入 {n} 条服务商联系方式", { n: c.imported }));
-          for (const d of H.value) {
-            const E = (c.providerDirectory || []).find((R) => R.provider === d.provider);
-            E?.email && E.email !== d.email && await L(d.provider, E.email);
+          const d = await r.api().contactsImport({ path: o[0] });
+          C.success(s.t("已导入 {n} 条服务商联系方式", { n: d.imported }));
+          for (const i of O.value) {
+            const E = (d.providerDirectory || []).find((q) => q.provider === i.provider);
+            E?.email && E.email !== i.email && await Ee(i.provider, E.email);
           }
-          z("refresh");
-        } catch (c) {
-          V.error(r.errorMessage(c));
+          K("refresh");
+        } catch (d) {
+          C.error(r.errorMessage(d));
         }
     }
-    async function Re() {
-      a.start("send"), P.value = [];
+    async function c() {
+      V.start("send"), ee.value = [];
       try {
-        await r.api().statePatch({ settlement: { mailSubjectTemplate: X.value, mailBodyTemplate: v.value } });
-        const o = await r.api().settlementSend({ period: D.value, providers: b.value, subjectTemplate: X.value, bodyTemplate: v.value, requestReadReceipt: !0 });
-        P.value = o.outcomes, K.value = [...K.value.filter((E) => E.period !== D.value), ...o.records];
-        const c = o.outcomes.filter((E) => E.ok).length, d = o.outcomes.length - c;
-        if (c === 0) throw new Error(o.outcomes.map((E) => `${E.provider}：${E.message}`).join(i.t("；")));
-        a.done("send", i.t("已发送 {a} 家{b}", { a: c, b: d ? i.t("，{n} 家失败（见下方原因）", { n: d }) : "" })), z("refresh");
+        await r.api().statePatch({ settlement: { mailSubjectTemplate: P.value, mailBodyTemplate: $e.value } });
+        const o = await r.api().settlementSend({ period: w.value, providers: I.value, subjectTemplate: P.value, bodyTemplate: $e.value, requestReadReceipt: !0 });
+        ee.value = o.outcomes, T.value = [...T.value.filter((E) => E.period !== w.value), ...o.records];
+        const d = o.outcomes.filter((E) => E.ok).length, i = o.outcomes.length - d;
+        if (d === 0) throw new Error(o.outcomes.map((E) => `${E.provider}：${E.message}`).join(s.t("；")));
+        V.done("send", s.t("已发送 {a} 家{b}", { a: d, b: i ? s.t("，{n} 家失败（见下方原因）", { n: i }) : "" })), K("refresh");
       } catch (o) {
-        a.fail("send", o);
+        V.fail("send", o);
       }
     }
-    const B = e.reactive({ enabled: !!S.state?.settlement?.followUp?.enabled, days: Number(S.state?.settlement?.followUp?.days) || 3 }), me = e.ref(!1), pe = e.ref(S.state?.settlement?.nudgeSubjectTemplate || ""), u = e.ref(S.state?.settlement?.nudgeBodyTemplate || ""), m = e.ref("");
-    async function f() {
-      (!Number.isFinite(B.days) || B.days < 1) && (B.days = 1);
+    const m = e.reactive({ enabled: !!$.state?.settlement?.followUp?.enabled, days: Number($.state?.settlement?.followUp?.days) || 3 }), f = e.ref(!1), b = e.ref($.state?.settlement?.nudgeSubjectTemplate || ""), R = e.ref($.state?.settlement?.nudgeBodyTemplate || ""), Se = e.ref("");
+    async function ve() {
+      (!Number.isFinite(m.days) || m.days < 1) && (m.days = 1);
       try {
-        await r.api().statePatch({ settlement: { followUp: { enabled: B.enabled, days: B.days } } });
+        await r.api().statePatch({ settlement: { followUp: { enabled: m.enabled, days: m.days } } });
       } catch (o) {
-        V.error(r.errorMessage(o));
+        C.error(r.errorMessage(o));
       }
     }
-    async function k() {
+    async function Ue() {
       try {
-        await r.api().statePatch({ settlement: { nudgeSubjectTemplate: pe.value, nudgeBodyTemplate: u.value } });
+        await r.api().statePatch({ settlement: { nudgeSubjectTemplate: b.value, nudgeBodyTemplate: R.value } });
       } catch (o) {
-        V.error(r.errorMessage(o));
+        C.error(r.errorMessage(o));
       }
     }
-    async function U(o) {
-      m.value = o;
+    async function Ke(o) {
+      Se.value = o;
       try {
-        const c = await r.api().settlementNudge({ period: D.value, providers: [o] });
-        K.value = [...K.value.filter((E) => E.period !== D.value), ...c.records];
-        const d = c.outcomes?.[0];
-        d?.ok ? V.success(i.t("已向 {p} 发出催办邮件（{e}）", { p: o, e: d.email || "" })) : V.error(i.t("{p}：{m}", { p: o, m: d?.message || i.t("催办失败") })), z("refresh");
-      } catch (c) {
-        V.error(r.errorMessage(c));
+        const d = await r.api().settlementNudge({ period: w.value, providers: [o] });
+        T.value = [...T.value.filter((E) => E.period !== w.value), ...d.records];
+        const i = d.outcomes?.[0];
+        i?.ok ? C.success(s.t("已向 {p} 发出催办邮件（{e}）", { p: o, e: i.email || "" })) : C.error(s.t("{p}：{m}", { p: o, m: i?.message || s.t("催办失败") })), K("refresh");
+      } catch (d) {
+        C.error(r.errorMessage(d));
       } finally {
-        m.value = "";
+        Se.value = "";
       }
     }
+    async function ze() {
+      try {
+        const o = await r.api().settlementScanNow();
+        T.value = o.records, C.info(s.t("已刷新：阅读状态更新 {a} 条，发票 {b} 份", { a: o.receipts, b: o.invoices })), K("refresh");
+      } catch (o) {
+        C.error(r.errorMessage(o));
+      }
+    }
+    function je(o) {
+      const d = W(o).readState;
+      return d === "replied" ? s.t("收到收件人回复") : d === "read" ? o.readSource === "mailbox" ? s.t("收件邮箱标记已读") : s.t("收到收件人已读回执") : d === "sent" ? s.t("已发送，阅读状态未知") : d === "failed" ? s.t("发送失败") : s.t("未发送");
+    }
+    function We(o) {
+      const d = W(o).readState;
+      return d === "replied" || d === "read" ? "ok" : d === "sent" ? "warn" : d === "failed" ? "bad" : "";
+    }
+    const p = e.ref($.state?.settlement?.invoiceNameTemplate || `${X(Ce.provider)}_${X(Ce.period)}_${s.t("发票")}${X(Ce.seq)}`), a = e.computed(() => vo(p.value).replace("{服务商}", s.t("某某服务商")).replace("{结算期}", w.value).replace("{序号}", "01").replace("{日期}", "20260901").replace("{原文件名}", "scan") + ".pdf"), y = e.computed(() => $.dir || $.state?.outputDir || "");
+    async function B() {
+      try {
+        await r.api().statePatch({ settlement: { invoiceNameTemplate: p.value } });
+      } catch (o) {
+        C.error(r.errorMessage(o));
+      }
+    }
+    async function _(o) {
+      const d = await r.pickFiles("invoice", !0, s.t("选择 {p} 的发票文件", { p: o }));
+      d.length && await _e(o, d);
+    }
+    async function z(o, d) {
+      const i = r.droppedPaths(d, r.INVOICE_RE);
+      i.length && await _e(o, i);
+    }
+    async function _e(o, d) {
+      try {
+        const i = await r.api().settlementImportInvoices({ period: w.value, provider: o, paths: d }), E = T.value.findIndex((q) => q.period === w.value && q.provider === o);
+        E >= 0 && i.record && (T.value[E] = i.record), C.success(s.t("已归档 {n} 份发票", { n: i.saved.length })), K("refresh");
+      } catch (i) {
+        C.error(r.errorMessage(i));
+      }
+    }
+    async function it() {
+      V.start("invoice");
+      try {
+        const o = await r.api().settlementScanNow();
+        T.value = o.records;
+        const d = O.value.filter((i) => i.invoiceReceivedAt).length;
+        V.done("invoice", s.t("本次新收 {a} 份发票；本期已收到发票 {b} / {c} 家", { a: o.invoices, b: d, c: O.value.length })), K("refresh");
+      } catch (o) {
+        V.fail("invoice", o);
+      }
+    }
+    const Re = e.ref($.state?.settlement?.expenseSystemUrl || "");
     async function Be() {
       try {
-        const o = await r.api().settlementScanNow();
-        K.value = o.records, V.info(i.t("已刷新：阅读状态更新 {a} 条，发票 {b} 份", { a: o.receipts, b: o.invoices })), z("refresh");
+        await r.api().statePatch({ settlement: { expenseSystemUrl: Re.value } });
       } catch (o) {
-        V.error(r.errorMessage(o));
+        C.error(r.errorMessage(o));
       }
     }
-    function ve(o) {
-      const c = A(o).readState;
-      return c === "replied" ? i.t("收到收件人回复") : c === "read" ? o.readSource === "mailbox" ? i.t("收件邮箱标记已读") : i.t("收到收件人已读回执") : c === "sent" ? i.t("已发送，阅读状态未知") : c === "failed" ? i.t("发送失败") : i.t("未发送");
+    async function dt() {
+      await r.openEmbeddedBrowser(Re.value, "service-settlement-expense") || C.warn(s.t("内置浏览器不可用，请手动打开费控系统"));
     }
-    function Le(o) {
-      const c = A(o).readState;
-      return c === "replied" || c === "read" ? "ok" : c === "sent" ? "warn" : c === "failed" ? "bad" : "";
-    }
-    const _e = e.ref(S.state?.settlement?.invoiceNameTemplate || "{服务商}_{结算期}_发票{序号}"), ze = e.computed(() => _e.value.replace("{服务商}", i.t("某某服务商")).replace("{结算期}", D.value).replace("{序号}", "01").replace("{日期}", "20260901").replace("{原文件名}", "scan") + ".pdf"), je = e.computed(() => S.dir || S.state?.outputDir || "");
-    async function Oe() {
+    const ye = (o) => o ? r.fmtDate(o) : "";
+    async function Ye(o, d, i) {
+      V.start("track");
       try {
-        await r.api().statePatch({ settlement: { invoiceNameTemplate: _e.value } });
-      } catch (o) {
-        V.error(r.errorMessage(o));
-      }
-    }
-    async function p(o) {
-      const c = await r.pickFiles("invoice", !0, i.t("选择 {p} 的发票文件", { p: o }));
-      c.length && await y(o, c);
-    }
-    async function s(o, c) {
-      const d = r.droppedPaths(c, r.INVOICE_RE);
-      d.length && await y(o, d);
-    }
-    async function y(o, c) {
-      try {
-        const d = await r.api().settlementImportInvoices({ period: D.value, provider: o, paths: c }), E = K.value.findIndex((R) => R.period === D.value && R.provider === o);
-        E >= 0 && d.record && (K.value[E] = d.record), V.success(i.t("已归档 {n} 份发票", { n: d.saved.length })), z("refresh");
-      } catch (d) {
-        V.error(r.errorMessage(d));
-      }
-    }
-    async function w() {
-      a.start("invoice");
-      try {
-        const o = await r.api().settlementScanNow();
-        K.value = o.records;
-        const c = H.value.filter((d) => d.invoiceReceivedAt).length;
-        a.done("invoice", i.t("本次新收 {a} 份发票；本期已收到发票 {b} / {c} 家", { a: o.invoices, b: c, c: H.value.length })), z("refresh");
-      } catch (o) {
-        a.fail("invoice", o);
-      }
-    }
-    const T = e.ref(S.state?.settlement?.expenseSystemUrl || "");
-    async function O() {
-      try {
-        await r.api().statePatch({ settlement: { expenseSystemUrl: T.value } });
-      } catch (o) {
-        V.error(r.errorMessage(o));
-      }
-    }
-    async function Pe() {
-      await r.openEmbeddedBrowser(T.value, "service-settlement-expense") || V.warn(i.t("内置浏览器不可用，请手动打开费控系统"));
-    }
-    const Ge = (o) => o ? r.fmtDate(o) : "";
-    async function Ie(o, c, d) {
-      a.start("track");
-      try {
-        const E = await r.api().settlementTrackUpdate({ period: D.value, provider: o, patch: { [c]: d ? `${d}T12:00:00` : "" } }), R = K.value.findIndex((te) => te.period === D.value && te.provider === o);
-        R >= 0 && (K.value[R] = E.record);
-        const Ne = H.value.filter((te) => te.writeoffCompletedAt).length;
-        a.done("track", i.t("已登记；本期已付款 {a} / {b} 家", { a: Ne, b: H.value.length })), z("refresh");
+        const E = await r.api().settlementTrackUpdate({ period: w.value, provider: o, patch: { [d]: i ? `${i}T12:00:00` : "" } }), q = T.value.findIndex((A) => A.period === w.value && A.provider === o);
+        q >= 0 && (T.value[q] = E.record);
+        const Pe = O.value.filter((A) => A.writeoffCompletedAt).length;
+        V.done("track", s.t("已登记；本期已付款 {a} / {b} 家", { a: Pe, b: O.value.length })), K("refresh");
       } catch (E) {
-        a.fail("track", E);
+        V.fail("track", E);
       }
     }
-    async function Se() {
-      const o = await r.pickFiles("excel", !1, i.t("选择费控系统导出的核销流程表"));
+    async function ut() {
+      const o = await r.pickFiles("excel", !1, s.t("选择费控系统导出的核销流程表"));
       if (o[0]) {
-        a.start("track");
+        V.start("track");
         try {
-          const c = await r.api().settlementWritebackImport({ period: D.value, path: o[0] });
-          K.value = [...K.value.filter((d) => d.period !== D.value), ...c.records], a.done("track", i.t("回写 {n} 家服务商的核销状态{m}", { n: c.updated, m: c.missing.length ? i.t("；{k} 家在本期没有记录：{names}", { k: c.missing.length, names: c.missing.slice(0, 5).join("、") }) : "" })), z("refresh");
-        } catch (c) {
-          a.fail("track", c);
+          const d = await r.api().settlementWritebackImport({ period: w.value, path: o[0] });
+          T.value = [...T.value.filter((i) => i.period !== w.value), ...d.records], V.done("track", s.t("回写 {n} 家服务商的核销状态{m}", { n: d.updated, m: d.missing.length ? s.t("；{k} 家在本期没有记录：{names}", { k: d.missing.length, names: d.missing.slice(0, 5).join("、") }) : "" })), K("refresh");
+        } catch (d) {
+          V.fail("track", d);
         }
       }
     }
-    const it = (o) => ({ unsent: i.t("未下发"), awaiting_invoice: i.t("待开票"), awaiting_writeoff: i.t("待核销"), writeoff_in_progress: i.t("核销中"), paid: i.t("已付款") })[o] || o, ge = (o) => o === "paid" ? "ok" : o === "awaiting_writeoff" ? "warn" : o === "writeoff_in_progress" ? "brand" : "", Te = e.reactive({ enabled: !1, weekday: 1, hour: 9 });
-    e.watch(() => S.state?.settlement?.unpaidReport, (o) => {
-      o && Object.assign(Te, { enabled: o.enabled, weekday: o.weekday, hour: o.hour });
-    }, { immediate: !0 }), e.watch(() => S.state?.settlement?.followUp, (o) => {
-      o && Object.assign(B, { enabled: !!o.enabled, days: Number(o.days) || 3 });
-    }, { immediate: !0 }), e.watch(() => S.state?.settlement?.nudgeSubjectTemplate, (o) => {
-      o && !pe.value && (pe.value = o);
-    }, { immediate: !0 }), e.watch(() => S.state?.settlement?.nudgeBodyTemplate, (o) => {
-      o && !u.value && (u.value = o);
+    const ct = (o) => ({ unsent: s.t("未下发"), awaiting_invoice: s.t("待开票"), awaiting_writeoff: s.t("待核销"), writeoff_in_progress: s.t("核销中"), paid: s.t("已付款") })[o] || o, se = (o) => o === "paid" ? "ok" : o === "awaiting_writeoff" ? "warn" : o === "writeoff_in_progress" ? "brand" : "", ue = e.reactive({ enabled: !1, weekday: 1, hour: 9 });
+    e.watch(() => $.state?.settlement?.unpaidReport, (o) => {
+      o && Object.assign(ue, { enabled: o.enabled, weekday: o.weekday, hour: o.hour });
+    }, { immediate: !0 }), e.watch(() => $.state?.settlement?.followUp, (o) => {
+      o && Object.assign(m, { enabled: !!o.enabled, days: Number(o.days) || 3 });
+    }, { immediate: !0 }), e.watch(() => $.state?.settlement?.nudgeSubjectTemplate, (o) => {
+      o && !b.value && (b.value = o);
+    }, { immediate: !0 }), e.watch(() => $.state?.settlement?.nudgeBodyTemplate, (o) => {
+      o && !R.value && (R.value = o);
     }, { immediate: !0 });
-    async function He() {
+    async function Le() {
       try {
-        await r.api().statePatch({ settlement: { unpaidReport: { ...Te } } });
+        await r.api().statePatch({ settlement: { unpaidReport: { ...ue } } });
       } catch (o) {
-        V.error(r.errorMessage(o));
+        C.error(r.errorMessage(o));
       }
     }
-    const Ue = e.ref(null);
-    async function se() {
-      a.start("track");
+    const Fe = e.ref(null);
+    async function mt() {
+      V.start("track");
       try {
-        const o = await r.api().settlementReport({ period: D.value });
-        Ue.value = o, a.done("track", i.t("未完成付款报表已生成：{n} 家未付款", { n: o.unpaidCount }));
+        const o = await r.api().settlementReport({ period: w.value });
+        Fe.value = o, V.done("track", s.t("未完成付款报表已生成：{n} 家未付款", { n: o.unpaidCount }));
       } catch (o) {
-        a.fail("track", o);
+        V.fail("track", o);
       }
     }
-    function ke() {
-      for (const c of ["summary", "split", "send", "invoice", "track"]) a.reset(c);
-      C.value = null, x.value = "", G.value = [], P.value = [], Ue.value = null;
-      for (const c of Object.keys(g)) delete g[c];
-      const o = H.value;
+    function he() {
+      for (const d of ["summary", "split", "send", "invoice", "track"]) V.reset(d);
+      le.value = null, Ve.value = "", J.value = [], ee.value = [], Fe.value = null;
+      for (const d of Object.keys(me)) delete me[d];
+      const o = O.value;
       if (!o.length) {
-        a.currentKey.value = "summary";
+        V.currentKey.value = "summary";
         return;
       }
-      a.set("summary", { state: "done", summary: i.t("本期已有 {n} 家服务商的结算记录（可重新生成）", { n: o.length }) }), a.set("split", { state: "done" }), o.some((c) => c.sentAt) && a.set("send", { state: "done", summary: i.t("已下发 {n} 家", { n: o.filter((c) => c.sentAt).length }) }), o.some((c) => c.invoiceReceivedAt) && a.set("invoice", { state: "done", summary: i.t("已收到发票 {n} 家", { n: o.filter((c) => c.invoiceReceivedAt).length }) }), a.currentKey.value = o.some((c) => c.invoiceReceivedAt) ? "track" : o.some((c) => c.sentAt) ? "invoice" : "send";
-      for (const c of o) g[c.provider] = !c.sentAt;
+      V.set("summary", { state: "done", summary: s.t("本期已有 {n} 家服务商的结算记录（可重新生成）", { n: o.length }) }), V.set("split", { state: "done" }), o.some((d) => d.sentAt) && V.set("send", { state: "done", summary: s.t("已下发 {n} 家", { n: o.filter((d) => d.sentAt).length }) }), o.some((d) => d.invoiceReceivedAt) && V.set("invoice", { state: "done", summary: s.t("已收到发票 {n} 家", { n: o.filter((d) => d.invoiceReceivedAt).length }) }), V.currentKey.value = o.some((d) => d.invoiceReceivedAt) ? "track" : o.some((d) => d.sentAt) ? "invoice" : "send";
+      for (const d of o) me[d.provider] = !d.sentAt;
     }
-    return ke(), e.watch(D, () => {
-      a.isRunning() || ke();
-    }), (o, c) => (e.openBlock(), e.createElementBlock("section", uo, [
+    return he(), e.watch(w, () => {
+      V.isRunning() || he();
+    }), (o, d) => (e.openBlock(), e.createElementBlock("section", yo, [
       e.createVNode(rt, {
         title: o.$t("服务费用结案汇总、下发及付款跟踪"),
-        metas: e.unref(a).metas,
-        runtime: e.unref(a).runtime,
-        "current-key": e.unref(a).currentKey.value,
+        metas: e.unref(V).metas,
+        runtime: e.unref(V).runtime,
+        "current-key": e.unref(V).currentKey.value,
         onJump: e.unref(r.scrollToStep)
       }, null, 8, ["title", "metas", "runtime", "current-key", "onJump"]),
-      e.createElementVNode("div", co, [
+      e.createElementVNode("div", fo, [
         e.createCommentVNode(" 第 1 步：读取表格 → 汇总 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "summary",
           index: 0,
-          title: e.unref(a).metas[0].title,
-          hint: e.unref(a).metas[0].hint,
-          runtime: e.unref(a).runtime.summary,
-          "is-current": e.unref(a).currentKey.value === "summary"
+          title: e.unref(V).metas[0].title,
+          hint: e.unref(V).metas[0].hint,
+          runtime: e.unref(V).runtime.summary,
+          "is-current": e.unref(V).currentKey.value === "summary"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", mo, [
-              e.createElementVNode("label", po, [
+            e.createElementVNode("div", go, [
+              e.createElementVNode("label", No, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -2349,132 +2370,132 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": c[0] || (c[0] = (d) => D.value = d),
+                    "onUpdate:modelValue": d[0] || (d[0] = (i) => w.value = i),
                     type: "month"
                   },
                   null,
                   512
                   /* NEED_PATCH */
                 ), [
-                  [e.vModelText, D.value]
+                  [e.vModelText, w.value]
                 ])
               ])
             ]),
-            e.createElementVNode("div", vo, [
+            e.createElementVNode("div", Vo, [
               e.createElementVNode(
                 "div",
-                yo,
+                Eo,
                 e.toDisplayString(o.$t("① 工单结算明细表")),
                 1
                 /* TEXT */
               ),
-              e.createVNode(ie, {
+              e.createVNode(ce, {
                 label: o.$t("工单结算明细 Excel"),
                 hint: o.$t("每行一张工单，含服务商与结算金额"),
-                files: J(F),
-                onPicked: c[1] || (c[1] = (d) => de(d)),
-                onRemove: c[2] || (c[2] = (d) => $(F, d))
+                files: be(Y),
+                onPicked: d[1] || (d[1] = (i) => j(i)),
+                onRemove: d[2] || (d[2] = (i) => ae(Y, i))
               }, null, 8, ["label", "hint", "files"]),
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(F, (d, E) => (e.openBlock(), e.createBlock(Ee, {
-                  key: d.path + d.sheetName,
-                  table: d,
-                  roles: M,
-                  onUpdate: (R) => F[E].mapping = R,
-                  onSheet: (R) => I(F, E, R, M)
+                e.renderList(Y, (i, E) => (e.openBlock(), e.createBlock(ke, {
+                  key: i.path + i.sheetName,
+                  table: i,
+                  roles: G,
+                  onUpdate: (q) => Y[E].mapping = q,
+                  onSheet: (q) => de(Y, E, q, G)
                 }, null, 8, ["table", "onUpdate", "onSheet"]))),
                 128
                 /* KEYED_FRAGMENT */
               ))
             ]),
-            e.createElementVNode("div", fo, [
+            e.createElementVNode("div", ho, [
               e.createElementVNode(
                 "div",
-                go,
+                ko,
                 e.toDisplayString(o.$t("② 各项激励及补扣表格（一个费用项一个文件，可多选；激励/补扣按文件名自动判断，可改）")),
                 1
                 /* TEXT */
               ),
-              e.createVNode(ie, {
+              e.createVNode(ce, {
                 label: o.$t("激励 / 补扣表格 Excel"),
                 hint: o.$t("例如：好评激励.xlsx、质量补扣.xlsx、培训费用补扣.xlsx"),
-                files: J(_),
-                onPicked: c[3] || (c[3] = (d) => he(d)),
-                onRemove: c[4] || (c[4] = (d) => $(_, d))
+                files: be(Q),
+                onPicked: d[3] || (d[3] = (i) => H(i)),
+                onRemove: d[4] || (d[4] = (i) => ae(Q, i))
               }, null, 8, ["label", "hint", "files"]),
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(_, (d, E) => (e.openBlock(), e.createElementBlock("div", {
-                  key: d.path + d.sheetName,
+                e.renderList(Q, (i, E) => (e.openBlock(), e.createElementBlock("div", {
+                  key: i.path + i.sheetName,
                   class: "ss-fee"
                 }, [
-                  e.createElementVNode("div", No, [
+                  e.createElementVNode("div", bo, [
                     e.createElementVNode(
                       "span",
-                      Vo,
+                      $o,
                       e.toDisplayString(o.$t("费用项名称（作为服务商附件里的子表名）")),
                       1
                       /* TEXT */
                     ),
                     e.withDirectives(e.createElementVNode("input", {
-                      "onUpdate:modelValue": (R) => d.name = R,
+                      "onUpdate:modelValue": (q) => i.name = q,
                       type: "text",
                       style: { width: "220px", "text-align": "left" }
-                    }, null, 8, Eo), [
-                      [e.vModelText, d.name]
+                    }, null, 8, So), [
+                      [e.vModelText, i.name]
                     ]),
                     e.withDirectives(e.createElementVNode("select", {
-                      "onUpdate:modelValue": (R) => d.sign = R
+                      "onUpdate:modelValue": (q) => i.sign = q
                     }, [
                       e.createElementVNode(
                         "option",
-                        ko,
+                        wo,
                         e.toDisplayString(o.$t("激励（+）")),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "option",
-                        bo,
+                        Bo,
                         e.toDisplayString(o.$t("补扣（−）")),
                         1
                         /* TEXT */
                       )
-                    ], 8, ho), [
+                    ], 8, Do), [
                       [
                         e.vModelSelect,
-                        d.sign,
+                        i.sign,
                         void 0,
                         { number: !0 }
                       ]
                     ])
                   ]),
-                  e.createVNode(Ee, {
-                    table: d,
-                    roles: Y,
-                    onUpdate: (R) => _[E].mapping = R,
-                    onSheet: (R) => I(_, E, R, Y)
+                  e.createVNode(ke, {
+                    table: i,
+                    roles: L,
+                    onUpdate: (q) => Q[E].mapping = q,
+                    onSheet: (q) => de(Q, E, q, L)
                   }, null, 8, ["table", "onUpdate", "onSheet"])
                 ]))),
                 128
                 /* KEYED_FRAGMENT */
               ))
             ]),
-            e.createElementVNode("div", $o, [
+            e.createElementVNode("div", To, [
               e.createCommentVNode(" 没有工单结算明细也能先把激励 / 补扣项汇总（客户 7 月的结案包里就没有工单表） "),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !F.length && !_.length || e.unref(a).isRunning(),
-                onClick: ee
+                disabled: !Y.length && !Q.length || e.unref(V).isRunning(),
+                onClick: g
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(e.unref(a).runtime.summary.state === "running" ? "ri-loader-4-line spin" : "ri-table-line")
+                    class: e.normalizeClass(e.unref(V).runtime.summary.state === "running" ? "ri-loader-4-line spin" : "ri-table-line")
                   },
                   null,
                   2
@@ -2485,14 +2506,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, So),
-              C.value ? (e.openBlock(), e.createElementBlock("button", {
+              ], 8, Co),
+              le.value ? (e.openBlock(), e.createElementBlock("button", {
                 key: 0,
                 type: "button",
                 class: "ss-btn",
-                onClick: c[5] || (c[5] = (d) => e.unref(r.openPath)(x.value))
+                onClick: d[5] || (d[5] = (i) => e.unref(r.openPath)(Ve.value))
               }, [
-                c[25] || (c[25] = e.createElementVNode(
+                d[25] || (d[25] = e.createElementVNode(
                   "i",
                   { class: "ri-file-excel-2-line" },
                   null,
@@ -2506,12 +2527,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 )
               ])) : e.createCommentVNode("v-if", !0)
             ]),
-            C.value ? (e.openBlock(), e.createElementBlock(
+            le.value ? (e.openBlock(), e.createElementBlock(
               e.Fragment,
               { key: 0 },
               [
-                e.createElementVNode("div", Do, [
-                  e.createElementVNode("div", wo, [
+                e.createElementVNode("div", _o, [
+                  e.createElementVNode("div", Po, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -2522,12 +2543,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "strong",
                       null,
-                      e.toDisplayString(C.value.totals.providerCount),
+                      e.toDisplayString(le.value.totals.providerCount),
                       1
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", Bo, [
+                  e.createElementVNode("div", Ro, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -2538,12 +2559,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "strong",
                       null,
-                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(C.value.totals.workOrderAmount)),
+                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(le.value.totals.workOrderAmount)),
                       1
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", To, [
+                  e.createElementVNode("div", Mo, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -2554,12 +2575,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "strong",
                       null,
-                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(C.value.totals.incentiveTotal)),
+                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(le.value.totals.incentiveTotal)),
                       1
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", Co, [
+                  e.createElementVNode("div", Ao, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -2570,12 +2591,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "strong",
                       null,
-                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(C.value.totals.deductionTotal)),
+                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(le.value.totals.deductionTotal)),
                       1
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", _o, [
+                  e.createElementVNode("div", Uo, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -2586,7 +2607,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "strong",
                       null,
-                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(C.value.totals.netTotal)),
+                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(le.value.totals.netTotal)),
                       1
                       /* TEXT */
                     )
@@ -2595,11 +2616,11 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(C.value.warnings, (d) => (e.openBlock(), e.createElementBlock("p", {
-                    key: d,
+                  e.renderList(le.value.warnings, (i) => (e.openBlock(), e.createElementBlock("p", {
+                    key: i,
                     class: "ss-note warn"
                   }, [
-                    c[26] || (c[26] = e.createElementVNode(
+                    d[26] || (d[26] = e.createElementVNode(
                       "i",
                       { class: "ri-alert-line" },
                       null,
@@ -2607,7 +2628,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       /* CACHED */
                     )),
                     e.createTextVNode(
-                      e.toDisplayString(d),
+                      e.toDisplayString(i),
                       1
                       /* TEXT */
                     )
@@ -2624,17 +2645,17 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 第 2 步：拆分 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "split",
           index: 1,
-          title: e.unref(a).metas[1].title,
-          hint: e.unref(a).metas[1].hint,
-          runtime: e.unref(a).runtime.split,
-          "is-current": e.unref(a).currentKey.value === "split"
+          title: e.unref(V).metas[1].title,
+          hint: e.unref(V).metas[1].hint,
+          runtime: e.unref(V).runtime.split,
+          "is-current": e.unref(V).currentKey.value === "split"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("p", Po, [
-              c[27] || (c[27] = e.createElementVNode(
+            e.createElementVNode("p", Lo, [
+              d[27] || (d[27] = e.createElementVNode(
                 "i",
                 { class: "ri-information-line" },
                 null,
@@ -2647,8 +2668,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* TEXT */
               )
             ]),
-            G.value.length ? (e.openBlock(), e.createElementBlock("div", Ro, [
-              e.createElementVNode("table", Mo, [
+            J.value.length ? (e.openBlock(), e.createElementBlock("div", Fo, [
+              e.createElementVNode("table", Oo, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -2672,7 +2693,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       1
                       /* TEXT */
                     ),
-                    c[28] || (c[28] = e.createElementVNode(
+                    d[28] || (d[28] = e.createElementVNode(
                       "th",
                       null,
                       null,
@@ -2685,13 +2706,13 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(G.value, (d) => (e.openBlock(), e.createElementBlock("tr", {
-                      key: d.provider
+                    e.renderList(J.value, (i) => (e.openBlock(), e.createElementBlock("tr", {
+                      key: i.provider
                     }, [
                       e.createElementVNode(
                         "td",
                         null,
-                        e.toDisplayString(d.provider),
+                        e.toDisplayString(i.provider),
                         1
                         /* TEXT */
                       ),
@@ -2699,7 +2720,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         e.createElementVNode(
                           "code",
                           null,
-                          e.toDisplayString(q(d.path)),
+                          e.toDisplayString(S(i.path)),
                           1
                           /* TEXT */
                         )
@@ -2707,7 +2728,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       e.createElementVNode(
                         "td",
                         null,
-                        e.toDisplayString(d.sheets.join(" · ")),
+                        e.toDisplayString(i.sheets.join(" · ")),
                         1
                         /* TEXT */
                       ),
@@ -2715,8 +2736,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         e.createElementVNode("button", {
                           type: "button",
                           class: "ss-link",
-                          onClick: (E) => e.unref(r.openPath)(d.path)
-                        }, e.toDisplayString(o.$t("打开")), 9, Ao)
+                          onClick: (E) => e.unref(r.openPath)(i.path)
+                        }, e.toDisplayString(o.$t("打开")), 9, Io)
                       ])
                     ]))),
                     128
@@ -2725,14 +2746,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ])
               ])
             ])) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("div", Uo, [
+            e.createElementVNode("div", qo, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn",
-                disabled: !le.value,
-                onClick: c[6] || (c[6] = (d) => e.unref(r.openPath)(le.value))
+                disabled: !x.value,
+                onClick: d[6] || (d[6] = (i) => e.unref(r.openPath)(x.value))
               }, [
-                c[29] || (c[29] = e.createElementVNode(
+                d[29] || (d[29] = e.createElementVNode(
                   "i",
                   { class: "ri-folder-open-line" },
                   null,
@@ -2744,14 +2765,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, Fo),
+              ], 8, Ko),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !G.value.length || e.unref(a).isRunning(),
-                onClick: ae
+                disabled: !J.value.length || e.unref(V).isRunning(),
+                onClick: D
               }, [
-                c[30] || (c[30] = e.createElementVNode(
+                d[30] || (d[30] = e.createElementVNode(
                   "i",
                   { class: "ri-check-line" },
                   null,
@@ -2763,24 +2784,24 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, Lo)
+              ], 8, zo)
             ])
           ]),
           _: 1
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 第 3 步：邮件下发 + 已读打标 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "send",
           index: 2,
-          title: e.unref(a).metas[2].title,
-          hint: e.unref(a).metas[2].hint,
-          runtime: e.unref(a).runtime.send,
-          "is-current": e.unref(a).currentKey.value === "send"
+          title: e.unref(V).metas[2].title,
+          hint: e.unref(V).metas[2].hint,
+          runtime: e.unref(V).runtime.send,
+          "is-current": e.unref(V).currentKey.value === "send"
         }, {
           default: e.withCtx(() => [
-            !ue.value.smtpConfigured && !ue.value.officialRelay ? (e.openBlock(), e.createElementBlock("p", Oo, [
-              c[31] || (c[31] = e.createElementVNode(
+            !fe.value.smtpConfigured && !fe.value.officialRelay ? (e.openBlock(), e.createElementBlock("p", jo, [
+              d[31] || (d[31] = e.createElementVNode(
                 "i",
                 { class: "ri-mail-close-line" },
                 null,
@@ -2792,8 +2813,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 1
                 /* TEXT */
               )
-            ])) : ue.value.smtpConfigured ? (e.openBlock(), e.createElementBlock("p", qo, [
-              c[33] || (c[33] = e.createElementVNode(
+            ])) : fe.value.smtpConfigured ? (e.openBlock(), e.createElementBlock("p", Yo, [
+              d[33] || (d[33] = e.createElementVNode(
                 "i",
                 { class: "ri-mail-check-line" },
                 null,
@@ -2801,12 +2822,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(o.$t("发件邮箱：{addr}；已读回执已开启（对方邮件客户端同意回执时会自动打「已读」）。", { addr: ue.value.address })),
+                e.toDisplayString(o.$t("发件邮箱：{addr}；已读回执已开启（对方邮件客户端同意回执时会自动打「已读」）。", { addr: fe.value.address })),
                 1
                 /* TEXT */
               )
-            ])) : (e.openBlock(), e.createElementBlock("p", Io, [
-              c[32] || (c[32] = e.createElementVNode(
+            ])) : (e.openBlock(), e.createElementBlock("p", Wo, [
+              d[32] || (d[32] = e.createElementVNode(
                 "i",
                 { class: "ri-mail-send-line" },
                 null,
@@ -2819,30 +2840,30 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* TEXT */
               )
             ])),
-            e.createElementVNode("div", Ko, [
-              e.createElementVNode("label", zo, [
+            e.createElementVNode("div", xo, [
+              e.createElementVNode("label", Xo, [
                 e.createElementVNode(
                   "span",
                   null,
-                  e.toDisplayString(o.$t("邮件主题（可用 {服务商} {结算期} {应付合计}）")),
+                  e.toDisplayString(o.$t("邮件主题（可用 {provider} {period} {payable}）", k.value)),
                   1
                   /* TEXT */
                 ),
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": c[7] || (c[7] = (d) => X.value = d),
+                    "onUpdate:modelValue": d[7] || (d[7] = (i) => P.value = i),
                     type: "text"
                   },
                   null,
                   512
                   /* NEED_PATCH */
                 ), [
-                  [e.vModelText, X.value]
+                  [e.vModelText, P.value]
                 ])
               ])
             ]),
-            e.createElementVNode("label", jo, [
+            e.createElementVNode("label", Qo, [
               e.createElementVNode(
                 "span",
                 null,
@@ -2853,27 +2874,27 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.withDirectives(e.createElementVNode(
                 "textarea",
                 {
-                  "onUpdate:modelValue": c[8] || (c[8] = (d) => v.value = d)
+                  "onUpdate:modelValue": d[8] || (d[8] = (i) => $e.value = i)
                 },
                 null,
                 512
                 /* NEED_PATCH */
               ), [
-                [e.vModelText, v.value]
+                [e.vModelText, $e.value]
               ])
             ]),
             e.createElementVNode(
               "div",
-              Wo,
+              Jo,
               e.toDisplayString(o.$t("收件人（服务商邮箱，多个用逗号隔开；填好后自动记住，下个月不用再填）")),
               1
               /* TEXT */
             ),
-            e.createElementVNode("div", Yo, [
-              e.createElementVNode("table", xo, [
+            e.createElementVNode("div", Zo, [
+              e.createElementVNode("table", Go, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
-                    c[34] || (c[34] = e.createElementVNode(
+                    d[34] || (d[34] = e.createElementVNode(
                       "th",
                       null,
                       null,
@@ -2889,7 +2910,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     ),
                     e.createElementVNode(
                       "th",
-                      Xo,
+                      Ho,
                       e.toDisplayString(o.$t("应付合计")),
                       1
                       /* TEXT */
@@ -2928,103 +2949,103 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(H.value, (d) => (e.openBlock(), e.createElementBlock(
+                    e.renderList(O.value, (i) => (e.openBlock(), e.createElementBlock(
                       "tr",
                       {
-                        key: d.provider,
-                        class: e.normalizeClass({ bad: d.sendError })
+                        key: i.provider,
+                        class: e.normalizeClass({ bad: i.sendError })
                       },
                       [
                         e.createElementVNode("td", null, [
                           e.withDirectives(e.createElementVNode("input", {
-                            "onUpdate:modelValue": (E) => g[d.provider] = E,
+                            "onUpdate:modelValue": (E) => me[i.provider] = E,
                             type: "checkbox"
-                          }, null, 8, Qo), [
-                            [e.vModelCheckbox, g[d.provider]]
+                          }, null, 8, ea), [
+                            [e.vModelCheckbox, me[i.provider]]
                           ])
                         ]),
                         e.createElementVNode(
                           "td",
                           null,
-                          e.toDisplayString(d.provider),
+                          e.toDisplayString(i.provider),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "td",
-                          Jo,
-                          e.toDisplayString(e.unref(r.fmtMoney)(d.netTotal)),
+                          ta,
+                          e.toDisplayString(e.unref(r.fmtMoney)(i.netTotal)),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode("td", null, [
                           e.createElementVNode("input", {
-                            value: d.email || "",
+                            value: i.email || "",
                             type: "text",
                             style: { "min-width": "220px" },
                             placeholder: o.$t("多个邮箱用逗号隔开"),
-                            onChange: (E) => L(d.provider, E.target.value)
-                          }, null, 40, Zo)
+                            onChange: (E) => Ee(i.provider, E.target.value)
+                          }, null, 40, na)
                         ]),
                         e.createElementVNode("td", null, [
-                          d.attachmentPath ? (e.openBlock(), e.createElementBlock("button", {
+                          i.attachmentPath ? (e.openBlock(), e.createElementBlock("button", {
                             key: 0,
                             type: "button",
                             class: "ss-link",
-                            onClick: (E) => e.unref(r.openPath)(d.attachmentPath)
-                          }, e.toDisplayString(q(d.attachmentPath)), 9, Go)) : e.createCommentVNode("v-if", !0)
+                            onClick: (E) => e.unref(r.openPath)(i.attachmentPath)
+                          }, e.toDisplayString(S(i.attachmentPath)), 9, la)) : e.createCommentVNode("v-if", !0)
                         ]),
                         e.createElementVNode("td", null, [
-                          d.sentAt ? (e.openBlock(), e.createElementBlock(
+                          i.sentAt ? (e.openBlock(), e.createElementBlock(
                             "span",
-                            Ho,
-                            e.toDisplayString(o.$t("已发送")) + " " + e.toDisplayString(e.unref(r.fmtDateTime)(d.sentAt)),
+                            oa,
+                            e.toDisplayString(o.$t("已发送")) + " " + e.toDisplayString(e.unref(r.fmtDateTime)(i.sentAt)),
                             1
                             /* TEXT */
-                          )) : d.sendError ? (e.openBlock(), e.createElementBlock("span", {
+                          )) : i.sendError ? (e.openBlock(), e.createElementBlock("span", {
                             key: 1,
                             class: "ss-chip bad",
-                            title: d.sendError
-                          }, e.toDisplayString(o.$t("失败")), 9, ea)) : (e.openBlock(), e.createElementBlock(
+                            title: i.sendError
+                          }, e.toDisplayString(o.$t("失败")), 9, aa)) : (e.openBlock(), e.createElementBlock(
                             "span",
-                            ta,
+                            sa,
                             e.toDisplayString(o.$t("未发送")),
                             1
                             /* TEXT */
                           )),
-                          d.resendCount ? (e.openBlock(), e.createElementBlock("span", {
+                          i.resendCount ? (e.openBlock(), e.createElementBlock("span", {
                             key: 3,
                             class: "ss-chip warn",
-                            title: e.unref(r.fmtDateTime)(d.resentAt)
-                          }, e.toDisplayString(o.$t("未获阅读确认，已重发 {n} 次", { n: d.resendCount })), 9, na)) : e.createCommentVNode("v-if", !0)
+                            title: e.unref(r.fmtDateTime)(i.resentAt)
+                          }, e.toDisplayString(o.$t("未获阅读确认，已重发 {n} 次", { n: i.resendCount })), 9, ra)) : e.createCommentVNode("v-if", !0)
                         ]),
                         e.createElementVNode("td", null, [
                           e.createElementVNode(
                             "span",
                             {
-                              class: e.normalizeClass(["ss-chip", Le(d)])
+                              class: e.normalizeClass(["ss-chip", We(i)])
                             },
-                            e.toDisplayString(ve(d)),
+                            e.toDisplayString(je(i)),
                             3
                             /* TEXT, CLASS */
                           ),
-                          d.nudgeCount ? (e.openBlock(), e.createElementBlock("span", {
+                          i.nudgeCount ? (e.openBlock(), e.createElementBlock("span", {
                             key: 0,
                             class: "ss-chip warn",
-                            title: e.unref(r.fmtDateTime)(d.nudgedAt)
-                          }, e.toDisplayString(o.$t("已催办 {n} 次", { n: d.nudgeCount })), 9, la)) : e.createCommentVNode("v-if", !0),
-                          d.sentAt && !d.invoiceReceivedAt ? (e.openBlock(), e.createElementBlock("button", {
+                            title: e.unref(r.fmtDateTime)(i.nudgedAt)
+                          }, e.toDisplayString(o.$t("已催办 {n} 次", { n: i.nudgeCount })), 9, ia)) : e.createCommentVNode("v-if", !0),
+                          i.sentAt && !i.invoiceReceivedAt ? (e.openBlock(), e.createElementBlock("button", {
                             key: 1,
                             type: "button",
                             class: "ss-btn sm ghost",
-                            disabled: m.value === d.provider,
+                            disabled: Se.value === i.provider,
                             title: o.$t("按催办模板再发一封，挂在原邮件下"),
-                            onClick: (E) => U(d.provider)
+                            onClick: (E) => Ke(i.provider)
                           }, [
                             e.createElementVNode(
                               "i",
                               {
-                                class: e.normalizeClass(m.value === d.provider ? "ri-loader-4-line spin" : "ri-alarm-warning-line")
+                                class: e.normalizeClass(Se.value === i.provider ? "ri-loader-4-line spin" : "ri-alarm-warning-line")
                               },
                               null,
                               2
@@ -3035,7 +3056,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                               1
                               /* TEXT */
                             )
-                          ], 8, oa)) : e.createCommentVNode("v-if", !0)
+                          ], 8, da)) : e.createCommentVNode("v-if", !0)
                         ])
                       ],
                       2
@@ -3044,10 +3065,10 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     128
                     /* KEYED_FRAGMENT */
                   )),
-                  H.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("tr", aa, [
+                  O.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("tr", ua, [
                     e.createElementVNode(
                       "td",
-                      sa,
+                      ca,
                       e.toDisplayString(o.$t("先在第 1 步生成汇总表")),
                       1
                       /* TEXT */
@@ -3056,20 +3077,20 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ])
               ])
             ]),
-            e.createElementVNode("div", ra, [
-              e.createElementVNode("label", ia, [
+            e.createElementVNode("div", ma, [
+              e.createElementVNode("label", pa, [
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": c[9] || (c[9] = (d) => B.enabled = d),
+                    "onUpdate:modelValue": d[9] || (d[9] = (i) => m.enabled = i),
                     type: "checkbox",
-                    onChange: f
+                    onChange: ve
                   },
                   null,
                   544
                   /* NEED_HYDRATION, NEED_PATCH */
                 ), [
-                  [e.vModelCheckbox, B.enabled]
+                  [e.vModelCheckbox, m.enabled]
                 ]),
                 e.createElementVNode(
                   "span",
@@ -3081,29 +3102,29 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               ]),
               e.createElementVNode(
                 "span",
-                da,
+                va,
                 e.toDisplayString(o.$t("发出后未获阅读确认满")),
                 1
                 /* TEXT */
               ),
               e.withDirectives(e.createElementVNode("input", {
-                "onUpdate:modelValue": c[10] || (c[10] = (d) => B.days = d),
+                "onUpdate:modelValue": d[10] || (d[10] = (i) => m.days = i),
                 type: "number",
                 min: "1",
                 max: "60",
-                disabled: !B.enabled,
-                onChange: f
-              }, null, 40, ua), [
+                disabled: !m.enabled,
+                onChange: ve
+              }, null, 40, ya), [
                 [
                   e.vModelText,
-                  B.days,
+                  m.days,
                   void 0,
                   { number: !0 }
                 ]
               ]),
               e.createElementVNode(
                 "span",
-                ca,
+                fa,
                 e.toDisplayString(o.$t("天 → 自动重发原邮件；已读后同样天数仍未收到发票 → 自动发催办邮件（各最多 3 轮，收到发票即停）")),
                 1
                 /* TEXT */
@@ -3111,9 +3132,9 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn sm ghost",
-                onClick: c[11] || (c[11] = (d) => me.value = !me.value)
+                onClick: d[11] || (d[11] = (i) => f.value = !f.value)
               }, [
-                c[35] || (c[35] = e.createElementVNode(
+                d[35] || (d[35] = e.createElementVNode(
                   "i",
                   { class: "ri-edit-line" },
                   null,
@@ -3121,36 +3142,36 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(me.value ? o.$t("收起催办模板") : o.$t("编辑催办模板")),
+                  e.toDisplayString(f.value ? o.$t("收起催办模板") : o.$t("编辑催办模板")),
                   1
                   /* TEXT */
                 )
               ])
             ]),
-            me.value ? (e.openBlock(), e.createElementBlock("div", ma, [
-              e.createElementVNode("label", pa, [
+            f.value ? (e.openBlock(), e.createElementBlock("div", ga, [
+              e.createElementVNode("label", Na, [
                 e.createElementVNode(
                   "span",
                   null,
-                  e.toDisplayString(o.$t("催办主题（可用 {服务商} {结算期} {应付合计} {发送日期}）")),
+                  e.toDisplayString(o.$t("催办主题（可用 {provider} {period} {payable} {sentDate}）", k.value)),
                   1
                   /* TEXT */
                 ),
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": c[12] || (c[12] = (d) => pe.value = d),
+                    "onUpdate:modelValue": d[12] || (d[12] = (i) => b.value = i),
                     type: "text",
-                    onChange: k
+                    onChange: Ue
                   },
                   null,
                   544
                   /* NEED_HYDRATION, NEED_PATCH */
                 ), [
-                  [e.vModelText, pe.value]
+                  [e.vModelText, b.value]
                 ])
               ]),
-              e.createElementVNode("label", va, [
+              e.createElementVNode("label", Va, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -3161,24 +3182,24 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "textarea",
                   {
-                    "onUpdate:modelValue": c[13] || (c[13] = (d) => u.value = d),
-                    onChange: k
+                    "onUpdate:modelValue": d[13] || (d[13] = (i) => R.value = i),
+                    onChange: Ue
                   },
                   null,
                   544
                   /* NEED_HYDRATION, NEED_PATCH */
                 ), [
-                  [e.vModelText, u.value]
+                  [e.vModelText, R.value]
                 ])
               ])
             ])) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("div", ya, [
+            e.createElementVNode("div", Ea, [
               e.createElementVNode(
                 "button",
                 {
                   type: "button",
                   class: "ss-btn ghost sm",
-                  onClick: c[14] || (c[14] = (d) => $e(!0))
+                  onClick: d[14] || (d[14] = (i) => M(!0))
                 },
                 e.toDisplayString(o.$t("全选")),
                 1
@@ -3189,7 +3210,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 {
                   type: "button",
                   class: "ss-btn ghost sm",
-                  onClick: c[15] || (c[15] = (d) => $e(!1))
+                  onClick: d[15] || (d[15] = (i) => M(!1))
                 },
                 e.toDisplayString(o.$t("全不选")),
                 1
@@ -3198,9 +3219,9 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn ghost sm",
-                onClick: ce
+                onClick: we
               }, [
-                c[36] || (c[36] = e.createElementVNode(
+                d[36] || (d[36] = e.createElementVNode(
                   "i",
                   { class: "ri-contacts-book-line" },
                   null,
@@ -3213,7 +3234,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* TEXT */
                 )
               ]),
-              c[38] || (c[38] = e.createElementVNode(
+              d[38] || (d[38] = e.createElementVNode(
                 "span",
                 { class: "grow" },
                 null,
@@ -3223,31 +3244,31 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !b.value.length || e.unref(a).isRunning() || !ue.value.smtpConfigured && !ue.value.officialRelay,
-                onClick: Re
+                disabled: !I.value.length || e.unref(V).isRunning() || !fe.value.smtpConfigured && !fe.value.officialRelay,
+                onClick: c
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(e.unref(a).runtime.send.state === "running" ? "ri-loader-4-line spin" : "ri-mail-send-line")
+                    class: e.normalizeClass(e.unref(V).runtime.send.state === "running" ? "ri-loader-4-line spin" : "ri-mail-send-line")
                   },
                   null,
                   2
                   /* CLASS */
                 ),
                 e.createTextVNode(
-                  e.toDisplayString(o.$t("发送给选中的 {n} 家服务商", { n: b.value.length })),
+                  e.toDisplayString(o.$t("发送给选中的 {n} 家服务商", { n: I.value.length })),
                   1
                   /* TEXT */
                 )
-              ], 8, fa),
+              ], 8, ha),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn",
-                disabled: e.unref(a).isRunning(),
-                onClick: Be
+                disabled: e.unref(V).isRunning(),
+                onClick: ze
               }, [
-                c[37] || (c[37] = e.createElementVNode(
+                d[37] || (d[37] = e.createElementVNode(
                   "i",
                   { class: "ri-refresh-line" },
                   null,
@@ -3259,16 +3280,16 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, ga)
+              ], 8, ka)
             ]),
-            P.value.length ? (e.openBlock(), e.createElementBlock(
+            ee.value.length ? (e.openBlock(), e.createElementBlock(
               "div",
               {
                 key: 4,
-                class: e.normalizeClass(["ss-note", P.value.every((d) => d.ok) ? "ok" : "warn"])
+                class: e.normalizeClass(["ss-note", ee.value.every((i) => i.ok) ? "ok" : "warn"])
               },
               [
-                c[39] || (c[39] = e.createElementVNode(
+                d[39] || (d[39] = e.createElementVNode(
                   "i",
                   { class: "ri-mail-check-line" },
                   null,
@@ -3277,21 +3298,21 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 )),
                 e.createElementVNode("span", null, [
                   e.createTextVNode(
-                    e.toDisplayString(o.$t("本次发送：成功 {a}，失败 {b}。", { a: P.value.filter((d) => d.ok).length, b: P.value.filter((d) => !d.ok).length })) + " ",
+                    e.toDisplayString(o.$t("本次发送：成功 {a}，失败 {b}。", { a: ee.value.filter((i) => i.ok).length, b: ee.value.filter((i) => !i.ok).length })) + " ",
                     1
                     /* TEXT */
                   ),
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(P.value.filter((d) => !d.ok), (d) => (e.openBlock(), e.createElementBlock(
+                    e.renderList(ee.value.filter((i) => !i.ok), (i) => (e.openBlock(), e.createElementBlock(
                       e.Fragment,
                       {
-                        key: d.provider
+                        key: i.provider
                       },
                       [
                         e.createTextVNode(
-                          e.toDisplayString(o.$t("{p0}：{p1}；", { p0: d.provider, p1: d.message })),
+                          e.toDisplayString(o.$t("{p0}：{p1}；", { p0: i.provider, p1: i.message })),
                           1
                           /* TEXT */
                         )
@@ -3312,39 +3333,39 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 第 4 步：发票监听与归档 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "invoice",
           index: 3,
-          title: e.unref(a).metas[3].title,
-          hint: e.unref(a).metas[3].hint,
-          runtime: e.unref(a).runtime.invoice,
-          "is-current": e.unref(a).currentKey.value === "invoice"
+          title: e.unref(V).metas[3].title,
+          hint: e.unref(V).metas[3].hint,
+          runtime: e.unref(V).runtime.invoice,
+          "is-current": e.unref(V).currentKey.value === "invoice"
         }, {
           default: e.withCtx(() => [
             e.createElementVNode(
               "p",
               {
-                class: e.normalizeClass(["ss-note", ue.value.imapConfigured ? "ok" : "warn"])
+                class: e.normalizeClass(["ss-note", fe.value.imapConfigured ? "ok" : "warn"])
               },
               [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(ue.value.imapConfigured ? "ri-inbox-line" : "ri-inbox-unarchive-line")
+                    class: e.normalizeClass(fe.value.imapConfigured ? "ri-inbox-line" : "ri-inbox-unarchive-line")
                   },
                   null,
                   2
                   /* CLASS */
                 ),
-                ue.value.imapConfigured ? (e.openBlock(), e.createElementBlock(
+                fe.value.imapConfigured ? (e.openBlock(), e.createElementBlock(
                   "span",
-                  Na,
+                  ba,
                   e.toDisplayString(o.$t("邮箱收件监听已开启（每分钟自动收取）；企微回传经「收件箱」同一落点。服务商回传的发票附件会自动下载并按命名规则归档。")),
                   1
                   /* TEXT */
                 )) : (e.openBlock(), e.createElementBlock(
                   "span",
-                  Va,
+                  $a,
                   e.toDisplayString(o.$t("邮箱未配置 IMAP 收件服务器，收不到邮件回传的发票。到「设置 · 邮件」补 IMAP 服务器与端口（常见 993）；也可以把发票文件直接拖到下面对应服务商那一行。")),
                   1
                   /* TEXT */
@@ -3353,10 +3374,10 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               2
               /* CLASS */
             ),
-            e.createElementVNode("div", Ea, [
+            e.createElementVNode("div", Sa, [
               e.createElementVNode(
                 "span",
-                ha,
+                Da,
                 e.toDisplayString(o.$t("发票文件命名规则")),
                 1
                 /* TEXT */
@@ -3364,48 +3385,48 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": c[16] || (c[16] = (d) => _e.value = d),
+                  "onUpdate:modelValue": d[16] || (d[16] = (i) => p.value = i),
                   type: "text",
                   style: { width: "300px", "text-align": "left" },
-                  onChange: Oe
+                  onChange: B
                 },
                 null,
                 544
                 /* NEED_HYDRATION, NEED_PATCH */
               ), [
-                [e.vModelText, _e.value]
+                [e.vModelText, p.value]
               ]),
               e.createElementVNode(
                 "span",
-                ka,
+                wa,
                 e.toDisplayString(o.$t("可用占位：")),
                 1
                 /* TEXT */
               ),
-              (e.openBlock(), e.createElementBlock(
+              (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(["{服务商}", "{结算期}", "{序号}", "{日期}", "{原文件名}"], (d) => e.createElementVNode("button", {
-                  key: d,
+                e.renderList(u.value, (i) => (e.openBlock(), e.createElementBlock("button", {
+                  key: i,
                   type: "button",
                   class: "ss-chip brand",
                   onClick: (E) => {
-                    _e.value += d, Oe();
+                    p.value += i, B();
                   }
-                }, e.toDisplayString(d), 9, ba)),
-                64
-                /* STABLE_FRAGMENT */
+                }, e.toDisplayString(i), 9, Ba))),
+                128
+                /* KEYED_FRAGMENT */
               )),
               e.createElementVNode(
                 "span",
-                $a,
-                e.toDisplayString(o.$t("示例：{ex}", { ex: ze.value })),
+                Ta,
+                e.toDisplayString(o.$t("示例：{ex}", { ex: a.value })),
                 1
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", Sa, [
-              e.createElementVNode("table", Da, [
+            e.createElementVNode("div", Ca, [
+              e.createElementVNode("table", _a, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -3449,64 +3470,64 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(H.value, (d) => (e.openBlock(), e.createElementBlock("tr", {
-                      key: d.provider,
-                      class: e.normalizeClass({ bad: A(d).invoiceOverdue }),
-                      onDragover: c[17] || (c[17] = e.withModifiers(() => {
+                    e.renderList(O.value, (i) => (e.openBlock(), e.createElementBlock("tr", {
+                      key: i.provider,
+                      class: e.normalizeClass({ bad: W(i).invoiceOverdue }),
+                      onDragover: d[17] || (d[17] = e.withModifiers(() => {
                       }, ["prevent"])),
-                      onDrop: e.withModifiers((E) => s(d.provider, E), ["prevent"])
+                      onDrop: e.withModifiers((E) => z(i.provider, E), ["prevent"])
                     }, [
                       e.createElementVNode(
                         "td",
                         null,
-                        e.toDisplayString(d.provider),
+                        e.toDisplayString(i.provider),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
                         null,
-                        e.toDisplayString(d.sentAt ? e.unref(r.fmtDate)(d.sentAt) : o.$t("未下发")),
+                        e.toDisplayString(i.sentAt ? e.unref(r.fmtDate)(i.sentAt) : o.$t("未下发")),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode("td", null, [
-                        d.invoiceReceivedAt ? (e.openBlock(), e.createElementBlock(
+                        i.invoiceReceivedAt ? (e.openBlock(), e.createElementBlock(
                           "span",
-                          Ba,
-                          e.toDisplayString(e.unref(r.fmtDate)(d.invoiceReceivedAt)),
+                          Ra,
+                          e.toDisplayString(e.unref(r.fmtDate)(i.invoiceReceivedAt)),
                           1
                           /* TEXT */
-                        )) : A(d).invoiceOverdue ? (e.openBlock(), e.createElementBlock(
+                        )) : W(i).invoiceOverdue ? (e.openBlock(), e.createElementBlock(
                           "span",
-                          Ta,
+                          Ma,
                           e.toDisplayString(o.$t("⚠ 超 20 天未开票")),
                           1
                           /* TEXT */
-                        )) : d.sentAt ? (e.openBlock(), e.createElementBlock(
+                        )) : i.sentAt ? (e.openBlock(), e.createElementBlock(
                           "span",
-                          Ca,
-                          e.toDisplayString(o.$t("等待开票 {d} 天", { d: A(d).daysSinceSent ?? 0 })),
+                          Aa,
+                          e.toDisplayString(o.$t("等待开票 {d} 天", { d: W(i).daysSinceSent ?? 0 })),
                           1
                           /* TEXT */
-                        )) : (e.openBlock(), e.createElementBlock("span", _a, "-"))
+                        )) : (e.openBlock(), e.createElementBlock("span", Ua, "-"))
                       ]),
                       e.createElementVNode("td", null, [
-                        d.invoiceFiles?.length ? (e.openBlock(!0), e.createElementBlock(
+                        i.invoiceFiles?.length ? (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           { key: 0 },
-                          e.renderList(d.invoiceFiles, (E) => (e.openBlock(), e.createElementBlock("button", {
+                          e.renderList(i.invoiceFiles, (E) => (e.openBlock(), e.createElementBlock("button", {
                             key: E,
                             type: "button",
                             class: "ss-link",
                             style: { "margin-inline-end": "8px" },
-                            onClick: (R) => e.unref(r.openPath)(E)
-                          }, e.toDisplayString(q(E)), 9, Pa))),
+                            onClick: (q) => e.unref(r.openPath)(E)
+                          }, e.toDisplayString(S(E)), 9, La))),
                           128
                           /* KEYED_FRAGMENT */
                         )) : (e.openBlock(), e.createElementBlock(
                           "span",
-                          Ra,
+                          Fa,
                           e.toDisplayString(o.$t("（拖发票文件到这一行）")),
                           1
                           /* TEXT */
@@ -3516,9 +3537,9 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         e.createElementVNode("button", {
                           type: "button",
                           class: "ss-btn sm ghost",
-                          onClick: (E) => p(d.provider)
+                          onClick: (E) => _(i.provider)
                         }, [
-                          c[40] || (c[40] = e.createElementVNode(
+                          d[40] || (d[40] = e.createElementVNode(
                             "i",
                             { class: "ri-upload-2-line" },
                             null,
@@ -3530,26 +3551,26 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                             1
                             /* TEXT */
                           )
-                        ], 8, Ma)
+                        ], 8, Oa)
                       ])
-                    ], 42, wa))),
+                    ], 42, Pa))),
                     128
                     /* KEYED_FRAGMENT */
                   ))
                 ])
               ])
             ]),
-            e.createElementVNode("div", Aa, [
+            e.createElementVNode("div", Ia, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: e.unref(a).isRunning(),
-                onClick: w
+                disabled: e.unref(V).isRunning(),
+                onClick: it
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(e.unref(a).runtime.invoice.state === "running" ? "ri-loader-4-line spin" : "ri-mail-download-line")
+                    class: e.normalizeClass(e.unref(V).runtime.invoice.state === "running" ? "ri-loader-4-line spin" : "ri-mail-download-line")
                   },
                   null,
                   2
@@ -3560,13 +3581,13 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, Ua),
+              ], 8, qa),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn",
-                onClick: c[18] || (c[18] = (d) => e.unref(r.openPath)(je.value))
+                onClick: d[18] || (d[18] = (i) => e.unref(r.openPath)(y.value))
               }, [
-                c[41] || (c[41] = e.createElementVNode(
+                d[41] || (d[41] = e.createElementVNode(
                   "i",
                   { class: "ri-folder-open-line" },
                   null,
@@ -3581,8 +3602,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               ]),
               e.createElementVNode(
                 "span",
-                Fa,
-                e.toDisplayString(o.$t("上次扫描：{t}", { t: S.state?.settlement?.lastScanAt ? e.unref(r.fmtDateTime)(S.state.settlement.lastScanAt) : o.$t("尚未") })),
+                Ka,
+                e.toDisplayString(o.$t("上次扫描：{t}", { t: $.state?.settlement?.lastScanAt ? e.unref(r.fmtDateTime)($.state.settlement.lastScanAt) : o.$t("尚未") })),
                 1
                 /* TEXT */
               )
@@ -3592,39 +3613,39 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 第 5 步：核销与付款跟踪 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "track",
           index: 4,
-          title: e.unref(a).metas[4].title,
-          hint: e.unref(a).metas[4].hint,
-          runtime: e.unref(a).runtime.track,
-          "is-current": e.unref(a).currentKey.value === "track"
+          title: e.unref(V).metas[4].title,
+          hint: e.unref(V).metas[4].hint,
+          runtime: e.unref(V).runtime.track,
+          "is-current": e.unref(V).currentKey.value === "track"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", La, [
+            e.createElementVNode("div", za, [
               e.createElementVNode(
                 "span",
-                Oa,
+                ja,
                 e.toDisplayString(o.$t("费控系统网址")),
                 1
                 /* TEXT */
               ),
               e.withDirectives(e.createElementVNode("input", {
-                "onUpdate:modelValue": c[19] || (c[19] = (d) => T.value = d),
+                "onUpdate:modelValue": d[19] || (d[19] = (i) => Re.value = i),
                 type: "text",
                 style: { width: "320px", "text-align": "left" },
                 placeholder: o.$t("例如 https://fk.company.com"),
-                onChange: O
-              }, null, 40, Ia), [
-                [e.vModelText, T.value]
+                onChange: Be
+              }, null, 40, Wa), [
+                [e.vModelText, Re.value]
               ]),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn sm",
-                disabled: !T.value,
-                onClick: Pe
+                disabled: !Re.value,
+                onClick: dt
               }, [
-                c[42] || (c[42] = e.createElementVNode(
+                d[42] || (d[42] = e.createElementVNode(
                   "i",
                   { class: "ri-external-link-line" },
                   null,
@@ -3636,13 +3657,13 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, qa),
+              ], 8, Ya),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn sm ghost",
-                onClick: Se
+                onClick: ut
               }, [
-                c[43] || (c[43] = e.createElementVNode(
+                d[43] || (d[43] = e.createElementVNode(
                   "i",
                   { class: "ri-file-upload-line" },
                   null,
@@ -3656,8 +3677,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 )
               ])
             ]),
-            e.createElementVNode("p", Ka, [
-              c[44] || (c[44] = e.createElementVNode(
+            e.createElementVNode("p", xa, [
+              d[44] || (d[44] = e.createElementVNode(
                 "i",
                 { class: "ri-information-line" },
                 null,
@@ -3670,8 +3691,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", za, [
-              e.createElementVNode("table", ja, [
+            e.createElementVNode("div", Xa, [
+              e.createElementVNode("table", Qa, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -3683,7 +3704,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     ),
                     e.createElementVNode(
                       "th",
-                      Wa,
+                      Ja,
                       e.toDisplayString(o.$t("应付")),
                       1
                       /* TEXT */
@@ -3729,24 +3750,24 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(H.value, (d) => (e.openBlock(), e.createElementBlock(
+                    e.renderList(O.value, (i) => (e.openBlock(), e.createElementBlock(
                       "tr",
                       {
-                        key: d.provider,
-                        class: e.normalizeClass({ bad: A(d).invoiceOverdue || A(d).writeoffReminderDue })
+                        key: i.provider,
+                        class: e.normalizeClass({ bad: W(i).invoiceOverdue || W(i).writeoffReminderDue })
                       },
                       [
                         e.createElementVNode(
                           "td",
                           null,
-                          e.toDisplayString(d.provider),
+                          e.toDisplayString(i.provider),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "td",
-                          Ya,
-                          e.toDisplayString(e.unref(r.fmtMoney)(d.netTotal)),
+                          Za,
+                          e.toDisplayString(e.unref(r.fmtMoney)(i.netTotal)),
                           1
                           /* TEXT */
                         ),
@@ -3754,9 +3775,9 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                           e.createElementVNode(
                             "span",
                             {
-                              class: e.normalizeClass(["ss-chip", ge(A(d).stage)])
+                              class: e.normalizeClass(["ss-chip", se(W(i).stage)])
                             },
-                            e.toDisplayString(it(A(d).stage)),
+                            e.toDisplayString(ct(W(i).stage)),
                             3
                             /* TEXT, CLASS */
                           )
@@ -3764,42 +3785,42 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         e.createElementVNode("td", null, [
                           e.createElementVNode("input", {
                             type: "date",
-                            value: Ge(d.invoiceReceivedAt),
-                            onChange: (E) => Ie(d.provider, "invoiceReceivedAt", E.target.value)
-                          }, null, 40, xa)
+                            value: ye(i.invoiceReceivedAt),
+                            onChange: (E) => Ye(i.provider, "invoiceReceivedAt", E.target.value)
+                          }, null, 40, Ga)
                         ]),
                         e.createElementVNode("td", null, [
                           e.createElementVNode("input", {
                             type: "date",
-                            value: Ge(d.writeoffStartedAt),
-                            onChange: (E) => Ie(d.provider, "writeoffStartedAt", E.target.value)
-                          }, null, 40, Xa)
+                            value: ye(i.writeoffStartedAt),
+                            onChange: (E) => Ye(i.provider, "writeoffStartedAt", E.target.value)
+                          }, null, 40, Ha)
                         ]),
                         e.createElementVNode("td", null, [
                           e.createElementVNode("input", {
                             type: "date",
-                            value: Ge(d.writeoffCompletedAt),
-                            onChange: (E) => Ie(d.provider, "writeoffCompletedAt", E.target.value)
-                          }, null, 40, Qa)
+                            value: ye(i.writeoffCompletedAt),
+                            onChange: (E) => Ye(i.provider, "writeoffCompletedAt", E.target.value)
+                          }, null, 40, es)
                         ]),
                         e.createElementVNode("td", null, [
-                          A(d).writeoffReminderDue ? (e.openBlock(), e.createElementBlock(
+                          W(i).writeoffReminderDue ? (e.openBlock(), e.createElementBlock(
                             "span",
-                            Ja,
+                            ts,
                             e.toDisplayString(o.$t("发票已到 3 天未核销")),
                             1
                             /* TEXT */
                           )) : e.createCommentVNode("v-if", !0),
-                          A(d).invoiceOverdue ? (e.openBlock(), e.createElementBlock(
+                          W(i).invoiceOverdue ? (e.openBlock(), e.createElementBlock(
                             "span",
-                            Za,
+                            ns,
                             e.toDisplayString(o.$t("超 20 天未开票")),
                             1
                             /* TEXT */
                           )) : e.createCommentVNode("v-if", !0),
-                          A(d).paid ? (e.openBlock(), e.createElementBlock(
+                          W(i).paid ? (e.openBlock(), e.createElementBlock(
                             "span",
-                            Ga,
+                            ls,
                             e.toDisplayString(o.$t("已付款")),
                             1
                             /* TEXT */
@@ -3815,20 +3836,20 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ])
               ])
             ]),
-            e.createElementVNode("div", Ha, [
-              e.createElementVNode("label", es, [
+            e.createElementVNode("div", os, [
+              e.createElementVNode("label", as, [
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": c[20] || (c[20] = (d) => Te.enabled = d),
+                    "onUpdate:modelValue": d[20] || (d[20] = (i) => ue.enabled = i),
                     type: "checkbox",
-                    onChange: He
+                    onChange: Le
                   },
                   null,
                   544
                   /* NEED_HYDRATION, NEED_PATCH */
                 ), [
-                  [e.vModelCheckbox, Te.enabled]
+                  [e.vModelCheckbox, ue.enabled]
                 ]),
                 e.createElementVNode(
                   "span",
@@ -3840,7 +3861,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               ]),
               e.createElementVNode(
                 "span",
-                ts,
+                ss,
                 e.toDisplayString(o.$t("每周")),
                 1
                 /* TEXT */
@@ -3848,17 +3869,17 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.withDirectives(e.createElementVNode(
                 "select",
                 {
-                  "onUpdate:modelValue": c[21] || (c[21] = (d) => Te.weekday = d),
-                  onChange: He
+                  "onUpdate:modelValue": d[21] || (d[21] = (i) => ue.weekday = i),
+                  onChange: Le
                 },
                 [
                   (e.openBlock(), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(Q, (d, E) => e.createElementVNode("option", {
+                    e.renderList(ne, (i, E) => e.createElementVNode("option", {
                       key: E,
                       value: E
-                    }, e.toDisplayString(d), 9, ns)),
+                    }, e.toDisplayString(i), 9, rs)),
                     64
                     /* STABLE_FRAGMENT */
                   ))
@@ -3868,7 +3889,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               ), [
                 [
                   e.vModelSelect,
-                  Te.weekday,
+                  ue.weekday,
                   void 0,
                   { number: !0 }
                 ]
@@ -3876,11 +3897,11 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": c[22] || (c[22] = (d) => Te.hour = d),
+                  "onUpdate:modelValue": d[22] || (d[22] = (i) => ue.hour = i),
                   type: "number",
                   min: "0",
                   max: "23",
-                  onChange: He
+                  onChange: Le
                 },
                 null,
                 544
@@ -3888,19 +3909,19 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               ), [
                 [
                   e.vModelText,
-                  Te.hour,
+                  ue.hour,
                   void 0,
                   { number: !0 }
                 ]
               ]),
               e.createElementVNode(
                 "span",
-                ls,
+                is,
                 e.toDisplayString(o.$t("点")),
                 1
                 /* TEXT */
               ),
-              c[46] || (c[46] = e.createElementVNode(
+              d[46] || (d[46] = e.createElementVNode(
                 "span",
                 { class: "grow" },
                 null,
@@ -3910,10 +3931,10 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: e.unref(a).isRunning(),
-                onClick: se
+                disabled: e.unref(V).isRunning(),
+                onClick: mt
               }, [
-                c[45] || (c[45] = e.createElementVNode(
+                d[45] || (d[45] = e.createElementVNode(
                   "i",
                   { class: "ri-file-chart-line" },
                   null,
@@ -3925,10 +3946,10 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, os)
+              ], 8, ds)
             ]),
-            Ue.value ? (e.openBlock(), e.createElementBlock("div", as, [
-              c[47] || (c[47] = e.createElementVNode(
+            Fe.value ? (e.openBlock(), e.createElementBlock("div", us, [
+              d[47] || (d[47] = e.createElementVNode(
                 "i",
                 { class: "ri-file-excel-2-line" },
                 null,
@@ -3938,7 +3959,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.createElementVNode(
                 "code",
                 null,
-                e.toDisplayString(Ue.value.unpaidPath),
+                e.toDisplayString(Fe.value.unpaidPath),
                 1
                 /* TEXT */
               ),
@@ -3947,7 +3968,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 {
                   type: "button",
                   class: "ss-link",
-                  onClick: c[23] || (c[23] = (d) => e.unref(r.openPath)(Ue.value.unpaidPath))
+                  onClick: d[23] || (d[23] = (i) => e.unref(r.openPath)(Fe.value.unpaidPath))
                 },
                 e.toDisplayString(o.$t("打开")),
                 1
@@ -3958,7 +3979,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 {
                   type: "button",
                   class: "ss-link",
-                  onClick: c[24] || (c[24] = (d) => e.unref(r.openPath)(Ue.value.trackingPath))
+                  onClick: d[24] || (d[24] = (i) => e.unref(r.openPath)(Fe.value.trackingPath))
                 },
                 e.toDisplayString(o.$t("打开付款跟踪表")),
                 1
@@ -3972,224 +3993,224 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
       ])
     ]));
   }
-}), rs = /* @__PURE__ */ nt(ss, [["__scopeId", "data-v-fe1967f5"]]), is = { class: "ss-module" }, ds = { class: "ss-steps" }, us = { class: "ss-note info" }, cs = { class: "ss-grid two" }, ms = { class: "ss-actions" }, ps = {
+}), ms = /* @__PURE__ */ tt(cs, [["__scopeId", "data-v-31a2c878"]]), ps = { class: "ss-module" }, vs = { class: "ss-steps" }, ys = { class: "ss-note info" }, fs = { class: "ss-grid two" }, gs = { class: "ss-actions" }, Ns = {
   key: 0,
   class: "ss-dl"
-}, vs = { class: "ss-subhead" }, ys = ["disabled", "onClick"], fs = { class: "ss-subhead ss-sources__head" }, gs = {
+}, Vs = { class: "ss-subhead" }, Es = ["disabled", "onClick"], hs = { class: "ss-subhead ss-sources__head" }, ks = {
   key: 0,
   class: "ss-chip"
-}, Ns = {
+}, bs = {
   class: "ss-table-wrap ss-sources",
   "data-testid": "scrap-sources"
-}, Vs = { class: "ss-table" }, Es = { class: "num" }, hs = { class: "num" }, ks = ["title"], bs = { key: 0 }, $s = ["value", "placeholder", "title", "onInput"], Ss = ["value", "placeholder", "title", "onInput"], Ds = { class: "num" }, ws = { class: "num" }, Bs = ["title"], Ts = {
+}, $s = { class: "ss-table" }, Ss = { class: "num" }, Ds = { class: "num" }, ws = ["title"], Bs = { key: 0 }, Ts = ["value", "placeholder", "title", "onInput"], Cs = ["value", "placeholder", "title", "onInput"], _s = { class: "num" }, Ps = { class: "num" }, Rs = ["title"], Ms = {
   key: 1,
   class: "ss-chip warn"
-}, Cs = {
+}, As = {
   key: 2,
   class: "ss-chip ok"
-}, _s = { class: "ss-grid two" }, Ps = { class: "ss-field" }, Rs = { class: "ss-check" }, Ms = { class: "ss-actions" }, As = ["disabled", "title"], Us = { class: "ss-note info" }, Fs = { class: "ss-actions" }, Ls = ["disabled"], Os = { class: "ss-actions" }, Is = ["disabled"], qs = { class: "ss-kpis" }, Ks = { class: "ss-kpi" }, zs = { class: "ss-kpi accent" }, js = { class: "ss-kpi" }, Ws = { class: "ss-kpi" }, Ys = { class: "ss-kpi" }, xs = { class: "ss-kpi accent" }, Xs = { class: "ss-kpi" }, Qs = { class: "ss-subhead" }, Js = {
+}, Us = { class: "ss-grid two" }, Ls = { class: "ss-field" }, Fs = { class: "ss-check" }, Os = { class: "ss-actions" }, Is = ["disabled", "title"], qs = { class: "ss-note info" }, Ks = { class: "ss-actions" }, zs = ["disabled"], js = { class: "ss-actions" }, Ws = ["disabled"], Ys = { class: "ss-kpis" }, xs = { class: "ss-kpi" }, Xs = { class: "ss-kpi accent" }, Qs = { class: "ss-kpi" }, Js = { class: "ss-kpi" }, Zs = { class: "ss-kpi" }, Gs = { class: "ss-kpi accent" }, Hs = { class: "ss-kpi" }, er = { class: "ss-subhead" }, tr = {
   class: "ss-table-wrap",
   style: { "max-height": "180px", overflow: "auto" }
-}, Zs = { class: "ss-table" }, Gs = { class: "num" }, Hs = { class: "num" }, er = ["title"], tr = { class: "num" }, nr = { class: "num" }, lr = { class: "ss-subhead" }, or = {
+}, nr = { class: "ss-table" }, lr = { class: "num" }, or = { class: "num" }, ar = ["title"], sr = { class: "num" }, rr = { class: "num" }, ir = { class: "ss-subhead" }, dr = {
   class: "ss-table-wrap",
   style: { "max-height": "320px", overflow: "auto" }
-}, ar = { class: "ss-table" }, sr = { class: "ss-file-out" }, rr = { class: "ss-actions" }, ir = ["disabled"], dr = { class: "ss-kpis" }, ur = { class: "ss-kpi" }, cr = { class: "ss-kpi" }, mr = { class: "ss-kpi accent" }, pr = {
+}, ur = { class: "ss-table" }, cr = { class: "ss-file-out" }, mr = { class: "ss-actions" }, pr = ["disabled"], vr = { class: "ss-kpis" }, yr = { class: "ss-kpi" }, fr = { class: "ss-kpi" }, gr = { class: "ss-kpi accent" }, Nr = {
   key: 0,
   class: "ss-kpi accent"
-}, vr = {
+}, Vr = {
   key: 0,
   class: "ss-note info"
-}, yr = {
+}, Er = {
   class: "ss-table-wrap",
   style: { "max-height": "380px", overflow: "auto" }
-}, fr = { class: "ss-table" }, gr = { class: "ss-subhead" }, Nr = {
+}, hr = { class: "ss-table" }, kr = { class: "ss-subhead" }, br = {
   class: "ss-table-wrap",
   style: { "max-height": "260px", overflow: "auto" }
-}, Vr = { class: "ss-table" }, Er = { class: "ss-file-out" }, hr = {
+}, $r = { class: "ss-table" }, Sr = { class: "ss-file-out" }, Dr = {
   key: 1,
   class: "ss-empty"
-}, kr = /* @__PURE__ */ e.defineComponent({
+}, wr = /* @__PURE__ */ e.defineComponent({
   __name: "ScrapLedgerModule",
   props: {
     state: {}
   },
   emits: ["refresh"],
-  setup(Ce, { expose: we, emit: ne }) {
-    const S = ne, z = Ke.useNotificationStore(), V = r.useSteps([
-      { key: "source", title: i.t("选择鉴定表 / 报废条码"), hint: i.t("OEM 报废来自「鉴定表」，拆零报废来自「报废条码」；可选台账模板与流程发起日期") },
-      { key: "lookup", title: i.t("渠道匹配对照表"), hint: i.t("按条码 → 型号 → 店铺逐级匹配渠道与产品类型") },
-      { key: "build", title: i.t("生成报废台账"), hint: i.t("按《报废台账模板》汇成总表：只记非供应商责任的不可维修台数") },
-      { key: "summary", title: i.t("按渠道 + 品类汇总"), hint: i.t("输出《各渠道各品类报废费用汇总表》") }
-    ]), a = [{ key: "barcode", required: !1 }, { key: "model", label: i.t("产品型号"), required: !1 }, { key: "shop", label: i.t("店铺"), required: !1 }, { key: "channel", required: !0 }, { key: "category", label: i.t("产品类型"), required: !1 }], M = e.reactive([]), Y = e.reactive([]), Q = e.ref(""), D = e.ref(""), F = e.ref(!1), _ = (p) => p.split(/[\\/]/).pop() || p, J = e.computed(() => M.map((p) => ({ path: p, name: _(p), note: A(p) }))), q = e.computed(() => Y.map((p) => ({ path: p, name: _(p), note: A(p) }))), de = e.computed(() => Q.value ? [{ path: Q.value, name: _(Q.value) }] : []), fe = e.computed(() => M.length > 0 || Y.length > 0), he = (p) => M.includes(p) || Y.includes(p) || Q.value === p || B.value.some((s) => s.path === p), $ = e.ref(null);
-    function I(p) {
-      $.value = null, V.runtime[p].state !== "todo" && V.reset(p), V.resetAfter(p), V.currentKey.value = p;
+  setup(pe, { expose: ie, emit: Z }) {
+    const U = Z, X = qe.useNotificationStore(), k = r.useSteps([
+      { key: "source", title: s.t("选择鉴定表 / 报废条码"), hint: s.t("OEM 报废来自「鉴定表」，拆零报废来自「报废条码」；可选台账模板与流程发起日期") },
+      { key: "lookup", title: s.t("渠道匹配对照表"), hint: s.t("按条码 → 型号 → 店铺逐级匹配渠道与产品类型") },
+      { key: "build", title: s.t("生成报废台账"), hint: s.t("按《报废台账模板》汇成总表：只记非供应商责任的不可维修台数") },
+      { key: "summary", title: s.t("按渠道 + 品类汇总"), hint: s.t("输出《各渠道各品类报废费用汇总表》") }
+    ]), u = [{ key: "barcode", required: !1 }, { key: "model", label: s.t("产品型号"), required: !1 }, { key: "shop", label: s.t("店铺"), required: !1 }, { key: "channel", required: !0 }, { key: "category", label: s.t("产品类型"), required: !1 }], $ = e.reactive([]), K = e.reactive([]), C = e.ref(""), V = e.ref(""), G = e.ref(!1), L = (p) => p.split(/[\\/]/).pop() || p, ne = e.computed(() => $.map((p) => ({ path: p, name: L(p), note: x(p) }))), w = e.computed(() => K.map((p) => ({ path: p, name: L(p), note: x(p) }))), Y = e.computed(() => C.value ? [{ path: C.value, name: L(C.value) }] : []), Q = e.computed(() => $.length > 0 || K.length > 0), be = (p) => $.includes(p) || K.includes(p) || C.value === p || M.value.some((a) => a.path === p), S = e.ref(null);
+    function j(p) {
+      S.value = null, k.runtime[p].state !== "todo" && k.reset(p), k.resetAfter(p), k.currentKey.value = p;
     }
-    e.watch([Q, D, F], () => {
-      V.runtime.source.state !== "todo" && I("source");
+    e.watch([C, V, G], () => {
+      k.runtime.source.state !== "todo" && j("source");
     });
-    const C = e.ref([]), x = e.ref(!1), le = e.reactive({}), G = e.reactive({}), K = e.computed(() => C.value.filter((p) => p.error)), H = (p) => C.value.find((s) => s.path === p);
-    function A(p) {
-      const s = H(p);
-      if (!s) return "";
-      if (s.error) return i.t("解析失败");
+    const F = e.ref([]), H = e.ref(!1), ae = e.reactive({}), de = e.reactive({}), le = e.computed(() => F.value.filter((p) => p.error)), Ve = (p) => F.value.find((a) => a.path === p);
+    function x(p) {
+      const a = Ve(p);
+      if (!a) return "";
+      if (a.error) return s.t("解析失败");
       const y = [];
-      return s.kind === "oem" && y.push(s.supplier || i.t("供应商待补填")), y.push(s.processNo || i.t("流程号待补填")), y.join(" · ");
+      return a.kind === "oem" && y.push(a.supplier || s.t("供应商待补填")), y.push(a.processNo || s.t("流程号待补填")), y.join(" · ");
     }
-    let oe = null, j = 0;
-    function ee() {
-      oe && clearTimeout(oe), oe = setTimeout(() => {
-        oe = null, ae();
+    let J = null, T = 0;
+    function O() {
+      J && clearTimeout(J), J = setTimeout(() => {
+        J = null, W();
       }, 250);
     }
-    async function ae() {
-      const p = ++j;
-      if (!M.length && !Y.length) {
-        C.value = [], x.value = !1;
+    async function W() {
+      const p = ++T;
+      if (!$.length && !K.length) {
+        F.value = [], H.value = !1;
         return;
       }
-      const s = r.api();
-      if (s?.scrapLedgerBuild) {
-        x.value = !0;
+      const a = r.api();
+      if (a?.scrapLedgerBuild) {
+        H.value = !0;
         try {
-          const y = await s.scrapLedgerBuild({ oemFiles: [...M], barcodeFiles: [...Y], dryRun: !0, supplierByFile: { ...le }, processNoByFile: { ...G } });
-          if (p !== j) return;
-          C.value = Array.isArray(y?.sources) ? y.sources : [];
+          const y = await a.scrapLedgerBuild({ oemFiles: [...$], barcodeFiles: [...K], dryRun: !0, supplierByFile: { ...ae }, processNoByFile: { ...de } });
+          if (p !== T) return;
+          F.value = Array.isArray(y?.sources) ? y.sources : [];
         } catch (y) {
-          if (p !== j) return;
-          const w = r.errorMessage(y), T = (O, Pe) => ({ kind: O, path: Pe, fileName: _(Pe), sheets: [], processNo: "", supplier: "", units: 0, kept: 0, error: w });
-          C.value = [...M.map((O) => T("oem", O)), ...Y.map((O) => T("barcode", O))];
+          if (p !== T) return;
+          const B = r.errorMessage(y), _ = (z, _e) => ({ kind: z, path: _e, fileName: L(_e), sheets: [], processNo: "", supplier: "", units: 0, kept: 0, error: B });
+          F.value = [...$.map((z) => _("oem", z)), ...K.map((z) => _("barcode", z))];
         } finally {
-          p === j && (x.value = !1);
+          p === T && (H.value = !1);
         }
       }
     }
-    e.watch(() => `${M.join(`
-`)}\0${Y.join(`
-`)}`, ee), e.onBeforeUnmount(() => {
-      oe && clearTimeout(oe);
+    e.watch(() => `${$.join(`
+`)}\0${K.join(`
+`)}`, O), e.onBeforeUnmount(() => {
+      J && clearTimeout(J);
     });
-    function X(p, s, y) {
-      const w = String(y.target?.value || "").trim();
-      w ? p[s] = w : delete p[s], ee(), V.runtime.source.state !== "todo" && I("source");
+    function oe(p, a, y) {
+      const B = String(y.target?.value || "").trim();
+      B ? p[a] = B : delete p[a], O(), k.runtime.source.state !== "todo" && j("source");
     }
     function v(p) {
-      const s = _(p);
-      return /鉴定/.test(s) ? "oem" : /条码/.test(s) ? "barcode" : /对照/.test(s) ? "lookup" : /模板/.test(s) ? "template" : null;
+      const a = L(p);
+      return /鉴定/.test(a) ? "oem" : /条码/.test(a) ? "barcode" : /对照/.test(a) ? "lookup" : /模板/.test(a) ? "template" : null;
     }
-    function g(p, s) {
+    function g(p, a) {
       let y = 0;
-      const w = [];
-      for (const T of p) {
-        if (!T || he(T)) continue;
-        const O = v(T);
-        if (O === "lookup") {
-          w.push(_(T)), Be(T);
+      const B = [];
+      for (const _ of p) {
+        if (!_ || be(_)) continue;
+        const z = v(_);
+        if (z === "lookup") {
+          B.push(L(_)), Se(_);
           continue;
         }
-        if (O === "template") {
-          w.push(_(T)), Q.value = T;
+        if (z === "template") {
+          B.push(L(_)), C.value = _;
           continue;
         }
-        const Pe = O && O !== s ? O : s;
-        Pe !== s && w.push(_(T)), (Pe === "oem" ? M : Y).push(T), y += 1;
+        const _e = z && z !== a ? z : a;
+        _e !== a && B.push(L(_)), (_e === "oem" ? $ : K).push(_), y += 1;
       }
-      w.length && z.info(i.t("已按文件名把 {list} 归到对应位置（鉴定表 / 报废条码 / 对照表 / 模板）", { list: w.slice(0, 5).join("、") })), y && I("source");
+      B.length && X.info(s.t("已按文件名把 {list} 归到对应位置（鉴定表 / 报废条码 / 对照表 / 模板）", { list: B.slice(0, 5).join("、") })), y && j("source");
     }
-    function b(p, s) {
-      const y = s === "oem" ? M : Y, w = y.indexOf(p);
-      w < 0 || (y.splice(w, 1), delete le[p], delete G[p], I("source"));
+    function D(p, a) {
+      const y = a === "oem" ? $ : K, B = y.indexOf(p);
+      B < 0 || (y.splice(B, 1), delete ae[p], delete de[p], j("source"));
     }
     function P(p) {
-      const s = { oem: [], barcode: [] }, y = [];
-      for (const w of p) {
-        const T = v(w);
-        T === "oem" || T === "barcode" ? s[T].push(w) : T === "template" ? Q.value = w : T === "lookup" ? Be(w) : y.push(_(w));
+      const a = { oem: [], barcode: [] }, y = [];
+      for (const B of p) {
+        const _ = v(B);
+        _ === "oem" || _ === "barcode" ? a[_].push(B) : _ === "template" ? C.value = B : _ === "lookup" ? Se(B) : y.push(L(B));
       }
-      g(s.oem, "oem"), g(s.barcode, "barcode"), y.length && z.warn(i.t("{n} 个文件名不含「鉴定」「条码」「对照」「模板」，没有加入：{list}。请拖到对应的框里", { n: y.length, list: y.slice(0, 5).join("、") }));
+      g(a.oem, "oem"), g(a.barcode, "barcode"), y.length && X.warn(s.t("{n} 个文件名不含「鉴定」「条码」「对照」「模板」，没有加入：{list}。请拖到对应的框里", { n: y.length, list: y.slice(0, 5).join("、") }));
     }
-    async function ue() {
+    async function $e() {
       try {
-        const p = await r.api().pickFolder({ title: i.t("选择流程文件夹（如 FYSQ026080001005）") });
+        const p = await r.api().pickFolder({ title: s.t("选择流程文件夹（如 FYSQ026080001005）") });
         if (!p?.path) return;
-        const { files: s } = await r.api().listFolderFiles({ dir: p.path, depth: 2 });
-        if (!s.length) {
-          z.warn(i.t("这个文件夹里没有 Excel"));
+        const { files: a } = await r.api().listFolderFiles({ dir: p.path, depth: 2 });
+        if (!a.length) {
+          X.warn(s.t("这个文件夹里没有 Excel"));
           return;
         }
-        P(s);
+        P(a);
       } catch (p) {
-        z.error(r.errorMessage(p));
+        X.error(r.errorMessage(p));
       }
     }
-    const $e = e.ref([]);
-    async function L() {
-      $e.value = await r.recentBrowserDownloads(), $e.value.length || z.info(i.t("内置浏览器里还没有下载完成的表格文件"));
+    const me = e.ref([]);
+    async function I() {
+      me.value = await r.recentBrowserDownloads(), me.value.length || X.info(s.t("内置浏览器里还没有下载完成的表格文件"));
     }
-    async function ce(p) {
-      M.splice(0, M.length), Y.splice(0, Y.length);
-      for (const s of V.metas) V.reset(s.key);
-      V.currentKey.value = "source", g(p.oemFiles, "oem"), g(p.barcodeFiles, "barcode"), Q.value = p.templatePath, B.value = [], await Be(p.lookupPath);
+    async function ee(p) {
+      $.splice(0, $.length), K.splice(0, K.length);
+      for (const a of k.metas) k.reset(a.key);
+      k.currentKey.value = "source", g(p.oemFiles, "oem"), g(p.barcodeFiles, "barcode"), C.value = p.templatePath, M.value = [], await Se(p.lookupPath);
     }
-    we({ prefillDemo: ce });
-    function Re() {
-      const p = C.value.filter((s) => s.kind === "oem" && le[s.path] || G[s.path]).length;
-      V.done("source", i.t("鉴定表 {a} 份、报废条码 {b} 份{tpl}{date}{filled}", {
-        a: M.length,
-        b: Y.length,
-        tpl: Q.value ? i.t("，使用自定义模板") : "",
-        date: D.value ? i.t("，流程发起日期 {d}", { d: D.value }) : "",
-        filled: p ? i.t("，手工补填 {n} 份的供应商/流程号", { n: p }) : ""
+    ie({ prefillDemo: ee });
+    function fe() {
+      const p = F.value.filter((a) => a.kind === "oem" && ae[a.path] || de[a.path]).length;
+      k.done("source", s.t("鉴定表 {a} 份、报废条码 {b} 份{tpl}{date}{filled}", {
+        a: $.length,
+        b: K.length,
+        tpl: C.value ? s.t("，使用自定义模板") : "",
+        date: V.value ? s.t("，流程发起日期 {d}", { d: V.value }) : "",
+        filled: p ? s.t("，手工补填 {n} 份的供应商/流程号", { n: p }) : ""
       }));
     }
-    const B = e.ref([]), me = e.ref(0), pe = e.computed(() => me.value > 0), u = e.computed(() => B.value.map((p) => ({ path: p.path, name: p.fileName, note: i.t("{n} 行", { n: p.rowCount }) }))), m = e.computed(() => !pe.value && B.value.length > 0 && B.value.every((p) => (p.mapping.barcode || p.mapping.model || p.mapping.shop) && p.mapping.channel));
+    const M = e.ref([]), Ee = e.ref(0), we = e.computed(() => Ee.value > 0), c = e.computed(() => M.value.map((p) => ({ path: p.path, name: p.fileName, note: s.t("{n} 行", { n: p.rowCount }) }))), m = e.computed(() => !we.value && M.value.length > 0 && M.value.every((p) => (p.mapping.barcode || p.mapping.model || p.mapping.shop) && p.mapping.channel));
     async function f(p) {
-      for (const s of p) await Be(s);
+      for (const a of p) await Se(a);
     }
-    function k(p, s) {
-      p.mapping = s, I("lookup");
+    function b(p, a) {
+      p.mapping = a, j("lookup");
     }
-    let U = Promise.resolve();
-    function Be(p, s) {
-      me.value += 1, I("lookup");
-      const y = U.then(() => ve(p, s));
-      return U = y.catch(() => {
+    let R = Promise.resolve();
+    function Se(p, a) {
+      Ee.value += 1, j("lookup");
+      const y = R.then(() => ve(p, a));
+      return R = y.catch(() => {
       }), y.finally(() => {
-        me.value -= 1;
+        Ee.value -= 1;
       });
     }
-    async function ve(p, s) {
-      if (!(!p || !s && B.value.some((y) => y.path === p)))
+    async function ve(p, a) {
+      if (!(!p || !a && M.value.some((y) => y.path === p)))
         try {
-          const y = await r.inspectTable(p, a.map((T) => T.key), s);
-          y.mapping.model || (y.mapping.model = y.headers.find((T) => /^(产品型号|商品型号|成品型号|型号|规格型号)$/.test(T.trim())) || ""), y.mapping.shop || (y.mapping.shop = y.headers.find((T) => /^(店铺名称|店铺|门店名称|门店|销售店铺)$/.test(T.trim())) || ""), y.mapping.category || (y.mapping.category = y.headers.find((T) => /产品类型|类型/.test(T)) || "");
-          const w = B.value.findIndex((T) => T.path === p);
-          w >= 0 ? B.value[w] = y : B.value.push(y), I("lookup");
+          const y = await r.inspectTable(p, u.map((_) => _.key), a);
+          y.mapping.model || (y.mapping.model = y.headers.find((_) => /^(产品型号|商品型号|成品型号|型号|规格型号)$/.test(_.trim())) || ""), y.mapping.shop || (y.mapping.shop = y.headers.find((_) => /^(店铺名称|店铺|门店名称|门店|销售店铺)$/.test(_.trim())) || ""), y.mapping.category || (y.mapping.category = y.headers.find((_) => /产品类型|类型/.test(_)) || "");
+          const B = M.value.findIndex((_) => _.path === p);
+          B >= 0 ? M.value[B] = y : M.value.push(y), j("lookup");
         } catch (y) {
-          V.fail("lookup", y), z.error(r.errorMessage(y));
+          k.fail("lookup", y), X.error(r.errorMessage(y));
         }
     }
-    function Le(p) {
-      B.value = B.value.filter((s) => s.path !== p), I("lookup");
+    function Ue(p) {
+      M.value = M.value.filter((a) => a.path !== p), j("lookup");
     }
-    function _e() {
-      m.value && V.done("lookup", i.t("已确认 {n} 份对照表，共 {rows} 行", { n: B.value.length, rows: B.value.reduce((p, s) => p + s.rowCount, 0) }));
+    function Ke() {
+      m.value && k.done("lookup", s.t("已确认 {n} 份对照表，共 {rows} 行", { n: M.value.length, rows: M.value.reduce((p, a) => p + a.rowCount, 0) }));
     }
-    const ze = e.computed(() => $.value ? new Set($.value.aggregate.rows.map((p) => p.category)).size : 0);
+    const ze = e.computed(() => S.value ? new Set(S.value.aggregate.rows.map((p) => p.category)).size : 0);
     async function je() {
       if (m.value) {
-        V.start("build"), $.value = null, V.reset("summary");
+        k.start("build"), S.value = null, k.reset("summary");
         try {
           const p = await r.api().scrapLedgerBuild({
-            oemFiles: [...M],
-            barcodeFiles: [...Y],
-            lookups: B.value.map((s) => ({ path: s.path, sheetName: s.sheetName, barcodeColumn: s.mapping.barcode, channelColumn: s.mapping.channel, categoryColumn: s.mapping.category || void 0, modelColumn: s.mapping.model || void 0, shopColumn: s.mapping.shop || void 0 })),
-            templatePath: Q.value || void 0,
-            startDate: D.value || void 0,
-            supplierByFile: { ...le },
-            processNoByFile: { ...G },
-            includeReason: F.value
+            oemFiles: [...$],
+            barcodeFiles: [...K],
+            lookups: M.value.map((a) => ({ path: a.path, sheetName: a.sheetName, barcodeColumn: a.mapping.barcode, channelColumn: a.mapping.channel, categoryColumn: a.mapping.category || void 0, modelColumn: a.mapping.model || void 0, shopColumn: a.mapping.shop || void 0 })),
+            templatePath: C.value || void 0,
+            startDate: V.value || void 0,
+            supplierByFile: { ...ae },
+            processNoByFile: { ...de },
+            includeReason: G.value
           });
-          $.value = p, V.done("build", i.t("鉴定表 {a} 台记入 {b} 台（剔除供应商责任 {c}、可维修 {d}）；报废条码 {e} 台；台账共 {t} 行，匹配渠道 {m} / 未匹配 {u}", {
+          S.value = p, k.done("build", s.t("鉴定表 {a} 台记入 {b} 台（剔除供应商责任 {c}、可维修 {d}）；报废条码 {e} 台；台账共 {t} 行，匹配渠道 {m} / 未匹配 {u}", {
             a: p.counts.oemUnits,
             b: p.counts.oemKept,
             c: p.counts.oemDroppedSupplier,
@@ -4198,44 +4219,44 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
             t: p.counts.total,
             m: p.counts.matched,
             u: p.counts.unmatched
-          })), z.success(i.t("报废台账已生成")), S("refresh");
+          })), X.success(s.t("报废台账已生成")), U("refresh");
         } catch (p) {
-          V.fail("build", p);
+          k.fail("build", p);
         }
       }
     }
-    function Oe() {
-      if (!$.value) return;
-      r.openPath($.value.summaryPath);
-      const p = $.value;
-      V.done("summary", i.t("{a} 个渠道 × {b} 个品类，报废 {c} 台{amt}；汇总表已生成", {
+    function We() {
+      if (!S.value) return;
+      r.openPath(S.value.summaryPath);
+      const p = S.value;
+      k.done("summary", s.t("{a} 个渠道 × {b} 个品类，报废 {c} 台{amt}；汇总表已生成", {
         a: p.aggregate.channelTotals.length,
         b: ze.value,
         c: p.counts.totalUnits,
-        amt: p.aggregateAmount ? i.t("，费用合计 ¥{x}", { x: r.fmtMoney(p.aggregateAmount.total.amount) }) : ""
+        amt: p.aggregateAmount ? s.t("，费用合计 ¥{x}", { x: r.fmtMoney(p.aggregateAmount.total.amount) }) : ""
       }));
     }
-    return (p, s) => (e.openBlock(), e.createElementBlock("section", is, [
+    return (p, a) => (e.openBlock(), e.createElementBlock("section", ps, [
       e.createVNode(rt, {
         title: p.$t("更新报废台账"),
-        metas: e.unref(V).metas,
-        runtime: e.unref(V).runtime,
-        "current-key": e.unref(V).currentKey.value,
+        metas: e.unref(k).metas,
+        runtime: e.unref(k).runtime,
+        "current-key": e.unref(k).currentKey.value,
         onJump: e.unref(r.scrollToStep)
       }, null, 8, ["title", "metas", "runtime", "current-key", "onJump"]),
-      e.createElementVNode("div", ds, [
+      e.createElementVNode("div", vs, [
         e.createCommentVNode(" 第 1 步：数据源（鉴定表 / 报废条码 / 可选模板 / 可选流程发起日期） "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "source",
           index: 0,
-          title: e.unref(V).metas[0].title,
-          hint: e.unref(V).metas[0].hint,
-          runtime: e.unref(V).runtime.source,
-          "is-current": e.unref(V).currentKey.value === "source"
+          title: e.unref(k).metas[0].title,
+          hint: e.unref(k).metas[0].hint,
+          runtime: e.unref(k).runtime.source,
+          "is-current": e.unref(k).currentKey.value === "source"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("p", us, [
-              s[11] || (s[11] = e.createElementVNode(
+            e.createElementVNode("p", ys, [
+              a[11] || (a[11] = e.createElementVNode(
                 "i",
                 { class: "ri-information-line" },
                 null,
@@ -4248,29 +4269,29 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", cs, [
-              e.createVNode(ie, {
+            e.createElementVNode("div", fs, [
+              e.createVNode(ce, {
                 label: p.$t("OEM 报废 · 鉴定表（可多选）"),
                 hint: p.$t("例如「2026年7月10日退奥荣鉴定表（115台）.xlsx」，有「汇总」sheet 时按汇总计"),
-                files: J.value,
-                onPicked: s[0] || (s[0] = (y) => g(y, "oem")),
-                onRemove: s[1] || (s[1] = (y) => b(y, "oem"))
+                files: ne.value,
+                onPicked: a[0] || (a[0] = (y) => g(y, "oem")),
+                onRemove: a[1] || (a[1] = (y) => D(y, "oem"))
               }, null, 8, ["label", "hint", "files"]),
-              e.createVNode(ie, {
+              e.createVNode(ce, {
                 label: p.$t("拆零报废 · 报废条码（可多选）"),
                 hint: p.$t("例如「报废条码(368).xls」"),
-                files: q.value,
-                onPicked: s[2] || (s[2] = (y) => g(y, "barcode")),
-                onRemove: s[3] || (s[3] = (y) => b(y, "barcode"))
+                files: w.value,
+                onPicked: a[2] || (a[2] = (y) => g(y, "barcode")),
+                onRemove: a[3] || (a[3] = (y) => D(y, "barcode"))
               }, null, 8, ["label", "hint", "files"])
             ]),
-            e.createElementVNode("div", ms, [
+            e.createElementVNode("div", gs, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn ghost",
-                onClick: ue
+                onClick: $e
               }, [
-                s[12] || (s[12] = e.createElementVNode(
+                a[12] || (a[12] = e.createElementVNode(
                   "i",
                   { class: "ri-folder-add-line" },
                   null,
@@ -4286,9 +4307,9 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn ghost",
-                onClick: L
+                onClick: I
               }, [
-                s[13] || (s[13] = e.createElementVNode(
+                a[13] || (a[13] = e.createElementVNode(
                   "i",
                   { class: "ri-download-cloud-2-line" },
                   null,
@@ -4302,10 +4323,10 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 )
               ])
             ]),
-            $e.value.length ? (e.openBlock(), e.createElementBlock("div", ps, [
+            me.value.length ? (e.openBlock(), e.createElementBlock("div", Ns, [
               e.createElementVNode(
                 "div",
-                vs,
+                Vs,
                 e.toDisplayString(p.$t("内置浏览器最近下载的表格（点一下按文件名分类加入）")),
                 1
                 /* TEXT */
@@ -4313,14 +4334,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList($e.value, (y) => (e.openBlock(), e.createElementBlock("button", {
+                e.renderList(me.value, (y) => (e.openBlock(), e.createElementBlock("button", {
                   key: y.path,
                   type: "button",
                   class: "ss-chip brand",
-                  disabled: he(y.path),
-                  onClick: (w) => P([y.path])
+                  disabled: be(y.path),
+                  onClick: (B) => P([y.path])
                 }, [
-                  s[14] || (s[14] = e.createElementVNode(
+                  a[14] || (a[14] = e.createElementVNode(
                     "i",
                     { class: "ri-file-excel-2-line" },
                     null,
@@ -4332,24 +4353,24 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     1
                     /* TEXT */
                   )
-                ], 8, ys))),
+                ], 8, Es))),
                 128
                 /* KEYED_FRAGMENT */
               ))
             ])) : e.createCommentVNode("v-if", !0),
             e.createCommentVNode(" 来源识别：每份文件的供应商 / 流程号（认不出的在这里补填），放错框 / 坏文件也在这里报 "),
-            C.value.length ? (e.openBlock(), e.createElementBlock(
+            F.value.length ? (e.openBlock(), e.createElementBlock(
               e.Fragment,
               { key: 1 },
               [
-                e.createElementVNode("div", fs, [
+                e.createElementVNode("div", hs, [
                   e.createTextVNode(
                     e.toDisplayString(p.$t("来源识别：供应商 / 流程号认不出的在这里补填")) + " ",
                     1
                     /* TEXT */
                   ),
-                  x.value ? (e.openBlock(), e.createElementBlock("span", gs, [
-                    s[15] || (s[15] = e.createElementVNode(
+                  H.value ? (e.openBlock(), e.createElementBlock("span", ks, [
+                    a[15] || (a[15] = e.createElementVNode(
                       "i",
                       { class: "ri-loader-4-line spin" },
                       null,
@@ -4363,8 +4384,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     )
                   ])) : e.createCommentVNode("v-if", !0)
                 ]),
-                e.createElementVNode("div", Ns, [
-                  e.createElementVNode("table", Vs, [
+                e.createElementVNode("div", bs, [
+                  e.createElementVNode("table", $s, [
                     e.createElementVNode("thead", null, [
                       e.createElementVNode("tr", null, [
                         e.createElementVNode(
@@ -4397,14 +4418,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         ),
                         e.createElementVNode(
                           "th",
-                          Es,
+                          Ss,
                           e.toDisplayString(p.$t("台数")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
-                          hs,
+                          Ds,
                           e.toDisplayString(p.$t("记入")),
                           1
                           /* TEXT */
@@ -4422,7 +4443,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(C.value, (y) => (e.openBlock(), e.createElementBlock(
+                        e.renderList(F.value, (y) => (e.openBlock(), e.createElementBlock(
                           "tr",
                           {
                             key: y.path,
@@ -4431,7 +4452,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                           [
                             e.createElementVNode("td", {
                               title: y.path
-                            }, e.toDisplayString(y.fileName), 9, ks),
+                            }, e.toDisplayString(y.fileName), 9, ws),
                             e.createElementVNode(
                               "td",
                               null,
@@ -4442,7 +4463,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                             e.createElementVNode("td", null, [
                               y.kind === "barcode" ? (e.openBlock(), e.createElementBlock(
                                 "span",
-                                bs,
+                                Bs,
                                 e.toDisplayString(p.$t("自制")),
                                 1
                                 /* TEXT */
@@ -4451,33 +4472,33 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                                 type: "text",
                                 class: e.normalizeClass(["ss-sources__input", { missing: !y.supplier }]),
                                 "data-role": "supplier",
-                                value: le[y.path] ?? y.supplier,
+                                value: ae[y.path] ?? y.supplier,
                                 placeholder: p.$t("认不出，请填供应商名"),
                                 title: p.$t("文件名「退XX鉴定表」里认不出时在这里填"),
-                                onInput: (w) => X(le, y.path, w)
-                              }, null, 42, $s))
+                                onInput: (B) => oe(ae, y.path, B)
+                              }, null, 42, Ts))
                             ]),
                             e.createElementVNode("td", null, [
                               e.createElementVNode("input", {
                                 type: "text",
                                 class: e.normalizeClass(["ss-sources__input", { missing: !y.processNo }]),
                                 "data-role": "process-no",
-                                value: G[y.path] ?? y.processNo,
+                                value: de[y.path] ?? y.processNo,
                                 placeholder: p.$t("认不出，请填流程号"),
                                 title: p.$t("文件所在文件夹不是流程号命名时在这里填（如 FYSQ026080001005）"),
-                                onInput: (w) => X(G, y.path, w)
-                              }, null, 42, Ss)
+                                onInput: (B) => oe(de, y.path, B)
+                              }, null, 42, Cs)
                             ]),
                             e.createElementVNode(
                               "td",
-                              Ds,
+                              _s,
                               e.toDisplayString(y.error ? "—" : y.units),
                               1
                               /* TEXT */
                             ),
                             e.createElementVNode(
                               "td",
-                              ws,
+                              Ps,
                               e.toDisplayString(y.error ? "—" : y.kept),
                               1
                               /* TEXT */
@@ -4488,7 +4509,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                                 class: "ss-chip bad",
                                 title: y.error
                               }, [
-                                s[16] || (s[16] = e.createElementVNode(
+                                a[16] || (a[16] = e.createElementVNode(
                                   "i",
                                   { class: "ri-error-warning-line" },
                                   null,
@@ -4500,15 +4521,15 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                                   1
                                   /* TEXT */
                                 )
-                              ], 8, Bs)) : y.kind === "oem" && !y.supplier || !y.processNo ? (e.openBlock(), e.createElementBlock(
+                              ], 8, Rs)) : y.kind === "oem" && !y.supplier || !y.processNo ? (e.openBlock(), e.createElementBlock(
                                 "span",
-                                Ts,
+                                Ms,
                                 e.toDisplayString(p.$t("待补填")),
                                 1
                                 /* TEXT */
                               )) : (e.openBlock(), e.createElementBlock(
                                 "span",
-                                Cs,
+                                As,
                                 e.toDisplayString(p.$t("已识别")),
                                 1
                                 /* TEXT */
@@ -4527,11 +4548,11 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(K.value, (y) => (e.openBlock(), e.createElementBlock("p", {
+                  e.renderList(le.value, (y) => (e.openBlock(), e.createElementBlock("p", {
                     key: y.path,
                     class: "ss-note danger"
                   }, [
-                    s[17] || (s[17] = e.createElementVNode(
+                    a[17] || (a[17] = e.createElementVNode(
                       "i",
                       { class: "ri-error-warning-line" },
                       null,
@@ -4551,17 +4572,17 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               64
               /* STABLE_FRAGMENT */
             )) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("div", _s, [
-              e.createVNode(ie, {
+            e.createElementVNode("div", Us, [
+              e.createVNode(ce, {
                 label: p.$t("报废台账模板（可选）"),
                 hint: p.$t("不选按内置 16 列模板输出；选了按模板真表头顺序输出"),
                 multi: !1,
                 compact: "",
-                files: de.value,
-                onPicked: s[4] || (s[4] = (y) => Q.value = y[0] || ""),
-                onRemove: s[5] || (s[5] = (y) => Q.value = "")
+                files: Y.value,
+                onPicked: a[4] || (a[4] = (y) => C.value = y[0] || ""),
+                onRemove: a[5] || (a[5] = (y) => C.value = "")
               }, null, 8, ["label", "hint", "files"]),
-              e.createElementVNode("label", Ps, [
+              e.createElementVNode("label", Ls, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -4572,29 +4593,29 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": s[6] || (s[6] = (y) => D.value = y),
+                    "onUpdate:modelValue": a[6] || (a[6] = (y) => V.value = y),
                     type: "date"
                   },
                   null,
                   512
                   /* NEED_PATCH */
                 ), [
-                  [e.vModelText, D.value]
+                  [e.vModelText, V.value]
                 ])
               ])
             ]),
-            e.createElementVNode("label", Rs, [
+            e.createElementVNode("label", Fs, [
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": s[7] || (s[7] = (y) => F.value = y),
+                  "onUpdate:modelValue": a[7] || (a[7] = (y) => G.value = y),
                   type: "checkbox"
                 },
                 null,
                 512
                 /* NEED_PATCH */
               ), [
-                [e.vModelCheckbox, F.value]
+                [e.vModelCheckbox, G.value]
               ]),
               e.createElementVNode(
                 "span",
@@ -4604,8 +4625,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", Ms, [
-              s[19] || (s[19] = e.createElementVNode(
+            e.createElementVNode("div", Os, [
+              a[19] || (a[19] = e.createElementVNode(
                 "span",
                 { class: "grow" },
                 null,
@@ -4615,11 +4636,11 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !fe.value || K.value.length > 0 || e.unref(V).isRunning(),
-                title: K.value.length ? p.$t("有文件解析失败，先移除或放到正确的框") : "",
-                onClick: Re
+                disabled: !Q.value || le.value.length > 0 || e.unref(k).isRunning(),
+                title: le.value.length ? p.$t("有文件解析失败，先移除或放到正确的框") : "",
+                onClick: fe
               }, [
-                s[18] || (s[18] = e.createElementVNode(
+                a[18] || (a[18] = e.createElementVNode(
                   "i",
                   { class: "ri-check-line" },
                   null,
@@ -4631,34 +4652,34 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, As)
+              ], 8, Is)
             ])
           ]),
           _: 1
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 第 2 步：渠道对照表 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "lookup",
           index: 1,
-          title: e.unref(V).metas[1].title,
-          hint: e.unref(V).metas[1].hint,
-          runtime: e.unref(V).runtime.lookup,
-          "is-current": e.unref(V).currentKey.value === "lookup"
+          title: e.unref(k).metas[1].title,
+          hint: e.unref(k).metas[1].hint,
+          runtime: e.unref(k).runtime.lookup,
+          "is-current": e.unref(k).currentKey.value === "lookup"
         }, {
           default: e.withCtx(() => [
-            e.createVNode(ie, {
+            e.createVNode(ce, {
               label: p.$t("渠道匹配对照表 Excel"),
               hint: p.$t("列：条形码 / 产品型号 / 店铺（至少一列）| 渠道 | 产品类型"),
               multi: !0,
-              disabled: pe.value || e.unref(V).isRunning(),
-              files: u.value,
+              disabled: we.value || e.unref(k).isRunning(),
+              files: c.value,
               onPicked: f,
-              onRemove: Le
+              onRemove: Ue
             }, null, 8, ["label", "hint", "disabled", "files"]),
             e.createElementVNode(
               "p",
-              Us,
+              qs,
               e.toDisplayString(p.$t("支持多表；依次按条码 → 型号 → 店铺匹配渠道。重复条码取首条有效记录；型号或店铺对应多个渠道时继续下一级。")),
               1
               /* TEXT */
@@ -4666,24 +4687,24 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(B.value, (y) => (e.openBlock(), e.createBlock(Ee, {
+              e.renderList(M.value, (y) => (e.openBlock(), e.createBlock(ke, {
                 key: y.path,
                 table: y,
-                roles: a,
-                onUpdate: (w) => k(y, w),
-                onSheet: (w) => Be(y.path, w)
+                roles: u,
+                onUpdate: (B) => b(y, B),
+                onSheet: (B) => Se(y.path, B)
               }, null, 8, ["table", "onUpdate", "onSheet"]))),
               128
               /* KEYED_FRAGMENT */
             )),
-            e.createElementVNode("div", Fs, [
+            e.createElementVNode("div", Ks, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !m.value || e.unref(V).runtime.source.state !== "done" || e.unref(V).isRunning(),
-                onClick: _e
+                disabled: !m.value || e.unref(k).runtime.source.state !== "done" || e.unref(k).isRunning(),
+                onClick: Ke
               }, [
-                s[20] || (s[20] = e.createElementVNode(
+                a[20] || (a[20] = e.createElementVNode(
                   "i",
                   { class: "ri-check-line" },
                   null,
@@ -4695,33 +4716,33 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, Ls)
+              ], 8, zs)
             ])
           ]),
           _: 1
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 第 3 步：生成台账 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "build",
           index: 2,
-          title: e.unref(V).metas[2].title,
-          hint: e.unref(V).metas[2].hint,
-          runtime: e.unref(V).runtime.build,
-          "is-current": e.unref(V).currentKey.value === "build"
+          title: e.unref(k).metas[2].title,
+          hint: e.unref(k).metas[2].hint,
+          runtime: e.unref(k).runtime.build,
+          "is-current": e.unref(k).currentKey.value === "build"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", Os, [
+            e.createElementVNode("div", js, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: e.unref(V).runtime.lookup.state !== "done" || e.unref(V).isRunning(),
+                disabled: e.unref(k).runtime.lookup.state !== "done" || e.unref(k).isRunning(),
                 onClick: je
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(e.unref(V).runtime.build.state === "running" ? "ri-loader-4-line spin" : "ri-table-line")
+                    class: e.normalizeClass(e.unref(k).runtime.build.state === "running" ? "ri-loader-4-line spin" : "ri-table-line")
                   },
                   null,
                   2
@@ -4732,17 +4753,17 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, Is),
-              $.value ? (e.openBlock(), e.createElementBlock(
+              ], 8, Ws),
+              S.value ? (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 { key: 0 },
                 [
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn",
-                    onClick: s[8] || (s[8] = (y) => e.unref(r.openPath)($.value.outputPath))
+                    onClick: a[8] || (a[8] = (y) => e.unref(r.openPath)(S.value.outputPath))
                   }, [
-                    s[21] || (s[21] = e.createElementVNode(
+                    a[21] || (a[21] = e.createElementVNode(
                       "i",
                       { class: "ri-file-excel-2-line" },
                       null,
@@ -4758,9 +4779,9 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn ghost",
-                    onClick: s[9] || (s[9] = (y) => e.unref(r.openPath)($.value.outputDir, !0))
+                    onClick: a[9] || (a[9] = (y) => e.unref(r.openPath)(S.value.outputDir, !0))
                   }, [
-                    s[22] || (s[22] = e.createElementVNode(
+                    a[22] || (a[22] = e.createElementVNode(
                       "i",
                       { class: "ri-folder-open-line" },
                       null,
@@ -4778,12 +4799,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* STABLE_FRAGMENT */
               )) : e.createCommentVNode("v-if", !0)
             ]),
-            $.value ? (e.openBlock(), e.createElementBlock(
+            S.value ? (e.openBlock(), e.createElementBlock(
               e.Fragment,
               { key: 0 },
               [
-                e.createElementVNode("div", qs, [
-                  e.createElementVNode("div", Ks, [
+                e.createElementVNode("div", Ys, [
+                  e.createElementVNode("div", xs, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -4794,12 +4815,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "strong",
                       null,
-                      e.toDisplayString($.value.counts.oemUnits),
+                      e.toDisplayString(S.value.counts.oemUnits),
                       1
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", zs, [
+                  e.createElementVNode("div", Xs, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -4810,12 +4831,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "strong",
                       null,
-                      e.toDisplayString($.value.counts.oemKept),
+                      e.toDisplayString(S.value.counts.oemKept),
                       1
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", js, [
+                  e.createElementVNode("div", Qs, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -4826,12 +4847,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "strong",
                       null,
-                      e.toDisplayString($.value.counts.oemDroppedSupplier),
+                      e.toDisplayString(S.value.counts.oemDroppedSupplier),
                       1
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", Ws, [
+                  e.createElementVNode("div", Js, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -4842,12 +4863,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "strong",
                       null,
-                      e.toDisplayString($.value.counts.oemDroppedRepairable),
+                      e.toDisplayString(S.value.counts.oemDroppedRepairable),
                       1
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", Ys, [
+                  e.createElementVNode("div", Zs, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -4858,12 +4879,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "strong",
                       null,
-                      e.toDisplayString($.value.counts.barcodeUnits),
+                      e.toDisplayString(S.value.counts.barcodeUnits),
                       1
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", xs, [
+                  e.createElementVNode("div", Gs, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -4874,12 +4895,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "strong",
                       null,
-                      e.toDisplayString($.value.counts.total),
+                      e.toDisplayString(S.value.counts.total),
                       1
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", Xs, [
+                  e.createElementVNode("div", Hs, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -4890,7 +4911,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "strong",
                       null,
-                      e.toDisplayString($.value.counts.matched),
+                      e.toDisplayString(S.value.counts.matched),
                       1
                       /* TEXT */
                     )
@@ -4898,7 +4919,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   e.createElementVNode(
                     "div",
                     {
-                      class: e.normalizeClass(["ss-kpi", { accent: $.value.counts.unmatched }])
+                      class: e.normalizeClass(["ss-kpi", { accent: S.value.counts.unmatched }])
                     },
                     [
                       e.createElementVNode(
@@ -4911,7 +4932,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       e.createElementVNode(
                         "strong",
                         null,
-                        e.toDisplayString($.value.counts.unmatched),
+                        e.toDisplayString(S.value.counts.unmatched),
                         1
                         /* TEXT */
                       )
@@ -4923,11 +4944,11 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList($.value.warnings, (y, w) => (e.openBlock(), e.createElementBlock("p", {
-                    key: w,
+                  e.renderList(S.value.warnings, (y, B) => (e.openBlock(), e.createElementBlock("p", {
+                    key: B,
                     class: "ss-note warn"
                   }, [
-                    s[23] || (s[23] = e.createElementVNode(
+                    a[23] || (a[23] = e.createElementVNode(
                       "i",
                       { class: "ri-alert-line" },
                       null,
@@ -4945,13 +4966,13 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 )),
                 e.createElementVNode(
                   "div",
-                  Qs,
+                  er,
                   e.toDisplayString(p.$t("来源文件")),
                   1
                   /* TEXT */
                 ),
-                e.createElementVNode("div", Js, [
-                  e.createElementVNode("table", Zs, [
+                e.createElementVNode("div", tr, [
+                  e.createElementVNode("table", nr, [
                     e.createElementVNode("thead", null, [
                       e.createElementVNode("tr", null, [
                         e.createElementVNode(
@@ -4991,14 +5012,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         ),
                         e.createElementVNode(
                           "th",
-                          Gs,
+                          lr,
                           e.toDisplayString(p.$t("台数")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
-                          Hs,
+                          or,
                           e.toDisplayString(p.$t("记入")),
                           1
                           /* TEXT */
@@ -5009,12 +5030,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList($.value.sources, (y) => (e.openBlock(), e.createElementBlock("tr", {
+                        e.renderList(S.value.sources, (y) => (e.openBlock(), e.createElementBlock("tr", {
                           key: y.path
                         }, [
                           e.createElementVNode("td", {
                             title: y.path
-                          }, e.toDisplayString(y.fileName), 9, er),
+                          }, e.toDisplayString(y.fileName), 9, ar),
                           e.createElementVNode(
                             "td",
                             null,
@@ -5045,14 +5066,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                           ),
                           e.createElementVNode(
                             "td",
-                            tr,
+                            sr,
                             e.toDisplayString(y.units),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
-                            nr,
+                            rr,
                             e.toDisplayString(y.kept),
                             1
                             /* TEXT */
@@ -5066,19 +5087,19 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ]),
                 e.createElementVNode(
                   "div",
-                  lr,
-                  e.toDisplayString(p.$t("台账预览（前 {n} 行，共 {total} 行）", { n: $.value.preview.length, total: $.value.counts.total })),
+                  ir,
+                  e.toDisplayString(p.$t("台账预览（前 {n} 行，共 {total} 行）", { n: S.value.preview.length, total: S.value.counts.total })),
                   1
                   /* TEXT */
                 ),
-                e.createElementVNode("div", or, [
-                  e.createElementVNode("table", ar, [
+                e.createElementVNode("div", dr, [
+                  e.createElementVNode("table", ur, [
                     e.createElementVNode("thead", null, [
                       e.createElementVNode("tr", null, [
                         (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList($.value.headers, (y) => (e.openBlock(), e.createElementBlock(
+                          e.renderList(S.value.headers, (y) => (e.openBlock(), e.createElementBlock(
                             "th",
                             { key: y },
                             e.toDisplayString(y),
@@ -5094,14 +5115,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList($.value.preview, (y, w) => (e.openBlock(), e.createElementBlock("tr", { key: w }, [
+                        e.renderList(S.value.preview, (y, B) => (e.openBlock(), e.createElementBlock("tr", { key: B }, [
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList($.value.headers, (T) => (e.openBlock(), e.createElementBlock(
+                            e.renderList(S.value.headers, (_) => (e.openBlock(), e.createElementBlock(
                               "td",
-                              { key: T },
-                              e.toDisplayString(y[T]),
+                              { key: _ },
+                              e.toDisplayString(y[_]),
                               1
                               /* TEXT */
                             ))),
@@ -5115,8 +5136,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     ])
                   ])
                 ]),
-                e.createElementVNode("div", sr, [
-                  s[24] || (s[24] = e.createElementVNode(
+                e.createElementVNode("div", cr, [
+                  a[24] || (a[24] = e.createElementVNode(
                     "i",
                     { class: "ri-file-excel-2-line" },
                     null,
@@ -5126,7 +5147,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   e.createElementVNode(
                     "code",
                     null,
-                    e.toDisplayString($.value.outputPath),
+                    e.toDisplayString(S.value.outputPath),
                     1
                     /* TEXT */
                   )
@@ -5140,23 +5161,23 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 第 4 步：渠道 × 品类汇总 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "summary",
           index: 3,
-          title: e.unref(V).metas[3].title,
-          hint: e.unref(V).metas[3].hint,
-          runtime: e.unref(V).runtime.summary,
-          "is-current": e.unref(V).currentKey.value === "summary"
+          title: e.unref(k).metas[3].title,
+          hint: e.unref(k).metas[3].hint,
+          runtime: e.unref(k).runtime.summary,
+          "is-current": e.unref(k).currentKey.value === "summary"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", rr, [
+            e.createElementVNode("div", mr, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !$.value || e.unref(V).isRunning(),
-                onClick: Oe
+                disabled: !S.value || e.unref(k).isRunning(),
+                onClick: We
               }, [
-                s[25] || (s[25] = e.createElementVNode(
+                a[25] || (a[25] = e.createElementVNode(
                   "i",
                   { class: "ri-file-excel-2-line" },
                   null,
@@ -5168,14 +5189,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, ir),
-              $.value ? (e.openBlock(), e.createElementBlock("button", {
+              ], 8, pr),
+              S.value ? (e.openBlock(), e.createElementBlock("button", {
                 key: 0,
                 type: "button",
                 class: "ss-btn ghost",
-                onClick: s[10] || (s[10] = (y) => e.unref(r.openPath)($.value.outputDir, !0))
+                onClick: a[10] || (a[10] = (y) => e.unref(r.openPath)(S.value.outputDir, !0))
               }, [
-                s[26] || (s[26] = e.createElementVNode(
+                a[26] || (a[26] = e.createElementVNode(
                   "i",
                   { class: "ri-folder-open-line" },
                   null,
@@ -5189,12 +5210,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 )
               ])) : e.createCommentVNode("v-if", !0)
             ]),
-            $.value ? (e.openBlock(), e.createElementBlock(
+            S.value ? (e.openBlock(), e.createElementBlock(
               e.Fragment,
               { key: 0 },
               [
-                e.createElementVNode("div", dr, [
-                  e.createElementVNode("div", ur, [
+                e.createElementVNode("div", vr, [
+                  e.createElementVNode("div", yr, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -5205,12 +5226,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "strong",
                       null,
-                      e.toDisplayString($.value.aggregate.channelTotals.length),
+                      e.toDisplayString(S.value.aggregate.channelTotals.length),
                       1
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", cr, [
+                  e.createElementVNode("div", fr, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -5226,7 +5247,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", mr, [
+                  e.createElementVNode("div", gr, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -5237,12 +5258,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "strong",
                       null,
-                      e.toDisplayString($.value.counts.totalUnits),
+                      e.toDisplayString(S.value.counts.totalUnits),
                       1
                       /* TEXT */
                     )
                   ]),
-                  $.value.aggregateAmount ? (e.openBlock(), e.createElementBlock("div", pr, [
+                  S.value.aggregateAmount ? (e.openBlock(), e.createElementBlock("div", Nr, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -5253,14 +5274,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.createElementVNode(
                       "strong",
                       null,
-                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)($.value.aggregateAmount.total.amount)),
+                      "¥" + e.toDisplayString(e.unref(r.fmtMoney)(S.value.aggregateAmount.total.amount)),
                       1
                       /* TEXT */
                     )
                   ])) : e.createCommentVNode("v-if", !0)
                 ]),
-                $.value.aggregateAmount ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", vr, [
-                  s[27] || (s[27] = e.createElementVNode(
+                S.value.aggregateAmount ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", Vr, [
+                  a[27] || (a[27] = e.createElementVNode(
                     "i",
                     { class: "ri-information-line" },
                     null,
@@ -5273,18 +5294,18 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     /* TEXT */
                   )
                 ])),
-                e.createElementVNode("div", yr, [
-                  e.createElementVNode("table", fr, [
+                e.createElementVNode("div", Er, [
+                  e.createElementVNode("table", hr, [
                     e.createElementVNode("thead", null, [
                       e.createElementVNode("tr", null, [
                         (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList($.value.summaryHeaders, (y, w) => (e.openBlock(), e.createElementBlock(
+                          e.renderList(S.value.summaryHeaders, (y, B) => (e.openBlock(), e.createElementBlock(
                             "th",
                             {
                               key: y,
-                              class: e.normalizeClass({ num: Number(w) >= 2 })
+                              class: e.normalizeClass({ num: Number(B) >= 2 })
                             },
                             e.toDisplayString(y),
                             3
@@ -5299,23 +5320,23 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList($.value.summary, (y, w) => (e.openBlock(), e.createElementBlock(
+                        e.renderList(S.value.summary, (y, B) => (e.openBlock(), e.createElementBlock(
                           "tr",
                           {
-                            key: w,
+                            key: B,
                             class: e.normalizeClass({ total: y[1] === "" })
                           },
                           [
                             (e.openBlock(!0), e.createElementBlock(
                               e.Fragment,
                               null,
-                              e.renderList(y, (T, O) => (e.openBlock(), e.createElementBlock(
+                              e.renderList(y, (_, z) => (e.openBlock(), e.createElementBlock(
                                 "td",
                                 {
-                                  key: O,
-                                  class: e.normalizeClass({ num: Number(O) >= 2 })
+                                  key: z,
+                                  class: e.normalizeClass({ num: Number(z) >= 2 })
                                 },
-                                e.toDisplayString(Number(O) >= 4 ? e.unref(r.fmtMoney)(T) : T),
+                                e.toDisplayString(Number(z) >= 4 ? e.unref(r.fmtMoney)(_) : _),
                                 3
                                 /* TEXT, CLASS */
                               ))),
@@ -5334,23 +5355,23 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ]),
                 e.createElementVNode(
                   "div",
-                  gr,
+                  kr,
                   e.toDisplayString(p.$t("渠道 × 品类透视（台）")),
                   1
                   /* TEXT */
                 ),
-                e.createElementVNode("div", Nr, [
-                  e.createElementVNode("table", Vr, [
+                e.createElementVNode("div", br, [
+                  e.createElementVNode("table", $r, [
                     e.createElementVNode("thead", null, [
                       e.createElementVNode("tr", null, [
                         (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList($.value.pivot.headers, (y, w) => (e.openBlock(), e.createElementBlock(
+                          e.renderList(S.value.pivot.headers, (y, B) => (e.openBlock(), e.createElementBlock(
                             "th",
                             {
                               key: y,
-                              class: e.normalizeClass({ num: Number(w) >= 1 })
+                              class: e.normalizeClass({ num: Number(B) >= 1 })
                             },
                             e.toDisplayString(y),
                             3
@@ -5365,23 +5386,23 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList($.value.pivot.rows, (y, w) => (e.openBlock(), e.createElementBlock(
+                        e.renderList(S.value.pivot.rows, (y, B) => (e.openBlock(), e.createElementBlock(
                           "tr",
                           {
-                            key: w,
-                            class: e.normalizeClass({ total: w === $.value.pivot.rows.length - 1 })
+                            key: B,
+                            class: e.normalizeClass({ total: B === S.value.pivot.rows.length - 1 })
                           },
                           [
                             (e.openBlock(!0), e.createElementBlock(
                               e.Fragment,
                               null,
-                              e.renderList(y, (T, O) => (e.openBlock(), e.createElementBlock(
+                              e.renderList(y, (_, z) => (e.openBlock(), e.createElementBlock(
                                 "td",
                                 {
-                                  key: O,
-                                  class: e.normalizeClass({ num: Number(O) >= 1 })
+                                  key: z,
+                                  class: e.normalizeClass({ num: Number(z) >= 1 })
                                 },
-                                e.toDisplayString(T),
+                                e.toDisplayString(_),
                                 3
                                 /* TEXT, CLASS */
                               ))),
@@ -5398,8 +5419,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     ])
                   ])
                 ]),
-                e.createElementVNode("div", Er, [
-                  s[28] || (s[28] = e.createElementVNode(
+                e.createElementVNode("div", Sr, [
+                  a[28] || (a[28] = e.createElementVNode(
                     "i",
                     { class: "ri-file-excel-2-line" },
                     null,
@@ -5409,7 +5430,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   e.createElementVNode(
                     "code",
                     null,
-                    e.toDisplayString($.value.summaryPath),
+                    e.toDisplayString(S.value.summaryPath),
                     1
                     /* TEXT */
                   )
@@ -5419,7 +5440,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               /* STABLE_FRAGMENT */
             )) : (e.openBlock(), e.createElementBlock(
               "p",
-              hr,
+              Dr,
               e.toDisplayString(p.$t("先在第 3 步生成台账")),
               1
               /* TEXT */
@@ -5431,266 +5452,266 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
       ])
     ]));
   }
-}), br = /* @__PURE__ */ nt(kr, [["__scopeId", "data-v-175141c1"]]), $r = { class: "ss-module" }, Sr = { class: "ss-steps" }, Dr = { class: "ss-rule-row" }, wr = { class: "lbl" }, Br = { value: 1 }, Tr = { value: 2 }, Cr = { value: 3 }, _r = { value: 4 }, Pr = { class: "lbl" }, Rr = ["disabled"], Mr = {
+}), Br = /* @__PURE__ */ tt(wr, [["__scopeId", "data-v-175141c1"]]), Tr = { class: "ss-module" }, Cr = { class: "ss-steps" }, _r = { class: "ss-rule-row" }, Pr = { class: "lbl" }, Rr = { value: 1 }, Mr = { value: 2 }, Ar = { value: 3 }, Ur = { value: 4 }, Lr = { class: "lbl" }, Fr = ["disabled"], Or = {
   key: 0,
   class: "ss-dl"
-}, Ar = ["onClick"], Ur = { class: "ss-actions" }, Fr = ["disabled"], Lr = { class: "ss-grid" }, Or = { class: "ss-source" }, Ir = { class: "ss-subhead" }, qr = { class: "ss-source" }, Kr = { class: "ss-subhead" }, zr = { class: "ss-grid" }, jr = { class: "ss-source" }, Wr = { class: "ss-subhead" }, Yr = { class: "ss-source" }, xr = { class: "ss-subhead" }, Xr = { class: "ss-actions" }, Qr = ["disabled"], Jr = { class: "ss-grid" }, Zr = {
+}, Ir = ["onClick"], qr = { class: "ss-actions" }, Kr = ["disabled"], zr = { class: "ss-grid" }, jr = { class: "ss-source" }, Wr = { class: "ss-subhead" }, Yr = { class: "ss-source" }, xr = { class: "ss-subhead" }, Xr = { class: "ss-grid" }, Qr = { class: "ss-source" }, Jr = { class: "ss-subhead" }, Zr = { class: "ss-source" }, Gr = { class: "ss-subhead" }, Hr = { class: "ss-actions" }, ei = ["disabled"], ti = { class: "ss-grid" }, ni = {
   class: "ss-table-wrap",
   style: { "max-height": "300px", overflow: "auto" }
-}, Gr = { class: "ss-table" }, Hr = { class: "num" }, ei = { class: "num" }, ti = { class: "num" }, ni = {
+}, li = { class: "ss-table" }, oi = { class: "num" }, ai = { class: "num" }, si = { class: "num" }, ri = {
   key: 0,
   class: "num"
-}, li = { class: "num" }, oi = { class: "num" }, ai = { class: "num" }, si = {
+}, ii = { class: "num" }, di = { class: "num" }, ui = { class: "num" }, ci = {
   key: 0,
   class: "num"
-}, ri = {
+}, mi = {
   class: "ss-table-wrap",
   style: { "max-height": "300px", overflow: "auto" }
-}, ii = { class: "ss-table" }, di = { class: "num" }, ui = { class: "num" }, ci = { class: "num" }, mi = { class: "num" }, pi = { class: "num" }, vi = { class: "num" }, yi = { class: "ss-actions" }, fi = ["disabled"], gi = {
+}, pi = { class: "ss-table" }, vi = { class: "num" }, yi = { class: "num" }, fi = { class: "num" }, gi = { class: "num" }, Ni = { class: "num" }, Vi = { class: "num" }, Ei = { class: "ss-actions" }, hi = ["disabled"], ki = {
   key: 0,
   class: "ss-error-banner"
-}, Ni = {
+}, bi = {
   key: 2,
   class: "ss-note warn"
-}, Vi = {
+}, $i = {
   key: 3,
   class: "ss-rules"
-}, Ei = { class: "ss-note warn" }, hi = { style: { "white-space": "pre-wrap" } }, ki = {
+}, Si = { class: "ss-note warn" }, Di = { style: { "white-space": "pre-wrap" } }, wi = {
   key: 4,
   class: "ss-note warn"
-}, bi = { class: "ss-rules" }, $i = { class: "ss-actions" }, Si = { class: "ss-muted" }, Di = { class: "ss-subhead" }, wi = { class: "ss-rule-row" }, Bi = { class: "lbl" }, Ti = { class: "lbl" }, Ci = { class: "ss-switch" }, _i = { class: "lbl" }, Pi = ["onUpdate:modelValue"], Ri = ["onUpdate:modelValue", "placeholder"], Mi = ["onUpdate:modelValue"], Ai = { value: "marginal" }, Ui = { value: "whole" }, Fi = { value: "fixed" }, Li = ["onUpdate:modelValue"], Oi = { class: "lbl" }, Ii = ["onUpdate:modelValue"], qi = ["onUpdate:modelValue"], Ki = ["onClick"], zi = { class: "ss-rule-row" }, ji = { class: "ss-switch" }, Wi = ["placeholder"], Yi = { class: "ss-muted" }, xi = { class: "ss-rule-row" }, Xi = { class: "ss-switch" }, Qi = { class: "lbl" }, Ji = { value: "lastMonthStart" }, Zi = { value: "quarterStart" }, Gi = { value: "quarterEnd" }, Hi = { class: "lbl" }, ed = ["onUpdate:modelValue"], td = { class: "lbl" }, nd = ["onUpdate:modelValue"], ld = ["onClick"], od = { class: "ss-subhead" }, ad = { class: "ss-rule-row" }, sd = { class: "lbl" }, rd = { class: "lbl" }, id = { class: "lbl" }, dd = { class: "lbl" }, ud = ["onUpdate:modelValue"], cd = ["onUpdate:modelValue", "placeholder"], md = ["onUpdate:modelValue"], pd = { value: "marginal" }, vd = { value: "whole" }, yd = { value: "fixed" }, fd = ["onUpdate:modelValue"], gd = { class: "lbl" }, Nd = ["onUpdate:modelValue"], Vd = ["onUpdate:modelValue"], Ed = ["onClick"], hd = { class: "ss-rule-row" }, kd = { class: "lbl" }, bd = { class: "lbl" }, $d = { class: "lbl" }, Sd = { class: "lbl" }, Dd = { class: "ss-switch" }, wd = { class: "ss-switch" }, Bd = { class: "lbl" }, Td = ["onUpdate:modelValue"], Cd = { class: "lbl" }, _d = ["onUpdate:modelValue"], Pd = { class: "lbl" }, Rd = ["onClick"], Md = { class: "ss-rule-row" }, Ad = { class: "lbl" }, Ud = ["onUpdate:modelValue"], Fd = ["onUpdate:modelValue"], Ld = ["onClick"], Od = { class: "ss-subhead" }, Id = { class: "ss-rule-row" }, qd = { class: "lbl" }, Kd = { value: "perOrder" }, zd = { value: "ratio" }, jd = { class: "lbl" }, Wd = { class: "lbl" }, Yd = ["onUpdate:modelValue"], xd = { class: "lbl" }, Xd = ["onUpdate:modelValue"], Qd = { class: "lbl" }, Jd = ["onUpdate:modelValue"], Zd = ["onClick"], Gd = {
+}, Bi = { class: "ss-rules" }, Ti = { class: "ss-actions" }, Ci = { class: "ss-muted" }, _i = { class: "ss-subhead" }, Pi = { class: "ss-rule-row" }, Ri = { class: "lbl" }, Mi = { class: "lbl" }, Ai = { class: "ss-switch" }, Ui = { class: "lbl" }, Li = ["onUpdate:modelValue"], Fi = ["onUpdate:modelValue", "placeholder"], Oi = ["onUpdate:modelValue"], Ii = { value: "marginal" }, qi = { value: "whole" }, Ki = { value: "fixed" }, zi = ["onUpdate:modelValue"], ji = { class: "lbl" }, Wi = ["onUpdate:modelValue"], Yi = ["onUpdate:modelValue"], xi = ["onClick"], Xi = { class: "ss-rule-row" }, Qi = { class: "ss-switch" }, Ji = ["placeholder"], Zi = { class: "ss-muted" }, Gi = { class: "ss-rule-row" }, Hi = { class: "ss-switch" }, ed = { class: "lbl" }, td = { value: "lastMonthStart" }, nd = { value: "quarterStart" }, ld = { value: "quarterEnd" }, od = { class: "lbl" }, ad = ["onUpdate:modelValue"], sd = { class: "lbl" }, rd = ["onUpdate:modelValue"], id = ["onClick"], dd = { class: "ss-subhead" }, ud = { class: "ss-rule-row" }, cd = { class: "lbl" }, md = { class: "lbl" }, pd = { class: "lbl" }, vd = { class: "lbl" }, yd = ["onUpdate:modelValue"], fd = ["onUpdate:modelValue", "placeholder"], gd = ["onUpdate:modelValue"], Nd = { value: "marginal" }, Vd = { value: "whole" }, Ed = { value: "fixed" }, hd = ["onUpdate:modelValue"], kd = { class: "lbl" }, bd = ["onUpdate:modelValue"], $d = ["onUpdate:modelValue"], Sd = ["onClick"], Dd = { class: "ss-rule-row" }, wd = { class: "lbl" }, Bd = { class: "lbl" }, Td = { class: "lbl" }, Cd = { class: "lbl" }, _d = { class: "ss-switch" }, Pd = { class: "ss-switch" }, Rd = { class: "lbl" }, Md = ["onUpdate:modelValue"], Ad = { class: "lbl" }, Ud = ["onUpdate:modelValue"], Ld = { class: "lbl" }, Fd = ["onClick"], Od = { class: "ss-rule-row" }, Id = { class: "lbl" }, qd = ["onUpdate:modelValue"], Kd = ["onUpdate:modelValue"], zd = ["onClick"], jd = { class: "ss-subhead" }, Wd = { class: "ss-rule-row" }, Yd = { class: "lbl" }, xd = { value: "perOrder" }, Xd = { value: "ratio" }, Qd = { class: "lbl" }, Jd = { class: "lbl" }, Zd = ["onUpdate:modelValue"], Gd = { class: "lbl" }, Hd = ["onUpdate:modelValue"], eu = { class: "lbl" }, tu = ["onUpdate:modelValue"], nu = ["onClick"], lu = {
   key: 1,
   class: "ss-rule-row"
-}, Hd = { class: "lbl" }, eu = { value: "both" }, tu = { value: "warranty" }, nu = { value: "aux" }, lu = { class: "ss-rule-row" }, ou = { class: "lbl" }, au = { class: "lbl" }, su = { class: "lbl" }, ru = { class: "ss-actions" }, iu = ["disabled"], du = {
+}, ou = { class: "lbl" }, au = { value: "both" }, su = { value: "warranty" }, ru = { value: "aux" }, iu = { class: "ss-rule-row" }, du = { class: "lbl" }, uu = { class: "lbl" }, cu = { class: "lbl" }, mu = { class: "ss-actions" }, pu = ["disabled"], vu = {
   class: "ss-table-wrap",
   style: { "max-height": "320px", overflow: "auto" }
-}, uu = { class: "ss-table" }, cu = { class: "num" }, mu = { class: "num" }, pu = { class: "num" }, vu = { class: "num" }, yu = { class: "num" }, fu = { class: "num" }, gu = { class: "num" }, Nu = { class: "num" }, Vu = { class: "num" }, Eu = { class: "num" }, hu = { class: "num" }, ku = {
+}, yu = { class: "ss-table" }, fu = { class: "num" }, gu = { class: "num" }, Nu = { class: "num" }, Vu = { class: "num" }, Eu = { class: "num" }, hu = { class: "num" }, ku = { class: "num" }, bu = { class: "num" }, $u = { class: "num" }, Su = { class: "num" }, Du = { class: "num" }, wu = {
   key: 0,
   class: "ss-muted"
-}, bu = { class: "num" }, $u = { class: "num" }, Su = { class: "num" }, Du = { class: "ss-muted" }, wu = { class: "total" }, Bu = { class: "num" }, Tu = { class: "num" }, Cu = { class: "num" }, _u = { class: "ss-rule-row" }, Pu = { class: "lbl" }, Ru = { class: "ss-muted" }, Mu = {
+}, Bu = { class: "num" }, Tu = { class: "num" }, Cu = { class: "num" }, _u = { class: "ss-muted" }, Pu = { class: "total" }, Ru = { class: "num" }, Mu = { class: "num" }, Au = { class: "num" }, Uu = { class: "ss-rule-row" }, Lu = { class: "lbl" }, Fu = { class: "ss-muted" }, Ou = {
   class: "ss-table-wrap",
   style: { "max-height": "320px", overflow: "auto" }
-}, Au = { class: "ss-table" }, Uu = { class: "num" }, Fu = ["onUpdate:modelValue"], Lu = ["value", "placeholder", "onChange"], Ou = { class: "num" }, Iu = {
+}, Iu = { class: "ss-table" }, qu = { class: "num" }, Ku = ["onUpdate:modelValue"], zu = ["value", "placeholder", "onChange"], ju = { class: "num" }, Wu = {
   key: 0,
   class: "ss-chip ok"
-}, qu = ["title"], Ku = {
+}, Yu = ["title"], xu = {
   key: 2,
   class: "ss-chip"
-}, zu = {
+}, Xu = {
   key: 0,
   class: "ss-chip warn"
-}, ju = {
+}, Qu = {
   key: 1,
   class: "ss-muted"
-}, Wu = { class: "ss-switch" }, Yu = ["checked", "onChange"], xu = { key: 0 }, Xu = {
+}, Ju = { class: "ss-switch" }, Zu = ["checked", "onChange"], Gu = { key: 0 }, Hu = {
   colspan: "7",
   class: "ss-muted"
-}, Qu = { class: "ss-actions" }, Ju = ["disabled"], Zu = { class: "ss-rule-row" }, Gu = { class: "lbl" }, Hu = ["disabled"], ec = { class: "lbl" }, tc = { value: "amount" }, nc = { value: "quantity" }, lc = {
+}, ec = { class: "ss-actions" }, tc = ["disabled"], nc = { class: "ss-rule-row" }, lc = { class: "lbl" }, oc = ["disabled"], ac = { class: "lbl" }, sc = { value: "amount" }, rc = { value: "quantity" }, ic = {
   key: 0,
   class: "ss-dl"
-}, oc = ["onClick"], ac = { class: "ss-grid" }, sc = { class: "ss-source" }, rc = { class: "ss-subhead" }, ic = { class: "ss-source" }, dc = { class: "ss-subhead" }, uc = { class: "ss-actions" }, cc = ["disabled"], mc = { class: "ss-grid" }, pc = {
+}, dc = ["onClick"], uc = { class: "ss-grid" }, cc = { class: "ss-source" }, mc = { class: "ss-subhead" }, pc = { class: "ss-source" }, vc = { class: "ss-subhead" }, yc = { class: "ss-actions" }, fc = ["disabled"], gc = { class: "ss-grid" }, Nc = {
   class: "ss-table-wrap",
   style: { "max-height": "260px", overflow: "auto" }
-}, vc = { class: "ss-table" }, yc = { class: "num" }, fc = { class: "num" }, gc = { class: "num" }, Nc = { class: "num" }, Vc = { class: "num" }, Ec = { class: "num" }, hc = {
+}, Vc = { class: "ss-table" }, Ec = { class: "num" }, hc = { class: "num" }, kc = { class: "num" }, bc = { class: "num" }, $c = { class: "num" }, Sc = { class: "num" }, Dc = {
   class: "ss-table-wrap",
   style: { "max-height": "260px", overflow: "auto" }
-}, kc = { class: "ss-table" }, bc = { class: "num" }, $c = { class: "num" }, Sc = { class: "num" }, Dc = { class: "num" }, wc = { class: "num" }, Bc = { class: "num" }, Tc = { class: "ss-note" }, Cc = { class: "ss-actions" }, _c = ["disabled"], Pc = {
+}, wc = { class: "ss-table" }, Bc = { class: "num" }, Tc = { class: "num" }, Cc = { class: "num" }, _c = { class: "num" }, Pc = { class: "num" }, Rc = { class: "num" }, Mc = { class: "ss-note" }, Ac = { class: "ss-actions" }, Uc = ["disabled"], Lc = {
   class: "ss-table-wrap",
   style: { "max-height": "260px", overflow: "auto" }
-}, Rc = { class: "ss-table" }, Mc = { class: "num" }, Ac = { class: "num" }, Uc = { class: "num" }, Fc = { class: "num" }, Lc = {
+}, Fc = { class: "ss-table" }, Oc = { class: "num" }, Ic = { class: "num" }, qc = { class: "num" }, Kc = { class: "num" }, zc = {
   key: 0,
   class: "ss-table-wrap",
   style: { "max-height": "340px", overflow: "auto" }
-}, Oc = { class: "ss-table" }, Ic = { class: "num" }, qc = { class: "num" }, Kc = { class: "num" }, zc = { class: "num" }, jc = { class: "num" }, Wc = { class: "num" }, Yc = { class: "num" }, xc = { class: "num" }, Xc = { class: "num" }, Qc = { class: "num" }, Jc = { class: "num" }, Zc = { class: "num" }, Gc = { class: "num" }, Hc = { class: "num" }, em = { class: "num" }, tm = { class: "num" }, nm = { class: "num" }, lm = { class: "num" }, om = { class: "num" }, am = { class: "num" }, sm = { class: "total" }, rm = { class: "num" }, im = { class: "num" }, dm = {
+}, jc = { class: "ss-table" }, Wc = { class: "num" }, Yc = { class: "num" }, xc = { class: "num" }, Xc = { class: "num" }, Qc = { class: "num" }, Jc = { class: "num" }, Zc = { class: "num" }, Gc = { class: "num" }, Hc = { class: "num" }, em = { class: "num" }, tm = { class: "num" }, nm = { class: "num" }, lm = { class: "num" }, om = { class: "num" }, am = { class: "num" }, sm = { class: "num" }, rm = { class: "num" }, im = { class: "num" }, dm = { class: "num" }, um = { class: "num" }, cm = { class: "total" }, mm = { class: "num" }, pm = { class: "num" }, vm = {
   key: 1,
   class: "ss-muted"
-}, um = { class: "ss-actions" }, cm = ["disabled"], mm = {
+}, ym = { class: "ss-actions" }, fm = ["disabled"], gm = {
   key: 0,
   class: "ss-table-wrap",
   style: { "max-height": "320px", overflow: "auto" }
-}, pm = { class: "ss-table" }, vm = { class: "num" }, ym = { class: "num" }, fm = { class: "num" }, gm = { class: "num" }, Nm = { class: "num" }, Vm = { class: "num" }, Em = ["onUpdate:modelValue"], hm = { class: "num" }, km = { class: "num" }, bm = { class: "num" }, $m = { class: "num" }, Sm = { class: "num" }, Dm = { class: "num" }, wm = {
+}, Nm = { class: "ss-table" }, Vm = { class: "num" }, Em = { class: "num" }, hm = { class: "num" }, km = { class: "num" }, bm = { class: "num" }, $m = { class: "num" }, Sm = ["onUpdate:modelValue"], Dm = { class: "num" }, wm = { class: "num" }, Bm = { class: "num" }, Tm = { class: "num" }, Cm = { class: "num" }, _m = { class: "num" }, Pm = {
   key: 0,
   class: "ss-chip ok"
-}, Bm = {
+}, Rm = {
   key: 1,
   class: "ss-chip"
-}, Tm = {
+}, Mm = {
   key: 0,
   class: "ss-chip ok"
-}, Cm = {
+}, Am = {
   key: 1,
   class: "ss-chip"
-}, _m = { class: "total" }, Pm = { class: "num" }, Rm = { class: "num" }, Mm = { class: "ss-actions" }, Am = ["disabled"], Um = ["disabled"], Fm = { class: "ss-note" }, Lm = {
+}, Um = { class: "total" }, Lm = { class: "num" }, Fm = { class: "num" }, Om = { class: "ss-actions" }, Im = ["disabled"], qm = ["disabled"], Km = { class: "ss-note" }, zm = {
   class: "ss-table-wrap",
   style: { "max-height": "360px", overflow: "auto" }
-}, Om = { class: "ss-table" }, Im = ["value", "onChange"], qm = ["value", "onChange"], Km = ["value", "onChange"], zm = ["value", "onChange"], jm = ["value", "onChange"], Wm = { class: "ss-chip" }, Ym = ["title"], xm = {
+}, jm = { class: "ss-table" }, Wm = ["value", "onChange"], Ym = ["value", "onChange"], xm = ["value", "onChange"], Xm = ["value", "onChange"], Qm = ["value", "onChange"], Jm = { class: "ss-chip" }, Zm = ["title"], Gm = {
   key: 1,
   class: "ss-chip ok"
-}, Xm = { key: 0 }, Qm = {
+}, Hm = { key: 0 }, ep = {
   colspan: "8",
   class: "ss-muted"
-}, Jm = { class: "ss-actions" }, Zm = ["disabled"], Gm = { class: "ss-rule-row" }, Hm = { class: "lbl" }, ep = { value: "" }, tp = ["value"], np = ["disabled"], lp = { class: "ss-note" }, op = { class: "ss-actions" }, ap = ["disabled"], sp = { class: "ss-actions" }, rp = ["disabled"], ip = {
+}, tp = { class: "ss-actions" }, np = ["disabled"], lp = { class: "ss-rule-row" }, op = { class: "lbl" }, ap = { value: "" }, sp = ["value"], rp = ["disabled"], ip = { class: "ss-note" }, dp = { class: "ss-actions" }, up = ["disabled"], cp = { class: "ss-actions" }, mp = ["disabled"], pp = {
   key: 0,
   class: "ss-note warn"
-}, dp = {
+}, vp = {
   key: 1,
   class: "ss-report"
-}, up = /* @__PURE__ */ e.defineComponent({
+}, yp = /* @__PURE__ */ e.defineComponent({
   __name: "MarketingIncentiveModule",
   props: {
     state: {}
   },
   emits: ["refresh"],
-  setup(Ce, { expose: we, emit: ne }) {
-    const S = Ce, z = ne, V = Ke.useNotificationStore(), a = r.useSteps([
-      { key: "youzan", title: i.t("从有赞商城导出季度辅材销售订单"), hint: i.t("打开有赞指定页面查询导出，或直接放入已导出的订单 Excel") },
-      { key: "aux", title: i.t("计算辅材实际达成与达成率"), hint: i.t("服务商 & 区域经理各自的实际、任务、达成率（订单行有经理列时按行归属）") },
-      { key: "rules", title: i.t("读取激励规则 PDF，算服务商辅材激励初始金额"), hint: i.t("扫描件先 OCR → AI 抽出阶梯规则 → 你核对（或直接套 2026 默认政策）→ 按规则算") },
-      { key: "return", title: i.t("通知服务商退回等额呆滞配件"), hint: i.t("到期前 10 天未退回自动二次提醒") },
-      { key: "warranty", title: i.t("计算延保达成率"), hint: i.t("延保订单取自 CSS 系统，任务取外部表；算区域经理 & 服务商") },
-      { key: "discount", title: i.t("延保达成率判定 → 区域经理辅材激励是否打折"), hint: i.t("低于阈值的按折扣结算") },
-      { key: "manager", title: i.t("核算区域经理最终激励金额"), hint: i.t("基础激励 + （辅材提成 × 折扣 + 延保提成）× 绩效系数") },
-      { key: "provider", title: i.t("服务商最终延保激励、开票通知、负责人激励与信息提报通知"), hint: i.t("核算 + 两封通知") },
-      { key: "leaders", title: i.t("收集并校验负责人信息"), hint: i.t("企微 / 邮箱回传自动汇总，信息错误即报错") },
-      { key: "tax", title: i.t("生成个税申报表"), hint: i.t("按模板（或内置格式）生成") },
-      { key: "report", title: i.t("生成季度结案报告"), hint: i.t("汇总全流程事实，生成 Markdown 报告") }
-    ]), M = [{ key: "provider", required: !0 }, { key: "amount", required: !0, label: i.t("订单金额") }, { key: "date", label: i.t("日期 / 季度标签") }, { key: "manager", label: i.t("服务经理（按行归属）") }, { key: "product", label: i.t("产品（门槛品类判定）") }, { key: "status" }, { key: "orderNo" }], Y = [{ key: "provider", required: !0 }, { key: "task", required: !0 }, { key: "qualifierTask", label: i.t("门槛品类任务（电动止回阀）") }, { key: "annualTask", label: i.t("年度任务（返利门槛）") }, { key: "manager" }], Q = [{ key: "provider", required: !0 }, { key: "task", required: !0 }, { key: "manager" }], D = [{ key: "manager", required: !0 }, { key: "task", required: !0 }], F = [{ key: "provider", required: !0 }, { key: "providerAlt", label: i.t("变更/归属服务商（非空时这一行按它算）") }, { key: "amount" }, { key: "quantity" }, { key: "date", label: i.t("日期 / 月份") }, { key: "manager", label: i.t("区域经理（按行归属）") }, { key: "status" }], _ = [{ key: "manager", required: !0 }, { key: "grade", required: !0, label: i.t("绩效等级") }], J = [{ key: "provider", required: !0 }, { key: "introducedAt", label: i.t("引入时间") }, { key: "manager", label: i.t("省区/区域经理（归属兜底）") }, { key: "alias", label: i.t("更名记录 / 曾用名（并入现名）") }], q = {
+  setup(pe, { expose: ie, emit: Z }) {
+    const U = pe, X = Z, k = qe.useNotificationStore(), u = r.useSteps([
+      { key: "youzan", title: s.t("从有赞商城导出季度辅材销售订单"), hint: s.t("打开有赞指定页面查询导出，或直接放入已导出的订单 Excel") },
+      { key: "aux", title: s.t("计算辅材实际达成与达成率"), hint: s.t("服务商 & 区域经理各自的实际、任务、达成率（订单行有经理列时按行归属）") },
+      { key: "rules", title: s.t("读取激励规则 PDF，算服务商辅材激励初始金额"), hint: s.t("扫描件先 OCR → AI 抽出阶梯规则 → 你核对（或直接套 2026 默认政策）→ 按规则算") },
+      { key: "return", title: s.t("通知服务商退回等额呆滞配件"), hint: s.t("到期前 10 天未退回自动二次提醒") },
+      { key: "warranty", title: s.t("计算延保达成率"), hint: s.t("延保订单取自 CSS 系统，任务取外部表；算区域经理 & 服务商") },
+      { key: "discount", title: s.t("延保达成率判定 → 区域经理辅材激励是否打折"), hint: s.t("低于阈值的按折扣结算") },
+      { key: "manager", title: s.t("核算区域经理最终激励金额"), hint: s.t("基础激励 + （辅材提成 × 折扣 + 延保提成）× 绩效系数") },
+      { key: "provider", title: s.t("服务商最终延保激励、开票通知、负责人激励与信息提报通知"), hint: s.t("核算 + 两封通知") },
+      { key: "leaders", title: s.t("收集并校验负责人信息"), hint: s.t("企微 / 邮箱回传自动汇总，信息错误即报错") },
+      { key: "tax", title: s.t("生成个税申报表"), hint: s.t("按模板（或内置格式）生成") },
+      { key: "report", title: s.t("生成季度结案报告"), hint: s.t("汇总全流程事实，生成 Markdown 报告") }
+    ]), $ = [{ key: "provider", required: !0 }, { key: "amount", required: !0, label: s.t("订单金额") }, { key: "date", label: s.t("日期 / 季度标签") }, { key: "manager", label: s.t("服务经理（按行归属）") }, { key: "product", label: s.t("产品（门槛品类判定）") }, { key: "status" }, { key: "orderNo" }], K = [{ key: "provider", required: !0 }, { key: "task", required: !0 }, { key: "qualifierTask", label: s.t("门槛品类任务（电动止回阀）") }, { key: "annualTask", label: s.t("年度任务（返利门槛）") }, { key: "manager" }], C = [{ key: "provider", required: !0 }, { key: "task", required: !0 }, { key: "manager" }], V = [{ key: "manager", required: !0 }, { key: "task", required: !0 }], G = [{ key: "provider", required: !0 }, { key: "providerAlt", label: s.t("变更/归属服务商（非空时这一行按它算）") }, { key: "amount" }, { key: "quantity" }, { key: "date", label: s.t("日期 / 月份") }, { key: "manager", label: s.t("区域经理（按行归属）") }, { key: "status" }], L = [{ key: "manager", required: !0 }, { key: "grade", required: !0, label: s.t("绩效等级") }], ne = [{ key: "provider", required: !0 }, { key: "introducedAt", label: s.t("引入时间") }, { key: "manager", label: s.t("省区/区域经理（归属兜底）") }, { key: "alias", label: s.t("更名记录 / 曾用名（并入现名）") }], w = {
       product: [/^产品$/, /产品(名称|类型|品类)/],
       qualifierTask: [/止回阀.*(目标|任务)/, /(目标|任务).*止回阀/],
       annualTask: [/^\d{2,4}年.*(目标|任务)/, /年度.*(目标|任务)/],
       providerAlt: [/变更服务商/, /归属服务商/],
       grade: [/^等级$/, /绩效等级/, /等级/],
       introducedAt: [/引入时间/, /引入年份/, /引入日期/, /合作(开始|起始)?(时间|日期)/, /签约(时间|日期)/]
-    }, de = { manager: [/^省区经理$/] };
-    function fe(t, l, n) {
-      const N = (ye) => ye.replace(/\s+/g, ""), h = () => Object.values(t.mapping).filter(Boolean);
-      for (const ye of l) {
-        const qe = n?.[ye.key];
-        if (qe) {
-          const Je = t.headers.find((re) => qe.some((st) => st.test(N(re))));
-          if (Je) {
-            t.mapping[ye.key] = Je;
+    }, Y = { manager: [/^省区经理$/] };
+    function Q(t, l, n) {
+      const N = (ge) => ge.replace(/\s+/g, ""), h = () => Object.values(t.mapping).filter(Boolean);
+      for (const ge of l) {
+        const Ie = n?.[ge.key];
+        if (Ie) {
+          const Ze = t.headers.find((re) => Ie.some((at) => at.test(N(re))));
+          if (Ze) {
+            t.mapping[ge.key] = Ze;
             continue;
           }
         }
-        if (!t.mapping[ye.key])
-          for (const Je of q[ye.key] || []) {
-            const re = t.headers.find((st) => Je.test(N(st)) && !h().includes(st));
+        if (!t.mapping[ge.key])
+          for (const Ze of w[ge.key] || []) {
+            const re = t.headers.find((at) => Ze.test(N(at)) && !h().includes(at));
             if (re) {
-              t.mapping[ye.key] = re;
+              t.mapping[ge.key] = re;
               break;
             }
           }
       }
     }
-    function he(t) {
+    function be(t) {
       const l = Math.floor(t.getMonth() / 3) + 1;
       return l === 1 ? { year: t.getFullYear() - 1, quarter: 4 } : { year: t.getFullYear(), quarter: l - 1 };
     }
-    const $ = he(/* @__PURE__ */ new Date()), I = e.ref(S.state?.marketing?.year || $.year), C = e.ref(S.state?.marketing?.quarter || $.quarter), x = e.ref(S.state?.marketing?.youzanUrl || ""), le = e.ref(S.state?.marketing?.cssUrl || "");
-    async function G() {
+    const S = be(/* @__PURE__ */ new Date()), j = e.ref(U.state?.marketing?.year || S.year), F = e.ref(U.state?.marketing?.quarter || S.quarter), H = e.ref(U.state?.marketing?.youzanUrl || ""), ae = e.ref(U.state?.marketing?.cssUrl || "");
+    async function de() {
       try {
-        await r.api().statePatch({ marketing: { youzanUrl: x.value, cssUrl: le.value, year: I.value, quarter: C.value } });
+        await r.api().statePatch({ marketing: { youzanUrl: H.value, cssUrl: ae.value, year: j.value, quarter: F.value } });
       } catch (t) {
-        V.error(r.errorMessage(t));
+        k.error(r.errorMessage(t));
       }
     }
-    async function K() {
-      await r.openEmbeddedBrowser(x.value, "service-settlement-youzan") || V.warn(i.t("内置浏览器不可用"));
+    async function le() {
+      await r.openEmbeddedBrowser(H.value, "service-settlement-youzan") || k.warn(s.t("内置浏览器不可用"));
     }
-    async function H() {
-      await r.openEmbeddedBrowser(le.value, "service-settlement-css") || V.warn(i.t("内置浏览器不可用"));
+    async function Ve() {
+      await r.openEmbeddedBrowser(ae.value, "service-settlement-css") || k.warn(s.t("内置浏览器不可用"));
     }
-    const A = e.reactive({ orders: [], css: [] });
-    async function oe(t) {
-      A[t] = await r.recentBrowserDownloads(), A[t].length || V.info(i.t("内置浏览器里还没有下载完成的表格文件"));
+    const x = e.reactive({ orders: [], css: [] });
+    async function J(t) {
+      x[t] = await r.recentBrowserDownloads(), x[t].length || k.info(s.t("内置浏览器里还没有下载完成的表格文件"));
     }
-    const j = e.reactive([]), ee = e.reactive([]), ae = e.ref(null), X = e.ref(null), v = e.ref(null), g = e.ref(null), b = e.ref(null), P = e.ref(null), ue = { providerTasks: ae, managerTasks: X, warrantyTasks: v, warrantyManagerTasks: g, gradeTable: b, providerInfo: P }, $e = (t) => t.map((l) => ({ path: l.path, name: l.fileName, note: i.t("{n} 行", { n: l.rowCount }) })), L = (t) => t.split(/[\\/]/).pop() || t, ce = (t, l) => a.runtime[t]?.state === "running" ? "ri-loader-4-line spin" : l, Re = (t) => t.map((l) => l.key);
-    function B(t) {
-      t.mapping.provider || !t.headers.includes(Ze.orderProviderFallbackColumn) || (t.mapping.provider = Ze.orderProviderFallbackColumn, V.info(i.t("{f}：没有服务商列，已用「{c}」作服务商列（有赞订单的备注即服务商名；不对的话直接改选）", { f: t.fileName, c: Ze.orderProviderFallbackColumn })));
+    const T = e.reactive([]), O = e.reactive([]), W = e.ref(null), oe = e.ref(null), v = e.ref(null), g = e.ref(null), D = e.ref(null), P = e.ref(null), $e = { providerTasks: W, managerTasks: oe, warrantyTasks: v, warrantyManagerTasks: g, gradeTable: D, providerInfo: P }, me = (t) => t.map((l) => ({ path: l.path, name: l.fileName, note: s.t("{n} 行", { n: l.rowCount }) })), I = (t) => t.split(/[\\/]/).pop() || t, ee = (t, l) => u.runtime[t]?.state === "running" ? "ri-loader-4-line spin" : l, fe = (t) => t.map((l) => l.key);
+    function M(t) {
+      t.mapping.provider || !t.headers.includes(Ge.orderProviderFallbackColumn) || (t.mapping.provider = Ge.orderProviderFallbackColumn, k.info(s.t("{f}：没有服务商列，已用「{c}」作服务商列（有赞订单的备注即服务商名；不对的话直接改选）", { f: t.fileName, c: Ge.orderProviderFallbackColumn })));
     }
-    async function me(t, l, n) {
+    async function Ee(t, l, n) {
       for (const N of l)
         if (!t.some((h) => h.path === N))
           try {
-            const h = await r.inspectTable(N, Re(n));
-            fe(h, n), n === M && B(h), t.push(h);
+            const h = await r.inspectTable(N, fe(n));
+            Q(h, n), n === $ && M(h), t.push(h);
           } catch (h) {
-            V.error(r.errorMessage(h));
+            k.error(r.errorMessage(h));
           }
     }
-    function pe(t, l) {
+    function we(t, l) {
       const n = t.findIndex((N) => N.path === l);
       n >= 0 && t.splice(n, 1);
     }
-    async function u(t, l, n, N) {
+    async function c(t, l, n, N) {
       try {
-        const h = await r.inspectTable(t[l].path, Re(N), n);
-        fe(h, N), N === M && B(h), t[l] = h;
+        const h = await r.inspectTable(t[l].path, fe(N), n);
+        Q(h, N), N === $ && M(h), t[l] = h;
       } catch (h) {
-        V.error(r.errorMessage(h));
+        k.error(r.errorMessage(h));
       }
     }
     async function m(t, l, n, N) {
       if (l)
         try {
-          const h = await r.inspectTable(l, Re(n), N);
-          fe(h, n, t === "providerInfo" ? de : void 0), ue[t].value = h;
+          const h = await r.inspectTable(l, fe(n), N);
+          Q(h, n, t === "providerInfo" ? Y : void 0), $e[t].value = h;
         } catch (h) {
-          V.error(r.errorMessage(h));
+          k.error(r.errorMessage(h));
         }
     }
-    const f = (t) => ({ path: t.path, sheetName: t.sheetName, mapping: t.mapping }), k = (t) => t ? f(t) : null;
-    async function U(t) {
-      I.value = t.year, C.value = t.quarter, j.splice(0, j.length), ee.splice(0, ee.length);
-      for (const l of Object.keys(ue)) ue[l].value = null;
-      for (const l of a.metas) a.reset(l.key);
-      a.currentKey.value = "youzan", await me(j, [t.workbook], M), j[0] && j[0].sheetName !== t.sheets.orders && await u(j, 0, t.sheets.orders, M), await m("providerTasks", t.workbook, Y, t.sheets.providerTasks), await m("managerTasks", t.workbook, D, t.sheets.managerTasks), await m("gradeTable", t.workbook, _, t.sheets.grades), await m("providerInfo", t.workbook, J, t.sheets.providerInfo), await me(ee, [t.workbook], F), ee[0] && ee[0].sheetName !== t.sheets.css && await u(ee, 0, t.sheets.css, F), await m("warrantyTasks", t.workbook, Q, t.sheets.warrantyTasks), await m("warrantyManagerTasks", t.workbook, D, t.sheets.warrantyManagerTasks), await yt();
+    const f = (t) => ({ path: t.path, sheetName: t.sheetName, mapping: t.mapping }), b = (t) => t ? f(t) : null;
+    async function R(t) {
+      j.value = t.year, F.value = t.quarter, T.splice(0, T.length), O.splice(0, O.length);
+      for (const l of Object.keys($e)) $e[l].value = null;
+      for (const l of u.metas) u.reset(l.key);
+      u.currentKey.value = "youzan", await Ee(T, [t.workbook], $), T[0] && T[0].sheetName !== t.sheets.orders && await c(T, 0, t.sheets.orders, $), await m("providerTasks", t.workbook, K, t.sheets.providerTasks), await m("managerTasks", t.workbook, V, t.sheets.managerTasks), await m("gradeTable", t.workbook, L, t.sheets.grades), await m("providerInfo", t.workbook, ne, t.sheets.providerInfo), await Ee(O, [t.workbook], G), O[0] && O[0].sheetName !== t.sheets.css && await c(O, 0, t.sheets.css, G), await m("warrantyTasks", t.workbook, C, t.sheets.warrantyTasks), await m("warrantyManagerTasks", t.workbook, V, t.sheets.warrantyManagerTasks), await Pe();
     }
-    we({ prefillDemo: U });
-    function Be() {
-      a.start("youzan");
-      const t = j.filter((l) => !l.mapping.provider || !l.mapping.amount);
+    ie({ prefillDemo: R });
+    function Se() {
+      u.start("youzan");
+      const t = T.filter((l) => !l.mapping.provider || !l.mapping.amount);
       if (t.length) {
-        a.fail("youzan", i.t("{f} 缺少服务商列或金额列", { f: t.map((l) => l.fileName).join("、") }));
+        u.fail("youzan", s.t("{f} 缺少服务商列或金额列", { f: t.map((l) => l.fileName).join("、") }));
         return;
       }
-      G(), a.resetAfter("youzan"), ve.value = null, W.value = null, Ve.value = !1, a.done("youzan", i.t("{y} 年 Q{q}，{n} 份订单表共 {r} 行", { y: I.value, q: C.value, n: j.length, r: j.reduce((l, n) => l + n.rowCount, 0) }));
+      de(), u.resetAfter("youzan"), ve.value = null, A.value = null, Ne.value = !1, u.done("youzan", s.t("{y} 年 Q{q}，{n} 份订单表共 {r} 行", { y: j.value, q: F.value, n: T.length, r: T.reduce((l, n) => l + n.rowCount, 0) }));
     }
     const ve = e.ref(null);
-    let Le = "";
-    const _e = e.computed(() => !!ve.value?.providers?.some((t) => t.qualifierTask != null));
+    let Ue = "";
+    const Ke = e.computed(() => !!ve.value?.providers?.some((t) => t.qualifierTask != null));
     async function ze() {
-      a.start("aux"), ve.value = null, We.value = "";
+      u.start("aux"), ve.value = null, E.value = "";
       try {
-        if (!ae.value?.mapping.provider || !ae.value?.mapping.task) throw new Error(i.t("服务商任务表需要「服务商」和「任务」两列"));
-        Le = s.qualifierPattern || "";
+        if (!W.value?.mapping.provider || !W.value?.mapping.task) throw new Error(s.t("服务商任务表需要「服务商」和「任务」两列"));
+        Ue = a.qualifierPattern || "";
         const t = await r.api().marketingAchievement({
-          year: I.value,
-          quarter: C.value,
-          orders: j.map(f),
-          providerTasks: f(ae.value),
-          managerTasks: k(X.value),
+          year: j.value,
+          quarter: F.value,
+          orders: T.map(f),
+          providerTasks: f(W.value),
+          managerTasks: b(oe.value),
           measure: "amount",
-          providerInfo: k(P.value),
-          qualifierPattern: Le || void 0
+          providerInfo: b(P.value),
+          qualifierPattern: Ue || void 0
         });
-        ve.value = t, a.resetAfter("aux"), W.value = null, Ve.value = !1, a.done("aux", i.t("{a} 家服务商 / {b} 位区域经理；整体达成率 {r}", { a: t.providers.length, b: t.managers.length, r: r.fmtPct(t.totals.rate, 1) }));
+        ve.value = t, u.resetAfter("aux"), A.value = null, Ne.value = !1, u.done("aux", s.t("{a} 家服务商 / {b} 位区域经理；整体达成率 {r}", { a: t.providers.length, b: t.managers.length, r: r.fmtPct(t.totals.rate, 1) }));
       } catch (t) {
-        a.fail("aux", t);
+        u.fail("aux", t);
       }
     }
-    const je = () => ({ fromPct: 100, toPct: null, ratioPct: 3, factor: 1, basis: "marginal", fixed: 0 }), Oe = (t) => t.map(([l, n], N) => ({ fromPct: l, toPct: t[N + 1] ? t[N + 1][0] : null, ratioPct: n, factor: 1, basis: "whole", fixed: 0 })), p = () => ({
+    const je = () => ({ fromPct: 100, toPct: null, ratioPct: 3, factor: 1, basis: "marginal", fixed: 0 }), We = (t) => t.map(([l, n], N) => ({ fromPct: l, toPct: t[N + 1] ? t[N + 1][0] : null, ratioPct: n, factor: 1, basis: "whole", fixed: 0 })), p = () => ({
       source: "",
-      auxTiers: Oe([[0, 0], [80, 3], [100, 5], [120, 8]]),
+      auxTiers: We([[0, 0], [80, 3], [100, 5], [120, 8]]),
       auxMinRatePct: 0,
       auxMissingTaskAsMet: !1,
       qualifierEnabled: !1,
-      qualifierPattern: Ze.qualifierPattern,
+      qualifierPattern: Ge.qualifierPattern,
       rebateEnabled: !1,
       rebateTiers: [{ minYears: 20, ratioPct: 10 }, { minYears: 10, ratioPct: 8 }, { minYears: 0, ratioPct: 5 }],
       rebateYearsAsOf: "quarterEnd",
-      managerTiers: Oe([[0, 0], [80, 3], [100, 5], [120, 8]]),
+      managerTiers: We([[0, 0], [80, 3], [100, 5], [120, 8]]),
       managerMinRatePct: 0,
       managerBase: { perItemMax: 0, minRatePct: 80, quarterMax: 0, applyCoefficient: !1, applyDiscount: !1 },
       managerAdvanceRatioPct: 0,
@@ -5703,8 +5724,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
       leaderShareBase: "both",
       returnDueDays: 30,
       returnRemindBeforeDays: 10
-    }), s = e.reactive(p()), y = (t) => Math.round(Number(t || 0) * 1e4) / 100;
-    function w(t) {
+    }), a = e.reactive(p()), y = (t) => Math.round(Number(t || 0) * 1e4) / 100;
+    function B(t) {
       return t.map((l, n) => {
         if (l.fromRate != null || l.basis)
           return { fromPct: y(l.fromRate), toPct: l.toRate == null ? null : y(l.toRate), ratioPct: y(l.ratio), factor: l.factor ?? 1, basis: l.basis === "marginal" || l.basis === "fixed" ? l.basis : "whole", fixed: l.fixed ?? 0 };
@@ -5712,325 +5733,325 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
         return { fromPct: y(l.minRate), toPct: N ? y(N.minRate) : null, ratioPct: y(l.ratio), factor: 1, basis: l.fixed != null && !l.ratio ? "fixed" : "whole", fixed: l.fixed ?? 0 };
       });
     }
-    function T(t) {
+    function _(t) {
       if (!t) return;
-      s.source = t.source || "", Array.isArray(t.auxTiers) && t.auxTiers.length && (s.auxTiers = w(t.auxTiers)), t.auxMinRate != null && (s.auxMinRatePct = y(t.auxMinRate)), s.auxMissingTaskAsMet = !!t.auxMissingTaskAsMet, t.qualifier && (s.qualifierEnabled = !!t.qualifier.enabled, t.qualifier.productPattern && (s.qualifierPattern = t.qualifier.productPattern)), t.rebate && (s.rebateEnabled = !!t.rebate.enabled, Array.isArray(t.rebate.tiers) && t.rebate.tiers.length && (s.rebateTiers = t.rebate.tiers.map((n) => ({ minYears: Number(n.minYears) || 0, ratioPct: y(n.ratio) }))), t.rebate.yearsAsOf && (s.rebateYearsAsOf = t.rebate.yearsAsOf === "quarterStart" || t.rebate.yearsAsOf === "lastMonthStart" ? t.rebate.yearsAsOf : "quarterEnd"));
+      a.source = t.source || "", Array.isArray(t.auxTiers) && t.auxTiers.length && (a.auxTiers = B(t.auxTiers)), t.auxMinRate != null && (a.auxMinRatePct = y(t.auxMinRate)), a.auxMissingTaskAsMet = !!t.auxMissingTaskAsMet, t.qualifier && (a.qualifierEnabled = !!t.qualifier.enabled, t.qualifier.productPattern && (a.qualifierPattern = t.qualifier.productPattern)), t.rebate && (a.rebateEnabled = !!t.rebate.enabled, Array.isArray(t.rebate.tiers) && t.rebate.tiers.length && (a.rebateTiers = t.rebate.tiers.map((n) => ({ minYears: Number(n.minYears) || 0, ratioPct: y(n.ratio) }))), t.rebate.yearsAsOf && (a.rebateYearsAsOf = t.rebate.yearsAsOf === "quarterStart" || t.rebate.yearsAsOf === "lastMonthStart" ? t.rebate.yearsAsOf : "quarterEnd"));
       const l = t.managerTiers ?? t.managerAuxTiers;
-      Array.isArray(l) && l.length ? s.managerTiers = w(l) : Array.isArray(t.auxTiers) && t.auxTiers.length && (s.managerTiers = w(t.auxTiers)), t.managerMinRate != null && (s.managerMinRatePct = y(t.managerMinRate)), t.managerBase && (s.managerBase = { perItemMax: Number(t.managerBase.perItemMax) || 0, minRatePct: y(t.managerBase.minRate ?? 0.8), quarterMax: Number(t.managerBase.quarterMax) || 0, applyCoefficient: !!t.managerBase.applyCoefficient, applyDiscount: !!t.managerBase.applyDiscount }), t.managerAdvanceRatio != null && (s.managerAdvanceRatioPct = y(t.managerAdvanceRatio)), Array.isArray(t.managerDiscountTiers) && (s.managerDiscountTiers = t.managerDiscountTiers.map((n) => ({ belowRatePct: y(n.belowRate), discountZhe: Math.round(Number(n.discount) * 100) / 10 }))), t.performanceCoefficients && typeof t.performanceCoefficients == "object" && Object.keys(t.performanceCoefficients).length && (s.coefficients = Object.entries(t.performanceCoefficients).map(([n, N]) => ({ grade: n, value: Number(N) }))), s.warrantyMode = t.warrantyMode === "ratio" ? "ratio" : "perOrder", t.warrantyPerOrder != null && (s.warrantyPerOrder = t.warrantyPerOrder), Array.isArray(t.warrantyTiers) && t.warrantyTiers.length && (s.warrantyTiers = t.warrantyTiers.map((n) => ({ minRatePct: y(n.minRate), providerRatioPct: y(n.providerRatio ?? n.ratio), leaderRatioPct: y(n.leaderRatio) }))), t.leaderShareRatio != null && (s.leaderShareRatioPct = y(t.leaderShareRatio)), t.leaderShareBase && (s.leaderShareBase = t.leaderShareBase), t.returnDueDays != null && (s.returnDueDays = t.returnDueDays), t.returnRemindBeforeDays != null && (s.returnRemindBeforeDays = t.returnRemindBeforeDays);
+      Array.isArray(l) && l.length ? a.managerTiers = B(l) : Array.isArray(t.auxTiers) && t.auxTiers.length && (a.managerTiers = B(t.auxTiers)), t.managerMinRate != null && (a.managerMinRatePct = y(t.managerMinRate)), t.managerBase && (a.managerBase = { perItemMax: Number(t.managerBase.perItemMax) || 0, minRatePct: y(t.managerBase.minRate ?? 0.8), quarterMax: Number(t.managerBase.quarterMax) || 0, applyCoefficient: !!t.managerBase.applyCoefficient, applyDiscount: !!t.managerBase.applyDiscount }), t.managerAdvanceRatio != null && (a.managerAdvanceRatioPct = y(t.managerAdvanceRatio)), Array.isArray(t.managerDiscountTiers) && (a.managerDiscountTiers = t.managerDiscountTiers.map((n) => ({ belowRatePct: y(n.belowRate), discountZhe: Math.round(Number(n.discount) * 100) / 10 }))), t.performanceCoefficients && typeof t.performanceCoefficients == "object" && Object.keys(t.performanceCoefficients).length && (a.coefficients = Object.entries(t.performanceCoefficients).map(([n, N]) => ({ grade: n, value: Number(N) }))), a.warrantyMode = t.warrantyMode === "ratio" ? "ratio" : "perOrder", t.warrantyPerOrder != null && (a.warrantyPerOrder = t.warrantyPerOrder), Array.isArray(t.warrantyTiers) && t.warrantyTiers.length && (a.warrantyTiers = t.warrantyTiers.map((n) => ({ minRatePct: y(n.minRate), providerRatioPct: y(n.providerRatio ?? n.ratio), leaderRatioPct: y(n.leaderRatio) }))), t.leaderShareRatio != null && (a.leaderShareRatioPct = y(t.leaderShareRatio)), t.leaderShareBase && (a.leaderShareBase = t.leaderShareBase), t.returnDueDays != null && (a.returnDueDays = t.returnDueDays), t.returnRemindBeforeDays != null && (a.returnRemindBeforeDays = t.returnRemindBeforeDays);
     }
-    T(S.state?.marketing?.rules);
-    const O = (t) => Number(t || 0) / 100, Pe = (t) => ({ fromRate: O(t.fromPct), toRate: t.toPct == null || t.toPct === "" ? null : O(t.toPct), ratio: O(t.ratioPct), factor: Number(t.factor) || 1, basis: t.basis, fixed: Number(t.fixed) || 0 });
-    function Ge(t) {
+    _(U.state?.marketing?.rules);
+    const z = (t) => Number(t || 0) / 100, _e = (t) => ({ fromRate: z(t.fromPct), toRate: t.toPct == null || t.toPct === "" ? null : z(t.toPct), ratio: z(t.ratioPct), factor: Number(t.factor) || 1, basis: t.basis, fixed: Number(t.fixed) || 0 });
+    function it(t) {
       const l = t.value, n = typeof l == "string" ? l.trim() : l;
       if (n === "" || n == null)
-        throw new Error(i.t("绩效系数「{p0}」没有填数值。请填一个数（不发奖金就填 0），或删掉这一行。", { p0: t.grade.trim() }));
+        throw new Error(s.t("绩效系数「{p0}」没有填数值。请填一个数（不发奖金就填 0），或删掉这一行。", { p0: t.grade.trim() }));
       const N = Number(n);
       if (!Number.isFinite(N))
-        throw new Error(i.t("绩效系数「{p0}」不是有效数字：{p1}", { p0: t.grade.trim(), p1: String(l) }));
+        throw new Error(s.t("绩效系数「{p0}」不是有效数字：{p1}", { p0: t.grade.trim(), p1: String(l) }));
       if (N < 0)
-        throw new Error(i.t("绩效系数「{p0}」不能是负数：{p1}", { p0: t.grade.trim(), p1: N }));
+        throw new Error(s.t("绩效系数「{p0}」不能是负数：{p1}", { p0: t.grade.trim(), p1: N }));
       return N;
     }
-    function Ie() {
+    function Re() {
       return {
-        source: s.source,
+        source: a.source,
         version: 2,
-        auxTiers: s.auxTiers.map(Pe),
-        auxMinRate: O(s.auxMinRatePct),
-        auxMissingTaskAsMet: s.auxMissingTaskAsMet,
-        qualifier: { enabled: s.qualifierEnabled, productPattern: s.qualifierPattern, label: s.qualifierPattern },
-        rebate: { enabled: s.rebateEnabled, tiers: s.rebateTiers.map((t) => ({ minYears: Number(t.minYears) || 0, ratio: O(t.ratioPct) })), yearsAsOf: s.rebateYearsAsOf },
-        managerTiers: s.managerTiers.map(Pe),
-        managerMinRate: O(s.managerMinRatePct),
-        managerBase: { perItemMax: Number(s.managerBase.perItemMax) || 0, minRate: O(s.managerBase.minRatePct), quarterMax: Number(s.managerBase.quarterMax) || 0, applyCoefficient: s.managerBase.applyCoefficient, applyDiscount: s.managerBase.applyDiscount },
-        managerAdvanceRatio: O(s.managerAdvanceRatioPct),
-        managerDiscountTiers: s.managerDiscountTiers.map((t) => ({ belowRate: O(t.belowRatePct), discount: Number(t.discountZhe) / 10 })),
-        performanceCoefficients: Object.fromEntries(s.coefficients.filter((t) => t.grade.trim()).map((t) => [t.grade.trim(), Ge(t)])),
-        warrantyMode: s.warrantyMode,
-        warrantyPerOrder: Number(s.warrantyPerOrder),
-        warrantyTiers: s.warrantyTiers.map((t) => ({ minRate: O(t.minRatePct), providerRatio: O(t.providerRatioPct), leaderRatio: O(t.leaderRatioPct) })),
-        leaderShareRatio: O(s.leaderShareRatioPct),
-        leaderShareBase: s.leaderShareBase,
-        returnDueDays: Number(s.returnDueDays),
-        returnRemindBeforeDays: Number(s.returnRemindBeforeDays)
+        auxTiers: a.auxTiers.map(_e),
+        auxMinRate: z(a.auxMinRatePct),
+        auxMissingTaskAsMet: a.auxMissingTaskAsMet,
+        qualifier: { enabled: a.qualifierEnabled, productPattern: a.qualifierPattern, label: a.qualifierPattern },
+        rebate: { enabled: a.rebateEnabled, tiers: a.rebateTiers.map((t) => ({ minYears: Number(t.minYears) || 0, ratio: z(t.ratioPct) })), yearsAsOf: a.rebateYearsAsOf },
+        managerTiers: a.managerTiers.map(_e),
+        managerMinRate: z(a.managerMinRatePct),
+        managerBase: { perItemMax: Number(a.managerBase.perItemMax) || 0, minRate: z(a.managerBase.minRatePct), quarterMax: Number(a.managerBase.quarterMax) || 0, applyCoefficient: a.managerBase.applyCoefficient, applyDiscount: a.managerBase.applyDiscount },
+        managerAdvanceRatio: z(a.managerAdvanceRatioPct),
+        managerDiscountTiers: a.managerDiscountTiers.map((t) => ({ belowRate: z(t.belowRatePct), discount: Number(t.discountZhe) / 10 })),
+        performanceCoefficients: Object.fromEntries(a.coefficients.filter((t) => t.grade.trim()).map((t) => [t.grade.trim(), it(t)])),
+        warrantyMode: a.warrantyMode,
+        warrantyPerOrder: Number(a.warrantyPerOrder),
+        warrantyTiers: a.warrantyTiers.map((t) => ({ minRate: z(t.minRatePct), providerRatio: z(t.providerRatioPct), leaderRatio: z(t.leaderRatioPct) })),
+        leaderShareRatio: z(a.leaderShareRatioPct),
+        leaderShareBase: a.leaderShareBase,
+        returnDueDays: Number(a.returnDueDays),
+        returnRemindBeforeDays: Number(a.returnRemindBeforeDays)
       };
     }
-    let Se = 0;
-    function it() {
-      se.value = null, Se += 1, Object.assign(s, p()), E.value = i.t("已恢复示例规则"), R.value = "info", te.value = "", Ne.value = "";
+    let Be = 0;
+    function dt() {
+      se.value = null, Be += 1, Object.assign(a, p()), he.value = s.t("已恢复示例规则"), o.value = "info", i.value = "", d.value = "";
     }
-    const ge = e.ref(S.state?.marketing?.rulesPdfPaths ?? (S.state?.marketing?.rulesPdfPath ? [S.state.marketing.rulesPdfPath] : []));
-    async function Te() {
-      Se += 1, se.value = null, ke.value = !0, E.value = i.t("文件列表已更新，请读取全部 PDF 后核对规则；下方暂保留原规则。"), R.value = "warn", Ne.value = "";
+    const ye = e.ref(U.state?.marketing?.rulesPdfPaths ?? (U.state?.marketing?.rulesPdfPath ? [U.state.marketing.rulesPdfPath] : []));
+    async function Ye() {
+      Be += 1, se.value = null, ue.value = !0, he.value = s.t("文件列表已更新，请读取全部 PDF 后核对规则；下方暂保留原规则。"), o.value = "warn", d.value = "";
       try {
-        const t = await r.api().statePatch({ marketing: { rulesPdfPaths: [...ge.value], rulesPdfPath: ge.value[0] || "" } });
-        o.value = t.state.marketing.rulesReviewRevision;
+        const t = await r.api().statePatch({ marketing: { rulesPdfPaths: [...ye.value], rulesPdfPath: ye.value[0] || "" } });
+        Le.value = t.state.marketing.rulesReviewRevision;
       } catch (t) {
-        V.error(r.errorMessage(t));
+        k.error(r.errorMessage(t));
       }
     }
-    function He(t) {
-      ge.value = [.../* @__PURE__ */ new Set([...ge.value, ...t])], Te();
+    function ut(t) {
+      ye.value = [.../* @__PURE__ */ new Set([...ye.value, ...t])], Ye();
     }
-    function Ue(t) {
-      ge.value = ge.value.filter((l) => l !== t), Te();
+    function ct(t) {
+      ye.value = ye.value.filter((l) => l !== t), Ye();
     }
-    const se = e.ref(null), ke = e.ref(!!S.state?.marketing?.rulesReviewPending), o = e.ref(Number(S.state?.marketing?.rulesReviewRevision) || 0);
-    async function c() {
-      const t = se.value, l = Se;
+    const se = e.ref(null), ue = e.ref(!!U.state?.marketing?.rulesReviewPending), Le = e.ref(Number(U.state?.marketing?.rulesReviewRevision) || 0);
+    async function Fe() {
+      const t = se.value, l = Be;
       if (!t) return;
-      const n = Ie(), N = { ...t.draft };
-      for (const ye of ["managerBase", "qualifier", "rebate"])
-        N[ye] && (N[ye] = { ...n[ye], ...N[ye] });
-      const h = { ...n, ...N, source: i.t("{p0}；已核对补充：{p1}（{p2}）", { p0: n.source || "原有设置", p1: t.source, p2: t.extracted.join("、") }) };
+      const n = Re(), N = { ...t.draft };
+      for (const ge of ["managerBase", "qualifier", "rebate"])
+        N[ge] && (N[ge] = { ...n[ge], ...N[ge] });
+      const h = { ...n, ...N, source: s.t("{p0}；已核对补充：{p1}（{p2}）", { p0: n.source || s.t("原有设置"), p1: t.source, p2: t.extracted.join("、") }) };
       try {
-        await r.api().statePatch({ marketing: { rules: h, rulesReviewed: !0, reviewedRevision: o.value } });
-      } catch (ye) {
-        V.error(r.errorMessage(ye));
+        await r.api().statePatch({ marketing: { rules: h, rulesReviewed: !0, reviewedRevision: Le.value } });
+      } catch (ge) {
+        k.error(r.errorMessage(ge));
         return;
       }
-      l === Se && (T(h), ke.value = !1, se.value = null, E.value = i.t("已应用核对字段；未提取字段保留原有设置，请确认后再计算。"), R.value = "warn", Ne.value = "");
+      l === Be && (_(h), ue.value = !1, se.value = null, he.value = s.t("已应用核对字段；未提取字段保留原有设置，请确认后再计算。"), o.value = "warn", d.value = "");
     }
-    async function d() {
-      const t = Se, l = { ...Ie(), source: i.t("手工核对：{p0}", { p0: ge.value.map(L).join("、") || "当前设置" }) };
+    async function mt() {
+      const t = Be, l = { ...Re(), source: s.t("手工核对：{p0}", { p0: ye.value.map(I).join("、") || s.t("当前设置") }) };
       try {
-        await r.api().statePatch({ marketing: { rules: l, rulesReviewed: !0, reviewedRevision: o.value } });
+        await r.api().statePatch({ marketing: { rules: l, rulesReviewed: !0, reviewedRevision: Le.value } });
       } catch (n) {
-        V.error(r.errorMessage(n));
+        k.error(r.errorMessage(n));
         return;
       }
-      t === Se && (ke.value = !1, Se += 1, se.value = null, te.value = "", s.source = i.t("手工核对：{p0}", { p0: ge.value.map(L).join("、") || "当前设置" }), E.value = i.t("已确认使用下方手工核对的全部规则，请重新计算。"), R.value = "warn", Ne.value = "", a.set("rules", { state: "todo" }));
+      t === Be && (ue.value = !1, Be += 1, se.value = null, i.value = "", a.source = s.t("手工核对：{p0}", { p0: ye.value.map(I).join("、") || s.t("当前设置") }), he.value = s.t("已确认使用下方手工核对的全部规则，请重新计算。"), o.value = "warn", d.value = "", u.set("rules", { state: "todo" }));
     }
-    const E = e.ref(ke.value ? i.t("当前政策仍待核对；重新打开工作台不会解除，请重新抽取或对照原件确认下方全部规则。") : ""), R = e.ref("info"), Ne = e.ref(""), te = e.ref(""), We = e.ref("");
-    async function bt() {
-      const t = [...ge.value];
+    const he = e.ref(ue.value ? s.t("当前政策仍待核对；重新打开工作台不会解除，请重新抽取或对照原件确认下方全部规则。") : ""), o = e.ref("info"), d = e.ref(""), i = e.ref(""), E = e.ref("");
+    async function q() {
+      const t = [...ye.value];
       if (!t.length) return;
-      const l = ++Se;
-      ke.value = !0, se.value = null, a.start("rules"), te.value = "", E.value = i.t("AI 正在读取 PDF 并抽取规则（扫描件需先 OCR，首次约 1–3 分钟）…"), R.value = "info";
-      const n = () => l === Se ? !1 : (E.value = i.t("PDF 抽取已结束，但等待期间你已套用预设 / 恢复示例规则，本次抽取结果未采用；需要的话重新拖入 PDF。"), R.value = "warn", !0);
+      const l = ++Be;
+      ue.value = !0, se.value = null, u.start("rules"), i.value = "", he.value = s.t("AI 正在读取 PDF 并抽取规则（扫描件需先 OCR，首次约 1–3 分钟）…"), o.value = "info";
+      const n = () => l === Be ? !1 : (he.value = s.t("PDF 抽取已结束，但等待期间你已套用预设 / 恢复示例规则，本次抽取结果未采用；需要的话重新拖入 PDF。"), o.value = "warn", !0);
       try {
         const N = await r.api().marketingRulesFromPdf({ paths: t });
         if (n()) return;
-        if (o.value = N.reviewRevision, N.error) {
-          te.value = N.error, E.value = "", a.fail("rules", N.error);
+        if (Le.value = N.reviewRevision, N.error) {
+          i.value = N.error, he.value = "", u.fail("rules", N.error);
           return;
         }
-        se.value = N, E.value = i.t("已生成待核对草稿，尚未应用。{p0} {p1}", { p0: N.notes || "", p1: N.llmNote || "" }), R.value = "warn", a.set("rules", { state: "todo" });
+        se.value = N, he.value = s.t("已生成待核对草稿，尚未应用。{p0} {p1}", { p0: N.notes || "", p1: N.llmNote || "" }), o.value = "warn", u.set("rules", { state: "todo" });
       } catch (N) {
         if (n()) return;
-        te.value = i.t("PDF 读取失败：{msg}。可点「套用 2026 默认政策」或对照 PDF 手工填写下方规则。", { msg: r.errorMessage(N) }), E.value = "", a.fail("rules", N);
+        i.value = s.t("PDF 读取失败：{msg}。可点「套用 2026 默认政策」或对照 PDF 手工填写下方规则。", { msg: r.errorMessage(N) }), he.value = "", u.fail("rules", N);
       }
     }
-    async function yt() {
-      se.value = null, Se += 1;
+    async function Pe() {
+      se.value = null, Be += 1;
       try {
         const t = await r.api().marketingRulesFromPdf({ preset: "vatti-2026" });
-        T(t.rules), ke.value = !1, te.value = "", E.value = i.t("已套用 2026 默认政策（TZ-270 / TZ-271）。"), R.value = "ok", Ne.value = i.t("延保档位表原件 OCR 有错位，请对照原件确认 8% / 9% / 10% / 11% 四档后再计算。"), a.set("rules", { state: "todo" });
+        _(t.rules), ue.value = !1, i.value = "", he.value = s.t("已套用 2026 默认政策（TZ-270 / TZ-271）。"), o.value = "ok", d.value = s.t("延保档位表原件 OCR 有错位，请对照原件确认 8% / 9% / 10% / 11% 四档后再计算。"), u.set("rules", { state: "todo" });
       } catch (t) {
-        V.error(r.errorMessage(t));
+        k.error(r.errorMessage(t));
       }
     }
-    const W = e.ref(null), dt = e.ref(""), Ve = e.ref(!1);
-    e.watch(s, () => {
-      const t = !!W.value || Ve.value || a.runtime.rules.state === "done", l = !!ve.value && (s.qualifierPattern || "") !== Le;
+    const A = e.ref(null), pt = e.ref(""), Ne = e.ref(!1);
+    e.watch(a, () => {
+      const t = !!A.value || Ne.value || u.runtime.rules.state === "done", l = !!ve.value && (a.qualifierPattern || "") !== Ue;
       if (!(!t && !l))
-        if (W.value = null, Ve.value = !1, l)
-          ve.value = null, a.resetAfter("youzan"), We.value = i.t("门槛品类关键字改了，第 2 步的门槛实际要重新统计：请回到第 2 步重新计算，再按规则算激励。");
+        if (A.value = null, Ne.value = !1, l)
+          ve.value = null, u.resetAfter("youzan"), E.value = s.t("门槛品类关键字改了，第 2 步的门槛实际要重新统计：请回到第 2 步重新计算，再按规则算激励。");
         else {
-          for (const n of ["rules", "return", "discount", "manager", "provider", "tax", "report"]) a.runtime[n].state !== "todo" && a.reset(n);
-          We.value = i.t("规则已变更，之前算出的激励已作废，请重新点「按规则计算服务商辅材激励初始金额」。");
+          for (const n of ["rules", "return", "discount", "manager", "provider", "tax", "report"]) u.runtime[n].state !== "todo" && u.reset(n);
+          E.value = s.t("规则已变更，之前算出的激励已作废，请重新点「按规则计算服务商辅材激励初始金额」。");
         }
     }, { deep: !0 });
-    async function ft(t) {
+    async function Vt(t) {
       const l = await r.api().marketingCompute({
-        year: I.value,
-        quarter: C.value,
+        year: j.value,
+        quarter: F.value,
         aux: ve.value,
-        warranty: t ? Fe.value : null,
-        rules: Ie(),
-        grades: k(b.value),
-        providerInfo: k(P.value)
+        warranty: t ? Oe.value : null,
+        rules: Re(),
+        grades: b(D.value),
+        providerInfo: b(P.value)
       });
-      return W.value = l.result, dt.value = l.outputPath, et.value = l.returnRecords, z("refresh"), l;
+      return A.value = l.result, pt.value = l.outputPath, He.value = l.returnRecords, X("refresh"), l;
     }
-    async function $t() {
-      if (!(ke.value || se.value || te.value)) {
-        a.start("rules"), We.value = "";
+    async function wt() {
+      if (!(ue.value || se.value || i.value)) {
+        u.start("rules"), E.value = "";
         try {
-          const t = await ft(!1);
-          Ve.value = !1, a.resetAfter("rules");
+          const t = await Vt(!1);
+          Ne.value = !1, u.resetAfter("rules");
           for (const l of t.result.providers) Me[l.provider] === void 0 && (Me[l.provider] = l.auxInitial > 0);
-          a.done("rules", i.t("服务商辅材激励初始金额合计 ¥{t}{r}", { t: r.fmtMoney(t.result.totals.auxInitial), r: t.result.totals.rebateAmount ? i.t("，呆滞配件返利合计 ¥{x}", { x: r.fmtMoney(t.result.totals.rebateAmount) }) : "" }));
+          u.done("rules", s.t("服务商辅材激励初始金额合计 ¥{t}{r}", { t: r.fmtMoney(t.result.totals.auxInitial), r: t.result.totals.rebateAmount ? s.t("，呆滞配件返利合计 ¥{x}", { x: r.fmtMoney(t.result.totals.rebateAmount) }) : "" }));
         } catch (t) {
-          a.fail("rules", t);
+          u.fail("rules", t);
         }
       }
     }
-    const et = e.ref(S.state?.marketing?.returnRecords || []);
-    e.watch(() => S.state?.marketing?.returnRecords, (t) => {
-      Array.isArray(t) && (et.value = t);
+    const He = e.ref(U.state?.marketing?.returnRecords || []);
+    e.watch(() => U.state?.marketing?.returnRecords, (t) => {
+      Array.isArray(t) && (He.value = t);
     });
-    const be = (t) => et.value.find((l) => l.provider === t), Me = e.reactive({}), Ae = e.reactive({}), Ye = (t) => Object.keys(t).filter((l) => t[l]);
-    function lt(t, l) {
-      for (const n of W.value?.providers || []) t[n.provider] = l;
+    const De = (t) => He.value.find((l) => l.provider === t), Me = e.reactive({}), Ae = e.reactive({}), xe = (t) => Object.keys(t).filter((l) => t[l]);
+    function nt(t, l) {
+      for (const n of A.value?.providers || []) t[n.provider] = l;
     }
-    const ot = e.ref(""), St = (t) => `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, "0")}-${String(t.getDate()).padStart(2, "0")}`;
-    e.watch(() => s.returnDueDays, () => {
+    const lt = e.ref(""), Bt = (t) => `${t.getFullYear()}-${String(t.getMonth() + 1).padStart(2, "0")}-${String(t.getDate()).padStart(2, "0")}`;
+    e.watch(() => a.returnDueDays, () => {
       const t = /* @__PURE__ */ new Date();
-      t.setDate(t.getDate() + Number(s.returnDueDays || 30)), ot.value = St(t);
+      t.setDate(t.getDate() + Number(a.returnDueDays || 30)), lt.value = Bt(t);
     }, { immediate: !0 });
-    const Dt = (t) => (S.state?.providerDirectory || []).find((l) => l.provider === t)?.email || "";
-    async function wt(t, l) {
+    const Tt = (t) => (U.state?.providerDirectory || []).find((l) => l.provider === t)?.email || "";
+    async function Ct(t, l) {
       try {
-        await r.api().contactsUpsert({ contacts: [{ provider: t, email: l }] }), z("refresh");
+        await r.api().contactsUpsert({ contacts: [{ provider: t, email: l }] }), X("refresh");
       } catch (n) {
-        V.error(r.errorMessage(n));
+        k.error(r.errorMessage(n));
       }
     }
-    async function ut(t, l) {
-      a.start(l);
+    async function vt(t, l) {
+      u.start(l);
       try {
-        const n = Ye(t === "return" ? Me : Ae), N = (W.value?.providers || []).filter((re) => n.includes(re.provider)).map((re) => ({
+        const n = xe(t === "return" ? Me : Ae), N = (A.value?.providers || []).filter((re) => n.includes(re.provider)).map((re) => ({
           provider: re.provider,
           amount: t === "return" ? re.auxInitial : t === "invoice" ? re.warrantyIncentive : re.leaderIncentive
-        })), h = await r.api().marketingNotify({ kind: t, year: I.value, quarter: C.value, providers: N, dueDate: ot.value });
-        et.value = h.returnRecords;
-        const ye = h.outcomes.filter((re) => re.ok).length, qe = h.outcomes.filter((re) => !re.ok);
-        if (!ye) throw new Error(qe.map((re) => `${re.provider}：${re.message}`).join(i.t("；")) || i.t("没有可发送的服务商"));
-        const Je = t === "return" ? i.t("退回通知") : t === "invoice" ? i.t("开票通知") : i.t("信息提报通知");
-        a.done(l, i.t("{l}已发 {a} 家{b}", { l: Je, a: ye, b: qe.length ? i.t("，{n} 家失败：{d}", { n: qe.length, d: qe.map((re) => `${re.provider}（${re.message}）`).join("、") }) : "" })), z("refresh");
+        })), h = await r.api().marketingNotify({ kind: t, year: j.value, quarter: F.value, providers: N, dueDate: lt.value });
+        He.value = h.returnRecords;
+        const ge = h.outcomes.filter((re) => re.ok).length, Ie = h.outcomes.filter((re) => !re.ok);
+        if (!ge) throw new Error(Ie.map((re) => `${re.provider}：${re.message}`).join(s.t("；")) || s.t("没有可发送的服务商"));
+        const Ze = t === "return" ? s.t("退回通知") : t === "invoice" ? s.t("开票通知") : s.t("信息提报通知");
+        u.done(l, s.t("{l}已发 {a} 家{b}", { l: Ze, a: ge, b: Ie.length ? s.t("，{n} 家失败：{d}", { n: Ie.length, d: Ie.map((re) => `${re.provider}（${re.message}）`).join("、") }) : "" })), X("refresh");
       } catch (n) {
-        a.fail(l, n);
+        u.fail(l, n);
       }
     }
-    async function Bt(t, l) {
+    async function _t(t, l) {
       try {
         const n = await r.api().marketingReturnUpdate({ provider: t, patch: { returned: l } });
-        et.value = n.returnRecords;
+        He.value = n.returnRecords;
       } catch (n) {
-        V.error(r.errorMessage(n));
+        k.error(r.errorMessage(n));
       }
     }
-    const ct = e.ref("amount"), Fe = e.ref(null);
-    async function Tt() {
-      a.start("warranty"), Fe.value = null;
+    const yt = e.ref("amount"), Oe = e.ref(null);
+    async function Pt() {
+      u.start("warranty"), Oe.value = null;
       try {
         const t = await r.api().marketingAchievement({
-          year: I.value,
-          quarter: C.value,
-          orders: ee.map(f),
-          providerTasks: k(v.value),
-          managerTasks: k(g.value),
-          measure: ct.value,
+          year: j.value,
+          quarter: F.value,
+          orders: O.map(f),
+          providerTasks: b(v.value),
+          managerTasks: b(g.value),
+          measure: yt.value,
           knownProviderManager: ve.value?.providerManager || {},
-          providerInfo: k(P.value)
+          providerInfo: b(P.value)
         });
-        Fe.value = t, a.resetAfter("warranty"), Ve.value = !1, a.done("warranty", i.t("服务商 {a} 家、区域经理 {b} 位；整体延保达成率 {r}", { a: t.providers.length, b: t.managers.length, r: r.fmtPct(t.totals.rate, 1) }));
+        Oe.value = t, u.resetAfter("warranty"), Ne.value = !1, u.done("warranty", s.t("服务商 {a} 家、区域经理 {b} 位；整体延保达成率 {r}", { a: t.providers.length, b: t.managers.length, r: r.fmtPct(t.totals.rate, 1) }));
       } catch (t) {
-        a.fail("warranty", t);
+        u.fail("warranty", t);
       }
     }
-    const Ct = e.computed(() => s.managerDiscountTiers.map((t) => i.t("延保达成率 < {r}% → 辅材提成打 {z} 折", { r: t.belowRatePct, z: t.discountZhe })).join(i.t("；")) || i.t("（未设置打折档位 = 全额结算）"));
-    async function _t() {
-      if (!(ke.value || se.value || te.value)) {
-        a.start("discount");
+    const Rt = e.computed(() => a.managerDiscountTiers.map((t) => s.t("延保达成率 < {r}% → 辅材提成打 {z} 折", { r: t.belowRatePct, z: t.discountZhe })).join(s.t("；")) || s.t("（未设置打折档位 = 全额结算）"));
+    async function Mt() {
+      if (!(ue.value || se.value || i.value)) {
+        u.start("discount");
         try {
-          const t = await ft(!0);
-          Ve.value = !0;
+          const t = await Vt(!0);
+          Ne.value = !0;
           for (const n of t.result.providers) Ae[n.provider] === void 0 && (Ae[n.provider] = !0);
           const l = t.result.managers.filter((n) => n.discount < 1).length;
-          a.done("discount", i.t("{n} 位区域经理需打折结算，{m} 位全额", { n: l, m: t.result.managers.length - l })), a.set("manager", { state: "todo", summary: void 0 }), a.set("provider", { state: "todo", summary: void 0 });
+          u.done("discount", s.t("{n} 位区域经理需打折结算，{m} 位全额", { n: l, m: t.result.managers.length - l })), u.set("manager", { state: "todo", summary: void 0 }), u.set("provider", { state: "todo", summary: void 0 });
         } catch (t) {
-          a.fail("discount", t);
+          u.fail("discount", t);
         }
       }
     }
-    function Pt() {
-      a.start("manager"), a.done("manager", i.t("区域经理最终激励合计 ¥{t}（预发口径 ¥{a}），核算表已生成", { t: r.fmtMoney(W.value.totals.managerFinal), a: r.fmtMoney(W.value.totals.managerAdvance) }));
+    function At() {
+      u.start("manager"), u.done("manager", s.t("区域经理最终激励合计 ¥{t}（预发口径 ¥{a}），核算表已生成", { t: r.fmtMoney(A.value.totals.managerFinal), a: r.fmtMoney(A.value.totals.managerAdvance) }));
     }
-    const De = e.ref(S.state?.marketing?.leaders || []);
-    e.watch(() => S.state?.marketing?.leaders, (t) => {
-      Array.isArray(t) && (De.value = t);
+    const Te = e.ref(U.state?.marketing?.leaders || []);
+    e.watch(() => U.state?.marketing?.leaders, (t) => {
+      Array.isArray(t) && (Te.value = t);
     });
-    const Rt = e.computed(() => (W.value?.providers || []).map((t) => t.provider)), xe = e.ref("");
-    async function Mt() {
-      a.start("leaders");
+    const Ut = e.computed(() => (A.value?.providers || []).map((t) => t.provider)), Xe = e.ref("");
+    async function Lt() {
+      u.start("leaders");
       try {
         await r.api().settlementScanNow();
         const t = await r.api().stateGet();
-        De.value = t.state.marketing.leaders;
-        const l = De.value.filter((n) => n.errors.length).length;
-        a.done("leaders", i.t("已汇总 {n} 家负责人信息，{b} 家信息有误需修正", { n: De.value.length, b: l })), z("refresh");
+        Te.value = t.state.marketing.leaders;
+        const l = Te.value.filter((n) => n.errors.length).length;
+        u.done("leaders", s.t("已汇总 {n} 家负责人信息，{b} 家信息有误需修正", { n: Te.value.length, b: l })), X("refresh");
       } catch (t) {
-        a.fail("leaders", t);
+        u.fail("leaders", t);
       }
     }
-    async function At() {
-      const t = await r.pickFiles("excel", !1, i.t("选择负责人信息 Excel"));
+    async function Ft() {
+      const t = await r.pickFiles("excel", !1, s.t("选择负责人信息 Excel"));
       if (t[0]) {
-        a.start("leaders");
+        u.start("leaders");
         try {
           const l = await r.api().marketingLeadersImport({ path: t[0] });
-          De.value = l.leaders, a.done("leaders", i.t("导入 {n} 条；{b} 条信息有误", { n: l.imported, b: De.value.filter((n) => n.errors.length).length }));
+          Te.value = l.leaders, u.done("leaders", s.t("导入 {n} 条；{b} 条信息有误", { n: l.imported, b: Te.value.filter((n) => n.errors.length).length }));
         } catch (l) {
-          a.fail("leaders", l);
+          u.fail("leaders", l);
         }
       }
     }
-    async function Xe(t, l, n) {
+    async function Qe(t, l, n) {
       try {
         const N = await r.api().marketingLeaderUpdate({ provider: t, patch: { [l]: n } });
-        De.value = N.leaders;
+        Te.value = N.leaders;
       } catch (N) {
-        V.error(r.errorMessage(N));
+        k.error(r.errorMessage(N));
       }
     }
-    async function Ut() {
-      xe.value && (await Xe(xe.value, "name", ""), xe.value = "");
+    async function Ot() {
+      Xe.value && (await Qe(Xe.value, "name", ""), Xe.value = "");
     }
-    const Qe = e.ref(S.state?.marketing?.taxTemplatePath || ""), mt = e.ref(S.state?.marketing?.lastTaxPath || "");
-    async function Ft() {
-      a.start("tax");
+    const Je = e.ref(U.state?.marketing?.taxTemplatePath || ""), ft = e.ref(U.state?.marketing?.lastTaxPath || "");
+    async function It() {
+      u.start("tax");
       try {
-        const t = await r.api().marketingTaxExport({ templatePath: Qe.value || void 0, incentiveByProvider: Object.fromEntries((W.value?.providers || []).map((l) => [l.provider, l.leaderIncentive])) });
-        mt.value = t.outputPath, a.done("tax", i.t("{n} 人，应扣缴税额合计 ¥{t}{tpl}{skip}", { n: t.count, t: r.fmtMoney(t.totalTax), tpl: t.usedTemplate ? i.t("（已套用模板）") : i.t("（内置格式）"), skip: t.skipped.length ? i.t("；{k} 家信息有误未生成：{names}", { k: t.skipped.length, names: t.skipped.join("、") }) : "" }));
+        const t = await r.api().marketingTaxExport({ templatePath: Je.value || void 0, incentiveByProvider: Object.fromEntries((A.value?.providers || []).map((l) => [l.provider, l.leaderIncentive])) });
+        ft.value = t.outputPath, u.done("tax", s.t("{n} 人，应扣缴税额合计 ¥{t}{tpl}{skip}", { n: t.count, t: r.fmtMoney(t.totalTax), tpl: t.usedTemplate ? s.t("（已套用模板）") : s.t("（内置格式）"), skip: t.skipped.length ? s.t("；{k} 家信息有误未生成：{names}", { k: t.skipped.length, names: t.skipped.join("、") }) : "" }));
       } catch (t) {
-        a.fail("tax", t);
+        u.fail("tax", t);
       }
     }
-    const tt = e.ref(S.state?.marketing?.lastReportPath || ""), at = e.ref(""), pt = e.ref("");
-    async function Lt() {
-      a.start("report"), at.value = "";
+    const et = e.ref(U.state?.marketing?.lastReportPath || ""), ot = e.ref(""), gt = e.ref("");
+    async function qt() {
+      u.start("report"), ot.value = "";
       try {
-        const t = await r.api().marketingReport({ year: I.value, quarter: C.value, aux: ve.value, warranty: Fe.value, incentive: W.value });
-        tt.value = t.outputPath, at.value = t.markdown, pt.value = t.llmNote || "", a.done("report", i.t("季度结案报告已生成")), V.success(i.t("季度结案报告已生成")), z("refresh");
+        const t = await r.api().marketingReport({ year: j.value, quarter: F.value, aux: ve.value, warranty: Oe.value, incentive: A.value });
+        et.value = t.outputPath, ot.value = t.markdown, gt.value = t.llmNote || "", u.done("report", s.t("季度结案报告已生成")), k.success(s.t("季度结案报告已生成")), X("refresh");
       } catch (t) {
-        a.fail("report", t);
+        u.fail("report", t);
       }
     }
-    return (t, l) => (e.openBlock(), e.createElementBlock("section", $r, [
+    return (t, l) => (e.openBlock(), e.createElementBlock("section", Tr, [
       e.createVNode(rt, {
         title: t.$t("服务营销激励结案"),
-        metas: e.unref(a).metas,
-        runtime: e.unref(a).runtime,
-        "current-key": e.unref(a).currentKey.value,
+        metas: e.unref(u).metas,
+        runtime: e.unref(u).runtime,
+        "current-key": e.unref(u).currentKey.value,
         onJump: e.unref(r.scrollToStep)
       }, null, 8, ["title", "metas", "runtime", "current-key", "onJump"]),
-      e.createElementVNode("div", Sr, [
+      e.createElementVNode("div", Cr, [
         e.createCommentVNode(" 1 有赞订单 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "youzan",
           index: 0,
-          title: e.unref(a).metas[0].title,
-          hint: e.unref(a).metas[0].hint,
-          runtime: e.unref(a).runtime.youzan,
-          "is-current": e.unref(a).currentKey.value === "youzan"
+          title: e.unref(u).metas[0].title,
+          hint: e.unref(u).metas[0].hint,
+          runtime: e.unref(u).runtime.youzan,
+          "is-current": e.unref(u).currentKey.value === "youzan"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", Dr, [
+            e.createElementVNode("div", _r, [
               e.createElementVNode(
                 "span",
-                wr,
+                Pr,
                 e.toDisplayString(t.$t("结案季度")),
                 1
                 /* TEXT */
@@ -6038,7 +6059,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": l[0] || (l[0] = (n) => I.value = n),
+                  "onUpdate:modelValue": l[0] || (l[0] = (n) => j.value = n),
                   type: "number",
                   min: "2020",
                   max: "2099",
@@ -6050,7 +6071,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               ), [
                 [
                   e.vModelText,
-                  I.value,
+                  j.value,
                   void 0,
                   { number: !0 }
                 ]
@@ -6058,33 +6079,33 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.withDirectives(e.createElementVNode(
                 "select",
                 {
-                  "onUpdate:modelValue": l[1] || (l[1] = (n) => C.value = n)
+                  "onUpdate:modelValue": l[1] || (l[1] = (n) => F.value = n)
                 },
                 [
                   e.createElementVNode(
                     "option",
-                    Br,
+                    Rr,
                     e.toDisplayString(t.$t("Q1（1–3 月）")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "option",
-                    Tr,
+                    Mr,
                     e.toDisplayString(t.$t("Q2（4–6 月）")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "option",
-                    Cr,
+                    Ar,
                     e.toDisplayString(t.$t("Q3（7–9 月）")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "option",
-                    _r,
+                    Ur,
                     e.toDisplayString(t.$t("Q4（10–12 月）")),
                     1
                     /* TEXT */
@@ -6095,14 +6116,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               ), [
                 [
                   e.vModelSelect,
-                  C.value,
+                  F.value,
                   void 0,
                   { number: !0 }
                 ]
               ]),
               e.createElementVNode(
                 "span",
-                Pr,
+                Lr,
                 e.toDisplayString(t.$t("有赞商城网址")),
                 1
                 /* TEXT */
@@ -6110,23 +6131,23 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": l[2] || (l[2] = (n) => x.value = n),
+                  "onUpdate:modelValue": l[2] || (l[2] = (n) => H.value = n),
                   type: "text",
                   style: { width: "280px", "text-align": "left" },
                   placeholder: "https://www.youzan.com/v4/...",
-                  onChange: G
+                  onChange: de
                 },
                 null,
                 544
                 /* NEED_HYDRATION, NEED_PATCH */
               ), [
-                [e.vModelText, x.value]
+                [e.vModelText, H.value]
               ]),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn sm",
-                disabled: !x.value,
-                onClick: K
+                disabled: !H.value,
+                onClick: le
               }, [
                 l[75] || (l[75] = e.createElementVNode(
                   "i",
@@ -6140,11 +6161,11 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, Rr),
+              ], 8, Fr),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn sm ghost",
-                onClick: l[3] || (l[3] = (n) => oe("orders"))
+                onClick: l[3] || (l[3] = (n) => J("orders"))
               }, [
                 l[76] || (l[76] = e.createElementVNode(
                   "i",
@@ -6160,15 +6181,15 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 )
               ])
             ]),
-            A.orders.length ? (e.openBlock(), e.createElementBlock("div", Mr, [
+            x.orders.length ? (e.openBlock(), e.createElementBlock("div", Or, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(A.orders, (n) => (e.openBlock(), e.createElementBlock("button", {
+                e.renderList(x.orders, (n) => (e.openBlock(), e.createElementBlock("button", {
                   key: n.path,
                   type: "button",
                   class: "ss-chip brand",
-                  onClick: (N) => me(j, [n.path], M)
+                  onClick: (N) => Ee(T, [n.path], $)
                 }, [
                   l[77] || (l[77] = e.createElementVNode(
                     "i",
@@ -6182,37 +6203,37 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     1
                     /* TEXT */
                   )
-                ], 8, Ar))),
+                ], 8, Ir))),
                 128
                 /* KEYED_FRAGMENT */
               ))
             ])) : e.createCommentVNode("v-if", !0),
-            e.createVNode(ie, {
+            e.createVNode(ce, {
               label: t.$t("有赞导出的辅材销售订单 Excel"),
               hint: t.$t("导出后把文件拖进来即可；「订单创建季度 / 月份」这类标签列（Q1、4月、04）也能按季度筛"),
-              files: $e(j),
-              onPicked: l[4] || (l[4] = (n) => me(j, n, M)),
-              onRemove: l[5] || (l[5] = (n) => pe(j, n))
+              files: me(T),
+              onPicked: l[4] || (l[4] = (n) => Ee(T, n, $)),
+              onRemove: l[5] || (l[5] = (n) => we(T, n))
             }, null, 8, ["label", "hint", "files"]),
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(j, (n, N) => (e.openBlock(), e.createBlock(Ee, {
+              e.renderList(T, (n, N) => (e.openBlock(), e.createBlock(ke, {
                 key: n.path + n.sheetName,
                 table: n,
-                roles: M,
-                onUpdate: (h) => j[N].mapping = h,
-                onSheet: (h) => u(j, N, h, M)
+                roles: $,
+                onUpdate: (h) => T[N].mapping = h,
+                onSheet: (h) => c(T, N, h, $)
               }, null, 8, ["table", "onUpdate", "onSheet"]))),
               128
               /* KEYED_FRAGMENT */
             )),
-            e.createElementVNode("div", Ur, [
+            e.createElementVNode("div", qr, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !j.length || e.unref(a).isRunning(),
-                onClick: Be
+                disabled: !T.length || e.unref(u).isRunning(),
+                onClick: Se
               }, [
                 l[78] || (l[78] = e.createElementVNode(
                   "i",
@@ -6226,133 +6247,133 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, Fr)
+              ], 8, Kr)
             ])
           ]),
           _: 1
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 2 辅材达成 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "aux",
           index: 1,
-          title: e.unref(a).metas[1].title,
-          hint: e.unref(a).metas[1].hint,
-          runtime: e.unref(a).runtime.aux,
-          "is-current": e.unref(a).currentKey.value === "aux"
+          title: e.unref(u).metas[1].title,
+          hint: e.unref(u).metas[1].hint,
+          runtime: e.unref(u).runtime.aux,
+          "is-current": e.unref(u).currentKey.value === "aux"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", Lr, [
-              e.createElementVNode("div", Or, [
-                e.createElementVNode(
-                  "div",
-                  Ir,
-                  e.toDisplayString(t.$t("服务商季度任务表（可含区域经理归属、电动止回阀目标、年度任务）")),
-                  1
-                  /* TEXT */
-                ),
-                e.createVNode(ie, {
-                  label: t.$t("服务商任务 Excel"),
-                  multi: !1,
-                  compact: "",
-                  files: ae.value ? [{ path: ae.value.path, name: ae.value.fileName }] : [],
-                  onPicked: l[6] || (l[6] = (n) => m("providerTasks", n[0], Y)),
-                  onRemove: l[7] || (l[7] = (n) => ae.value = null)
-                }, null, 8, ["label", "files"]),
-                ae.value ? (e.openBlock(), e.createBlock(Ee, {
-                  key: 0,
-                  table: ae.value,
-                  roles: Y,
-                  onUpdate: l[8] || (l[8] = (n) => ae.value.mapping = n),
-                  onSheet: l[9] || (l[9] = (n) => m("providerTasks", ae.value.path, Y, n))
-                }, null, 8, ["table"])) : e.createCommentVNode("v-if", !0)
-              ]),
-              e.createElementVNode("div", qr, [
-                e.createElementVNode(
-                  "div",
-                  Kr,
-                  e.toDisplayString(t.$t("区域经理季度任务表")),
-                  1
-                  /* TEXT */
-                ),
-                e.createVNode(ie, {
-                  label: t.$t("区域经理任务 Excel"),
-                  multi: !1,
-                  compact: "",
-                  files: X.value ? [{ path: X.value.path, name: X.value.fileName }] : [],
-                  onPicked: l[10] || (l[10] = (n) => m("managerTasks", n[0], D)),
-                  onRemove: l[11] || (l[11] = (n) => X.value = null)
-                }, null, 8, ["label", "files"]),
-                X.value ? (e.openBlock(), e.createBlock(Ee, {
-                  key: 0,
-                  table: X.value,
-                  roles: D,
-                  onUpdate: l[12] || (l[12] = (n) => X.value.mapping = n),
-                  onSheet: l[13] || (l[13] = (n) => m("managerTasks", X.value.path, D, n))
-                }, null, 8, ["table"])) : e.createCommentVNode("v-if", !0)
-              ])
-            ]),
             e.createElementVNode("div", zr, [
               e.createElementVNode("div", jr, [
                 e.createElementVNode(
                   "div",
                   Wr,
-                  e.toDisplayString(t.$t("可选 · 区域经理绩效等级表（S / A / B+ / B / C → 绩效系数）")),
+                  e.toDisplayString(t.$t("服务商季度任务表（可含区域经理归属、电动止回阀目标、年度任务）")),
                   1
                   /* TEXT */
                 ),
-                e.createVNode(ie, {
-                  label: t.$t("绩效等级 Excel"),
+                e.createVNode(ce, {
+                  label: t.$t("服务商任务 Excel"),
                   multi: !1,
                   compact: "",
-                  files: b.value ? [{ path: b.value.path, name: b.value.fileName }] : [],
-                  onPicked: l[14] || (l[14] = (n) => m("gradeTable", n[0], _)),
-                  onRemove: l[15] || (l[15] = (n) => b.value = null)
+                  files: W.value ? [{ path: W.value.path, name: W.value.fileName }] : [],
+                  onPicked: l[6] || (l[6] = (n) => m("providerTasks", n[0], K)),
+                  onRemove: l[7] || (l[7] = (n) => W.value = null)
                 }, null, 8, ["label", "files"]),
-                b.value ? (e.openBlock(), e.createBlock(Ee, {
+                W.value ? (e.openBlock(), e.createBlock(ke, {
                   key: 0,
-                  table: b.value,
-                  roles: _,
-                  onUpdate: l[16] || (l[16] = (n) => b.value.mapping = n),
-                  onSheet: l[17] || (l[17] = (n) => m("gradeTable", b.value.path, _, n))
+                  table: W.value,
+                  roles: K,
+                  onUpdate: l[8] || (l[8] = (n) => W.value.mapping = n),
+                  onSheet: l[9] || (l[9] = (n) => m("providerTasks", W.value.path, K, n))
                 }, null, 8, ["table"])) : e.createCommentVNode("v-if", !0)
               ]),
               e.createElementVNode("div", Yr, [
                 e.createElementVNode(
                   "div",
                   xr,
-                  e.toDisplayString(t.$t("可选 · 服务商信息表（引入时间 → 服务年限 → 呆滞配件返利；经理归属兜底）")),
+                  e.toDisplayString(t.$t("区域经理季度任务表")),
                   1
                   /* TEXT */
                 ),
-                e.createVNode(ie, {
-                  label: t.$t("服务商信息 Excel"),
+                e.createVNode(ce, {
+                  label: t.$t("区域经理任务 Excel"),
                   multi: !1,
                   compact: "",
-                  files: P.value ? [{ path: P.value.path, name: P.value.fileName }] : [],
-                  onPicked: l[18] || (l[18] = (n) => m("providerInfo", n[0], J)),
-                  onRemove: l[19] || (l[19] = (n) => P.value = null)
+                  files: oe.value ? [{ path: oe.value.path, name: oe.value.fileName }] : [],
+                  onPicked: l[10] || (l[10] = (n) => m("managerTasks", n[0], V)),
+                  onRemove: l[11] || (l[11] = (n) => oe.value = null)
                 }, null, 8, ["label", "files"]),
-                P.value ? (e.openBlock(), e.createBlock(Ee, {
+                oe.value ? (e.openBlock(), e.createBlock(ke, {
                   key: 0,
-                  table: P.value,
-                  roles: J,
-                  onUpdate: l[20] || (l[20] = (n) => P.value.mapping = n),
-                  onSheet: l[21] || (l[21] = (n) => m("providerInfo", P.value.path, J, n))
+                  table: oe.value,
+                  roles: V,
+                  onUpdate: l[12] || (l[12] = (n) => oe.value.mapping = n),
+                  onSheet: l[13] || (l[13] = (n) => m("managerTasks", oe.value.path, V, n))
                 }, null, 8, ["table"])) : e.createCommentVNode("v-if", !0)
               ])
             ]),
             e.createElementVNode("div", Xr, [
+              e.createElementVNode("div", Qr, [
+                e.createElementVNode(
+                  "div",
+                  Jr,
+                  e.toDisplayString(t.$t("可选 · 区域经理绩效等级表（S / A / B+ / B / C → 绩效系数）")),
+                  1
+                  /* TEXT */
+                ),
+                e.createVNode(ce, {
+                  label: t.$t("绩效等级 Excel"),
+                  multi: !1,
+                  compact: "",
+                  files: D.value ? [{ path: D.value.path, name: D.value.fileName }] : [],
+                  onPicked: l[14] || (l[14] = (n) => m("gradeTable", n[0], L)),
+                  onRemove: l[15] || (l[15] = (n) => D.value = null)
+                }, null, 8, ["label", "files"]),
+                D.value ? (e.openBlock(), e.createBlock(ke, {
+                  key: 0,
+                  table: D.value,
+                  roles: L,
+                  onUpdate: l[16] || (l[16] = (n) => D.value.mapping = n),
+                  onSheet: l[17] || (l[17] = (n) => m("gradeTable", D.value.path, L, n))
+                }, null, 8, ["table"])) : e.createCommentVNode("v-if", !0)
+              ]),
+              e.createElementVNode("div", Zr, [
+                e.createElementVNode(
+                  "div",
+                  Gr,
+                  e.toDisplayString(t.$t("可选 · 服务商信息表（引入时间 → 服务年限 → 呆滞配件返利；经理归属兜底）")),
+                  1
+                  /* TEXT */
+                ),
+                e.createVNode(ce, {
+                  label: t.$t("服务商信息 Excel"),
+                  multi: !1,
+                  compact: "",
+                  files: P.value ? [{ path: P.value.path, name: P.value.fileName }] : [],
+                  onPicked: l[18] || (l[18] = (n) => m("providerInfo", n[0], ne)),
+                  onRemove: l[19] || (l[19] = (n) => P.value = null)
+                }, null, 8, ["label", "files"]),
+                P.value ? (e.openBlock(), e.createBlock(ke, {
+                  key: 0,
+                  table: P.value,
+                  roles: ne,
+                  onUpdate: l[20] || (l[20] = (n) => P.value.mapping = n),
+                  onSheet: l[21] || (l[21] = (n) => m("providerInfo", P.value.path, ne, n))
+                }, null, 8, ["table"])) : e.createCommentVNode("v-if", !0)
+              ])
+            ]),
+            e.createElementVNode("div", Hr, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: e.unref(a).runtime.youzan.state !== "done" || !ae.value || e.unref(a).isRunning(),
+                disabled: e.unref(u).runtime.youzan.state !== "done" || !W.value || e.unref(u).isRunning(),
                 onClick: ze
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(ce("aux", "ri-calculator-line"))
+                    class: e.normalizeClass(ee("aux", "ri-calculator-line"))
                   },
                   null,
                   2
@@ -6363,7 +6384,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, Qr)
+              ], 8, ei)
             ]),
             ve.value ? (e.openBlock(), e.createElementBlock(
               e.Fragment,
@@ -6392,9 +6413,9 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   128
                   /* KEYED_FRAGMENT */
                 )),
-                e.createElementVNode("div", Jr, [
-                  e.createElementVNode("div", Zr, [
-                    e.createElementVNode("table", Gr, [
+                e.createElementVNode("div", ti, [
+                  e.createElementVNode("div", ni, [
+                    e.createElementVNode("table", li, [
                       e.createElementVNode("thead", null, [
                         e.createElementVNode("tr", null, [
                           e.createElementVNode(
@@ -6413,28 +6434,28 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                           ),
                           e.createElementVNode(
                             "th",
-                            Hr,
+                            oi,
                             e.toDisplayString(t.$t("实际")),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "th",
-                            ei,
+                            ai,
                             e.toDisplayString(t.$t("任务")),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "th",
-                            ti,
+                            si,
                             e.toDisplayString(t.$t("达成率")),
                             1
                             /* TEXT */
                           ),
-                          _e.value ? (e.openBlock(), e.createElementBlock(
+                          Ke.value ? (e.openBlock(), e.createElementBlock(
                             "th",
-                            ni,
+                            ri,
                             e.toDisplayString(t.$t("门槛品类实际/任务")),
                             1
                             /* TEXT */
@@ -6468,28 +6489,28 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                               ),
                               e.createElementVNode(
                                 "td",
-                                li,
+                                ii,
                                 e.toDisplayString(e.unref(r.fmtMoney)(n.actual)),
                                 1
                                 /* TEXT */
                               ),
                               e.createElementVNode(
                                 "td",
-                                oi,
+                                di,
                                 e.toDisplayString(e.unref(r.fmtMoney)(n.task)),
                                 1
                                 /* TEXT */
                               ),
                               e.createElementVNode(
                                 "td",
-                                ai,
+                                ui,
                                 e.toDisplayString(e.unref(r.fmtPct)(n.rate, 1)),
                                 1
                                 /* TEXT */
                               ),
-                              _e.value ? (e.openBlock(), e.createElementBlock(
+                              Ke.value ? (e.openBlock(), e.createElementBlock(
                                 "td",
-                                si,
+                                ci,
                                 e.toDisplayString(e.unref(r.fmtMoney)(n.qualifierActual || 0)) + " / " + e.toDisplayString(e.unref(r.fmtMoney)(n.qualifierTask || 0)),
                                 1
                                 /* TEXT */
@@ -6504,8 +6525,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       ])
                     ])
                   ]),
-                  e.createElementVNode("div", ri, [
-                    e.createElementVNode("table", ii, [
+                  e.createElementVNode("div", mi, [
+                    e.createElementVNode("table", pi, [
                       e.createElementVNode("thead", null, [
                         e.createElementVNode("tr", null, [
                           e.createElementVNode(
@@ -6517,21 +6538,21 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                           ),
                           e.createElementVNode(
                             "th",
-                            di,
+                            vi,
                             e.toDisplayString(t.$t("实际")),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "th",
-                            ui,
+                            yi,
                             e.toDisplayString(t.$t("任务")),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "th",
-                            ci,
+                            fi,
                             e.toDisplayString(t.$t("达成率")),
                             1
                             /* TEXT */
@@ -6554,21 +6575,21 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                             ),
                             e.createElementVNode(
                               "td",
-                              mi,
+                              gi,
                               e.toDisplayString(e.unref(r.fmtMoney)(n.actual)),
                               1
                               /* TEXT */
                             ),
                             e.createElementVNode(
                               "td",
-                              pi,
+                              Ni,
                               e.toDisplayString(e.unref(r.fmtMoney)(n.task)),
                               1
                               /* TEXT */
                             ),
                             e.createElementVNode(
                               "td",
-                              vi,
+                              Vi,
                               e.toDisplayString(e.unref(r.fmtPct)(n.rate, 1)),
                               1
                               /* TEXT */
@@ -6590,31 +6611,31 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 3 规则 PDF → 初始激励 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "rules",
           index: 2,
-          title: e.unref(a).metas[2].title,
-          hint: e.unref(a).metas[2].hint,
-          runtime: e.unref(a).runtime.rules,
-          "is-current": e.unref(a).currentKey.value === "rules"
+          title: e.unref(u).metas[2].title,
+          hint: e.unref(u).metas[2].hint,
+          runtime: e.unref(u).runtime.rules,
+          "is-current": e.unref(u).currentKey.value === "rules"
         }, {
           default: e.withCtx(() => [
-            e.createVNode(ie, {
+            e.createVNode(ce, {
               label: t.$t("【服务营销激励计算规则】PDF"),
               hint: t.$t("支持多选、拖入和追加多个 PDF；选齐后统一抽取，扫描件会先做 OCR"),
               kind: "pdf",
               multi: !0,
-              disabled: e.unref(a).isRunning(),
-              files: ge.value.map((n) => ({ path: n, name: L(n) })),
-              onPicked: He,
-              onRemove: Ue
+              disabled: e.unref(u).isRunning(),
+              files: ye.value.map((n) => ({ path: n, name: I(n) })),
+              onPicked: ut,
+              onRemove: ct
             }, null, 8, ["label", "hint", "disabled", "files"]),
-            e.createElementVNode("div", yi, [
+            e.createElementVNode("div", Ei, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn",
-                disabled: !ge.value.length || e.unref(a).isRunning(),
-                onClick: bt
+                disabled: !ye.value.length || e.unref(u).isRunning(),
+                onClick: q
               }, [
                 l[80] || (l[80] = e.createElementVNode(
                   "i",
@@ -6624,13 +6645,13 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(t.$t("{p0}（{p1}）", { p0: t.$t("读取全部 PDF 并抽取规则"), p1: ge.value.length })),
+                  e.toDisplayString(t.$t("{p0}（{p1}）", { p0: t.$t("读取全部 PDF 并抽取规则"), p1: ye.value.length })),
                   1
                   /* TEXT */
                 )
-              ], 8, fi)
+              ], 8, hi)
             ]),
-            te.value ? (e.openBlock(), e.createElementBlock("div", gi, [
+            i.value ? (e.openBlock(), e.createElementBlock("div", ki, [
               l[81] || (l[81] = e.createElementVNode(
                 "i",
                 { class: "ri-error-warning-fill" },
@@ -6649,17 +6670,17 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.createElementVNode(
                   "div",
                   null,
-                  e.toDisplayString(te.value),
+                  e.toDisplayString(i.value),
                   1
                   /* TEXT */
                 )
               ])
             ])) : e.createCommentVNode("v-if", !0),
-            E.value ? (e.openBlock(), e.createElementBlock(
+            he.value ? (e.openBlock(), e.createElementBlock(
               "p",
               {
                 key: 1,
-                class: e.normalizeClass(["ss-note", R.value])
+                class: e.normalizeClass(["ss-note", o.value])
               },
               [
                 l[82] || (l[82] = e.createElementVNode(
@@ -6670,7 +6691,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(E.value),
+                  e.toDisplayString(he.value),
                   1
                   /* TEXT */
                 )
@@ -6679,7 +6700,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               /* CLASS */
             )) : e.createCommentVNode("v-if", !0),
             e.createCommentVNode(" 不阻塞但需要人工核对的事情单独用警告色。混进上面那条绿色成功提示里等于没提示。 "),
-            Ne.value ? (e.openBlock(), e.createElementBlock("p", Ni, [
+            d.value ? (e.openBlock(), e.createElementBlock("p", bi, [
               l[83] || (l[83] = e.createElementVNode(
                 "i",
                 { class: "ri-error-warning-line" },
@@ -6688,12 +6709,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(Ne.value),
+                e.toDisplayString(d.value),
                 1
                 /* TEXT */
               )
             ])) : e.createCommentVNode("v-if", !0),
-            se.value ? (e.openBlock(), e.createElementBlock("div", Vi, [
+            se.value ? (e.openBlock(), e.createElementBlock("div", $i, [
               e.createElementVNode(
                 "h4",
                 null,
@@ -6703,7 +6724,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               ),
               e.createElementVNode(
                 "p",
-                Ei,
+                Si,
                 e.toDisplayString(t.$t("仅列出本批文件有引用的字段。其余字段未提取，应用后仍保留现有设置，不代表来自此 PDF。")),
                 1
                 /* TEXT */
@@ -6717,7 +6738,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   e.createElementVNode(
                     "strong",
                     null,
-                    e.toDisplayString(ge.value[n.file - 1]?.split(/[\\/]/).pop()),
+                    e.toDisplayString(ye.value[n.file - 1]?.split(/[\\/]/).pop()),
                     1
                     /* TEXT */
                   ),
@@ -6766,7 +6787,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   ),
                   e.createElementVNode(
                     "pre",
-                    hi,
+                    Di,
                     e.toDisplayString(JSON.stringify(se.value.draft[n], null, 2)),
                     1
                     /* TEXT */
@@ -6777,7 +6798,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     e.renderList(se.value.evidence.filter((N) => N.field === n), (N, h) => (e.openBlock(), e.createElementBlock(
                       "blockquote",
                       { key: h },
-                      e.toDisplayString(t.$t("{p0} · {p1}：{p2}", { p0: L(ge.value[N.file - 1] || ""), p1: t.$t("第 {n} 页", { n: N.page }), p2: N.quote })),
+                      e.toDisplayString(t.$t("{p0} · {p1}：{p2}", { p0: I(ye.value[N.file - 1] || ""), p1: t.$t("第 {n} 页", { n: N.page }), p2: N.quote })),
                       1
                       /* TEXT */
                     ))),
@@ -6793,14 +6814,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 {
                   type: "button",
                   class: "ss-btn",
-                  onClick: c
+                  onClick: Fe
                 },
                 e.toDisplayString(t.$t("已核对，仅应用以上字段并保留其余现有设置")),
                 1
                 /* TEXT */
               )
             ])) : e.createCommentVNode("v-if", !0),
-            We.value ? (e.openBlock(), e.createElementBlock("p", ki, [
+            E.value ? (e.openBlock(), e.createElementBlock("p", wi, [
               l[84] || (l[84] = e.createElementVNode(
                 "i",
                 { class: "ri-alert-line" },
@@ -6809,12 +6830,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(We.value),
+                e.toDisplayString(E.value),
                 1
                 /* TEXT */
               )
             ])) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("div", bi, [
+            e.createElementVNode("div", Bi, [
               e.createElementVNode("h4", null, [
                 l[85] || (l[85] = e.createElementVNode(
                   "i",
@@ -6824,17 +6845,17 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(t.$t("规则（来源：{s}）", { s: s.source || t.$t("默认") })),
+                  e.toDisplayString(t.$t("规则（来源：{s}）", { s: a.source || t.$t("默认") })),
                   1
                   /* TEXT */
                 )
               ]),
-              e.createElementVNode("div", $i, [
+              e.createElementVNode("div", Ti, [
                 e.createCommentVNode(" 预设不受 isRunning 约束：扫描件 OCR 最坏十几分钟，等的时候得能直接套预设（P1-8；晚到的抽取结果按序号丢弃） "),
                 e.createElementVNode("button", {
                   type: "button",
                   class: "ss-btn sm",
-                  onClick: yt
+                  onClick: Pe
                 }, [
                   l[86] || (l[86] = e.createElementVNode(
                     "i",
@@ -6852,7 +6873,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.createElementVNode("button", {
                   type: "button",
                   class: "ss-btn sm ghost",
-                  onClick: it
+                  onClick: dt
                 }, [
                   l[87] || (l[87] = e.createElementVNode(
                     "i",
@@ -6867,13 +6888,13 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     /* TEXT */
                   )
                 ]),
-                ke.value || te.value || se.value ? (e.openBlock(), e.createElementBlock(
+                ue.value || i.value || se.value ? (e.openBlock(), e.createElementBlock(
                   "button",
                   {
                     key: 0,
                     type: "button",
                     class: "ss-btn sm ghost",
-                    onClick: d
+                    onClick: mt
                   },
                   e.toDisplayString(t.$t("已对照原件核对下方全部规则，使用手工设置")),
                   1
@@ -6881,7 +6902,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 )) : e.createCommentVNode("v-if", !0),
                 e.createElementVNode(
                   "span",
-                  Si,
+                  Ci,
                   e.toDisplayString(t.$t("档位「整体」= 命中区间时实际 × 比例；「边际」= 目标倍数区间内的增量 × 比例累加（如 A×3% + (B−A)×4%）")),
                   1
                   /* TEXT */
@@ -6889,15 +6910,15 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               ]),
               e.createElementVNode(
                 "div",
-                Di,
+                _i,
                 e.toDisplayString(t.$t("A · 服务商辅材提货激励")),
                 1
                 /* TEXT */
               ),
-              e.createElementVNode("div", wi, [
+              e.createElementVNode("div", Pi, [
                 e.createElementVNode(
                   "span",
-                  Bi,
+                  Ri,
                   e.toDisplayString(t.$t("达成率低于")),
                   1
                   /* TEXT */
@@ -6905,7 +6926,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": l[22] || (l[22] = (n) => s.auxMinRatePct = n),
+                    "onUpdate:modelValue": l[22] || (l[22] = (n) => a.auxMinRatePct = n),
                     type: "number",
                     min: "0"
                   },
@@ -6915,30 +6936,30 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ), [
                   [
                     e.vModelText,
-                    s.auxMinRatePct,
+                    a.auxMinRatePct,
                     void 0,
                     { number: !0 }
                   ]
                 ]),
                 e.createElementVNode(
                   "span",
-                  Ti,
+                  Mi,
                   e.toDisplayString(t.$t("% 无激励")),
                   1
                   /* TEXT */
                 ),
-                e.createElementVNode("label", Ci, [
+                e.createElementVNode("label", Ai, [
                   e.withDirectives(e.createElementVNode(
                     "input",
                     {
-                      "onUpdate:modelValue": l[23] || (l[23] = (n) => s.auxMissingTaskAsMet = n),
+                      "onUpdate:modelValue": l[23] || (l[23] = (n) => a.auxMissingTaskAsMet = n),
                       type: "checkbox"
                     },
                     null,
                     512
                     /* NEED_PATCH */
                   ), [
-                    [e.vModelCheckbox, s.auxMissingTaskAsMet]
+                    [e.vModelCheckbox, a.auxMissingTaskAsMet]
                   ]),
                   e.createElementVNode(
                     "span",
@@ -6952,13 +6973,13 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(s.auxTiers, (n, N) => (e.openBlock(), e.createElementBlock("div", {
+                e.renderList(a.auxTiers, (n, N) => (e.openBlock(), e.createElementBlock("div", {
                   key: "a" + N,
                   class: "ss-rule-row"
                 }, [
                   e.createElementVNode(
                     "span",
-                    _i,
+                    Ui,
                     e.toDisplayString(t.$t("达成率")),
                     1
                     /* TEXT */
@@ -6967,7 +6988,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     "onUpdate:modelValue": (h) => n.fromPct = h,
                     type: "number",
                     min: "0"
-                  }, null, 8, Pi), [
+                  }, null, 8, Li), [
                     [
                       e.vModelText,
                       n.fromPct,
@@ -6987,7 +7008,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     type: "number",
                     min: "0",
                     placeholder: t.$t("无上限")
-                  }, null, 8, Ri), [
+                  }, null, 8, Fi), [
                     [
                       e.vModelText,
                       n.toPct,
@@ -7007,26 +7028,26 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   }, [
                     e.createElementVNode(
                       "option",
-                      Ai,
+                      Ii,
                       e.toDisplayString(t.$t("边际")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      Ui,
+                      qi,
                       e.toDisplayString(t.$t("整体")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      Fi,
+                      Ki,
                       e.toDisplayString(t.$t("固定金额")),
                       1
                       /* TEXT */
                     )
-                  ], 8, Mi), [
+                  ], 8, Oi), [
                     [e.vModelSelect, n.basis]
                   ]),
                   n.basis === "fixed" ? (e.openBlock(), e.createElementBlock(
@@ -7037,7 +7058,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         "onUpdate:modelValue": (h) => n.fixed = h,
                         type: "number",
                         min: "0"
-                      }, null, 8, Li), [
+                      }, null, 8, zi), [
                         [
                           e.vModelText,
                           n.fixed,
@@ -7047,7 +7068,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       ]),
                       e.createElementVNode(
                         "span",
-                        Oi,
+                        ji,
                         e.toDisplayString(t.$t("元")),
                         1
                         /* TEXT */
@@ -7064,7 +7085,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         type: "number",
                         step: "0.1",
                         min: "0"
-                      }, null, 8, Ii), [
+                      }, null, 8, Wi), [
                         [
                           e.vModelText,
                           n.ratioPct,
@@ -7092,7 +7113,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         step: "0.1",
                         min: "0",
                         style: { width: "60px" }
-                      }, null, 8, qi), [
+                      }, null, 8, Yi), [
                         [
                           e.vModelText,
                           n.factor,
@@ -7107,8 +7128,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-link",
-                    onClick: (h) => s.auxTiers.splice(N, 1)
-                  }, e.toDisplayString(t.$t("删除")), 9, Ki)
+                    onClick: (h) => a.auxTiers.splice(N, 1)
+                  }, e.toDisplayString(t.$t("删除")), 9, xi)
                 ]))),
                 128
                 /* KEYED_FRAGMENT */
@@ -7118,25 +7139,25 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 {
                   type: "button",
                   class: "ss-link",
-                  onClick: l[24] || (l[24] = (n) => s.auxTiers.push(je()))
+                  onClick: l[24] || (l[24] = (n) => a.auxTiers.push(je()))
                 },
                 "+ " + e.toDisplayString(t.$t("加一档")),
                 1
                 /* TEXT */
               ),
-              e.createElementVNode("div", zi, [
-                e.createElementVNode("label", ji, [
+              e.createElementVNode("div", Xi, [
+                e.createElementVNode("label", Qi, [
                   e.withDirectives(e.createElementVNode(
                     "input",
                     {
-                      "onUpdate:modelValue": l[25] || (l[25] = (n) => s.qualifierEnabled = n),
+                      "onUpdate:modelValue": l[25] || (l[25] = (n) => a.qualifierEnabled = n),
                       type: "checkbox"
                     },
                     null,
                     512
                     /* NEED_PATCH */
                   ), [
-                    [e.vModelCheckbox, s.qualifierEnabled]
+                    [e.vModelCheckbox, a.qualifierEnabled]
                   ]),
                   e.createElementVNode(
                     "span",
@@ -7147,34 +7168,34 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   )
                 ]),
                 e.withDirectives(e.createElementVNode("input", {
-                  "onUpdate:modelValue": l[26] || (l[26] = (n) => s.qualifierPattern = n),
+                  "onUpdate:modelValue": l[26] || (l[26] = (n) => a.qualifierPattern = n),
                   type: "text",
                   style: { width: "140px", "text-align": "left" },
                   placeholder: t.$t("如 电动止回阀")
-                }, null, 8, Wi), [
-                  [e.vModelText, s.qualifierPattern]
+                }, null, 8, Ji), [
+                  [e.vModelText, a.qualifierPattern]
                 ]),
                 e.createElementVNode(
                   "span",
-                  Yi,
+                  Zi,
                   e.toDisplayString(t.$t("订单表「产品」列命中即计入门槛实际；任务取任务表「门槛品类任务」列")),
                   1
                   /* TEXT */
                 )
               ]),
-              e.createElementVNode("div", xi, [
-                e.createElementVNode("label", Xi, [
+              e.createElementVNode("div", Gi, [
+                e.createElementVNode("label", Hi, [
                   e.withDirectives(e.createElementVNode(
                     "input",
                     {
-                      "onUpdate:modelValue": l[27] || (l[27] = (n) => s.rebateEnabled = n),
+                      "onUpdate:modelValue": l[27] || (l[27] = (n) => a.rebateEnabled = n),
                       type: "checkbox"
                     },
                     null,
                     512
                     /* NEED_PATCH */
                   ), [
-                    [e.vModelCheckbox, s.rebateEnabled]
+                    [e.vModelCheckbox, a.rebateEnabled]
                   ]),
                   e.createElementVNode(
                     "span",
@@ -7186,7 +7207,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ]),
                 e.createElementVNode(
                   "span",
-                  Qi,
+                  ed,
                   e.toDisplayString(t.$t("年限截止")),
                   1
                   /* TEXT */
@@ -7194,26 +7215,26 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "select",
                   {
-                    "onUpdate:modelValue": l[28] || (l[28] = (n) => s.rebateYearsAsOf = n)
+                    "onUpdate:modelValue": l[28] || (l[28] = (n) => a.rebateYearsAsOf = n)
                   },
                   [
                     e.createElementVNode(
                       "option",
-                      Ji,
+                      td,
                       e.toDisplayString(t.$t("季度开始前一个月的 1 日")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      Zi,
+                      nd,
                       e.toDisplayString(t.$t("季度开始前一日")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      Gi,
+                      ld,
                       e.toDisplayString(t.$t("季度末")),
                       1
                       /* TEXT */
@@ -7222,19 +7243,19 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   512
                   /* NEED_PATCH */
                 ), [
-                  [e.vModelSelect, s.rebateYearsAsOf]
+                  [e.vModelSelect, a.rebateYearsAsOf]
                 ])
               ]),
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(s.rebateTiers, (n, N) => (e.openBlock(), e.createElementBlock("div", {
+                e.renderList(a.rebateTiers, (n, N) => (e.openBlock(), e.createElementBlock("div", {
                   key: "r" + N,
                   class: "ss-rule-row"
                 }, [
                   e.createElementVNode(
                     "span",
-                    Hi,
+                    od,
                     e.toDisplayString(t.$t("服务年限 ≥")),
                     1
                     /* TEXT */
@@ -7243,7 +7264,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     "onUpdate:modelValue": (h) => n.minYears = h,
                     type: "number",
                     min: "0"
-                  }, null, 8, ed), [
+                  }, null, 8, ad), [
                     [
                       e.vModelText,
                       n.minYears,
@@ -7253,7 +7274,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   ]),
                   e.createElementVNode(
                     "span",
-                    td,
+                    sd,
                     e.toDisplayString(t.$t("年 → 返利")),
                     1
                     /* TEXT */
@@ -7263,7 +7284,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     type: "number",
                     step: "0.5",
                     min: "0"
-                  }, null, 8, nd), [
+                  }, null, 8, rd), [
                     [
                       e.vModelText,
                       n.ratioPct,
@@ -7281,8 +7302,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-link",
-                    onClick: (h) => s.rebateTiers.splice(N, 1)
-                  }, e.toDisplayString(t.$t("删除")), 9, ld)
+                    onClick: (h) => a.rebateTiers.splice(N, 1)
+                  }, e.toDisplayString(t.$t("删除")), 9, id)
                 ]))),
                 128
                 /* KEYED_FRAGMENT */
@@ -7292,7 +7313,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 {
                   type: "button",
                   class: "ss-link",
-                  onClick: l[29] || (l[29] = (n) => s.rebateTiers.push({ minYears: 0, ratioPct: 5 }))
+                  onClick: l[29] || (l[29] = (n) => a.rebateTiers.push({ minYears: 0, ratioPct: 5 }))
                 },
                 "+ " + e.toDisplayString(t.$t("加一档返利")),
                 1
@@ -7300,15 +7321,15 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               ),
               e.createElementVNode(
                 "div",
-                od,
+                dd,
                 e.toDisplayString(t.$t("B · 区域经理（辅材、延保各算一次）")),
                 1
                 /* TEXT */
               ),
-              e.createElementVNode("div", ad, [
+              e.createElementVNode("div", ud, [
                 e.createElementVNode(
                   "span",
-                  sd,
+                  cd,
                   e.toDisplayString(t.$t("完成率低于")),
                   1
                   /* TEXT */
@@ -7316,7 +7337,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": l[30] || (l[30] = (n) => s.managerMinRatePct = n),
+                    "onUpdate:modelValue": l[30] || (l[30] = (n) => a.managerMinRatePct = n),
                     type: "number",
                     min: "0"
                   },
@@ -7326,14 +7347,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ), [
                   [
                     e.vModelText,
-                    s.managerMinRatePct,
+                    a.managerMinRatePct,
                     void 0,
                     { number: !0 }
                   ]
                 ]),
                 e.createElementVNode(
                   "span",
-                  rd,
+                  md,
                   e.toDisplayString(t.$t("% 无激励；季度预发提成按")),
                   1
                   /* TEXT */
@@ -7341,7 +7362,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": l[31] || (l[31] = (n) => s.managerAdvanceRatioPct = n),
+                    "onUpdate:modelValue": l[31] || (l[31] = (n) => a.managerAdvanceRatioPct = n),
                     type: "number",
                     step: "0.1",
                     min: "0"
@@ -7352,14 +7373,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ), [
                   [
                     e.vModelText,
-                    s.managerAdvanceRatioPct,
+                    a.managerAdvanceRatioPct,
                     void 0,
                     { number: !0 }
                   ]
                 ]),
                 e.createElementVNode(
                   "span",
-                  id,
+                  pd,
                   e.toDisplayString(t.$t("% 基础比例（0 = 预发即准确）")),
                   1
                   /* TEXT */
@@ -7368,13 +7389,13 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(s.managerTiers, (n, N) => (e.openBlock(), e.createElementBlock("div", {
+                e.renderList(a.managerTiers, (n, N) => (e.openBlock(), e.createElementBlock("div", {
                   key: "m" + N,
                   class: "ss-rule-row"
                 }, [
                   e.createElementVNode(
                     "span",
-                    dd,
+                    vd,
                     e.toDisplayString(t.$t("完成率")),
                     1
                     /* TEXT */
@@ -7383,7 +7404,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     "onUpdate:modelValue": (h) => n.fromPct = h,
                     type: "number",
                     min: "0"
-                  }, null, 8, ud), [
+                  }, null, 8, yd), [
                     [
                       e.vModelText,
                       n.fromPct,
@@ -7403,7 +7424,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     type: "number",
                     min: "0",
                     placeholder: t.$t("无上限")
-                  }, null, 8, cd), [
+                  }, null, 8, fd), [
                     [
                       e.vModelText,
                       n.toPct,
@@ -7423,26 +7444,26 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   }, [
                     e.createElementVNode(
                       "option",
-                      pd,
+                      Nd,
                       e.toDisplayString(t.$t("边际")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      vd,
+                      Vd,
                       e.toDisplayString(t.$t("整体")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      yd,
+                      Ed,
                       e.toDisplayString(t.$t("固定金额")),
                       1
                       /* TEXT */
                     )
-                  ], 8, md), [
+                  ], 8, gd), [
                     [e.vModelSelect, n.basis]
                   ]),
                   n.basis === "fixed" ? (e.openBlock(), e.createElementBlock(
@@ -7453,7 +7474,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         "onUpdate:modelValue": (h) => n.fixed = h,
                         type: "number",
                         min: "0"
-                      }, null, 8, fd), [
+                      }, null, 8, hd), [
                         [
                           e.vModelText,
                           n.fixed,
@@ -7463,7 +7484,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       ]),
                       e.createElementVNode(
                         "span",
-                        gd,
+                        kd,
                         e.toDisplayString(t.$t("元")),
                         1
                         /* TEXT */
@@ -7480,7 +7501,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         type: "number",
                         step: "0.1",
                         min: "0"
-                      }, null, 8, Nd), [
+                      }, null, 8, bd), [
                         [
                           e.vModelText,
                           n.ratioPct,
@@ -7508,7 +7529,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         step: "0.1",
                         min: "0",
                         style: { width: "60px" }
-                      }, null, 8, Vd), [
+                      }, null, 8, $d), [
                         [
                           e.vModelText,
                           n.factor,
@@ -7523,8 +7544,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-link",
-                    onClick: (h) => s.managerTiers.splice(N, 1)
-                  }, e.toDisplayString(t.$t("删除")), 9, Ed)
+                    onClick: (h) => a.managerTiers.splice(N, 1)
+                  }, e.toDisplayString(t.$t("删除")), 9, Sd)
                 ]))),
                 128
                 /* KEYED_FRAGMENT */
@@ -7534,16 +7555,16 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 {
                   type: "button",
                   class: "ss-link",
-                  onClick: l[32] || (l[32] = (n) => s.managerTiers.push(je()))
+                  onClick: l[32] || (l[32] = (n) => a.managerTiers.push(je()))
                 },
                 "+ " + e.toDisplayString(t.$t("加一档")),
                 1
                 /* TEXT */
               ),
-              e.createElementVNode("div", hd, [
+              e.createElementVNode("div", Dd, [
                 e.createElementVNode(
                   "span",
-                  kd,
+                  wd,
                   e.toDisplayString(t.$t("基础激励每项最高")),
                   1
                   /* TEXT */
@@ -7551,7 +7572,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": l[33] || (l[33] = (n) => s.managerBase.perItemMax = n),
+                    "onUpdate:modelValue": l[33] || (l[33] = (n) => a.managerBase.perItemMax = n),
                     type: "number",
                     min: "0"
                   },
@@ -7561,14 +7582,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ), [
                   [
                     e.vModelText,
-                    s.managerBase.perItemMax,
+                    a.managerBase.perItemMax,
                     void 0,
                     { number: !0 }
                   ]
                 ]),
                 e.createElementVNode(
                   "span",
-                  bd,
+                  Bd,
                   e.toDisplayString(t.$t("元（完成率 ≥")),
                   1
                   /* TEXT */
@@ -7576,7 +7597,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": l[34] || (l[34] = (n) => s.managerBase.minRatePct = n),
+                    "onUpdate:modelValue": l[34] || (l[34] = (n) => a.managerBase.minRatePct = n),
                     type: "number",
                     min: "0"
                   },
@@ -7586,14 +7607,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ), [
                   [
                     e.vModelText,
-                    s.managerBase.minRatePct,
+                    a.managerBase.minRatePct,
                     void 0,
                     { number: !0 }
                   ]
                 ]),
                 e.createElementVNode(
                   "span",
-                  $d,
+                  Td,
                   e.toDisplayString(t.$t("% 按完成率折算，≥100% 给满），每季度最高")),
                   1
                   /* TEXT */
@@ -7601,7 +7622,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": l[35] || (l[35] = (n) => s.managerBase.quarterMax = n),
+                    "onUpdate:modelValue": l[35] || (l[35] = (n) => a.managerBase.quarterMax = n),
                     type: "number",
                     min: "0"
                   },
@@ -7611,30 +7632,30 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ), [
                   [
                     e.vModelText,
-                    s.managerBase.quarterMax,
+                    a.managerBase.quarterMax,
                     void 0,
                     { number: !0 }
                   ]
                 ]),
                 e.createElementVNode(
                   "span",
-                  Sd,
+                  Cd,
                   e.toDisplayString(t.$t("元（0 = 不封顶）")),
                   1
                   /* TEXT */
                 ),
-                e.createElementVNode("label", Dd, [
+                e.createElementVNode("label", _d, [
                   e.withDirectives(e.createElementVNode(
                     "input",
                     {
-                      "onUpdate:modelValue": l[36] || (l[36] = (n) => s.managerBase.applyCoefficient = n),
+                      "onUpdate:modelValue": l[36] || (l[36] = (n) => a.managerBase.applyCoefficient = n),
                       type: "checkbox"
                     },
                     null,
                     512
                     /* NEED_PATCH */
                   ), [
-                    [e.vModelCheckbox, s.managerBase.applyCoefficient]
+                    [e.vModelCheckbox, a.managerBase.applyCoefficient]
                   ]),
                   e.createElementVNode(
                     "span",
@@ -7644,18 +7665,18 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     /* TEXT */
                   )
                 ]),
-                e.createElementVNode("label", wd, [
+                e.createElementVNode("label", Pd, [
                   e.withDirectives(e.createElementVNode(
                     "input",
                     {
-                      "onUpdate:modelValue": l[37] || (l[37] = (n) => s.managerBase.applyDiscount = n),
+                      "onUpdate:modelValue": l[37] || (l[37] = (n) => a.managerBase.applyDiscount = n),
                       type: "checkbox"
                     },
                     null,
                     512
                     /* NEED_PATCH */
                   ), [
-                    [e.vModelCheckbox, s.managerBase.applyDiscount]
+                    [e.vModelCheckbox, a.managerBase.applyDiscount]
                   ]),
                   e.createElementVNode(
                     "span",
@@ -7669,13 +7690,13 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(s.managerDiscountTiers, (n, N) => (e.openBlock(), e.createElementBlock("div", {
+                e.renderList(a.managerDiscountTiers, (n, N) => (e.openBlock(), e.createElementBlock("div", {
                   key: "d" + N,
                   class: "ss-rule-row"
                 }, [
                   e.createElementVNode(
                     "span",
-                    Bd,
+                    Rd,
                     e.toDisplayString(t.$t("区域经理延保达成率 <")),
                     1
                     /* TEXT */
@@ -7684,7 +7705,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     "onUpdate:modelValue": (h) => n.belowRatePct = h,
                     type: "number",
                     min: "0"
-                  }, null, 8, Td), [
+                  }, null, 8, Md), [
                     [
                       e.vModelText,
                       n.belowRatePct,
@@ -7701,7 +7722,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   )),
                   e.createElementVNode(
                     "span",
-                    Cd,
+                    Ad,
                     "→ " + e.toDisplayString(t.$t("辅材提成打")),
                     1
                     /* TEXT */
@@ -7712,7 +7733,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     step: "0.5",
                     min: "0",
                     max: "10"
-                  }, null, 8, _d), [
+                  }, null, 8, Ud), [
                     [
                       e.vModelText,
                       n.discountZhe,
@@ -7722,7 +7743,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   ]),
                   e.createElementVNode(
                     "span",
-                    Pd,
+                    Ld,
                     e.toDisplayString(t.$t("折")),
                     1
                     /* TEXT */
@@ -7730,8 +7751,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-link",
-                    onClick: (h) => s.managerDiscountTiers.splice(N, 1)
-                  }, e.toDisplayString(t.$t("删除")), 9, Rd)
+                    onClick: (h) => a.managerDiscountTiers.splice(N, 1)
+                  }, e.toDisplayString(t.$t("删除")), 9, Fd)
                 ]))),
                 128
                 /* KEYED_FRAGMENT */
@@ -7741,16 +7762,16 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 {
                   type: "button",
                   class: "ss-link",
-                  onClick: l[38] || (l[38] = (n) => s.managerDiscountTiers.push({ belowRatePct: 80, discountZhe: 8 }))
+                  onClick: l[38] || (l[38] = (n) => a.managerDiscountTiers.push({ belowRatePct: 80, discountZhe: 8 }))
                 },
                 "+ " + e.toDisplayString(t.$t("加一档打折")),
                 1
                 /* TEXT */
               ),
-              e.createElementVNode("div", Md, [
+              e.createElementVNode("div", Od, [
                 e.createElementVNode(
                   "span",
-                  Ad,
+                  Id,
                   e.toDisplayString(t.$t("绩效系数")),
                   1
                   /* TEXT */
@@ -7758,7 +7779,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(s.coefficients, (n, N) => (e.openBlock(), e.createElementBlock(
+                  e.renderList(a.coefficients, (n, N) => (e.openBlock(), e.createElementBlock(
                     e.Fragment,
                     {
                       key: "c" + N
@@ -7768,7 +7789,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         "onUpdate:modelValue": (h) => n.grade = h,
                         type: "text",
                         style: { width: "50px" }
-                      }, null, 8, Ud), [
+                      }, null, 8, qd), [
                         [e.vModelText, n.grade]
                       ]),
                       l[98] || (l[98] = e.createElementVNode(
@@ -7784,7 +7805,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         step: "0.1",
                         min: "0",
                         style: { width: "60px" }
-                      }, null, 8, Fd), [
+                      }, null, 8, Kd), [
                         [
                           e.vModelText,
                           n.value,
@@ -7795,8 +7816,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       e.createElementVNode("button", {
                         type: "button",
                         class: "ss-link",
-                        onClick: (h) => s.coefficients.splice(N, 1)
-                      }, "×", 8, Ld)
+                        onClick: (h) => a.coefficients.splice(N, 1)
+                      }, "×", 8, zd)
                     ],
                     64
                     /* STABLE_FRAGMENT */
@@ -7809,7 +7830,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   {
                     type: "button",
                     class: "ss-link",
-                    onClick: l[39] || (l[39] = (n) => s.coefficients.push({ grade: "", value: 1 }))
+                    onClick: l[39] || (l[39] = (n) => a.coefficients.push({ grade: "", value: 1 }))
                   },
                   "+ " + e.toDisplayString(t.$t("加等级")),
                   1
@@ -7818,15 +7839,15 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               ]),
               e.createElementVNode(
                 "div",
-                Od,
+                jd,
                 e.toDisplayString(t.$t("C · 服务商延保 & 负责人")),
                 1
                 /* TEXT */
               ),
-              e.createElementVNode("div", Id, [
+              e.createElementVNode("div", Wd, [
                 e.createElementVNode(
                   "span",
-                  qd,
+                  Yd,
                   e.toDisplayString(t.$t("延保激励方式")),
                   1
                   /* TEXT */
@@ -7834,19 +7855,19 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "select",
                   {
-                    "onUpdate:modelValue": l[40] || (l[40] = (n) => s.warrantyMode = n)
+                    "onUpdate:modelValue": l[40] || (l[40] = (n) => a.warrantyMode = n)
                   },
                   [
                     e.createElementVNode(
                       "option",
-                      Kd,
+                      xd,
                       e.toDisplayString(t.$t("每单固定金额")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      zd,
+                      Xd,
                       e.toDisplayString(t.$t("延保实际 × 档位比例（服务商 / 负责人分开）")),
                       1
                       /* TEXT */
@@ -7855,16 +7876,16 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   512
                   /* NEED_PATCH */
                 ), [
-                  [e.vModelSelect, s.warrantyMode]
+                  [e.vModelSelect, a.warrantyMode]
                 ]),
-                s.warrantyMode === "perOrder" ? (e.openBlock(), e.createElementBlock(
+                a.warrantyMode === "perOrder" ? (e.openBlock(), e.createElementBlock(
                   e.Fragment,
                   { key: 0 },
                   [
                     e.withDirectives(e.createElementVNode(
                       "input",
                       {
-                        "onUpdate:modelValue": l[41] || (l[41] = (n) => s.warrantyPerOrder = n),
+                        "onUpdate:modelValue": l[41] || (l[41] = (n) => a.warrantyPerOrder = n),
                         type: "number",
                         min: "0"
                       },
@@ -7874,14 +7895,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     ), [
                       [
                         e.vModelText,
-                        s.warrantyPerOrder,
+                        a.warrantyPerOrder,
                         void 0,
                         { number: !0 }
                       ]
                     ]),
                     e.createElementVNode(
                       "span",
-                      jd,
+                      Qd,
                       e.toDisplayString(t.$t("元/单")),
                       1
                       /* TEXT */
@@ -7891,20 +7912,20 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* STABLE_FRAGMENT */
                 )) : e.createCommentVNode("v-if", !0)
               ]),
-              s.warrantyMode === "ratio" ? (e.openBlock(), e.createElementBlock(
+              a.warrantyMode === "ratio" ? (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 { key: 0 },
                 [
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(s.warrantyTiers, (n, N) => (e.openBlock(), e.createElementBlock("div", {
+                    e.renderList(a.warrantyTiers, (n, N) => (e.openBlock(), e.createElementBlock("div", {
                       key: "w" + N,
                       class: "ss-rule-row"
                     }, [
                       e.createElementVNode(
                         "span",
-                        Wd,
+                        Jd,
                         e.toDisplayString(t.$t("延保达成率 ≥")),
                         1
                         /* TEXT */
@@ -7913,7 +7934,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         "onUpdate:modelValue": (h) => n.minRatePct = h,
                         type: "number",
                         min: "0"
-                      }, null, 8, Yd), [
+                      }, null, 8, Zd), [
                         [
                           e.vModelText,
                           n.minRatePct,
@@ -7930,7 +7951,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       )),
                       e.createElementVNode(
                         "span",
-                        xd,
+                        Gd,
                         "→ " + e.toDisplayString(t.$t("服务商")),
                         1
                         /* TEXT */
@@ -7940,7 +7961,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         type: "number",
                         step: "0.1",
                         min: "0"
-                      }, null, 8, Xd), [
+                      }, null, 8, Hd), [
                         [
                           e.vModelText,
                           n.providerRatioPct,
@@ -7957,7 +7978,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       )),
                       e.createElementVNode(
                         "span",
-                        Qd,
+                        eu,
                         "+ " + e.toDisplayString(t.$t("负责人")),
                         1
                         /* TEXT */
@@ -7967,7 +7988,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         type: "number",
                         step: "0.1",
                         min: "0"
-                      }, null, 8, Jd), [
+                      }, null, 8, tu), [
                         [
                           e.vModelText,
                           n.leaderRatioPct,
@@ -7985,8 +8006,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       e.createElementVNode("button", {
                         type: "button",
                         class: "ss-link",
-                        onClick: (h) => s.warrantyTiers.splice(N, 1)
-                      }, e.toDisplayString(t.$t("删除")), 9, Zd)
+                        onClick: (h) => a.warrantyTiers.splice(N, 1)
+                      }, e.toDisplayString(t.$t("删除")), 9, nu)
                     ]))),
                     128
                     /* KEYED_FRAGMENT */
@@ -7996,7 +8017,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     {
                       type: "button",
                       class: "ss-link",
-                      onClick: l[42] || (l[42] = (n) => s.warrantyTiers.push({ minRatePct: 100, providerRatioPct: 5, leaderRatioPct: 3 }))
+                      onClick: l[42] || (l[42] = (n) => a.warrantyTiers.push({ minRatePct: 100, providerRatioPct: 5, leaderRatioPct: 3 }))
                     },
                     "+ " + e.toDisplayString(t.$t("加一档")),
                     1
@@ -8006,10 +8027,10 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 64
                 /* STABLE_FRAGMENT */
               )) : e.createCommentVNode("v-if", !0),
-              s.warrantyMode === "perOrder" || !s.warrantyTiers.some((n) => n.leaderRatioPct > 0) ? (e.openBlock(), e.createElementBlock("div", Gd, [
+              a.warrantyMode === "perOrder" || !a.warrantyTiers.some((n) => n.leaderRatioPct > 0) ? (e.openBlock(), e.createElementBlock("div", lu, [
                 e.createElementVNode(
                   "span",
-                  Hd,
+                  ou,
                   e.toDisplayString(t.$t("负责人激励 =")),
                   1
                   /* TEXT */
@@ -8017,26 +8038,26 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "select",
                   {
-                    "onUpdate:modelValue": l[43] || (l[43] = (n) => s.leaderShareBase = n)
+                    "onUpdate:modelValue": l[43] || (l[43] = (n) => a.leaderShareBase = n)
                   },
                   [
                     e.createElementVNode(
                       "option",
-                      eu,
+                      au,
                       e.toDisplayString(t.$t("辅材 + 延保激励")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      tu,
+                      su,
                       e.toDisplayString(t.$t("延保激励")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      nu,
+                      ru,
                       e.toDisplayString(t.$t("辅材激励")),
                       1
                       /* TEXT */
@@ -8045,7 +8066,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   512
                   /* NEED_PATCH */
                 ), [
-                  [e.vModelSelect, s.leaderShareBase]
+                  [e.vModelSelect, a.leaderShareBase]
                 ]),
                 l[102] || (l[102] = e.createElementVNode(
                   "span",
@@ -8057,7 +8078,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": l[44] || (l[44] = (n) => s.leaderShareRatioPct = n),
+                    "onUpdate:modelValue": l[44] || (l[44] = (n) => a.leaderShareRatioPct = n),
                     type: "number",
                     step: "0.1",
                     min: "0"
@@ -8068,7 +8089,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ), [
                   [
                     e.vModelText,
-                    s.leaderShareRatioPct,
+                    a.leaderShareRatioPct,
                     void 0,
                     { number: !0 }
                   ]
@@ -8081,10 +8102,10 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* CACHED */
                 ))
               ])) : e.createCommentVNode("v-if", !0),
-              e.createElementVNode("div", lu, [
+              e.createElementVNode("div", iu, [
                 e.createElementVNode(
                   "span",
-                  ou,
+                  du,
                   e.toDisplayString(t.$t("呆滞配件退回期限")),
                   1
                   /* TEXT */
@@ -8092,7 +8113,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": l[45] || (l[45] = (n) => s.returnDueDays = n),
+                    "onUpdate:modelValue": l[45] || (l[45] = (n) => a.returnDueDays = n),
                     type: "number",
                     min: "1"
                   },
@@ -8102,14 +8123,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ), [
                   [
                     e.vModelText,
-                    s.returnDueDays,
+                    a.returnDueDays,
                     void 0,
                     { number: !0 }
                   ]
                 ]),
                 e.createElementVNode(
                   "span",
-                  au,
+                  uu,
                   e.toDisplayString(t.$t("天，到期前")),
                   1
                   /* TEXT */
@@ -8117,7 +8138,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": l[46] || (l[46] = (n) => s.returnRemindBeforeDays = n),
+                    "onUpdate:modelValue": l[46] || (l[46] = (n) => a.returnRemindBeforeDays = n),
                     type: "number",
                     min: "0"
                   },
@@ -8127,31 +8148,31 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ), [
                   [
                     e.vModelText,
-                    s.returnRemindBeforeDays,
+                    a.returnRemindBeforeDays,
                     void 0,
                     { number: !0 }
                   ]
                 ]),
                 e.createElementVNode(
                   "span",
-                  su,
+                  cu,
                   e.toDisplayString(t.$t("天二次提醒")),
                   1
                   /* TEXT */
                 )
               ])
             ]),
-            e.createElementVNode("div", ru, [
+            e.createElementVNode("div", mu, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: ke.value || !!se.value || !!te.value || e.unref(a).runtime.aux.state !== "done" || e.unref(a).isRunning(),
-                onClick: $t
+                disabled: ue.value || !!se.value || !!i.value || e.unref(u).runtime.aux.state !== "done" || e.unref(u).isRunning(),
+                onClick: wt
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(ce("rules", "ri-calculator-line"))
+                    class: e.normalizeClass(ee("rules", "ri-calculator-line"))
                   },
                   null,
                   2
@@ -8162,16 +8183,16 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, iu)
+              ], 8, pu)
             ]),
-            W.value ? (e.openBlock(), e.createElementBlock(
+            A.value ? (e.openBlock(), e.createElementBlock(
               e.Fragment,
               { key: 5 },
               [
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(W.value.warnings || [], (n) => (e.openBlock(), e.createElementBlock("p", {
+                  e.renderList(A.value.warnings || [], (n) => (e.openBlock(), e.createElementBlock("p", {
                     key: n,
                     class: "ss-note warn"
                   }, [
@@ -8191,8 +8212,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   128
                   /* KEYED_FRAGMENT */
                 )),
-                e.createElementVNode("div", du, [
-                  e.createElementVNode("table", uu, [
+                e.createElementVNode("div", vu, [
+                  e.createElementVNode("table", yu, [
                     e.createElementVNode("thead", null, [
                       e.createElementVNode("tr", null, [
                         e.createElementVNode(
@@ -8204,28 +8225,28 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         ),
                         e.createElementVNode(
                           "th",
-                          cu,
+                          fu,
                           e.toDisplayString(t.$t("辅材实际")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
-                          mu,
+                          gu,
                           e.toDisplayString(t.$t("达成率")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
-                          pu,
+                          Nu,
                           e.toDisplayString(t.$t("折算比例")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
-                          vu,
+                          Vu,
                           e.toDisplayString(t.$t("提货激励(元)")),
                           1
                           /* TEXT */
@@ -8239,21 +8260,21 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         ),
                         e.createElementVNode(
                           "th",
-                          yu,
+                          Eu,
                           e.toDisplayString(t.$t("服务年限")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
-                          fu,
+                          hu,
                           e.toDisplayString(t.$t("呆滞返利(元)")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
-                          gu,
+                          ku,
                           e.toDisplayString(t.$t("合计(元)")),
                           1
                           /* TEXT */
@@ -8271,7 +8292,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(W.value.providers, (n) => (e.openBlock(), e.createElementBlock(
+                        e.renderList(A.value.providers, (n) => (e.openBlock(), e.createElementBlock(
                           "tr",
                           {
                             key: n.provider,
@@ -8287,26 +8308,26 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                             ),
                             e.createElementVNode(
                               "td",
-                              Nu,
+                              bu,
                               e.toDisplayString(e.unref(r.fmtMoney)(n.auxActual)),
                               1
                               /* TEXT */
                             ),
                             e.createElementVNode(
                               "td",
-                              Vu,
+                              $u,
                               e.toDisplayString(e.unref(r.fmtPct)(n.auxRate, 1)),
                               1
                               /* TEXT */
                             ),
                             e.createElementVNode(
                               "td",
-                              Eu,
+                              Su,
                               e.toDisplayString(e.unref(r.fmtPct)(n.auxRatio, 2)),
                               1
                               /* TEXT */
                             ),
-                            e.createElementVNode("td", hu, [
+                            e.createElementVNode("td", Du, [
                               e.createElementVNode(
                                 "strong",
                                 null,
@@ -8318,7 +8339,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                             e.createElementVNode("td", null, [
                               n.qualifierMet === null ? (e.openBlock(), e.createElementBlock(
                                 "span",
-                                ku,
+                                wu,
                                 e.toDisplayString(t.$t("不涉及")),
                                 1
                                 /* TEXT */
@@ -8335,19 +8356,19 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                             ]),
                             e.createElementVNode(
                               "td",
-                              bu,
+                              Bu,
                               e.toDisplayString(n.serviceYears ?? "-"),
                               1
                               /* TEXT */
                             ),
                             e.createElementVNode(
                               "td",
-                              $u,
+                              Tu,
                               e.toDisplayString(n.rebateAmount ? e.unref(r.fmtMoney)(n.rebateAmount) + " (" + e.unref(r.fmtPct)(n.rebateRatio, 0) + ")" : "-"),
                               1
                               /* TEXT */
                             ),
-                            e.createElementVNode("td", Su, [
+                            e.createElementVNode("td", Cu, [
                               e.createElementVNode(
                                 "strong",
                                 null,
@@ -8358,7 +8379,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                             ]),
                             e.createElementVNode(
                               "td",
-                              Du,
+                              _u,
                               e.toDisplayString(n.auxNote || ""),
                               1
                               /* TEXT */
@@ -8370,7 +8391,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         128
                         /* KEYED_FRAGMENT */
                       )),
-                      e.createElementVNode("tr", wu, [
+                      e.createElementVNode("tr", Pu, [
                         e.createElementVNode(
                           "td",
                           null,
@@ -8401,8 +8422,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         )),
                         e.createElementVNode(
                           "td",
-                          Bu,
-                          e.toDisplayString(e.unref(r.fmtMoney)(W.value.totals.auxInitial)),
+                          Ru,
+                          e.toDisplayString(e.unref(r.fmtMoney)(A.value.totals.auxInitial)),
                           1
                           /* TEXT */
                         ),
@@ -8422,15 +8443,15 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         )),
                         e.createElementVNode(
                           "td",
-                          Tu,
-                          e.toDisplayString(e.unref(r.fmtMoney)(W.value.totals.rebateAmount)),
+                          Mu,
+                          e.toDisplayString(e.unref(r.fmtMoney)(A.value.totals.rebateAmount)),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "td",
-                          Cu,
-                          e.toDisplayString(e.unref(r.fmtMoney)(W.value.totals.providerTotal)),
+                          Au,
+                          e.toDisplayString(e.unref(r.fmtMoney)(A.value.totals.providerTotal)),
                           1
                           /* TEXT */
                         ),
@@ -8454,19 +8475,19 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 4 退回通知 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "return",
           index: 3,
-          title: e.unref(a).metas[3].title,
-          hint: e.unref(a).metas[3].hint,
-          runtime: e.unref(a).runtime.return,
-          "is-current": e.unref(a).currentKey.value === "return"
+          title: e.unref(u).metas[3].title,
+          hint: e.unref(u).metas[3].hint,
+          runtime: e.unref(u).runtime.return,
+          "is-current": e.unref(u).currentKey.value === "return"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", _u, [
+            e.createElementVNode("div", Uu, [
               e.createElementVNode(
                 "span",
-                Pu,
+                Lu,
                 e.toDisplayString(t.$t("退回截止日")),
                 1
                 /* TEXT */
@@ -8474,7 +8495,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": l[47] || (l[47] = (n) => ot.value = n),
+                  "onUpdate:modelValue": l[47] || (l[47] = (n) => lt.value = n),
                   type: "date",
                   style: { width: "150px", "text-align": "left" }
                 },
@@ -8482,18 +8503,18 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 512
                 /* NEED_PATCH */
               ), [
-                [e.vModelText, ot.value]
+                [e.vModelText, lt.value]
               ]),
               e.createElementVNode(
                 "span",
-                Ru,
-                e.toDisplayString(t.$t("（默认今天 + {n} 天；距截止 {m} 天仍未退回的服务商会自动发二次提醒）", { n: s.returnDueDays, m: s.returnRemindBeforeDays })),
+                Fu,
+                e.toDisplayString(t.$t("（默认今天 + {n} 天；距截止 {m} 天仍未退回的服务商会自动发二次提醒）", { n: a.returnDueDays, m: a.returnRemindBeforeDays })),
                 1
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", Mu, [
-              e.createElementVNode("table", Au, [
+            e.createElementVNode("div", Ou, [
+              e.createElementVNode("table", Iu, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     l[111] || (l[111] = e.createElementVNode(
@@ -8519,7 +8540,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     ),
                     e.createElementVNode(
                       "th",
-                      Uu,
+                      qu,
                       e.toDisplayString(t.$t("需退回等额(元)")),
                       1
                       /* TEXT */
@@ -8551,14 +8572,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(W.value?.providers || [], (n) => (e.openBlock(), e.createElementBlock("tr", {
+                    e.renderList(A.value?.providers || [], (n) => (e.openBlock(), e.createElementBlock("tr", {
                       key: n.provider
                     }, [
                       e.createElementVNode("td", null, [
                         e.withDirectives(e.createElementVNode("input", {
                           "onUpdate:modelValue": (N) => Me[n.provider] = N,
                           type: "checkbox"
-                        }, null, 8, Fu), [
+                        }, null, 8, Ku), [
                           [e.vModelCheckbox, Me[n.provider]]
                         ])
                       ]),
@@ -8571,58 +8592,58 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       ),
                       e.createElementVNode("td", null, [
                         e.createElementVNode("input", {
-                          value: Dt(n.provider),
+                          value: Tt(n.provider),
                           type: "email",
                           placeholder: t.$t("填写邮箱"),
-                          onChange: (N) => wt(n.provider, N.target.value)
-                        }, null, 40, Lu)
+                          onChange: (N) => Ct(n.provider, N.target.value)
+                        }, null, 40, zu)
                       ]),
                       e.createElementVNode(
                         "td",
-                        Ou,
+                        ju,
                         e.toDisplayString(e.unref(r.fmtMoney)(n.auxInitial)),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode("td", null, [
-                        be(n.provider)?.notifiedAt ? (e.openBlock(), e.createElementBlock(
+                        De(n.provider)?.notifiedAt ? (e.openBlock(), e.createElementBlock(
                           "span",
-                          Iu,
-                          e.toDisplayString(e.unref(r.fmtDate)(be(n.provider)?.notifiedAt)) + " · " + e.toDisplayString(t.$t("截止")) + " " + e.toDisplayString(be(n.provider)?.dueDate),
+                          Wu,
+                          e.toDisplayString(e.unref(r.fmtDate)(De(n.provider)?.notifiedAt)) + " · " + e.toDisplayString(t.$t("截止")) + " " + e.toDisplayString(De(n.provider)?.dueDate),
                           1
                           /* TEXT */
-                        )) : be(n.provider)?.notifyError ? (e.openBlock(), e.createElementBlock("span", {
+                        )) : De(n.provider)?.notifyError ? (e.openBlock(), e.createElementBlock("span", {
                           key: 1,
                           class: "ss-chip bad",
-                          title: be(n.provider)?.notifyError
-                        }, e.toDisplayString(t.$t("失败")), 9, qu)) : (e.openBlock(), e.createElementBlock(
+                          title: De(n.provider)?.notifyError
+                        }, e.toDisplayString(t.$t("失败")), 9, Yu)) : (e.openBlock(), e.createElementBlock(
                           "span",
-                          Ku,
+                          xu,
                           e.toDisplayString(t.$t("未通知")),
                           1
                           /* TEXT */
                         ))
                       ]),
                       e.createElementVNode("td", null, [
-                        be(n.provider)?.secondNoticeAt ? (e.openBlock(), e.createElementBlock(
+                        De(n.provider)?.secondNoticeAt ? (e.openBlock(), e.createElementBlock(
                           "span",
-                          zu,
-                          e.toDisplayString(e.unref(r.fmtDate)(be(n.provider)?.secondNoticeAt)),
+                          Xu,
+                          e.toDisplayString(e.unref(r.fmtDate)(De(n.provider)?.secondNoticeAt)),
                           1
                           /* TEXT */
-                        )) : (e.openBlock(), e.createElementBlock("span", ju, "-"))
+                        )) : (e.openBlock(), e.createElementBlock("span", Qu, "-"))
                       ]),
                       e.createElementVNode("td", null, [
-                        e.createElementVNode("label", Wu, [
+                        e.createElementVNode("label", Ju, [
                           e.createElementVNode("input", {
                             type: "checkbox",
-                            checked: !!be(n.provider)?.returned,
-                            onChange: (N) => Bt(n.provider, N.target.checked)
-                          }, null, 40, Yu),
+                            checked: !!De(n.provider)?.returned,
+                            onChange: (N) => _t(n.provider, N.target.checked)
+                          }, null, 40, Zu),
                           e.createElementVNode(
                             "span",
                             null,
-                            e.toDisplayString(be(n.provider)?.returned ? e.unref(r.fmtDate)(be(n.provider)?.returnedAt) : t.$t("未退回")),
+                            e.toDisplayString(De(n.provider)?.returned ? e.unref(r.fmtDate)(De(n.provider)?.returnedAt) : t.$t("未退回")),
                             1
                             /* TEXT */
                           )
@@ -8632,10 +8653,10 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     128
                     /* KEYED_FRAGMENT */
                   )),
-                  W.value ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("tr", xu, [
+                  A.value ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("tr", Gu, [
                     e.createElementVNode(
                       "td",
-                      Xu,
+                      Hu,
                       e.toDisplayString(t.$t("先完成第 3 步")),
                       1
                       /* TEXT */
@@ -8644,13 +8665,13 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ])
               ])
             ]),
-            e.createElementVNode("div", Qu, [
+            e.createElementVNode("div", ec, [
               e.createElementVNode(
                 "button",
                 {
                   type: "button",
                   class: "ss-btn ghost sm",
-                  onClick: l[48] || (l[48] = (n) => lt(Me, !0))
+                  onClick: l[48] || (l[48] = (n) => nt(Me, !0))
                 },
                 e.toDisplayString(t.$t("全选")),
                 1
@@ -8661,7 +8682,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 {
                   type: "button",
                   class: "ss-btn ghost sm",
-                  onClick: l[49] || (l[49] = (n) => lt(Me, !1))
+                  onClick: l[49] || (l[49] = (n) => nt(Me, !1))
                 },
                 e.toDisplayString(t.$t("全不选")),
                 1
@@ -8677,43 +8698,43 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !W.value || !Ye(Me).length || e.unref(a).isRunning(),
-                onClick: l[50] || (l[50] = (n) => ut("return", "return"))
+                disabled: !A.value || !xe(Me).length || e.unref(u).isRunning(),
+                onClick: l[50] || (l[50] = (n) => vt("return", "return"))
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(ce("return", "ri-mail-send-line"))
+                    class: e.normalizeClass(ee("return", "ri-mail-send-line"))
                   },
                   null,
                   2
                   /* CLASS */
                 ),
                 e.createTextVNode(
-                  e.toDisplayString(t.$t("向选中的 {n} 家发送退回通知", { n: Ye(Me).length })),
+                  e.toDisplayString(t.$t("向选中的 {n} 家发送退回通知", { n: xe(Me).length })),
                   1
                   /* TEXT */
                 )
-              ], 8, Ju)
+              ], 8, tc)
             ])
           ]),
           _: 1
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 5 延保达成 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "warranty",
           index: 4,
-          title: e.unref(a).metas[4].title,
-          hint: e.unref(a).metas[4].hint,
-          runtime: e.unref(a).runtime.warranty,
-          "is-current": e.unref(a).currentKey.value === "warranty"
+          title: e.unref(u).metas[4].title,
+          hint: e.unref(u).metas[4].hint,
+          runtime: e.unref(u).runtime.warranty,
+          "is-current": e.unref(u).currentKey.value === "warranty"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", Zu, [
+            e.createElementVNode("div", nc, [
               e.createElementVNode(
                 "span",
-                Gu,
+                lc,
                 e.toDisplayString(t.$t("CSS 系统网址")),
                 1
                 /* TEXT */
@@ -8721,23 +8742,23 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": l[51] || (l[51] = (n) => le.value = n),
+                  "onUpdate:modelValue": l[51] || (l[51] = (n) => ae.value = n),
                   type: "text",
                   style: { width: "280px", "text-align": "left" },
                   placeholder: "https://css.company.com",
-                  onChange: G
+                  onChange: de
                 },
                 null,
                 544
                 /* NEED_HYDRATION, NEED_PATCH */
               ), [
-                [e.vModelText, le.value]
+                [e.vModelText, ae.value]
               ]),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn sm",
-                disabled: !le.value,
-                onClick: H
+                disabled: !ae.value,
+                onClick: Ve
               }, [
                 l[113] || (l[113] = e.createElementVNode(
                   "i",
@@ -8751,11 +8772,11 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, Hu),
+              ], 8, oc),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn sm ghost",
-                onClick: l[52] || (l[52] = (n) => oe("css"))
+                onClick: l[52] || (l[52] = (n) => J("css"))
               }, [
                 l[114] || (l[114] = e.createElementVNode(
                   "i",
@@ -8772,7 +8793,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               ]),
               e.createElementVNode(
                 "span",
-                ec,
+                ac,
                 e.toDisplayString(t.$t("延保达成按")),
                 1
                 /* TEXT */
@@ -8780,19 +8801,19 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.withDirectives(e.createElementVNode(
                 "select",
                 {
-                  "onUpdate:modelValue": l[53] || (l[53] = (n) => ct.value = n)
+                  "onUpdate:modelValue": l[53] || (l[53] = (n) => yt.value = n)
                 },
                 [
                   e.createElementVNode(
                     "option",
-                    tc,
+                    sc,
                     e.toDisplayString(t.$t("金额")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "option",
-                    nc,
+                    rc,
                     e.toDisplayString(t.$t("数量（单数）")),
                     1
                     /* TEXT */
@@ -8801,18 +8822,18 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 512
                 /* NEED_PATCH */
               ), [
-                [e.vModelSelect, ct.value]
+                [e.vModelSelect, yt.value]
               ])
             ]),
-            A.css.length ? (e.openBlock(), e.createElementBlock("div", lc, [
+            x.css.length ? (e.openBlock(), e.createElementBlock("div", ic, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(A.css, (n) => (e.openBlock(), e.createElementBlock("button", {
+                e.renderList(x.css, (n) => (e.openBlock(), e.createElementBlock("button", {
                   key: n.path,
                   type: "button",
                   class: "ss-chip brand",
-                  onClick: (N) => me(ee, [n.path], F)
+                  onClick: (N) => Ee(O, [n.path], G)
                 }, [
                   l[115] || (l[115] = e.createElementVNode(
                     "i",
@@ -8826,92 +8847,92 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     1
                     /* TEXT */
                   )
-                ], 8, oc))),
+                ], 8, dc))),
                 128
                 /* KEYED_FRAGMENT */
               ))
             ])) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("div", ac, [
-              e.createElementVNode("div", sc, [
+            e.createElementVNode("div", uc, [
+              e.createElementVNode("div", cc, [
                 e.createElementVNode(
                   "div",
-                  rc,
+                  mc,
                   e.toDisplayString(t.$t("CSS 延保达成订单")),
                   1
                   /* TEXT */
                 ),
-                e.createVNode(ie, {
+                e.createVNode(ce, {
                   label: t.$t("延保订单 Excel"),
                   compact: "",
-                  files: $e(ee),
-                  onPicked: l[54] || (l[54] = (n) => me(ee, n, F)),
-                  onRemove: l[55] || (l[55] = (n) => pe(ee, n))
+                  files: me(O),
+                  onPicked: l[54] || (l[54] = (n) => Ee(O, n, G)),
+                  onRemove: l[55] || (l[55] = (n) => we(O, n))
                 }, null, 8, ["label", "files"]),
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(ee, (n, N) => (e.openBlock(), e.createBlock(Ee, {
+                  e.renderList(O, (n, N) => (e.openBlock(), e.createBlock(ke, {
                     key: n.path + n.sheetName,
                     table: n,
-                    roles: F,
-                    onUpdate: (h) => ee[N].mapping = h,
-                    onSheet: (h) => u(ee, N, h, F)
+                    roles: G,
+                    onUpdate: (h) => O[N].mapping = h,
+                    onSheet: (h) => c(O, N, h, G)
                   }, null, 8, ["table", "onUpdate", "onSheet"]))),
                   128
                   /* KEYED_FRAGMENT */
                 ))
               ]),
-              e.createElementVNode("div", ic, [
+              e.createElementVNode("div", pc, [
                 e.createElementVNode(
                   "div",
-                  dc,
+                  vc,
                   e.toDisplayString(t.$t("延保任务表（服务商任务；区域经理任务可另选）")),
                   1
                   /* TEXT */
                 ),
-                e.createVNode(ie, {
+                e.createVNode(ce, {
                   label: t.$t("服务商延保任务 Excel"),
                   multi: !1,
                   compact: "",
                   files: v.value ? [{ path: v.value.path, name: v.value.fileName }] : [],
-                  onPicked: l[56] || (l[56] = (n) => m("warrantyTasks", n[0], Q)),
+                  onPicked: l[56] || (l[56] = (n) => m("warrantyTasks", n[0], C)),
                   onRemove: l[57] || (l[57] = (n) => v.value = null)
                 }, null, 8, ["label", "files"]),
-                v.value ? (e.openBlock(), e.createBlock(Ee, {
+                v.value ? (e.openBlock(), e.createBlock(ke, {
                   key: 0,
                   table: v.value,
-                  roles: Q,
+                  roles: C,
                   onUpdate: l[58] || (l[58] = (n) => v.value.mapping = n),
-                  onSheet: l[59] || (l[59] = (n) => m("warrantyTasks", v.value.path, Q, n))
+                  onSheet: l[59] || (l[59] = (n) => m("warrantyTasks", v.value.path, C, n))
                 }, null, 8, ["table"])) : e.createCommentVNode("v-if", !0),
-                e.createVNode(ie, {
+                e.createVNode(ce, {
                   label: t.$t("区域经理延保任务 Excel（可选）"),
                   multi: !1,
                   compact: "",
                   files: g.value ? [{ path: g.value.path, name: g.value.fileName }] : [],
-                  onPicked: l[60] || (l[60] = (n) => m("warrantyManagerTasks", n[0], D)),
+                  onPicked: l[60] || (l[60] = (n) => m("warrantyManagerTasks", n[0], V)),
                   onRemove: l[61] || (l[61] = (n) => g.value = null)
                 }, null, 8, ["label", "files"]),
-                g.value ? (e.openBlock(), e.createBlock(Ee, {
+                g.value ? (e.openBlock(), e.createBlock(ke, {
                   key: 1,
                   table: g.value,
-                  roles: D,
+                  roles: V,
                   onUpdate: l[62] || (l[62] = (n) => g.value.mapping = n),
-                  onSheet: l[63] || (l[63] = (n) => m("warrantyManagerTasks", g.value.path, D, n))
+                  onSheet: l[63] || (l[63] = (n) => m("warrantyManagerTasks", g.value.path, V, n))
                 }, null, 8, ["table"])) : e.createCommentVNode("v-if", !0)
               ])
             ]),
-            e.createElementVNode("div", uc, [
+            e.createElementVNode("div", yc, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !ee.length || !v.value || e.unref(a).isRunning(),
-                onClick: Tt
+                disabled: !O.length || !v.value || e.unref(u).isRunning(),
+                onClick: Pt
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(ce("warranty", "ri-calculator-line"))
+                    class: e.normalizeClass(ee("warranty", "ri-calculator-line"))
                   },
                   null,
                   2
@@ -8922,16 +8943,16 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, cc)
+              ], 8, fc)
             ]),
-            Fe.value ? (e.openBlock(), e.createElementBlock(
+            Oe.value ? (e.openBlock(), e.createElementBlock(
               e.Fragment,
               { key: 1 },
               [
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(Fe.value.warnings, (n) => (e.openBlock(), e.createElementBlock("p", {
+                  e.renderList(Oe.value.warnings, (n) => (e.openBlock(), e.createElementBlock("p", {
                     key: n,
                     class: "ss-note warn"
                   }, [
@@ -8951,9 +8972,9 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   128
                   /* KEYED_FRAGMENT */
                 )),
-                e.createElementVNode("div", mc, [
-                  e.createElementVNode("div", pc, [
-                    e.createElementVNode("table", vc, [
+                e.createElementVNode("div", gc, [
+                  e.createElementVNode("div", Nc, [
+                    e.createElementVNode("table", Vc, [
                       e.createElementVNode("thead", null, [
                         e.createElementVNode("tr", null, [
                           e.createElementVNode(
@@ -8965,21 +8986,21 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                           ),
                           e.createElementVNode(
                             "th",
-                            yc,
+                            Ec,
                             e.toDisplayString(t.$t("延保实际")),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "th",
-                            fc,
+                            hc,
                             e.toDisplayString(t.$t("任务")),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "th",
-                            gc,
+                            kc,
                             e.toDisplayString(t.$t("达成率")),
                             1
                             /* TEXT */
@@ -8990,7 +9011,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList(Fe.value.providers, (n) => (e.openBlock(), e.createElementBlock("tr", {
+                          e.renderList(Oe.value.providers, (n) => (e.openBlock(), e.createElementBlock("tr", {
                             key: n.name
                           }, [
                             e.createElementVNode(
@@ -9002,21 +9023,21 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                             ),
                             e.createElementVNode(
                               "td",
-                              Nc,
+                              bc,
                               e.toDisplayString(n.actual),
                               1
                               /* TEXT */
                             ),
                             e.createElementVNode(
                               "td",
-                              Vc,
+                              $c,
                               e.toDisplayString(n.task),
                               1
                               /* TEXT */
                             ),
                             e.createElementVNode(
                               "td",
-                              Ec,
+                              Sc,
                               e.toDisplayString(e.unref(r.fmtPct)(n.rate, 1)),
                               1
                               /* TEXT */
@@ -9028,8 +9049,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       ])
                     ])
                   ]),
-                  e.createElementVNode("div", hc, [
-                    e.createElementVNode("table", kc, [
+                  e.createElementVNode("div", Dc, [
+                    e.createElementVNode("table", wc, [
                       e.createElementVNode("thead", null, [
                         e.createElementVNode("tr", null, [
                           e.createElementVNode(
@@ -9041,21 +9062,21 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                           ),
                           e.createElementVNode(
                             "th",
-                            bc,
+                            Bc,
                             e.toDisplayString(t.$t("延保实际")),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "th",
-                            $c,
+                            Tc,
                             e.toDisplayString(t.$t("任务")),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "th",
-                            Sc,
+                            Cc,
                             e.toDisplayString(t.$t("达成率")),
                             1
                             /* TEXT */
@@ -9066,7 +9087,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList(Fe.value.managers, (n) => (e.openBlock(), e.createElementBlock("tr", {
+                          e.renderList(Oe.value.managers, (n) => (e.openBlock(), e.createElementBlock("tr", {
                             key: n.name
                           }, [
                             e.createElementVNode(
@@ -9078,21 +9099,21 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                             ),
                             e.createElementVNode(
                               "td",
-                              Dc,
+                              _c,
                               e.toDisplayString(n.actual),
                               1
                               /* TEXT */
                             ),
                             e.createElementVNode(
                               "td",
-                              wc,
+                              Pc,
                               e.toDisplayString(n.task),
                               1
                               /* TEXT */
                             ),
                             e.createElementVNode(
                               "td",
-                              Bc,
+                              Rc,
                               e.toDisplayString(e.unref(r.fmtPct)(n.rate, 1)),
                               1
                               /* TEXT */
@@ -9114,16 +9135,16 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 6 打折判定 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "discount",
           index: 5,
-          title: e.unref(a).metas[5].title,
-          hint: e.unref(a).metas[5].hint,
-          runtime: e.unref(a).runtime.discount,
-          "is-current": e.unref(a).currentKey.value === "discount"
+          title: e.unref(u).metas[5].title,
+          hint: e.unref(u).metas[5].hint,
+          runtime: e.unref(u).runtime.discount,
+          "is-current": e.unref(u).currentKey.value === "discount"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("p", Tc, [
+            e.createElementVNode("p", Mc, [
               l[117] || (l[117] = e.createElementVNode(
                 "i",
                 { class: "ri-information-line" },
@@ -9132,22 +9153,22 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(t.$t("判定规则：{rules}", { rules: Ct.value })),
+                e.toDisplayString(t.$t("判定规则：{rules}", { rules: Rt.value })),
                 1
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", Cc, [
+            e.createElementVNode("div", Ac, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: ke.value || !!se.value || !!te.value || e.unref(a).runtime.warranty.state !== "done" || e.unref(a).isRunning(),
-                onClick: _t
+                disabled: ue.value || !!se.value || !!i.value || e.unref(u).runtime.warranty.state !== "done" || e.unref(u).isRunning(),
+                onClick: Mt
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(ce("discount", "ri-scales-3-line"))
+                    class: e.normalizeClass(ee("discount", "ri-scales-3-line"))
                   },
                   null,
                   2
@@ -9158,16 +9179,16 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, _c)
+              ], 8, Uc)
             ]),
-            Ve.value ? (e.openBlock(), e.createElementBlock(
+            Ne.value ? (e.openBlock(), e.createElementBlock(
               e.Fragment,
               { key: 0 },
               [
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(W.value.warnings || [], (n) => (e.openBlock(), e.createElementBlock("p", {
+                  e.renderList(A.value.warnings || [], (n) => (e.openBlock(), e.createElementBlock("p", {
                     key: n,
                     class: "ss-note warn"
                   }, [
@@ -9187,8 +9208,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   128
                   /* KEYED_FRAGMENT */
                 )),
-                e.createElementVNode("div", Pc, [
-                  e.createElementVNode("table", Rc, [
+                e.createElementVNode("div", Lc, [
+                  e.createElementVNode("table", Fc, [
                     e.createElementVNode("thead", null, [
                       e.createElementVNode("tr", null, [
                         e.createElementVNode(
@@ -9200,7 +9221,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         ),
                         e.createElementVNode(
                           "th",
-                          Mc,
+                          Oc,
                           e.toDisplayString(t.$t("延保达成率")),
                           1
                           /* TEXT */
@@ -9214,7 +9235,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                         ),
                         e.createElementVNode(
                           "th",
-                          Ac,
+                          Ic,
                           e.toDisplayString(t.$t("折扣")),
                           1
                           /* TEXT */
@@ -9225,7 +9246,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(W.value.managers, (n) => (e.openBlock(), e.createElementBlock(
+                        e.renderList(A.value.managers, (n) => (e.openBlock(), e.createElementBlock(
                           "tr",
                           {
                             key: n.manager,
@@ -9241,7 +9262,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                             ),
                             e.createElementVNode(
                               "td",
-                              Uc,
+                              qc,
                               e.toDisplayString(e.unref(r.fmtPct)(n.warrantyRate, 1)),
                               1
                               /* TEXT */
@@ -9259,7 +9280,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                             ]),
                             e.createElementVNode(
                               "td",
-                              Fc,
+                              Kc,
                               e.toDisplayString(n.discount < 1 ? t.$t("{z} 折", { z: (n.discount * 10).toFixed(1) }) : "-"),
                               1
                               /* TEXT */
@@ -9283,17 +9304,17 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 7 区域经理最终激励 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "manager",
           index: 6,
-          title: e.unref(a).metas[6].title,
-          hint: e.unref(a).metas[6].hint,
-          runtime: e.unref(a).runtime.manager,
-          "is-current": e.unref(a).currentKey.value === "manager"
+          title: e.unref(u).metas[6].title,
+          hint: e.unref(u).metas[6].hint,
+          runtime: e.unref(u).runtime.manager,
+          "is-current": e.unref(u).currentKey.value === "manager"
         }, {
           default: e.withCtx(() => [
-            Ve.value ? (e.openBlock(), e.createElementBlock("div", Lc, [
-              e.createElementVNode("table", Oc, [
+            Ne.value ? (e.openBlock(), e.createElementBlock("div", zc, [
+              e.createElementVNode("table", jc, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -9305,14 +9326,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     ),
                     e.createElementVNode(
                       "th",
-                      Ic,
+                      Wc,
                       e.toDisplayString(t.$t("辅材达成率")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      qc,
+                      Yc,
                       e.toDisplayString(t.$t("延保达成率")),
                       1
                       /* TEXT */
@@ -9326,56 +9347,56 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     ),
                     e.createElementVNode(
                       "th",
-                      Kc,
+                      xc,
                       e.toDisplayString(t.$t("基础激励")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      zc,
+                      Xc,
                       e.toDisplayString(t.$t("辅材提成(折扣/系数前)")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      jc,
+                      Qc,
                       e.toDisplayString(t.$t("折扣")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      Wc,
+                      Jc,
                       e.toDisplayString(t.$t("辅材提成(折后)")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      Yc,
+                      Zc,
                       e.toDisplayString(t.$t("延保提成(系数前)")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      xc,
+                      Gc,
                       e.toDisplayString(t.$t("延保提成(系数后)")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      Xc,
+                      Hc,
                       e.toDisplayString(t.$t("预发合计")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      Qc,
+                      em,
                       e.toDisplayString(t.$t("最终激励(元)")),
                       1
                       /* TEXT */
@@ -9386,7 +9407,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(W.value.managers, (n) => (e.openBlock(), e.createElementBlock("tr", {
+                    e.renderList(A.value.managers, (n) => (e.openBlock(), e.createElementBlock("tr", {
                       key: n.manager
                     }, [
                       e.createElementVNode(
@@ -9398,14 +9419,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       ),
                       e.createElementVNode(
                         "td",
-                        Jc,
+                        tm,
                         e.toDisplayString(e.unref(r.fmtPct)(n.auxRate, 1)),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
-                        Zc,
+                        nm,
                         e.toDisplayString(e.unref(r.fmtPct)(n.warrantyRate, 1)),
                         1
                         /* TEXT */
@@ -9419,54 +9440,54 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       ),
                       e.createElementVNode(
                         "td",
-                        Gc,
+                        lm,
                         e.toDisplayString(e.unref(r.fmtMoney)(n.baseTotal)),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
-                        Hc,
+                        om,
                         e.toDisplayString(e.unref(r.fmtMoney)(n.auxCommission)),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
-                        em,
+                        am,
                         e.toDisplayString(n.discount),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
-                        tm,
+                        sm,
                         e.toDisplayString(e.unref(r.fmtMoney)(n.auxCommissionNet)),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
-                        nm,
+                        rm,
                         e.toDisplayString(e.unref(r.fmtMoney)(n.warrantyCommission)),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
-                        lm,
+                        im,
                         e.toDisplayString(e.unref(r.fmtMoney)(n.warrantyCommissionNet)),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
-                        om,
+                        dm,
                         e.toDisplayString(e.unref(r.fmtMoney)(n.advanceTotal)),
                         1
                         /* TEXT */
                       ),
-                      e.createElementVNode("td", am, [
+                      e.createElementVNode("td", um, [
                         e.createElementVNode(
                           "strong",
                           null,
@@ -9479,7 +9500,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     128
                     /* KEYED_FRAGMENT */
                   )),
-                  e.createElementVNode("tr", sm, [
+                  e.createElementVNode("tr", cm, [
                     e.createElementVNode(
                       "td",
                       null,
@@ -9552,15 +9573,15 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     )),
                     e.createElementVNode(
                       "td",
-                      rm,
-                      e.toDisplayString(e.unref(r.fmtMoney)(W.value.totals.managerAdvance)),
+                      mm,
+                      e.toDisplayString(e.unref(r.fmtMoney)(A.value.totals.managerAdvance)),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "td",
-                      im,
-                      e.toDisplayString(e.unref(r.fmtMoney)(W.value.totals.managerFinal)),
+                      pm,
+                      e.toDisplayString(e.unref(r.fmtMoney)(A.value.totals.managerFinal)),
                       1
                       /* TEXT */
                     )
@@ -9568,19 +9589,19 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ])
               ])
             ])) : e.createCommentVNode("v-if", !0),
-            Ve.value ? (e.openBlock(), e.createElementBlock(
+            Ne.value ? (e.openBlock(), e.createElementBlock(
               "p",
-              dm,
+              vm,
               e.toDisplayString(t.$t("最终激励 = 基础激励 + 辅材提成(折后) + 延保提成(系数后)；辅材提成(折后) = 折扣/系数前 × 折扣 × 绩效系数，即客户「打印」表的「准确辅材销售提成激励」口径；「预发合计」按基础比例算，年度多退少补。")),
               1
               /* TEXT */
             )) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("div", um, [
-              dt.value ? (e.openBlock(), e.createElementBlock("button", {
+            e.createElementVNode("div", ym, [
+              pt.value ? (e.openBlock(), e.createElementBlock("button", {
                 key: 0,
                 type: "button",
                 class: "ss-btn",
-                onClick: l[64] || (l[64] = (n) => e.unref(r.openPath)(dt.value))
+                onClick: l[64] || (l[64] = (n) => e.unref(r.openPath)(pt.value))
               }, [
                 l[128] || (l[128] = e.createElementVNode(
                   "i",
@@ -9598,8 +9619,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !Ve.value || e.unref(a).isRunning(),
-                onClick: Pt
+                disabled: !Ne.value || e.unref(u).isRunning(),
+                onClick: At
               }, [
                 l[129] || (l[129] = e.createElementVNode(
                   "i",
@@ -9613,24 +9634,24 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, cm)
+              ], 8, fm)
             ])
           ]),
           _: 1
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 8 服务商最终延保激励 + 开票通知 + 负责人激励 + 信息提报通知 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "provider",
           index: 7,
-          title: e.unref(a).metas[7].title,
-          hint: e.unref(a).metas[7].hint,
-          runtime: e.unref(a).runtime.provider,
-          "is-current": e.unref(a).currentKey.value === "provider"
+          title: e.unref(u).metas[7].title,
+          hint: e.unref(u).metas[7].hint,
+          runtime: e.unref(u).runtime.provider,
+          "is-current": e.unref(u).currentKey.value === "provider"
         }, {
           default: e.withCtx(() => [
-            Ve.value ? (e.openBlock(), e.createElementBlock("div", mm, [
-              e.createElementVNode("table", pm, [
+            Ne.value ? (e.openBlock(), e.createElementBlock("div", gm, [
+              e.createElementVNode("table", Nm, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     l[130] || (l[130] = e.createElementVNode(
@@ -9649,42 +9670,42 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     ),
                     e.createElementVNode(
                       "th",
-                      vm,
+                      Vm,
                       e.toDisplayString(t.$t("延保实际")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      ym,
+                      Em,
                       e.toDisplayString(t.$t("延保达成率")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      fm,
+                      hm,
                       e.toDisplayString(t.$t("服务商比例")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      gm,
+                      km,
                       e.toDisplayString(t.$t("最终延保激励(元)")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      Nm,
+                      bm,
                       e.toDisplayString(t.$t("负责人比例")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      Vm,
+                      $m,
                       e.toDisplayString(t.$t("负责人激励(元)")),
                       1
                       /* TEXT */
@@ -9709,14 +9730,14 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(W.value.providers, (n) => (e.openBlock(), e.createElementBlock("tr", {
+                    e.renderList(A.value.providers, (n) => (e.openBlock(), e.createElementBlock("tr", {
                       key: n.provider
                     }, [
                       e.createElementVNode("td", null, [
                         e.withDirectives(e.createElementVNode("input", {
                           "onUpdate:modelValue": (N) => Ae[n.provider] = N,
                           type: "checkbox"
-                        }, null, 8, Em), [
+                        }, null, 8, Sm), [
                           [e.vModelCheckbox, Ae[n.provider]]
                         ])
                       ]),
@@ -9729,26 +9750,26 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       ),
                       e.createElementVNode(
                         "td",
-                        hm,
+                        Dm,
                         e.toDisplayString(n.warrantyActual),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
-                        km,
+                        wm,
                         e.toDisplayString(e.unref(r.fmtPct)(n.warrantyRate, 1)),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
-                        bm,
+                        Bm,
                         e.toDisplayString(e.unref(r.fmtPct)(n.warrantyRatio, 0)),
                         1
                         /* TEXT */
                       ),
-                      e.createElementVNode("td", $m, [
+                      e.createElementVNode("td", Tm, [
                         e.createElementVNode(
                           "strong",
                           null,
@@ -9759,43 +9780,43 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       ]),
                       e.createElementVNode(
                         "td",
-                        Sm,
+                        Cm,
                         e.toDisplayString(e.unref(r.fmtPct)(n.leaderRatio, 0)),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
-                        Dm,
+                        _m,
                         e.toDisplayString(e.unref(r.fmtMoney)(n.leaderIncentive)),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode("td", null, [
-                        be(n.provider)?.invoiceNoticeAt ? (e.openBlock(), e.createElementBlock(
+                        De(n.provider)?.invoiceNoticeAt ? (e.openBlock(), e.createElementBlock(
                           "span",
-                          wm,
-                          e.toDisplayString(e.unref(r.fmtDate)(be(n.provider)?.invoiceNoticeAt)),
+                          Pm,
+                          e.toDisplayString(e.unref(r.fmtDate)(De(n.provider)?.invoiceNoticeAt)),
                           1
                           /* TEXT */
                         )) : (e.openBlock(), e.createElementBlock(
                           "span",
-                          Bm,
+                          Rm,
                           e.toDisplayString(t.$t("未发")),
                           1
                           /* TEXT */
                         ))
                       ]),
                       e.createElementVNode("td", null, [
-                        be(n.provider)?.leaderInfoNoticeAt ? (e.openBlock(), e.createElementBlock(
+                        De(n.provider)?.leaderInfoNoticeAt ? (e.openBlock(), e.createElementBlock(
                           "span",
-                          Tm,
-                          e.toDisplayString(e.unref(r.fmtDate)(be(n.provider)?.leaderInfoNoticeAt)),
+                          Mm,
+                          e.toDisplayString(e.unref(r.fmtDate)(De(n.provider)?.leaderInfoNoticeAt)),
                           1
                           /* TEXT */
                         )) : (e.openBlock(), e.createElementBlock(
                           "span",
-                          Cm,
+                          Am,
                           e.toDisplayString(t.$t("未发")),
                           1
                           /* TEXT */
@@ -9805,7 +9826,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     128
                     /* KEYED_FRAGMENT */
                   )),
-                  e.createElementVNode("tr", _m, [
+                  e.createElementVNode("tr", Um, [
                     l[131] || (l[131] = e.createElementVNode(
                       "td",
                       null,
@@ -9843,8 +9864,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     )),
                     e.createElementVNode(
                       "td",
-                      Pm,
-                      e.toDisplayString(e.unref(r.fmtMoney)(W.value.totals.warrantyIncentive)),
+                      Lm,
+                      e.toDisplayString(e.unref(r.fmtMoney)(A.value.totals.warrantyIncentive)),
                       1
                       /* TEXT */
                     ),
@@ -9857,8 +9878,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     )),
                     e.createElementVNode(
                       "td",
-                      Rm,
-                      e.toDisplayString(e.unref(r.fmtMoney)(W.value.totals.leaderIncentive)),
+                      Fm,
+                      e.toDisplayString(e.unref(r.fmtMoney)(A.value.totals.leaderIncentive)),
                       1
                       /* TEXT */
                     ),
@@ -9880,13 +9901,13 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ])
               ])
             ])) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("div", Mm, [
+            e.createElementVNode("div", Om, [
               e.createElementVNode(
                 "button",
                 {
                   type: "button",
                   class: "ss-btn ghost sm",
-                  onClick: l[65] || (l[65] = (n) => lt(Ae, !0))
+                  onClick: l[65] || (l[65] = (n) => nt(Ae, !0))
                 },
                 e.toDisplayString(t.$t("全选")),
                 1
@@ -9897,7 +9918,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 {
                   type: "button",
                   class: "ss-btn ghost sm",
-                  onClick: l[66] || (l[66] = (n) => lt(Ae, !1))
+                  onClick: l[66] || (l[66] = (n) => nt(Ae, !1))
                 },
                 e.toDisplayString(t.$t("全不选")),
                 1
@@ -9913,8 +9934,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !Ve.value || !Ye(Ae).length || e.unref(a).isRunning(),
-                onClick: l[67] || (l[67] = (n) => ut("invoice", "provider"))
+                disabled: !Ne.value || !xe(Ae).length || e.unref(u).isRunning(),
+                onClick: l[67] || (l[67] = (n) => vt("invoice", "provider"))
               }, [
                 l[138] || (l[138] = e.createElementVNode(
                   "i",
@@ -9928,12 +9949,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, Am),
+              ], 8, Im),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !Ve.value || !Ye(Ae).length || e.unref(a).isRunning(),
-                onClick: l[68] || (l[68] = (n) => ut("leader_info", "provider"))
+                disabled: !Ne.value || !xe(Ae).length || e.unref(u).isRunning(),
+                onClick: l[68] || (l[68] = (n) => vt("leader_info", "provider"))
               }, [
                 l[139] || (l[139] = e.createElementVNode(
                   "i",
@@ -9947,23 +9968,23 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, Um)
+              ], 8, qm)
             ])
           ]),
           _: 1
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 9 负责人信息收集与校验 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "leaders",
           index: 8,
-          title: e.unref(a).metas[8].title,
-          hint: e.unref(a).metas[8].hint,
-          runtime: e.unref(a).runtime.leaders,
-          "is-current": e.unref(a).currentKey.value === "leaders"
+          title: e.unref(u).metas[8].title,
+          hint: e.unref(u).metas[8].hint,
+          runtime: e.unref(u).runtime.leaders,
+          "is-current": e.unref(u).currentKey.value === "leaders"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("p", Fm, [
+            e.createElementVNode("p", Km, [
               l[141] || (l[141] = e.createElementVNode(
                 "i",
                 { class: "ri-inbox-line" },
@@ -9977,8 +9998,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", Lm, [
-              e.createElementVNode("table", Om, [
+            e.createElementVNode("div", zm, [
+              e.createElementVNode("table", jm, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -10043,7 +10064,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(De.value, (n) => (e.openBlock(), e.createElementBlock(
+                    e.renderList(Te.value, (n) => (e.openBlock(), e.createElementBlock(
                       "tr",
                       {
                         key: n.provider,
@@ -10061,44 +10082,44 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                           e.createElementVNode("input", {
                             value: n.name,
                             type: "text",
-                            onChange: (N) => Xe(n.provider, "name", N.target.value)
-                          }, null, 40, Im)
+                            onChange: (N) => Qe(n.provider, "name", N.target.value)
+                          }, null, 40, Wm)
                         ]),
                         e.createElementVNode("td", null, [
                           e.createElementVNode("input", {
                             value: n.idCard,
                             type: "text",
                             style: { "min-width": "170px" },
-                            onChange: (N) => Xe(n.provider, "idCard", N.target.value)
-                          }, null, 40, qm)
+                            onChange: (N) => Qe(n.provider, "idCard", N.target.value)
+                          }, null, 40, Ym)
                         ]),
                         e.createElementVNode("td", null, [
                           e.createElementVNode("input", {
                             value: n.bankCard,
                             type: "text",
                             style: { "min-width": "170px" },
-                            onChange: (N) => Xe(n.provider, "bankCard", N.target.value)
-                          }, null, 40, Km)
+                            onChange: (N) => Qe(n.provider, "bankCard", N.target.value)
+                          }, null, 40, xm)
                         ]),
                         e.createElementVNode("td", null, [
                           e.createElementVNode("input", {
                             value: n.bankName,
                             type: "text",
                             style: { "min-width": "150px" },
-                            onChange: (N) => Xe(n.provider, "bankName", N.target.value)
-                          }, null, 40, zm)
+                            onChange: (N) => Qe(n.provider, "bankName", N.target.value)
+                          }, null, 40, Xm)
                         ]),
                         e.createElementVNode("td", null, [
                           e.createElementVNode("input", {
                             value: n.phone || "",
                             type: "text",
-                            onChange: (N) => Xe(n.provider, "phone", N.target.value)
-                          }, null, 40, jm)
+                            onChange: (N) => Qe(n.provider, "phone", N.target.value)
+                          }, null, 40, Qm)
                         ]),
                         e.createElementVNode("td", null, [
                           e.createElementVNode(
                             "span",
-                            Wm,
+                            Jm,
                             e.toDisplayString(n.source || "-"),
                             1
                             /* TEXT */
@@ -10109,9 +10130,9 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                             key: 0,
                             class: "ss-chip bad",
                             title: n.errors.join(t.$t("；"))
-                          }, e.toDisplayString(n.errors.join(t.$t("；"))), 9, Ym)) : (e.openBlock(), e.createElementBlock(
+                          }, e.toDisplayString(n.errors.join(t.$t("；"))), 9, Zm)) : (e.openBlock(), e.createElementBlock(
                             "span",
-                            xm,
+                            Gm,
                             e.toDisplayString(t.$t("通过")),
                             1
                             /* TEXT */
@@ -10124,10 +10145,10 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     128
                     /* KEYED_FRAGMENT */
                   )),
-                  De.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("tr", Xm, [
+                  Te.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("tr", Hm, [
                     e.createElementVNode(
                       "td",
-                      Qm,
+                      ep,
                       e.toDisplayString(t.$t("还没有收到负责人信息。可点「立即收取」或手工添加。")),
                       1
                       /* TEXT */
@@ -10136,17 +10157,17 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 ])
               ])
             ]),
-            e.createElementVNode("div", Jm, [
+            e.createElementVNode("div", tp, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: e.unref(a).isRunning(),
-                onClick: Mt
+                disabled: e.unref(u).isRunning(),
+                onClick: Lt
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(ce("leaders", "ri-mail-download-line"))
+                    class: e.normalizeClass(ee("leaders", "ri-mail-download-line"))
                   },
                   null,
                   2
@@ -10157,11 +10178,11 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, Zm),
+              ], 8, np),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn",
-                onClick: At
+                onClick: Ft
               }, [
                 l[142] || (l[142] = e.createElementVNode(
                   "i",
@@ -10176,10 +10197,10 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* TEXT */
                 )
               ]),
-              e.createElementVNode("div", Gm, [
+              e.createElementVNode("div", lp, [
                 e.createElementVNode(
                   "span",
-                  Hm,
+                  op,
                   e.toDisplayString(t.$t("手工添加：")),
                   1
                   /* TEXT */
@@ -10187,12 +10208,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 e.withDirectives(e.createElementVNode(
                   "select",
                   {
-                    "onUpdate:modelValue": l[69] || (l[69] = (n) => xe.value = n)
+                    "onUpdate:modelValue": l[69] || (l[69] = (n) => Xe.value = n)
                   },
                   [
                     e.createElementVNode(
                       "option",
-                      ep,
+                      ap,
                       e.toDisplayString(t.$t("选服务商")),
                       1
                       /* TEXT */
@@ -10200,10 +10221,10 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       null,
-                      e.renderList(Rt.value, (n) => (e.openBlock(), e.createElementBlock("option", {
+                      e.renderList(Ut.value, (n) => (e.openBlock(), e.createElementBlock("option", {
                         key: n,
                         value: n
-                      }, e.toDisplayString(n), 9, tp))),
+                      }, e.toDisplayString(n), 9, sp))),
                       128
                       /* KEYED_FRAGMENT */
                     ))
@@ -10211,13 +10232,13 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   512
                   /* NEED_PATCH */
                 ), [
-                  [e.vModelSelect, xe.value]
+                  [e.vModelSelect, Xe.value]
                 ]),
                 e.createElementVNode("button", {
                   type: "button",
                   class: "ss-btn sm",
-                  disabled: !xe.value,
-                  onClick: Ut
+                  disabled: !Xe.value,
+                  onClick: Ot
                 }, [
                   l[143] || (l[143] = e.createElementVNode(
                     "i",
@@ -10231,7 +10252,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                     1
                     /* TEXT */
                   )
-                ], 8, np)
+                ], 8, rp)
               ]),
               l[144] || (l[144] = e.createElementVNode(
                 "span",
@@ -10243,9 +10264,9 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.createElementVNode(
                 "span",
                 {
-                  class: e.normalizeClass(["ss-chip", De.value.some((n) => n.errors.length) ? "bad" : "ok"])
+                  class: e.normalizeClass(["ss-chip", Te.value.some((n) => n.errors.length) ? "bad" : "ok"])
                 },
-                e.toDisplayString(t.$t("通过 {a} / 共 {b}", { a: De.value.filter((n) => !n.errors.length).length, b: De.value.length })),
+                e.toDisplayString(t.$t("通过 {a} / 共 {b}", { a: Te.value.filter((n) => !n.errors.length).length, b: Te.value.length })),
                 3
                 /* TEXT, CLASS */
               )
@@ -10255,25 +10276,25 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 10 个税申报表 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "tax",
           index: 9,
-          title: e.unref(a).metas[9].title,
-          hint: e.unref(a).metas[9].hint,
-          runtime: e.unref(a).runtime.tax,
-          "is-current": e.unref(a).currentKey.value === "tax"
+          title: e.unref(u).metas[9].title,
+          hint: e.unref(u).metas[9].hint,
+          runtime: e.unref(u).runtime.tax,
+          "is-current": e.unref(u).currentKey.value === "tax"
         }, {
           default: e.withCtx(() => [
-            e.createVNode(ie, {
+            e.createVNode(ce, {
               label: t.$t("个税申报表模板 Excel（可选）"),
               hint: t.$t("有公司模板就拖进来，系统按模板表头填；没有就用内置的劳务报酬申报格式"),
               multi: !1,
               compact: "",
-              files: Qe.value ? [{ path: Qe.value, name: L(Qe.value) }] : [],
-              onPicked: l[70] || (l[70] = (n) => Qe.value = n[0]),
-              onRemove: l[71] || (l[71] = (n) => Qe.value = "")
+              files: Je.value ? [{ path: Je.value, name: I(Je.value) }] : [],
+              onPicked: l[70] || (l[70] = (n) => Je.value = n[0]),
+              onRemove: l[71] || (l[71] = (n) => Je.value = "")
             }, null, 8, ["label", "hint", "files"]),
-            e.createElementVNode("p", lp, [
+            e.createElementVNode("p", ip, [
               l[145] || (l[145] = e.createElementVNode(
                 "i",
                 { class: "ri-information-line" },
@@ -10287,17 +10308,17 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", op, [
+            e.createElementVNode("div", dp, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !Ve.value || e.unref(a).isRunning(),
-                onClick: Ft
+                disabled: !Ne.value || e.unref(u).isRunning(),
+                onClick: It
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(ce("tax", "ri-file-text-line"))
+                    class: e.normalizeClass(ee("tax", "ri-file-text-line"))
                   },
                   null,
                   2
@@ -10308,12 +10329,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, ap),
-              mt.value ? (e.openBlock(), e.createElementBlock("button", {
+              ], 8, up),
+              ft.value ? (e.openBlock(), e.createElementBlock("button", {
                 key: 0,
                 type: "button",
                 class: "ss-btn",
-                onClick: l[72] || (l[72] = (n) => e.unref(r.openPath)(mt.value))
+                onClick: l[72] || (l[72] = (n) => e.unref(r.openPath)(ft.value))
               }, [
                 l[146] || (l[146] = e.createElementVNode(
                   "i",
@@ -10334,26 +10355,26 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"]),
         e.createCommentVNode(" 11 季度结案报告 "),
-        e.createVNode(Z, {
+        e.createVNode(te, {
           "step-key": "report",
           index: 10,
-          title: e.unref(a).metas[10].title,
-          hint: e.unref(a).metas[10].hint,
-          runtime: e.unref(a).runtime.report,
-          "is-current": e.unref(a).currentKey.value === "report"
+          title: e.unref(u).metas[10].title,
+          hint: e.unref(u).metas[10].hint,
+          runtime: e.unref(u).runtime.report,
+          "is-current": e.unref(u).currentKey.value === "report"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", sp, [
+            e.createElementVNode("div", cp, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !Ve.value || e.unref(a).isRunning(),
-                onClick: Lt
+                disabled: !Ne.value || e.unref(u).isRunning(),
+                onClick: qt
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(ce("report", "ri-article-line"))
+                    class: e.normalizeClass(ee("report", "ri-article-line"))
                   },
                   null,
                   2
@@ -10364,12 +10385,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   1
                   /* TEXT */
                 )
-              ], 8, rp),
-              tt.value ? (e.openBlock(), e.createElementBlock("button", {
+              ], 8, mp),
+              et.value ? (e.openBlock(), e.createElementBlock("button", {
                 key: 0,
                 type: "button",
                 class: "ss-btn",
-                onClick: l[73] || (l[73] = (n) => e.unref(r.openPath)(tt.value))
+                onClick: l[73] || (l[73] = (n) => e.unref(r.openPath)(et.value))
               }, [
                 l[147] || (l[147] = e.createElementVNode(
                   "i",
@@ -10384,11 +10405,11 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   /* TEXT */
                 )
               ])) : e.createCommentVNode("v-if", !0),
-              tt.value ? (e.openBlock(), e.createElementBlock("button", {
+              et.value ? (e.openBlock(), e.createElementBlock("button", {
                 key: 1,
                 type: "button",
                 class: "ss-btn ghost",
-                onClick: l[74] || (l[74] = (n) => e.unref(r.openPath)(tt.value, !0))
+                onClick: l[74] || (l[74] = (n) => e.unref(r.openPath)(et.value, !0))
               }, [
                 l[148] || (l[148] = e.createElementVNode(
                   "i",
@@ -10404,7 +10425,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 )
               ])) : e.createCommentVNode("v-if", !0)
             ]),
-            pt.value ? (e.openBlock(), e.createElementBlock("p", ip, [
+            gt.value ? (e.openBlock(), e.createElementBlock("p", pp, [
               l[149] || (l[149] = e.createElementVNode(
                 "i",
                 { class: "ri-alert-line" },
@@ -10413,15 +10434,15 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(pt.value),
+                e.toDisplayString(gt.value),
                 1
                 /* TEXT */
               )
             ])) : e.createCommentVNode("v-if", !0),
-            at.value ? (e.openBlock(), e.createElementBlock(
+            ot.value ? (e.openBlock(), e.createElementBlock(
               "pre",
-              dp,
-              e.toDisplayString(at.value),
+              vp,
+              e.toDisplayString(ot.value),
               1
               /* TEXT */
             )) : e.createCommentVNode("v-if", !0)
@@ -10432,134 +10453,134 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
       ])
     ]));
   }
-}), cp = /* @__PURE__ */ nt(up, [["__scopeId", "data-v-ac43d448"]]), mp = { class: "ss-workbench" }, pp = { class: "workbench-header" }, vp = { class: "heading" }, yp = { class: "eyebrow" }, fp = { class: "subtitle" }, gp = { class: "header-actions" }, Np = ["disabled"], Vp = { class: "ss-toolbar" }, Ep = { class: "ss-toolbar__item" }, hp = ["title"], kp = ["disabled"], bp = { class: "ss-toolbar__item" }, $p = { class: "ss-toolbar__item" }, Sp = { class: "ss-toolbar__item" }, Dp = {
+}), fp = /* @__PURE__ */ tt(yp, [["__scopeId", "data-v-da0fb423"]]), gp = { class: "ss-workbench" }, Np = { class: "workbench-header" }, Vp = { class: "heading" }, Ep = { class: "eyebrow" }, hp = { class: "subtitle" }, kp = { class: "header-actions" }, bp = ["disabled"], $p = { class: "ss-toolbar" }, Sp = { class: "ss-toolbar__item" }, Dp = ["title"], wp = ["disabled"], Bp = { class: "ss-toolbar__item" }, Tp = { class: "ss-toolbar__item" }, Cp = { class: "ss-toolbar__item" }, _p = {
   key: 0,
   class: "ss-panel"
-}, wp = { class: "ss-muted" }, Bp = ["disabled"], Tp = {
+}, Pp = { class: "ss-muted" }, Rp = ["disabled"], Mp = {
   class: "ss-table-wrap",
   style: { "max-height": "320px", overflow: "auto" }
-}, Cp = { class: "ss-table" }, _p = ["value", "onInput"], Pp = ["onUpdate:modelValue", "placeholder"], Rp = ["onUpdate:modelValue"], Mp = ["onUpdate:modelValue"], Ap = ["onUpdate:modelValue"], Up = ["onUpdate:modelValue"], Fp = ["placeholder"], Lp = { colspan: "6" }, Op = ["disabled"], Ip = {
+}, Ap = { class: "ss-table" }, Up = ["value", "onInput"], Lp = ["onUpdate:modelValue", "placeholder"], Fp = ["onUpdate:modelValue"], Op = ["onUpdate:modelValue"], Ip = ["onUpdate:modelValue"], qp = ["onUpdate:modelValue"], Kp = ["placeholder"], zp = { colspan: "6" }, jp = ["disabled"], Wp = {
   key: 1,
   class: "ss-panel"
-}, qp = { class: "ss-reminders" }, Kp = {
+}, Yp = { class: "ss-reminders" }, xp = {
   key: 0,
   class: "ss-muted"
-}, zp = {
+}, Xp = {
   class: "ss-tabs",
   role: "tablist"
-}, jp = ["aria-selected", "onClick"], Wp = {
+}, Qp = ["aria-selected", "onClick"], Jp = {
   key: 2,
   class: "ss-body"
-}, Yp = {
+}, Zp = {
   key: 3,
   class: "ss-note danger"
-}, xp = {
+}, Gp = {
   key: 4,
   class: "ss-note"
-}, gt = "totalclaw:service-settlement-tab:v1", Xp = /* @__PURE__ */ e.defineComponent({
+}, Et = "totalclaw:service-settlement-tab:v1", Hp = /* @__PURE__ */ e.defineComponent({
   __name: "ServiceSettlementWorkbenchView",
-  setup(Ce) {
-    const we = vt.useRouter(), ne = Ke.useNotificationStore(), S = [
-      { key: "review", icon: "ri-star-smile-line", title: i.t("服务电商好评激励"), desc: i.t("京东安装 + 京东售后 + 天猫好评 · 4 步") },
-      { key: "settlement", icon: "ri-file-list-3-line", title: i.t("结案汇总、下发及付款跟踪"), desc: i.t("汇总 → 拆分 → 邮件下发 → 发票 → 付款 · 5 步") },
-      { key: "scrap", icon: "ri-delete-bin-6-line", title: i.t("更新报废台账"), desc: i.t("鉴定表 + 报废条码 → 对照表 → 台账 → 渠道品类汇总 · 4 步") },
-      { key: "marketing", icon: "ri-line-chart-line", title: i.t("服务营销激励结案"), desc: i.t("有赞订单 → 达成率 → 激励 → 通知 → 个税 → 报告 · 11 步") }
+  setup(pe) {
+    const ie = Nt.useRouter(), Z = qe.useNotificationStore(), U = [
+      { key: "review", icon: "ri-star-smile-line", title: s.t("服务电商好评激励"), desc: s.t("京东安装 + 京东售后 + 天猫好评 · 4 步") },
+      { key: "settlement", icon: "ri-file-list-3-line", title: s.t("结案汇总、下发及付款跟踪"), desc: s.t("汇总 → 拆分 → 邮件下发 → 发票 → 付款 · 5 步") },
+      { key: "scrap", icon: "ri-delete-bin-6-line", title: s.t("更新报废台账"), desc: s.t("鉴定表 + 报废条码 → 对照表 → 台账 → 渠道品类汇总 · 4 步") },
+      { key: "marketing", icon: "ri-line-chart-line", title: s.t("服务营销激励结案"), desc: s.t("有赞订单 → 达成率 → 激励 → 通知 → 个税 → 报告 · 11 步") }
     ];
-    function z() {
+    function X() {
       try {
-        const v = localStorage.getItem(gt);
-        return S.some((g) => g.key === v) ? v : "review";
+        const v = localStorage.getItem(Et);
+        return U.some((g) => g.key === v) ? v : "review";
       } catch {
         return "review";
       }
     }
-    const V = e.ref(z());
-    e.watch(V, (v) => {
+    const k = e.ref(X());
+    e.watch(k, (v) => {
       try {
-        localStorage.setItem(gt, v);
+        localStorage.setItem(Et, v);
       } catch {
       }
     });
-    const a = e.ref(null), M = e.ref({}), Y = e.ref({}), Q = e.ref({}), D = e.ref(""), F = e.ref(!1), _ = e.ref(!1), J = e.ref("");
-    async function q() {
-      _.value = !0;
+    const u = e.ref(null), $ = e.ref({}), K = e.ref({}), C = e.ref({}), V = e.ref(""), G = e.ref(!1), L = e.ref(!1), ne = e.ref("");
+    async function w() {
+      L.value = !0;
       try {
         const v = r.api();
-        if (!v?.stateGet) throw new Error(i.t("工作台接口未就绪（请重启应用）"));
+        if (!v?.stateGet) throw new Error(s.t("工作台接口未就绪（请重启应用）"));
         const g = await v.stateGet();
-        a.value = g.state, M.value = g.email || {}, Y.value = g.trackingFlags || {}, Q.value = g.dirs || {}, D.value = g.outputDir || "", C.value || (I.value = (g.state.providerDirectory || []).map((b) => ({ ...b }))), F.value = !0, J.value = "";
+        u.value = g.state, $.value = g.email || {}, K.value = g.trackingFlags || {}, C.value = g.dirs || {}, V.value = g.outputDir || "", F.value || (j.value = (g.state.providerDirectory || []).map((D) => ({ ...D }))), G.value = !0, ne.value = "";
       } catch (v) {
-        J.value = r.errorMessage(v);
+        ne.value = r.errorMessage(v);
       } finally {
-        _.value = !1;
+        L.value = !1;
       }
+    }
+    async function Y() {
+      try {
+        const v = await r.api().pickFolder({ title: s.t("选择结果文件的保存目录"), setAsOutput: !0 });
+        v?.path && (V.value = v.path, Z.success(s.t("结果文件将保存到：{p}", { p: v.path })), await w());
+      } catch (v) {
+        Z.error(r.errorMessage(v));
+      }
+    }
+    function Q() {
+      ie.push({ path: "/settings", query: { section: "notify", focus: "smtp" } });
+    }
+    const be = e.computed(() => u.value?.providerDirectory || []), S = e.ref(!1), j = e.ref([]), F = e.ref(!1), H = e.ref("");
+    function ae() {
+      const v = H.value.trim();
+      !v || j.value.some((g) => g.provider === v) || (j.value.push({ provider: v, email: "", wecom: "", manager: "", leaderName: "", phone: "" }), H.value = "", F.value = !0);
     }
     async function de() {
       try {
-        const v = await r.api().pickFolder({ title: i.t("选择结果文件的保存目录"), setAsOutput: !0 });
-        v?.path && (D.value = v.path, ne.success(i.t("结果文件将保存到：{p}", { p: v.path })), await q());
+        await r.api().contactsUpsert({ contacts: j.value }), F.value = !1, Z.success(s.t("通讯录已保存")), await w();
       } catch (v) {
-        ne.error(r.errorMessage(v));
+        Z.error(r.errorMessage(v));
       }
     }
-    function fe() {
-      we.push({ path: "/settings", query: { section: "notify", focus: "smtp" } });
-    }
-    const he = e.computed(() => a.value?.providerDirectory || []), $ = e.ref(!1), I = e.ref([]), C = e.ref(!1), x = e.ref("");
-    function le() {
-      const v = x.value.trim();
-      !v || I.value.some((g) => g.provider === v) || (I.value.push({ provider: v, email: "", wecom: "", manager: "", leaderName: "", phone: "" }), x.value = "", C.value = !0);
-    }
-    async function G() {
-      try {
-        await r.api().contactsUpsert({ contacts: I.value }), C.value = !1, ne.success(i.t("通讯录已保存")), await q();
-      } catch (v) {
-        ne.error(r.errorMessage(v));
-      }
-    }
-    async function K() {
-      const v = await r.pickFiles("excel", !1, i.t("选择服务商通讯录 Excel"));
+    async function le() {
+      const v = await r.pickFiles("excel", !1, s.t("选择服务商通讯录 Excel"));
       if (v[0])
         try {
           const g = await r.api().contactsImport({ path: v[0] });
-          ne.success(i.t("已导入 {n} 条", { n: g.imported })), C.value = !1, await q();
+          Z.success(s.t("已导入 {n} 条", { n: g.imported })), F.value = !1, await w();
         } catch (g) {
-          ne.error(r.errorMessage(g));
+          Z.error(r.errorMessage(g));
         }
     }
-    const H = e.ref(!1), A = e.computed(() => [...a.value?.reminders || []].reverse()), oe = e.computed(() => A.value.filter((v) => !v.read));
-    function j(v) {
+    const Ve = e.ref(!1), x = e.computed(() => [...u.value?.reminders || []].reverse()), J = e.computed(() => x.value.filter((v) => !v.read));
+    function T(v) {
       return { payment_day: "ri-money-cny-circle-line", writeoff_3d: "ri-alarm-warning-line", invoice_20d: "ri-bill-line", return_second: "ri-arrow-go-back-line", invoice_received: "ri-mail-download-line", unpaid_report: "ri-file-chart-line" }[v] || "ri-notification-3-line";
     }
-    async function ee() {
+    async function O() {
       try {
-        await r.api().remindersAck({ all: !0 }), await q();
+        await r.api().remindersAck({ all: !0 }), await w();
       } catch (v) {
-        ne.error(r.errorMessage(v));
+        Z.error(r.errorMessage(v));
       }
     }
-    async function ae() {
+    async function W() {
       try {
-        await r.api().triggerTick(), await q(), ne.info(i.t("已检查一轮提醒与收件"));
+        await r.api().triggerTick(), await w(), Z.info(s.t("已检查一轮提醒与收件"));
       } catch (v) {
-        ne.error(r.errorMessage(v));
+        Z.error(r.errorMessage(v));
       }
     }
-    let X = null;
+    let oe = null;
     return e.onMounted(() => {
-      q();
+      w();
       const v = r.api();
-      v?.onEvent && (X?.(), X = v.onEvent((g) => {
-        g?.type === "reminder" && g.payload ? ne.actionable("warn", `${g.payload.title}`, { label: i.t("查看"), onClick: () => {
-          H.value = !0;
-        } }, 1e4) : g?.type === "intake-scanned" && g.payload?.invoices && ne.success(i.t("收到 {n} 份服务商发票，已自动归档", { n: g.payload.invoices })), q();
+      v?.onEvent && (oe?.(), oe = v.onEvent((g) => {
+        g?.type === "reminder" && g.payload ? Z.actionable("warn", `${g.payload.title}`, { label: s.t("查看"), onClick: () => {
+          Ve.value = !0;
+        } }, 1e4) : g?.type === "intake-scanned" && g.payload?.invoices && Z.success(s.t("收到 {n} 份服务商发票，已自动归档", { n: g.payload.invoices })), w();
       }));
     }), e.onBeforeUnmount(() => {
-      X?.(), X = null;
-    }), (v, g) => (e.openBlock(), e.createElementBlock("div", mp, [
-      e.createElementVNode("header", pp, [
-        e.createElementVNode("div", vp, [
-          e.createVNode(Ot),
+      oe?.(), oe = null;
+    }), (v, g) => (e.openBlock(), e.createElementBlock("div", gp, [
+      e.createElementVNode("header", Np, [
+        e.createElementVNode("div", Vp, [
+          e.createVNode(Kt),
           g[9] || (g[9] = e.createElementVNode(
             "span",
             { class: "heading-icon" },
@@ -10572,7 +10593,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           e.createElementVNode("div", null, [
             e.createElementVNode(
               "p",
-              yp,
+              Ep,
               e.toDisplayString(v.$t("行业工作台")),
               1
               /* TEXT */
@@ -10586,23 +10607,23 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
             ),
             e.createElementVNode(
               "p",
-              fp,
+              hp,
               e.toDisplayString(v.$t("服务电商好评激励核算 · 服务费用结案汇总与付款跟踪 · 报废台账更新 · 服务营销激励季度结案。只需放进导出的 Excel，每一步系统都替你算、替你发、替你盯。")),
               1
               /* TEXT */
             )
           ])
         ]),
-        e.createElementVNode("div", gp, [
+        e.createElementVNode("div", kp, [
           e.createElementVNode("button", {
             class: "ss-btn",
-            disabled: _.value,
-            onClick: q
+            disabled: L.value,
+            onClick: w
           }, [
             e.createElementVNode(
               "i",
               {
-                class: e.normalizeClass(_.value ? "ri-loader-4-line spin" : "ri-refresh-line")
+                class: e.normalizeClass(L.value ? "ri-loader-4-line spin" : "ri-refresh-line")
               },
               null,
               2
@@ -10613,12 +10634,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               1
               /* TEXT */
             )
-          ], 8, Np)
+          ], 8, bp)
         ])
       ]),
       e.createCommentVNode(" 全局设置条：输出目录 / 邮箱状态 / 通讯录 / 提醒 "),
-      e.createElementVNode("section", Vp, [
-        e.createElementVNode("div", Ep, [
+      e.createElementVNode("section", $p, [
+        e.createElementVNode("div", Sp, [
           g[12] || (g[12] = e.createElementVNode(
             "i",
             { class: "ri-folder-3-line" },
@@ -10634,12 +10655,12 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               1
               /* TEXT */
             ),
-            e.createElementVNode("strong", { title: D.value }, e.toDisplayString(D.value || v.$t("默认目录")), 9, hp)
+            e.createElementVNode("strong", { title: V.value }, e.toDisplayString(V.value || v.$t("默认目录")), 9, Dp)
           ]),
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm ghost",
-            onClick: de
+            onClick: Y
           }, [
             g[10] || (g[10] = e.createElementVNode(
               "i",
@@ -10657,8 +10678,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm ghost",
-            disabled: !D.value,
-            onClick: g[0] || (g[0] = (b) => e.unref(r.openPath)(D.value))
+            disabled: !V.value,
+            onClick: g[0] || (g[0] = (D) => e.unref(r.openPath)(V.value))
           }, [
             g[11] || (g[11] = e.createElementVNode(
               "i",
@@ -10672,13 +10693,13 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               1
               /* TEXT */
             )
-          ], 8, kp)
+          ], 8, wp)
         ]),
-        e.createElementVNode("div", bp, [
+        e.createElementVNode("div", Bp, [
           e.createElementVNode(
             "i",
             {
-              class: e.normalizeClass(M.value.smtpConfigured ? "ri-mail-check-line ok" : "ri-mail-settings-line warn")
+              class: e.normalizeClass($.value.smtpConfigured ? "ri-mail-check-line ok" : "ri-mail-settings-line warn")
             },
             null,
             2
@@ -10696,18 +10717,18 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.createElementVNode(
                 "span",
                 {
-                  class: e.normalizeClass(["ss-chip", M.value.smtpConfigured ? "ok" : M.value.officialRelay ? "warn" : "bad"])
+                  class: e.normalizeClass(["ss-chip", $.value.smtpConfigured ? "ok" : $.value.officialRelay ? "warn" : "bad"])
                 },
-                e.toDisplayString(M.value.smtpConfigured ? v.$t("发信已配") : M.value.officialRelay ? v.$t("官方代发") : v.$t("发信未配")),
+                e.toDisplayString($.value.smtpConfigured ? v.$t("发信已配") : $.value.officialRelay ? v.$t("官方代发") : v.$t("发信未配")),
                 3
                 /* TEXT, CLASS */
               ),
               e.createElementVNode(
                 "span",
                 {
-                  class: e.normalizeClass(["ss-chip", M.value.imapConfigured ? "ok" : "bad"])
+                  class: e.normalizeClass(["ss-chip", $.value.imapConfigured ? "ok" : "bad"])
                 },
-                e.toDisplayString(M.value.imapConfigured ? v.$t("收信已配") : v.$t("收信未配")),
+                e.toDisplayString($.value.imapConfigured ? v.$t("收信已配") : v.$t("收信未配")),
                 3
                 /* TEXT, CLASS */
               )
@@ -10716,7 +10737,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm ghost",
-            onClick: fe
+            onClick: Q
           }, [
             g[13] || (g[13] = e.createElementVNode(
               "i",
@@ -10732,7 +10753,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
             )
           ])
         ]),
-        e.createElementVNode("div", $p, [
+        e.createElementVNode("div", Tp, [
           g[15] || (g[15] = e.createElementVNode(
             "i",
             { class: "ri-contacts-book-2-line" },
@@ -10751,7 +10772,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
             e.createElementVNode(
               "strong",
               null,
-              e.toDisplayString(v.$t("{n} 家，{m} 家有邮箱", { n: he.value.length, m: he.value.filter((b) => b.email).length })),
+              e.toDisplayString(v.$t("{n} 家，{m} 家有邮箱", { n: be.value.length, m: be.value.filter((D) => D.email).length })),
               1
               /* TEXT */
             )
@@ -10759,7 +10780,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm ghost",
-            onClick: g[1] || (g[1] = (b) => $.value = !$.value)
+            onClick: g[1] || (g[1] = (D) => S.value = !S.value)
           }, [
             g[14] || (g[14] = e.createElementVNode(
               "i",
@@ -10769,17 +10790,17 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString($.value ? v.$t("收起") : v.$t("维护")),
+              e.toDisplayString(S.value ? v.$t("收起") : v.$t("维护")),
               1
               /* TEXT */
             )
           ])
         ]),
-        e.createElementVNode("div", Sp, [
+        e.createElementVNode("div", Cp, [
           e.createElementVNode(
             "i",
             {
-              class: e.normalizeClass(["ri-notification-3-line", { warn: oe.value.length }])
+              class: e.normalizeClass(["ri-notification-3-line", { warn: J.value.length }])
             },
             null,
             2
@@ -10796,7 +10817,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
             e.createElementVNode(
               "strong",
               null,
-              e.toDisplayString(oe.value.length ? v.$t("{n} 条未读", { n: oe.value.length }) : v.$t("没有未读提醒")),
+              e.toDisplayString(J.value.length ? v.$t("{n} 条未读", { n: J.value.length }) : v.$t("没有未读提醒")),
               1
               /* TEXT */
             )
@@ -10804,7 +10825,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm ghost",
-            onClick: g[2] || (g[2] = (b) => H.value = !H.value)
+            onClick: g[2] || (g[2] = (D) => Ve.value = !Ve.value)
           }, [
             g[16] || (g[16] = e.createElementVNode(
               "i",
@@ -10814,7 +10835,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(H.value ? v.$t("收起") : v.$t("查看")),
+              e.toDisplayString(Ve.value ? v.$t("收起") : v.$t("查看")),
               1
               /* TEXT */
             )
@@ -10822,7 +10843,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
         ])
       ]),
       e.createCommentVNode(" 通讯录维护 "),
-      $.value ? (e.openBlock(), e.createElementBlock("section", Dp, [
+      S.value ? (e.openBlock(), e.createElementBlock("section", _p, [
         e.createElementVNode("header", null, [
           e.createElementVNode(
             "strong",
@@ -10833,7 +10854,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           ),
           e.createElementVNode(
             "span",
-            wp,
+            Pp,
             e.toDisplayString(v.$t("邮箱用于下发结算明细与各类通知；企微用于识别回传消息来自哪家服务商。填一次长期有效。")),
             1
             /* TEXT */
@@ -10848,7 +10869,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm",
-            onClick: K
+            onClick: le
           }, [
             g[17] || (g[17] = e.createElementVNode(
               "i",
@@ -10866,8 +10887,8 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm primary",
-            disabled: !C.value,
-            onClick: G
+            disabled: !F.value,
+            onClick: de
           }, [
             g[18] || (g[18] = e.createElementVNode(
               "i",
@@ -10881,10 +10902,10 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               1
               /* TEXT */
             )
-          ], 8, Bp)
+          ], 8, Rp)
         ]),
-        e.createElementVNode("div", Tp, [
-          e.createElementVNode("table", Cp, [
+        e.createElementVNode("div", Mp, [
+          e.createElementVNode("table", Ap, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
                 e.createElementVNode(
@@ -10942,70 +10963,70 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(I.value, (b) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: b.provider
+                e.renderList(j.value, (D) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: D.provider
                 }, [
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(b.provider),
+                    e.toDisplayString(D.provider),
                     1
                     /* TEXT */
                   ),
                   e.createCommentVNode(" 别名：明细里改过名 / 写法不同的同一家并入本主体核算（客户对账实报：宁波鄞州亿天 + 新河亿天 按一家付款） "),
                   e.createElementVNode("td", null, [
                     e.createElementVNode("input", {
-                      value: (b.aliases || []).join("、"),
+                      value: (D.aliases || []).join("、"),
                       type: "text",
                       onInput: (P) => {
-                        b.aliases = P.target.value.split(/[,，、;；|]+/).map((ue) => ue.trim()).filter(Boolean), C.value = !0;
+                        D.aliases = P.target.value.split(/[,，、;；|]+/).map(($e) => $e.trim()).filter(Boolean), F.value = !0;
                       }
-                    }, null, 40, _p)
+                    }, null, 40, Up)
                   ]),
                   e.createElementVNode("td", null, [
                     e.withDirectives(e.createElementVNode("input", {
-                      "onUpdate:modelValue": (P) => b.email = P,
+                      "onUpdate:modelValue": (P) => D.email = P,
                       type: "text",
                       placeholder: v.$t("多个邮箱用逗号隔开"),
-                      onInput: g[3] || (g[3] = (P) => C.value = !0)
-                    }, null, 40, Pp), [
-                      [e.vModelText, b.email]
+                      onInput: g[3] || (g[3] = (P) => F.value = !0)
+                    }, null, 40, Lp), [
+                      [e.vModelText, D.email]
                     ])
                   ]),
                   e.createElementVNode("td", null, [
                     e.withDirectives(e.createElementVNode("input", {
-                      "onUpdate:modelValue": (P) => b.wecom = P,
+                      "onUpdate:modelValue": (P) => D.wecom = P,
                       type: "text",
-                      onInput: g[4] || (g[4] = (P) => C.value = !0)
-                    }, null, 40, Rp), [
-                      [e.vModelText, b.wecom]
+                      onInput: g[4] || (g[4] = (P) => F.value = !0)
+                    }, null, 40, Fp), [
+                      [e.vModelText, D.wecom]
                     ])
                   ]),
                   e.createElementVNode("td", null, [
                     e.withDirectives(e.createElementVNode("input", {
-                      "onUpdate:modelValue": (P) => b.manager = P,
+                      "onUpdate:modelValue": (P) => D.manager = P,
                       type: "text",
-                      onInput: g[5] || (g[5] = (P) => C.value = !0)
-                    }, null, 40, Mp), [
-                      [e.vModelText, b.manager]
+                      onInput: g[5] || (g[5] = (P) => F.value = !0)
+                    }, null, 40, Op), [
+                      [e.vModelText, D.manager]
                     ])
                   ]),
                   e.createElementVNode("td", null, [
                     e.withDirectives(e.createElementVNode("input", {
-                      "onUpdate:modelValue": (P) => b.leaderName = P,
+                      "onUpdate:modelValue": (P) => D.leaderName = P,
                       type: "text",
-                      onInput: g[6] || (g[6] = (P) => C.value = !0)
-                    }, null, 40, Ap), [
-                      [e.vModelText, b.leaderName]
+                      onInput: g[6] || (g[6] = (P) => F.value = !0)
+                    }, null, 40, Ip), [
+                      [e.vModelText, D.leaderName]
                     ])
                   ]),
                   e.createElementVNode("td", null, [
                     e.withDirectives(e.createElementVNode("input", {
-                      "onUpdate:modelValue": (P) => b.phone = P,
+                      "onUpdate:modelValue": (P) => D.phone = P,
                       type: "text",
-                      onInput: g[7] || (g[7] = (P) => C.value = !0)
-                    }, null, 40, Up), [
-                      [e.vModelText, b.phone]
+                      onInput: g[7] || (g[7] = (P) => F.value = !0)
+                    }, null, 40, qp), [
+                      [e.vModelText, D.phone]
                     ])
                   ])
                 ]))),
@@ -11015,20 +11036,20 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.createElementVNode("tr", null, [
                 e.createElementVNode("td", null, [
                   e.withDirectives(e.createElementVNode("input", {
-                    "onUpdate:modelValue": g[8] || (g[8] = (b) => x.value = b),
+                    "onUpdate:modelValue": g[8] || (g[8] = (D) => H.value = D),
                     type: "text",
                     placeholder: v.$t("新增服务商名称"),
-                    onKeydown: e.withKeys(le, ["enter"])
-                  }, null, 40, Fp), [
-                    [e.vModelText, x.value]
+                    onKeydown: e.withKeys(ae, ["enter"])
+                  }, null, 40, Kp), [
+                    [e.vModelText, H.value]
                   ])
                 ]),
-                e.createElementVNode("td", Lp, [
+                e.createElementVNode("td", zp, [
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn sm ghost",
-                    disabled: !x.value.trim(),
-                    onClick: le
+                    disabled: !H.value.trim(),
+                    onClick: ae
                   }, [
                     g[20] || (g[20] = e.createElementVNode(
                       "i",
@@ -11042,7 +11063,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                       1
                       /* TEXT */
                     )
-                  ], 8, Op)
+                  ], 8, jp)
                 ])
               ])
             ])
@@ -11050,7 +11071,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
         ])
       ])) : e.createCommentVNode("v-if", !0),
       e.createCommentVNode(" 提醒中心 "),
-      H.value ? (e.openBlock(), e.createElementBlock("section", Ip, [
+      Ve.value ? (e.openBlock(), e.createElementBlock("section", Wp, [
         e.createElementVNode("header", null, [
           e.createElementVNode(
             "strong",
@@ -11069,7 +11090,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm ghost",
-            onClick: ee
+            onClick: O
           }, [
             g[21] || (g[21] = e.createElementVNode(
               "i",
@@ -11087,7 +11108,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm ghost",
-            onClick: ae
+            onClick: W
           }, [
             g[22] || (g[22] = e.createElementVNode(
               "i",
@@ -11103,21 +11124,21 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
             )
           ])
         ]),
-        e.createElementVNode("ul", qp, [
+        e.createElementVNode("ul", Yp, [
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(A.value, (b) => (e.openBlock(), e.createElementBlock(
+            e.renderList(x.value, (D) => (e.openBlock(), e.createElementBlock(
               "li",
               {
-                key: b.id,
-                class: e.normalizeClass({ unread: !b.read })
+                key: D.id,
+                class: e.normalizeClass({ unread: !D.read })
               },
               [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(j(b.type))
+                    class: e.normalizeClass(T(D.type))
                   },
                   null,
                   2
@@ -11127,29 +11148,29 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
                   e.createElementVNode(
                     "strong",
                     null,
-                    e.toDisplayString(b.title),
+                    e.toDisplayString(D.title),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "p",
                     null,
-                    e.toDisplayString(b.body),
+                    e.toDisplayString(D.body),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("small", null, [
                     e.createTextVNode(
-                      e.toDisplayString(e.unref(r.fmtDateTime)(b.firedAt)),
+                      e.toDisplayString(e.unref(r.fmtDateTime)(D.firedAt)),
                       1
                       /* TEXT */
                     ),
-                    b.outlets?.length ? (e.openBlock(), e.createElementBlock(
+                    D.outlets?.length ? (e.openBlock(), e.createElementBlock(
                       e.Fragment,
                       { key: 0 },
                       [
                         e.createTextVNode(
-                          " · " + e.toDisplayString(v.$t("已推送：{o}", { o: b.outlets.join("、") })),
+                          " · " + e.toDisplayString(v.$t("已推送：{o}", { o: D.outlets.join("、") })),
                           1
                           /* TEXT */
                         )
@@ -11166,9 +11187,9 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
             128
             /* KEYED_FRAGMENT */
           )),
-          A.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
+          x.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
             "li",
-            Kp,
+            xp,
             e.toDisplayString(v.$t("还没有提醒。每月付款日、发票 3 天未核销、20 天未开票、退回到期前 10 天都会在这里出现。")),
             1
             /* TEXT */
@@ -11176,22 +11197,22 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
         ])
       ])) : e.createCommentVNode("v-if", !0),
       e.createCommentVNode(" 模块 tab "),
-      e.createElementVNode("nav", zp, [
+      e.createElementVNode("nav", Xp, [
         (e.openBlock(), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(S, (b) => e.createElementVNode("button", {
-            key: b.key,
+          e.renderList(U, (D) => e.createElementVNode("button", {
+            key: D.key,
             type: "button",
             role: "tab",
-            class: e.normalizeClass(["ss-tab", { active: V.value === b.key }]),
-            "aria-selected": V.value === b.key,
-            onClick: (P) => V.value = b.key
+            class: e.normalizeClass(["ss-tab", { active: k.value === D.key }]),
+            "aria-selected": k.value === D.key,
+            onClick: (P) => k.value = D.key
           }, [
             e.createElementVNode(
               "i",
               {
-                class: e.normalizeClass(b.icon)
+                class: e.normalizeClass(D.icon)
               },
               null,
               2
@@ -11201,52 +11222,52 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
               e.createElementVNode(
                 "strong",
                 null,
-                e.toDisplayString(b.title),
+                e.toDisplayString(D.title),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "small",
                 null,
-                e.toDisplayString(b.desc),
+                e.toDisplayString(D.desc),
                 1
                 /* TEXT */
               )
             ])
-          ], 10, jp)),
+          ], 10, Qp)),
           64
           /* STABLE_FRAGMENT */
         ))
       ]),
-      F.value ? (e.openBlock(), e.createElementBlock("div", Wp, [
-        e.withDirectives(e.createVNode(io, {
-          state: a.value,
-          onRefresh: q
+      G.value ? (e.openBlock(), e.createElementBlock("div", Jp, [
+        e.withDirectives(e.createVNode(mo, {
+          state: u.value,
+          onRefresh: w
         }, null, 8, ["state"]), [
-          [e.vShow, V.value === "review"]
+          [e.vShow, k.value === "review"]
         ]),
-        e.withDirectives(e.createVNode(rs, {
-          state: a.value,
-          email: M.value,
-          "tracking-flags": Y.value,
-          dir: Q.value.settlement || D.value,
-          onRefresh: q
+        e.withDirectives(e.createVNode(ms, {
+          state: u.value,
+          email: $.value,
+          "tracking-flags": K.value,
+          dir: C.value.settlement || V.value,
+          onRefresh: w
         }, null, 8, ["state", "email", "tracking-flags", "dir"]), [
-          [e.vShow, V.value === "settlement"]
+          [e.vShow, k.value === "settlement"]
         ]),
-        e.withDirectives(e.createVNode(br, {
-          state: a.value,
-          onRefresh: q
+        e.withDirectives(e.createVNode(Br, {
+          state: u.value,
+          onRefresh: w
         }, null, 8, ["state"]), [
-          [e.vShow, V.value === "scrap"]
+          [e.vShow, k.value === "scrap"]
         ]),
-        e.withDirectives(e.createVNode(cp, {
-          state: a.value,
-          onRefresh: q
+        e.withDirectives(e.createVNode(fp, {
+          state: u.value,
+          onRefresh: w
         }, null, 8, ["state"]), [
-          [e.vShow, V.value === "marketing"]
+          [e.vShow, k.value === "marketing"]
         ])
-      ])) : J.value ? (e.openBlock(), e.createElementBlock("p", Yp, [
+      ])) : ne.value ? (e.openBlock(), e.createElementBlock("p", Zp, [
         g[24] || (g[24] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -11255,11 +11276,11 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(J.value),
+          e.toDisplayString(ne.value),
           1
           /* TEXT */
         )
-      ])) : (e.openBlock(), e.createElementBlock("p", xp, [
+      ])) : (e.openBlock(), e.createElementBlock("p", Gp, [
         g[25] || (g[25] = e.createElementVNode(
           "i",
           { class: "ri-loader-4-line spin" },
@@ -11275,7 +11296,7 @@ const Wt = { class: "ss-module" }, Yt = { class: "ss-steps" }, xt = { class: "ss
       ]))
     ]));
   }
-}), Qp = /* @__PURE__ */ nt(Xp, [["__scopeId", "data-v-bb0efe65"]]);
+}), ev = /* @__PURE__ */ tt(Hp, [["__scopeId", "data-v-bb0efe65"]]);
 export {
-  Qp as default
+  ev as default
 };

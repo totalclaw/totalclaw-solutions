@@ -7,26 +7,26 @@ const vt = ze.default, Ke = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCL
 if (!Ke) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/PageBackButton.vue");
 const kt = Ke.default, We = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/StepRunAlert.vue"];
 if (!We) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/StepRunAlert.vue");
-const Me = We.default, W = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts"];
-if (!W) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts");
-W.default;
-const o = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/i18n.ts"];
-if (!o) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/i18n.ts");
-o.default;
+const Me = We.default, O = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts"];
+if (!O) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts");
+O.default;
+const s = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/i18n.ts"];
+if (!s) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/i18n.ts");
+s.default;
 const J = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/eduHubProgress.ts"];
 if (!J) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/eduHubProgress.ts");
 J.default;
 const d = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/humanize.ts"];
 if (!d) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/humanize.ts");
 d.default;
-const pe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useDialog.ts"];
-if (!pe) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useDialog.ts");
-pe.default;
+const he = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useDialog.ts"];
+if (!he) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useDialog.ts");
+he.default;
 const Oe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/quran-teaching/QuranPlatform.vue"];
 if (!Oe) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/quran-teaching/QuranPlatform.vue");
-const _t = Oe.default, he = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/solutionAccess.ts"];
-if (!he) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/solutionAccess.ts");
-he.default;
+const _t = Oe.default, ge = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/solutionAccess.ts"];
+if (!ge) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/solutionAccess.ts");
+ge.default;
 const Z = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
 if (!Z) throw new Error("宿主模块未就绪：npm:vue-router");
 Z.default;
@@ -38,7 +38,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
   key: 2,
   class: "eh-banner",
   role: "alert"
-}, bt = ["aria-label"], Ct = { class: "eh-steps" }, $t = ["onClick"], Tt = { class: "n" }, wt = { class: "tx" }, Lt = { class: "eh-pane" }, At = { class: "eh-svc" }, Mt = { class: "eh-card" }, zt = {
+}, bt = ["aria-label"], Ct = { class: "eh-steps" }, $t = ["onClick"], wt = { class: "n" }, Tt = { class: "tx" }, Lt = { class: "eh-pane" }, At = { class: "eh-svc" }, Mt = { class: "eh-card" }, zt = {
   key: 0,
   class: "eh-url"
 }, Kt = {
@@ -62,7 +62,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
 }, xt = ["onClick"], en = {
   key: 0,
   class: "k"
-}, tn = { class: "eh-pane" }, nn = { class: "eh-row" }, an = { class: "k" }, ln = { class: "eh-mat-head" }, sn = { class: "grow" }, on = {
+}, tn = { class: "eh-pane" }, nn = { class: "eh-row" }, an = { class: "k" }, ln = { class: "eh-mat-head" }, on = { class: "grow" }, sn = {
   key: 0,
   class: "chip warn"
 }, rn = {
@@ -83,11 +83,11 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
 }, bn = {
   key: 2,
   class: "k eh-mode-hint"
-}, Cn = { class: "eh-lesson-head" }, $n = { class: "grow" }, Tn = {
+}, Cn = { class: "eh-lesson-head" }, $n = { class: "grow" }, wn = {
   key: 0,
   class: "chip warn",
   "data-test": "eh-gen-chip"
-}, wn = ["title"], Ln = ["title"], An = ["disabled", "onClick"], Mn = {
+}, Tn = ["title"], Ln = ["title"], An = ["disabled", "onClick"], Mn = {
   key: 0,
   class: "ri-loader-4-line eh-spin",
   "aria-hidden": "true"
@@ -119,10 +119,10 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
 }, la = {
   key: 0,
   class: "chip src num"
-}, sa = {
+}, oa = {
   key: 0,
   class: "k"
-}, oa = {
+}, sa = {
   key: 1,
   class: "eh-avs"
 }, ia = { class: "eh-av-h" }, ra = ["src"], ca = {
@@ -140,7 +140,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
 }, ya = {
   key: 0,
   class: "eh-card eh-hint"
-}, Ea = { class: "eh-pane" }, fa = { class: "eh-row" }, Na = { class: "k" }, Va = { class: "ehs-summary" }, Sa = { class: "ehs-sum" }, Ba = { class: "v" }, Da = { class: "l" }, ba = { class: "ehs-sum" }, Ca = { class: "v ehs-online" }, $a = { class: "l" }, Ta = { class: "ehs-sum" }, wa = { class: "v" }, La = { class: "l" }, Aa = { class: "ehs-sum" }, Ma = { class: "l" }, za = { class: "ehs-sum grow" }, Ka = { class: "v" }, Wa = { class: "l" }, Oa = {
+}, Ea = { class: "eh-pane" }, fa = { class: "eh-row" }, Na = { class: "k" }, Va = { class: "ehs-summary" }, Sa = { class: "ehs-sum" }, Ba = { class: "v" }, Da = { class: "l" }, ba = { class: "ehs-sum" }, Ca = { class: "v ehs-online" }, $a = { class: "l" }, wa = { class: "ehs-sum" }, Ta = { class: "v" }, La = { class: "l" }, Aa = { class: "ehs-sum" }, Ma = { class: "l" }, za = { class: "ehs-sum grow" }, Ka = { class: "v" }, Wa = { class: "l" }, Oa = {
   key: 0,
   class: "ehs-list"
 }, Pa = ["onClick", "onKeydown"], Ia = { class: "ehs-rid" }, Fa = ["title"], qa = { class: "ehs-seen" }, Ha = {
@@ -149,7 +149,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
 }, Ua = { class: "ehs-rbar" }, Ra = { class: "ehs-rbar-track" }, Qa = ["aria-label"], Xa = ["title"], Ga = { class: "ehs-rstats" }, ja = ["title"], Ya = ["title"], Ja = { class: "ehs-rstat" }, Za = { class: "ehs-rpct" }, xa = ["title", "onClick"], el = {
   key: 1,
   class: "eh-card k"
-}, tl = { class: "ehs-sheet" }, nl = ["aria-label"], al = { class: "ehs-sheet-head" }, ll = { class: "ehs-sheet-id" }, sl = { class: "ehs-sheet-name" }, ol = {
+}, tl = { class: "ehs-sheet" }, nl = ["aria-label"], al = { class: "ehs-sheet-head" }, ll = { class: "ehs-sheet-id" }, ol = { class: "ehs-sheet-name" }, sl = {
   key: 0,
   class: "ehs-sheet-no k"
 }, il = { class: "ehs-sheet-seen k" }, rl = { class: "ehs-kpis" }, cl = { class: "ehs-kpi" }, dl = { class: "v" }, ul = { class: "l" }, ml = { class: "ehs-kpi" }, pl = { class: "v" }, hl = { class: "l" }, gl = { class: "ehs-kpi" }, vl = { class: "v" }, kl = { class: "l" }, _l = { class: "ehs-kpi" }, yl = { class: "l" }, El = { class: "ehs-sec" }, fl = { class: "ehs-lessons" }, Nl = ["title"], Vl = { key: 0 }, Sl = {
@@ -161,7 +161,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
 }, bl = {
   key: 1,
   class: "ehs-timeline"
-}, Cl = { class: "ehs-tl-body" }, $l = ["title"], Tl = ["title"], wl = { class: "ehs-tl-at k" }, Ll = {
+}, Cl = { class: "ehs-tl-body" }, $l = ["title"], wl = ["title"], Tl = { class: "ehs-tl-at k" }, Ll = {
   key: 2,
   class: "k"
 }, Al = {
@@ -182,9 +182,9 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
 }, Xl = /* @__PURE__ */ e.defineComponent({
   __name: "EduHubWorkbenchView",
   setup(x) {
-    const r = window?.electronAPI?.workbenches?.eduHub, k = pe.useDialog(), f = Z.useRoute(), ee = Z.useRouter(), v = e.ref(f.query.direction === "quran" ? "quran" : "lesson"), O = e.ref(!1), Pe = e.computed(() => [
-      { key: "lesson", label: o.t("文档生成教案"), icon: "ri-file-text-line" },
-      { key: "quran", label: o.t("古兰经教学平台"), icon: "ri-book-open-line" }
+    const r = window?.electronAPI?.workbenches?.eduHub, k = he.useDialog(), f = Z.useRoute(), ee = Z.useRouter(), v = e.ref(f.query.direction === "quran" ? "quran" : "lesson"), N = e.ref(!1), Pe = e.computed(() => [
+      { key: "lesson", label: s.t("文档生成教案"), icon: "ri-file-text-line" },
+      { key: "quran", label: s.t("古兰经教学平台"), icon: "ri-book-open-line" }
     ]);
     function Ie(t) {
       v.value !== t && (v.value = t, ee.replace({ path: f.path, query: t === "quran" ? { ...f.query, direction: "quran" } : Fe(f.query) }));
@@ -193,19 +193,19 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
       const { direction: a, ...n } = t || {};
       return n;
     }
-    const _ = e.ref(1), N = e.ref(!1), te = e.ref(!1), i = e.ref(""), V = e.ref("");
-    let w;
-    function ge(t, a = 8e3) {
-      V.value = t, w && clearTimeout(w), a > 0 && (w = setTimeout(() => {
-        V.value = "";
+    const _ = e.ref(1), V = e.ref(!1), te = e.ref(!1), i = e.ref(""), S = e.ref("");
+    let A;
+    function ne(t, a = 8e3) {
+      S.value = t, A && clearTimeout(A), a > 0 && (A = setTimeout(() => {
+        S.value = "";
       }, a));
     }
-    function L() {
-      i.value = "", V.value = "", w && clearTimeout(w);
+    function B() {
+      i.value = "", S.value = "", A && clearTimeout(A);
     }
-    const S = e.ref(""), ne = e.reactive({});
+    const D = e.ref(""), ae = e.reactive({});
     function g(t) {
-      let a = ne[t];
+      let a = ae[t];
       if (!a) {
         const n = p.value.find((l) => l.id === t)?.suggest;
         a = {
@@ -213,21 +213,21 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
           minutes: n?.durationMinutes ?? 45,
           lang: n?.lang ?? "zh-CN",
           mode: "rich"
-        }, ne[t] = a;
+        }, ae[t] = a;
       }
       return a;
     }
-    const P = e.ref(""), ae = e.ref(""), B = e.reactive({}), le = e.ref("");
+    const P = e.ref(""), le = e.ref(""), b = e.reactive({}), oe = e.ref("");
     async function ve(t, a = !1) {
-      if (!(!a && B[t.id])) {
-        le.value = t.id;
+      if (!(!a && b[t.id])) {
+        oe.value = t.id;
         try {
           const n = await r.avatarMedia({ id: t.id });
-          B[t.id] = n?.items || [];
+          b[t.id] = n?.items || [];
         } catch {
-          B[t.id] = [];
+          b[t.id] = [];
         } finally {
-          le.value = "";
+          oe.value = "";
         }
       }
     }
@@ -235,17 +235,17 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
     function ke(t) {
       switch (t) {
         case "primary":
-          return o.t("小学");
+          return s.t("小学");
         case "primary_upper":
-          return o.t("小学高年级");
+          return s.t("小学高年级");
         case "junior":
-          return o.t("初中");
+          return s.t("初中");
         case "senior":
-          return o.t("高中");
+          return s.t("高中");
         case "vocational":
-          return o.t("中职/高职");
+          return s.t("中职/高职");
         case "university":
-          return o.t("大学/本科");
+          return s.t("大学/本科");
         default:
           return t;
       }
@@ -254,52 +254,52 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
     function Ue(t) {
       const a = t.suggest;
       if (!a) return "";
-      const n = a.lang === "zh-CN" ? o.t("中文") : a.lang === "ar" ? o.t("阿拉伯文") : o.t("英文");
-      return a.gradeKey ? o.t("按文档判定：{lang} · {grade} · 约 {min} 分钟（可改）", { lang: n, grade: ke(a.gradeKey), min: String(a.durationMinutes) }) : o.t("按文档判定：{lang} · 约 {min} 分钟；学段没判出来，请你选一个", { lang: n, min: String(a.durationMinutes) });
+      const n = a.lang === "zh-CN" ? s.t("中文") : a.lang === "ar" ? s.t("阿拉伯文") : s.t("英文");
+      return a.gradeKey ? s.t("按文档判定：{lang} · {grade} · 约 {min} 分钟（可改）", { lang: n, grade: ke(a.gradeKey), min: String(a.durationMinutes) }) : s.t("按文档判定：{lang} · 约 {min} 分钟；学段没判出来，请你选一个", { lang: n, min: String(a.durationMinutes) });
     }
     const u = e.ref({ running: !1, url: null, port: null, classCode: "—", onlineStudents: 0, totalStudents: 0 }), p = e.ref([]);
     e.watch(p, (t) => {
       for (const a of t) {
-        const n = ne[a.id];
+        const n = ae[a.id];
         !n || !a.suggest || !n.grade && a.suggest.gradeKey && (n.grade = a.suggest.gradeKey);
       }
     }, { deep: !0 });
-    const c = e.ref([]), _e = e.ref([]), D = e.ref([]), F = e.ref(""), ye = e.computed(() => new Set(c.value.filter((t) => t.status === "generating").map((t) => t.materialId))), se = e.computed(() => c.value.filter((t) => t.status === "published")), Ee = {
+    const c = e.ref([]), _e = e.ref([]), C = e.ref([]), F = e.ref(""), ye = e.computed(() => new Set(c.value.filter((t) => t.status === "generating").map((t) => t.materialId))), se = e.computed(() => c.value.filter((t) => t.status === "published")), Ee = {
       // 主进程里单次模型调用上限 5 分钟、格式修正可能再来一轮，且中途只在每轮开头推事件：
       // 默认 4 分钟无进度上限会把正常的「精美」生成误判成卡住，按 预计 + 5 分钟 = 9 分钟放宽
       lesson: { kind: "llm", estimateMs: 24e4, stallMs: 9 * 6e4 },
       // 按节离线成片，每节完成推一次事件；单节云端渲染按视频上限（10 分钟）
       avatar: { kind: "video", estimateMs: 3e5 }
-    }, b = (t, a) => `${t}:${a}`, q = e.reactive({}), A = e.reactive({}), oe = e.reactive({});
+    }, $ = (t, a) => `${t}:${a}`, q = e.reactive({}), M = e.reactive({}), ie = e.reactive({});
     function H(t) {
-      return t.avatarStatus === "generating" || ae.value === t.id;
+      return t.avatarStatus === "generating" || le.value === t.id;
     }
     const fe = e.computed(() => {
       const t = [];
       for (const a of c.value)
-        a.status === "generating" && t.push(b("lesson", a.id)), H(a) && t.push(b("avatar", a.id));
+        a.status === "generating" && t.push($("lesson", a.id)), H(a) && t.push($("avatar", a.id));
       return t;
-    }), Re = W.useStepWatchdog({ running: () => fe.value.length > 0, kind: "llm" });
+    }), Re = O.useStepWatchdog({ running: () => fe.value.length > 0, kind: "llm" });
     e.watch(fe, (t, a) => {
-      for (const n of t) q[n] || (q[n] = Math.min(Date.now(), A[n] || 1 / 0));
-      for (const n of a || []) t.includes(n) || (delete q[n], delete A[n], delete oe[n]);
+      for (const n of t) q[n] || (q[n] = Math.min(Date.now(), M[n] || 1 / 0));
+      for (const n of a || []) t.includes(n) || (delete q[n], delete M[n], delete ie[n]);
     }, { immediate: !0 });
     function Ne(t, a) {
-      const n = b(t, a), l = q[n];
+      const n = $(t, a), l = q[n];
       if (!l) return null;
-      const s = Ee[t];
-      return W.evaluateWatchdog({
+      const o = Ee[t];
+      return O.evaluateWatchdog({
         startedAt: l,
-        estimateMs: s.estimateMs,
-        kind: s.kind,
-        stallMs: s.stallMs,
-        lastHeartbeatAt: A[n] ?? null,
-        waitExtendedAt: oe[n] ?? null
+        estimateMs: o.estimateMs,
+        kind: o.kind,
+        stallMs: o.stallMs,
+        lastHeartbeatAt: M[n] ?? null,
+        waitExtendedAt: ie[n] ?? null
       }, Re.now.value);
     }
     function Ve(t, a) {
       const n = Ne(t, a);
-      return n ? o.t("已用 {p0}", { p0: W.formatStepDuration(n.elapsedMs / 1e3) }) : "";
+      return n ? s.t("已用 {p0}", { p0: O.formatStepDuration(n.elapsedMs / 1e3) }) : "";
     }
     function U(t, a) {
       const n = Ne(t, a);
@@ -310,39 +310,39 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
       };
     }
     function Se(t, a) {
-      oe[b(t, a)] = Date.now();
+      ie[$(t, a)] = Date.now();
     }
     const R = e.computed(() => {
       const t = se.value.map((a) => ({
         id: a.id,
-        title: a.plan?.title || a.materialName || o.t("未命名课程")
+        title: a.plan?.title || a.materialName || s.t("未命名课程")
       }));
       return _e.value.map((a) => {
-        const n = J.aggregateStudentProgress(a, t), l = D.value.filter((s) => s.studentName && s.studentName === a.name).map((s) => ({ id: s.id, q: s.q, a: s.a, grounded: s.grounded, at: s.at }));
+        const n = J.aggregateStudentProgress(a, t), l = C.value.filter((o) => o.studentName && o.studentName === a.name).map((o) => ({ id: o.id, q: o.q, a: o.a, grounded: o.grounded, at: o.at }));
         return { ...n, questions: l };
       });
-    }), C = e.computed(() => ({
+    }), w = e.computed(() => ({
       ...J.summarizeClass(R.value),
       online: u.value.onlineStudents || 0
-    })), Q = e.ref(null), h = e.computed(() => R.value.find((t) => t.studentId === Q.value) || null), M = e.ref([]), ie = e.ref(!1);
+    })), Q = e.ref(null), h = e.computed(() => R.value.find((t) => t.studentId === Q.value) || null), z = e.ref([]), re = e.ref(!1);
     async function Be(t) {
-      Q.value = t, M.value = [], ie.value = !0;
+      Q.value = t, z.value = [], re.value = !0;
       try {
-        M.value = await r.studentHistory({ studentId: t });
+        z.value = await r.studentHistory({ studentId: t });
       } catch {
       } finally {
-        ie.value = !1;
+        re.value = !1;
       }
     }
-    function re() {
-      Q.value = null, M.value = [];
+    function ce() {
+      Q.value = null, z.value = [];
     }
     const Qe = {
-      open: o.t("阅读"),
-      test: o.t("测试"),
-      practice: o.t("练习"),
-      note: o.t("笔记"),
-      ask: o.t("提问")
+      open: s.t("阅读"),
+      test: s.t("测试"),
+      practice: s.t("练习"),
+      note: s.t("笔记"),
+      ask: s.t("提问")
     };
     function Xe(t) {
       return t.total && t.total > 0 ? Math.round((t.score || 0) / t.total * 100) : null;
@@ -356,31 +356,37 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
       for (const n of t || "?") a = (a * 31 + n.charCodeAt(0)) % 360;
       return a;
     }
-    function z(t) {
+    function K(t) {
       return t == null ? "" : t >= 80 ? "good" : t >= 60 ? "mid" : "low";
     }
     function Ge(t) {
-      const a = t.status === "quiz" ? o.t("已学完 · 小测 {s}/{t}", { s: t.score ?? 0, t: t.total ?? 0 }) : t.status === "read" ? o.t("在学 · 小测未交") : o.t("未开始");
+      const a = t.status === "quiz" ? s.t("已学完 · 小测 {s}/{t}", { s: t.score ?? 0, t: t.total ?? 0 }) : t.status === "read" ? s.t("在学 · 小测未交") : s.t("未开始");
       return `${t.title} · ${a}`;
     }
     const je = [
-      { id: 1, n: "1", label: o.t("服务与班级"), done: () => u.value.running, sub: () => u.value.running ? o.t("{n} 人在线", { n: u.value.onlineStudents }) : o.t("待启动") },
-      { id: 2, n: "2", label: o.t("资料与教案"), done: () => se.value.length > 0, sub: () => o.t("{m} 份资料 · {l} 份教案", { m: p.value.length, l: c.value.length }) },
-      { id: 3, n: "3", label: o.t("学情看板"), done: () => !1, sub: () => o.t("{n} 名学生", { n: u.value.totalStudents }) }
+      { id: 1, n: "1", label: s.t("服务与班级"), done: () => u.value.running, sub: () => u.value.running ? s.t("{n} 人在线", { n: u.value.onlineStudents }) : s.t("待启动") },
+      { id: 2, n: "2", label: s.t("资料与教案"), done: () => se.value.length > 0, sub: () => s.t("{m} 份资料 · {l} 份教案", { m: p.value.length, l: c.value.length }) },
+      { id: 3, n: "3", label: s.t("学情看板"), done: () => !1, sub: () => s.t("{n} 名学生", { n: u.value.totalStudents }) }
     ];
-    let ce = null, X = null, G = !1;
+    let de = null, X = null, G = !1;
     e.onMounted(async () => {
       try {
-        O.value = await he.isSolutionEnabled("workbench-quran-teaching");
+        N.value = await ge.isSolutionEnabled("workbench-quran-teaching");
       } catch {
-        O.value = !1;
+        N.value = !1;
       }
+      if (N.value)
+        try {
+          const t = await window.electronAPI?.solutionPkg?.prepare?.({ id: "workbench-quran-teaching" });
+          t && t.ok === !1 && (N.value = !1);
+        } catch {
+        }
       if (!G) {
-        if (v.value === "quran" && !O.value && (v.value = "lesson"), !r) {
-          i.value = o.t("工作台桥接未就绪");
+        if (v.value === "quran" && !N.value && (v.value = "lesson"), !r) {
+          i.value = s.t("工作台桥接未就绪");
           return;
         }
-        await Ye(), !G && (u.value.running || await $e(), !G && (ce = r.onEvent((t) => {
+        await Ye(), !G && (u.value.running || await $e(), !G && (de = r.onEvent((t) => {
           if (t.kind === "material" && t.phase === "deleted") {
             p.value = p.value.filter((a) => a.id !== t.id), c.value = c.value.filter((a) => a.materialId !== t.id);
             return;
@@ -391,7 +397,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
           }
           if (t.kind === "lesson") {
             const a = Date.now();
-            A[b("lesson", t.id)] = a, A[b("avatar", t.id)] = a;
+            M[$("lesson", t.id)] = a, M[$("avatar", t.id)] = a;
           }
           if (t.kind === "lesson" && t.phase === "deleted") {
             c.value = c.value.filter((a) => a.id !== t.id);
@@ -402,154 +408,154 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
             a >= 0 ? c.value[a] = t.lesson : c.value.unshift(t.lesson);
           }
         }), X = setInterval(() => {
-          $(), _.value === 3 && y();
+          T(), _.value === 3 && y();
         }, 1e4)));
       }
     }), e.onUnmounted(() => {
-      G = !0, ce?.(), ce = null, X && (clearInterval(X), X = null);
+      G = !0, de?.(), de = null, X && (clearInterval(X), X = null);
     }), e.watch(_, (t) => {
-      t === 3 && (y(), de(), $());
+      t === 3 && (y(), ue(), T());
     });
     async function Ye() {
-      i.value = "", await Promise.all([$(), Ce(), Je(), y()]);
+      i.value = "", await Promise.all([T(), Ce(), Je(), y()]);
     }
-    async function $() {
+    async function T() {
       try {
         u.value = await r.status(), F.value = u.value.url ? await vt.toDataURL(u.value.url, { margin: 1, width: 176 }) : "";
       } catch (t) {
-        i.value = d.humanizeErrorMessage(t, o.t("读取校内服务状态失败"));
+        i.value = d.humanizeErrorMessage(t, s.t("读取校内服务状态失败"));
       }
     }
     async function Ce() {
       try {
         p.value = await r.materials();
       } catch (t) {
-        i.value = d.humanizeErrorMessage(t, o.t("读取教材失败"));
+        i.value = d.humanizeErrorMessage(t, s.t("读取教材失败"));
       }
     }
     async function Je() {
       try {
         c.value = await r.lessons();
       } catch (t) {
-        i.value = d.humanizeErrorMessage(t, o.t("读取课程失败"));
+        i.value = d.humanizeErrorMessage(t, s.t("读取课程失败"));
       }
     }
     async function y() {
       try {
         _e.value = await r.progress();
       } catch (t) {
-        i.value = d.humanizeErrorMessage(t, o.t("读取学习进展失败"));
+        i.value = d.humanizeErrorMessage(t, s.t("读取学习进展失败"));
       }
     }
-    async function de() {
+    async function ue() {
       try {
-        D.value = await r.questions();
+        C.value = await r.questions();
       } catch (t) {
-        i.value = d.humanizeErrorMessage(t, o.t("读取学生提问失败"));
+        i.value = d.humanizeErrorMessage(t, s.t("读取学生提问失败"));
       }
     }
     async function $e() {
-      N.value = !0, i.value = "";
+      V.value = !0, i.value = "";
       try {
-        u.value = await r.start(), await $();
+        u.value = await r.start(), await T();
       } catch (t) {
-        i.value = d.humanizeErrorMessage(t, o.t("校内服务启动失败"));
+        i.value = d.humanizeErrorMessage(t, s.t("校内服务启动失败"));
       } finally {
-        N.value = !1;
+        V.value = !1;
       }
     }
     async function Ze() {
-      N.value = !0, i.value = "";
+      V.value = !0, i.value = "";
       try {
         u.value = await r.stop(), F.value = "";
       } catch (t) {
-        i.value = d.humanizeErrorMessage(t, o.t("停止服务失败"));
+        i.value = d.humanizeErrorMessage(t, s.t("停止服务失败"));
       } finally {
-        N.value = !1;
+        V.value = !1;
       }
     }
     async function xe() {
       try {
-        u.value = await r.rotateCode(), T.value && await me();
+        u.value = await r.rotateCode(), L.value && await pe();
       } catch (t) {
-        i.value = d.humanizeErrorMessage(t, o.t("班级码轮换失败"));
+        i.value = d.humanizeErrorMessage(t, s.t("班级码轮换失败"));
       }
     }
-    const T = e.ref(!1), ue = e.ref([]);
-    async function me() {
+    const L = e.ref(!1), me = e.ref([]);
+    async function pe() {
       try {
-        ue.value = await r.codeHistory();
+        me.value = await r.codeHistory();
       } catch (t) {
-        i.value = d.humanizeErrorMessage(t, o.t("读取班级码历史失败"));
+        i.value = d.humanizeErrorMessage(t, s.t("读取班级码历史失败"));
       }
     }
     async function et() {
-      T.value = !T.value, T.value && await me();
+      L.value = !L.value, L.value && await pe();
     }
     async function tt(t) {
       if (await k.confirm({
-        message: o.t("把班级码换回 {code}？当前那枚会立即失效，正在用它登录的学生需要重新输入。", { code: t })
+        message: s.t("把班级码换回 {code}？当前那枚会立即失效，正在用它登录的学生需要重新输入。", { code: t })
       }))
         try {
-          u.value = await r.restoreCode({ code: t }), await me(), await $();
+          u.value = await r.restoreCode({ code: t }), await pe(), await T();
         } catch (a) {
-          i.value = d.humanizeErrorMessage(a, o.t("恢复班级码失败"));
+          i.value = d.humanizeErrorMessage(a, s.t("恢复班级码失败"));
         }
     }
-    async function Te(t) {
+    async function we(t) {
       const a = t.plan?.title || t.materialName;
       if (await k.confirm({
-        message: o.t("删除教案《{title}》？学生对它的学习进度、小测成绩、笔记和提问会一并删除，不可恢复。", { title: a }),
+        message: s.t("删除教案《{title}》？学生对它的学习进度、小测成绩、笔记和提问会一并删除，不可恢复。", { title: a }),
         danger: !0
       }))
         try {
           await r.deleteLesson({ id: t.id }), c.value = c.value.filter((n) => n.id !== t.id), await Promise.all([Ce(), y()]);
         } catch (n) {
-          i.value = d.humanizeErrorMessage(n, o.t("删除教案失败"));
+          i.value = d.humanizeErrorMessage(n, s.t("删除教案失败"));
         }
     }
     async function nt(t) {
       const a = c.value.filter((n) => n.materialId === t.id).length;
       if (await k.confirm({
-        message: a ? o.t("删除资料《{name}》？它名下的 {n} 份教案、学生对这些教案的学习进度、小测成绩、笔记和提问，以及导入的原文件都会一并删除，不可恢复。", { name: t.name, n: String(a) }) : o.t("删除资料《{name}》？导入的原文件和解析结果会一并删除，不可恢复。", { name: t.name }),
+        message: a ? s.t("删除资料《{name}》？它名下的 {n} 份教案、学生对这些教案的学习进度、小测成绩、笔记和提问，以及导入的原文件都会一并删除，不可恢复。", { name: t.name, n: String(a) }) : s.t("删除资料《{name}》？导入的原文件和解析结果会一并删除，不可恢复。", { name: t.name }),
         danger: !0
       }))
         try {
           await r.deleteMaterial({ id: t.id }), p.value = p.value.filter((n) => n.id !== t.id), c.value = c.value.filter((n) => n.materialId !== t.id), await y();
         } catch (n) {
-          i.value = d.humanizeErrorMessage(n, o.t("删除资料失败"));
+          i.value = d.humanizeErrorMessage(n, s.t("删除资料失败"));
         }
     }
     async function at(t) {
       if (await k.confirm({
-        message: o.t("删除学生「{name}」？他的学习进度、小测成绩、练习、笔记和提问会一并删除，不可恢复。", { name: t.name }),
+        message: s.t("删除学生「{name}」？他的学习进度、小测成绩、练习、笔记和提问会一并删除，不可恢复。", { name: t.name }),
         danger: !0
       }))
         try {
-          await r.deleteStudent({ studentId: t.studentId }), Q.value === t.studentId && re(), await Promise.all([y(), de(), $()]);
+          await r.deleteStudent({ studentId: t.studentId }), Q.value === t.studentId && ce(), await Promise.all([y(), ue(), T()]);
         } catch (a) {
-          i.value = d.humanizeErrorMessage(a, o.t("删除学生失败"));
+          i.value = d.humanizeErrorMessage(a, s.t("删除学生失败"));
         }
     }
     async function lt(t) {
       try {
-        await r.deleteQuestion({ id: t.id }), D.value = D.value.filter((a) => a.id !== t.id);
+        await r.deleteQuestion({ id: t.id }), C.value = C.value.filter((a) => a.id !== t.id);
       } catch (a) {
-        i.value = d.humanizeErrorMessage(a, o.t("删除提问失败"));
+        i.value = d.humanizeErrorMessage(a, s.t("删除提问失败"));
       }
     }
-    function st() {
+    function ot() {
       u.value.url && (navigator.clipboard.writeText(u.value.url), te.value = !0, setTimeout(() => {
         te.value = !1;
       }, 1500));
     }
-    async function ot() {
+    async function st() {
       try {
         const t = await r.import();
         for (const a of t?.imported || [])
           p.value.some((n) => n.id === a.id) || p.value.unshift(a);
       } catch (t) {
-        i.value = d.humanizeErrorMessage(t, o.t("导入失败"));
+        i.value = d.humanizeErrorMessage(t, s.t("导入失败"));
       }
     }
     const E = e.ref(/* @__PURE__ */ new Set());
@@ -559,11 +565,11 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
         try {
           const n = (await r.reparse({ id: t.id }))?.material;
           if (n) {
-            const l = p.value.findIndex((s) => s.id === n.id);
-            l >= 0 ? p.value[l] = n : p.value.unshift(n), n.status !== "ready" && (i.value = n.error || o.t("重新解析仍未成功"));
+            const l = p.value.findIndex((o) => o.id === n.id);
+            l >= 0 ? p.value[l] = n : p.value.unshift(n), n.status !== "ready" && (i.value = n.error || s.t("重新解析仍未成功"));
           }
         } catch (a) {
-          i.value = d.humanizeErrorMessage(a, o.t("重新解析失败"));
+          i.value = d.humanizeErrorMessage(a, s.t("重新解析失败"));
         } finally {
           const a = new Set(E.value);
           a.delete(t.id), E.value = a;
@@ -573,28 +579,28 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
     function rt(t) {
       return c.value.filter((a) => a.materialId === t);
     }
-    async function we(t) {
-      L();
+    async function Te(t) {
+      B();
       try {
         const a = g(t.id), n = await r.generate({ materialId: t.id, grade: a.grade, durationMinutes: a.minutes, lang: a.lang, mode: a.mode });
         c.value.some((l) => l.id === n.id) || c.value.unshift(n);
       } catch (a) {
-        i.value = d.humanizeErrorMessage(a, o.t("生成失败"));
+        i.value = d.humanizeErrorMessage(a, s.t("生成失败"));
       }
     }
     async function ct(t, a) {
-      L(), P.value = `${t.id}:${a}`;
+      B(), P.value = `${t.id}:${a}`;
       try {
-        const n = await r.genIllustration({ id: t.id, index: a }), l = c.value.findIndex((s) => s.id === t.id);
+        const n = await r.genIllustration({ id: t.id, index: a }), l = c.value.findIndex((o) => o.id === t.id);
         l >= 0 && (c.value[l] = n);
       } catch (n) {
-        i.value = d.humanizeErrorMessage(n, o.t("生成配图失败"));
+        i.value = d.humanizeErrorMessage(n, s.t("生成配图失败"));
       } finally {
         P.value = "";
       }
     }
     const Le = [
-      { value: "zh-CN", label: o.t("中文") },
+      { value: "zh-CN", label: s.t("中文") },
       { value: "en-US", label: "English" },
       { value: "ar", label: "العربية" }
     ];
@@ -603,59 +609,59 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
     }
     async function dt(t, a) {
       if (!((t.lang || "zh-CN") === a || t.langStatus === "switching")) {
-        L();
+        B();
         try {
-          const n = await r.switchLang({ id: t.id, lang: a }), l = c.value.findIndex((s) => s.id === t.id);
-          l >= 0 && (c.value[l] = n), n.langStatus === "switching" && ge(o.t("正在生成 {lang} 版教案，完成后自动切换（已发布的教案学生端届时同步更新）。", { lang: Ae(a) }), 0);
+          const n = await r.switchLang({ id: t.id, lang: a }), l = c.value.findIndex((o) => o.id === t.id);
+          l >= 0 && (c.value[l] = n), n.langStatus === "switching" && ne(s.t("正在生成 {lang} 版教案，完成后自动切换（已发布的教案学生端届时同步更新）。", { lang: Ae(a) }), 0);
         } catch (n) {
-          i.value = d.humanizeErrorMessage(n, o.t("切换语言失败"));
+          i.value = d.humanizeErrorMessage(n, s.t("切换语言失败"));
         }
       }
     }
     async function ut(t) {
       const a = p.value.find((n) => n.id === t.materialId);
-      a && await we(a);
+      a && await Te(a);
     }
     function mt(t) {
-      if (S.value = S.value === t ? "" : t, S.value === t) {
+      if (D.value = D.value === t ? "" : t, D.value === t) {
         const a = c.value.find((n) => n.id === t);
         a && a.avatarStatus === "ready" && ve(a);
       }
     }
     async function pt(t, a) {
-      L();
+      B();
       try {
-        const n = await r.publish({ id: t.id, on: a }), l = c.value.findIndex((s) => s.id === t.id);
+        const n = await r.publish({ id: t.id, on: a }), l = c.value.findIndex((o) => o.id === t.id);
         l >= 0 && (c.value[l] = n);
       } catch (n) {
-        i.value = d.humanizeErrorMessage(n, o.t("发布操作失败"));
+        i.value = d.humanizeErrorMessage(n, s.t("发布操作失败"));
       }
     }
     async function ht(t) {
-      L(), ae.value = t.id;
+      B(), le.value = t.id;
       try {
         const a = await r.genAvatar({ id: t.id });
-        ge(o.t("数字人讲解已生成 {ok}/{total} 节；下方可直接预览，发布后学生端可见。", { ok: a.ok, total: a.total })), S.value === t.id ? ve(t, !0) : delete B[t.id];
+        ne(s.t("数字人讲解已生成 {ok}/{total} 节；下方可直接预览，发布后学生端可见。", { ok: a.ok, total: a.total })), D.value === t.id ? ve(t, !0) : delete b[t.id];
       } catch (a) {
-        i.value = d.humanizeErrorMessage(a, o.t("生成数字人讲解失败"));
+        i.value = d.humanizeErrorMessage(a, s.t("生成数字人讲解失败"));
       } finally {
-        ae.value = "";
+        le.value = "";
       }
     }
     async function gt(t) {
-      I.value = t.id;
+      B(), I.value = t.id;
       try {
-        await r.genAudio({ id: t.id }), i.value = o.t("音频总结已生成；发布后学生端可播放。");
+        await r.genAudio({ id: t.id }), ne(s.t("音频总结已生成；发布后学生端可播放。"));
       } catch (a) {
-        i.value = d.humanizeErrorMessage(a, o.t("生成音频总结失败"));
+        i.value = d.humanizeErrorMessage(a, s.t("生成音频总结失败"));
       } finally {
         I.value = "";
       }
     }
-    function K(t) {
+    function W(t) {
       if (!t) return "—";
       const a = Date.now() - t;
-      return a < 6e4 ? o.t("刚刚") : a < 36e5 ? o.t("{p0} 分钟前", { p0: Math.floor(a / 6e4) }) : a < 864e5 ? o.t("{p0} 小时前", { p0: Math.floor(a / 36e5) }) : new Date(t).toLocaleDateString();
+      return a < 6e4 ? s.t("刚刚") : a < 36e5 ? s.t("{p0} 分钟前", { p0: Math.floor(a / 6e4) }) : a < 864e5 ? s.t("{p0} 小时前", { p0: Math.floor(a / 36e5) }) : new Date(t).toLocaleDateString();
     }
     return (t, a) => (e.openBlock(), e.createElementBlock("div", yt, [
       e.createElementVNode("header", Et, [
@@ -704,7 +710,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
       只是教师这一侧的内容生产链不同：一条从文档生成教案，一条从经文语料走教学闭环。
       古兰经方向是按账号售卖的方案包，没开通就不显示这个标签（授权口径与合并前一致）。
     `),
-      O.value ? (e.openBlock(), e.createElementBlock("nav", {
+      N.value ? (e.openBlock(), e.createElementBlock("nav", {
         key: 0,
         class: "eh-dirs",
         role: "tablist",
@@ -741,18 +747,18 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
         ))
       ], 8, Nt)) : e.createCommentVNode("v-if", !0),
       e.createCommentVNode(" 全局错误条：任一步骤的操作失败都在此可见（不只 step 1） "),
-      V.value ? (e.openBlock(), e.createElementBlock("div", St, [
+      S.value ? (e.openBlock(), e.createElementBlock("div", St, [
         e.createElementVNode(
           "span",
           null,
-          e.toDisplayString(V.value),
+          e.toDisplayString(S.value),
           1
           /* TEXT */
         ),
         e.createElementVNode("button", {
           class: "eh-notice-x",
           "aria-label": t.$t("关闭"),
-          onClick: a[0] || (a[0] = (n) => V.value = "")
+          onClick: a[0] || (a[0] = (n) => S.value = "")
         }, "×", 8, Bt)
       ])) : e.createCommentVNode("v-if", !0),
       i.value ? (e.openBlock(), e.createElementBlock("div", Dt, [
@@ -786,12 +792,12 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
             }, [
               e.createElementVNode(
                 "span",
-                Tt,
+                wt,
                 e.toDisplayString(n.done() ? "✓" : n.n),
                 1
                 /* TEXT */
               ),
-              e.createElementVNode("span", wt, [
+              e.createElementVNode("span", Tt, [
                 e.createTextVNode(
                   e.toDisplayString(n.label),
                   1
@@ -849,14 +855,14 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                   [
                     e.createElementVNode("button", {
                       class: "btn danger",
-                      disabled: N.value,
+                      disabled: V.value,
                       onClick: Ze
                     }, e.toDisplayString(t.$t("停止服务")), 9, Pt),
                     e.createElementVNode(
                       "button",
                       {
                         class: "btn",
-                        onClick: st
+                        onClick: ot
                       },
                       e.toDisplayString(te.value ? t.$t("已复制") : t.$t("复制地址")),
                       1
@@ -868,7 +874,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                 )) : (e.openBlock(), e.createElementBlock("button", {
                   key: 0,
                   class: "btn pri",
-                  disabled: N.value,
+                  disabled: V.value,
                   onClick: $e
                 }, e.toDisplayString(t.$t("启动校内服务")), 9, Ot))
               ]),
@@ -925,7 +931,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       class: "btn sm",
                       onClick: et
                     },
-                    e.toDisplayString(T.value ? t.$t("收起历史") : t.$t("历史班级码")),
+                    e.toDisplayString(L.value ? t.$t("收起历史") : t.$t("历史班级码")),
                     1
                     /* TEXT */
                   )
@@ -938,11 +944,11 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                   /* TEXT */
                 ),
                 e.createCommentVNode(" 换码前发出去的那枚不再蒸发：留痕 + 可一键恢复（用户实拍：刷新完就找不回来了） "),
-                T.value ? (e.openBlock(), e.createElementBlock("div", Gt, [
+                L.value ? (e.openBlock(), e.createElementBlock("div", Gt, [
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(ue.value, (n) => (e.openBlock(), e.createElementBlock("div", {
+                    e.renderList(me.value, (n) => (e.openBlock(), e.createElementBlock("div", {
                       key: n.code,
                       class: "eh-codehist-row"
                     }, [
@@ -956,7 +962,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       n.retiredAt ? (e.openBlock(), e.createElementBlock(
                         "span",
                         Jt,
-                        e.toDisplayString(t.$t("{t} 停用", { t: K(n.retiredAt) })),
+                        e.toDisplayString(t.$t("{t} 停用", { t: W(n.retiredAt) })),
                         1
                         /* TEXT */
                       )) : (e.openBlock(), e.createElementBlock(
@@ -989,7 +995,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     128
                     /* KEYED_FRAGMENT */
                   )),
-                  ue.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
+                  me.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
                     "div",
                     en,
                     e.toDisplayString(t.$t("还没有换过班级码。")),
@@ -1016,7 +1022,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
               "button",
               {
                 class: "btn pri",
-                onClick: ot
+                onClick: st
               },
               e.toDisplayString(t.$t("导入资料（PDF / DOCX / PPTX / TXT）")),
               1
@@ -1040,14 +1046,14 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
               e.createElementVNode("div", ln, [
                 e.createElementVNode(
                   "b",
-                  sn,
+                  on,
                   e.toDisplayString(n.name),
                   1
                   /* TEXT */
                 ),
                 n.status === "parsing" ? (e.openBlock(), e.createElementBlock(
                   "span",
-                  on,
+                  sn,
                   e.toDisplayString(t.$t("解析中…")),
                   1
                   /* TEXT */
@@ -1185,7 +1191,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       class: "btn pri sm",
                       disabled: ye.value.has(n.id) || !g(n.id).grade,
                       title: g(n.id).grade ? "" : t.$t("先选学段：这份文档没判出来，猜错了整份教案的难度都会偏"),
-                      onClick: (l) => we(n)
+                      onClick: (l) => Te(n)
                     }, e.toDisplayString(ye.value.has(n.id) ? t.$t("生成中…") : t.$t("生成教案")), 9, Vn)
                   ],
                   64
@@ -1258,7 +1264,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     ),
                     l.status === "generating" ? (e.openBlock(), e.createElementBlock(
                       "span",
-                      Tn,
+                      wn,
                       e.toDisplayString(t.$t("AI 生成中…")) + " · " + e.toDisplayString(Ve("lesson", l.id)),
                       1
                       /* TEXT */
@@ -1266,7 +1272,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       key: 1,
                       class: "chip bad",
                       title: l.error
-                    }, e.toDisplayString(t.$t("生成失败")), 9, wn)) : (e.openBlock(), e.createElementBlock(
+                    }, e.toDisplayString(t.$t("生成失败")), 9, Tn)) : (e.openBlock(), e.createElementBlock(
                       e.Fragment,
                       { key: 2 },
                       [
@@ -1279,16 +1285,16 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                           (e.openBlock(), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(Le, (s) => e.createElementVNode("button", {
-                              key: s.value,
+                            e.renderList(Le, (o) => e.createElementVNode("button", {
+                              key: o.value,
                               type: "button",
-                              class: e.normalizeClass(["eh-lang-btn", { active: (l.lang || "zh-CN") === s.value, ready: !!l.variants?.[s.value]?.plan }]),
+                              class: e.normalizeClass(["eh-lang-btn", { active: (l.lang || "zh-CN") === o.value, ready: !!l.variants?.[o.value]?.plan }]),
                               disabled: l.langStatus === "switching",
-                              onClick: (m) => dt(l, s.value)
+                              onClick: (m) => dt(l, o.value)
                             }, [
-                              l.langStatus === "switching" && l.langTarget === s.value ? (e.openBlock(), e.createElementBlock("i", Mn)) : e.createCommentVNode("v-if", !0),
+                              l.langStatus === "switching" && l.langTarget === o.value ? (e.openBlock(), e.createElementBlock("i", Mn)) : e.createCommentVNode("v-if", !0),
                               e.createTextVNode(
-                                " " + e.toDisplayString(s.label),
+                                " " + e.toDisplayString(o.label),
                                 1
                                 /* TEXT */
                               )
@@ -1334,13 +1340,13 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         )) : e.createCommentVNode("v-if", !0),
                         e.createElementVNode("button", {
                           class: "btn sm",
-                          onClick: (s) => mt(l.id)
-                        }, e.toDisplayString(S.value === l.id ? t.$t("收起") : t.$t("审核内容")), 9, Pn),
+                          onClick: (o) => mt(l.id)
+                        }, e.toDisplayString(D.value === l.id ? t.$t("收起") : t.$t("审核内容")), 9, Pn),
                         l.sections && l.sections.length ? (e.openBlock(), e.createElementBlock("button", {
                           key: 4,
                           class: "btn sm",
                           disabled: H(l),
-                          onClick: (s) => ht(l)
+                          onClick: (o) => ht(l)
                         }, e.toDisplayString(H(l) ? t.$t("数字人生成中…") : l.avatarStatus === "ready" ? t.$t("重生数字人") : t.$t("生成数字人讲解")), 9, In)) : e.createCommentVNode("v-if", !0),
                         H(l) ? (e.openBlock(), e.createElementBlock(
                           "span",
@@ -1352,16 +1358,16 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         e.createElementVNode("button", {
                           class: "btn sm",
                           disabled: I.value === l.id,
-                          onClick: (s) => gt(l)
+                          onClick: (o) => gt(l)
                         }, e.toDisplayString(I.value === l.id ? t.$t("音频生成中…") : t.$t("生成音频总结")), 9, qn),
                         e.createElementVNode("button", {
                           class: e.normalizeClass(["btn sm", l.status === "published" ? "" : "pri"]),
-                          onClick: (s) => pt(l, l.status !== "published")
+                          onClick: (o) => pt(l, l.status !== "published")
                         }, e.toDisplayString(l.status === "published" ? t.$t("结束授课") : t.$t("发布到学生端")), 11, Hn),
                         e.createElementVNode("button", {
                           class: "eh-del",
                           title: t.$t("删除这份教案"),
-                          onClick: (s) => Te(l)
+                          onClick: (o) => we(l)
                         }, [...a[9] || (a[9] = [
                           e.createElementVNode(
                             "i",
@@ -1387,7 +1393,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     state: "suspect",
                     "hide-retry": "",
                     title: t.$t("教案生成可能已超时"),
-                    onKeepWaiting: (s) => Se("lesson", l.id)
+                    onKeepWaiting: (o) => Se("lesson", l.id)
                   }), null, 16, ["title", "onKeepWaiting"])) : e.createCommentVNode("v-if", !0),
                   U("avatar", l.id) ? (e.openBlock(), e.createBlock(Me, e.mergeProps({
                     key: 1,
@@ -1396,7 +1402,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     state: "suspect",
                     "hide-retry": "",
                     title: t.$t("数字人讲解可能已超时"),
-                    onKeepWaiting: (s) => Se("avatar", l.id)
+                    onKeepWaiting: (o) => Se("avatar", l.id)
                   }), null, 16, ["title", "onKeepWaiting"])) : e.createCommentVNode("v-if", !0),
                   l.status === "failed" ? (e.openBlock(), e.createElementBlock("p", Rn, [
                     e.createTextVNode(
@@ -1406,15 +1412,15 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     ),
                     e.createElementVNode("button", {
                       class: "btn sm",
-                      onClick: (s) => ut(l)
+                      onClick: (o) => ut(l)
                     }, e.toDisplayString(t.$t("重试")), 9, Qn),
                     e.createElementVNode("button", {
                       class: "btn sm",
-                      onClick: (s) => Te(l)
+                      onClick: (o) => we(l)
                     }, e.toDisplayString(t.$t("删除")), 9, Xn)
                   ])) : e.createCommentVNode("v-if", !0),
                   e.createCommentVNode(" 审核展开：图文学习页（学生所见）+ 教案 + 小测 "),
-                  S.value === l.id && l.plan ? (e.openBlock(), e.createElementBlock("div", Gn, [
+                  D.value === l.id && l.plan ? (e.openBlock(), e.createElementBlock("div", Gn, [
                     l.lessonHtml ? (e.openBlock(), e.createElementBlock(
                       e.Fragment,
                       { key: 0 },
@@ -1477,19 +1483,19 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(l.illustrations, (s, m) => (e.openBlock(), e.createElementBlock("div", {
+                            e.renderList(l.illustrations, (o, m) => (e.openBlock(), e.createElementBlock("div", {
                               key: m,
                               class: "eh-ill"
                             }, [
-                              s.imageDataUrl ? (e.openBlock(), e.createElementBlock("img", {
+                              o.imageDataUrl ? (e.openBlock(), e.createElementBlock("img", {
                                 key: 0,
-                                src: s.imageDataUrl,
-                                alt: s.caption,
+                                src: o.imageDataUrl,
+                                alt: o.caption,
                                 class: "eh-ill-img"
                               }, null, 8, xn)) : (e.openBlock(), e.createElementBlock("div", {
                                 key: 1,
                                 class: "eh-ill-ph",
-                                title: s.prompt
+                                title: o.prompt
                               }, [
                                 a[10] || (a[10] = e.createElementVNode(
                                   "span",
@@ -1506,7 +1512,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                 e.createElementVNode(
                                   "span",
                                   ta,
-                                  e.toDisplayString(s.caption),
+                                  e.toDisplayString(o.caption),
                                   1
                                   /* TEXT */
                                 ),
@@ -1516,16 +1522,16 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                   onClick: (j) => ct(l, m)
                                 }, e.toDisplayString(P.value === l.id + ":" + m ? t.$t("生成中…") : t.$t("生成配图")), 9, na)
                               ], 8, ea)),
-                              s.imageDataUrl ? (e.openBlock(), e.createElementBlock("div", aa, [
+                              o.imageDataUrl ? (e.openBlock(), e.createElementBlock("div", aa, [
                                 e.createTextVNode(
-                                  e.toDisplayString(s.caption) + " ",
+                                  e.toDisplayString(o.caption) + " ",
                                   1
                                   /* TEXT */
                                 ),
-                                s.sourcePage ? (e.openBlock(), e.createElementBlock(
+                                o.sourcePage ? (e.openBlock(), e.createElementBlock(
                                   "span",
                                   la,
-                                  "P." + e.toDisplayString(s.sourcePage),
+                                  "P." + e.toDisplayString(o.sourcePage),
                                   1
                                   /* TEXT */
                                 )) : e.createCommentVNode("v-if", !0)
@@ -1550,24 +1556,24 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                           1
                           /* TEXT */
                         ),
-                        le.value === l.id ? (e.openBlock(), e.createElementBlock(
+                        oe.value === l.id ? (e.openBlock(), e.createElementBlock(
                           "div",
-                          sa,
+                          oa,
                           e.toDisplayString(t.$t("载入数字人预览…")),
                           1
                           /* TEXT */
-                        )) : (B[l.id] || []).length ? (e.openBlock(), e.createElementBlock("div", oa, [
+                        )) : (b[l.id] || []).length ? (e.openBlock(), e.createElementBlock("div", sa, [
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(B[l.id], (s) => (e.openBlock(), e.createElementBlock("div", {
-                              key: s.sec,
+                            e.renderList(b[l.id], (o) => (e.openBlock(), e.createElementBlock("div", {
+                              key: o.sec,
                               class: "eh-av"
                             }, [
                               e.createElementVNode(
                                 "div",
                                 ia,
-                                "🧑‍🏫 " + e.toDisplayString(s.title),
+                                "🧑‍🏫 " + e.toDisplayString(o.title),
                                 1
                                 /* TEXT */
                               ),
@@ -1576,7 +1582,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                 controls: "",
                                 preload: "metadata",
                                 playsinline: "",
-                                src: s.url
+                                src: o.url
                               }, null, 8, ra)
                             ]))),
                             128
@@ -1606,10 +1612,10 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(l.plan.objectives, (s, m) => (e.openBlock(), e.createElementBlock(
+                            e.renderList(l.plan.objectives, (o, m) => (e.openBlock(), e.createElementBlock(
                               "li",
                               { key: m },
-                              e.toDisplayString(s),
+                              e.toDisplayString(o),
                               1
                               /* TEXT */
                             ))),
@@ -1628,10 +1634,10 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(l.plan.keyPoints, (s, m) => (e.openBlock(), e.createElementBlock(
+                            e.renderList(l.plan.keyPoints, (o, m) => (e.openBlock(), e.createElementBlock(
                               "li",
                               { key: m },
-                              e.toDisplayString(s),
+                              e.toDisplayString(o),
                               1
                               /* TEXT */
                             ))),
@@ -1650,10 +1656,10 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(l.plan.difficulties, (s, m) => (e.openBlock(), e.createElementBlock(
+                            e.renderList(l.plan.difficulties, (o, m) => (e.openBlock(), e.createElementBlock(
                               "li",
                               { key: m },
-                              e.toDisplayString(s),
+                              e.toDisplayString(o),
                               1
                               /* TEXT */
                             ))),
@@ -1672,10 +1678,10 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(l.plan.boardNotes, (s, m) => (e.openBlock(), e.createElementBlock(
+                            e.renderList(l.plan.boardNotes, (o, m) => (e.openBlock(), e.createElementBlock(
                               "li",
                               { key: m },
-                              e.toDisplayString(s),
+                              e.toDisplayString(o),
                               1
                               /* TEXT */
                             ))),
@@ -1711,11 +1717,11 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                             (e.openBlock(!0), e.createElementBlock(
                               e.Fragment,
                               null,
-                              e.renderList(l.plan.schedule, (s, m) => (e.openBlock(), e.createElementBlock("tr", { key: m }, [
+                              e.renderList(l.plan.schedule, (o, m) => (e.openBlock(), e.createElementBlock("tr", { key: m }, [
                                 e.createElementVNode(
                                   "td",
                                   pa,
-                                  e.toDisplayString(s.minutes) + "′",
+                                  e.toDisplayString(o.minutes) + "′",
                                   1
                                   /* TEXT */
                                 ),
@@ -1723,7 +1729,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                   e.createElementVNode(
                                     "b",
                                     null,
-                                    e.toDisplayString(s.phase),
+                                    e.toDisplayString(o.phase),
                                     1
                                     /* TEXT */
                                   ),
@@ -1737,7 +1743,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                   e.createElementVNode(
                                     "span",
                                     ha,
-                                    e.toDisplayString(s.activity),
+                                    e.toDisplayString(o.activity),
                                     1
                                     /* TEXT */
                                   )
@@ -1758,21 +1764,21 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList(l.studentDigest, (s, m) => (e.openBlock(), e.createElementBlock("div", {
+                          e.renderList(l.studentDigest, (o, m) => (e.openBlock(), e.createElementBlock("div", {
                             key: m,
                             class: "eh-digest"
                           }, [
                             e.createElementVNode(
                               "b",
                               null,
-                              e.toDisplayString(s.sectionTitle),
+                              e.toDisplayString(o.sectionTitle),
                               1
                               /* TEXT */
                             ),
-                            s.sourcePages.length ? (e.openBlock(), e.createElementBlock(
+                            o.sourcePages.length ? (e.openBlock(), e.createElementBlock(
                               "span",
                               ga,
-                              "P." + e.toDisplayString(s.sourcePages.join(",")),
+                              "P." + e.toDisplayString(o.sourcePages.join(",")),
                               1
                               /* TEXT */
                             )) : e.createCommentVNode("v-if", !0),
@@ -1780,7 +1786,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                               (e.openBlock(!0), e.createElementBlock(
                                 e.Fragment,
                                 null,
-                                e.renderList(s.bullets, (j, Y) => (e.openBlock(), e.createElementBlock(
+                                e.renderList(o.bullets, (j, Y) => (e.openBlock(), e.createElementBlock(
                                   "li",
                                   { key: Y },
                                   e.toDisplayString(j),
@@ -1807,14 +1813,14 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       null,
-                      e.renderList(l.quiz, (s, m) => (e.openBlock(), e.createElementBlock("div", {
+                      e.renderList(l.quiz, (o, m) => (e.openBlock(), e.createElementBlock("div", {
                         key: m,
                         class: "eh-quiz"
                       }, [
                         e.createElementVNode(
                           "b",
                           null,
-                          e.toDisplayString(m + 1) + ". " + e.toDisplayString(s.q),
+                          e.toDisplayString(m + 1) + ". " + e.toDisplayString(o.q),
                           1
                           /* TEXT */
                         ),
@@ -1822,11 +1828,11 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(s.options, (j, Y) => (e.openBlock(), e.createElementBlock(
+                            e.renderList(o.options, (j, Y) => (e.openBlock(), e.createElementBlock(
                               "span",
                               {
                                 key: Y,
-                                class: e.normalizeClass(["eh-opt", Y === s.answer && "right"])
+                                class: e.normalizeClass(["eh-opt", Y === o.answer && "right"])
                               },
                               e.toDisplayString(j),
                               3
@@ -1838,14 +1844,14 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         ]),
                         e.createElementVNode("span", ka, [
                           e.createTextVNode(
-                            e.toDisplayString(t.$t("解析：")) + e.toDisplayString(s.explain) + " ",
+                            e.toDisplayString(t.$t("解析：")) + e.toDisplayString(o.explain) + " ",
                             1
                             /* TEXT */
                           ),
-                          s.sourcePage ? (e.openBlock(), e.createElementBlock(
+                          o.sourcePage ? (e.openBlock(), e.createElementBlock(
                             "span",
                             _a,
-                            "P." + e.toDisplayString(s.sourcePage),
+                            "P." + e.toDisplayString(o.sourcePage),
                             1
                             /* TEXT */
                           )) : e.createCommentVNode("v-if", !0)
@@ -1906,7 +1912,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
               e.createElementVNode(
                 "span",
                 Ba,
-                e.toDisplayString(C.value.n),
+                e.toDisplayString(w.value.n),
                 1
                 /* TEXT */
               ),
@@ -1922,7 +1928,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
               e.createElementVNode(
                 "span",
                 Ca,
-                e.toDisplayString(C.value.online),
+                e.toDisplayString(w.value.online),
                 1
                 /* TEXT */
               ),
@@ -1934,11 +1940,11 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", Ta, [
+            e.createElementVNode("div", wa, [
               e.createElementVNode(
                 "span",
-                wa,
-                e.toDisplayString(C.value.avgDone) + "%",
+                Ta,
+                e.toDisplayString(w.value.avgDone) + "%",
                 1
                 /* TEXT */
               ),
@@ -1954,9 +1960,9 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
               e.createElementVNode(
                 "span",
                 {
-                  class: e.normalizeClass(["v", z(C.value.avgScore)])
+                  class: e.normalizeClass(["v", K(w.value.avgScore)])
                 },
-                e.toDisplayString(C.value.avgScore == null ? "—" : C.value.avgScore + "%"),
+                e.toDisplayString(w.value.avgScore == null ? "—" : w.value.avgScore + "%"),
                 3
                 /* TEXT, CLASS */
               ),
@@ -2022,7 +2028,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       /* TEXT */
                     )) : e.createCommentVNode("v-if", !0),
                     e.createTextVNode(
-                      e.toDisplayString(K(n.lastSeenAt)),
+                      e.toDisplayString(W(n.lastSeenAt)),
                       1
                       /* TEXT */
                     )
@@ -2109,7 +2115,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     e.createElementVNode(
                       "b",
                       {
-                        class: e.normalizeClass(z(n.avgPct))
+                        class: e.normalizeClass(K(n.avgPct))
                       },
                       e.toDisplayString(n.avgPct == null ? "—" : n.avgPct + "%"),
                       3
@@ -2176,13 +2182,13 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                 role: "dialog",
                 "aria-modal": "true",
                 "data-native-browser-hide": "true",
-                onClick: e.withModifiers(re, ["self"])
+                onClick: e.withModifiers(ce, ["self"])
               }, [
                 e.createElementVNode("div", tl, [
                   e.createElementVNode("button", {
                     class: "ehs-x",
                     "aria-label": t.$t("关闭"),
-                    onClick: re
+                    onClick: ce
                   }, "✕", 8, nl),
                   e.createElementVNode("div", al, [
                     e.createElementVNode(
@@ -2198,14 +2204,14 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     e.createElementVNode("div", ll, [
                       e.createElementVNode(
                         "b",
-                        sl,
+                        ol,
                         e.toDisplayString(h.value.name),
                         1
                         /* TEXT */
                       ),
                       h.value.studentNo ? (e.openBlock(), e.createElementBlock(
                         "div",
-                        ol,
+                        sl,
                         e.toDisplayString(t.$t("学号")) + " " + e.toDisplayString(h.value.studentNo),
                         1
                         /* TEXT */
@@ -2213,7 +2219,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       e.createElementVNode(
                         "div",
                         il,
-                        e.toDisplayString(t.$t("最近活跃 {t}", { t: K(h.value.lastSeenAt) })),
+                        e.toDisplayString(t.$t("最近活跃 {t}", { t: W(h.value.lastSeenAt) })),
                         1
                         /* TEXT */
                       )
@@ -2272,7 +2278,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       e.createElementVNode(
                         "span",
                         {
-                          class: e.normalizeClass(["v", z(h.value.avgPct)])
+                          class: e.normalizeClass(["v", K(h.value.avgPct)])
                         },
                         e.toDisplayString(h.value.avgPct == null ? "—" : h.value.avgPct + "%"),
                         3
@@ -2329,7 +2335,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                   e.createElementVNode(
                                     "b",
                                     {
-                                      class: e.normalizeClass(z(n.pct ?? null))
+                                      class: e.normalizeClass(K(n.pct ?? null))
                                     },
                                     e.toDisplayString(n.score) + "/" + e.toDisplayString(n.total),
                                     3
@@ -2395,17 +2401,17 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       1
                       /* TEXT */
                     ),
-                    ie.value ? (e.openBlock(), e.createElementBlock(
+                    re.value ? (e.openBlock(), e.createElementBlock(
                       "div",
                       Dl,
                       e.toDisplayString(t.$t("加载中…")),
                       1
                       /* TEXT */
-                    )) : M.value.length ? (e.openBlock(), e.createElementBlock("ul", bl, [
+                    )) : z.value.length ? (e.openBlock(), e.createElementBlock("ul", bl, [
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(M.value, (n, l) => (e.openBlock(), e.createElementBlock(
+                        e.renderList(z.value, (n, l) => (e.openBlock(), e.createElementBlock(
                           "li",
                           {
                             key: l,
@@ -2430,7 +2436,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                 "b",
                                 {
                                   key: 0,
-                                  class: e.normalizeClass(z(Xe(n)))
+                                  class: e.normalizeClass(K(Xe(n)))
                                 },
                                 e.toDisplayString(n.score) + "/" + e.toDisplayString(n.total),
                                 3
@@ -2439,12 +2445,12 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                 key: 1,
                                 class: "ehs-tl-text",
                                 title: n.text
-                              }, e.toDisplayString(n.text), 9, Tl)) : e.createCommentVNode("v-if", !0)
+                              }, e.toDisplayString(n.text), 9, wl)) : e.createCommentVNode("v-if", !0)
                             ]),
                             e.createElementVNode(
                               "span",
-                              wl,
-                              e.toDisplayString(K(n.at)),
+                              Tl,
+                              e.toDisplayString(W(n.at)),
                               1
                               /* TEXT */
                             )
@@ -2523,7 +2529,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
               "button",
               {
                 class: "btn sm",
-                onClick: de
+                onClick: ue
               },
               e.toDisplayString(t.$t("刷新")),
               1
@@ -2534,7 +2540,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(D.value, (n) => (e.openBlock(), e.createElementBlock("div", {
+              e.renderList(C.value, (n) => (e.openBlock(), e.createElementBlock("div", {
                 key: n.id,
                 class: "eh-qa"
               }, [
@@ -2549,7 +2555,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                   e.createElementVNode(
                     "span",
                     Fl,
-                    e.toDisplayString(K(n.at)),
+                    e.toDisplayString(W(n.at)),
                     1
                     /* TEXT */
                   ),
@@ -2599,7 +2605,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
               128
               /* KEYED_FRAGMENT */
             )),
-            D.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
+            C.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
               "div",
               Ql,
               e.toDisplayString(t.$t("还没有学生提问。")),
@@ -2620,7 +2626,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
   for (const [f, ee] of r)
     k[f] = ee;
   return k;
-}, jl = /* @__PURE__ */ Gl(Xl, [["__scopeId", "data-v-e455fb62"]]);
+}, jl = /* @__PURE__ */ Gl(Xl, [["__scopeId", "data-v-d0174b14"]]);
 export {
   jl as default
 };

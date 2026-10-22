@@ -11,9 +11,10 @@ import { readJsonSafe, writeJsonAtomic } from '../../utils/atomicJson';
 import type { ReviewIncentiveRules } from './reviewIncentive';
 import { normalizeProviderName } from './excel';
 import type { ProviderTrackingRecord, FollowUpConfig } from './settlementSummary';
-import { DEFAULT_INVOICE_NAME_TEMPLATE, DEFAULT_FOLLOW_UP, parseRecipients, formatRecipients } from './settlementSummary';
+import { DEFAULT_FOLLOW_UP, parseRecipients, formatRecipients } from './settlementSummary';
 import { DEFAULT_MARKETING_RULES, type LeaderInfo, type MarketingRules, type ReturnTrackingRecord } from './marketingIncentive';
-import { t as i18nT } from '@totalclaw/i18n';
+import { t as i18nT, getLocale } from '@totalclaw/i18n';
+import { templateToken, VAR } from './templateTokens';
 
 export interface ProviderContact {
   provider: string;
@@ -118,29 +119,56 @@ export interface ServiceSettlementState {
   reminders: ReminderEvent[];
 }
 
-export const DEFAULT_MAIL_SUBJECT = '【{结算期}】{服务商} 服务费用结算明细';
-export const DEFAULT_MAIL_BODY = [
-  '{服务商} 您好：',
-  '',
-  '附件为 {结算期} 服务费用结算明细（含工单结算、各项激励与补扣子表），请查收核对。',
-  i18nT('如无异议，请按明细金额开具发票并回复本邮件（或通过企微发送发票附件），我们收到发票后将发起核销付款流程。'),
-  '',
-  '应付合计：{应付合计} 元',
-  '',
-  i18nT('谢谢！'),
-].join('\n');
+/**
+ * 邮件 / 催办默认模板。按调用时的界面语言求值（切换语言后新建的默认模板跟着变）。
+ * 模板变量 {服务商} {结算期} {应付合计} {发送日期}（或其英文 / 阿语写法）由 fillTemplate 替换，必须原样保留：
+ * 它们不是合法的 vue-i18n 占位符，所以译文 key 里用 ASCII 参数名，再把参数值映射回中文变量名。
+ */
+// 模板变量名随界面语言（{服务商} / {Provider} / {مزود_الخدمة}），fillTemplate 三种写法都认
+const templateVars = () => {
+  const loc = getLocale();
+  return { provider: templateToken(VAR.provider, loc), period: templateToken(VAR.period, loc), payable: templateToken(VAR.payable, loc), sentDate: templateToken(VAR.sentDate, loc) };
+};
 
-export const DEFAULT_NUDGE_SUBJECT = '【催办】{结算期} {服务商} 结算明细请尽快开票';
-export const DEFAULT_NUDGE_BODY = [
-  '{服务商} 您好：',
-  '',
-  i18nT('{结算期} 服务费用结算明细已于 {发送日期} 发送并确认送达，至今未收到贵司发票。'),
-  i18nT('请尽快按明细金额开具发票并回复本邮件（或通过企微发送发票附件），以便我们发起核销付款流程。'),
-  '',
-  '应付合计：{应付合计} 元',
-  '',
-  i18nT('谢谢！'),
-].join('\n');
+/** 发票命名默认模板：变量名与「发票」随界面语言（引擎三种写法都认） */
+export function defaultInvoiceNameTemplate(): string {
+  const loc = getLocale();
+  return `${templateToken(VAR.provider, loc)}_${templateToken(VAR.period, loc)}_${i18nT('发票')}${templateToken(VAR.seq, loc)}`;
+}
+
+export function defaultMailSubject(): string {
+  return i18nT('【{period}】{provider} 服务费用结算明细', templateVars());
+}
+
+export function defaultMailBody(): string {
+  return [
+    i18nT('{provider} 您好：', templateVars()),
+    '',
+    i18nT('附件为 {period} 服务费用结算明细（含工单结算、各项激励与补扣子表），请查收核对。', templateVars()),
+    i18nT('如无异议，请按明细金额开具发票并回复本邮件（或通过企微发送发票附件），我们收到发票后将发起核销付款流程。'),
+    '',
+    i18nT('应付合计：{payable} 元', templateVars()),
+    '',
+    i18nT('谢谢！'),
+  ].join('\n');
+}
+
+export function defaultNudgeSubject(): string {
+  return i18nT('【催办】{period} {provider} 结算明细请尽快开票', templateVars());
+}
+
+export function defaultNudgeBody(): string {
+  return [
+    i18nT('{provider} 您好：', templateVars()),
+    '',
+    i18nT('{period} 服务费用结算明细已于 {sentDate} 发送并确认送达，至今未收到贵司发票。', templateVars()),
+    i18nT('请尽快按明细金额开具发票并回复本邮件（或通过企微发送发票附件），以便我们发起核销付款流程。'),
+    '',
+    i18nT('应付合计：{payable} 元', templateVars()),
+    '',
+    i18nT('谢谢！'),
+  ].join('\n');
+}
 
 export function defaultState(): ServiceSettlementState {
   return {
@@ -148,11 +176,11 @@ export function defaultState(): ServiceSettlementState {
     providerDirectory: [],
     review: { paymentReminder: { enabled: true, day: 10, hour: 9 } },
     settlement: {
-      invoiceNameTemplate: DEFAULT_INVOICE_NAME_TEMPLATE,
-      mailSubjectTemplate: DEFAULT_MAIL_SUBJECT,
-      mailBodyTemplate: DEFAULT_MAIL_BODY,
-      nudgeSubjectTemplate: DEFAULT_NUDGE_SUBJECT,
-      nudgeBodyTemplate: DEFAULT_NUDGE_BODY,
+      invoiceNameTemplate: defaultInvoiceNameTemplate(),
+      mailSubjectTemplate: defaultMailSubject(),
+      mailBodyTemplate: defaultMailBody(),
+      nudgeSubjectTemplate: defaultNudgeSubject(),
+      nudgeBodyTemplate: defaultNudgeBody(),
       followUp: { ...DEFAULT_FOLLOW_UP },
       records: [],
       processedIntakeIds: [],

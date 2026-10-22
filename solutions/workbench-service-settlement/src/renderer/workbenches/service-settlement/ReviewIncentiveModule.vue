@@ -334,7 +334,7 @@ function confirmImport(): void {
   ];
   if (noRating.length) {
     steps.fail('import', i18nT('{files} 没有选评价 / 差评 / 满意度列。一个工作簿有多页时，请先在上面把工作表切到对应那一页（安装 / 售后 / 天猫）', {
-      files: noRating.map((t) => `${t.fileName}（${i18nT('工作表')}「${t.sheetName}」）`).join('、'),
+      files: noRating.map((t) => i18nT('{file}（工作表「{sheet}」）', { file: t.fileName, sheet: t.sheetName })).join('、'),
     }));
     return;
   }

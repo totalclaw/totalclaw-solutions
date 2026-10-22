@@ -1,12 +1,12 @@
 {
   "id": "workbench-flow-sla",
-  "version": "2.0.1",
-  "treeDigest": "cc583f148475a0c21caf144d4f9c4b769179ded2e3ee13dab0d603607426ce41",
+  "version": "2.0.2",
+  "treeDigest": "516c2f04e28c4b0b9bbdc3194fd1e589c18cc31fa3096d2f5915fdc3bec728c4",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 668,
-      "sha256": "bff8994c0300013c45565867b08a4f995f75f4bfb29b439c50ed3cf42e50b7c3"
+      "size": 1185,
+      "sha256": "cfe153f248cb8d9996b9f2c19c98ee41570b49dcc131aa7019b1343e33e12571"
     },
     {
       "path": "README.md",
@@ -20,8 +20,8 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 326354,
-      "sha256": "8b33dc1527deb946270fc9003243663eeb58c193d8a92eab41a12bf302ae5d01"
+      "size": 326934,
+      "sha256": "a95bb71688ea960015c06c734e703d071acbc3c744b0767f4af66aca91c71d07"
     },
     {
       "path": "dist/renderer.mjs",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2149,
-      "sha256": "831dee6a46f10a2b98836604d16e790c42cc8967f870cda2c5f181a97f03de8f"
+      "sha256": "95c31794109c511b8fe5a62ecb24433a53abee8a68b168cf7dad94192b558c14"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-flow-sla@2.0.2",
+      "treeDigest": "516c2f04e28c4b0b9bbdc3194fd1e589c18cc31fa3096d2f5915fdc3bec728c4",
+      "filesRef": "index/workbench-flow-sla/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-flow-sla@2.0.1",

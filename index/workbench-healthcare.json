@@ -1,12 +1,12 @@
 {
   "id": "workbench-healthcare",
-  "version": "2.0.0",
-  "treeDigest": "4e529c5bdc1a10d410149552eeb8b4e25daf52193f43f33d290f0a3702ed0ed1",
+  "version": "2.0.1",
+  "treeDigest": "e976b3217ac5a4f5d34a9d897917c21b7d8c63a314adcdaf991cd3d3489f9dc6",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 458,
-      "sha256": "41e12d6205fa9d35f47d2c83b353cfacceb1fec73bf9594b6d5d90e45c80f836"
+      "size": 744,
+      "sha256": "273cb8905bfd2a36ad293cedbd2fd25e4a7e64be039cd7a8d2ead8c84e4e14f8"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 13102,
-      "sha256": "a292477303fff464da3416edfd42818d15bc036cc13ccb8e0cd1b97d342aa25a"
+      "size": 13340,
+      "sha256": "5a0b2781baa2363e1ed93507eecf86971d9afbaadd662985d8945637d8b3ecbf"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 116578,
-      "sha256": "450c53cf6e1809de110f8f5a03ef45e3e1e44d3d44caf7f36759e31d6e8cf7ae"
+      "size": 116605,
+      "sha256": "1765725ed0385fa6402cc804488df116ab22ce773bfc898299a8e108d5b7f7e1"
     },
     {
       "path": "dist/style.css",
       "size": 15272,
-      "sha256": "9ec5733286407e412fee7708dc1a79d97e56ea9b2144df370be6b4a087ac06f5"
+      "sha256": "27800d213ab10db9884d96ea12c24fb84e0d8a659e6d50e615261cdc7569e54a"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 1954,
-      "sha256": "f46f768d5c7b0267f8375feb1142e5cb6e2d9c7a8b80894e1a637a72c4651b5f"
+      "sha256": "2bf3119d3b38eb0174f8e66daff1bf0f1039d3798747182c5ffa89c2d9bf13a4"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.1",
+      "ref": "workbench-healthcare@2.0.1",
+      "treeDigest": "e976b3217ac5a4f5d34a9d897917c21b7d8c63a314adcdaf991cd3d3489f9dc6",
+      "filesRef": "index/workbench-healthcare/2.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.0",
       "ref": "workbench-healthcare@2.0.0",

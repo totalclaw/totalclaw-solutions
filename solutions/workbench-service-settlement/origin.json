@@ -190,6 +190,14 @@
     {
       "path": "src/main/services/serviceSettlement/store.ts",
       "from": "main/services/serviceSettlement/store.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/templateTokens.ts",
+      "from": "main/services/serviceSettlement/templateTokens.ts"
+    },
+    {
+      "path": "src/main/services/serviceSettlement/templateTokens.test.ts",
+      "from": "main/services/serviceSettlement/templateTokens.test.ts"
     }
   ],
   "sdkFiles": [

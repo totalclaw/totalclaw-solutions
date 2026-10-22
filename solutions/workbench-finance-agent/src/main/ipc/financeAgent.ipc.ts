@@ -113,7 +113,7 @@ async function extractTextRaw(path: string): Promise<{ text: string; ocr: boolea
   return { text: doc.text || '', ocr, warning: doc.warning };
 }
 
-export function registerFinanceAgentHandlers(deps: WorkbenchIpcDeps): void {
+export function registerFinanceAgentHandlers(deps: WorkbenchIpcDeps): () => void {
   const logger = deps.logger;
   const win = (): BrowserWindow | null => deps.getMainWindow?.() ?? null;
   const broadcast = (type: 'state' | 'progress', payload?: unknown): void => {
@@ -1142,5 +1142,8 @@ export function registerFinanceAgentHandlers(deps: WorkbenchIpcDeps): void {
   // 上次打开过 API 接收的，启动时恢复
   const apiTimer = setTimeout(() => { void applyApiSetting().then(pushState).catch(() => {}); }, 3_000);
   (apiTimer as any).unref?.();
-  onAppWillQuit('finance-agent', () => { clearTimeout(apiTimer); void api.stop(); }, { once: true });
+  const stopBackground = () => { clearTimeout(apiTimer); void api.stop(); };
+  onAppWillQuit('finance-agent', stopBackground, { once: true });
+  // 卸载 / 停用时由方案入口 deactivate 调用（宿主只撤 IPC 通道，后台任务要自己停）
+  return stopBackground;
 }

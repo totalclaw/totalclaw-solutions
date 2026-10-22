@@ -658,15 +658,8 @@ type SpeechUtterance = {
 };
 
 const { locale } = useI18n();
-const previousWorkbenchLocale = locale.value;
-const previousDocumentDir = document.documentElement.dir;
-// lang 必须和 dir 同进同退：只改 dir 的话，屏幕阅读器会拿着 lang="zh-CN" 用中文语音
-// 去念阿拉伯语，字体回退和断词规则也按中文走 —— 看着没问题、辅助功能实际是坏的。
-const previousDocumentLang = document.documentElement.lang;
-locale.value = 'ar';
-document.documentElement.dir = 'rtl';
-document.documentElement.lang = 'ar';
 const router = useRouter();
+// 跟随 App 当前语言（设置里切换），不再强制切成阿拉伯语、也不改整个 App 的方向
 const isRtl = computed(() => locale.value === 'ar');
 
 const activeTab = ref<'practice' | 'lesson' | 'visual'>('practice');
@@ -957,12 +950,13 @@ async function sendTeacherMessage(): Promise<void> {
     const sessionId = await ensureTeacherSession();
     let reply = '';
     let streamError = '';
-    const assistantMessage: TeacherMessage = {
+    teacherMessages.value.push({
       id: `assistant-${Date.now()}`,
       role: 'assistant',
       content: '',
-    };
-    teacherMessages.value.push(assistantMessage);
+    });
+    // 必须改数组里的响应式版本：改 push 进去的原对象不触发界面更新（回复会等整段结束才一次性出现）
+    const assistantMessage = teacherMessages.value[teacherMessages.value.length - 1];
     removeTokenListener = api.onStreamToken((data: any) => {
       if (data?.sessionId === sessionId) {
         reply += String(data?.text || '');
@@ -1371,9 +1365,6 @@ onBeforeUnmount(() => {
   if (teacherMediaRecorder?.state === 'recording') teacherMediaRecorder.stop();
   stopTeacherMediaTracks();
   window.speechSynthesis?.cancel();
-  locale.value = previousWorkbenchLocale;
-  document.documentElement.dir = previousDocumentDir || (previousWorkbenchLocale === 'ar' ? 'rtl' : 'ltr');
-  document.documentElement.lang = previousDocumentLang || previousWorkbenchLocale || 'zh-CN';
 });
 </script>
 

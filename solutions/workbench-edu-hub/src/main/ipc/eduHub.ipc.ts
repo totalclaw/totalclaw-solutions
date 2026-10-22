@@ -149,7 +149,7 @@ function ensure(deps: IpcDeps): { store: EduHubStore; proc: EduHubProc } {
   return { store, proc };
 }
 
-export function registerEduHubHandlers(deps: IpcDeps): void {
+export function registerEduHubHandlers(deps: IpcDeps): () => void {
   ipcMain.handle(IPC_CHANNELS.WORKBENCH_EDU_HUB_STATUS, async () => ensure(deps).proc.status());
 
   ipcMain.handle(IPC_CHANNELS.WORKBENCH_EDU_HUB_START, async () => {
@@ -353,4 +353,9 @@ export function registerEduHubHandlers(deps: IpcDeps): void {
 
   // 学生受限提问记录（教师控制台）
   ipcMain.handle(IPC_CHANNELS.WORKBENCH_EDU_HUB_QUESTIONS, async () => ensure(deps).store.recentQuestions());
+  // 卸载 / 停用：停掉局域网学生服务、丢掉单例（重新安装后懒建）
+  return () => {
+    const p = proc; proc = null; store = null;
+    if (p) void p.stop();
+  };
 }

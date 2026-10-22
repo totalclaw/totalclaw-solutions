@@ -734,6 +734,13 @@ let eduDisposed = false;
 onMounted(async () => {
   // 授权查询与桥接无关：桥接没起来也要知道古兰经方向该不该露（否则合并后方向标签永远不出现）
   try { quranEnabled.value = await isSolutionEnabled('workbench-quran-teaching'); } catch { quranEnabled.value = false; }
+  // 古兰经方向的接口由 workbench-quran-teaching 方案注册：开通了还要确保装上（没装按需安装；用户卸载过就不露这个方向）
+  if (quranEnabled.value) {
+    try {
+      const prep = await (window as any).electronAPI?.solutionPkg?.prepare?.({ id: 'workbench-quran-teaching' });
+      if (prep && prep.ok === false) quranEnabled.value = false;
+    } catch { /* 安装服务不可用：按开通状态显示，与旧版一致 */ }
+  }
   if (eduDisposed) return;
   // 地址里带 direction=quran 但账号没开通：退回文档方向，不把一个点不开的空白页留给用户
   if (direction.value === 'quran' && !quranEnabled.value) direction.value = 'lesson';
@@ -1002,10 +1009,11 @@ async function genAvatar(l: EduHubLesson): Promise<void> {
 
 // 音频总结：把课程要点合成一段 mp3 口播（发布后学生端封面出现播放器）
 async function genAudio(l: EduHubLesson): Promise<void> {
+  beginAction();
   audioBusy.value = l.id;
   try {
     await api.genAudio({ id: l.id });
-    svcError.value = i18nT('音频总结已生成；发布后学生端可播放。');
+    notify(i18nT('音频总结已生成；发布后学生端可播放。'));
   } catch (e: any) { svcError.value = humanizeErrorMessage(e, i18nT('生成音频总结失败')); }
   finally { audioBusy.value = ''; }
 }

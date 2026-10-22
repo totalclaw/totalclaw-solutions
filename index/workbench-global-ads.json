@@ -1,12 +1,12 @@
 {
   "id": "workbench-global-ads",
-  "version": "2.0.0",
-  "treeDigest": "489f7b8af551018d5242d4687114be51fc17e86675cfa1592fe1bf98759304ed",
+  "version": "2.0.1",
+  "treeDigest": "68fd369590666879d881403f85246cf207a6086a0130fed0b391c44fbe335834",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 464,
-      "sha256": "1373d3e526ef3b795d8caddc445e3aa2bd63e7be8e4eb1b80d641f681d92caa8"
+      "size": 595,
+      "sha256": "1164b60c4972584a8335be8e343b6199eb730f48c2650541451102c0fd5fe325"
     },
     {
       "path": "README.md",
@@ -36,10 +36,21 @@
     {
       "path": "solution.json",
       "size": 1950,
-      "sha256": "6b580d9018c02774ecfeee9ffd7138e3047666e1d2941bba2a1f5bdfdb36c748"
+      "sha256": "baf16b9cfc8523444f0eccf2738a5d1aadfe14f47e22d755e4e74c8abbbd06ac"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.1",
+      "ref": "workbench-global-ads@2.0.1",
+      "treeDigest": "68fd369590666879d881403f85246cf207a6086a0130fed0b391c44fbe335834",
+      "filesRef": "index/workbench-global-ads/2.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.0",
       "ref": "workbench-global-ads@2.0.0",

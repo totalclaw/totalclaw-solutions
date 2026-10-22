@@ -1,12 +1,12 @@
 {
   "id": "rd-workflow",
-  "version": "2.0.0",
-  "treeDigest": "2b20a848dcd9d24e777913308fff0fe0d78bff22192e92d5d5687ba3ee98492c",
+  "version": "2.0.1",
+  "treeDigest": "78320fc8b5bddc2a0a22c3d9d7c0bd21cb0d5038c0386a160f801c1a71a59095",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 446,
-      "sha256": "6f2bbc72bb05b2025c72394729859c6379aa2c97909311bd964e6ff343152303"
+      "size": 1183,
+      "sha256": "7d6d13484bc9c59ce16d46cdb6ecba5ebecf44dc20a59402e2df5812cb78c0e7"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 4780,
-      "sha256": "7c3eca0e66c5264016190c632dda82e4d1bd97072a49f66a6859ab10b185f67f"
+      "size": 5007,
+      "sha256": "34c50c027e4ce9866fc167f439285b0b4488e0c67b868799c9c2d176764bf18a"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 57553,
-      "sha256": "96918be8d0e8e41f5ca5234b263bc5b956c8ec4f3075d8275e629c9a5ab6a8a6"
+      "size": 58525,
+      "sha256": "0f584dcba9a60efa2cb91a7660ca82165d8d2eba360d4853907ec15265be35c6"
     },
     {
       "path": "dist/style.css",
       "size": 25469,
-      "sha256": "eeb270665d10cbb908125b0926a8a153d13182125b306577b16b83fa6ade11b5"
+      "sha256": "d82e0155ebe38a026305877a4f4facf74c07b980535c9291fc6c707aa848de20"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2066,
-      "sha256": "5503737a65dc2c8e0df5ad2646ce8ab3bdefb5b26b285bbcffe12132e83539eb"
+      "sha256": "ecb6bec7a3607389654ee672656503b16aaa4ef3e58ad29e73e53e97c0193c02"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.1",
+      "ref": "rd-workflow@2.0.1",
+      "treeDigest": "78320fc8b5bddc2a0a22c3d9d7c0bd21cb0d5038c0386a160f801c1a71a59095",
+      "filesRef": "index/rd-workflow/2.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.0",
       "ref": "rd-workflow@2.0.0",

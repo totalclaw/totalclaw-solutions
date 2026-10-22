@@ -1,12 +1,12 @@
 {
   "id": "workbench-campus-ai",
-  "version": "2.0.1",
-  "treeDigest": "80c52361050b3a82d20fbf7e4c119d864e9a23b22f1145ea3edbad3086180f94",
+  "version": "2.0.2",
+  "treeDigest": "8ab1f0be0475c2a0eef0ab1787c064cfb20bd792ee93d91e6146babd4d691290",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 667,
-      "sha256": "31d8cc2750c25870cd06f5d32ba6b0840a6182d75529a046a3c3253dc1dfb580"
+      "size": 1049,
+      "sha256": "13aed92693964a99666a6e1eecb8b3adc878487f3f6bb5bed451330607e0574f"
     },
     {
       "path": "README.md",
@@ -20,8 +20,8 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 227863,
-      "sha256": "36ccd2e109e30a8b97258ed6ace65f70b81f305701995596207928c82f12339f"
+      "size": 228156,
+      "sha256": "aca41996fa3576015217d186021c53227fc456cb42ab44551d1c0d94a1d94cba"
     },
     {
       "path": "dist/renderer.mjs",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2388,
-      "sha256": "a34779955f1c24890b0edebc367ce793700857a3028e1a4d052e0a3b587538da"
+      "sha256": "020914613ef5bddbf778a23d071224029922a4434f0ca957f6953adc04c332e8"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-campus-ai@2.0.2",
+      "treeDigest": "8ab1f0be0475c2a0eef0ab1787c064cfb20bd792ee93d91e6146babd4d691290",
+      "filesRef": "index/workbench-campus-ai/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-campus-ai@2.0.1",

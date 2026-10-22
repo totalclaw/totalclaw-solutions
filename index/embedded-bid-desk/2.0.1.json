@@ -1,0 +1,47 @@
+{
+  "id": "embedded-bid-desk",
+  "version": "2.0.1",
+  "treeDigest": "4bf4001f763701ef77f537895cb4bf63063395ece763b9fcca821d33c9eef888",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 1062,
+      "sha256": "93e07b0decba0d8bca50adaf7b7f993b15b8eef45051ccc1ba51b4eaf485657f"
+    },
+    {
+      "path": "README.md",
+      "size": 721,
+      "sha256": "025425c2d208fd807fd6539704e07200d0799d6748953bdcf8fdd727621cf5ec"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 901,
+      "sha256": "cfd06345dffc6e110f5a54034b622440a0c7923425c1b6715cd069bc19c8ce87"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 36011,
+      "sha256": "a597dcf92d4761edf1dd08377017e202ca62b265dc4424127fdb0540dc82fd34"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 148521,
+      "sha256": "3ca81c03eedf3f2496308319c7a5fcaa673f49d36c49a043b58ff5b28fe63d0f"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 30585,
+      "sha256": "a1ad9d475f99b3a2e728c09072a4b9305f99966877e193a2140bdb68cac91543"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 1777,
+      "sha256": "83ee3d2b384e7c37097135715f8ea9ed29c9cd41c764292a921eaf6aaf0e319c"
+    }
+  ]
+}

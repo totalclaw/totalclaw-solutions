@@ -737,7 +737,7 @@ async function applyRulesDraft(): Promise<void> {
   for (const key of ['managerBase', 'qualifier', 'rebate']) {
     if (patch[key]) patch[key] = { ...(previous as any)[key], ...patch[key] };
   }
-  const next = { ...previous, ...patch, source: i18nT('{p0}；已核对补充：{p1}（{p2}）', { p0: previous.source || '原有设置', p1: draft.source, p2: draft.extracted.join('、') }) };
+  const next = { ...previous, ...patch, source: i18nT('{p0}；已核对补充：{p1}（{p2}）', { p0: previous.source || i18nT('原有设置'), p1: draft.source, p2: draft.extracted.join('、') }) };
   try { await api().statePatch({ marketing: { rules: next, rulesReviewed: true, reviewedRevision: rulesReviewRevision.value } }); }
   catch (e) { notif.error(errorMessage(e)); return; }
   if (confirmationSeq !== rulesLoadSeq) return;
@@ -750,7 +750,7 @@ async function applyRulesDraft(): Promise<void> {
 }
 async function confirmManualRules(): Promise<void> {
   const confirmationSeq = rulesLoadSeq;
-  const next = { ...rulesPayload(), source: i18nT('手工核对：{p0}', { p0: rulesPdfs.value.map(baseName).join('、') || '当前设置' }) };
+  const next = { ...rulesPayload(), source: i18nT('手工核对：{p0}', { p0: rulesPdfs.value.map(baseName).join('、') || i18nT('当前设置') }) };
   try { await api().statePatch({ marketing: { rules: next, rulesReviewed: true, reviewedRevision: rulesReviewRevision.value } }); }
   catch (e) { notif.error(errorMessage(e)); return; }
   if (confirmationSeq !== rulesLoadSeq) return;
@@ -758,7 +758,7 @@ async function confirmManualRules(): Promise<void> {
   rulesLoadSeq += 1;
   rulesDraft.value = null;
   rulesError.value = '';
-  rules.source = i18nT('手工核对：{p0}', { p0: rulesPdfs.value.map(baseName).join('、') || '当前设置' });
+  rules.source = i18nT('手工核对：{p0}', { p0: rulesPdfs.value.map(baseName).join('、') || i18nT('当前设置') });
   rulesNote.value = i18nT('已确认使用下方手工核对的全部规则，请重新计算。');
   rulesNoteKind.value = 'warn';
   rulesWarn.value = '';

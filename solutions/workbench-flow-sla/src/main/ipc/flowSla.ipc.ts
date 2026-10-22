@@ -66,7 +66,7 @@ function runCompute(data: { flows: FlowRow[]; nodes: NodeRow[]; roster: RosterRo
   return result;
 }
 
-export function registerFlowSlaHandlers(deps: WorkbenchIpcDeps): void {
+export function registerFlowSlaHandlers(deps: WorkbenchIpcDeps): () => void {
   const logger = deps.logger;
   const win = (): BrowserWindow | null => deps.getMainWindow?.() ?? null;
   const broadcast = (event: { type: string; payload?: unknown }): void => { try { win()?.webContents.send(IPC_CHANNELS.WORKBENCH_FS_EVENT, event); } catch { /* 窗口已关 */ } };
@@ -109,7 +109,8 @@ export function registerFlowSlaHandlers(deps: WorkbenchIpcDeps): void {
     logger: { info: (m, c) => logger?.info?.('flow-sla', m, c as any), warn: (m, c) => logger?.warn?.('flow-sla', m, c as any) },
   });
   proc.start();
-  onAppWillQuit('flow-sla', () => proc?.stop(), { once: true });
+  const stopBackground = () => proc?.stop();
+  onAppWillQuit('flow-sla', stopBackground, { once: true });
 
   // ── 计算 ──
   const compute = (): Computed => {
@@ -734,4 +735,6 @@ export function registerFlowSlaHandlers(deps: WorkbenchIpcDeps): void {
       throw new Error(userFacingError(error));
     }
   });
+  // 卸载 / 停用时由方案入口 deactivate 调用（宿主只撤 IPC 通道，后台任务要自己停）
+  return stopBackground;
 }

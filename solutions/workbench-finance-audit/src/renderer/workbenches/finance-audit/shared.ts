@@ -172,8 +172,16 @@ export function thresholdUnit(it: ThresholdItem, currency: string): string {
   if (!it.amount) return '';
   return !currency || currency === 'CNY' ? i18nT('元') : currency;
 }
-/** 「依据：月结关账判断框架 · 类型一：试算表不平衡」 */
+/** 「依据：月结关账判断框架 · 类型一：试算表不平衡」；章节原文按界面语言查词典（中文界面原样） */
 export function thresholdBasisText(it: ThresholdItem): string {
   const name = it.basis ? i18nT('依据：{p0}', { p0: i18nT(it.basis) }) : '';
-  return [name, it.section].filter(Boolean).join(' · ');
+  return [name, it.section ? i18nT(it.section) : ''].filter(Boolean).join(' · ');
+}
+/** 阈值原文说明（thresholds/*.json 的 label）：英 / 阿界面显示词典译文，中文界面原样 */
+export function thresholdOriginalText(it: ThresholdItem): string {
+  return it.original ? i18nT(it.original) : '';
+}
+/** 阈值名：有界面名称用界面名称，没有就用原文说明（同样按界面语言翻译） */
+export function thresholdNameText(it: ThresholdItem): string {
+  return it.label ? i18nT(it.label) : thresholdOriginalText(it);
 }

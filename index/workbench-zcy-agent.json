@@ -1,12 +1,12 @@
 {
   "id": "workbench-zcy-agent",
-  "version": "2.0.0",
-  "treeDigest": "8f0b4000d0fbc0fae59ca1bfeb978c951b9243511241cdb06a111428a7d6b859",
+  "version": "2.0.1",
+  "treeDigest": "94686730915c62f7ac5ed7e5f46ce9beb327a706d23415aee8f27106f17d4441",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 449,
-      "sha256": "1b3d26115d836c6fb720571b54217d82ba98f8c8f4d6b4aebeeb7a97e0d67509"
+      "size": 645,
+      "sha256": "18490d5ba9aefc9035876c8299ee9ef5d56d9df1d86b3c24e384141fe9b8a44d"
     },
     {
       "path": "README.md",
@@ -20,8 +20,8 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 83817,
-      "sha256": "833a1c5b418163cf2dca2097befb15a877c6d79ff6b5dac7961039487a0ef7dd"
+      "size": 84067,
+      "sha256": "6cf339c476a195a361de1a9920724b59e358b846e053bf495518cef46a0849c2"
     },
     {
       "path": "dist/renderer.mjs",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2233,
-      "sha256": "f3cadc3431426dfc2b221e9ce8486038370b789cdec66c4b274c89f5b1419647"
+      "sha256": "3c887074b6927732e81a989082fa2bd83ca3d2008a68cda23ab8eb7490c17428"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.1",
+      "ref": "workbench-zcy-agent@2.0.1",
+      "treeDigest": "94686730915c62f7ac5ed7e5f46ce9beb327a706d23415aee8f27106f17d4441",
+      "filesRef": "index/workbench-zcy-agent/2.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.0.0",
       "ref": "workbench-zcy-agent@2.0.0",

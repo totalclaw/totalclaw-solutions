@@ -30,6 +30,7 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
+  deactivate: () => deactivate,
   hostApi: () => hostApi,
   registerFunction: () => registerFunction
 });
@@ -958,7 +959,7 @@ async function renderShortVideo(pd, input, registry, onStep) {
     onStep((0, import_i18n3.t)("\u70E7\u5F55\u5B57\u5E55"));
     const fonts = (0, import_media.prepareSubtitleFonts)(input.workDir);
     const assFile = (0, import_node_path2.join)(input.workDir, "sub.ass");
-    const { writeFileSync: writeFileSync3 } = await import("node:fs");
+    const { writeFileSync: writeFileSync3 } = await Promise.resolve().then(() => __toESM(require("node:fs")));
     writeFileSync3(assFile, (0, import_subtitles.buildAss)(cues, "zh", { width: import_media.OUT_W, height: import_media.OUT_H, fontName: fonts.nameFor.zh, title: input.title || void 0, durationSec: total }));
     const subbed = (0, import_node_path2.join)(input.workDir, "subbed.mp4");
     await (0, import_media.burnAss)(tools, joined, assFile, fonts.dir, subbed, registry);
@@ -1022,7 +1023,7 @@ var AVATAR_TOPIC_LABEL = () => ({
 });
 var PLATFORM_PARAM = { douyin: "douyin", kuaishou: "kuaishou", xiaohongshu: "xiaohongshu", wxchannels: "wxchannels" };
 var PLATFORM_LABEL = () => ({ douyin: (0, import_i18n4.t)("\u6296\u97F3"), kuaishou: (0, import_i18n4.t)("\u5FEB\u624B"), xiaohongshu: (0, import_i18n4.t)("\u5C0F\u7EA2\u4E66"), wxchannels: (0, import_i18n4.t)("\u89C6\u9891\u53F7") });
-var platformNames = (ids) => ids.map((x) => PLATFORM_LABEL()[x] || x).join("\u3001");
+var platformNames = (ids) => ids.map((x) => PLATFORM_LABEL()[x] || x).join((0, import_i18n4.t)("\u3001"));
 function requireFound(v, what) {
   if (v == null) throw new Error((0, import_i18n4.t)("{p0}\u4E0D\u5B58\u5728\u6216\u5DF2\u5220\u9664", { p0: what }));
   return v;
@@ -1127,7 +1128,7 @@ function registerBizAutomationHandlers(deps) {
     }
   };
   const sendMail = async (input) => {
-    const { sendCaseMail } = await import("host:apps/desktop-shell/src/main/services/caseMailSender.ts");
+    const { sendCaseMail } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/caseMailSender.ts"), 1));
     const relay = deps.serviceAuth ? { send: (i) => deps.serviceAuth.relaySendMail(i) } : null;
     return sendCaseMail(deps.readEmailCredentials?.() ?? {}, input, relay);
   };
@@ -1138,7 +1139,7 @@ function registerBizAutomationHandlers(deps) {
   const pushOutlets = async (title, body) => {
     const settings = deps.cronNotifyStore?.get();
     if (!settings || !Object.values(settings.outlets || {}).some(Boolean)) throw new Error((0, import_i18n4.t)("\u8FD8\u6CA1\u6709\u914D\u7F6E\u63A8\u9001\u6E20\u9053\uFF1A\u8BF7\u5230\u300C\u8BBE\u7F6E \u2192 \u901A\u77E5\u4E0E\u63A8\u9001\u300D\u586B\u5199\u4F01\u4E1A\u5FAE\u4FE1 / \u9489\u9489\u673A\u5668\u4EBA\u6216\u90AE\u7BB1"));
-    const { notifyCronResult } = await import("host:apps/desktop-shell/src/main/services/cronResultNotifier.ts");
+    const { notifyCronResult } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/cronResultNotifier.ts"), 1));
     const jobId = "biz-automation";
     const outcomes = await notifyCronResult(
       { outlets: settings.outlets, enabledJobs: { [jobId]: true } },
@@ -1199,10 +1200,10 @@ function registerBizAutomationHandlers(deps) {
     const text = [...v.scenes.map((s) => s.line), ...Object.values(v.copies).flatMap((c) => [c?.title, c?.caption])].join("\n");
     const w = [];
     const banned = bannedHits(text);
-    if (banned.length) w.push((0, import_i18n4.t)("\u542B\u5E7F\u544A\u6CD5\u6781\u9650\u8BCD\uFF1A{p0}", { p0: banned.join("\u3001") }));
+    if (banned.length) w.push((0, import_i18n4.t)("\u542B\u5E7F\u544A\u6CD5\u6781\u9650\u8BCD\uFF1A{p0}", { p0: banned.join((0, import_i18n4.t)("\u3001")) }));
     const prices = v.garmentIds.map((id) => garment(id)?.price || 0).filter(Boolean);
     const stray = strayPrices(text, v.brief, prices);
-    if (stray.length) w.push((0, import_i18n4.t)("\u51FA\u73B0\u6D3B\u52A8\u4FE1\u606F\u91CC\u6CA1\u6709\u7684\u4EF7\u683C / \u6298\u6263\uFF1A{p0}", { p0: stray.join("\u3001") }));
+    if (stray.length) w.push((0, import_i18n4.t)("\u51FA\u73B0\u6D3B\u52A8\u4FE1\u606F\u91CC\u6CA1\u6709\u7684\u4EF7\u683C / \u6298\u6263\uFF1A{p0}", { p0: stray.join((0, import_i18n4.t)("\u3001")) }));
     return w;
   };
   const createVideo = (p) => {
@@ -1315,7 +1316,7 @@ ${(first.topics || []).map((t) => `#${t}`).join(" ")}`.trim() : name
     const ph = placeholders(script);
     if (ph.length) w.push((0, import_i18n4.t)("\u8FD8\u6709 {n} \u5904\u3010\u5F85\u8865\u5145\u3011\uFF0C\u8865\u5B8C\u624D\u80FD\u6210\u7247", { n: ph.length }));
     const banned = bannedHits(script);
-    if (banned.length) w.push((0, import_i18n4.t)("\u542B\u5E7F\u544A\u6CD5\u6781\u9650\u8BCD\uFF1A{p0}", { p0: banned.join("\u3001") }));
+    if (banned.length) w.push((0, import_i18n4.t)("\u542B\u5E7F\u544A\u6CD5\u6781\u9650\u8BCD\uFF1A{p0}", { p0: banned.join((0, import_i18n4.t)("\u3001")) }));
     return w;
   };
   const downloadTo = async (url, dest) => {
@@ -1526,7 +1527,7 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? "#f4f4f4" : "#fff"}"><td s
   };
   const listingWarnings = (l) => {
     const banned = bannedHits([l.title, ...l.sellingPoints, l.detail].join("\n"));
-    return banned.length ? [(0, import_i18n4.t)("\u542B\u5E7F\u544A\u6CD5\u6781\u9650\u8BCD\uFF1A{p0}", { p0: banned.join("\u3001") })] : [];
+    return banned.length ? [(0, import_i18n4.t)("\u542B\u5E7F\u544A\u6CD5\u6781\u9650\u8BCD\uFF1A{p0}", { p0: banned.join((0, import_i18n4.t)("\u3001")) })] : [];
   };
   const evaluate = () => {
     const svc = (0, import_apparelStore.apparelService)();
@@ -1564,7 +1565,7 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? "#f4f4f4" : "#fff"}"><td s
         s.imports.unshift(imp2);
         s.imports = s.imports.slice(0, 50);
       });
-      log("finance", (0, import_i18n4.t)("\u540C\u6B65\u5E93\u5B58\uFF1A{p0}\uFF0C\u66F4\u65B0 {n} \u6B3E{p1}", { p0: table.fileName, n: updates.length, p1: unmatched.length ? (0, import_i18n4.t)("\uFF0C{m} \u4E2A\u8D27\u53F7\u5728\u5546\u54C1\u5E93\u91CC\u627E\u4E0D\u5230\uFF1A{p2}", { m: unmatched.length, p2: unmatched.slice(0, 5).join("\u3001") }) : "" }));
+      log("finance", (0, import_i18n4.t)("\u540C\u6B65\u5E93\u5B58\uFF1A{p0}\uFF0C\u66F4\u65B0 {n} \u6B3E{p1}", { p0: table.fileName, n: updates.length, p1: unmatched.length ? (0, import_i18n4.t)("\uFF0C{m} \u4E2A\u8D27\u53F7\u5728\u5546\u54C1\u5E93\u91CC\u627E\u4E0D\u5230\uFF1A{p2}", { m: unmatched.length, p2: unmatched.slice(0, 5).join((0, import_i18n4.t)("\u3001")) }) : "" }));
       evaluate();
       pushState();
       return { ...imp2, unmatched };
@@ -1660,12 +1661,12 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? "#f4f4f4" : "#fff"}"><td s
       (0, import_i18n4.t)("\u6BDB\u5229 {p0} \u5143\uFF08\u6BDB\u5229\u7387 {p1}\uFF0C\u6210\u672C\u8986\u76D6 {p2}\uFF09\uFF5C\u8D39\u7528 {p3}\uFF5C\u51C0\u5229\u6DA6 {p4}", { p0: m.grossProfit, p1: pct(m.grossMargin), p2: pct(m.costCoverage), p3: m.expenses, p4: m.netProfit })
     ];
     if (r.staleNote) lines.unshift(`\u26A0 ${r.staleNote}`);
-    if (m.items.length) lines.push((0, import_i18n4.t)("\u7545\u9500\u524D 5\uFF1A{p0}", { p0: m.items.slice(0, 5).map((x) => `${x.label} ${x.qty}${(0, import_i18n4.t)("\u4EF6")} / ${x.amount}`).join("\u3001") }));
+    if (m.items.length) lines.push((0, import_i18n4.t)("\u7545\u9500\u524D 5\uFF1A{p0}", { p0: m.items.slice(0, 5).map((x) => `${x.label} ${x.qty}${(0, import_i18n4.t)("\u4EF6")} / ${x.amount}`).join((0, import_i18n4.t)("\u3001")) }));
     if (m.turnoverDays != null) lines.push((0, import_i18n4.t)("\u5E93\u5B58\u91D1\u989D\u7EA6 {p0} \u5143\uFF0C\u5468\u8F6C\u7EA6 {p1} \u5929", { p0: m.inventoryValue, p1: m.turnoverDays }));
     const warn = store.read().ruleHits.filter((h) => h.rule === "soldout" || h.rule === "broken_size").slice(0, 5);
     if (warn.length) lines.push((0, import_i18n4.t)("\u5E93\u5B58\u9884\u8B66\uFF1A{p0}", { p0: warn.map((h) => `${garment(h.garmentId)?.name || ""}\uFF08${h.detail}\uFF09`).join("\uFF1B") }));
     if (r.commentary) lines.push("", r.commentary);
-    if (r.unverified.length) lines.push("", (0, import_i18n4.t)("\u26A0 \u89E3\u8BFB\u4E2D\u8FD9\u4E9B\u6570\u5B57\u672A\u80FD\u5728\u6570\u636E\u4E2D\u6838\u5BF9\u5230\uFF1A{p0}", { p0: r.unverified.join("\u3001") }));
+    if (r.unverified.length) lines.push("", (0, import_i18n4.t)("\u26A0 \u89E3\u8BFB\u4E2D\u8FD9\u4E9B\u6570\u5B57\u672A\u80FD\u5728\u6570\u636E\u4E2D\u6838\u5BF9\u5230\uFF1A{p0}", { p0: r.unverified.join((0, import_i18n4.t)("\u3001")) }));
     return lines.join("\n");
   };
   const reportHtml = (r) => {
@@ -1691,7 +1692,7 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
 <h2>${esc((0, import_i18n4.t)("\u54C1\u7C7B"))}</h2>${table([(0, import_i18n4.t)("\u54C1\u7C7B"), (0, import_i18n4.t)("\u91D1\u989D"), (0, import_i18n4.t)("\u5360\u6BD4")], m.byCategory.map((x) => [x.label, x.value, pct(x.share || 0)]))}
 <h2>${esc((0, import_i18n4.t)("\u6B3E\u5F0F\u6392\u884C"))}</h2>${table([(0, import_i18n4.t)("\u5546\u54C1"), (0, import_i18n4.t)("\u9500\u91CF"), (0, import_i18n4.t)("\u91D1\u989D"), (0, import_i18n4.t)("\u6BDB\u5229"), (0, import_i18n4.t)("\u552E\u7F44\u7387")], m.items.slice(0, 20).map((x) => [x.label, x.qty, x.amount, x.grossProfit ?? "\u2014", x.sellThrough == null ? "\u2014" : pct(x.sellThrough)]))}
 <h2>${esc((0, import_i18n4.t)("\u6EDE\u9500\u6E05\u5355\uFF08\u6709\u5E93\u5B58\u3001\u672C\u671F\u5356\u51FA\u4E0D\u8D85\u8FC7 1 \u4EF6\uFF09"))}</h2>${m.slowMovers.length ? table([(0, import_i18n4.t)("\u5546\u54C1"), (0, import_i18n4.t)("\u5E93\u5B58"), (0, import_i18n4.t)("\u672C\u671F\u9500\u91CF")], m.slowMovers.map((x) => [x.label, x.stock, x.qty])) : `<p>${esc((0, import_i18n4.t)("\u65E0"))}</p>`}
-<h2>${esc((0, import_i18n4.t)("\u7ECF\u8425\u89E3\u8BFB"))}</h2><pre>${esc(r.commentary)}</pre>${r.unverified.length ? `<p class="warn">${esc((0, import_i18n4.t)("\u672A\u80FD\u6838\u5BF9\u7684\u6570\u5B57\uFF1A{p0}", { p0: r.unverified.join("\u3001") }))}</p>` : ""}`;
+<h2>${esc((0, import_i18n4.t)("\u7ECF\u8425\u89E3\u8BFB"))}</h2><pre>${esc(r.commentary)}</pre>${r.unverified.length ? `<p class="warn">${esc((0, import_i18n4.t)("\u672A\u80FD\u6838\u5BF9\u7684\u6570\u5B57\uFF1A{p0}", { p0: r.unverified.join((0, import_i18n4.t)("\u3001")) }))}</p>` : ""}`;
   };
   let ticking = false;
   const tick = async () => {
@@ -1817,7 +1818,7 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
           const picks = m.topItems.map((x) => garments().find((g) => g.name === x.label || g.sku === x.key)).filter(Boolean).slice(0, 3);
           const ids = picks.length ? picks.map((g) => g.id) : garments().slice(0, 3).map((g) => g.id);
           if (!ids.length) throw new Error((0, import_i18n4.t)("\u5546\u54C1\u5E93\u662F\u7A7A\u7684"));
-          const v = createVideo({ type: "new_arrival", garmentIds: ids, brief: (0, import_i18n4.t)("\u672C\u5468\u4E3B\u63A8\uFF1A{p0}\uFF08\u6309\u4E0A\u5468\u9500\u91CF\uFF09", { p0: ids.map((id) => garment(id).name).join("\u3001") }), name: (0, import_i18n4.t)("\u672C\u5468\u4E3B\u63A8 {p0}", { p0: today }) });
+          const v = createVideo({ type: "new_arrival", garmentIds: ids, brief: (0, import_i18n4.t)("\u672C\u5468\u4E3B\u63A8\uFF1A{p0}\uFF08\u6309\u4E0A\u5468\u9500\u91CF\uFF09", { p0: ids.map((id) => garment(id).name).join((0, import_i18n4.t)("\u3001")) }), name: (0, import_i18n4.t)("\u672C\u5468\u4E3B\u63A8 {p0}", { p0: today }) });
           await scriptVideo(v.id);
           log("schedule", (0, import_i18n4.t)("\u5DF2\u751F\u6210\u672C\u5468\u4E3B\u63A8\u89C6\u9891\u811A\u672C\uFF0C\u5F85\u5BA1\u6838\u540E\u6210\u7247\u53D1\u5E03"));
         } catch (e) {
@@ -1835,13 +1836,14 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
     void tick();
   }, 6e4);
   timer.unref?.();
-  (0, import_quitRegistry.onAppWillQuit)("biz-automation", () => {
+  const stopBackground = () => {
     clearInterval(timer);
     for (const r of runs.values()) {
       r.controller.abort();
       for (const c of r.children) (0, import_media2.killTree)(c);
     }
-  }, { once: true });
+  };
+  (0, import_quitRegistry.onAppWillQuit)("biz-automation", stopBackground, { once: true });
   const actions = {
     "state.get": () => publicState(),
     "models.list": () => modelOptions(),
@@ -2236,7 +2238,7 @@ ${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
         (0, import_i18n4.t)("\u5C5E\u6027\uFF1A\u54C1\u7C7B {p0}\uFF0C\u9762\u6599 {p1}\uFF0C\u5B63\u8282 {p2}\uFF0C\u98CE\u683C {p3}\uFF0C\u989C\u8272 {p4}", { p0: g?.category || "\u2014", p1: g?.fabric || "\u2014", p2: g?.season || "\u2014", p3: g?.style || "\u2014", p4: g?.color || "\u2014" }),
         (0, import_i18n4.t)("\u5356\u70B9\uFF1A{p0}", { p0: l.sellingPoints.join("\uFF1B") }),
         (0, import_i18n4.t)("\u8BE6\u60C5\uFF1A{p0}", { p0: l.detail }),
-        (0, import_i18n4.t)("\u641C\u7D22\u5173\u952E\u8BCD\uFF1A{p0}", { p0: l.keywords.join("\u3001") }),
+        (0, import_i18n4.t)("\u641C\u7D22\u5173\u952E\u8BCD\uFF1A{p0}", { p0: l.keywords.join((0, import_i18n4.t)("\u3001")) }),
         (0, import_i18n4.t)("\u56FE\u7247\uFF08\u6309\u987A\u5E8F\u4E0A\u4F20\uFF0C\u7B2C\u4E00\u5F20\u4E3A\u4E3B\u56FE\uFF09\uFF1A"),
         ...l.images.map((x, i) => `${i + 1}. ${x}`)
       ].join("\n");
@@ -2313,7 +2315,7 @@ ${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
         { name: (0, import_i18n4.t)("\u54C1\u7C7B"), headers: [(0, import_i18n4.t)("\u54C1\u7C7B"), (0, import_i18n4.t)("\u91D1\u989D"), (0, import_i18n4.t)("\u5360\u6BD4")], rows: m.byCategory.map((x) => [x.label, x.value, x.share ?? 0]) },
         { name: (0, import_i18n4.t)("\u7545\u9500\u6B3E"), headers: [(0, import_i18n4.t)("\u5546\u54C1"), (0, import_i18n4.t)("\u91D1\u989D")], rows: m.topItems.map((x) => [x.label, x.value]) },
         { name: (0, import_i18n4.t)("\u552E\u7F44\u7387"), headers: [(0, import_i18n4.t)("\u5546\u54C1"), (0, import_i18n4.t)("\u552E\u7F44\u7387")], rows: m.sellThrough.map((x) => [x.label, x.value]) },
-        { name: (0, import_i18n4.t)("\u7ECF\u8425\u89E3\u8BFB"), headers: [(0, import_i18n4.t)("\u5185\u5BB9")], rows: [...r.commentary.split("\n").map((x) => [x]), ...r.unverified.length ? [[(0, import_i18n4.t)("\u672A\u80FD\u6838\u5BF9\u7684\u6570\u5B57\uFF1A{p0}", { p0: r.unverified.join("\u3001") })]] : []] }
+        { name: (0, import_i18n4.t)("\u7ECF\u8425\u89E3\u8BFB"), headers: [(0, import_i18n4.t)("\u5185\u5BB9")], rows: [...r.commentary.split("\n").map((x) => [x]), ...r.unverified.length ? [[(0, import_i18n4.t)("\u672A\u80FD\u6838\u5BF9\u7684\u6570\u5B57\uFF1A{p0}", { p0: r.unverified.join((0, import_i18n4.t)("\u3001")) })]] : []] }
       ]);
       store.update((s) => {
         const x = s.reports.find((y) => y.id === r.id);
@@ -2391,17 +2393,25 @@ ${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
       throw new Error((0, import_userFacingError.userFacingError)(error));
     }
   });
+  return stopBackground;
 }
 
 // node_modules/.cache/solutions-build/workbench-biz-automation/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerBizAutomationHandlers";
+var cleanup;
 function activate(ctx) {
-  registerBizAutomationHandlers(ctx.host.deps);
+  cleanup = registerBizAutomationHandlers(ctx.host.deps);
+}
+async function deactivate() {
+  const c = cleanup;
+  cleanup = void 0;
+  if (typeof c === "function") await c();
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   activate,
+  deactivate,
   hostApi,
   registerFunction
 });
