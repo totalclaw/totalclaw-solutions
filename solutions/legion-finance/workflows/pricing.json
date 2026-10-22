@@ -1,0 +1,27 @@
+{
+  "id": "pricing",
+  "name": "定价测算",
+  "trigger": [
+    "定价",
+    "成本测算",
+    "毛利测算"
+  ],
+  "steps": [
+    {
+      "id": "cost",
+      "legionId": "legion-finance",
+      "roleId": "finance-fpa-analyst",
+      "goal": "拆解成本构成（物料、人工、渠道、物流、税费），给出单位成本测算表。",
+      "dependsOn": []
+    },
+    {
+      "id": "price",
+      "legionId": "legion-finance",
+      "roleId": "finance-financial-analyst",
+      "goal": "按目标毛利给出三档建议价（保守 / 标准 / 进取）与各档毛利率、盈亏平衡销量。",
+      "dependsOn": [
+        "cost"
+      ]
+    }
+  ]
+}

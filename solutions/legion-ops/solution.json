@@ -1,0 +1,92 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "legion-ops",
+  "name": "运营部",
+  "aliases": [
+    "运营军团",
+    "Operations legion"
+  ],
+  "version": "1.0.0",
+  "kind": "legion",
+  "category": "AI 公司部门",
+  "icon": "icon-chart",
+  "order": 5050,
+  "description": "AI 公司的运营部：市场营销与内容、短视频与广告投放、项目推进、流程时效、库存与供应链、门店与电商日常。",
+  "access": {
+    "requiresSolutionGrant": false,
+    "feature": null,
+    "hidden": true
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "legion",
+    "route": null
+  },
+  "legion": {
+    "short": "运营",
+    "shortEn": "Operations",
+    "color": "#EC4899",
+    "icon": "chart",
+    "summary": "市场营销与内容、短视频与广告投放、项目推进、流程时效、库存与供应链、门店与电商日常。",
+    "routingHints": [
+      "运营",
+      "推广",
+      "营销",
+      "市场",
+      "上市",
+      "活动",
+      "短视频",
+      "广告",
+      "投放",
+      "小红书",
+      "抖音",
+      "内容",
+      "库存",
+      "补货",
+      "供应链",
+      "流程",
+      "项目",
+      "复盘"
+    ],
+    "roles": [
+      "chief-operating-officer",
+      "chief-marketing-officer",
+      "project-manager-senior",
+      "project-management-project-shepherd",
+      "support-supply-chain-strategist",
+      "marketing-social-media-strategist",
+      "marketing-xiaohongshu-operator",
+      "marketing-douyin-strategist",
+      "support-analytics-reporter"
+    ],
+    "leadRole": "chief-operating-officer",
+    "defaultModel": null,
+    "workbenches": [
+      "workbench-flow-sla",
+      "workbench-parts-alert",
+      "workbench-biz-automation",
+      "workbench-global-ads",
+      "embedded-video-studio"
+    ],
+    "workflows": [
+      "workflows/launch-campaign.json"
+    ]
+  },
+  "dependsOn": [],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/legion-ops"
+  }
+}

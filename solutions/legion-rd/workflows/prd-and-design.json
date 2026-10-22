@@ -1,0 +1,36 @@
+{
+  "id": "prd-and-design",
+  "name": "需求到技术方案",
+  "trigger": [
+    "需求文档",
+    "PRD",
+    "技术方案"
+  ],
+  "steps": [
+    {
+      "id": "prd",
+      "legionId": "legion-rd",
+      "roleId": "product-manager",
+      "goal": "把需求整理成产品需求文档：目标用户、核心场景、功能清单（按优先级）、验收标准。",
+      "dependsOn": []
+    },
+    {
+      "id": "design",
+      "legionId": "legion-rd",
+      "roleId": "engineering-software-architect",
+      "goal": "按产品需求文档给出技术方案：模块划分、关键接口、数据结构、风险与工期估算。",
+      "dependsOn": [
+        "prd"
+      ]
+    },
+    {
+      "id": "tests",
+      "legionId": "legion-rd",
+      "roleId": "testing-api-tester",
+      "goal": "按需求与技术方案写验收测试用例（正常、边界、异常各至少 3 条）。",
+      "dependsOn": [
+        "design"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "id": "hiring",
+  "name": "招聘一个岗位",
+  "trigger": [
+    "招聘",
+    "招人",
+    "招一个"
+  ],
+  "approval": "hire",
+  "steps": [
+    {
+      "id": "jd",
+      "legionId": "legion-hr",
+      "roleId": "hr-recruiter",
+      "goal": "写岗位 JD：职责、任职要求（区分硬条件与加分项）、薪资范围建议，检查歧视性用词。",
+      "dependsOn": []
+    },
+    {
+      "id": "screen",
+      "legionId": "legion-hr",
+      "roleId": "support-recruitment-specialist",
+      "goal": "按 JD 拆出筛选标准：硬条件门禁与 0–4 分评分维度，每个维度写打分锚点。",
+      "dependsOn": [
+        "jd"
+      ]
+    },
+    {
+      "id": "interview",
+      "legionId": "legion-hr",
+      "roleId": "hr-recruiter",
+      "goal": "出面试题与评分卡（胜任力题 6 道、情景题 2 道），附入职首周清单草稿；录用由老板拍板。",
+      "dependsOn": [
+        "screen"
+      ]
+    }
+  ]
+}

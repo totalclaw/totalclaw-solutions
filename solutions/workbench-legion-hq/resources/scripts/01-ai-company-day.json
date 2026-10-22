@@ -1,0 +1,15 @@
+{
+  "id": "ai-company-day",
+  "name": "AI 公司的一天（主剧本）",
+  "description": "定时日报 → 客户咨询 → 审合同 → 来信比价 → 新品全面准备 → 客户投诉 → 月底结账 → 招人。展示按需找部门、多事并行、跨部门交接、老板拍板。",
+  "items": [
+    { "at": 0, "source": "cron", "title": "生成昨日经营日报", "text": "生成昨日经营日报：收支与利润、渠道与流量、订单与回款，列出异常和今天要关注的事。", "legions": ["legion-finance", "legion-ops", "legion-sales"] },
+    { "at": 20, "source": "customer", "title": "客户咨询：保修多久", "text": "客户在微信上问：你们的智能电饭煲保修多久？保修期内坏了怎么处理？请回复客户。", "legions": ["legion-cs"] },
+    { "at": 40, "source": "boss", "title": "审一份经销合同", "text": "帮我审一下这份经销合同：独家经销三年，年度最低采购额 500 万，逾期付款每天千分之五违约金，争议在对方所在地法院解决。", "legions": ["legion-legal"] },
+    { "at": 60, "source": "mail", "title": "供应商报价：比价并下单", "text": "收到三家包装盒供应商的报价，请比价并准备下单申请：甲 2.1 元/个 30 天账期；乙 1.9 元/个 预付 50%；丙 2.0 元/个 货到付款。需要 2 万个。", "legions": ["legion-admin", "legion-finance"] },
+    { "at": 90, "source": "boss", "title": "新品 X 下月上市，全面准备", "text": "新品智能电饭煲 X 下个月上市，全公司全面准备：需求与成本、合规、人力、渠道投放、发布会、定价、渠道报价与客服话术。" },
+    { "at": 150, "source": "customer", "title": "客户投诉：发货延迟", "text": "客户投诉：下单 7 天还没发货，要求退款。请处理这个投诉。", "legions": ["legion-cs", "legion-ops"] },
+    { "at": 175, "source": "cron", "title": "月底结账与工资表", "text": "月底结账与工资表：按考勤汇总编制本月工资表，结账出月度经营简报，发薪需老板确认。", "legions": ["legion-hr", "legion-finance"] },
+    { "at": 200, "source": "boss", "title": "招 2 名区域销售", "text": "招聘 2 名华东区域销售：写 JD、定筛选标准和面试题。", "legions": ["legion-hr"] }
+  ]
+}

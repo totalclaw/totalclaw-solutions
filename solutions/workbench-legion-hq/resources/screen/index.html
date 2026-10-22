@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 公司运营中心</title>
+<!-- 指挥大屏（S4）：由主控「AI 公司运营中心」方案的大屏服务下发。数据只来自 /api/state 与 /api/events，不编造。
+     i18n-ignore-file：独立静态页，中英两套文案在本文件 I18N 表里，不进宿主词典。 -->
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#050B1C;font-family:"Microsoft YaHei","PingFang SC",sans-serif;color:#E2E8F0;overflow:hidden}
+#stage{position:absolute;left:0;top:0;width:1600px;height:900px;transform-origin:0 0}
+.top{height:60px;display:flex;align-items:center;gap:12px;padding:0 20px;border-bottom:1px solid #1E3A6E;background:linear-gradient(90deg,#0B1B3A,#0A2350 50%,#0B1B3A)}
+#logo{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#22D3EE,#0E7490);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;color:#fff;flex:none;overflow:hidden}
+#logo.img{width:46px;height:46px;background:#fff}
+#logo img{width:100%;height:100%;object-fit:contain;transform:scale(1.3)}
+.top h1{font-size:22px;margin:0;letter-spacing:1px;color:#E0F2FE;cursor:pointer;white-space:nowrap}
+.top h1 small{font-size:14px;color:#67E8F9;margin-left:8px;font-weight:400}
+.chips{margin-left:auto;display:flex;gap:18px;font-size:13.5px;color:#94A3B8;align-items:center}
+.chips b{color:#fff;font-size:18px;margin-left:5px;font-variant-numeric:tabular-nums}
+.boss{padding:4px 12px;border:1px solid #F59E0B;border-radius:16px;color:#FDE68A}
+.boss b{color:#FBBF24}
+.main{display:grid;grid-template-columns:372px 1fr 330px;gap:12px;padding:12px 16px;height:604px}
+.panel{background:rgba(15,32,70,.55);border:1px solid #1E3A6E;border-radius:10px;padding:12px 14px;overflow:hidden;position:relative}
+.ph{font-size:14px;color:#67E8F9;margin-bottom:9px;letter-spacing:1px;display:flex;align-items:center}
+.ph small{margin-left:auto;color:#64748B;font-size:12px;letter-spacing:0}
+.leftcol{display:grid;grid-template-rows:1fr 150px;gap:12px;height:580px}
+.task{border:1px solid #1E3A6E;border-radius:9px;padding:8px 11px;margin-bottom:7px;cursor:pointer;background:rgba(11,27,58,.7);transition:border-color .2s,opacity .3s}
+.task:hover{border-color:#22D3EE}
+.task.focus{border-color:#22D3EE;box-shadow:0 0 0 1px #22D3EE inset}
+.task.done{opacity:.55}
+.task .h{display:flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700}
+.task .id{font-family:Menlo,monospace;color:#67E8F9;font-size:12px}
+.task .src{font-size:10.5px;font-weight:400;padding:0 5px;border-radius:3px;white-space:nowrap}
+.task .ttl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.task .st{margin-left:auto;font-size:11px;font-weight:400;padding:1px 7px;border-radius:9px;white-space:nowrap}
+.task .lgs{display:flex;gap:5px;margin:6px 0 5px;flex-wrap:wrap}
+.task .lgs span{font-size:11px;padding:0 6px;border-radius:4px;border:1px solid;opacity:.45}
+.task .lgs span.on{opacity:1;color:#fff}
+.task .lgs span.ok{opacity:.85}
+.task .lgs span.bad{opacity:.85;text-decoration:line-through}
+.task .ph2{font-size:11px;color:#94A3B8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:4px}
+.bar{height:4px;background:#1E293B;border-radius:2px;overflow:hidden}.bar i{display:block;height:100%;background:#22D3EE;transition:width .4s}
+.inbox .it{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:6px 0;border-bottom:1px dashed #1E3A6E}
+.inbox .it .tx{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.inbox button{background:#F59E0B;border:none;color:#1F2937;border-radius:6px;font-size:12px;padding:3px 10px;cursor:pointer;font-family:inherit;font-weight:700}
+.inbox button.rej{background:#1E293B;color:#CBD5E1;font-weight:400}
+.inbox .kind{font-size:11px;color:#FBBF24;border:1px solid #F59E0B;border-radius:4px;padding:0 4px}
+.inbox .empty{color:#475569;font-size:12.5px;padding:10px 0}
+#feed div{font-size:12.5px;line-height:1.5;padding:5px 0;border-bottom:1px dashed #1E3A6E;color:#CBD5E1}
+#feed .t{color:#64748B;margin-right:6px;font-family:Menlo,monospace}
+#feed div.new{animation:in .5s ease}
+@keyframes in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+#route{position:absolute;left:12px;top:40px;width:250px;padding:10px 14px;border:1px solid #22D3EE;border-radius:10px;background:rgba(11,27,58,.94);box-shadow:0 0 30px #22D3EE44;font-size:13px;text-align:left;display:none}
+#route .q{color:#fff;font-size:14px;margin-bottom:6px}#route .a{line-height:1.9}
+#route .a span{display:inline-block;margin:0 4px 3px 0;padding:0 7px;border-radius:5px;color:#fff;font-size:13px}
+#route .why{color:#94A3B8;font-size:12px;line-height:1.5;margin-top:4px}
+.bottom{display:grid;grid-template-columns:500px 1fr 400px;gap:12px;padding:0 16px}
+.bp{height:200px}
+#cmd{display:flex;gap:8px}
+#cmd input{flex:1;background:#0B1B3A;border:1px solid #1E3A6E;border-radius:8px;color:#fff;padding:9px 12px;font-size:14px;font-family:inherit;outline:none}
+#cmd input:focus{border-color:#22D3EE}
+#cmd button{background:#0E7490;border:none;color:#fff;border-radius:8px;padding:0 16px;font-size:14px;cursor:pointer;font-family:inherit}
+#cmd button:disabled{opacity:.5}
+.presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.preset{background:transparent;border:1px solid #1E3A6E;color:#CBD5E1;padding:5px 10px;font-size:12.5px;border-radius:14px;cursor:pointer;font-family:inherit}
+.preset:hover{border-color:#22D3EE;color:#fff}
+#rule{margin-top:9px;font-size:11.5px;color:#64748B;line-height:1.55}
+.lrow{display:grid;grid-template-columns:70px 1fr 100px;align-items:center;gap:8px;font-size:12.5px;margin-bottom:3px}
+.lrow .bar{height:9px;border-radius:5px}.lrow .bar i{border-radius:5px;transition:width .3s}
+.lrow em{font-style:normal;color:#94A3B8;font-size:11.5px;text-align:right}
+#mload{overflow:auto;max-height:160px}
+.mach{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px dashed #1E3A6E}
+.mach .nm{font-size:14px;font-weight:700;width:96px;flex:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mach .ip{font-size:11px;color:#64748B;display:block;font-weight:400}
+.mach .hs{display:flex;gap:4px;flex:1;flex-wrap:wrap}
+.mach .hs span{font-size:11px;padding:1px 6px;border-radius:4px;border:1px solid;opacity:.5}
+.mach .hs span.on{opacity:1;color:#fff}
+.mach .ld{font-size:12px;color:#94A3B8;width:76px;text-align:right;flex:none}
+.mach.off{opacity:.45}
+#mask{position:fixed;inset:0;background:rgba(2,6,23,.7);display:none;align-items:center;justify-content:center;z-index:9}
+#mask.on,.rm.on{display:flex}
+.rm{position:fixed;inset:0;background:rgba(2,6,23,.7);display:none;align-items:center;justify-content:center;z-index:9}
+.dlg{width:460px;background:#0B1B3A;border:1px solid #22D3EE;border-radius:14px;padding:20px 22px;box-shadow:0 0 40px #22D3EE33}
+.dlg h3{margin:0 0 14px;font-size:18px;color:#E0F2FE}
+.dlg label{display:block;font-size:13px;color:#94A3B8;margin:10px 0 5px}
+.dlg input{width:100%;background:#050B1C;border:1px solid #1E3A6E;border-radius:8px;color:#fff;padding:8px 11px;font-size:14px;font-family:inherit;outline:none}
+.dlg input:focus{border-color:#22D3EE}
+.dlg .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dlg .ft{display:flex;gap:10px;justify-content:flex-end;margin-top:18px}
+.dlg button{border:none;border-radius:8px;padding:8px 18px;font-size:14px;cursor:pointer;font-family:inherit}
+.dlg .pri{background:#0E7490;color:#fff}.dlg .sec{background:#1E293B;color:#CBD5E1}
+.dlg .note{font-size:12px;color:#64748B;margin-top:10px;line-height:1.6}
+.dlg .err{font-size:12.5px;color:#F87171;margin-top:8px;min-height:1em}
+#conn{position:fixed;left:50%;top:70px;transform:translateX(-50%);background:#7F1D1D;color:#FECACA;border:1px solid #F87171;border-radius:18px;padding:6px 18px;font-size:14px;z-index:8;display:none}
+#rep{position:fixed;right:8px;top:8px;width:6px;height:6px;border-radius:3px;background:#475569;display:none}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0B1B3A;border:1px solid #22D3EE;color:#E0F2FE;border-radius:10px;padding:8px 16px;font-size:14px;z-index:8;display:none}
+.hint{position:fixed;right:12px;bottom:6px;font-size:12px;color:#334155}
+.view{position:absolute;left:16px;right:16px;top:72px;bottom:16px;background:rgba(5,11,28,.97);border:1px solid #1E3A6E;border-radius:12px;padding:18px 22px;display:none;overflow:auto}
+.view.on{display:block}
+.view h2{margin:0 0 14px;font-size:20px;color:#E0F2FE}
+.org{display:flex;flex-direction:column;align-items:center;gap:22px}
+.org .box{border:2px solid #22D3EE;border-radius:12px;padding:10px 22px;text-align:center;background:#0B1B3A}
+.org .box b{display:block;font-size:18px}.org .box span{font-size:12.5px;color:#94A3B8}
+.org .deps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;width:100%}
+.org .dep{border:2px solid;border-radius:12px;padding:10px 12px;background:#0B1B3A}
+.org .dep b{font-size:16px}.org .dep p{margin:6px 0 0;font-size:12px;color:#94A3B8;line-height:1.5}
+.cov{width:100%;border-collapse:collapse;font-size:13px}
+.cov td,.cov th{border-bottom:1px solid #1E3A6E;padding:6px 8px;text-align:left;vertical-align:top}
+.cov th{color:#67E8F9;font-weight:400}
+.cov .s{border-radius:4px;padding:1px 7px;font-size:12px;white-space:nowrap}
+.cov .sum{margin-bottom:12px;color:#94A3B8;font-size:13.5px}
+</style></head><body>
+<div id="stage">
+ <div class="top"><div id="logo">·</div><h1 id="title">…<small></small></h1>
+  <div class="chips"><span><i data-t="staff">AI 员工</i><b id="cStaff">0</b></span><span><i data-t="running">进行中</i><b id="cRun">0</b></span><span><i data-t="doneToday">今日完成</i><b id="cDone">0</b></span><span><i data-t="clock">时钟</i><b id="cT">--:--</b></span><span class="boss" id="bossChip"></span></div></div>
+ <div class="main">
+  <div class="leftcol">
+   <div class="panel"><div class="ph">▍<i data-t="tasks">公司事务</i><small data-t="tasksHint">点击只看这一件</small></div><div id="tasks"></div></div>
+   <div class="panel inbox"><div class="ph">▍<i data-t="inbox">老板待办</i><small data-t="inboxHint">钱、签约、对外发布、录用由老板拍板</small></div><div id="inbox"></div></div>
+  </div>
+  <div class="panel" style="padding:0"><div class="ph" style="position:absolute;left:14px;top:12px">▍<i data-t="topo">运营态势</i></div>
+   <svg id="topo" width="100%" height="100%" viewBox="0 0 900 604"></svg><div id="route"></div></div>
+  <div class="panel"><div class="ph">▍<i data-t="feed">实时动态</i></div><div id="feed"></div></div>
+ </div>
+ <div class="bottom">
+  <div class="panel bp"><div class="ph">▍<i data-t="cmd">老板下令</i><small data-t="cmdHint">AI 总经理按事情挑部门</small></div>
+   <div id="cmd"><input id="inp" maxlength="200"><button id="go" data-t="go">下令</button></div>
+   <div class="presets" id="presets"></div>
+   <div id="rule" data-t="rule">AI 总经理先判断这件事要哪几个部门（一个、几个或全公司），再交给装了这些部门的机器；多件事同时进行。</div></div>
+  <div class="panel bp"><div class="ph">▍<i data-t="lload">部门负载</i><small data-t="lloadHint">执行中 · 累计完成</small></div><div id="lload"></div></div>
+  <div class="panel bp"><div class="ph">▍<i data-t="mload">机器负载</i><small data-t="mloadHint">各部门以解决方案装在机器上</small></div><div id="mload"></div></div>
+ </div>
+ <div class="view" id="vOrg"></div>
+ <div class="view" id="vMap"></div>
+</div>
+<div id="mask"><div class="dlg">
+ <h3 data-t="company">公司信息</h3>
+ <label data-t="fName">公司全称</label><input id="fName" maxlength="40">
+ <div class="row2"><div><label data-t="fShort">大屏显示名称</label><input id="fShort" maxlength="12"></div><div><label data-t="fLogo">标志文字（1–2 字）</label><input id="fLogo" maxlength="2"></div></div>
+ <div class="row2"><div><label data-t="fInd">行业</label><input id="fInd" maxlength="16"></div><div><label data-t="fBoss">老板称呼</label><input id="fBoss" maxlength="8"></div></div>
+ <div class="note" data-t="companyNote">保存后写回主控的公司档案，大屏与各部门产出抬头同步变化。</div>
+ <div class="err" id="fErr"></div>
+ <div class="ft"><button class="sec" id="cancel" data-t="cancel">取消</button><button class="pri" id="save" data-t="save">保存</button></div>
+</div></div>
+<div id="rmask" class="rm"><div class="dlg"><h3 id="rTitle"></h3><label id="rAsk"></label><input id="rText" maxlength="300"><div class="ft"><button class="sec" id="rCancel"></button><button class="pri" id="rOk"></button></div></div></div>
+<div id="conn"></div><div id="rep"></div><div id="toast"></div>
+<div class="hint" data-t="hint">O 组织架构 · M 能力地图 · Esc 返回</div>
+<script>
+'use strict';
+const Q=new URLSearchParams(location.search);const TOKEN=Q.get('t')||'';
+const LANG=(Q.get('lang')||navigator.language||'zh').toLowerCase().startsWith('en')?'en':'zh';
+const I18N={en:{staff:'AI staff',running:'In progress',doneToday:'Done today',clock:'Clock',tasks:'Company tasks',tasksHint:'Click to focus',inbox:'Boss inbox',inboxHint:'Money, contracts, publishing and hiring need the boss',topo:'Operations',feed:'Live feed',cmd:'Give an order',cmdHint:'The AI GM picks departments',go:'Send',rule:'The AI GM first decides which departments a task needs (one, several or all), then hands it to the machines hosting them. Tasks run in parallel.',lload:'Department load',lloadHint:'running · done',mload:'Machine load',mloadHint:'Departments are installed as solutions',company:'Company',fName:'Full name',fShort:'Display name',fLogo:'Logo text (1–2)',fInd:'Industry',fBoss:'Boss title',companyNote:'Saved back to the controller; the screen and all outputs update.',cancel:'Cancel',save:'Save',hint:'O org chart · M capability map · Esc back',gm:'AI GM',gmSub:'triage · dispatch · summary',idle:'Idle',busyN:'Running {n}',busy1:'Running',waitIn:'Waiting',notPlaced:'Not deployed',judging:'Deciding which departments…',to:'Assigned: ',one:'One department',all:'Whole company',nDeps:'{n} departments',direct:'Handled by the AI GM directly',approve:'Approve',reject:'Reject',empty:'Nothing needs your decision. The company runs itself.',awaitBy:'#{no} awaiting {boss}',free:'Idle',runN:'{n} running',lost:'Disconnected from the controller. Reconnecting…',sent:'Sent: #{no}',bossChip:'Boss {boss} · pending <b>{n}</b>',orgTitle:'Organization',mapTitle:'Capability map (estimated from code; not yet measured)',viaRules:'keyword rules',viaModel:'AI GM',viaForced:'assigned',st:{triaging:'Deciding',planning:'Deciding',running:'Running',summarizing:'Summarizing',awaiting:'Awaiting boss',done:'Done',failed:'Not done',cancelled:'Stopped'},src:{boss:'Boss',cron:'Routine',customer:'Customer',mail:'Mail',script:'Script'},cov:{ready:'Ready',partial:'Partial',building:'Building',gap:'Gap'},domain:'Domain',taskCol:'Task',deptCol:'Departments',capCol:'Capability',stCol:'Status',rejectAsk:'Reason for rejecting:'},
+zh:{gm:'AI 总经理',gmSub:'判定 · 派活 · 汇总',idle:'待命',busyN:'执行 {n} 项',busy1:'执行中',waitIn:'等待输入',notPlaced:'未部署',judging:'AI 总经理判断交给哪些部门…',to:'交给：',one:'一个部门即可',all:'全公司协同',nDeps:'{n} 个部门协同',direct:'不需要部门，AI 总经理直接处理',approve:'批准',reject:'驳回',empty:'暂无需要您拍板的事，公司在自己运转。',awaitBy:'#{no} 待{boss}确认',free:'空闲',runN:'{n} 项进行中',lost:'与主控断开，正在重连…',sent:'已下令：#{no}',bossChip:'老板 {boss} · 待确认 <b>{n}</b>',orgTitle:'组织架构',mapTitle:'公司能力地图（按现有代码估计，考卷实测前不对外宣称覆盖率）',viaRules:'关键词规则',viaModel:'AI 总经理',viaForced:'指定部门',st:{triaging:'判定中',planning:'判定中',running:'执行中',summarizing:'汇总中',awaiting:'待老板确认',done:'已完成',failed:'未完成',cancelled:'已中止'},src:{boss:'老板下令',cron:'定时例行',customer:'客户消息',mail:'来信',script:'剧本'},cov:{ready:'可用',partial:'部分',building:'新建',gap:'缺口'},domain:'领域',taskCol:'典型事务',deptCol:'部门',capCol:'现有能力',stCol:'状态',rejectAsk:'驳回意见：'}};
+const T=I18N[LANG];const tr=(k,p)=>{let s=k.split('.').reduce((o,x)=>o&&o[x],T);if(s==null)s=k.split('.').reduce((o,x)=>o&&o[x],I18N.zh)||k;if(p)for(const n in p)s=s.replace('{'+n+'}',p[n]);return s;};
+if(LANG==='en'){document.documentElement.lang='en';document.querySelectorAll('[data-t]').forEach(e=>{const v=I18N.en[e.dataset.t];if(typeof v==='string')e.textContent=v;});}
+const SRC_COLOR={boss:'#F59E0B',cron:'#38BDF8',customer:'#06B6D4',mail:'#84CC16',script:'#A78BFA'};
+const ST_COLOR={triaging:'#22D3EE',planning:'#22D3EE',running:'#10B981',summarizing:'#38BDF8',awaiting:'#F59E0B',done:'#64748B',failed:'#F87171',cancelled:'#64748B'};
+const ACTIVE=new Set(['triaging','planning','running','summarizing','awaiting']);
+const PRESETS=LANG==='en'?['Review this purchase contract','Plan a launch campaign','A customer complains about late delivery','Cost out this month\'s project','Hire two front-end developers','New product next quarter — whole company prepare']:['审一下这份采购合同的风险','做一份新品推广方案','客户投诉发货延迟怎么处理','核算这个月的项目成本','招聘两名前端开发','下季度新品上市，全公司全面准备'];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const api=(p)=>`${p}${p.includes('?')?'&':'?'}t=${encodeURIComponent(TOKEN)}`;
+async function post(path,body){const r=await fetch(api(path),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||r.status);return j;}
+function toast(s){const e=$('toast');e.textContent=s;e.style.display='block';clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display='none',2600);}
+
+// ── 状态 ──
+let S={legions:[],machines:[],tasks:[],feed:[],inbox:[],legionLoad:{},counters:{},company:null};
+let focus=null;const fx=[];// 本地动画事件：{kind, at(performance.now 秒), ...}
+const nowS=()=>performance.now()/1000;
+let LG={},ORDER=[],layoutKey='';
+
+// ── SSE 连接（S8：断线自动重连、重连后先拿快照；断开时显示「与主控断开」而不是停在最后一帧）──
+let es=null,retry=0,lastMsg=Date.now();
+function connect(){
+ if(es)es.close();
+ es=new EventSource(api('/api/events'));
+ es.addEventListener('state',e=>{retry=0;lastMsg=Date.now();setConn(true);applyState(JSON.parse(e.data));});
+ es.addEventListener('ev',e=>{lastMsg=Date.now();onEvent(JSON.parse(e.data));});
+ es.onopen=()=>{setConn(true);};
+ es.onerror=()=>{setConn(false);if(es.readyState===2){const d=Math.min(30000,1000*Math.pow(2,retry++));setTimeout(connect,d);}};
+}
+setInterval(()=>{if(Date.now()-lastMsg>40000){setConn(false);connect();lastMsg=Date.now();}},5000);// 心跳 15 秒，40 秒没消息视为断开
+function setConn(ok){const c=$('conn');c.textContent=tr('lost');c.style.display=ok?'none':'block';}
+
+function onEvent(ev){
+ const t=nowS();
+ if(ev.type==='task:received'||ev.type==='task:triaged')fx.push({kind:ev.type,at:t,taskId:ev.taskId});
+ else if(ev.type==='node:handoff')fx.push({kind:'handoff',at:t,taskId:ev.taskId,from:ev.fromLegion,to:ev.toLegion,label:ev.label,no:ev.taskNo});
+ else if(ev.type==='task:summarizing')fx.push({kind:'sum',at:t,taskId:ev.taskId});
+ while(fx.length&&t-fx[0].at>8)fx.shift();
+}
+function applyState(s){S=s;relayout();renderPanels();}
+
+// ── 拓扑布局：按「机器 → 部门」动态分组（1–8 台都能排开），每台机器承载的部门排在一段连续弧上 ──
+const cx=450,cy=322,R=210;
+const NS='http://www.w3.org/2000/svg';
+const mk=(tag,a,p,txt)=>{const e=document.createElementNS(NS,tag);for(const k in a)e.setAttribute(k,a[k]);if(txt!=null)e.textContent=txt;if(p)p.appendChild(e);return e};
+function relayout(){
+ const ms=S.machines||[];const placed=new Map();
+ const remote=ms.filter(m=>!m.local),local=ms.filter(m=>m.local);
+ for(const m of [...remote,...local])for(const id of m.hosts||[])if(!placed.has(id)&&S.legions.some(L=>L.id===id))placed.set(id,m.id);
+ const groups=[...remote,...local].map(m=>({m,ids:S.legions.filter(L=>placed.get(L.id)===m.id).map(L=>L.id)})).filter(g=>g.ids.length);
+ const rest=S.legions.filter(L=>!placed.has(L.id)).map(L=>L.id);
+ ORDER=[...groups.flatMap(g=>g.ids),...rest];
+ const key=JSON.stringify([ORDER,groups.map(g=>[g.m.id,g.m.name,g.m.ip,g.ids]),S.legions.map(L=>[L.id,L.color,L.name])]);
+ if(key===layoutKey)return;layoutKey=key;
+ LG={};ORDER.forEach((id,i)=>{const L=S.legions.find(x=>x.id===id);LG[id]={...L,i,placed:placed.has(id)};});
+ buildTopo(groups);
+}
+const N=()=>Math.max(1,ORDER.length);
+const ang=i=>-Math.PI/2+i*2*Math.PI/N();
+const hub=i=>[cx+R*Math.cos(ang(i)),cy+R*Math.sin(ang(i))];
+const arcPath=(r,a1,a2)=>{const p=a=>[cx+r*Math.cos(a),cy+r*Math.sin(a)];const[x1,y1]=p(a1),[x2,y2]=p(a2);return `M${x1} ${y1} A ${r} ${r} 0 ${a2-a1>Math.PI?1:0} 1 ${x2} ${y2}`;};
+let nodes={},layers={};
+function buildTopo(groups){
+ const svg=$('topo');svg.innerHTML='';nodes={};
+ const defs=mk('defs',{},svg);defs.innerHTML='<filter id="gl"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><radialGradient id="cg" cx="50%" cy="40%"><stop offset="0" stop-color="#67E8F9"/><stop offset="1" stop-color="#0E7490"/></radialGradient>';
+ [110,190].forEach(r=>mk('circle',{cx,cy,r,fill:'none',stroke:'#22D3EE',opacity:.1},svg));
+ const n=N();
+ groups.forEach(g=>{const idx=g.ids.map(id=>LG[id].i);const a1=ang(Math.min(...idx))-(n>1?.3:Math.PI),a2=ang(Math.max(...idx))+(n>1?.3:Math.PI-.01);
+  mk('path',{d:arcPath(R+72,a1,a2),fill:'none',stroke:'#1E3A6E','stroke-width':20,'stroke-linecap':'round',opacity:.8},svg);
+  const mid=(a1+a2)/2;const right=Math.cos(mid)>=0;const lx=cx+(R+110)*Math.cos(mid),ly=cy+(R+110)*Math.sin(mid);
+  const lab=mk('text',{x:lx,y:ly,'text-anchor':Math.abs(Math.cos(mid))<.3?'middle':right?'start':'end','font-size':13,fill:'#64748B'},svg,g.m.name);
+  mk('text',{x:lx,y:ly+16,'text-anchor':lab.getAttribute('text-anchor'),'font-size':11,fill:'#475569'},svg,g.m.ip||'');
+  nodes['m:'+g.m.id]=lab;});
+ ORDER.forEach(id=>{const[x,y]=hub(LG[id].i);mk('line',{x1:cx,y1:cy,x2:x,y2:y,stroke:'#334155','stroke-width':2,'stroke-dasharray':'6 6'},svg);});
+ layers.dyn=mk('g',{},svg);
+ ORDER.forEach(id=>{const L=LG[id];const[x,y]=hub(L.i);const g=mk('g',{},svg);
+  const halo=mk('circle',{cx:x,cy:y,r:52,fill:L.color,opacity:0,filter:'url(#gl)'},g);
+  const ring=mk('circle',{cx:x,cy:y,r:41,fill:'#0B1B3A',stroke:L.color,'stroke-width':3},g);
+  const nm=LANG==='en'&&L.shortEn?L.shortEn:L.name;mk('text',{x,y,'text-anchor':'middle',fill:'#fff','font-size':(LANG==='en'?nm.length>7:nm.length>4)?13:16,'font-weight':700},g,nm);
+  const st=mk('text',{x,y:y+19,'text-anchor':'middle',fill:L.color,'font-size':11.5},g,tr('idle'));
+  const tags=mk('g',{},g);nodes[id]={g,halo,ring,st,tags,x,y};});
+ layers.dyn2=mk('g',{},svg);
+ mk('circle',{cx,cy,r:84,fill:'#22D3EE',opacity:.13,filter:'url(#gl)'},svg);
+ nodes.core=mk('circle',{cx,cy,r:68,fill:'url(#cg)',stroke:'#A5F3FC','stroke-width':3},svg);
+ mk('text',{x:cx,y:cy-6,'text-anchor':'middle',fill:'#fff','font-size':20,'font-weight':800},svg,tr('gm'));
+ mk('text',{x:cx,y:cy+16,'text-anchor':'middle',fill:'#ECFEFF','font-size':LANG==='en'?9.5:11.5},svg,tr('gmSub'));
+ layers.dyn3=mk('g',{},svg);
+ for(const k of ['dyn','dyn2','dyn3'])pools[k]=new Pool(layers[k]);
+}
+// S9：动态层按帧复用节点，不 innerHTML 重建
+class Pool{constructor(p){this.p=p;this.items={};this.used={};}
+ begin(){this.used={};}
+ get(tag,a,txt){const u=this.used[tag]=(this.used[tag]||0)+1;const list=this.items[tag]=this.items[tag]||[];let e=list[u-1];if(!e){e=mk(tag,{},this.p);list.push(e);}
+  for(const k in a)e.setAttribute(k,a[k]);if(txt!=null&&e.textContent!==txt)e.textContent=txt;e.style.display='';return e;}
+ end(){for(const tag in this.items){const n=this.used[tag]||0;this.items[tag].forEach((e,i)=>{if(i>=n)e.style.display='none';});}}}
+const pools={};
+
+// ── 面板 ──
+let lastTaskHtml='',lastInbox='',lastFeedTop='',lastL='',lastM='';
+function companyName(){const c=S.company||{};return c.short||c.name||'';}
+function renderPanels(){
+ const c=S.company||{};
+ const logo=$('logo');logo.classList.toggle('img',!!c.logoImage);if(c.logoImage){if(!logo.querySelector('img'))logo.innerHTML='<img alt="">';const im=logo.querySelector('img');if(im.src!==c.logoImage)im.src=c.logoImage;}else logo.textContent=c.logo||companyName().slice(0,1)||'·';
+ $('title').innerHTML=`${esc(companyName())}<small>${LANG==='en'?'AI Company Operations Center':'AI 公司运营中心'}${c.industry?' · '+esc(c.industry):''}</small>`;
+ document.title=`${companyName()} · ${LANG==='en'?'AI Company Operations Center':'AI 公司运营中心'}`;
+ const ct=S.counters||{};$('cStaff').textContent=ct.staff||0;$('cRun').textContent=ct.running||0;$('cDone').textContent=ct.doneToday||0;
+ const bossName=c.boss&&c.boss!=='老板'?c.boss:'';$('bossChip').innerHTML=tr('bossChip',{boss:esc(bossName),n:ct.awaiting||0}).replace(/\s+·/,' ·');
+ $('rep').style.display=S.replay?'block':'none';
+ // 公司事务
+ const list=(S.tasks||[]).slice(0,4);
+ const html=list.map(t=>{const sc=ST_COLOR[t.status]||'#64748B';const src=SRC_COLOR[t.source]||'#F59E0B';
+  const total=t.steps.length+(t.summary?1:0)+(t.approval?1:0)||1;
+  const done=t.steps.filter(s=>s.status==='done'||s.status==='failed'||s.status==='skipped').length+(t.summary&&['awaiting','done'].includes(t.status)?1:0)+(t.approval&&t.status==='done'?1:0);
+  const p=t.status==='done'?1:ACTIVE.has(t.status)?Math.min(.97,(done+(t.status==='triaging'?0:.2))/total):1;
+  const lg=t.legions.length?t.legions.map(id=>{const L=LG[id]||{color:'#64748B',short:id};const st=t.steps.filter(s=>s.legionId===id);const on=st.some(s=>s.status==='running');const ok=st.length&&st.every(s=>s.status==='done');const bad=st.some(s=>s.status==='failed');
+   return `<span class="${on?'on':bad?'bad':ok?'ok':''}" style="border-color:${L.color};${on?`background:${L.color}`:`color:${L.color}`}">${esc(LANG==='en'&&L.shortEn?L.shortEn:L.short)}${ok?' ✓':''}</span>`}).join(''):(t.status==='triaging'?'':`<span style="border-color:#22D3EE;color:#22D3EE;opacity:1">${tr('direct')}</span>`);
+  const phase=t.steps.filter(s=>s.status==='running'&&s.phase).map(s=>`${(LG[s.legionId]||{}).short||''}·${s.phase}`).join('　')||(t.status==='failed'&&t.error?t.error:'');
+  return `<div class="task${focus===t.id?' focus':''}${ACTIVE.has(t.status)?'':' done'}" data-id="${esc(t.id)}"><div class="h"><span class="id">#${t.no}</span><span class="src" style="color:${src};border:1px solid ${src}">${tr('src.'+t.source)}</span><span class="ttl">${esc(t.title)}</span><span class="st" style="color:${sc};border:1px solid ${sc}">${tr('st.'+t.status)}</span></div><div class="lgs">${lg}</div>${phase?`<div class="ph2">${esc(phase)}</div>`:''}<div class="bar"><i style="width:${(p*100).toFixed(1)}%"></i></div></div>`;}).join('');
+ if(html!==lastTaskHtml){$('tasks').innerHTML=html;lastTaskHtml=html;}
+ // 老板待办
+ const ib=(S.inbox||[]).length?S.inbox.map(x=>`<div class="it"><span class="tx">#${x.no} ${esc(x.title)}</span>${x.approval?`<span class="kind">${esc(x.approval.label||'')}</span>`:''}<button data-ok="${esc(x.taskId)}">${tr('approve')}</button><button class="rej" data-no="${esc(x.taskId)}">${tr('reject')}</button></div>`).join(''):`<div class="empty">${tr('empty')}</div>`;
+ if(ib!==lastInbox){$('inbox').innerHTML=ib;lastInbox=ib;}
+ // 实时动态（S7 只显示真实事件）
+ const top=(S.feed||[]).slice(0,15);const key=top.map(f=>f.ts+f.text).join('|');
+ if(key!==lastFeedTop){const first=lastFeedTop.split('|')[0];lastFeedTop=key;
+  $('feed').innerHTML=top.map((f,i)=>{const L=LG[f.who];const c=f.who==='core'?'#22D3EE':f.who==='hand'?'#FDE047':f.who==='boss'?'#FBBF24':L?L.color:'#94A3B8';const n=f.who==='core'?(LANG==='en'?'GM':'总经理'):f.who==='hand'?(LANG==='en'?'Handoff':'交接'):f.who==='boss'?(LANG==='en'?'Boss':'老板'):L?L.short:'';
+   return `<div class="${i===0&&(f.ts+f.text)!==first?'new':''}"><span class="t">${new Date(f.ts).toTimeString().slice(0,8)}</span><b style="color:${c}">[${esc(n)}]</b> ${esc(f.text)}</div>`}).join('');}
+ // 部门负载
+ const lh=ORDER.map(id=>{const L=LG[id];const ld=(S.legionLoad||{})[id]||{active:0,done:0};return `<div class="lrow"><span style="color:${L.color};font-weight:700">${esc(LANG==='en'&&L.shortEn?L.shortEn:L.name)}</span><div class="bar"><i style="width:${Math.min(100,ld.active*34)}%;background:${L.color}"></i></div><em>${L.placed?(ld.active?tr('busyN',{n:ld.active}):tr('idle')):tr('notPlaced')} · ${ld.done}</em></div>`}).join('');
+ if(lh!==lastL){$('lload').innerHTML=lh;lastL=lh;}
+ // 机器负载
+ const mh=(S.machines||[]).map(m=>{const hs=m.hosts.length?m.hosts.filter(id=>LG[id]).map(id=>{const L=LG[id];const on=(S.tasks||[]).some(t=>ACTIVE.has(t.status)&&t.steps.some(s=>s.legionId===id&&s.status==='running'&&s.machine===m.name));return `<span class="${on?'on':''}" style="border-color:${L.color};${on?`background:${L.color}`:`color:${L.color}`}">${esc(L.short)}</span>`}).join(''):(m.local?`<span class="on" style="border-color:#22D3EE;background:#0E7490">${LANG==='en'?'AI GM: triage / summary':'AI 总经理：判定 / 汇总'}</span>`:'');
+  return `<div class="mach${m.online?'':' off'}"><div class="nm">${esc(m.name)}<span class="ip">${esc(m.ip||'')}</span></div><div class="hs">${hs}</div><div class="ld">${m.busy?tr('runN',{n:m.busy}):tr('free')}</div></div>`}).join('');
+ if(mh!==lastM){$('mload').innerHTML=mh;lastM=mh;}
+}
+
+// ── 每帧动画 ──
+const ease=x=>x<0?0:x>1?1:1-Math.pow(1-x,3);
+function frame(){
+ const t=nowS();
+ $('cT').textContent=new Date().toTimeString().slice(0,5);
+ if(!pools.dyn){requestAnimationFrame(frame);return;}
+ for(const k in pools)pools[k].begin();
+ const tasks=(S.tasks||[]).filter(x=>ACTIVE.has(x.status));
+ const ft=focus?(S.tasks||[]).find(x=>x.id===focus):null;
+ const act={},wait={};
+ tasks.forEach(tk=>tk.steps.forEach(s=>{if(s.status==='running')(act[s.legionId]=act[s.legionId]||[]).push(tk);else if(s.status==='waiting')(wait[s.legionId]=wait[s.legionId]||[]).push(tk);}));
+ ORDER.forEach(id=>{const nd=nodes[id];if(!nd)return;const L=LG[id];const a=act[id]||[],w=wait[id]||[];const inF=!ft||ft.legions.includes(id);
+  nd.g.setAttribute('opacity',!L.placed?.25:inF?(a.length||w.length?1:.45):.12);
+  nd.halo.setAttribute('opacity',a.length?.16+.1*Math.sin(t*4+L.i):0);
+  nd.ring.setAttribute('stroke-width',a.length?5:2);
+  const label=!L.placed?tr('notPlaced'):a.length?(a.length>1?tr('busyN',{n:a.length}):tr('busy1')):w.length?tr('waitIn'):tr('idle');if(nd.st.textContent!==label)nd.st.textContent=label;
+  const ids=[...new Set([...a,...w].map(x=>x.no))].slice(0,3);
+  ids.forEach((no,k)=>{const tx=nd.x-((ids.length-1)*17)+k*34,ty=nd.y-57;const isA=a.some(x=>x.no===no);
+   pools.dyn3.get('rect',{x:tx-16,y:ty-10,width:32,height:19,rx:9,fill:isA?L.color:'#0B1B3A',stroke:L.color});pools.dyn3.get('text',{x:tx,y:ty+4,'text-anchor':'middle','font-size':11,fill:'#fff'},'#'+no);});
+ });
+ // 判定中：总经理脉动 + 判定提示；判定后 2.5 秒内画选中线
+ let routing=null;
+ tasks.forEach(tk=>{if(ft&&ft.id!==tk.id)return;
+  if(tk.status==='triaging')routing=routing||{tk,k:0};
+  const tf=fx.find(f=>f.kind==='task:triaged'&&f.taskId===tk.id);
+  if(tf&&t-tf.at<2.5){routing={tk,k:ease((t-tf.at)/.8)};
+   tk.legions.forEach(id=>{const L=LG[id];if(!L)return;const[x,y]=hub(L.i);const k=routing.k;
+    pools.dyn.get('line',{x1:cx,y1:cy,x2:cx+(x-cx)*k,y2:cy+(y-cy)*k,stroke:L.color,'stroke-width':4,opacity:.9});
+    pools.dyn.get('circle',{cx:x,cy:y,r:48+5*Math.sin(t*8),fill:'none',stroke:L.color,'stroke-width':2,opacity:k*.8});});}
+  tk.steps.forEach(s=>{if(s.status!=='running')return;const L=LG[s.legionId];if(!L)return;const[x,y]=hub(L.i);
+   pools.dyn.get('line',{x1:cx,y1:cy,x2:x,y2:y,stroke:L.color,'stroke-width':3,'stroke-dasharray':'10 6','stroke-dashoffset':-t*30,opacity:.85});
+   for(let k=0;k<2;k++){const f=((t*.55+k*.5+tk.no*.17)%1);pools.dyn.get('circle',{cx:cx+(x-cx)*f,cy:cy+(y-cy)*f,r:4.5,fill:'#fff',filter:'url(#gl)'});}});
+ });
+ // 交接飞线（R7 / E4 的真实交接事件）
+ fx.filter(f=>f.kind==='handoff').forEach(f=>{if(ft&&ft.id!==f.taskId)return;const A=LG[f.from],B=LG[f.to];if(!A||!B)return;const life=t-f.at;if(life>3.2)return;
+  const[x1,y1]=hub(A.i),[x,y]=hub(B.i);const mx=(x1+x)/2,my=(y1+y)/2;const dd=Math.hypot(mx-cx,my-cy);let qx,qy;if(dd<5){qx=cx+(y-y1)*.5;qy=cy-(x-x1)*.5;}else{qx=mx+(mx-cx)/dd*125;qy=my+(my-cy)/dd*125;}
+  const op=life<2.4?1:(3.2-life)/.8;const p=pools.dyn2.get('path',{d:`M${x1} ${y1} Q ${qx} ${qy} ${x} ${y}`,fill:'none',stroke:'#FDE047','stroke-width':3,opacity:op});
+  const len=p.getTotalLength();const e=ease(life/1.1);p.setAttribute('stroke-dasharray',`${len*e} ${len}`);const pt=p.getPointAtLength(len*e);
+  pools.dyn2.get('circle',{cx:pt.x,cy:pt.y,r:7,fill:'#FDE047',filter:'url(#gl)',opacity:op});
+  const lx=(x1+x)/4+qx/2,ly=(y1+y)/4+qy/2;pools.dyn3.get('rect',{x:lx-70,y:ly-12,width:140,height:24,rx:5,fill:'#FEF9C3',opacity:op});
+  pools.dyn3.get('text',{x:lx,y:ly+5,'text-anchor':'middle','font-size':12.5,fill:'#713F12',opacity:op},`#${f.no} ${LANG==='en'?'handoff':'交接'}：${f.label||''}`);});
+ // 汇总回流
+ fx.filter(f=>f.kind==='sum').forEach(f=>{const tk=(S.tasks||[]).find(x=>x.id===f.taskId);if(!tk||(ft&&ft.id!==tk.id))return;
+  tk.legions.forEach((id,k)=>{const L=LG[id];if(!L)return;const[x,y]=hub(L.i);const v=1-ease((t-f.at-k*.12)/1.2);if(v>0&&v<1)pools.dyn.get('circle',{cx:cx+(x-cx)*v,cy:cy+(y-cy)*v,r:7,fill:L.color,filter:'url(#gl)'});});});
+ // 待老板确认
+ const w0=tasks.find(x=>x.status==='awaiting'&&(!ft||ft.id===x.id));
+ if(w0){pools.dyn3.get('rect',{x:cx-90,y:cy+80,width:180,height:30,rx:15,fill:'#F59E0B',opacity:.8+.2*Math.sin(t*6)});pools.dyn3.get('text',{x:cx,y:cy+100,'text-anchor':'middle','font-size':13,fill:'#1F2937','font-weight':700},tr('awaitBy',{no:w0.no,boss:(S.company||{}).boss||'老板'}));}
+ nodes.core&&nodes.core.setAttribute('r',68+(routing?3*Math.sin(t*10):0));
+ for(const k in pools)pools[k].end();
+ const rt=$('route');
+ if(routing){const tk=routing.tk;const src=SRC_COLOR[tk.source];const n=tk.legions.length;rt.style.display='block';
+  const body=tk.status==='triaging'?tr('judging'):n?tr('to')+tk.legions.map(id=>LG[id]?`<span style="background:${LG[id].color}">${esc(LG[id].short)}</span>`:'').join('')+`<br><b style="color:#A5F3FC">${n===1?tr('one'):tk.triage&&tk.triage.mode==='all'?tr('all'):tr('nDeps',{n})}</b>`:tr('direct');
+  const why=tk.triage&&tk.triage.reason?`<div class="why">${esc(tk.triage.reason)}${tk.triage.via&&tk.triage.via!=='forced'?`（${tr(tk.triage.via==='model'?'viaModel':'viaRules')}）`:''}</div>`:'';
+  const h=`<div class="q"><span style="color:${src}">[${tr('src.'+tk.source)}]</span> #${tk.no}「${esc(tk.title)}」</div><div class="a">${body}</div>${tk.status==='triaging'?'':why}`;
+  if(rt.dataset.h!==h){rt.innerHTML=h;rt.dataset.h=h;}}
+ else rt.style.display='none';
+ requestAnimationFrame(frame);
+}
+
+// ── 交互 ──
+async function command(text){text=String(text||'').trim();if(!text)return;$('go').disabled=true;try{const r=await post('/api/command',{text});toast(tr('sent',{no:r.no}));}catch(e){toast(String(e.message||e));}finally{$('go').disabled=false;}}
+$('go').onclick=()=>{command($('inp').value);$('inp').value='';};
+$('inp').onkeydown=e=>{if(e.key==='Enter'&&!e.isComposing)$('go').onclick();};
+$('inp').placeholder=LANG==='en'?'e.g. Review this distribution contract':'例如：帮我审一下这份经销合同';
+$('presets').innerHTML=PRESETS.map(p=>`<button class="preset">${esc(p)}</button>`).join('');
+$('presets').onclick=e=>{if(e.target.classList.contains('preset'))command(e.target.textContent);};
+$('tasks').onclick=e=>{const c=e.target.closest('.task');if(!c)return;focus=focus===c.dataset.id?null:c.dataset.id;lastTaskHtml='';renderPanels();};
+$('inbox').onclick=async e=>{const b=e.target.closest('button');if(!b)return;try{if(b.dataset.ok)await post('/api/confirm',{taskId:b.dataset.ok,approve:true});else openReject(b.dataset.no);}catch(err){toast(String(err.message||err));}};
+// 驳回意见（Electron 窗口里没有 window.prompt，用页内对话框）
+let rejectId=null;
+function openReject(id){rejectId=id;const tk=(S.tasks||[]).find(x=>x.id===id);$('rTitle').textContent=`${tr('reject')} #${tk?tk.no:''}`;$('rAsk').textContent=tr('rejectAsk');$('rCancel').textContent=I18N[LANG].cancel||'取消';$('rOk').textContent=tr('reject');$('rText').value='';$('rmask').classList.add('on');$('rText').focus();}
+$('rCancel').onclick=()=>$('rmask').classList.remove('on');
+$('rOk').onclick=async()=>{try{await post('/api/confirm',{taskId:rejectId,approve:false,comment:$('rText').value});$('rmask').classList.remove('on');}catch(e){toast(String(e.message||e));}};
+function openDlg(){const c=S.company||{};if(c.demo){toast(LANG==='en'?'Demo mode: edit the company on the controller':'演示模式：请在主控修改公司信息');return;}
+ $('fName').value=c.name||'';$('fShort').value=c.short||'';$('fLogo').value=c.logo||'';$('fInd').value=c.industry||'';$('fBoss').value=c.boss||'';$('fErr').textContent='';$('mask').classList.add('on');$('fName').focus();}
+$('title').onclick=openDlg;$('cancel').onclick=()=>$('mask').classList.remove('on');
+$('fName').oninput=()=>{const s=$('fName').value.trim().replace(/(股份)?有限(责任)?公司$/,'').slice(0,12);$('fShort').value=s;$('fLogo').value=s.slice(0,1);};
+$('save').onclick=async()=>{try{await post('/api/company',{name:$('fName').value,short:$('fShort').value,logo:$('fLogo').value,industry:$('fInd').value,boss:$('fBoss').value});$('mask').classList.remove('on');}catch(e){$('fErr').textContent=String(e.message||e);}};
+
+// ── 第二视图：组织架构（O）/ 能力地图（M）──
+function showView(id){for(const v of ['vOrg','vMap'])$(v).classList.toggle('on',v===id&&!$(v).classList.contains('on'));if($('vOrg').classList.contains('on'))renderOrg();if($('vMap').classList.contains('on'))renderMap();}
+function renderOrg(){const c=S.company||{};
+ $('vOrg').innerHTML=`<h2>${tr('orgTitle')} · ${esc(companyName())}</h2><div class="org"><div class="box" style="border-color:#F59E0B"><b>${esc(c.boss||'老板')}</b><span>${LANG==='en'?'Owner (the only human)':'老板（唯一的真人）'}</span></div><div class="box"><b>${tr('gm')}</b><span>${tr('gmSub')}</span></div><div class="deps">${S.legions.map(L=>`<div class="dep" style="border-color:${L.color}"><b style="color:${L.color}">${esc(L.name)}</b> <small style="color:#94A3B8">· ${L.staff} ${LANG==='en'?'AI staff':'名 AI 员工'}</small><p>${esc(L.summary)}</p></div>`).join('')}</div></div>`;}
+let COV=null;
+async function renderMap(){if(!COV){try{COV=await (await fetch(api('/api/coverage'))).json();}catch{COV={items:[]};}}
+ const col={ready:'#10B981',partial:'#F59E0B',building:'#38BDF8',gap:'#F87171'};const cnt={};COV.items.forEach(i=>cnt[i.status]=(cnt[i.status]||0)+1);
+ const nm=id=>id==='chief'?tr('gm'):(S.legions.find(L=>L.id===id)||{short:id}).short;
+ $('vMap').innerHTML=`<h2>${tr('mapTitle')}</h2><div class="sum">${Object.keys(col).map(k=>`<span class="s" style="border:1px solid ${col[k]};color:${col[k]}">${tr('cov.'+k)} ${cnt[k]||0}</span>`).join(' ')} · ${COV.items.length}</div><table class="cov"><tr><th>${tr('domain')}</th><th>${tr('taskCol')}</th><th>${tr('deptCol')}</th><th>${tr('capCol')}</th><th>${tr('stCol')}</th></tr>${COV.items.map(i=>`<tr><td>${esc(i.domain)}</td><td>${esc(i.task)}</td><td>${i.departments.map(nm).map(esc).join(' + ')}</td><td>${esc(i.capability)}</td><td><span class="s" style="border:1px solid ${col[i.status]};color:${col[i.status]}">${tr('cov.'+i.status)}</span></td></tr>`).join('')}</table>`;}
+document.addEventListener('keydown',e=>{if(document.activeElement&&['INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;
+ if(e.key==='o'||e.key==='O')showView('vOrg');else if(e.key==='m'||e.key==='M')showView('vMap');else if(e.key==='Escape'){$('vOrg').classList.remove('on');$('vMap').classList.remove('on');focus=null;lastTaskHtml='';}});
+
+function fit(){const s=Math.min(innerWidth/1600,innerHeight/900);$('stage').style.transform=`translate(${(innerWidth-1600*s)/2}px,${(innerHeight-900*s)/2}px) scale(${s})`;}
+addEventListener('resize',fit);fit();
+fetch(api('/api/state')).then(r=>r.json()).then(applyState).catch(()=>setConn(false)).finally(connect);
+requestAnimationFrame(frame);
+</script></body></html>

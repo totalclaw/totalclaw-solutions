@@ -1,0 +1,27 @@
+{
+  "id": "legion-admin",
+  "version": "1.0.0",
+  "treeDigest": "6dd4defc7756cf134e5e8fb589b70a262af9a71bdd5289cda930660a2551002b",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 99,
+      "sha256": "c0a487de20832e89828c367c7b3500465570128d4ee7dd08fd9e3ae34afb8d46"
+    },
+    {
+      "path": "README.md",
+      "size": 1045,
+      "sha256": "5f75db767df36038373a8188ab33a04bdb845b085a0755574a75b942178c01be"
+    },
+    {
+      "path": "solution.json",
+      "size": 1882,
+      "sha256": "db83d2abcd5f7b8a771833371c9bd7ae4887fb65e926151ee6f4a7099e0d08ec"
+    },
+    {
+      "path": "workflows/procurement.json",
+      "size": 990,
+      "sha256": "69ff3e0b16c2de802a3359c6c0d9d1624b6a49204be5a16b127ea2d47e372e2e"
+    }
+  ]
+}

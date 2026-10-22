@@ -322,6 +322,83 @@
       "filesRef": "index/workbench-healthcare.json"
     },
     {
+      "id": "workbench-legion-hq",
+      "name": "AI 公司运营中心（军团集群指挥）",
+      "aliases": [
+        "AI 公司运营中心",
+        "军团指挥大屏",
+        "指挥大屏",
+        "OPC 一人公司",
+        "legion-hq"
+      ],
+      "kind": "workbench",
+      "category": "集群协同",
+      "icon": "icon-solutions",
+      "order": 50,
+      "description": "一个老板 + 一家 AI 公司：8 个 AI 部门（研发、法务、财务、人事、运营、销售、客服、行政）以方案包装在任意机器上，AI 总经理按事情挑部门、派给承载它的机器并发执行，跨部门交接、汇总、钱 / 签约 / 对外发布 / 录用由老板拍板。主控点「启动 Web」即在内网开出指挥大屏，任意电脑、电视、手机用地址打开。",
+      "descriptionEn": "One owner, one AI company: eight AI departments installed as solution packages on any machine. The AI GM triages each task, dispatches it to the machines hosting the right departments, hands results across departments and asks the boss to approve money, contracts, publishing and hiring. Start the web screen and open it from any device on the LAN.",
+      "version": "1.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
+      "compat": {
+        "minAppVersion": "2.0.5",
+        "hostApi": 2
+      },
+      "access": {
+        "requiresSolutionGrant": false,
+        "feature": null,
+        "hidden": false
+      },
+      "runtime": {
+        "mode": "dynamic",
+        "runner": "workbench",
+        "route": "/workbenches/legion-hq",
+        "renderer": "src/renderer/index.mjs",
+        "main": "src/main/index.cjs",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/legion-hq",
+            "name": "LegionHqWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "src/renderer/index.mjs",
+          "main": "src/main/index.cjs",
+          "hostModules": "src/host-modules.json"
+        }
+      },
+      "dependsOn": [
+        "legion-rd",
+        "legion-legal",
+        "legion-finance",
+        "legion-hr",
+        "legion-ops",
+        "legion-sales",
+        "legion-cs",
+        "legion-admin"
+      ],
+      "data": {
+        "schemaVersion": 1,
+        "paths": [
+          "legion-hq/"
+        ],
+        "localStorage": [
+          "totalclaw:legion-hq"
+        ]
+      },
+      "capabilities": [],
+      "path": "solutions/workbench-legion-hq",
+      "fileCount": 26,
+      "size": 242941,
+      "treeDigest": "2d28c4e1624b8677ef9bdba264da22e0d8dd39f49defbab1dad7f68d239912ee",
+      "largeAssets": [],
+      "changelog": "- 首版。8 个部门（`legion-*`）以方案包装在任意机器上，一台机器可承载多个；主控经集群通道 `config.set` 把部门装到员工机、`config.get` / `status.report` 回读装机与负载。\n- AI 总经理判定（模型要 JSON，逐条校验，失败 / 通道错误回落关键词规则）→ 计划（命中部门常用工作流则展开）→ 按负载派 `worker.run` 并发执行 → 跨部门交接带上游产物 → 汇总 → 钱 / 签约 / 对外发布 / 录用 / 重大事项进老板待办，可批准或带意见驳回重做。\n- 指挥大屏：点「启动 Web」在局域网起服务（默认 8240，被占顺延，访问口令），`/` 大屏、`/remote` 手机遥控、SSE 实时推送、断线重连；可在选定显示器全屏打开。\n- 公司档案：默认北京泰途科技有限公司（标志用 App logo），可改；演示模式隐藏真实名称、例行事务 9 条、导演台（4 个内置剧本、暂停 / 重置、录制回放）、公司能力地图（39 项，按代码估计）。\n- 子机打开本方案：显示本机承载的部门与主控派来的正在执行的任务。",
+      "filesRef": "index/workbench-legion-hq.json"
+    },
+    {
       "id": "workbench-warehouse",
       "name": "产销存协同工作台",
       "aliases": [
@@ -2134,6 +2211,708 @@
       "largeAssets": [],
       "changelog": "- 改为需要账号开通（access.requiresSolutionGrant=true）：在 totalclaw-web 方案权限管理里分配；客户端市场里未开通的显示「申请开通」，审批通过后自动下载。",
       "filesRef": "index/website-test.json"
+    },
+    {
+      "id": "legion-rd",
+      "name": "产品研发部",
+      "aliases": [
+        "研发军团",
+        "R&D legion"
+      ],
+      "kind": "legion",
+      "category": "AI 公司部门",
+      "icon": "icon-code",
+      "order": 5010,
+      "description": "AI 公司的产品研发部：需求分析、产品文档、技术方案、内部小工具与页面开发、测试用例与验收。",
+      "version": "1.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
+      "compat": {
+        "minAppVersion": "2.0.5",
+        "hostApi": 1
+      },
+      "access": {
+        "requiresSolutionGrant": false,
+        "feature": null,
+        "hidden": true
+      },
+      "runtime": {
+        "mode": "bundled",
+        "runner": "legion",
+        "route": null
+      },
+      "dependsOn": [],
+      "data": {
+        "schemaVersion": 1,
+        "paths": [],
+        "localStorage": []
+      },
+      "capabilities": [],
+      "legion": {
+        "short": "研发",
+        "shortEn": "R&D",
+        "color": "#3B82F6",
+        "icon": "code",
+        "summary": "需求分析、产品文档、技术方案、内部小工具与页面开发、测试用例与验收。",
+        "routingHints": [
+          "需求",
+          "PRD",
+          "产品",
+          "功能",
+          "技术方案",
+          "开发",
+          "代码",
+          "系统",
+          "小程序",
+          "页面",
+          "测试",
+          "原型",
+          "新品"
+        ],
+        "roles": [
+          "product-manager",
+          "product-trend-researcher",
+          "chief-technology-officer",
+          "engineering-software-architect",
+          "engineering-senior-developer",
+          "engineering-frontend-developer",
+          "engineering-backend-architect",
+          "engineering-code-reviewer",
+          "testing-api-tester",
+          "testing-reality-checker"
+        ],
+        "leadRole": "product-manager",
+        "defaultModel": null,
+        "workbenches": [
+          "rd-workflow"
+        ],
+        "workflows": [
+          "workflows/prd-and-design.json"
+        ]
+      },
+      "path": "solutions/legion-rd",
+      "fileCount": 4,
+      "size": 4027,
+      "treeDigest": "02d0901357b557bee323faa4618b749eed70f487c5edbf2b960dea363961cdea",
+      "largeAssets": [],
+      "changelog": "- 首版：10 个 AI 员工、1 个常用工作流、关联 1 个工作台。",
+      "filesRef": "index/legion-rd.json"
+    },
+    {
+      "id": "legion-legal",
+      "name": "法务部",
+      "aliases": [
+        "法务军团",
+        "Legal legion"
+      ],
+      "kind": "legion",
+      "category": "AI 公司部门",
+      "icon": "icon-scale",
+      "order": 5020,
+      "description": "AI 公司的法务部：合同审查与修订、合规检查、法律文书与制度起草、知识产权与劳动纠纷咨询。",
+      "version": "1.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
+      "compat": {
+        "minAppVersion": "2.0.5",
+        "hostApi": 1
+      },
+      "access": {
+        "requiresSolutionGrant": false,
+        "feature": null,
+        "hidden": true
+      },
+      "runtime": {
+        "mode": "bundled",
+        "runner": "legion",
+        "route": null
+      },
+      "dependsOn": [],
+      "data": {
+        "schemaVersion": 1,
+        "paths": [],
+        "localStorage": []
+      },
+      "capabilities": [],
+      "legion": {
+        "short": "法务",
+        "shortEn": "Legal",
+        "color": "#8B5CF6",
+        "icon": "scale",
+        "summary": "合同审查与修订、合规检查、法律文书与制度起草、知识产权与劳动纠纷咨询。",
+        "routingHints": [
+          "合同",
+          "协议",
+          "条款",
+          "合规",
+          "法律",
+          "法务",
+          "违约",
+          "知识产权",
+          "商标",
+          "侵权",
+          "保密",
+          "NDA",
+          "纠纷",
+          "制度"
+        ],
+        "roles": [
+          "legal-contract-reviewer",
+          "legal-policy-writer",
+          "support-legal-compliance-checker",
+          "legal-trade-compliance-specialist",
+          "legal-document-review"
+        ],
+        "leadRole": "legal-contract-reviewer",
+        "defaultModel": null,
+        "workbenches": [],
+        "workflows": [
+          "workflows/contract-review.json"
+        ]
+      },
+      "path": "solutions/legion-legal",
+      "fileCount": 4,
+      "size": 4121,
+      "treeDigest": "7b5fff2fba5997ea0daed43b12b866cc29bdbbc2239245460b5ad7d46038894b",
+      "largeAssets": [],
+      "changelog": "- 首版：5 个 AI 员工、1 个常用工作流。",
+      "filesRef": "index/legion-legal.json"
+    },
+    {
+      "id": "legion-finance",
+      "name": "财务部",
+      "aliases": [
+        "财务军团",
+        "Finance legion"
+      ],
+      "kind": "legion",
+      "category": "AI 公司部门",
+      "icon": "icon-coin",
+      "order": 5030,
+      "description": "AI 公司的财务部：记账与报表、经营分析、定价与成本测算、开票、报销结算核销、预算现金流、工资与税务测算、审计内控。",
+      "version": "1.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
+      "compat": {
+        "minAppVersion": "2.0.5",
+        "hostApi": 1
+      },
+      "access": {
+        "requiresSolutionGrant": false,
+        "feature": null,
+        "hidden": true
+      },
+      "runtime": {
+        "mode": "bundled",
+        "runner": "legion",
+        "route": null
+      },
+      "dependsOn": [],
+      "data": {
+        "schemaVersion": 1,
+        "paths": [],
+        "localStorage": []
+      },
+      "capabilities": [],
+      "legion": {
+        "short": "财务",
+        "shortEn": "Finance",
+        "color": "#10B981",
+        "icon": "coin",
+        "summary": "记账与报表、经营分析、定价与成本测算、开票、报销结算核销、预算现金流、工资与税务测算、审计内控。",
+        "routingHints": [
+          "财务",
+          "成本",
+          "定价",
+          "价格",
+          "利润",
+          "毛利",
+          "预算",
+          "现金流",
+          "报表",
+          "记账",
+          "结账",
+          "发票",
+          "开票",
+          "报销",
+          "工资",
+          "税",
+          "回款",
+          "应收",
+          "审计",
+          "核销"
+        ],
+        "roles": [
+          "chief-financial-officer",
+          "finance-financial-analyst",
+          "finance-fpa-analyst",
+          "finance-bookkeeper-controller",
+          "finance-gl-accountant",
+          "finance-tax-specialist-cn",
+          "finance-invoice-manager",
+          "finance-ar-ap-specialist",
+          "finance-payroll-accountant",
+          "finance-internal-auditor",
+          "finance-treasury-manager"
+        ],
+        "leadRole": "finance-financial-analyst",
+        "defaultModel": null,
+        "workbenches": [
+          "workbench-finance-agent",
+          "workbench-invoice-agent",
+          "workbench-finance-audit",
+          "workbench-service-settlement"
+        ],
+        "workflows": [
+          "workflows/pricing.json",
+          "workflows/month-close.json"
+        ]
+      },
+      "path": "solutions/legion-finance",
+      "fileCount": 5,
+      "size": 5374,
+      "treeDigest": "a40046a67c3ae8f2b966188407a79516e44dcf458be131e50ed4f7a635d3c26a",
+      "largeAssets": [],
+      "changelog": "- 首版：11 个 AI 员工、2 个常用工作流、关联 4 个工作台。",
+      "filesRef": "index/legion-finance.json"
+    },
+    {
+      "id": "legion-hr",
+      "name": "人事部",
+      "aliases": [
+        "人事军团",
+        "HR legion"
+      ],
+      "kind": "legion",
+      "category": "AI 公司部门",
+      "icon": "icon-people",
+      "order": 5040,
+      "description": "AI 公司的人事部：招聘（JD、简历筛选、面试题与评分卡）、入离职、绩效、考勤与培训资料。",
+      "version": "1.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
+      "compat": {
+        "minAppVersion": "2.0.5",
+        "hostApi": 1
+      },
+      "access": {
+        "requiresSolutionGrant": false,
+        "feature": null,
+        "hidden": true
+      },
+      "runtime": {
+        "mode": "bundled",
+        "runner": "legion",
+        "route": null
+      },
+      "dependsOn": [],
+      "data": {
+        "schemaVersion": 1,
+        "paths": [],
+        "localStorage": []
+      },
+      "capabilities": [],
+      "legion": {
+        "short": "人事",
+        "shortEn": "HR",
+        "color": "#F59E0B",
+        "icon": "people",
+        "summary": "招聘（JD、简历筛选、面试题与评分卡）、入离职、绩效、考勤与培训资料。",
+        "routingHints": [
+          "招聘",
+          "招人",
+          "简历",
+          "面试",
+          "JD",
+          "岗位",
+          "入职",
+          "离职",
+          "绩效",
+          "考勤",
+          "培训",
+          "员工",
+          "人事",
+          "offer",
+          "录用"
+        ],
+        "roles": [
+          "hr-recruiter",
+          "hr-performance-reviewer",
+          "support-recruitment-specialist",
+          "hr-onboarding"
+        ],
+        "leadRole": "hr-recruiter",
+        "defaultModel": null,
+        "workbenches": [],
+        "workflows": [
+          "workflows/hiring.json"
+        ]
+      },
+      "path": "solutions/legion-hr",
+      "fileCount": 4,
+      "size": 3619,
+      "treeDigest": "9834dfee6c3c4ba3d9f9f7a139cf0d872170b1731c4180db6002e0466550f2ff",
+      "largeAssets": [],
+      "changelog": "- 首版：4 个 AI 员工、1 个常用工作流。",
+      "filesRef": "index/legion-hr.json"
+    },
+    {
+      "id": "legion-ops",
+      "name": "运营部",
+      "aliases": [
+        "运营军团",
+        "Operations legion"
+      ],
+      "kind": "legion",
+      "category": "AI 公司部门",
+      "icon": "icon-chart",
+      "order": 5050,
+      "description": "AI 公司的运营部：市场营销与内容、短视频与广告投放、项目推进、流程时效、库存与供应链、门店与电商日常。",
+      "version": "1.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
+      "compat": {
+        "minAppVersion": "2.0.5",
+        "hostApi": 1
+      },
+      "access": {
+        "requiresSolutionGrant": false,
+        "feature": null,
+        "hidden": true
+      },
+      "runtime": {
+        "mode": "bundled",
+        "runner": "legion",
+        "route": null
+      },
+      "dependsOn": [],
+      "data": {
+        "schemaVersion": 1,
+        "paths": [],
+        "localStorage": []
+      },
+      "capabilities": [],
+      "legion": {
+        "short": "运营",
+        "shortEn": "Operations",
+        "color": "#EC4899",
+        "icon": "chart",
+        "summary": "市场营销与内容、短视频与广告投放、项目推进、流程时效、库存与供应链、门店与电商日常。",
+        "routingHints": [
+          "运营",
+          "推广",
+          "营销",
+          "市场",
+          "上市",
+          "活动",
+          "短视频",
+          "广告",
+          "投放",
+          "小红书",
+          "抖音",
+          "内容",
+          "库存",
+          "补货",
+          "供应链",
+          "流程",
+          "项目",
+          "复盘"
+        ],
+        "roles": [
+          "chief-operating-officer",
+          "chief-marketing-officer",
+          "project-manager-senior",
+          "project-management-project-shepherd",
+          "support-supply-chain-strategist",
+          "marketing-social-media-strategist",
+          "marketing-xiaohongshu-operator",
+          "marketing-douyin-strategist",
+          "support-analytics-reporter"
+        ],
+        "leadRole": "chief-operating-officer",
+        "defaultModel": null,
+        "workbenches": [
+          "workbench-flow-sla",
+          "workbench-parts-alert",
+          "workbench-biz-automation",
+          "workbench-global-ads",
+          "embedded-video-studio"
+        ],
+        "workflows": [
+          "workflows/launch-campaign.json"
+        ]
+      },
+      "path": "solutions/legion-ops",
+      "fileCount": 4,
+      "size": 4521,
+      "treeDigest": "a44840959b99673f71ea9f807be854bcc834fb1f35f8e6cc726a54bb864ab6bf",
+      "largeAssets": [],
+      "changelog": "- 首版：9 个 AI 员工、1 个常用工作流、关联 5 个工作台。",
+      "filesRef": "index/legion-ops.json"
+    },
+    {
+      "id": "legion-sales",
+      "name": "销售部",
+      "aliases": [
+        "销售军团",
+        "Sales legion"
+      ],
+      "kind": "legion",
+      "category": "AI 公司部门",
+      "icon": "icon-handshake",
+      "order": 5060,
+      "description": "AI 公司的销售部：询价报价、投标决策与标书、政府采购、外贸开发信、客户方案与跟进。",
+      "version": "1.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
+      "compat": {
+        "minAppVersion": "2.0.5",
+        "hostApi": 1
+      },
+      "access": {
+        "requiresSolutionGrant": false,
+        "feature": null,
+        "hidden": true
+      },
+      "runtime": {
+        "mode": "bundled",
+        "runner": "legion",
+        "route": null
+      },
+      "dependsOn": [],
+      "data": {
+        "schemaVersion": 1,
+        "paths": [],
+        "localStorage": []
+      },
+      "capabilities": [],
+      "legion": {
+        "short": "销售",
+        "shortEn": "Sales",
+        "color": "#EF4444",
+        "icon": "handshake",
+        "summary": "询价报价、投标决策与标书、政府采购、外贸开发信、客户方案与跟进。",
+        "routingHints": [
+          "销售",
+          "报价",
+          "询价",
+          "报价单",
+          "投标",
+          "标书",
+          "招标",
+          "政采",
+          "客户",
+          "外贸",
+          "开发信",
+          "订单",
+          "渠道"
+        ],
+        "roles": [
+          "sales-proposal-strategist",
+          "sales-deal-strategist",
+          "sales-account-strategist",
+          "sales-pipeline-analyst",
+          "sales-engineer",
+          "sales-outbound-strategist",
+          "sales-foreign-trade-rep"
+        ],
+        "leadRole": "sales-proposal-strategist",
+        "defaultModel": null,
+        "workbenches": [
+          "workbench-rfq-quote",
+          "workbench-bid-decision",
+          "workbench-bid-writer",
+          "workbench-foreign-trade",
+          "workbench-zcy-agent"
+        ],
+        "workflows": [
+          "workflows/quote.json"
+        ]
+      },
+      "path": "solutions/legion-sales",
+      "fileCount": 4,
+      "size": 3823,
+      "treeDigest": "fa4389324269290b41d20f36d8abe56b4db27b5d4cd8ed1b1555e84330c0be9f",
+      "largeAssets": [],
+      "changelog": "- 首版：7 个 AI 员工、1 个常用工作流、关联 5 个工作台。",
+      "filesRef": "index/legion-sales.json"
+    },
+    {
+      "id": "legion-cs",
+      "name": "客服部",
+      "aliases": [
+        "客服军团",
+        "Service legion"
+      ],
+      "kind": "legion",
+      "category": "AI 公司部门",
+      "icon": "icon-headset",
+      "order": 5070,
+      "description": "AI 公司的客服部：多渠道客户咨询答复（微信 / 企微 / 飞书 / 钉钉）、投诉与工单跟踪、售后退换、客户反馈归纳。",
+      "version": "1.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
+      "compat": {
+        "minAppVersion": "2.0.5",
+        "hostApi": 1
+      },
+      "access": {
+        "requiresSolutionGrant": false,
+        "feature": null,
+        "hidden": true
+      },
+      "runtime": {
+        "mode": "bundled",
+        "runner": "legion",
+        "route": null
+      },
+      "dependsOn": [],
+      "data": {
+        "schemaVersion": 1,
+        "paths": [],
+        "localStorage": []
+      },
+      "capabilities": [],
+      "legion": {
+        "short": "客服",
+        "shortEn": "Service",
+        "color": "#06B6D4",
+        "icon": "headset",
+        "summary": "多渠道客户咨询答复（微信 / 企微 / 飞书 / 钉钉）、投诉与工单跟踪、售后退换、客户反馈归纳。",
+        "routingHints": [
+          "客服",
+          "咨询",
+          "投诉",
+          "售后",
+          "退货",
+          "换货",
+          "工单",
+          "客户问",
+          "回复客户",
+          "差评",
+          "反馈",
+          "用户说"
+        ],
+        "roles": [
+          "support-support-responder",
+          "customer-success-manager",
+          "retail-customer-returns",
+          "product-feedback-synthesizer"
+        ],
+        "leadRole": "support-support-responder",
+        "defaultModel": null,
+        "workbenches": [
+          "workbench-grounded-qa"
+        ],
+        "workflows": [
+          "workflows/complaint.json"
+        ]
+      },
+      "path": "solutions/legion-cs",
+      "fileCount": 4,
+      "size": 3685,
+      "treeDigest": "9e76b3c4ffc54a99e389d24f4820ac0e2cc62c74e9b6117a5c77ce6874a36903",
+      "largeAssets": [],
+      "changelog": "- 首版：4 个 AI 员工、1 个常用工作流、关联 1 个工作台。",
+      "filesRef": "index/legion-cs.json"
+    },
+    {
+      "id": "legion-admin",
+      "name": "行政部",
+      "aliases": [
+        "行政军团",
+        "Admin legion"
+      ],
+      "kind": "legion",
+      "category": "AI 公司部门",
+      "icon": "icon-briefcase",
+      "order": 5080,
+      "description": "AI 公司的行政部：邮件收件分拣与回复、会议纪要与待办、日程、采购比价与下单申请、公司资料归档、工商与政策申报准备。",
+      "version": "1.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
+      "compat": {
+        "minAppVersion": "2.0.5",
+        "hostApi": 1
+      },
+      "access": {
+        "requiresSolutionGrant": false,
+        "feature": null,
+        "hidden": true
+      },
+      "runtime": {
+        "mode": "bundled",
+        "runner": "legion",
+        "route": null
+      },
+      "dependsOn": [],
+      "data": {
+        "schemaVersion": 1,
+        "paths": [],
+        "localStorage": []
+      },
+      "capabilities": [],
+      "legion": {
+        "short": "行政",
+        "shortEn": "Admin",
+        "color": "#64748B",
+        "icon": "briefcase",
+        "summary": "邮件收件分拣与回复、会议纪要与待办、日程、采购比价与下单申请、公司资料归档、工商与政策申报准备。",
+        "routingHints": [
+          "行政",
+          "邮件",
+          "来信",
+          "会议",
+          "纪要",
+          "日程",
+          "采购",
+          "比价",
+          "下单",
+          "办公用品",
+          "供应商",
+          "归档",
+          "资料",
+          "年报",
+          "补贴",
+          "申报"
+        ],
+        "roles": [
+          "chief-of-staff",
+          "specialized-meeting-assistant",
+          "project-management-meeting-notes-specialist",
+          "support-executive-summary-generator",
+          "project-management-studio-operations"
+        ],
+        "leadRole": "chief-of-staff",
+        "defaultModel": null,
+        "workbenches": [],
+        "workflows": [
+          "workflows/procurement.json"
+        ]
+      },
+      "path": "solutions/legion-admin",
+      "fileCount": 4,
+      "size": 4016,
+      "treeDigest": "6dd4defc7756cf134e5e8fb589b70a262af9a71bdd5289cda930660a2551002b",
+      "largeAssets": [],
+      "changelog": "- 首版：5 个 AI 员工、1 个常用工作流。",
+      "filesRef": "index/legion-admin.json"
     },
     {
       "id": "demo-dynamic-workbench",

@@ -1,0 +1,78 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "legion-legal",
+  "name": "法务部",
+  "aliases": [
+    "法务军团",
+    "Legal legion"
+  ],
+  "version": "1.0.0",
+  "kind": "legion",
+  "category": "AI 公司部门",
+  "icon": "icon-scale",
+  "order": 5020,
+  "description": "AI 公司的法务部：合同审查与修订、合规检查、法律文书与制度起草、知识产权与劳动纠纷咨询。",
+  "access": {
+    "requiresSolutionGrant": false,
+    "feature": null,
+    "hidden": true
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "legion",
+    "route": null
+  },
+  "legion": {
+    "short": "法务",
+    "shortEn": "Legal",
+    "color": "#8B5CF6",
+    "icon": "scale",
+    "summary": "合同审查与修订、合规检查、法律文书与制度起草、知识产权与劳动纠纷咨询。",
+    "routingHints": [
+      "合同",
+      "协议",
+      "条款",
+      "合规",
+      "法律",
+      "法务",
+      "违约",
+      "知识产权",
+      "商标",
+      "侵权",
+      "保密",
+      "NDA",
+      "纠纷",
+      "制度"
+    ],
+    "roles": [
+      "legal-contract-reviewer",
+      "legal-policy-writer",
+      "support-legal-compliance-checker",
+      "legal-trade-compliance-specialist",
+      "legal-document-review"
+    ],
+    "leadRole": "legal-contract-reviewer",
+    "defaultModel": null,
+    "workbenches": [],
+    "workflows": [
+      "workflows/contract-review.json"
+    ]
+  },
+  "dependsOn": [],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/legion-legal"
+  }
+}

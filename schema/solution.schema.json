@@ -12,7 +12,24 @@
     "name": { "type": "string", "minLength": 1, "description": "显示名（totalclaw-web 目录同步此字段）" },
     "aliases": { "type": "array", "items": { "type": "string" }, "description": "按名称安装时的匹配词" },
     "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$" },
-    "kind": { "enum": ["workbench", "runner", "pipeline", "kit"], "description": "workbench=行业工作台；runner/pipeline=市场方案包；kit=被多个方案共享的内部组件（不单独展示）" },
+    "kind": { "enum": ["workbench", "runner", "pipeline", "kit", "legion"], "description": "workbench=行业工作台；runner/pipeline=市场方案包；kit=被多个方案共享的内部组件（不单独展示）；legion=军团（部门）：一组 AI 员工 + 关联工作台 + 常用工作流，可装在任意机器上，由运营中心按需派活" },
+    "legion": {
+      "type": "object",
+      "description": "kind=legion 必填，见 tools/lib/legion.mjs",
+      "required": ["short", "color", "icon", "summary", "routingHints", "roles", "leadRole"],
+      "properties": {
+        "short": { "type": "string", "maxLength": 6, "description": "大屏节点上的简称" },
+        "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+        "icon": { "type": "string" },
+        "summary": { "type": "string", "maxLength": 200, "description": "给 AI 总经理判定用：这个部门能干什么" },
+        "routingHints": { "type": "array", "items": { "type": "string" }, "description": "判定失败时的关键词兜底" },
+        "roles": { "type": "array", "items": { "type": "string" }, "description": "qiye-app 角色 id" },
+        "leadRole": { "type": "string" },
+        "defaultModel": { "type": ["string", "null"], "description": "provider/model；为空跟随所在机器" },
+        "workbenches": { "type": "array", "items": { "type": "string" }, "description": "关联工作台（本仓库方案 id）" },
+        "workflows": { "type": "array", "items": { "type": "string" }, "description": "常用工作流 JSON（包内相对路径）" }
+      }
+    },
     "category": { "type": "string" },
     "icon": { "type": "string" },
     "order": { "type": "integer", "description": "目录排序" },

@@ -1,0 +1,77 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "legion-cs",
+  "name": "客服部",
+  "aliases": [
+    "客服军团",
+    "Service legion"
+  ],
+  "version": "1.0.0",
+  "kind": "legion",
+  "category": "AI 公司部门",
+  "icon": "icon-headset",
+  "order": 5070,
+  "description": "AI 公司的客服部：多渠道客户咨询答复（微信 / 企微 / 飞书 / 钉钉）、投诉与工单跟踪、售后退换、客户反馈归纳。",
+  "access": {
+    "requiresSolutionGrant": false,
+    "feature": null,
+    "hidden": true
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "legion",
+    "route": null
+  },
+  "legion": {
+    "short": "客服",
+    "shortEn": "Service",
+    "color": "#06B6D4",
+    "icon": "headset",
+    "summary": "多渠道客户咨询答复（微信 / 企微 / 飞书 / 钉钉）、投诉与工单跟踪、售后退换、客户反馈归纳。",
+    "routingHints": [
+      "客服",
+      "咨询",
+      "投诉",
+      "售后",
+      "退货",
+      "换货",
+      "工单",
+      "客户问",
+      "回复客户",
+      "差评",
+      "反馈",
+      "用户说"
+    ],
+    "roles": [
+      "support-support-responder",
+      "customer-success-manager",
+      "retail-customer-returns",
+      "product-feedback-synthesizer"
+    ],
+    "leadRole": "support-support-responder",
+    "defaultModel": null,
+    "workbenches": [
+      "workbench-grounded-qa"
+    ],
+    "workflows": [
+      "workflows/complaint.json"
+    ]
+  },
+  "dependsOn": [],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/legion-cs"
+  }
+}

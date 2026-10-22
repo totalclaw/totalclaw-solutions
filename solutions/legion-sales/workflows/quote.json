@@ -1,0 +1,28 @@
+{
+  "id": "quote",
+  "name": "报价单",
+  "trigger": [
+    "报价单",
+    "出报价",
+    "报个价"
+  ],
+  "approval": "discount",
+  "steps": [
+    {
+      "id": "pricing",
+      "legionId": "legion-finance",
+      "roleId": "finance-financial-analyst",
+      "goal": "按客户需求测算成本与底价，给出可报价区间与最大折扣。",
+      "dependsOn": []
+    },
+    {
+      "id": "quote",
+      "legionId": "legion-sales",
+      "roleId": "sales-proposal-strategist",
+      "goal": "按财务给的价格区间出正式报价单（品名规格、单价、数量、交期、付款方式、有效期），折扣超出标准需老板确认。",
+      "dependsOn": [
+        "pricing"
+      ]
+    }
+  ]
+}

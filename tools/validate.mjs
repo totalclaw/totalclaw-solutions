@@ -4,12 +4,14 @@
 // 用法：node tools/validate.mjs [--since <git-ref>] [--web <totalclaw-web 根目录>] [--json]
 //   --since  对比该 ref：方案文件有变化但版本未提升 → 失败；版本只能递增
 //   --web    直接读取 totalclaw-web 的 solution-catalog.ts 对账（默认用 registry/web-solution-ids.json 快照）
+//   --roles  qiye-app 的 roles/ 目录，校验军团角色 id 存在（默认找同级 ../totalclaw-qiye-app/roles，找不到只警告）
 import { execFileSync } from 'node:child_process';
 import { existsSync, lstatSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import * as semver from '../packages/installer/src/semver.mjs';
 import { changelogSection } from './build-index.mjs';
 import { ID_RE, MAX_FILE_BYTES, REPO_ROOT, SOLUTIONS_DIR, listSolutionDirs, parseArgs, readJson, walkFiles } from './lib/common.mjs';
+import { loadRoleIds, validateLegion } from './lib/legion.mjs';
 
 const args = parseArgs(process.argv.slice(2));
 const errors = [];
@@ -17,7 +19,7 @@ const warnings = [];
 const err = (id, msg) => errors.push(`[${id}] ${msg}`);
 const warn = (id, msg) => warnings.push(`[${id}] ${msg}`);
 
-const KINDS = new Set(['workbench', 'runner', 'pipeline', 'kit']);
+const KINDS = new Set(['workbench', 'runner', 'pipeline', 'kit', 'legion']);
 /** 宿主 SDK 最高版本（qiye-app SOLUTION_HOST_API） */
 const MAX_HOST_API = 2;
 const RUNTIME_MODES = new Set(['bundled', 'dynamic']);
@@ -58,6 +60,8 @@ const known = new Set(ids);
 const manifests = new Map();
 const names = new Map();
 const web = webIds();
+const roleIds = loadRoleIds(args.roles || join(REPO_ROOT, '..', 'totalclaw-qiye-app', 'roles'));
+if (!roleIds) warn('legion', '找不到 qiye-app roles/ 目录，跳过军团角色 id 存在性检查（用 --roles 指定）');
 
 for (const id of ids) {
   const dir = join(SOLUTIONS_DIR, id);
@@ -85,6 +89,8 @@ for (const id of ids) {
   if (!m.access || typeof m.access.requiresSolutionGrant !== 'boolean') err(id, 'access.requiresSolutionGrant 必须是布尔');
   if (m.access?.requiresSolutionGrant && !web.has(id)) err(id, '需要授权的方案 id 必须存在于 totalclaw-web 方案目录（registry/web-solution-ids.json）');
   if (m.kind === 'kit' && (m.access?.requiresSolutionGrant || !m.access?.hidden)) err(id, 'kit 必须 hidden 且不需要授权');
+  if (m.kind === 'legion') for (const e of validateLegion(m, dir, { solutionIds: known, roleIds })) err(id, e);
+  else if (m.legion !== undefined) err(id, '只有 kind=legion 的方案能带 legion 段');
 
   // 兼容性 / 运行时
   if (!semver.valid(m.compat?.minAppVersion)) err(id, 'compat.minAppVersion 必须是 semver');

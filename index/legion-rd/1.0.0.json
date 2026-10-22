@@ -1,0 +1,27 @@
+{
+  "id": "legion-rd",
+  "version": "1.0.0",
+  "treeDigest": "02d0901357b557bee323faa4618b749eed70f487c5edbf2b960dea363961cdea",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 130,
+      "sha256": "65f64b2783f8a11469873e987b278ef687e993c7f2d2a29c70c50a218f4f3301"
+    },
+    {
+      "path": "README.md",
+      "size": 1036,
+      "sha256": "64050e95b7796c4c2fffd7e4896d1999933b974129e200457f43447074ad74c9"
+    },
+    {
+      "path": "solution.json",
+      "size": 1907,
+      "sha256": "b5430d1c98e5701583c36f9ffc195dc5ac38057d679d4063bd8816e500cb0d4f"
+    },
+    {
+      "path": "workflows/prd-and-design.json",
+      "size": 954,
+      "sha256": "20ee7d95e0f1051bd04cff9b2142b0cd9ea688654725518e10e773585796863b"
+    }
+  ]
+}

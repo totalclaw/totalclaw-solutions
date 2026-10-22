@@ -1,0 +1,47 @@
+{
+  "id": "contract-review",
+  "name": "合同审查",
+  "trigger": [
+    "审合同",
+    "合同审查",
+    "审查协议"
+  ],
+  "approval": "contract",
+  "steps": [
+    {
+      "id": "pre",
+      "legionId": "legion-legal",
+      "roleId": "legal-contract-reviewer",
+      "goal": "预分析合同：合同类型、双方主体、金额与期限，列出要重点审查的条款。",
+      "dependsOn": []
+    },
+    {
+      "id": "review",
+      "legionId": "legion-legal",
+      "roleId": "legal-contract-reviewer",
+      "goal": "逐条审查并分级（高 / 中 / 低风险），每条写风险原因、修改建议条文与退让方案。",
+      "dependsOn": [
+        "pre"
+      ]
+    },
+    {
+      "id": "compliance",
+      "legionId": "legion-legal",
+      "roleId": "support-legal-compliance-checker",
+      "goal": "检查合同的合规问题（效力、管辖、发票与税务、个人信息），补充缺失条款。",
+      "dependsOn": [
+        "pre"
+      ]
+    },
+    {
+      "id": "opinion",
+      "legionId": "legion-legal",
+      "roleId": "legal-policy-writer",
+      "goal": "汇总成审查意见书：总体结论、风险清单、必争与可让条款，签约与否交老板拍板。",
+      "dependsOn": [
+        "review",
+        "compliance"
+      ]
+    }
+  ]
+}

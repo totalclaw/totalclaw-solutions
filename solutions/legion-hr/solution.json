@@ -1,0 +1,78 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "legion-hr",
+  "name": "人事部",
+  "aliases": [
+    "人事军团",
+    "HR legion"
+  ],
+  "version": "1.0.0",
+  "kind": "legion",
+  "category": "AI 公司部门",
+  "icon": "icon-people",
+  "order": 5040,
+  "description": "AI 公司的人事部：招聘（JD、简历筛选、面试题与评分卡）、入离职、绩效、考勤与培训资料。",
+  "access": {
+    "requiresSolutionGrant": false,
+    "feature": null,
+    "hidden": true
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "legion",
+    "route": null
+  },
+  "legion": {
+    "short": "人事",
+    "shortEn": "HR",
+    "color": "#F59E0B",
+    "icon": "people",
+    "summary": "招聘（JD、简历筛选、面试题与评分卡）、入离职、绩效、考勤与培训资料。",
+    "routingHints": [
+      "招聘",
+      "招人",
+      "简历",
+      "面试",
+      "JD",
+      "岗位",
+      "入职",
+      "离职",
+      "绩效",
+      "考勤",
+      "培训",
+      "员工",
+      "人事",
+      "offer",
+      "录用"
+    ],
+    "roles": [
+      "hr-recruiter",
+      "hr-performance-reviewer",
+      "support-recruitment-specialist",
+      "hr-onboarding"
+    ],
+    "leadRole": "hr-recruiter",
+    "defaultModel": null,
+    "workbenches": [],
+    "workflows": [
+      "workflows/hiring.json"
+    ]
+  },
+  "dependsOn": [],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/legion-hr"
+  }
+}

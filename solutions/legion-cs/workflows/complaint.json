@@ -1,0 +1,36 @@
+{
+  "id": "complaint",
+  "name": "投诉处理",
+  "trigger": [
+    "投诉",
+    "差评",
+    "退换货"
+  ],
+  "steps": [
+    {
+      "id": "reply",
+      "legionId": "legion-cs",
+      "roleId": "support-support-responder",
+      "goal": "先安抚并答复客户：确认问题、给出处理时限，记录成工单（问题、负责部门、时限）。",
+      "dependsOn": []
+    },
+    {
+      "id": "fix",
+      "legionId": "legion-ops",
+      "roleId": "project-manager-senior",
+      "goal": "按工单查明原因并给出处理方案（补发 / 退款 / 维修）与防再发措施。",
+      "dependsOn": [
+        "reply"
+      ]
+    },
+    {
+      "id": "close",
+      "legionId": "legion-cs",
+      "roleId": "customer-success-manager",
+      "goal": "按处理方案写给客户的结案回复，并归纳这类投诉的改进建议。",
+      "dependsOn": [
+        "fix"
+      ]
+    }
+  ]
+}

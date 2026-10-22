@@ -1,0 +1,216 @@
+/**
+ * 机器与部门装机索引（L3 / L4 / R3）。
+ *
+ * 部门和机器解耦：一台机器可以承载多个部门。
+ * - 员工机承载哪些部门：主控经现有集群通道 config.set 把能力标签 `legion:<部门 id>` 写到员工机画像，
+ *   config.get 回读（员工机重启不丢）。宿主现在没有「员工机上报已装方案包」，这是不改 App 能做到的真实往返。
+ * - 主控本机承载哪些部门：存在本方案数据里（单机演示时全部部门都在本机）。
+ * - 派活（legion_affinity）：在「承载该部门的在线员工机」里挑本方案在途最少的；没有就看主控本机是否承载；
+ *   都没有 → 返回 null，由调用方报「没有在线机器承载 X 部门」。
+ */
+
+const TAG = 'legion:';
+const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const CAPS_TTL_MS = 15_000;
+
+function tagsToLegions(caps) {
+  return (Array.isArray(caps) ? caps : []).map(String).filter((c) => c.startsWith(TAG)).map((c) => c.slice(TAG.length));
+}
+
+class Fleet {
+  /**
+   * @param {object} o
+   * @param {() => any} o.proc               宿主 clusterDiscoveryProc（可为 null）
+   * @param {() => object} o.readPlacement   { local: string[]|null, aliases: {nodeId: name} }
+   * @param {(p:object) => void} o.writePlacement
+   * @param {() => string[]} o.installedIds  本机已装部门 id
+   */
+  constructor({ proc, readPlacement, writePlacement, installedIds, log, now = () => Date.now() }) {
+    Object.assign(this, { proc, readPlacement, writePlacement, installedIds, log, now });
+    this.caps = new Map(); // nodeId → { legions, at, error }
+    this.busy = new Map(); // machineId → 在途步骤数
+    this.order = []; // 见过的员工机顺序（决定 A/B/C 字母）
+    this.lastMachines = [];
+  }
+
+  self() {
+    const p = this.proc();
+    if (!p || typeof p.getSelf !== 'function') return { nodeId: 'local', role: 'non_cluster', status: 'idle' };
+    try {
+      const s = p.getSelf();
+      return { nodeId: s.nodeId || 'local', role: s.deploymentRole || 'non_cluster', status: s.status || 'idle', interfaces: s.lanInterfaces || [] };
+    } catch {
+      return { nodeId: 'local', role: 'non_cluster', status: 'idle' };
+    }
+  }
+
+  /** standalone = 单机（全部本机执行）/ cluster = 本机是主控 / employee = 本机是员工机 */
+  mode() {
+    const r = this.self().role;
+    return r === 'orchestrator' ? 'cluster' : r === 'employee' ? 'employee' : 'standalone';
+  }
+
+  onlineNodes() {
+    const p = this.proc();
+    if (!p || this.mode() !== 'cluster') return [];
+    try {
+      const self = this.self().nodeId;
+      return (p.getOnlineNodes() || []).filter((n) => n && n.nodeId && n.nodeId !== self);
+    } catch {
+      return [];
+    }
+  }
+
+  placement() {
+    const p = this.readPlacement() || {};
+    return { local: Array.isArray(p.local) ? p.local : null, aliases: p.aliases && typeof p.aliases === 'object' ? p.aliases : {} };
+  }
+
+  localLegions() {
+    const installed = this.installedIds();
+    // 单机：全部部门都在本机（装机勾选只对集群主控有意义）
+    if (this.mode() === 'standalone') return installed;
+    const p = this.placement();
+    return p.local ? p.local.filter((id) => installed.includes(id)) : installed;
+  }
+
+  async rpc(nodeId, roleId, payload, timeoutMs = 8000) {
+    const p = this.proc();
+    const id = `lhq-${roleId}-${this.now()}-${Math.random().toString(36).slice(2, 8)}`;
+    const call = p.dispatchTask({ taskId: id, idempotencyKey: id, targetNodeId: nodeId, roleId, priority: 'normal', payload: payload || {} });
+    const timer = new Promise((_, rej) => setTimeout(() => rej(new Error(`${roleId} 超时`)), timeoutMs).unref?.());
+    const res = await Promise.race([call, timer]);
+    if (!res || res.status !== 'success') throw new Error(res?.error || `${roleId} 失败`);
+    return res.output || {};
+  }
+
+  async readCaps(node, force = false) {
+    const c = this.caps.get(node.nodeId);
+    if (!force && c && this.now() - c.at < CAPS_TTL_MS) return c;
+    try {
+      const out = await this.rpc(node.nodeId, 'config.get', {});
+      // 员工机真实负载（宿主 status.report：本机忙碌的 agent / 单次会话数），读不到不影响部门标签
+      let load = null;
+      try {
+        const st = await this.rpc(node.nodeId, 'status.report', {});
+        load = { busy: Number(st.busyAgents) || 0, model: typeof out.model === 'string' ? out.model : null };
+      } catch {
+        load = c?.load || null;
+      }
+      const next = { legions: tagsToLegions(out.capabilities), caps: Array.isArray(out.capabilities) ? out.capabilities : [], load, at: this.now(), error: null };
+      this.caps.set(node.nodeId, next);
+      return next;
+    } catch (e) {
+      const next = { legions: c?.legions || [], caps: c?.caps || [], load: c?.load || null, at: this.now(), error: String(e.message || e) };
+      this.caps.set(node.nodeId, next);
+      return next;
+    }
+  }
+
+  /** 刷新机器列表（读各员工机的部门标签）；返回机器列表 */
+  async refresh({ force = false } = {}) {
+    const nodes = this.onlineNodes().sort((a, b) => String(a.host).localeCompare(String(b.host), 'en', { numeric: true }));
+    await Promise.all(nodes.map((n) => this.readCaps(n, force)));
+    return this.machines(nodes);
+  }
+
+  machines(nodes = this.onlineNodes()) {
+    const p = this.placement();
+    for (const n of nodes) if (!this.order.includes(n.nodeId)) this.order.push(n.nodeId);
+    const self = this.self();
+    const mode = this.mode();
+    const list = [
+      {
+        id: self.nodeId,
+        name: mode === 'standalone' ? '本机' : '主控（本机）',
+        ip: (self.interfaces && self.interfaces[0]) || '',
+        local: true,
+        online: true,
+        hosts: this.localLegions(),
+        busy: this.busy.get(self.nodeId) || 0,
+        note: null,
+      },
+    ];
+    for (const n of nodes) {
+      const c = this.caps.get(n.nodeId);
+      const letter = LETTERS[this.order.indexOf(n.nodeId)] || String(this.order.indexOf(n.nodeId) + 1);
+      list.push({
+        id: n.nodeId,
+        name: p.aliases[n.nodeId] || `员工机 ${letter}`,
+        ip: n.host || '',
+        local: false,
+        online: n.status !== 'offline',
+        hosts: c?.legions || [],
+        busy: this.busy.get(n.nodeId) || 0,
+        load: c?.load || null,
+        note: c?.error ? `读取部门失败：${c.error}` : null,
+      });
+    }
+    this.lastMachines = list;
+    return list;
+  }
+
+  /** 把部门装到 / 撤出某台机器 */
+  async assign(legionId, machineId, on) {
+    const self = this.self();
+    if (machineId === self.nodeId || machineId === 'local') {
+      const p = this.placement();
+      const cur = new Set(this.localLegions());
+      if (on) cur.add(legionId);
+      else cur.delete(legionId);
+      this.writePlacement({ ...p, local: [...cur] });
+      return this.machines();
+    }
+    const node = this.onlineNodes().find((n) => n.nodeId === machineId);
+    if (!node) throw new Error('这台机器不在线');
+    const c = await this.readCaps(node, true);
+    if (c.error) throw new Error(c.error);
+    const keep = c.caps.filter((x) => !String(x).startsWith(TAG));
+    const legions = new Set(c.legions);
+    if (on) legions.add(legionId);
+    else legions.delete(legionId);
+    // 只传 capabilities：员工机画像里的模型不动（config.set 对缺省字段保留原值）
+    await this.rpc(machineId, 'config.set', { capabilities: [...keep, ...[...legions].map((l) => TAG + l)] });
+    await this.readCaps(node, true);
+    return this.machines();
+  }
+
+  rename(machineId, name) {
+    const p = this.placement();
+    const aliases = { ...p.aliases };
+    const v = String(name || '').trim().slice(0, 12);
+    if (v) aliases[machineId] = v;
+    else delete aliases[machineId];
+    this.writePlacement({ ...p, aliases });
+    return this.machines();
+  }
+
+  /** 承载该部门、可派活的机器，员工机在前（按在途少优先），主控本机兜底 */
+  candidates(legionId, exclude = []) {
+    const list = this.lastMachines.length ? this.lastMachines : this.machines();
+    const remote = list.filter((m) => !m.local && m.online && m.hosts.includes(legionId) && !exclude.includes(m.id));
+    remote.sort((a, b) => (this.busy.get(a.id) || 0) - (this.busy.get(b.id) || 0) || a.name.localeCompare(b.name));
+    const local = list.filter((m) => m.local && m.hosts.includes(legionId) && !exclude.includes(m.id));
+    return [...remote, ...local];
+  }
+
+  pick(legionId, exclude = []) {
+    return this.candidates(legionId, exclude)[0] || null;
+  }
+
+  /** 在线可用的部门 id（至少一台机器承载） */
+  availableLegionIds() {
+    const list = this.lastMachines.length ? this.lastMachines : this.machines();
+    return [...new Set(list.filter((m) => m.online).flatMap((m) => m.hosts))];
+  }
+
+  acquire(machineId) {
+    this.busy.set(machineId, (this.busy.get(machineId) || 0) + 1);
+  }
+
+  release(machineId) {
+    this.busy.set(machineId, Math.max(0, (this.busy.get(machineId) || 0) - 1));
+  }
+}
+
+module.exports = { Fleet, tagsToLegions, TAG };

@@ -106,6 +106,7 @@ export function buildIndex() {
       dependsOn: m.dependsOn || [],
       data: m.data,
       capabilities: m.capabilities || [],
+      ...(m.legion ? { legion: m.legion } : {}),
       path: `solutions/${id}`,
       fileCount: files.length,
       size: files.reduce((n, f) => n + f.size, 0),

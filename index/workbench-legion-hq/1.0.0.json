@@ -1,0 +1,137 @@
+{
+  "id": "workbench-legion-hq",
+  "version": "1.0.0",
+  "treeDigest": "2d28c4e1624b8677ef9bdba264da22e0d8dd39f49defbab1dad7f68d239912ee",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 1229,
+      "sha256": "c5b9aa8780b3976215eb93e9faf7857b46aa74c6e4584547903e698211405150"
+    },
+    {
+      "path": "README.md",
+      "size": 4451,
+      "sha256": "ccf2563f768342a69209cffed5255a0e3d67230f4906908666614e581e927172"
+    },
+    {
+      "path": "resources/company-logo.png",
+      "size": 23856,
+      "sha256": "5b2e88f239a066dfc90a61db1d57ca110ee04177440fcb041c0719157eb92c55"
+    },
+    {
+      "path": "resources/coverage.json",
+      "size": 10043,
+      "sha256": "9f51ca07a7fc17b93f9f23d88e05cb1a989c8ef7d5945475e85d57688d60aa22"
+    },
+    {
+      "path": "resources/screen/index.html",
+      "size": 41060,
+      "sha256": "e0017ee4fa64ac440adb3adabae074d9466264267adfdf1df4634dbbe57b2865"
+    },
+    {
+      "path": "resources/screen/remote.html",
+      "size": 4939,
+      "sha256": "2a73b9b0f73724c1a5db59a98aa5741df319f791722a1da72a526030ac22432d"
+    },
+    {
+      "path": "resources/scripts/01-ai-company-day.json",
+      "size": 2330,
+      "sha256": "96715f6842d3b58a17103ea6451b2cceb7c62e1b70c72e4dcf0cb64b91241ea1"
+    },
+    {
+      "path": "resources/scripts/02-daily-morning.json",
+      "size": 1172,
+      "sha256": "f511085c6257f41c605b4e4b41b7c3b294c4a6f7db73f766b3f19bdc1395a615"
+    },
+    {
+      "path": "resources/scripts/03-new-product-launch.json",
+      "size": 525,
+      "sha256": "228f301c8ec443e9a6bddc3aa4f5064558eaee4a67702696b3fcb3f8143dfdc9"
+    },
+    {
+      "path": "resources/scripts/04-hundred-resumes.json",
+      "size": 1056,
+      "sha256": "d081ce7dcad69bc0b522f03eae4f59889cc68e82c4d13801b1d819a015fdd04b"
+    },
+    {
+      "path": "solution.json",
+      "size": 3075,
+      "sha256": "7dddda486c1832d8fb71f605c9442678cb1330ab571c8dafd68d4b6b95d0ea7f"
+    },
+    {
+      "path": "src/host-modules.json",
+      "size": 173,
+      "sha256": "63a5736d5c91e6636e595c0f153e6339add0866fd032bb6327e76aeaae8b0d90"
+    },
+    {
+      "path": "src/main/bus.cjs",
+      "size": 4348,
+      "sha256": "136d1297358270f75d02084b7a0dbbf4579df1a2e27dbe602b40f93d638e8147"
+    },
+    {
+      "path": "src/main/company.cjs",
+      "size": 3832,
+      "sha256": "df00a169b445410b2ae01d19006ef2fa5de3e8c7d283baafda8b4275493b1315"
+    },
+    {
+      "path": "src/main/director.cjs",
+      "size": 6184,
+      "sha256": "94fa44fd5a64f230e2fc2843ca1e9cc4457c5279e735f4e5ce75281f6b572c71"
+    },
+    {
+      "path": "src/main/employee.cjs",
+      "size": 4161,
+      "sha256": "2bd122e80c04b78fc687c9f6a6e5c7e3d47bc0851e268e334c3f6f53473d90a5"
+    },
+    {
+      "path": "src/main/fleet.cjs",
+      "size": 9108,
+      "sha256": "4565792671693caa6b23bbb0df96e0141f107a30b73671066bc541a4f4a415d0"
+    },
+    {
+      "path": "src/main/index.cjs",
+      "size": 18621,
+      "sha256": "b3afca1aed3153bc35c804bcee7351019f83991c769b130b609b1f938d3808c6"
+    },
+    {
+      "path": "src/main/legions.cjs",
+      "size": 4507,
+      "sha256": "a00bb523cb898c957be78e9c1c9c3fbd4c72705c3a7cff3f9c5325e0b5c0d428"
+    },
+    {
+      "path": "src/main/planner.cjs",
+      "size": 4372,
+      "sha256": "4f7d408df80e32e4d82cc1a8b081179bcac19314917ad318da1c231b7bb131af"
+    },
+    {
+      "path": "src/main/routines.cjs",
+      "size": 6392,
+      "sha256": "2e4f360e15e9dd84357d24993ec23501753029d1b2c6ffb9fc2eb596175bd114"
+    },
+    {
+      "path": "src/main/runner.cjs",
+      "size": 18734,
+      "sha256": "9809b2e66b232ce2893bf7ff83f848f0f3bd68492131916d6bc2a0e1039c7702"
+    },
+    {
+      "path": "src/main/screenServer.cjs",
+      "size": 9948,
+      "sha256": "02a9034b98189545074c8ff52c179c97dfab4e1a3c22716a660c4fefd8112cad"
+    },
+    {
+      "path": "src/main/screenState.cjs",
+      "size": 8740,
+      "sha256": "2771cac04a2955ddaac6268f0d49be9a457caaf3663d9fb68df516f58c8e0b0e"
+    },
+    {
+      "path": "src/main/triage.cjs",
+      "size": 7736,
+      "sha256": "4f8e445b2f2dd86d3228f4ea55eb8adb527ed967f80e2b92baf8f58dec8c9c72"
+    },
+    {
+      "path": "src/renderer/index.mjs",
+      "size": 42349,
+      "sha256": "733959db17f7e3e4aaf1e0b74db47f454b01edf1114887b9366c2d7ae38c1d92"
+    }
+  ]
+}

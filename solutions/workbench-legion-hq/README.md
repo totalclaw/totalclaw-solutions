@@ -1,0 +1,53 @@
+# AI 公司运营中心（workbench-legion-hq）
+
+一个老板 + 一家 AI 公司。8 个 AI 部门（`legion-rd / legal / finance / hr / ops / sales / cs / admin`）是独立的方案包，**和机器解耦**：装在哪台机器上都行，一台机器可以承载多个部门。本方案是主控上的「总指挥」：判定 → 派活 → 交接 → 汇总 → 老板拍板，并提供局域网指挥大屏。
+
+## 运行模式
+
+| 本机角色 | 行为 |
+|---|---|
+| 集群主控（orchestrator） | 部门装到员工机（勾选即 `config.set` 写能力标签 `legion:<id>`），派活走现有 `worker.run`；主控本机勾选的部门作兜底 |
+| 单机（non_cluster） | 全部部门在本机执行（本机模型） |
+| 员工机（employee） | 只显示「本机承载的部门 + 主控派来的正在执行的任务」，不开大屏、不跑例行事务 |
+
+## 任务怎么走
+
+1. 收到一件事（老板下令 / 定时例行 / 剧本 / 大屏 / 手机遥控）。
+2. AI 总经理判定要哪几个部门：模型返回 JSON，校验部门在线可用、依赖不成环；模型失败、通道把错误当正文、JSON 不合格 → 回落 `routingHints` 关键词规则。剧本可强制指定部门。
+3. 生成计划：单部门且命中它的常用工作流（`workflows/*.json` 的 `trigger`）→ 展开工作流；否则一部门一步（负责人角色），按 `dependsOn` 连边。
+4. 依赖就绪的步骤并行派发：在承载该部门的在线员工机里挑本中心在途最少的；开跑前派发失败（机器不可用）换下一台；执行中失败不重跑。
+5. 下游提示词带上游产物（每份截 1200 字）；跨部门时发交接事件（大屏飞线）。
+6. 多步时 AI 总经理汇总（汇总失败则原样拼接各部门产出）。
+7. 付款 / 开票 / 报价折扣 / 签约 / 对外发布 / 录用 / ≥4 部门的重大事项 → 老板待办；AI 只准备不执行。驳回带意见重做汇总（或最后一步）后再交确认。
+
+## 指挥大屏
+
+控制台「指挥大屏」一步：**启动 Web** → 局域网地址（带口令）。会场电脑、电视、平板直接打开；手机打开 `/remote` 可下令和拍板；也可在本机选显示器全屏打开（Esc 退出全屏、再按关闭）。
+
+- 端口默认 8240，被占顺延（最多 20 个）；绑定 0.0.0.0；所有路径都要口令（`?t=`），可一键换口令。
+- 数据只来自 `/api/state` 快照与 `/api/events`（SSE），不编造进度；与主控断开时页面明确提示并自动重连。
+- 键盘：O 组织架构、M 公司能力地图、Esc 返回；点任务卡只看这一件。
+- 对外脱敏：事件进总线前去掉文件路径、密钥、手机号、邮箱、证件号与 agent 脱敏占位符。
+
+## 宿主依赖（hostApi 2）
+
+主进程入口 `src/main/index.cjs` 是手写 CommonJS，不经 qiye-app 的 `solutions-build`。用到的宿主能力：
+
+- `ctx.host.deps.clusterDiscoveryProc`：`getSelf / getOnlineNodes / dispatchTask / on('task:received'|'task:result')`
+- `host:apps/desktop-shell/src/main/services/workbenchLlm.ts`：本机模型（通道错误会抛错）
+- `host:apps/desktop-shell/src/main/services/accountScope.ts`：员工机画像路径
+- `deps.serviceAuth`（登录账号的公司名，尽力而为）、`deps.getMainWindow`、`electron`（显示器列表与全屏窗口）
+
+`host:` 模块只有入口文件能 require（宿主只给入口注入专用 require），子模块经参数拿。
+
+## 数据
+
+账号目录 `legion-hq/`：`settings.json`（装机、例行、开关）、`company-profile.json`、`tasks/*.json`（各部门完整产出，最多 200 份）、`records/*.jsonl`（大屏事件录制）、`scripts.json`（自定义剧本）。
+
+## 已知限制
+
+- 员工机执行过程中没有逐步进度回传（宿主 `worker.run` 只回最终结果），大屏「正在做什么」显示的是主控侧真实阶段：已派发 / 执行中 / 结果回传。
+- 本机执行的步骤不能中途打断模型调用（宿主 workbenchLlm 不收 signal）；跨机步骤会发 `cluster.cancel`。
+- 部门「装到员工机」用的是员工画像能力标签，不是在员工机上真的安装部门包；员工机上报已装方案包需要宿主支持（见仓库 docs 对接清单）。
+- 大屏二维码未做（没有可用的二维码库），控制台给出可复制的地址。
+- 例行事务只在 App 开着时触发，错过不补跑。

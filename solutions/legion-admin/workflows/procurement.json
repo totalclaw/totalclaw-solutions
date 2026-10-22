@@ -1,0 +1,37 @@
+{
+  "id": "procurement",
+  "name": "采购比价与下单申请",
+  "trigger": [
+    "比价",
+    "采购",
+    "下单"
+  ],
+  "approval": "payment",
+  "steps": [
+    {
+      "id": "compare",
+      "legionId": "legion-admin",
+      "roleId": "project-management-studio-operations",
+      "goal": "整理供应商报价做比价表（单价、交期、付款条件、售后），给出推荐与理由。",
+      "dependsOn": []
+    },
+    {
+      "id": "budget",
+      "legionId": "legion-finance",
+      "roleId": "finance-treasury-manager",
+      "goal": "核对本月预算与现金余额，判断推荐方案能否支付、建议付款节奏。",
+      "dependsOn": [
+        "compare"
+      ]
+    },
+    {
+      "id": "request",
+      "legionId": "legion-admin",
+      "roleId": "chief-of-staff",
+      "goal": "写下单申请（采购内容、金额、供应商、付款安排），付款进老板待办，AI 不下单。",
+      "dependsOn": [
+        "budget"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "legion-sales",
+  "version": "1.0.0",
+  "treeDigest": "fa4389324269290b41d20f36d8abe56b4db27b5d4cd8ed1b1555e84330c0be9f",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 123,
+      "sha256": "9cb5386c036fbc06741953bd0f56d5955d7e6056b2b5181022194e30ecc08c5c"
+    },
+    {
+      "path": "README.md",
+      "size": 1061,
+      "sha256": "a1b1d976b0ad3b2651899b4b1947cc748dae28467cb5dab609e95237a8fac3a6"
+    },
+    {
+      "path": "solution.json",
+      "size": 1914,
+      "sha256": "7b6bf5b40d5d0117976450f103227f4cb691027e3f219d2f0700b8ba51389050"
+    },
+    {
+      "path": "workflows/quote.json",
+      "size": 725,
+      "sha256": "8706cd59749575d6a34f641942f92a91ebc14b0b43290d93e93d66bcbe71a37d"
+    }
+  ],
+  "versions": [
+    {
+      "version": "1.0.0",
+      "ref": "legion-sales@1.0.0",
+      "treeDigest": "fa4389324269290b41d20f36d8abe56b4db27b5d4cd8ed1b1555e84330c0be9f",
+      "filesRef": "index/legion-sales/1.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 1,
+      "publishedAt": "2026-10-22"
+    }
+  ]
+}

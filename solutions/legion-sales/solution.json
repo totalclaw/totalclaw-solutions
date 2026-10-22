@@ -1,0 +1,85 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "legion-sales",
+  "name": "销售部",
+  "aliases": [
+    "销售军团",
+    "Sales legion"
+  ],
+  "version": "1.0.0",
+  "kind": "legion",
+  "category": "AI 公司部门",
+  "icon": "icon-handshake",
+  "order": 5060,
+  "description": "AI 公司的销售部：询价报价、投标决策与标书、政府采购、外贸开发信、客户方案与跟进。",
+  "access": {
+    "requiresSolutionGrant": false,
+    "feature": null,
+    "hidden": true
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "legion",
+    "route": null
+  },
+  "legion": {
+    "short": "销售",
+    "shortEn": "Sales",
+    "color": "#EF4444",
+    "icon": "handshake",
+    "summary": "询价报价、投标决策与标书、政府采购、外贸开发信、客户方案与跟进。",
+    "routingHints": [
+      "销售",
+      "报价",
+      "询价",
+      "报价单",
+      "投标",
+      "标书",
+      "招标",
+      "政采",
+      "客户",
+      "外贸",
+      "开发信",
+      "订单",
+      "渠道"
+    ],
+    "roles": [
+      "sales-proposal-strategist",
+      "sales-deal-strategist",
+      "sales-account-strategist",
+      "sales-pipeline-analyst",
+      "sales-engineer",
+      "sales-outbound-strategist",
+      "sales-foreign-trade-rep"
+    ],
+    "leadRole": "sales-proposal-strategist",
+    "defaultModel": null,
+    "workbenches": [
+      "workbench-rfq-quote",
+      "workbench-bid-decision",
+      "workbench-bid-writer",
+      "workbench-foreign-trade",
+      "workbench-zcy-agent"
+    ],
+    "workflows": [
+      "workflows/quote.json"
+    ]
+  },
+  "dependsOn": [],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/legion-sales"
+  }
+}

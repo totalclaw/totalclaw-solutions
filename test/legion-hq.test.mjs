@@ -1,0 +1,472 @@
+// AI 公司运营中心（workbench-legion-hq）主进程核心：判定 / 计划 / 执行 / 快照 / 公司档案 / 例行 / 剧本 / 大屏服务 / 子机视角
+import assert from 'node:assert/strict';
+import { EventEmitter } from 'node:events';
+import { mkdtempSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { createRequire } from 'node:module';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { test } from 'node:test';
+import { SOLUTIONS_DIR } from '../tools/lib/common.mjs';
+
+const DIR = join(SOLUTIONS_DIR, 'workbench-legion-hq');
+const require = createRequire(join(DIR, 'src', 'main', 'index.cjs'));
+const { listInstalledLegions, publicLegion } = require('./legions.cjs');
+const { triage, triageByRules, validateTriage, isChannelError } = require('./triage.cjs');
+const { buildPlan } = require('./planner.cjs');
+const { LegionBus, Recorder, redactText } = require('./bus.cjs');
+const { createState, applyEvent, snapshot } = require('./screenState.cjs');
+const { resolveProfile, displayProfile, identityLine } = require('./company.cjs');
+const { Fleet } = require('./fleet.cjs');
+const { TaskRunner } = require('./runner.cjs');
+const { RoutineScheduler, dueKey, LIBRARY } = require('./routines.cjs');
+const { loadScripts, validateScript } = require('./director.cjs');
+const { ScreenServer } = require('./screenServer.cjs');
+const { EmployeeWatch } = require('./employee.cjs');
+
+const LEGIONS = listInstalledLegions(DIR);
+const tick = (ms = 5) => new Promise((r) => setTimeout(r, ms));
+async function until(fn, ms = 3000) {
+  const end = Date.now() + ms;
+  while (Date.now() < end) {
+    const v = fn();
+    if (v) return v;
+    await tick(5);
+  }
+  throw new Error('等待超时');
+}
+
+test('部门注册表：从仓库布局读到 8 个部门和它们的工作流', () => {
+  assert.equal(LEGIONS.length, 8);
+  const fin = LEGIONS.find((L) => L.id === 'legion-finance');
+  assert.equal(fin.workflows.length, 2);
+  assert.equal(publicLegion(fin).staff, fin.roles.length);
+});
+
+test('部门注册表：安装布局（installed.json）', () => {
+  const root = mkdtempSync(join(tmpdir(), 'lhq-inst-'));
+  const mk = (id, m) => {
+    mkdirSync(join(root, id, '1.0.0+x'), { recursive: true });
+    writeFileSync(join(root, id, '1.0.0+x', 'solution.json'), JSON.stringify(m));
+  };
+  const legal = JSON.parse(readFileSync(join(SOLUTIONS_DIR, 'legion-legal', 'solution.json'), 'utf8'));
+  mk('legion-legal', legal);
+  mk('legion-broken', { id: 'legion-broken', kind: 'legion', legion: {} });
+  mk('workbench-legion-hq', { id: 'workbench-legion-hq' });
+  writeFileSync(join(root, 'installed.json'), JSON.stringify({ items: {
+    'legion-legal': { id: 'legion-legal', kind: 'legion', activePath: 'legion-legal/1.0.0+x' },
+    'legion-broken': { id: 'legion-broken', kind: 'legion', activePath: 'legion-broken/1.0.0+x' },
+    'workbench-legion-hq': { id: 'workbench-legion-hq', kind: 'workbench', activePath: 'workbench-legion-hq/1.0.0+x' },
+  } }));
+  const warns = [];
+  const got = listInstalledLegions(join(root, 'workbench-legion-hq', '1.0.0+x'), { warn: (m) => warns.push(m) });
+  assert.deepEqual(got.map((L) => L.id), ['legion-legal']);
+  assert.equal(warns.length, 1, '坏清单跳过并警告');
+});
+
+test('判定：模型输出合法 → 采用；依赖成环 / 选了不可用部门 / 通道错误 / 脏 JSON → 回落规则', async () => {
+  const llmOk = async () => '```json\n{"legions":["legion-finance","legion-sales"],"mode":"multi","reason":"先算价再报价","steps":[{"legionId":"legion-sales","goal":"出报价单","dependsOn":["legion-finance"]},{"legionId":"legion-finance","goal":"算底价","dependsOn":[]}]}\n```';
+  const ok = await triage('给客户出报价', LEGIONS, { llm: llmOk });
+  assert.equal(ok.via, 'model');
+  assert.deepEqual(ok.steps.find((s) => s.legionId === 'legion-sales').dependsOn, ['legion-finance']);
+
+  const cyc = async () => '{"legions":["legion-finance","legion-sales"],"steps":[{"legionId":"legion-sales","dependsOn":["legion-finance"]},{"legionId":"legion-finance","dependsOn":["legion-sales"]}]}';
+  assert.equal((await triage('出报价', LEGIONS, { llm: cyc })).via, 'rules');
+  const ghost = async () => '{"legions":["legion-ghost"]}';
+  const g = await triage('审合同', LEGIONS, { llm: ghost });
+  assert.equal(g.via, 'rules');
+  assert.match(g.fallbackReason, /不可用/);
+  const chanErr = async () => '⚠️ 模型调用失败：API Key 无效';
+  const ce = await triage('审合同', LEGIONS, { llm: chanErr });
+  assert.equal(ce.via, 'rules');
+  assert.deepEqual(ce.legions, ['legion-legal'], '通道错误话术不能被当成判定结果');
+  const dirty = async () => '好的，我认为应该交给法务。';
+  assert.equal((await triage('审合同', LEGIONS, { llm: dirty })).via, 'rules');
+  assert.ok(isChannelError(''));
+});
+
+test('判定规则：单部门 / 全公司 / 无匹配 / 默认先后', () => {
+  assert.deepEqual(triageByRules('帮我审一下这份经销合同', LEGIONS).legions, ['legion-legal']);
+  const all = triageByRules('下季度新品上市，全公司全面准备', LEGIONS);
+  assert.equal(all.mode, 'all');
+  assert.equal(all.legions.length, 8);
+  assert.ok(all.steps.find((s) => s.legionId === 'legion-sales').dependsOn.includes('legion-finance'));
+  const none = triageByRules('早上好', LEGIONS);
+  assert.equal(none.mode, 'none');
+  assert.deepEqual(none.steps, []);
+});
+
+test('判定：强制部门（剧本 D3）', async () => {
+  const r = await triage('随便什么', LEGIONS, { forced: ['legion-hr', 'legion-ghost'], llm: async () => { throw new Error('不该调模型'); } });
+  assert.equal(r.via, 'forced');
+  assert.deepEqual(r.legions, ['legion-hr']);
+});
+
+test('计划：单部门命中常用工作流 → 展开（跨部门步骤保留）；部门不可用的步骤剔除并接上依赖', () => {
+  const d = validateTriage({ legions: ['legion-sales'] }, LEGIONS);
+  const p = buildPlan('给华东经销商出报价单', d, LEGIONS);
+  assert.equal(p.workflow.id, 'quote');
+  assert.deepEqual(p.steps.map((s) => s.legionId), ['legion-finance', 'legion-sales']);
+  assert.deepEqual(p.steps[1].dependsOn, ['s1']);
+  assert.equal(p.approval.kind, 'discount');
+  const noFin = LEGIONS.filter((L) => L.id !== 'legion-finance');
+  const p2 = buildPlan('给华东经销商出报价单', validateTriage({ legions: ['legion-sales'] }, noFin), noFin);
+  assert.deepEqual(p2.steps.map((s) => [s.legionId, s.dependsOn]), [['legion-sales', []]]);
+});
+
+test('计划：多部门一部门一步、≥4 个部门要老板确认、红线动作要老板确认', () => {
+  const all = buildPlan('全公司全面准备', triageByRules('全公司全面准备', LEGIONS), LEGIONS);
+  assert.equal(all.steps.length, 8);
+  assert.ok(all.summary);
+  assert.equal(all.approval.kind, 'major');
+  const pay = buildPlan('把这笔货款付款给供应商', validateTriage({ legions: ['legion-finance'] }, LEGIONS), LEGIONS);
+  assert.equal(pay.approval.kind, 'payment');
+  const plain = buildPlan('做一份推广投放计划', validateTriage({ legions: ['legion-rd'] }, LEGIONS), LEGIONS);
+  assert.equal(plain.approval, null, '准备计划不是对外发布');
+});
+
+test('总线脱敏：路径、密钥、手机号、邮箱、证件号、agent 占位符', () => {
+  const s = redactText('客户[NAME_1]电话13812345678，邮箱a@b.com，文件 /Users/x/合同.docx，key sk-abcdefghijklmnop1234，身份证110101199003071234');
+  assert.doesNotMatch(s, /13812345678|a@b\.com|\/Users|sk-abc|110101199003071234|NAME_1/);
+  assert.match(s, /某客户/);
+  const bus = new LegionBus();
+  const ev = bus.publish('task:received', { taskId: 't-1', title: '联系 13812345678' });
+  assert.equal(ev.taskId, 't-1');
+  assert.match(ev.title, /手机号/);
+  const logo = `data:image/png;base64,${'A'.repeat(200)}`;
+  assert.equal(bus.publish('company:changed', { company: { name: 'x', logoImage: logo } }).company.logoImage, logo, '标志图片不被当成密钥抹掉');
+});
+
+test('快照：重复 / 乱序事件丢弃，未知任务的事件丢弃，完成计数与上限', () => {
+  const st = createState();
+  const bus = new LegionBus();
+  const evs = [];
+  bus.on('event', (e) => evs.push(e));
+  bus.publish('legions:changed', { legions: LEGIONS.map(publicLegion) });
+  bus.publish('node:done', { taskId: 'ghost', stepId: 's1' });
+  bus.publish('task:received', { taskId: 't1', taskNo: 1, title: '审合同', source: 'boss' });
+  bus.publish('task:triaged', { taskId: 't1', taskNo: 1, legions: ['legion-legal'], mode: 'single', reason: 'x', via: 'rules' });
+  bus.publish('task:planned', { taskId: 't1', taskNo: 1, steps: [{ id: 's1', legionId: 'legion-legal', goal: '审', dependsOn: [] }], summary: false });
+  bus.publish('node:dispatched', { taskId: 't1', taskNo: 1, stepId: 's1', machineName: '员工机 A' });
+  for (const e of evs) applyEvent(st, e);
+  assert.equal(applyEvent(st, evs[3]), false, '重复事件丢弃');
+  let s = snapshot(st);
+  assert.equal(s.legionLoad['legion-legal'].active, 1);
+  assert.equal(s.tasks[0].steps[0].machine, '员工机 A');
+  const done = bus.publish('task:done', { taskId: 't1', taskNo: 1, ok: true, summary: '好了' });
+  applyEvent(st, done);
+  s = snapshot(st);
+  assert.equal(s.counters.doneToday, 1);
+  assert.equal(s.tasks[0].steps[0].status, 'done');
+  for (let i = 2; i < 40; i++) {
+    applyEvent(st, bus.publish('task:received', { taskId: `t${i}`, taskNo: i, title: 'x' }));
+    applyEvent(st, bus.publish('task:done', { taskId: `t${i}`, taskNo: i, ok: true }));
+  }
+  assert.ok(snapshot(st).tasks.length <= 20, '已结束任务最多 20 个');
+  assert.ok(snapshot(st).feed.length <= 50, '动态最多 50 条');
+});
+
+test('公司档案：本地 > 宿主 > 默认；演示模式；显示名推导；身份句', () => {
+  assert.equal(resolveProfile({}, []).from, 'default');
+  const h = resolveProfile({}, [{ name: '泰途科技有限公司' }]);
+  assert.equal(h.from, 'host');
+  assert.equal(h.short, '泰途科技');
+  assert.equal(h.logo, '泰');
+  const l = resolveProfile({ name: '甲乙丙股份有限公司', boss: '张总' }, [{ name: '泰途科技有限公司' }]);
+  assert.equal(l.from, 'local');
+  assert.equal(l.short, '甲乙丙');
+  assert.equal(resolveProfile({ name: 'x'.repeat(100) }).name.length, 40, '字段截断');
+  assert.equal(displayProfile(l, true).short, '示例科技');
+  assert.match(identityLine(l, LEGIONS[1]), /甲乙丙股份有限公司.*法务部/);
+});
+
+test('默认公司 = 北京泰途科技有限公司 + App logo；换了公司名且没给标志图时不挂泰途 logo', () => {
+  const logo = 'data:image/png;base64,AAAA';
+  const d = resolveProfile({}, [], { defaultLogoImage: logo });
+  assert.equal(d.name, '北京泰途科技有限公司');
+  assert.equal(d.short, '泰途科技');
+  assert.equal(d.logoImage, logo);
+  assert.equal(resolveProfile({ boss: '张总' }, [], { defaultLogoImage: logo }).logoImage, logo, '只改老板称呼仍是泰途');
+  assert.equal(resolveProfile({ name: '别的公司有限公司' }, [], { defaultLogoImage: logo }).logoImage, undefined);
+  assert.equal(resolveProfile({ name: '别的公司有限公司', logoImage: 'data:image/png;base64,BBBB' }, [], { defaultLogoImage: logo }).logoImage, 'data:image/png;base64,BBBB');
+  assert.ok(readFileSync(join(DIR, 'resources', 'company-logo.png')).length > 1000, '包内带 App logo');
+});
+
+// ── 执行（R3–R9）：假集群 + 假模型 ──
+function fakeCluster({ nodes, failNode = null, delay = 20 } = {}) {
+  const proc = new EventEmitter();
+  const caps = new Map(nodes.map((n) => [n.nodeId, []]));
+  const calls = [];
+  proc.getSelf = () => ({ nodeId: 'master', deploymentRole: 'orchestrator', status: 'running', lanInterfaces: ['192.168.3.60'] });
+  proc.getOnlineNodes = () => nodes.map((n) => ({ ...n, status: 'online', roles: [] }));
+  proc.dispatchTask = async (d) => {
+    calls.push(d);
+    if (d.roleId === 'config.get') return { status: 'success', output: { capabilities: caps.get(d.targetNodeId), model: 'm/x' } };
+    if (d.roleId === 'config.set') {
+      caps.set(d.targetNodeId, d.payload.capabilities);
+      return { status: 'success', output: {} };
+    }
+    if (d.roleId === 'status.report') return { status: 'success', output: { busyAgents: 0 } };
+    if (d.roleId === 'cluster.cancel') return { status: 'success', output: {} };
+    if (d.roleId === 'worker.run') {
+      if (d.targetNodeId === failNode) throw new Error('目标节点不可用');
+      await tick(delay);
+      return { status: 'success', output: { text: `${d.targetNodeId} 完成：${d.payload.legionHq.goal}\n价格 199 元` } };
+    }
+    return { status: 'failed', error: 'unknown' };
+  };
+  return { proc, calls, caps };
+}
+
+function makeRunner({ cluster, llm, placement = { local: [] } } = {}) {
+  let place = placement;
+  const bus = new LegionBus();
+  const state = createState();
+  bus.on('event', (e) => applyEvent(state, e));
+  const fleet = new Fleet({ proc: () => cluster?.proc || null, readPlacement: () => place, writePlacement: (p) => (place = p), installedIds: () => LEGIONS.map((L) => L.id) });
+  const saved = [];
+  const runner = new TaskRunner({
+    bus,
+    legions: () => LEGIONS,
+    fleet,
+    llm: llm || (async (p) => `本机：${p.slice(0, 10)}`),
+    company: () => resolveProfile({ name: '示例科技有限公司' }),
+    settings: () => ({ useModelTriage: false }),
+    saveTask: (r) => saved.push(r),
+  });
+  return { bus, state, fleet, runner, saved };
+}
+
+test('派活：部门装到员工机（config.set 往返）→ 按负载派 worker.run，跨部门交接带上游产物，汇总后办完', async () => {
+  const cluster = fakeCluster({ nodes: [{ nodeId: 'A', host: '192.168.3.61' }, { nodeId: 'B', host: '192.168.3.62' }] });
+  const { fleet, runner, state } = makeRunner({ cluster, placement: { local: ['legion-admin'] } });
+  await fleet.refresh();
+  await fleet.assign('legion-finance', 'A', true);
+  await fleet.assign('legion-sales', 'B', true);
+  assert.deepEqual(cluster.caps.get('A'), ['legion:legion-finance']);
+  const ms = fleet.machines();
+  assert.equal(ms.find((m) => m.id === 'A').name, '员工机 A');
+  assert.equal(ms.find((m) => m.id === 'A').load.busy, 0, '读到员工机 status.report');
+
+  const { taskId } = runner.submit({ text: '给客户出报价单', forcedLegions: ['legion-sales'] });
+  const rec = await until(() => ['done', 'awaiting', 'failed'].includes(runner.get(taskId).status) && runner.get(taskId));
+  assert.equal(rec.status, 'awaiting', '报价折扣进老板待办');
+  assert.deepEqual(rec.plan.steps.map((s) => s.legionId), ['legion-finance', 'legion-sales']);
+  const runs = cluster.calls.filter((c) => c.roleId === 'worker.run');
+  assert.deepEqual(runs.map((c) => c.targetNodeId), ['A', 'B']);
+  assert.match(runs[1].payload.prompt, /财务部的产出/, '下游提示词带上游产物');
+  assert.match(runs[1].payload.prompt, /价格 199 元/);
+  assert.equal(Object.keys(runs[0].payload)[0], 'legionHq', 'legionHq 放在 payload 最前（入站历史只截前 300 字）');
+  const snap = snapshot(state);
+  assert.ok(snap.tasks[0].handoffs.some((x) => x.from === 'legion-finance' && x.to === 'legion-sales'));
+  assert.equal(snap.inbox.length, 1);
+  runner.confirm(taskId);
+  assert.equal(runner.get(taskId).status, 'done');
+  assert.equal(snapshot(state).counters.doneToday, 1);
+});
+
+test('派活：开跑前机器不可用 → 换机；没有机器承载 → 步骤失败给出原因', async () => {
+  const cluster = fakeCluster({ nodes: [{ nodeId: 'A', host: '10.0.0.2' }, { nodeId: 'B', host: '10.0.0.3' }], failNode: 'A' });
+  const { fleet, runner } = makeRunner({ cluster });
+  await fleet.refresh();
+  await fleet.assign('legion-legal', 'A', true);
+  await fleet.assign('legion-legal', 'B', true);
+  const a = runner.submit({ text: '审一下这份合同', forcedLegions: ['legion-legal'] });
+  const ra = await until(() => runner.get(a.taskId).status !== 'running' && runner.get(a.taskId).status !== 'triaging' && runner.get(a.taskId));
+  assert.equal(ra.outputs.s1.machine, '员工机 B');
+
+  const b = runner.submit({ text: '招个人', forcedLegions: ['legion-hr'] });
+  const rb = await until(() => runner.get(b.taskId).status === 'failed' && runner.get(b.taskId));
+  assert.match(rb.error, /没有在线机器承载人事部/);
+});
+
+test('并发：三件事同时下（单部门 / 双部门 / 全公司），互不阻塞，各自回到各自任务', async () => {
+  const { runner } = makeRunner({ llm: async (p) => { await tick(15); return `ok ${p.length}`; } }); // 单机：全部本机
+  const ids = [
+    runner.submit({ text: '审合同', forcedLegions: ['legion-legal'] }).taskId,
+    runner.submit({ text: '出报价', forcedLegions: ['legion-finance', 'legion-sales'] }).taskId,
+    runner.submit({ text: '下季度新品上市，全公司全面准备' }).taskId,
+  ];
+  const t0 = Date.now();
+  await until(() => ids.every((id) => ['done', 'awaiting', 'failed'].includes(runner.get(id).status)), 5000);
+  assert.ok(Date.now() - t0 < 2000);
+  assert.equal(runner.get(ids[2]).plan.steps.length, 8);
+  assert.equal(runner.get(ids[2]).status, 'awaiting');
+  assert.ok(ids.every((id) => runner.get(id).status !== 'failed'));
+});
+
+test('老板驳回：带意见重做汇总后再交确认；中止：发 task:done cancelled', async () => {
+  const prompts = [];
+  const { runner } = makeRunner({ llm: async (p) => { prompts.push(p); return 'ok'; } });
+  const { taskId } = runner.submit({ text: '下季度新品上市，全公司全面准备' });
+  await until(() => runner.get(taskId).status === 'awaiting');
+  runner.reject(taskId, '预算压到 50 万以内');
+  await until(() => runner.get(taskId).status === 'awaiting' && runner.get(taskId).rejects === 1);
+  assert.match(prompts[prompts.length - 1], /预算压到 50 万以内/);
+  runner.cancel(taskId);
+  assert.equal(runner.get(taskId).status, 'cancelled');
+});
+
+test('例行事务：到点只触发一次；每周 / 每月最后一天 / 季度', () => {
+  const fired = [];
+  let store = { enabled: { 'daily-report': true, 'month-close': true } };
+  const at = (s) => () => new Date(s);
+  const sch = new RoutineScheduler({ read: () => store, write: (s) => (store = s), fire: (r) => fired.push(r.id), now: at('2026-10-22T08:30:10') });
+  assert.deepEqual(sch.tick(), ['daily-report']);
+  assert.deepEqual(sch.tick(), [], '同一天不重复');
+  assert.equal(dueKey({ kind: 'monthly', day: 'last', time: '16:00' }, new Date('2026-10-31T16:00:00')), '2026-10-31');
+  assert.equal(dueKey({ kind: 'monthly', day: 'last', time: '16:00' }, new Date('2026-10-30T16:00:00')), null);
+  assert.equal(dueKey({ kind: 'weekly', weekday: 4, time: '09:00' }, new Date('2026-10-22T09:00:00')), '2026-10-22'); // 周四
+  assert.equal(dueKey({ kind: 'monthly', day: 'last', time: '15:00', months: [3, 6, 9, 12] }, new Date('2026-10-31T15:00:00')), null);
+  assert.equal(LIBRARY.length, 9);
+});
+
+test('内置剧本合法，部门 id 都存在', () => {
+  const scripts = loadScripts(join(DIR, 'resources', 'scripts'));
+  assert.equal(scripts.length, 4);
+  const ids = new Set(LEGIONS.map((L) => L.id));
+  for (const s of scripts) for (const it of s.items) for (const l of it.legions || []) assert.ok(ids.has(l), `${s.id}: ${l}`);
+  assert.throws(() => validateScript({ id: 'x1', name: 'x', items: [{ at: 5, text: 'a' }, { at: 1, text: 'b' }] }), /升序/);
+});
+
+test('录制：按行写 JSONL、列出与读回', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'lhq-rec-'));
+  const bus = new LegionBus();
+  bus.recorder = new Recorder(dir);
+  bus.publish('task:received', { taskId: 't1', title: 'a' });
+  bus.publish('task:done', { taskId: 't1', ok: true });
+  const [f] = bus.recorder.list();
+  assert.equal(f.events, 2);
+  assert.deepEqual(bus.recorder.read(f.name).map((e) => e.type), ['task:received', 'task:done']);
+  assert.throws(() => bus.recorder.read('../x.jsonl'));
+});
+
+test('大屏服务：无口令 401、快照、SSE 推送、下令、换口令', async () => {
+  const bus = new LegionBus();
+  const state = createState();
+  bus.on('event', (e) => applyEvent(state, e));
+  const cmds = [];
+  const srv = new ScreenServer({
+    bus,
+    getState: () => snapshot(state),
+    pages: () => ({ page: '<html>screen</html>', remote: '<html>remote</html>' }),
+    onCommand: (b) => {
+      cmds.push(b.text);
+      return { taskId: 't9', no: 9 };
+    },
+    onConfirm: () => ({ ok: true }),
+    onCompany: () => ({}),
+  });
+  const st = await srv.start({ port: 18240, host: '127.0.0.1' });
+  try {
+    const base = `http://127.0.0.1:${st.port}`;
+    assert.equal((await fetch(`${base}/api/state`)).status, 401);
+    assert.equal((await fetch(`${base}/?t=wrong`)).status, 401);
+    assert.equal((await fetch(`${base}/?t=${st.token}`)).status, 200);
+    const s = await (await fetch(`${base}/api/state?t=${st.token}`)).json();
+    assert.deepEqual(s.tasks, []);
+    const r = await fetch(`${base}/api/command?t=${st.token}`, { method: 'POST', body: JSON.stringify({ text: '审合同' }) });
+    assert.deepEqual(await r.json(), { taskId: 't9', no: 9 });
+    assert.deepEqual(cmds, ['审合同']);
+    // SSE
+    const ac = new AbortController();
+    const res = await fetch(`${base}/api/events?t=${st.token}`, { signal: ac.signal });
+    const reader = res.body.getReader();
+    let text = '';
+    const read = async (re) => {
+      while (!re.test(text)) text += new TextDecoder().decode((await reader.read()).value);
+    };
+    await read(/event: state/);
+    await until(() => srv.status().viewers === 1);
+    bus.publish('task:received', { taskId: 't1', taskNo: 1, title: '新任务' });
+    await read(/event: ev[\s\S]*task:received/);
+    ac.abort();
+    await until(() => srv.status().viewers === 0);
+    const old = st.token;
+    srv.rotateToken();
+    assert.equal((await fetch(`${base}/api/state?t=${old}`)).status, 401);
+  } finally {
+    await srv.stop();
+  }
+  assert.equal(srv.status().running, false);
+});
+
+test('大屏服务：端口被占顺延', async () => {
+  const mk = () => new ScreenServer({ bus: new LegionBus(), getState: () => ({}), pages: () => ({ page: '', remote: '' }), onCommand() {}, onConfirm() {}, onCompany() {} });
+  const a = mk();
+  const b = mk();
+  const sa = await a.start({ port: 18260, host: '127.0.0.1' });
+  const sb = await b.start({ port: 18260, host: '127.0.0.1' });
+  assert.equal(sb.port, sa.port + 1);
+  await a.stop();
+  await b.stop();
+});
+
+test('子机视角：订阅入站任务，按 legionHq 显示部门与目标；控制面消息不进列表', () => {
+  const proc = new EventEmitter();
+  const dir = mkdtempSync(join(tmpdir(), 'lhq-emp-'));
+  writeFileSync(join(dir, 'employee-profile.json'), JSON.stringify({ capabilities: ['frontend', 'legion:legion-legal', 'legion:legion-finance'] }));
+  const changes = [];
+  const w = new EmployeeWatch({ proc: () => proc, profilePath: () => join(dir, 'employee-profile.json'), onChange: (s) => changes.push(s) });
+  w.start();
+  proc.emit('task:received', { taskId: 'x1', roleId: 'status.report', payload: {} });
+  proc.emit('task:received', { taskId: 'x2', roleId: 'worker.run', payload: { legionHq: { taskNo: 3, title: '审合同', legionId: 'legion-legal', legionName: '法务部', goal: '逐条审查', company: '示例科技' }, prompt: '...' } });
+  let s = w.snapshot();
+  assert.deepEqual(s.hosted, ['legion-legal', 'legion-finance']);
+  assert.equal(s.running.length, 1);
+  assert.equal(s.running[0].goal, '逐条审查');
+  assert.equal(s.company, '示例科技');
+  proc.emit('task:result', { taskId: 'x2', status: 'success', durationMs: 1200 });
+  s = w.snapshot();
+  assert.equal(s.running.length, 0);
+  assert.equal(s.recent[0].status, 'done');
+  w.stop();
+  assert.equal(proc.listenerCount('task:received'), 0);
+});
+
+test('activate：用假 ctx 跑通入口（无宿主 deps = 单机、无模型）', async () => {
+  const dataRoot = mkdtempSync(join(tmpdir(), 'lhq-data-'));
+  const handlers = new Map();
+  const emitted = [];
+  const ctx = {
+    id: 'workbench-legion-hq',
+    version: '1.0.0',
+    appVersion: '2.0.5',
+    log: { info() {}, warn() {} },
+    dataPath: (rel) => join(dataRoot, rel),
+    readJson: (rel, fb) => {
+      try {
+        return JSON.parse(readFileSync(join(dataRoot, rel), 'utf8'));
+      } catch {
+        return fb;
+      }
+    },
+    writeJson: (rel, v) => {
+      mkdirSync(join(dataRoot, rel, '..'), { recursive: true });
+      writeFileSync(join(dataRoot, rel), JSON.stringify(v));
+    },
+    packagePath: (rel) => join(DIR, rel),
+    handle: (a, fn) => handlers.set(a, fn),
+    emit: (e, p) => emitted.push([e, p]),
+  };
+  const mod = require('./index.cjs');
+  await mod.activate(ctx);
+  try {
+    const info = await handlers.get('info')();
+    assert.equal(info.mode, 'standalone');
+    assert.equal(info.legions.length, 8);
+    assert.equal(info.hasModel, false);
+    await handlers.get('company.save')({ name: '甲乙丙有限公司', boss: '李总' });
+    assert.equal((await handlers.get('company.get')()).display.short, '甲乙丙');
+    const { taskId } = await handlers.get('command')({ text: '审一下这份合同' });
+    await until(() => handlers.get('tasks.get')({ taskId }).status === 'failed');
+    assert.match(handlers.get('tasks.get')({ taskId }).error, /模型不可用/, '没有模型时如实失败，不编造结果');
+    const scr = await handlers.get('screen.start')({ port: 18280 });
+    assert.ok(scr.running);
+    const page = await fetch(`http://127.0.0.1:${scr.port}/?t=${scr.token}`);
+    assert.match(await page.text(), /AI 公司运营中心/);
+    assert.ok((await handlers.get('coverage')()).items.length === 39);
+    assert.ok(emitted.some(([e]) => e === 'event'));
+  } finally {
+    await mod.deactivate();
+  }
+});

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>老板遥控</title>
+<!-- 手机竖屏简版（S5）：下令 + 老板待办 + 进行中的事。i18n-ignore-file：独立静态页。 -->
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#050B1C;color:#E2E8F0;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+h1{font-size:18px;margin:0 0 12px;color:#E0F2FE}
+h2{font-size:14px;color:#67E8F9;margin:18px 0 8px;font-weight:400}
+textarea{width:100%;min-height:72px;background:#0B1B3A;border:1px solid #1E3A6E;border-radius:10px;color:#fff;padding:10px;font-size:16px;font-family:inherit}
+button{font-family:inherit;font-size:15px;border:none;border-radius:10px;padding:10px 16px;cursor:pointer}
+.go{width:100%;margin-top:8px;background:#0E7490;color:#fff}
+.go:disabled{opacity:.5}
+.pre{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.pre button{background:transparent;border:1px solid #1E3A6E;color:#CBD5E1;font-size:13px;padding:6px 10px;border-radius:14px}
+.card{border:1px solid #1E3A6E;border-radius:10px;padding:10px 12px;margin-bottom:8px;background:rgba(11,27,58,.7)}
+.card .t{font-size:14px;font-weight:600}
+.card .m{font-size:12px;color:#94A3B8;margin-top:4px}
+.row{display:flex;gap:8px;margin-top:8px}
+.ok{background:#F59E0B;color:#1F2937;font-weight:700;flex:1}
+.no{background:#1E293B;color:#CBD5E1;flex:1}
+.empty{color:#475569;font-size:13px}
+#msg{position:fixed;left:16px;right:16px;bottom:16px;background:#0B1B3A;border:1px solid #22D3EE;border-radius:10px;padding:10px;font-size:14px;display:none}
+</style></head><body>
+<h1 id="h">老板遥控</h1>
+<textarea id="inp" maxlength="200" placeholder="说一件事，例如：帮我审一下这份经销合同"></textarea>
+<button class="go" id="go">下令</button>
+<div class="pre" id="pre"></div>
+<h2>待你拍板</h2><div id="inbox"></div>
+<h2>进行中</h2><div id="run"></div>
+<div id="msg"></div>
+<script>
+'use strict';
+const TOKEN=new URLSearchParams(location.search).get('t')||'';
+const api=p=>`${p}${p.includes('?')?'&':'?'}t=${encodeURIComponent(TOKEN)}`;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ST={triaging:'判定中',planning:'判定中',running:'执行中',summarizing:'汇总中',awaiting:'待确认'};
+function msg(s){const e=$('msg');e.textContent=s;e.style.display='block';clearTimeout(msg.t);msg.t=setTimeout(()=>e.style.display='none',2500);}
+async function post(p,b){const r=await fetch(api(p),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||r.status);return j;}
+['审一下这份采购合同的风险','做一份新品推广方案','招聘两名前端开发','下季度新品上市，全公司全面准备'].forEach(p=>{const b=document.createElement('button');b.textContent=p;b.onclick=()=>send(p);$('pre').appendChild(b);});
+async function send(text){text=String(text||'').trim();if(!text)return;$('go').disabled=true;try{const r=await post('/api/command',{text});msg(`已下令 #${r.no}`);$('inp').value='';}catch(e){msg(e.message);}finally{$('go').disabled=false;}}
+$('go').onclick=()=>send($('inp').value);
+function render(s){const c=s.company||{};$('h').textContent=`${c.short||c.name||''} · 老板遥控`;document.title=$('h').textContent;
+ const L=id=>(s.legions||[]).find(x=>x.id===id)||{short:id};
+ $('inbox').innerHTML=(s.inbox||[]).length?s.inbox.map(x=>`<div class="card"><div class="t">#${x.no} ${esc(x.title)}</div><div class="m">${esc(x.approval?x.approval.reason||x.approval.label:'')}</div><div class="row"><button class="ok" data-ok="${esc(x.taskId)}">批准</button><button class="no" data-no="${esc(x.taskId)}">驳回</button></div></div>`).join(''):'<div class="empty">暂无需要你拍板的事。</div>';
+ const run=(s.tasks||[]).filter(t=>ST[t.status]);
+ $('run').innerHTML=run.length?run.map(t=>`<div class="card"><div class="t">#${t.no} ${esc(t.title)}</div><div class="m">${ST[t.status]} · ${t.legions.map(id=>esc(L(id).short)).join('、')||'AI 总经理'}</div></div>`).join(''):'<div class="empty">没有进行中的事。</div>';}
+$('inbox').onclick=async e=>{const b=e.target.closest('button');if(!b)return;try{if(b.dataset.ok)await post('/api/confirm',{taskId:b.dataset.ok,approve:true});else{const c=window.prompt('驳回意见：');if(c==null)return;await post('/api/confirm',{taskId:b.dataset.no,approve:false,comment:c});}}catch(err){msg(err.message);}};
+let es;function connect(){es=new EventSource(api('/api/events'));es.addEventListener('state',e=>render(JSON.parse(e.data)));es.onerror=()=>{if(es.readyState===2)setTimeout(connect,3000);};}
+connect();
+</script></body></html>

@@ -1,0 +1,40 @@
+{
+  "id": "legion-ops",
+  "version": "1.0.0",
+  "treeDigest": "a44840959b99673f71ea9f807be854bcc834fb1f35f8e6cc726a54bb864ab6bf",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 123,
+      "sha256": "46339978f84fb45034779688d8feba10b3a05d39af67cc92ba26171d744a6178"
+    },
+    {
+      "path": "README.md",
+      "size": 1212,
+      "sha256": "dd09515598d6510db79d7688a5642ce7d9ad8871cc25db1a1639ea8183686cb1"
+    },
+    {
+      "path": "solution.json",
+      "size": 2180,
+      "sha256": "2896b72bee4e91088bbeda7bc898023ea2ebcf4d624e4f21791ce08078b75149"
+    },
+    {
+      "path": "workflows/launch-campaign.json",
+      "size": 1006,
+      "sha256": "388cd38473ed9af8cf45414720ad99ed3362843d888d1b8dd60d37bf947e205c"
+    }
+  ],
+  "versions": [
+    {
+      "version": "1.0.0",
+      "ref": "legion-ops@1.0.0",
+      "treeDigest": "a44840959b99673f71ea9f807be854bcc834fb1f35f8e6cc726a54bb864ab6bf",
+      "filesRef": "index/legion-ops/1.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 1,
+      "publishedAt": "2026-10-22"
+    }
+  ]
+}

@@ -1,0 +1,446 @@
+{
+  "$comment": "O11 公司能力地图：按现有代码估计，O12 考卷实测前不对外宣称覆盖率。来源 集群演示/todo/11-OPC一人公司.md（2026-10-20 版）。",
+  "statusLabels": {
+    "ready": "可用",
+    "partial": "部分",
+    "building": "新建",
+    "gap": "缺口"
+  },
+  "measured": false,
+  "items": [
+    {
+      "id": "c01",
+      "domain": "战略决策",
+      "task": "行业与竞品研究",
+      "departments": [
+        "chief"
+      ],
+      "capability": "行业观察工作台",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c02",
+      "domain": "战略决策",
+      "task": "重大决策多方论证",
+      "departments": [
+        "chief"
+      ],
+      "capability": "议会（跨机）",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c03",
+      "domain": "战略决策",
+      "task": "商业计划书 / 咨询报告",
+      "departments": [
+        "chief"
+      ],
+      "capability": "咨询报告工作台",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c04",
+      "domain": "产品研发",
+      "task": "需求文档、技术方案",
+      "departments": [
+        "legion-rd"
+      ],
+      "capability": "研发工作流",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c05",
+      "domain": "产品研发",
+      "task": "做个内部小工具 / 页面",
+      "departments": [
+        "legion-rd"
+      ],
+      "capability": "AutoCoder（开发工作区）",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c06",
+      "domain": "产品研发",
+      "task": "测试用例与验收",
+      "departments": [
+        "legion-rd"
+      ],
+      "capability": "测试角色（通用对话）",
+      "status": "partial",
+      "note": ""
+    },
+    {
+      "id": "c07",
+      "domain": "市场营销",
+      "task": "短视频 / 数字人视频",
+      "departments": [
+        "legion-ops"
+      ],
+      "capability": "短视频工作台、数字人",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c08",
+      "domain": "市场营销",
+      "task": "广告投放与复盘",
+      "departments": [
+        "legion-ops"
+      ],
+      "capability": "全球广告工作台",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c09",
+      "domain": "市场营销",
+      "task": "社媒内容与发布",
+      "departments": [
+        "legion-ops"
+      ],
+      "capability": "内容生成可用；平台发布需登录态、最终人点",
+      "status": "partial",
+      "note": ""
+    },
+    {
+      "id": "c10",
+      "domain": "销售",
+      "task": "询价报价",
+      "departments": [
+        "legion-sales",
+        "legion-finance"
+      ],
+      "capability": "询报价工作台",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c11",
+      "domain": "销售",
+      "task": "投标决策与标书",
+      "departments": [
+        "legion-sales"
+      ],
+      "capability": "投标决策、标书工作台",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c12",
+      "domain": "销售",
+      "task": "政府采购（政采云）",
+      "departments": [
+        "legion-sales"
+      ],
+      "capability": "政采云智能体",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c13",
+      "domain": "销售",
+      "task": "外贸开发信",
+      "departments": [
+        "legion-sales"
+      ],
+      "capability": "外贸工作台",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c14",
+      "domain": "销售",
+      "task": "客户跟进 / 线索管理（CRM）",
+      "departments": [
+        "legion-sales"
+      ],
+      "capability": "无",
+      "status": "gap",
+      "note": ""
+    },
+    {
+      "id": "c15",
+      "domain": "客服",
+      "task": "多渠道消息自动答复",
+      "departments": [
+        "legion-cs"
+      ],
+      "capability": "IM 渠道接入 + 知识库问答",
+      "status": "partial",
+      "note": "部分（需接入任务入口 O5）"
+    },
+    {
+      "id": "c16",
+      "domain": "客服",
+      "task": "投诉与工单跟踪",
+      "departments": [
+        "legion-cs",
+        "legion-ops"
+      ],
+      "capability": "无工单",
+      "status": "building",
+      "note": "新建（O5）"
+    },
+    {
+      "id": "c17",
+      "domain": "财务",
+      "task": "记账、报表、经营分析",
+      "departments": [
+        "legion-finance"
+      ],
+      "capability": "财务智能体、经营自动化",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c18",
+      "domain": "财务",
+      "task": "开票",
+      "departments": [
+        "legion-finance"
+      ],
+      "capability": "发票智能体（最终按钮人点）",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c19",
+      "domain": "财务",
+      "task": "报销、结算、核销",
+      "departments": [
+        "legion-finance"
+      ],
+      "capability": "结算核销工作台",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c20",
+      "domain": "财务",
+      "task": "审计与内控",
+      "departments": [
+        "legion-finance"
+      ],
+      "capability": "财务审计工作台",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c21",
+      "domain": "财务",
+      "task": "纳税申报",
+      "departments": [
+        "legion-finance"
+      ],
+      "capability": "税务测算可用；电子税务局申报需人工",
+      "status": "partial",
+      "note": ""
+    },
+    {
+      "id": "c22",
+      "domain": "财务",
+      "task": "预算与现金流预测",
+      "departments": [
+        "legion-finance"
+      ],
+      "capability": "财务智能体（FP&A）",
+      "status": "partial",
+      "note": ""
+    },
+    {
+      "id": "c23",
+      "domain": "法务",
+      "task": "合同审查",
+      "departments": [
+        "legion-legal"
+      ],
+      "capability": "新建（10 LG）",
+      "status": "building",
+      "note": ""
+    },
+    {
+      "id": "c24",
+      "domain": "法务",
+      "task": "合规检查",
+      "departments": [
+        "legion-legal"
+      ],
+      "capability": "新建（10 LG）",
+      "status": "building",
+      "note": ""
+    },
+    {
+      "id": "c25",
+      "domain": "法务",
+      "task": "商标 / 知识产权",
+      "departments": [
+        "legion-legal"
+      ],
+      "capability": "通用对话",
+      "status": "partial",
+      "note": ""
+    },
+    {
+      "id": "c26",
+      "domain": "法务",
+      "task": "劳动纠纷咨询",
+      "departments": [
+        "legion-legal",
+        "legion-hr"
+      ],
+      "capability": "通用对话",
+      "status": "partial",
+      "note": ""
+    },
+    {
+      "id": "c27",
+      "domain": "人事",
+      "task": "招聘（JD、筛选、面试）",
+      "departments": [
+        "legion-hr"
+      ],
+      "capability": "新建（10 HR）",
+      "status": "building",
+      "note": ""
+    },
+    {
+      "id": "c28",
+      "domain": "人事",
+      "task": "入职 / 离职",
+      "departments": [
+        "legion-hr"
+      ],
+      "capability": "新建（10 HR）",
+      "status": "building",
+      "note": ""
+    },
+    {
+      "id": "c29",
+      "domain": "人事",
+      "task": "考勤与工资",
+      "departments": [
+        "legion-hr",
+        "legion-finance"
+      ],
+      "capability": "财务工资角色；考勤需导入",
+      "status": "partial",
+      "note": ""
+    },
+    {
+      "id": "c30",
+      "domain": "人事",
+      "task": "绩效",
+      "departments": [
+        "legion-hr"
+      ],
+      "capability": "新建二期",
+      "status": "gap",
+      "note": "缺口（本期）"
+    },
+    {
+      "id": "c31",
+      "domain": "人事",
+      "task": "培训资料",
+      "departments": [
+        "legion-hr"
+      ],
+      "capability": "教案 / 教育工作台",
+      "status": "partial",
+      "note": ""
+    },
+    {
+      "id": "c32",
+      "domain": "运营 / 供应链",
+      "task": "流程时效监控",
+      "departments": [
+        "legion-ops"
+      ],
+      "capability": "流程时效智能体",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c33",
+      "domain": "运营 / 供应链",
+      "task": "库存预警与补货",
+      "departments": [
+        "legion-ops"
+      ],
+      "capability": "配件预警、仓储工作台",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c34",
+      "domain": "运营 / 供应链",
+      "task": "门店 / 电商日常",
+      "departments": [
+        "legion-ops"
+      ],
+      "capability": "经营自动化、服装门店",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c35",
+      "domain": "行政",
+      "task": "邮件分拣与回复",
+      "departments": [
+        "legion-admin"
+      ],
+      "capability": "邮件能力（零散）",
+      "status": "partial",
+      "note": "部分（O6）"
+    },
+    {
+      "id": "c36",
+      "domain": "行政",
+      "task": "会议纪要、日程",
+      "departments": [
+        "legion-admin"
+      ],
+      "capability": "语音转写 + 通用对话",
+      "status": "partial",
+      "note": "部分（O6）"
+    },
+    {
+      "id": "c37",
+      "domain": "行政",
+      "task": "采购比价与下单申请",
+      "departments": [
+        "legion-admin",
+        "legion-finance"
+      ],
+      "capability": "询报价可复用",
+      "status": "partial",
+      "note": "部分（O6）"
+    },
+    {
+      "id": "c38",
+      "domain": "行政",
+      "task": "公司资料与知识管理",
+      "departments": [
+        "legion-admin"
+      ],
+      "capability": "知识库",
+      "status": "ready",
+      "note": ""
+    },
+    {
+      "id": "c39",
+      "domain": "政务",
+      "task": "工商年报、政策 / 补贴申报",
+      "departments": [
+        "legion-admin"
+      ],
+      "capability": "无",
+      "status": "gap",
+      "note": ""
+    }
+  ]
+}

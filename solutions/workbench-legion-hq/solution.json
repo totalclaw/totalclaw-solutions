@@ -1,0 +1,54 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-legion-hq",
+  "name": "AI 公司运营中心（军团集群指挥）",
+  "aliases": ["AI 公司运营中心", "军团指挥大屏", "指挥大屏", "OPC 一人公司", "legion-hq"],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "集群协同",
+  "icon": "icon-solutions",
+  "order": 50,
+  "description": "一个老板 + 一家 AI 公司：8 个 AI 部门（研发、法务、财务、人事、运营、销售、客服、行政）以方案包装在任意机器上，AI 总经理按事情挑部门、派给承载它的机器并发执行，跨部门交接、汇总、钱 / 签约 / 对外发布 / 录用由老板拍板。主控点「启动 Web」即在内网开出指挥大屏，任意电脑、电视、手机用地址打开。",
+  "descriptionEn": "One owner, one AI company: eight AI departments installed as solution packages on any machine. The AI GM triages each task, dispatches it to the machines hosting the right departments, hands results across departments and asks the boss to approve money, contracts, publishing and hiring. Start the web screen and open it from any device on the LAN.",
+  "detail": "控制台分步：① 部门与机器（看各子机承载的部门、在线与忙闲，把部门装到 / 撤出某台机器）② 公司信息（大屏显示名、标志、行业、老板称呼；演示模式隐藏真实名称）③ 指挥大屏（启动 Web、局域网地址、换口令、在选定显示器全屏打开）④ 下令与老板待办 ⑤ 例行事务（日报、周报、月底结账、到期提醒）⑥ 导演台（剧本一键开演 / 暂停 / 重置、录制回放兜底）⑦ 公司能力地图。子机打开本方案显示本机承载的部门和正在跑的任务。",
+  "highlights": ["按需找部门：一个 / 几个 / 全公司", "多机并发 + 跨部门交接", "内网指挥大屏（口令访问）", "老板只拍板"],
+  "access": {
+    "requiresSolutionGrant": false,
+    "feature": null,
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 2
+  },
+  "runtime": {
+    "mode": "dynamic",
+    "runner": "workbench",
+    "route": "/workbenches/legion-hq",
+    "renderer": "src/renderer/index.mjs",
+    "main": "src/main/index.cjs",
+    "hotSwap": false,
+    "routes": [
+      { "path": "/workbenches/legion-hq", "name": "LegionHqWorkbench" }
+    ],
+    "entries": {
+      "renderer": "src/renderer/index.mjs",
+      "main": "src/main/index.cjs",
+      "hostModules": "src/host-modules.json"
+    }
+  },
+  "dependsOn": ["legion-rd", "legion-legal", "legion-finance", "legion-hr", "legion-ops", "legion-sales", "legion-cs", "legion-admin"],
+  "data": {
+    "schemaVersion": 1,
+    "paths": ["legion-hq/"],
+    "localStorage": ["totalclaw:legion-hq"]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-legion-hq",
+    "files": ["solution.json", "README.md", "CHANGELOG.md", "src/main/", "src/renderer/", "src/host-modules.json", "resources/"]
+  }
+}

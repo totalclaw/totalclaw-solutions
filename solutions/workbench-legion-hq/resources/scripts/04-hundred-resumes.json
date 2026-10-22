@@ -1,0 +1,12 @@
+{
+  "id": "hundred-resumes",
+  "name": "百份简历（人事吞吐）",
+  "description": "人事部连续处理多个岗位的招聘准备，多台机器承载人事部时按负载分摊——展示吞吐。",
+  "items": [
+    { "at": 0, "source": "boss", "title": "招聘：区域销售", "text": "招聘区域销售：写 JD、筛选标准和面试题。", "legions": ["legion-hr"] },
+    { "at": 3, "source": "boss", "title": "招聘：前端开发", "text": "招聘前端开发：写 JD、筛选标准和面试题。", "legions": ["legion-hr"] },
+    { "at": 6, "source": "boss", "title": "招聘：财务主管", "text": "招聘财务主管：写 JD、筛选标准和面试题。", "legions": ["legion-hr"] },
+    { "at": 9, "source": "boss", "title": "招聘：客服专员", "text": "招聘客服专员：写 JD、筛选标准和面试题。", "legions": ["legion-hr"] },
+    { "at": 12, "source": "boss", "title": "招聘：新媒体运营", "text": "招聘新媒体运营：写 JD、筛选标准和面试题。", "legions": ["legion-hr"] }
+  ]
+}

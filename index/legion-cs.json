@@ -1,0 +1,40 @@
+{
+  "id": "legion-cs",
+  "version": "1.0.0",
+  "treeDigest": "9e76b3c4ffc54a99e389d24f4820ac0e2cc62c74e9b6117a5c77ce6874a36903",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 123,
+      "sha256": "60c405ca5c0f9c085ae1f4087a14bfa3a65cae2a3432cb2a25fc20f082b9f7e2"
+    },
+    {
+      "path": "README.md",
+      "size": 886,
+      "sha256": "98803acda93eb2cdffa434fd9663a21d0466aa222a2093a1abc48e97c8c49b29"
+    },
+    {
+      "path": "solution.json",
+      "size": 1762,
+      "sha256": "24ebd9614e5aa5b1bbd8493677a210ed5c70f2da267837fec997b9ee96cf8b4d"
+    },
+    {
+      "path": "workflows/complaint.json",
+      "size": 914,
+      "sha256": "a1af5ae96fb7d599395a20b9411b221c644b543cab99fff938cd6fc4dcbbb54e"
+    }
+  ],
+  "versions": [
+    {
+      "version": "1.0.0",
+      "ref": "legion-cs@1.0.0",
+      "treeDigest": "9e76b3c4ffc54a99e389d24f4820ac0e2cc62c74e9b6117a5c77ce6874a36903",
+      "filesRef": "index/legion-cs/1.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 1,
+      "publishedAt": "2026-10-22"
+    }
+  ]
+}

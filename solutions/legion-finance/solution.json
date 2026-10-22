@@ -1,0 +1,96 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "legion-finance",
+  "name": "财务部",
+  "aliases": [
+    "财务军团",
+    "Finance legion"
+  ],
+  "version": "1.0.0",
+  "kind": "legion",
+  "category": "AI 公司部门",
+  "icon": "icon-coin",
+  "order": 5030,
+  "description": "AI 公司的财务部：记账与报表、经营分析、定价与成本测算、开票、报销结算核销、预算现金流、工资与税务测算、审计内控。",
+  "access": {
+    "requiresSolutionGrant": false,
+    "feature": null,
+    "hidden": true
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "legion",
+    "route": null
+  },
+  "legion": {
+    "short": "财务",
+    "shortEn": "Finance",
+    "color": "#10B981",
+    "icon": "coin",
+    "summary": "记账与报表、经营分析、定价与成本测算、开票、报销结算核销、预算现金流、工资与税务测算、审计内控。",
+    "routingHints": [
+      "财务",
+      "成本",
+      "定价",
+      "价格",
+      "利润",
+      "毛利",
+      "预算",
+      "现金流",
+      "报表",
+      "记账",
+      "结账",
+      "发票",
+      "开票",
+      "报销",
+      "工资",
+      "税",
+      "回款",
+      "应收",
+      "审计",
+      "核销"
+    ],
+    "roles": [
+      "chief-financial-officer",
+      "finance-financial-analyst",
+      "finance-fpa-analyst",
+      "finance-bookkeeper-controller",
+      "finance-gl-accountant",
+      "finance-tax-specialist-cn",
+      "finance-invoice-manager",
+      "finance-ar-ap-specialist",
+      "finance-payroll-accountant",
+      "finance-internal-auditor",
+      "finance-treasury-manager"
+    ],
+    "leadRole": "finance-financial-analyst",
+    "defaultModel": null,
+    "workbenches": [
+      "workbench-finance-agent",
+      "workbench-invoice-agent",
+      "workbench-finance-audit",
+      "workbench-service-settlement"
+    ],
+    "workflows": [
+      "workflows/pricing.json",
+      "workflows/month-close.json"
+    ]
+  },
+  "dependsOn": [],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/legion-finance"
+  }
+}

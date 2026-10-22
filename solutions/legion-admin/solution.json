@@ -1,0 +1,80 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "legion-admin",
+  "name": "行政部",
+  "aliases": [
+    "行政军团",
+    "Admin legion"
+  ],
+  "version": "1.0.0",
+  "kind": "legion",
+  "category": "AI 公司部门",
+  "icon": "icon-briefcase",
+  "order": 5080,
+  "description": "AI 公司的行政部：邮件收件分拣与回复、会议纪要与待办、日程、采购比价与下单申请、公司资料归档、工商与政策申报准备。",
+  "access": {
+    "requiresSolutionGrant": false,
+    "feature": null,
+    "hidden": true
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "legion",
+    "route": null
+  },
+  "legion": {
+    "short": "行政",
+    "shortEn": "Admin",
+    "color": "#64748B",
+    "icon": "briefcase",
+    "summary": "邮件收件分拣与回复、会议纪要与待办、日程、采购比价与下单申请、公司资料归档、工商与政策申报准备。",
+    "routingHints": [
+      "行政",
+      "邮件",
+      "来信",
+      "会议",
+      "纪要",
+      "日程",
+      "采购",
+      "比价",
+      "下单",
+      "办公用品",
+      "供应商",
+      "归档",
+      "资料",
+      "年报",
+      "补贴",
+      "申报"
+    ],
+    "roles": [
+      "chief-of-staff",
+      "specialized-meeting-assistant",
+      "project-management-meeting-notes-specialist",
+      "support-executive-summary-generator",
+      "project-management-studio-operations"
+    ],
+    "leadRole": "chief-of-staff",
+    "defaultModel": null,
+    "workbenches": [],
+    "workflows": [
+      "workflows/procurement.json"
+    ]
+  },
+  "dependsOn": [],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/legion-admin"
+  }
+}

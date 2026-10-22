@@ -1,0 +1,84 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "legion-rd",
+  "name": "产品研发部",
+  "aliases": [
+    "研发军团",
+    "R&D legion"
+  ],
+  "version": "1.0.0",
+  "kind": "legion",
+  "category": "AI 公司部门",
+  "icon": "icon-code",
+  "order": 5010,
+  "description": "AI 公司的产品研发部：需求分析、产品文档、技术方案、内部小工具与页面开发、测试用例与验收。",
+  "access": {
+    "requiresSolutionGrant": false,
+    "feature": null,
+    "hidden": true
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 1
+  },
+  "runtime": {
+    "mode": "bundled",
+    "runner": "legion",
+    "route": null
+  },
+  "legion": {
+    "short": "研发",
+    "shortEn": "R&D",
+    "color": "#3B82F6",
+    "icon": "code",
+    "summary": "需求分析、产品文档、技术方案、内部小工具与页面开发、测试用例与验收。",
+    "routingHints": [
+      "需求",
+      "PRD",
+      "产品",
+      "功能",
+      "技术方案",
+      "开发",
+      "代码",
+      "系统",
+      "小程序",
+      "页面",
+      "测试",
+      "原型",
+      "新品"
+    ],
+    "roles": [
+      "product-manager",
+      "product-trend-researcher",
+      "chief-technology-officer",
+      "engineering-software-architect",
+      "engineering-senior-developer",
+      "engineering-frontend-developer",
+      "engineering-backend-architect",
+      "engineering-code-reviewer",
+      "testing-api-tester",
+      "testing-reality-checker"
+    ],
+    "leadRole": "product-manager",
+    "defaultModel": null,
+    "workbenches": [
+      "rd-workflow"
+    ],
+    "workflows": [
+      "workflows/prd-and-design.json"
+    ]
+  },
+  "dependsOn": [],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [],
+    "localStorage": []
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/legion-rd"
+  }
+}

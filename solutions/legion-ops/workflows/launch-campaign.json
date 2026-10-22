@@ -1,0 +1,37 @@
+{
+  "id": "launch-campaign",
+  "name": "新品推广方案",
+  "trigger": [
+    "推广方案",
+    "上市推广",
+    "营销方案"
+  ],
+  "approval": "publish",
+  "steps": [
+    {
+      "id": "plan",
+      "legionId": "legion-ops",
+      "roleId": "chief-marketing-officer",
+      "goal": "定推广策略：目标人群、核心卖点、渠道组合与预算分配、节奏（预热 / 上市 / 持续）。",
+      "dependsOn": []
+    },
+    {
+      "id": "content",
+      "legionId": "legion-ops",
+      "roleId": "marketing-xiaohongshu-operator",
+      "goal": "按策略写首批内容：3 篇种草笔记标题与正文、1 条 30 秒短视频脚本。",
+      "dependsOn": [
+        "plan"
+      ]
+    },
+    {
+      "id": "kpi",
+      "legionId": "legion-ops",
+      "roleId": "support-analytics-reporter",
+      "goal": "定上市首月的考核指标与复盘口径（曝光、点击、转化、ROI），对外发布由老板确认。",
+      "dependsOn": [
+        "plan"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "month-close",
+  "name": "月底结账",
+  "trigger": [
+    "月底结账",
+    "月结",
+    "结账"
+  ],
+  "approval": "payment",
+  "steps": [
+    {
+      "id": "books",
+      "legionId": "legion-finance",
+      "roleId": "finance-bookkeeper-controller",
+      "goal": "列出本月结账清单：凭证核对、往来对账、费用计提、折旧摊销，标出缺的单据。",
+      "dependsOn": []
+    },
+    {
+      "id": "payroll",
+      "legionId": "legion-finance",
+      "roleId": "finance-payroll-accountant",
+      "goal": "按花名册与考勤汇总编制本月工资表（应发、社保公积金、个税、实发），列出待确认项。",
+      "dependsOn": []
+    },
+    {
+      "id": "report",
+      "legionId": "legion-finance",
+      "roleId": "finance-financial-analyst",
+      "goal": "出月度经营简报：收入、毛利、费用、现金余额与环比，付款与发薪需老板确认。",
+      "dependsOn": [
+        "books",
+        "payroll"
+      ]
+    }
+  ]
+}

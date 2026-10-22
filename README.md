@@ -11,7 +11,7 @@ TotalClaw 企业助手（qiye-app）「项目工作台」里**全部解决方案
 ## 目录
 
 ```
-solutions/<id>/          一个方案一个目录（目录名 == id == totalclaw-web 方案 id）
+solutions/<id>/          一个方案一个目录（kind=legion 的部门包清单格式见 tools/lib/legion.mjs）（目录名 == id == totalclaw-web 方案 id）
   solution.json          清单（manifestVersion 2，见 schema/solution.schema.json）
   CHANGELOG.md           每个版本一节（validate 强制）
   README.md
@@ -32,7 +32,7 @@ test/                    node:test
 
 ## 方案一览
 
-共 37 个目录：totalclaw-web 授权目录中的 **30 个方案** + 2 个共享 kit + 4 个免授权市场流水线包 + 1 个动态方案开发模板。
+共 44 个目录（2026-10-22 新增运营中心 + 8 个部门）：totalclaw-web 授权目录中的 **30 个方案** + 2 个共享 kit + 4 个免授权市场流水线包 + 1 个动态方案开发模板。
 
 | id | 名称 | 类型 |
 |---|---|---|
@@ -70,6 +70,8 @@ test/                    node:test
 | kit-automation-ops | 自动化运营控制台 | kit |
 | oneclick-video / daizhang-accounting / dev-pipeline / website-test | 市场流水线包 | runner / pipeline |
 | demo-dynamic-workbench | 动态方案样例（开发者模板，hidden） | workbench（dynamic） |
+| workbench-legion-hq | AI 公司运营中心（军团集群指挥，含内网指挥大屏） | workbench（dynamic，hostApi 2） |
+| legion-rd / legal / finance / hr / ops / sales / cs / admin | 8 个 AI 部门（军团），由运营中心按需派活 | legion（hidden，清单 + 工作流） |
 
 ## 常用命令
 

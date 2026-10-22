@@ -1,0 +1,27 @@
+{
+  "id": "legion-legal",
+  "version": "1.0.0",
+  "treeDigest": "7b5fff2fba5997ea0daed43b12b866cc29bdbbc2239245460b5ad7d46038894b",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 99,
+      "sha256": "421385d41f52b343bf5a9cef8b4bcda4b3146483f7df441883448c73cfed02f0"
+    },
+    {
+      "path": "README.md",
+      "size": 976,
+      "sha256": "94d657224784898b891b2c413cf994db2f8ab24c71aa82b0220db2d0a0b425bf"
+    },
+    {
+      "path": "solution.json",
+      "size": 1742,
+      "sha256": "9b153687548316e7f8b36f4ea4af2c381f8484675174da619574bdbadf913f16"
+    },
+    {
+      "path": "workflows/contract-review.json",
+      "size": 1304,
+      "sha256": "b2ba5f1c3ff5a49d447ad147f549a115c2417d3c655a3bc0335a0789592a8609"
+    }
+  ]
+}

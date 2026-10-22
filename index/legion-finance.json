@@ -1,0 +1,45 @@
+{
+  "id": "legion-finance",
+  "version": "1.0.0",
+  "treeDigest": "a40046a67c3ae8f2b966188407a79516e44dcf458be131e50ed4f7a635d3c26a",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 124,
+      "sha256": "e8eedcc2f4cd3672bb7552e5d12f386ea9546664737f19906fcdbf121a1a42ea"
+    },
+    {
+      "path": "README.md",
+      "size": 1283,
+      "sha256": "016c5c5dbb3920969ea31d3509f57f7c4bd9f9446df028271746a68718e2bf5b"
+    },
+    {
+      "path": "solution.json",
+      "size": 2285,
+      "sha256": "4d12bbeee5d6cd846bb31acad388d7a5068501c60a4fb91a21d8b06abd074565"
+    },
+    {
+      "path": "workflows/month-close.json",
+      "size": 1012,
+      "sha256": "b8e3f2226c2b18aec762c1348d25f99f741446f37ae1870b41057327465a0a41"
+    },
+    {
+      "path": "workflows/pricing.json",
+      "size": 670,
+      "sha256": "bbeebabe4462153b853986f2c498aa7b542a47fb402d3da1a5b2163ff4b11d83"
+    }
+  ],
+  "versions": [
+    {
+      "version": "1.0.0",
+      "ref": "legion-finance@1.0.0",
+      "treeDigest": "a40046a67c3ae8f2b966188407a79516e44dcf458be131e50ed4f7a635d3c26a",
+      "filesRef": "index/legion-finance/1.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 1,
+      "publishedAt": "2026-10-22"
+    }
+  ]
+}
