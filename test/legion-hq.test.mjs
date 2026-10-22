@@ -821,3 +821,26 @@ test('E1 宿主工作流事件进大屏动态：开始 / 派到员工机（带�
   }
   assert.equal(wf.listenerCount('event'), 0, '停用时取消订阅');
 });
+
+test('D7 输出上限与模型：剧本 legionConfig > 部门设置 > 全局；剧本校验', async () => {
+  const { validateScript } = require('./director.cjs');
+  const base = { id: 'x-1', name: 'x', items: [{ at: 0, text: 'a' }] };
+  assert.doesNotThrow(() => validateScript({ ...base, legionConfig: { 'legion-rd': { outputChars: 1200, model: 'm' } } }));
+  assert.throws(() => validateScript({ ...base, legionConfig: { 'legion-rd': { outputChars: 5000 } } }), /300–2000/);
+  assert.throws(() => validateScript({ ...base, legionConfig: { rd: {} } }), /不合法/);
+  const prompts = [];
+  const models = [];
+  const { runner } = makeRunner({ llm: async (p, o) => (prompts.push(p), models.push(o.model), '本机产出') });
+  runner.settings = () => ({ useModelTriage: false, outputChars: 900 });
+  runner.legionKeys = (id) => (id === 'legion-finance' ? { outputChars: 600, model: 'dept-model' } : null);
+  const a = runner.submit({ text: '核算成本', forcedLegions: ['legion-finance'] });
+  await until(() => ['done', 'awaiting', 'failed'].includes(runner.get(a.taskId).status));
+  const b = runner.submit({ text: '核算成本', forcedLegions: ['legion-finance'], legionConfig: { 'legion-finance': { outputChars: 1200, model: 'script-model' } } });
+  await until(() => ['done', 'awaiting', 'failed'].includes(runner.get(b.taskId).status));
+  const c = runner.submit({ text: '起草制度', forcedLegions: ['legion-legal'] });
+  await until(() => ['done', 'awaiting', 'failed'].includes(runner.get(c.taskId).status));
+  const charsOf = (p) => (/(\d{3,4}) 字/.exec(p) || [])[1];
+  assert.deepEqual([charsOf(prompts[0]), models[0]], ['600', 'dept-model']);
+  assert.deepEqual([charsOf(prompts[1]), models[1]], ['1200', 'script-model']);
+  assert.equal(charsOf(prompts[2]), '900');
+});

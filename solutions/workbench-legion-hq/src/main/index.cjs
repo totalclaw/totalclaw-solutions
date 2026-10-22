@@ -465,7 +465,7 @@ module.exports = {
       const all = ctx.readJson(LEGION_KEYS, {});
       return legions.map((L) => {
         const v = all[L.id] || {};
-        return { legionId: L.id, name: L.name, provider: v.provider || '', model: v.model || '', baseUrl: v.baseUrl || '', key: maskKey(v.apiKey), hasKey: !!v.apiKey, defaultModel: L.defaultModel || '' };
+        return { legionId: L.id, name: L.name, provider: v.provider || '', model: v.model || '', baseUrl: v.baseUrl || '', outputChars: v.outputChars || 0, key: maskKey(v.apiKey), hasKey: !!v.apiKey, defaultModel: L.defaultModel || '' };
       });
     });
     h('legionKeys.set', (p) => {
@@ -474,10 +474,11 @@ module.exports = {
       const all = ctx.readJson(LEGION_KEYS, {});
       const prev = all[id] || {};
       const str = (v, n) => String(v ?? '').trim().slice(0, n);
-      const next = { provider: str(p.provider, 40), model: str(p.model, 120), baseUrl: str(p.baseUrl, 300), apiKey: p.apiKey === undefined ? prev.apiKey || '' : str(p.apiKey, 400) };
+      const oc = Number(p.outputChars);
+      const next = { provider: str(p.provider, 40), model: str(p.model, 120), baseUrl: str(p.baseUrl, 300), apiKey: p.apiKey === undefined ? prev.apiKey || '' : str(p.apiKey, 400), outputChars: Number.isFinite(oc) && oc >= 300 ? Math.min(2000, Math.round(oc)) : 0 };
       if (next.baseUrl && !/^https?:\/\//i.test(next.baseUrl)) throw new Error('接口地址要以 http:// 或 https:// 开头');
       if (next.apiKey && !next.provider) throw new Error('填了 key 就要填服务商（如 deepseek）');
-      if (!next.provider && !next.model && !next.apiKey) delete all[id];
+      if (!next.provider && !next.model && !next.apiKey && !next.outputChars) delete all[id];
       else all[id] = next;
       ctx.writeJson(LEGION_KEYS, all);
       return { ok: true };

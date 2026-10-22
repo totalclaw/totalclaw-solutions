@@ -48,6 +48,13 @@ class TaskRunner {
     this.dispatches = new Map(); // 派给员工机的 dispatchId → { taskId, stepId }（接收员工机回传的执行阶段）
   }
 
+  /** D7 / L12：某部门本次用的模型与输出上限 —— 剧本指定 > 部门设置 */
+  legionCfg(t, legionId) {
+    const lk = (this.legionKeys && this.legionKeys(legionId)) || {};
+    const sc = (t && t.legionConfig && t.legionConfig[legionId]) || {};
+    return { model: sc.model || lk.model || '', outputChars: sc.outputChars || lk.outputChars || 0 };
+  }
+
   availableLegions() {
     const ids = new Set(this.fleet.availableLegionIds());
     return this.legions().filter((L) => ids.has(L.id));
@@ -73,6 +80,8 @@ class TaskRunner {
       title: String(input.title || text).trim().slice(0, 60),
       source: ['boss', 'cron', 'customer', 'mail', 'script'].includes(input.source) ? input.source : 'boss',
       forced: Array.isArray(input.forcedLegions) ? input.forcedLegions : null,
+      // D7：剧本带来的按部门模型 / 输出上限（优先于部门设置）
+      legionConfig: input.legionConfig && typeof input.legionConfig === 'object' ? input.legionConfig : null,
       status: 'triaging',
       createdAt: this.now(),
       decision: null,
@@ -176,7 +185,7 @@ class TaskRunner {
         const UL = this.legions().find((x) => x.id === u.legionId);
         return `【${UL ? UL.name : u.legionId}的产出：${u.goal}】\n${clip(t.outputs[u.id]?.text, UPSTREAM_MAX)}`;
       });
-    const chars = Math.min(2000, Math.max(300, Number(this.settings().outputChars) || 900));
+    const chars = Math.min(2000, Math.max(300, Number(this.legionCfg(t, s.legionId).outputChars) || Number(this.settings().outputChars) || 900));
     const pack = typeof this.extraContext === 'function' ? this.extraContext() : '';
     return [
       identityLine(company, L),
@@ -247,7 +256,7 @@ class TaskRunner {
     const prompt = this.stepPrompt(t, s, t.rejectNote && t.rejectStep === s.id ? `老板的修改意见：${t.rejectNote}` : '');
     // L12：部门专用模型 / key（主控本机保存）。专用 key 只随派往员工机的这一步走；主控本机执行的步骤用本机默认 key
     const lk = (this.legionKeys && this.legionKeys(s.legionId)) || null;
-    const model = lk?.model || L?.defaultModel || undefined;
+    const model = this.legionCfg(t, s.legionId).model || L?.defaultModel || undefined;
     const credential = lk?.provider && lk?.apiKey ? { provider: lk.provider, apiKey: lk.apiKey, ...(lk.baseUrl ? { baseUrl: lk.baseUrl } : {}) } : undefined;
     if (machine.local) {
       this.publish(t, 'node:progress', { stepId: s.id, phase: '生成中' });

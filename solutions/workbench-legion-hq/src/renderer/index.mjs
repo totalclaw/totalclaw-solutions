@@ -103,12 +103,12 @@ export default function createSolution(sdk) {
       const keyDraft = reactive({});
       async function loadLegionKeys() {
         legionKeys.value = await sdk.invoke('legionKeys.list');
-        for (const k of legionKeys.value) keyDraft[k.legionId] = { provider: k.provider, model: k.model, baseUrl: k.baseUrl, apiKey: '' };
+        for (const k of legionKeys.value) keyDraft[k.legionId] = { provider: k.provider, model: k.model, baseUrl: k.baseUrl, outputChars: k.outputChars || 0, apiKey: '' };
       }
       async function saveLegionKey(k, clear) {
         const d = keyDraft[k.legionId] || {};
         try {
-          await sdk.invoke('legionKeys.set', clear ? { legionId: k.legionId, provider: '', model: '', baseUrl: '', apiKey: '' } : { legionId: k.legionId, provider: d.provider, model: d.model, baseUrl: d.baseUrl, ...(d.apiKey ? { apiKey: d.apiKey } : {}) });
+          await sdk.invoke('legionKeys.set', clear ? { legionId: k.legionId, provider: '', model: '', baseUrl: '', apiKey: '', outputChars: 0 } : { legionId: k.legionId, provider: d.provider, model: d.model, baseUrl: d.baseUrl, outputChars: Number(d.outputChars) || 0, ...(d.apiKey ? { apiKey: d.apiKey } : {}) });
           await loadLegionKeys();
           sdk.notify.success(clear ? t('已清除') : t('已保存'));
         } catch (e) {
@@ -405,9 +405,9 @@ export default function createSolution(sdk) {
           h('button', { class: 'lhq-btn', onClick: async () => { keysOpen.value = !keysOpen.value; if (keysOpen.value) await loadLegionKeys().catch((e) => sdk.notify.warn(e.message)); } }, keysOpen.value ? t('收起专用模型与 key') : t('{p0}专用模型与 key（防限流）', { p0: term.value })),
           keysOpen.value
             ? h('div', { style: 'margin-top:8px' }, [
-                h('p', { class: 'lhq-sub' }, t('同一台机器上几个{p0}共用一把 key 容易被限流：可以给每个{p0}单独配服务商、key 和模型。key 只存在主控本机，派到员工机时只用于那一步，不写进员工机配置。主控本机执行的步骤仍用本机默认 key。', { p0: term.value })),
+                h('p', { class: 'lhq-sub' }, t('同一台机器上几个{p0}共用一把 key 容易被限流：可以给每个{p0}单独配服务商、key、模型和输出上限。key 只存在主控本机，派到员工机时只用于那一步，不写进员工机配置。主控本机执行的步骤仍用本机默认 key。剧本可以用 legionConfig 再按{p0}覆盖模型与输出上限。', { p0: term.value })),
                 h('div', { style: 'overflow-x:auto' }, h('table', { class: 'lhq-tbl' }, [
-                  h('tr', [h('th', term.value), h('th', t('服务商')), h('th', t('模型')), h('th', t('接口地址（可空）')), h('th', 'key'), h('th', '')]),
+                  h('tr', [h('th', term.value), h('th', t('服务商')), h('th', t('模型')), h('th', t('接口地址（可空）')), h('th', 'key'), h('th', t('输出上限')), h('th', '')]),
                   ...legionKeys.value.map((k) => {
                     const d = keyDraft[k.legionId] || (keyDraft[k.legionId] = {});
                     const inp = (f, ph, w, type) => h('input', { class: 'lhq-in', style: `width:${w}px`, type: type || 'text', placeholder: ph, value: d[f] || '', onInput: (e) => (d[f] = e.target.value) });
@@ -417,6 +417,7 @@ export default function createSolution(sdk) {
                       h('td', inp('model', k.defaultModel || t('跟随默认'), 150)),
                       h('td', inp('baseUrl', 'https://…', 170)),
                       h('td', inp('apiKey', k.hasKey ? k.key : t('未设置'), 140, 'password')),
+                      h('td', h('select', { class: 'lhq-in', value: d.outputChars || 0, onChange: (e) => (d.outputChars = Number(e.target.value)) }, [0, 600, 900, 1200, 2000].map((n) => h('option', { value: n }, n ? t('{p0} 字', { p0: n }) : t('跟随全局'))))),
                       h('td', [h('button', { class: 'lhq-btn pri', onClick: () => saveLegionKey(k, false) }, t('保存')), ' ', k.hasKey || k.provider || k.model ? h('button', { class: 'lhq-btn', onClick: () => saveLegionKey(k, true) }, t('清除')) : null]),
                     ]);
                   }),

@@ -20,6 +20,16 @@ function validateScript(s) {
     last = it.at;
     if (!String(it.text || '').trim()) throw new Error('剧本事项缺 text');
   }
+  // D7：剧本可按部门指定模型与输出上限 { "legion-legal": { "model": "...", "outputChars": 600 } }
+  if (s.legionConfig !== undefined) {
+    if (!s.legionConfig || typeof s.legionConfig !== 'object' || Array.isArray(s.legionConfig)) throw new Error('legionConfig 要是对象');
+    for (const [id, c] of Object.entries(s.legionConfig)) {
+      if (!/^legion-[a-z0-9-]+$/.test(id)) throw new Error(`legionConfig 部门 id 不合法：${id}`);
+      if (!c || typeof c !== 'object') throw new Error(`legionConfig.${id} 要是对象`);
+      if (c.model !== undefined && (typeof c.model !== 'string' || c.model.length > 120)) throw new Error(`legionConfig.${id}.model 不合法`);
+      if (c.outputChars !== undefined && !(Number.isInteger(c.outputChars) && c.outputChars >= 300 && c.outputChars <= 2000)) throw new Error(`legionConfig.${id}.outputChars 要在 300–2000 之间`);
+    }
+  }
   return s;
 }
 
@@ -92,7 +102,7 @@ class Director {
     this.timer = setTimeout(() => {
       s.next++;
       try {
-        this.submit({ text: item.text, title: item.title, source: item.source || 'script', forcedLegions: item.legions });
+        this.submit({ text: item.text, title: item.title, source: item.source || 'script', forcedLegions: item.legions, legionConfig: this.script.legionConfig || null });
       } catch {
         /* 一件事下发失败不影响剧本往下走 */
       }
