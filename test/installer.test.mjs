@@ -288,3 +288,13 @@ test('updateAll：eligible 为 false 的方案（账号未开通）不升级', a
   assert.equal(results.find((r) => r.id === 'beta').status, 'updated');
   assert.equal(mgr.get('alpha').version, '1.0.0');
 });
+
+test('卸载本机未安装的方案：只记墓碑，授权同步类安装跳过，手动安装清除墓碑', async () => {
+  const { root, mgr } = setup();
+  const r = await mgr.uninstall('alpha');
+  assert.equal(r.status, 'uninstalled');
+  assert.ok(readLock(root).tombstones.alpha);
+  assert.equal((await mgr.install('alpha', { reason: 'granted' })).status, 'skipped');
+  assert.equal((await mgr.install('alpha')).status, 'installed');
+  assert.equal(readLock(root).tombstones.alpha, undefined);
+});

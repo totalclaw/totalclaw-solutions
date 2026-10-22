@@ -673,7 +673,12 @@ export class SolutionManager {
     return this.lockFile.run(async () => {
       const lock = readLock(this.root);
       const cur = lock.items[id];
-      if (!cur) throw new SolutionError('NOT_INSTALLED', `${id} 未安装`);
+      if (!cur) {
+        // 本机还没下载过（例如已开通但从没进入）：只记卸载墓碑 —— 不再自动安装，用户可在市场重新下载
+        lock.tombstones[id] = { uninstalledAt: new Date().toISOString(), version: null, keepData: true };
+        writeLock(this.root, lock);
+        return { id, status: 'uninstalled', keptData: true, purged: [], dependents: [] };
+      }
       const manifest = readJsonFile(join(this.root, cur.activePath, 'solution.json'), null);
       const dependents = Object.values(lock.items).filter((it) => it.id !== id && this._dependsOn(it, id));
       delete lock.items[id];
