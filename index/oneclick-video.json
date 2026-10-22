@@ -1,12 +1,12 @@
 {
   "id": "oneclick-video",
-  "version": "2.1.0",
-  "treeDigest": "df64338d5834409afedf966f09b549c7a51cb865ee7258aadd5f4801dada12f3",
+  "version": "2.1.1",
+  "treeDigest": "8171849cb8b17c3ce046284916ff0af45d58724155980826caa3b42702eb057a",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 243,
-      "sha256": "c5015543d61ebf71582163e538e380b333ae11090d5f4cea767a598d884f3b34"
+      "size": 458,
+      "sha256": "595cc3988aa67352829064f2cdcf4ac6d74dd3d1b8db3561a280e9590d5fce87"
     },
     {
       "path": "README.md",
@@ -20,11 +20,22 @@
     },
     {
       "path": "solution.json",
-      "size": 2854,
-      "sha256": "7945c655ad68352f8d0066c8a3762e2d8ca808b60253562b8dff426b9099e99c"
+      "size": 2853,
+      "sha256": "1d3dd650ef770af10ac6f58a7ac61553c653ca59d7af8abb83adcc964cbfede1"
     }
   ],
   "versions": [
+    {
+      "version": "2.1.1",
+      "ref": "oneclick-video@2.1.1",
+      "treeDigest": "8171849cb8b17c3ce046284916ff0af45d58724155980826caa3b42702eb057a",
+      "filesRef": "index/oneclick-video/2.1.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.0",
+      "hostApi": 1,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "2.1.0",
       "ref": "oneclick-video@2.1.0",

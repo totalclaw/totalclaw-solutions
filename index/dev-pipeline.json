@@ -1,12 +1,12 @@
 {
   "id": "dev-pipeline",
-  "version": "1.1.0",
-  "treeDigest": "09f052a8d36cc574373d4a6e35505caebfde854e5818f5a474fdc80e6e068136",
+  "version": "1.1.1",
+  "treeDigest": "d3cedb5aba0464e61cd65063be0c19973c477b6d56ccfb67cc154447221f039a",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 246,
-      "sha256": "249f862b54e141f9f218b935707fa8d8d8c84413041f4f24ecbf5d779dd2f417"
+      "size": 461,
+      "sha256": "27ce9a7963d42d62f7395d05bbbaea6cf3ea8ac4d5cec62b7810d18561ff56c8"
     },
     {
       "path": "README.md",
@@ -20,11 +20,22 @@
     },
     {
       "path": "solution.json",
-      "size": 2011,
-      "sha256": "ea261cee84ef174dc6d8409d71ec06acf95555f2d2abfd52833df7fb6c776cd5"
+      "size": 2010,
+      "sha256": "3b0eef88637738b3f009087fbaa99e8174a26edb52c6bdea8845835e7fdced8b"
     }
   ],
   "versions": [
+    {
+      "version": "1.1.1",
+      "ref": "dev-pipeline@1.1.1",
+      "treeDigest": "d3cedb5aba0464e61cd65063be0c19973c477b6d56ccfb67cc154447221f039a",
+      "filesRef": "index/dev-pipeline/1.1.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.0",
+      "hostApi": 1,
+      "publishedAt": "2026-10-22"
+    },
     {
       "version": "1.1.0",
       "ref": "dev-pipeline@1.1.0",

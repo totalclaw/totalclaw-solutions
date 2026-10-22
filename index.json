@@ -1949,7 +1949,7 @@
       "icon": "icon-solutions",
       "order": 310,
       "description": "选一个素材文件夹，一键跑完整条全平台运营：自动写文案 → 合成 9:16 竖屏短视频（Ken Burns 运镜+转场）→ 客资 RFM 分层+回访话术 → 中差评回复 → 数据复盘(ROI/复购/漏斗) → 同城获客方案 → 汇总成运营简报。可选一键发布到 小红书/抖音/视频号（发布会停在登录页等你扫码登录，不会因没登录就失败）。",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1959,7 +1959,7 @@
         "hostApi": 1
       },
       "access": {
-        "requiresSolutionGrant": false,
+        "requiresSolutionGrant": true,
         "feature": null,
         "hidden": false
       },
@@ -1981,10 +1981,10 @@
       "capabilities": [],
       "path": "solutions/oneclick-video",
       "fileCount": 4,
-      "size": 4088,
-      "treeDigest": "df64338d5834409afedf966f09b549c7a51cb865ee7258aadd5f4801dada12f3",
+      "size": 4302,
+      "treeDigest": "8171849cb8b17c3ce046284916ff0af45d58724155980826caa3b42702eb057a",
       "largeAssets": [],
-      "changelog": "- 清单升级为方案仓库 v2 格式（manifestVersion=2）：补充别名、类型、授权、兼容性、数据声明，供按 id/名称安装与自动升级。",
+      "changelog": "- 改为需要账号开通（access.requiresSolutionGrant=true）：在 totalclaw-web 方案权限管理里分配；客户端市场里未开通的显示「申请开通」，审批通过后自动下载。",
       "filesRef": "index/oneclick-video.json"
     },
     {
@@ -1999,7 +1999,7 @@
       "icon": "icon-solutions",
       "order": 320,
       "description": "面向财税代账公司，按代账行业 SOP 把最耗时的前置环节自动化：资料清单校验 → 单据识别清洗 → 票据合规审查 → 会计凭证生成 → 期末结转与报表 → 账务风险检测 → 纳税申报指引与交付。区分小规模/一般两套科目、分录符合《小企业会计准则》。点「启动」即跳工作流页，7 个环节逐节点真执行、逐个点亮。产出为草稿，须持证会计复核后入账。",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -2009,7 +2009,7 @@
         "hostApi": 1
       },
       "access": {
-        "requiresSolutionGrant": false,
+        "requiresSolutionGrant": true,
         "feature": null,
         "hidden": false
       },
@@ -2031,10 +2031,10 @@
       "capabilities": [],
       "path": "solutions/daizhang-accounting",
       "fileCount": 12,
-      "size": 29007,
-      "treeDigest": "35c9e977f63ffdad93abd75d7208640fc401c26567ca0df3252dde1a4086928a",
+      "size": 29221,
+      "treeDigest": "184c3598150a23ef6cf01225a218bde12b98bea72afbea21ecd5806fe959ec92",
       "largeAssets": [],
-      "changelog": "- 清单升级为方案仓库 v2 格式（manifestVersion=2）：补充别名、类型、授权、兼容性、数据声明，供按 id/名称安装与自动升级。",
+      "changelog": "- 改为需要账号开通（access.requiresSolutionGrant=true）：在 totalclaw-web 方案权限管理里分配；客户端市场里未开通的显示「申请开通」，审批通过后自动下载。",
       "filesRef": "index/daizhang-accounting.json"
     },
     {
@@ -2048,7 +2048,7 @@
       "icon": "icon-solutions",
       "order": 330,
       "description": "输入一句产品需求，一支 AI 研发团队在工作流画布上自动接力跑完整条研发流程：产品经理写 PRD → 开发工程师出技术设计 → 代码评审员审查+单测 → 测试工程师出测试用例 → 运维工程师出部署运维方案，最后 CTO 汇总评估。点「启动」即跳工作流页，逐节点真执行、逐个点亮。",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -2058,7 +2058,7 @@
         "hostApi": 1
       },
       "access": {
-        "requiresSolutionGrant": false,
+        "requiresSolutionGrant": true,
         "feature": null,
         "hidden": false
       },
@@ -2080,10 +2080,10 @@
       "capabilities": [],
       "path": "solutions/dev-pipeline",
       "fileCount": 4,
-      "size": 3209,
-      "treeDigest": "09f052a8d36cc574373d4a6e35505caebfde854e5818f5a474fdc80e6e068136",
+      "size": 3423,
+      "treeDigest": "d3cedb5aba0464e61cd65063be0c19973c477b6d56ccfb67cc154447221f039a",
       "largeAssets": [],
-      "changelog": "- 清单升级为方案仓库 v2 格式（manifestVersion=2）：补充别名、类型、授权、兼容性、数据声明，供按 id/名称安装与自动升级。",
+      "changelog": "- 改为需要账号开通（access.requiresSolutionGrant=true）：在 totalclaw-web 方案权限管理里分配；客户端市场里未开通的显示「申请开通」，审批通过后自动下载。",
       "filesRef": "index/dev-pipeline.json"
     },
     {
@@ -2097,7 +2097,7 @@
       "icon": "icon-solutions",
       "order": 340,
       "description": "给一个网址，一个 AI 测试工程师用浏览器工具真实逐页点测：站点勘探 → 链接与资源体检 → 交互点测 → 表单与关键流程 → UI/响应式/可访问性，最后汇总成一份完整测试报告（问题按严重度分组、含证据/复现步骤/修复建议）。点「启动」即跳工作流页，6 个阶段逐节点真跑、逐个点亮。危险操作（支付/删除/真实注册）只验证不最终确认。",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -2107,7 +2107,7 @@
         "hostApi": 1
       },
       "access": {
-        "requiresSolutionGrant": false,
+        "requiresSolutionGrant": true,
         "feature": null,
         "hidden": false
       },
@@ -2129,10 +2129,10 @@
       "capabilities": [],
       "path": "solutions/website-test",
       "fileCount": 4,
-      "size": 3985,
-      "treeDigest": "c5716c66e8d73bb2a9fe5eadd7ea82fd98943b31405654b15ce8bb06e8b8b22b",
+      "size": 4199,
+      "treeDigest": "3d84da9aff4ebd19d88e5926eeae3d4e2c29cc19f848893748bd2a75c9ddb8d9",
       "largeAssets": [],
-      "changelog": "- 清单升级为方案仓库 v2 格式（manifestVersion=2）：补充别名、类型、授权、兼容性、数据声明，供按 id/名称安装与自动升级。",
+      "changelog": "- 改为需要账号开通（access.requiresSolutionGrant=true）：在 totalclaw-web 方案权限管理里分配；客户端市场里未开通的显示「申请开通」，审批通过后自动下载。",
       "filesRef": "index/website-test.json"
     },
     {

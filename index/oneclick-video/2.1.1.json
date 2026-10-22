@@ -1,0 +1,27 @@
+{
+  "id": "oneclick-video",
+  "version": "2.1.1",
+  "treeDigest": "8171849cb8b17c3ce046284916ff0af45d58724155980826caa3b42702eb057a",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 458,
+      "sha256": "595cc3988aa67352829064f2cdcf4ac6d74dd3d1b8db3561a280e9590d5fce87"
+    },
+    {
+      "path": "README.md",
+      "size": 695,
+      "sha256": "5a4777b268d34df66f32e976c338b1d9c69d5370ca8c360119e56ccc2003f840"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2853,
+      "sha256": "1d3dd650ef770af10ac6f58a7ac61553c653ca59d7af8abb83adcc964cbfede1"
+    }
+  ]
+}

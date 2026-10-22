@@ -1,0 +1,67 @@
+{
+  "id": "daizhang-accounting",
+  "version": "1.1.1",
+  "treeDigest": "184c3598150a23ef6cf01225a218bde12b98bea72afbea21ecd5806fe959ec92",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 473,
+      "sha256": "87bdbfbd7bffe63dd2399d8a222ce930f448c76ef585d740266fe8346c8b3565"
+    },
+    {
+      "path": "README.md",
+      "size": 779,
+      "sha256": "abaee5148edf488680c4b7a883fde328f9800177c2bb700352cc0fe47ae08395"
+    },
+    {
+      "path": "SKILL.md",
+      "size": 5097,
+      "sha256": "2fd1dbda840ec34cf91119232773f52db9e2fa6406c7006881cf2127ade0f157"
+    },
+    {
+      "path": "agents/01-资料清单校验.md",
+      "size": 2549,
+      "sha256": "965e0314eb6b7daa4fc3ced8c38980285828af7b6f70ab5d21ecdf5ad105a5b4"
+    },
+    {
+      "path": "agents/02-单据识别与清洗.md",
+      "size": 2301,
+      "sha256": "6a9894856e345d06b84937391e05fde7fa50b4841ae1edd1f39af13147e9edaf"
+    },
+    {
+      "path": "agents/03-票据合规审查.md",
+      "size": 2402,
+      "sha256": "19e24b0e2d40aa2cf7f23a5d30ef88eaeb12e2bedc45b28a4b1bfc6a257b94a9"
+    },
+    {
+      "path": "agents/04-会计凭证生成.md",
+      "size": 3146,
+      "sha256": "f53c20e9041ab3a9cf3ac2732bb6ac6e1d1fccb13144d100616aaa1a1c12fcd0"
+    },
+    {
+      "path": "agents/05-期末结转与报表.md",
+      "size": 2485,
+      "sha256": "c1665d72fc4fc47e589b6a9d46429aaa3fab01afd4de2f30b9f8aeeb5ef7fe4a"
+    },
+    {
+      "path": "agents/06-账务风险检测.md",
+      "size": 2967,
+      "sha256": "b5621a37a7b70b77d1953fce757a397a47459590cd12b863eec2c60a4b7ad45e"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "references/纳税申报指引.md",
+      "size": 2005,
+      "sha256": "d8f6ba31a9798ee9b49ebf7e150263a01b9700304303ca35a1947139773b1458"
+    },
+    {
+      "path": "solution.json",
+      "size": 4721,
+      "sha256": "1a7c04c1a0dcd6dc0e9154c66194c0327926eb3c8c659bee6e12ae30d84c2ee2"
+    }
+  ]
+}

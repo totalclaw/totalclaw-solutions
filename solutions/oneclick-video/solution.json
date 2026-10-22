@@ -7,14 +7,14 @@
     "一键视频",
     "全平台运营方案"
   ],
-  "version": "2.1.0",
+  "version": "2.1.1",
   "kind": "runner",
   "category": "全媒体运营",
   "icon": "icon-solutions",
   "order": 310,
   "description": "选一个素材文件夹，一键跑完整条全平台运营：自动写文案 → 合成 9:16 竖屏短视频（Ken Burns 运镜+转场）→ 客资 RFM 分层+回访话术 → 中差评回复 → 数据复盘(ROI/复购/漏斗) → 同城获客方案 → 汇总成运营简报。可选一键发布到 小红书/抖音/视频号（发布会停在登录页等你扫码登录，不会因没登录就失败）。",
   "access": {
-    "requiresSolutionGrant": false,
+    "requiresSolutionGrant": true,
     "feature": null,
     "hidden": false
   },

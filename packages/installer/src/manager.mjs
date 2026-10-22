@@ -542,11 +542,18 @@ export class SolutionManager {
     return this.install(id, { reason: plan?.forced ? 'forced' : 'auto-update', allowDowngrade: !!plan?.downgrade, force: plan?.action === 'repair' });
   }
 
-  /** 自动升级：应用计划中 action=update / repair 的条目（强制更新即使正在使用也不推迟以外的规则），单个失败不影响其他 */
-  async updateAll({ isBusy = () => false } = {}) {
+  /**
+   * 自动升级：应用计划中 action=update / repair 的条目（强制更新即使正在使用也不推迟以外的规则），单个失败不影响其他。
+   * eligible(id) 为 false 的方案（宿主判定账号未开通）不升级，结果记为 skipped / NOT_ENTITLED。
+   */
+  async updateAll({ isBusy = () => false, eligible = () => true } = {}) {
     const plan = await this.checkUpdates();
     const results = [];
     for (const p of plan.filter((x) => x.action === 'update' || x.action === 'repair')) {
+      if (!eligible(p.id)) {
+        results.push({ id: p.id, status: 'skipped', reason: 'NOT_ENTITLED' });
+        continue;
+      }
       if (isBusy(p.id)) {
         results.push({ id: p.id, status: 'deferred', reason: 'BUSY' });
         continue;

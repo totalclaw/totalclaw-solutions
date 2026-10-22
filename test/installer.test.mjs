@@ -276,3 +276,15 @@ test('sourceFromSpec：不存在的目录也建 LocalSource（读取时才失败
   await assert.rejects(src.fetchIndex('x'));
   assert.throws(() => sourceFromSpec('not-a-spec'));
 });
+
+test('updateAll：eligible 为 false 的方案（账号未开通）不升级', async () => {
+  const { repo, mgr } = setup();
+  await mgr.install('beta'); // 连同依赖 alpha
+  putSolution(repo, 'alpha', '1.1.0', { name: '甲方案' });
+  putSolution(repo, 'beta', '1.1.0', { name: '乙方案' });
+  mgr.catalogCache = null;
+  const { results } = await mgr.updateAll({ eligible: (id) => id === 'beta' });
+  assert.deepEqual(results.find((r) => r.id === 'alpha'), { id: 'alpha', status: 'skipped', reason: 'NOT_ENTITLED' });
+  assert.equal(results.find((r) => r.id === 'beta').status, 'updated');
+  assert.equal(mgr.get('alpha').version, '1.0.0');
+});

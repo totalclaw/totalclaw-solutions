@@ -1,0 +1,27 @@
+{
+  "id": "website-test",
+  "version": "1.1.1",
+  "treeDigest": "3d84da9aff4ebd19d88e5926eeae3d4e2c29cc19f848893748bd2a75c9ddb8d9",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 480,
+      "sha256": "ae85d8e4ae02b09ac9a67950936bed79eb5f13df67d49cb013a4a72ec0e7fed0"
+    },
+    {
+      "path": "README.md",
+      "size": 759,
+      "sha256": "6cf41b9c8231f83a925165a4d16b078a10ef3363913892f0954b32bf728ab333"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2664,
+      "sha256": "7b85fb3e48a0ea3dcea8f4857924e2f9a0b6f5d78a5ee2bc74cbe035f2918a4c"
+    }
+  ]
+}

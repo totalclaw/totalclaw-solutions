@@ -11,8 +11,8 @@ import { tmp } from './helpers.mjs';
 const index = JSON.parse(readFileSync(join(REPO_ROOT, 'index.json'), 'utf8'));
 const web = JSON.parse(readFileSync(join(REPO_ROOT, 'registry', 'web-solution-ids.json'), 'utf8')).items;
 
-test('totalclaw-web 目录中的 30 个方案 id 全部在仓库中', () => {
-  assert.equal(web.length, 30);
+test('totalclaw-web 目录中的方案 id 全部在仓库中（原 30 个 + 4 个市场包改为需授权）', () => {
+  assert.equal(web.length, 34);
   const ids = new Set(index.items.map((it) => it.id));
   assert.deepEqual(web.map((w) => w.id).filter((id) => !ids.has(id)), []);
 });
