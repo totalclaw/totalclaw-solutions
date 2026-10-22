@@ -27,6 +27,8 @@ const { buildDocx } = require('./docx.cjs');
 
 const D = 'legion-hq';
 const SETTINGS = `${D}/settings.json`;
+// L12 部门专用模型 / key：单独一个文件，界面只拿打码后的
+const LEGION_KEYS = `${D}/legion-keys.json`;
 const COMPANY = `${D}/company-profile.json`;
 const SCRIPTS = `${D}/scripts.json`;
 const MAX_TASK_FILES = 200;
@@ -148,6 +150,7 @@ module.exports = {
       fleet,
       company: profile,
       settings,
+      legionKeys: (id) => ctx.readJson(LEGION_KEYS, {})[id] || null,
       log: ctx.log,
       llm: async (prompt, opts) => {
         if (!llm) throw new Error('本机模型不可用（宿主未提供模型通道）');
@@ -373,6 +376,30 @@ module.exports = {
       const machines = fleet.rename(String(p?.machineId), p?.name);
       publishFleet(machines);
       return machines;
+    });
+
+    // L12：部门专用模型 / key
+    const maskKey = (k) => (k ? `${String(k).slice(0, 3)}…${String(k).slice(-4)}` : '');
+    h('legionKeys.list', () => {
+      const all = ctx.readJson(LEGION_KEYS, {});
+      return legions.map((L) => {
+        const v = all[L.id] || {};
+        return { legionId: L.id, name: L.name, provider: v.provider || '', model: v.model || '', baseUrl: v.baseUrl || '', key: maskKey(v.apiKey), hasKey: !!v.apiKey, defaultModel: L.defaultModel || '' };
+      });
+    });
+    h('legionKeys.set', (p) => {
+      const id = String(p?.legionId || '');
+      if (!legions.some((L) => L.id === id)) throw new Error('没有这个部门');
+      const all = ctx.readJson(LEGION_KEYS, {});
+      const prev = all[id] || {};
+      const str = (v, n) => String(v ?? '').trim().slice(0, n);
+      const next = { provider: str(p.provider, 40), model: str(p.model, 120), baseUrl: str(p.baseUrl, 300), apiKey: p.apiKey === undefined ? prev.apiKey || '' : str(p.apiKey, 400) };
+      if (next.baseUrl && !/^https?:\/\//i.test(next.baseUrl)) throw new Error('接口地址要以 http:// 或 https:// 开头');
+      if (next.apiKey && !next.provider) throw new Error('填了 key 就要填服务商（如 deepseek）');
+      if (!next.provider && !next.model && !next.apiKey) delete all[id];
+      else all[id] = next;
+      ctx.writeJson(LEGION_KEYS, all);
+      return { ok: true };
     });
 
     h('company.get', () => ({ profile: profile(), display: displayProfile(profile(), !!settings().demoMode) }));

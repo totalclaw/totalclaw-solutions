@@ -655,3 +655,53 @@ test('打开「同时发到老板 IM」：拍板 / 例行办完经宿主 pushToI
     delete require.cache[path];
   }
 });
+
+test('L12 部门专用模型 / key：只随派往员工机的那一步走，放在 payload 最后；本机步骤只换模型', async () => {
+  const cluster = fakeCluster({ nodes: [{ nodeId: 'A', host: '10.0.0.2' }] });
+  const { fleet, runner } = makeRunner({ cluster });
+  const llmCalls = [];
+  runner.llm = async (p, o) => (llmCalls.push(o), '本机产出');
+  runner.legionKeys = (id) => ({ 'legion-legal': { provider: 'deepseek', apiKey: 'sk-legal', model: 'deepseek/deepseek-chat' }, 'legion-finance': { provider: 'deepseek', apiKey: 'sk-fin', model: 'm-fin' } })[id] || null;
+  await fleet.refresh();
+  await fleet.assign('legion-legal', 'A', true);
+  await fleet.assign('legion-finance', 'local', true);
+  const a = runner.submit({ text: '看看保密条款', forcedLegions: ['legion-legal'] });
+  await until(() => runner.get(a.taskId).status === 'done');
+  const w = cluster.calls.find((c) => c.roleId === 'worker.run');
+  assert.deepEqual(w.payload.credential, { provider: 'deepseek', apiKey: 'sk-legal' });
+  assert.equal(w.payload.model, 'deepseek/deepseek-chat');
+  assert.equal(Object.keys(w.payload).pop(), 'credential', '放最后，入站预览截前 300 字截不到');
+  const b = runner.submit({ text: '算一下成本', forcedLegions: ['legion-finance'] });
+  await until(() => ['done', 'awaiting'].includes(runner.get(b.taskId).status));
+  assert.equal(llmCalls[0].model, 'm-fin');
+  assert.equal(llmCalls[0].credential, undefined, '主控本机步骤不带专用 key');
+});
+
+test('L12 legionKeys.set / list：界面只拿打码后的 key；不改 key 时保留原 key；全空即删除', async () => {
+  const dataRoot = mkdtempSync(join(tmpdir(), 'lhq-keys-'));
+  const handlers = new Map();
+  const ctx = {
+    id: 'workbench-legion-hq', version: '1.0.0', appVersion: '2.0.5', log: { info() {}, warn() {} },
+    dataPath: (rel) => join(dataRoot, rel),
+    readJson: (rel, fb) => { try { return JSON.parse(readFileSync(join(dataRoot, rel), 'utf8')); } catch { return fb; } },
+    writeJson: (rel, v) => { mkdirSync(join(dataRoot, rel, '..'), { recursive: true }); writeFileSync(join(dataRoot, rel), JSON.stringify(v)); },
+    packagePath: (rel) => join(DIR, rel), handle: (a, fn) => handlers.set(a, fn), emit: () => {},
+  };
+  const mod = require('./index.cjs');
+  await mod.activate(ctx);
+  try {
+    handlers.get('legionKeys.set')({ legionId: 'legion-legal', provider: 'deepseek', apiKey: 'sk-abcdefgh1234', model: 'm' });
+    let row = handlers.get('legionKeys.list')().find((k) => k.legionId === 'legion-legal');
+    assert.equal(row.key, 'sk-…1234');
+    assert.ok(!JSON.stringify(handlers.get('legionKeys.list')()).includes('abcdefgh'));
+    handlers.get('legionKeys.set')({ legionId: 'legion-legal', provider: 'deepseek', model: 'm2' });
+    assert.equal(ctx.readJson('legion-hq/legion-keys.json', {})['legion-legal'].apiKey, 'sk-abcdefgh1234');
+    assert.throws(() => handlers.get('legionKeys.set')({ legionId: 'legion-legal', apiKey: 'x', provider: '' }), /服务商/);
+    assert.throws(() => handlers.get('legionKeys.set')({ legionId: 'legion-legal', provider: 'p', baseUrl: 'ftp://x' }), /http/);
+    handlers.get('legionKeys.set')({ legionId: 'legion-legal', provider: '', model: '', baseUrl: '', apiKey: '' });
+    row = handlers.get('legionKeys.list')().find((k) => k.legionId === 'legion-legal');
+    assert.equal(row.hasKey, false);
+  } finally {
+    await mod.deactivate();
+  }
+});

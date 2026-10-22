@@ -245,7 +245,10 @@ class TaskRunner {
   async execute(t, s, machine, signal) {
     const L = this.legions().find((x) => x.id === s.legionId);
     const prompt = this.stepPrompt(t, s, t.rejectNote && t.rejectStep === s.id ? `老板的修改意见：${t.rejectNote}` : '');
-    const model = L?.defaultModel || undefined;
+    // L12：部门专用模型 / key（主控本机保存）。专用 key 只随派往员工机的这一步走；主控本机执行的步骤用本机默认 key
+    const lk = (this.legionKeys && this.legionKeys(s.legionId)) || null;
+    const model = lk?.model || L?.defaultModel || undefined;
+    const credential = lk?.provider && lk?.apiKey ? { provider: lk.provider, apiKey: lk.apiKey, ...(lk.baseUrl ? { baseUrl: lk.baseUrl } : {}) } : undefined;
     if (machine.local) {
       this.publish(t, 'node:progress', { stepId: s.id, phase: '生成中' });
       return this.llm(prompt, { model, signal, timeoutMs: STEP_TIMEOUT_MS });
@@ -278,6 +281,8 @@ class TaskRunner {
           timeoutMs: STEP_TIMEOUT_MS,
           dispatcherNodeId: this.fleet.self().nodeId,
           responseLocale: this.settings().responseLocale || undefined,
+          // 放最后：员工机入站预览只截前 300 字，宿主另外也会把 credential 打码
+          ...(credential ? { credential } : {}),
         },
       });
     } catch (e) {
