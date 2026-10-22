@@ -1,7 +1,7 @@
 {
   "id": "workbench-hr-agent",
   "version": "1.0.0",
-  "treeDigest": "fe938f490941fd47cab8469814a508a5922702bd30b35297d35742e7c878ddc7",
+  "treeDigest": "e745f93d5140e2d256c3960074fcb763469ee35fc8aa48638005ce4de04a217f",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -40,13 +40,13 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 20963,
-      "sha256": "b683df37b85082327d5b702c4aa30f8b09e09e36bb4816de7a40ce3c8cf52e99"
+      "size": 24395,
+      "sha256": "006f7dd6f68e56b6fce5453375099c7b23852ff29c28e97d43c336474723b855"
     },
     {
       "path": "src/main/screening.cjs",
-      "size": 14095,
-      "sha256": "bf2e4ce06ab68017a8b6afd40b94867982165281ed1d8d41bd1c966fc5268733"
+      "size": 16034,
+      "sha256": "f8e6f470e21424c421203e902c09e00644ddf0638f4745616b41d7f48bb13679"
     },
     {
       "path": "src/main/zip.cjs",
@@ -55,8 +55,8 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 31079,
-      "sha256": "352bec71af7af1d0c1f5b6b0fc4303f55e8d83d4f02398e0db4165fe81f9c4a8"
+      "size": 32351,
+      "sha256": "901db8517996ac3ea09b01010c8946a94cb97df20d30ff038db23cb480e24d1d"
     }
   ]
 }

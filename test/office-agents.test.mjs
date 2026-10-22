@@ -336,3 +336,86 @@ test('appearsIn：证据核对忽略空白', () => {
   assert.ok(appearsIn(RESUME, '负责 Vue 3组件库'));
   assert.ok(!appearsIn(RESUME, 'React'));
 });
+
+test('HR2 批量走集群分身：主控 + 2 台员工机轮流分；员工机失败的那份回本机重做；员工机 / 关掉时只在本机', async () => {
+  const { EventEmitter } = await import('node:events');
+  const mod = reqH('./index.cjs');
+  const { ctx, handlers } = fakeCtx(HR, 'hr2');
+  const local = [];
+  mod.__setLlmForTests(async (prompt) => {
+    local.push(prompt);
+    if (prompt.includes('整理成结构化数据')) return JSON.stringify({ basics: { name: '本机' }, work: [], education: [], skills: [] });
+    return '{}';
+  });
+  const proc = new EventEmitter();
+  proc.getSelf = () => ({ nodeId: 'master', deploymentRole: 'orchestrator' });
+  proc.getOnlineNodes = () => [
+    { nodeId: 'A', status: 'online', roles: ['employee'] },
+    { nodeId: 'B', status: 'online', roles: ['employee'] },
+    { nodeId: 'X', status: 'online', roles: ['orchestrator'] },
+  ];
+  const remote = [];
+  proc.dispatchTask = async (d) => {
+    remote.push(d.targetNodeId);
+    if (d.targetNodeId === 'B') return { status: 'failed', error: '员工机忙' };
+    return { status: 'success', output: { text: JSON.stringify({ basics: { name: '员工机A' }, work: [], education: [], skills: [] }) } };
+  };
+  mod.__setClusterForTests(proc);
+  await mod.activate(ctx);
+  try {
+    assert.equal(handlers.get('meta')().clusterMachines, 2);
+    let j = handlers.get('job.create')({ title: '销售', dept: '销售部', location: '北京' });
+    const files = Array.from({ length: 6 }, (_, i) => ({ fileName: `c${i}.txt`, base64: Buffer.from(`姓名：候选人${i}\n本科`).toString('base64') }));
+    await handlers.get('resume.upload')({ id: j.id, files });
+    const r = await handlers.get('resume.parse')({ id: j.id });
+    assert.deepEqual(r.cluster, { machines: 3, remote: 2, fallback: 2 });
+    assert.deepEqual(remote.sort(), ['A', 'A', 'B', 'B']);
+    assert.equal(local.length, 4, '本机 2 份 + 员工机 B 失败回本机 2 份');
+    assert.equal(r.job.candidates.filter((c) => c.resume).length, 6);
+    handlers.get('settings.save')({ useCluster: false });
+    remote.length = 0;
+    const r2 = await handlers.get('resume.parse')({ id: j.id, ids: r.job.candidates.map((c) => c.id) });
+    assert.equal(r2.cluster, null);
+    assert.equal(remote.length, 0);
+  } finally {
+    mod.__setLlmForTests(null);
+    mod.__setClusterForTests(null);
+  }
+});
+
+test('HR3 向量预筛：按与岗位要求的相似度排序只留前 N%（至少 1 份）；不开时全保留；被筛掉的不调模型并标明原因', async () => {
+  const S = reqH('./screening.cjs');
+  const job = { title: '前端工程师', jd: '负责 Vue / TypeScript 前端开发', gates: [{ condition: '本科及以上' }], dims: [{ name: '前端技术' }] };
+  const cs = [
+    { id: 'a', text: '五年前端开发，精通 Vue 与 TypeScript，本科' },
+    { id: 'b', text: '仓库管理员，持叉车证' },
+    { id: 'c', text: 'React 前端开发三年' },
+    { id: 'd', text: '厨师，擅长川菜' },
+  ];
+  const r = S.vectorPrefilter(job, cs, 0.4);
+  assert.deepEqual([...r.keep].sort(), ['a', 'c']);
+  assert.ok(r.scores.get('a') > r.scores.get('b'));
+  assert.equal(S.vectorPrefilter(job, cs, 0).keep.size, 4);
+  assert.equal(S.vectorPrefilter(job, [cs[1]], 0.4).keep.size, 1);
+
+  const mod = reqH('./index.cjs');
+  const { ctx, handlers } = fakeCtx(HR, 'hr3');
+  const prompts = [];
+  mod.__setLlmForTests(async (p) => {
+    prompts.push(p);
+    return JSON.stringify({ gates: [{ id: 'g1', verdict: 'met', evidence: '本科' }], scores: [{ id: 'd1', score: 3, evidence: '前端' }] });
+  });
+  await mod.activate(ctx);
+  try {
+    let j = handlers.get('job.create')({ title: '前端工程师', dept: '研发部', location: '北京' });
+    j = handlers.get('jd.save')({ id: j.id, jd: job.jd, gates: [{ condition: '本科及以上', severity: 'must' }], dims: [{ name: '前端技术', weight: 100, anchors: [] }] });
+    await handlers.get('resume.upload')({ id: j.id, files: cs.map((c) => ({ fileName: `${c.id}.txt`, base64: Buffer.from(c.text).toString('base64') })) });
+    const out = await handlers.get('screen.run')({ id: j.id, vectorKeep: 0.4 });
+    const pre = out.job.candidates.filter((c) => c.screening?.prefiltered);
+    assert.equal(pre.length, 2);
+    assert.ok(pre.every((c) => /向量预筛/.test(c.screening.why) && typeof c.screening.similarity === 'number'));
+    assert.equal(prompts.length, 2, '只有留下的 2 份调了模型');
+  } finally {
+    mod.__setLlmForTests(null);
+  }
+});

@@ -250,7 +250,50 @@ const DEFAULT_ONBOARDING = [
   '试用期目标与考核标准确认',
 ];
 
+// ── HR3 向量预筛：本地特征哈希向量（中文字 2-gram + 英文 / 数字词），余弦相似度；不调模型 ──
+const VEC_DIM = 1024;
+function hashVec(text) {
+  const v = new Float64Array(VEC_DIM);
+  const s = String(text || '').toLowerCase();
+  const add = (tok, w = 1) => {
+    let h = 2166136261;
+    for (let i = 0; i < tok.length; i++) h = Math.imul(h ^ tok.charCodeAt(i), 16777619);
+    v[(h >>> 0) % VEC_DIM] += w;
+  };
+  const han = s.replace(/[^\u4e00-\u9fff]+/g, ' ').split(' ').filter(Boolean);
+  for (const seg of han) for (let i = 0; i + 1 < seg.length; i++) add(seg.slice(i, i + 2));
+  for (const w of s.match(/[a-z][a-z0-9+#.]{1,30}|\d{2,}/g) || []) add(w, 1.5);
+  let n = 0;
+  for (let i = 0; i < VEC_DIM; i++) n += v[i] * v[i];
+  n = Math.sqrt(n) || 1;
+  for (let i = 0; i < VEC_DIM; i++) v[i] /= n;
+  return v;
+}
+function cosine(a, b) {
+  let d = 0;
+  for (let i = 0; i < a.length; i++) d += a[i] * b[i];
+  return d;
+}
+/** 岗位要求文本：JD + 门禁条件 + 维度名 */
+function jobQueryText(job) {
+  return [job.title, job.jd, ...(job.gates || []).map((g) => g.condition), ...(job.dims || []).map((d) => d.name)].filter(Boolean).join('\n');
+}
+/**
+ * 按与岗位要求的相似度排序，只保留前 keepRatio（0–1）；返回 { keep:Set, scores:Map }。
+ * 至少保留 1 份；keepRatio ≥ 1 或无效时全保留。
+ */
+function vectorPrefilter(job, candidates, keepRatio) {
+  const q = hashVec(jobQueryText(job));
+  const scores = new Map(candidates.map((c) => [c.id, Math.round(cosine(q, hashVec(c.text)) * 1000) / 1000]));
+  if (!(keepRatio > 0 && keepRatio < 1)) return { keep: new Set(candidates.map((c) => c.id)), scores };
+  const n = Math.max(1, Math.ceil(candidates.length * keepRatio));
+  const keep = new Set([...candidates].sort((a, b) => scores.get(b.id) - scores.get(a.id)).slice(0, n).map((c) => c.id));
+  return { keep, scores };
+}
+
 module.exports = {
+  vectorPrefilter,
+  hashVec,
   checkJd,
   jdPrompt,
   normalizeJd,

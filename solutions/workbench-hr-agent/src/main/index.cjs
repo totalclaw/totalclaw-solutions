@@ -45,6 +45,7 @@ async function pool(items, limit, fn) {
 let llmOverride = null;
 let mailOverride = null;
 let activityOverride = null;
+let clusterOverride = null; // 单测注入假集群
 
 module.exports = {
   hostApi: 2,
@@ -57,6 +58,9 @@ module.exports = {
   },
   __setActivityForTests(fn) {
     activityOverride = fn;
+  },
+  __setClusterForTests(proc) {
+    clusterOverride = proc;
   },
 
   activate(ctx) {
@@ -140,7 +144,7 @@ module.exports = {
 
     const h = (name, fn) => ctx.handle(name, fn);
 
-    h('meta', () => ({ settings: settings(), stages: S.STAGES, hasModel: !!(llmOverride || llmHost), canPdf: !!pdf, defaultOnboarding: S.DEFAULT_ONBOARDING }));
+    h('meta', () => ({ settings: settings(), stages: S.STAGES, hasModel: !!(llmOverride || llmHost), canPdf: !!pdf, defaultOnboarding: S.DEFAULT_ONBOARDING, clusterMachines: clusterWorkers().length }));
     h('settings.save', (p) => {
       const cur = ctx.readJson(`${D}/settings.json`, {});
       if (typeof p?.company === 'string' && p.company.trim()) cur.company = p.company.trim().slice(0, 40);
@@ -149,6 +153,7 @@ module.exports = {
         const hd = Math.min(a, Math.max(0, Number(p.thresholds.hold) || 50));
         cur.thresholds = { advance: a, hold: hd };
       }
+      if (typeof p?.useCluster === 'boolean') cur.useCluster = p.useCluster;
       ctx.writeJson(`${D}/settings.json`, cur);
       return settings();
     });
@@ -224,18 +229,66 @@ module.exports = {
       return { added: added.length, failed, job: j };
     });
 
-    /** 批处理：解析 / 筛选，并发 3，推进度 */
+    // HR2 批量走集群分身：本机是主控且有在线员工机时，每份简历的模型调用在「本机 + 各员工机」之间轮流分
+    // （员工机用 worker.run 跑同一段提示词）；某台员工机失败的那份回本机重做。可在设置里关掉
+    const clusterProc = () => clusterOverride || deps?.clusterDiscoveryProc || null;
+    const clusterWorkers = () => {
+      const p = clusterProc();
+      if (!p || settings().useCluster === false) return [];
+      try {
+        const self = p.getSelf?.();
+        if (!self || self.deploymentRole !== 'orchestrator') return [];
+        return (p.getOnlineNodes?.() || []).filter((n) => n.status === 'online' && Array.isArray(n.roles) && n.roles.includes('employee') && n.nodeId !== self.nodeId);
+      } catch {
+        return [];
+      }
+    };
+    const remoteLlmJson = async (worker, prompt) => {
+      const p = clusterProc();
+      const id = `hra-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+      const res = await p.dispatchTask({
+        taskId: id,
+        idempotencyKey: id,
+        targetNodeId: worker.nodeId,
+        roleId: 'worker.run',
+        priority: 'normal',
+        payload: { prompt, timeoutMs: 180_000, dispatcherNodeId: p.getSelf().nodeId },
+      });
+      if (!res || res.status !== 'success') throw new Error(res?.error || '员工机执行失败');
+      return parseJsonLoose(String(res.output?.text || ''));
+    };
+
+    /** 批处理：解析 / 筛选，并发 3（有员工机时按机器数放大），推进度；work(cid, ljson) 用 ljson 调模型 */
     const batch = async (jobId, ids, label, work) => {
       const total = ids.length;
       let done = 0;
       const errors = [];
+      const workers = clusterWorkers();
+      const slots = [null, ...workers]; // null = 本机
+      const dist = { machines: slots.length, remote: 0, fallback: 0 };
+      let next = 0;
+      const ljsonFor = () => {
+        const slot = slots[next++ % slots.length];
+        if (!slot) return llmJson;
+        return async (prompt) => {
+          try {
+            const r = await remoteLlmJson(slot, prompt);
+            dist.remote++;
+            return r;
+          } catch (e) {
+            dist.fallback++;
+            ctx.log.warn(`员工机 ${slot.nodeId} 处理失败，回本机重做：${e.message}`);
+            return llmJson(prompt);
+          }
+        };
+      };
       const key = `hr:${jobId}:${label}`;
       ctx.emit('progress', { jobId, label, done, total });
       activity(key, { legionId: 'legion-hr', label, done, total });
       try {
-        await pool(ids, CONCURRENCY, async (cid) => {
+        await pool(ids, CONCURRENCY * slots.length, async (cid) => {
           try {
-            await work(cid);
+            await work(cid, ljsonFor());
           } catch (e) {
             errors.push({ id: cid, error: e.message });
           }
@@ -246,15 +299,15 @@ module.exports = {
       } finally {
         activity(key, null);
       }
-      return { job: load(jobId), errors };
+      return { job: load(jobId), errors, cluster: workers.length ? dist : null };
     };
 
     h('resume.parse', async (p) => {
       const j = load(p?.id);
       const ids = (Array.isArray(p.ids) && p.ids.length ? p.ids : j.candidates.filter((c) => !c.resume).map((c) => c.id)).filter((id) => j.candidates.some((c) => c.id === id));
-      return batch(j.id, ids, '解析', async (cid) => {
+      return batch(j.id, ids, '解析', async (cid, ljson) => {
         const text = cand(load(j.id), cid).text;
-        const resume = S.normalizeResume(await llmJson(S.resumePrompt(text)), text);
+        const resume = S.normalizeResume(await ljson(S.resumePrompt(text)), text);
         patchCandidate(j.id, cid, (c) => {
           c.resume = resume;
         });
@@ -269,9 +322,19 @@ module.exports = {
       const ids = (Array.isArray(p.ids) && p.ids.length ? p.ids : j.candidates.filter((c) => c.stage !== 'rejected' || !c.screening).map((c) => c.id)).filter((id) => j.candidates.some((c) => c.id === id));
       // 第一层关键词预筛（可选）：一个关键词都没命中的直接淘汰，不调模型；理由写明是预筛
       const keywords = (Array.isArray(p.keywords) ? p.keywords : []).map((k) => String(k).trim().toLowerCase()).filter(Boolean).slice(0, 30);
-      return batch(j.id, ids, '筛选', async (cid) => {
+      // HR3 向量预筛（可选）：按与岗位要求的相似度只保留前 vectorKeep（0.4 / 0.6 / 0.8），其余不调模型
+      const keepRatio = [0.4, 0.6, 0.8].includes(Number(p.vectorKeep)) ? Number(p.vectorKeep) : 0;
+      const vec = keepRatio ? S.vectorPrefilter(j, j.candidates.filter((c) => ids.includes(c.id)), keepRatio) : null;
+      return batch(j.id, ids, '筛选', async (cid, ljson) => {
         const job = load(j.id);
         const text = cand(job, cid).text;
+        if (vec && !vec.keep.has(cid)) {
+          patchCandidate(j.id, cid, (c) => {
+            c.screening = { gates: [], scores: [], total: 0, decision: 'reject', why: `向量预筛：与岗位要求的相似度 ${vec.scores.get(cid)}，不在前 ${Math.round(keepRatio * 100)}%`, flags: ['未经模型评估，可手动改回'], highlights: [], gaps: [], prefiltered: true, similarity: vec.scores.get(cid), at: Date.now() };
+            if (c.stage === 'sourcing' || c.stage === 'screening') c.stage = 'rejected';
+          });
+          return;
+        }
         if (keywords.length && !keywords.some((k) => text.toLowerCase().includes(k))) {
           patchCandidate(j.id, cid, (c) => {
             c.screening = { gates: [], scores: [], total: 0, decision: 'reject', why: `关键词预筛未命中：${keywords.join('、')}`, flags: ['未经模型评估，可手动改回'], highlights: [], gaps: [], prefiltered: true, at: Date.now() };
@@ -279,7 +342,7 @@ module.exports = {
           });
           return;
         }
-        const result = S.normalizeScreening(await llmJson(S.screenPrompt(job, text)), job, text, th);
+        const result = S.normalizeScreening(await ljson(S.screenPrompt(job, text)), job, text, th);
         patchCandidate(j.id, cid, (c) => {
           c.screening = { ...result, at: Date.now() };
           if (c.stage === 'sourcing') c.stage = result.decision === 'reject' ? 'rejected' : 'screening';

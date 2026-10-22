@@ -114,6 +114,7 @@ export default function createSolution(sdk) {
       // HR6：发邀约的收件地址（null = 用简历里的邮箱）与「确认发送」状态；换候选人就复位
       const sendTo = ref(null);
       const sendAsk = ref('');
+      const vectorKeep = ref('');
       watch(selId, () => {
         sendTo.value = null;
         sendAsk.value = '';
@@ -228,11 +229,23 @@ export default function createSolution(sdk) {
           ...head(s, t('① 关键词预筛（可选）→ ② 硬条件门禁：证据必须是简历原话，简历没提到只能判「未知」，不判不满足 → ③ 0–4 锚定分，每分要证据；总分由程序按权重算。')),
           h('div', { class: 'hra-row' }, [
             h('input', { class: 'hra-in', style: 'width:300px', placeholder: t('预筛关键词（可选，逗号分隔，命中任一即进入下一层）'), value: keywords.value, onInput: (e) => (keywords.value = e.target.value) }),
-            h('button', { class: 'hra-btn pri', disabled: !j?.candidates.length || busy.screen, onClick: () => run('screen', 'screen.run', { id: j.id, keywords: keywords.value.split(/[,，\s]+/).filter(Boolean) }) }, busy.screen ? t('筛选中…') : t('开始筛选')),
+            // HR3 向量预筛：按与岗位要求的相似度只保留前 N%（不调模型）
+            h('select', { class: 'hra-in', value: vectorKeep.value, onChange: (e) => (vectorKeep.value = e.target.value), title: t('按简历与岗位要求的文字相似度先筛一轮，被筛掉的不调模型，可手动改回') }, [
+              h('option', { value: '' }, t('不做相似度预筛')),
+              ...['0.8', '0.6', '0.4'].map((v) => h('option', { value: v }, t('相似度前 {p0}%', { p0: Math.round(Number(v) * 100) }))),
+            ]),
+            h('button', { class: 'hra-btn pri', disabled: !j?.candidates.length || busy.screen, onClick: () => run('screen', 'screen.run', { id: j.id, keywords: keywords.value.split(/[,，\s]+/).filter(Boolean), ...(vectorKeep.value ? { vectorKeep: Number(vectorKeep.value) } : {}) }) }, busy.screen ? t('筛选中…') : t('开始筛选')),
             h('span', t('推进线')),
             h('input', { class: 'hra-in', type: 'number', style: 'width:64px', value: th.advance, onChange: async (e) => (meta.value.settings = await sdk.invoke('settings.save', { thresholds: { ...th, advance: Number(e.target.value) } })) }),
             h('span', t('待定线')),
             h('input', { class: 'hra-in', type: 'number', style: 'width:64px', value: th.hold, onChange: async (e) => (meta.value.settings = await sdk.invoke('settings.save', { thresholds: { ...th, hold: Number(e.target.value) } })) }),
+            // HR2：有在线员工机时批量解析 / 筛选分给本机 + 各员工机并行
+            meta.value?.clusterMachines
+              ? h('label', { class: 'hra-ev', style: 'display:inline-flex;gap:4px;align-items:center' }, [
+                  h('input', { type: 'checkbox', checked: meta.value.settings?.useCluster !== false, onChange: async (e) => (meta.value.settings = await sdk.invoke('settings.save', { useCluster: e.target.checked })) }),
+                  t('分给本机 + {p0} 台员工机并行', { p0: meta.value.clusterMachines }),
+                ])
+              : null,
             cs.length ? h('button', { class: 'hra-btn', onClick: async () => { try { await call('exp', 'screen.export', { id: j.id }); } catch (_) { /* */ } } }, t('导出筛选表')) : null,
           ]),
           errLine('screen'),
