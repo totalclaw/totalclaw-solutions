@@ -844,3 +844,64 @@ test('D7 输出上限与模型：剧本 legionConfig > 部门设置 > 全局；�
   assert.deepEqual([charsOf(prompts[1]), models[1]], ['1200', 'script-model']);
   assert.equal(charsOf(prompts[2]), '900');
 });
+
+test('S9 加速长跑：1500 件任务（4 小时演示约 100 件）后大屏状态与执行器内存封顶，堆不随任务数增长', async () => {
+  const v8 = await import('node:v8');
+  const vm = await import('node:vm');
+  v8.setFlagsFromString('--expose-gc');
+  const gc = vm.runInNewContext('gc');
+  const cluster = fakeCluster({ nodes: [{ nodeId: 'A', host: '10.0.0.2' }, { nodeId: 'B', host: '10.0.0.3' }], delay: 1 });
+  const { fleet, runner, state } = makeRunner({ cluster });
+  await fleet.refresh();
+  for (const id of ['legion-rd', 'legion-legal', 'legion-finance', 'legion-admin']) await fleet.assign(id, 'A', true);
+  for (const id of ['legion-hr', 'legion-ops', 'legion-sales', 'legion-cs']) await fleet.assign(id, 'B', true);
+  const texts = ['核算这个月的项目成本', '客户投诉发货延迟怎么处理', '招聘两名前端开发', '做一份新品推广方案', '下季度新品上市，全公司全面准备'];
+  const runBatch = async (n) => {
+    for (let i = 0; i < n; i += 30) {
+      const ids = Array.from({ length: Math.min(30, n - i) }, (_, k) => runner.submit({ text: texts[(i + k) % texts.length] }).taskId);
+      await until(() => ids.every((id) => ['done', 'failed', 'awaiting'].includes(runner.get(id)?.status ?? 'done')), 20_000);
+      for (const id of ids) if (runner.get(id)?.status === 'awaiting') runner.confirm(id, true);
+    }
+  };
+  const heap = () => { cluster.calls.length = 0; gc(); gc(); return process.memoryUsage().heapUsed; };
+  await runBatch(300);
+  const h1 = heap();
+  await runBatch(600);
+  const h2 = heap();
+  await runBatch(600);
+  const h3 = heap();
+  const snap = snapshot(state);
+  assert.ok(snap.feed.length <= 50, `动态 ${snap.feed.length} 条`);
+  assert.ok(snap.tasks.filter((t) => !['triaging', 'planning', 'running', 'summarizing', 'awaiting'].includes(t.status)).length <= 20, '已完成任务最多留 20 件');
+  assert.ok(runner.tasks.size <= 100, `执行器内存里 ${runner.tasks.size} 件（runner MAX_TASKS_KEPT = 100）`);
+  const mb = (x) => (x / 1048576).toFixed(1);
+  assert.ok(h2 - h1 < 4 * 1024 * 1024 && h3 - h2 < 4 * 1024 * 1024, `堆：300 件 ${mb(h1)} MB → 900 件 ${mb(h2)} MB → 1500 件 ${mb(h3)} MB`);
+});
+
+test('N8 并发：3 台员工机各承载部门，同时 9 件事并行跑完、无死锁；同一时刻在途步骤 ≥ 6', async () => {
+  const cluster = fakeCluster({ nodes: [{ nodeId: 'A', host: '1' }, { nodeId: 'B', host: '2' }, { nodeId: 'C', host: '3' }], delay: 150 });
+  let inflight = 0;
+  let peak = 0;
+  const orig = cluster.proc.dispatchTask;
+  cluster.proc.dispatchTask = async (d) => {
+    if (d.roleId !== 'worker.run') return orig(d);
+    inflight++;
+    peak = Math.max(peak, inflight);
+    try {
+      return await orig(d);
+    } finally {
+      inflight--;
+    }
+  };
+  const { fleet, runner } = makeRunner({ cluster });
+  await fleet.refresh();
+  const plan = { A: ['legion-rd', 'legion-legal', 'legion-finance'], B: ['legion-hr', 'legion-ops', 'legion-sales'], C: ['legion-cs', 'legion-admin', 'legion-finance'] };
+  for (const [m, ids] of Object.entries(plan)) for (const id of ids) await fleet.assign(id, m, true);
+  const t0 = Date.now();
+  const texts = ['核算成本', '客户投诉处理', '招聘前端', '推广方案', '采购比价', '研发排期', '合规检查', '报价单', '客服话术'];
+  const ids = texts.map((text) => runner.submit({ text }).taskId);
+  await until(() => ids.every((id) => ['done', 'failed', 'awaiting'].includes(runner.get(id).status)), 20_000);
+  assert.ok(ids.every((id) => runner.get(id).status !== 'failed'), '没有失败');
+  assert.ok(peak >= 6, `同一时刻在途 ${peak} 步`);
+  assert.ok(Date.now() - t0 < 9 * 150 * 3, '并行而非串行');
+});

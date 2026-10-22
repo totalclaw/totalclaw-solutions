@@ -257,12 +257,16 @@ function buildTopo(groups){
  layers.dyn3=mk('g',{},svg);
  for(const k of ['dyn','dyn2','dyn3'])pools[k]=new Pool(layers[k]);
 }
-// S9：动态层按帧复用节点，不 innerHTML 重建
+// S9：动态层按帧复用节点，不 innerHTML 重建。
+// 复用时清掉上次用剩的属性（否则上次的发光滤镜 / 虚线会带到这次）；突发过后隐藏的节点超过「本帧用量 + 32」就移除，池子能缩回去
 class Pool{constructor(p){this.p=p;this.items={};this.used={};}
  begin(){this.used={};}
- get(tag,a,txt){const u=this.used[tag]=(this.used[tag]||0)+1;const list=this.items[tag]=this.items[tag]||[];let e=list[u-1];if(!e){e=mk(tag,{},this.p);list.push(e);}
+ get(tag,a,txt){const u=this.used[tag]=(this.used[tag]||0)+1;const list=this.items[tag]=this.items[tag]||[];let e=list[u-1];if(!e){e=mk(tag,{},this.p);e._k=[];list.push(e);}
+  for(const k of e._k)if(!(k in a))e.removeAttribute(k);e._k=Object.keys(a);
   for(const k in a)e.setAttribute(k,a[k]);if(txt!=null&&e.textContent!==txt)e.textContent=txt;e.style.display='';return e;}
- end(){for(const tag in this.items){const n=this.used[tag]||0;this.items[tag].forEach((e,i)=>{if(i>=n)e.style.display='none';});}}}
+ end(){for(const tag in this.items){const n=this.used[tag]||0;const list=this.items[tag];
+  if(list.length>n+32){for(const e of list.splice(n+32))e.remove();}
+  list.forEach((e,i)=>{if(i>=n&&e.style.display!=='none')e.style.display='none';});}}}
 const pools={};
 
 // ── 面板 ──
