@@ -17,6 +17,7 @@ const http = require('node:http');
 const os = require('node:os');
 const { randomBytes, timingSafeEqual } = require('node:crypto');
 const { readFileSync } = require('node:fs');
+const { toSvg } = require('./qr.cjs');
 
 const DEFAULT_PORT = 8240;
 const MAX_BODY = 16 * 1024;
@@ -75,8 +76,22 @@ class ScreenServer {
       token: running ? this.token : null,
       viewers: this.clients.size,
       localUrl: running ? url('127.0.0.1') : null,
-      urls: addrs.map((a) => ({ name: a.name, address: a.address, url: url(a.address), remote: url(a.address, '/remote') })),
+      urls: addrs.map((a) => ({ name: a.name, address: a.address, url: url(a.address), remote: url(a.address, '/remote'), qr: this.qr(url(a.address)), remoteQr: this.qr(url(a.address, '/remote')) })),
     };
+  }
+
+  /** S3：地址二维码（SVG，按地址缓存） */
+  qr(text) {
+    this.qrCache = this.qrCache || new Map();
+    if (!this.qrCache.has(text)) {
+      if (this.qrCache.size > 32) this.qrCache.clear();
+      try {
+        this.qrCache.set(text, toSvg(text, { scale: 4 }));
+      } catch {
+        this.qrCache.set(text, '');
+      }
+    }
+    return this.qrCache.get(text);
   }
 
   async start({ port = DEFAULT_PORT, host = '0.0.0.0' } = {}) {
@@ -162,7 +177,7 @@ class ScreenServer {
       'Cache-Control': 'no-store',
       'X-Content-Type-Options': 'nosniff',
       'Referrer-Policy': 'no-referrer',
-      ...(type.startsWith('text/html') ? { 'Content-Security-Policy': "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'" } : {}),
+      ...(type.startsWith('text/html') ? { 'Content-Security-Policy': "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: 'self'; connect-src 'self'" } : {}),
     });
     res.end(data);
   }
@@ -209,6 +224,11 @@ class ScreenServer {
       if (req.method === 'GET' && url.pathname === '/remote') return this.send(res, 200, this.pages().remote, 'text/html; charset=utf-8');
       if (req.method === 'GET' && url.pathname === '/api/state') return this.send(res, 200, this.getState());
       if (req.method === 'GET' && url.pathname === '/api/coverage') return this.send(res, 200, this.getCoverage ? this.getCoverage() : { items: [] });
+      // 大屏角落的「手机扫码下令」：按观众实际访问的主机名生成（换了网卡地址也对）
+      if (req.method === 'GET' && url.pathname === '/api/remote-qr') {
+        const hostHeader = String(req.headers.host || '').replace(/[^\w.:\-\[\]]/g, '');
+        return this.send(res, 200, this.qr(`http://${hostHeader}/remote?t=${this.token}`), 'image/svg+xml; charset=utf-8');
+      }
       if (req.method === 'GET' && url.pathname === '/api/events') return this.openStream(req, res);
       if (req.method === 'POST' && url.pathname === '/api/command') return this.send(res, 200, await this.onCommand(await this.readBody(req)));
       if (req.method === 'POST' && url.pathname === '/api/confirm') return this.send(res, 200, await this.onConfirm(await this.readBody(req)));

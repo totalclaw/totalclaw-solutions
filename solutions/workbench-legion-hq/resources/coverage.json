@@ -1,5 +1,5 @@
 {
-  "$comment": "O11 公司能力地图：按现有代码估计，O12 考卷实测前不对外宣称覆盖率。来源 集群演示/todo/11-OPC一人公司.md（2026-10-20 版）。",
+  "$comment": "O11 公司能力地图：按现有代码估计，O12 考卷实测前不对外宣称覆盖率。来源 集群演示/todo/11-OPC一人公司.md（2026-10-20 版）。 2026-10-22：法务 / 人事工作台完成后 c16/c23/c24/c27/c28 状态已更新。",
   "statusLabels": {
     "ready": "可用",
     "partial": "部分",
@@ -182,9 +182,9 @@
         "legion-cs",
         "legion-ops"
       ],
-      "capability": "无工单",
-      "status": "building",
-      "note": "新建（O5）"
+      "capability": "客服部「投诉处理」流程（客服 → 运营交接）；工单跟踪表未做",
+      "status": "partial",
+      "note": "2026-10-22 更新，待考卷实测"
     },
     {
       "id": "c17",
@@ -259,9 +259,9 @@
       "departments": [
         "legion-legal"
       ],
-      "capability": "新建（10 LG）",
-      "status": "building",
-      "note": ""
+      "capability": "法务部 · 合同审查工作台（workbench-legal-agent）",
+      "status": "ready",
+      "note": "2026-10-22 更新，待考卷实测"
     },
     {
       "id": "c24",
@@ -270,9 +270,9 @@
       "departments": [
         "legion-legal"
       ],
-      "capability": "新建（10 LG）",
-      "status": "building",
-      "note": ""
+      "capability": "法务部 · 合同审查工作台（合规检查、框架四问）",
+      "status": "ready",
+      "note": "2026-10-22 更新，待考卷实测"
     },
     {
       "id": "c25",
@@ -304,9 +304,9 @@
       "departments": [
         "legion-hr"
       ],
-      "capability": "新建（10 HR）",
-      "status": "building",
-      "note": ""
+      "capability": "人事部 · 招聘工作台（workbench-hr-agent）",
+      "status": "ready",
+      "note": "2026-10-22 更新，待考卷实测"
     },
     {
       "id": "c28",
@@ -315,9 +315,9 @@
       "departments": [
         "legion-hr"
       ],
-      "capability": "新建（10 HR）",
-      "status": "building",
-      "note": ""
+      "capability": "人事部 · 招聘工作台（offer 与入职清单；离职未做）",
+      "status": "ready",
+      "note": "2026-10-22 更新，待考卷实测"
     },
     {
       "id": "c29",

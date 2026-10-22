@@ -69,7 +69,7 @@ class Director {
     const script = this.scripts().find((s) => s.id === scriptId);
     if (!script) throw new Error('没有这个剧本');
     this.stopTimer();
-    this.state = { mode: 'playing', scriptId, startedAt: this.now(), elapsedMs: 0, next: 0, total: script.items.length, replayFile: null };
+    this.state = { mode: 'playing', scriptId, startedAt: this.now(), runStartedAt: this.now(), elapsedMs: 0, next: 0, total: script.items.length, replayFile: null };
     this.script = script;
     this.schedule();
     this.onChange(this.status());

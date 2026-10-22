@@ -470,3 +470,149 @@ test('activate：用假 ctx 跑通入口（无宿主 deps = 单机、无模型�
     await mod.deactivate();
   }
 });
+
+// ── 2026-10-22 第二轮：二维码 / 资料包 / 来信 / 调优表 / 成本看板 / 考卷 / 员工机进度 ──
+const { encode, toSvg } = require('./qr.cjs');
+const X = require('./extras.cjs');
+
+test('二维码：与 npm qrcode 逐模块一致（qiye-app 在旁边时比对），版本随长度增长，SVG 可生成', () => {
+  const urls = ['http://192.168.3.60:8240/?t=0a49464813b06a292093427f', 'http://10.0.0.8:8241/remote?t=' + 'f'.repeat(24), '中文 http://x.cn', 'z'.repeat(190)];
+  for (const u of urls) {
+    const q = encode(u);
+    assert.equal(q.size, q.version * 4 + 17);
+    assert.ok(q.version >= 1 && q.version <= 10);
+  }
+  assert.ok(encode('a').version < encode('a'.repeat(150)).version);
+  assert.match(toSvg(urls[0]), /^<svg [^>]*viewBox="0 0 \d+ \d+"/);
+  assert.throws(() => encode('x'.repeat(400)), /太长/);
+  let QR = null;
+  try {
+    QR = createRequire(join(SOLUTIONS_DIR, '..', '..', 'totalclaw-qiye-app', 'package.json'))('qrcode');
+  } catch {
+    QR = null; // 方案仓库单独克隆时没有参照库，跳过比对
+  }
+  if (!QR) return;
+  for (const u of urls) {
+    for (let mask = 0; mask < 8; mask++) {
+      const m = encode(u, { mask });
+      const r = QR.create([{ data: u, mode: 'byte' }], { errorCorrectionLevel: 'M', maskPattern: mask, version: m.version });
+      const { size, data } = r.modules;
+      let diff = 0;
+      for (let i = 0; i < size; i++) for (let j = 0; j < size; j++) if (!!data[i * size + j] !== m.modules[i][j]) diff++;
+      assert.equal(diff, 0, `${u.slice(0, 20)} mask ${mask}`);
+    }
+    assert.equal(encode(u).mask, QR.create([{ data: u, mode: 'byte' }], { errorCorrectionLevel: 'M', version: encode(u).version }).maskPattern, '自动选的掩码一致');
+  }
+});
+
+test('演示资料包：读全部 md、截断在上限内', () => {
+  const t = X.loadDemoPack(join(DIR, 'resources', 'demo-pack'));
+  assert.match(t, /示例科技/);
+  assert.match(t, /186 元/);
+  assert.ok(t.length <= 3300);
+  assert.equal(X.loadDemoPack('/nonexistent'), '');
+});
+
+test('来信：.eml（base64 / quoted-printable / multipart / RFC2047 主题）与 .txt 解析；文件夹按名称 + 修改时间去重', () => {
+  const b64 = Buffer.from('您好，请报 500 台 X1 的价格。', 'utf8').toString('base64');
+  const eml1 = `From: =?UTF-8?B?${Buffer.from('华东经销商', 'utf8').toString('base64')}?= <a@b.com>\r\nSubject: =?UTF-8?B?${Buffer.from('询价：X1', 'utf8').toString('base64')}?=\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\n${b64}\r\n`;
+  const m1 = X.parseMailFile(eml1, 'a.eml');
+  assert.equal(m1.subject, '询价：X1');
+  assert.match(m1.from, /华东经销商/);
+  assert.match(m1.body, /500 台 X1/);
+  const eml2 = 'Subject: invoice\r\nContent-Type: multipart/alternative; boundary="BB"\r\n\r\n--BB\r\nContent-Type: text/html\r\n\r\n<p>x</p>\r\n--BB\r\nContent-Type: text/plain; charset=utf-8\r\nContent-Transfer-Encoding: quoted-printable\r\n\r\n=E5=8F=91=E7=A5=A8=E5=82=AC=E5=BC=80\r\n--BB--\r\n';
+  assert.equal(X.parseMailFile(eml2, 'b.eml').body, '发票催开');
+  assert.equal(X.parseMailFile('# 简历投递\n\n应聘区域销售', 'c.md').subject, '简历投递');
+  const dir = mkdtempSync(join(tmpdir(), 'lhq-mail-'));
+  writeFileSync(join(dir, 'a.eml'), eml1);
+  writeFileSync(join(dir, 'skip.pdf'), 'x');
+  const seen = new Set();
+  const first = X.scanMailFolder(dir, seen);
+  assert.equal(first.length, 1);
+  seen.add(first[0].key);
+  assert.equal(X.scanMailFolder(dir, seen).length, 0, '同一文件不重复');
+  const task = X.mailToTask(m1);
+  assert.equal(task.source, 'mail');
+  assert.match(task.title, /^来信/);
+});
+
+test('调优表 / 成本看板 / 考卷汇总', () => {
+  const now = Date.now();
+  const tasks = [
+    { no: 1, title: 'a', createdAt: now - 5000, finishedAt: now, plan: { steps: [{ id: 's1', legionId: 'legion-legal', goal: '审' }, { id: 's2', legionId: 'legion-finance', goal: '算' }] }, outputs: { s1: { text: 'x'.repeat(100), machine: 'A', ms: 3000 }, s2: { error: 'boom', machine: 'B' } } },
+    { no: 2, title: 'b', createdAt: now - 99_999_999, finishedAt: now - 99_999_000, plan: { steps: [] }, outputs: {} },
+  ];
+  const r = X.tuningRows(tasks, now - 10_000);
+  assert.equal(r.rows.length, 2);
+  assert.equal(r.tasks, 1);
+  assert.equal(r.slowest[0].ms, 3000);
+  const c = X.costBoard(tasks, LEGIONS, { tokensPerChar: 2, yuanPer1kTokens: 1, minutesPerStep: 60, hourlyWage: 100 });
+  const legal = c.rows.find((x) => x.legionId === 'legion-legal');
+  assert.deepEqual([legal.steps, legal.tokens, legal.modelCost, legal.laborCost], [1, 200, 0.2, 100]);
+  assert.equal(c.rows.find((x) => x.legionId === 'legion-finance').steps, 0, '失败的步骤不计');
+  assert.match(c.note, /估算/);
+  const exam = JSON.parse(readFileSync(join(DIR, 'resources', 'opc-exam.json'), 'utf8'));
+  const coverage = JSON.parse(readFileSync(join(DIR, 'resources', 'coverage.json'), 'utf8'));
+  assert.equal(exam.items.length, 39);
+  assert.deepEqual(new Set(exam.items.map((q) => q.coverageId)).size, 39, '一题对应能力地图一项');
+  for (const q of exam.items) assert.ok(q.checks.length >= 3 && q.checks.length <= 6, q.id);
+  const rep = X.examReport(exam, { q01: { verdict: 'pass', checks: [true, true, true] }, q02: { verdict: 'partial' }, q03: { verdict: 'fail' } }, coverage);
+  assert.deepEqual([rep.answered, rep.count.pass, rep.count.partial, rep.count.fail, rep.count.todo], [3, 1, 1, 1, 36]);
+  assert.match(rep.markdown, /未全部作答，结论不成立/);
+});
+
+test('机器列表只算员工机（另一台主控不承载部门）；员工机回传的执行阶段转成步骤进度', async () => {
+  const cluster = fakeCluster({ nodes: [{ nodeId: 'A', host: '10.0.0.2' }, { nodeId: 'boss2', host: '10.0.0.3' }], delay: 80 });
+  const realNodes = cluster.proc.getOnlineNodes;
+  cluster.proc.getOnlineNodes = () => realNodes().map((n) => (n.nodeId === 'boss2' ? { ...n, roles: ['orchestrator'] } : { ...n, roles: ['employee'] }));
+  const { fleet, runner, state } = makeRunner({ cluster });
+  await fleet.refresh();
+  assert.deepEqual(fleet.machines().filter((m) => !m.local).map((m) => m.id), ['A']);
+  await fleet.assign('legion-legal', 'A', true);
+  // 不用「审合同」：它命中合同审查工作流，最后进老板待办，不会自己办完
+  const { taskId } = runner.submit({ text: '看看这条保密条款', forcedLegions: ['legion-legal'] });
+  const dispatchId = await until(() => [...runner.dispatches.keys()][0]);
+  assert.equal(runner.onRemoteProgress(dispatchId, '调用工具：读文件'), true);
+  assert.equal(runner.onRemoteProgress('nope', 'x'), false, '不是本中心派出去的不认');
+  const t = snapshot(state).tasks.find((x) => x.id === taskId);
+  assert.equal(t.steps[0].phase, '调用工具：读文件');
+  await until(() => runner.get(taskId).status === 'done');
+  assert.equal(runner.dispatches.size, 0, '派发结束后映射清掉');
+});
+
+test('activate：资料包进提示词、来信文件夹、导出 Word、考卷、成本看板、调优表', async () => {
+  const dataRoot = mkdtempSync(join(tmpdir(), 'lhq-data2-'));
+  const handlers = new Map();
+  const ctx = {
+    id: 'workbench-legion-hq', version: '1.0.0', appVersion: '2.0.5', log: { info() {}, warn() {} },
+    dataPath: (rel) => join(dataRoot, rel),
+    readJson: (rel, fb) => { try { return JSON.parse(readFileSync(join(dataRoot, rel), 'utf8')); } catch { return fb; } },
+    writeJson: (rel, v) => { mkdirSync(join(dataRoot, rel, '..'), { recursive: true }); writeFileSync(join(dataRoot, rel), JSON.stringify(v)); },
+    packagePath: (rel) => join(DIR, rel), handle: (a, fn) => handlers.set(a, fn), emit: () => {},
+  };
+  const mod = require('./index.cjs');
+  await mod.activate(ctx);
+  try {
+    await handlers.get('settings.save')({ demoPack: true });
+    const mailDir = mkdtempSync(join(tmpdir(), 'lhq-inbox-'));
+    writeFileSync(join(mailDir, '询价.txt'), '询价\n请报 500 台 X1');
+    ctx.writeJson('legion-hq/settings.json', { ...ctx.readJson('legion-hq/settings.json', {}), mailFolder: mailDir });
+    const made = handlers.get('mail.scanNow')().made;
+    assert.equal(made.length, 1);
+    assert.equal(handlers.get('mail.scanNow')().made.length, 0);
+    const rec = await until(() => { const r = handlers.get('tasks.get')({ taskId: made[0].taskId }); return r && ['failed', 'done'].includes(r.status) && r; });
+    assert.equal(rec.source, 'mail');
+    const ex = await handlers.get('tasks.export')({ taskId: rec.id });
+    assert.ok(readFileSync(ex.path).length > 500);
+    const run = handlers.get('exam.run')({ id: 'q10' });
+    assert.ok(run.taskId);
+    handlers.get('exam.score')({ id: 'q10', verdict: 'partial', checks: [true, false, true], note: '底价对' });
+    const rep = handlers.get('exam.report')();
+    assert.equal(rep.count.partial, 1);
+    assert.ok((await handlers.get('exam.export')()).path.endsWith('opc-coverage-report.md'));
+    assert.ok(handlers.get('cost.board')().rows.length === 8);
+    assert.ok(Array.isArray(handlers.get('director.report')({ since: 1 }).rows));
+  } finally {
+    await mod.deactivate();
+  }
+});

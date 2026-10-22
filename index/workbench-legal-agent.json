@@ -1,7 +1,7 @@
 {
   "id": "workbench-legal-agent",
   "version": "1.0.0",
-  "treeDigest": "37978b27e61e26856d97ac7181639be84efaa0b8c1fc5583df473ba1ff6c5ea0",
+  "treeDigest": "5f4a7094daba877735b7581fcbab3c848de605f74ba05fd8d9391be64bd69d15",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -60,13 +60,13 @@
     },
     {
       "path": "src/main/docText.cjs",
-      "size": 6007,
-      "sha256": "44b1fec47621cbc0bed89112a5c76dc502607420c5632259cee0315f3831b1d5"
+      "size": 6027,
+      "sha256": "7a4997674c31ad11bc24288680cfbc75dd29fad1d49cb3bc85710b094db94973"
     },
     {
       "path": "src/main/docx.cjs",
-      "size": 9404,
-      "sha256": "faa0389d4bf875deb024c8fee631eb4ad2805f89ce89d7ce6e6f4d25880fa3d5"
+      "size": 9424,
+      "sha256": "82ec543d96781cfd366b0580bc7380f9d50310a08c9408fa206aa751416444bd"
     },
     {
       "path": "src/main/index.cjs",
@@ -80,8 +80,8 @@
     },
     {
       "path": "src/main/zip.cjs",
-      "size": 4201,
-      "sha256": "f0ca33d226fafb2b13e24a1c8751e3556f843f0ed46f197e0d912b0ab1d9d22a"
+      "size": 4221,
+      "sha256": "9c092411e47b0914072db3c3925a89cef3d348675d0448203683b3b4d38e261d"
     },
     {
       "path": "src/renderer/index.mjs",
@@ -93,7 +93,7 @@
     {
       "version": "1.0.0",
       "ref": "workbench-legal-agent@1.0.0",
-      "treeDigest": "37978b27e61e26856d97ac7181639be84efaa0b8c1fc5583df473ba1ff6c5ea0",
+      "treeDigest": "5f4a7094daba877735b7581fcbab3c848de605f74ba05fd8d9391be64bd69d15",
       "filesRef": "index/workbench-legal-agent/1.0.0.json",
       "channel": "stable",
       "rollout": 100,

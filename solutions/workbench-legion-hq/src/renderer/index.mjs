@@ -55,6 +55,8 @@ export default function createSolution(sdk) {
 .lhq-big .n{font-size:13px;color:var(--color-text-secondary,#6b7280)}
 .lhq-big .g{font-size:22px;font-weight:700;margin:6px 0}
 .lhq-err{color:#dc2626;font-size:13px;margin-top:6px}
+.lhq-qr{margin-top:6px;width:120px;height:120px}.lhq-qr svg{width:120px;height:120px;display:block}
+.lhq-q{background:var(--color-bg-subtle,#f8fafc);border-radius:6px;padding:6px 8px;margin:6px 0;font-size:13px}
 `;
 
   const STATUS = {
@@ -90,6 +92,11 @@ export default function createSolution(sdk) {
       const err = reactive({});
       const cur = ref('s1');
       const touched = reactive({ company: false, played: false });
+      const report = ref(null);
+      const cost = ref(null);
+      const examData = ref(null);
+      const examReport = ref(null);
+      const examOpen = ref('');
 
       const legionById = computed(() => Object.fromEntries((info.value?.legions || []).map((L) => [L.id, L])));
       const term = computed(() => (info.value?.settings?.terms === 'legion' ? t('军团') : t('部门')));
@@ -172,6 +179,8 @@ export default function createSolution(sdk) {
           { id: 's5', name: t('例行事务'), done: routines.value.some((r) => r.enabled) },
           { id: 's6', name: t('导演台'), done: touched.played || director.value.mode !== 'idle' },
           { id: 's7', name: t('能力地图'), done: false, optional: true },
+          { id: 's8', name: t('成本看板'), done: false, optional: true },
+          { id: 's9', name: t('OPC 考卷'), done: !!examReport.value && examReport.value.answered === examReport.value.total, optional: true },
         ];
       });
       const progress = computed(() => {
@@ -334,6 +343,7 @@ export default function createSolution(sdk) {
                       m.busy ? t('本中心派了 {p0} 步', { p0: m.busy }) : t('空闲'),
                       m.load ? h('div', t('本机忙碌会话 {p0}', { p0: m.load.busy })) : null,
                       m.load?.model ? h('div', { class: 'lhq-mono' }, m.load.model) : null,
+                      ...(m.load?.activities || []).map((a) => h('div', { style: 'color:var(--color-brand,#6366f1)' }, `#${a.taskNo ?? '?'} ${legionById.value[a.legionId]?.short || a.legionId} · ${a.phase || t('执行中')}`)),
                     ]),
                   ]),
                   ...legions.map((L) => {
@@ -377,6 +387,10 @@ export default function createSolution(sdk) {
               h('input', { type: 'checkbox', checked: demo, onChange: (e) => saveSettings({ demoMode: e.target.checked }) }),
               t('演示模式：对外只显示「示例科技」，不露真实名称'),
             ]),
+            h('label', { style: 'display:flex;gap:6px;align-items:center;margin-left:12px' }, [
+              h('input', { type: 'checkbox', checked: !!info.value?.settings?.demoPack, onChange: (e) => saveSettings({ demoPack: e.target.checked }) }),
+              t('演示资料包：各部门可引用虚构「示例科技」的产品、成本、经营数据、合同模板、花名册'),
+            ]),
           ]),
           errLine('company'),
         ]);
@@ -404,8 +418,8 @@ export default function createSolution(sdk) {
                 ...(sc.urls.length ? sc.urls : [{ name: t('本机'), url: sc.localUrl, remote: sc.localUrl.replace('/?', '/remote?') }]).map((u) =>
                   h('tr', [
                     h('td', `${u.name}${u.address ? ` ${u.address}` : ''}`),
-                    h('td', { class: 'lhq-mono' }, u.url),
-                    h('td', { class: 'lhq-mono' }, u.remote),
+                    h('td', [h('div', { class: 'lhq-mono' }, u.url), u.qr ? h('div', { class: 'lhq-qr', innerHTML: u.qr, title: t('扫码打开大屏') }) : null]),
+                    h('td', [h('div', { class: 'lhq-mono' }, u.remote), u.remoteQr ? h('div', { class: 'lhq-qr', innerHTML: u.remoteQr, title: t('手机扫码：下令 / 拍板') }) : null]),
                     h('td', { style: 'white-space:nowrap' }, [h('button', { class: 'lhq-btn', onClick: () => copy(u.url) }, t('复制')), ' ', h('button', { class: 'lhq-btn', onClick: () => copy(u.remote) }, t('复制遥控'))]),
                   ]),
                 ),
@@ -467,6 +481,7 @@ export default function createSolution(sdk) {
             ]);
           }),
           d.summary ? h('div', { style: 'margin-top:12px' }, [h('b', d.plan?.summary ? t('AI 总经理汇总') : t('结果')), h('div', { class: 'lhq-out' }, d.summary)]) : null,
+          d.summary ? h('div', { class: 'lhq-row' }, [h('button', { class: 'lhq-btn', onClick: async () => { try { const r = await sdk.invoke('tasks.export', { taskId: d.id }); if (!r.canceled) sdk.notify.success(t('已导出：{p0}', { p0: r.path })); } catch (e) { sdk.notify.warn(e.message); } } }, t('导出 Word（带公司抬头）'))]) : null,
           d.status === 'awaiting' && d._rejecting
             ? h('div', { class: 'lhq-row', style: 'margin-top:10px' }, [
                 h('input', { class: 'lhq-in', style: 'flex:1', placeholder: t('驳回意见（会带着意见重做一次）'), value: d._reject, onInput: (e) => (d._reject = e.target.value) }),
@@ -515,8 +530,18 @@ export default function createSolution(sdk) {
       }
 
       function viewRoutines(s) {
+        const mailFolder = info.value?.settings?.mailFolder;
         return h('div', { class: 'lhq-card', id: 'lhq-s5' }, [
           ...stepHead(s, t('公司在老板不说话时也在运转：到点生成一件事（来源 = 定时例行），走同一个入口。App 开着才会触发，错过的不补跑。')),
+          h('div', { class: 'lhq-row' }, [
+            h('b', t('来信文件夹')),
+            h('span', { class: 'lhq-mono' }, mailFolder || t('未设置')),
+            h('button', { class: 'lhq-btn', onClick: async () => { try { const r = await sdk.invoke('mail.pickFolder'); if (!r.canceled) { info.value = await sdk.invoke('info'); sdk.notify.info(t('已设置；新放进去的 {p0} 封来信已交给 AI 总经理', { p0: r.made.length })); } } catch (e) { sdk.notify.warn(e.message); } } }, t('选择文件夹')),
+            mailFolder ? h('button', { class: 'lhq-btn', onClick: async () => { const r = await sdk.invoke('mail.scanNow'); sdk.notify.info(t('新来信 {p0} 封', { p0: r.made.length })); } }, t('现在检查')) : null,
+            mailFolder ? h('button', { class: 'lhq-btn', onClick: async () => { await saveSettings({ mailFolder: '' }); } }, t('停用')) : null,
+            h('label', { style: 'display:flex;gap:6px;align-items:center;margin-left:auto' }, [h('input', { type: 'checkbox', checked: info.value?.settings?.notify !== false, onChange: (e) => saveSettings({ notify: e.target.checked }) }), t('待拍板 / 例行办完时发系统通知')]),
+          ]),
+          h('p', { class: 'lhq-sub' }, t('把邮件导出的 .eml（或 .txt / .md）放进来信文件夹，每 20 秒检查一次，新来信自动成为「来信」任务，由 AI 总经理分拣给部门；原文件不改动。')),
           h('table', { class: 'lhq-tbl' }, [
             h('tr', [h('th', t('启用')), h('th', t('事项')), h('th', t('时间')), h('th', t('涉及{p0}', { p0: term.value })), h('th', t('上次')), h('th', '')]),
             ...routines.value.map((r) =>
@@ -559,6 +584,17 @@ export default function createSolution(sdk) {
             ? h('table', { class: 'lhq-tbl' }, records.value.slice(0, 10).map((r) => h('tr', [h('td', { class: 'lhq-mono' }, r.name), h('td', t('{p0} 条事件', { p0: r.events })), h('td', h('button', { class: 'lhq-btn', onClick: async () => { try { director.value = await sdk.invoke('director.replay', { file: r.name }); } catch (e) { sdk.notify.warn(e.message); } } }, t('回放')))])))
             : h('div', { class: 'lhq-empty' }, t('还没有录制')),
           h('button', { class: 'lhq-btn', style: 'margin-top:6px', onClick: async () => (records.value = await sdk.invoke('records.list')) }, t('刷新录制列表')),
+          h('h4', { style: 'margin:14px 0 6px' }, t('调优表（本次开演以来每步耗时，用于把主剧本压到 8 分钟内）')),
+          h('button', { class: 'lhq-btn', onClick: async () => (report.value = await sdk.invoke('director.report')) }, t('生成调优表')),
+          report.value
+            ? h('div', [
+                h('p', { class: 'lhq-sub' }, t('{p0} 件事，从第一件开始到最后一件办完共 {p1} 秒；最慢的步骤在最前', { p0: report.value.tasks, p1: Math.round(report.value.totalMs / 1000) })),
+                h('table', { class: 'lhq-tbl' }, [
+                  h('tr', [h('th', '#'), h('th', t('部门')), h('th', t('步骤')), h('th', t('机器')), h('th', t('耗时')), h('th', t('产出字数'))]),
+                  ...[...report.value.rows].sort((a, b) => (b.ms || 0) - (a.ms || 0)).slice(0, 40).map((r) => h('tr', [h('td', r.taskNo), h('td', legionById.value[r.legionId]?.short || r.legionId), h('td', r.goal), h('td', r.machine || '—'), h('td', r.ms != null ? `${Math.round(r.ms / 1000)}s` : (r.error ? t('失败') : '—')), h('td', r.chars)])),
+                ]),
+              ])
+            : null,
         ]);
       }
 
@@ -579,6 +615,77 @@ export default function createSolution(sdk) {
                 ]),
               ])
             : h('div', { class: 'lhq-empty' }, '…'),
+        ]);
+      }
+
+      function viewCost(s) {
+        const c = cost.value;
+        const p = info.value?.settings?.cost || {};
+        const num = (k, label) => h('label', { style: 'display:flex;gap:4px;align-items:center' }, [label, h('input', { class: 'lhq-in', type: 'number', step: 'any', style: 'width:90px', value: p[k], onChange: async (e) => { await saveSettings({ cost: { ...p, [k]: Number(e.target.value) } }); cost.value = await sdk.invoke('cost.board'); } })]);
+        return h('div', { class: 'lhq-card', id: 'lhq-s8' }, [
+          ...stepHead(s, t('按部门统计本月办了多少步、模型用量与费用，对比等效人工成本。演示口径：员工机不回传 token 数，模型费用按产出字数估算；等效人工按每步折合分钟 × 时薪估算，参数可改。')),
+          h('div', { class: 'lhq-row' }, [num('yuanPer1kTokens', t('元 / 千 token')), num('tokensPerChar', t('token / 字')), num('minutesPerStep', t('每步折合分钟')), num('hourlyWage', t('时薪（元）')), h('button', { class: 'lhq-btn pri', onClick: async () => (cost.value = await sdk.invoke('cost.board')) }, t('刷新'))]),
+          c
+            ? h('table', { class: 'lhq-tbl' }, [
+                h('tr', [h('th', t('部门')), h('th', t('步骤数')), h('th', t('估算 token')), h('th', t('模型费用（元）')), h('th', t('等效人工（元）'))]),
+                ...c.rows.map((r) => h('tr', [h('td', r.name), h('td', r.steps), h('td', r.tokens), h('td', r.modelCost), h('td', r.laborCost)])),
+                h('tr', [h('th', t('合计（{p0}）', { p0: c.month })), h('th', c.total.steps), h('th', c.total.tokens), h('th', c.total.modelCost), h('th', c.total.laborCost)]),
+              ])
+            : h('div', { class: 'lhq-empty' }, t('点「刷新」生成')),
+          c ? h('p', { class: 'lhq-sub', style: 'margin-top:6px' }, t(c.note)) : null,
+        ]);
+      }
+
+      function viewExam(s) {
+        const ex = examData.value;
+        const rep = examReport.value;
+        const VL = { pass: t('通过'), partial: t('部分'), fail: t('不通过') };
+        return h('div', { class: 'lhq-card', id: 'lhq-s9' }, [
+          ...stepHead(s, t('「一个人能不能撑起一家公司的大部分日常」用考卷回答：39 题对应能力地图 39 项，走真实链路（AI 总经理判定 → 部门执行），按检查点人工打分。建议先打开「演示资料包」。通过 + 部分 ≥ 75% 才对外讲。')),
+          h('div', { class: 'lhq-row' }, [
+            h('button', { class: 'lhq-btn', onClick: async () => { examData.value = await sdk.invoke('exam.list'); examReport.value = await sdk.invoke('exam.report'); } }, ex ? t('刷新') : t('打开考卷')),
+            rep ? h('span', { class: 'lhq-badge' }, t('已作答 {p0}/{p1} · 通过 {p2} · 部分 {p3} · 不通过 {p4} · 通过+部分 {p5}%', { p0: rep.answered, p1: rep.total, p2: rep.count.pass, p3: rep.count.partial, p4: rep.count.fail, p5: rep.usablePct })) : null,
+            rep ? h('button', { class: 'lhq-btn', onClick: async () => { try { const r = await sdk.invoke('exam.export'); if (!r.canceled) sdk.notify.success(t('已导出：{p0}', { p0: r.path })); } catch (e) { sdk.notify.warn(e.message); } } }, t('导出覆盖率报告')) : null,
+          ]),
+          ex
+            ? h('table', { class: 'lhq-tbl' }, [
+                h('tr', [h('th', t('题')), h('th', t('领域 / 事务')), h('th', t('状态')), h('th', '')]),
+                ...ex.exam.items.flatMap((q) => {
+                  const r = ex.results[q.id] || {};
+                  const rows = [
+                    h('tr', { key: q.id }, [
+                      h('td', q.id),
+                      h('td', [h('b', t(q.task)), h('div', { class: 'lhq-sub', style: 'margin:0' }, t(q.domain))]),
+                      h('td', r.verdict ? VL[r.verdict] : r.taskId ? t('已下发') : t('未作答')),
+                      h('td', { style: 'white-space:nowrap' }, [
+                        h('button', { class: 'lhq-btn', onClick: async () => { try { await sdk.invoke('exam.run', { id: q.id }); examData.value = await sdk.invoke('exam.list'); sdk.notify.info(t('已交给 AI 总经理')); } catch (e) { sdk.notify.warn(e.message); } } }, r.taskId ? t('重跑') : t('作答')),
+                        ' ',
+                        h('button', { class: 'lhq-btn', onClick: () => (examOpen.value = examOpen.value === q.id ? '' : q.id) }, t('打分')),
+                      ]),
+                    ]),
+                  ];
+                  if (examOpen.value === q.id) {
+                    const draft = (q._draft = q._draft || { checks: q.checks.map((_, i) => !!(r.checks || [])[i]), verdict: r.verdict || '', note: r.note || '' });
+                    rows.push(
+                      h('tr', { key: `${q.id}-x` }, [
+                        h('td', { colspan: 4 }, [
+                          h('div', { class: 'lhq-q' }, q.prompt),
+                          r.taskId ? h('button', { class: 'lhq-btn', onClick: () => openDetail(r.taskId) }, t('查看产出')) : null,
+                          ...q.checks.map((c, i) => h('label', { style: 'display:block;margin:4px 0' }, [h('input', { type: 'checkbox', checked: draft.checks[i], onChange: (e) => (draft.checks[i] = e.target.checked) }), ` ${t(c)}`])),
+                          h('div', { class: 'lhq-row' }, [
+                            ...['pass', 'partial', 'fail'].map((v) => h('label', [h('input', { type: 'radio', name: `v-${q.id}`, checked: draft.verdict === v, onChange: () => (draft.verdict = v) }), ` ${VL[v]}`])),
+                            h('input', { class: 'lhq-in', style: 'flex:1', placeholder: t('备注（可选）'), value: draft.note, onInput: (e) => (draft.note = e.target.value) }),
+                            h('button', { class: 'lhq-btn pri', onClick: async () => { try { await sdk.invoke('exam.score', { id: q.id, ...draft }); examData.value = await sdk.invoke('exam.list'); examReport.value = await sdk.invoke('exam.report'); examOpen.value = ''; } catch (e) { sdk.notify.warn(e.message); } } }, t('保存评分')),
+                          ]),
+                        ]),
+                      ]),
+                    );
+                  }
+                  return rows;
+                }),
+              ])
+            : null,
+          examOpen.value ? viewDetail() : null,
         ]);
       }
 
@@ -641,6 +748,8 @@ export default function createSolution(sdk) {
           viewRoutines(st[4]),
           viewDirector(st[5]),
           viewCoverage(st[6]),
+          viewCost(st[7]),
+          viewExam(st[8]),
         ]);
       };
     },

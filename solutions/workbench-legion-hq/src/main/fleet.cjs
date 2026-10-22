@@ -55,7 +55,9 @@ class Fleet {
     if (!p || this.mode() !== 'cluster') return [];
     try {
       const self = this.self().nodeId;
-      return (p.getOnlineNodes() || []).filter((n) => n && n.nodeId && n.nodeId !== self);
+      // 只算员工机：另一台主控（演示时临时切成主控的机器）不承载部门、不接活（与宿主 clusterDispatchTargets 同一口径；
+      // 没带 roles 的旧版本节点不排除）
+      return (p.getOnlineNodes() || []).filter((n) => n && n.nodeId && n.nodeId !== self && !(Array.isArray(n.roles) && n.roles.includes('orchestrator')));
     } catch {
       return [];
     }
@@ -93,7 +95,12 @@ class Fleet {
       let load = null;
       try {
         const st = await this.rpc(node.nodeId, 'status.report', {});
-        load = { busy: Number(st.busyAgents) || 0, model: typeof out.model === 'string' ? out.model : null };
+        // 宿主 status.report（2026-10-22 起）还带承载的部门与正在执行的部门任务
+        load = {
+          busy: Number(st.busyAgents) || 0,
+          model: typeof out.model === 'string' ? out.model : null,
+          activities: Array.isArray(st.activities) ? st.activities.slice(0, 8).map((a) => ({ taskNo: a.taskNo ?? null, legionId: String(a.legionId || ''), phase: String(a.phase || '').slice(0, 40) })) : [],
+        };
       } catch {
         load = c?.load || null;
       }

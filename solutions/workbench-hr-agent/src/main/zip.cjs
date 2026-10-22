@@ -2,7 +2,7 @@
  * 最小 zip 读写（docx 用）：只用 Node 自带 zlib，不依赖宿主模块，单测可直接跑。
  * 读：解析中央目录，支持 store(0) / deflate(8)；写：deflate，带 CRC32。
  * 不支持 zip64、加密、分卷（docx 用不到）。
- * 本文件在 workbench-legal-agent 与 workbench-hr-agent 各有一份，内容必须一致（test/office-agents.test.mjs 校验）。
+ * 本文件在 workbench-legal-agent、workbench-hr-agent、workbench-legion-hq 各有一份，内容必须一致（test/office-agents.test.mjs 校验）。
  */
 const zlib = require('node:zlib');
 

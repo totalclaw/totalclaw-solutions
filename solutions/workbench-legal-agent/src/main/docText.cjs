@@ -5,7 +5,7 @@
  *   docx：自己解析 word/document.xml（段落 = w:p，跳过已删除的修订文字），保留段落序号，修订稿按它回写
  *   pdf ：宿主 documentExtractor 取每页文字（入口注入），按行拼段
  *   txt / md：按空行分段
- * 本文件在 workbench-legal-agent 与 workbench-hr-agent 各有一份，内容必须一致。
+ * 本文件在 workbench-legal-agent、workbench-hr-agent、workbench-legion-hq 各有一份，内容必须一致。
  */
 const { readFileSync } = require('node:fs');
 const { extname } = require('node:path');

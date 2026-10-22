@@ -1,17 +1,17 @@
 {
   "id": "workbench-legion-hq",
   "version": "1.0.0",
-  "treeDigest": "2d28c4e1624b8677ef9bdba264da22e0d8dd39f49defbab1dad7f68d239912ee",
+  "treeDigest": "9a050495174dc2fad203dd71dbc812d97dfa3f63c7e951aacedae86185d62ab8",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1229,
-      "sha256": "c5b9aa8780b3976215eb93e9faf7857b46aa74c6e4584547903e698211405150"
+      "size": 1969,
+      "sha256": "e1844f8dfe23aba4f6dcd9f4690047bf87aa1ffd447f18ab347e18644e43e5c9"
     },
     {
       "path": "README.md",
-      "size": 4451,
-      "sha256": "ccf2563f768342a69209cffed5255a0e3d67230f4906908666614e581e927172"
+      "size": 5435,
+      "sha256": "beca956960ed1c28ace5d4662232936a98a820d14034c34fd29ecae8655f23ae"
     },
     {
       "path": "resources/company-logo.png",
@@ -20,13 +20,43 @@
     },
     {
       "path": "resources/coverage.json",
-      "size": 10043,
-      "sha256": "9f51ca07a7fc17b93f9f23d88e05cb1a989c8ef7d5945475e85d57688d60aa22"
+      "size": 10536,
+      "sha256": "8bf59a2d384ee3521cac06bde6e50bf29d156999497ae78b8da4fa10b6c04376"
+    },
+    {
+      "path": "resources/demo-pack/01-company.md",
+      "size": 514,
+      "sha256": "65e1837b935d865469f458be08f7a687bd435c9fa2bbe9acb5547ca425ab38bd"
+    },
+    {
+      "path": "resources/demo-pack/02-products.md",
+      "size": 481,
+      "sha256": "50b91879e90718b27cdd1b568ff40e2fd2550e01a38745cd2f156707c0e67d73"
+    },
+    {
+      "path": "resources/demo-pack/03-finance-2025.md",
+      "size": 404,
+      "sha256": "2b760f9a3e9c2b21d9869b265713bcab22da6a0d7b466201bd69815eba52b791"
+    },
+    {
+      "path": "resources/demo-pack/04-contract-template.md",
+      "size": 452,
+      "sha256": "edd402467e67ce0f947540c7edf464b41e02a6b57bb45124b4c9f24c4ec88a59"
+    },
+    {
+      "path": "resources/demo-pack/05-roster.md",
+      "size": 646,
+      "sha256": "a865b7702ab0089fde22d25d266a07a1319477fe4325d68daa7ac06426918991"
+    },
+    {
+      "path": "resources/opc-exam.json",
+      "size": 15472,
+      "sha256": "d7e11173839e6d198048bcd69afa78dfde24bf18ce039ef2be1c79b00271c46c"
     },
     {
       "path": "resources/screen/index.html",
-      "size": 41060,
-      "sha256": "e0017ee4fa64ac440adb3adabae074d9466264267adfdf1df4634dbbe57b2865"
+      "size": 44578,
+      "sha256": "44f8aa84d2e7ac82b0f73ac4c5b4a66073c4b09bcf9226313cb9818cb1aa7ead"
     },
     {
       "path": "resources/screen/remote.html",
@@ -75,8 +105,18 @@
     },
     {
       "path": "src/main/director.cjs",
-      "size": 6184,
-      "sha256": "94fa44fd5a64f230e2fc2843ca1e9cc4457c5279e735f4e5ce75281f6b572c71"
+      "size": 6210,
+      "sha256": "8c8a48fcd0f6351de52d2de47f0117ad41384a0a40b4a633c4007228ba48b7a1"
+    },
+    {
+      "path": "src/main/docText.cjs",
+      "size": 6027,
+      "sha256": "7a4997674c31ad11bc24288680cfbc75dd29fad1d49cb3bc85710b094db94973"
+    },
+    {
+      "path": "src/main/docx.cjs",
+      "size": 9424,
+      "sha256": "82ec543d96781cfd366b0580bc7380f9d50310a08c9408fa206aa751416444bd"
     },
     {
       "path": "src/main/employee.cjs",
@@ -84,14 +124,19 @@
       "sha256": "2bd122e80c04b78fc687c9f6a6e5c7e3d47bc0851e268e334c3f6f53473d90a5"
     },
     {
+      "path": "src/main/extras.cjs",
+      "size": 10052,
+      "sha256": "4360e8b17c882ab5df3fd7598458ab27e12112f0563df769cd8636e130fde23c"
+    },
+    {
       "path": "src/main/fleet.cjs",
-      "size": 9108,
-      "sha256": "4565792671693caa6b23bbb0df96e0141f107a30b73671066bc541a4f4a415d0"
+      "size": 9728,
+      "sha256": "579354e963e4b298711a110c3cd93005097749f3910bbc3d10461ff9fed48eb4"
     },
     {
       "path": "src/main/index.cjs",
-      "size": 18621,
-      "sha256": "b3afca1aed3153bc35c804bcee7351019f83991c769b130b609b1f938d3808c6"
+      "size": 28513,
+      "sha256": "a30e6c5cfbf740ad3e8dc751ddbb8acbefbf241982b81b3800865365494be089"
     },
     {
       "path": "src/main/legions.cjs",
@@ -104,19 +149,24 @@
       "sha256": "4f7d408df80e32e4d82cc1a8b081179bcac19314917ad318da1c231b7bb131af"
     },
     {
+      "path": "src/main/qr.cjs",
+      "size": 9978,
+      "sha256": "dc3d3926b678365a8e7435add0d951a579415bf604d1f09f1225c4d1483f8312"
+    },
+    {
       "path": "src/main/routines.cjs",
       "size": 6392,
       "sha256": "2e4f360e15e9dd84357d24993ec23501753029d1b2c6ffb9fc2eb596175bd114"
     },
     {
       "path": "src/main/runner.cjs",
-      "size": 18734,
-      "sha256": "9809b2e66b232ce2893bf7ff83f848f0f3bd68492131916d6bc2a0e1039c7702"
+      "size": 20095,
+      "sha256": "3618631fa72cc9b5e277af300db5636bcf1d9e5956fee4265a4136e48721c2dd"
     },
     {
       "path": "src/main/screenServer.cjs",
-      "size": 9948,
-      "sha256": "02a9034b98189545074c8ff52c179c97dfab4e1a3c22716a660c4fefd8112cad"
+      "size": 10866,
+      "sha256": "fd5d61e523d535f2ba73c8fc82379aa3a240863fcd8621c8e6a5f66d13b78cd0"
     },
     {
       "path": "src/main/screenState.cjs",
@@ -129,16 +179,21 @@
       "sha256": "4f8e445b2f2dd86d3228f4ea55eb8adb527ed967f80e2b92baf8f58dec8c9c72"
     },
     {
+      "path": "src/main/zip.cjs",
+      "size": 4221,
+      "sha256": "9c092411e47b0914072db3c3925a89cef3d348675d0448203683b3b4d38e261d"
+    },
+    {
       "path": "src/renderer/index.mjs",
-      "size": 42349,
-      "sha256": "733959db17f7e3e4aaf1e0b74db47f454b01edf1114887b9366c2d7ae38c1d92"
+      "size": 53265,
+      "sha256": "e6107f3a7a41a6054a5ccc7aeea75a4e79f703bc78703f57a24091d041bfc76b"
     }
   ],
   "versions": [
     {
       "version": "1.0.0",
       "ref": "workbench-legion-hq@1.0.0",
-      "treeDigest": "2d28c4e1624b8677ef9bdba264da22e0d8dd39f49defbab1dad7f68d239912ee",
+      "treeDigest": "9a050495174dc2fad203dd71dbc812d97dfa3f63c7e951aacedae86185d62ab8",
       "filesRef": "index/workbench-legion-hq/1.0.0.json",
       "channel": "stable",
       "rollout": 100,

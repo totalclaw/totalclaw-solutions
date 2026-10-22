@@ -62,9 +62,12 @@ function fakeCtx(pkgDir, idHint) {
   };
 }
 
-test('共用文件在两个方案里内容一致', () => {
+test('共用文件在三个方案里内容一致（法务 / 人事 / 运营中心）', () => {
+  const HQ = join(SOLUTIONS_DIR, 'workbench-legion-hq');
   for (const f of ['zip.cjs', 'docText.cjs', 'docx.cjs']) {
-    assert.equal(readFileSync(join(LEGAL, 'src/main', f), 'utf8'), readFileSync(join(HR, 'src/main', f), 'utf8'), f);
+    const a = readFileSync(join(LEGAL, 'src/main', f), 'utf8');
+    assert.equal(a, readFileSync(join(HR, 'src/main', f), 'utf8'), f);
+    assert.equal(a, readFileSync(join(HQ, 'src/main', f), 'utf8'), f);
   }
 });
 

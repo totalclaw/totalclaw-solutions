@@ -10,7 +10,7 @@
  *
  * 数据（账号目录下 legion-hq/）：settings.json、company-profile.json、tasks/*.json、records/*.jsonl、scripts.json
  */
-const { readFileSync, readdirSync, unlinkSync, existsSync } = require('node:fs');
+const { readFileSync, readdirSync, unlinkSync, existsSync, writeFileSync, mkdirSync } = require('node:fs');
 const { join } = require('node:path');
 const { listInstalledLegions, publicLegion } = require('./legions.cjs');
 const { LegionBus, Recorder } = require('./bus.cjs');
@@ -22,6 +22,8 @@ const { RoutineScheduler } = require('./routines.cjs');
 const { Director, loadScripts, validateScript } = require('./director.cjs');
 const { ScreenServer, filePages } = require('./screenServer.cjs');
 const { EmployeeWatch } = require('./employee.cjs');
+const X = require('./extras.cjs');
+const { buildDocx } = require('./docx.cjs');
 
 const D = 'legion-hq';
 const SETTINGS = `${D}/settings.json`;
@@ -156,6 +158,13 @@ module.exports = {
         pruneTaskFiles(ctx);
       },
     });
+    // D6 演示公司资料包：开启后作为「公司资料」附进各部门提示词
+    let demoPackText = null;
+    runner.extraContext = () => {
+      if (!settings().demoPack) return '';
+      if (demoPackText == null) demoPackText = X.loadDemoPack(ctx.packagePath('resources/demo-pack'));
+      return demoPackText;
+    };
     // 机器忙闲变化随步骤开始 / 结束推给大屏
     bus.on('event', (ev) => {
       if (ev.type === 'node:dispatched' || ev.type === 'node:done' || ev.type === 'node:failed') publishFleet(fleet.machines(fleet.onlineNodes()));
@@ -205,6 +214,65 @@ module.exports = {
       screenWin = null;
     };
 
+    // E3：员工机回传的执行阶段（宿主 task.progress 经集群 task:received 事件到这里），转成大屏「正在做什么」
+    const procRef = deps?.clusterDiscoveryProc || null;
+    const onInbound = (d) => {
+      try {
+        if (d?.roleId === 'task.progress' && d.payload) runner.onRemoteProgress(d.payload.taskId, d.payload.phase);
+      } catch {
+        /* 畸形帧忽略 */
+      }
+    };
+    if (procRef && typeof procRef.on === 'function') procRef.on('task:received', onInbound);
+
+    // O7：需要老板拍板、例行事务办完时发系统通知（可在设置里关掉）
+    const notify = (title, body) => {
+      if (settings().notify === false) return;
+      try {
+        const { Notification } = require('electron');
+        if (Notification?.isSupported?.()) new Notification({ title, body: String(body || '').slice(0, 120) }).show();
+      } catch {
+        /* 无 electron（单测）或系统不支持 */
+      }
+    };
+    bus.on('event', (ev) => {
+      if (ev.replay) return;
+      if (ev.type === 'task:awaiting_confirm') notify(`待你拍板：#${ev.taskNo}`, ev.approval?.label ? `${ev.approval.label} · ${ev.approval.reason || ''}` : '');
+      if (ev.type === 'task:done' && ev.ok) {
+        const t = runner.get(ev.taskId);
+        if (t && t.source === 'cron') notify(`例行事务完成：${t.title}`, ev.summary || '');
+      }
+    });
+
+    // O6：来信文件夹（把邮件导出的 .eml 或文本放进去，自动成为来源 = 来信 的任务；按文件名 + 修改时间去重，不改动原文件）
+    const MAIL_SEEN = `${D}/mail-seen.json`;
+    const scanMail = () => {
+      const dir = settings().mailFolder;
+      if (!dir || fleet.mode() === 'employee') return [];
+      const seen = new Set(ctx.readJson(MAIL_SEEN, []));
+      const fresh = X.scanMailFolder(dir, seen);
+      const made = [];
+      for (const f of fresh.slice(0, 10)) {
+        seen.add(f.key);
+        try {
+          const mail = X.parseMailFile(readFileSync(f.file, 'utf8'), f.name);
+          made.push(runner.submit(X.mailToTask(mail)));
+        } catch (e) {
+          ctx.log.warn(`来信解析失败：${f.name} ${e.message}`);
+        }
+      }
+      if (fresh.length) ctx.writeJson(MAIL_SEEN, [...seen].slice(-2000));
+      return made;
+    };
+    const mailTimer = setInterval(() => {
+      try {
+        scanMail();
+      } catch (e) {
+        ctx.log.warn(`来信文件夹扫描失败：${e.message}`);
+      }
+    }, 20_000);
+    if (mailTimer.unref) mailTimer.unref();
+
     // 子机视角：本机承载的部门 + 主控派来的正在跑的任务
     const employee = new EmployeeWatch({
       proc: () => deps?.clusterDiscoveryProc || null,
@@ -226,6 +294,8 @@ module.exports = {
 
     disposers = [
       () => clearInterval(fleetTimer),
+      () => clearInterval(mailTimer),
+      () => procRef && typeof procRef.off === 'function' && procRef.off('task:received', onInbound),
       () => employee.stop(),
       () => stateTimer && clearTimeout(stateTimer),
       () => routines.stop(),
@@ -251,6 +321,10 @@ module.exports = {
         screenAutoStart: !!settings().screenAutoStart,
         screenPort: settings().screenPort || null,
         terms: settings().terms === 'legion' ? 'legion' : 'department',
+        demoPack: !!settings().demoPack,
+        notify: settings().notify !== false,
+        mailFolder: settings().mailFolder || '',
+        cost: { ...X.COST_DEFAULTS, ...(settings().cost || {}) },
       },
       screen: screen.status(),
     });
@@ -303,6 +377,14 @@ module.exports = {
       if (typeof p?.screenAutoStart === 'boolean') patch.screenAutoStart = p.screenAutoStart;
       if (p?.screenPort === null || (Number.isInteger(p?.screenPort) && p.screenPort >= 1024 && p.screenPort <= 65000)) patch.screenPort = p.screenPort;
       if (['legion', 'department'].includes(p?.terms)) patch.terms = p.terms;
+      if (typeof p?.demoPack === 'boolean') patch.demoPack = p.demoPack;
+      if (typeof p?.notify === 'boolean') patch.notify = p.notify;
+      if (p?.mailFolder === '' || p?.mailFolder === null) patch.mailFolder = '';
+      if (p?.cost && typeof p.cost === 'object') {
+        const c = {};
+        for (const k of Object.keys(X.COST_DEFAULTS)) if (Number.isFinite(Number(p.cost[k])) && Number(p.cost[k]) >= 0) c[k] = Number(p.cost[k]);
+        patch.cost = c;
+      }
       saveSettings(patch);
       if ('demoMode' in patch) publishCompany();
       return info().settings;
@@ -394,6 +476,108 @@ module.exports = {
     h('records.list', () => recorder.list());
 
     h('coverage', () => JSON.parse(readFileSync(ctx.packagePath('resources/coverage.json'), 'utf8')));
+
+    // ── O6 来信文件夹 ──
+    h('mail.pickFolder', async () => {
+      const { dialog } = require('electron');
+      const r = await dialog.showOpenDialog(deps?.getMainWindow?.() || undefined, { properties: ['openDirectory', 'createDirectory'], title: '选择来信文件夹' });
+      if (r.canceled || !r.filePaths?.[0]) return { canceled: true };
+      saveSettings({ mailFolder: r.filePaths[0] });
+      return { folder: r.filePaths[0], made: scanMail() };
+    });
+    h('mail.scanNow', () => ({ made: scanMail() }));
+
+    // ── D5 剧本调优表：本次开演以来（没开演则最近 2 小时）每步耗时 / 机器 / 产出字数 ──
+    const allTasks = () => {
+      const files = listTaskFiles(ctx).map((x) => x.id);
+      const live = runner.list();
+      const ids = new Set(live.map((x) => x.id));
+      return [...live, ...files.filter((id) => !ids.has(id)).map((id) => ctx.readJson(`${D}/tasks/${id}.json`, null)).filter(Boolean)];
+    };
+    h('director.report', (p) => {
+      const since = Number(p?.since) || director.status().runStartedAt || Date.now() - 2 * 3600_000;
+      return { since, ...X.tuningRows(allTasks(), since) };
+    });
+
+    // ── O14 成本看板（演示口径）──
+    h('cost.board', () => X.costBoard(allTasks(), legions, settings().cost || {}));
+
+    // ── O3 产出导出：带公司抬头的 Word ──
+    h('tasks.export', async (p) => {
+      const t = runner.get(String(p?.taskId)) || ctx.readJson(`${D}/tasks/${String(p?.taskId).replace(/[^\w-]/g, '')}.json`, null);
+      if (!t) throw new Error('找不到这件事');
+      const co = displayProfile(profile(), !!settings().demoMode);
+      const name = (id) => legions.find((L) => L.id === id)?.name || id;
+      const blocks = [
+        { text: `${co.name}`, style: 'note' },
+        { text: `${t.title}`, style: 'title' },
+        { text: `来源：${{ boss: '老板下令', cron: '定时例行', customer: '客户消息', mail: '来信', script: '剧本' }[t.source] || t.source}　编号 #${t.no}　${new Date(t.createdAt).toLocaleString('zh-CN')}`, style: 'note' },
+        t.decision ? { text: `AI 总经理判定：${t.decision.reason}`, style: 'note' } : null,
+        t.summary ? { text: t.plan?.summary ? '一、汇总结论' : '结果', style: 'h1' } : null,
+        t.summary ? { text: t.summary } : null,
+        (t.plan?.steps || []).length > 1 ? { text: '二、各部门产出', style: 'h1' } : null,
+        ...((t.plan?.steps || []).length > 1
+          ? t.plan.steps.flatMap((s) => [{ text: `${name(s.legionId)}：${s.goal}`, style: 'h2' }, { text: t.outputs?.[s.id]?.error ? `（未完成：${t.outputs[s.id].error}）` : t.outputs?.[s.id]?.text || '' }])
+          : []),
+        { text: `由「${co.short || co.name} · AI 公司运营中心」生成；涉及付款、签约、对外发布、录用的最终动作需老板确认。`, style: 'note' },
+      ].filter(Boolean);
+      const buf = buildDocx(blocks);
+      const fileName = `${(co.short || co.name).replace(/[\\/:*?"<>|]/g, '')}-${t.title.replace(/[\\/:*?"<>|]/g, '_').slice(0, 30)}.docx`;
+      try {
+        const { dialog, app, shell } = require('electron');
+        const r = await dialog.showSaveDialog(deps?.getMainWindow?.() || undefined, { defaultPath: join(app.getPath('documents'), fileName), filters: [{ name: 'Word', extensions: ['docx'] }] });
+        if (r.canceled || !r.filePath) return { canceled: true };
+        writeFileSync(r.filePath, buf);
+        shell.showItemInFolder(r.filePath);
+        return { path: r.filePath };
+      } catch (e) {
+        if (e && e.message && !/Cannot find module|electron/.test(e.message)) throw e;
+        const target = ctx.dataPath(`${D}/exports/${fileName}`);
+        mkdirSync(join(target, '..'), { recursive: true });
+        writeFileSync(target, buf);
+        return { path: target };
+      }
+    });
+
+    // ── O12 OPC 考卷 ──
+    const EXAM = `${D}/exam.json`;
+    const exam = () => JSON.parse(readFileSync(ctx.packagePath('resources/opc-exam.json'), 'utf8'));
+    const examResults = () => ctx.readJson(EXAM, {});
+    h('exam.list', () => ({ exam: exam(), results: examResults() }));
+    h('exam.run', (p) => {
+      const q = exam().items.find((x) => x.id === p?.id);
+      if (!q) throw new Error('没有这道题');
+      const r = runner.submit({ text: q.prompt, title: `考卷 ${q.id}：${q.task}`, source: 'boss' });
+      const all = examResults();
+      all[q.id] = { ...(all[q.id] || {}), taskId: r.taskId, ranAt: Date.now() };
+      ctx.writeJson(EXAM, all);
+      return r;
+    });
+    h('exam.score', (p) => {
+      const q = exam().items.find((x) => x.id === p?.id);
+      if (!q) throw new Error('没有这道题');
+      if (!X.VERDICTS.includes(p.verdict)) throw new Error('评分只能是 通过 / 部分 / 不通过');
+      const all = examResults();
+      all[q.id] = { ...(all[q.id] || {}), verdict: p.verdict, checks: q.checks.map((_, i) => !!(p.checks || [])[i]), note: String(p.note || '').slice(0, 300), scoredAt: Date.now() };
+      ctx.writeJson(EXAM, all);
+      return all[q.id];
+    });
+    h('exam.report', () => X.examReport(exam(), examResults(), JSON.parse(readFileSync(ctx.packagePath('resources/coverage.json'), 'utf8'))));
+    h('exam.export', async () => {
+      const rep = X.examReport(exam(), examResults(), JSON.parse(readFileSync(ctx.packagePath('resources/coverage.json'), 'utf8')));
+      try {
+        const { dialog, app } = require('electron');
+        const r = await dialog.showSaveDialog(deps?.getMainWindow?.() || undefined, { defaultPath: join(app.getPath('documents'), 'opc-coverage-report.md'), filters: [{ name: 'Markdown', extensions: ['md'] }] });
+        if (r.canceled || !r.filePath) return { canceled: true };
+        writeFileSync(r.filePath, rep.markdown);
+        return { path: r.filePath };
+      } catch {
+        const target = ctx.dataPath(`${D}/exports/opc-coverage-report.md`);
+        mkdirSync(join(target, '..'), { recursive: true });
+        writeFileSync(target, rep.markdown);
+        return { path: target };
+      }
+    });
 
     ctx.log.info(`activated: ${legions.length} 个部门，模式 ${fleet.mode()}`);
   },

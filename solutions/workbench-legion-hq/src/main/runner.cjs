@@ -45,6 +45,7 @@ class TaskRunner {
     Object.assign(this, { saveTask: () => {}, settings: () => ({}), log: { info() {}, warn() {} }, now: () => Date.now() }, o);
     this.tasks = new Map(); // taskId → 运行态
     this.seqNo = 0;
+    this.dispatches = new Map(); // 派给员工机的 dispatchId → { taskId, stepId }（接收员工机回传的执行阶段）
   }
 
   availableLegions() {
@@ -176,9 +177,11 @@ class TaskRunner {
         return `【${UL ? UL.name : u.legionId}的产出：${u.goal}】\n${clip(t.outputs[u.id]?.text, UPSTREAM_MAX)}`;
       });
     const chars = Math.min(2000, Math.max(300, Number(this.settings().outputChars) || 900));
+    const pack = typeof this.extraContext === 'function' ? this.extraContext() : '';
     return [
       identityLine(company, L),
       L ? `你所在部门：${L.name}（${L.summary}）。` : '',
+      pack ? `\n公司资料（可引用其中的数字，资料里没有的不要编）：\n${pack}\n` : '',
       '',
       `老板交办的事：${t.text}`,
       `本部门这一步要交付：${s.goal}`,
@@ -249,6 +252,7 @@ class TaskRunner {
     }
     const proc = this.fleet.proc();
     const dispatchId = `${t.id}-${s.id}-${randomUUID().slice(0, 6)}`;
+    this.dispatches.set(dispatchId, { taskId: t.id, stepId: s.id });
     const onAbort = () => {
       // 主控中止 → 通知员工机停掉在跑的会话（best-effort）
       proc
@@ -284,12 +288,26 @@ class TaskRunner {
       throw err;
     } finally {
       signal.removeEventListener('abort', onAbort);
+      this.dispatches.delete(dispatchId);
     }
     if (!res || res.status !== 'success') throw new Error(res?.error || '员工机执行失败');
     this.publish(t, 'node:progress', { stepId: s.id, phase: '结果回传' });
     const text = String(res.output?.text || '');
     if (!text.trim()) throw new Error('员工机没有返回内容');
     return text;
+  }
+
+  /**
+   * 员工机回传的执行阶段（宿主 task.progress，2026-10-22 起）：按 dispatchId 找到步骤，转成大屏「正在做什么」。
+   * 只认本中心派出去、还在跑的步骤；阶段文字截短，不含原文。
+   */
+  onRemoteProgress(dispatchId, phase) {
+    const ref = this.dispatches.get(String(dispatchId || ''));
+    if (!ref) return false;
+    const t = this.tasks.get(ref.taskId);
+    if (!t || t.cancelled || ['done', 'failed', 'cancelled'].includes(t.status)) return false;
+    this.publish(t, 'node:progress', { stepId: ref.stepId, phase: String(phase || '').slice(0, 30), remote: true });
+    return true;
   }
 
   async summarize(t) {
@@ -301,8 +319,10 @@ class TaskRunner {
       return `【${L ? L.name : s.legionId}｜${s.goal}】\n${o.error ? `（未完成：${o.error}）` : clip(o.text, 1500)}`;
     });
     const company = this.company();
+    const extra = typeof this.extraContext === 'function' ? this.extraContext() : '';
     const prompt = [
       identityLine(company, null),
+      extra ? `公司资料：\n${extra}\n` : '',
       `老板交办的事：${t.text}`,
       '各部门已经交上来的成果如下，请汇总成一份给老板看的结论：',
       parts.join('\n\n'),
@@ -322,7 +342,8 @@ class TaskRunner {
   }
 
   async chiefAnswer(t) {
-    const prompt = `${identityLine(this.company(), null)}\n老板说：${t.text}\n请直接回答，简洁。`;
+    const extra = typeof this.extraContext === 'function' ? this.extraContext() : '';
+    const prompt = `${identityLine(this.company(), null)}${extra ? `\n公司资料：\n${extra}` : ''}\n老板说：${t.text}\n请直接回答，简洁。`;
     return this.llm(prompt, { timeoutMs: 120_000 });
   }
 

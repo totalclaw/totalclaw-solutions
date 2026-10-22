@@ -1,7 +1,7 @@
 /**
  * 生成 docx：普通文档（意见书 / offer 函 / 报告）+ 带修订痕迹与批注的修订稿（法务 LG6）。
  * 字体一律微软雅黑（中西文都用）。只生成 Word 能打开的最小结构，不依赖模板。
- * 本文件在 workbench-legal-agent 与 workbench-hr-agent 各有一份，内容必须一致。
+ * 本文件在 workbench-legal-agent、workbench-hr-agent、workbench-legion-hq 各有一份，内容必须一致。
  */
 const { writeZip } = require('./zip.cjs');
 const { norm } = require('./docText.cjs');
