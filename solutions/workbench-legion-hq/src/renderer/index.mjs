@@ -540,6 +540,9 @@ export default function createSolution(sdk) {
             mailFolder ? h('button', { class: 'lhq-btn', onClick: async () => { const r = await sdk.invoke('mail.scanNow'); sdk.notify.info(t('新来信 {p0} 封', { p0: r.made.length })); } }, t('现在检查')) : null,
             mailFolder ? h('button', { class: 'lhq-btn', onClick: async () => { await saveSettings({ mailFolder: '' }); } }, t('停用')) : null,
             h('label', { style: 'display:flex;gap:6px;align-items:center;margin-left:auto' }, [h('input', { type: 'checkbox', checked: info.value?.settings?.notify !== false, onChange: (e) => saveSettings({ notify: e.target.checked }) }), t('待拍板 / 例行办完时发系统通知')]),
+            info.value?.settings?.imPushAvailable
+              ? h('label', { style: 'display:flex;gap:6px;align-items:center' }, [h('input', { type: 'checkbox', checked: !!info.value?.settings?.imPush, onChange: (e) => saveSettings({ imPush: e.target.checked }) }), t('同时发到老板 IM')])
+              : null,
           ]),
           h('p', { class: 'lhq-sub' }, t('把邮件导出的 .eml（或 .txt / .md）放进来信文件夹，每 20 秒检查一次，新来信自动成为「来信」任务，由 AI 总经理分拣给部门；原文件不改动。')),
           h('table', { class: 'lhq-tbl' }, [

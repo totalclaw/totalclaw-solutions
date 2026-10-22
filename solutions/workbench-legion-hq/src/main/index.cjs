@@ -225,14 +225,27 @@ module.exports = {
     };
     if (procRef && typeof procRef.on === 'function') procRef.on('task:received', onInbound);
 
-    // O7：需要老板拍板、例行事务办完时发系统通知（可在设置里关掉）
+    // O7：需要老板拍板、例行事务办完时发系统通知（可在设置里关掉）；打开「同时发到老板 IM」时经宿主发给机主私聊
+    let pushToOwner = null;
+    try {
+      pushToOwner = require('host:apps/desktop-shell/src/main/services/imRunLink.ts').pushToImOwner || null;
+    } catch {
+      pushToOwner = null; // 宿主早于 2026-10-22 没有这个接口
+    }
     const notify = (title, body) => {
-      if (settings().notify === false) return;
-      try {
-        const { Notification } = require('electron');
-        if (Notification?.isSupported?.()) new Notification({ title, body: String(body || '').slice(0, 120) }).show();
-      } catch {
-        /* 无 electron（单测）或系统不支持 */
+      if (settings().notify !== false) {
+        try {
+          const { Notification } = require('electron');
+          if (Notification?.isSupported?.()) new Notification({ title, body: String(body || '').slice(0, 120) }).show();
+        } catch {
+          /* 无 electron（单测）或系统不支持 */
+        }
+      }
+      if (settings().imPush === true && pushToOwner) {
+        const co = displayProfile(profile(), !!settings().demoMode);
+        Promise.resolve(pushToOwner(`【${co.short || co.name}】${title}\n${String(body || '').slice(0, 1500)}`))
+          .then((ok) => { if (!ok) ctx.log.warn('发到老板 IM 没成功（网关未就绪或没绑定机主）'); })
+          .catch(() => {});
       }
     };
     bus.on('event', (ev) => {
@@ -323,6 +336,8 @@ module.exports = {
         terms: settings().terms === 'legion' ? 'legion' : 'department',
         demoPack: !!settings().demoPack,
         notify: settings().notify !== false,
+        imPush: settings().imPush === true,
+        imPushAvailable: !!pushToOwner,
         mailFolder: settings().mailFolder || '',
         cost: { ...X.COST_DEFAULTS, ...(settings().cost || {}) },
       },
@@ -379,6 +394,7 @@ module.exports = {
       if (['legion', 'department'].includes(p?.terms)) patch.terms = p.terms;
       if (typeof p?.demoPack === 'boolean') patch.demoPack = p.demoPack;
       if (typeof p?.notify === 'boolean') patch.notify = p.notify;
+      if (typeof p?.imPush === 'boolean') patch.imPush = p.imPush;
       if (p?.mailFolder === '' || p?.mailFolder === null) patch.mailFolder = '';
       if (p?.cost && typeof p.cost === 'object') {
         const c = {};

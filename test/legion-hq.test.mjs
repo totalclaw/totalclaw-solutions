@@ -618,3 +618,40 @@ test('activate：资料包进提示词、来信文件夹、导出 Word、考卷�
     await mod.deactivate();
   }
 });
+
+test('打开「同时发到老板 IM」：拍板 / 例行办完经宿主 pushToImOwner 发给机主，带公司简称', async () => {
+  const sent = [];
+  const Module = createRequire(import.meta.url)('node:module');
+  const origLoad = Module._load;
+  Module._load = function (req, ...rest) {
+    if (req === 'host:apps/desktop-shell/src/main/services/imRunLink.ts') return { pushToImOwner: async (text) => (sent.push(text), true) };
+    if (req === 'host:apps/desktop-shell/src/main/services/workbenchLlm.ts') return { createWorkbenchLlm: () => ({ llm: async () => ({ text: '已审：第 5 条违约金偏高，建议调整为 10%。' }) }) };
+    return origLoad.call(this, req, ...rest);
+  };
+  const dataRoot = mkdtempSync(join(tmpdir(), 'lhq-im-'));
+  const handlers = new Map();
+  const ctx = {
+    id: 'workbench-legion-hq', version: '1.0.0', appVersion: '2.0.5', log: { info() {}, warn() {} },
+    dataPath: (rel) => join(dataRoot, rel),
+    readJson: (rel, fb) => { try { return JSON.parse(readFileSync(join(dataRoot, rel), 'utf8')); } catch { return fb; } },
+    writeJson: (rel, v) => { mkdirSync(join(dataRoot, rel, '..'), { recursive: true }); writeFileSync(join(dataRoot, rel), JSON.stringify(v)); },
+    packagePath: (rel) => join(DIR, rel), handle: (a, fn) => handlers.set(a, fn), emit: () => {},
+  };
+  const path = require.resolve('./index.cjs');
+  delete require.cache[path];
+  const mod = require('./index.cjs');
+  try {
+    ctx.host = { deps: {} };
+    await mod.activate(ctx);
+    assert.equal(handlers.get('info')().settings.imPushAvailable, true);
+    await handlers.get('settings.save')({ imPush: true, notify: false });
+    const rid = handlers.get('routines.list')()[0].id;
+    await handlers.get('routines.runNow')({ id: rid });
+    await until(() => sent.length > 0, 20000);
+    assert.match(sent[0], /^【泰途科技】例行事务完成：/);
+  } finally {
+    await mod.deactivate();
+    Module._load = origLoad;
+    delete require.cache[path];
+  }
+});
