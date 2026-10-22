@@ -197,7 +197,8 @@ class Fleet {
     await this.readCaps(node, true);
     // L3：承载标签立即生效；部门方案包在后台让员工机自己从方案仓库装（可能要下载，不阻塞勾选）。
     // 撤出时不卸包：包留着无害，数据也不动；要卸到「部门与机器」里点「卸包」
-    if (on) void this.installPackage(machineId, legionId);
+    // 自定义部门（legion-c-*，L11）没有方案包，只写承载标签
+    if (on && !legionId.startsWith('legion-c-')) void this.installPackage(machineId, legionId);
     return this.machines();
   }
 

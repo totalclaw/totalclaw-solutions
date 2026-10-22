@@ -905,3 +905,63 @@ test('N8 并发：3 台员工机各承载部门，同时 9 件事并行跑完、
   assert.ok(peak >= 6, `同一时刻在途 ${peak} 步`);
   assert.ok(Date.now() - t0 < 9 * 150 * 3, '并行而非串行');
 });
+
+test('L11 现场新建部门：AI 起草（编的角色被丢掉）→ 保存 → 分到员工机（不装包）→ 命中关键词的事派给它 → 删除', async () => {
+  const Module = createRequire(import.meta.url)('node:module');
+  const origLoad = Module._load;
+  Module._load = function (req, ...rest) {
+    if (req === 'host:apps/desktop-shell/src/main/services/workbenchLlm.ts') {
+      return {
+        createWorkbenchLlm: () => ({
+          llm: async (_m, prompt) => {
+            if (prompt.includes('老板想新设一个部门')) return { text: JSON.stringify({ name: '市场活动部', short: '活动', summary: '展会与线下活动的策划执行', routingHints: ['展会', '路演', '线下活动'], roles: ['chief-marketing-officer', 'made-up-role', 'legal-contract-reviewer'], leadRole: 'made-up-role', color: '#14B8A6' }) };
+            if (prompt.includes('判断')) throw new Error('走规则');
+            return { text: '活动方案：……' };
+          },
+        }),
+      };
+    }
+    return origLoad.call(this, req, ...rest);
+  };
+  const cluster = fakeCluster({ nodes: [{ nodeId: 'A', host: '10.0.0.2' }] });
+  const dataRoot = mkdtempSync(join(tmpdir(), 'lhq-l11-'));
+  const handlers = new Map();
+  const ctx = {
+    id: 'workbench-legion-hq', version: '1.0.0', appVersion: '2.0.5', log: { info() {}, warn() {} },
+    host: { hostApi: 2, deps: { clusterDiscoveryProc: cluster.proc } },
+    dataPath: (rel) => join(dataRoot, rel),
+    readJson: (rel, fb) => { try { return JSON.parse(readFileSync(join(dataRoot, rel), 'utf8')); } catch { return fb; } },
+    writeJson: (rel, v) => { mkdirSync(join(dataRoot, rel, '..'), { recursive: true }); writeFileSync(join(dataRoot, rel), JSON.stringify(v)); },
+    packagePath: (rel) => join(DIR, rel), handle: (a, fn) => handlers.set(a, fn), emit: () => {},
+  };
+  const path = require.resolve('./index.cjs');
+  delete require.cache[path];
+  const mod = require('./index.cjs');
+  try {
+    await mod.activate(ctx);
+    await handlers.get('settings.save')({ useModelTriage: false });
+    const d = await handlers.get('legions.draftCustom')({ text: '一个负责展会与线下活动的部门' });
+    assert.deepEqual(d.roles, ['chief-marketing-officer', 'legal-contract-reviewer'], '角色库里没有的被丢掉');
+    assert.equal(d.leadRole, 'chief-marketing-officer', '负责人不在角色里 → 用第一个');
+    const { id } = handlers.get('legions.saveCustom')({ ...d, roles: ['chief-marketing-officer'] });
+    assert.ok(id.startsWith('legion-c-'));
+    assert.throws(() => handlers.get('legions.saveCustom')({ ...d }), /已经有/);
+    assert.ok(handlers.get('info')().legions.some((L) => L.id === id && L.custom));
+    await handlers.get('fleet.list')({ force: true });
+    await handlers.get('fleet.assign')({ legionId: id, machineId: 'A', on: true });
+    await tick(30);
+    assert.equal(cluster.calls.filter((c) => c.roleId === 'legion.install').length, 0, '自定义部门不装包');
+    const { taskId } = handlers.get('command')({ text: '下个月的展会怎么准备' });
+    const rec = await until(() => { const r = handlers.get('tasks.get')({ taskId }); return r && ['done', 'awaiting', 'failed'].includes(r.status) && r; }, 8000);
+    assert.deepEqual(rec.decision.legions, [id]);
+    const w = cluster.calls.find((c) => c.roleId === 'worker.run');
+    assert.equal(w.targetNodeId, 'A');
+    assert.equal(w.payload.roleId, 'chief-marketing-officer');
+    handlers.get('legions.removeCustom')({ id });
+    assert.ok(!handlers.get('info')().legions.some((L) => L.id === id));
+  } finally {
+    await mod.deactivate();
+    Module._load = origLoad;
+    delete require.cache[path];
+  }
+});

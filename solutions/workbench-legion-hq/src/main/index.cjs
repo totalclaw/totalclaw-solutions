@@ -12,7 +12,8 @@
  */
 const { readFileSync, readdirSync, unlinkSync, existsSync, writeFileSync, mkdirSync } = require('node:fs');
 const { join } = require('node:path');
-const { listInstalledLegions, publicLegion } = require('./legions.cjs');
+const { listInstalledLegions, normalizeCustomLegion, CUSTOM_PREFIX, publicLegion } = require('./legions.cjs');
+const { parseJsonLoose } = require('./triage.cjs');
 const { LegionBus, Recorder } = require('./bus.cjs');
 const { createState, applyEvent, snapshot } = require('./screenState.cjs');
 const { resolveProfile, displayProfile, clean: cleanCompany } = require('./company.cjs');
@@ -88,9 +89,17 @@ module.exports = {
     };
 
     // ── 部门（军团）──
-    let legions = listInstalledLegions(ctx.packagePath('.'), ctx.log);
+    // L11：方案包部门 + 自定义部门（运营中心数据里，角色从方案包部门的角色里选）
+    const CUSTOM = `${D}/custom-legions.json`;
+    const loadAllLegions = () => {
+      const pkgs = listInstalledLegions(ctx.packagePath('.'), ctx.log);
+      const knownRoles = [...new Set(pkgs.flatMap((L) => L.roles))];
+      const customs = (ctx.readJson(CUSTOM, []) || []).map((r, i) => normalizeCustomLegion(r, knownRoles, 8000 + i)).filter(Boolean);
+      return [...pkgs, ...customs.filter((c) => !pkgs.some((p) => p.id === c.id))];
+    };
+    let legions = loadAllLegions();
     const reloadLegions = () => {
-      legions = listInstalledLegions(ctx.packagePath('.'), ctx.log);
+      legions = loadAllLegions();
       return legions;
     };
 
@@ -430,6 +439,47 @@ module.exports = {
     h('cancel', (p) => runner.cancel(String(p?.taskId)));
     h('tasks.list', () => listTaskFiles(ctx));
     h('tasks.get', (p) => runner.get(String(p?.taskId)) || ctx.readJson(`${D}/tasks/${String(p?.taskId).replace(/[^\w-]/g, '')}.json`, null));
+
+    // L11 现场造一个新部门：一句话 → AI 起草（只能从已有角色里选人）→ 人确认 → 保存后即可分配到机器、被派任务
+    const knownRoleList = () => [...new Set(legions.filter((L) => !L.custom).flatMap((L) => L.roles.map((r) => ({ id: r, dept: L.short }))).map((x) => JSON.stringify(x)))].map((x) => JSON.parse(x));
+    h('legions.draftCustom', async (p) => {
+      const need = String(p?.text || '').trim().slice(0, 300);
+      if (!need) throw new Error('说一句要什么部门');
+      const roles = knownRoleList();
+      const prompt = [
+        `老板想新设一个部门：${need}`,
+        '从下面已有的 AI 员工角色里挑 2–8 个组成这个部门（只能用列表里的 id，不能编）：',
+        ...roles.map((r) => `- ${r.id}（现属${r.dept}）`),
+        '只输出 JSON：{"name":"××部（≤6 字）","short":"简称 2 字","summary":"这个部门管什么（一句话）","routingHints":["什么样的事交给它的关键词，5–12 个"],"roles":["角色 id"],"leadRole":"负责人角色 id","color":"#RRGGBB"}',
+      ].join('\n');
+      const raw = parseJsonLoose(await runner.llm(prompt, { timeoutMs: 120_000 }));
+      const draft = normalizeCustomLegion({ ...raw, id: `${CUSTOM_PREFIX}draft0000` }, roles.map((r) => r.id));
+      if (!draft) throw new Error('AI 起草的部门不完整（名称 / 职责 / 角色缺失或角色不在角色库里），换个说法再试');
+      return { name: draft.name, short: draft.short, summary: draft.summary, routingHints: draft.routingHints, roles: draft.roles, leadRole: draft.leadRole, color: draft.color, roleOptions: roles };
+    });
+    h('legions.saveCustom', (p) => {
+      const list = ctx.readJson(CUSTOM, []) || [];
+      if (list.length >= 8) throw new Error('自定义部门最多 8 个');
+      const id = `${CUSTOM_PREFIX}${Date.now().toString(36)}`;
+      const L = normalizeCustomLegion({ ...p, id }, knownRoleList().map((r) => r.id));
+      if (!L) throw new Error('部门不完整：要有名称、职责，至少一个角色库里的角色');
+      if (legions.some((x) => x.name === L.name)) throw new Error(`已经有「${L.name}」了`);
+      list.push({ id, name: L.name, short: L.short, summary: L.summary, routingHints: L.routingHints, roles: L.roles, leadRole: L.leadRole, color: L.color, createdAt: Date.now() });
+      ctx.writeJson(CUSTOM, list);
+      reloadLegions();
+      bus.publish('legions:changed', { legions: legions.map(publicLegion) });
+      publishFleet(fleet.machines());
+      return { id, legions: legions.map(publicLegion) };
+    });
+    h('legions.removeCustom', (p) => {
+      const id = String(p?.id || '');
+      if (!id.startsWith(CUSTOM_PREFIX)) throw new Error('只能删自定义部门');
+      ctx.writeJson(CUSTOM, (ctx.readJson(CUSTOM, []) || []).filter((x) => x.id !== id));
+      reloadLegions();
+      bus.publish('legions:changed', { legions: legions.map(publicLegion) });
+      publishFleet(fleet.machines());
+      return legions.map(publicLegion);
+    });
 
     h('legions.reload', () => {
       reloadLegions();

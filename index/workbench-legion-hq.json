@@ -1,12 +1,12 @@
 {
   "id": "workbench-legion-hq",
   "version": "1.0.0",
-  "treeDigest": "31c7473c3776267ab3643ae374ebbc3113ab0ac78986a5ff28fba0d7ae097dec",
+  "treeDigest": "e21efaf33a57be0603088b949e62b3409d67514952d39c0c4bf95e16bb362019",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 2644,
-      "sha256": "75d053d09aab40df03f12c2cd4cdf94f0154d7eabe93ca95256f0114f5550ef9"
+      "size": 2836,
+      "sha256": "494d631ef9cad1ca00a74e69c9359207244070a18509f4ef93b226afcafb6437"
     },
     {
       "path": "README.md",
@@ -130,18 +130,18 @@
     },
     {
       "path": "src/main/fleet.cjs",
-      "size": 12651,
-      "sha256": "5bb5ad294ced2a4755315eacb88878be5205d6850ef1ca5cf6144428f8da12a9"
+      "size": 12769,
+      "sha256": "53d2eb2ee8cbe13cdd298e6ba01e00a0ab6a496890829b9bead09ec471dda4f1"
     },
     {
       "path": "src/main/index.cjs",
-      "size": 35882,
-      "sha256": "f54e44cb33f81645714d73184823dc892a09dcbb9b6280f30c1fd26637a62fe8"
+      "size": 39523,
+      "sha256": "1debbc32e0e14ed95572ef0a2ce6384fc1175af29013480fa363fa60b195c662"
     },
     {
       "path": "src/main/legions.cjs",
-      "size": 4507,
-      "sha256": "a00bb523cb898c957be78e9c1c9c3fbd4c72705c3a7cff3f9c5325e0b5c0d428"
+      "size": 6024,
+      "sha256": "581b0a4fa21c7919394e733dc7a7641e8eb6c0cd7e5087120e9d2f77c2d7a5bd"
     },
     {
       "path": "src/main/planner.cjs",
@@ -185,15 +185,15 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 59867,
-      "sha256": "3131d80189e46e6b99c6570d9615135c293989eac8b5b969136fce6c0e8214ca"
+      "size": 64875,
+      "sha256": "3e5aa7942a6d1dac7ef177fe14733d5649ca15b1c9a6ce8fb947fb07a7585ebb"
     }
   ],
   "versions": [
     {
       "version": "1.0.0",
       "ref": "workbench-legion-hq@1.0.0",
-      "treeDigest": "31c7473c3776267ab3643ae374ebbc3113ab0ac78986a5ff28fba0d7ae097dec",
+      "treeDigest": "e21efaf33a57be0603088b949e62b3409d67514952d39c0c4bf95e16bb362019",
       "filesRef": "index/workbench-legion-hq/1.0.0.json",
       "channel": "stable",
       "rollout": 100,

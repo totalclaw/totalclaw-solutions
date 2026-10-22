@@ -79,6 +79,42 @@ function normalizeLegion(m, dir) {
   };
 }
 
+/** L11 自定义部门的 id 前缀（没有方案包，只存在运营中心数据里） */
+const CUSTOM_PREFIX = 'legion-c-';
+
+/**
+ * L11：自定义部门（现场一句话造的）。角色只能从已装部门的角色里选（员工机上都有），负责人必须在角色里。
+ * @returns {object|null} 与方案包部门同形状（custom=true），不合法返回 null
+ */
+function normalizeCustomLegion(raw, knownRoles, order = 8000) {
+  if (!raw || typeof raw !== 'object') return null;
+  const id = String(raw.id || '');
+  if (!id.startsWith(CUSTOM_PREFIX) || !/^[a-z0-9-]{10,60}$/.test(id)) return null;
+  const known = new Set(knownRoles);
+  const roles = [...new Set((Array.isArray(raw.roles) ? raw.roles : []).map(String).filter((r) => known.has(r)))].slice(0, 12);
+  const name = String(raw.name || '').trim().slice(0, 12);
+  const summary = String(raw.summary || '').trim().slice(0, 200);
+  if (!name || !summary || !roles.length) return null;
+  const L = normalizeLegion(
+    {
+      id,
+      kind: 'legion',
+      name,
+      order,
+      legion: {
+        short: String(raw.short || name).trim().slice(0, 4),
+        color: raw.color,
+        summary,
+        routingHints: (Array.isArray(raw.routingHints) ? raw.routingHints : []).map((x) => String(x).trim().slice(0, 12)).filter(Boolean).slice(0, 20),
+        roles,
+        leadRole: raw.leadRole,
+      },
+    },
+    null,
+  );
+  return L ? { ...L, custom: true } : null;
+}
+
 /** 本机已装的全部部门，按 order 排序 */
 function listInstalledLegions(packageDir, log) {
   const out = [];
@@ -110,9 +146,10 @@ function publicLegion(L) {
     staff: L.roles.length,
     leadRole: L.leadRole,
     workbenches: L.workbenches,
+    custom: !!L.custom,
     workflows: L.workflows.map((w) => ({ id: w.id, name: w.name, approval: w.approval || null, steps: w.steps.length })),
     defaultModel: L.defaultModel,
   };
 }
 
-module.exports = { listInstalledLegions, normalizeLegion, publicLegion, locateRoots };
+module.exports = { listInstalledLegions, normalizeLegion, normalizeCustomLegion, CUSTOM_PREFIX, publicLegion, locateRoots };

@@ -97,6 +97,30 @@ export default function createSolution(sdk) {
       const examData = ref(null);
       const examReport = ref(null);
       const examOpen = ref('');
+      // L11：现场造一个新部门
+      const customOpen = ref(false);
+      const customText = ref('');
+      const customDraft = ref(null);
+      async function draftCustom() {
+        try {
+          customDraft.value = await call('custom', 'legions.draftCustom', { text: customText.value });
+          customDraft.value.hintsText = customDraft.value.routingHints.join('，');
+        } catch (_) {
+          /* 错误显示在 errLine */
+        }
+      }
+      async function saveCustom() {
+        const d = customDraft.value;
+        try {
+          await call('custom', 'legions.saveCustom', { name: d.name, short: d.short, summary: d.summary, routingHints: String(d.hintsText || '').split(/[,，、\s]+/).filter(Boolean), roles: d.roles, leadRole: d.leadRole, color: d.color });
+          customDraft.value = null;
+          customText.value = '';
+          info.value = await sdk.invoke('info');
+          sdk.notify.success(t('已新建部门，勾选承载它的机器后就能派活'));
+        } catch (_) {
+          /* 错误显示在 errLine */
+        }
+      }
       // L12：部门专用模型 / key
       const keysOpen = ref(false);
       const legionKeys = ref([]);
@@ -402,6 +426,41 @@ export default function createSolution(sdk) {
             ]),
           ]),
           h('p', { class: 'lhq-sub', style: 'margin-top:10px' }, t('没有任何在线机器承载的{p0}，派到它的活会报「没有在线机器承载」；主控本机勾选即作兜底。', { p0: term.value })),
+          h('button', { class: 'lhq-btn', style: 'margin-right:6px', onClick: () => (customOpen.value = !customOpen.value) }, customOpen.value ? t('收起新建{p0}', { p0: term.value }) : t('现场新建一个{p0}', { p0: term.value })),
+          customOpen.value
+            ? h('div', { style: 'margin:8px 0' }, [
+                h('p', { class: 'lhq-sub' }, t('说一句要什么{p0}，AI 从已有的 AI 员工角色里挑人组成它；你确认后保存，勾选承载它的机器就能被派活。', { p0: term.value })),
+                h('div', { class: 'lhq-row' }, [
+                  h('input', { class: 'lhq-in', style: 'flex:1;min-width:260px', placeholder: t('例如：一个负责展会与线下活动的市场活动部'), value: customText.value, onInput: (e) => (customText.value = e.target.value) }),
+                  h('button', { class: 'lhq-btn pri', disabled: busy.custom || !customText.value.trim(), onClick: draftCustom }, busy.custom ? t('起草中…') : t('AI 起草')),
+                ]),
+                errLine('custom'),
+                customDraft.value
+                  ? h('div', { class: 'lhq-card', style: 'padding:10px;margin-top:8px' }, [
+                      h('div', { class: 'lhq-row' }, [
+                        h('input', { class: 'lhq-in', style: 'width:120px', value: customDraft.value.name, onInput: (e) => (customDraft.value.name = e.target.value) }),
+                        h('input', { class: 'lhq-in', style: 'width:60px', value: customDraft.value.short, onInput: (e) => (customDraft.value.short = e.target.value) }),
+                        h('input', { class: 'lhq-in', style: 'flex:1', value: customDraft.value.summary, onInput: (e) => (customDraft.value.summary = e.target.value) }),
+                      ]),
+                      h('div', { class: 'lhq-row' }, [h('span', { class: 'lhq-sub', style: 'margin:0' }, t('派活关键词')), h('input', { class: 'lhq-in', style: 'flex:1', value: customDraft.value.hintsText, onInput: (e) => (customDraft.value.hintsText = e.target.value) })]),
+                      h('div', { style: 'display:flex;flex-wrap:wrap;gap:6px;margin:6px 0' }, customDraft.value.roleOptions.map((r) => h('label', { class: 'lhq-chip', style: 'cursor:pointer' }, [h('input', { type: 'checkbox', checked: customDraft.value.roles.includes(r.id), onChange: (e) => { const set = new Set(customDraft.value.roles); if (e.target.checked) set.add(r.id); else set.delete(r.id); customDraft.value.roles = [...set]; } }), ` ${r.id}`]))),
+                      h('div', { class: 'lhq-row' }, [
+                        h('span', { class: 'lhq-sub', style: 'margin:0' }, t('负责人')),
+                        h('select', { class: 'lhq-in', value: customDraft.value.leadRole, onChange: (e) => (customDraft.value.leadRole = e.target.value) }, customDraft.value.roles.map((r) => h('option', { value: r }, r))),
+                        h('button', { class: 'lhq-btn pri', disabled: busy.custom || !customDraft.value.roles.length, onClick: saveCustom }, t('保存这个{p0}', { p0: term.value })),
+                        h('button', { class: 'lhq-btn', onClick: () => (customDraft.value = null) }, t('不要了')),
+                      ]),
+                    ])
+                  : null,
+                ...(info.value?.legions || []).filter((L) => L.custom).map((L) =>
+                  h('div', { class: 'lhq-row', key: L.id }, [
+                    h('b', { style: `color:${L.color}` }, L.name),
+                    h('span', { class: 'lhq-sub', style: 'margin:0' }, `${L.summary} · ${t('{p0} 名 AI 员工', { p0: L.staff })}`),
+                    h('button', { class: 'lhq-btn', onClick: async () => { try { await sdk.invoke('legions.removeCustom', { id: L.id }); info.value = await sdk.invoke('info'); } catch (e) { sdk.notify.warn(e.message); } } }, t('删除')),
+                  ]),
+                ),
+              ])
+            : null,
           h('button', { class: 'lhq-btn', onClick: async () => { keysOpen.value = !keysOpen.value; if (keysOpen.value) await loadLegionKeys().catch((e) => sdk.notify.warn(e.message)); } }, keysOpen.value ? t('收起专用模型与 key') : t('{p0}专用模型与 key（防限流）', { p0: term.value })),
           keysOpen.value
             ? h('div', { style: 'margin-top:8px' }, [
