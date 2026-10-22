@@ -17,6 +17,16 @@ function tagsToLegions(caps) {
   return (Array.isArray(caps) ? caps : []).map(String).filter((c) => c.startsWith(TAG)).map((c) => c.slice(TAG.length));
 }
 
+/** 工作台细步骤（status.report.workbench / 本机快照）→ 大屏用的精简形状 */
+function cleanWorkbench(list) {
+  if (!Array.isArray(list)) return [];
+  const num = (v) => (Number.isFinite(v) && v >= 0 ? Math.floor(v) : null);
+  return list
+    .slice(0, 8)
+    .filter((a) => a && typeof a.legionId === 'string' && a.legionId)
+    .map((a) => ({ legionId: a.legionId.slice(0, 60), label: String(a.label || '').slice(0, 20), done: num(a.done), total: num(a.total) }));
+}
+
 class Fleet {
   /**
    * @param {object} o
@@ -100,6 +110,8 @@ class Fleet {
           busy: Number(st.busyAgents) || 0,
           model: typeof out.model === 'string' ? out.model : null,
           activities: Array.isArray(st.activities) ? st.activities.slice(0, 8).map((a) => ({ taskNo: a.taskNo ?? null, legionId: String(a.legionId || ''), phase: String(a.phase || '').slice(0, 40) })) : [],
+          // LG7 / HR7：员工机工作台的细步骤（宿主 workbenchActivity）
+          workbench: cleanWorkbench(st.workbench),
         };
       } catch {
         load = c?.load || null;
@@ -220,4 +232,4 @@ class Fleet {
   }
 }
 
-module.exports = { Fleet, tagsToLegions, TAG };
+module.exports = { cleanWorkbench, Fleet, tagsToLegions, TAG };

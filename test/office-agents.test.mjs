@@ -177,6 +177,8 @@ test('法务端到端：上传示例合同 → 七步 → 导出修订稿与意�
     if (prompt.includes('逐条给出风险')) return JSON.stringify({ risks: [{ clauseType: 'breach-liability', quote: '每日按应付金额的千分之五支付违约金', level: 'high', reason: '违约金明显过高', legalBasis: [{ law: '民法典', article: '第五百八十五条' }], action: 'replace', suggestion: '每日按应付金额的万分之五支付违约金', fallback: '万分之八', priority: 'must' }], missing: [], framework: {}, overall: '建议修改违约金条款' });
     return '对方可能认为……';
   });
+  const acts = [];
+  mod.__setActivityForTests((key, a) => acts.push([key, a && a.label]));
   await mod.activate(ctx);
   try {
     const base64 = Buffer.from(CONTRACT.join('\n\n'), 'utf8').toString('base64');
@@ -192,6 +194,8 @@ test('法务端到端：上传示例合同 → 七步 → 导出修订稿与意�
     r = await handlers.get('review.extract')({ id: r.id });
     assert.equal(r.clauses.length, 2);
     r = await handlers.get('review.run')({ id: r.id });
+    // LG7：调模型的几步期间报「法务 · 逐条审查」，结束清掉
+    assert.deepEqual(acts.slice(-2), [[`legal:${r.id}`, '逐条审查'], [`legal:${r.id}`, null]]);
     assert.equal(r.summary.count.high, 1);
     assert.equal(r.review.risks[0].legalBasis[0].article, '第585条');
     r = await handlers.get('review.accept')({ id: r.id, all: true });
@@ -206,7 +210,9 @@ test('法务端到端：上传示例合同 → 七步 → 导出修订稿与意�
     assert.ok(readdirSync(join(dataRoot, 'legal-agent')).includes('files'));
   } finally {
     mod.__setLlmForTests(null);
+    mod.__setActivityForTests(null);
     mod.__setMailSenderForTests?.(null);
+    mod.__setActivityForTests(null);
   }
 });
 
@@ -260,6 +266,8 @@ test('人事端到端：建岗位 → JD → 导入 10 份虚构简历 → 解�
     if (prompt.includes('面试邀约邮件')) return JSON.stringify({ subject: '面试邀请', body: '您好，面试时间【请填写】' });
     return '录用通知书正文\n\n请于【请填写】报到。';
   });
+  const acts = [];
+  mod.__setActivityForTests((key, a) => acts.push([key, a && `${a.legionId} ${a.label} ${a.done}/${a.total}`]));
   await mod.activate(ctx);
   try {
     let j = handlers.get('job.create')({ title: '前端工程师', dept: '研发部', location: '北京' });
@@ -275,6 +283,10 @@ test('人事端到端：建岗位 → JD → 导入 10 份虚构简历 → 解�
     assert.equal(up.added, 10);
     assert.equal(up.failed.length, 1);
     const parsed = await handlers.get('resume.parse')({ id: j.id });
+    // HR7：批处理期间报「人事 · 解析 n/10」，结束清掉
+    assert.equal(acts[0][1], 'legion-hr 解析 0/10');
+    assert.ok(acts.some(([, v]) => v === 'legion-hr 解析 10/10'));
+    assert.deepEqual(acts[acts.length - 1], [`hr:${j.id}:解析`, null]);
     assert.equal(parsed.job.candidates.filter((c) => c.resume).length, 10);
     const sc = await handlers.get('screen.run')({ id: j.id, keywords: ['Vue'] });
     j = sc.job;

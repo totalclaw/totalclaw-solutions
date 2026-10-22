@@ -49,11 +49,15 @@ function hostPdf() {
 }
 
 let llmOverride = null; // 单测注入
+let activityOverride = null; // 单测注入
 
 module.exports = {
   hostApi: 2,
   __setLlmForTests(fn) {
     llmOverride = fn;
+  },
+  __setActivityForTests(fn) {
+    activityOverride = fn;
   },
 
   activate(ctx) {
@@ -66,6 +70,31 @@ module.exports = {
       return fn(prompt, timeoutMs);
     };
     const llmJson = async (prompt) => parseJsonLoose(await llm(prompt));
+    // LG7：调模型的几步期间报给宿主（status.report 带回主控，大屏法务部节点下显示「逐条审查」）；旧宿主没有就不报
+    let reportActivity = activityOverride || null;
+    if (!reportActivity && deps) {
+      try {
+        reportActivity = require('host:apps/desktop-shell/src/main/services/workbenchActivity.ts').reportWorkbenchActivity;
+      } catch {
+        reportActivity = null;
+      }
+    }
+    const track = (label, fn) => async (p) => {
+      const key = `legal:${String(p?.id || '')}`;
+      const report = (a) => {
+        try {
+          reportActivity && reportActivity(key, a);
+        } catch {
+          /* 上报失败不影响工作台 */
+        }
+      };
+      report({ legionId: 'legion-legal', label });
+      try {
+        return await fn(p);
+      } finally {
+        report(null);
+      }
+    };
 
     const clauseTypes = JSON.parse(readFileSync(ctx.packagePath('resources/clause-types.json'), 'utf8')).items;
     const statutes = JSON.parse(readFileSync(ctx.packagePath('resources/statutes.json'), 'utf8')).items;
@@ -160,14 +189,14 @@ module.exports = {
       });
     });
 
-    h('review.preAnalyze', async (p) => {
+    h('review.preAnalyze', track('合同预分析', async (p) => {
       const r = load(p?.id);
       const text = r.paras.map((x) => x.text).join('\n');
       const raw = await llmJson(R.preAnalyzePrompt(text, builtinBooks));
       r.pre = R.normalizePreAnalysis(raw, text, builtinBooks);
       if (!r.playbook) r.playbook = { id: r.pre.contractType === 'other' ? builtinBooks[0].id : r.pre.contractType, version: null };
       return save(r);
-    });
+    }));
 
     h('review.setStance', (p) => {
       const r = load(p?.id);
@@ -206,7 +235,7 @@ module.exports = {
       return save(r);
     });
 
-    h('review.extract', async (p) => {
+    h('review.extract', track('条款抽取', async (p) => {
       const r = load(p?.id);
       const text = r.paras.map((x) => x.text).join('\n');
       const raw = await llmJson(R.extractPrompt(text, clauseTypes));
@@ -214,9 +243,9 @@ module.exports = {
       r.clauses = clauses;
       r.clauseDropped = dropped;
       return save(r);
-    });
+    }));
 
-    h('review.run', async (p) => {
+    h('review.run', track('逐条审查', async (p) => {
       const r = load(p?.id);
       if (!r.clauses) throw new Error('请先完成条款抽取');
       const text = r.paras.map((x) => x.text).join('\n');
@@ -226,7 +255,7 @@ module.exports = {
       r.review.playbook = { id: playbook.id, name: playbook.name, version: playbook.version || null };
       r.summary = R.summarize(r.review.risks, r.review.missing);
       return save(r);
-    });
+    }));
 
     h('review.accept', (p) => {
       const r = load(p?.id);
@@ -241,13 +270,13 @@ module.exports = {
       return save(r);
     });
 
-    h('review.rebuttal', async (p) => {
+    h('review.rebuttal', track('反驳推演', async (p) => {
       const r = load(p?.id);
       const risk = r.review?.risks.find((x) => x.id === p?.riskId);
       if (!risk) throw new Error('找不到这条风险');
       r.rebuttals[risk.id] = (await llm(R.rebuttalPrompt(risk, r.stance), 120_000)).trim().slice(0, 3000);
       return save(r);
-    });
+    }));
 
     /** 保存文件：有 electron 走保存对话框，否则写到本方案数据目录 exports/ */
     const saveFile = async (defaultName, buffer) => {
@@ -319,13 +348,13 @@ module.exports = {
     });
 
     /** LG8 两版对比：上传另一版本，按段落对比 */
-    h('review.compare', async (p) => {
+    h('review.compare', track('两版对比', async (p) => {
       const r = load(p?.id);
       const { name, doc } = await storeUpload(r.id, `v2-${p?.fileName}`, p?.base64);
       const diff = R.compareVersions(r.paras, doc.paras);
       r.compare = { fileName: name, at: Date.now(), diff: diff.slice(0, 500), total: diff.length };
       return save(r);
-    });
+    }));
 
     ctx.log.info('legal-agent activated');
   },

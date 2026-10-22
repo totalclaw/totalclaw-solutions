@@ -192,7 +192,7 @@ test('默认公司 = 北京泰途科技有限公司 + App logo；换了公司名
 });
 
 // ── 执行（R3–R9）：假集群 + 假模型 ──
-function fakeCluster({ nodes, failNode = null, delay = 20 } = {}) {
+function fakeCluster({ nodes, failNode = null, delay = 20, workbench = null } = {}) {
   const proc = new EventEmitter();
   const caps = new Map(nodes.map((n) => [n.nodeId, []]));
   const calls = [];
@@ -205,7 +205,7 @@ function fakeCluster({ nodes, failNode = null, delay = 20 } = {}) {
       caps.set(d.targetNodeId, d.payload.capabilities);
       return { status: 'success', output: {} };
     }
-    if (d.roleId === 'status.report') return { status: 'success', output: { busyAgents: 0 } };
+    if (d.roleId === 'status.report') return { status: 'success', output: { busyAgents: 0, ...(workbench ? { workbench: workbench[d.targetNodeId] } : {}) } };
     if (d.roleId === 'cluster.cancel') return { status: 'success', output: {} };
     if (d.roleId === 'worker.run') {
       if (d.targetNodeId === failNode) throw new Error('目标节点不可用');
@@ -741,4 +741,11 @@ test('O6 公司邮箱来信：开关打开后，宿主收件箱新到的真实�
     await mod.deactivate();
   }
   assert.equal(intake.listenerCount('item-added'), 0, '停用时取消订阅');
+});
+
+test('LG7 / HR7 员工机回报的工作台细步骤进机器负载（字段清洗）', async () => {
+  const cluster = fakeCluster({ nodes: [{ nodeId: 'A', host: '10.0.0.2' }], workbench: { A: [{ key: 'hr:j1:筛选', legionId: 'legion-hr', label: '筛选', done: 37, total: 100, ageMs: 5 }, { legionId: '' }, 'junk'] } });
+  const { fleet } = makeRunner({ cluster });
+  const ms = await fleet.refresh({ force: true });
+  assert.deepEqual(ms.find((m) => m.id === 'A').load.workbench, [{ legionId: 'legion-hr', label: '筛选', done: 37, total: 100 }]);
 });

@@ -313,13 +313,15 @@ function frame(){
  for(const k in pools)pools[k].begin();
  const tasks=(S.tasks||[]).filter(x=>ACTIVE.has(x.status));
  const ft=focus?(S.tasks||[]).find(x=>x.id===focus):null;
- const act={},wait={};
+ const act={},wait={},wb=wbByLegion();
  tasks.forEach(tk=>tk.steps.forEach(s=>{if(s.status==='running')(act[s.legionId]=act[s.legionId]||[]).push(tk);else if(s.status==='waiting')(wait[s.legionId]=wait[s.legionId]||[]).push(tk);}));
  ORDER.forEach(id=>{const nd=nodes[id];if(!nd)return;const L=LG[id];const a=act[id]||[],w=wait[id]||[];const inF=!ft||ft.legions.includes(id);
-  nd.g.setAttribute('opacity',!L.placed?.25:inF?(a.length||w.length?1:.45):.12);
-  nd.halo.setAttribute('opacity',a.length?.16+.1*Math.sin(t*4+L.i):0);
-  nd.ring.setAttribute('stroke-width',a.length?5:2);
-  const label=!L.placed?tr('notPlaced'):a.length?(a.length>1?tr('busyN',{n:a.length}):tr('busy1')):w.length?tr('waitIn'):tr('idle');if(nd.st.textContent!==label)nd.st.textContent=label;
+  const wk=(wb[id]||[])[0];
+  nd.g.setAttribute('opacity',!L.placed?.25:inF?(a.length||w.length||wk?1:.45):.12);
+  nd.halo.setAttribute('opacity',a.length||wk?.16+.1*Math.sin(t*4+L.i):0);
+  nd.ring.setAttribute('stroke-width',a.length?5:wk?4:2);
+  // LG7 / HR7：没有运营中心派的步骤时，显示工作台自己的细步骤（如「筛选 37/100」）
+  const label=!L.placed?tr('notPlaced'):a.length?(a.length>1?tr('busyN',{n:a.length}):tr('busy1')):wk?wbText(wk):w.length?tr('waitIn'):tr('idle');if(nd.st.textContent!==label)nd.st.textContent=label;
   const ids=[...new Set([...a,...w].map(x=>x.no))].slice(0,3);
   ids.forEach((no,k)=>{const tx=nd.x-((ids.length-1)*17)+k*34,ty=nd.y-57;const isA=a.some(x=>x.no===no);
    pools.dyn3.get('rect',{x:tx-16,y:ty-10,width:32,height:19,rx:9,fill:isA?L.color:'#0B1B3A',stroke:L.color});pools.dyn3.get('text',{x:tx,y:ty+4,'text-anchor':'middle','font-size':11,fill:'#fff'},'#'+no);});
@@ -387,13 +389,17 @@ $('save').onclick=async()=>{try{await post('/api/company',{name:$('fName').value
 function showView(id){for(const v of ['vOrg','vMap','vCamp'])$(v).classList.toggle('on',v===id&&!$(v).classList.contains('on'));if($('vOrg').classList.contains('on'))renderOrg();if($('vMap').classList.contains('on'))renderMap();if($('vCamp').classList.contains('on'))renderCamp();}
 // S11 军团营地：随状态刷新（按 V 切换）
 let lastCamp='';
+/** 各部门工作台细步骤：主控本机 + 员工机 status.report 带回的 */
+function wbByLegion(){const m={};(S.machines||[]).forEach(mc=>((mc.load&&mc.load.workbench)||[]).forEach(a=>{(m[a.legionId]=m[a.legionId]||[]).push(Object.assign({machine:mc.name},a));}));return m;}
+function wbText(a){return `${a.label||''}${a.total?` ${a.done||0}/${a.total}`:''}`;}
 function renderCamp(){if(!$('vCamp').classList.contains('on'))return;
- const tasks=(S.tasks||[]).filter(t=>ACTIVE.has(t.status));
+ const tasks=(S.tasks||[]).filter(t=>ACTIVE.has(t.status));const wb=wbByLegion();
  const html=`<h2>${LANG==='en'?'Department camp':'军团营地'} · ${esc(companyName())}</h2><div class="camp">${ORDER.map(id=>{const L=LG[id];
   const jobs=tasks.flatMap(t=>t.steps.filter(s=>s.legionId===id&&s.status==='running').map(s=>({no:t.no,goal:s.goal,phase:s.phase,machine:s.machine})));
   const host=(S.machines||[]).filter(m=>(m.hosts||[]).includes(id)&&m.online).map(m=>m.name);
-  const staff=Math.min(8,Math.max(1,L.staff||1));const working=Math.min(staff,jobs.length?Math.max(2,jobs.length*2):0);
-  return `<div class="room${jobs.length?' on':''}" style="border-color:${L.color};--c:${L.color}"><h4 style="color:${L.color}">${esc(LANG==='en'&&L.shortEn?L.shortEn:L.name)}<small>${L.staff} ${LANG==='en'?'AI staff':'名 AI 员工'}</small></h4><span class="mach">${host.length?esc(host.join(' / ')):(LANG==='en'?'Not deployed':'未部署')}</span><div class="desks">${Array.from({length:staff},(_,i)=>`<div class="desk${i<working?' w':''}"><i></i><b></b></div>`).join('')}</div>${jobs.length?jobs.slice(0,3).map(j=>`<div class="job"><span>#${j.no}</span> ${esc(j.goal)}${j.phase?` · ${esc(j.phase)}`:''}</div>`).join(''):`<div class="idle">${LANG==='en'?'Idle':'待命'}</div>`}</div>`;}).join('')}</div>`;
+  const wks=wb[id]||[];
+  const staff=Math.min(8,Math.max(1,L.staff||1));const working=Math.min(staff,jobs.length?Math.max(2,jobs.length*2):wks.length?2:0);
+  return `<div class="room${jobs.length||wks.length?' on':''}" style="border-color:${L.color};--c:${L.color}"><h4 style="color:${L.color}">${esc(LANG==='en'&&L.shortEn?L.shortEn:L.name)}<small>${L.staff} ${LANG==='en'?'AI staff':'名 AI 员工'}</small></h4><span class="mach">${host.length?esc(host.join(' / ')):(LANG==='en'?'Not deployed':'未部署')}</span><div class="desks">${Array.from({length:staff},(_,i)=>`<div class="desk${i<working?' w':''}"><i></i><b></b></div>`).join('')}</div>${jobs.length?jobs.slice(0,3).map(j=>`<div class="job"><span>#${j.no}</span> ${esc(j.goal)}${j.phase?` · ${esc(j.phase)}`:''}</div>`).join(''):wks.length?wks.slice(0,3).map(a=>`<div class="job">${esc(LANG==='en'?'Workbench':'工作台')} · ${esc(wbText(a))} · ${esc(a.machine||'')}</div>`).join(''):`<div class="idle">${LANG==='en'?'Idle':'待命'}</div>`}</div>`;}).join('')}</div>`;
  if(html!==lastCamp){$('vCamp').innerHTML=html;lastCamp=html;}}
 function renderOrg(){const c=S.company||{};
  $('vOrg').innerHTML=`<h2>${tr('orgTitle')} · ${esc(companyName())}</h2><div class="org"><div class="box" style="border-color:#F59E0B"><b>${esc(c.boss||'老板')}</b><span>${LANG==='en'?'Owner (the only human)':'老板（唯一的真人）'}</span></div><div class="box"><b>${tr('gm')}</b><span>${tr('gmSub')}</span></div><div class="deps">${S.legions.map(L=>`<div class="dep" style="border-color:${L.color}"><b style="color:${L.color}">${esc(L.name)}</b> <small style="color:#94A3B8">· ${L.staff} ${LANG==='en'?'AI staff':'名 AI 员工'}</small><p>${esc(L.summary)}</p></div>`).join('')}</div></div>`;}

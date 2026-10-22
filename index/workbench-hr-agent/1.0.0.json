@@ -1,7 +1,7 @@
 {
   "id": "workbench-hr-agent",
   "version": "1.0.0",
-  "treeDigest": "d66bec4ebdc487a1b25ff459af223fb6eb596ddfae29ab93a901a0de9062a163",
+  "treeDigest": "23a90d1653dd8ce2c7a0940d54cc029be3d101d4871572bd1616469e00ae0049",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -25,8 +25,8 @@
     },
     {
       "path": "src/host-modules.json",
-      "size": 240,
-      "sha256": "0d5eed619316e4edee0512140513fa2d0a384b810d0da1b2c33dd6f347fc61eb"
+      "size": 305,
+      "sha256": "8441a588a68649b46b4ed950f59556376fbaa52661e1e058e8685872d1f0529f"
     },
     {
       "path": "src/main/docText.cjs",
@@ -40,8 +40,8 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 20004,
-      "sha256": "64081ff7938a175601c940da7a0b6b2b67c836d4d95d16bd72d60423782f3327"
+      "size": 20963,
+      "sha256": "b683df37b85082327d5b702c4aa30f8b09e09e36bb4816de7a40ce3c8cf52e99"
     },
     {
       "path": "src/main/screening.cjs",

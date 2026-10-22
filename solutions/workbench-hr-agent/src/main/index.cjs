@@ -44,6 +44,7 @@ async function pool(items, limit, fn) {
 
 let llmOverride = null;
 let mailOverride = null;
+let activityOverride = null;
 
 module.exports = {
   hostApi: 2,
@@ -53,6 +54,9 @@ module.exports = {
   /** 单测注入发信 */
   __setMailSenderForTests(fn) {
     mailOverride = fn;
+  },
+  __setActivityForTests(fn) {
+    activityOverride = fn;
   },
 
   activate(ctx) {
@@ -85,6 +89,22 @@ module.exports = {
         /* 宿主没有发信模块：只能复制草稿 */
       }
     }
+    // LG7 / HR7：长操作期间报给宿主（status.report 带回主控，大屏部门节点下显示细步骤）；旧宿主没有就不报
+    let reportActivity = activityOverride || null;
+    if (!reportActivity && deps) {
+      try {
+        reportActivity = require('host:apps/desktop-shell/src/main/services/workbenchActivity.ts').reportWorkbenchActivity;
+      } catch {
+        reportActivity = null;
+      }
+    }
+    const activity = (key, a) => {
+      try {
+        reportActivity && reportActivity(key, a);
+      } catch {
+        /* 上报失败不影响工作台 */
+      }
+    };
     const llm = async (prompt, timeoutMs) => {
       const fn = llmOverride || llmHost;
       if (!fn) throw new Error('本机模型不可用（宿主未提供模型通道）');
@@ -209,16 +229,23 @@ module.exports = {
       const total = ids.length;
       let done = 0;
       const errors = [];
+      const key = `hr:${jobId}:${label}`;
       ctx.emit('progress', { jobId, label, done, total });
-      await pool(ids, CONCURRENCY, async (cid) => {
-        try {
-          await work(cid);
-        } catch (e) {
-          errors.push({ id: cid, error: e.message });
-        }
-        done++;
-        ctx.emit('progress', { jobId, label, done, total });
-      });
+      activity(key, { legionId: 'legion-hr', label, done, total });
+      try {
+        await pool(ids, CONCURRENCY, async (cid) => {
+          try {
+            await work(cid);
+          } catch (e) {
+            errors.push({ id: cid, error: e.message });
+          }
+          done++;
+          ctx.emit('progress', { jobId, label, done, total });
+          activity(key, { legionId: 'legion-hr', label, done, total });
+        });
+      } finally {
+        activity(key, null);
+      }
       return { job: load(jobId), errors };
     };
 

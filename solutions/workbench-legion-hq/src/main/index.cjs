@@ -16,7 +16,7 @@ const { listInstalledLegions, publicLegion } = require('./legions.cjs');
 const { LegionBus, Recorder } = require('./bus.cjs');
 const { createState, applyEvent, snapshot } = require('./screenState.cjs');
 const { resolveProfile, displayProfile, clean: cleanCompany } = require('./company.cjs');
-const { Fleet } = require('./fleet.cjs');
+const { Fleet, cleanWorkbench } = require('./fleet.cjs');
 const { TaskRunner } = require('./runner.cjs');
 const { RoutineScheduler } = require('./routines.cjs');
 const { Director, loadScripts, validateScript } = require('./director.cjs');
@@ -130,7 +130,20 @@ module.exports = {
       log: ctx.log,
     });
     let lastFleetKey = '';
-    const publishFleet = (machines) => {
+    // LG7 / HR7：本机工作台细步骤（法务逐条审查、人事批量筛选）；员工机的经 status.report 带回
+    let localWorkbench = () => [];
+    try {
+      const wa = require('host:apps/desktop-shell/src/main/services/workbenchActivity.ts');
+      localWorkbench = () => cleanWorkbench(wa.workbenchActivitySnapshot());
+    } catch {
+      /* 旧宿主 / 单测 */
+    }
+    const withLocalWorkbench = (machines) => {
+      const wb = localWorkbench();
+      return machines.map((m) => (m.local ? { ...m, load: { ...(m.load || {}), workbench: wb } } : m));
+    };
+    const publishFleet = (raw) => {
+      const machines = withLocalWorkbench(raw);
       const key = JSON.stringify(machines.map((m) => [m.id, m.name, m.online, m.hosts, m.busy, m.load, m.note]));
       if (key === lastFleetKey) return;
       lastFleetKey = key;
@@ -326,10 +339,14 @@ module.exports = {
       if (fleet.mode() === 'cluster') refreshFleet().catch(() => {});
     }, 5000);
     if (fleetTimer.unref) fleetTimer.unref();
+    // 本机工作台细步骤 3 秒一查（publishFleet 内部去重，没变化不推）
+    const wbTimer = setInterval(() => publishFleet(fleet.machines()), 3000);
+    if (wbTimer.unref) wbTimer.unref();
     if (settings().screenAutoStart && fleet.mode() !== 'employee') screen.start({ port: settings().screenPort || undefined }).catch((e) => ctx.log.warn(e.message));
 
     disposers = [
       () => clearInterval(fleetTimer),
+      () => clearInterval(wbTimer),
       () => clearInterval(mailTimer),
       () => intake && typeof intake.off === 'function' && intake.off('item-added', onIntakeItem),
       () => procRef && typeof procRef.off === 'function' && procRef.off('task:received', onInbound),
@@ -394,7 +411,7 @@ module.exports = {
       publishFleet(fleet.machines());
       return legions.map(publicLegion);
     });
-    h('fleet.list', async (p) => (fleet.mode() === 'cluster' ? refreshFleet(!!p?.force) : fleet.machines()));
+    h('fleet.list', async (p) => withLocalWorkbench(fleet.mode() === 'cluster' ? await refreshFleet(!!p?.force) : fleet.machines()));
     h('fleet.assign', async (p) => {
       const L = legions.find((x) => x.id === p?.legionId);
       if (!L) throw new Error('本机没有装这个部门');

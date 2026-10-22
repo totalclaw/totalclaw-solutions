@@ -1,17 +1,17 @@
 {
   "id": "workbench-legion-hq",
   "version": "1.0.0",
-  "treeDigest": "fbd696c31cb07c9b46b81f0ea0a8000fc1e2b76df9425222e309e0209c386902",
+  "treeDigest": "2d19637e1870beedea9eca5d347692c72a49a7f00f51ebc3d22cd7d3926adad8",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 2180,
-      "sha256": "d94681b2c4b94715889fe331c18a6aa02a60bb29ded206259084db988d34f61d"
+      "size": 2228,
+      "sha256": "e6f5e7079da59668ec56a09f848e691a00237f7c71961a186dd6018db2612f6f"
     },
     {
       "path": "README.md",
-      "size": 5764,
-      "sha256": "d0fbaa42d10df0e5042403df799a3084ccabdbf2f5aba593134286067c49bcc0"
+      "size": 6072,
+      "sha256": "f7a0605a3f663c4c63381b1c6e60ad4220c4034a057c857553d9aa1ba6d3c3cb"
     },
     {
       "path": "resources/company-logo.png",
@@ -55,8 +55,8 @@
     },
     {
       "path": "resources/screen/index.html",
-      "size": 44578,
-      "sha256": "44f8aa84d2e7ac82b0f73ac4c5b4a66073c4b09bcf9226313cb9818cb1aa7ead"
+      "size": 45363,
+      "sha256": "455ff6adc5365acbd42daf17460cfd0050a6be10680184e91c7d3be98f0f5d5e"
     },
     {
       "path": "resources/screen/remote.html",
@@ -130,13 +130,13 @@
     },
     {
       "path": "src/main/fleet.cjs",
-      "size": 9728,
-      "sha256": "579354e963e4b298711a110c3cd93005097749f3910bbc3d10461ff9fed48eb4"
+      "size": 10371,
+      "sha256": "3d73c3c847ea3b747ae83c11af9c9dc9bb5dfad08985c3b572dc6a88771d5e43"
     },
     {
       "path": "src/main/index.cjs",
-      "size": 32595,
-      "sha256": "a5e12fd50bbb7c94f55bc2dccc53c18b9085937b9a8459aeb03271155cd977fd"
+      "size": 33510,
+      "sha256": "80e5d9d90e9891a5c44a0c99ca496458d472399950ed0d4ee6b5407939e9df8f"
     },
     {
       "path": "src/main/legions.cjs",
@@ -193,7 +193,7 @@
     {
       "version": "1.0.0",
       "ref": "workbench-legion-hq@1.0.0",
-      "treeDigest": "fbd696c31cb07c9b46b81f0ea0a8000fc1e2b76df9425222e309e0209c386902",
+      "treeDigest": "2d19637e1870beedea9eca5d347692c72a49a7f00f51ebc3d22cd7d3926adad8",
       "filesRef": "index/workbench-legion-hq/1.0.0.json",
       "channel": "stable",
       "rollout": 100,

@@ -1,7 +1,7 @@
 {
   "id": "workbench-legal-agent",
   "version": "1.0.0",
-  "treeDigest": "5f4a7094daba877735b7581fcbab3c848de605f74ba05fd8d9391be64bd69d15",
+  "treeDigest": "1239161bf5d8216c1a8e98fe563b3bce93b2fa312ebc8b8e6f4c14132dc0f4f2",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -55,8 +55,8 @@
     },
     {
       "path": "src/host-modules.json",
-      "size": 178,
-      "sha256": "0a60c3c63112a775db4a3a75a080aa0e488ff758a5e3d69e2cbc19d0756d820b"
+      "size": 243,
+      "sha256": "f3da0b75d37e6f73d5931d2892c1520d5d2b9545670a7c7c661a3bbbe605deda"
     },
     {
       "path": "src/main/docText.cjs",
@@ -70,8 +70,8 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 16738,
-      "sha256": "0a9a0597aa4552ab584a11ce513c4976734381e42de7e220faba693714de427c"
+      "size": 17830,
+      "sha256": "9004c003325af08a98d48e6cdff7ff9c7503216bb8e8fb891e6e300a040ebe2b"
     },
     {
       "path": "src/main/review.cjs",
@@ -93,7 +93,7 @@
     {
       "version": "1.0.0",
       "ref": "workbench-legal-agent@1.0.0",
-      "treeDigest": "5f4a7094daba877735b7581fcbab3c848de605f74ba05fd8d9391be64bd69d15",
+      "treeDigest": "1239161bf5d8216c1a8e98fe563b3bce93b2fa312ebc8b8e6f4c14132dc0f4f2",
       "filesRef": "index/workbench-legal-agent/1.0.0.json",
       "channel": "stable",
       "rollout": 100,
