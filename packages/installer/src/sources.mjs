@@ -113,13 +113,13 @@ export class GiteeSource {
     return { type: 'gitee', repo: `${this.owner}/${this.repo}`, branch: this.branch };
   }
 
-  async request(url, { timeoutMs = this.timeoutMs, retries = this.retries } = {}) {
+  async request(url, { timeoutMs = this.timeoutMs, retries = this.retries, headers: extraHeaders = null } = {}) {
     let lastErr;
     for (let attempt = 0; attempt <= retries; attempt++) {
       const ctrl = new AbortController();
       const timer = setTimeout(() => ctrl.abort(), timeoutMs);
       try {
-        const headers = { 'User-Agent': 'totalclaw-solution-installer' };
+        const headers = extraHeaders ? { ...extraHeaders } : { 'User-Agent': 'totalclaw-solution-installer' };
         if (this.token) headers.Authorization = `token ${this.token}`;
         const res = await this.fetchImpl(url, { headers, signal: ctrl.signal });
         if (res.status === 404) {
@@ -127,11 +127,17 @@ export class GiteeSource {
           err.code = 'NOT_FOUND';
           throw err;
         }
+        // 451：托管方按内容屏蔽了这个文件（gitee 对个别文件会这样），重试没用；由安装器改从整仓归档取
+        if (res.status === 451) {
+          const err = new Error(`HTTP 451 ${url}`);
+          err.code = 'BLOCKED';
+          throw err;
+        }
         if (!res.ok) throw new Error(`HTTP ${res.status} ${url}`);
         return Buffer.from(await res.arrayBuffer());
       } catch (err) {
         lastErr = err;
-        if (err.code === 'NOT_FOUND') throw err;
+        if (err.code === 'NOT_FOUND' || err.code === 'BLOCKED') throw err;
         if (attempt < retries) await sleep(500 * 2 ** attempt);
       } finally {
         clearTimeout(timer);
@@ -168,10 +174,15 @@ export class GiteeSource {
 
   /** 整仓 tar.gz（顶层目录 strip 1），只保留 prefix 下的文件 */
   async fetchArchive(ref, prefix) {
+    // 归档接口按 User-Agent 区别对待：自定义 UA 会拿到一张 HTML 页面（200），运行时默认 UA + Accept */* 才 302 到真正的压缩包
     const buf = await this.request(this.urls.archive.replace('{ref}', encodeURIComponent(ref)), {
       timeoutMs: this.archiveTimeoutMs,
       retries: 1,
+      headers: { Accept: '*/*' },
     });
+    if (buf.length < 2 || buf[0] !== 0x1f || buf[1] !== 0x8b) {
+      throw new Error(`整仓归档返回的不是压缩包（${buf.subarray(0, 15).toString('utf8').replace(/\s+/g, ' ')}…）`);
+    }
     const want = prefix ? `${prefix.replace(/\/$/, '')}/` : '';
     const all = readTar(buf, { strip: 1, filter: (p) => p.startsWith(want) });
     return new Map([...all].map(([p, b]) => [p.slice(want.length), b]));

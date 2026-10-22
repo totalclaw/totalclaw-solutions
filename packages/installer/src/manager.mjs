@@ -375,11 +375,32 @@ export class SolutionManager {
           this.log(`整包下载失败，改为逐文件：${err.message}`);
         }
       }
+      // 逐文件下载失败（托管方按内容屏蔽单个文件 451、个别文件反复超时）时，懒取一次整仓归档兜底，后续文件共用
+      let archiveFallback = null;
+      const fromArchive = () => {
+        if (!archiveFallback) {
+          archiveFallback = this.source.fetchArchive(ref, item.path).catch((err) => {
+            archiveFallback = null;
+            throw err;
+          });
+        }
+        return archiveFallback;
+      };
       await pool(files, this.concurrency, async (f) => {
         let buf = localHit(f);
         if (buf) reused++;
         else {
-          buf = archive?.get(f.path) || (await this.source.fetchFile(ref, item.path ? `${item.path}/${f.path}` : f.path));
+          buf = archive?.get(f.path);
+          if (!buf) {
+            try {
+              buf = await this.source.fetchFile(ref, item.path ? `${item.path}/${f.path}` : f.path);
+            } catch (err) {
+              if (!this.source.fetchArchive || err.code === 'NOT_FOUND') throw err;
+              this.log(`${item.id}/${f.path} 逐文件下载失败（${err.message}），改从整包取`);
+              buf = (await fromArchive()).get(f.path);
+              if (!buf) throw err;
+            }
+          }
           downloaded++;
         }
         if (buf.length !== f.size || sha256(buf) !== f.sha256) {

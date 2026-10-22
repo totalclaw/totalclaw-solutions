@@ -66,15 +66,18 @@ export function archiveOf(repo, top = 'totalclaw-solutions-master') {
 }
 
 /** 模拟 gitee 的 fetch：raw / archive / branches API */
-export function fakeGiteeFetch(repo, { sha = 'a'.repeat(40), log = [], failRaw = false } = {}) {
+export function fakeGiteeFetch(repo, { sha = 'a'.repeat(40), log = [], failRaw = false, blockRaw = [], archiveHtml = false } = {}) {
   return async (url) => {
     log.push(url);
     const ok = (buf) => ({ ok: true, status: 200, arrayBuffer: async () => buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength) });
     if (url.includes('/api/v5/repos/')) return ok(Buffer.from(JSON.stringify({ commit: { sha } })));
-    if (url.includes('/repository/archive/')) return ok(archiveOf(repo));
+    // 真 gitee 对部分 User-Agent 的归档请求回一张 HTML 页面（200）
+    if (url.includes('/repository/archive/')) return ok(archiveHtml ? Buffer.from('<!DOCTYPE html><html></html>') : archiveOf(repo));
     const m = /\/raw\/([^/]+)\/(.+)$/.exec(url);
     if (m) {
       if (failRaw && !m[2].startsWith('index')) return { ok: false, status: 503, arrayBuffer: async () => new ArrayBuffer(0) };
+      // gitee 按内容屏蔽单个文件：451
+      if (blockRaw.some((b) => decodeURIComponent(m[2]).endsWith(b))) return { ok: false, status: 451, arrayBuffer: async () => new ArrayBuffer(0) };
       const p = m[2].split('/').map(decodeURIComponent).join('/');
       try {
         return ok(readFileSync(join(repo, p)));

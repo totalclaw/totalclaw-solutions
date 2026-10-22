@@ -247,6 +247,23 @@ test('GiteeSource：文件数超过阈值走整仓归档', async () => {
   assert.ok(mgr.verify('alpha')[0].ok);
 });
 
+test('GiteeSource：单个文件被托管方屏蔽（451）→ 不重试，改从整仓归档取，校验照旧通过', async () => {
+  const { repo } = setup();
+  const log = [];
+  const blocked = 'solutions/beta/solution.json';
+  const mgr = new SolutionManager({ root: tmp(), source: new GiteeSource({ fetch: fakeGiteeFetch(repo, { log, blockRaw: [blocked] }), retries: 3 }) });
+  await mgr.install('beta');
+  assert.equal(log.filter((u) => decodeURIComponent(u).endsWith(blocked)).length, 1, '451 不重试');
+  assert.equal(log.filter((u) => u.includes('/repository/archive/')).length, 1, '整仓归档只取一次');
+  assert.ok(mgr.verify('beta')[0].ok);
+});
+
+test('GiteeSource：归档接口回的是 HTML 页面 → 明确报错，不当成空包', async () => {
+  const { repo } = setup();
+  const mgr = new SolutionManager({ root: tmp(), source: new GiteeSource({ fetch: fakeGiteeFetch(repo, { blockRaw: ['solutions/beta/solution.json'], archiveHtml: true }) }) });
+  await assert.rejects(() => mgr.install('beta'), /不是压缩包/);
+});
+
 test('TarballSource：离线发布包安装', async () => {
   const { repo } = setup();
   const index = JSON.parse(readFileSync(join(repo, 'index.json'), 'utf8'));
