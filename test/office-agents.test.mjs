@@ -419,3 +419,47 @@ test('HR3 向量预筛：按与岗位要求的相似度排序只留前 N%（至�
     mod.__setLlmForTests(null);
   }
 });
+
+test('HR8 绩效：目标权重归一、建议分证据须是评价原话、没分不出等级、上级改分优先、导出考核表', async () => {
+  const P = reqH('./perf.cjs');
+  const goals = P.normalizeGoals({ goals: [{ name: '回款', weight: 50, target: '≥ 200 万' }, { name: '新客户', weight: 30 }, { name: '协作', weight: 20 }, { name: '' }] });
+  assert.deepEqual(goals.map((g) => [g.id, g.weight]), [['k1', 50], ['k2', 30], ['k3', 20]]);
+  const perf = { employee: '张三', period: '2026Q4', goals, selfReview: '本季度回款 230 万元，超额完成。新签客户 3 家。', managerReview: '跨部门配合积极。', managerScores: {} };
+  perf.suggestion = P.normalizeSuggestion({ items: [{ id: 'k1', score: 4, evidence: '回款 230 万元' }, { id: 'k2', score: 3, evidence: '新签客户 8 家' }, { id: 'k3', score: 9, evidence: '配合积极' }] }, perf);
+  assert.deepEqual(perf.suggestion.items.map((x) => x.score), [4, null, null]);
+  assert.match(perf.suggestion.items[1].flag, /不在评价原文/);
+  let r = P.computePerf(perf);
+  assert.equal(r.complete, false);
+  assert.equal(r.grade, null);
+  assert.deepEqual(r.missing, ['新客户', '协作']);
+  perf.managerScores = { k2: 3, k3: 3, k1: 3 };
+  r = P.computePerf(perf);
+  assert.deepEqual([r.complete, r.total, r.grade], [true, 75, 'B']);
+  assert.ok(r.rows.every((x) => x.by === 'manager'));
+
+  const mod = reqH('./index.cjs');
+  const { ctx, handlers } = fakeCtx(HR, 'hr8');
+  mod.__setLlmForTests(async (prompt) => {
+    if (prompt.includes('绩效考核目标')) return JSON.stringify({ goals: [{ name: '回款', weight: 6, target: '≥ 200 万' }, { name: '新客户', weight: 4, target: '≥ 3 家' }] });
+    return JSON.stringify({ items: [{ id: 'k1', score: 4, evidence: '回款 230 万元' }, { id: 'k2', score: 3, evidence: '新签客户 3 家' }], summary: '超额完成' });
+  });
+  await mod.activate(ctx);
+  try {
+    let p = handlers.get('perf.create')({ employee: '张三', dept: '销售部', period: '2026Q4' });
+    p = await handlers.get('perf.goalsDraft')({ id: p.id });
+    assert.deepEqual(p.goals.map((g) => g.weight), [60, 40]);
+    await assert.rejects(handlers.get('perf.suggest')({ id: p.id }), /自评或上级评价/);
+    p = handlers.get('perf.save')({ id: p.id, selfReview: perf.selfReview, managerReview: perf.managerReview });
+    p = await handlers.get('perf.suggest')({ id: p.id });
+    assert.deepEqual([p.result.complete, p.result.total, p.result.grade], [true, 90, 'A']);
+    p = handlers.get('perf.save')({ id: p.id, managerScores: { k1: 3 } });
+    assert.deepEqual([p.result.total, p.result.grade], [75, 'B']);
+    assert.equal(handlers.get('perf.list')()[0].grade, 'B');
+    const out = await handlers.get('perf.export')({ id: p.id });
+    assert.ok(docxParagraphs(readFileSync(out.path)).some((x) => x.includes('总分 75')));
+    p = handlers.get('perf.save')({ id: p.id, goals: [{ name: '回款', weight: 1 }] });
+    assert.deepEqual([p.suggestion, p.managerScores, p.result.complete], [null, {}, false], '目标改了，旧分清掉');
+  } finally {
+    mod.__setLlmForTests(null);
+  }
+});

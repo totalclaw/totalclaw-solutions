@@ -9,12 +9,13 @@
  * 数据：hr-agent/jobs/<id>.json、hr-agent/files/<jobId>/、hr-agent/settings.json
  * 简历含个人信息，只存在本机账号目录，不上传。邮件只生成草稿，由人复制后发送。
  */
-const { writeFileSync, mkdirSync, rmSync, readdirSync, existsSync } = require('node:fs');
+const { writeFileSync, mkdirSync, rmSync, readdirSync, existsSync, unlinkSync } = require('node:fs');
 const { join, basename, extname } = require('node:path');
 const { randomUUID } = require('node:crypto');
 const { extractParas } = require('./docText.cjs');
 const S = require('./screening.cjs');
 const { buildDocx } = require('./docx.cjs');
+const P = require('./perf.cjs');
 
 const D = 'hr-agent';
 const MAX_FILE = 15 * 1024 * 1024;
@@ -471,6 +472,103 @@ module.exports = {
       const blocks = [{ text: '录用通知书', style: 'title' }, ...c.offer.text.split(/\n{2,}/).map((t) => ({ text: t })), { text: settings().company, style: 'h2' }];
       return saveFile(`${c.resume?.basics?.name || '候选人'}-${j.title}-录用通知书.docx`, buildDocx(blocks), 'docx');
     });
+    // ⑧ HR8 绩效评估：建考核 → AI 起草目标（可改）→ 填自评 / 上级评价 → AI 建议分（证据须是原话）→ 上级改分 → 程序算总分与等级 → 导出
+    const perfPath = (id) => `${D}/perf/${String(id).replace(/[^\w-]/g, '')}.json`;
+    const loadPerf = (id) => {
+      const r = ctx.readJson(perfPath(id), null);
+      if (!r) throw new Error('找不到这份考核');
+      return r;
+    };
+    const savePerf = (r) => {
+      r.updatedAt = Date.now();
+      r.result = r.goals.length ? P.computePerf(r) : null;
+      ctx.writeJson(perfPath(r.id), r);
+      return r;
+    };
+    h('perf.list', () => {
+      let files = [];
+      try {
+        files = readdirSync(ctx.dataPath(`${D}/perf`)).filter((f) => f.endsWith('.json'));
+      } catch {
+        files = [];
+      }
+      return files
+        .map((f) => ctx.readJson(`${D}/perf/${f}`, null))
+        .filter(Boolean)
+        .map((r) => ({ id: r.id, employee: r.employee, dept: r.dept, period: r.period, total: r.result?.total ?? null, grade: r.result?.grade ?? null, complete: !!r.result?.complete, updatedAt: r.updatedAt }))
+        .sort((a, b) => b.updatedAt - a.updatedAt);
+    });
+    h('perf.get', (p) => loadPerf(p?.id));
+    h('perf.create', (p) => {
+      const employee = String(p?.employee || '').trim().slice(0, 30);
+      const period = String(p?.period || '').trim().slice(0, 30);
+      if (!employee || !period) throw new Error('填员工姓名和考核周期');
+      return savePerf({ id: `pf-${Date.now().toString(36)}-${randomUUID().slice(0, 4)}`, employee, dept: String(p.dept || '').slice(0, 30), position: String(p.position || '').slice(0, 30), period, context: String(p.context || '').slice(0, 3000), goals: [], selfReview: '', managerReview: '', suggestion: null, managerScores: {}, createdAt: Date.now() });
+    });
+    h('perf.remove', (p) => {
+      try {
+        unlinkSync(ctx.dataPath(perfPath(p?.id)));
+      } catch {
+        /* 已经没了 */
+      }
+      return { ok: true };
+    });
+    h('perf.goalsDraft', async (p) => {
+      const r = loadPerf(p?.id);
+      r.goals = P.normalizeGoals(await llmJson(P.goalsPrompt(r)));
+      if (!r.goals.length) throw new Error('模型没给出可用的目标，请手动填写');
+      r.suggestion = null;
+      r.managerScores = {};
+      return savePerf(r);
+    });
+    h('perf.save', (p) => {
+      const r = loadPerf(p?.id);
+      if (Array.isArray(p.goals)) {
+        const next = P.normalizeGoals({ goals: p.goals });
+        // 目标改了（名称 / 数量变化）则旧的建议分与上级分不再对得上，清掉
+        if (JSON.stringify(next.map((g) => g.name)) !== JSON.stringify(r.goals.map((g) => g.name))) {
+          r.suggestion = null;
+          r.managerScores = {};
+        }
+        r.goals = next;
+      }
+      if (typeof p.selfReview === 'string') r.selfReview = p.selfReview.slice(0, 6000);
+      if (typeof p.managerReview === 'string') r.managerReview = p.managerReview.slice(0, 6000);
+      if (p.managerScores && typeof p.managerScores === 'object') {
+        const ms = {};
+        for (const g of r.goals) {
+          const v = p.managerScores[g.id];
+          if (Number.isInteger(v) && v >= 0 && v <= 4) ms[g.id] = v;
+        }
+        r.managerScores = ms;
+      }
+      return savePerf(r);
+    });
+    h('perf.suggest', async (p) => {
+      const r = loadPerf(p?.id);
+      if (!r.goals.length) throw new Error('先定考核目标');
+      if (!r.selfReview.trim() && !r.managerReview.trim()) throw new Error('先填自评或上级评价');
+      r.suggestion = P.normalizeSuggestion(await llmJson(P.suggestPrompt(r)), r);
+      return savePerf(r);
+    });
+    h('perf.export', async (p) => {
+      const r = loadPerf(p?.id);
+      const res = r.result || P.computePerf(r);
+      const sug = new Map((r.suggestion?.items || []).map((x) => [x.id, x]));
+      const blocks = [
+        { text: `${r.employee} · ${r.period} 绩效考核表`, style: 'title' },
+        { text: `${settings().company}　${r.dept || ''}${r.position ? ` · ${r.position}` : ''}`, style: 'note' },
+        { table: [['考核项', '权重', '目标', '得分（0–4）', '来源', '证据'], ...res.rows.map((x) => { const g = r.goals.find((y) => y.id === x.id); return [x.name, String(x.weight), g?.target || '', x.final === null ? '未评' : String(x.final), x.by === 'manager' ? '上级' : x.by === 'ai' ? 'AI 建议' : '', sug.get(x.id)?.evidence || '']; })] },
+        { text: res.complete ? `总分 ${res.total}　等级 ${res.grade}（${res.gradeLabel}）` : `尚未评完：${res.missing.join('、')}`, style: 'h2' },
+        { text: '自评', style: 'h2' },
+        { text: r.selfReview || '（无）' },
+        { text: '上级评价', style: 'h2' },
+        { text: r.managerReview || '（无）' },
+        { text: '总分由程序按权重计算；AI 建议分仅供参考，证据为评价原文摘录，最终以上级确认为准。', style: 'note' },
+      ];
+      return saveFile(`${r.employee}-${r.period}-绩效考核表.docx`, buildDocx(blocks), 'docx');
+    });
+
     h('screen.export', async (p) => {
       const j = load(p?.id);
       const csvCell = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;

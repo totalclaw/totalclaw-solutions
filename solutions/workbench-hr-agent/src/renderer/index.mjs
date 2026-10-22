@@ -104,6 +104,7 @@ export default function createSolution(sdk) {
         try {
           meta.value = await sdk.invoke('meta');
           await refreshJobs();
+          await refreshPerf();
         } catch (e) {
           sdk.notify.warn(e.message);
         }
@@ -115,6 +116,27 @@ export default function createSolution(sdk) {
       const sendTo = ref(null);
       const sendAsk = ref('');
       const vectorKeep = ref('');
+      // ⑧ HR8 绩效评估（与岗位无关，不选岗位也能用）
+      const perfList = ref([]);
+      const perf = ref(null);
+      const perfForm = reactive({ employee: '', dept: '', position: '', period: '', context: '' });
+      async function refreshPerf() {
+        try {
+          perfList.value = await sdk.invoke('perf.list');
+        } catch (_) {
+          perfList.value = [];
+        }
+      }
+      async function perfDo(action, payload) {
+        try {
+          const r = await call('perf', action, payload);
+          if (r && r.id && r.goals) perf.value = r;
+          await refreshPerf();
+          return r;
+        } catch (_) {
+          return null;
+        }
+      }
       watch(selId, () => {
         sendTo.value = null;
         sendAsk.value = '';
@@ -130,6 +152,7 @@ export default function createSolution(sdk) {
           { n: 5, name: t('邀约'), done: cs.some((c) => c.invite) },
           { n: 6, name: t('Offer 与入职'), done: cs.some((c) => c.offer) },
           { n: 7, name: t('候选人看板'), done: false, optional: true },
+          { n: 8, name: t('绩效评估'), done: !!perf.value?.result?.complete, optional: true },
         ];
       });
       const progress = computed(() => Math.round((steps.value.filter((s) => s.done).length / 6) * 100));
@@ -377,6 +400,69 @@ export default function createSolution(sdk) {
         ]);
       }
 
+      function vStep8(s) {
+        const r = perf.value;
+        const onboarded = (job.value?.candidates || []).filter((c) => c.stage === 'onboarding' || c.stage === 'offer');
+        const res = r?.result;
+        const sug = new Map((r?.suggestion?.items || []).map((x) => [x.id, x]));
+        const inp = (obj, k, ph, w) => h('input', { class: 'hra-in', style: `width:${w}px`, placeholder: ph, value: obj[k] ?? '', onInput: (e) => (obj[k] = e.target.value) });
+        return h('div', { class: 'hra-card', id: 'hra-s8' }, [
+          ...head(s, t('试用期 / 季度考核：AI 起草目标、按评价原文给建议分（证据必须是原话，找不到的作废），总分与等级由程序按权重算，上级可逐项改分，以上级为准。')),
+          h('div', { class: 'hra-row' }, [
+            h('select', { class: 'hra-in', value: r?.id || '', onChange: async (e) => { perf.value = e.target.value ? await call('perf', 'perf.get', { id: e.target.value }).catch(() => null) : null; } }, [
+              h('option', { value: '' }, t('新建考核')),
+              ...perfList.value.map((x) => h('option', { value: x.id }, `${x.employee} · ${x.period}${x.complete ? ` · ${x.total} ${x.grade}` : ''}`)),
+            ]),
+            r ? h('button', { class: 'hra-btn', disabled: busy.perf, onClick: async () => { await perfDo('perf.remove', { id: r.id }); perf.value = null; } }, t('删除')) : null,
+          ]),
+          !r
+            ? h('div', { class: 'hra-row' }, [
+                onboarded.length
+                  ? h('select', { class: 'hra-in', onChange: (e) => { const c = onboarded.find((x) => x.id === e.target.value); if (c) Object.assign(perfForm, { employee: nameOf(c), dept: job.value.info?.dept || '', position: job.value.title, context: job.value.jd || '' }); } }, [h('option', { value: '' }, t('从本岗位录用的人带入')), ...onboarded.map((c) => h('option', { value: c.id }, nameOf(c)))])
+                  : null,
+                inp(perfForm, 'employee', t('员工姓名'), 110),
+                inp(perfForm, 'dept', t('部门'), 100),
+                inp(perfForm, 'position', t('岗位'), 110),
+                inp(perfForm, 'period', t('周期，如 2026Q4 / 试用期'), 160),
+                h('button', { class: 'hra-btn pri', disabled: busy.perf, onClick: () => perfDo('perf.create', { ...perfForm }) }, t('新建')),
+              ])
+            : [
+                h('div', { class: 'hra-row' }, [
+                  h('b', `${r.employee} · ${r.period}`),
+                  h('button', { class: 'hra-btn', disabled: busy.perf || !meta.value.hasModel, onClick: () => perfDo('perf.goalsDraft', { id: r.id }) }, busy.perf ? t('处理中…') : r.goals.length ? t('重新起草目标') : t('AI 起草考核目标')),
+                  h('button', { class: 'hra-btn', onClick: () => r.goals.push({ id: `n${Date.now()}`, name: '', weight: 0, target: '' }) }, t('加一项')),
+                ]),
+                r.goals.length
+                  ? h('table', { class: 'hra-tbl' }, [
+                      h('tr', [h('th', t('考核项')), h('th', t('权重')), h('th', t('目标')), h('th', t('AI 建议分 / 证据')), h('th', t('上级打分'))]),
+                      ...r.goals.map((g) => {
+                        const x = sug.get(g.id);
+                        return h('tr', { key: g.id }, [
+                          h('td', inp(g, 'name', t('考核项'), 130)),
+                          h('td', h('input', { class: 'hra-in', type: 'number', style: 'width:56px', value: g.weight, onInput: (e) => (g.weight = Number(e.target.value)) })),
+                          h('td', inp(g, 'target', t('目标值与衡量方式'), 200)),
+                          h('td', x ? (x.score === null ? h('span', { class: 'hra-err' }, x.flag) : h('span', [h('b', String(x.score)), ' ', h('span', { class: 'hra-ev' }, `「${x.evidence}」`)])) : '—'),
+                          h('td', h('select', { class: 'hra-in', value: Number.isInteger(r.managerScores?.[g.id]) ? String(r.managerScores[g.id]) : '', onChange: (e) => perfDo('perf.save', { id: r.id, managerScores: { ...r.managerScores, [g.id]: e.target.value === '' ? null : Number(e.target.value) } }) }, [h('option', { value: '' }, t('用 AI 建议')), ...[0, 1, 2, 3, 4].map((n) => h('option', { value: String(n) }, String(n)))])),
+                        ]);
+                      }),
+                    ])
+                  : null,
+                r.goals.length ? h('button', { class: 'hra-btn', disabled: busy.perf, onClick: () => perfDo('perf.save', { id: r.id, goals: r.goals.map(({ name, weight, target }) => ({ name, weight, target })) }) }, t('保存目标（权重自动归一到 100）')) : null,
+                h('div', { class: 'hra-row', style: 'align-items:flex-start' }, [
+                  h('textarea', { class: 'hra-in', rows: 5, style: 'flex:1', placeholder: t('员工自评'), value: r.selfReview, onInput: (e) => (r.selfReview = e.target.value) }),
+                  h('textarea', { class: 'hra-in', rows: 5, style: 'flex:1', placeholder: t('上级评价'), value: r.managerReview, onInput: (e) => (r.managerReview = e.target.value) }),
+                ]),
+                h('div', { class: 'hra-row' }, [
+                  h('button', { class: 'hra-btn', disabled: busy.perf, onClick: () => perfDo('perf.save', { id: r.id, selfReview: r.selfReview, managerReview: r.managerReview }) }, t('保存评价')),
+                  h('button', { class: 'hra-btn pri', disabled: busy.perf || !r.goals.length || !meta.value.hasModel, onClick: async () => { await perfDo('perf.save', { id: r.id, selfReview: r.selfReview, managerReview: r.managerReview }); await perfDo('perf.suggest', { id: r.id }); } }, t('AI 按评价给建议分')),
+                  res ? h('b', res.complete ? t('总分 {p0} · 等级 {p1}（{p2}）', { p0: res.total, p1: res.grade, p2: t(res.gradeLabel) }) : t('还没评完：{p0}', { p0: res.missing.join('、') })) : null,
+                  res?.complete ? h('button', { class: 'hra-btn', onClick: () => run('perf', 'perf.export', { id: r.id }).then((x) => x && !x.canceled && sdk.notify.success(t('已导出：{p0}', { p0: x.path }))) }, t('导出考核表')) : null,
+                ]),
+              ],
+          errLine('perf'),
+        ]);
+      }
+
       function vStep7(s) {
         const cs = job.value?.candidates || [];
         return h('div', { class: 'hra-card', id: 'hra-s7' }, [
@@ -411,6 +497,7 @@ export default function createSolution(sdk) {
           ]),
           vStep1(st[0]),
           job.value ? [vStep2(st[1]), vStep3(st[2]), vDetail(), vStep4(st[3]), vStep5(st[4]), vStep6(st[5]), vStep7(st[6])] : null,
+          vStep8(st[7]),
         ]);
       };
     },
