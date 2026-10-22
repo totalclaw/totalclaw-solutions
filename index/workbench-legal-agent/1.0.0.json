@@ -1,0 +1,92 @@
+{
+  "id": "workbench-legal-agent",
+  "version": "1.0.0",
+  "treeDigest": "37978b27e61e26856d97ac7181639be84efaa0b8c1fc5583df473ba1ff6c5ea0",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 554,
+      "sha256": "3d2d6f77aaadb0129ac3af44ef6a651d9fdca9c6c28b16f8e4757d202a1cf201"
+    },
+    {
+      "path": "README.md",
+      "size": 1668,
+      "sha256": "36b51d2452af47fbcf258f61bd66b7a99bd432ee2687b9d63cbcf626584bfd52"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "size": 1322,
+      "sha256": "ed330afe6eb4bbb708703b051936c8ff565ed56f453e147ff9f8d612f3d08c60"
+    },
+    {
+      "path": "resources/clause-types.json",
+      "size": 7821,
+      "sha256": "1c8d1099291a71865c6c1a6e12d45abb9068a0afa7918ad102b671e1acbacb84"
+    },
+    {
+      "path": "resources/playbooks/labor.json",
+      "size": 2322,
+      "sha256": "3c4702cd130bdc8162a8c69b128ddec0efce002b8bed19d4cbea5c0509768911"
+    },
+    {
+      "path": "resources/playbooks/nda.json",
+      "size": 1459,
+      "sha256": "5195d6db7a85f2a6e98c88b2b6726278d7b4cbe53b1bdc8ff506b67644fd4468"
+    },
+    {
+      "path": "resources/playbooks/sales-distribution.json",
+      "size": 3158,
+      "sha256": "40d86986c5710a69b762aee56a1c940e52722fbfbe9fc1bf4b8fa9739e52464e"
+    },
+    {
+      "path": "resources/playbooks/service-outsourcing.json",
+      "size": 2473,
+      "sha256": "a0159a7f265f2259a07be38d2b4bebdf7fd3f9458b7102d9be679f03202898eb"
+    },
+    {
+      "path": "resources/statutes.json",
+      "size": 5192,
+      "sha256": "952ba3a9d5351e89f3d08e731157af8fffc7b2abebb28fa2ef61797ea9ffd788"
+    },
+    {
+      "path": "solution.json",
+      "size": 2446,
+      "sha256": "fb4d67c8323b80d732d230702d0b10d257c4f77d32845d8f0a7afffae0a84e14"
+    },
+    {
+      "path": "src/host-modules.json",
+      "size": 178,
+      "sha256": "0a60c3c63112a775db4a3a75a080aa0e488ff758a5e3d69e2cbc19d0756d820b"
+    },
+    {
+      "path": "src/main/docText.cjs",
+      "size": 6007,
+      "sha256": "44b1fec47621cbc0bed89112a5c76dc502607420c5632259cee0315f3831b1d5"
+    },
+    {
+      "path": "src/main/docx.cjs",
+      "size": 9404,
+      "sha256": "faa0389d4bf875deb024c8fee631eb4ad2805f89ce89d7ce6e6f4d25880fa3d5"
+    },
+    {
+      "path": "src/main/index.cjs",
+      "size": 16738,
+      "sha256": "0a9a0597aa4552ab584a11ce513c4976734381e42de7e220faba693714de427c"
+    },
+    {
+      "path": "src/main/review.cjs",
+      "size": 14230,
+      "sha256": "368129fbc1bac1ada64da93ecbff0fc4166f9b9c11387e49169b30f3908c3e85"
+    },
+    {
+      "path": "src/main/zip.cjs",
+      "size": 4201,
+      "sha256": "f0ca33d226fafb2b13e24a1c8751e3556f843f0ed46f197e0d912b0ab1d9d22a"
+    },
+    {
+      "path": "src/renderer/index.mjs",
+      "size": 27797,
+      "sha256": "fcb58298e271ecb488e0bca396f5e16ca0da59dc998a1503c9aad8c0494e4354"
+    }
+  ]
+}

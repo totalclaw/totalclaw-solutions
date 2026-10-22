@@ -58,7 +58,9 @@
     ],
     "leadRole": "hr-recruiter",
     "defaultModel": null,
-    "workbenches": [],
+    "workbenches": [
+      "workbench-hr-agent"
+    ],
     "workflows": [
       "workflows/hiring.json"
     ]

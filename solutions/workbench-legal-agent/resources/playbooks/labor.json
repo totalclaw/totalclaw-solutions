@@ -1,0 +1,64 @@
+{
+  "id": "labor",
+  "name": "劳动合同",
+  "version": 1,
+  "matchKeywords": [
+    "劳动",
+    "聘用",
+    "雇佣",
+    "员工",
+    "入职"
+  ],
+  "required": [
+    "parties",
+    "compensation",
+    "working-hours-leave",
+    "social-insurance",
+    "termination",
+    "probation"
+  ],
+  "entries": [
+    {
+      "clauseType": "probation",
+      "standard": "试用期符合劳动合同法第十九条：一年以下不超过一个月，一年以上不满三年不超过二个月，三年以上不超过六个月",
+      "acceptable": "按法定上限",
+      "escalateWhen": "超过法定期限、试用期工资低于约定工资的 80% 或当地最低工资"
+    },
+    {
+      "clauseType": "compensation",
+      "standard": "工资构成、发放日与标准写明，不得低于当地最低工资",
+      "acceptable": "绩效工资比例不超过 30%",
+      "escalateWhen": "工资可由用人单位单方调整"
+    },
+    {
+      "clauseType": "working-hours-leave",
+      "standard": "标准工时或经批准的特殊工时；加班按法定标准支付",
+      "acceptable": "综合工时需有审批",
+      "escalateWhen": "约定「自愿放弃加班费」"
+    },
+    {
+      "clauseType": "social-insurance",
+      "standard": "依法缴纳社会保险与公积金",
+      "acceptable": "无",
+      "escalateWhen": "约定员工自愿放弃社保、以补贴代替社保"
+    },
+    {
+      "clauseType": "non-compete-labor",
+      "standard": "竞业限制仅限高管、高级技术人员和负有保密义务的人员，期限不超过二年，离职后按月给予经济补偿",
+      "acceptable": "补偿不低于离职前 12 个月平均工资的 30%",
+      "escalateWhen": "无补偿、期限超过二年、适用于普通员工"
+    },
+    {
+      "clauseType": "training-service-period",
+      "standard": "专项培训才可约定服务期，违约金不超过培训费用",
+      "acceptable": "按未履行服务期分摊",
+      "escalateWhen": "普通岗前培训约定服务期、违约金超过培训费用"
+    },
+    {
+      "clauseType": "termination",
+      "standard": "解除条件与程序符合法律，不得约定法外解除事由",
+      "acceptable": "无",
+      "escalateWhen": "约定怀孕、结婚即解除，或员工辞职须支付违约金"
+    }
+  ]
+}

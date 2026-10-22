@@ -1,7 +1,7 @@
 {
   "id": "legion-legal",
   "version": "1.0.0",
-  "treeDigest": "7b5fff2fba5997ea0daed43b12b866cc29bdbbc2239245460b5ad7d46038894b",
+  "treeDigest": "b0fd4d5d168803cef0602ea9d36e7a6f7ff6f98ea7cc3ddedd7eeeabb1e8c244",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -10,13 +10,13 @@
     },
     {
       "path": "README.md",
-      "size": 976,
-      "sha256": "94d657224784898b891b2c413cf994db2f8ab24c71aa82b0220db2d0a0b425bf"
+      "size": 943,
+      "sha256": "3dd9b9841c810d02fbac29416e98f7d6d51c62814c4dc65c575ac8980ed0fdb4"
     },
     {
       "path": "solution.json",
-      "size": 1742,
-      "sha256": "9b153687548316e7f8b36f4ea4af2c381f8484675174da619574bdbadf913f16"
+      "size": 1777,
+      "sha256": "584e3ff11e6c5aa035bc831fea197604aba6c1ca1874d2c7c9e6c3e6bab09602"
     },
     {
       "path": "workflows/contract-review.json",
@@ -28,7 +28,7 @@
     {
       "version": "1.0.0",
       "ref": "legion-legal@1.0.0",
-      "treeDigest": "7b5fff2fba5997ea0daed43b12b866cc29bdbbc2239245460b5ad7d46038894b",
+      "treeDigest": "b0fd4d5d168803cef0602ea9d36e7a6f7ff6f98ea7cc3ddedd7eeeabb1e8c244",
       "filesRef": "index/legion-legal/1.0.0.json",
       "channel": "stable",
       "rollout": 100,

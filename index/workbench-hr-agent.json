@@ -1,0 +1,75 @@
+{
+  "id": "workbench-hr-agent",
+  "version": "1.0.0",
+  "treeDigest": "c79ed8686590269835f40ffeb35faa873287b7c1c2c64fcf2cc5ef6dd5a4138e",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 390,
+      "sha256": "fd2e9342c67f637b487792376678a9269afe1f2bb2e746b767d14181dfec7aed"
+    },
+    {
+      "path": "README.md",
+      "size": 1498,
+      "sha256": "2470584a060496c00b947e53002a3e85442a695254ec4b3146df53fa72504ee9"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "size": 1242,
+      "sha256": "cffdeec078171f62de90d47d3023ed30e09b22b60485f5d2d095ae56a7ccc473"
+    },
+    {
+      "path": "solution.json",
+      "size": 2279,
+      "sha256": "0935d9c00b013d4ee3a5aea151fc9a470995dc6e8260cf7c9b3c0c5c6dfea31d"
+    },
+    {
+      "path": "src/host-modules.json",
+      "size": 178,
+      "sha256": "0a60c3c63112a775db4a3a75a080aa0e488ff758a5e3d69e2cbc19d0756d820b"
+    },
+    {
+      "path": "src/main/docText.cjs",
+      "size": 6007,
+      "sha256": "44b1fec47621cbc0bed89112a5c76dc502607420c5632259cee0315f3831b1d5"
+    },
+    {
+      "path": "src/main/docx.cjs",
+      "size": 9404,
+      "sha256": "faa0389d4bf875deb024c8fee631eb4ad2805f89ce89d7ce6e6f4d25880fa3d5"
+    },
+    {
+      "path": "src/main/index.cjs",
+      "size": 17831,
+      "sha256": "49a07d02169455cd014a4bce4e0e6df0331cabcc0a9daa38dc3f6b0f2eb90a2f"
+    },
+    {
+      "path": "src/main/screening.cjs",
+      "size": 14095,
+      "sha256": "bf2e4ce06ab68017a8b6afd40b94867982165281ed1d8d41bd1c966fc5268733"
+    },
+    {
+      "path": "src/main/zip.cjs",
+      "size": 4201,
+      "sha256": "f0ca33d226fafb2b13e24a1c8751e3556f843f0ed46f197e0d912b0ab1d9d22a"
+    },
+    {
+      "path": "src/renderer/index.mjs",
+      "size": 29214,
+      "sha256": "6c3914b073fc264854011bbfac38069010be1cd0308e545623a9a28105926c09"
+    }
+  ],
+  "versions": [
+    {
+      "version": "1.0.0",
+      "ref": "workbench-hr-agent@1.0.0",
+      "treeDigest": "c79ed8686590269835f40ffeb35faa873287b7c1c2c64fcf2cc5ef6dd5a4138e",
+      "filesRef": "index/workbench-hr-agent/1.0.0.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-22"
+    }
+  ]
+}

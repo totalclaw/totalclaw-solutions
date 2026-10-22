@@ -1,0 +1,49 @@
+{
+  "id": "nda",
+  "name": "保密协议（NDA）",
+  "version": 1,
+  "matchKeywords": [
+    "保密",
+    "NDA",
+    "不披露",
+    "保密协议"
+  ],
+  "required": [
+    "parties",
+    "confidentiality",
+    "termination",
+    "dispute-resolution"
+  ],
+  "entries": [
+    {
+      "clauseType": "confidentiality",
+      "standard": "保密信息定义清楚并有标注要求；排除已公开、自行开发、第三方合法获得的信息",
+      "acceptable": "单向保密在我方为披露方时可接受",
+      "escalateWhen": "定义为「一切信息」且无例外"
+    },
+    {
+      "clauseType": "termination",
+      "standard": "保密期限 2–3 年，到期返还或销毁资料",
+      "acceptable": "保密期 5 年",
+      "escalateWhen": "永久保密"
+    },
+    {
+      "clauseType": "breach-liability",
+      "standard": "违约责任以实际损失为准或合理违约金",
+      "acceptable": "违约金不超过合作预计金额",
+      "escalateWhen": "高额固定违约金（如 100 万以上）且无需证明损失"
+    },
+    {
+      "clauseType": "non-compete",
+      "standard": "保密协议里不应夹带竞业禁止",
+      "acceptable": "无",
+      "escalateWhen": "包含竞业禁止或不招揽条款"
+    },
+    {
+      "clauseType": "license-grant",
+      "standard": "披露不构成任何知识产权许可",
+      "acceptable": "明确无许可",
+      "escalateWhen": "默示授予使用权"
+    }
+  ]
+}

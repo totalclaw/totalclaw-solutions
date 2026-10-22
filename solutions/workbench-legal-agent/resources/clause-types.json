@@ -1,0 +1,347 @@
+{
+  "$comment": "条款类别表：41 类取自 CUAD（The Atticus Project, CC BY 4.0，仅使用类别名称，未使用其数据集与描述文本），另加中文合同常用类别。",
+  "source": {
+    "name": "CUAD: Contract Understanding Atticus Dataset",
+    "license": "CC BY 4.0",
+    "url": "https://www.atticusprojectai.org/cuad",
+    "use": "category names only"
+  },
+  "items": [
+    {
+      "id": "document-name",
+      "en": "Document Name",
+      "zh": "合同名称",
+      "origin": "cuad"
+    },
+    {
+      "id": "parties",
+      "en": "Parties",
+      "zh": "合同主体",
+      "origin": "cuad"
+    },
+    {
+      "id": "agreement-date",
+      "en": "Agreement Date",
+      "zh": "签订日期",
+      "origin": "cuad"
+    },
+    {
+      "id": "effective-date",
+      "en": "Effective Date",
+      "zh": "生效日期",
+      "origin": "cuad"
+    },
+    {
+      "id": "expiration-date",
+      "en": "Expiration Date",
+      "zh": "到期日期",
+      "origin": "cuad"
+    },
+    {
+      "id": "renewal-term",
+      "en": "Renewal Term",
+      "zh": "续期条款",
+      "origin": "cuad"
+    },
+    {
+      "id": "notice-to-terminate-renewal",
+      "en": "Notice Period To Terminate Renewal",
+      "zh": "不续期通知期",
+      "origin": "cuad"
+    },
+    {
+      "id": "governing-law",
+      "en": "Governing Law",
+      "zh": "适用法律",
+      "origin": "cuad"
+    },
+    {
+      "id": "most-favored-nation",
+      "en": "Most Favored Nation",
+      "zh": "最惠待遇",
+      "origin": "cuad"
+    },
+    {
+      "id": "non-compete",
+      "en": "Non-Compete",
+      "zh": "竞业禁止",
+      "origin": "cuad"
+    },
+    {
+      "id": "exclusivity",
+      "en": "Exclusivity",
+      "zh": "排他 / 独家",
+      "origin": "cuad"
+    },
+    {
+      "id": "no-solicit-customers",
+      "en": "No-Solicit Of Customers",
+      "zh": "不招揽客户",
+      "origin": "cuad"
+    },
+    {
+      "id": "competitive-restriction-exception",
+      "en": "Competitive Restriction Exception",
+      "zh": "竞争限制例外",
+      "origin": "cuad"
+    },
+    {
+      "id": "no-solicit-employees",
+      "en": "No-Solicit Of Employees",
+      "zh": "不招揽员工",
+      "origin": "cuad"
+    },
+    {
+      "id": "non-disparagement",
+      "en": "Non-Disparagement",
+      "zh": "不诋毁",
+      "origin": "cuad"
+    },
+    {
+      "id": "termination-for-convenience",
+      "en": "Termination For Convenience",
+      "zh": "任意解除权",
+      "origin": "cuad"
+    },
+    {
+      "id": "rofr-rofo-rofn",
+      "en": "Rofr/Rofo/Rofn",
+      "zh": "优先购买 / 优先要约 / 优先谈判权",
+      "origin": "cuad"
+    },
+    {
+      "id": "change-of-control",
+      "en": "Change Of Control",
+      "zh": "控制权变更",
+      "origin": "cuad"
+    },
+    {
+      "id": "anti-assignment",
+      "en": "Anti-Assignment",
+      "zh": "禁止转让",
+      "origin": "cuad"
+    },
+    {
+      "id": "revenue-profit-sharing",
+      "en": "Revenue/Profit Sharing",
+      "zh": "收入 / 利润分成",
+      "origin": "cuad"
+    },
+    {
+      "id": "price-restrictions",
+      "en": "Price Restrictions",
+      "zh": "价格限制",
+      "origin": "cuad"
+    },
+    {
+      "id": "minimum-commitment",
+      "en": "Minimum Commitment",
+      "zh": "最低采购 / 最低承诺",
+      "origin": "cuad"
+    },
+    {
+      "id": "volume-restriction",
+      "en": "Volume Restriction",
+      "zh": "数量限制",
+      "origin": "cuad"
+    },
+    {
+      "id": "ip-ownership-assignment",
+      "en": "Ip Ownership Assignment",
+      "zh": "知识产权归属与转让",
+      "origin": "cuad"
+    },
+    {
+      "id": "joint-ip-ownership",
+      "en": "Joint Ip Ownership",
+      "zh": "知识产权共有",
+      "origin": "cuad"
+    },
+    {
+      "id": "license-grant",
+      "en": "License Grant",
+      "zh": "许可授予",
+      "origin": "cuad"
+    },
+    {
+      "id": "non-transferable-license",
+      "en": "Non-Transferable License",
+      "zh": "不可转让许可",
+      "origin": "cuad"
+    },
+    {
+      "id": "affiliate-license-licensor",
+      "en": "Affiliate License-Licensor",
+      "zh": "关联方许可（许可方）",
+      "origin": "cuad"
+    },
+    {
+      "id": "affiliate-license-licensee",
+      "en": "Affiliate License-Licensee",
+      "zh": "关联方许可（被许可方）",
+      "origin": "cuad"
+    },
+    {
+      "id": "unlimited-license",
+      "en": "Unlimited/All-You-Can-Eat-License",
+      "zh": "无限量许可",
+      "origin": "cuad"
+    },
+    {
+      "id": "irrevocable-perpetual-license",
+      "en": "Irrevocable Or Perpetual License",
+      "zh": "不可撤销 / 永久许可",
+      "origin": "cuad"
+    },
+    {
+      "id": "source-code-escrow",
+      "en": "Source Code Escrow",
+      "zh": "源代码托管",
+      "origin": "cuad"
+    },
+    {
+      "id": "post-termination-services",
+      "en": "Post-Termination Services",
+      "zh": "终止后服务",
+      "origin": "cuad"
+    },
+    {
+      "id": "audit-rights",
+      "en": "Audit Rights",
+      "zh": "审计权",
+      "origin": "cuad"
+    },
+    {
+      "id": "uncapped-liability",
+      "en": "Uncapped Liability",
+      "zh": "无上限责任",
+      "origin": "cuad"
+    },
+    {
+      "id": "cap-on-liability",
+      "en": "Cap On Liability",
+      "zh": "责任上限",
+      "origin": "cuad"
+    },
+    {
+      "id": "liquidated-damages",
+      "en": "Liquidated Damages",
+      "zh": "违约金 / 约定损害赔偿",
+      "origin": "cuad"
+    },
+    {
+      "id": "warranty-duration",
+      "en": "Warranty Duration",
+      "zh": "质保期限",
+      "origin": "cuad"
+    },
+    {
+      "id": "insurance",
+      "en": "Insurance",
+      "zh": "保险",
+      "origin": "cuad"
+    },
+    {
+      "id": "covenant-not-to-sue",
+      "en": "Covenant Not To Sue",
+      "zh": "不起诉承诺",
+      "origin": "cuad"
+    },
+    {
+      "id": "third-party-beneficiary",
+      "en": "Third Party Beneficiary",
+      "zh": "第三方受益人",
+      "origin": "cuad"
+    },
+    {
+      "id": "dispute-resolution",
+      "zh": "争议解决与管辖",
+      "origin": "cn"
+    },
+    {
+      "id": "payment-terms",
+      "zh": "付款条件",
+      "origin": "cn"
+    },
+    {
+      "id": "invoice-tax",
+      "zh": "发票与税费",
+      "origin": "cn"
+    },
+    {
+      "id": "delivery-acceptance",
+      "zh": "交付与验收",
+      "origin": "cn"
+    },
+    {
+      "id": "quality-warranty",
+      "zh": "质量保证与售后",
+      "origin": "cn"
+    },
+    {
+      "id": "breach-liability",
+      "zh": "违约责任",
+      "origin": "cn"
+    },
+    {
+      "id": "confidentiality",
+      "zh": "保密",
+      "origin": "cn"
+    },
+    {
+      "id": "force-majeure",
+      "zh": "不可抗力",
+      "origin": "cn"
+    },
+    {
+      "id": "personal-data",
+      "zh": "个人信息与数据",
+      "origin": "cn"
+    },
+    {
+      "id": "termination",
+      "zh": "合同解除与终止",
+      "origin": "cn"
+    },
+    {
+      "id": "notice-service",
+      "zh": "通知与送达",
+      "origin": "cn"
+    },
+    {
+      "id": "ip-infringement-warranty",
+      "zh": "知识产权侵权担保",
+      "origin": "cn"
+    },
+    {
+      "id": "probation",
+      "zh": "试用期",
+      "origin": "cn"
+    },
+    {
+      "id": "working-hours-leave",
+      "zh": "工作时间与休假",
+      "origin": "cn"
+    },
+    {
+      "id": "compensation",
+      "zh": "薪酬与支付",
+      "origin": "cn"
+    },
+    {
+      "id": "social-insurance",
+      "zh": "社会保险与公积金",
+      "origin": "cn"
+    },
+    {
+      "id": "non-compete-labor",
+      "zh": "竞业限制（劳动）",
+      "origin": "cn"
+    },
+    {
+      "id": "training-service-period",
+      "zh": "培训服务期",
+      "origin": "cn"
+    }
+  ]
+}

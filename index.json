@@ -1781,6 +1781,134 @@
       "filesRef": "index/workbench-charity-content.json"
     },
     {
+      "id": "workbench-legal-agent",
+      "name": "法务部 · 合同审查",
+      "aliases": [
+        "合同审查",
+        "法务工作台",
+        "legal-agent"
+      ],
+      "kind": "workbench",
+      "category": "法务合规",
+      "icon": "icon-solutions",
+      "order": 260,
+      "description": "上传合同，按我方立场和审查模板逐条审查：风险分高中低，每条附原文位置、理由、法条依据、可直接放进合同的修改条文与退让方案；采纳后导出带修订痕迹的 Word 修订稿和审查意见书。",
+      "descriptionEn": "Upload a contract and review it clause by clause from your side's position: high/medium/low risks with source location, reasons, legal basis, ready-to-insert redlines and fallbacks; export a tracked-changes Word draft and a review opinion.",
+      "version": "1.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
+      "compat": {
+        "minAppVersion": "2.0.5",
+        "hostApi": 2
+      },
+      "access": {
+        "requiresSolutionGrant": false,
+        "feature": null,
+        "hidden": false
+      },
+      "runtime": {
+        "mode": "dynamic",
+        "runner": "workbench",
+        "route": "/workbenches/legal-agent",
+        "renderer": "src/renderer/index.mjs",
+        "main": "src/main/index.cjs",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/legal-agent",
+            "name": "LegalAgentWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "src/renderer/index.mjs",
+          "main": "src/main/index.cjs",
+          "hostModules": "src/host-modules.json"
+        }
+      },
+      "dependsOn": [],
+      "data": {
+        "schemaVersion": 1,
+        "paths": [
+          "legal-agent/"
+        ],
+        "localStorage": []
+      },
+      "capabilities": [],
+      "path": "solutions/workbench-legal-agent",
+      "fileCount": 17,
+      "size": 106970,
+      "treeDigest": "37978b27e61e26856d97ac7181639be84efaa0b8c1fc5583df473ba1ff6c5ea0",
+      "largeAssets": [],
+      "changelog": "- 首版：七步合同审查（预分析、立场、模板、条款抽取、逐条审查、修订采纳、报告归档）。\n- 原文位置由程序定位；法条格式核对（34 部常用法律）；缺失条款按模板必备项计算；框架四问。\n- 内置 4 个审查模板（买卖 / 经销、服务 / 外包、保密、劳动），可编辑、按版本留快照。\n- 导出带修订痕迹与批注的 Word 修订稿、审查意见书；对方反驳推演；两版合同对比。",
+      "filesRef": "index/workbench-legal-agent.json"
+    },
+    {
+      "id": "workbench-hr-agent",
+      "name": "人事部 · 招聘",
+      "aliases": [
+        "招聘工作台",
+        "人事工作台",
+        "hr-agent"
+      ],
+      "kind": "workbench",
+      "category": "人力资源",
+      "icon": "icon-solutions",
+      "order": 270,
+      "description": "从岗位信息生成 JD 并体检歧视性用词，批量导入简历结构化，三层筛选（关键词预筛 → 硬条件门禁 → 0–4 锚定打分，证据必须是简历原话、总分由程序算），再出面试题与评分卡、邀约邮件、offer 与入职清单。",
+      "descriptionEn": "Generate a job description and check it for discriminatory wording, bulk-import resumes, screen in three layers (keywords, hard gates, 0–4 anchored scores with verbatim evidence; totals computed by code), then draft interview kits, invitations, offers and onboarding checklists.",
+      "version": "1.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
+      "compat": {
+        "minAppVersion": "2.0.5",
+        "hostApi": 2
+      },
+      "access": {
+        "requiresSolutionGrant": false,
+        "feature": null,
+        "hidden": false
+      },
+      "runtime": {
+        "mode": "dynamic",
+        "runner": "workbench",
+        "route": "/workbenches/hr-agent",
+        "renderer": "src/renderer/index.mjs",
+        "main": "src/main/index.cjs",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/hr-agent",
+            "name": "HrAgentWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "src/renderer/index.mjs",
+          "main": "src/main/index.cjs",
+          "hostModules": "src/host-modules.json"
+        }
+      },
+      "dependsOn": [],
+      "data": {
+        "schemaVersion": 1,
+        "paths": [
+          "hr-agent/"
+        ],
+        "localStorage": []
+      },
+      "capabilities": [],
+      "path": "solutions/workbench-hr-agent",
+      "fileCount": 11,
+      "size": 86339,
+      "treeDigest": "c79ed8686590269835f40ffeb35faa873287b7c1c2c64fcf2cc5ef6dd5a4138e",
+      "largeAssets": [],
+      "changelog": "- 首版：JD 生成与歧视性用词体检、简历批量导入与结构化、三层筛选、面试题与评分卡、邀约草稿、offer 与入职清单、候选人看板。\n- 证据核对：门禁与打分的证据必须是简历原话；简历未提及只判「未知」；总分与决定由程序计算；筛选表导出 CSV。",
+      "filesRef": "index/workbench-hr-agent.json"
+    },
+    {
       "id": "workbench-quran-teaching",
       "name": "人工智能《古兰经》智能教学平台（演示）",
       "aliases": [
@@ -2369,15 +2497,17 @@
         ],
         "leadRole": "legal-contract-reviewer",
         "defaultModel": null,
-        "workbenches": [],
+        "workbenches": [
+          "workbench-legal-agent"
+        ],
         "workflows": [
           "workflows/contract-review.json"
         ]
       },
       "path": "solutions/legion-legal",
       "fileCount": 4,
-      "size": 4121,
-      "treeDigest": "7b5fff2fba5997ea0daed43b12b866cc29bdbbc2239245460b5ad7d46038894b",
+      "size": 4123,
+      "treeDigest": "b0fd4d5d168803cef0602ea9d36e7a6f7ff6f98ea7cc3ddedd7eeeabb1e8c244",
       "largeAssets": [],
       "changelog": "- 首版：5 个 AI 员工、1 个常用工作流。",
       "filesRef": "index/legion-legal.json"
@@ -2551,15 +2681,17 @@
         ],
         "leadRole": "hr-recruiter",
         "defaultModel": null,
-        "workbenches": [],
+        "workbenches": [
+          "workbench-hr-agent"
+        ],
         "workflows": [
           "workflows/hiring.json"
         ]
       },
       "path": "solutions/legion-hr",
       "fileCount": 4,
-      "size": 3619,
-      "treeDigest": "9834dfee6c3c4ba3d9f9f7a139cf0d872170b1731c4180db6002e0466550f2ff",
+      "size": 3615,
+      "treeDigest": "bc599aa53b6c78584185156b4555305bed157eab01abc1562cce8aba1c006047",
       "largeAssets": [],
       "changelog": "- 首版：4 个 AI 员工、1 个常用工作流。",
       "filesRef": "index/legion-hr.json"

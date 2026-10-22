@@ -1,0 +1,37 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-hr-agent",
+  "name": "人事部 · 招聘",
+  "aliases": ["招聘工作台", "人事工作台", "hr-agent"],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "人力资源",
+  "icon": "icon-solutions",
+  "order": 270,
+  "description": "从岗位信息生成 JD 并体检歧视性用词，批量导入简历结构化，三层筛选（关键词预筛 → 硬条件门禁 → 0–4 锚定打分，证据必须是简历原话、总分由程序算），再出面试题与评分卡、邀约邮件、offer 与入职清单。",
+  "descriptionEn": "Generate a job description and check it for discriminatory wording, bulk-import resumes, screen in three layers (keywords, hard gates, 0–4 anchored scores with verbatim evidence; totals computed by code), then draft interview kits, invitations, offers and onboarding checklists.",
+  "detail": "七步：① JD 生成与体检 ② 简历批量导入与解析（JSON Resume + 中文字段）③ 三层筛选（简历没提到只判未知，不判不满足）④ 面试题与评分卡 ⑤ 邀约邮件草稿（人工确认后发送）⑥ Offer 与入职清单 ⑦ 候选人看板（寻源 / 筛选 / 面试 / Offer / 入职 / 淘汰）。",
+  "highlights": ["证据必须是简历原话", "未提及 ≠ 不满足", "总分程序算"],
+  "access": { "requiresSolutionGrant": false, "feature": null, "hidden": false },
+  "compat": { "minAppVersion": "2.0.5", "hostApi": 2 },
+  "runtime": {
+    "mode": "dynamic",
+    "runner": "workbench",
+    "route": "/workbenches/hr-agent",
+    "renderer": "src/renderer/index.mjs",
+    "main": "src/main/index.cjs",
+    "hotSwap": false,
+    "routes": [{ "path": "/workbenches/hr-agent", "name": "HrAgentWorkbench" }],
+    "entries": { "renderer": "src/renderer/index.mjs", "main": "src/main/index.cjs", "hostModules": "src/host-modules.json" }
+  },
+  "dependsOn": [],
+  "data": { "schemaVersion": 1, "paths": ["hr-agent/"], "localStorage": [] },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-hr-agent",
+    "files": ["solution.json", "README.md", "CHANGELOG.md", "THIRD_PARTY_NOTICES.md", "src/main/", "src/renderer/", "src/host-modules.json"]
+  }
+}

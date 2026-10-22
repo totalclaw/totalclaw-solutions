@@ -5,7 +5,7 @@ AI 公司的一个部门（军团）。部门 = 一组 AI 员工 + 关联工作�
 
 - 能干什么：招聘（JD、简历筛选、面试题与评分卡）、入离职、绩效、考勤与培训资料。
 - AI 员工（4）：`hr-recruiter`、`hr-performance-reviewer`、`support-recruitment-specialist`、`hr-onboarding`；负责人 `hr-recruiter`
-- 关联工作台：暂无（法务 / 人事工作台见运营中心 TODO）
+- 关联工作台：`workbench-hr-agent`
 - 常用工作流：招聘一个岗位（`workflows/hiring.json`，最终动作进老板待办：hire）
 
 清单格式见 `tools/lib/legion.mjs`。本包只有清单与工作流，不含代码。

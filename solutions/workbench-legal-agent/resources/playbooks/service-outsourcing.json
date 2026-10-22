@@ -1,0 +1,73 @@
+{
+  "id": "service-outsourcing",
+  "name": "服务 / 外包合同",
+  "version": 1,
+  "matchKeywords": [
+    "服务",
+    "外包",
+    "技术开发",
+    "咨询",
+    "维护",
+    "运维",
+    "委托"
+  ],
+  "required": [
+    "parties",
+    "payment-terms",
+    "delivery-acceptance",
+    "ip-ownership-assignment",
+    "confidentiality",
+    "breach-liability",
+    "dispute-resolution"
+  ],
+  "entries": [
+    {
+      "clauseType": "delivery-acceptance",
+      "standard": "服务内容与交付物逐项列明，验收标准可量化",
+      "acceptable": "验收期 10 个工作日",
+      "escalateWhen": "需求可由对方随时变更且不调价、验收无期限"
+    },
+    {
+      "clauseType": "payment-terms",
+      "standard": "按里程碑付款，每期对应交付物",
+      "acceptable": "首付 30% 以上",
+      "escalateWhen": "全部尾款在项目上线一年后支付"
+    },
+    {
+      "clauseType": "ip-ownership-assignment",
+      "standard": "委托开发成果归属写清楚；我方既有技术与通用组件保留所有权",
+      "acceptable": "成果归委托方，我方保留既有知识产权",
+      "escalateWhen": "全部知识产权（含既有技术）无偿归对方"
+    },
+    {
+      "clauseType": "cap-on-liability",
+      "standard": "我方责任以合同总额为上限，排除间接损失",
+      "acceptable": "上限不低于已收费用",
+      "escalateWhen": "无上限、承担间接损失与商誉损失"
+    },
+    {
+      "clauseType": "confidentiality",
+      "standard": "保密义务对等，期限 2–3 年",
+      "acceptable": "保密期 5 年以内",
+      "escalateWhen": "永久保密且违约金过高"
+    },
+    {
+      "clauseType": "non-solicit-employees",
+      "standard": "互不挖角，期限与范围合理",
+      "acceptable": "合作期内及结束后 6 个月",
+      "escalateWhen": "单方限制且期限超过 2 年"
+    },
+    {
+      "clauseType": "termination-for-convenience",
+      "standard": "任意解除需提前通知并结清已完成工作的费用",
+      "acceptable": "提前 30 日通知",
+      "escalateWhen": "对方可随时解除且不付已完成部分费用"
+    },
+    {
+      "clauseType": "personal-data",
+      "standard": "处理个人信息时明确双方角色、目的与安全措施，符合个人信息保护法",
+      "acceptable": "签署数据处理协议",
+      "escalateWhen": "要求我方承担全部数据合规责任"
+    }
+  ]
+}

@@ -58,7 +58,9 @@
     ],
     "leadRole": "legal-contract-reviewer",
     "defaultModel": null,
-    "workbenches": [],
+    "workbenches": [
+      "workbench-legal-agent"
+    ],
     "workflows": [
       "workflows/contract-review.json"
     ]

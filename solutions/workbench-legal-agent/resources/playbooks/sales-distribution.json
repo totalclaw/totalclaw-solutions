@@ -1,0 +1,79 @@
+{
+  "id": "sales-distribution",
+  "name": "买卖 / 经销合同",
+  "version": 1,
+  "matchKeywords": [
+    "买卖",
+    "采购",
+    "销售",
+    "经销",
+    "代理",
+    "供货",
+    "购销"
+  ],
+  "required": [
+    "parties",
+    "payment-terms",
+    "delivery-acceptance",
+    "quality-warranty",
+    "breach-liability",
+    "dispute-resolution",
+    "invoice-tax"
+  ],
+  "entries": [
+    {
+      "clauseType": "payment-terms",
+      "standard": "明确付款节点、金额与期限；我方为卖方时预付款或货到即付，为买方时验收合格后付款",
+      "acceptable": "账期不超过 60 天；分期付款需列明每期金额与条件",
+      "escalateWhen": "账期超过 90 天、付款以对方下游回款为条件、无明确付款期限"
+    },
+    {
+      "clauseType": "delivery-acceptance",
+      "standard": "约定交付地点、时间、运输与风险转移；验收标准客观、验收期限明确，逾期未提异议视为验收合格",
+      "acceptable": "验收期 7–15 个工作日",
+      "escalateWhen": "验收标准由对方单方决定、无验收期限、风险在验收前不转移且我方为卖方"
+    },
+    {
+      "clauseType": "quality-warranty",
+      "standard": "质量标准写明国标 / 行标或双方确认的样品；质保期与起算点明确",
+      "acceptable": "质保 12 个月内",
+      "escalateWhen": "质保超过 24 个月、质保期从对方最终用户使用起算、承担间接损失"
+    },
+    {
+      "clauseType": "breach-liability",
+      "standard": "违约金比例对等，以合同总额或未履行部分为基数，设上限",
+      "acceptable": "逾期违约金每日万分之五以内，总额不超过合同额 10%",
+      "escalateWhen": "单方违约金、每日千分之五以上、无上限、约定承担对方可得利益损失"
+    },
+    {
+      "clauseType": "exclusivity",
+      "standard": "不轻易给予独家；给予时须配最低采购量与考核",
+      "acceptable": "独家期限不超过 1 年并可因未达量解除",
+      "escalateWhen": "独家且无最低采购量、独家范围覆盖全国全渠道"
+    },
+    {
+      "clauseType": "minimum-commitment",
+      "standard": "最低采购额与市场实际相符，未达标的后果是取消独家或调整价格",
+      "acceptable": "未达标仅取消返利 / 独家",
+      "escalateWhen": "未达标需按差额赔偿"
+    },
+    {
+      "clauseType": "dispute-resolution",
+      "standard": "约定我方所在地法院管辖，或双方认可的仲裁机构",
+      "acceptable": "被告所在地法院",
+      "escalateWhen": "对方所在地法院且我方为弱势方、境外仲裁"
+    },
+    {
+      "clauseType": "invoice-tax",
+      "standard": "约定发票类型、税率与开票时点，价格注明是否含税",
+      "acceptable": "收款后 15 日内开票",
+      "escalateWhen": "不开票、税率由对方单方调整"
+    },
+    {
+      "clauseType": "termination",
+      "standard": "解除条件明确对等",
+      "acceptable": "任一方根本违约可解除",
+      "escalateWhen": "对方可任意解除而我方不可"
+    }
+  ]
+}

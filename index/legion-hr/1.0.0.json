@@ -1,7 +1,7 @@
 {
   "id": "legion-hr",
   "version": "1.0.0",
-  "treeDigest": "9834dfee6c3c4ba3d9f9f7a139cf0d872170b1731c4180db6002e0466550f2ff",
+  "treeDigest": "bc599aa53b6c78584185156b4555305bed157eab01abc1562cce8aba1c006047",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -10,13 +10,13 @@
     },
     {
       "path": "README.md",
-      "size": 896,
-      "sha256": "aba17d9b3e636a92d1b20013614498c92765ddbecd823da1a7acd5ce5a7af98d"
+      "size": 860,
+      "sha256": "026e06b88121bbb217c0ce9e2068cc55ca761796dcf38c8086ce75db559f8d16"
     },
     {
       "path": "solution.json",
-      "size": 1652,
-      "sha256": "6ab91a70493537cf09a0d76e754481bdc05b931545156a79976c4e480cbb2ebb"
+      "size": 1684,
+      "sha256": "1e58f8fca6cfb5833f654278ac1e35629ec589457ba3298fa7ddc91d79a80629"
     },
     {
       "path": "workflows/hiring.json",

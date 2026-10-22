@@ -1,0 +1,37 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-legal-agent",
+  "name": "法务部 · 合同审查",
+  "aliases": ["合同审查", "法务工作台", "legal-agent"],
+  "version": "1.0.0",
+  "kind": "workbench",
+  "category": "法务合规",
+  "icon": "icon-solutions",
+  "order": 260,
+  "description": "上传合同，按我方立场和审查模板逐条审查：风险分高中低，每条附原文位置、理由、法条依据、可直接放进合同的修改条文与退让方案；采纳后导出带修订痕迹的 Word 修订稿和审查意见书。",
+  "descriptionEn": "Upload a contract and review it clause by clause from your side's position: high/medium/low risks with source location, reasons, legal basis, ready-to-insert redlines and fallbacks; export a tracked-changes Word draft and a review opinion.",
+  "detail": "七步：① 上传与预分析（合同类型、主体、金额、期限）② 立场声明（我方是哪一方、必守项、可谈项）③ 审查模板（买卖经销 / 服务外包 / 保密 / 劳动，可改、留版本）④ 条款抽取（CUAD 41 类 + 中文常用类别，位置由程序在原文里找）⑤ 逐条审查与分级（法条做格式核对，编造的丢弃；缺失条款按模板算；框架四问）⑥ 修订建议与采纳（可改写、可推演对方反驳）⑦ 导出修订稿与意见书、两版对比。",
+  "highlights": ["原文定位由程序完成", "法条编造即丢弃", "Word 修订痕迹"],
+  "access": { "requiresSolutionGrant": false, "feature": null, "hidden": false },
+  "compat": { "minAppVersion": "2.0.5", "hostApi": 2 },
+  "runtime": {
+    "mode": "dynamic",
+    "runner": "workbench",
+    "route": "/workbenches/legal-agent",
+    "renderer": "src/renderer/index.mjs",
+    "main": "src/main/index.cjs",
+    "hotSwap": false,
+    "routes": [{ "path": "/workbenches/legal-agent", "name": "LegalAgentWorkbench" }],
+    "entries": { "renderer": "src/renderer/index.mjs", "main": "src/main/index.cjs", "hostModules": "src/host-modules.json" }
+  },
+  "dependsOn": [],
+  "data": { "schemaVersion": 1, "paths": ["legal-agent/"], "localStorage": [] },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-legal-agent",
+    "files": ["solution.json", "README.md", "CHANGELOG.md", "THIRD_PARTY_NOTICES.md", "src/main/", "src/renderer/", "src/host-modules.json", "resources/"]
+  }
+}
