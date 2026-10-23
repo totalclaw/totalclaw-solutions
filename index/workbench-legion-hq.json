@@ -1,12 +1,12 @@
 {
   "id": "workbench-legion-hq",
   "version": "1.0.0",
-  "treeDigest": "8900ec502f898658fc36e9bae43c035494346515b9cf9752412f03a568ee962f",
+  "treeDigest": "9d2bc4800ad8d9c00087df0097791a5b802025f51b33eb516a97bc7f94127256",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 3330,
-      "sha256": "82bc33a1f75dcaa27a39996df9a31242290d43e48895eb9107b8b95dc3baf0e6"
+      "size": 3536,
+      "sha256": "5d2d318d48f47456666fa7bb098c982155534a07c8ceeaad48117dfda8914e13"
     },
     {
       "path": "README.md",
@@ -160,8 +160,8 @@
     },
     {
       "path": "src/main/runner.cjs",
-      "size": 23213,
-      "sha256": "49bff2652646e9cf79d5bddf2fb958b13a7a3db38158282e97229156efc55b77"
+      "size": 23539,
+      "sha256": "064ad20a57564fcf03ce6a12243406f3b5c578732305ca27dc669d9dcf7da42e"
     },
     {
       "path": "src/main/screenServer.cjs",
@@ -193,7 +193,7 @@
     {
       "version": "1.0.0",
       "ref": "workbench-legion-hq@1.0.0",
-      "treeDigest": "8900ec502f898658fc36e9bae43c035494346515b9cf9752412f03a568ee962f",
+      "treeDigest": "9d2bc4800ad8d9c00087df0097791a5b802025f51b33eb516a97bc7f94127256",
       "filesRef": "index/workbench-legion-hq/1.0.0.json",
       "channel": "stable",
       "rollout": 100,

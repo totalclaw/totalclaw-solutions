@@ -256,6 +256,7 @@ test('派活：部门装到员工机（config.set 往返）→ 按负载派 work
   assert.match(runs[1].payload.prompt, /财务部的产出/, '下游提示词带上游产物');
   assert.match(runs[1].payload.prompt, /价格 199 元/);
   assert.equal(Object.keys(runs[0].payload)[0], 'legionHq', 'legionHq 放在 payload 最前（入站历史只截前 300 字）');
+  assert.equal(runs[0].timeoutMs, 7 * 60_000, '等结果的上限 = 步骤执行上限 6 分钟 + 1 分钟回传余量（不能比员工机执行上限短）');
   const snap = snapshot(state);
   assert.ok(snap.tasks[0].handoffs.some((x) => x.from === 'legion-finance' && x.to === 'legion-sales'));
   assert.equal(snap.inbox.length, 1);

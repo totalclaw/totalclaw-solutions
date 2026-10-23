@@ -320,6 +320,9 @@ class TaskRunner {
         targetNodeId: machine.id,
         roleId: 'worker.run',
         priority: 'normal',
+        // 等结果的上限 = 本步执行上限 + 1 分钟回传余量。不给时宿主按全局 RPC 超时（5 分钟）算，
+        // 比员工机的执行上限（6 分钟）还短：模型出字慢时员工机还在干活，主控已判失败（三实例联调实测）
+        timeoutMs: STEP_TIMEOUT_MS + 60_000,
         payload: {
           // 放在最前：子机的方案读它显示「本机正在做什么」（入站历史只截 payload 前 300 字）；worker.run 忽略此字段
           legionHq: { v: 1, taskNo: t.no, title: t.title, stepId: s.id, legionId: s.legionId, legionName: L ? L.name : s.legionId, goal: s.goal, company: this.company().short || this.company().name || '' },
