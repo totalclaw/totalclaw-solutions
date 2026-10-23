@@ -524,7 +524,7 @@ module.exports = {
           }
         }));
       }
-      return out;
+      return out.sort((a, b) => (a.nodeId === 'local' ? -1 : b.nodeId === 'local' ? 1 : String(a.name).localeCompare(String(b.name), 'zh')));
     };
     h('storage.get', async () => ({ files: storage.report(), logs: await storageNodes() }));
     h('storage.setRoot', async (p) => {
@@ -536,6 +536,7 @@ module.exports = {
         dir = r.filePaths[0];
       }
       if (dir && !require('node:path').isAbsolute(dir)) throw new Error('请填写完整的文件夹路径');
+      if (dir) dir = require('node:path').resolve(dir);
       if (dir) mkdirSync(dir, { recursive: true });
       saveSettings({ storageRoot: dir });
       // 之后的交付物 / 导出写到新位置；已有的不搬（避免大批移动出错），旧位置仍可打开查找
