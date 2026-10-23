@@ -1065,3 +1065,48 @@ test('L11 现场新建部门：AI 起草（编的角色被丢掉）→ 保存 �
     delete require.cache[path];
   }
 });
+
+test('自动演示：待办过了延时才自动批准；在办少于上限且间隔够才下令；命令轮流不连着重复；关掉后不再动作', () => {
+  const { AutoPilot, commandPool } = require('./autopilot.cjs');
+  const pool = commandPool([{ items: [{ text: 'A' }, { text: 'B', legions: ['legion-hr'] }, { text: 'A' }, { text: 'C', source: 'customer' }] }]);
+  assert.deepEqual(pool.map((c) => c.text), ['A', 'B', 'C']);
+  assert.equal(pool[2].source, 'customer');
+  let now = 0;
+  let tasks = [];
+  const sent = [];
+  const approved = [];
+  let tick = null;
+  const ap = new AutoPilot({
+    pool: () => pool,
+    tasks: () => tasks,
+    submit: (c) => { sent.push(c.text); tasks.push({ id: 't' + sent.length, status: 'running' }); },
+    approve: (id) => approved.push(id),
+    now: () => now,
+    rand: () => 0.3,
+    setInterval: (fn) => { tick = fn; return 1; },
+    clearInterval: () => { tick = null; },
+    minGapMs: 20000,
+    approveDelayMs: 6000,
+    maxActive: 2,
+  });
+  ap.start();
+  assert.equal(sent.length, 1, '开启即下第一条');
+  now = 5000; tick();
+  assert.equal(sent.length, 1, '间隔不够不下');
+  now = 21000; tick();
+  assert.equal(sent.length, 2);
+  now = 60000; tick();
+  assert.equal(sent.length, 2, '在办已达上限不下');
+  tasks[0].status = 'awaiting';
+  now = 61000; tick();
+  assert.deepEqual(approved, [], '刚进待办先不批');
+  now = 67500; tick();
+  assert.deepEqual(approved, ['t1']);
+  tasks[0].status = 'done'; tasks[1].status = 'done';
+  for (let i = 0; i < 6; i++) { now += 21000; tick(); }
+  for (let i = 1; i < sent.length; i++) assert.notEqual(sent[i], sent[i - 1], '不连着两次同一条');
+  assert.ok(new Set(sent).size === 3, '三条都轮到');
+  ap.stop();
+  assert.equal(ap.on, false);
+  assert.equal(tick, null);
+});

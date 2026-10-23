@@ -21,6 +21,7 @@ const { Fleet, cleanWorkbench } = require('./fleet.cjs');
 const { TaskRunner } = require('./runner.cjs');
 const { RoutineScheduler } = require('./routines.cjs');
 const { Director, loadScripts, validateScript } = require('./director.cjs');
+const { AutoPilot, commandPool } = require('./autopilot.cjs');
 const { ScreenServer, filePages } = require('./screenServer.cjs');
 const { EmployeeWatch } = require('./employee.cjs');
 const X = require('./extras.cjs');
@@ -221,6 +222,17 @@ module.exports = {
       onChange: (s) => ctx.emit('director', s),
     });
 
+    // 自动演示（大屏无人值守）：老板自动审批 + 持续下不同的命令（命令取自内置剧本事项）
+    const autopilot = new AutoPilot({
+      pool: () => commandPool(director.scripts().filter((x) => x.builtin)),
+      tasks: () => snapshot(state).tasks,
+      submit: (c) => runner.submit({ text: c.text, title: c.title || undefined, source: c.source, forcedLegions: c.legions && c.legions.length ? c.legions : null }),
+      approve: (taskId) => runner.confirm(taskId),
+      onChange: (on) => bus.publish('autopilot:changed', { on }),
+    });
+    if (settings().autoPilot && fleet.mode() !== 'employee') autopilot.start();
+    disposers.push(() => autopilot.stop());
+
     // ── 大屏服务 ──
     const screen = new ScreenServer({
       bus,
@@ -418,6 +430,7 @@ module.exports = {
         outputChars: settings().outputChars || 900,
         responseLocale: settings().responseLocale || '',
         screenAutoStart: !!settings().screenAutoStart,
+        autoPilot: autopilot.on,
         screenView: ['topo', 'office'].includes(settings().screenView) ? settings().screenView : 'auto',
         screenPort: settings().screenPort || null,
         terms: settings().terms === 'legion' ? 'legion' : 'department',
@@ -446,6 +459,14 @@ module.exports = {
     h('state', () => snapshot(state));
     h('employee.state', () => employee.snapshot());
     h('command', (p) => runner.submit({ text: p?.text, title: p?.title, source: p?.source || 'boss', forcedLegions: Array.isArray(p?.legions) && p.legions.length ? p.legions : null }));
+    h('autopilot.set', (p) => {
+      if (fleet.mode() === 'employee') throw new Error('本机是员工机：自动演示只在主控（或单机）上开');
+      const on = !!p?.on;
+      saveSettings({ autoPilot: on });
+      if (on) autopilot.start();
+      else autopilot.stop();
+      return { on: autopilot.on };
+    });
     h('confirm', (p) => (p?.approve === false ? runner.reject(String(p.taskId), p.comment) : runner.confirm(String(p?.taskId))));
     h('cancel', (p) => runner.cancel(String(p?.taskId)));
     h('retry', (p) => runner.retryFailed(String(p?.taskId)));

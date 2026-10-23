@@ -180,6 +180,14 @@ input,textarea{-webkit-user-select:text;user-select:text}
 #office .cat-leg{transform-box:fill-box;transform-origin:50% 0;animation:catLeg .35s ease-in-out infinite alternate}
 #office .cat-leg:nth-of-type(odd){animation-direction:alternate-reverse}
 @keyframes catLeg{from{transform:rotate(-18deg)}to{transform:rotate(18deg)}}
+/* AI 总经理：平时轻呼吸，有事在办时光圈更亮 */
+.gmfig .gm-halo{animation:gmHalo 2.4s ease-in-out infinite}
+#oGM.busy .gm-halo{animation-duration:.9s}
+@keyframes gmHalo{0%,100%{opacity:.08;transform:scale(.92)}50%{opacity:.32;transform:scale(1.08)}}
+.gmfig .gm-halo{transform-box:fill-box;transform-origin:50% 50%}
+#autoPilot{position:fixed;left:50%;top:6px;transform:translateX(-50%);padding:2px 12px;border-radius:10px;background:rgba(245,158,11,.16);border:1px solid rgba(245,158,11,.55);color:#FCD34D;font-size:12px;display:none;z-index:30}
+#autoPilot::before{content:'';display:inline-block;width:7px;height:7px;border-radius:4px;background:#F59E0B;margin-right:6px;vertical-align:1px;animation:apBlink 1.2s ease-in-out infinite}
+@keyframes apBlink{50%{opacity:.25}}
 </style></head><body>
 <div id="stage">
  <div class="top"><div id="logo">·</div><h1 id="title">…<small></small></h1>
@@ -218,7 +226,7 @@ input,textarea{-webkit-user-select:text;user-select:text}
  <div class="ft"><button class="sec" id="cancel" data-t="cancel">取消</button><button class="pri" id="save" data-t="save">保存</button></div>
 </div></div>
 <div id="rmask" class="rm"><div class="dlg"><h3 id="rTitle"></h3><label id="rAsk"></label><input id="rText" maxlength="300"><div class="ft"><button class="sec" id="rCancel"></button><button class="pri" id="rOk"></button></div></div></div>
-<div id="conn"></div><div id="rep"></div><div id="toast"></div>
+<div id="conn"></div><div id="rep"></div><div id="autoPilot"></div><div id="toast"></div>
 <div class="hint" data-t="hint">F 办公室 / 拓扑 · O 组织架构 · M 能力地图 · V 军团营地 · Esc 返回</div>
 <script>
 'use strict';
@@ -316,8 +324,9 @@ function buildTopo(groups){
  layers.dyn2=mk('g',{},svg);
  mk('circle',{cx,cy,r:84,fill:'#22D3EE',opacity:.13,filter:'url(#gl)'},svg);
  nodes.core=mk('circle',{cx,cy,r:68,fill:'url(#cg)',stroke:'#A5F3FC','stroke-width':3},svg);
- mk('text',{x:cx,y:cy-6,'text-anchor':'middle',fill:'#fff','font-size':20,'font-weight':800},svg,tr('gm'));
- mk('text',{x:cx,y:cy+16,'text-anchor':'middle',fill:'#ECFEFF','font-size':LANG==='en'?9.5:11.5},svg,tr('gmSub'));
+ drawGM(svg,cx,cy-30,1.55);
+ mk('text',{x:cx,y:cy+30,'text-anchor':'middle',fill:'#fff','font-size':18,'font-weight':800},svg,tr('gm'));
+ mk('text',{x:cx,y:cy+47,'text-anchor':'middle',fill:'#ECFEFF','font-size':LANG==='en'?9:10.5},svg,tr('gmSub'));
  layers.dyn3=mk('g',{},svg);
  for(const k of ['dyn','dyn2','dyn3'])pools[k]=new Pool(layers[k]);
 }
@@ -345,6 +354,7 @@ function renderPanels(){
  {const ls=(S.legions||[]);const by=ls.map(L=>`${LANG==='en'&&L.shortEn?L.shortEn:L.short} ${L.staff||0}`).join(' · ');$('cStaffSub').textContent=ls.length?(LANG==='en'?`in ${ls.length} depts`:`${ls.length} 个部门`):'';$('cStaff').parentElement.title=by;}$('cRun').textContent=ct.running||0;$('cDone').textContent=ct.doneToday||0;
  const bossName=c.boss&&c.boss!=='老板'?c.boss:'';$('bossChip').innerHTML=tr('bossChip',{boss:esc(bossName),n:ct.awaiting||0}).replace(/\s+·/,' ·');
  $('rep').style.display=S.replay?'block':'none';
+ {const ap=$('autoPilot');ap.style.display=S.autopilot?'block':'none';const tx=LANG==='en'?'Auto demo · boss approvals automatic':'自动演示中 · 老板自动审批';if(ap.textContent!==tx)ap.textContent=tx;}
  // 公司事务
  const list=(S.tasks||[]).slice(0,4);
  const html=list.map(t=>{const sc=ST_COLOR[t.status]||'#64748B';const src=SRC_COLOR[t.source]||'#F59E0B';
@@ -509,13 +519,33 @@ setInterval(()=>{if(VIEW_MODE!=='auto'||Date.now()<manualUntil)return;const now=
 (function(){const t=document.querySelectorAll('#vtabs span');if(LANG==='en'){t[0].textContent='Topology';t[1].textContent='Office';}})();
 const OX=18,OY=84,OG=14,ORW=(900-OX*2-OG*3)/4,ORH=(604-OY-16-OG)/2;
 function officeRoomXY(i){return [OX+(i%4)*(ORW+OG),OY+Math.floor(i/4)*(ORH+OG)];}
+// AI 总经理的拟人形象：西装 + 领带 + 耳麦（AI 的标志），(x,y) 为头部中心，s 为缩放
+function drawGM(par,x,y,s){const g=mk('g',{class:'gmfig',transform:`translate(${x} ${y}) scale(${s})`},par);
+ mk('circle',{class:'gm-halo',cx:0,cy:10,r:24,fill:'#22D3EE',opacity:.18},g);
+ mk('path',{d:'M-17 30 Q-16 14 0 13 Q16 14 17 30 Z',fill:'#1E293B',stroke:'#0F172A','stroke-width':.6},g);
+ mk('path',{d:'M-5 13.5 L0 22 L5 13.5 Z',fill:'#F8FAFC'},g);
+ mk('path',{d:'M-1.6 15 L1.6 15 L2.4 24 L0 27 L-2.4 24 Z',fill:'#DC2626'},g);
+ mk('path',{d:'M-5 13.5 L-8 20 L-2 18 Z M5 13.5 L8 20 L2 18 Z',fill:'#334155'},g);
+ mk('rect',{x:7,y:19,width:6,height:3.6,rx:1,fill:'#22D3EE'},g);
+ mk('rect',{x:-2.6,y:5,width:5.2,height:6,fill:'#F2C9A0'},g);
+ mk('ellipse',{cx:0,cy:0,rx:8.2,ry:9,fill:'#F2C9A0'},g);
+ mk('path',{d:'M-8.4 -1 Q-9 -10 0 -10.5 Q9 -10 8.4 -1 Q6 -6 1 -6.4 Q-5 -6 -8.4 -1 Z',fill:'#1F2937'},g);
+ mk('circle',{cx:-3,cy:0.5,r:1.1,fill:'#1F2937'},g);mk('circle',{cx:3,cy:0.5,r:1.1,fill:'#1F2937'},g);
+ mk('path',{d:'M-2.6 4.6 Q0 6.6 2.6 4.6',stroke:'#9A3412','stroke-width':.9,fill:'none','stroke-linecap':'round'},g);
+ mk('path',{d:'M-9 0 Q-9 -12 0 -12 Q9 -12 9 0',stroke:'#0E7490','stroke-width':1.6,fill:'none'},g);
+ mk('rect',{x:-10.6,y:-2.5,width:3.2,height:6,rx:1.4,fill:'#22D3EE'},g);mk('rect',{x:7.4,y:-2.5,width:3.2,height:6,rx:1.4,fill:'#22D3EE'},g);
+ mk('path',{d:'M-9 3 Q-8 8 -3.5 7.6',stroke:'#0E7490','stroke-width':1.1,fill:'none'},g);mk('circle',{cx:-3.2,cy:7.6,r:1.1,fill:'#22D3EE'},g);
+ return g;}
 function buildOffice(){
  const svg=$('office');svg.innerHTML='';officeRooms={};
  const ids=ORDER.slice(0,8);
  const ms=S.machines||[];
  mk('text',{x:450,y:36,'text-anchor':'middle',class:'mission',id:'oMission'},svg,'');
  // AI 总经理节点（航路起点）
- const gm=mk('g',{},svg);mk('rect',{x:450-52,y:50,width:104,height:22,rx:11,fill:'#0E7490',stroke:'#22D3EE','stroke-width':1.5},gm);mk('text',{x:450,y:65,'text-anchor':'middle',class:'ogm',fill:'#fff'},gm,LANG==='en'?'AI GM':'AI 总经理');
+ const gm=mk('g',{id:'oGM'},svg);drawGM(gm,412,54,1.05);
+ mk('rect',{x:432,y:48,width:118,height:30,rx:8,fill:'#0E7490',stroke:'#22D3EE','stroke-width':1.3},gm);
+ mk('text',{x:442,y:61,class:'ogm',fill:'#fff'},gm,LANG==='en'?'AI GM':'AI 总经理');
+ mk('text',{x:442,y:73.5,id:'oGMst',fill:'#A5F3FC','font-size':9.5},gm,tr('gmSub'));
  const defs=mk('defs',{},svg);defs.innerHTML='<filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><marker id="oArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"/></marker>';
  ids.forEach((id,i)=>{const L=LG[id];if(!L)return;const[x,y]=officeRoomXY(i);
   const g=mk('g',{class:'oroom'},svg);
@@ -618,13 +648,16 @@ function oAnchor(id){const R=officeRooms[id];return R?[R.x+ORW/2,R.y+16]:null;}
 // 按颜色生成箭头 marker（不用 context-stroke：部分 Chromium 不认，箭头会不显示）
 function oArrow(c){const id='oArr'+String(c).replace(/[^0-9a-zA-Z]/g,'');if(!document.getElementById(id)){const defs=$('office').querySelector('defs');if(defs){const m=document.createElementNS(NS,'marker');m.setAttribute('id',id);m.setAttribute('viewBox','0 0 10 10');m.setAttribute('refX','8');m.setAttribute('refY','5');m.setAttribute('markerWidth','7');m.setAttribute('markerHeight','7');m.setAttribute('orient','auto');m.setAttribute('markerUnits','userSpaceOnUse');const pa=document.createElementNS(NS,'path');pa.setAttribute('d','M0 0 L10 5 L0 10 z');pa.setAttribute('fill',c);m.appendChild(pa);defs.appendChild(m);}}return id;}
 function renderOfficeRoutes(){const layer=$('oRoutes');if(!layer)return;
- const tasks=(S.tasks||[]).filter(x=>ACTIVE.has(x.status));const now=Date.now();const lines=[];
+ const tasks=(S.tasks||[]).filter(x=>ACTIVE.has(x.status));
+ {const thinking=tasks.find(t=>t.status==='triaging'||t.status==='planning'),summing=tasks.find(t=>t.status==='summarizing');const g=$('oGM'),st=$('oGMst');
+  if(g)g.classList.toggle('busy',!!(thinking||summing||tasks.length));
+  const txt=thinking?(LANG==='en'?'Deciding departments…':'正在判断派给谁…'):summing?(LANG==='en'?'Summarizing…':'正在汇总产物…'):tasks.length?(LANG==='en'?`Overseeing ${tasks.length}`:`盯着 ${tasks.length} 件事`):tr('gmSub');if(st&&st.textContent!==txt)st.textContent=txt;}const now=Date.now();const lines=[];
  for(const t of tasks)for(const s of t.steps)if(s.status==='running'&&officeRooms[s.legionId])lines.push(['gm',s.legionId,(LG[s.legionId]||{}).color||'#22D3EE']);
  // 交接不留常驻线（全公司任务十几次交接会满屏），交接那一刻文件沿抛物线飞一次（flyDoc）
  const key=JSON.stringify(lines);if(key===oRouteKey)return;oRouteKey=key;layer.innerHTML='';
  const seen=new Set();let n=0;
  for(const [a,b,c] of lines){const k=a+'>'+b;if(seen.has(k))continue;seen.add(k);
-  const A=a==='gm'?[450,72]:oAnchor(a),B=oAnchor(b);if(!A||!B)continue;
+  const A=a==='gm'?[412,82]:oAnchor(a),B=oAnchor(b);if(!A||!B)continue;
   const d=oArc(A[0],A[1],B[0],B[1]);
   mk('path',{class:'oarc-glow',d,stroke:c},layer);
   mk('path',{class:'oarc',d,stroke:c,'marker-end':`url(#${oArrow(c)})`},layer);

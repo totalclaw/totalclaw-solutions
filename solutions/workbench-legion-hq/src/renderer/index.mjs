@@ -360,6 +360,15 @@ export default function createSolution(sdk) {
         const s = await call('settings', 'settings.save', patch);
         info.value = { ...info.value, settings: s };
       }
+      async function setAutoPilot(on) {
+        try {
+          const r = await call('screen', 'autopilot.set', { on });
+          info.value = { ...info.value, settings: { ...(info.value?.settings || {}), autoPilot: r.on } };
+          sdk.notify.success(r.on ? t('已开自动演示：老板的待办会自动批准，并持续下不同的命令') : t('已关自动演示'));
+        } catch (_) {
+          /* 错误显示在 errLine */
+        }
+      }
       async function screenStart() {
         try {
           screen.value = await call('screen', 'screen.start', port.value ? { port: Number(port.value) } : {});
@@ -625,6 +634,7 @@ export default function createSolution(sdk) {
             sc.running ? h('span', { class: 'lhq-badge on' }, t('运行中 · 端口 {p0} · {p1} 个大屏在看', { p0: sc.port, p1: sc.viewers })) : h('span', { class: 'lhq-badge' }, t('未启动')),
             sc.running ? h('button', { class: 'lhq-btn', onClick: screenRotate }, t('换口令')) : null,
             h('label', { style: 'display:flex;gap:6px;align-items:center' }, [h('input', { type: 'checkbox', checked: auto, onChange: (e) => saveSettings({ screenAutoStart: e.target.checked, screenPort: port.value ? Number(port.value) : null }) }), t('打开 App 时自动启动')]),
+            h('label', { style: 'display:flex;gap:6px;align-items:center', title: t('无人值守演示用：命令轮流取自内置剧本；同时最多 2 件在办；进老板待办的事 6 秒后自动批准') }, [h('input', { type: 'checkbox', checked: !!info.value?.settings?.autoPilot, onChange: (e) => setAutoPilot(e.target.checked) }), t('自动演示（老板自动审批、持续下不同命令）')]),
             h('label', { style: 'display:flex;gap:6px;align-items:center' }, [
               t('大屏默认画面'),
               h('select', { class: 'lhq-in', value: info.value?.settings?.screenView || 'auto', onChange: (e) => saveSettings({ screenView: e.target.value }) }, [

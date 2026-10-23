@@ -68,6 +68,9 @@ function applyEvent(state, ev) {
     case 'fleet:changed':
       state.machines = ev.machines || [];
       return true;
+    case 'autopilot:changed':
+      state.autopilot = !!ev.on;
+      return true;
     case 'screen:reset':
       Object.assign(state, { tasks: [], feed: [], stats: {}, doneToday: 0, replay: !!ev.replay });
       return true;
@@ -215,6 +218,7 @@ function snapshot(state) {
       awaiting: active.filter((t) => t.status === 'awaiting').length,
     },
     replay: state.replay,
+    autopilot: !!state.autopilot,
     lastSeq: state.lastSeq,
   };
 }
