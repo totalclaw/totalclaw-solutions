@@ -218,7 +218,7 @@ class ScreenServer {
     }
     if (!this.authorized(req, url)) {
       if (url.pathname === '/' || url.pathname === '/remote') {
-        return this.send(res, 401, '<!doctype html><meta charset="utf-8"><title>需要访问口令</title><body style="background:#050B1C;color:#94A3B8;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0"><p>需要访问口令：请在主控「AI 公司运营中心 → 指挥大屏」复制带口令的完整地址。</p>', 'text/html; charset=utf-8');
+        return this.send(res, 401, '<!doctype html><meta charset="utf-8"><title>需要访问口令</title><body style="background:#050B1C;color:#94A3B8;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0"><p>需要访问口令：请在主控「运营中心 → 指挥大屏」复制带口令的完整地址。</p>', 'text/html; charset=utf-8');
       }
       return this.send(res, 401, { error: 'UNAUTHORIZED' });
     }

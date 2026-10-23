@@ -1,12 +1,12 @@
 {
   "id": "workbench-hr-agent",
   "version": "1.0.0",
-  "treeDigest": "c9281a01438166c843eda3a36e7844ec16befd15626ee381cef537a44c4838af",
+  "treeDigest": "e50f36c385e0e0b5b03d0110294d14e17fd2a7692a2b19a8faaa700e7a15529a",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1205,
-      "sha256": "4b22c0096135d71b4c9088df376b4214c2ce3a89e7628112718aafa9e54cbf92"
+      "size": 1196,
+      "sha256": "afa298122aee693fdf1d8253e5c1894075816625e0080115594973b57b60651f"
     },
     {
       "path": "README.md",
@@ -68,13 +68,13 @@
     {
       "version": "1.0.0",
       "ref": "workbench-hr-agent@1.0.0",
-      "treeDigest": "c9281a01438166c843eda3a36e7844ec16befd15626ee381cef537a44c4838af",
+      "treeDigest": "e50f36c385e0e0b5b03d0110294d14e17fd2a7692a2b19a8faaa700e7a15529a",
       "filesRef": "index/workbench-hr-agent/1.0.0.json",
       "channel": "stable",
       "rollout": 100,
       "minAppVersion": "2.0.5",
       "hostApi": 2,
-      "publishedAt": "2026-10-22"
+      "publishedAt": "2026-10-23"
     }
   ]
 }

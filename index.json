@@ -323,7 +323,7 @@
     },
     {
       "id": "workbench-legion-hq",
-      "name": "AI 公司运营中心（军团集群指挥）",
+      "name": "运营中心（军团集群指挥）",
       "aliases": [
         "AI 公司运营中心",
         "军团指挥大屏",
@@ -392,8 +392,8 @@
       "capabilities": [],
       "path": "solutions/workbench-legion-hq",
       "fileCount": 37,
-      "size": 370673,
-      "treeDigest": "c1cffafe0125225bacdede4f06ea2cd1995615894e3983361341f95d6723247f",
+      "size": 372106,
+      "treeDigest": "b81eb2cd5fb49fde42dde400c28e6db6a1f3724521a53abf6f737224e3796a8d",
       "largeAssets": [],
       "changelog": "- 首版。8 个部门（`legion-*`）以方案包装在任意机器上，一台机器可承载多个；主控经集群通道 `config.set` 把部门装到员工机、`config.get` / `status.report` 回读装机与负载。\n- AI 总经理判定（模型要 JSON，逐条校验，失败 / 通道错误回落关键词规则）→ 计划（命中部门常用工作流则展开）→ 按负载派 `worker.run` 并发执行 → 跨部门交接带上游产物 → 汇总 → 钱 / 签约 / 对外发布 / 录用 / 重大事项进老板待办，可批准或带意见驳回重做。\n- 指挥大屏：点「启动 Web」在局域网起服务（默认 8240，被占顺延，访问口令），`/` 大屏、`/remote` 手机遥控、SSE 实时推送、断线重连；可在选定显示器全屏打开。\n- 公司档案：默认北京泰途科技有限公司（标志用 App logo），可改；演示模式隐藏真实名称、例行事务 9 条、导演台（4 个内置剧本、暂停 / 重置、录制回放）、公司能力地图（39 项，按代码估计）。\n- 子机打开本方案：显示本机承载的部门与主控派来的正在执行的任务。\n- 同日补充：机器列表只算员工机；接收员工机回传的执行阶段（宿主 task.progress）并显示员工机 status.report 里的部门任务；\n  勾选承载后员工机真正安装部门方案包（L3，宿主 legion.install）；宿主工作流页的集群工作流运行进大屏动态（E1）；按部门输出上限，剧本可用 legionConfig 按部门指定模型与输出上限（D7）；现场新建部门（L11：一句话 AI 起草，只能用已装部门的角色，人确认后保存，可分配到机器、按关键词派活）；大屏动画节点池修复：复用时清掉旧属性（旧的发光滤镜会带到下一次）、突发后收缩，加速长跑实测 60 帧、堆与节点数不随任务数增长（S9）；\n  大屏部门节点 / 军团营地显示工作台细步骤（LG7 / HR7：法务逐条审查、人事筛选 37/100，主控本机 + 员工机 status.report）；\n  大屏 / 遥控地址二维码（自写编码器，与 npm qrcode 逐模块一致）、大屏「军团营地」视图（V 键）；\n  演示公司资料包（虚构「示例科技」，开启后各部门可引用）；来信文件夹（.eml / .txt / .md 自动成为来信任务）与公司邮箱来信（宿主 IMAP 收件箱）；\n  待拍板 / 例行办完的系统通知（可同时发到老板 IM，需宿主 imRunLink.pushToImOwner）；任务产出导出为带公司抬头的 Word；剧本调优表；成本看板（演示口径估算）；\n  部门专用模型与 key（L12，派往员工机的步骤带本次专用凭据，需宿主 2026-10-22 起）；OPC 考卷 39 题（作答、按检查点打分、导出覆盖率报",
       "filesRef": "index/workbench-legion-hq.json"
@@ -1838,10 +1838,10 @@
       "capabilities": [],
       "path": "solutions/workbench-legal-agent",
       "fileCount": 17,
-      "size": 108318,
-      "treeDigest": "bc0c2faae9f9d08642f454ac48c0c6652d4ab7b87a479b96ee80e20bfd947ce8",
+      "size": 108309,
+      "treeDigest": "9c8d5d617cefdc8f782a75fcb005ff86bc12de6d54d3dad9cee4e3959a6438ee",
       "largeAssets": [],
-      "changelog": "- 首版：七步合同审查（预分析、立场、模板、条款抽取、逐条审查、修订采纳、报告归档）。\n- 原文位置由程序定位；法条格式核对（34 部常用法律）；缺失条款按模板必备项计算；框架四问。\n- 内置 4 个审查模板（买卖 / 经销、服务 / 外包、保密、劳动），可编辑、按版本留快照。\n- 导出带修订痕迹与批注的 Word 修订稿、审查意见书；对方反驳推演；两版合同对比。\n- 长时间操作期间向宿主报进度（workbenchActivity），AI 公司运营中心大屏可在对应部门节点下看到。",
+      "changelog": "- 首版：七步合同审查（预分析、立场、模板、条款抽取、逐条审查、修订采纳、报告归档）。\n- 原文位置由程序定位；法条格式核对（34 部常用法律）；缺失条款按模板必备项计算；框架四问。\n- 内置 4 个审查模板（买卖 / 经销、服务 / 外包、保密、劳动），可编辑、按版本留快照。\n- 导出带修订痕迹与批注的 Word 修订稿、审查意见书；对方反驳推演；两版合同对比。\n- 长时间操作期间向宿主报进度（workbenchActivity），运营中心大屏可在对应部门节点下看到。",
       "filesRef": "index/workbench-legal-agent.json"
     },
     {
@@ -1902,10 +1902,10 @@
       "capabilities": [],
       "path": "solutions/workbench-hr-agent",
       "fileCount": 12,
-      "size": 116436,
-      "treeDigest": "c9281a01438166c843eda3a36e7844ec16befd15626ee381cef537a44c4838af",
+      "size": 116427,
+      "treeDigest": "e50f36c385e0e0b5b03d0110294d14e17fd2a7692a2b19a8faaa700e7a15529a",
       "largeAssets": [],
-      "changelog": "- 首版：JD 生成与歧视性用词体检、简历批量导入与结构化、三层筛选、面试题与评分卡、邀约草稿与确认后发送（宿主 caseMailSender）、offer 与入职清单、候选人看板。\n- 证据核对：门禁与打分的证据必须是简历原话；简历未提及只判「未知」；总分与决定由程序计算；筛选表导出 CSV。\n- 长时间操作期间向宿主报进度（workbenchActivity），AI 公司运营中心大屏可在对应部门节点下看到。\n- 批量解析 / 筛选走集群分身（HR2）：本机是主控且有在线员工机时，每份简历的模型调用在本机与各员工机之间轮流分，员工机失败的那份回本机重做；可关。\n- 向量预筛（HR3）：按简历与岗位要求的文字相似度只保留前 80% / 60% / 40%，被筛掉的不调模型、标明原因、可手动改回。\n- 第 8 步绩效评估（HR8）：AI 起草考核目标（权重归一到 100）、按自评 / 上级评价给建议分（证据须是原话，否则作废）、上级逐项改分、程序算总分与等级（A ≥90 / B ≥75 / C ≥60 / D）、导出考核表。",
+      "changelog": "- 首版：JD 生成与歧视性用词体检、简历批量导入与结构化、三层筛选、面试题与评分卡、邀约草稿与确认后发送（宿主 caseMailSender）、offer 与入职清单、候选人看板。\n- 证据核对：门禁与打分的证据必须是简历原话；简历未提及只判「未知」；总分与决定由程序计算；筛选表导出 CSV。\n- 长时间操作期间向宿主报进度（workbenchActivity），运营中心大屏可在对应部门节点下看到。\n- 批量解析 / 筛选走集群分身（HR2）：本机是主控且有在线员工机时，每份简历的模型调用在本机与各员工机之间轮流分，员工机失败的那份回本机重做；可关。\n- 向量预筛（HR3）：按简历与岗位要求的文字相似度只保留前 80% / 60% / 40%，被筛掉的不调模型、标明原因、可手动改回。\n- 第 8 步绩效评估（HR8）：AI 起草考核目标（权重归一到 100）、按自评 / 上级评价给建议分（证据须是原话，否则作废）、上级逐项改分、程序算总分与等级（A ≥90 / B ≥75 / C ≥60 / D）、导出考核表。",
       "filesRef": "index/workbench-hr-agent.json"
     },
     {
@@ -2422,8 +2422,8 @@
       },
       "path": "solutions/legion-rd",
       "fileCount": 4,
-      "size": 4027,
-      "treeDigest": "02d0901357b557bee323faa4618b749eed70f487c5edbf2b960dea363961cdea",
+      "size": 4018,
+      "treeDigest": "009d16aa5a895c2d3d8a03830a61e5b7c521607f6e160375347091a138d7f7af",
       "largeAssets": [],
       "changelog": "- 首版：10 个 AI 员工、1 个常用工作流、关联 1 个工作台。",
       "filesRef": "index/legion-rd.json"
@@ -2506,8 +2506,8 @@
       },
       "path": "solutions/legion-legal",
       "fileCount": 4,
-      "size": 4123,
-      "treeDigest": "b0fd4d5d168803cef0602ea9d36e7a6f7ff6f98ea7cc3ddedd7eeeabb1e8c244",
+      "size": 4114,
+      "treeDigest": "fcee382662a7bc7f2fab28810016ea13a47aa700e4154371182cf05a3da5302d",
       "largeAssets": [],
       "changelog": "- 首版：5 个 AI 员工、1 个常用工作流。",
       "filesRef": "index/legion-legal.json"
@@ -2606,8 +2606,8 @@
       },
       "path": "solutions/legion-finance",
       "fileCount": 5,
-      "size": 5374,
-      "treeDigest": "a40046a67c3ae8f2b966188407a79516e44dcf458be131e50ed4f7a635d3c26a",
+      "size": 5365,
+      "treeDigest": "16e34e4587033e97d1c419c6ecb5c25937faed33aab1d7f1b4ab6ea4c46a5c62",
       "largeAssets": [],
       "changelog": "- 首版：11 个 AI 员工、2 个常用工作流、关联 4 个工作台。",
       "filesRef": "index/legion-finance.json"
@@ -2690,8 +2690,8 @@
       },
       "path": "solutions/legion-hr",
       "fileCount": 4,
-      "size": 3615,
-      "treeDigest": "bc599aa53b6c78584185156b4555305bed157eab01abc1562cce8aba1c006047",
+      "size": 3606,
+      "treeDigest": "dbafa5b78af0ddb1dfdfb773d6e39886da781b3679a07c922445b4d1bb017deb",
       "largeAssets": [],
       "changelog": "- 首版：4 个 AI 员工、1 个常用工作流。",
       "filesRef": "index/legion-hr.json"
@@ -2786,8 +2786,8 @@
       },
       "path": "solutions/legion-ops",
       "fileCount": 4,
-      "size": 4521,
-      "treeDigest": "a44840959b99673f71ea9f807be854bcc834fb1f35f8e6cc726a54bb864ab6bf",
+      "size": 4512,
+      "treeDigest": "7dcaaebfeb3c2ad414c0023e246c36caadae70a9cf823b2cf76f3361c1a4e4d3",
       "largeAssets": [],
       "changelog": "- 首版：9 个 AI 员工、1 个常用工作流、关联 5 个工作台。",
       "filesRef": "index/legion-ops.json"
@@ -2875,8 +2875,8 @@
       },
       "path": "solutions/legion-sales",
       "fileCount": 4,
-      "size": 3823,
-      "treeDigest": "fa4389324269290b41d20f36d8abe56b4db27b5d4cd8ed1b1555e84330c0be9f",
+      "size": 3814,
+      "treeDigest": "e4a9774a0a74fdad7734c04c6be2691a67afcca2d4bf8697160cb6e335c4aa99",
       "largeAssets": [],
       "changelog": "- 首版：7 个 AI 员工、1 个常用工作流、关联 5 个工作台。",
       "filesRef": "index/legion-sales.json"
@@ -2956,8 +2956,8 @@
       },
       "path": "solutions/legion-cs",
       "fileCount": 4,
-      "size": 3685,
-      "treeDigest": "9e76b3c4ffc54a99e389d24f4820ac0e2cc62c74e9b6117a5c77ce6874a36903",
+      "size": 3676,
+      "treeDigest": "15f2bc3ccccb8dfa05a5552b5900c7d7a7b3551d708856e242f8eef0dabaae5d",
       "largeAssets": [],
       "changelog": "- 首版：4 个 AI 员工、1 个常用工作流、关联 1 个工作台。",
       "filesRef": "index/legion-cs.json"
@@ -3040,8 +3040,8 @@
       },
       "path": "solutions/legion-admin",
       "fileCount": 4,
-      "size": 4016,
-      "treeDigest": "6dd4defc7756cf134e5e8fb589b70a262af9a71bdd5289cda930660a2551002b",
+      "size": 4007,
+      "treeDigest": "8c345f11994e8a7554fc527e511924bf37a1e1286a171e8261f48c3414ad7953",
       "largeAssets": [],
       "changelog": "- 首版：5 个 AI 员工、1 个常用工作流。",
       "filesRef": "index/legion-admin.json"

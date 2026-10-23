@@ -1,5 +1,5 @@
 /**
- * AI 公司运营中心 · 控制台（渲染入口，ESM，宿主经 tc-solution:// 加载）。
+ * 运营中心 · 控制台（渲染入口，ESM，宿主经 tc-solution:// 加载）。
  *
  * 主控 / 单机：分步工作台（每步独立状态，进度条吸顶常驻视口）
  *   ① 部门与机器  ② 公司信息  ③ 指挥大屏  ④ 下令与老板待办  ⑤ 例行事务  ⑥ 导演台  ⑦ 能力地图
@@ -870,7 +870,7 @@ export default function createSolution(sdk) {
         return h('div', { class: 'lhq', 'data-test': 'legion-hq' }, [
           h('div', { class: 'lhq-sticky' }, [
             h('div', { class: 'lhq-head' }, [
-              h('h2', t('AI 公司运营中心')),
+              h('h2', t('运营中心')),
               h('span', { class: 'lhq-badge on' }, { cluster: t('集群主控'), standalone: t('单机') }[info.value.mode] || info.value.mode),
               h('span', { class: `lhq-badge${screen.value.running ? ' on' : ''}` }, screen.value.running ? t('大屏运行中') : t('大屏未启动')),
               h('span', { class: 'lhq-badge' }, t('进行中 {p0} · 今日完成 {p1}', { p0: c.running || 0, p1: c.doneToday || 0 })),

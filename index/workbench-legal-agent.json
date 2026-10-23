@@ -1,12 +1,12 @@
 {
   "id": "workbench-legal-agent",
   "version": "1.0.0",
-  "treeDigest": "bc0c2faae9f9d08642f454ac48c0c6652d4ab7b87a479b96ee80e20bfd947ce8",
+  "treeDigest": "9c8d5d617cefdc8f782a75fcb005ff86bc12de6d54d3dad9cee4e3959a6438ee",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 685,
-      "sha256": "0070cc718867a3b726ea1e25b8685afa88f25f6be27d384a88a7019fafad4095"
+      "size": 676,
+      "sha256": "ecab4bdd854404e2b2d5c22925fe08226bfead59ea479d86b8aab29bc33e504d"
     },
     {
       "path": "README.md",
@@ -93,13 +93,13 @@
     {
       "version": "1.0.0",
       "ref": "workbench-legal-agent@1.0.0",
-      "treeDigest": "bc0c2faae9f9d08642f454ac48c0c6652d4ab7b87a479b96ee80e20bfd947ce8",
+      "treeDigest": "9c8d5d617cefdc8f782a75fcb005ff86bc12de6d54d3dad9cee4e3959a6438ee",
       "filesRef": "index/workbench-legal-agent/1.0.0.json",
       "channel": "stable",
       "rollout": 100,
       "minAppVersion": "2.0.5",
       "hostApi": 2,
-      "publishedAt": "2026-10-22"
+      "publishedAt": "2026-10-23"
     }
   ]
 }

@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI 公司运营中心</title>
-<!-- 指挥大屏（S4）：由主控「AI 公司运营中心」方案的大屏服务下发。数据只来自 /api/state 与 /api/events，不编造。
+<title>运营中心</title>
+<!-- 指挥大屏（S4）：由主控「运营中心」方案的大屏服务下发。数据只来自 /api/state 与 /api/events，不编造。
      i18n-ignore-file：独立静态页，中英两套文案在本文件 I18N 表里，不进宿主词典。 -->
 <style>
 *{box-sizing:border-box}
@@ -67,7 +67,13 @@ html,body{margin:0;height:100%;background:#050B1C;font-family:"Microsoft YaHei",
 .lrow{display:grid;grid-template-columns:70px 1fr 100px;align-items:center;gap:8px;font-size:12.5px;margin-bottom:3px}
 .lrow .bar{height:9px;border-radius:5px}.lrow .bar i{border-radius:5px;transition:width .3s}
 .lrow em{font-style:normal;color:#94A3B8;font-size:11.5px;text-align:right}
-#mload{overflow:auto;max-height:160px}
+#mload{overflow:auto;max-height:160px;scrollbar-width:none}
+#mload::-webkit-scrollbar{display:none}
+#mload.many .mach{padding:3px 0;gap:8px}
+#mload.many .mach .nm{width:170px;font-size:13px}
+#mload.many .mach .ip{display:inline;margin-left:6px}
+#mload.many .mach .hs{flex-wrap:nowrap;overflow:hidden}
+#mload.many .mach .hs span{white-space:nowrap}
 .mach{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px dashed #1E3A6E}
 .mach .nm{font-size:14px;font-weight:700;width:96px;flex:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mach .ip{font-size:11px;color:#64748B;display:block;font-weight:400}
@@ -197,7 +203,9 @@ function connect(){
  es.onopen=()=>{setConn(true);};
  es.onerror=()=>{setConn(false);if(es.readyState===2){const d=Math.min(30000,1000*Math.pow(2,retry++));setTimeout(connect,d);}};
 }
-setInterval(()=>{if(Date.now()-lastMsg>40000){setConn(false);connect();lastMsg=Date.now();}},5000);// 心跳 15 秒，40 秒没消息视为断开
+setInterval(()=>{if(Date.now()-lastMsg>40000){setConn(false);connect();lastMsg=Date.now();}},5000);
+// 机器负载放不下时（员工机很多）每 3 秒往下翻一行、到底回顶：大屏上没人滚动
+setInterval(()=>{const el=$('mload');if(!el||el.scrollHeight<=el.clientHeight+2)return;const row=(el.querySelector('.mach')||{}).offsetHeight||36;el.scrollTop=el.scrollTop+el.clientHeight>=el.scrollHeight-2?0:el.scrollTop+row;},3000);// 心跳 15 秒，40 秒没消息视为断开
 function setConn(ok){const c=$('conn');c.textContent=tr('lost');c.style.display=ok?'none':'block';}
 
 function onEvent(ev){
@@ -220,7 +228,7 @@ function relayout(){
  const groups=[...remote,...local].map(m=>({m,ids:S.legions.filter(L=>placed.get(L.id)===m.id).map(L=>L.id)})).filter(g=>g.ids.length);
  const rest=S.legions.filter(L=>!placed.has(L.id)).map(L=>L.id);
  ORDER=[...groups.flatMap(g=>g.ids),...rest];
- const key=JSON.stringify([ORDER,groups.map(g=>[g.m.id,g.m.name,g.m.ip,g.ids]),S.legions.map(L=>[L.id,L.color,L.name])]);
+ const key=JSON.stringify([ORDER,groups.map(g=>[g.m.id,g.m.name,g.m.ip,g.ids]),ms.map(m=>[m.id,m.name,m.online,m.hosts]),S.legions.map(L=>[L.id,L.color,L.name])]);
  if(key===layoutKey)return;layoutKey=key;
  LG={};ORDER.forEach((id,i)=>{const L=S.legions.find(x=>x.id===id);LG[id]={...L,i,placed:placed.has(id)};});
  buildTopo(groups);
@@ -231,16 +239,21 @@ const hub=i=>[cx+R*Math.cos(ang(i)),cy+R*Math.sin(ang(i))];
 const arcPath=(r,a1,a2)=>{const p=a=>[cx+r*Math.cos(a),cy+r*Math.sin(a)];const[x1,y1]=p(a1),[x2,y2]=p(a2);return `M${x1} ${y1} A ${r} ${r} 0 ${a2-a1>Math.PI?1:0} 1 ${x2} ${y2}`;};
 let nodes={},layers={};
 function buildTopo(groups){
- const svg=$('topo');svg.innerHTML='';nodes={};
+ const svg=$('topo');svg.innerHTML='';nodes={};const ms=S.machines||[];
  const defs=mk('defs',{},svg);defs.innerHTML='<filter id="gl"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><radialGradient id="cg" cx="50%" cy="40%"><stop offset="0" stop-color="#67E8F9"/><stop offset="1" stop-color="#0E7490"/></radialGradient>';
  [110,190].forEach(r=>mk('circle',{cx,cy,r,fill:'none',stroke:'#22D3EE',opacity:.1},svg));
  const n=N();
  groups.forEach(g=>{const idx=g.ids.map(id=>LG[id].i);const a1=ang(Math.min(...idx))-(n>1?.3:Math.PI),a2=ang(Math.max(...idx))+(n>1?.3:Math.PI-.01);
   mk('path',{d:arcPath(R+72,a1,a2),fill:'none',stroke:'#1E3A6E','stroke-width':20,'stroke-linecap':'round',opacity:.8},svg);
-  const mid=(a1+a2)/2;const right=Math.cos(mid)>=0;const lx=cx+(R+110)*Math.cos(mid),ly=cy+(R+110)*Math.sin(mid);
-  const lab=mk('text',{x:lx,y:ly,'text-anchor':Math.abs(Math.cos(mid))<.3?'middle':right?'start':'end','font-size':13,fill:'#64748B'},svg,g.m.name);
-  mk('text',{x:lx,y:ly+16,'text-anchor':lab.getAttribute('text-anchor'),'font-size':11,fill:'#475569'},svg,g.m.ip||'');
-  nodes['m:'+g.m.id]=lab;});
+  // 标签位置不出画面（viewBox 高 604，底部的标签原来落到 640 以外）
+  const mid=(a1+a2)/2;const right=Math.cos(mid)>=0;const lx=cx+(R+110)*Math.cos(mid),ly=Math.max(18,Math.min(584,cy+(R+110)*Math.sin(mid)));
+  // 同一组部门也装在别的机器上（多台分摊）：标签列出全部承载机器，免得那几台在拓扑上「消失」
+  const hostsOf=ms.filter(m=>m.online!==false&&(m.hosts||[]).some(id=>g.ids.includes(id))).sort((a,b)=>(a.local?1:0)-(b.local?1:0)||(a.id===g.m.id?-1:b.id===g.m.id?1:0));
+  const names=hostsOf.map(m=>m.name);
+  const label=names.length>2?(LANG==='en'?`${names[0]} +${names.length-1}`:`${names[0]} 等 ${names.length} 台`):names.join(' · ')||g.m.name;
+  const lab=mk('text',{x:lx,y:ly,'text-anchor':Math.abs(Math.cos(mid))<.3?'middle':right?'start':'end','font-size':13,fill:'#64748B'},svg,label);
+  mk('text',{x:lx,y:ly+16,'text-anchor':lab.getAttribute('text-anchor'),'font-size':11,fill:'#475569'},svg,hostsOf.length>1?hostsOf.map(m=>m.ip).filter(Boolean).slice(0,2).join(' · ')+(hostsOf.length>2?' …':''):(g.m.ip||''));
+  for(const m of hostsOf.length?hostsOf:[g.m])if(!nodes['m:'+m.id])nodes['m:'+m.id]=lab;});
  ORDER.forEach(id=>{const[x,y]=hub(LG[id].i);mk('line',{x1:cx,y1:cy,x2:x,y2:y,stroke:'#334155','stroke-width':2,'stroke-dasharray':'6 6'},svg);});
  layers.dyn=mk('g',{},svg);
  ORDER.forEach(id=>{const L=LG[id];const[x,y]=hub(L.i);const g=mk('g',{},svg);
@@ -275,8 +288,8 @@ function companyName(){const c=S.company||{};return c.short||c.name||'';}
 function renderPanels(){
  const c=S.company||{};
  const logo=$('logo');logo.classList.toggle('img',!!c.logoImage);if(c.logoImage){if(!logo.querySelector('img'))logo.innerHTML='<img alt="">';const im=logo.querySelector('img');if(im.src!==c.logoImage)im.src=c.logoImage;}else logo.textContent=c.logo||companyName().slice(0,1)||'·';
- $('title').innerHTML=`${esc(companyName())}<small>${LANG==='en'?'AI Company Operations Center':'AI 公司运营中心'}${c.industry?' · '+esc(c.industry):''}</small>`;
- document.title=`${companyName()} · ${LANG==='en'?'AI Company Operations Center':'AI 公司运营中心'}`;
+ $('title').innerHTML=`${esc(companyName())}<small>${LANG==='en'?'Operations Center':'运营中心'}${c.industry?' · '+esc(c.industry):''}</small>`;
+ document.title=`${companyName()} · ${LANG==='en'?'Operations Center':'运营中心'}`;
  const ct=S.counters||{};$('cStaff').textContent=ct.staff||0;$('cRun').textContent=ct.running||0;$('cDone').textContent=ct.doneToday||0;
  const bossName=c.boss&&c.boss!=='老板'?c.boss:'';$('bossChip').innerHTML=tr('bossChip',{boss:esc(bossName),n:ct.awaiting||0}).replace(/\s+·/,' ·');
  $('rep').style.display=S.replay?'block':'none';
@@ -305,7 +318,7 @@ function renderPanels(){
  // 机器负载
  const mh=(S.machines||[]).map(m=>{const hs=m.hosts.length?m.hosts.filter(id=>LG[id]).map(id=>{const L=LG[id];const on=(S.tasks||[]).some(t=>ACTIVE.has(t.status)&&t.steps.some(s=>s.legionId===id&&s.status==='running'&&s.machine===m.name));return `<span class="${on?'on':''}" style="border-color:${L.color};${on?`background:${L.color}`:`color:${L.color}`}">${esc(L.short)}</span>`}).join(''):(m.local?`<span class="on" style="border-color:#22D3EE;background:#0E7490">${LANG==='en'?'AI GM: triage / summary':'AI 总经理：判定 / 汇总'}</span>`:'');
   return `<div class="mach${m.online?'':' off'}"><div class="nm">${esc(m.name)}<span class="ip">${esc(m.ip||'')}</span></div><div class="hs">${hs}</div><div class="ld">${m.busy?tr('runN',{n:m.busy}):tr('free')}</div></div>`}).join('');
- if(mh!==lastM){$('mload').innerHTML=mh;lastM=mh;}
+ if(mh!==lastM){$('mload').innerHTML=mh;lastM=mh;$('mload').classList.toggle('many',(S.machines||[]).length>3);}
 }
 
 // ── 每帧动画 ──

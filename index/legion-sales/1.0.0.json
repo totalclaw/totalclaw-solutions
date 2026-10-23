@@ -1,7 +1,7 @@
 {
   "id": "legion-sales",
   "version": "1.0.0",
-  "treeDigest": "fa4389324269290b41d20f36d8abe56b4db27b5d4cd8ed1b1555e84330c0be9f",
+  "treeDigest": "e4a9774a0a74fdad7734c04c6be2691a67afcca2d4bf8697160cb6e335c4aa99",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -10,8 +10,8 @@
     },
     {
       "path": "README.md",
-      "size": 1061,
-      "sha256": "a1b1d976b0ad3b2651899b4b1947cc748dae28467cb5dab609e95237a8fac3a6"
+      "size": 1052,
+      "sha256": "009c37502e8950a38696959501f6c7b827e6894ed8f1a6258e4f356648ddbf1b"
     },
     {
       "path": "solution.json",

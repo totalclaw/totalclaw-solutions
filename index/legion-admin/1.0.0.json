@@ -1,7 +1,7 @@
 {
   "id": "legion-admin",
   "version": "1.0.0",
-  "treeDigest": "6dd4defc7756cf134e5e8fb589b70a262af9a71bdd5289cda930660a2551002b",
+  "treeDigest": "8c345f11994e8a7554fc527e511924bf37a1e1286a171e8261f48c3414ad7953",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -10,8 +10,8 @@
     },
     {
       "path": "README.md",
-      "size": 1045,
-      "sha256": "5f75db767df36038373a8188ab33a04bdb845b085a0755574a75b942178c01be"
+      "size": 1036,
+      "sha256": "335bd5baa8651ba7c7c11213f5b0b93f061c401a1a247c10669dfee58ddbe35c"
     },
     {
       "path": "solution.json",

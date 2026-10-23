@@ -1,7 +1,7 @@
 {
   "id": "legion-hr",
   "version": "1.0.0",
-  "treeDigest": "bc599aa53b6c78584185156b4555305bed157eab01abc1562cce8aba1c006047",
+  "treeDigest": "dbafa5b78af0ddb1dfdfb773d6e39886da781b3679a07c922445b4d1bb017deb",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -10,8 +10,8 @@
     },
     {
       "path": "README.md",
-      "size": 860,
-      "sha256": "026e06b88121bbb217c0ce9e2068cc55ca761796dcf38c8086ce75db559f8d16"
+      "size": 851,
+      "sha256": "6e8b6d715b62cf829b00a61eb31e760805baac79cc8ee8fe29a424f41c0ae38e"
     },
     {
       "path": "solution.json",
@@ -28,13 +28,13 @@
     {
       "version": "1.0.0",
       "ref": "legion-hr@1.0.0",
-      "treeDigest": "bc599aa53b6c78584185156b4555305bed157eab01abc1562cce8aba1c006047",
+      "treeDigest": "dbafa5b78af0ddb1dfdfb773d6e39886da781b3679a07c922445b4d1bb017deb",
       "filesRef": "index/legion-hr/1.0.0.json",
       "channel": "stable",
       "rollout": 100,
       "minAppVersion": "2.0.5",
       "hostApi": 1,
-      "publishedAt": "2026-10-22"
+      "publishedAt": "2026-10-23"
     }
   ]
 }

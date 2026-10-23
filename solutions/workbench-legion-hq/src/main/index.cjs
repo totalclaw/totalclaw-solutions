@@ -1,5 +1,5 @@
 /**
- * AI 公司运营中心（军团集群指挥）主进程入口（hostApi=2，手写 CommonJS，不经 qiye-app solutions-build）。
+ * 运营中心（军团集群指挥）主进程入口（hostApi=2，手写 CommonJS，不经 qiye-app solutions-build）。
  *
  * 宿主能力只经 ctx.host.deps（IpcDeps）取：
  *   clusterDiscoveryProc   集群节点 / 跨机派发（worker.run、config.get/set、cluster.cancel）
@@ -696,7 +696,7 @@ module.exports = {
         ...((t.plan?.steps || []).length > 1
           ? t.plan.steps.flatMap((s) => [{ text: `${name(s.legionId)}：${s.goal}`, style: 'h2' }, { text: t.outputs?.[s.id]?.error ? `（未完成：${t.outputs[s.id].error}）` : t.outputs?.[s.id]?.text || '' }])
           : []),
-        { text: `由「${co.short || co.name} · AI 公司运营中心」生成；涉及付款、签约、对外发布、录用的最终动作需老板确认。`, style: 'note' },
+        { text: `由「${co.short || co.name} · 运营中心」生成；涉及付款、签约、对外发布、录用的最终动作需老板确认。`, style: 'note' },
       ].filter(Boolean);
       const buf = buildDocx(blocks);
       const fileName = `${(co.short || co.name).replace(/[\\/:*?"<>|]/g, '')}-${t.title.replace(/[\\/:*?"<>|]/g, '_').slice(0, 30)}.docx`;

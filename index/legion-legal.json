@@ -1,7 +1,7 @@
 {
   "id": "legion-legal",
   "version": "1.0.0",
-  "treeDigest": "b0fd4d5d168803cef0602ea9d36e7a6f7ff6f98ea7cc3ddedd7eeeabb1e8c244",
+  "treeDigest": "fcee382662a7bc7f2fab28810016ea13a47aa700e4154371182cf05a3da5302d",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -10,8 +10,8 @@
     },
     {
       "path": "README.md",
-      "size": 943,
-      "sha256": "3dd9b9841c810d02fbac29416e98f7d6d51c62814c4dc65c575ac8980ed0fdb4"
+      "size": 934,
+      "sha256": "99065052053c98ea326cec5b418d0354c03e2c7911e42742e03cb3f2e4f76ce7"
     },
     {
       "path": "solution.json",
@@ -28,13 +28,13 @@
     {
       "version": "1.0.0",
       "ref": "legion-legal@1.0.0",
-      "treeDigest": "b0fd4d5d168803cef0602ea9d36e7a6f7ff6f98ea7cc3ddedd7eeeabb1e8c244",
+      "treeDigest": "fcee382662a7bc7f2fab28810016ea13a47aa700e4154371182cf05a3da5302d",
       "filesRef": "index/legion-legal/1.0.0.json",
       "channel": "stable",
       "rollout": 100,
       "minAppVersion": "2.0.5",
       "hostApi": 1,
-      "publishedAt": "2026-10-22"
+      "publishedAt": "2026-10-23"
     }
   ]
 }

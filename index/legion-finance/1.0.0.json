@@ -1,7 +1,7 @@
 {
   "id": "legion-finance",
   "version": "1.0.0",
-  "treeDigest": "a40046a67c3ae8f2b966188407a79516e44dcf458be131e50ed4f7a635d3c26a",
+  "treeDigest": "16e34e4587033e97d1c419c6ecb5c25937faed33aab1d7f1b4ab6ea4c46a5c62",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -10,8 +10,8 @@
     },
     {
       "path": "README.md",
-      "size": 1283,
-      "sha256": "016c5c5dbb3920969ea31d3509f57f7c4bd9f9446df028271746a68718e2bf5b"
+      "size": 1274,
+      "sha256": "77564e80ba6b53abdce6a44feec8f4c73283a2dc2c03f9c445f404c6ca6156d7"
     },
     {
       "path": "solution.json",

@@ -1,7 +1,7 @@
 {
   "id": "legion-ops",
   "version": "1.0.0",
-  "treeDigest": "a44840959b99673f71ea9f807be854bcc834fb1f35f8e6cc726a54bb864ab6bf",
+  "treeDigest": "7dcaaebfeb3c2ad414c0023e246c36caadae70a9cf823b2cf76f3361c1a4e4d3",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -10,8 +10,8 @@
     },
     {
       "path": "README.md",
-      "size": 1212,
-      "sha256": "dd09515598d6510db79d7688a5642ce7d9ad8871cc25db1a1639ea8183686cb1"
+      "size": 1203,
+      "sha256": "eb22a5cf83e64360886d3f5e607e12a958bdd77ab282e75774844651311accc4"
     },
     {
       "path": "solution.json",
@@ -28,13 +28,13 @@
     {
       "version": "1.0.0",
       "ref": "legion-ops@1.0.0",
-      "treeDigest": "a44840959b99673f71ea9f807be854bcc834fb1f35f8e6cc726a54bb864ab6bf",
+      "treeDigest": "7dcaaebfeb3c2ad414c0023e246c36caadae70a9cf823b2cf76f3361c1a4e4d3",
       "filesRef": "index/legion-ops/1.0.0.json",
       "channel": "stable",
       "rollout": 100,
       "minAppVersion": "2.0.5",
       "hostApi": 1,
-      "publishedAt": "2026-10-22"
+      "publishedAt": "2026-10-23"
     }
   ]
 }

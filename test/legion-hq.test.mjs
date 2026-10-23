@@ -1,4 +1,4 @@
-// AI 公司运营中心（workbench-legion-hq）主进程核心：判定 / 计划 / 执行 / 快照 / 公司档案 / 例行 / 剧本 / 大屏服务 / 子机视角
+// 运营中心（workbench-legion-hq）主进程核心：判定 / 计划 / 执行 / 快照 / 公司档案 / 例行 / 剧本 / 大屏服务 / 子机视角
 import assert from 'node:assert/strict';
 import { EventEmitter } from 'node:events';
 import { mkdtempSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
@@ -549,7 +549,7 @@ test('activate：用假 ctx 跑通入口（无宿主 deps = 单机、无模型�
     const scr = await handlers.get('screen.start')({ port: 18280 });
     assert.ok(scr.running);
     const page = await fetch(`http://127.0.0.1:${scr.port}/?t=${scr.token}`);
-    assert.match(await page.text(), /AI 公司运营中心/);
+    assert.match(await page.text(), /运营中心/);
     assert.ok((await handlers.get('coverage')()).items.length === 39);
     assert.ok(emitted.some(([e]) => e === 'event'));
   } finally {

@@ -1,7 +1,7 @@
 {
   "id": "legion-rd",
   "version": "1.0.0",
-  "treeDigest": "02d0901357b557bee323faa4618b749eed70f487c5edbf2b960dea363961cdea",
+  "treeDigest": "009d16aa5a895c2d3d8a03830a61e5b7c521607f6e160375347091a138d7f7af",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -10,8 +10,8 @@
     },
     {
       "path": "README.md",
-      "size": 1036,
-      "sha256": "64050e95b7796c4c2fffd7e4896d1999933b974129e200457f43447074ad74c9"
+      "size": 1027,
+      "sha256": "417cb1870b85afa372c0257ec7e108c126c45f6d2dd4039b4a97772a043870ee"
     },
     {
       "path": "solution.json",

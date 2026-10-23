@@ -70,7 +70,7 @@ test/                    node:test
 | kit-automation-ops | 自动化运营控制台 | kit |
 | oneclick-video / daizhang-accounting / dev-pipeline / website-test | 市场流水线包 | runner / pipeline |
 | demo-dynamic-workbench | 动态方案样例（开发者模板，hidden） | workbench（dynamic） |
-| workbench-legion-hq | AI 公司运营中心（军团集群指挥，含内网指挥大屏） | workbench（dynamic，hostApi 2） |
+| workbench-legion-hq | 运营中心（军团集群指挥，含内网指挥大屏） | workbench（dynamic，hostApi 2） |
 | workbench-legal-agent | 法务部 · 合同审查（七步，原文定位、法条格式核对、Word 修订稿） | workbench（dynamic，hostApi 2） |
 | workbench-hr-agent | 人事部 · 招聘（JD 体检、三层筛选、面试 / 邀约 / offer / 入职） | workbench（dynamic，hostApi 2） |
 | legion-rd / legal / finance / hr / ops / sales / cs / admin | 8 个 AI 部门（军团），由运营中心按需派活 | legion（hidden，清单 + 工作流） |

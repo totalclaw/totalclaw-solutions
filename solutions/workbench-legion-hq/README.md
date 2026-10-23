@@ -1,4 +1,4 @@
-# AI 公司运营中心（workbench-legion-hq）
+# 运营中心（workbench-legion-hq）
 
 一个老板 + 一家 AI 公司。8 个 AI 部门（`legion-rd / legal / finance / hr / ops / sales / cs / admin`）是独立的方案包，**和机器解耦**：装在哪台机器上都行，一台机器可以承载多个部门。本方案是主控上的「总指挥」：判定 → 派活 → 交接 → 汇总 → 老板拍板，并提供局域网指挥大屏。
 
