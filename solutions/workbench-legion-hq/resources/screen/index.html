@@ -148,7 +148,7 @@ input,textarea{-webkit-user-select:text;user-select:text}
 #office .oarc{fill:none;stroke-width:1.8;stroke-linecap:round;opacity:.75}
 #office .oarc-glow{fill:none;stroke-width:6;opacity:.1}
 @keyframes oFlow{to{stroke-dashoffset:-16}}
-#office .ogm{font-size:12px;font-weight:700}
+#office .ogm{font-size:13.5px;font-weight:800}
 #office .rm-title{font-size:13px;font-weight:700}
 #office .rm-sub{font-size:10.5px;fill:#64748B}
 #office .tag{opacity:0}#office .dk.w .tag{opacity:1}
@@ -517,7 +517,7 @@ setInterval(()=>{if(VIEW_MODE!=='auto'||Date.now()<manualUntil)return;const now=
  let want;if(now<autoTopoUntil)want='topo';else if(busy)want='office';else{const ph=Math.floor((now-idleSince)/1000)%60;want=ph<40?'office':'topo';}
  if((want==='office')!==OFFICE)setView(want);},1000);
 (function(){const t=document.querySelectorAll('#vtabs span');if(LANG==='en'){t[0].textContent='Topology';t[1].textContent='Office';}})();
-const OX=18,OY=84,OG=14,ORW=(900-OX*2-OG*3)/4,ORH=(604-OY-16-OG)/2;
+const OX=18,OY=102,OG=14,ORW=(900-OX*2-OG*3)/4,ORH=(604-OY-16-OG)/2;
 function officeRoomXY(i){return [OX+(i%4)*(ORW+OG),OY+Math.floor(i/4)*(ORH+OG)];}
 // AI 总经理的拟人形象：西装 + 领带 + 耳麦（AI 的标志），(x,y) 为头部中心，s 为缩放
 function drawGM(par,x,y,s){const g=mk('g',{class:'gmfig',transform:`translate(${x} ${y}) scale(${s})`},par);
@@ -540,12 +540,13 @@ function buildOffice(){
  const svg=$('office');svg.innerHTML='';officeRooms={};
  const ids=ORDER.slice(0,8);
  const ms=S.machines||[];
- mk('text',{x:450,y:36,'text-anchor':'middle',class:'mission',id:'oMission'},svg,'');
+ mk('text',{x:450,y:26,'text-anchor':'middle',class:'mission',id:'oMission'},svg,'');
  // AI 总经理节点（航路起点）
- const gm=mk('g',{id:'oGM'},svg);drawGM(gm,412,54,1.05);
- mk('rect',{x:432,y:48,width:118,height:30,rx:8,fill:'#0E7490',stroke:'#22D3EE','stroke-width':1.3},gm);
- mk('text',{x:442,y:61,class:'ogm',fill:'#fff'},gm,LANG==='en'?'AI GM':'AI 总经理');
- mk('text',{x:442,y:73.5,id:'oGMst',fill:'#A5F3FC','font-size':9.5},gm,tr('gmSub'));
+ const gm=mk('g',{id:'oGM'},svg);
+ mk('rect',{x:452,y:52,width:132,height:36,rx:9,fill:'#0E7490',stroke:'#22D3EE','stroke-width':1.4},gm);
+ mk('text',{x:464,y:67,class:'ogm',fill:'#fff'},gm,LANG==='en'?'AI GM':'AI 总经理');
+ mk('text',{x:464,y:81,id:'oGMst',fill:'#A5F3FC','font-size':10.5},gm,tr('gmSub'));
+ drawGM(gm,424,56,1.42);
  const defs=mk('defs',{},svg);defs.innerHTML='<filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><marker id="oArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"/></marker>';
  ids.forEach((id,i)=>{const L=LG[id];if(!L)return;const[x,y]=officeRoomXY(i);
   const g=mk('g',{class:'oroom'},svg);
@@ -657,7 +658,7 @@ function renderOfficeRoutes(){const layer=$('oRoutes');if(!layer)return;
  const key=JSON.stringify(lines);if(key===oRouteKey)return;oRouteKey=key;layer.innerHTML='';
  const seen=new Set();let n=0;
  for(const [a,b,c] of lines){const k=a+'>'+b;if(seen.has(k))continue;seen.add(k);
-  const A=a==='gm'?[412,82]:oAnchor(a),B=oAnchor(b);if(!A||!B)continue;
+  const A=a==='gm'?[424,98]:oAnchor(a),B=oAnchor(b);if(!A||!B)continue;
   const d=oArc(A[0],A[1],B[0],B[1]);
   mk('path',{class:'oarc-glow',d,stroke:c},layer);
   mk('path',{class:'oarc',d,stroke:c,'marker-end':`url(#${oArrow(c)})`},layer);
