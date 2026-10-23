@@ -30,6 +30,19 @@ function firstLine(s, n = 60) {
   return line ? (line.length > n ? `${line.slice(0, n)}…` : line) : '';
 }
 
+/**
+ * 传输层报错翻成人话：原文带 taskId 和节点 id（总线脱敏会把节点 id 当密钥打成「[密钥]」，看着像出了安全问题）。
+ * 认不出的原样返回。
+ */
+function humanizeStepError(msg, machineName) {
+  const m = String(msg || '');
+  const who = machineName || '员工机';
+  const timeout = /RPC 超时（(\d+)ms）/.exec(m);
+  if (timeout) return `${who}在 ${Math.round(Number(timeout[1]) / 60000)} 分钟内没交回结果（模型太慢或卡住），这一步没办完`;
+  if (/连接在收到结果前关闭|ECONNRESET|socket hang up/i.test(m)) return `${who}连接断开（可能关机或退出了），这一步没办完`;
+  return m;
+}
+
 class TaskRunner {
   /**
    * @param {object} o
@@ -280,7 +293,7 @@ class TaskRunner {
           this.publish(t, 'node:progress', { stepId: s.id, phase: `${machine.name}不可用，换机` });
           continue;
         }
-        t.outputs[s.id] = { error: msg, machine: machine.name };
+        t.outputs[s.id] = { error: humanizeStepError(msg, machine.name), machine: machine.name };
         this.publish(t, 'node:failed', { stepId: s.id, legionId: s.legionId, error: msg });
         return false;
       } finally {
@@ -529,4 +542,4 @@ class TaskRunner {
   }
 }
 
-module.exports = { TaskRunner, clip, firstLine };
+module.exports = { humanizeStepError, TaskRunner, clip, firstLine };

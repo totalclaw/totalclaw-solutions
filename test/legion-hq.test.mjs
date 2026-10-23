@@ -333,6 +333,31 @@ test('重办：已交上来的部门成果保留，只重派失败的那步', as
   assert.match(cluster.calls.at(-1).payload.prompt, /第一步成果/, '重派的那步拿到上游已有成果');
 });
 
+test('员工机字母按第一次见到的顺序落盘：主控重启（新 Fleet）后同一台还叫原来的名字；新机器接在后面', async () => {
+  let place = { local: [] };
+  const mk = (nodes) => {
+    const cluster = fakeCluster({ nodes });
+    return new Fleet({ proc: () => cluster.proc, readPlacement: () => place, writePlacement: (p) => (place = p), installedIds: () => LEGIONS.map((L) => L.id) });
+  };
+  const f1 = mk([{ nodeId: 'X', host: '10.0.0.2' }, { nodeId: 'Y', host: '10.0.0.3' }]);
+  await f1.refresh();
+  const name = (f, id) => f.machines().find((m) => m.id === id).name;
+  assert.equal(name(f1, 'X'), '员工机 A');
+  assert.equal(name(f1, 'Y'), '员工机 B');
+  const f2 = mk([{ nodeId: 'Y', host: '10.0.0.3' }, { nodeId: 'Z', host: '10.0.0.4' }, { nodeId: 'X', host: '10.0.0.2' }]); // 重启后上线顺序变了
+  await f2.refresh();
+  assert.equal(name(f2, 'X'), '员工机 A');
+  assert.equal(name(f2, 'Y'), '员工机 B');
+  assert.equal(name(f2, 'Z'), '员工机 C');
+});
+
+test('步骤报错翻成人话：RPC 超时 / 连接断开（原文里的节点 id 会被脱敏成「[密钥]」）', () => {
+  const { humanizeStepError } = require('./runner.cjs');
+  assert.equal(humanizeStepError('RPC 超时（420000ms） taskId=t-1 → tc-abc', '员工机 B'), '员工机 B在 7 分钟内没交回结果（模型太慢或卡住），这一步没办完');
+  assert.match(humanizeStepError('连接在收到结果前关闭', '员工机 A'), /员工机 A连接断开/);
+  assert.equal(humanizeStepError('员工机没有返回内容', '员工机 A'), '员工机没有返回内容');
+});
+
 test('并发：三件事同时下（单部门 / 双部门 / 全公司），互不阻塞，各自回到各自任务', async () => {
   const { runner } = makeRunner({ llm: async (p) => { await tick(15); return `ok ${p.length}`; } }); // 单机：全部本机
   const ids = [

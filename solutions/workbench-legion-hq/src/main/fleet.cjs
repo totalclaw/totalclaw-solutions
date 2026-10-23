@@ -76,7 +76,11 @@ class Fleet {
 
   placement() {
     const p = this.readPlacement() || {};
-    return { local: Array.isArray(p.local) ? p.local : null, aliases: p.aliases && typeof p.aliases === 'object' ? p.aliases : {} };
+    return {
+      local: Array.isArray(p.local) ? p.local : null,
+      aliases: p.aliases && typeof p.aliases === 'object' ? p.aliases : {},
+      order: Array.isArray(p.order) ? p.order.map(String) : [],
+    };
   }
 
   localLegions() {
@@ -138,7 +142,11 @@ class Fleet {
 
   machines(nodes = this.onlineNodes()) {
     const p = this.placement();
+    // A / B / C 的字母按「第一次见到」的顺序，并落盘：主控重启后同一台员工机还叫原来的名字（三实例联调实测：重启后 A / B 对调）
+    if (!this.order.length && p.order.length) this.order = [...p.order];
+    const seen = this.order.length;
     for (const n of nodes) if (!this.order.includes(n.nodeId)) this.order.push(n.nodeId);
+    if (this.order.length !== seen) this.writePlacement({ ...p, order: this.order.slice(-200) });
     const self = this.self();
     const mode = this.mode();
     const list = [
