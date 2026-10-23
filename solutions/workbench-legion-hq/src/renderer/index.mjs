@@ -427,6 +427,18 @@ export default function createSolution(sdk) {
           h('p', { class: 'lhq-sub' }, t('日志清理只删 N 天前的文件，最近 1 小时内写过的不动；任务记录清理后，大屏和导出里就看不到那些旧事了。')),
         ]);
       }
+      async function autoPlace() {
+        busy.autoPlace = true;
+        try {
+          const r = await call('fleet', 'fleet.autoPlace');
+          if (Array.isArray(r?.machines)) machines.value = r.machines;
+          sdk.notify.success(t('已按人数把部门分到员工机，主控不承载部门'));
+        } catch (_) {
+          /* 错误显示在 errLine */
+        } finally {
+          busy.autoPlace = false;
+        }
+      }
       async function setDemoRun(on) {
         try {
           const r = await call('demo', 'demoRun.set', { on });
@@ -595,6 +607,15 @@ export default function createSolution(sdk) {
               ])
             : null,
           mcPanel(),
+          mode === 'cluster'
+            ? h('div', { class: 'lhq-row' }, [
+                h('button', { class: 'lhq-btn pri', 'data-test': 'auto-place', disabled: busy.autoPlace, onClick: autoPlace }, busy.autoPlace ? t('分配中…') : t('自动分配（主控不承载部门）')),
+                h('span', { class: 'lhq-sub', style: 'margin:0' }, t('主控要判定、派活、汇总，也占 CPU，建议不承载部门；部门按人数均衡分到在线的员工机。')),
+              ])
+            : null,
+          mode === 'cluster' && (machines.value || []).some((m) => m.local && (m.hosts || []).length) && (machines.value || []).some((m) => !m.local && m.online)
+            ? h('div', { class: 'lhq-err', style: 'margin:4px 0' }, t('主控本机还承载着 {p0} 个部门：有员工机在线时，这些部门的活会优先派给员工机，只有员工机都忙不过来才落到主控。', { p0: (machines.value || []).find((m) => m.local).hosts.length }))
+            : null,
           h('div', { class: 'lhq-row' }, [
             h('button', { class: 'lhq-btn', 'data-test': 'storage-toggle', onClick: () => { stOpen.value = !stOpen.value; if (stOpen.value) loadStorage(); } }, stOpen.value ? t('收起存放位置') : t('产物存放位置与清理（交付物 / 导出 / 记录 / 各机器日志）')),
           ]),

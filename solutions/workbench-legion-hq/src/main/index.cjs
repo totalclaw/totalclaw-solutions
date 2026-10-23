@@ -17,7 +17,7 @@ const { parseJsonLoose } = require('./triage.cjs');
 const { LegionBus, Recorder } = require('./bus.cjs');
 const { createState, applyEvent, snapshot } = require('./screenState.cjs');
 const { resolveProfile, displayProfile, clean: cleanCompany } = require('./company.cjs');
-const { Fleet, cleanWorkbench } = require('./fleet.cjs');
+const { Fleet, cleanWorkbench, planPlacement } = require('./fleet.cjs');
 const { TaskRunner } = require('./runner.cjs');
 const { RoutineScheduler } = require('./routines.cjs');
 const { Director, loadScripts, validateScript } = require('./director.cjs');
@@ -640,6 +640,23 @@ module.exports = {
       const machines = await fleet.assign(L.id, String(p.machineId), !!p.on);
       publishFleet(machines);
       return machines;
+    });
+    // 一键自动分配：主控不承载部门（它要判定、派活、汇总），部门按人数均衡分到在线员工机
+    h('fleet.autoPlace', async () => {
+      const ms = fleet.mode() === 'cluster' ? await refreshFleet(true) : fleet.machines();
+      const local = ms.find((m) => m.local);
+      const emps = ms.filter((m) => !m.local && m.online !== false);
+      const plan = planPlacement(legions, emps, local.id);
+      // 先给员工机加上，再从别处撤掉：中途失败也不会出现「没有机器承载」的空档
+      for (const m of [...emps, local]) {
+        for (const id of plan[m.id] || []) if (!(m.hosts || []).includes(id)) await fleet.assign(id, m.id, true);
+      }
+      for (const m of [...emps, local]) {
+        for (const id of m.hosts || []) if (!(plan[m.id] || []).includes(id) && legions.some((L) => L.id === id)) await fleet.assign(id, m.id, false);
+      }
+      const after = fleet.mode() === 'cluster' ? await refreshFleet(true) : fleet.machines();
+      publishFleet(after);
+      return { plan, machines: after };
     });
     // L3：重装 / 卸载员工机上的部门方案包（勾选承载时已自动装过一次）
     h('fleet.package', async (p) => {

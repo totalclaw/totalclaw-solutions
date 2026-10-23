@@ -27,6 +27,30 @@ function cleanWorkbench(list) {
     .map((a) => ({ legionId: a.legionId.slice(0, 60), label: String(a.label || '').slice(0, 20), done: num(a.done), total: num(a.total) }));
 }
 
+/**
+ * 自动分配部门：主控要判定、派活、汇总（也占 CPU），所以有员工机在线时主控一个部门都不承载；
+ * 部门按人数从多到少，依次放到当前人数合计最少的员工机（人数相同按名称），尽量均衡。
+ * 没有员工机在线时全部放在主控本机兜底。纯函数，可单测。
+ * @returns {Record<string,string[]>} machineId → 部门 id 列表（含主控，主控 id 用传入的 localId）
+ */
+function planPlacement(legions, employees, localId) {
+  const out = { [localId]: [] };
+  const emps = [...employees].sort((a, b) => String(a.name).localeCompare(String(b.name)));
+  if (!emps.length) {
+    out[localId] = legions.map((L) => L.id);
+    return out;
+  }
+  const load = new Map(emps.map((m) => [m.id, 0]));
+  for (const m of emps) out[m.id] = [];
+  const order = [...legions].sort((a, b) => (b.staff || 1) - (a.staff || 1) || String(a.id).localeCompare(String(b.id)));
+  for (const L of order) {
+    const m = emps.reduce((best, x) => (load.get(x.id) < load.get(best.id) ? x : best), emps[0]);
+    out[m.id].push(L.id);
+    load.set(m.id, load.get(m.id) + (L.staff || 1));
+  }
+  return out;
+}
+
 class Fleet {
   /**
    * @param {object} o
@@ -277,4 +301,4 @@ class Fleet {
   }
 }
 
-module.exports = { cleanWorkbench, Fleet, tagsToLegions, TAG };
+module.exports = { planPlacement, cleanWorkbench, Fleet, tagsToLegions, TAG };

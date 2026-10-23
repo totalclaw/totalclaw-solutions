@@ -1211,3 +1211,14 @@ test('关掉演示模式：还在等老板确认的示例事务自动批完，�
     await mod.deactivate();
   }
 });
+
+test('自动分配：有员工机时主控不承载部门，按人数均衡；没有员工机时全在主控', () => {
+  const { planPlacement } = require('./fleet.cjs');
+  const L = [['rd', 10], ['legal', 5], ['hr', 4], ['finance', 11], ['ops', 9], ['sales', 7], ['cs', 4], ['admin', 5]].map(([id, staff]) => ({ id, staff }));
+  const p = planPlacement(L, [{ id: 'b', name: '员工机 B' }, { id: 'a', name: '员工机 A' }], 'me');
+  assert.deepEqual(p.me, []);
+  assert.equal(p.a.length + p.b.length, 8);
+  const sum = (ids) => ids.reduce((n, id) => n + L.find((x) => x.id === id).staff, 0);
+  assert.ok(Math.abs(sum(p.a) - sum(p.b)) <= 5, `${sum(p.a)} vs ${sum(p.b)}`);
+  assert.deepEqual(planPlacement(L, [], 'me').me.length, 8);
+});
