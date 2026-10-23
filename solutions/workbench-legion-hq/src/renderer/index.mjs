@@ -583,6 +583,7 @@ export default function createSolution(sdk) {
             x.status === 'awaiting' ? h('button', { class: 'lhq-btn warn', disabled: busy[`c-${x.id}`], onClick: () => confirm(x.id, true) }, t('批准')) : null,
             x.status === 'awaiting' ? h('button', { class: 'lhq-btn', onClick: () => confirm(x.id, false) }, t('驳回')) : null,
             ACTIVE.has(x.status) ? h('button', { class: 'lhq-btn danger', onClick: () => sdk.invoke('cancel', { taskId: x.id }) }, t('中止')) : null,
+            x.status === 'failed' && (x.steps || []).length ? h('button', { class: 'lhq-btn warn', onClick: async () => { try { const r = await sdk.invoke('retry', { taskId: x.id }); sdk.notify.info(t('已重新派出 {p0} 步，已交上来的部门成果保留', { p0: r.steps })); } catch (e) { sdk.notify.warn(e.message); } } }, t('重办没办成的部分')) : null,
           ]),
         ]);
       }

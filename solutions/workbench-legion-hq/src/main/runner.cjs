@@ -134,9 +134,8 @@ class TaskRunner {
     } else {
       await this.runSteps(t);
       if (t.cancelled) return;
-      const failed = plan.steps.filter((s) => t.outputs[s.id]?.error);
-      if (failed.length === plan.steps.length) throw new Error(t.outputs[failed[0].id].error);
-      t.summary = plan.summary ? await this.summarize(t) : t.outputs[plan.steps[0].id].text;
+      await this.afterSteps(t);
+      return;
     }
     if (t.cancelled) return;
     if (plan.approval) {
@@ -146,9 +145,49 @@ class TaskRunner {
     this.finish(t, true);
   }
 
+  /** 各步跑完后的收尾（首跑与重办共用）：全失败报错；有汇总就汇总；要拍板的进老板待办 */
+  async afterSteps(t) {
+    const plan = t.plan;
+    const failed = plan.steps.filter((s) => t.outputs[s.id]?.error);
+    if (failed.length === plan.steps.length) throw new Error(t.outputs[failed[0].id].error);
+    t.summary = plan.summary ? await this.summarize(t) : t.outputs[plan.steps[0].id].text;
+    if (t.cancelled) return;
+    if (plan.approval) {
+      const ok = await this.awaitConfirm(t);
+      if (!ok) return;
+    }
+    this.finish(t, true);
+  }
+
+  /**
+   * 重办失败的部分（故障恢复）：员工机中途掉线 / 模型出错导致没办成的事，机器恢复后老板点一下，
+   * 已经交上来的部门成果保留，只把失败的步骤和「上游失败没执行」的步骤重新派出去（仍按承载机挑最闲的）。
+   * 跑到一半失败的步骤不会自动重跑（runStep 的原则不变）——由人确认机器恢复了再重办，避免重复执行。
+   */
+  retryFailed(taskId) {
+    const t = this.tasks.get(taskId);
+    if (!t || t.status !== 'failed' || !t.plan || !t.plan.steps.length) throw new Error('只有没办成、且有部门步骤的事可以重办');
+    const redo = t.plan.steps.filter((s) => !t.outputs[s.id] || t.outputs[s.id].error).map((s) => s.id);
+    if (!redo.length) throw new Error('没有失败的步骤');
+    for (const id of redo) delete t.outputs[id];
+    t.status = 'running';
+    t.error = null;
+    t.finishedAt = null;
+    t.cancelled = false;
+    t.retries = (t.retries || 0) + 1;
+    this.publish(t, 'task:retry', { stepIds: redo });
+    (async () => {
+      await this.runSteps(t);
+      if (t.cancelled) return;
+      await this.afterSteps(t);
+    })().catch((e) => this.finish(t, false, String(e.message || e)));
+    return { ok: true, steps: redo.length };
+  }
+
   async runSteps(t) {
     const steps = t.plan.steps;
-    const done = new Set();
+    // 已经交上来的步骤直接算完成（重办失败部分时保留已有成果；首跑时 outputs 为空）
+    const done = new Set(steps.filter((s) => t.outputs[s.id] && !t.outputs[s.id].error).map((s) => s.id));
     const running = new Map();
     const blocked = new Set();
     while (done.size + blocked.size < steps.length && !t.cancelled) {
@@ -465,6 +504,7 @@ class TaskRunner {
       summary: t.summary,
       error: t.error,
       rejects: t.rejects,
+      retries: t.retries || 0,
     };
   }
 

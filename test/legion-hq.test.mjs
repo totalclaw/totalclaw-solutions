@@ -279,6 +279,59 @@ test('派活：开跑前机器不可用 → 换机；没有机器承载 → 步�
   assert.match(rb.error, /没有在线机器承载人事部/);
 });
 
+test('重办没办成的部分：员工机执行中掉线 → 步骤失败、下游未执行、不自动重跑；恢复后重办只派失败的步骤', async () => {
+  const cluster = fakeCluster({ nodes: [{ nodeId: 'A', host: '10.0.0.2' }, { nodeId: 'B', host: '10.0.0.3' }] });
+  const orig = cluster.proc.dispatchTask;
+  let crashOnce = true;
+  cluster.proc.dispatchTask = async (d) => {
+    if (d.roleId === 'worker.run' && d.payload.legionHq.legionId === 'legion-sales' && crashOnce) {
+      crashOnce = false;
+      cluster.calls.push(d);
+      throw new Error('连接在收到结果前关闭'); // 执行中掉线（不是开跑前），不能自动换机重跑
+    }
+    return orig(d);
+  };
+  const { fleet, runner, state } = makeRunner({ cluster });
+  await fleet.refresh();
+  await fleet.assign('legion-sales', 'B', true);
+  await fleet.assign('legion-cs', 'B', true);
+  const { taskId } = runner.submit({ text: '客户投诉发货延迟怎么处理', forcedLegions: ['legion-sales', 'legion-cs'] });
+  const r1 = await until(() => runner.get(taskId).status === 'failed' && runner.get(taskId));
+  const steps = r1.plan.steps;
+  assert.equal(cluster.calls.filter((c) => c.roleId === 'worker.run').length, 1, '执行中失败不自动重跑');
+  assert.ok(steps.some((s) => /未执行/.test(r1.outputs[s.id].error || '')), '下游标「上游失败未执行」');
+  assert.throws(() => runner.retryFailed('nope'), /只有没办成/);
+
+  const r = runner.retryFailed(taskId);
+  assert.equal(r.steps, steps.length);
+  assert.equal(snapshot(state).tasks.find((x) => x.id === taskId).status, 'running', '大屏回到执行中');
+  const r2 = await until(() => ['done', 'awaiting'].includes(runner.get(taskId).status) && runner.get(taskId));
+  assert.ok(steps.every((s) => r2.outputs[s.id].text), '重办后各步都有产出');
+  assert.equal(r2.retries, 1);
+  assert.ok(snapshot(state).feed.some((f) => /重办没办成的 2 步/.test(f.text)));
+  assert.throws(() => runner.retryFailed(taskId), /只有没办成/, '办完的事不能再重办');
+});
+
+test('重办：已交上来的部门成果保留，只重派失败的那步', async () => {
+  const cluster = fakeCluster({ nodes: [{ nodeId: 'A', host: '10.0.0.2' }] });
+  const { fleet, runner } = makeRunner({ cluster });
+  await fleet.refresh();
+  await fleet.assign('legion-legal', 'A', true);
+  const { taskId } = runner.submit({ text: '审一下这份合同', forcedLegions: ['legion-legal'] });
+  await until(() => !['running', 'triaging', 'queued'].includes(runner.get(taskId).status));
+  // 构造：两步里一步已交、一步失败（模拟部分失败后整件没办成）
+  const t = runner.tasks.get(taskId);
+  t.plan.steps = [{ ...t.plan.steps[0], id: 'k1', dependsOn: [] }, { ...t.plan.steps[0], id: 'k2', dependsOn: ['k1'] }];
+  t.outputs = { k1: { text: '第一步成果', machine: '员工机 A' }, k2: { error: '连接在收到结果前关闭' } };
+  t.status = 'failed';
+  const before = cluster.calls.filter((c) => c.roleId === 'worker.run').length;
+  assert.equal(runner.retryFailed(taskId).steps, 1);
+  const r = await until(() => ['done', 'awaiting'].includes(runner.get(taskId).status) && runner.get(taskId));
+  assert.equal(r.outputs.k1.text, '第一步成果', '已有成果不重做');
+  assert.equal(cluster.calls.filter((c) => c.roleId === 'worker.run').length - before, 1, '只重派一步');
+  assert.match(cluster.calls.at(-1).payload.prompt, /第一步成果/, '重派的那步拿到上游已有成果');
+});
+
 test('并发：三件事同时下（单部门 / 双部门 / 全公司），互不阻塞，各自回到各自任务', async () => {
   const { runner } = makeRunner({ llm: async (p) => { await tick(15); return `ok ${p.length}`; } }); // 单机：全部本机
   const ids = [

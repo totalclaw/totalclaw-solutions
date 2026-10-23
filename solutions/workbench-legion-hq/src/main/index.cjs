@@ -437,6 +437,7 @@ module.exports = {
     h('command', (p) => runner.submit({ text: p?.text, title: p?.title, source: p?.source || 'boss', forcedLegions: Array.isArray(p?.legions) && p.legions.length ? p.legions : null }));
     h('confirm', (p) => (p?.approve === false ? runner.reject(String(p.taskId), p.comment) : runner.confirm(String(p?.taskId))));
     h('cancel', (p) => runner.cancel(String(p?.taskId)));
+    h('retry', (p) => runner.retryFailed(String(p?.taskId)));
     h('tasks.list', () => listTaskFiles(ctx));
     h('tasks.get', (p) => runner.get(String(p?.taskId)) || ctx.readJson(`${D}/tasks/${String(p?.taskId).replace(/[^\w-]/g, '')}.json`, null));
 

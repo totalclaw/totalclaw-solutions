@@ -1,12 +1,12 @@
 {
   "id": "workbench-legion-hq",
   "version": "1.0.0",
-  "treeDigest": "6d9fe57b31966cdad0ac863049e3c018f5106d89b4321851a8b8ed9f1498709c",
+  "treeDigest": "8900ec502f898658fc36e9bae43c035494346515b9cf9752412f03a568ee962f",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 2984,
-      "sha256": "9c726978599d5020651ec6f630e1de624b32e0f03e00a015f526abd571672756"
+      "size": 3330,
+      "sha256": "82bc33a1f75dcaa27a39996df9a31242290d43e48895eb9107b8b95dc3baf0e6"
     },
     {
       "path": "README.md",
@@ -135,8 +135,8 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 39819,
-      "sha256": "54b1a76cf3778b0308465529d06424b7f13b8a85529e5322bc67c9c401c067fc"
+      "size": 39881,
+      "sha256": "7dd51e7c7cc3b44504e9f2f5479b2fd1b3e197b2d63b09566fd9ccdae0dd5ef6"
     },
     {
       "path": "src/main/legions.cjs",
@@ -160,8 +160,8 @@
     },
     {
       "path": "src/main/runner.cjs",
-      "size": 21304,
-      "sha256": "3008878fc79591c8d11f62c110c457b0d765ebbdb09e7f0f6c41c5664a41679c"
+      "size": 23213,
+      "sha256": "49bff2652646e9cf79d5bddf2fb958b13a7a3db38158282e97229156efc55b77"
     },
     {
       "path": "src/main/screenServer.cjs",
@@ -170,8 +170,8 @@
     },
     {
       "path": "src/main/screenState.cjs",
-      "size": 9054,
-      "sha256": "12cd3a8821f5ce151e78f9b7e04ea5dc31f1567ae53c14535de5601c20915db9"
+      "size": 9511,
+      "sha256": "68586cee28ceb07f030690a1dbe609f720a6cbdacce89ddbaac952f2d52cd39e"
     },
     {
       "path": "src/main/triage.cjs",
@@ -185,8 +185,8 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 64982,
-      "sha256": "74a4bd0d4d7aaffe798865be912c73a1dc08e5d4b34d1e619dce680ac098f112"
+      "size": 65354,
+      "sha256": "685cea671aca83e82a8f67e59d5be43bf8a67f4b2f02bffca4ef01cec370bfb1"
     }
   ]
 }

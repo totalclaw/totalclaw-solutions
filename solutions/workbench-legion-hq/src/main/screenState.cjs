@@ -160,6 +160,15 @@ function applyEvent(state, ev) {
       task.status = 'running';
       pushFeed(state, ev, 'boss', `${state.company?.boss || '老板'} 驳回 #${task.no}：${short(ev.comment, 20)}`);
       return true;
+    case 'task:retry': {
+      const ids = new Set(ev.stepIds || []);
+      for (const s of task.steps) if (ids.has(s.id)) Object.assign(s, { status: 'waiting', machine: null, phase: '', startedAt: null, endedAt: null });
+      task.status = 'running';
+      task.finishedAt = null;
+      task.error = null;
+      pushFeed(state, ev, 'boss', `${state.company?.boss || '老板'} 让 #${task.no} 重办没办成的 ${ids.size} 步`);
+      return true;
+    }
     case 'task:done': {
       const was = task.status;
       task.status = ev.cancelled ? 'cancelled' : ev.ok ? 'done' : 'failed';
