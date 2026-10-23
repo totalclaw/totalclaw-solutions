@@ -444,6 +444,13 @@ test('大屏服务：无口令 401、快照、SSE 推送、下令、换口令', 
   assert.equal(srv.status().running, false);
 });
 
+test('大屏地址：跳过代理 fake-IP 段（198.18/15）与链路本地、内网段在前、VPN 隧道网卡排最后', () => {
+  const { lanAddresses } = require(join(DIR, 'src/main/screenServer.cjs'));
+  const v4 = (address, internal = false) => ({ family: 'IPv4', address, internal });
+  const got = lanAddresses({ lo0: [v4('127.0.0.1', true)], utun7: [v4('198.18.0.1')], utun3: [v4('10.8.0.2')], en0: [v4('169.254.3.1'), v4('172.16.0.9')], en1: [v4('192.168.3.60')] });
+  assert.deepEqual(got.map((x) => x.address), ['192.168.3.60', '172.16.0.9', '10.8.0.2']);
+});
+
 test('大屏服务：端口被占顺延', async () => {
   const mk = () => new ScreenServer({ bus: new LegionBus(), getState: () => ({}), pages: () => ({ page: '', remote: '' }), onCommand() {}, onConfirm() {}, onCompany() {} });
   const a = mk();

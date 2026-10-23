@@ -24,19 +24,22 @@ const MAX_BODY = 16 * 1024;
 const HEARTBEAT_MS = 15_000;
 const STATE_THROTTLE_MS = 250;
 
-function lanAddresses() {
+function lanAddresses(ifaces = os.networkInterfaces()) {
   const out = [];
-  for (const [name, list] of Object.entries(os.networkInterfaces())) {
+  for (const [name, list] of Object.entries(ifaces)) {
     for (const a of list || []) {
       if (a.family !== 'IPv4' && a.family !== 4) continue;
       if (a.internal) continue;
       if (/^169\.254\./.test(a.address)) continue;
+      // 198.18.0.0/15 是基准测试保留段，本机代理（Clash / Surge 等 fake-IP 虚拟网卡）占用它；会场设备用它打不开大屏
+      if (/^198\.1[89]\./.test(a.address)) continue;
       out.push({ name, address: a.address });
     }
   }
-  // 常见内网段在前（192.168 > 10 > 172）
-  const rank = (ip) => (ip.startsWith('192.168.') ? 0 : ip.startsWith('10.') ? 1 : ip.startsWith('172.') ? 2 : 3);
-  return out.sort((a, b) => rank(a.address) - rank(b.address));
+  // 常见内网段在前（192.168 > 10 > 172），隧道网卡（utun / tun / ppp，VPN）排最后
+  const tunnel = (n) => /^(utun|tun|ppp|ipsec|wg)/i.test(n);
+  const rank = (x) => (tunnel(x.name) ? 10 : 0) + (x.address.startsWith('192.168.') ? 0 : x.address.startsWith('10.') ? 1 : x.address.startsWith('172.') ? 2 : 3);
+  return out.sort((a, b) => rank(a) - rank(b));
 }
 
 function safeEqual(a, b) {

@@ -338,9 +338,9 @@
       "departments": [
         "legion-hr"
       ],
-      "capability": "新建二期",
-      "status": "gap",
-      "note": "缺口（本期）"
+      "capability": "人事部 · 招聘工作台（HR8 绩效：模型起草目标、建议分须有评价原文证据、总分与等级程序算、上级可改分）",
+      "status": "ready",
+      "note": ""
     },
     {
       "id": "c31",
