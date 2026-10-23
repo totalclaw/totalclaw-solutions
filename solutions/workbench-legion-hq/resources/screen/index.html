@@ -576,7 +576,7 @@ function renderOffice(){
   R.bub.classList.toggle('on',!!txt);const tx=txt.length>17?txt.slice(0,16)+'…':txt;if(R.bt.textContent!==tx)R.bt.textContent=tx;
   const hostTxt=!R.host.length?(LANG==='en'?'Not deployed':'未部署'):R.host.length>2?(LANG==='en'?`${R.host[0]} +${R.host.length-1}`:`${R.host[0]} 等 ${R.host.length} 台`):R.host.join(' / ');const stTxt=`${hostTxt} · ${jobs.length?tr('busyN',{n:jobs.length}):tr('idle')}`;if(R.st.textContent!==stTxt)R.st.textContent=stTxt;}
  // 本次任务横幅
- const t0=tasks[0];const ms=$('oMission');if(ms){const m=t0?`${LANG==='en'?'Now':'本次任务'}  #${t0.no} ${t0.title}　${t0.legions.map(id=>(LG[id]||{}).short||id).join(' → ')}`:(LANG==='en'?'All departments on standby':'各部门待命中');if(ms.textContent!==m)ms.textContent=m;}
+ const t0=tasks[0];const ms=$('oMission');if(ms){const m=t0?`${LANG==='en'?'Now':'本次任务'}  #${t0.no} ${t0.title}　${t0.legions.map(id=>(LG[id]||{}).short||id).join(' → ')}`:(LANG==='en'?'All departments on standby':'各部门待命中');const m2=m.length>44?m.slice(0,43)+'…':m;if(ms.textContent!==m2)ms.textContent=m2;}
  renderOfficeRoutes();
  // 新交接：文件从上游办公室飞到下游
  for(const t of S.tasks||[])for(const h of t.handoffs||[])if((h.ts||0)>seenHand){seenHand=h.ts;flyDoc(h.from,h.to,h.label);}
