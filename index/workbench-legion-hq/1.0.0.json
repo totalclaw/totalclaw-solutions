@@ -1,7 +1,7 @@
 {
   "id": "workbench-legion-hq",
   "version": "1.0.0",
-  "treeDigest": "d95953bed9a0182be0121617da7772d14172a54c88b05cc483ede3a8a2b177f6",
+  "treeDigest": "e66bd5489426d645a0eed0682832b62e1ff3316a1e165b318ab04feea9d3ce6d",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -55,8 +55,8 @@
     },
     {
       "path": "resources/screen/index.html",
-      "size": 72765,
-      "sha256": "100e343a02be97327fc2bf28e88768029f4853a33c2d1e857102f71a466f1980"
+      "size": 73205,
+      "sha256": "690808b0d6679531924aa8695dc56883acd52d01f064d4ed3ea464bea4288540"
     },
     {
       "path": "resources/screen/remote.html",

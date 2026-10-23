@@ -305,30 +305,35 @@ let nodes={},layers={};
 function buildTopo(groups){
  const svg=$('topo');svg.innerHTML='';nodes={};const ms=S.machines||[];
  const defs=mk('defs',{},svg);defs.innerHTML='<filter id="gl"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><radialGradient id="cg" cx="50%" cy="40%"><stop offset="0" stop-color="#67E8F9"/><stop offset="1" stop-color="#0E7490"/></radialGradient>';
- [110,190].forEach(r=>mk('circle',{cx,cy,r,fill:'none',stroke:'#22D3EE',opacity:.1},svg));
  const n=N();
+ // 机器：画面左右两侧的铭牌（电脑图标 + 名称 + IP），细线连到它承载的部门。不用外圈粗弧（太像 AI 生成的科技风）
+ const used={l:[],r:[]};const lines=mk('g',{},svg);
  groups.forEach(g=>{const idx=g.ids.map(id=>LG[id].i);const a1=ang(Math.min(...idx))-(n>1?.3:Math.PI),a2=ang(Math.max(...idx))+(n>1?.3:Math.PI-.01);
-  mk('path',{d:arcPath(R+72,a1,a2),fill:'none',stroke:'#1E3A6E','stroke-width':20,'stroke-linecap':'round',opacity:.8},svg);
-  // 标签位置不出画面（viewBox 高 604，底部的标签原来落到 640 以外）
-  const mid=(a1+a2)/2;const right=Math.cos(mid)>=0;const lx=cx+(R+110)*Math.cos(mid),ly=Math.max(18,Math.min(584,cy+(R+110)*Math.sin(mid)));
-  // 同一组部门也装在别的机器上（多台分摊）：标签列出全部承载机器，免得那几台在拓扑上「消失」
+  const mid=(a1+a2)/2;const side=Math.cos(mid)>=-0.05?'r':'l';
+  let py=Math.max(44,Math.min(560,cy+(R+30)*Math.sin(mid)));
+  for(let k=0;k<12&&used[side].some(y=>Math.abs(y-py)<54);k++)py+=py<cy?54:-54;used[side].push(py);
+  const pw=132,ph=42,px=side==='r'?900-pw-14:14;
   const hostsOf=ms.filter(m=>m.online!==false&&(m.hosts||[]).some(id=>g.ids.includes(id))).sort((a,b)=>(a.local?1:0)-(b.local?1:0)||(a.id===g.m.id?-1:b.id===g.m.id?1:0));
   const names=hostsOf.map(m=>m.name);
   const label=names.length>2?(LANG==='en'?`${names[0]} +${names.length-1}`:`${names[0]} 等 ${names.length} 台`):names.join(' · ')||g.m.name;
-  const lab=mk('text',{x:lx,y:ly,'text-anchor':Math.abs(Math.cos(mid))<.3?'middle':right?'start':'end','font-size':13,fill:'#64748B'},svg,label);
-  mk('text',{x:lx,y:ly+16,'text-anchor':lab.getAttribute('text-anchor'),'font-size':11,fill:'#475569'},svg,hostsOf.length>1?hostsOf.map(m=>m.ip).filter(Boolean).slice(0,2).join(' · ')+(hostsOf.length>2?' …':''):(g.m.ip||''));
+  const ax=side==='r'?px:px+pw;
+  for(const id of g.ids){const[x,y]=hub(LG[id].i);const mx=(ax+x)/2;mk('path',{d:`M${ax} ${py} C${mx} ${py} ${mx} ${y} ${x} ${y}`,fill:'none',stroke:'#2A3A57','stroke-width':1.2},lines);}
+  const pg=mk('g',{},svg);
+  mk('rect',{x:px,y:py-ph/2,width:pw,height:ph,rx:7,fill:'#101C33',stroke:'#2A3A57'},pg);
+  const ix=px+12,iy=py-9;mk('rect',{x:ix,y:iy,width:20,height:13,rx:1.5,fill:'none',stroke:'#94A3B8','stroke-width':1.4},pg);mk('path',{d:`M${ix+10} ${iy+13} v4 M${ix+5} ${iy+17.5} h10`,stroke:'#94A3B8','stroke-width':1.4},pg);
+  const lab=mk('text',{x:px+40,y:py-2,'font-size':12.5,fill:'#CBD5E1','font-weight':600},pg,label.length>9?label.slice(0,9)+'…':label);
+  mk('text',{x:px+40,y:py+13,'font-size':10.5,fill:'#64748B'},pg,(()=>{const ips=(hostsOf.length?hostsOf:[g.m]).map(m=>m.ip).filter(Boolean);return ips.length>1?`${ips[0]} +${ips.length-1}`:(ips[0]||'');})());
   for(const m of hostsOf.length?hostsOf:[g.m])if(!nodes['m:'+m.id])nodes['m:'+m.id]=lab;});
- ORDER.forEach(id=>{const[x,y]=hub(LG[id].i);mk('line',{x1:cx,y1:cy,x2:x,y2:y,stroke:'#334155','stroke-width':2,'stroke-dasharray':'6 6'},svg);});
+ ORDER.forEach(id=>{const[x,y]=hub(LG[id].i);mk('line',{x1:cx,y1:cy,x2:x,y2:y,stroke:'#22324D','stroke-width':1.5},svg);});
  layers.dyn=mk('g',{},svg);
  ORDER.forEach(id=>{const L=LG[id];const[x,y]=hub(L.i);const g=mk('g',{},svg);
-  const halo=mk('circle',{cx:x,cy:y,r:52,fill:L.color,opacity:0,filter:'url(#gl)'},g);
-  const ring=mk('circle',{cx:x,cy:y,r:41,fill:'#0B1B3A',stroke:L.color,'stroke-width':3},g);
+  const halo=mk('circle',{cx:x,cy:y,r:48,fill:'none',stroke:L.color,'stroke-width':5,opacity:0},g);
+  mk('circle',{cx:x,cy:y,r:41,fill:'#0E1A30'},g);const ring=mk('circle',{cx:x,cy:y,r:41,fill:L.color,'fill-opacity':.1,stroke:L.color,'stroke-width':2},g);
   const nm=LANG==='en'&&L.shortEn?L.shortEn:L.name;mk('text',{x,y,'text-anchor':'middle',fill:'#fff','font-size':(LANG==='en'?nm.length>7:nm.length>4)?13:16,'font-weight':700},g,nm);
   const st=mk('text',{x,y:y+19,'text-anchor':'middle',fill:L.color,'font-size':11.5},g,tr('idle'));
   const tags=mk('g',{},g);nodes[id]={g,halo,ring,st,tags,x,y};});
  layers.dyn2=mk('g',{},svg);
- mk('circle',{cx,cy,r:84,fill:'#22D3EE',opacity:.13,filter:'url(#gl)'},svg);
- nodes.core=mk('circle',{cx,cy,r:68,fill:'url(#cg)',stroke:'#A5F3FC','stroke-width':3},svg);
+ nodes.core=mk('circle',{cx,cy,r:68,fill:'#0F5E6E',stroke:'#3FA7B5','stroke-width':2},svg);
  drawGM(svg,cx,cy-30,1.55);
  mk('text',{x:cx,y:cy+30,'text-anchor':'middle',fill:'#fff','font-size':18,'font-weight':800},svg,tr('gm'));
  mk('text',{x:cx,y:cy+47,'text-anchor':'middle',fill:'#ECFEFF','font-size':LANG==='en'?9:10.5},svg,tr('gmSub'));
@@ -403,10 +408,10 @@ function frame(){
  ORDER.forEach(id=>{const nd=nodes[id];if(!nd)return;const L=LG[id];const a=act[id]||[],w=wait[id]||[];const inF=!ft||ft.legions.includes(id);
   const wk=(wb[id]||[])[0];
   nd.g.setAttribute('opacity',!L.placed?.25:inF?(a.length||w.length||wk?1:.45):.12);
-  nd.halo.setAttribute('opacity',a.length||wk?.16+.1*Math.sin(t*4+L.i):0);
+  nd.halo.setAttribute('opacity',a.length||wk?.22+.08*Math.sin(t*3+L.i):0);
   nd.ring.setAttribute('stroke-width',a.length?5:wk?4:2);
   // LG7 / HR7：没有运营中心派的步骤时，显示工作台自己的细步骤（如「筛选 37/100」）
-  const label=!L.placed?tr('notPlaced'):a.length?(a.length>1?tr('busyN',{n:a.length}):tr('busy1')):wk?wbText(wk):w.length?tr('waitIn'):tr('idle');const lb2=L.staff?`${label} · ${L.staff}${LANG==='en'?'':'人'}`:label;if(nd.st.textContent!==lb2)nd.st.textContent=lb2;
+  const label=!L.placed?tr('notPlaced'):a.length?(a.length>1?tr('busyN',{n:a.length}):tr('busy1')):wk?wbText(wk):w.length?tr('waitIn'):tr('idle');const lb2=L.staff&&!a.length&&!wk&&!w.length?`${label} · ${L.staff}${LANG==='en'?'':'人'}`:label;if(nd.st.textContent!==lb2)nd.st.textContent=lb2;
   const ids=[...new Set([...a,...w].map(x=>x.no))].slice(0,3);
   ids.forEach((no,k)=>{const tx=nd.x-((ids.length-1)*17)+k*34,ty=nd.y-57;const isA=a.some(x=>x.no===no);
    pools.dyn3.get('rect',{x:tx-16,y:ty-10,width:32,height:19,rx:9,fill:isA?L.color:'#0B1B3A',stroke:L.color});pools.dyn3.get('text',{x:tx,y:ty+4,'text-anchor':'middle','font-size':11,fill:'#fff'},'#'+no);});
