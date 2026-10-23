@@ -96,14 +96,14 @@ function reset(): void { void apply('rules.reset', {}, i18nT('已恢复默认规
 
 <style scoped>
 .pa-rules { display: grid; gap: 14px; max-width: 1100px; }
-.ss-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 16px; display: grid; gap: 12px; }
+.ss-panel { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 16px; display: grid; gap: 12px; }
 .pa-rules__head { display: grid; gap: 4px; }
-h3 { margin: 0; font-size: 15px; }
+h3 { margin: 0; font-size: var(--font-size-lg); }
 .pa-rule { display: grid; grid-template-columns: minmax(220px, 280px) 1fr auto; gap: 6px 16px; align-items: center; padding: 10px 0; border-top: 1px solid var(--color-border); }
-.pa-rule__input { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 13px; }
+.pa-rule__input { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: var(--font-size-md); }
 .pa-rule__input span { display: inline-flex; align-items: center; gap: 6px; }
-.pa-rule__input input[type="number"] { width: 76px; height: 32px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 13px; padding: 0 8px; text-align: right; }
-.pa-rule__input em { font-style: normal; color: var(--color-text-secondary); font-size: 12px; min-width: 28px; }
+.pa-rule__input input[type="number"] { width: 76px; height: 32px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-md); padding: 0 8px; text-align: right; }
+.pa-rule__input em { font-style: normal; color: var(--color-text-secondary); font-size: var(--font-size-sm); min-width: 28px; }
 .pa-rule p { margin: 0; font-size: 12.5px; line-height: 1.6; color: var(--color-text-secondary); }
 .pa-list { margin: 0; padding-inline-start: 18px; font-size: 12.5px; color: var(--color-text-secondary); display: grid; gap: 4px; line-height: 1.6; }
 @media (max-width: 760px) { .pa-rule { grid-template-columns: 1fr; } }

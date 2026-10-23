@@ -231,13 +231,13 @@ function jump(key: string): void { void scrollToStep(key); }
 .fa-budget-edit input { width: 100%; min-width: 64px; box-sizing: border-box; }
 .fa-budget-edit td:first-child input, .fa-budget-edit td:nth-child(2) input { min-width: 100px; }
 .fa-budget-edit input.num { text-align: right; }
-.fa-usage { width: 110px; height: 6px; border-radius: 3px; background: var(--color-bg-hover); overflow: hidden; }
+.fa-usage { width: 110px; height: 6px; border-radius: var(--radius-1); background: var(--color-bg-hover); overflow: hidden; }
 .fa-usage span { display: block; height: 100%; background: var(--color-success); }
 .fa-usage.warn span { background: var(--color-warning); }
 .fa-usage.over span { background: var(--color-danger); }
 .fa-alerts { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 12.5px; }
 .fa-alerts li { display: flex; gap: 8px; align-items: center; }
-.fa-text { white-space: pre-wrap; font-size: 13px; line-height: 1.7; padding: 12px 14px; border-radius: 10px; background: var(--color-bg-primary); border: 1px solid var(--color-border); }
+.fa-text { white-space: pre-wrap; font-size: var(--font-size-md); line-height: 1.7; padding: 12px 14px; border-radius: var(--radius-4); background: var(--color-bg-primary); border: 1px solid var(--color-border); }
 .fa-out { font-size: 11.5px; color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 420px; }
 .spin { animation: fa-spin 1s linear infinite; }
 @keyframes fa-spin { to { transform: rotate(360deg); } }

@@ -108,7 +108,7 @@
             <button v-if="current.exportPath" type="button" class="ss-link" @click="openPath(current.exportPath, true)">{{ $t('所在文件夹') }}</button>
           </div>
           <p v-if="!state?.ready.push" class="ss-muted">{{ $t('推送渠道在「设置 → 通知与推送」配置（企业微信 / 钉钉机器人、邮箱）') }}</p>
-          <div v-if="current.pushed?.length" class="ss-actions"><span v-for="p in current.pushed" :key="p.channel" class="ss-chip" :class="p.ok ? 'ok' : 'bad'" :title="p.error">{{ p.channel }} {{ p.ok ? '✓' : '✗' }}</span></div>
+          <div v-if="current.pushed?.length" class="ss-actions"><span v-for="p in current.pushed" :key="p.channel" class="ss-chip" :class="p.ok ? 'ok' : 'bad'" :title="p.error">{{ p.channel }} <i :class="p.ok ? 'ri-check-line' : 'ri-close-line'"></i></span></div>
         </template>
       </StepCard>
 
@@ -292,24 +292,24 @@ function jump(key: string): void { void scrollToStep(key); }
 </script>
 
 <style scoped>
-.ba-trend { display: flex; align-items: flex-end; gap: 2px; height: 90px; padding: 6px; border: 1px solid var(--color-border); border-radius: 10px; }
-.ba-trend i { flex: 1; background: var(--color-brand); border-radius: 2px 2px 0 0; min-width: 2px; }
+.ba-trend { display: flex; align-items: flex-end; gap: 2px; height: 90px; padding: 6px; border: 1px solid var(--color-border); border-radius: var(--radius-4); }
+.ba-trend i { flex: 1; background: var(--color-brand); border-radius: calc(var(--radius-1) / 2) calc(var(--radius-1) / 2) 0 0; min-width: 2px; }
 .ba-scroll { max-height: 320px; overflow: auto; }
 .ba-slow { display: flex; flex-wrap: wrap; gap: 6px; }
-.ba-mini { height: 28px; border-radius: 7px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12px; }
+.ba-mini { height: 28px; border-radius: var(--radius-2); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-sm); }
 .ba-blocks { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
-.ba-block { display: grid; gap: 6px; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: 10px; font-size: 12.5px; }
+.ba-block { display: grid; gap: 6px; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-4); font-size: 12.5px; }
 .ba-bar { display: grid; grid-template-columns: 90px 1fr 80px; gap: 8px; align-items: center; }
 .ba-bar span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ba-bar i { height: 8px; border-radius: 4px; background: var(--color-brand); display: block; }
+.ba-bar i { height: 8px; border-radius: var(--radius-1); background: var(--color-brand); display: block; }
 .ba-bar b { text-align: end; font-variant-numeric: tabular-nums; }
-.ba-report { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg-primary); }
+.ba-report { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-5); background: var(--color-bg-primary); }
 .ba-report header { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.ba-report pre, .ba-qa pre { margin: 0; white-space: pre-wrap; font: inherit; font-size: 13px; line-height: 1.75; }
+.ba-report pre, .ba-qa pre { margin: 0; white-space: pre-wrap; font: inherit; font-size: var(--font-size-md); line-height: 1.75; }
 .ba-history { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 .ba-history .ss-chip { border: 0; cursor: pointer; }
 .ba-ask { display: flex; gap: 8px; }
-.ba-ask input { flex: 1; height: 36px; border-radius: 10px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; padding: 0 12px; }
-.ba-qa { display: grid; gap: 4px; padding: 10px 12px; border-radius: 10px; background: var(--color-bg-primary); border: 1px solid var(--color-border); }
-:deep(.ba-imports) { margin: 0; padding-inline-start: 18px; font-size: 12px; color: var(--color-text-secondary); }
+.ba-ask input { flex: 1; height: 36px; border-radius: var(--radius-4); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; padding: 0 12px; }
+.ba-qa { display: grid; gap: 4px; padding: 10px 12px; border-radius: var(--radius-4); background: var(--color-bg-primary); border: 1px solid var(--color-border); }
+:deep(.ba-imports) { margin: 0; padding-inline-start: 18px; font-size: var(--font-size-sm); color: var(--color-text-secondary); }
 </style>

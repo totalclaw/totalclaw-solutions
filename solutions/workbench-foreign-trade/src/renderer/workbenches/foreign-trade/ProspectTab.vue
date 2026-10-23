@@ -301,10 +301,10 @@ function scrollTo(key: string): void { void scrollToStep(key); }
 </script>
 
 <style scoped>
-.ft-select { height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12px; max-width: 360px; }
+.ft-select { height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-sm); max-width: 360px; }
 .ft-wrap { white-space: normal !important; max-width: 280px; }
 .ft-excluded td { opacity: .5; }
-.ft-letter { border: 1px solid var(--color-border); border-radius: 10px; padding: 8px 10px; display: grid; gap: 8px; }
-.ft-letter__head { display: flex; gap: 8px; align-items: center; cursor: pointer; font-size: 13px; flex-wrap: wrap; }
+.ft-letter { border: 1px solid var(--color-border); border-radius: var(--radius-4); padding: 8px 10px; display: grid; gap: 8px; }
+.ft-letter__head { display: flex; gap: 8px; align-items: center; cursor: pointer; font-size: var(--font-size-md); flex-wrap: wrap; }
 .ft-model-score { display: block; font-size: 10.5px; color: var(--color-text-secondary); white-space: nowrap; }
 </style>

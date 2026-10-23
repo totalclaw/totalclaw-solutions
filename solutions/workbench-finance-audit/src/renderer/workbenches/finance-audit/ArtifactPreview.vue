@@ -64,7 +64,7 @@ async function open(a: FauArtifact, reveal: boolean): Promise<void> {
 
 <style scoped>
 .fau-arts { display: grid; gap: 8px; }
-.fau-preview { border: 1px solid var(--color-border); border-radius: 12px; padding: 10px 12px; display: grid; gap: 8px; background: var(--color-bg-card); }
+.fau-preview { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 10px 12px; display: grid; gap: 8px; background: var(--color-bg-card); }
 .fau-sheets { flex-wrap: wrap; }
 .fau-docx { max-height: 360px; overflow: auto; font-size: 12.5px; line-height: 1.6; }
 .fau-docx p { margin: 0 0 6px; }

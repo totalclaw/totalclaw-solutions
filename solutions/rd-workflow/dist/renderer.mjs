@@ -20,10 +20,10 @@ a.default;
 const je = {
   class: "fdv",
   dir: "ltr"
-}, qe = { class: "fdv-caret" }, Pe = ["title"], Fe = { class: "fdv-stat" }, He = { class: "add" }, Ke = { class: "del" }, Me = ["title"], Ue = {
+}, qe = { class: "fdv-caret" }, Pe = ["title"], Fe = { class: "fdv-stat" }, He = { class: "add" }, Ke = { class: "del" }, Me = ["title"], xe = {
   key: 0,
   class: "fdv-body"
-}, xe = { class: "fdv-gutter" }, ze = { class: "fdv-txt" }, Xe = {
+}, Ue = { class: "fdv-gutter" }, ze = { class: "fdv-txt" }, Xe = {
   key: 0,
   class: "fdv-empty"
 }, Ye = /* @__PURE__ */ e.defineComponent({
@@ -33,7 +33,7 @@ const je = {
   },
   emits: ["open"],
   setup(v) {
-    const c = v, p = e.ref(!1), D = e.computed(() => c.change.action), C = e.computed(() => ({ write: a.t("写入"), patch: a.t("修改"), read: a.t("读取") })[c.change.action] || c.change.action), r = e.computed(() => {
+    const c = v, p = e.ref(!1), V = e.computed(() => c.change.action), C = e.computed(() => ({ write: a.t("写入"), patch: a.t("修改"), read: a.t("读取") })[c.change.action] || c.change.action), r = e.computed(() => {
       const d = c.change, f = [], i = (m) => (m || "").replace(/\n$/, "").split(`
 `);
       if (d.action === "write" && d.content != null)
@@ -68,7 +68,7 @@ const je = {
             e.createElementVNode(
               "span",
               {
-                class: e.normalizeClass(["fdv-action", D.value])
+                class: e.normalizeClass(["fdv-action", V.value])
               },
               e.toDisplayString(C.value),
               3
@@ -102,7 +102,7 @@ const je = {
               onClick: f[0] || (f[0] = e.withModifiers((i) => d.$emit("open", v.change.path), ["stop"]))
             }, "↗", 8, Me)) : e.createCommentVNode("v-if", !0)
           ]),
-          p.value ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("div", Ue, [
+          p.value ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("div", xe, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
@@ -115,7 +115,7 @@ const je = {
                 [
                   e.createElementVNode(
                     "span",
-                    xe,
+                    Ue,
                     e.toDisplayString(i.t === "add" ? "+" : i.t === "del" ? "-" : " "),
                     1
                     /* TEXT */
@@ -150,8 +150,8 @@ const je = {
   }
 }), de = (v, c) => {
   const p = v.__vccOpts || v;
-  for (const [D, C] of c)
-    p[D] = C;
+  for (const [V, C] of c)
+    p[V] = C;
   return p;
 }, Ge = /* @__PURE__ */ de(Ye, [["__scopeId", "data-v-6cf7e50f"]]), ue = "sol-rd-workflow", Je = [
   { id: "web", label: a.t("Web 网站 / 应用"), stackHint: "React/Vue + TypeScript" },
@@ -312,49 +312,53 @@ function et(v) {
 const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title" }, at = { class: "rdw-sub" }, rt = {
   key: 0,
   class: "rdw-intake"
-}, lt = { class: "rdw-field" }, st = ["disabled"], it = ["placeholder"], ct = {
+}, lt = { class: "rdw-field" }, st = ["disabled"], it = {
+  key: 0,
+  class: "ri-attachment-2",
+  "aria-hidden": "true"
+}, ct = ["placeholder"], dt = {
   key: 0,
   class: "rdw-attached"
-}, dt = ["title"], ut = { class: "rdw-row" }, pt = { class: "rdw-field" }, mt = {
+}, ut = ["title"], pt = { class: "rdw-row" }, mt = { class: "rdw-field" }, vt = {
   value: "",
   disabled: ""
-}, vt = ["value"], ft = { class: "rdw-field" }, _t = ["placeholder"], ht = { class: "rdw-field" }, gt = { class: "rdw-outdir" }, yt = ["placeholder"], kt = ["disabled"], wt = {
+}, ft = ["value"], ht = { class: "rdw-field" }, _t = ["placeholder"], gt = { class: "rdw-field" }, yt = { class: "rdw-outdir" }, kt = ["placeholder"], wt = ["disabled"], Nt = {
   key: 0,
   class: "rdw-outdir-hint"
-}, St = { class: "rdw-row" }, Nt = { class: "rdw-field" }, bt = ["placeholder"], Et = { class: "rdw-field" }, Dt = ["placeholder"], Vt = {
+}, St = { class: "rdw-row" }, bt = { class: "rdw-field" }, Et = ["placeholder"], Vt = { class: "rdw-field" }, Dt = ["placeholder"], Tt = {
   key: 0,
   class: "rdw-err"
-}, Tt = ["disabled"], $t = {
+}, $t = ["disabled"], Bt = {
   key: 1,
   class: "rdw-history"
-}, At = { class: "rdw-history-head" }, Bt = { class: "rdw-history-sub" }, It = { class: "rdw-history-list" }, Ct = { class: "rdw-history-main" }, Lt = { class: "rdw-history-name" }, Wt = {
+}, At = { class: "rdw-history-head" }, It = { class: "rdw-history-sub" }, Ct = { class: "rdw-history-list" }, Lt = { class: "rdw-history-main" }, Wt = { class: "rdw-history-name" }, Ot = {
   key: 0,
   class: "rdw-history-type"
-}, Ot = { class: "rdw-history-time" }, Rt = ["title"], jt = {
+}, Rt = { class: "rdw-history-time" }, jt = ["title"], qt = {
   key: 0,
   class: "rdw-history-req"
-}, qt = { class: "rdw-history-actions" }, Pt = ["disabled", "onClick"], Ft = ["onClick"], Ht = ["onClick"], Kt = ["onClick"], Mt = { class: "rdw-run" }, Ut = { class: "rdw-run-head" }, xt = { class: "rdw-run-actions" }, zt = ["disabled"], Xt = { class: "rdw-nodes" }, Yt = ["onClick"], Gt = { class: "rdw-node-name" }, Jt = { class: "rdw-node-badge" }, Qt = {
+}, Pt = { class: "rdw-history-actions" }, Ft = ["disabled", "onClick"], Ht = ["onClick"], Kt = ["onClick"], Mt = ["onClick"], xt = { class: "rdw-run" }, Ut = { class: "rdw-run-head" }, zt = { class: "rdw-run-actions" }, Xt = ["disabled"], Yt = { class: "rdw-nodes" }, Gt = ["onClick"], Jt = { class: "rdw-node-name" }, Qt = { class: "rdw-node-badge" }, Zt = {
   key: 0,
   class: "rdw-node-elapsed"
-}, Zt = { class: "rdw-node-metrics" }, en = { class: "rdw-node-duty" }, tn = {
+}, en = { class: "rdw-node-metrics" }, tn = { class: "rdw-node-duty" }, nn = {
   key: 0,
   class: "rdw-node-activity"
-}, nn = ["data-human-confirm"], on = { class: "rdw-confirm-q" }, an = {
+}, on = ["data-human-confirm"], an = { class: "rdw-confirm-q" }, rn = {
   key: 0,
   class: "rdw-confirm-detail"
-}, rn = {
+}, ln = {
   key: 1,
   class: "rdw-opts"
-}, ln = ["value"], sn = ["placeholder"], cn = { class: "rdw-confirm-actions" }, dn = {
+}, sn = ["value"], cn = ["placeholder"], dn = { class: "rdw-confirm-actions" }, un = {
   key: 2,
   class: "rdw-node-output"
-}, un = {
+}, pn = {
   key: 3,
   class: "rdw-node-changes"
-}, le = "rdw.history.v1", se = 30, pn = /* @__PURE__ */ e.defineComponent({
+}, le = "rdw.history.v1", se = 30, mn = /* @__PURE__ */ e.defineComponent({
   __name: "RdWorkflowWorkbenchView",
   setup(v) {
-    const c = () => window.electronAPI, p = Y.useRouter(), D = Je, C = Qe.filter((t) => t.id !== "intake"), r = e.reactive({ requirement: "", projectName: "", devType: "", techStack: "", constraints: "", outputDir: "" }), L = e.ref(!1), T = e.ref(!1), d = e.ref(!1), f = e.ref([]), i = e.ref(""), m = e.ref(!1), g = e.ref(""), h = e.ref("running"), S = e.ref("");
+    const c = () => window.electronAPI, p = Y.useRouter(), V = Je, C = Qe.filter((t) => t.id !== "intake"), r = e.reactive({ requirement: "", projectName: "", devType: "", techStack: "", constraints: "", outputDir: "" }), L = e.ref(!1), T = e.ref(!1), d = e.ref(!1), f = e.ref([]), i = e.ref(""), m = e.ref(!1), g = e.ref(""), _ = e.ref("running"), N = e.ref("");
     function pe() {
       try {
         const t = localStorage.getItem(le), n = t ? JSON.parse(t) : [];
@@ -374,7 +378,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
     function me(t) {
       b.value = [t, ...b.value].slice(0, se), H();
     }
-    function V(t, n) {
+    function D(t, n) {
       if (!t) return;
       const o = b.value.findIndex((l) => l.id === t);
       o >= 0 && (b.value[o] = { ...b.value[o], ...n }, H());
@@ -398,10 +402,10 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
       } catch {
       }
     }
-    function _e(t) {
+    function he(t) {
       b.value = b.value.filter((n) => n.id !== t), H();
     }
-    function he(t) {
+    function _e(t) {
       try {
         return new Date(t).toLocaleString();
       } catch {
@@ -414,7 +418,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
     const s = e.reactive({}), q = () => ({ status: "pending", output: "", files: [] });
     for (const t of C) s[t.id] = q();
     s.brainstorm = q();
-    const _ = (t) => s[t] || q(), W = e.reactive(/* @__PURE__ */ new Set()), ye = (t) => {
+    const h = (t) => s[t] || q(), W = e.reactive(/* @__PURE__ */ new Set()), ye = (t) => {
       W.has(t) ? W.delete(t) : W.add(t);
     }, Q = e.ref(0);
     let O = null;
@@ -435,7 +439,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
       ee.value = Date.now();
     }
     const P = G.useStepWatchdog({
-      running: () => m.value && h.value === "running",
+      running: () => m.value && _.value === "running",
       startedAt: () => {
         let t = 0;
         for (const n of Object.values(s)) n.status === "running" && n.startedAt && n.startedAt > t && (t = n.startedAt);
@@ -444,22 +448,22 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
       kind: "llm",
       lastProgressAt: () => ee.value || null
     });
-    function Se(t) {
+    function Ne(t) {
       return (s[t]?.files || []).reduce((n, o) => o.action === "write" ? n + (o.content ? o.content.split(`
 `).length : 0) : o.action === "patch" ? n + (o.newString ? o.newString.split(`
 `).length : o.patchText ? o.patchText.split(`
 `).filter((l) => l.startsWith("+")).length : 0) : n, 0);
     }
     const u = e.ref(null);
-    let R = "", M = null, U = null, x = null;
-    const Ne = e.computed(() => {
-      const t = D.find((n) => n.id === r.devType);
+    let R = "", M = null, x = null, U = null;
+    const Se = e.computed(() => {
+      const t = V.find((n) => n.id === r.devType);
       return t?.stackHint ? a.t("留空则默认：") + t.stackHint : a.t("如 React + TS / FastAPI …");
-    }), be = e.computed(() => ({ running: a.t("执行中"), paused: a.t("等待补充"), done: a.t("已完成"), failed: a.t("失败"), cancelled: a.t("已取消") })[h.value]);
+    }), be = e.computed(() => ({ running: a.t("执行中"), paused: a.t("等待补充"), done: a.t("已完成"), failed: a.t("失败"), cancelled: a.t("已取消") })[_.value]);
     function Ee(t) {
       return { pending: a.t("待执行"), running: a.t("执行中"), paused: a.t("等待补充"), done: a.t("已完成"), failed: a.t("失败") }[t];
     }
-    async function De() {
+    async function Ve() {
       if (!T.value) {
         T.value = !0;
         try {
@@ -497,7 +501,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
         }
       }
     }
-    async function Ve() {
+    async function De() {
       if (i.value = "", !r.requirement.trim()) {
         i.value = a.t("请填写需求描述");
         return;
@@ -512,19 +516,19 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
       }
       L.value = !0;
       try {
-        const t = D.find((w) => w.id === r.devType)?.label || r.devType, n = r.projectName.trim() || "rd-project", o = r.outputDir.trim(), l = et({
+        const t = V.find((w) => w.id === r.devType)?.label || r.devType, n = r.projectName.trim() || "rd-project", o = r.outputDir.trim(), l = et({
           requirement: r.requirement.trim(),
           projectName: n,
           devType: a.t(t),
-          techStack: r.techStack.trim() || D.find((w) => w.id === r.devType)?.stackHint || "",
+          techStack: r.techStack.trim() || V.find((w) => w.id === r.devType)?.stackHint || "",
           constraints: r.constraints.trim() || a.t("（无特殊约束）"),
           outputDir: o
         });
-        await c().saveWorkflow(l), Te(), m.value = !0, h.value = "running", S.value = `${o}/${n}`, y = `local_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`, me({
+        await c().saveWorkflow(l), Te(), m.value = !0, _.value = "running", N.value = `${o}/${n}`, y = `local_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`, me({
           id: y,
           projectName: n,
           outputDir: o,
-          projectDir: S.value,
+          projectDir: N.value,
           requirement: r.requirement.trim().slice(0, 400),
           devTypeId: r.devType,
           devTypeLabel: a.t(t),
@@ -533,29 +537,29 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
           startedAt: Date.now(),
           status: "running"
         }), s.pm && (s.pm.status = "running"), R = "pm";
-        const N = await c().runWorkflow({ workflowId: ue, input: {
+        const S = await c().runWorkflow({ workflowId: ue, input: {
           requirement: r.requirement.trim(),
           projectName: n,
           devType: a.t(t),
-          techStack: r.techStack.trim() || D.find((w) => w.id === r.devType)?.stackHint || "",
+          techStack: r.techStack.trim() || V.find((w) => w.id === r.devType)?.stackHint || "",
           constraints: r.constraints.trim() || a.t("（无特殊约束）"),
           outputDir: o
-        } }), k = N?.runId || N?.id || $.find((w) => w.runId)?.runId || "";
+        } }), k = S?.runId || S?.id || $.find((w) => w.runId)?.runId || "";
         if (k) {
-          V(y, { id: k }), y = k, g.value = k;
+          D(y, { id: k }), y = k, g.value = k;
           const w = $;
           $ = [];
-          for (const B of w)
-            (!B.runId || B.runId === k) && ne(B);
+          for (const A of w)
+            (!A.runId || A.runId === k) && ne(A);
         }
       } catch (t) {
-        i.value = t?.message || String(t), m.value = !1, h.value = "failed", y && V(y, { status: "failed" }), F();
+        i.value = t?.message || String(t), m.value = !1, _.value = "failed", y && D(y, { status: "failed" }), F();
       } finally {
         L.value = !1;
       }
     }
     function Te() {
-      F(), M = c().onWorkflowEvent((t) => Ae(t)), U = c().onStreamToolUse((t) => Be(t)), x = c().onStreamSubagentProgress?.((t) => $e(t)) || null, Z();
+      F(), M = c().onWorkflowEvent((t) => Be(t)), x = c().onStreamToolUse((t) => Ae(t)), U = c().onStreamSubagentProgress?.((t) => $e(t)) || null, Z();
     }
     function F() {
       try {
@@ -563,14 +567,14 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
       } catch {
       }
       try {
-        U?.();
-      } catch {
-      }
-      try {
         x?.();
       } catch {
       }
-      M = U = x = null, ke();
+      try {
+        U?.();
+      } catch {
+      }
+      M = x = U = null, ke();
     }
     function $e(t) {
       if (t?.runId && g.value && t.runId !== g.value) return;
@@ -581,7 +585,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
       n.activity = l ? `${o}：${l}` : o;
     }
     let $ = [];
-    function Ae(t) {
+    function Be(t) {
       if (t) {
         if (!g.value) {
           $.push(t), $.length > 800 && $.shift();
@@ -594,7 +598,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
       const n = t.nodeId;
       switch (K(), t.kind) {
         case "run:started":
-          h.value = "running";
+          _.value = "running";
           break;
         case "node:entered":
           n && s[n] && (s[n].status = "running", s[n].startedAt = Date.now(), s[n].activity = a.t("启动中…"), R = n, Z());
@@ -612,7 +616,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
           n && s[n] && (s[n].status = "running");
           break;
         case "node:waiting_human":
-          h.value = "paused", V(y, { status: "paused" }), n && s[n] && (s[n].status = "paused"), u.value = {
+          _.value = "paused", D(y, { status: "paused" }), n && s[n] && (s[n].status = "paused"), u.value = {
             nodeId: n || "brainstorm",
             question: t.question || a.t("需要你确认/补充后继续"),
             detail: t.confirmationDetail,
@@ -624,34 +628,34 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
           };
           break;
         case "human-confirm-resolved":
-          n && u.value?.nodeId === n && (u.value = null, h.value = "running", V(y, { status: "running" }), s[n]?.status === "paused" && (s[n].status = "running"));
+          n && u.value?.nodeId === n && (u.value = null, _.value = "running", D(y, { status: "running" }), s[n]?.status === "paused" && (s[n].status = "running"));
           break;
         case "run:completed":
-          h.value = "done", V(y, { status: "done" }), Ie();
+          _.value = "done", D(y, { status: "done" }), Ie();
           break;
         case "run:failed":
-          h.value = "failed", V(y, { status: "failed" });
+          _.value = "failed", D(y, { status: "failed" });
           break;
         case "run:cancelled":
-          h.value = "cancelled", V(y, { status: "cancelled" });
+          _.value = "cancelled", D(y, { status: "cancelled" });
           break;
       }
     }
-    function Be(t) {
+    function Ae(t) {
       if (!t || typeof t.sessionId != "string" || !t.sessionId.startsWith("wf_") || t.runId && g.value && t.runId !== g.value) return;
       K();
       const n = t.toolInput || {}, o = n.path || n.file_path || n.filePath;
       if (!o) return;
       const l = s[t.nodeId || R];
       if (!l) return;
-      const N = String(t.toolName || ""), k = String(o).split("/").pop();
-      /write_file|create_file|write/i.test(N) ? (l.files.push({ path: o, action: "write", content: n.content ?? n.text }), l.activity = a.t("写入 {p0}", { p0: k })) : /patch|edit|apply_patch|replace/i.test(N) ? (l.files.push({ path: o, action: "patch", patchText: n.patch, oldString: n.old_string ?? n.oldString, newString: n.new_string ?? n.newString }), l.activity = a.t("修改 {p0}", { p0: k })) : /read_file|read/i.test(N) && (l.activity = a.t("读取 {p0}", { p0: k })), !S.value && typeof o == "string" && o.startsWith("/");
+      const S = String(t.toolName || ""), k = String(o).split("/").pop();
+      /write_file|create_file|write/i.test(S) ? (l.files.push({ path: o, action: "write", content: n.content ?? n.text }), l.activity = a.t("写入 {p0}", { p0: k })) : /patch|edit|apply_patch|replace/i.test(S) ? (l.files.push({ path: o, action: "patch", patchText: n.patch, oldString: n.old_string ?? n.oldString, newString: n.new_string ?? n.newString }), l.activity = a.t("修改 {p0}", { p0: k })) : /read_file|read/i.test(S) && (l.activity = a.t("读取 {p0}", { p0: k })), !N.value && typeof o == "string" && o.startsWith("/");
     }
     async function oe(t) {
       const n = u.value;
       if (!(!n || !g.value))
         try {
-          await c().respondWorkflowHumanConfirm({ runId: g.value, nodeId: n.nodeId, approved: t, reply: n.reply || void 0, selectedOption: n.selected || void 0 }), h.value = "running", V(y, { status: "running" }), s[n.nodeId] && (s[n.nodeId].status = t ? "done" : "running"), u.value = null;
+          await c().respondWorkflowHumanConfirm({ runId: g.value, nodeId: n.nodeId, approved: t, reply: n.reply || void 0, selectedOption: n.selected || void 0 }), _.value = "running", D(y, { status: "running" }), s[n.nodeId] && (s[n.nodeId].status = t ? "done" : "running"), u.value = null;
         } catch (o) {
           i.value = o?.message || String(o);
         }
@@ -659,34 +663,34 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
     async function Ie() {
       try {
         const t = await c().getRunArtifacts?.({ runId: g.value }), n = t?.deliverables?.[0]?.path || t?.changes?.[0]?.target;
-        n && !S.value && (S.value = n);
+        n && !N.value && (N.value = n);
       } catch {
       }
     }
     function Ce() {
-      J(S.value);
+      J(N.value);
     }
-    const A = e.ref("");
+    const B = e.ref("");
     async function ae(t, n) {
       const o = (t || "").trim();
-      if (!(!o || A.value)) {
-        A.value = o, i.value = "";
+      if (!(!o || B.value)) {
+        B.value = o, i.value = "";
         try {
-          const l = c(), k = (await l.workFolder?.register?.({ name: n || "rd-project", path: o }))?.folder?.id, w = await l.conversation?.create?.({ kind: "single", members: ["ai-dev"], title: a.t("微调：{p0}", { p0: n || "rd-project" }) }), B = w?.id;
-          if (!B) {
+          const l = c(), k = (await l.workFolder?.register?.({ name: n || "rd-project", path: o }))?.folder?.id, w = await l.conversation?.create?.({ kind: "single", members: ["ai-dev"], title: a.t("微调：{p0}", { p0: n || "rd-project" }) }), A = w?.id;
+          if (!A) {
             i.value = a.t("进入对话失败，请重试");
             return;
           }
           if (k)
             try {
-              await l.conversation?.setWorkFolder?.(B, k);
+              await l.conversation?.setWorkFolder?.(A, k);
             } catch {
             }
-          w?.navigateTo ? p.push(w.navigateTo) : p.push({ path: "/conversations", query: { id: B } });
+          w?.navigateTo ? p.push(w.navigateTo) : p.push({ path: "/conversations", query: { id: A } });
         } catch (l) {
           i.value = l?.message || String(l);
         } finally {
-          A.value = "";
+          B.value = "";
         }
       }
     }
@@ -699,13 +703,13 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
           if (!c()?.cancelWorkflowRun) throw new Error(a.t("取消接口不可用"));
           const t = await c().cancelWorkflowRun({ runId: g.value });
           if (!t?.ok || t.accepted === !1) throw new Error(t?.error || a.t("运行已结束，未执行取消"));
-          h.value = "cancelled", u.value = null, V(y, { status: "cancelled" });
+          _.value = "cancelled", u.value = null, D(y, { status: "cancelled" });
         } catch (t) {
           i.value = t?.message || String(t);
         }
     }
     function We() {
-      F(), m.value = !1, g.value = "", R = "", u.value = null, S.value = "", f.value = [], $ = [], y = "";
+      F(), m.value = !1, g.value = "", R = "", u.value = null, N.value = "", f.value = [], $ = [], y = "";
       for (const t of Object.keys(s)) s[t] = q();
     }
     return e.onBeforeUnmount(F), (t, n) => (e.openBlock(), e.createElementBlock("div", tt, [
@@ -753,17 +757,24 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
               type: "button",
               class: "rdw-upload",
               disabled: T.value,
-              onClick: De
-            }, e.toDisplayString(T.value ? t.$t("解析中…") : t.$t("📎 上传文档解析")), 9, st)
+              onClick: Ve
+            }, [
+              T.value ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("i", it)),
+              e.createTextVNode(
+                " " + e.toDisplayString(T.value ? t.$t("解析中…") : t.$t("上传文档解析")),
+                1
+                /* TEXT */
+              )
+            ], 8, st)
           ]),
           e.withDirectives(e.createElementVNode("textarea", {
             "onUpdate:modelValue": n[0] || (n[0] = (o) => r.requirement = o),
             rows: "5",
             placeholder: t.$t("把你要做的产品/功能讲清楚：目标用户、要解决的问题、核心功能…（也可上传需求文档，自动解析填入）")
-          }, null, 8, it), [
+          }, null, 8, ct), [
             [e.vModelText, r.requirement]
           ]),
-          f.value.length ? (e.openBlock(), e.createElementBlock("div", ct, [
+          f.value.length ? (e.openBlock(), e.createElementBlock("div", dt, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
@@ -772,8 +783,18 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
                 class: e.normalizeClass(["rdw-chip", { warn: !!o.reason }]),
                 title: o.reason || ""
               }, [
+                n[13] || (n[13] = e.createElementVNode(
+                  "i",
+                  {
+                    class: "ri-file-text-line",
+                    "aria-hidden": "true"
+                  },
+                  null,
+                  -1
+                  /* CACHED */
+                )),
                 e.createTextVNode(
-                  " 📄 " + e.toDisplayString(o.name),
+                  " " + e.toDisplayString(o.name),
                   1
                   /* TEXT */
                 ),
@@ -790,21 +811,21 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
                   64
                   /* STABLE_FRAGMENT */
                 )) : e.createCommentVNode("v-if", !0)
-              ], 10, dt))),
+              ], 10, ut))),
               128
               /* KEYED_FRAGMENT */
             ))
           ])) : e.createCommentVNode("v-if", !0)
         ]),
-        e.createElementVNode("div", ut, [
-          e.createElementVNode("label", pt, [
+        e.createElementVNode("div", pt, [
+          e.createElementVNode("label", mt, [
             e.createElementVNode("span", null, [
               e.createTextVNode(
                 e.toDisplayString(t.$t("开发类型")) + " ",
                 1
                 /* TEXT */
               ),
-              n[13] || (n[13] = e.createElementVNode(
+              n[14] || (n[14] = e.createElementVNode(
                 "em",
                 null,
                 "*",
@@ -820,7 +841,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
               [
                 e.createElementVNode(
                   "option",
-                  mt,
+                  vt,
                   e.toDisplayString(t.$t("请选择")),
                   1
                   /* TEXT */
@@ -828,10 +849,10 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(e.unref(D), (o) => (e.openBlock(), e.createElementBlock("option", {
+                  e.renderList(e.unref(V), (o) => (e.openBlock(), e.createElementBlock("option", {
                     key: o.id,
                     value: o.id
-                  }, e.toDisplayString(t.$t(o.label)), 9, vt))),
+                  }, e.toDisplayString(t.$t(o.label)), 9, ft))),
                   128
                   /* KEYED_FRAGMENT */
                 ))
@@ -842,7 +863,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
               [e.vModelSelect, r.devType]
             ])
           ]),
-          e.createElementVNode("label", ft, [
+          e.createElementVNode("label", ht, [
             e.createElementVNode(
               "span",
               null,
@@ -858,14 +879,14 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
             ])
           ])
         ]),
-        e.createElementVNode("label", ht, [
+        e.createElementVNode("label", gt, [
           e.createElementVNode("span", null, [
             e.createTextVNode(
               e.toDisplayString(t.$t("产出地址")) + " ",
               1
               /* TEXT */
             ),
-            n[14] || (n[14] = e.createElementVNode(
+            n[15] || (n[15] = e.createElementVNode(
               "em",
               null,
               "*",
@@ -873,13 +894,13 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
               /* CACHED */
             ))
           ]),
-          e.createElementVNode("div", gt, [
+          e.createElementVNode("div", yt, [
             e.withDirectives(e.createElementVNode("input", {
               "onUpdate:modelValue": n[3] || (n[3] = (o) => r.outputDir = o),
               readonly: "",
               placeholder: t.$t("必填：选择代码落地的文件夹，全部产出写入这里"),
               onClick: te
-            }, null, 8, yt), [
+            }, null, 8, kt), [
               [e.vModelText, r.outputDir]
             ]),
             e.createElementVNode("button", {
@@ -887,18 +908,18 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
               class: "rdw-btn ghost",
               disabled: d.value,
               onClick: te
-            }, e.toDisplayString(d.value ? t.$t("选择中…") : t.$t("选择文件夹")), 9, kt)
+            }, e.toDisplayString(d.value ? t.$t("选择中…") : t.$t("选择文件夹")), 9, wt)
           ]),
           r.outputDir ? (e.openBlock(), e.createElementBlock(
             "small",
-            wt,
+            Nt,
             e.toDisplayString(t.$t("代码将写入 {p0}", { p0: `${r.outputDir}/${r.projectName.trim() || "rd-project"}/` })),
             1
             /* TEXT */
           )) : e.createCommentVNode("v-if", !0)
         ]),
         e.createElementVNode("div", St, [
-          e.createElementVNode("label", Nt, [
+          e.createElementVNode("label", bt, [
             e.createElementVNode(
               "span",
               null,
@@ -908,12 +929,12 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
             ),
             e.withDirectives(e.createElementVNode("input", {
               "onUpdate:modelValue": n[4] || (n[4] = (o) => r.techStack = o),
-              placeholder: Ne.value
-            }, null, 8, bt), [
+              placeholder: Se.value
+            }, null, 8, Et), [
               [e.vModelText, r.techStack]
             ])
           ]),
-          e.createElementVNode("label", Et, [
+          e.createElementVNode("label", Vt, [
             e.createElementVNode(
               "span",
               null,
@@ -931,7 +952,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
         ]),
         i.value ? (e.openBlock(), e.createElementBlock(
           "p",
-          Vt,
+          Tt,
           e.toDisplayString(i.value),
           1
           /* TEXT */
@@ -939,11 +960,11 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
         e.createElementVNode("button", {
           class: "rdw-start",
           disabled: L.value,
-          onClick: Ve
-        }, e.toDisplayString(L.value ? t.$t("启动中…") : t.$t("开始研发")), 9, Tt)
+          onClick: De
+        }, e.toDisplayString(L.value ? t.$t("启动中…") : t.$t("开始研发")), 9, $t)
       ])),
       e.createCommentVNode(" 产出历史：每跑一版就留一条记录 "),
-      !m.value && b.value.length ? (e.openBlock(), e.createElementBlock("section", $t, [
+      !m.value && b.value.length ? (e.openBlock(), e.createElementBlock("section", Bt, [
         e.createElementVNode("div", At, [
           e.createElementVNode(
             "h3",
@@ -954,13 +975,13 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
           ),
           e.createElementVNode(
             "span",
-            Bt,
+            It,
             e.toDisplayString(t.$t("每跑一版都会留一条记录，可打开产出目录或复用需求再来一版")),
             1
             /* TEXT */
           )
         ]),
-        e.createElementVNode("ul", It, [
+        e.createElementVNode("ul", Ct, [
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
@@ -968,10 +989,10 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
               key: o.id,
               class: "rdw-history-item"
             }, [
-              e.createElementVNode("div", Ct, [
+              e.createElementVNode("div", Lt, [
                 e.createElementVNode(
                   "span",
-                  Lt,
+                  Wt,
                   e.toDisplayString(o.projectName || t.$t("研发工作流")),
                   1
                   /* TEXT */
@@ -987,15 +1008,15 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
                 ),
                 o.devTypeLabel ? (e.openBlock(), e.createElementBlock(
                   "span",
-                  Wt,
+                  Ot,
                   e.toDisplayString(o.devTypeLabel),
                   1
                   /* TEXT */
                 )) : e.createCommentVNode("v-if", !0),
                 e.createElementVNode(
                   "span",
-                  Ot,
-                  e.toDisplayString(he(o.startedAt)),
+                  Rt,
+                  e.toDisplayString(_e(o.startedAt)),
                   1
                   /* TEXT */
                 )
@@ -1003,32 +1024,48 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
               e.createElementVNode("div", {
                 class: "rdw-history-dir",
                 title: o.projectDir
-              }, "📁 " + e.toDisplayString(o.projectDir), 9, Rt),
+              }, [
+                n[16] || (n[16] = e.createElementVNode(
+                  "i",
+                  {
+                    class: "ri-folder-line",
+                    "aria-hidden": "true"
+                  },
+                  null,
+                  -1
+                  /* CACHED */
+                )),
+                e.createTextVNode(
+                  " " + e.toDisplayString(o.projectDir),
+                  1
+                  /* TEXT */
+                )
+              ], 8, jt),
               o.requirement ? (e.openBlock(), e.createElementBlock(
                 "div",
-                jt,
+                qt,
                 e.toDisplayString(o.requirement),
                 1
                 /* TEXT */
               )) : e.createCommentVNode("v-if", !0),
-              e.createElementVNode("div", qt, [
+              e.createElementVNode("div", Pt, [
                 e.createElementVNode("button", {
                   class: "rdw-btn primary",
-                  disabled: A.value === o.projectDir,
+                  disabled: B.value === o.projectDir,
                   onClick: (l) => ae(o.projectDir, o.projectName)
-                }, e.toDisplayString(A.value === o.projectDir ? t.$t("进入中…") : t.$t("去对话微调")), 9, Pt),
+                }, e.toDisplayString(B.value === o.projectDir ? t.$t("进入中…") : t.$t("去对话微调")), 9, Ft),
                 e.createElementVNode("button", {
                   class: "rdw-btn ghost",
                   onClick: (l) => ve(o)
-                }, e.toDisplayString(t.$t("打开目录")), 9, Ft),
+                }, e.toDisplayString(t.$t("打开目录")), 9, Ht),
                 e.createElementVNode("button", {
                   class: "rdw-btn ghost",
                   onClick: (l) => fe(o)
-                }, e.toDisplayString(t.$t("用此需求再来一版")), 9, Ht),
+                }, e.toDisplayString(t.$t("用此需求再来一版")), 9, Kt),
                 e.createElementVNode("button", {
                   class: "rdw-btn ghost rdw-history-del",
-                  onClick: (l) => _e(o.id)
-                }, e.toDisplayString(t.$t("删除")), 9, Kt)
+                  onClick: (l) => he(o.id)
+                }, e.toDisplayString(t.$t("删除")), 9, Mt)
               ])
             ]))),
             128
@@ -1040,7 +1077,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
         { key: 2 },
         [
           e.createCommentVNode(" 运行态：6 节点流水线 "),
-          e.createElementVNode("section", Mt, [
+          e.createElementVNode("section", xt, [
             e.createElementVNode("div", Ut, [
               e.createElementVNode("div", null, [
                 e.createElementVNode(
@@ -1053,21 +1090,21 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
                 e.createElementVNode(
                   "span",
                   {
-                    class: e.normalizeClass(["rdw-run-status", h.value])
+                    class: e.normalizeClass(["rdw-run-status", _.value])
                   },
                   e.toDisplayString(be.value),
                   3
                   /* TEXT, CLASS */
                 )
               ]),
-              e.createElementVNode("div", xt, [
-                S.value && _("dev").status === "done" ? (e.openBlock(), e.createElementBlock("button", {
+              e.createElementVNode("div", zt, [
+                N.value && h("dev").status === "done" ? (e.openBlock(), e.createElementBlock("button", {
                   key: 0,
                   class: "rdw-btn primary",
-                  disabled: A.value === S.value,
-                  onClick: n[6] || (n[6] = (o) => ae(S.value, r.projectName.trim() || "rd-project"))
-                }, e.toDisplayString(A.value === S.value ? t.$t("进入中…") : t.$t("去对话微调")), 9, zt)) : e.createCommentVNode("v-if", !0),
-                S.value ? (e.openBlock(), e.createElementBlock(
+                  disabled: B.value === N.value,
+                  onClick: n[6] || (n[6] = (o) => ae(N.value, r.projectName.trim() || "rd-project"))
+                }, e.toDisplayString(B.value === N.value ? t.$t("进入中…") : t.$t("去对话微调")), 9, Xt)) : e.createCommentVNode("v-if", !0),
+                N.value ? (e.openBlock(), e.createElementBlock(
                   "button",
                   {
                     key: 1,
@@ -1078,7 +1115,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
                   1
                   /* TEXT */
                 )) : e.createCommentVNode("v-if", !0),
-                h.value === "running" || h.value === "paused" ? (e.openBlock(), e.createElementBlock(
+                _.value === "running" || _.value === "paused" ? (e.openBlock(), e.createElementBlock(
                   "button",
                   {
                     key: 2,
@@ -1111,7 +1148,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
               onRetry: re,
               onKeepWaiting: n[7] || (n[7] = (o) => e.unref(P).keepWaiting())
             }, null, 8, ["elapsed-sec", "since-heartbeat-sec", "retry-label"])) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("div", Xt, [
+            e.createElementVNode("div", Yt, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
@@ -1119,7 +1156,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
                   "article",
                   {
                     key: o.id,
-                    class: e.normalizeClass(["rdw-node", _(o.id).status])
+                    class: e.normalizeClass(["rdw-node", h(o.id).status])
                   },
                   [
                     e.createElementVNode("div", {
@@ -1129,7 +1166,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
                       e.createElementVNode(
                         "span",
                         {
-                          class: e.normalizeClass(["rdw-dot", _(o.id).status])
+                          class: e.normalizeClass(["rdw-dot", h(o.id).status])
                         },
                         null,
                         2
@@ -1137,32 +1174,32 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
                       ),
                       e.createElementVNode(
                         "span",
-                        Gt,
+                        Jt,
                         e.toDisplayString(t.$t(o.name)),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "span",
-                        Jt,
-                        e.toDisplayString(Ee(_(o.id).status)),
+                        Qt,
+                        e.toDisplayString(Ee(h(o.id).status)),
                         1
                         /* TEXT */
                       ),
-                      _(o.id).status === "running" ? (e.openBlock(), e.createElementBlock(
+                      h(o.id).status === "running" ? (e.openBlock(), e.createElementBlock(
                         "span",
-                        Qt,
+                        Zt,
                         "⏱ " + e.toDisplayString(we(o.id)) + "s",
                         1
                         /* TEXT */
                       )) : e.createCommentVNode("v-if", !0),
-                      e.createElementVNode("span", Zt, [
-                        _(o.id).output.length ? (e.openBlock(), e.createElementBlock(
+                      e.createElementVNode("span", en, [
+                        h(o.id).output.length ? (e.openBlock(), e.createElementBlock(
                           e.Fragment,
                           { key: 0 },
                           [
                             e.createTextVNode(
-                              e.toDisplayString(_(o.id).output.length) + " " + e.toDisplayString(t.$t("字")),
+                              e.toDisplayString(h(o.id).output.length) + " " + e.toDisplayString(t.$t("字")),
                               1
                               /* TEXT */
                             )
@@ -1170,12 +1207,27 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
                           64
                           /* STABLE_FRAGMENT */
                         )) : e.createCommentVNode("v-if", !0),
-                        _(o.id).files.length ? (e.openBlock(), e.createElementBlock(
+                        h(o.id).files.length ? (e.openBlock(), e.createElementBlock(
                           e.Fragment,
                           { key: 1 },
                           [
+                            n[17] || (n[17] = e.createTextVNode(
+                              " · ",
+                              -1
+                              /* CACHED */
+                            )),
+                            n[18] || (n[18] = e.createElementVNode(
+                              "i",
+                              {
+                                class: "ri-file-text-line",
+                                "aria-hidden": "true"
+                              },
+                              null,
+                              -1
+                              /* CACHED */
+                            )),
                             e.createTextVNode(
-                              " · 📄 " + e.toDisplayString(_(o.id).files.length) + " · +" + e.toDisplayString(Se(o.id)) + " " + e.toDisplayString(t.$t("行")),
+                              " " + e.toDisplayString(h(o.id).files.length) + " · +" + e.toDisplayString(Ne(o.id)) + " " + e.toDisplayString(t.$t("行")),
                               1
                               /* TEXT */
                             )
@@ -1184,17 +1236,17 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
                           /* STABLE_FRAGMENT */
                         )) : e.createCommentVNode("v-if", !0)
                       ])
-                    ], 8, Yt),
+                    ], 8, Gt),
                     e.createElementVNode(
                       "div",
-                      en,
+                      tn,
                       e.toDisplayString(t.$t(o.duty)),
                       1
                       /* TEXT */
                     ),
                     e.createCommentVNode(" running 空窗期实时活动（填补 agent 首字延迟） "),
-                    _(o.id).status === "running" ? (e.openBlock(), e.createElementBlock("div", tn, [
-                      n[15] || (n[15] = e.createElementVNode(
+                    h(o.id).status === "running" ? (e.openBlock(), e.createElementBlock("div", nn, [
+                      n[19] || (n[19] = e.createElementVNode(
                         "span",
                         { class: "rdw-spin" },
                         null,
@@ -1202,39 +1254,39 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
                         /* CACHED */
                       )),
                       e.createTextVNode(
-                        e.toDisplayString(_(o.id).activity || t.$t("执行中…")),
+                        e.toDisplayString(h(o.id).activity || t.$t("执行中…")),
                         1
                         /* TEXT */
                       )
                     ])) : e.createCommentVNode("v-if", !0),
                     e.createCommentVNode(" 人在环：该节点等待用户拍板/补料 "),
-                    _(o.id).status === "paused" && u.value && u.value.nodeId === o.id ? (e.openBlock(), e.createElementBlock("div", {
+                    h(o.id).status === "paused" && u.value && u.value.nodeId === o.id ? (e.openBlock(), e.createElementBlock("div", {
                       key: 1,
                       class: "rdw-confirm",
                       "data-human-confirm": `${g.value}:${u.value.nodeId}`
                     }, [
                       e.createElementVNode(
                         "div",
-                        on,
+                        an,
                         e.toDisplayString(u.value.question),
                         1
                         /* TEXT */
                       ),
                       u.value.detail ? (e.openBlock(), e.createElementBlock(
                         "div",
-                        an,
+                        rn,
                         e.toDisplayString(u.value.detail),
                         1
                         /* TEXT */
                       )) : e.createCommentVNode("v-if", !0),
-                      u.value.options?.length ? (e.openBlock(), e.createElementBlock("div", rn, [
+                      u.value.options?.length ? (e.openBlock(), e.createElementBlock("div", ln, [
                         (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList(u.value.options, (l, N) => (e.openBlock(), e.createElementBlock(
+                          e.renderList(u.value.options, (l, S) => (e.openBlock(), e.createElementBlock(
                             "label",
                             {
-                              key: N,
+                              key: S,
                               class: e.normalizeClass(["rdw-opt", { on: u.value.selected === l }])
                             },
                             [
@@ -1242,7 +1294,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
                                 type: "radio",
                                 value: l,
                                 "onUpdate:modelValue": n[8] || (n[8] = (k) => u.value.selected = k)
-                              }, null, 8, ln), [
+                              }, null, 8, sn), [
                                 [e.vModelRadio, u.value.selected]
                               ]),
                               e.createTextVNode(
@@ -1262,10 +1314,10 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
                         "onUpdate:modelValue": n[9] || (n[9] = (l) => u.value.reply = l),
                         rows: "2",
                         placeholder: t.$t("补充说明 / 自填你的方向（可选）")
-                      }, null, 8, sn), [
+                      }, null, 8, cn), [
                         [e.vModelText, u.value.reply]
                       ]),
-                      e.createElementVNode("div", cn, [
+                      e.createElementVNode("div", dn, [
                         e.createElementVNode(
                           "button",
                           {
@@ -1287,22 +1339,22 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
                           /* TEXT */
                         )
                       ])
-                    ], 8, nn)) : e.createCommentVNode("v-if", !0),
+                    ], 8, on)) : e.createCommentVNode("v-if", !0),
                     e.createCommentVNode(" 实时活动输出 "),
-                    !W.has(o.id) && _(o.id).output ? (e.openBlock(), e.createElementBlock(
+                    !W.has(o.id) && h(o.id).output ? (e.openBlock(), e.createElementBlock(
                       "div",
-                      dn,
-                      e.toDisplayString(_(o.id).output),
+                      un,
+                      e.toDisplayString(h(o.id).output),
                       1
                       /* TEXT */
                     )) : e.createCommentVNode("v-if", !0),
                     e.createCommentVNode(" 编辑了哪些文件（Codex 式 diff） "),
-                    !W.has(o.id) && _(o.id).files.length ? (e.openBlock(), e.createElementBlock("div", un, [
+                    !W.has(o.id) && h(o.id).files.length ? (e.openBlock(), e.createElementBlock("div", pn, [
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(_(o.id).files, (l, N) => (e.openBlock(), e.createBlock(Ge, {
-                          key: N,
+                        e.renderList(h(o.id).files, (l, S) => (e.openBlock(), e.createBlock(Ge, {
+                          key: S,
                           change: l,
                           onOpen: Le
                         }, null, 8, ["change"]))),
@@ -1325,7 +1377,7 @@ const tt = { class: "rdw" }, nt = { class: "rdw-top" }, ot = { class: "rdw-title
       ))
     ]));
   }
-}), mn = /* @__PURE__ */ de(pn, [["__scopeId", "data-v-b944dac4"]]);
+}), vn = /* @__PURE__ */ de(mn, [["__scopeId", "data-v-f5a60a88"]]);
 export {
-  mn as default
+  vn as default
 };

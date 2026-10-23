@@ -113,15 +113,15 @@ async function exportLedger(): Promise<void> {
 <style scoped>
 .ca-apps { display: grid; gap: 14px; }
 .ca-apps__sum { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); }
-.ca-apps__dir { display: flex; gap: 10px; align-items: center; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: 10px; cursor: pointer; transition: border-color .15s, background .15s; }
+.ca-apps__dir { display: flex; gap: 10px; align-items: center; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-4); cursor: pointer; transition: border-color .15s, background .15s; }
 .ca-apps__dir:hover, .ca-apps__dir:focus-visible { border-color: var(--ca-oxblood); outline: none; }
 .ca-apps__dir.on { border-color: var(--ca-oxblood); background: var(--color-brand-subtle); }
 .ca-apps__dir b { display: block; font-size: 13.5px; }
-.ca-apps__dir small { color: var(--color-text-secondary); font-size: 12px; }
+.ca-apps__dir small { color: var(--color-text-secondary); font-size: var(--font-size-sm); }
 .ca-apps__seal { flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%; display: inline-grid; place-items: center; font-family: var(--ca-serif); font-weight: 800; font-size: 16px; color: var(--ca-banner-ink); background: var(--ca-oxblood); box-shadow: 0 0 0 2px var(--color-bg-card), 0 0 0 3px var(--ca-gold); }
-.ca-apps__seal.sm { width: 26px; height: 26px; font-size: 13px; }
-.ca-apps__form { display: grid; gap: 8px; padding: 12px; border: 1px dashed var(--ca-gold); border-radius: 10px; }
-.ca-stage { display: inline-flex; padding: 2px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 700; }
+.ca-apps__seal.sm { width: 26px; height: 26px; font-size: var(--font-size-md); }
+.ca-apps__form { display: grid; gap: 8px; padding: 12px; border: 1px dashed var(--ca-gold); border-radius: var(--radius-4); }
+.ca-stage { display: inline-flex; padding: 2px 9px; border-radius: var(--radius-pill); font-size: 11.5px; font-weight: 700; }
 .ca-stage.live { background: oklch(0.6 0.13 150 / 0.14); color: oklch(0.45 0.12 150); }
 .ca-stage.building { background: oklch(0.75 0.14 75 / 0.18); color: oklch(0.5 0.12 70); }
 .ca-stage.planned { background: var(--color-bg-hover); color: var(--color-text-secondary); }

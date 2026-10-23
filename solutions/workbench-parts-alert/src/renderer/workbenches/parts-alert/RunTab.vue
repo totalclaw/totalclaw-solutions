@@ -6,7 +6,7 @@
       <StepCard step-key="pa-feed" :index="0" :title="metas[0].title" :hint="metas[0].hint" :runtime="runtime['pa-feed']" :is-current="currentKey === 'pa-feed'">
         <div class="ss-actions">
           <button type="button" class="ss-btn" :disabled="!!busy" data-test="pa-demo" @click="loadDemo">
-            <i :class="busy === 'pa-feed' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ $t('生成示例数据') }}
+            <i :class="busy === 'pa-feed' ? 'ri-loader-4-line spin' : 'ri-file-download-line'"></i>{{ $t('生成示例数据') }}
           </button>
           <span class="ss-muted">{{ $t('没有现成的表？点一下生成 60 个配件的示例数据并自动投喂，文件放在输出目录的「示例数据」文件夹里') }}</span>
         </div>
@@ -266,7 +266,7 @@ function exportPlan(): void { void act('pa-order', async () => { planFile.value 
 .pa-slots { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); }
 .pa-states { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 130px), 1fr)); }
 .pa-states.stale { opacity: .55; }
-.pa-state { display: grid; gap: 2px; text-align: start; border: 1px solid var(--color-border); border-inline-start-width: 4px; border-radius: 12px; padding: 10px 12px; background: var(--color-bg-card); font: inherit; color: var(--color-text-primary); cursor: pointer; }
+.pa-state { display: grid; gap: 2px; text-align: start; border: 1px solid var(--color-border); border-inline-start-width: 4px; border-radius: var(--radius-5); padding: 10px 12px; background: var(--color-bg-card); font: inherit; color: var(--color-text-primary); cursor: pointer; }
 .pa-state small { color: var(--color-text-secondary); font-size: 11.5px; }
 .pa-state strong { font-size: 22px; font-variant-numeric: tabular-nums; }
 .pa-state em { font-style: normal; font-size: 11.5px; color: var(--color-text-secondary); }

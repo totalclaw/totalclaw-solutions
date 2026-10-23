@@ -118,22 +118,22 @@ function rowClass(t: FauFpaTable, r: Record<string, FauFpaCell>): string {
 <style scoped>
 .fau-fpa { display: grid; gap: 12px; }
 .fau-fpa-sec { display: grid; gap: 6px; min-width: 0; }
-.fau-fpa-sec h4 { margin: 0; font-size: 13px; display: flex; gap: 8px; align-items: baseline; }
+.fau-fpa-sec h4 { margin: 0; font-size: var(--font-size-md); display: flex; gap: 8px; align-items: baseline; }
 .fau-fpa-alerts, .fau-fpa-checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 12.5px; }
 .fau-fpa-alerts li { display: flex; gap: 8px; align-items: center; }
-.fau-fpa-legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--color-text-secondary); }
-.fau-fpa-legend .sw { display: inline-block; inline-size: 10px; block-size: 10px; border-radius: 2px; margin-inline-end: 4px; vertical-align: middle; }
+.fau-fpa-legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+.fau-fpa-legend .sw { display: inline-block; inline-size: 10px; block-size: 10px; border-radius: calc(var(--radius-1) / 2); margin-inline-end: 4px; vertical-align: middle; }
 .fau-fpa-chart { display: grid; gap: 6px; }
-.fau-fpa-bar-row { display: grid; grid-template-columns: minmax(90px, 180px) 1fr; gap: 8px; align-items: center; font-size: 12px; }
+.fau-fpa-bar-row { display: grid; grid-template-columns: minmax(90px, 180px) 1fr; gap: 8px; align-items: center; font-size: var(--font-size-sm); }
 .fau-fpa-bar-row .lbl { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: start; }
 .fau-fpa-bar-row .bars { display: grid; gap: 2px; min-width: 0; }
 .bar-line { display: flex; align-items: center; gap: 6px; min-width: 0; }
-.bar { display: inline-block; block-size: 10px; border-start-end-radius: 3px; border-end-end-radius: 3px; flex: 0 0 auto; }
+.bar { display: inline-block; block-size: 10px; border-start-end-radius: var(--radius-1); border-end-end-radius: var(--radius-1); flex: 0 0 auto; }
 .bar.neg { opacity: .55; }
 .s0 { background: var(--color-brand); }
 .s1 { background: var(--color-text-secondary); }
 .s2 { background: var(--color-warning); }
-.fau-fpa-nar { border: 1px solid var(--color-border); border-radius: 10px; padding: 8px 10px; display: grid; gap: 4px; }
+.fau-fpa-nar { border: 1px solid var(--color-border); border-radius: var(--radius-4); padding: 8px 10px; display: grid; gap: 4px; }
 .fau-fpa-nar.bad { border-color: var(--color-danger); background: color-mix(in srgb, var(--color-danger) 6%, transparent); }
 .fau-fpa-nar p { margin: 0; font-size: 12.5px; line-height: 1.6; }
 </style>

@@ -67,8 +67,8 @@ async function purgeAll(): Promise<void> {
 
 <style scoped>
 .ap-set { display: grid; gap: 14px; max-width: 920px; }
-.ss-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
-.ap-head strong { display: flex; gap: 6px; align-items: center; font-size: 14px; }
+.ss-panel { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
+.ap-head strong { display: flex; gap: 6px; align-items: center; font-size: var(--font-size-base); }
 .ap-check { display: flex; gap: 6px; align-items: center; font-size: 12.5px; }
 .ap-list { margin: 0; padding-inline-start: 18px; font-size: 12.5px; color: var(--color-text-secondary); display: grid; gap: 4px; }
 </style>

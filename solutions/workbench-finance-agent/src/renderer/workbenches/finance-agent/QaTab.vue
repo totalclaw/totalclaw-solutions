@@ -160,26 +160,26 @@ function jump(key: string): void { void scrollToStep(key); }
 
 <style scoped>
 .fa-policies { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 12.5px; }
-.fa-policies li { display: flex; gap: 8px; align-items: center; padding: 6px 10px; border-radius: 8px; background: var(--color-bg-hover); }
+.fa-policies li { display: flex; gap: 8px; align-items: center; padding: 6px 10px; border-radius: var(--radius-3); background: var(--color-bg-hover); }
 .fa-policies i { color: var(--color-brand); }
 .fa-ellipsis { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.fa-chat { display: grid; gap: 10px; max-height: 480px; min-height: 120px; overflow-y: auto; padding: 10px; border-radius: 12px; background: var(--color-bg-primary); align-content: start; }
+.fa-chat { display: grid; gap: 10px; max-height: 480px; min-height: 120px; overflow-y: auto; padding: 10px; border-radius: var(--radius-5); background: var(--color-bg-primary); align-content: start; }
 .fa-msg { display: flex; }
 .fa-msg.user { justify-content: flex-end; }
-.fa-bubble { max-width: 82%; padding: 9px 12px; border-radius: 12px; font-size: 13px; line-height: 1.65; background: var(--color-bg-card); border: 1px solid var(--color-border); }
+.fa-bubble { max-width: 82%; padding: 9px 12px; border-radius: var(--radius-5); font-size: var(--font-size-md); line-height: 1.65; background: var(--color-bg-card); border: 1px solid var(--color-border); }
 .fa-msg.user .fa-bubble { background: color-mix(in srgb, var(--color-brand) 12%, var(--color-bg-card)); border-color: transparent; }
 .fa-bubble p { margin: 0; }
 .fa-msg__meta { display: flex; gap: 10px; font-size: 11.5px; color: var(--color-text-secondary); margin-top: 6px; }
-.fa-cites { margin: 8px 0 0; padding-left: 0; list-style: none; display: grid; gap: 8px; font-size: 12px; }
+.fa-cites { margin: 8px 0 0; padding-left: 0; list-style: none; display: grid; gap: 8px; font-size: var(--font-size-sm); }
 .fa-cites li { display: grid; gap: 2px; border-left: 2px solid var(--color-brand); padding-left: 8px; }
 .fa-pre { white-space: pre-wrap; }
 .fa-quick { display: flex; gap: 6px; flex-wrap: wrap; }
 .fa-input { display: flex; gap: 8px; align-items: flex-end; }
-.fa-input textarea { flex: 1; min-width: 0; border-radius: 10px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 13px; padding: 8px 10px; resize: vertical; }
+.fa-input textarea { flex: 1; min-width: 0; border-radius: var(--radius-4); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-md); padding: 8px 10px; resize: vertical; }
 .fa-input__actions { display: grid; gap: 6px; }
-.fa-notes { margin: 0; font-size: 12.5px; padding: 8px 10px; border-radius: 8px; background: var(--color-bg-hover); }
+.fa-notes { margin: 0; font-size: 12.5px; padding: 8px 10px; border-radius: var(--radius-3); background: var(--color-bg-hover); }
 .fa-remember { display: flex; gap: 8px; }
-.fa-remember input { flex: 1; min-width: 0; height: 32px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-primary); color: var(--color-text-primary); padding: 0 8px; font: inherit; }
+.fa-remember input { flex: 1; min-width: 0; height: 32px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-primary); color: var(--color-text-primary); padding: 0 8px; font: inherit; }
 .spin { animation: fa-spin 1s linear infinite; }
 @keyframes fa-spin { to { transform: rotate(360deg); } }
 </style>

@@ -125,12 +125,12 @@
         <!-- AI 研判：按需、随时，只吃当前筛选窗内的情报 + 自选行情，并要求逐条引用 -->
         <section class="side-card ai-card">
           <div class="card-head">
-            <h2><i class="ri-sparkling-2-line"></i>{{ $t('AI 研判') }}</h2>
+            <h2><i class="ri-radar-line"></i>{{ $t('AI 研判') }}</h2>
             <small v-if="aiAt">{{ $t('生成于 {p0}', { p0: aiAt }) }}</small>
           </div>
           <p class="ai-scope">{{ $t('基于当前窗口（{p0}）内 {p1} 条情报与自选行情，只依据这些数据，结论会标注引用的条目编号。', { p0: windowLabel, p1: Math.min(visible.length, AI_ITEM_CAP) }) }}</p>
           <button class="primary-btn wide" type="button" :disabled="aiBusy || !visible.length" @click="runBrief">
-            <i :class="aiBusy ? 'ri-loader-4-line spin' : 'ri-sparkling-2-line'"></i>{{ aiBusy ? $t('研判中…') : $t('立即研判当前窗口') }}
+            <i :class="aiBusy ? 'ri-loader-4-line spin' : 'ri-radar-line'"></i>{{ aiBusy ? $t('研判中…') : $t('立即研判当前窗口') }}
           </button>
           <p v-if="aiText" class="ai-text">{{ aiText }}</p>
           <p v-else-if="aiErr" class="state-err">{{ aiErr }}</p>

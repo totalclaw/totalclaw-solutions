@@ -108,13 +108,21 @@ async function saveQr(): Promise<void> {
 
 <style scoped>
 .ap-mob { display: grid; gap: 14px; }
-.ss-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
+.ss-panel { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
 .ap-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.ap-head strong { display: flex; gap: 6px; align-items: center; font-size: 14px; }
+.ap-head strong { display: flex; gap: 6px; align-items: center; font-size: var(--font-size-base); }
 .ap-mob__qr { display: flex; gap: 18px; align-items: flex-start; flex-wrap: wrap; }
-.ap-mob__qr img { width: 220px; height: 220px; border-radius: 12px; background: #fff; border: 1px solid var(--color-border); }
+.ap-mob__qr img { width: 220px; height: 220px; border-radius: var(--radius-5); background: var(--asmt-surface); border: 1px solid var(--color-border); }
 .ap-mob__info { display: grid; gap: 8px; flex: 1; min-width: 260px; }
-.ap-mob__info code { font-size: 12px; word-break: break-all; color: var(--color-text-secondary); }
+.ap-mob__info code { font-size: var(--font-size-sm); word-break: break-all; color: var(--color-text-secondary); }
 .ap-mob__alt { display: block; }
 .grow { flex: 1; }
+
+/* ─── 调色板（docs/ui-design-system.md）：经典主题保持原值；界面主题（data-ui-theme）下映射全局 token ─── */
+.ap-mob { /* ui-theme-exempt: 经典主题原值 */
+  --asmt-surface: #fff;
+}
+:root[data-ui-theme] .ap-mob {
+  --asmt-surface: var(--color-bg-card);
+}
 </style>

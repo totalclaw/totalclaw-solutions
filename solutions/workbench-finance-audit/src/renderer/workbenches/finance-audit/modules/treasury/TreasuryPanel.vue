@@ -380,14 +380,14 @@ async function saveParams(): Promise<void> {
 
 <style scoped>
 .fau-tr { display: grid; gap: 10px; }
-.fau-sec { border: 1px solid var(--color-border); border-radius: 12px; padding: 10px 12px; display: grid; gap: 8px; background: var(--color-bg-card); }
+.fau-sec { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 10px 12px; display: grid; gap: 8px; background: var(--color-bg-card); }
 .fau-sec > summary { cursor: pointer; font-weight: 700; font-size: 12.5px; }
 .fau-tr-kpis { display: flex; flex-wrap: wrap; gap: 6px; }
 .fau-tr-flags { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
 .fau-tr-flags li { display: flex; gap: 6px; align-items: center; color: var(--color-danger); font-size: 12.5px; }
-.fau-tr-params { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: end; font-size: 12px; }
+.fau-tr-params { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: end; font-size: var(--font-size-sm); }
 .fau-tr-params label { display: grid; gap: 2px; color: var(--color-text-secondary); }
-.fau-tr-params input { width: 110px; height: 28px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); padding-inline: 6px; text-align: end; }
+.fau-tr-params input { width: 110px; height: 28px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); padding-inline: 6px; text-align: end; }
 .fau-tr-para { display: grid; gap: 4px; padding-block: 4px; border-block-start: 1px dashed var(--color-border); }
 .fau-tr-para p { margin: 0; font-size: 12.5px; line-height: 1.6; }
 .fau-tr-para.bad p { color: var(--color-danger); }

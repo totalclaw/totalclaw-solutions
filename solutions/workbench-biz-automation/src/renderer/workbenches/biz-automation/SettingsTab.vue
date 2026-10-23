@@ -113,13 +113,13 @@ async function save(): Promise<void> {
 
 <style scoped>
 .ba-set { display: grid; gap: 14px; max-width: 1000px; }
-.ss-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
-.ba-head strong { display: flex; gap: 6px; align-items: center; font-size: 14px; }
+.ss-panel { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
+.ba-head strong { display: flex; gap: 6px; align-items: center; font-size: var(--font-size-base); }
 .ba-check { display: flex; gap: 6px; align-items: center; font-size: 12.5px; }
 .ba-url { min-width: 260px; }
 .ba-seasons { display: grid; gap: 6px; }
 .ba-season { display: grid; grid-template-columns: 60px 1fr; gap: 8px; align-items: center; font-size: 12.5px; }
-.ba-season input { height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; padding: 0 8px; max-width: 320px; }
+.ba-season input { height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; padding: 0 8px; max-width: 320px; }
 .ba-folder { display: flex; gap: 10px; align-items: center; font-size: 12.5px; flex-wrap: wrap; }
 .ba-folder b { width: 70px; }
 .ba-folder code { flex: 1; min-width: 200px; color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

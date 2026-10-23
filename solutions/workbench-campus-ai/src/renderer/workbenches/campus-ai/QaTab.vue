@@ -159,11 +159,19 @@ onMounted(() => { void loadRecords(); });
 @media (max-width: 1000px) { .ca-qa { grid-template-columns: 1fr; } }
 .ca-qa__main { display: grid; gap: 14px; min-width: 0; }
 .ca-qa__mobile { position: sticky; top: 0; }
-.ca-input { flex: 1; min-width: 240px; height: 36px; border: 1px solid var(--color-border); border-radius: 8px; padding: 0 10px; font: inherit; background: var(--color-bg-input, var(--color-bg-card)); color: var(--color-text); }
-.ca-answer { border: 1px solid var(--color-border); border-radius: 12px; padding: 12px 14px; display: grid; gap: 8px; }
+.ca-input { flex: 1; min-width: 240px; height: 36px; border: 1px solid var(--color-border); border-radius: var(--radius-3); padding: 0 10px; font: inherit; background: var(--color-bg-input); color: var(--color-text); }
+.ca-answer { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 12px 14px; display: grid; gap: 8px; }
 .ca-answer header { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .ca-answer.sensitive { border-color: color-mix(in srgb, var(--color-danger) 45%, var(--color-border)); background: color-mix(in srgb, var(--color-danger) 5%, transparent); }
 .ca-answer.no_evidence { border-color: color-mix(in srgb, var(--color-warning) 45%, var(--color-border)); }
-.ca-qr { width: 100%; max-width: 260px; justify-self: center; border-radius: 8px; background: #fff; padding: 6px; }
+.ca-qr { width: 100%; max-width: 260px; justify-self: center; border-radius: var(--radius-3); background: var(--caqt-surface); padding: 6px; }
 .ca-url { font-size: 11.5px; word-break: break-all; color: var(--color-text-secondary); }
+
+/* ─── 调色板（docs/ui-design-system.md）：经典主题保持原值；界面主题（data-ui-theme）下映射全局 token ─── */
+.ca-qa { /* ui-theme-exempt: 经典主题原值 */
+  --caqt-surface: #fff;
+}
+:root[data-ui-theme] .ca-qa {
+  --caqt-surface: var(--color-bg-card);
+}
 </style>

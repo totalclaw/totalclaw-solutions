@@ -137,5 +137,5 @@ if (props.openDetailOnMount) void openDetail();
 
 <style scoped>
 .fau-newproj { flex-basis: 100%; }
-h4 { margin: 4px 0 0; font-size: 13px; }
+h4 { margin: 4px 0 0; font-size: var(--font-size-md); }
 </style>

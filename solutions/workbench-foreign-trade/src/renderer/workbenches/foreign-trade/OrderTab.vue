@@ -200,7 +200,7 @@
 
           <StepCard step-key="extract" :index="3" :title="metas[3].title" :hint="metas[3].hint" :runtime="runtime.extract">
             <div class="ss-actions">
-              <button type="button" class="ss-btn primary" :disabled="!current.docs.length || busy === 'extract'" @click="extract"><i :class="busy === 'extract' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ $t('提取单据字段') }}</button>
+              <button type="button" class="ss-btn primary" :disabled="!current.docs.length || busy === 'extract'" @click="extract"><i :class="busy === 'extract' ? 'ri-loader-4-line spin' : 'ri-file-search-line'"></i>{{ $t('提取单据字段') }}</button>
               <span v-if="busy === 'extract' && ftProgress.order" class="ss-muted">{{ ftProgress.order }}</span>
             </div>
             <div v-if="extractedDocs.length" class="ss-table-wrap">
@@ -465,20 +465,20 @@ function scrollTo(key: string): void { void scrollToStep(key); }
 <style scoped>
 .ft-split { display: grid; grid-template-columns: minmax(240px, 300px) 1fr; gap: 14px; align-items: start; }
 @media (max-width: 960px) { .ft-split { grid-template-columns: 1fr; } }
-.ft-list { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 10px; position: sticky; top: 0; max-height: calc(100vh - 160px); overflow-y: auto; }
+.ft-list { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 10px; position: sticky; top: 0; max-height: calc(100vh - 160px); overflow-y: auto; }
 .ft-list ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
-.ft-list li { padding: 8px 10px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; display: grid; gap: 3px; background: var(--color-bg-primary); }
+.ft-list li { padding: 8px 10px; border-radius: var(--radius-4); border: 1px solid transparent; cursor: pointer; display: grid; gap: 3px; background: var(--color-bg-primary); }
 .ft-list li.active { border-color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 8%, var(--color-bg-card)); }
-.ft-list__top { display: flex; justify-content: space-between; gap: 6px; align-items: center; font-size: 13px; }
-.ft-list__sub { font-size: 12px; color: var(--color-text-secondary); }
-.ft-list__meta { display: flex; gap: 8px; font-size: 11px; color: var(--color-text-secondary); }
+.ft-list__top { display: flex; justify-content: space-between; gap: 6px; align-items: center; font-size: var(--font-size-md); }
+.ft-list__sub { font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+.ft-list__meta { display: flex; gap: 8px; font-size: var(--font-size-xs); color: var(--color-text-secondary); }
 .ft-detail { display: grid; gap: 12px; min-width: 0; }
 .ft-wrap { white-space: normal !important; max-width: 280px; }
-.ft-diff { color: var(--color-danger); font-size: 12px; }
+.ft-diff { color: var(--color-danger); font-size: var(--font-size-sm); }
 .ft-doc-lines input, .ft-doc-lines select { min-width: 70px; }
 .ft-doc-lines input[type=number] { width: 86px; }
 .ft-unit { width: 56px; min-width: 56px !important; }
 .ft-findings { list-style: none; margin: 0; padding: 0; display: grid; gap: 5px; font-size: 12.5px; }
 .ft-findings li { display: flex; gap: 6px; align-items: baseline; }
-.ft-words { margin: 0; font-family: var(--font-mono, monospace); font-size: 12px; }
+.ft-words { margin: 0; font-family: var(--font-mono); font-size: var(--font-size-sm); }
 </style>

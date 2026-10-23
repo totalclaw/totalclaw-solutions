@@ -210,7 +210,7 @@ async function template(): Promise<void> {
 
 <style scoped>
 .fau-close { display: grid; gap: 10px; }
-.fau-sec { border: 1px solid var(--color-border); border-radius: 12px; padding: 8px 12px; display: grid; gap: 8px; background: var(--color-bg-card); }
-.fau-sec > summary { cursor: pointer; font-weight: 700; font-size: 13px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-.fau-table input, .fau-table select { height: 28px; border-radius: 7px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); padding-inline: 6px; font: inherit; font-size: 12px; }
+.fau-sec { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 8px 12px; display: grid; gap: 8px; background: var(--color-bg-card); }
+.fau-sec > summary { cursor: pointer; font-weight: 700; font-size: var(--font-size-md); display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.fau-table input, .fau-table select { height: 28px; border-radius: var(--radius-2); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); padding-inline: 6px; font: inherit; font-size: var(--font-size-sm); }
 </style>

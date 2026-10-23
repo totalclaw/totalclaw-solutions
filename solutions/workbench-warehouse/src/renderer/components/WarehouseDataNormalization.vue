@@ -800,7 +800,7 @@ onMounted(() => inspectSelectedSource());
 .ledger-slots b { display: grid; width: 20px; height: 20px; place-items: center; border-radius: 6px; color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 12%, transparent); font-size: 10px; }
 .ledger-slots div span { overflow: hidden; font-size: 9px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
 .ledger-slots div small { color: var(--color-text-muted); font-size: 8px; }
-.run-compare { display: flex; width: 100%; align-items: center; justify-content: center; gap: 5px; margin-top: 8px; padding: 8px; border: 0; border-radius: 8px; color: white; background: var(--color-brand); font-size: 10px; font-weight: 700; cursor: pointer; }
+.run-compare { display: flex; width: 100%; align-items: center; justify-content: center; gap: 5px; margin-top: 8px; padding: 8px; border: 0; border-radius: 8px; color: var(--color-on-accent); background: var(--color-brand); font-size: 10px; font-weight: 700; cursor: pointer; }
 .run-compare:disabled { opacity: .45; cursor: not-allowed; }
 
 .source-toolbar { display: flex; min-height: 61px; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--color-border); }
@@ -870,7 +870,7 @@ onMounted(() => inspectSelectedSource());
 .mapping-actions span { color: var(--color-text-muted); font-size: 8px; }
 .mapping-actions strong { margin-top: 2px; font-size: 9px; }
 .mapping-actions button:disabled { opacity: .45; cursor: not-allowed; }
-.mapping-actions button.primary { border-color: var(--color-brand); color: white; background: var(--color-brand); }
+.mapping-actions button.primary { border-color: var(--color-brand); color: var(--color-on-accent); background: var(--color-brand); }
 
 .trace-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
 .trace-header span, .trace-header strong { display: block; }

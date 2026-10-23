@@ -226,20 +226,28 @@ function jump(key: string): void { void scrollToStep(key); }
 </script>
 
 <style scoped>
-.zc-prod { display: grid; gap: 8px; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: 12px; }
+.zc-prod { display: grid; gap: 8px; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-5); }
 .zc-prod.bad { border-color: color-mix(in srgb, var(--color-danger) 45%, var(--color-border)); }
-.zc-prod__head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; }
+.zc-prod__head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: var(--font-size-md); }
 .zc-grow { flex: 1; }
 .zc-edit { display: grid; gap: 10px; padding-top: 8px; border-top: 1px dashed var(--color-border); }
 .zc-inline { margin-inline-start: 10px; }
 .zc-ref { display: grid; grid-template-columns: 1fr 130px auto; gap: 8px; align-items: center; }
-.zc-ref input, .zc-ops input { height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 8px; min-width: 0; }
+.zc-ref input, .zc-ops input { height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 8px; min-width: 0; }
 .zc-imgs { display: flex; gap: 10px; flex-wrap: wrap; }
-.zc-imgs figure { margin: 0; width: 120px; display: grid; gap: 4px; font-size: 11px; color: var(--color-text-secondary); }
-.zc-imgs img { width: 120px; height: 120px; object-fit: contain; background: #fff; border: 1px solid var(--color-border); border-radius: 8px; }
+.zc-imgs figure { margin: 0; width: 120px; display: grid; gap: 4px; font-size: var(--font-size-xs); color: var(--color-text-secondary); }
+.zc-imgs img { width: 120px; height: 120px; object-fit: contain; background: var(--zalt-surface); border: 1px solid var(--color-border); border-radius: var(--radius-3); }
 .zc-imgs figcaption { display: grid; gap: 2px; justify-items: start; }
-.zc-addimg { width: 120px; height: 120px; border: 1px dashed var(--color-border); border-radius: 8px; background: transparent; color: var(--color-text-secondary); cursor: pointer; display: grid; place-items: center; align-content: center; gap: 4px; font: inherit; font-size: 12px; }
+.zc-addimg { width: 120px; height: 120px; border: 1px dashed var(--color-border); border-radius: var(--radius-3); background: transparent; color: var(--color-text-secondary); cursor: pointer; display: grid; place-items: center; align-content: center; gap: 4px; font: inherit; font-size: var(--font-size-sm); }
 .zc-addimg i { font-size: 22px; }
 .zc-ops { display: flex; gap: 10px; align-items: center; }
-.zc-pre { margin: 0; padding: 12px; border-radius: 10px; background: var(--color-bg-hover); font: 12px/1.6 var(--font-mono, ui-monospace, monospace); white-space: pre-wrap; max-height: 320px; overflow: auto; }
+.zc-pre { margin: 0; padding: 12px; border-radius: var(--radius-4); background: var(--color-bg-hover); font: 12px/1.6 var(--font-mono); white-space: pre-wrap; max-height: 320px; overflow: auto; }
+
+/* ─── 调色板（docs/ui-design-system.md）：经典主题保持原值；界面主题（data-ui-theme）下映射全局 token ─── */
+.ss-module { /* ui-theme-exempt: 经典主题原值 */
+  --zalt-surface: #fff;
+}
+:root[data-ui-theme] .ss-module {
+  --zalt-surface: var(--color-bg-card);
+}
 </style>

@@ -1,12 +1,12 @@
 {
   "id": "workbench-edu-hub",
-  "version": "2.0.1",
-  "treeDigest": "d322d3fa5a4b50155989b1bc5da98082b1dc7d4fafc14af59b516e6e88f8c5a9",
+  "version": "2.0.2",
+  "treeDigest": "f8d71f857b351e211ba4a66dacbb1550bc7b15fccb4bd4bc7ea00d1075c02bc2",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 914,
-      "sha256": "9f1e66655ace2f140f4426ab4e0bbb8aa3294ecf1b8512af17ecda5a9776797e"
+      "size": 1130,
+      "sha256": "cbf0008d227d6fdf30e614a20c0d85fb0106e44cf7dfbae45b8be32630750f93"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 89312,
-      "sha256": "485811c23fc9b1ddcc9a3b61181247e2aaeac5bfccfbc7a12a2c303ccabc4164"
+      "size": 89770,
+      "sha256": "5c46885a6c8d2a44ed24ecba810c5bfe73f987e14b698133af89bea5fa85e3a9"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 110494,
-      "sha256": "62ee9f75df98e45dfe0a9d9e5ec49cd04e811b6754089e75fbf51ea03c146a66"
+      "size": 111738,
+      "sha256": "517bfbbf452059dafe729fc8a2965928272aa337d3441be5677db81ab8cc823b"
     },
     {
       "path": "dist/style.css",
-      "size": 23119,
-      "sha256": "de68a7911dd9b2ebf96b84f03fe41ea1cd5d88696bc304c50d4d9131368fe4df"
+      "size": 27488,
+      "sha256": "51233c7d5a3fdd02e37310ed4f978fed565a226092fab1e237d8206d589673ac"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2044,
-      "sha256": "81023c4d2a21ba960b1c64634f4f18a143cc2f5ea2d13c18827b671b89ef3c0a"
+      "sha256": "162057fb17725394ee4e47221df162585cc1118461fe412b6599953cd8ea7be0"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-edu-hub@2.0.2",
+      "treeDigest": "f8d71f857b351e211ba4a66dacbb1550bc7b15fccb4bd4bc7ea00d1075c02bc2",
+      "filesRef": "index/workbench-edu-hub/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-23"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-edu-hub@2.0.1",

@@ -92,7 +92,7 @@
               <h3><i class="ri-calendar-check-line"></i>{{ $t('本期关账进度') }}</h3>
               <template v-if="home.closeProgress">
                 <div class="fau-row"><span class="grow">{{ $t('关账清单') }}</span><FauNum :value="`${home.closeProgress.checklistDone}/${home.closeProgress.checklistTotal}`" /></div>
-                <div class="fau-row"><span class="grow">{{ $t('试算平衡') }}</span><span :class="home.closeProgress.trialOk ? 'fau-true' : 'fau-false'">{{ home.closeProgress.trialOk === null ? '-' : home.closeProgress.trialOk ? '✓' : '✗' }}</span></div>
+                <div class="fau-row"><span class="grow">{{ $t('试算平衡') }}</span><span :class="home.closeProgress.trialOk ? 'fau-true' : 'fau-false'"><template v-if="home.closeProgress.trialOk === null">-</template><i v-else :class="home.closeProgress.trialOk ? 'ri-check-line' : 'ri-close-line'"></i></span></div>
                 <div class="fau-row"><span class="grow">{{ $t('勾稽未通过') }}</span><FauNum :value="home.closeProgress.tieIssues" /></div>
               </template>
               <p v-else class="ss-muted">{{ $t('本项目还没有跑月结关账') }}</p>
@@ -373,16 +373,16 @@ onBeforeUnmount(() => { off?.(); if (timer) clearTimeout(timer); });
 </script>
 
 <style scoped>
-.heading-icon { width: 40px; height: 40px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--color-brand) 14%, transparent); color: var(--color-brand); font-size: 20px; flex: 0 0 auto; }
+.heading-icon { width: 40px; height: 40px; border-radius: var(--radius-5); display: inline-flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--color-brand) 14%, transparent); color: var(--color-brand); font-size: 20px; flex: 0 0 auto; }
 .fau-hint { display: flex; align-items: center; gap: 8px; margin: 0; }
 .fau-hint .grow { flex: 1; min-width: 0; }
 .fau-overview { margin: 0; font-size: 12.5px; }
 .fau-mod-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin-block-start: 2px; }
-.fau-out { padding: 1px 7px; border-radius: 6px; border: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: 11px; }
+.fau-out { padding: 1px 7px; border-radius: var(--radius-2); border: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: var(--font-size-xs); }
 .fau-group > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; margin-block-end: 8px; }
-.fau-group > summary h3 { margin: 0; font-size: 14px; }
-.fau-drawer h4 { margin: 0; font-size: 13px; }
-.fau-drawer select, .fau-drawer input { height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); padding-inline: 8px; font: inherit; font-size: 12.5px; }
+.fau-group > summary h3 { margin: 0; font-size: var(--font-size-base); }
+.fau-drawer h4 { margin: 0; font-size: var(--font-size-md); }
+.fau-drawer select, .fau-drawer input { height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); padding-inline: 8px; font: inherit; font-size: 12.5px; }
 .spin { animation: fau-spin 1s linear infinite; }
 @keyframes fau-spin { to { transform: rotate(360deg); } }
 </style>

@@ -74,28 +74,36 @@ async function toggle(id: string): Promise<void> {
 <style scoped>
 .ap-lib { display: grid; gap: 14px; }
 .ap-lib__head { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
-.ap-lib__kinds { display: inline-flex; border: 1px solid var(--color-border); border-radius: 10px; overflow: hidden; }
-.ap-lib__kinds button { border: 0; background: var(--color-bg-card); padding: 7px 16px; font: inherit; font-size: 13px; font-weight: 700; color: var(--color-text-secondary); cursor: pointer; }
-.ap-lib__kinds button em { font-style: normal; font-size: 11px; opacity: .7; }
-.ap-lib__kinds button.on { background: var(--color-brand); color: #fff; }
-.ap-lib__group h4 { margin: 0 0 8px; font-size: 13px; color: var(--color-text-secondary); }
+.ap-lib__kinds { display: inline-flex; border: 1px solid var(--color-border); border-radius: var(--radius-4); overflow: hidden; }
+.ap-lib__kinds button { border: 0; background: var(--color-bg-card); padding: 7px 16px; font: inherit; font-size: var(--font-size-md); font-weight: 700; color: var(--color-text-secondary); cursor: pointer; }
+.ap-lib__kinds button em { font-style: normal; font-size: var(--font-size-xs); opacity: .7; }
+.ap-lib__kinds button.on { background: var(--color-brand); color: var(--color-on-accent); }
+.ap-lib__group h4 { margin: 0 0 8px; font-size: var(--font-size-md); color: var(--color-text-secondary); }
 .ap-lib__cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
-.ap-lib__card { border: 1px solid var(--color-border); border-radius: 12px; padding: 10px 12px; background: var(--color-bg-card); display: grid; gap: 6px; }
+.ap-lib__card { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 10px 12px; background: var(--color-bg-card); display: grid; gap: 6px; }
 .ap-lib__card.off { opacity: .5; }
-.ap-lib__thumb { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 8px; background: var(--color-bg-hover); }
+.ap-lib__thumb { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius-3); background: var(--color-bg-hover); }
 .grow { flex: 1; }
 .spin { animation: ap-spin 1s linear infinite; }
 @keyframes ap-spin { to { transform: rotate(360deg); } }
 .ap-lib__card header { display: flex; gap: 8px; align-items: center; }
 .ap-lib__card header strong { flex: 1; font-size: 13.5px; }
-.ap-lib__card code { font-size: 11px; color: var(--color-text-secondary); }
-.ap-lib__card p { margin: 0; font-size: 12px; }
+.ap-lib__card code { font-size: var(--font-size-xs); color: var(--color-text-secondary); }
+.ap-lib__card p { margin: 0; font-size: var(--font-size-sm); }
 .ap-lib__vars { display: flex; flex-wrap: wrap; gap: 4px; }
-.ap-lib__vars span { font-size: 11.5px; padding: 2px 8px; border-radius: 999px; background: var(--color-bg-hover); }
+.ap-lib__vars span { font-size: 11.5px; padding: 2px 8px; border-radius: var(--radius-pill); background: var(--color-bg-hover); }
 .ap-switch { position: relative; width: 34px; height: 20px; flex: 0 0 auto; }
 .ap-switch input { opacity: 0; width: 0; height: 0; }
-.ap-switch span { position: absolute; inset: 0; border-radius: 999px; background: var(--color-border); cursor: pointer; transition: .2s; }
-.ap-switch span::before { content: ""; position: absolute; width: 14px; height: 14px; left: 3px; top: 3px; border-radius: 50%; background: #fff; transition: .2s; }
+.ap-switch span { position: absolute; inset: 0; border-radius: var(--radius-pill); background: var(--color-border); cursor: pointer; transition: background-color .2s; }
+.ap-switch span::before { content: ""; position: absolute; width: 14px; height: 14px; left: 3px; top: 3px; border-radius: 50%; background: var(--asst2-surface); transition: transform .2s; }
 .ap-switch input:checked + span { background: var(--color-brand); }
 .ap-switch input:checked + span::before { transform: translateX(14px); }
+
+/* ─── 调色板（docs/ui-design-system.md）：经典主题保持原值；界面主题（data-ui-theme）下映射全局 token ─── */
+.ap-lib { /* ui-theme-exempt: 经典主题原值 */
+  --asst2-surface: #fff;
+}
+:root[data-ui-theme] .ap-lib {
+  --asst2-surface: var(--color-bg-card);
+}
 </style>

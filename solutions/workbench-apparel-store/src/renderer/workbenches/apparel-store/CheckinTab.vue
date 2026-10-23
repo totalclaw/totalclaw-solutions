@@ -95,15 +95,15 @@ async function mark(status: ApVisitStatus): Promise<void> {
 
 <style scoped>
 .ap-ci { display: grid; gap: 14px; }
-.ss-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
+.ss-panel { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
 .ap-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.ap-head strong { display: flex; gap: 6px; align-items: center; font-size: 14px; }
+.ap-head strong { display: flex; gap: 6px; align-items: center; font-size: var(--font-size-base); }
 .ap-ci__form { display: flex; gap: 10px; }
-.ap-ci__form input { width: 220px; height: 44px; border-radius: 10px; border: 1px solid var(--color-brand); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 22px; letter-spacing: .2em; text-transform: uppercase; padding: 0 12px; font-family: ui-monospace, Menlo, monospace; }
+.ap-ci__form input { width: 220px; height: 44px; border-radius: var(--radius-4); border: 1px solid var(--color-brand); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 22px; letter-spacing: .2em; text-transform: uppercase; padding: 0 12px; font-family: ui-monospace, Menlo, monospace; }
 .ap-ci__form .ss-btn { height: 44px; }
 .ap-ci__hit { display: flex; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
-.ap-ci__hit img { width: 220px; border-radius: 12px; border: 1px solid var(--color-border); }
-.ap-ci__info { display: grid; gap: 8px; flex: 1; min-width: 260px; font-size: 13px; }
+.ap-ci__hit img { width: 220px; border-radius: var(--radius-5); border: 1px solid var(--color-border); }
+.ap-ci__info { display: grid; gap: 8px; flex: 1; min-width: 260px; font-size: var(--font-size-md); }
 .ap-ci__info .ss-chip { margin-inline-end: 4px; }
 .ap-ci__size { max-width: 180px; }
 .ap-code { font-family: ui-monospace, Menlo, monospace; letter-spacing: .12em; color: var(--color-brand); }

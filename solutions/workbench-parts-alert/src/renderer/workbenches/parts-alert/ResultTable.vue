@@ -105,8 +105,8 @@ function toggle(no: string): void {
 
 <style scoped>
 .pa-rt { display: grid; gap: 10px; }
-.pa-rt__search { height: 32px; min-width: 240px; border-radius: 9px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 10px; }
-.pa-rt__chip { border: 1px solid var(--color-border); background: var(--color-bg-card); border-radius: 999px; height: 28px; padding: 0 10px; font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; color: var(--color-text-secondary); }
+.pa-rt__search { height: 32px; min-width: 240px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 10px; }
+.pa-rt__chip { border: 1px solid var(--color-border); background: var(--color-bg-card); border-radius: var(--radius-pill); height: 28px; padding: 0 10px; font: inherit; font-size: var(--font-size-sm); font-weight: 700; cursor: pointer; color: var(--color-text-secondary); }
 .pa-rt__chip.on { border-color: currentColor; background: color-mix(in srgb, currentColor 12%, transparent); }
 .pa-rt__chip.bad.on { color: var(--color-danger); }
 .pa-rt__chip.warn.on { color: var(--color-warning); }
@@ -114,7 +114,7 @@ function toggle(no: string): void {
 .pa-rt__chip.brand.on { color: var(--color-brand); }
 .pa-rt__chip.mute.on { color: var(--color-text-primary); }
 th.sortable { cursor: pointer; user-select: none; }
-th.sortable i { font-size: 14px; vertical-align: -2px; }
+th.sortable i { font-size: var(--font-size-base); vertical-align: -2px; }
 .pa-rt__basis td { background: var(--color-bg-hover); white-space: normal; }
 .pa-rt__basis ol { margin: 0; padding-inline-start: 20px; display: grid; gap: 3px; font-size: 12.5px; line-height: 1.6; }
 .pa-rt__basis p { margin: 6px 0 0; }

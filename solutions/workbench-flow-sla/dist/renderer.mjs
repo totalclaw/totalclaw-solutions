@@ -21,15 +21,15 @@ const ye = Et.default, Vt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCL
 if (!Vt) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/StickyProgress.vue");
 const zt = Vt.default, ht = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/FileDropField.vue"];
 if (!ht) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/FileDropField.vue");
-const ot = ht.default, kt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/TableMapping.vue"];
-if (!kt) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/TableMapping.vue");
-const at = kt.default, Je = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/ipcPlain.ts"];
+const ot = ht.default, ft = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/TableMapping.vue"];
+if (!ft) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/TableMapping.vue");
+const at = ft.default, Je = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/ipcPlain.ts"];
 if (!Je) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/ipcPlain.ts");
 Je.default;
 const j = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/shared.ts"];
 if (!j) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/shared.ts");
 j.default;
-async function k(u, h) {
+async function f(u, h) {
   const y = window.electronAPI?.workbenches?.flowSla;
   if (!y?.invoke) throw new Error(a.t("流程时效监控接口不可用，请重启应用"));
   return y.invoke(u, Je.toPlain(h ?? {}));
@@ -41,11 +41,11 @@ function It(u) {
 }
 const G = e.ref(null);
 async function le() {
-  const u = await k("state.get");
+  const u = await f("state.get");
   return G.value = u, u;
 }
 function re(u, h = !1) {
-  return k("path.open", { path: u, reveal: h });
+  return f("path.open", { path: u, reveal: h });
 }
 const H = (u) => u == null ? "-" : `${(Math.round(u * 1e3) / 10).toFixed(1)}%`, I = (u) => u == null ? "-" : String(Math.round(u * 100) / 100), Oe = (u) => u == null ? "-" : `${u > 0 ? "+" : ""}${Math.round(u * 100) / 100}`, Pe = (u) => u == null ? "-" : `${u > 0 ? "+" : ""}${(Math.round(u * 1e3) / 10).toFixed(1)}`, Re = (u) => String(u).padStart(2, "0");
 function Z(u) {
@@ -137,7 +137,7 @@ function pt(u) {
       return a.t("未归类");
   }
 }
-function ft(u) {
+function kt(u) {
   return u.status === "done" ? u.overtime === !0 ? a.t("办结超时") : u.overtime === !1 ? a.t("办结合规") : a.t("办结（无时效要求）") : u.runningLabel === "overdue" ? a.t("在途已逾期") : u.runningLabel === "risk" ? a.t("较大逾期风险") : u.runningLabel === "no_limit" ? a.t("在途（无时效要求）") : a.t("在途正常");
 }
 function Dt(u) {
@@ -181,7 +181,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
 }, Nl = {
   key: 1,
   class: "ss-table-wrap fs-scroll"
-}, El = { class: "ss-table" }, Vl = { class: "num" }, hl = { class: "num" }, kl = ["disabled", "data-test", "onChange"], fl = { value: "" }, Dl = ["value"], Sl = {
+}, El = { class: "ss-table" }, Vl = { class: "num" }, hl = { class: "num" }, fl = ["disabled", "data-test", "onChange"], kl = { value: "" }, Dl = ["value"], Sl = {
   key: 2,
   class: "ss-muted"
 }, $l = ["title", "onClick"], bl = { class: "ss-subhead" }, _l = {
@@ -202,7 +202,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
 }, tn = {
   key: 2,
   class: "ss-note info"
-}, ln = { class: "ss-subhead" }, nn = { class: "ss-table-wrap" }, sn = { class: "ss-table" }, on = { class: "num" }, an = { class: "num" }, rn = { class: "num" }, dn = { class: "num" }, cn = { class: "num" }, un = { class: "num" }, mn = { class: "num" }, pn = { class: "num" }, yn = { class: "num" }, gn = { class: "num" }, vn = { class: "num" }, Nn = { class: "num" }, En = { class: "num" }, Vn = { class: "num" }, hn = { class: "ss-subhead" }, kn = { class: "ss-table-wrap fs-scroll" }, fn = { class: "ss-table" }, Dn = { class: "num" }, Sn = { class: "num" }, $n = { class: "num" }, bn = { class: "num" }, _n = { class: "num" }, wn = { class: "num" }, Bn = { class: "num" }, Cn = { class: "num" }, Tn = { class: "num" }, Ln = { class: "num" }, An = { class: "num" }, Fn = { class: "num" }, On = { class: "num" }, Mn = { class: "num" }, Rn = { class: "fs-two" }, Kn = { class: "ss-subhead" }, Wn = { class: "ss-table-wrap fs-scroll" }, Un = { class: "ss-table" }, zn = { class: "num" }, In = { class: "num" }, Pn = { class: "num" }, jn = { class: "num" }, qn = { class: "num" }, Yn = { class: "num" }, Hn = { class: "num" }, Gn = { class: "num" }, Jn = { class: "ss-subhead" }, Xn = { class: "ss-table-wrap fs-scroll" }, Qn = { class: "ss-table" }, Zn = { class: "num" }, xn = { class: "num" }, es = { class: "num" }, ts = { class: "num" }, ls = { class: "num" }, ns = { class: "num" }, ss = { class: "num" }, os = { class: "num" }, as = { class: "ss-subhead" }, rs = { class: "ss-subhead" }, is = {
+}, ln = { class: "ss-subhead" }, nn = { class: "ss-table-wrap" }, sn = { class: "ss-table" }, on = { class: "num" }, an = { class: "num" }, rn = { class: "num" }, dn = { class: "num" }, cn = { class: "num" }, un = { class: "num" }, mn = { class: "num" }, pn = { class: "num" }, yn = { class: "num" }, gn = { class: "num" }, vn = { class: "num" }, Nn = { class: "num" }, En = { class: "num" }, Vn = { class: "num" }, hn = { class: "ss-subhead" }, fn = { class: "ss-table-wrap fs-scroll" }, kn = { class: "ss-table" }, Dn = { class: "num" }, Sn = { class: "num" }, $n = { class: "num" }, bn = { class: "num" }, _n = { class: "num" }, wn = { class: "num" }, Bn = { class: "num" }, Cn = { class: "num" }, Tn = { class: "num" }, Ln = { class: "num" }, An = { class: "num" }, Fn = { class: "num" }, On = { class: "num" }, Mn = { class: "num" }, Rn = { class: "fs-two" }, Kn = { class: "ss-subhead" }, Wn = { class: "ss-table-wrap fs-scroll" }, Un = { class: "ss-table" }, zn = { class: "num" }, In = { class: "num" }, Pn = { class: "num" }, jn = { class: "num" }, qn = { class: "num" }, Yn = { class: "num" }, Hn = { class: "num" }, Gn = { class: "num" }, Jn = { class: "ss-subhead" }, Xn = { class: "ss-table-wrap fs-scroll" }, Qn = { class: "ss-table" }, Zn = { class: "num" }, xn = { class: "num" }, es = { class: "num" }, ts = { class: "num" }, ls = { class: "num" }, ns = { class: "num" }, ss = { class: "num" }, os = { class: "num" }, as = { class: "ss-subhead" }, rs = { class: "ss-subhead" }, is = {
   key: 0,
   class: "ss-empty"
 }, ds = { class: "ss-actions" }, cs = {
@@ -214,7 +214,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
 }, gs = {
   key: 1,
   class: "ss-kpis"
-}, vs = { class: "ss-kpi" }, Ns = { class: "fs-small" }, Es = { class: "ss-kpi" }, Vs = { class: "ss-kpi" }, hs = { class: "ss-kpi" }, ks = { class: "ss-kpi" }, fs = { class: "ss-kpi" }, Ds = { class: "ss-subhead" }, Ss = { class: "ss-table-wrap fs-scroll" }, $s = { class: "ss-table" }, bs = { class: "num" }, _s = { class: "num" }, ws = { class: "num" }, Bs = { class: "num" }, Cs = { class: "num" }, Ts = { class: "num" }, Ls = { class: "num" }, As = { class: "num" }, Fs = { class: "num" }, Os = { class: "num" }, Ms = { class: "num" }, Rs = { class: "num" }, Ks = { class: "num" }, Ws = { class: "num" }, Us = { class: "fs-wrap" }, zs = { class: "ss-chip" }, Is = {
+}, vs = { class: "ss-kpi" }, Ns = { class: "fs-small" }, Es = { class: "ss-kpi" }, Vs = { class: "ss-kpi" }, hs = { class: "ss-kpi" }, fs = { class: "ss-kpi" }, ks = { class: "ss-kpi" }, Ds = { class: "ss-subhead" }, Ss = { class: "ss-table-wrap fs-scroll" }, $s = { class: "ss-table" }, bs = { class: "num" }, _s = { class: "num" }, ws = { class: "num" }, Bs = { class: "num" }, Cs = { class: "num" }, Ts = { class: "num" }, Ls = { class: "num" }, As = { class: "num" }, Fs = { class: "num" }, Os = { class: "num" }, Ms = { class: "num" }, Rs = { class: "num" }, Ks = { class: "num" }, Ws = { class: "num" }, Us = { class: "fs-wrap" }, zs = { class: "ss-chip" }, Is = {
   key: 0,
   class: "ss-chip warn"
 }, Ps = {
@@ -238,7 +238,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
 }, ho = {
   key: 2,
   class: "ss-chip"
-}, ko = ["onClick"], fo = { key: 0 }, Do = { colspan: "6" }, So = { class: "fs-mail" }, $o = { class: "ss-actions" }, bo = ["disabled"], _o = ["disabled"], wo = ["disabled"], Bo = {
+}, fo = ["onClick"], ko = { key: 0 }, Do = { colspan: "6" }, So = { class: "fs-mail" }, $o = { class: "ss-actions" }, bo = ["disabled"], _o = ["disabled"], wo = ["disabled"], Bo = {
   key: 0,
   class: "ss-file-out"
 }, Co = { class: "ss-subhead" }, To = { class: "ss-table-wrap fs-scroll" }, Lo = { class: "ss-table" }, Ao = { class: "num" }, Fo = { class: "num" }, Oo = ["value", "placeholder", "data-test", "onChange"], Mo = ["value", "disabled", "onChange"], Ro = { value: "" }, Ko = ["value"], Wo = { class: "ss-actions" }, Uo = ["disabled"], zo = ["disabled"], Io = { class: "ss-muted" }, Po = {
@@ -253,7 +253,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
 }, Zo = { class: "ss-field" }, xo = { class: "ss-subhead" }, ea = { class: "ss-table-wrap" }, ta = { class: "ss-table fs-sug" }, la = ["onUpdate:modelValue"], na = ["onUpdate:modelValue"], sa = ["onUpdate:modelValue"], oa = ["onUpdate:modelValue"], aa = ["onUpdate:modelValue"], ra = ["onUpdate:modelValue"], ia = ["onClick"], da = { class: "ss-actions" }, ca = { class: "ss-actions" }, ua = ["disabled"], ma = ["onClick"], pa = ["onClick"], ya = { class: "ss-subhead" }, ga = ["srcdoc", "title"], va = { class: "ss-field" }, Na = { class: "ss-field" }, Ea = { class: "ss-field" }, Va = {
   key: 0,
   class: "ss-note danger"
-}, ha = { class: "ss-actions" }, ka = ["disabled"], fa = ["disabled"], Da = {
+}, ha = { class: "ss-actions" }, fa = ["disabled"], ka = ["disabled"], Da = {
   key: 1,
   class: "ss-chip ok"
 }, Sa = {
@@ -265,14 +265,14 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
 }, yt = "__regular__", ba = /* @__PURE__ */ e.defineComponent({
   __name: "BulletinTab",
   setup(u, { expose: h }) {
-    const y = ["weekly", "monthly"], N = Me.FS_SYSTEMS, S = ["flow", "node"], m = Me.FS_REASON_CATEGORIES, T = $e.useNotificationStore(), $ = Ge.useRouter(), M = e.computed(() => G.value?.session ?? null), B = e.computed(() => G.value?.thresholds.minComplianceRate ?? 0.95), f = [
+    const y = ["weekly", "monthly"], N = Me.FS_SYSTEMS, S = ["flow", "node"], m = Me.FS_REASON_CATEGORIES, T = $e.useNotificationStore(), $ = Ge.useRouter(), M = e.computed(() => G.value?.session ?? null), B = e.computed(() => G.value?.thresholds.minComplianceRate ?? 0.95), k = [
       { key: "fs-import", title: a.t("导入报表与花名册"), hint: a.t("放进 OA、费控、CSS 导出的时效报表和中心花名册，选周报还是月报") },
       { key: "fs-check", title: a.t("标准化与规则核对"), hint: a.t("看流程名、节点、人员和规则表对不对得上，对不上的在这里定") },
       { key: "fs-calc", title: a.t("计算"), hint: a.t("按时效规则算端到端用时、个人审核用时、合规率和排名，识别临期与超时") },
       { key: "fs-compare", title: a.t("环比与异常分析"), hint: a.t("和上一周期比，找出异常流程类型，展开看卡在哪个节点") },
       { key: "fs-reason", title: a.t("超时原因收集"), hint: a.t("按责任人发邮件收集原因，回填后归类并写根因") },
       { key: "fs-report", title: a.t("生成并发送通报"), hint: a.t("周报出邮件和明细表，月报出分析报告 PDF；预览后由你点发送") }
-    ], w = j.useSteps(f), { runtime: F, currentKey: W } = w, D = e.ref("");
+    ], w = j.useSteps(k), { runtime: F, currentKey: W } = w, D = e.ref("");
     async function L(t, n, l = {}) {
       const p = l.mark !== !1, O = F[t].state === "failed" || F[t].state === "running" ? "todo" : F[t].state;
       D.value = l.busyKey || t, p ? w.start(t) : w.set(t, { state: "running", error: void 0, startedAt: Date.now() });
@@ -298,12 +298,12 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
     }
     async function c(t, n, l, p) {
       l && await L("fs-import", async () => {
-        _[t][n] = await k("ingest.preview", { path: l, slot: n, sheet: p, hasFlowTable: n === "node" && !!_[t].flow });
+        _[t][n] = await f("ingest.preview", { path: l, slot: n, sheet: p, hasFlowTable: n === "node" && !!_[t].flow });
       }, { mark: !1 });
     }
     async function s(t, n) {
       t && await L("fs-import", async () => {
-        C.value = await k("ingest.preview", { path: t, slot: "roster", sheet: n });
+        C.value = await f("ingest.preview", { path: t, slot: "roster", sheet: n });
       }, { mark: !1 });
     }
     const r = e.computed(() => N.flatMap((t) => S.map((n) => ({ sys: t, slot: n, t: _[t][n] }))).filter((t) => t.t)), o = e.computed(() => {
@@ -328,7 +328,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
             ...A ? { node: { path: A.path, sheet: A.sheetName, mapping: A.mapping } } : {}
           });
         }
-        const l = await k("ingest.commit", {
+        const l = await f("ingest.commit", {
           period: it(d),
           systems: n,
           ...C.value ? { roster: { path: C.value.path, sheet: C.value.sheetName, mapping: C.value.mapping } } : {}
@@ -338,7 +338,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
     }
     async function be() {
       await L("fs-import", async () => {
-        const n = await k("demo.generate", { period: it(d) });
+        const n = await f("demo.generate", { period: it(d) });
         for (const l of N)
           _[l].flow = null, _[l].node = null;
         return C.value = null, await K(n), J.value = n.dir, a.t("已载入示例数据：{p0}", { p0: g(n.summary) });
@@ -346,23 +346,23 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
     }
     function se(t) {
       w.resetAfter(t);
-      const n = f.findIndex((l) => l.key === t);
-      n < 1 && (U.value = null), n < 2 && (b.value = null, de.value = "", we.value = ""), n < 3 && (z.value = null), n < 4 && (Ve.value = [], he.value = ""), n < 5 && (te.value = null, fe.value = "", Le.value = "");
+      const n = k.findIndex((l) => l.key === t);
+      n < 1 && (U.value = null), n < 2 && (b.value = null, de.value = "", we.value = ""), n < 3 && (z.value = null), n < 4 && (Ve.value = [], he.value = ""), n < 5 && (te.value = null, ke.value = "", Le.value = "");
     }
     const U = e.ref(null), _e = e.computed(() => (U.value?.unmatched || []).filter((t) => !t.regular)), Ee = e.computed(() => (U.value?.aliases || []).filter((t) => t.target !== yt)), i = (t) => (U.value?.ruleTypes || []).filter((n) => n.system.toUpperCase().split("/").includes(t.toUpperCase()));
     async function V() {
       return L("fs-check", async () => {
-        U.value = await k("check.run");
+        U.value = await f("check.run");
       }, { mark: !1 });
     }
     async function v(t, n, l) {
       !l && !U.value?.aliases.some((p) => p.system === t && p.flowName === n) || await L("fs-check", async () => {
-        await k("alias.set", { system: t, flowName: n, target: l }), se("fs-check"), U.value = await k("check.run");
+        await f("alias.set", { system: t, flowName: n, target: l }), se("fs-check"), U.value = await f("check.run");
       }, { mark: !1 });
     }
     async function Y(t, n) {
       await L("fs-check", async () => {
-        await k("node.decide", { system: t.system, flowName: t.flowName, node: t.node, internal: n }), se("fs-check"), U.value = await k("check.run");
+        await f("node.decide", { system: t.system, flowName: t.flowName, node: t.node, internal: n }), se("fs-check"), U.value = await f("check.run");
       }, { mark: !1 });
     }
     function x() {
@@ -377,19 +377,19 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
     async function xe() {
       F["fs-check"].state !== "done" && x(), await L("fs-calc", async () => {
         se("fs-calc");
-        const n = await k("calc.run");
+        const n = await f("calc.run");
         return b.value = n, we.value = n.tracking.added || n.tracking.closed ? a.t("在途跟进名单：新增 {a} 条，闭环 {b} 条（见「在途跟进」页）", { a: n.tracking.added, b: n.tracking.closed }) : "", await le(), Ze(n);
-      }) && await ke();
+      }) && await fe();
     }
     async function $t() {
       await L("fs-calc", async () => {
-        de.value = await k("calc.export");
+        de.value = await f("calc.export");
       }, { mark: !1 });
     }
     const z = e.ref(null), Ue = e.ref("");
     async function et() {
       await L("fs-compare", async () => {
-        const t = await k("compare.run", { prevId: Ue.value || void 0 });
+        const t = await f("compare.run", { prevId: Ue.value || void 0 });
         return z.value = t, t.previous ? a.t("对比 {a}：异常流程类型 {b} 个", { a: t.previous.label, b: t.abnormal.length }) : a.t("没有上一周期，异常流程类型 {b} 个", { b: t.abnormal.length });
       });
     }
@@ -400,9 +400,9 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
     function _t(t) {
       Q.value = t ? ce.value.filter((n) => n.email).map((n) => n.owner) : [];
     }
-    async function ke() {
+    async function fe() {
       try {
-        const t = await k("cases.get");
+        const t = await f("cases.get");
         X.value = t.cases, ce.value = t.mails, Q.value = Q.value.filter((n) => t.mails.some((l) => l.owner === n && l.email)), Te.value = { ...G.value?.session.rootCauses || {} };
       } catch (t) {
         w.fail("fs-reason", t);
@@ -413,45 +413,45 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
     }
     async function wt(t, n) {
       await oe("fs-reason", async () => {
-        await k("cases.setEmail", { owner: t, email: n }), await ke();
+        await f("cases.setEmail", { owner: t, email: n }), await fe();
       });
     }
     async function Bt() {
       const t = Q.value.length;
       window.confirm(a.t("给 {n} 位责任人各发一封原因收集邮件？", { n: t })) && await oe("fs-reason-send", async () => {
-        const n = await k("reasons.send", { owners: Q.value });
+        const n = await f("reasons.send", { owners: Q.value });
         Ve.value = [
           ...n.sent.length ? [{ text: a.t("已发送给 {n} 人：{p0}", { n: n.sent.length, p0: n.sent.join("、") }), cls: "ok" }] : [],
           ...n.skipped.length ? [{ text: a.t("没有邮箱，没有发：{p0}", { p0: n.skipped.join("、") }), cls: "warn" }] : [],
           ...n.failed.map((l) => ({ text: a.t("{p0} 发送失败：{p1}", { p0: l.owner, p1: l.message }), cls: "danger" }))
-        ], Q.value = [], await ke();
+        ], Q.value = [], await fe();
       });
     }
     async function Ct() {
       await oe("fs-reason", async () => {
-        he.value = await k("reasons.export");
+        he.value = await f("reasons.export");
       });
     }
     async function Tt() {
-      const t = await k("files.pick", { multi: !1 });
+      const t = await f("files.pick", { multi: !1 });
       t.length && await oe("fs-reason", async () => {
-        const n = await k("reasons.import", { path: t[0] });
-        Ve.value = [{ text: a.t("回填了 {a} 个流程的原因", { a: n.filled }) + (n.unmatched ? a.t("；{b} 行的单号在本期名单里找不到", { b: n.unmatched }) : ""), cls: n.unmatched ? "warn" : "ok" }], await ke();
+        const n = await f("reasons.import", { path: t[0] });
+        Ve.value = [{ text: a.t("回填了 {a} 个流程的原因", { a: n.filled }) + (n.unmatched ? a.t("；{b} 行的单号在本期名单里找不到", { b: n.unmatched }) : ""), cls: n.unmatched ? "warn" : "ok" }], await fe();
       });
     }
     async function Lt(t, n) {
       await oe("fs-reason", async () => {
-        X.value = await k("reasons.set", { key: t, reason: n });
+        X.value = await f("reasons.set", { key: t, reason: n });
       });
     }
     async function At(t, n) {
       await oe("fs-reason", async () => {
-        X.value = await k("reasons.set", { key: t, categoryId: n });
+        X.value = await f("reasons.set", { key: t, categoryId: n });
       });
     }
     async function lt(t) {
       await oe("fs-classify", async () => {
-        const n = await k("reasons.classify", { useModel: t });
+        const n = await f("reasons.classify", { useModel: t });
         X.value = n.cases, Te.value = { ...n.rootCauses }, Ve.value = [
           n.modelError ? { text: a.t("模型没有用上（{p0}），已按关键字归类", { p0: n.modelError }), cls: "warn" } : { text: n.by === "model" ? a.t("模型已归类") + (n.rejected ? a.t("；{n} 处没通过核对，保留关键字归类或通用说明", { n: n.rejected }) : "") : a.t("已按关键字归类，归得不对的可以在表里改"), cls: "ok" }
         ];
@@ -459,30 +459,30 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
     }
     async function Ft(t, n) {
       await oe("fs-reason", async () => {
-        Te.value = { ...await k("rootCause.set", { id: t, text: n }) };
+        Te.value = { ...await f("rootCause.set", { id: t, text: n }) };
       });
     }
     function Ot() {
       w.done("fs-reason", X.value.length ? a.t("需要说明 {a} 个流程，已收到 {b} 个原因", { a: X.value.length, b: ue.value }) : a.t("本期不需要收集原因")), j.scrollToStep("fs-report");
     }
-    const ae = e.ref(""), ee = e.ref([]), Le = e.ref(""), te = e.ref(null), Ae = e.ref(""), Fe = e.ref(""), me = e.ref(""), fe = e.ref(""), pe = e.computed(() => jt(me.value));
+    const ae = e.ref(""), ee = e.ref([]), Le = e.ref(""), te = e.ref(null), Ae = e.ref(""), Fe = e.ref(""), me = e.ref(""), ke = e.ref(""), pe = e.computed(() => jt(me.value));
     async function ze(t, n) {
       return L("fs-report", n, { mark: !1, busyKey: t });
     }
     async function nt(t) {
       await ze("fs-draft", async () => {
-        const n = await k("summary.draft", { useModel: t });
+        const n = await f("summary.draft", { useModel: t });
         ae.value = n.summary, ee.value = n.suggestions, Le.value = n.modelError ? a.t("模型没有用上（{p0}），已按数据起草", { p0: n.modelError }) : n.by === "model" ? a.t("模型起草") + (n.dropped ? a.t("，去掉了 {n} 句带有材料里没有的数字的话", { n: n.dropped }) : "") : t ? a.t("模型写的内容没有通过数字核对，已按数据起草") : a.t("已按数据起草，可以直接改");
       });
     }
     async function Mt() {
-      fe.value = "", await ze("fs-report-build", async () => {
+      ke.value = "", await ze("fs-report-build", async () => {
         if (!ae.value.trim() && b.value?.period.kind === "monthly") {
-          const l = await k("summary.draft", { useModel: !1 });
+          const l = await f("summary.draft", { useModel: !1 });
           ae.value = l.summary, ee.value = l.suggestions;
         }
-        await k("summary.save", { summary: ae.value, suggestions: ee.value });
-        const t = await k("report.build");
+        await f("summary.save", { summary: ae.value, suggestions: ee.value });
+        const t = await f("report.build");
         te.value = t, Ae.value = t.subject, Fe.value = t.text;
         const n = await le();
         me.value.trim() || (me.value = t.kind === "monthly" ? n.settings.monthlyRecipients : n.settings.weeklyRecipients);
@@ -492,8 +492,8 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
       if (te.value && window.confirm(a.t("把通报发给 {n} 位收件人？附件 {m} 个。", { n: pe.value.ok, m: te.value.files.length }))) {
         D.value = "fs-report-send", w.start("fs-report");
         try {
-          const t = await k("report.send", { to: me.value, subject: Ae.value, text: Fe.value });
-          fe.value = a.t("已发送给 {n} 位收件人", { n: t.recipients }) + (t.via === "official" ? a.t("（经官方代发，发件人不是你自己的邮箱）") : "") + (t.ledgerAdded ? a.t("；{n} 条改善建议已记入改善台账", { n: t.ledgerAdded }) : "") + (t.notice ? ` ${t.notice}` : ""), w.done("fs-report", a.t("通报已发送给 {n} 位收件人", { n: t.recipients })), await le();
+          const t = await f("report.send", { to: me.value, subject: Ae.value, text: Fe.value });
+          ke.value = a.t("已发送给 {n} 位收件人", { n: t.recipients }) + (t.via === "official" ? a.t("（经官方代发，发件人不是你自己的邮箱）") : "") + (t.ledgerAdded ? a.t("；{n} 条改善建议已记入改善台账", { n: t.ledgerAdded }) : "") + (t.notice ? ` ${t.notice}` : ""), w.done("fs-report", a.t("通报已发送给 {n} 位收件人", { n: t.recipients })), await le();
         } catch (t) {
           w.fail("fs-report", t);
         } finally {
@@ -503,8 +503,8 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
     }
     async function Kt() {
       await ze("fs-report", async () => {
-        await k("summary.save", { summary: ae.value, suggestions: ee.value });
-        const t = await k("report.toLedger");
+        await f("summary.save", { summary: ae.value, suggestions: ee.value });
+        const t = await f("report.toLedger");
         T.success(a.t("{n} 条改善建议已记入改善台账", { n: t })), await le();
       });
     }
@@ -548,7 +548,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
                 e.h("td", A.flowType),
                 e.h("td", { class: "fs-wrap" }, A.title),
                 e.h("td", A.initiator),
-                e.h("td", e.h("span", { class: ["ss-chip", Dt(A)] }, ft(A))),
+                e.h("td", e.h("span", { class: ["ss-chip", Dt(A)] }, kt(A))),
                 e.h("td", { class: "num" }, I(A.days) + (A.approx ? " *" : "")),
                 e.h("td", { class: "num" }, A.limitDays ?? "-"),
                 e.h("td", { class: "num" }, A.overdueDays ? I(A.overdueDays) : "-"),
@@ -570,7 +570,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
           return;
         }
         try {
-          b.value = await k("calc.view"), w.set("fs-check", { state: "done" }), w.set("fs-calc", { state: "done", summary: Ze(b.value) }), W.value = "fs-compare", ae.value = t.summary, ee.value = t.suggestions.map((n) => ({ ...n })), await ke();
+          b.value = await f("calc.view"), w.set("fs-check", { state: "done" }), w.set("fs-calc", { state: "done", summary: Ze(b.value) }), W.value = "fs-compare", ae.value = t.summary, ee.value = t.suggestions.map((n) => ({ ...n })), await fe();
         } catch (n) {
           w.fail("fs-calc", n);
         }
@@ -580,7 +580,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
     }), h({ pick: c, commit: ie, demo: be, runCalc: xe, runCompare: et, tables: _, form: d }), (t, n) => (e.openBlock(), e.createElementBlock("div", qt, [
       e.createVNode(zt, {
         title: t.$t("时效通报"),
-        metas: f,
+        metas: k,
         runtime: e.unref(F),
         "current-key": e.unref(W),
         onJump: q
@@ -590,8 +590,8 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
         e.createVNode(ye, {
           "step-key": "fs-import",
           index: 0,
-          title: f[0].title,
-          hint: f[0].hint,
+          title: k[0].title,
+          hint: k[0].hint,
           runtime: e.unref(F)["fs-import"],
           "is-current": e.unref(W) === "fs-import"
         }, {
@@ -839,7 +839,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
               }, [
                 n[26] || (n[26] = e.createElementVNode(
                   "i",
-                  { class: "ri-magic-line" },
+                  { class: "ri-file-download-line" },
                   null,
                   -1
                   /* CACHED */
@@ -1000,8 +1000,8 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
         e.createVNode(ye, {
           "step-key": "fs-check",
           index: 1,
-          title: f[1].title,
-          hint: f[1].hint,
+          title: k[1].title,
+          hint: k[1].hint,
           runtime: e.unref(F)["fs-check"],
           "is-current": e.unref(W) === "fs-check"
         }, {
@@ -1162,7 +1162,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
                               }, [
                                 e.createElementVNode(
                                   "option",
-                                  fl,
+                                  kl,
                                   e.toDisplayString(t.$t("— 选择规则细类 —")),
                                   1
                                   /* TEXT */
@@ -1187,7 +1187,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
                                   128
                                   /* KEYED_FRAGMENT */
                                 ))
-                              ], 40, kl)
+                              ], 40, fl)
                             ])
                           ],
                           2
@@ -1498,8 +1498,8 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
         e.createVNode(ye, {
           "step-key": "fs-calc",
           index: 2,
-          title: f[2].title,
-          hint: f[2].hint,
+          title: k[2].title,
+          hint: k[2].hint,
           runtime: e.unref(F)["fs-calc"],
           "is-current": e.unref(W) === "fs-calc"
         }, {
@@ -1897,8 +1897,8 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
                   1
                   /* TEXT */
                 ),
-                e.createElementVNode("div", kn, [
-                  e.createElementVNode("table", fn, [
+                e.createElementVNode("div", fn, [
+                  e.createElementVNode("table", kn, [
                     e.createElementVNode("thead", null, [
                       e.createElementVNode("tr", null, [
                         e.createElementVNode(
@@ -2341,8 +2341,8 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
         e.createVNode(ye, {
           "step-key": "fs-compare",
           index: 3,
-          title: f[3].title,
-          hint: f[3].hint,
+          title: k[3].title,
+          hint: k[3].hint,
           runtime: e.unref(F)["fs-compare"],
           "is-current": e.unref(W) === "fs-compare"
         }, {
@@ -2487,7 +2487,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
                           /* TEXT */
                         )
                       ]),
-                      e.createElementVNode("div", ks, [
+                      e.createElementVNode("div", fs, [
                         e.createElementVNode(
                           "small",
                           null,
@@ -2505,7 +2505,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
                           /* TEXT, CLASS */
                         )
                       ]),
-                      e.createElementVNode("div", fs, [
+                      e.createElementVNode("div", ks, [
                         e.createElementVNode(
                           "small",
                           null,
@@ -2970,8 +2970,8 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
         e.createVNode(ye, {
           "step-key": "fs-reason",
           index: 4,
-          title: f[4].title,
-          hint: f[4].hint,
+          title: k[4].title,
+          hint: k[4].hint,
           runtime: e.unref(F)["fs-reason"],
           "is-current": e.unref(W) === "fs-reason"
         }, {
@@ -3109,10 +3109,10 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
                                       type: "button",
                                       class: "ss-link",
                                       onClick: (p) => Ce.value = Ce.value === l.owner ? "" : l.owner
-                                    }, e.toDisplayString(Ce.value === l.owner ? t.$t("收起") : t.$t("预览邮件")), 9, ko)
+                                    }, e.toDisplayString(Ce.value === l.owner ? t.$t("收起") : t.$t("预览邮件")), 9, fo)
                                   ])
                                 ]),
-                                Ce.value === l.owner ? (e.openBlock(), e.createElementBlock("tr", fo, [
+                                Ce.value === l.owner ? (e.openBlock(), e.createElementBlock("tr", ko, [
                                   e.createElementVNode("td", Do, [
                                     e.createElementVNode("div", So, [
                                       e.createElementVNode(
@@ -3462,7 +3462,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
                       }, [
                         n[47] || (n[47] = e.createElementVNode(
                           "i",
-                          { class: "ri-sparkling-line" },
+                          { class: "ri-price-tag-3-line" },
                           null,
                           -1
                           /* CACHED */
@@ -3571,8 +3571,8 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
         e.createVNode(ye, {
           "step-key": "fs-report",
           index: 5,
-          title: f[5].title,
-          hint: f[5].hint,
+          title: k[5].title,
+          hint: k[5].hint,
           runtime: e.unref(F)["fs-report"],
           "is-current": e.unref(W) === "fs-report"
         }, {
@@ -3612,7 +3612,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
                   }, [
                     n[49] || (n[49] = e.createElementVNode(
                       "i",
-                      { class: "ri-sparkling-line" },
+                      { class: "ri-quill-pen-line" },
                       null,
                       -1
                       /* CACHED */
@@ -3992,7 +3992,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
                           1
                           /* TEXT */
                         )
-                      ], 8, ka),
+                      ], 8, fa),
                       te.value.kind === "monthly" && !M.value?.ledgerWritten && ee.value.length ? (e.openBlock(), e.createElementBlock("button", {
                         key: 0,
                         type: "button",
@@ -4012,7 +4012,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
                           1
                           /* TEXT */
                         )
-                      ], 8, fa)) : e.createCommentVNode("v-if", !0),
+                      ], 8, ka)) : e.createCommentVNode("v-if", !0),
                       M.value?.sentAt ? (e.openBlock(), e.createElementBlock(
                         "span",
                         Da,
@@ -4028,7 +4028,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
                         /* TEXT */
                       )) : e.createCommentVNode("v-if", !0)
                     ]),
-                    fe.value ? (e.openBlock(), e.createElementBlock("p", $a, [
+                    ke.value ? (e.openBlock(), e.createElementBlock("p", $a, [
                       n[55] || (n[55] = e.createElementVNode(
                         "i",
                         { class: "ri-checkbox-circle-line" },
@@ -4037,7 +4037,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
                         /* CACHED */
                       )),
                       e.createTextVNode(
-                        e.toDisplayString(fe.value),
+                        e.toDisplayString(ke.value),
                         1
                         /* TEXT */
                       )
@@ -4068,7 +4068,7 @@ const qt = { class: "ss-module" }, Yt = { class: "ss-steps" }, Ht = { class: "ss
   for (const [N, S] of h)
     y[N] = S;
   return y;
-}, _a = /* @__PURE__ */ Ne(ba, [["__scopeId", "data-v-19fd98c1"]]), Xe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:echarts/core"];
+}, _a = /* @__PURE__ */ Ne(ba, [["__scopeId", "data-v-703d3f90"]]), Xe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:echarts/core"];
 if (!Xe) throw new Error("宿主模块未就绪：npm:echarts/core");
 Xe.default;
 const Qe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:echarts/renderers"];
@@ -4102,21 +4102,21 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
 }, ar = { class: "ss-muted" }, rr = { class: "fs-card" }, ir = { class: "ss-muted" }, dr = {
   key: 0,
   class: "ss-empty"
-}, cr = { class: "fs-card" }, ur = { class: "ss-table-wrap fs-scroll" }, mr = { class: "ss-table" }, pr = { class: "num" }, yr = { class: "num" }, gr = { class: "num" }, vr = { class: "num" }, Nr = { class: "num" }, Er = { class: "num" }, Vr = ["onClick"], hr = { class: "num" }, kr = { class: "num" }, fr = { class: "num" }, Dr = { class: "num" }, Sr = { class: "num" }, $r = { class: "num" }, br = { class: "ss-muted" }, _r = { class: "fs-card" }, wr = { class: "ss-muted" }, Br = { class: "ss-table-wrap fs-scroll" }, Cr = { class: "ss-table" }, Tr = { class: "num" }, Lr = { class: "num" }, Ar = { class: "num" }, Fr = { class: "num" }, Or = { class: "num" }, Mr = { class: "num" }, Rr = { class: "num" }, Kr = { class: "num" }, Wr = { class: "num" }, Ur = { class: "num" }, zr = { class: "fs-card" }, Ir = { class: "ss-muted" }, Pr = { class: "ss-field inline fs-only" }, jr = { class: "ss-table-wrap fs-scroll tall" }, qr = { class: "ss-table" }, Yr = { class: "num" }, Hr = { class: "num" }, Gr = { class: "num" }, Jr = { class: "num" }, Xr = { class: "num" }, Qr = { class: "num" }, Zr = {
+}, cr = { class: "fs-card" }, ur = { class: "ss-table-wrap fs-scroll" }, mr = { class: "ss-table" }, pr = { class: "num" }, yr = { class: "num" }, gr = { class: "num" }, vr = { class: "num" }, Nr = { class: "num" }, Er = { class: "num" }, Vr = ["onClick"], hr = { class: "num" }, fr = { class: "num" }, kr = { class: "num" }, Dr = { class: "num" }, Sr = { class: "num" }, $r = { class: "num" }, br = { class: "ss-muted" }, _r = { class: "fs-card" }, wr = { class: "ss-muted" }, Br = { class: "ss-table-wrap fs-scroll" }, Cr = { class: "ss-table" }, Tr = { class: "num" }, Lr = { class: "num" }, Ar = { class: "num" }, Fr = { class: "num" }, Or = { class: "num" }, Mr = { class: "num" }, Rr = { class: "num" }, Kr = { class: "num" }, Wr = { class: "num" }, Ur = { class: "num" }, zr = { class: "fs-card" }, Ir = { class: "ss-muted" }, Pr = { class: "ss-field inline fs-only" }, jr = { class: "ss-table-wrap fs-scroll tall" }, qr = { class: "ss-table" }, Yr = { class: "num" }, Hr = { class: "num" }, Gr = { class: "num" }, Jr = { class: "num" }, Xr = { class: "num" }, Qr = { class: "num" }, Zr = {
   key: 3,
   class: "ss-note"
 }, xr = /* @__PURE__ */ e.defineComponent({
   __name: "BoardTab",
   setup(u) {
     Xe.use([Qe.CanvasRenderer, We.BarChart, We.LineChart, ve.GridComponent, ve.TooltipComponent, ve.LegendComponent, ve.MarkLineComponent]);
-    const h = ["weekly", "monthly"], y = e.ref(null), N = e.ref(!1), S = e.ref(""), m = e.reactive({ snapshotId: "", system: "", category: "", flowType: "", dept: "" }), T = e.ref("weekly"), $ = e.ref(!1), M = e.computed(() => G.value?.snapshots ?? []), B = e.computed(() => G.value?.thresholds.minComplianceRate ?? 0.95), f = e.computed(() => !!(m.system || m.category || m.flowType || m.dept));
+    const h = ["weekly", "monthly"], y = e.ref(null), N = e.ref(!1), S = e.ref(""), m = e.reactive({ snapshotId: "", system: "", category: "", flowType: "", dept: "" }), T = e.ref("weekly"), $ = e.ref(!1), M = e.computed(() => G.value?.snapshots ?? []), B = e.computed(() => G.value?.thresholds.minComplianceRate ?? 0.95), k = e.computed(() => !!(m.system || m.category || m.flowType || m.dept));
     let w = 0, F = "";
     const W = () => JSON.stringify(m);
     async function D() {
       const s = ++w;
       F = W(), N.value = !0;
       try {
-        const r = await k("board.get", m);
+        const r = await f("board.get", m);
         if (s !== w) return;
         y.value = r, S.value = "", r.snapshot && m.snapshotId !== r.snapshot.id && (m.snapshotId = r.snapshot.id, T.value = r.snapshot.kind, F = W()), m.flowType && !r.options.flowTypes.includes(m.flowType) && (m.flowType = "");
       } catch (r) {
@@ -4140,7 +4140,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
       const s = y.value?.snapshot;
       if (!(!s || !window.confirm(a.t("删除「{p0}」这个周期的快照？趋势里也不再有它。", { p0: s.label }))))
         try {
-          await k("snapshot.remove", { id: s.id });
+          await f("snapshot.remove", { id: s.id });
         } catch (r) {
           S.value = j.errorMessage(r);
         }
@@ -4404,7 +4404,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 [e.vModelSelect, m.dept]
               ])
             ]),
-            f.value ? (e.openBlock(), e.createElementBlock(
+            k.value ? (e.openBlock(), e.createElementBlock(
               "button",
               {
                 key: 0,
@@ -4746,14 +4746,14 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                       ),
                       e.createElementVNode(
                         "td",
-                        kr,
+                        fr,
                         e.toDisplayString(e.unref(I)(o.avgDays)),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
-                        fr,
+                        kr,
                         e.toDisplayString(o.limitDays ?? "-"),
                         1
                         /* TEXT */
@@ -5127,7 +5127,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                           {
                             class: e.normalizeClass(["ss-chip", e.unref(Dt)(o)])
                           },
-                          e.toDisplayString(e.unref(ft)(o)),
+                          e.toDisplayString(e.unref(kt)(o)),
                           3
                           /* TEXT, CLASS */
                         )
@@ -5208,7 +5208,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
       ]))
     ]));
   }
-}), ei = /* @__PURE__ */ Ne(xr, [["__scopeId", "data-v-e45cd2ef"]]), ti = { class: "fs-track" }, li = { class: "ss-kpis" }, ni = { class: "ss-kpi" }, si = { "data-test": "fs-track-open" }, oi = { class: "ss-kpi" }, ai = { class: "ss-kpi" }, ri = { class: "ss-kpi" }, ii = { class: "ss-kpi" }, di = { class: "ss-note info" }, ci = {
+}), ei = /* @__PURE__ */ Ne(xr, [["__scopeId", "data-v-17f8aa45"]]), ti = { class: "fs-track" }, li = { class: "ss-kpis" }, ni = { class: "ss-kpi" }, si = { "data-test": "fs-track-open" }, oi = { class: "ss-kpi" }, ai = { class: "ss-kpi" }, ri = { class: "ss-kpi" }, ii = { class: "ss-kpi" }, di = { class: "ss-note info" }, ci = {
   key: 0,
   class: "ss-note danger"
 }, ui = { class: "ss-actions" }, mi = { class: "fs-seg" }, pi = ["data-test", "onClick"], yi = { class: "ss-field inline" }, gi = ["placeholder"], vi = ["disabled"], Ni = {
@@ -5217,10 +5217,10 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
 }, Ei = ["data-test"], Vi = { class: "ss-chip" }, hi = {
   key: 0,
   class: "ss-muted"
-}, ki = {
+}, fi = {
   key: 1,
   class: "ss-chip ok"
-}, fi = {
+}, ki = {
   key: 2,
   class: "ss-chip bad"
 }, Di = {
@@ -5235,7 +5235,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
 }, Pi = { class: "fs-notes" }, ji = /* @__PURE__ */ e.defineComponent({
   __name: "TrackTab",
   setup(u) {
-    const h = [{ key: "open", title: a.t("跟进中") }, { key: "due", title: a.t("今天该跟进") }, { key: "closed", title: a.t("已闭环") }], y = $e.useNotificationStore(), N = e.ref("open"), S = e.ref(""), m = e.ref(!1), T = e.ref(""), $ = e.ref(""), M = e.reactive({}), B = e.ref(null), f = e.computed(() => G.value?.thresholds), w = e.computed(() => G.value?.tracking ?? []), F = e.computed(() => G.value?.reminders ?? []), W = e.computed(() => w.value.filter((o) => !o.closedAt)), D = e.computed(() => w.value.filter((o) => !!o.closedAt)), L = (o) => !o.closedAt && !!o.nextFollowAt && Date.parse(o.nextFollowAt) <= Date.now(), q = (o) => o.intervalDays === (f.value?.externalDays ?? 7) && o.intervalDays !== (f.value?.internalDays ?? 3), d = e.computed(() => W.value.filter(L)), R = e.computed(() => {
+    const h = [{ key: "open", title: a.t("跟进中") }, { key: "due", title: a.t("今天该跟进") }, { key: "closed", title: a.t("已闭环") }], y = $e.useNotificationStore(), N = e.ref("open"), S = e.ref(""), m = e.ref(!1), T = e.ref(""), $ = e.ref(""), M = e.reactive({}), B = e.ref(null), k = e.computed(() => G.value?.thresholds), w = e.computed(() => G.value?.tracking ?? []), F = e.computed(() => G.value?.reminders ?? []), W = e.computed(() => w.value.filter((o) => !o.closedAt)), D = e.computed(() => w.value.filter((o) => !!o.closedAt)), L = (o) => !o.closedAt && !!o.nextFollowAt && Date.parse(o.nextFollowAt) <= Date.now(), q = (o) => o.intervalDays === (k.value?.externalDays ?? 7) && o.intervalDays !== (k.value?.internalDays ?? 3), d = e.computed(() => W.value.filter(L)), R = e.computed(() => {
       const o = N.value === "closed" ? D.value : N.value === "due" ? d.value : W.value, E = S.value.trim().toLowerCase();
       return (E ? o.filter((g) => [g.flowNo, g.flowName, g.flowType, g.title, g.handler, g.initiator].some((K) => String(K || "").toLowerCase().includes(E))) : o).slice(0, 200);
     }), _ = (o) => $.value === o.key ? o.notes : o.notes.slice(-4);
@@ -5252,38 +5252,38 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
     async function P(o) {
       const E = (M[o.key] || "").trim();
       E && await C(async () => {
-        await k("track.note", { key: o.key, text: E }), M[o.key] = "";
+        await f("track.note", { key: o.key, text: E }), M[o.key] = "";
       });
     }
     async function J(o) {
       await C(async () => {
-        const E = await k("track.mailPreview", { key: o.key });
+        const E = await f("track.mailPreview", { key: o.key });
         B.value = { key: o.key, ...E };
       });
     }
     async function ne(o) {
       const E = B.value;
       !E || !window.confirm(a.t("给 {p0} 发送进度提醒邮件？", { p0: E.to })) || await C(async () => {
-        E.to.trim() !== o.handlerEmail && await k("track.setEmail", { key: o.key, email: E.to.trim() });
-        const g = await k("track.remind", { key: o.key, subject: E.subject, body: E.body });
+        E.to.trim() !== o.handlerEmail && await f("track.setEmail", { key: o.key, email: E.to.trim() });
+        const g = await f("track.remind", { key: o.key, subject: E.subject, body: E.body });
         B.value = null, y.success(g.via === "official" ? a.t("提醒已发送（经官方代发）") : a.t("提醒已发送"));
       });
     }
     async function c(o) {
       const E = window.prompt(a.t("闭环原因（如：已线下办结）"), "");
       E !== null && await C(async () => {
-        await k("track.close", { key: o.key, reason: E });
+        await f("track.close", { key: o.key, reason: E });
       });
     }
     async function s() {
       await C(async () => {
-        const o = await k("reminders.check");
+        const o = await f("reminders.check");
         y.info(o ? a.t("发出了 {n} 条提醒", { n: o }) : a.t("现在没有新的到期提醒"));
       });
     }
     async function r() {
       await C(async () => {
-        await k("reminders.clear");
+        await f("reminders.clear");
       });
     }
     return (o, E) => (e.openBlock(), e.createElementBlock("div", ti, [
@@ -5327,7 +5327,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
           e.createElementVNode(
             "small",
             null,
-            e.toDisplayString(o.$t("内部流程（每 {n} 天）", { n: f.value?.internalDays ?? 3 })),
+            e.toDisplayString(o.$t("内部流程（每 {n} 天）", { n: k.value?.internalDays ?? 3 })),
             1
             /* TEXT */
           ),
@@ -5343,7 +5343,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
           e.createElementVNode(
             "small",
             null,
-            e.toDisplayString(o.$t("外部流程（每 {n} 天）", { n: f.value?.externalDays ?? 7 })),
+            e.toDisplayString(o.$t("外部流程（每 {n} 天）", { n: k.value?.externalDays ?? 7 })),
             1
             /* TEXT */
           ),
@@ -5514,13 +5514,13 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
             ),
             g.closedAt ? (e.openBlock(), e.createElementBlock(
               "span",
-              ki,
+              fi,
               e.toDisplayString(o.$t("已闭环 {p0}", { p0: e.unref(j.fmtDateTime)(g.closedAt) })),
               1
               /* TEXT */
             )) : L(g) ? (e.openBlock(), e.createElementBlock(
               "span",
-              fi,
+              ki,
               e.toDisplayString(o.$t("该跟进了")),
               1
               /* TEXT */
@@ -5882,7 +5882,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
       ])) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), qi = /* @__PURE__ */ Ne(ji, [["__scopeId", "data-v-60fa765d"]]), Yi = { class: "fs-ledger" }, Hi = { class: "ss-kpis" }, Gi = ["data-test"], Ji = { class: "ss-kpi" }, Xi = { class: "ss-note info" }, Qi = {
+}), qi = /* @__PURE__ */ Ne(ji, [["__scopeId", "data-v-f329e378"]]), Yi = { class: "fs-ledger" }, Hi = { class: "ss-kpis" }, Gi = ["data-test"], Ji = { class: "ss-kpi" }, Xi = { class: "ss-note info" }, Qi = {
   key: 0,
   class: "ss-note danger"
 }, Zi = { class: "ss-actions" }, xi = { class: "fs-seg" }, ed = ["data-test", "onClick"], td = ["disabled"], ld = ["disabled"], nd = {
@@ -5903,15 +5903,15 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
 }, Ed = {
   key: 2,
   class: "fs-notes"
-}, Vd = { key: 0 }, hd = ["onClick"], kd = { class: "ss-actions" }, fd = ["onUpdate:modelValue", "placeholder", "onKeydown"], Dd = ["disabled", "onClick"], Sd = ["disabled", "onClick"], $d = ["disabled", "onClick"], bd = ["disabled", "onClick"], _d = ["disabled", "onClick"], wd = ["disabled", "onClick"], Bd = /* @__PURE__ */ e.defineComponent({
+}, Vd = { key: 0 }, hd = ["onClick"], fd = { class: "ss-actions" }, kd = ["onUpdate:modelValue", "placeholder", "onKeydown"], Dd = ["disabled", "onClick"], Sd = ["disabled", "onClick"], $d = ["disabled", "onClick"], bd = ["disabled", "onClick"], _d = ["disabled", "onClick"], wd = ["disabled", "onClick"], Bd = /* @__PURE__ */ e.defineComponent({
   __name: "LedgerTab",
   setup(u, { expose: h }) {
-    const y = ["doing", "overdue", "done", "archived"], N = e.ref(!1), S = e.ref(""), m = e.ref(""), T = e.ref(""), $ = e.ref(null), M = e.ref(""), B = e.reactive({}), f = e.computed(() => G.value?.ledger ?? []), w = e.computed(() => G.value?.thresholds.improveRemindDays ?? 7), F = e.computed(() => Object.fromEntries(y.map((c) => [c, f.value.filter((s) => s.status === c).length]))), W = e.computed(() => f.value.filter((c) => c.status === "doing" && (() => {
+    const y = ["doing", "overdue", "done", "archived"], N = e.ref(!1), S = e.ref(""), m = e.ref(""), T = e.ref(""), $ = e.ref(null), M = e.ref(""), B = e.reactive({}), k = e.computed(() => G.value?.ledger ?? []), w = e.computed(() => G.value?.thresholds.improveRemindDays ?? 7), F = e.computed(() => Object.fromEntries(y.map((c) => [c, k.value.filter((s) => s.status === c).length]))), W = e.computed(() => k.value.filter((c) => c.status === "doing" && (() => {
       const s = Ye(c.deadline);
       return s !== null && s >= 0 && s <= w.value;
     })())), D = e.computed(() => {
       const c = { overdue: 0, doing: 1, done: 2, archived: 3 };
-      return f.value.filter((s) => !T.value || s.status === T.value).slice().sort((s, r) => c[s.status] - c[r.status] || (s.deadline || "9999").localeCompare(r.deadline || "9999"));
+      return k.value.filter((s) => !T.value || s.status === T.value).slice().sort((s, r) => c[s.status] - c[r.status] || (s.deadline || "9999").localeCompare(r.deadline || "9999"));
     });
     function L(c) {
       const s = Ye(c.deadline);
@@ -5937,28 +5937,28 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
     async function _() {
       const c = $.value;
       c && await d(async () => {
-        await k("ledger.save", { item: c.id ? c : { ...c, id: void 0 } });
+        await f("ledger.save", { item: c.id ? c : { ...c, id: void 0 } });
       }) && ($.value = null);
     }
     async function C(c, s) {
       await d(async () => {
-        await k("ledger.save", { item: { id: c.id, item: c.item, status: s } });
+        await f("ledger.save", { item: { id: c.id, item: c.item, status: s } });
       });
     }
     async function P(c) {
       const s = (B[c.id] || "").trim();
       s && await d(async () => {
-        await k("ledger.progress", { id: c.id, text: s }), B[c.id] = "";
+        await f("ledger.progress", { id: c.id, text: s }), B[c.id] = "";
       });
     }
     async function J(c) {
       window.confirm(a.t("删除「{p0}」？进展记录也会一起删掉。", { p0: c.item })) && await d(async () => {
-        await k("ledger.remove", { id: c.id });
+        await f("ledger.remove", { id: c.id });
       });
     }
     async function ne() {
       await d(async () => {
-        m.value = await k("ledger.export");
+        m.value = await f("ledger.export");
       });
     }
     return h({ startEdit: R, save: _, editing: $ }), (c, s) => (e.openBlock(), e.createElementBlock("div", Yi, [
@@ -6089,7 +6089,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
         e.createElementVNode("button", {
           type: "button",
           class: "ss-btn",
-          disabled: N.value || !f.value.length,
+          disabled: N.value || !k.value.length,
           "data-test": "fs-ledger-export",
           onClick: ne
         }, [
@@ -6331,7 +6331,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
       D.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
         "p",
         pd,
-        e.toDisplayString(f.value.length ? c.$t("这个状态下没有事项") : c.$t("台账还是空的。月度通报发出后改善建议会记到这里，也可以手工登记。")),
+        e.toDisplayString(k.value.length ? c.$t("这个状态下没有事项") : c.$t("台账还是空的。月度通报发出后改善建议会记到这里，也可以手工登记。")),
         1
         /* TEXT */
       )),
@@ -6484,7 +6484,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 }, e.toDisplayString(c.$t("看全部 {n} 条进展", { n: r.progress.length })), 9, hd)
               ])) : e.createCommentVNode("v-if", !0)
             ])) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("div", kd, [
+            e.createElementVNode("div", fd, [
               r.status !== "archived" ? (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 { key: 0 },
@@ -6496,7 +6496,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                     placeholder: c.$t("记一条执行进展（与责任人确认的情况）"),
                     "data-test": "fs-ledger-progress",
                     onKeydown: e.withKeys(e.withModifiers((o) => P(r), ["prevent"]), ["enter"])
-                  }, null, 40, fd), [
+                  }, null, 40, kd), [
                     [e.vModelText, B[r.id]]
                   ]),
                   e.createElementVNode("button", {
@@ -6594,7 +6594,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
       ))
     ]));
   }
-}), Cd = /* @__PURE__ */ Ne(Bd, [["__scopeId", "data-v-ff9ce086"]]), Td = { class: "fs-rules" }, Ld = {
+}), Cd = /* @__PURE__ */ Ne(Bd, [["__scopeId", "data-v-e10df1bf"]]), Td = { class: "fs-rules" }, Ld = {
   key: 0,
   class: "ss-note danger"
 }, Ad = {
@@ -6621,7 +6621,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
 }, pc = { class: "fs-card" }, yc = { class: "ss-muted" }, gc = { class: "fs-cal" }, vc = { class: "ss-field" }, Nc = { class: "ss-field" }, Ec = { class: "ss-actions" }, Vc = ["disabled"], hc = {
   key: 0,
   class: "ss-chip ok"
-}, kc = { class: "fs-card" }, fc = { class: "ss-file-out" }, Dc = { class: "ss-muted" }, ge = 300, Sc = /* @__PURE__ */ e.defineComponent({
+}, fc = { class: "fs-card" }, kc = { class: "ss-file-out" }, Dc = { class: "ss-muted" }, ge = 300, Sc = /* @__PURE__ */ e.defineComponent({
   __name: "RulesTab",
   setup(u) {
     const h = [
@@ -6630,18 +6630,18 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
       { key: "oaFkNodes", title: a.t("OA / 费控节点内外部") },
       { key: "personal", title: a.t("OA / 费控个人节点") },
       { key: "managers", title: a.t("审核人身份") }
-    ], y = G, N = e.ref(null), S = e.ref(!1), m = e.ref(""), T = e.ref([]), $ = e.ref("e2e"), M = e.ref(""), B = e.ref(""), f = e.reactive({ riskPct: 80, avgIncreaseDays: 3, minPct: 95, amountThreshold: 1e5, internalDays: 3, externalDays: 7, improveRemindDays: 7 }), w = e.ref(""), F = e.ref("");
+    ], y = G, N = e.ref(null), S = e.ref(!1), m = e.ref(""), T = e.ref([]), $ = e.ref("e2e"), M = e.ref(""), B = e.ref(""), k = e.reactive({ riskPct: 80, avgIncreaseDays: 3, minPct: 95, amountThreshold: 1e5, internalDays: 3, externalDays: 7, improveRemindDays: 7 }), w = e.ref(""), F = e.ref("");
     function W(i) {
       N.value = i, D(i.thresholds), w.value = i.holidays.join(`
 `), F.value = i.extraWorkdays.join(`
 `);
     }
     function D(i) {
-      Object.assign(f, { riskPct: Math.round(i.riskRatio * 1e3) / 10, avgIncreaseDays: i.avgIncreaseDays, minPct: Math.round(i.minComplianceRate * 1e3) / 10, amountThreshold: i.amountThreshold, internalDays: i.internalDays, externalDays: i.externalDays, improveRemindDays: i.improveRemindDays });
+      Object.assign(k, { riskPct: Math.round(i.riskRatio * 1e3) / 10, avgIncreaseDays: i.avgIncreaseDays, minPct: Math.round(i.minComplianceRate * 1e3) / 10, amountThreshold: i.amountThreshold, internalDays: i.internalDays, externalDays: i.externalDays, improveRemindDays: i.improveRemindDays });
     }
     async function L() {
       try {
-        W(await k("rules.get")), m.value = "";
+        W(await f("rules.get")), m.value = "";
       } catch (i) {
         m.value = j.errorMessage(i);
       }
@@ -6665,15 +6665,15 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
       }
     }
     async function g() {
-      const i = await k("files.pick", { multi: !1 });
+      const i = await f("files.pick", { multi: !1 });
       i.length && (T.value = [], await E(async () => {
-        const V = await k("rules.import", { path: i[0] });
+        const V = await f("rules.import", { path: i[0] });
         T.value = V.warnings, await L();
       }));
     }
     async function K() {
       window.confirm(a.t("恢复成内置的规则表？导入的规则会被丢掉。")) && (T.value = [], await E(async () => {
-        await k("rules.reset"), await L();
+        await f("rules.reset"), await L();
       }));
     }
     async function ie() {
@@ -6682,36 +6682,36 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
           if (!(Y > 0 && Y <= 100)) throw new Error(a.t("{p0}要填 1 到 100 之间的数", { p0: x }));
           return Math.round(Y * 10) / 1e3;
         }, v = {
-          riskRatio: V(Number(f.riskPct), a.t("较大逾期风险的比例")),
-          minComplianceRate: V(Number(f.minPct), a.t("合规率下限")),
-          avgIncreaseDays: Number(f.avgIncreaseDays),
-          amountThreshold: Number(f.amountThreshold),
-          internalDays: Number(f.internalDays),
-          externalDays: Number(f.externalDays),
-          improveRemindDays: Number(f.improveRemindDays)
+          riskRatio: V(Number(k.riskPct), a.t("较大逾期风险的比例")),
+          minComplianceRate: V(Number(k.minPct), a.t("合规率下限")),
+          avgIncreaseDays: Number(k.avgIncreaseDays),
+          amountThreshold: Number(k.amountThreshold),
+          internalDays: Number(k.internalDays),
+          externalDays: Number(k.externalDays),
+          improveRemindDays: Number(k.improveRemindDays)
         };
         for (const [Y, x] of Object.entries(v)) if (!Number.isFinite(x) || x < 0) throw new Error(a.t("阈值里有没填或填错的数（{p0}）", { p0: Y }));
-        D(await k("rules.thresholds", { patch: v }));
+        D(await f("rules.thresholds", { patch: v }));
       }) && (B.value = "th");
     }
     async function be() {
       await E(async () => {
-        D(await k("rules.thresholds", { patch: null }));
+        D(await f("rules.thresholds", { patch: null }));
       });
     }
     const se = (i) => i.split(/[\s,，;；]+/).map((V) => V.trim()).filter(Boolean);
     async function U() {
       await E(async () => {
-        await k("calendar.save", { holidays: se(w.value), extraWorkdays: se(F.value) }), await L();
+        await f("calendar.save", { holidays: se(w.value), extraWorkdays: se(F.value) }), await L();
       }) && (B.value = "cal");
     }
     async function _e() {
-      const i = await k("dirs.pick");
+      const i = await f("dirs.pick");
       i && await Ee(i);
     }
     async function Ee(i) {
       await E(async () => {
-        await k("settings.patch", { patch: { outputDir: i } });
+        await f("settings.patch", { patch: { outputDir: i } });
       });
     }
     return (i, V) => (e.openBlock(), e.createElementBlock("div", Td, [
@@ -7328,7 +7328,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": V[1] || (V[1] = (v) => f.riskPct = v),
+                    "onUpdate:modelValue": V[1] || (V[1] = (v) => k.riskPct = v),
                     type: "number",
                     min: "1",
                     max: "100",
@@ -7341,7 +7341,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 ), [
                   [
                     e.vModelText,
-                    f.riskPct,
+                    k.riskPct,
                     void 0,
                     { number: !0 }
                   ]
@@ -7358,7 +7358,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": V[2] || (V[2] = (v) => f.avgIncreaseDays = v),
+                    "onUpdate:modelValue": V[2] || (V[2] = (v) => k.avgIncreaseDays = v),
                     type: "number",
                     min: "0",
                     step: "0.5"
@@ -7369,7 +7369,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 ), [
                   [
                     e.vModelText,
-                    f.avgIncreaseDays,
+                    k.avgIncreaseDays,
                     void 0,
                     { number: !0 }
                   ]
@@ -7386,7 +7386,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": V[3] || (V[3] = (v) => f.minPct = v),
+                    "onUpdate:modelValue": V[3] || (V[3] = (v) => k.minPct = v),
                     type: "number",
                     min: "0",
                     max: "100",
@@ -7399,7 +7399,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 ), [
                   [
                     e.vModelText,
-                    f.minPct,
+                    k.minPct,
                     void 0,
                     { number: !0 }
                   ]
@@ -7416,7 +7416,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": V[4] || (V[4] = (v) => f.amountThreshold = v),
+                    "onUpdate:modelValue": V[4] || (V[4] = (v) => k.amountThreshold = v),
                     type: "number",
                     min: "0",
                     step: "10000"
@@ -7427,7 +7427,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 ), [
                   [
                     e.vModelText,
-                    f.amountThreshold,
+                    k.amountThreshold,
                     void 0,
                     { number: !0 }
                   ]
@@ -7444,7 +7444,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": V[5] || (V[5] = (v) => f.internalDays = v),
+                    "onUpdate:modelValue": V[5] || (V[5] = (v) => k.internalDays = v),
                     type: "number",
                     min: "1",
                     step: "1"
@@ -7455,7 +7455,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 ), [
                   [
                     e.vModelText,
-                    f.internalDays,
+                    k.internalDays,
                     void 0,
                     { number: !0 }
                   ]
@@ -7472,7 +7472,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": V[6] || (V[6] = (v) => f.externalDays = v),
+                    "onUpdate:modelValue": V[6] || (V[6] = (v) => k.externalDays = v),
                     type: "number",
                     min: "1",
                     step: "1"
@@ -7483,7 +7483,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 ), [
                   [
                     e.vModelText,
-                    f.externalDays,
+                    k.externalDays,
                     void 0,
                     { number: !0 }
                   ]
@@ -7500,7 +7500,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": V[7] || (V[7] = (v) => f.improveRemindDays = v),
+                    "onUpdate:modelValue": V[7] || (V[7] = (v) => k.improveRemindDays = v),
                     type: "number",
                     min: "0",
                     step: "1"
@@ -7511,7 +7511,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 ), [
                   [
                     e.vModelText,
-                    f.improveRemindDays,
+                    k.improveRemindDays,
                     void 0,
                     { number: !0 }
                   ]
@@ -7641,7 +7641,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
               )) : e.createCommentVNode("v-if", !0)
             ])
           ]),
-          e.createElementVNode("section", kc, [
+          e.createElementVNode("section", fc, [
             e.createElementVNode("header", null, [
               e.createElementVNode(
                 "h3",
@@ -7651,7 +7651,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("p", fc, [
+            e.createElementVNode("p", kc, [
               V[20] || (V[20] = e.createElementVNode(
                 "i",
                 { class: "ri-folder-line" },
@@ -7704,7 +7704,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
       )) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), $c = /* @__PURE__ */ Ne(Sc, [["__scopeId", "data-v-ec6beae6"]]), bc = { class: "fs-workbench" }, _c = { class: "workbench-header" }, wc = { class: "heading" }, Bc = { class: "eyebrow" }, Cc = { class: "subtitle" }, Tc = { class: "header-actions" }, Lc = ["disabled"], Ac = {
+}), $c = /* @__PURE__ */ Ne(Sc, [["__scopeId", "data-v-b38aae3f"]]), bc = { class: "fs-workbench" }, _c = { class: "workbench-header" }, wc = { class: "heading" }, Bc = { class: "eyebrow" }, Cc = { class: "subtitle" }, Tc = { class: "header-actions" }, Lc = ["disabled"], Ac = {
   key: 0,
   class: "fs-bar"
 }, Fc = { class: "ss-muted" }, Oc = { class: "fs-bar__rule" }, Mc = { class: "no" }, Rc = { class: "yes" }, Kc = {
@@ -7747,7 +7747,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
         return "bulletin";
       }
     }
-    const N = $e.useNotificationStore(), S = G, m = e.ref(y()), T = e.ref(!1), $ = e.ref(!1), M = e.ref(""), B = e.computed(() => (S.value?.tracking || []).filter((d) => !d.closedAt).length), f = e.computed(() => (S.value?.tracking || []).filter((d) => !d.closedAt && d.nextFollowAt && Date.parse(d.nextFollowAt) <= Date.now()).length), w = e.computed(() => (S.value?.ledger || []).filter((d) => d.status === "doing" || d.status === "overdue").length), F = e.computed(() => (S.value?.ledger || []).filter((d) => d.status === "overdue").length);
+    const N = $e.useNotificationStore(), S = G, m = e.ref(y()), T = e.ref(!1), $ = e.ref(!1), M = e.ref(""), B = e.computed(() => (S.value?.tracking || []).filter((d) => !d.closedAt).length), k = e.computed(() => (S.value?.tracking || []).filter((d) => !d.closedAt && d.nextFollowAt && Date.parse(d.nextFollowAt) <= Date.now()).length), w = e.computed(() => (S.value?.ledger || []).filter((d) => d.status === "doing" || d.status === "overdue").length), F = e.computed(() => (S.value?.ledger || []).filter((d) => d.status === "overdue").length);
     function W(d) {
       m.value = d;
       try {
@@ -7917,10 +7917,10 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
               1
               /* TEXT */
             ),
-            _.key === "track" && f.value ? (e.openBlock(), e.createElementBlock(
+            _.key === "track" && k.value ? (e.openBlock(), e.createElementBlock(
               "em",
               Uc,
-              e.toDisplayString(f.value),
+              e.toDisplayString(k.value),
               1
               /* TEXT */
             )) : e.createCommentVNode("v-if", !0),
@@ -8196,7 +8196,7 @@ const gt = St.default, wa = { class: "fs-board" }, Ba = {
       ]))
     ]));
   }
-}), tu = /* @__PURE__ */ Ne(eu, [["__scopeId", "data-v-1caffd80"]]);
+}), tu = /* @__PURE__ */ Ne(eu, [["__scopeId", "data-v-6735afe1"]]);
 export {
   tu as default
 };

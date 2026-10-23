@@ -852,7 +852,7 @@ const fe = { class: "intel-page" }, Ee = { class: "intel-hero" }, ye = { class: 
               e.createElementVNode("h2", null, [
                 o[14] || (o[14] = e.createElementVNode(
                   "i",
-                  { class: "ri-sparkling-2-line" },
+                  { class: "ri-radar-line" },
                   null,
                   -1
                   /* CACHED */
@@ -887,7 +887,7 @@ const fe = { class: "intel-page" }, Ee = { class: "intel-hero" }, ye = { class: 
               e.createElementVNode(
                 "i",
                 {
-                  class: e.normalizeClass(f.value ? "ri-loader-4-line spin" : "ri-sparkling-2-line")
+                  class: e.normalizeClass(f.value ? "ri-loader-4-line spin" : "ri-radar-line")
                 },
                 null,
                 2
@@ -928,7 +928,7 @@ const fe = { class: "intel-page" }, Ee = { class: "intel-hero" }, ye = { class: 
   for (const [S, K] of y)
     k[S] = K;
   return k;
-}, Lt = /* @__PURE__ */ Ct(Bt, [["__scopeId", "data-v-9f8c1874"]]);
+}, Lt = /* @__PURE__ */ Ct(Bt, [["__scopeId", "data-v-de665f4c"]]);
 export {
   Lt as default
 };

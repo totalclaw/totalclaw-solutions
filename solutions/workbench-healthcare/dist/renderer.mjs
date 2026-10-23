@@ -2816,7 +2816,7 @@ const wt = ["dir"], bt = { class: "hero" }, St = { class: "hero-copy" }, Et = { 
   for (const [w, le] of j)
     ee[w] = le;
   return ee;
-}, Xn = /* @__PURE__ */ Zn(Gn, [["__scopeId", "data-v-1016ea8b"]]);
+}, Xn = /* @__PURE__ */ Zn(Gn, [["__scopeId", "data-v-db6f2c6a"]]);
 export {
   Xn as default
 };

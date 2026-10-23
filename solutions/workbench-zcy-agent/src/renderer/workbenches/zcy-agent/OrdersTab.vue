@@ -172,10 +172,10 @@ function jump(key: string): void { void scrollToStep(key); }
 </script>
 
 <style scoped>
-.zc-order { display: grid; gap: 6px; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: 12px; }
-.zc-order__head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; }
+.zc-order { display: grid; gap: 6px; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-5); }
+.zc-order__head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: var(--font-size-md); }
 .zc-order p { margin: 0; }
-.zc-order input { height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 8px; }
+.zc-order input { height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 8px; }
 .zc-grow { flex: 1; }
 .zc-start { justify-self: start; }
 .zc-scroll { max-height: 420px; overflow-y: auto; }

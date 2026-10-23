@@ -2053,7 +2053,7 @@ const be = ["dir"], De = { class: "hero" }, Se = { class: "hero-copy" }, ke = { 
   for (const [m, C] of I)
     S[m] = C;
   return S;
-}, Bl = /* @__PURE__ */ Ll(Cl, [["__scopeId", "data-v-ccf78dd1"]]);
+}, Bl = /* @__PURE__ */ Ll(Cl, [["__scopeId", "data-v-1bcff1c9"]]);
 export {
   Bl as default
 };

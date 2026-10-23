@@ -260,7 +260,7 @@ async function removeReport(id: string): Promise<void> {
 .ft-time { width: 70px !important; }
 .ft-wide { width: 320px !important; text-align: left !important; }
 .ft-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 10px; }
-.ft-comment { margin: 0; padding: 10px 12px; border-radius: 10px; background: var(--color-bg-hover); font-size: 13px; line-height: 1.6; white-space: pre-wrap; }
+.ft-comment { margin: 0; padding: 10px 12px; border-radius: var(--radius-4); background: var(--color-bg-hover); font-size: var(--font-size-md); line-height: 1.6; white-space: pre-wrap; }
 .ft-scroll { max-height: 280px; overflow: auto; }
 .ft-active td { background: color-mix(in srgb, var(--color-brand) 8%, transparent); }
 </style>

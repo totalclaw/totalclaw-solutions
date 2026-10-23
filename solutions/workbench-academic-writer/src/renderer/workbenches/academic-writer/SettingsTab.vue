@@ -70,8 +70,8 @@ function openDir(): void {
 
 <style scoped>
 .ss-panel > header strong { display: flex; gap: 6px; align-items: center; }
-.aw-path { flex: 1; min-width: 200px; font-size: 12px; color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.aw-path { flex: 1; min-width: 200px; font-size: var(--font-size-sm); color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .aw-sources { display: flex; gap: 14px; flex-wrap: wrap; }
-.aw-check { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; cursor: pointer; }
+.aw-check { display: inline-flex; gap: 6px; align-items: center; font-size: var(--font-size-md); cursor: pointer; }
 .aw-models { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
 </style>

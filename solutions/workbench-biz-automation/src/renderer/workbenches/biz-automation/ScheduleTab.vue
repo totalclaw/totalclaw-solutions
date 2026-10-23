@@ -103,17 +103,17 @@ async function clearLog(): Promise<void> { await ba('log.clear').catch(() => {})
 
 <style scoped>
 .ba-sched { display: grid; gap: 14px; }
-.ss-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
+.ss-panel { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
 .ba-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.ba-head strong { display: flex; gap: 6px; align-items: center; font-size: 14px; }
+.ba-head strong { display: flex; gap: 6px; align-items: center; font-size: var(--font-size-base); }
 .ba-jobs { display: grid; gap: 8px; }
-.ba-job { display: grid; grid-template-columns: 160px 220px 140px 1fr; gap: 10px; align-items: center; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: 10px; font-size: 12.5px; }
-.ba-job input[type="time"], .ba-job select { height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; padding: 0 6px; }
+.ba-job { display: grid; grid-template-columns: 160px 220px 140px 1fr; gap: 10px; align-items: center; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-4); font-size: 12.5px; }
+.ba-job input[type="time"], .ba-job select { height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; padding: 0 6px; }
 .ba-num { width: 64px; }
 .ba-job--cal { grid-template-columns: 160px 220px 140px 1fr; }
 .ba-cal { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-.ba-cal__day { display: inline-flex; gap: 4px; align-items: center; padding: 4px 6px; border: 1px solid var(--color-border); border-radius: 8px; }
-.ba-cal__day input, .ba-cal__day select { height: 26px; border-radius: 6px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12px; padding: 0 6px; }
+.ba-cal__day { display: inline-flex; gap: 4px; align-items: center; padding: 4px 6px; border: 1px solid var(--color-border); border-radius: var(--radius-3); }
+.ba-cal__day input, .ba-cal__day select { height: 26px; border-radius: var(--radius-2); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-sm); padding: 0 6px; }
 .ba-check { display: inline-flex; gap: 6px; align-items: center; }
 .ba-log { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 12.5px; max-height: 360px; overflow: auto; }
 .ba-log li { display: flex; gap: 8px; align-items: center; }

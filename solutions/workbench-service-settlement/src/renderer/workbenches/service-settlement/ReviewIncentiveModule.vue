@@ -448,7 +448,7 @@ const lastRun = computed(() => {
 </script>
 
 <style scoped>
-.ss-source { display: grid; gap: 8px; padding: 10px 12px; border-radius: 12px; background: var(--color-bg-primary); border: 1px solid var(--color-border); }
+.ss-source { display: grid; gap: 8px; padding: 10px 12px; border-radius: var(--radius-5); background: var(--color-bg-primary); border: 1px solid var(--color-border); }
 .ss-switch { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; cursor: pointer; }
 .spin { animation: ss-spin 1s linear infinite; }
 @keyframes ss-spin { to { transform: rotate(360deg); } }

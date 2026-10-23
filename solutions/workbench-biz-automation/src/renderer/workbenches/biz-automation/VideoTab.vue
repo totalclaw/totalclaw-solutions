@@ -370,35 +370,45 @@ function jump(key: string): void { void scrollToStep(key); }
 .ba-projbar { display: flex; gap: 10px; align-items: flex-end; }
 .ba-projbar .ss-field { min-width: 320px; }
 .ba-types { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; }
-.ba-type { display: grid; gap: 2px; text-align: start; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: 10px; background: var(--color-bg-primary); color: var(--color-text-primary); cursor: pointer; font: inherit; }
+.ba-type { display: grid; gap: 2px; text-align: start; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-4); background: var(--color-bg-primary); color: var(--color-text-primary); cursor: pointer; font: inherit; }
 .ba-type small { color: var(--color-text-secondary); font-size: 11.5px; }
 .ba-type.on { border-color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 8%, var(--color-bg-primary)); }
 .ba-gpick { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
-.ba-gpick button { display: grid; gap: 2px; padding: 0 0 6px; border: 2px solid var(--color-border); border-radius: 10px; overflow: hidden; background: var(--color-bg-card); cursor: pointer; font: inherit; font-size: 11.5px; color: var(--color-text-primary); }
-.ba-gpick img { width: 100%; aspect-ratio: 3 / 4; object-fit: contain; background: #fff; }
+.ba-gpick button { display: grid; gap: 2px; padding: 0 0 6px; border: 2px solid var(--color-border); border-radius: var(--radius-4); overflow: hidden; background: var(--color-bg-card); cursor: pointer; font: inherit; font-size: 11.5px; color: var(--color-text-primary); }
+.ba-gpick img { width: 100%; aspect-ratio: 3 / 4; object-fit: contain; background: var(--bavt-surface); }
 .ba-gpick span { padding: 0 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ba-gpick button.on { border-color: var(--color-brand); }
 .ba-check { display: inline-flex; gap: 4px; align-items: center; font-size: 12.5px; }
-.ba-mini { height: 28px; border-radius: 7px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12px; }
+.ba-mini { height: 28px; border-radius: var(--radius-2); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-sm); }
 .ba-summary { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; font-size: 12.5px; }
 .ba-thumbs { display: flex; gap: 8px; flex-wrap: wrap; }
 .ba-thumbs figure { margin: 0; width: 84px; }
-.ba-thumbs img { width: 84px; height: 112px; object-fit: cover; border-radius: 8px; border: 1px solid var(--color-border); background: #fff; }
-.ba-thumbs figcaption { font-size: 11px; color: var(--color-text-secondary); text-align: center; }
+.ba-thumbs img { width: 84px; height: 112px; object-fit: cover; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--bavt-surface); }
+.ba-thumbs figcaption { font-size: var(--font-size-xs); color: var(--color-text-secondary); text-align: center; }
 .ba-scenes { display: grid; gap: 6px; }
 .ba-scene { display: grid; grid-template-columns: 48px 1fr auto; gap: 10px; align-items: center; }
-.ba-scene img { width: 48px; height: 64px; object-fit: cover; border-radius: 6px; }
+.ba-scene img { width: 48px; height: 64px; object-fit: cover; border-radius: var(--radius-2); }
 .ba-scene > div { display: grid; grid-template-columns: auto auto 1fr; gap: 8px; align-items: center; }
 .ba-scene small { color: var(--color-text-secondary); font-size: 11.5px; }
-.ba-scene input, .ba-copy input, .ba-copy textarea { height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 8px; }
+.ba-scene input, .ba-copy input, .ba-copy textarea { height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 8px; }
 .ba-copy textarea { height: auto; padding: 6px 8px; resize: vertical; }
 .ba-copies { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
-.ba-copy { display: grid; gap: 6px; padding: 10px; border: 1px solid var(--color-border); border-radius: 10px; }
-.ba-dt { height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 8px; }
+.ba-copy { display: grid; gap: 6px; padding: 10px; border: 1px solid var(--color-border); border-radius: var(--radius-4); }
+.ba-dt { height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 8px; }
 .ba-stat { width: 90px; text-align: end; }
 .ba-player { display: flex; gap: 14px; align-items: flex-start; }
-.ba-player video { width: 240px; aspect-ratio: 9 / 16; border-radius: 12px; background: #000; }
+.ba-player video { width: 240px; aspect-ratio: 9 / 16; border-radius: var(--radius-5); background: var(--bavt-dark); }
 .ba-player__side { display: grid; gap: 6px; font-size: 12.5px; }
 .spin { animation: ba-spin 1s linear infinite; }
 @keyframes ba-spin { to { transform: rotate(360deg); } }
+
+/* ─── 调色板（docs/ui-design-system.md）：经典主题保持原值；界面主题（data-ui-theme）下映射全局 token ─── */
+.ss-module { /* ui-theme-exempt: 经典主题原值 */
+  --bavt-surface: #fff;
+  --bavt-dark: #000;
+}
+:root[data-ui-theme] .ss-module {
+  --bavt-surface: var(--color-bg-card);
+  --bavt-dark: var(--color-bg-code);
+}
 </style>

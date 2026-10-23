@@ -13,7 +13,7 @@
         <p v-if="libSize < 3" class="ss-note warn"><i class="ri-information-line"></i>{{ $t('文献库只有 {n} 篇，至少 3 篇才能拟提纲。', { n: libSize }) }} <button type="button" class="ss-link" @click="$emit('goto', 'search')">{{ $t('去检索') }}</button></p>
         <div class="ss-actions">
           <button type="button" class="ss-btn primary" :disabled="libSize < 3 || !!busy" @click="generate">
-            <i :class="busy === 'generate' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ outline.length ? $t('重新生成提纲') : $t('生成提纲') }}
+            <i :class="busy === 'generate' ? 'ri-loader-4-line spin' : 'ri-list-ordered'"></i>{{ outline.length ? $t('重新生成提纲') : $t('生成提纲') }}
           </button>
           <span v-if="project?.outlineModel" class="ss-muted">{{ $t('由 {p0} 生成', { p0: project.outlineModel }) }}</span>
         </div>
@@ -130,12 +130,12 @@ function scrollTo(k: string): void { void scrollToStep(k); }
 .aw-head { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
 .aw-head strong { display: flex; gap: 6px; align-items: center; }
 .aw-head p { margin: 4px 0 0; }
-.aw-sec { display: grid; gap: 8px; padding: 10px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg-primary); margin-bottom: 8px; }
+.aw-sec { display: grid; gap: 8px; padding: 10px; border: 1px solid var(--color-border); border-radius: var(--radius-5); background: var(--color-bg-primary); margin-bottom: 8px; }
 .aw-sec__head { display: flex; gap: 6px; align-items: center; }
-.aw-sec__title { flex: 1; height: 32px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-primary); font: inherit; font-weight: 600; padding: 0 8px; }
+.aw-sec__title { flex: 1; height: 32px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-primary); font: inherit; font-weight: 600; padding: 0 8px; }
 .aw-sec textarea { width: 100%; box-sizing: border-box; }
-.aw-cites { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: 12px; }
-.aw-cite { border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-secondary); border-radius: 12px; padding: 2px 8px; font: inherit; font-size: 11.5px; cursor: pointer; }
+.aw-cites { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: var(--font-size-sm); }
+.aw-cite { border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-secondary); border-radius: var(--radius-5); padding: 2px 8px; font: inherit; font-size: 11.5px; cursor: pointer; }
 .aw-cite.on { border-color: var(--color-brand); color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 10%, var(--color-bg-card)); }
 .spin { animation: aw-spin 1s linear infinite; }
 @keyframes aw-spin { to { transform: rotate(360deg); } }

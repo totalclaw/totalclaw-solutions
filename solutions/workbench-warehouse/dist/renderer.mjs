@@ -1489,7 +1489,7 @@ Size: {p1} bytes
   for (const [R, P] of Q)
     G[R] = P;
   return G;
-}, ft = /* @__PURE__ */ be(St, [["__scopeId", "data-v-e23751e6"]]), Z = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/workflowResult.ts"];
+}, ft = /* @__PURE__ */ be(St, [["__scopeId", "data-v-eeaa478c"]]), Z = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/workflowResult.ts"];
 if (!Z) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/workflowResult.ts");
 Z.default;
 const ht = ["dir"], wt = { class: "workbench-header" }, kt = { class: "heading" }, bt = { class: "eyebrow" }, Dt = { class: "subtitle" }, _t = { class: "header-actions" }, $t = ["disabled"], At = {
@@ -3202,7 +3202,7 @@ const ht = ["dir"], wt = { class: "workbench-header" }, kt = { class: "heading" 
       ])
     ], 8, ht));
   }
-}), Ul = /* @__PURE__ */ be(Rl, [["__scopeId", "data-v-adbd8ad3"]]);
+}), Ul = /* @__PURE__ */ be(Rl, [["__scopeId", "data-v-e1a16681"]]);
 export {
   Ul as default
 };

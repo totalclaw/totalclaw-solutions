@@ -139,24 +139,24 @@ async function clearReminders(): Promise<void> { await act(async () => { await f
 
 <style scoped>
 .fs-track { display: grid; gap: 12px; }
-.fs-item { display: grid; gap: 8px; padding: 12px 14px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg-card); }
+.fs-item { display: grid; gap: 8px; padding: 12px 14px; border: 1px solid var(--color-border); border-radius: var(--radius-5); background: var(--color-bg-card); }
 .fs-item.due { border-color: color-mix(in srgb, var(--color-danger) 45%, var(--color-border)); }
 .fs-item.closed { opacity: .75; }
-.fs-item header { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; }
+.fs-item header { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: var(--font-size-md); }
 .fs-facts { margin: 0; display: flex; gap: 6px 16px; flex-wrap: wrap; font-size: 12.5px; color: var(--color-text-secondary); }
 .fs-facts .bad, strong.bad { color: var(--color-danger); font-weight: 700; }
 .fs-notes { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 12.5px; }
 .fs-notes li { display: flex; gap: 8px; align-items: baseline; color: var(--color-text-secondary); }
 .fs-notes li.note { color: var(--color-text-primary); }
 .fs-notes time { flex: 0 0 auto; font-variant-numeric: tabular-nums; font-size: 11.5px; }
-.fs-note-input { flex: 1; min-width: 220px; height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 10px; }
-.fs-mailbox { display: grid; gap: 8px; padding: 10px; border: 1px dashed var(--color-border); border-radius: 10px; }
-.fs-card { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
+.fs-note-input { flex: 1; min-width: 220px; height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 10px; }
+.fs-mailbox { display: grid; gap: 8px; padding: 10px; border: 1px dashed var(--color-border); border-radius: var(--radius-4); }
+.fs-card { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
 .fs-card header { display: flex; align-items: center; justify-content: space-between; }
-.fs-card h3 { margin: 0; font-size: 14px; }
-.fs-seg { display: inline-flex; border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden; }
-.fs-seg button { height: 30px; padding: 0 12px; border: none; background: var(--color-bg-card); color: var(--color-text-secondary); font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
-.fs-seg button.on { background: var(--color-brand); color: #fff; }
+.fs-card h3 { margin: 0; font-size: var(--font-size-base); }
+.fs-seg { display: inline-flex; border: 1px solid var(--color-border); border-radius: var(--radius-3); overflow: hidden; }
+.fs-seg button { height: 30px; padding: 0 12px; border: none; background: var(--color-bg-card); color: var(--color-text-secondary); font: inherit; font-size: var(--font-size-sm); font-weight: 700; cursor: pointer; }
+.fs-seg button.on { background: var(--color-brand); color: var(--color-on-accent); }
 .spin { animation: fs-spin 1s linear infinite; }
 @keyframes fs-spin { to { transform: rotate(360deg); } }
 </style>

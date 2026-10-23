@@ -226,19 +226,19 @@ onMounted(async () => {
 
 <style scoped>
 /* 录入表很宽：不让它的最小内容宽度把七步页撑出视口（表格在自己的横向滚动容器里滚） */
-.cap-in { contain: inline-size; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; border: 1px solid var(--color-border); border-radius: 12px; padding: 10px 12px; background: var(--color-bg-card); }
+.cap-in { contain: inline-size; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 10px 12px; background: var(--color-bg-card); }
 .cap-grid { display: grid; gap: 8px 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
-.cap-field { display: grid; gap: 4px; font-size: 12.5px; padding: 6px 8px; border-radius: 8px; border: 1px dashed transparent; }
+.cap-field { display: grid; gap: 4px; font-size: 12.5px; padding: 6px 8px; border-radius: var(--radius-3); border: 1px dashed transparent; }
 .cap-field.need .cap-label em, th em { color: var(--color-danger); font-style: normal; margin-inline-start: 2px; }
 .cap-field.unsourced { border-color: color-mix(in srgb, var(--color-warning) 55%, transparent); }
 .cap-control, .cap-src { display: flex; gap: 6px; align-items: center; min-width: 0; }
 .cap-control input, .cap-control select, .cap-src input, .cap-src select, .cap-table td input, .cap-table td select {
-  height: 28px; border-radius: 7px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary);
+  height: 28px; border-radius: var(--radius-2); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary);
   font: inherit; font-size: 12.5px; padding-inline: 6px; min-width: 0; width: 100%;
 }
 .cap-src input { max-width: 260px; }
 .cap-table { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
 .cap-table td { min-width: 90px; }
-.cap-help { margin: 0; font-size: 12px; }
-.cap-conn { font-size: 12px; }
+.cap-help { margin: 0; font-size: var(--font-size-sm); }
+.cap-conn { font-size: var(--font-size-sm); }
 </style>

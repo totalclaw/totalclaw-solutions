@@ -1,12 +1,12 @@
 {
   "id": "workbench-digital-human",
-  "version": "2.0.1",
-  "treeDigest": "9ac99dc1472f46833563f061592e16016ef21d5a82e84a2733175582030dc2b5",
+  "version": "2.0.2",
+  "treeDigest": "3b554b75abc9cf6c60dc406f3f8481af988bce181c32098e79c397a8a6aa937c",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 660,
-      "sha256": "50969f9648a2729e02f730cba1e97d555ed7b89c36d99e36a5335a11c279483b"
+      "size": 876,
+      "sha256": "462e5c72d83581c1ed4dcffca091050da4c298085d4a86245d59a12130118b3a"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 8912,
-      "sha256": "5a9ff41e6c0204da043def6dd649d1a653d172a3c7cb88c06beffdf1b0e87c43"
+      "size": 9162,
+      "sha256": "a33d8af9683f059d187f24649dff77c53c730adbdd1a5fbfd20c977885eda573"
     },
     {
       "path": "dist/renderer.mjs",
       "size": 77969,
-      "sha256": "cdfd69aa9256d37f1aeff3c615431e6087e1038ac6ba93d2b5c00b77e69f2d0b"
+      "sha256": "2bda5374a80621848e3bef8984efc37544da6a1ccf469be0dc54360c71cb179d"
     },
     {
       "path": "dist/style.css",
-      "size": 15718,
-      "sha256": "68ad68ec2a313220e70257952f761499ff671d2670ecf614a0cd718ee8321edb"
+      "size": 17615,
+      "sha256": "83cfb0510d14c5147eda94b3893fca9a048088f472f2f06a6b6116b4fb44eceb"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 1934,
-      "sha256": "5ebb31cd45dd4d5fcf3518300817f0cb89c333ca0b545c01335e2084556ca55c"
+      "sha256": "d3e3cbadbc512bcd561fdb5a31a948109ef97abce8f793805d002550683b9b44"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-digital-human@2.0.2",
+      "treeDigest": "3b554b75abc9cf6c60dc406f3f8481af988bce181c32098e79c397a8a6aa937c",
+      "filesRef": "index/workbench-digital-human/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-23"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-digital-human@2.0.1",

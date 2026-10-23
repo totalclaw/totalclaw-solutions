@@ -16,7 +16,7 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// node_modules/.cache/solutions-build/workbench-digital-human/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-digital-human/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -26,7 +26,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../totalclaw-solutions/solutions/workbench-digital-human/src/main/ipc/digitalHuman.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-digital-human/src/main/ipc/digitalHuman.ipc.ts
 var import_electron = require("electron");
 var import_ipc_contracts = require("npm:@totalclaw/ipc-contracts");
 var import_i18n = require("npm:@totalclaw/i18n");
@@ -145,7 +145,7 @@ function registerDigitalHumanHandlers(deps) {
   };
 }
 
-// node_modules/.cache/solutions-build/workbench-digital-human/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-digital-human/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerDigitalHumanHandlers";
 var cleanup;

@@ -153,10 +153,10 @@ function scrollTo(k: string): void { void scrollToStep(k); }
 .aw-head { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: flex-start; }
 .aw-head strong { display: flex; gap: 6px; align-items: center; }
 .aw-head p { margin: 4px 0 0; }
-.aw-sec { display: grid; gap: 8px; padding: 10px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg-primary); margin-top: 8px; }
+.aw-sec { display: grid; gap: 8px; padding: 10px; border: 1px solid var(--color-border); border-radius: var(--radius-5); background: var(--color-bg-primary); margin-top: 8px; }
 .aw-sec__head { display: flex; gap: 8px; align-items: center; }
 .aw-grow { flex: 1; }
-.aw-text { width: 100%; box-sizing: border-box; font: inherit; font-size: 13.5px; line-height: 1.8; border-radius: 10px; border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-primary); padding: 10px; }
+.aw-text { width: 100%; box-sizing: border-box; font: inherit; font-size: 13.5px; line-height: 1.8; border-radius: var(--radius-4); border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-primary); padding: 10px; }
 .aw-ms { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .spin { animation: aw-spin 1s linear infinite; }
 @keyframes aw-spin { to { transform: rotate(360deg); } }

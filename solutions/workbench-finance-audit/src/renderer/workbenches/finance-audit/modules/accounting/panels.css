@@ -1,8 +1,8 @@
 /* accounting 分组批次 2 面板共用（非 scoped）。只用逻辑属性，阿语 RTL 自动镜像。 */
 .fau-acc { display: grid; gap: 10px; }
-.fau-acc-sec { border: 1px solid var(--color-border); border-radius: 12px; padding: 10px 12px; display: grid; gap: 8px; background: var(--color-bg-card); min-width: 0; }
+.fau-acc-sec { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 10px 12px; display: grid; gap: 8px; background: var(--color-bg-card); min-width: 0; }
 .fau-acc-sec > header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.fau-acc-sec > header strong { flex: 1; min-width: 0; font-size: 13px; }
+.fau-acc-sec > header strong { flex: 1; min-width: 0; font-size: var(--font-size-md); }
 .fau-acc-sec summary { cursor: pointer; font-weight: 700; font-size: 12.5px; }
 .fau-acc-kpis { display: flex; flex-wrap: wrap; gap: 6px; }
 .fau-acc-esc { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }

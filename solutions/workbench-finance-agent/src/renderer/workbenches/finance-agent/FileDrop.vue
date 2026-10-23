@@ -46,12 +46,12 @@ function onDrop(ev: DragEvent): void {
 </script>
 
 <style scoped>
-.fa-drop { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1.5px dashed var(--color-border); border-radius: 12px; background: var(--color-bg-primary); cursor: pointer; transition: border-color .15s, background .15s; }
+.fa-drop { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border: 1.5px dashed var(--color-border); border-radius: var(--radius-5); background: var(--color-bg-primary); cursor: pointer; transition: border-color .15s, background .15s; }
 .fa-drop.compact { padding: 9px 12px; }
 .fa-drop:hover, .fa-drop.over { border-color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 6%, var(--color-bg-primary)); }
 .fa-drop.disabled { opacity: .6; cursor: not-allowed; }
-.fa-drop > i { font-size: 24px; color: var(--color-brand); flex: 0 0 auto; }
+.fa-drop > i { font-size: var(--font-size-2xl); color: var(--color-brand); flex: 0 0 auto; }
 .fa-drop__text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
-.fa-drop__text strong { font-size: 13px; }
-.fa-drop__text small { color: var(--color-text-secondary); font-size: 12px; }
+.fa-drop__text strong { font-size: var(--font-size-md); }
+.fa-drop__text small { color: var(--color-text-secondary); font-size: var(--font-size-sm); }
 </style>

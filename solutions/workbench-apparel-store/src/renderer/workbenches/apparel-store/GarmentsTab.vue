@@ -27,7 +27,7 @@
         <strong>{{ $t('编辑商品') }}</strong>
         <span v-if="editing.taggedBy" class="ss-chip brand">{{ $t('AI 已打标签') }}</span>
         <span class="grow"></span>
-        <button type="button" class="ss-btn sm" :disabled="!!busy" @click="tag"><i :class="busy === 'tag' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ $t('AI 重新打标签') }}</button>
+        <button type="button" class="ss-btn sm" :disabled="!!busy" @click="tag"><i :class="busy === 'tag' ? 'ri-loader-4-line spin' : 'ri-price-tag-3-line'"></i>{{ $t('AI 重新打标签') }}</button>
       </header>
       <div class="ap-gl__top">
         <img :src="fileUrl(editing.image)" alt="" />
@@ -148,29 +148,37 @@ async function remove(): Promise<void> {
 
 <style scoped>
 .ap-gl { display: grid; grid-template-columns: minmax(320px, 420px) 1fr; gap: 14px; align-items: start; }
-.ss-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
+.ss-panel { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
 .ap-gl__list.over { border-color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 6%, var(--color-bg-card)); }
 .ap-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.ap-head strong { display: flex; gap: 6px; align-items: center; font-size: 14px; }
+.ap-head strong { display: flex; gap: 6px; align-items: center; font-size: var(--font-size-base); }
 .ap-gl__items { display: grid; gap: 6px; max-height: 640px; overflow-y: auto; }
-.ap-gl__item { display: flex; gap: 10px; align-items: center; text-align: start; padding: 6px; border: 1px solid var(--color-border); border-radius: 10px; background: var(--color-bg-primary); cursor: pointer; font: inherit; color: var(--color-text-primary); }
+.ap-gl__item { display: flex; gap: 10px; align-items: center; text-align: start; padding: 6px; border: 1px solid var(--color-border); border-radius: var(--radius-4); background: var(--color-bg-primary); cursor: pointer; font: inherit; color: var(--color-text-primary); }
 .ap-gl__item.on { border-color: var(--color-brand); }
-.ap-gl__item img { width: 48px; height: 64px; object-fit: contain; background: #fff; border-radius: 6px; }
+.ap-gl__item img { width: 48px; height: 64px; object-fit: contain; background: var(--asgt-surface); border-radius: var(--radius-2); }
 .ap-gl__item span { flex: 1; min-width: 0; display: grid; }
 .ap-gl__item b { font-size: 12.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ap-gl__item small { font-size: 11.5px; color: var(--color-text-secondary); }
 .ap-gl__top { display: grid; grid-template-columns: 150px 1fr; gap: 14px; }
-.ap-gl__top img { width: 150px; aspect-ratio: 3 / 4; object-fit: contain; background: #fff; border-radius: 10px; border: 1px solid var(--color-border); }
+.ap-gl__top img { width: 150px; aspect-ratio: 3 / 4; object-fit: contain; background: var(--asgt-surface); border-radius: var(--radius-4); border: 1px solid var(--color-border); }
 .ap-stock { display: grid; gap: 6px; }
 .ap-stock__row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.ap-stock__cell { display: inline-flex; gap: 4px; align-items: center; padding: 4px 6px; border: 1px solid var(--color-border); border-radius: 8px; font-size: 12px; }
-.ap-stock__cell input { width: 56px; height: 26px; border-radius: 6px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); padding: 0 6px; font: inherit; }
+.ap-stock__cell { display: inline-flex; gap: 4px; align-items: center; padding: 4px 6px; border: 1px solid var(--color-border); border-radius: var(--radius-3); font-size: var(--font-size-sm); }
+.ap-stock__cell input { width: 56px; height: 26px; border-radius: var(--radius-2); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); padding: 0 6px; font: inherit; }
 .ap-stock__add { display: inline-flex; gap: 6px; align-items: center; }
-.ap-stock__add input { width: 150px; height: 28px; border-radius: 7px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); padding: 0 8px; font: inherit; font-size: 12px; }
+.ap-stock__add input { width: 150px; height: 28px; border-radius: var(--radius-2); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); padding: 0 8px; font: inherit; font-size: var(--font-size-sm); }
 .ap-check { display: flex; gap: 6px; align-items: center; font-size: 12.5px; }
 .ap-rec { display: grid; gap: 6px; }
 .grow { flex: 1; }
 .spin { animation: ap-spin 1s linear infinite; }
 @keyframes ap-spin { to { transform: rotate(360deg); } }
 @media (max-width: 1000px) { .ap-gl { grid-template-columns: 1fr; } }
+
+/* ─── 调色板（docs/ui-design-system.md）：经典主题保持原值；界面主题（data-ui-theme）下映射全局 token ─── */
+.ap-gl { /* ui-theme-exempt: 经典主题原值 */
+  --asgt-surface: #fff;
+}
+:root[data-ui-theme] .ap-gl {
+  --asgt-surface: var(--color-bg-card);
+}
 </style>

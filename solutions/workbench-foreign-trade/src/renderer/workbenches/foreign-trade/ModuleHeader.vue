@@ -71,18 +71,18 @@ async function onChange(value: string): Promise<void> {
 </script>
 
 <style scoped>
-.ft-mhead { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; padding: 12px 14px; border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); }
+.ft-mhead { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; padding: 12px 14px; border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); }
 .ft-mhead__main { display: grid; gap: 6px; min-width: 0; flex: 1; }
 .ft-mhead h2 { margin: 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
 .ft-mhead h2 i { color: var(--color-brand); font-size: 20px; }
 .ft-mhead__split { display: grid; gap: 4px; font-size: 12.5px; color: var(--color-text-secondary); }
 .ft-mhead__split span { display: flex; gap: 8px; align-items: baseline; }
 .ft-mhead__split em { font-style: normal; flex: 0 0 auto; }
-.ft-mhead__skills { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12px; }
+.ft-mhead__skills { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: var(--font-size-sm); }
 .ft-mhead__skills small { color: var(--color-text-secondary); display: flex; gap: 4px; align-items: center; }
 .ft-mhead__skills button { cursor: pointer; border: 1px solid var(--color-border); font: inherit; font-size: 11.5px; }
 .ft-mhead__skills button:hover:not(:disabled) { border-color: var(--color-brand); color: var(--color-brand); }
 .ft-mhead__model { display: grid; gap: 4px; min-width: 240px; }
 .ft-mhead__model small { font-size: 11.5px; color: var(--color-text-secondary); display: flex; gap: 4px; align-items: center; }
-.ft-mhead__model select { height: 34px; border-radius: 9px; border: 1px solid var(--color-brand); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 8px; max-width: 360px; }
+.ft-mhead__model select { height: 34px; border-radius: var(--radius-3); border: 1px solid var(--color-brand); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 8px; max-width: 360px; }
 </style>

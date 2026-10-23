@@ -282,7 +282,7 @@ const lt = { class: "ap-picker" }, ot = {
   for (const [c, h] of m)
     v[c] = h;
   return v;
-}, De = /* @__PURE__ */ O(pt, [["__scopeId", "data-v-5c848eb1"]]), gt = { class: "ss-module" }, vt = { class: "ss-steps" }, yt = ["title", "onClick"], kt = ["src"], ht = { class: "ap-g__name" }, Vt = { class: "ap-g__meta" }, Et = { class: "ss-actions" }, Nt = ["disabled"], ft = { class: "ss-muted" }, _t = { class: "ss-actions" }, bt = { class: "ss-field ap-grow" }, $t = { value: "" }, St = ["value"], Dt = { class: "ss-grid" }, Bt = { class: "ss-field" }, wt = { class: "ss-field" }, Ct = { class: "ss-field" }, Tt = { class: "ap-consent" }, At = { class: "ss-actions" }, Lt = ["disabled"], It = { class: "ss-muted" }, Mt = {
+}, De = /* @__PURE__ */ O(pt, [["__scopeId", "data-v-cdfb2510"]]), gt = { class: "ss-module" }, vt = { class: "ss-steps" }, yt = ["title", "onClick"], kt = ["src"], ht = { class: "ap-g__name" }, Vt = { class: "ap-g__meta" }, Et = { class: "ss-actions" }, Nt = ["disabled"], ft = { class: "ss-muted" }, _t = { class: "ss-actions" }, bt = { class: "ss-field ap-grow" }, $t = { value: "" }, St = ["value"], Dt = { class: "ss-grid" }, Bt = { class: "ss-field" }, wt = { class: "ss-field" }, Ct = { class: "ss-field" }, Tt = { class: "ap-consent" }, At = { class: "ss-actions" }, Lt = ["disabled"], It = { class: "ss-muted" }, Mt = {
   key: 1,
   class: "ap-customer"
 }, Ot = ["src"], zt = {
@@ -1197,7 +1197,7 @@ const lt = { class: "ap-picker" }, ot = {
                   }, [
                     r[25] || (r[25] = e.createElementVNode(
                       "i",
-                      { class: "ri-magic-line" },
+                      { class: "ri-lightbulb-line" },
                       null,
                       -1
                       /* CACHED */
@@ -1383,7 +1383,7 @@ const lt = { class: "ap-picker" }, ot = {
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(s.value === "ap-generate" ? "ri-loader-4-line spin" : "ri-magic-line")
+                    class: e.normalizeClass(s.value === "ap-generate" ? "ri-loader-4-line spin" : "ri-shirt-line")
                   },
                   null,
                   2
@@ -1817,7 +1817,7 @@ const lt = { class: "ap-picker" }, ot = {
       ])
     ]));
   }
-}), el = /* @__PURE__ */ O(xn, [["__scopeId", "data-v-df75879c"]]), tl = { class: "ap-gl" }, nl = { class: "ap-head" }, ll = { class: "ss-muted" }, ol = ["disabled"], sl = { class: "ss-muted" }, al = {
+}), el = /* @__PURE__ */ O(xn, [["__scopeId", "data-v-f11bc0c7"]]), tl = { class: "ap-gl" }, nl = { class: "ap-head" }, ll = { class: "ss-muted" }, ol = ["disabled"], sl = { class: "ss-muted" }, al = {
   key: 0,
   class: "ss-empty"
 }, il = { class: "ap-gl__items" }, rl = ["onClick"], cl = ["src"], dl = {
@@ -2057,7 +2057,7 @@ const lt = { class: "ap-picker" }, ot = {
             e.createElementVNode(
               "i",
               {
-                class: e.normalizeClass(d.value === "tag" ? "ri-loader-4-line spin" : "ri-magic-line")
+                class: e.normalizeClass(d.value === "tag" ? "ri-loader-4-line spin" : "ri-price-tag-3-line")
               },
               null,
               2
@@ -2558,7 +2558,7 @@ const lt = { class: "ap-picker" }, ot = {
       ])) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), Gl = /* @__PURE__ */ O(ql, [["__scopeId", "data-v-25be5c3a"]]), Hl = { class: "ap-lib" }, Ql = { class: "ap-lib__head" }, Yl = {
+}), Gl = /* @__PURE__ */ O(ql, [["__scopeId", "data-v-b9476c55"]]), Hl = { class: "ap-lib" }, Ql = { class: "ap-lib__head" }, Yl = {
   class: "ap-lib__kinds",
   role: "tablist"
 }, Jl = ["onClick"], Xl = { class: "ss-muted" }, Zl = { class: "ss-muted" }, xl = ["disabled"], eo = {
@@ -2788,7 +2788,7 @@ const lt = { class: "ap-picker" }, ot = {
       ))
     ]));
   }
-}), co = /* @__PURE__ */ O(ro, [["__scopeId", "data-v-b82790b5"]]), uo = { class: "ap-mob" }, mo = { class: "ss-panel" }, po = { class: "ap-head" }, go = {
+}), co = /* @__PURE__ */ O(ro, [["__scopeId", "data-v-b66be867"]]), uo = { class: "ap-mob" }, mo = { class: "ss-panel" }, po = { class: "ap-head" }, go = {
   key: 0,
   class: "ss-muted"
 }, vo = ["disabled"], yo = ["disabled"], ko = { class: "ss-muted" }, ho = {
@@ -3176,7 +3176,7 @@ const lt = { class: "ap-picker" }, ot = {
       ])
     ]));
   }
-}), Ao = /* @__PURE__ */ O(To, [["__scopeId", "data-v-d3e7b595"]]), Lo = { class: "ap-ci" }, Io = { class: "ss-panel" }, Mo = { class: "ap-head" }, Oo = { class: "ss-muted" }, zo = ["placeholder"], Uo = ["disabled"], Ko = {
+}), Ao = /* @__PURE__ */ O(To, [["__scopeId", "data-v-b4e67dc8"]]), Lo = { class: "ap-ci" }, Io = { class: "ss-panel" }, Mo = { class: "ap-head" }, Oo = { class: "ss-muted" }, zo = ["placeholder"], Uo = ["disabled"], Ko = {
   key: 0,
   class: "ss-note danger"
 }, Fo = {
@@ -3562,7 +3562,7 @@ const lt = { class: "ap-picker" }, ot = {
       ])
     ]));
   }
-}), as = /* @__PURE__ */ O(ss, [["__scopeId", "data-v-9526fa7b"]]), is = {
+}), as = /* @__PURE__ */ O(ss, [["__scopeId", "data-v-77ae1de4"]]), is = {
   key: 0,
   class: "ap-dash"
 }, rs = { class: "ss-kpis" }, cs = { class: "ss-kpi accent" }, ds = { class: "ss-kpi" }, us = { class: "ss-kpi" }, ms = { class: "ss-kpi" }, ps = { class: "ss-kpi" }, gs = { class: "ss-kpi" }, vs = { class: "ss-kpi" }, ys = { class: "ss-panel" }, ks = { class: "ap-head" }, hs = { class: "ss-muted" }, Vs = { class: "ap-funnel" }, Es = { class: "ap-funnel__bar" }, Ns = { class: "ss-panel" }, fs = { class: "ap-head" }, _s = { class: "ss-muted" }, bs = { class: "ap-days" }, $s = ["title"], Ss = { class: "ap-days__bars" }, Ds = { class: "ss-panel" }, Bs = { class: "ap-head" }, ws = {
@@ -4098,7 +4098,7 @@ const lt = { class: "ap-picker" }, ot = {
       )
     ]));
   }
-}), xs = /* @__PURE__ */ O(Zs, [["__scopeId", "data-v-50cf6098"]]), ea = { class: "ap-ov" }, ta = { class: "ss-panel" }, na = { class: "ss-muted" }, la = { class: "ap-ov__cards" }, oa = { class: "ss-panel" }, sa = { class: "ss-table-wrap" }, aa = { class: "ss-table" }, ia = { class: "ap-wrap" }, ra = { class: "ap-wrap" }, ca = { class: "ss-panel" }, da = { class: "ap-list" }, ua = { class: "ss-panel" }, ma = { class: "ss-muted" }, pa = /* @__PURE__ */ e.defineComponent({
+}), xs = /* @__PURE__ */ O(Zs, [["__scopeId", "data-v-8dafc412"]]), ea = { class: "ap-ov" }, ta = { class: "ss-panel" }, na = { class: "ss-muted" }, la = { class: "ap-ov__cards" }, oa = { class: "ss-panel" }, sa = { class: "ss-table-wrap" }, aa = { class: "ss-table" }, ia = { class: "ap-wrap" }, ra = { class: "ap-wrap" }, ca = { class: "ss-panel" }, da = { class: "ap-list" }, ua = { class: "ss-panel" }, ma = { class: "ss-muted" }, pa = /* @__PURE__ */ e.defineComponent({
   __name: "OverviewTab",
   setup(E) {
     const m = [
@@ -4287,7 +4287,7 @@ const lt = { class: "ap-picker" }, ot = {
       ])
     ]));
   }
-}), ga = /* @__PURE__ */ O(pa, [["__scopeId", "data-v-a6d54fa0"]]), Z = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:@totalclaw/ipc-contracts"];
+}), ga = /* @__PURE__ */ O(pa, [["__scopeId", "data-v-9661ab0e"]]), Z = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:@totalclaw/ipc-contracts"];
 if (!Z) throw new Error("宿主模块未就绪：npm:@totalclaw/ipc-contracts");
 Z.default;
 const va = {
@@ -4624,7 +4624,7 @@ const va = {
       ])
     ])) : e.createCommentVNode("v-if", !0);
   }
-}), Ia = /* @__PURE__ */ O(La, [["__scopeId", "data-v-9e669bed"]]), Ma = { class: "ap-workbench" }, Oa = { class: "workbench-header" }, za = { class: "heading" }, Ua = { class: "eyebrow" }, Ka = { class: "subtitle" }, Fa = { class: "header-actions" }, Pa = ["disabled"], Wa = {
+}), Ia = /* @__PURE__ */ O(La, [["__scopeId", "data-v-e6af58e3"]]), Ma = { class: "ap-workbench" }, Oa = { class: "workbench-header" }, za = { class: "heading" }, Ua = { class: "eyebrow" }, Ka = { class: "subtitle" }, Fa = { class: "header-actions" }, Pa = ["disabled"], Wa = {
   key: 0,
   class: "ap-bar"
 }, Ra = { class: "ss-muted" }, ja = { class: "ap-bar__rule" }, qa = {
@@ -4649,7 +4649,7 @@ const va = {
   __name: "ApparelStoreWorkbenchView",
   setup(E) {
     const m = [
-      { key: "flow", icon: "ri-magic-line", title: i.t("一键换装") },
+      { key: "flow", icon: "ri-shirt-line", title: i.t("一键换装") },
       { key: "garments", icon: "ri-t-shirt-line", title: i.t("商品库") },
       { key: "styles", icon: "ri-landscape-line", title: i.t("造型库") },
       { key: "mobile", icon: "ri-smartphone-line", title: i.t("手机端") },
@@ -4951,7 +4951,7 @@ const va = {
       ]))
     ]));
   }
-}), xa = /* @__PURE__ */ O(Za, [["__scopeId", "data-v-ca491476"]]);
+}), xa = /* @__PURE__ */ O(Za, [["__scopeId", "data-v-df7b70ad"]]);
 export {
   xa as default
 };

@@ -427,9 +427,9 @@ watch(() => props.runId, (id) => { if (id && id !== run.value?.id) void loadRun(
 <style scoped>
 .fau-runner { display: grid; gap: 12px; }
 .fau-mhead h2 { margin: 0; font-size: 17px; }
-.fau-mhead .fau-code { font-weight: 800; color: var(--color-brand); font-size: 15px; }
-.fau-mhead select, .fau-input select { height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; max-width: 420px; }
-.fau-ds { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid var(--color-border); border-radius: 999px; font-size: 12px; }
+.fau-mhead .fau-code { font-weight: 800; color: var(--color-brand); font-size: var(--font-size-lg); }
+.fau-mhead select, .fau-input select { height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; max-width: 420px; }
+.fau-ds { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid var(--color-border); border-radius: var(--radius-pill); font-size: var(--font-size-sm); }
 .fau-subs { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12.5px; }
 .fau-subs li { display: inline-flex; align-items: center; gap: 4px; color: var(--color-text-secondary); }
 .fau-subs li.done { color: var(--color-success); }

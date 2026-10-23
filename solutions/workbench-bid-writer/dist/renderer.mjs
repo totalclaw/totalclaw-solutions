@@ -6,9 +6,9 @@ if (!be) throw new Error("宿主模块未就绪：npm:vue-router");
 be.default;
 const Pe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/PageBackButton.vue"];
 if (!Pe) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/PageBackButton.vue");
-const Kt = Pe.default, ze = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/WorkbenchStepBar.vue"];
-if (!ze) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/WorkbenchStepBar.vue");
-const It = ze.default, re = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts"];
+const Kt = Pe.default, qe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/WorkbenchStepBar.vue"];
+if (!qe) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/WorkbenchStepBar.vue");
+const It = qe.default, re = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts"];
 if (!re) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts");
 re.default;
 const r = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/i18n.ts"];
@@ -134,7 +134,7 @@ const xt = ["aria-label"], Rt = { class: "bw-progress__meta" }, Ot = {
       }, null, 8, ["steps", "model-value"])
     ], 10, xt));
   }
-}), Pt = ["data-bw-step"], zt = { class: "bw-step__head" }, qt = { class: "bw-step__no" }, Gt = {
+}), Pt = ["data-bw-step"], qt = { class: "bw-step__head" }, zt = { class: "bw-step__no" }, Gt = {
   key: 0,
   class: "ri-check-line"
 }, Ht = {
@@ -149,7 +149,7 @@ const xt = ["aria-label"], Rt = { class: "bw-progress__meta" }, Ot = {
 }, Yt = {
   key: 1,
   class: "bw-step__msg ok"
-}, en = { class: "bw-step__body" }, z = /* @__PURE__ */ e.defineComponent({
+}, en = { class: "bw-step__body" }, q = /* @__PURE__ */ e.defineComponent({
   __name: "BwStep",
   props: {
     stepKey: {},
@@ -165,8 +165,8 @@ const xt = ["aria-label"], Rt = { class: "bw-progress__meta" }, Ot = {
       class: e.normalizeClass(["bw-step", [`is-${i.runtime.state}`, { current: i.isCurrent }]]),
       "data-bw-step": i.stepKey
     }, [
-      e.createElementVNode("header", zt, [
-        e.createElementVNode("span", qt, [
+      e.createElementVNode("header", qt, [
+        e.createElementVNode("span", zt, [
           i.runtime.state === "done" ? (e.openBlock(), e.createElementBlock("i", Gt)) : i.runtime.state === "running" ? (e.openBlock(), e.createElementBlock("i", Ht)) : i.runtime.state === "failed" ? (e.openBlock(), e.createElementBlock("i", Jt)) : (e.openBlock(), e.createElementBlock(
             e.Fragment,
             { key: 3 },
@@ -301,13 +301,13 @@ const xt = ["aria-label"], Rt = { class: "bw-progress__meta" }, Ot = {
       ])
     ], 10, Pt));
   }
-}), qe = /【待补充[:：]/, tn = /【/;
+}), ze = /【待补充[:：]/, tn = /【/;
 function nn() {
-  return new RegExp(`${qe.source}([^】]{1,60})】`, "g");
+  return new RegExp(`${ze.source}([^】]{1,60})】`, "g");
 }
 function Ge(i) {
   const l = i.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  return new RegExp(`(?:${qe.source}|${tn.source})${l}】`, "g");
+  return new RegExp(`(?:${ze.source}|${tn.source})${l}】`, "g");
 }
 function Ue(i) {
   const l = [];
@@ -606,7 +606,7 @@ const an = {
   for (const [p, a] of l)
     u[p] = a;
   return u;
-}, Ke = /* @__PURE__ */ Vn(yn, [["__scopeId", "data-v-32daa01c"]]), se = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
+}, Ke = /* @__PURE__ */ Vn(yn, [["__scopeId", "data-v-205a9d12"]]), se = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
 if (!se) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/stores/notification.ts");
 se.default;
 const ge = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/ipcPlain.ts"];
@@ -668,7 +668,7 @@ function xe(i, l) {
 }
 const T = Nn(), R = e.reactive(
   Object.fromEntries(T.map((i) => [i.key, { state: "todo" }]))
-), Z = e.ref("project"), E = e.ref({ version: 1, projects: [], currentId: "" }), Re = e.ref(!1), K = e.ref(""), q = e.ref(""), Q = e.ref(""), ae = e.ref(
+), Z = e.ref("project"), E = e.ref({ version: 1, projects: [], currentId: "" }), Re = e.ref(!1), K = e.ref(""), z = e.ref(""), Q = e.ref(""), ae = e.ref(
   { docCount: 0, builtCount: 0, factCount: 0 }
 ), Oe = e.ref(!1), wn = e.ref(null);
 let O = null;
@@ -718,7 +718,7 @@ function kn() {
     const c = h();
     if (!c?.stateGet) throw new Error(r.t("当前环境不支持标书工作台"));
     const m = await c.stateGet();
-    if (E.value = m?.state?.projects ? m.state : { version: 1, projects: [], currentId: "" }, Re.value = !!m?.llmReady, K.value = String(m?.defaultBidder || ""), q.value = String(m?.docRoot || ""), Q.value = String(m?.defaultDocRoot || ""), ae.value = m?.knowledge || { docCount: 0, builtCount: 0, factCount: 0 }, E.value.projects.length)
+    if (E.value = m?.state?.projects ? m.state : { version: 1, projects: [], currentId: "" }, Re.value = !!m?.llmReady, K.value = String(m?.defaultBidder || ""), z.value = String(m?.docRoot || ""), Q.value = String(m?.defaultDocRoot || ""), ae.value = m?.knowledge || { docCount: 0, builtCount: 0, factCount: 0 }, E.value.projects.length)
       E.value.projects.some((C) => C.id === E.value.currentId) || (E.value.currentId = E.value.projects[0].id);
     else {
       const C = xe(r.t("未命名投标项目"), K.value);
@@ -729,15 +729,15 @@ function kn() {
   }
   async function b() {
     const m = await h().stateGet();
-    return K.value = String(m?.defaultBidder || ""), ae.value = m?.knowledge || { docCount: 0, builtCount: 0, factCount: 0 }, q.value = String(m?.docRoot || q.value), Q.value = String(m?.defaultDocRoot || Q.value), { companyName: K.value, ...ae.value };
+    return K.value = String(m?.defaultBidder || ""), ae.value = m?.knowledge || { docCount: 0, builtCount: 0, factCount: 0 }, z.value = String(m?.docRoot || z.value), Q.value = String(m?.defaultDocRoot || Q.value), { companyName: K.value, ...ae.value };
   }
   async function y() {
     const m = await h().pickRoot();
-    return m?.docRoot && (q.value = String(m.docRoot)), m?.defaultDocRoot && (Q.value = String(m.defaultDocRoot)), { ok: !!m?.ok, error: m?.error };
+    return m?.docRoot && (z.value = String(m.docRoot)), m?.defaultDocRoot && (Q.value = String(m.defaultDocRoot)), { ok: !!m?.ok, error: m?.error };
   }
   async function g() {
     const m = await h().setRoot({ path: "" });
-    m?.docRoot && (q.value = String(m.docRoot));
+    m?.docRoot && (z.value = String(m.docRoot));
   }
   function v() {
     const c = i.value;
@@ -772,7 +772,7 @@ function kn() {
     defaultBidder: K,
     loaded: Oe,
     live: wn,
-    docRoot: q,
+    docRoot: z,
     defaultDocRoot: Q,
     knowledge: ae,
     start: u,
@@ -886,7 +886,7 @@ async function We(i, l) {
 const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "bw-hero__copy" }, Bn = { class: "bw-hero__eyebrow" }, Tn = { class: "bw-hero__sub" }, An = { class: "bw-projects" }, jn = { class: "bw-muted" }, Ln = ["value", "disabled"], Un = ["value"], Kn = ["disabled"], In = ["disabled"], xn = {
   key: 0,
   class: "bw-muted"
-}, Rn = { class: "bw-projects" }, On = { class: "bw-muted" }, Mn = ["title"], Fn = ["disabled"], Wn = ["disabled"], Pn = ["disabled"], zn = { class: "bw-muted" }, qn = { class: "bw-projects" }, Gn = { class: "bw-muted" }, Hn = ["title"], Jn = { class: "bw-muted" }, Xn = {
+}, Rn = { class: "bw-projects" }, On = { class: "bw-muted" }, Mn = ["title"], Fn = ["disabled"], Wn = ["disabled"], Pn = ["disabled"], qn = { class: "bw-muted" }, zn = { class: "bw-projects" }, Gn = { class: "bw-muted" }, Hn = ["title"], Jn = { class: "bw-muted" }, Xn = {
   key: 0,
   class: "bw-note warn"
 }, Zn = {
@@ -919,7 +919,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
 }, Io = { class: "num" }, xo = ["disabled", "onClick"], Ro = ["onClick"], Oo = {
   key: 1,
   class: "bw-note warn"
-}, Mo = { class: "bw-form" }, Fo = { class: "bw-field wide" }, Wo = { class: "bw-hero__actions" }, Po = ["disabled"], zo = ["disabled"], qo = ["disabled"], Go = ["disabled"], Ho = { class: "bw-note" }, Jo = { class: "bw-field wide" }, Xo = ["placeholder"], Zo = {
+}, Mo = { class: "bw-form" }, Fo = { class: "bw-field wide" }, Wo = { class: "bw-hero__actions" }, Po = ["disabled"], qo = ["disabled"], zo = ["disabled"], Go = ["disabled"], Ho = { class: "bw-note" }, Jo = { class: "bw-field wide" }, Xo = ["placeholder"], Zo = {
   key: 2,
   class: "bw-note warn"
 }, Qo = {
@@ -946,7 +946,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
 }, Pl = {
   key: 2,
   class: "bw-panel"
-}, zl = { class: "bw-panel__head" }, ql = ["disabled"], Gl = { class: "bw-panel__body" }, Hl = { class: "bw-sections" }, Jl = { class: "bw-section__head" }, Xl = ["onUpdate:modelValue"], Zl = { value: 1 }, Ql = { value: 2 }, Yl = { value: 3 }, ea = ["onUpdate:modelValue"], ta = { class: "bw-chip static" }, na = ["onUpdate:modelValue"], oa = ["disabled", "onClick"], la = ["disabled", "onClick"], aa = ["onClick"], ra = {
+}, ql = { class: "bw-panel__head" }, zl = ["disabled"], Gl = { class: "bw-panel__body" }, Hl = { class: "bw-sections" }, Jl = { class: "bw-section__head" }, Xl = ["onUpdate:modelValue"], Zl = { value: 1 }, Ql = { value: 2 }, Yl = { value: 3 }, ea = ["onUpdate:modelValue"], ta = { class: "bw-chip static" }, na = ["onUpdate:modelValue"], oa = ["disabled", "onClick"], la = ["disabled", "onClick"], aa = ["onClick"], ra = {
   key: 0,
   class: "bw-section__body"
 }, sa = { class: "bw-note" }, ia = { class: "bw-hero__actions" }, ca = ["disabled"], da = ["disabled", "title"], ua = {
@@ -976,7 +976,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
 }, Wa = {
   key: 0,
   class: "bw-note warn"
-}, Pa = { class: "bw-sections" }, za = { class: "bw-section__head" }, qa = {
+}, Pa = { class: "bw-sections" }, qa = { class: "bw-section__head" }, za = {
   key: 0,
   class: "bw-muted"
 }, Ga = {
@@ -1725,14 +1725,14 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
         ], 8, Pn)) : e.createCommentVNode("v-if", !0),
         e.createElementVNode(
           "span",
-          zn,
+          qn,
           e.toDisplayString(n.$t("生成的 Word / PDF / 自检表按项目名建子目录放这里；换位置只影响以后导出的文件。")),
           1
           /* TEXT */
         )
       ]),
       e.createCommentVNode(" 手填内容要不要沉淀成知识 —— 页面级开关，第 4 步的公司资料与第 5/6 步的缺料表都按它走 "),
-      e.createElementVNode("div", qn, [
+      e.createElementVNode("div", zn, [
         e.createElementVNode("span", Gn, [
           t[51] || (t[51] = e.createElementVNode(
             "i",
@@ -1799,7 +1799,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
       }, null, 8, ["metas", "runtime", "current-key", "live", "onJump"]),
       e.unref(a) ? (e.openBlock(), e.createElementBlock("div", Zn, [
         e.createCommentVNode(" ── 第 1 步：项目与投标目标 ── "),
-        e.createVNode(z, {
+        e.createVNode(q, {
           "step-key": "project",
           index: 0,
           title: e.unref(l).metas[0].title,
@@ -1971,7 +1971,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
                   }, [
                     t[56] || (t[56] = e.createElementVNode(
                       "i",
-                      { class: "ri-magic-line" },
+                      { class: "ri-quill-pen-line" },
                       null,
                       -1
                       /* CACHED */
@@ -2082,7 +2082,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
           /* STABLE */
         }, 8, ["title", "hint", "icon", "runtime", "is-current"]),
         e.createCommentVNode(" ── 第 2 步：招标公告 ── "),
-        e.createVNode(z, {
+        e.createVNode(q, {
           "step-key": "notice",
           index: 1,
           title: e.unref(l).metas[1].title,
@@ -2371,7 +2371,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
                   1
                   /* TEXT */
                 )
-              ], 8, zo),
+              ], 8, qo),
               e.createElementVNode("button", {
                 type: "button",
                 class: "bw-btn",
@@ -2390,7 +2390,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
                   1
                   /* TEXT */
                 )
-              ], 8, qo),
+              ], 8, zo),
               t[72] || (t[72] = e.createElementVNode(
                 "span",
                 { class: "grow" },
@@ -2924,7 +2924,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
           /* STABLE */
         }, 8, ["title", "hint", "icon", "runtime", "is-current"]),
         e.createCommentVNode(" ── 第 3 步：标书模板 ── "),
-        e.createVNode(z, {
+        e.createVNode(q, {
           "step-key": "template",
           index: 2,
           title: e.unref(l).metas[2].title,
@@ -3093,7 +3093,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
               )
             ])) : e.createCommentVNode("v-if", !0),
             e.unref(a).sections.length ? (e.openBlock(), e.createElementBlock("div", Pl, [
-              e.createElementVNode("header", zl, [
+              e.createElementVNode("header", ql, [
                 e.createElementVNode("strong", null, [
                   t[93] || (t[93] = e.createElementVNode(
                     "i",
@@ -3151,7 +3151,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
                     1
                     /* TEXT */
                   )
-                ], 8, ql)
+                ], 8, zl)
               ]),
               e.createElementVNode("div", Gl, [
                 e.createElementVNode("div", Hl, [
@@ -3289,7 +3289,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
           /* STABLE */
         }, 8, ["title", "hint", "icon", "runtime", "is-current"]),
         e.createCommentVNode(" ── 第 4 步：公司资料与资格自检 ── "),
-        e.createVNode(z, {
+        e.createVNode(q, {
           "step-key": "company",
           index: 3,
           title: e.unref(l).metas[3].title,
@@ -3689,7 +3689,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
           /* STABLE */
         }, 8, ["title", "hint", "icon", "runtime", "is-current"]),
         e.createCommentVNode(" ── 第 5 步：逐章成文 ── "),
-        e.createVNode(z, {
+        e.createVNode(q, {
           "step-key": "compose",
           index: 4,
           title: e.unref(l).metas[4].title,
@@ -3731,7 +3731,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
               }, [
                 t[111] || (t[111] = e.createElementVNode(
                   "i",
-                  { class: "ri-magic-line" },
+                  { class: "ri-quill-pen-line" },
                   null,
                   -1
                   /* CACHED */
@@ -3801,7 +3801,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
                     class: e.normalizeClass(["bw-section", `is-${o.state}`])
                   },
                   [
-                    e.createElementVNode("div", za, [
+                    e.createElementVNode("div", qa, [
                       e.createElementVNode(
                         "span",
                         {
@@ -3822,7 +3822,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
                       ),
                       o.wordCount ? (e.openBlock(), e.createElementBlock(
                         "span",
-                        qa,
+                        za,
                         e.toDisplayString(n.$t("{n} 字", { n: o.wordCount })),
                         1
                         /* TEXT */
@@ -3967,7 +3967,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
           /* STABLE */
         }, 8, ["title", "hint", "icon", "runtime", "is-current"]),
         e.createCommentVNode(" ── 第 6 步：自检与导出 ── "),
-        e.createVNode(z, {
+        e.createVNode(q, {
           "step-key": "review",
           index: 5,
           title: e.unref(l).metas[5].title,

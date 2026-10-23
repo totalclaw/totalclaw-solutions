@@ -52,7 +52,7 @@
 
       <StepCard step-key="l-gen" :index="2" :title="metas[2].title" :hint="metas[2].hint" :runtime="runtime['l-gen']" :is-current="currentKey === 'l-gen'">
         <div class="ss-actions">
-          <button type="button" class="ss-btn primary" :disabled="!!busy || !pickG.length || !pickC.length" @click="generate"><i :class="busy === 'l-gen' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ $t('生成 {n} 份上架草稿', { n: pickG.length * pickC.length }) }}</button>
+          <button type="button" class="ss-btn primary" :disabled="!!busy || !pickG.length || !pickC.length" @click="generate"><i :class="busy === 'l-gen' ? 'ri-loader-4-line spin' : 'ri-quill-pen-line'"></i>{{ $t('生成 {n} 份上架草稿', { n: pickG.length * pickC.length }) }}</button>
           <span class="ss-muted">{{ $t('主图 = 商品图 + 该款试穿图，按渠道比例补白边') }}</span>
         </div>
         <p v-for="e in genErrors" :key="e" class="ss-note warn"><i class="ri-error-warning-line"></i>{{ e }}</p>
@@ -248,21 +248,29 @@ function jump(key: string): void { void scrollToStep(key); }
 
 <style scoped>
 .ba-gpick { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
-.ba-gpick button { display: grid; gap: 1px; padding: 0 0 6px; border: 2px solid var(--color-border); border-radius: 10px; overflow: hidden; background: var(--color-bg-card); cursor: pointer; font: inherit; font-size: 11.5px; color: var(--color-text-primary); }
-.ba-gpick img { width: 100%; aspect-ratio: 3 / 4; object-fit: contain; background: #fff; }
+.ba-gpick button { display: grid; gap: 1px; padding: 0 0 6px; border: 2px solid var(--color-border); border-radius: var(--radius-4); overflow: hidden; background: var(--color-bg-card); cursor: pointer; font: inherit; font-size: 11.5px; color: var(--color-text-primary); }
+.ba-gpick img { width: 100%; aspect-ratio: 3 / 4; object-fit: contain; background: var(--balt-surface); }
 .ba-gpick span, .ba-gpick small { padding: 0 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ba-gpick small { color: var(--color-text-secondary); }
 .ba-gpick button.on { border-color: var(--color-brand); }
 .ba-check { display: inline-flex; gap: 4px; align-items: center; font-size: 12.5px; }
-.ba-listing { display: grid; grid-template-columns: 200px 1fr; gap: 14px; padding: 12px; border: 1px solid var(--color-border); border-radius: 12px; }
+.ba-listing { display: grid; grid-template-columns: 200px 1fr; gap: 14px; padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-5); }
 .ba-listing__imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; align-content: start; }
-.ba-listing__imgs img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; background: #fff; border: 1px solid var(--color-border); }
+.ba-listing__imgs img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-2); background: var(--balt-surface); border: 1px solid var(--color-border); }
 .ba-listing__body { display: grid; gap: 6px; }
-.ba-listing__head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; }
-.ba-listing__body input, .ba-listing__body textarea, .ss-table input { border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 6px 8px; }
+.ba-listing__head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: var(--font-size-md); }
+.ba-listing__body input, .ba-listing__body textarea, .ss-table input { border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 6px 8px; }
 .ba-wrap { white-space: normal !important; }
-.ba-mini { height: 28px; border-radius: 7px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12px; }
+.ba-mini { height: 28px; border-radius: var(--radius-2); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-sm); }
 .ba-row { display: flex; gap: 10px; }
 .spin { animation: ba-spin 1s linear infinite; }
 @keyframes ba-spin { to { transform: rotate(360deg); } }
+
+/* ─── 调色板（docs/ui-design-system.md）：经典主题保持原值；界面主题（data-ui-theme）下映射全局 token ─── */
+.ss-module { /* ui-theme-exempt: 经典主题原值 */
+  --balt-surface: #fff;
+}
+:root[data-ui-theme] .ss-module {
+  --balt-surface: var(--color-bg-card);
+}
 </style>

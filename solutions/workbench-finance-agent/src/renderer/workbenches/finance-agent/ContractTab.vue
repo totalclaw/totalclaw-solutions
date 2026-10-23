@@ -169,12 +169,12 @@ function jump(key: string): void { void scrollToStep(key); }
 <style scoped>
 .fa-split { display: grid; grid-template-columns: minmax(220px, 280px) 1fr; gap: 14px; align-items: start; }
 @media (max-width: 960px) { .fa-split { grid-template-columns: 1fr; } }
-.fa-list { display: grid; gap: 8px; border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 10px; position: sticky; top: 0; }
+.fa-list { display: grid; gap: 8px; border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 10px; position: sticky; top: 0; }
 .fa-list ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; max-height: 60vh; overflow-y: auto; }
-.fa-list li { padding: 8px 10px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; display: grid; gap: 3px; background: var(--color-bg-primary); }
+.fa-list li { padding: 8px 10px; border-radius: var(--radius-4); border: 1px solid transparent; cursor: pointer; display: grid; gap: 3px; background: var(--color-bg-primary); }
 .fa-list li.active { border-color: var(--color-brand); }
-.fa-list__top { display: flex; justify-content: space-between; gap: 6px; align-items: center; font-size: 13px; min-width: 0; }
-.fa-list__meta { display: flex; gap: 8px; font-size: 11px; color: var(--color-text-secondary); flex-wrap: wrap; }
+.fa-list__top { display: flex; justify-content: space-between; gap: 6px; align-items: center; font-size: var(--font-size-md); min-width: 0; }
+.fa-list__meta { display: flex; gap: 8px; font-size: var(--font-size-xs); color: var(--color-text-secondary); flex-wrap: wrap; }
 .fa-ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 .fa-detail { display: grid; gap: 12px; min-width: 0; }
 .fa-check { display: flex; gap: 6px; align-items: center; font-size: 12.5px; }
@@ -188,7 +188,7 @@ function jump(key: string): void { void scrollToStep(key); }
 .fa-calc { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 12.5px; }
 .fa-calc li { display: flex; gap: 10px; flex-wrap: wrap; }
 .fa-calc em { font-style: normal; color: var(--color-brand); font-weight: 700; }
-.fa-path { font-size: 12px; color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 420px; }
+.fa-path { font-size: var(--font-size-sm); color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 420px; }
 .spin { animation: fa-spin 1s linear infinite; }
 @keyframes fa-spin { to { transform: rotate(360deg); } }
 </style>

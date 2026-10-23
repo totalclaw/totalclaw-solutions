@@ -141,9 +141,9 @@ defineExpose({ startEdit, save, editing });
 
 <style scoped>
 .fs-ledger { display: grid; gap: 12px; }
-.fs-form { display: grid; gap: 10px; padding: 14px; border: 1px solid var(--color-brand); border-radius: 12px; background: var(--color-bg-card); }
-.fs-form h3 { margin: 0; font-size: 14px; }
-.fs-item { display: grid; gap: 8px; padding: 12px 14px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg-card); }
+.fs-form { display: grid; gap: 10px; padding: 14px; border: 1px solid var(--color-brand); border-radius: var(--radius-5); background: var(--color-bg-card); }
+.fs-form h3 { margin: 0; font-size: var(--font-size-base); }
+.fs-item { display: grid; gap: 8px; padding: 12px 14px; border: 1px solid var(--color-border); border-radius: var(--radius-5); background: var(--color-bg-card); }
 .fs-item.overdue { border-color: color-mix(in srgb, var(--color-danger) 45%, var(--color-border)); }
 .fs-item.archived { opacity: .7; }
 .fs-item header { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13.5px; }
@@ -154,10 +154,10 @@ defineExpose({ startEdit, save, editing });
 .fs-notes { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 12.5px; }
 .fs-notes li { display: flex; gap: 8px; align-items: baseline; }
 .fs-notes time { flex: 0 0 auto; color: var(--color-text-secondary); font-size: 11.5px; font-variant-numeric: tabular-nums; }
-.fs-note-input { flex: 1; min-width: 220px; height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 10px; }
-.fs-seg { display: inline-flex; border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden; }
-.fs-seg button { height: 30px; padding: 0 12px; border: none; background: var(--color-bg-card); color: var(--color-text-secondary); font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
-.fs-seg button.on { background: var(--color-brand); color: #fff; }
+.fs-note-input { flex: 1; min-width: 220px; height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 10px; }
+.fs-seg { display: inline-flex; border: 1px solid var(--color-border); border-radius: var(--radius-3); overflow: hidden; }
+.fs-seg button { height: 30px; padding: 0 12px; border: none; background: var(--color-bg-card); color: var(--color-text-secondary); font: inherit; font-size: var(--font-size-sm); font-weight: 700; cursor: pointer; }
+.fs-seg button.on { background: var(--color-brand); color: var(--color-on-accent); }
 strong.bad { color: var(--color-danger); }
 strong.warn { color: var(--color-warning); }
 .ss-link.danger { color: var(--color-danger); }

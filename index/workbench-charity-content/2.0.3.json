@@ -1,12 +1,12 @@
 {
   "id": "workbench-charity-content",
   "version": "2.0.3",
-  "treeDigest": "680ee6e2480a2b3a58385b8d80eacba26ccb548e7ea33898c571c6bed4d10b85",
+  "treeDigest": "293302ee693a0b4298990959759bc0e7dd920aff5acdbddbd938656cffe5be18",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 968,
-      "sha256": "61746ab01b193e5582706e0c633cf86222f9cc67eb2bb6efed963c19239dc22f"
+      "size": 1077,
+      "sha256": "442c49a2d0636e4737d8ae1501ec73f8b272f11bdf3e8f05942f96a822bb792b"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 60319,
-      "sha256": "2a32f5d92c597547e25bf7130f3014cc21ffe52d9713659be3e19032fe69cfed"
+      "size": 61089,
+      "sha256": "bd5e25feae9c2ee9749531202d0e30a87fb168b3b084eb9e0274387db2f91f40"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 214961,
-      "sha256": "7bb9703fb227bf22d8c0fbb84f3482f0d3ad40c6ccec185387f66678598ae9d5"
+      "size": 214956,
+      "sha256": "c27e49379cb776352112da627e38a5fecf140a6651f1ea0c540cf0fd12a94d32"
     },
     {
       "path": "dist/style.css",
-      "size": 31884,
-      "sha256": "0226d5071b35d264d934d89296b16c23966c513f4c83e5cf578196a7c9b8f5f0"
+      "size": 35250,
+      "sha256": "98b91eb598ac6c48fa83c34e0ee8ebc51d9f5caf4f8d5dae91c96b59f79a1d20"
     },
     {
       "path": "migrations/README.md",

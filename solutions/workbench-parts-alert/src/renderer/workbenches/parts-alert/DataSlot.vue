@@ -75,18 +75,18 @@ function onDrop(ev: DragEvent): void {
 </script>
 
 <style scoped>
-.pa-slot { border: 1px solid var(--color-border); border-radius: 12px; padding: 12px; display: grid; gap: 10px; background: var(--color-bg-primary); }
+.pa-slot { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 12px; display: grid; gap: 10px; background: var(--color-bg-primary); }
 .pa-slot.loaded { border-color: color-mix(in srgb, var(--color-success) 50%, var(--color-border)); }
 .pa-slot.bad { border-color: var(--color-danger); }
 .pa-slot__head { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
 .pa-slot__head strong { font-size: 13.5px; }
-.pa-slot__head small { flex: 1 1 100%; color: var(--color-text-secondary); font-size: 12px; line-height: 1.5; }
-.pa-drop { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1.5px dashed var(--color-border); border-radius: 10px; cursor: pointer; font-size: 12.5px; color: var(--color-text-secondary); background: var(--color-bg-card); }
+.pa-slot__head small { flex: 1 1 100%; color: var(--color-text-secondary); font-size: var(--font-size-sm); line-height: 1.5; }
+.pa-drop { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1.5px dashed var(--color-border); border-radius: var(--radius-4); cursor: pointer; font-size: 12.5px; color: var(--color-text-secondary); background: var(--color-bg-card); }
 .pa-drop:hover, .pa-drop.over { border-color: var(--color-brand); color: var(--color-brand); }
 .pa-drop > i { font-size: 22px; color: var(--color-brand); }
 .pa-drop > span { flex: 1; min-width: 0; }
 .pa-skip { display: grid; gap: 6px; }
 .pa-skip .ss-note span { flex: 1; }
-.pa-skip__list { margin: 0; padding: 8px 12px; list-style: none; display: grid; gap: 3px; font-size: 12px; max-height: 180px; overflow-y: auto; border: 1px solid var(--color-border); border-radius: 8px; background: var(--color-bg-card); }
+.pa-skip__list { margin: 0; padding: 8px 12px; list-style: none; display: grid; gap: 3px; font-size: var(--font-size-sm); max-height: 180px; overflow-y: auto; border: 1px solid var(--color-border); border-radius: var(--radius-3); background: var(--color-bg-card); }
 .pa-skip__list b { margin-inline-end: 8px; font-weight: 700; }
 </style>

@@ -45,7 +45,7 @@
         <FauFileDrop :label="$t('上传一份科目余额表做科目映射')" :hint="$t('中国科目编码按前缀自动识别；其它科目表自动给出建议后由你确认')" @picked="(p) => mapAccounts(p[0])" />
         <TableMapping v-if="mapInspect && !mapResult" :table="mapInspect" :roles="mapInspect.roles.map((r: any) => ({ ...r, label: $t(r.label) }))" @update="(m) => mapAccounts(mapInspect!.path, m)" @sheet="(s) => mapAccounts(mapInspect!.path, undefined, s)" />
         <template v-if="mapResult">
-          <p v-if="mapResult.autoComplete" class="ss-note ok" data-test="fau-map-auto"><i class="ri-magic-line"></i>{{ $t('已自动完成：{n} 个科目全部映射到报表大类', { n: mapResult.entries.length }) }}</p>
+          <p v-if="mapResult.autoComplete" class="ss-note ok" data-test="fau-map-auto"><i class="ri-checkbox-circle-line"></i>{{ $t('已自动完成：{n} 个科目全部映射到报表大类', { n: mapResult.entries.length }) }}</p>
           <p v-else class="ss-note warn" data-test="fau-map-review"><i class="ri-error-warning-line"></i>{{ $t('这份科目表需要人工确认：{n} 个科目，其中 {m} 个还没有大类', { n: mapResult.entries.length, m: unmappedCount }) }}</p>
           <div v-if="!mapResult.autoComplete" class="fau-table-wrap">
             <table class="fau-table">
@@ -342,24 +342,24 @@ async function save(): Promise<void> {
 <style scoped>
 .fau-wizard { display: grid; gap: 12px; }
 .fau-regions { display: flex; flex-wrap: wrap; gap: 8px; }
-.fau-region { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 6px 10px; border: 1px solid var(--color-border); border-radius: 10px; font-size: 12.5px; max-width: 360px; }
+.fau-region { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 6px; padding: 6px 10px; border: 1px solid var(--color-border); border-radius: var(--radius-4); font-size: 12.5px; max-width: 360px; }
 .fau-tax { flex-basis: 100%; color: var(--color-text-secondary); font-size: 11.5px; }
 .fau-region.off { opacity: .6; }
-.fau-primary { display: inline-flex; gap: 4px; align-items: center; color: var(--color-text-secondary); font-size: 12px; }
-.fau-signer input { height: 32px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); padding-inline: 8px; font: inherit; font-size: 12.5px; }
-.fau-check { display: inline-flex; gap: 4px; align-items: center; font-size: 12px; }
-.fau-quick-hint { margin: 0; font-size: 12px; }
-.fau-th-search { height: 32px; min-width: min(100%, 280px); border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); padding-inline: 10px; font: inherit; font-size: 12.5px; }
+.fau-primary { display: inline-flex; gap: 4px; align-items: center; color: var(--color-text-secondary); font-size: var(--font-size-sm); }
+.fau-signer input { height: 32px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); padding-inline: 8px; font: inherit; font-size: 12.5px; }
+.fau-check { display: inline-flex; gap: 4px; align-items: center; font-size: var(--font-size-sm); }
+.fau-quick-hint { margin: 0; font-size: var(--font-size-sm); }
+.fau-th-search { height: 32px; min-width: min(100%, 280px); border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); padding-inline: 10px; font: inherit; font-size: 12.5px; }
 /* 阈值表跟着整页滚，不要内部固定高度的滚动区（嵌在整页滚动里会让人觉得「滑不动」） */
 .fau-th-wrap { max-height: none; }
 .fau-th-wrap .fau-table th { position: static; }
-.fau-th-group td { background: var(--color-bg-hover); font-weight: 800; font-size: 13px; }
+.fau-th-group td { background: var(--color-bg-hover); font-weight: 800; font-size: var(--font-size-md); }
 .fau-th-mod td { padding: 0; }
 .fau-th-toggle { display: flex; align-items: center; gap: 6px; width: 100%; padding: 7px 10px; border: none; background: transparent; color: inherit; font: inherit; font-weight: 700; text-align: start; cursor: pointer; }
 .fau-th-toggle:hover { background: var(--color-bg-hover); }
 .fau-th-toggle .fau-code { font-weight: 800; color: var(--color-brand); }
 .fau-th-input { white-space: nowrap; }
 .fau-th-empty { margin: 0; padding: 10px 12px; }
-.fau-table input[type="number"] { width: 110px; height: 28px; border-radius: 7px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); padding-inline: 6px; }
-.fau-table select { height: 28px; border-radius: 7px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); }
+.fau-table input[type="number"] { width: 110px; height: 28px; border-radius: var(--radius-2); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); padding-inline: 6px; }
+.fau-table select { height: 28px; border-radius: var(--radius-2); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); }
 </style>

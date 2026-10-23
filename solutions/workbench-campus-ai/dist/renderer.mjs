@@ -85,7 +85,7 @@ const Ce = (I, w = 1) => I == null ? "—" : `${(I * 100).toFixed(w)}%`, Je = {
 }, at = ["x2", "y2"], it = { class: "hud-crest" }, rt = ["src"], ct = {
   key: 1,
   class: "ri-government-line"
-}, dt = { class: "hud-col hud-readouts" }, ut = { class: "hud-bottom" }, mt = { class: "hud-panel" }, pt = ["aria-label"], vt = ["title"], yt = { class: "hud-panel" }, gt = { class: "hud-domains" }, kt = {
+}, dt = { class: "hud-col hud-readouts" }, ut = { class: "hud-bottom" }, mt = { class: "hud-panel" }, pt = ["aria-label"], vt = ["title"], yt = { class: "hud-panel" }, kt = { class: "hud-domains" }, gt = {
   key: 0,
   class: "empty"
 }, Nt = { class: "hud-panel" }, Vt = { class: "hud-feed" }, Et = {
@@ -98,7 +98,7 @@ const Ce = (I, w = 1) => I == null ? "—" : `${(I * 100).toFixed(w)}%`, Je = {
   __name: "OverviewTab",
   emits: ["go"],
   setup(I) {
-    const w = e.computed(() => R.value), B = e.computed(() => R.value?.stats || null), h = (o) => ({ plan: l.t("规划建设运维"), teach: l.t("教学"), research: l.t("科研"), gov: l.t("校务治理"), service: l.t("师生服务") })[o], g = e.computed(() => de.CA_DIRECTIONS.map((o, N) => {
+    const w = e.computed(() => R.value), B = e.computed(() => R.value?.stats || null), h = (o) => ({ plan: l.t("规划建设运维"), teach: l.t("教学"), research: l.t("科研"), gov: l.t("校务治理"), service: l.t("师生服务") })[o], k = e.computed(() => de.CA_DIRECTIONS.map((o, N) => {
       const v = (-90 + N * 72) * (Math.PI / 180), D = B.value.directions[o];
       return { key: o, label: h(o), x: 200 + Math.cos(v) * 166, y: 200 + Math.sin(v) * 166, live: D.live, total: D.scenarios, usage: D.usage30d };
     })), f = e.computed(() => {
@@ -378,7 +378,7 @@ const Ce = (I, w = 1) => I == null ? "—" : `${(I * 100).toFixed(w)}%`, Je = {
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(g.value, (v) => (e.openBlock(), e.createElementBlock("line", {
+              e.renderList(k.value, (v) => (e.openBlock(), e.createElementBlock("line", {
                 key: `l-${v.key}`,
                 class: "spoke",
                 x1: "200",
@@ -400,7 +400,7 @@ const Ce = (I, w = 1) => I == null ? "—" : `${(I * 100).toFixed(w)}%`, Je = {
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(g.value, (v) => (e.openBlock(), e.createElementBlock(
+            e.renderList(k.value, (v) => (e.openBlock(), e.createElementBlock(
               "button",
               {
                 key: v.key,
@@ -538,7 +538,7 @@ const Ce = (I, w = 1) => I == null ? "—" : `${(I * 100).toFixed(w)}%`, Je = {
             1
             /* TEXT */
           ),
-          e.createElementVNode("ul", gt, [
+          e.createElementVNode("ul", kt, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
@@ -574,7 +574,7 @@ const Ce = (I, w = 1) => I == null ? "—" : `${(I * 100).toFixed(w)}%`, Je = {
             )),
             B.value.byDomain.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
               "li",
-              kt,
+              gt,
               e.toDisplayString(o.$t("还没有问答")),
               1
               /* TEXT */
@@ -741,10 +741,10 @@ const Ce = (I, w = 1) => I == null ? "—" : `${(I * 100).toFixed(w)}%`, Je = {
   }
 }), le = (I, w) => {
   const B = I.__vccOpts || I;
-  for (const [h, g] of w)
-    B[h] = g;
+  for (const [h, k] of w)
+    B[h] = k;
   return B;
-}, ft = /* @__PURE__ */ le(ht, [["__scopeId", "data-v-e33f30ee"]]), ne = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
+}, ft = /* @__PURE__ */ le(ht, [["__scopeId", "data-v-500cdf40"]]), ne = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
 if (!ne) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/stores/notification.ts");
 ne.default;
 const qe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/StepCard.vue"];
@@ -775,7 +775,7 @@ const Ve = Oe.default, St = { class: "ss-module" }, Dt = { class: "ss-steps" }, 
 }, dl = { class: "ss-table" }, ul = { class: "num" }, ml = { class: "num" }, pl = { class: "ca-wrap" }, vl = {
   key: 2,
   class: "ss-muted"
-}, yl = { class: "ss-panel" }, gl = { class: "ss-chip" }, kl = { class: "ss-muted" }, Nl = { class: "ss-actions" }, Vl = ["disabled"], El = ["disabled"], $l = { class: "ss-muted" }, bl = { class: "ss-field" }, hl = { class: "ss-field" }, fl = { class: "ss-field" }, Sl = { class: "ss-field" }, Dl = ["value"], _l = { class: "ss-actions" }, Bl = {
+}, yl = { class: "ss-panel" }, kl = { class: "ss-chip" }, gl = { class: "ss-muted" }, Nl = { class: "ss-actions" }, Vl = ["disabled"], El = ["disabled"], $l = { class: "ss-muted" }, bl = { class: "ss-field" }, hl = { class: "ss-field" }, fl = { class: "ss-field" }, Sl = { class: "ss-field" }, Dl = ["value"], _l = { class: "ss-actions" }, Bl = {
   type: "submit",
   class: "ss-btn primary sm"
 }, wl = {
@@ -787,15 +787,15 @@ const Ve = Oe.default, St = { class: "ss-module" }, Dt = { class: "ss-steps" }, 
 }, Fl = { class: "ca-wrap" }, Ml = { class: "num" }, zl = ["onClick"], ql = ["onClick"], Ol = /* @__PURE__ */ e.defineComponent({
   __name: "KbTab",
   setup(I) {
-    const w = ne.useNotificationStore(), B = e.computed(() => R.value?.settings), h = e.computed(() => R.value?.docs || []), g = e.computed(() => R.value?.faqs || []), f = e.ref(""), U = e.ref(""), C = e.ref(!1), V = e.ref(""), L = e.ref({}), q = e.ref(""), P = e.ref(null), F = e.ref(""), y = e.ref(null), $ = [
+    const w = ne.useNotificationStore(), B = e.computed(() => R.value?.settings), h = e.computed(() => R.value?.docs || []), k = e.computed(() => R.value?.faqs || []), f = e.ref(""), U = e.ref(""), C = e.ref(!1), V = e.ref(""), L = e.ref({}), q = e.ref(""), P = e.ref(null), F = e.ref(""), y = e.ref(null), $ = [
       { key: "kb-import", title: l.t("导入资料"), hint: l.t("各部门的制度、办事指南、通知和 FAQ，选好所属部门再导入") },
       { key: "kb-build", title: l.t("构建索引"), hint: l.t("把文档切成段落、建检索索引，问答只从这里找依据") },
       { key: "kb-test", title: l.t("检索自测"), hint: l.t("用学生常问的问题试一试，看能不能找到对的原文") }
     ], o = e.computed(() => h.value.some((u) => u.status === "building" || u.status === "pending")), N = e.computed(() => ue.value.scope === "kb" ? ue.value.message : ""), v = (u) => h.value.filter((A) => A.status === u).length, D = e.computed(() => {
-      const u = L.value, A = h.value.length > 0 || g.value.length > 0, S = v("failed"), j = h.value.length > 0 && v("built") === h.value.length;
+      const u = L.value, A = h.value.length > 0 || k.value.length > 0, S = v("failed"), j = h.value.length > 0 && v("built") === h.value.length;
       return {
-        "kb-import": V.value === "kb-import" || V.value === "kb-demo" ? { state: "running" } : u["kb-import"] ? { state: "failed", error: u["kb-import"] } : A ? { state: "done", summary: l.t("文档 {a} 份，FAQ {b} 条", { a: h.value.length, b: g.value.length }) } : { state: "todo" },
-        "kb-build": V.value === "kb-build" || h.value.length && o.value ? { state: "running", kind: "scan" } : u["kb-build"] ? { state: "failed", error: u["kb-build"] } : S ? { state: "failed", error: l.t("{n} 份文档构建失败，原因见第 1 步表格；可删除后换一份重新导入", { n: S }) } : j ? { state: "done", summary: l.t("{a} 份文档，{b} 段可检索", { a: h.value.length, b: R.value?.stats.chunks || 0 }) } : !h.value.length && g.value.length ? { state: "skipped" } : { state: "todo" },
+        "kb-import": V.value === "kb-import" || V.value === "kb-demo" ? { state: "running" } : u["kb-import"] ? { state: "failed", error: u["kb-import"] } : A ? { state: "done", summary: l.t("文档 {a} 份，FAQ {b} 条", { a: h.value.length, b: k.value.length }) } : { state: "todo" },
+        "kb-build": V.value === "kb-build" || h.value.length && o.value ? { state: "running", kind: "scan" } : u["kb-build"] ? { state: "failed", error: u["kb-build"] } : S ? { state: "failed", error: l.t("{n} 份文档构建失败，原因见第 1 步表格；可删除后换一份重新导入", { n: S }) } : j ? { state: "done", summary: l.t("{a} 份文档，{b} 段可检索", { a: h.value.length, b: R.value?.stats.chunks || 0 }) } : !h.value.length && k.value.length ? { state: "skipped" } : { state: "todo" },
         "kb-test": V.value === "kb-test" ? { state: "running" } : u["kb-test"] ? { state: "failed", error: u["kb-test"] } : P.value ? { state: "done", summary: P.value.length ? l.t("最高分 {p0}：{p1}", { p0: P.value[0].score.toFixed(3), p1: P.value[0].title }) : l.t("没有命中") } : { state: "todo" }
       };
     }), z = e.computed(() => $.find((u) => !["done", "skipped"].includes(D.value[u.key].state))?.key || $[$.length - 1].key), M = (u) => {
@@ -833,13 +833,13 @@ const Ve = Oe.default, St = { class: "ss-module" }, Dt = { class: "ss-steps" }, 
     async function T(u, A) {
       await O("kb-import", () => _("kb.update", { id: u, ...A }));
     }
-    function k(u) {
+    function g(u) {
       return F.value === u ? (F.value = "", !0) : (F.value = u, setTimeout(() => {
         F.value === u && (F.value = "");
       }, 3e3), !1);
     }
     async function Z(u) {
-      k(u) && await O("kb-import", () => _("kb.remove", { id: u }));
+      g(u) && await O("kb-import", () => _("kb.remove", { id: u }));
     }
     async function se() {
       const u = await O("kb-test", () => _("kb.search", { query: q.value }));
@@ -857,7 +857,7 @@ const Ve = Oe.default, St = { class: "ss-module" }, Dt = { class: "ss-steps" }, 
       await O("kb-import", () => _("faq.save", { input: { id: u.id, question: u.question, answer: u.answer, dept: u.dept, similar: u.similarText.split(/[；;\n]/).map((S) => S.trim()).filter(Boolean) } })) && (y.value = null);
     }
     async function oe(u) {
-      k(u) && await O("kb-import", () => _("faq.remove", { id: u }));
+      g(u) && await O("kb-import", () => _("faq.remove", { id: u }));
     }
     async function ae() {
       const u = await _("files.pick", { kind: "excel", multi: !1, title: l.t("选择 FAQ 表格") }).catch(() => []);
@@ -1027,7 +1027,7 @@ const Ve = Oe.default, St = { class: "ss-module" }, Dt = { class: "ss-steps" }, 
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(V.value === "kb-demo" ? "ri-loader-4-line spin" : "ri-magic-line")
+                    class: e.normalizeClass(V.value === "kb-demo" ? "ri-loader-4-line spin" : "ri-file-download-line")
                   },
                   null,
                   2
@@ -1539,15 +1539,15 @@ const Ve = Oe.default, St = { class: "ss-module" }, Dt = { class: "ss-steps" }, 
           ),
           e.createElementVNode(
             "span",
-            gl,
-            e.toDisplayString(g.value.length),
+            kl,
+            e.toDisplayString(k.value.length),
             1
             /* TEXT */
           )
         ]),
         e.createElementVNode(
           "p",
-          kl,
+          gl,
           e.toDisplayString(u.$t("部门审定的标准答案：学生的问法和这里的问题几乎一样时，直接给这个答案，不经过模型。")),
           1
           /* TEXT */
@@ -1593,7 +1593,7 @@ const Ve = Oe.default, St = { class: "ss-module" }, Dt = { class: "ss-steps" }, 
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm",
-            disabled: !g.value.length,
+            disabled: !k.value.length,
             onClick: Y
           }, [
             A[22] || (A[22] = e.createElementVNode(
@@ -1740,7 +1740,7 @@ const Ve = Oe.default, St = { class: "ss-module" }, Dt = { class: "ss-steps" }, 
           32
           /* NEED_HYDRATION */
         )) : e.createCommentVNode("v-if", !0),
-        g.value.length ? (e.openBlock(), e.createElementBlock("div", wl, [
+        k.value.length ? (e.openBlock(), e.createElementBlock("div", wl, [
           e.createElementVNode("table", Cl, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
@@ -1792,7 +1792,7 @@ const Ve = Oe.default, St = { class: "ss-module" }, Dt = { class: "ss-steps" }, 
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(g.value, (S) => (e.openBlock(), e.createElementBlock("tr", {
+                e.renderList(k.value, (S) => (e.openBlock(), e.createElementBlock("tr", {
                   key: S.id
                 }, [
                   e.createElementVNode("td", Ll, [
@@ -1868,7 +1868,7 @@ const Ve = Oe.default, St = { class: "ss-module" }, Dt = { class: "ss-steps" }, 
       ])
     ]));
   }
-}), Ul = /* @__PURE__ */ le(Ol, [["__scopeId", "data-v-692d6955"]]), Ue = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:qrcode"];
+}), Ul = /* @__PURE__ */ le(Ol, [["__scopeId", "data-v-65f4fa99"]]), Ue = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:qrcode"];
 if (!Ue) throw new Error("宿主模块未就绪：npm:qrcode");
 const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, Wl = { class: "ss-panel" }, Rl = { class: "ss-muted" }, Ql = ["placeholder"], jl = ["disabled"], Gl = {
   key: 0,
@@ -1900,13 +1900,13 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
 }, mn = { class: "ca-wrap" }, pn = {
   key: 1,
   class: "ss-muted"
-}, vn = { class: "ss-panel ca-qa__mobile" }, yn = { class: "ss-muted" }, gn = ["src"], kn = { class: "ca-url" }, Nn = { class: "ss-actions" }, Vn = ["disabled"], En = ["disabled"], $n = ["disabled"], bn = { class: "ss-muted" }, hn = {
+}, vn = { class: "ss-panel ca-qa__mobile" }, yn = { class: "ss-muted" }, kn = ["src"], gn = { class: "ca-url" }, Nn = { class: "ss-actions" }, Vn = ["disabled"], En = ["disabled"], $n = ["disabled"], bn = { class: "ss-muted" }, hn = {
   key: 1,
   class: "ss-actions"
 }, fn = ["disabled"], Sn = /* @__PURE__ */ e.defineComponent({
   __name: "QaTab",
   setup(I) {
-    const w = ne.useNotificationStore(), B = e.ref(""), h = e.ref(!1), g = e.ref(""), f = e.ref(null), U = e.ref({}), C = e.ref([]), V = e.ref(""), L = e.ref(""), q = e.ref(!1), P = e.ref(""), F = e.computed(() => R.value?.mobile || null), y = (n) => R.value?.domains.find((c) => c.id === n)?.name || "", $ = e.computed(() => !!R.value && (R.value.stats.docsBuilt > 0 || R.value.faqs.length > 0)), o = [
+    const w = ne.useNotificationStore(), B = e.ref(""), h = e.ref(!1), k = e.ref(""), f = e.ref(null), U = e.ref({}), C = e.ref([]), V = e.ref(""), L = e.ref(""), q = e.ref(!1), P = e.ref(""), F = e.computed(() => R.value?.mobile || null), y = (n) => R.value?.domains.find((c) => c.id === n)?.name || "", $ = e.computed(() => !!R.value && (R.value.stats.docsBuilt > 0 || R.value.faqs.length > 0)), o = [
       { key: "", label: l.t("全部") },
       { key: "faq", label: ve("faq") },
       { key: "answer", label: ve("answer") },
@@ -1915,11 +1915,11 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
       { key: "sensitive", label: ve("sensitive") }
     ];
     async function N() {
-      h.value = !0, g.value = "";
+      h.value = !0, k.value = "";
       try {
         f.value = await _("qa.ask", { question: B.value }), D(), J();
       } catch (n) {
-        g.value = K.errorMessage(n);
+        k.value = K.errorMessage(n);
       } finally {
         h.value = !1;
       }
@@ -2069,7 +2069,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
               /* TEXT */
             )
           ])) : e.createCommentVNode("v-if", !0),
-          g.value ? (e.openBlock(), e.createElementBlock("p", Hl, [
+          k.value ? (e.openBlock(), e.createElementBlock("p", Hl, [
             c[10] || (c[10] = e.createElementVNode(
               "i",
               { class: "ri-error-warning-line" },
@@ -2078,7 +2078,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(g.value),
+              e.toDisplayString(k.value),
               1
               /* TEXT */
             )
@@ -2436,10 +2436,10 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
               class: "ca-qr",
               alt: "",
               "data-test": "ca-mobile-qr"
-            }, null, 8, gn)) : e.createCommentVNode("v-if", !0),
+            }, null, 8, kn)) : e.createCommentVNode("v-if", !0),
             e.createElementVNode(
               "code",
-              kn,
+              gn,
               e.toDisplayString(F.value.joinUrl),
               1
               /* TEXT */
@@ -2532,7 +2532,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
       ])
     ]));
   }
-}), Dn = /* @__PURE__ */ le(Sn, [["__scopeId", "data-v-a4e8800a"]]), _n = { class: "ca-tk" }, Bn = { class: "ss-panel" }, wn = { class: "ss-muted" }, Cn = { class: "ca-filter" }, Tn = ["onClick"], Ln = { key: 0 }, An = { value: "" }, Fn = ["value"], Mn = {
+}), Dn = /* @__PURE__ */ le(Sn, [["__scopeId", "data-v-2c42e83b"]]), _n = { class: "ca-tk" }, Bn = { class: "ss-panel" }, wn = { class: "ss-muted" }, Cn = { class: "ca-filter" }, Tn = ["onClick"], Ln = { key: 0 }, An = { value: "" }, Fn = ["value"], Mn = {
   key: 0,
   class: "ss-muted"
 }, zn = ["data-test"], qn = {
@@ -2556,19 +2556,19 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
 }, Zn = ["onClick"], xn = ["onClick"], eo = ["onClick"], to = /* @__PURE__ */ e.defineComponent({
   __name: "TicketsTab",
   setup(I) {
-    const w = ne.useNotificationStore(), B = e.ref("open"), h = e.ref(""), g = e.ref(""), f = e.ref(""), U = e.ref(!0), C = e.ref(""), V = e.ref(!1), L = [
+    const w = ne.useNotificationStore(), B = e.ref("open"), h = e.ref(""), k = e.ref(""), f = e.ref(""), U = e.ref(!0), C = e.ref(""), V = e.ref(!1), L = [
       { key: "open", label: l.t("待答复") },
       { key: "answered", label: l.t("已答复") },
       { key: "closed", label: l.t("已关闭") },
       { key: "", label: l.t("全部") }
     ], q = e.computed(() => R.value?.tickets || []), P = e.computed(() => q.value.filter((D) => D.status === "open").length), F = e.computed(() => [...new Set([...R.value?.settings.depts || [], ...q.value.map((D) => D.dept)].filter(Boolean))]), y = (D) => [...new Set([...R.value?.settings.depts || [], D].filter(Boolean))], $ = e.computed(() => q.value.filter((D) => (!B.value || D.status === B.value) && (!h.value || D.dept === h.value)).slice().sort((D, z) => Number(z.sensitive && z.status === "open") - Number(D.sensitive && D.status === "open") || z.at.localeCompare(D.at)));
     function o(D) {
-      g.value = D.id, f.value = "", U.value = !D.sensitive, C.value = D.question;
+      k.value = D.id, f.value = "", U.value = !D.sensitive, C.value = D.question;
     }
     async function N(D) {
       V.value = !0;
       try {
-        await _("ticket.answer", { id: D, answer: f.value, toFaq: U.value, faqQuestion: C.value }), g.value = "", await J(), w.success(U.value ? l.t("已答复，并沉淀为 FAQ") : l.t("已答复"));
+        await _("ticket.answer", { id: D, answer: f.value, toFaq: U.value, faqQuestion: C.value }), k.value = "", await J(), w.success(U.value ? l.t("已答复，并沉淀为 FAQ") : l.t("已答复"));
       } catch (z) {
         w.error(K.errorMessage(z));
       } finally {
@@ -2782,7 +2782,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
               64
               /* STABLE_FRAGMENT */
             )) : e.createCommentVNode("v-if", !0),
-            g.value === M.id ? (e.openBlock(), e.createElementBlock("form", {
+            k.value === M.id ? (e.openBlock(), e.createElementBlock("form", {
               key: 2,
               class: "ca-reply-form",
               onSubmit: e.withModifiers((O) => N(M.id), ["prevent"])
@@ -2843,7 +2843,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                   {
                     type: "button",
                     class: "ss-btn sm",
-                    onClick: z[4] || (z[4] = (O) => g.value = "")
+                    onClick: z[4] || (z[4] = (O) => k.value = "")
                   },
                   e.toDisplayString(D.$t("取消")),
                   1
@@ -2889,16 +2889,16 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
       ])
     ]));
   }
-}), lo = /* @__PURE__ */ le(to, [["__scopeId", "data-v-f67f8cec"]]), no = { class: "ss-module" }, oo = { class: "ss-steps" }, so = { class: "ss-actions" }, ao = ["disabled"], io = { class: "ss-muted" }, ro = { class: "ca-slots" }, co = ["onDrop"], uo = {
+}), lo = /* @__PURE__ */ le(to, [["__scopeId", "data-v-ad7feee8"]]), no = { class: "ss-module" }, oo = { class: "ss-steps" }, so = { class: "ss-actions" }, ao = ["disabled"], io = { class: "ss-muted" }, ro = { class: "ca-slots" }, co = ["onDrop"], uo = {
   key: 0,
   class: "ss-chip"
 }, mo = {
   key: 1,
   class: "ss-chip ok"
-}, po = { class: "ss-muted" }, vo = { class: "ca-file" }, yo = { key: 0 }, go = {
+}, po = { class: "ss-muted" }, vo = { class: "ca-file" }, yo = { key: 0 }, ko = {
   key: 0,
   class: "ss-note danger"
-}, ko = ["open"], No = { class: "ss-muted" }, Vo = { class: "ca-map" }, Eo = { key: 0 }, $o = ["value", "onChange"], bo = ["value"], ho = {
+}, go = ["open"], No = { class: "ss-muted" }, Vo = { class: "ca-map" }, Eo = { key: 0 }, $o = ["value", "onChange"], bo = ["value"], ho = {
   key: 1,
   class: "ss-note warn"
 }, fo = { class: "ss-actions" }, So = ["disabled", "data-test", "onClick"], Do = ["disabled", "onClick"], _o = { class: "ca-rules" }, Bo = { class: "ss-table-wrap" }, wo = { class: "ss-table" }, Co = ["onUpdate:modelValue"], To = ["onUpdate:modelValue"], Lo = ["onUpdate:modelValue"], Ao = { class: "ss-actions" }, Fo = { class: "ss-field inline" }, Mo = ["disabled"], zo = { class: "ss-actions" }, qo = ["disabled"], Oo = {
@@ -2925,7 +2925,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
 }, vs = {
   key: 1,
   class: "ca-notices"
-}, ys = { class: "ca-pre" }, gs = { class: "ca-pre" }, ks = { class: "ss-actions" }, Ns = ["disabled"], Vs = {
+}, ys = { class: "ca-pre" }, ks = { class: "ca-pre" }, gs = { class: "ss-actions" }, Ns = ["disabled"], Vs = {
   key: 0,
   class: "ss-muted"
 }, Es = {
@@ -2934,7 +2934,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
 }, $s = { class: "ca-mail" }, bs = { class: "ss-actions" }, hs = ["disabled"], fs = { class: "ss-muted" }, Ss = { class: "ss-table-wrap" }, Ds = { class: "ss-table" }, _s = { class: "num" }, Bs = { class: "num" }, ws = { class: "ca-check" }, Cs = { class: "ss-actions" }, Ts = ["disabled"], Ls = /* @__PURE__ */ e.defineComponent({
   __name: "WarningTab",
   setup(I) {
-    const w = ne.useNotificationStore(), B = ["roster", "grades", "attendance"], h = ["red", "orange", "yellow"], g = e.ref(""), f = e.ref({}), U = e.ref({}), C = e.ref(!0), V = e.ref(null), L = e.ref({}), q = e.ref(!1), P = e.ref("pending"), F = e.ref(""), y = [
+    const w = ne.useNotificationStore(), B = ["roster", "grades", "attendance"], h = ["red", "orange", "yellow"], k = e.ref(""), f = e.ref({}), U = e.ref({}), C = e.ref(!0), V = e.ref(null), L = e.ref({}), q = e.ref(!1), P = e.ref("pending"), F = e.ref(""), y = [
       { key: "cw-data", title: l.t("导入数据"), hint: l.t("学生名单、课程成绩、考勤三张表，Excel 或 CSV，列名自动认") },
       { key: "cw-compute", title: l.t("计算预警"), hint: l.t("按规则算每人的不及格门数、学分和缺勤率，分红橙黄三级，每人附依据") },
       { key: "cw-review", title: l.t("辅导员复核"), hint: l.t("逐人确认、调整级别或标为不预警；没复核完不能导出") },
@@ -2945,40 +2945,40 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
       { key: "confirmed", label: l.t("已确认") },
       { key: "dismissed", label: l.t("不预警") },
       { key: "all", label: l.t("全部") }
-    ], k = e.reactive(JSON.parse(JSON.stringify(R.value?.settings.warnRules || { passScore: 60, red: { failCourses: 4, failCredits: 12, absenceRate: 1 / 3 }, orange: { failCourses: 2, failCredits: 6, absenceRate: 0.2 }, yellow: { failCourses: 1, failCredits: 1, absenceRate: 0.1 } }))), Z = e.reactive({ red: 0, orange: 0, yellow: 0 });
+    ], g = e.reactive(JSON.parse(JSON.stringify(R.value?.settings.warnRules || { passScore: 60, red: { failCourses: 4, failCredits: 12, absenceRate: 1 / 3 }, orange: { failCourses: 2, failCredits: 6, absenceRate: 0.2 }, yellow: { failCourses: 1, failCredits: 1, absenceRate: 0.1 } }))), Z = e.reactive({ red: 0, orange: 0, yellow: 0 });
     function se(a) {
       if (a) {
-        Object.assign(k, JSON.parse(JSON.stringify(a)));
+        Object.assign(g, JSON.parse(JSON.stringify(a)));
         for (const b of h) Z[b] = Math.round(a[b].absenceRate * 1e3) / 10;
       }
     }
     e.watch(() => JSON.stringify(R.value?.settings.warnRules || null), () => se(R.value?.settings.warnRules), { immediate: !0 });
     const me = () => ({
-      passScore: Number(k.passScore) || 0,
-      red: { ...k.red, absenceRate: (Number(Z.red) || 0) / 100 },
-      orange: { ...k.orange, absenceRate: (Number(Z.orange) || 0) / 100 },
-      yellow: { ...k.yellow, absenceRate: (Number(Z.yellow) || 0) / 100 }
+      passScore: Number(g.passScore) || 0,
+      red: { ...g.red, absenceRate: (Number(Z.red) || 0) / 100 },
+      orange: { ...g.orange, absenceRate: (Number(Z.orange) || 0) / 100 },
+      yellow: { ...g.yellow, absenceRate: (Number(Z.yellow) || 0) / 100 }
     }), G = e.computed(() => JSON.stringify(me()) !== JSON.stringify(R.value?.settings.warnRules)), ee = e.computed(() => {
       const a = f.value, b = $.value, r = !!b && !b.stale, t = r ? i.value.length : 0;
       return {
-        "cw-data": ["cw-data", "cw-demo"].includes(g.value) ? { state: "running" } : a["cw-data"] ? { state: "failed", error: a["cw-data"] } : B.some((p) => o(p) && !o(p).loaded) ? { state: "failed", error: l.t("有表格的必填列没认出来，请在下面指定") } : N.value ? { state: "done", summary: B.filter((p) => o(p)?.loaded).map((p) => `${Be(p)} ${o(p).count}`).join(" · ") } : { state: "todo" },
-        "cw-compute": g.value === "cw-compute" ? { state: "running" } : a["cw-compute"] ? { state: "failed", error: a["cw-compute"] } : r ? { state: "done", summary: l.t("{a} 名学生中预警 {b} 人：红 {r} · 橙 {o} · 黄 {y}", { a: b.summary.students, b: b.summary.warned, r: b.summary.byLevel.red, o: b.summary.byLevel.orange, y: b.summary.byLevel.yellow }) } : { state: "todo" },
-        "cw-review": g.value === "cw-review" ? { state: "running" } : a["cw-review"] ? { state: "failed", error: a["cw-review"] } : r && v.value.length && !O.value ? { state: "done", summary: l.t("确认 {a} 人，不预警 {b} 人", { a: W.value, b: v.value.length - W.value }) } : r && !v.value.length ? { state: "skipped" } : { state: "todo" },
-        "cw-notice": g.value === "cw-notice" ? { state: "running", kind: "llm", progressAt: Date.now() } : a["cw-notice"] ? { state: "failed", error: a["cw-notice"] } : r && W.value && t >= W.value ? { state: "done", summary: l.t("{n} 份", { n: t }) } : r && !W.value && v.value.length && !O.value ? { state: "skipped" } : { state: "todo" },
-        "cw-export": ["cw-export", "cw-mail"].includes(g.value) ? { state: "running" } : a["cw-export"] || a["cw-mail"] ? { state: "failed", error: a["cw-export"] || a["cw-mail"] } : r && b.exportedAt ? { state: "done", summary: l.t("已导出到 {p0}", { p0: b.exportDir || "" }) } : { state: "todo" }
+        "cw-data": ["cw-data", "cw-demo"].includes(k.value) ? { state: "running" } : a["cw-data"] ? { state: "failed", error: a["cw-data"] } : B.some((p) => o(p) && !o(p).loaded) ? { state: "failed", error: l.t("有表格的必填列没认出来，请在下面指定") } : N.value ? { state: "done", summary: B.filter((p) => o(p)?.loaded).map((p) => `${Be(p)} ${o(p).count}`).join(" · ") } : { state: "todo" },
+        "cw-compute": k.value === "cw-compute" ? { state: "running" } : a["cw-compute"] ? { state: "failed", error: a["cw-compute"] } : r ? { state: "done", summary: l.t("{a} 名学生中预警 {b} 人：红 {r} · 橙 {o} · 黄 {y}", { a: b.summary.students, b: b.summary.warned, r: b.summary.byLevel.red, o: b.summary.byLevel.orange, y: b.summary.byLevel.yellow }) } : { state: "todo" },
+        "cw-review": k.value === "cw-review" ? { state: "running" } : a["cw-review"] ? { state: "failed", error: a["cw-review"] } : r && v.value.length && !O.value ? { state: "done", summary: l.t("确认 {a} 人，不预警 {b} 人", { a: W.value, b: v.value.length - W.value }) } : r && !v.value.length ? { state: "skipped" } : { state: "todo" },
+        "cw-notice": k.value === "cw-notice" ? { state: "running", kind: "llm", progressAt: Date.now() } : a["cw-notice"] ? { state: "failed", error: a["cw-notice"] } : r && W.value && t >= W.value ? { state: "done", summary: l.t("{n} 份", { n: t }) } : r && !W.value && v.value.length && !O.value ? { state: "skipped" } : { state: "todo" },
+        "cw-export": ["cw-export", "cw-mail"].includes(k.value) ? { state: "running" } : a["cw-export"] || a["cw-mail"] ? { state: "failed", error: a["cw-export"] || a["cw-mail"] } : r && b.exportedAt ? { state: "done", summary: l.t("已导出到 {p0}", { p0: b.exportDir || "" }) } : { state: "todo" }
       };
     }), oe = e.computed(() => y.find((a) => !["done", "skipped"].includes(ee.value[a.key].state))?.key || y[y.length - 1].key), ae = (a) => {
       K.scrollToStep(a);
     };
     async function Y(a, b) {
-      g.value = a, f.value = { ...f.value, [a]: "" };
+      k.value = a, f.value = { ...f.value, [a]: "" };
       try {
         const r = await b();
         return await J(), r;
       } catch (r) {
         return f.value = { ...f.value, [a]: K.errorMessage(r) }, w.error(K.errorMessage(r)), null;
       } finally {
-        g.value = "";
+        k.value = "";
       }
     }
     const u = (a) => U.value[a] || a, A = (a) => [...de.CA_DATASET_ROLES[a].required, ...de.CA_DATASET_ROLES[a].optional], S = (a, b) => de.CA_DATASET_ROLES[a].required.includes(b);
@@ -3030,7 +3030,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
     async function re() {
       L.value = {}, q.value = !1, V.value = await Y("cw-mail", () => _("warn.mailPlan"));
     }
-    async function ge() {
+    async function ke() {
       const a = await Y("cw-mail", () => _("warn.mailSend", { confirm: q.value }));
       if (a) {
         L.value = Object.fromEntries(a.map((r) => [r.to, { ok: r.ok, message: r.message }])), q.value = !1;
@@ -3038,7 +3038,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
         b === a.length ? w.success(l.t("已发送 {n} 封", { n: b })) : w.warn(l.t("发送 {a} 封，失败 {b} 封", { a: b, b: a.length - b }));
       }
     }
-    function ke(a) {
+    function ge(a) {
       const b = L.value[a];
       return b ? b.ok ? l.t("已发送") : l.t("失败：{p0}", { p0: b.message || "" }) : "—";
     }
@@ -3069,14 +3069,14 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn",
-                disabled: !!g.value,
+                disabled: !!k.value,
                 "data-test": "ca-warn-demo",
                 onClick: he
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(g.value === "cw-demo" ? "ri-loader-4-line spin" : "ri-magic-line")
+                    class: e.normalizeClass(k.value === "cw-demo" ? "ri-loader-4-line spin" : "ri-file-download-line")
                   },
                   null,
                   2
@@ -3162,7 +3162,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                           /* TEXT */
                         )) : e.createCommentVNode("v-if", !0)
                       ]),
-                      o(r).missing.length ? (e.openBlock(), e.createElementBlock("p", go, [
+                      o(r).missing.length ? (e.openBlock(), e.createElementBlock("p", ko, [
                         b[8] || (b[8] = e.createElementVNode(
                           "i",
                           { class: "ri-error-warning-line" },
@@ -3229,7 +3229,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                             /* KEYED_FRAGMENT */
                           ))
                         ])
-                      ], 8, ko),
+                      ], 8, go),
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
@@ -3275,7 +3275,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                     e.createElementVNode("button", {
                       type: "button",
                       class: "ss-btn sm",
-                      disabled: !!g.value,
+                      disabled: !!k.value,
                       "data-test": `ca-warn-pick-${r}`,
                       onClick: (t) => pe(r)
                     }, [
@@ -3296,7 +3296,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                       key: 0,
                       type: "button",
                       class: "ss-btn sm ghost",
-                      disabled: !!g.value,
+                      disabled: !!k.value,
                       onClick: (t) => be(r)
                     }, e.toDisplayString(a.$t("移除")), 9, Do)) : e.createCommentVNode("v-if", !0)
                   ])
@@ -3379,14 +3379,14 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                         ]),
                         e.createElementVNode("td", null, [
                           e.withDirectives(e.createElementVNode("input", {
-                            "onUpdate:modelValue": (t) => k[r].failCourses = t,
+                            "onUpdate:modelValue": (t) => g[r].failCourses = t,
                             type: "number",
                             min: "0",
                             step: "1"
                           }, null, 8, Co), [
                             [
                               e.vModelText,
-                              k[r].failCourses,
+                              g[r].failCourses,
                               void 0,
                               { number: !0 }
                             ]
@@ -3394,14 +3394,14 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                         ]),
                         e.createElementVNode("td", null, [
                           e.withDirectives(e.createElementVNode("input", {
-                            "onUpdate:modelValue": (t) => k[r].failCredits = t,
+                            "onUpdate:modelValue": (t) => g[r].failCredits = t,
                             type: "number",
                             min: "0",
                             step: "0.5"
                           }, null, 8, To), [
                             [
                               e.vModelText,
-                              k[r].failCredits,
+                              g[r].failCredits,
                               void 0,
                               { number: !0 }
                             ]
@@ -3442,7 +3442,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                   e.withDirectives(e.createElementVNode(
                     "input",
                     {
-                      "onUpdate:modelValue": b[1] || (b[1] = (r) => k.passScore = r),
+                      "onUpdate:modelValue": b[1] || (b[1] = (r) => g.passScore = r),
                       type: "number",
                       min: "0",
                       max: "100"
@@ -3453,7 +3453,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                   ), [
                     [
                       e.vModelText,
-                      k.passScore,
+                      g.passScore,
                       void 0,
                       { number: !0 }
                     ]
@@ -3462,7 +3462,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                 e.createElementVNode("button", {
                   type: "button",
                   class: "ss-btn sm",
-                  disabled: !!g.value || !G.value,
+                  disabled: !!k.value || !G.value,
                   onClick: fe
                 }, e.toDisplayString(a.$t("保存规则")), 9, Mo),
                 e.createElementVNode(
@@ -3482,14 +3482,14 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !!g.value || !N.value,
+                disabled: !!k.value || !N.value,
                 "data-test": "ca-warn-compute",
                 onClick: X
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(g.value === "cw-compute" ? "ri-loader-4-line spin" : "ri-calculator-line")
+                    class: e.normalizeClass(k.value === "cw-compute" ? "ri-loader-4-line spin" : "ri-calculator-line")
                   },
                   null,
                   2
@@ -3672,7 +3672,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn sm",
-                    disabled: !!g.value || !d.value.length,
+                    disabled: !!k.value || !d.value.length,
                     "data-test": "ca-warn-confirm-all",
                     onClick: b[3] || (b[3] = (r) => x(d.value.map((t) => t.studentId), "confirmed"))
                   }, e.toDisplayString(a.$t("确认列表中待复核的 {n} 人", { n: d.value.length })), 9, Jo)
@@ -3829,13 +3829,13 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                               e.createElementVNode("button", {
                                 type: "button",
                                 class: "ss-btn sm",
-                                disabled: !!g.value,
+                                disabled: !!k.value,
                                 onClick: (t) => x([r.studentId], "confirmed")
                               }, e.toDisplayString(a.$t("确认")), 9, os),
                               e.createElementVNode("button", {
                                 type: "button",
                                 class: "ss-btn sm ghost",
-                                disabled: !!g.value,
+                                disabled: !!k.value,
                                 onClick: (t) => x([r.studentId], "dismissed")
                               }, e.toDisplayString(a.$t("不预警")), 9, ss)
                             ])
@@ -3910,14 +3910,14 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !!g.value || !W.value,
+                disabled: !!k.value || !W.value,
                 "data-test": "ca-warn-notices",
                 onClick: ie
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(g.value === "cw-notice" ? "ri-loader-4-line spin" : "ri-quill-pen-line")
+                    class: e.normalizeClass(k.value === "cw-notice" ? "ri-loader-4-line spin" : "ri-quill-pen-line")
                   },
                   null,
                   2
@@ -4018,7 +4018,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                   ),
                   e.createElementVNode(
                     "p",
-                    gs,
+                    ks,
                     e.toDisplayString(Ne($.value.notices[r.studentId].notice, r.name)),
                     1
                     /* TEXT */
@@ -4042,18 +4042,18 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
           "is-current": oe.value === "cw-export"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", ks, [
+            e.createElementVNode("div", gs, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !!g.value || !$.value || $.value.stale || O.value > 0,
+                disabled: !!k.value || !$.value || $.value.stale || O.value > 0,
                 "data-test": "ca-warn-export",
                 onClick: De
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(g.value === "cw-export" ? "ri-loader-4-line spin" : "ri-file-excel-2-line")
+                    class: e.normalizeClass(k.value === "cw-export" ? "ri-loader-4-line spin" : "ri-file-excel-2-line")
                   },
                   null,
                   2
@@ -4105,7 +4105,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                 e.createElementVNode("button", {
                   type: "button",
                   class: "ss-btn",
-                  disabled: !!g.value || !$.value || $.value.stale || !W.value,
+                  disabled: !!k.value || !$.value || $.value.stale || !W.value,
                   onClick: re
                 }, [
                   b[23] || (b[23] = e.createElementVNode(
@@ -4202,7 +4202,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                               e.createElementVNode(
                                 "td",
                                 null,
-                                e.toDisplayString(ke(r.to)),
+                                e.toDisplayString(ge(r.to)),
                                 1
                                 /* TEXT */
                               )
@@ -4240,13 +4240,13 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                     e.createElementVNode("button", {
                       type: "button",
                       class: "ss-btn primary",
-                      disabled: !!g.value || !q.value || !V.value.some((r) => r.to),
-                      onClick: ge
+                      disabled: !!k.value || !q.value || !V.value.some((r) => r.to),
+                      onClick: ke
                     }, [
                       e.createElementVNode(
                         "i",
                         {
-                          class: e.normalizeClass(g.value === "cw-mail" ? "ri-loader-4-line spin" : "ri-send-plane-line")
+                          class: e.normalizeClass(k.value === "cw-mail" ? "ri-loader-4-line spin" : "ri-send-plane-line")
                         },
                         null,
                         2
@@ -4271,13 +4271,13 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
       ])
     ]));
   }
-}), As = /* @__PURE__ */ le(Ls, [["__scopeId", "data-v-205034ea"]]), Fs = { class: "ca-ops" }, Ms = {
+}), As = /* @__PURE__ */ le(Ls, [["__scopeId", "data-v-4e920a2a"]]), Fs = { class: "ca-ops" }, Ms = {
   class: "ss-panel ca-profile",
   "data-test": "ca-profile"
 }, zs = { class: "ca-profile__body" }, qs = { class: "ca-profile__logo" }, Os = ["src"], Us = {
   key: 1,
   class: "ri-image-add-line"
-}, Is = { class: "ss-actions" }, Ps = ["disabled"], Ks = ["disabled"], Ws = { class: "ss-muted" }, Rs = { class: "ca-profile__fields" }, Qs = { class: "ss-grid" }, js = { class: "ss-field" }, Gs = ["placeholder"], Js = { class: "ss-field" }, Hs = { class: "ss-field" }, Ys = { class: "ss-field" }, Xs = { class: "ss-field" }, Zs = { class: "ss-field" }, xs = { class: "ss-field" }, ea = { class: "ss-muted" }, ta = { class: "ss-panel" }, la = { class: "ss-table-wrap" }, na = { class: "ss-table" }, oa = { class: "ca-wrap" }, sa = { class: "ss-muted" }, aa = ["disabled"], ia = { class: "ss-chip ok" }, ra = { class: "ca-wrap" }, ca = { class: "ca-wrap" }, da = { class: "ss-panel" }, ua = { class: "ss-grid" }, ma = { class: "ss-field" }, pa = ["placeholder"], va = { class: "ss-field" }, ya = ["value"], ga = { class: "ss-field" }, ka = { class: "ss-field" }, Na = { class: "ss-field" }, Va = { class: "ss-field" }, Ea = { class: "ss-field" }, $a = { class: "ss-actions" }, ba = { class: "ss-muted" }, ha = { class: "ss-actions" }, fa = ["disabled"], Sa = { class: "ss-panel" }, Da = { class: "ca-list" }, _a = { class: "ss-actions" }, Ba = { class: "ss-panel" }, wa = { class: "ss-actions" }, Ca = { class: "ss-muted" }, Ta = {
+}, Is = { class: "ss-actions" }, Ps = ["disabled"], Ks = ["disabled"], Ws = { class: "ss-muted" }, Rs = { class: "ca-profile__fields" }, Qs = { class: "ss-grid" }, js = { class: "ss-field" }, Gs = ["placeholder"], Js = { class: "ss-field" }, Hs = { class: "ss-field" }, Ys = { class: "ss-field" }, Xs = { class: "ss-field" }, Zs = { class: "ss-field" }, xs = { class: "ss-field" }, ea = { class: "ss-muted" }, ta = { class: "ss-panel" }, la = { class: "ss-table-wrap" }, na = { class: "ss-table" }, oa = { class: "ca-wrap" }, sa = { class: "ss-muted" }, aa = ["disabled"], ia = { class: "ss-chip ok" }, ra = { class: "ca-wrap" }, ca = { class: "ca-wrap" }, da = { class: "ss-panel" }, ua = { class: "ss-grid" }, ma = { class: "ss-field" }, pa = ["placeholder"], va = { class: "ss-field" }, ya = ["value"], ka = { class: "ss-field" }, ga = { class: "ss-field" }, Na = { class: "ss-field" }, Va = { class: "ss-field" }, Ea = { class: "ss-field" }, $a = { class: "ss-actions" }, ba = { class: "ss-muted" }, ha = { class: "ss-actions" }, fa = ["disabled"], Sa = { class: "ss-panel" }, Da = { class: "ca-list" }, _a = { class: "ss-actions" }, Ba = { class: "ss-panel" }, wa = { class: "ss-actions" }, Ca = { class: "ss-muted" }, Ta = {
   key: 0,
   class: "ss-table-wrap tall"
 }, La = { class: "ss-table" }, Aa = { class: "num" }, Fa = { class: "num" }, Ma = { class: "ca-wrap" }, za = {
@@ -4286,12 +4286,12 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
 }, qa = /* @__PURE__ */ e.defineComponent({
   __name: "OpsTab",
   setup(I) {
-    const w = ne.useNotificationStore(), B = e.computed(() => R.value), h = e.reactive({}), g = e.reactive({ englishName: "", motto: "", founded: "", address: "", website: "", intro: "" }), f = e.ref(!1), U = e.ref(""), C = e.ref(""), V = e.ref(!1), L = e.ref(!1), q = e.ref(null), P = e.ref([]), F = e.ref(!1), y = (i) => i.split(/[；;,，\n]/).map((E) => E.trim()).filter(Boolean), $ = e.computed(() => y(U.value));
+    const w = ne.useNotificationStore(), B = e.computed(() => R.value), h = e.reactive({}), k = e.reactive({ englishName: "", motto: "", founded: "", address: "", website: "", intro: "" }), f = e.ref(!1), U = e.ref(""), C = e.ref(""), V = e.ref(!1), L = e.ref(!1), q = e.ref(null), P = e.ref([]), F = e.ref(!1), y = (i) => i.split(/[；;,，\n]/).map((E) => E.trim()).filter(Boolean), $ = e.computed(() => y(U.value));
     function o(i) {
-      i && (Object.assign(h, { schoolName: i.schoolName, hotline: i.hotline, sensitiveDept: i.sensitiveDept, retentionDays: i.retentionDays, mobileDailyLimit: i.mobileDailyLimit, minScore: i.minScore }), Object.assign(g, { englishName: i.profile.englishName, motto: i.profile.motto, founded: i.profile.founded, address: i.profile.address, website: i.profile.website, intro: i.profile.intro }), U.value = i.depts.join(l.t("；")), C.value = i.categories.join(l.t("；")));
+      i && (Object.assign(h, { schoolName: i.schoolName, hotline: i.hotline, sensitiveDept: i.sensitiveDept, retentionDays: i.retentionDays, mobileDailyLimit: i.mobileDailyLimit, minScore: i.minScore }), Object.assign(k, { englishName: i.profile.englishName, motto: i.profile.motto, founded: i.profile.founded, address: i.profile.address, website: i.profile.website, intro: i.profile.intro }), U.value = i.depts.join(l.t("；")), C.value = i.categories.join(l.t("；")));
     }
     e.watch(() => JSON.stringify(R.value?.settings || null), () => o(R.value?.settings), { immediate: !0 });
-    const N = () => ({ ...h, depts: y(U.value), categories: y(C.value), profile: { ...g, logoPath: R.value?.settings.profile.logoPath || "" } }), v = e.computed(() => {
+    const N = () => ({ ...h, depts: y(U.value), categories: y(C.value), profile: { ...k, logoPath: R.value?.settings.profile.logoPath || "" } }), v = e.computed(() => {
       const i = R.value?.settings;
       if (!i) return !1;
       const E = N();
@@ -4477,13 +4477,13 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": E[1] || (E[1] = (s) => g.englishName = s)
+                    "onUpdate:modelValue": E[1] || (E[1] = (s) => k.englishName = s)
                   },
                   null,
                   512
                   /* NEED_PATCH */
                 ), [
-                  [e.vModelText, g.englishName]
+                  [e.vModelText, k.englishName]
                 ])
               ]),
               e.createElementVNode("label", Hs, [
@@ -4497,13 +4497,13 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": E[2] || (E[2] = (s) => g.motto = s)
+                    "onUpdate:modelValue": E[2] || (E[2] = (s) => k.motto = s)
                   },
                   null,
                   512
                   /* NEED_PATCH */
                 ), [
-                  [e.vModelText, g.motto]
+                  [e.vModelText, k.motto]
                 ])
               ]),
               e.createElementVNode("label", Ys, [
@@ -4517,14 +4517,14 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": E[3] || (E[3] = (s) => g.founded = s),
+                    "onUpdate:modelValue": E[3] || (E[3] = (s) => k.founded = s),
                     inputmode: "numeric"
                   },
                   null,
                   512
                   /* NEED_PATCH */
                 ), [
-                  [e.vModelText, g.founded]
+                  [e.vModelText, k.founded]
                 ])
               ]),
               e.createElementVNode("label", Xs, [
@@ -4538,13 +4538,13 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": E[4] || (E[4] = (s) => g.address = s)
+                    "onUpdate:modelValue": E[4] || (E[4] = (s) => k.address = s)
                   },
                   null,
                   512
                   /* NEED_PATCH */
                 ), [
-                  [e.vModelText, g.address]
+                  [e.vModelText, k.address]
                 ])
               ]),
               e.createElementVNode("label", Zs, [
@@ -4558,14 +4558,14 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": E[5] || (E[5] = (s) => g.website = s),
+                    "onUpdate:modelValue": E[5] || (E[5] = (s) => k.website = s),
                     placeholder: "https://"
                   },
                   null,
                   512
                   /* NEED_PATCH */
                 ), [
-                  [e.vModelText, g.website]
+                  [e.vModelText, k.website]
                 ])
               ])
             ]),
@@ -4580,14 +4580,14 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
               e.withDirectives(e.createElementVNode(
                 "textarea",
                 {
-                  "onUpdate:modelValue": E[6] || (E[6] = (s) => g.intro = s),
+                  "onUpdate:modelValue": E[6] || (E[6] = (s) => k.intro = s),
                   rows: "3"
                 },
                 null,
                 512
                 /* NEED_PATCH */
               ), [
-                [e.vModelText, g.intro]
+                [e.vModelText, k.intro]
               ])
             ]),
             e.createElementVNode(
@@ -4847,7 +4847,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
               [e.vModelSelect, h.sensitiveDept]
             ])
           ]),
-          e.createElementVNode("label", ga, [
+          e.createElementVNode("label", ka, [
             e.createElementVNode(
               "span",
               null,
@@ -4875,7 +4875,7 @@ const Il = Ue.default, Pl = { class: "ca-qa" }, Kl = { class: "ca-qa__main" }, W
               ]
             ])
           ]),
-          e.createElementVNode("label", ka, [
+          e.createElementVNode("label", ga, [
             e.createElementVNode(
               "span",
               null,
@@ -5271,11 +5271,11 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
 }, ii = { class: "ca-apps__seal sm" }, ri = { class: "ss-table-wrap" }, ci = { class: "ss-table" }, di = { class: "num" }, ui = { class: "ca-wrap" }, mi = {
   key: 0,
   class: "ss-chip"
-}, pi = { class: "ss-muted" }, vi = { class: "num" }, yi = { class: "ca-wrap" }, gi = ["onClick"], ki = ["onClick"], Ni = ["onClick"], Vi = /* @__PURE__ */ e.defineComponent({
+}, pi = { class: "ss-muted" }, vi = { class: "num" }, yi = { class: "ca-wrap" }, ki = ["onClick"], gi = ["onClick"], Ni = ["onClick"], Vi = /* @__PURE__ */ e.defineComponent({
   __name: "AppsTab",
   emits: ["go"],
   setup(I, { emit: w }) {
-    const B = w, h = Le.useRouter(), g = ne.useNotificationStore(), f = de.CA_DIRECTIONS, U = ["planned", "building", "live"], C = e.ref(""), V = e.ref(""), L = e.ref(null), q = e.computed(() => R.value?.scenarios || []), P = e.computed(() => C.value ? [C.value] : f), F = (n) => q.value.filter((c) => c.direction === n), y = (n) => {
+    const B = w, h = Le.useRouter(), k = ne.useNotificationStore(), f = de.CA_DIRECTIONS, U = ["planned", "building", "live"], C = e.ref(""), V = e.ref(""), L = e.ref(null), q = e.computed(() => R.value?.scenarios || []), P = e.computed(() => C.value ? [C.value] : f), F = (n) => q.value.filter((c) => c.direction === n), y = (n) => {
       const c = F(n);
       return { total: c.length, live: c.filter((d) => d.stage === "live").length, usage: c.reduce((d, i) => d + i.usage30d, 0) };
     }, $ = (n) => ({ plan: l.t("统一规划、建设与运维"), teach: l.t("教学"), research: l.t("科研"), gov: l.t("校务治理"), service: l.t("师生服务") })[n], o = (n) => ({ plan: l.t("统"), teach: l.t("教"), research: l.t("研"), gov: l.t("治"), service: l.t("服") })[n], N = (n) => ({ planned: l.t("规划中"), building: l.t("建设中"), live: l.t("已上线") })[n];
@@ -5294,7 +5294,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
         try {
           await _("apps.save", { builtin: n.builtin, input: { id: n.id, direction: n.direction, name: n.name, desc: n.desc, dept: n.dept, stage: n.stage, note: n.note } }), L.value = null, await J();
         } catch (c) {
-          g.error(K.errorMessage(c));
+          k.error(K.errorMessage(c));
         }
     }
     async function O(n) {
@@ -5308,7 +5308,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
       try {
         await _("apps.remove", { id: n }), await J();
       } catch (c) {
-        g.error(K.errorMessage(c));
+        k.error(K.errorMessage(c));
       }
     }
     async function W() {
@@ -5316,7 +5316,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
         const n = await _("apps.export");
         te(n, !0);
       } catch (n) {
-        g.error(K.errorMessage(n));
+        k.error(K.errorMessage(n));
       }
     }
     return (n, c) => (e.openBlock(), e.createElementBlock("div", Ua, [
@@ -5745,12 +5745,12 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
                         type: "button",
                         class: "ss-btn sm",
                         onClick: (E) => v(i.target)
-                      }, e.toDisplayString(n.$t("进入")), 9, gi)) : e.createCommentVNode("v-if", !0),
+                      }, e.toDisplayString(n.$t("进入")), 9, ki)) : e.createCommentVNode("v-if", !0),
                       e.createElementVNode("button", {
                         type: "button",
                         class: "ss-btn sm ghost",
                         onClick: (E) => z(i)
-                      }, e.toDisplayString(n.$t("编辑")), 9, ki),
+                      }, e.toDisplayString(n.$t("编辑")), 9, gi),
                       i.builtin ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("button", {
                         key: 1,
                         type: "button",
@@ -5771,7 +5771,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
       ))
     ]));
   }
-}), Ei = /* @__PURE__ */ le(Vi, [["__scopeId", "data-v-e76ee01e"]]), $i = { class: "ca-teach" }, bi = {
+}), Ei = /* @__PURE__ */ le(Vi, [["__scopeId", "data-v-adca0cff"]]), $i = { class: "ca-teach" }, bi = {
   class: "ca-subnav",
   role: "tablist"
 }, hi = ["aria-selected", "data-test", "onClick"], fi = { class: "ca-course-pick" }, Si = { value: "" }, Di = ["value"], _i = { class: "ca-split" }, Bi = { class: "ss-panel" }, wi = { class: "ss-actions" }, Ci = ["disabled"], Ti = { class: "ss-muted" }, Li = ["placeholder"], Ai = ["placeholder"], Fi = { class: "ca-check" }, Mi = ["disabled"], zi = { class: "ca-courses" }, qi = ["onClick"], Oi = ["onClick"], Ui = ["onClick"], Ii = {
@@ -5805,7 +5805,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
 }, pr = {
   key: 2,
   class: "ss-muted"
-}, vr = { class: "ss-panel" }, yr = { class: "ss-chip" }, gr = { class: "ss-actions" }, kr = ["disabled"], Nr = ["disabled"], Vr = ["disabled"], Er = ["disabled"], $r = { class: "ca-bank" }, br = { class: "ca-bank__pick" }, hr = ["value"], fr = { class: "ca-bank__body" }, Sr = { class: "ss-chip brand" }, Dr = { class: "ss-muted" }, _r = {
+}, vr = { class: "ss-panel" }, yr = { class: "ss-chip" }, kr = { class: "ss-actions" }, gr = ["disabled"], Nr = ["disabled"], Vr = ["disabled"], Er = ["disabled"], $r = { class: "ca-bank" }, br = { class: "ca-bank__pick" }, hr = ["value"], fr = { class: "ca-bank__body" }, Sr = { class: "ss-chip brand" }, Dr = { class: "ss-muted" }, _r = {
   key: 0,
   type: "A",
   class: "ca-bank__opts"
@@ -5834,7 +5834,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
       { key: "course", label: l.t("课程与助教"), icon: "ri-book-shelf-line" },
       { key: "quiz", label: l.t("智能出题"), icon: "ri-file-list-3-line" },
       { key: "grade", label: l.t("作业批改"), icon: "ri-checkbox-multiple-line" }
-    ], h = de.CA_QUESTION_TYPES, g = e.ref("course"), f = e.ref(""), U = e.ref(""), C = e.ref(""), V = e.reactive({ name: "", teacher: "", publicTutor: !0 }), L = e.ref(""), q = e.ref(null), P = e.reactive({ single: 4, multiple: 2, judge: 2, short: 2 }), F = e.ref(""), y = e.ref(null), $ = e.ref([]), o = e.ref([]), N = e.ref(""), v = e.ref(null), D = e.ref(""), z = e.ref([]), M = e.ref({}), O = e.computed(() => R.value?.courses || []), W = e.computed(() => O.value.find((t) => t.id === C.value) || null), n = (t) => (R.value?.docs || []).filter((p) => p.courseId === t), c = e.computed(() => !!W.value && n(W.value.id).some((t) => t.status === "built")), d = e.computed(() => (R.value?.gradings || []).filter((t) => !C.value || t.courseId === C.value)), i = e.computed(() => $.value.length > 0 && o.value.length === $.value.length), E = e.computed(() => ue.value.scope === "grade" ? ue.value.message : ""), s = (t) => ({ single: l.t("单选题"), multiple: l.t("多选题"), judge: l.t("判断题"), short: l.t("简答题") })[t], T = (t) => t.type === "judge" ? t.answer === "T" ? l.t("对") : l.t("错") : t.answer, k = (t) => v.value?.key.find((p) => p.no === t)?.type === "short", Z = e.computed(() => !!v.value?.key.some((t) => t.type === "short")), se = e.computed(() => v.value?.rows.filter((t) => !t.confirmed).length || 0), me = e.computed(() => v.value?.rows.filter((t) => !t.confirmed && t.items.every((p) => p.final !== null)).length || 0);
+    ], h = de.CA_QUESTION_TYPES, k = e.ref("course"), f = e.ref(""), U = e.ref(""), C = e.ref(""), V = e.reactive({ name: "", teacher: "", publicTutor: !0 }), L = e.ref(""), q = e.ref(null), P = e.reactive({ single: 4, multiple: 2, judge: 2, short: 2 }), F = e.ref(""), y = e.ref(null), $ = e.ref([]), o = e.ref([]), N = e.ref(""), v = e.ref(null), D = e.ref(""), z = e.ref([]), M = e.ref({}), O = e.computed(() => R.value?.courses || []), W = e.computed(() => O.value.find((t) => t.id === C.value) || null), n = (t) => (R.value?.docs || []).filter((p) => p.courseId === t), c = e.computed(() => !!W.value && n(W.value.id).some((t) => t.status === "built")), d = e.computed(() => (R.value?.gradings || []).filter((t) => !C.value || t.courseId === C.value)), i = e.computed(() => $.value.length > 0 && o.value.length === $.value.length), E = e.computed(() => ue.value.scope === "grade" ? ue.value.message : ""), s = (t) => ({ single: l.t("单选题"), multiple: l.t("多选题"), judge: l.t("判断题"), short: l.t("简答题") })[t], T = (t) => t.type === "judge" ? t.answer === "T" ? l.t("对") : l.t("错") : t.answer, g = (t) => v.value?.key.find((p) => p.no === t)?.type === "short", Z = e.computed(() => !!v.value?.key.some((t) => t.type === "short")), se = e.computed(() => v.value?.rows.filter((t) => !t.confirmed).length || 0), me = e.computed(() => v.value?.rows.filter((t) => !t.confirmed && t.items.every((p) => p.final !== null)).length || 0);
     async function G(t, p) {
       f.value = t, M.value = { ...M.value, [t]: "" };
       try {
@@ -5900,7 +5900,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
     }
     async function Se() {
       const t = await G("quiz", () => _("grade.create", { courseId: C.value, title: l.t("{p0} 测验", { p0: W.value?.name || "" }), questionIds: o.value }));
-      t && (N.value = t.id, g.value = "grade");
+      t && (N.value = t.id, k.value = "grade");
     }
     const X = [
       { key: "gr-key", title: l.t("标准答案"), hint: l.t("导入标准答案表，或从题库选题生成") },
@@ -5909,7 +5909,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
       { key: "gr-confirm", title: l.t("教师确认"), hint: l.t("逐题核对、改分、确认") },
       { key: "gr-export", title: l.t("导出成绩"), hint: l.t("成绩表 + 每题评分说明") }
     ], x = e.computed(() => {
-      const t = v.value, p = M.value, m = t ? t.rows.some((Q) => Q.items.some((ce) => k(ce.no) && ce.by === "pending")) : !0;
+      const t = v.value, p = M.value, m = t ? t.rows.some((Q) => Q.items.some((ce) => g(ce.no) && ce.by === "pending")) : !0;
       return {
         "gr-key": f.value === "key" ? { state: "running" } : p.key ? { state: "failed", error: p.key } : t ? { state: "done", summary: l.t("{n} 道题，满分 {m}", { n: t.key.length, m: t.key.reduce((Q, ce) => Q + ce.score, 0) }) } : { state: "todo" },
         "gr-ans": f.value === "ans" ? { state: "running" } : p.ans ? { state: "failed", error: p.ans } : t?.rows.length ? { state: "done", summary: l.t("{n} 名学生", { n: t.rows.length }) } : { state: "todo" },
@@ -5923,7 +5923,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
     async function re() {
       v.value = N.value ? await _("grade.get", { id: N.value }).catch(() => null) : null;
     }
-    async function ge(t) {
+    async function ke(t) {
       if (!W.value) {
         w.warn(l.t("先在右上角选一门课"));
         return;
@@ -5933,7 +5933,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
       const m = await G("key", () => _("grade.create", { courseId: C.value, title: D.value || l.t("{p0} 作业", { p0: W.value.name }), keyPath: p[0] }));
       m && (N.value = m.id, m.problems.forEach((Q) => w.warn(Q)));
     }
-    async function ke(t) {
+    async function ge(t) {
       const p = t ? [t] : await _("files.pick", { kind: "excel", multi: !1, title: l.t("选择学生作答表") }).catch(() => []);
       if (!p[0]) return;
       const m = await G("ans", () => _("grade.answers", { id: N.value, path: p[0] }));
@@ -5961,7 +5961,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
       pe(), q.value = null, y.value = null;
     }), e.watch(N, () => {
       z.value = [], re();
-    }), e.watch(g, (t) => {
+    }), e.watch(k, (t) => {
       t === "quiz" && pe(), t === "grade" && re();
     }), !C.value && O.value[0] && (C.value = O.value[0].id), (t, p) => (e.openBlock(), e.createElementBlock("div", $i, [
       e.createElementVNode("nav", bi, [
@@ -5972,10 +5972,10 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
             key: m.key,
             type: "button",
             role: "tab",
-            "aria-selected": g.value === m.key,
-            class: e.normalizeClass({ on: g.value === m.key }),
+            "aria-selected": k.value === m.key,
+            class: e.normalizeClass({ on: k.value === m.key }),
             "data-test": `ca-teach-${m.key}`,
-            onClick: (Q) => g.value = m.key
+            onClick: (Q) => k.value = m.key
           }, [
             e.createElementVNode(
               "i",
@@ -6044,7 +6044,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
         ])
       ]),
       e.createCommentVNode(" 课程与助教 "),
-      g.value === "course" ? (e.openBlock(), e.createElementBlock(
+      k.value === "course" ? (e.openBlock(), e.createElementBlock(
         e.Fragment,
         { key: 0 },
         [
@@ -6075,7 +6075,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
                   e.createElementVNode(
                     "i",
                     {
-                      class: e.normalizeClass(f.value === "demo" ? "ri-loader-4-line spin" : "ri-magic-line")
+                      class: e.normalizeClass(f.value === "demo" ? "ri-loader-4-line spin" : "ri-file-download-line")
                     },
                     null,
                     2
@@ -6432,7 +6432,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
         ],
         64
         /* STABLE_FRAGMENT */
-      )) : g.value === "quiz" ? (e.openBlock(), e.createElementBlock(
+      )) : k.value === "quiz" ? (e.openBlock(), e.createElementBlock(
         e.Fragment,
         { key: 1 },
         [
@@ -6525,7 +6525,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(f.value === "quiz" ? "ri-loader-4-line spin" : "ri-magic-line")
+                    class: e.normalizeClass(f.value === "quiz" ? "ri-loader-4-line spin" : "ri-questionnaire-line")
                   },
                   null,
                   2
@@ -6618,13 +6618,13 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", gr, [
+            e.createElementVNode("div", kr, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn sm",
                 disabled: !$.value.length,
                 onClick: $e
-              }, e.toDisplayString(i.value ? t.$t("取消全选") : t.$t("全选")), 9, kr),
+              }, e.toDisplayString(i.value ? t.$t("取消全选") : t.$t("全选")), 9, gr),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn sm",
@@ -6876,7 +6876,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
                     {
                       key: 0,
                       class: "ca-inline-form",
-                      onSubmit: p[10] || (p[10] = e.withModifiers((m) => ge(), ["prevent"]))
+                      onSubmit: p[10] || (p[10] = e.withModifiers((m) => ke(), ["prevent"]))
                     },
                     [
                       e.withDirectives(e.createElementVNode("input", {
@@ -6911,7 +6911,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
                         class: "ss-btn sm",
                         disabled: !!f.value,
                         "data-test": "ca-grade-key-demo",
-                        onClick: p[9] || (p[9] = (m) => ge(ae.value.keyFile))
+                        onClick: p[9] || (p[9] = (m) => ke(ae.value.keyFile))
                       }, e.toDisplayString(t.$t("用示例标准答案")), 9, Pr)) : e.createCommentVNode("v-if", !0),
                       e.createElementVNode(
                         "span",
@@ -6961,7 +6961,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
                       class: "ss-btn primary sm",
                       disabled: !v.value || !!f.value,
                       "data-test": "ca-grade-answers",
-                      onClick: p[11] || (p[11] = (m) => ke())
+                      onClick: p[11] || (p[11] = (m) => ge())
                     }, [
                       p[30] || (p[30] = e.createElementVNode(
                         "i",
@@ -6982,7 +6982,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
                       class: "ss-btn sm",
                       disabled: !!f.value,
                       "data-test": "ca-grade-answers-demo",
-                      onClick: p[12] || (p[12] = (m) => ke(ae.value.answersFile))
+                      onClick: p[12] || (p[12] = (m) => ge(ae.value.answersFile))
                     }, e.toDisplayString(t.$t("用示例学生作答")), 9, jr)) : e.createCommentVNode("v-if", !0),
                     e.createElementVNode(
                       "span",
@@ -7201,7 +7201,7 @@ const Ua = { class: "ca-apps" }, Ia = { class: "ss-panel" }, Pa = { class: "ss-m
                                     title: `${Q.response}
 ${Q.reason}`
                                   }, [
-                                    k(Q.no) ? (e.openBlock(), e.createElementBlock("input", {
+                                    g(Q.no) ? (e.openBlock(), e.createElementBlock("input", {
                                       key: 0,
                                       class: "ca-score",
                                       type: "number",
@@ -7340,7 +7340,7 @@ ${Q.reason}`
       ))
     ]));
   }
-}), yc = /* @__PURE__ */ le(vc, [["__scopeId", "data-v-47fb0e43"]]), gc = { class: "ca-research" }, kc = { class: "ss-panel" }, Nc = { class: "ss-muted" }, Vc = { class: "ss-actions" }, Ec = ["disabled"], $c = ["disabled"], bc = ["disabled"], hc = {
+}), yc = /* @__PURE__ */ le(vc, [["__scopeId", "data-v-5ed84881"]]), kc = { class: "ca-research" }, gc = { class: "ss-panel" }, Nc = { class: "ss-muted" }, Vc = { class: "ss-actions" }, Ec = ["disabled"], $c = ["disabled"], bc = ["disabled"], hc = {
   key: 0,
   class: "ss-muted"
 }, fc = { class: "ss-kpis" }, Sc = { class: "ss-kpi accent" }, Dc = { class: "ss-kpi" }, _c = { class: "ss-kpi" }, Bc = { class: "ss-kpi" }, wc = { class: "ca-split" }, Cc = { class: "ca-chart" }, Tc = { class: "ca-chart" }, Lc = { class: "ss-table-wrap" }, Ac = { class: "ss-table" }, Fc = { class: "num" }, Mc = { class: "num" }, zc = { class: "num" }, qc = { class: "num" }, Oc = { class: "ss-panel" }, Uc = { class: "ss-muted" }, Ic = { class: "ss-actions" }, Pc = ["disabled"], Kc = ["disabled"], Wc = {
@@ -7358,7 +7358,7 @@ ${Q.reason}`
 }, Xc = /* @__PURE__ */ e.defineComponent({
   __name: "ResearchTab",
   setup(I) {
-    const w = ne.useNotificationStore(), B = ["deadlines", "eligibility", "materials", "funding", "contacts"], h = e.ref(""), g = e.ref(""), f = e.ref([]), U = e.ref(""), C = e.computed(() => R.value?.research || null), V = e.computed(() => C.value?.stats || null), L = e.computed(() => C.value?.guides || []), q = e.computed(() => ue.value.scope === "guide" ? ue.value.message : ""), P = (n) => ({ deadlines: l.t("截止时间"), eligibility: l.t("申报条件"), materials: l.t("材料清单"), funding: l.t("资助额度"), contacts: l.t("联系方式") })[n], F = (n) => Math.max(1, ...n.map((c) => c.count)), y = (n) => n.split(/[\\/]/).pop() || n, $ = e.computed(() => Math.max(1, ...V.value?.matrix.cells.flat() || [1])), o = (n) => n ? { background: `color-mix(in srgb, var(--ca-oxblood) ${Math.round(n / $.value * 28)}%, transparent)` } : {};
+    const w = ne.useNotificationStore(), B = ["deadlines", "eligibility", "materials", "funding", "contacts"], h = e.ref(""), k = e.ref(""), f = e.ref([]), U = e.ref(""), C = e.computed(() => R.value?.research || null), V = e.computed(() => C.value?.stats || null), L = e.computed(() => C.value?.guides || []), q = e.computed(() => ue.value.scope === "guide" ? ue.value.message : ""), P = (n) => ({ deadlines: l.t("截止时间"), eligibility: l.t("申报条件"), materials: l.t("材料清单"), funding: l.t("资助额度"), contacts: l.t("联系方式") })[n], F = (n) => Math.max(1, ...n.map((c) => c.count)), y = (n) => n.split(/[\\/]/).pop() || n, $ = e.computed(() => Math.max(1, ...V.value?.matrix.cells.flat() || [1])), o = (n) => n ? { background: `color-mix(in srgb, var(--ca-oxblood) ${Math.round(n / $.value * 28)}%, transparent)` } : {};
     async function N(n, c) {
       h.value = n;
       try {
@@ -7394,16 +7394,16 @@ ${Q.reason}`
       c && te(c, !0);
     }
     async function W(n) {
-      if (g.value !== n) {
-        g.value = n, setTimeout(() => {
-          g.value === n && (g.value = "");
+      if (k.value !== n) {
+        k.value = n, setTimeout(() => {
+          k.value === n && (k.value = "");
         }, 3e3);
         return;
       }
-      g.value = "", await N("gremove", () => _("guide.remove", { id: n }));
+      k.value = "", await N("gremove", () => _("guide.remove", { id: n }));
     }
-    return (n, c) => (e.openBlock(), e.createElementBlock("div", gc, [
-      e.createElementVNode("section", kc, [
+    return (n, c) => (e.openBlock(), e.createElementBlock("div", kc, [
+      e.createElementVNode("section", gc, [
         e.createElementVNode("h3", null, [
           c[3] || (c[3] = e.createElementVNode(
             "i",
@@ -7457,7 +7457,7 @@ ${Q.reason}`
           }, [
             c[4] || (c[4] = e.createElementVNode(
               "i",
-              { class: "ri-magic-line" },
+              { class: "ri-file-download-line" },
               null,
               -1
               /* CACHED */
@@ -7924,7 +7924,7 @@ ${Q.reason}`
                 type: "button",
                 class: "ss-btn sm ghost danger",
                 onClick: (i) => W(d.id)
-              }, e.toDisplayString(g.value === d.id ? n.$t("确认删除") : n.$t("删除")), 9, Gc)
+              }, e.toDisplayString(k.value === d.id ? n.$t("确认删除") : n.$t("删除")), 9, Gc)
             ]),
             e.createElementVNode("div", Jc, [
               (e.openBlock(), e.createElementBlock(
@@ -7998,13 +7998,13 @@ ${Q.reason}`
       ])
     ]));
   }
-}), Zc = /* @__PURE__ */ le(Xc, [["__scopeId", "data-v-cae66305"]]), xc = { class: "ca-gov" }, ed = {
+}), Zc = /* @__PURE__ */ le(Xc, [["__scopeId", "data-v-54ecb45c"]]), xc = { class: "ca-gov" }, ed = {
   class: "ca-subnav",
   role: "tablist"
 }, td = ["aria-selected"], ld = ["aria-selected"], nd = {
   key: 0,
   class: "ss-module"
-}, od = { class: "ss-steps" }, sd = { class: "ss-actions" }, ad = { class: "ss-field inline" }, id = { value: "" }, rd = ["value"], cd = { class: "ss-grid" }, dd = { class: "ss-field" }, ud = ["value"], md = { class: "ss-field" }, pd = ["placeholder"], vd = { class: "ss-field" }, yd = ["placeholder"], gd = { class: "ss-field" }, kd = { class: "ss-field" }, Nd = ["placeholder"], Vd = { class: "ss-field" }, Ed = ["placeholder"], $d = { class: "ss-field" }, bd = ["placeholder"], hd = { class: "ss-field" }, fd = { class: "ss-actions" }, Sd = ["disabled"], Dd = { class: "ss-muted" }, _d = {
+}, od = { class: "ss-steps" }, sd = { class: "ss-actions" }, ad = { class: "ss-field inline" }, id = { value: "" }, rd = ["value"], cd = { class: "ss-grid" }, dd = { class: "ss-field" }, ud = ["value"], md = { class: "ss-field" }, pd = ["placeholder"], vd = { class: "ss-field" }, yd = ["placeholder"], kd = { class: "ss-field" }, gd = { class: "ss-field" }, Nd = ["placeholder"], Vd = { class: "ss-field" }, Ed = ["placeholder"], $d = { class: "ss-field" }, bd = ["placeholder"], hd = { class: "ss-field" }, fd = { class: "ss-actions" }, Sd = ["disabled"], Dd = { class: "ss-muted" }, _d = {
   key: 0,
   class: "ss-note warn",
   "data-test": "ca-doc-unverified"
@@ -8032,7 +8032,7 @@ ${Q.reason}`
 }, nu = { class: "ca-split" }, ou = { class: "ss-panel" }, su = { class: "ss-table-wrap" }, au = { class: "ss-table" }, iu = { class: "num" }, ru = { class: "num" }, cu = { class: "num" }, du = { class: "num" }, uu = { class: "num" }, mu = { class: "ss-panel" }, pu = {
   key: 0,
   class: "ss-table-wrap"
-}, vu = { class: "ss-table" }, yu = { class: "num" }, gu = { class: "num" }, ku = { class: "num" }, Nu = { class: "num" }, Vu = { class: "num" }, Eu = { class: "num" }, $u = { class: "num" }, bu = { class: "num" }, hu = {
+}, vu = { class: "ss-table" }, yu = { class: "num" }, ku = { class: "num" }, gu = { class: "num" }, Nu = { class: "num" }, Vu = { class: "num" }, Eu = { class: "num" }, $u = { class: "num" }, bu = { class: "num" }, hu = {
   key: 1,
   class: "ss-muted"
 }, fu = { class: "ss-panel" }, Su = { class: "ss-muted" }, Du = {
@@ -8047,17 +8047,17 @@ ${Q.reason}`
 }, wu = /* @__PURE__ */ e.defineComponent({
   __name: "GovTab",
   setup(I) {
-    const w = ne.useNotificationStore(), B = de.CA_DOC_KINDS, h = e.ref("doc"), g = e.ref(""), f = e.ref({}), U = e.ref(""), C = () => {
+    const w = ne.useNotificationStore(), B = de.CA_DOC_KINDS, h = e.ref("doc"), k = e.ref(""), f = e.ref({}), U = e.ref(""), C = () => {
       const s = /* @__PURE__ */ new Date();
       return `${s.getFullYear()}-${String(s.getMonth() + 1).padStart(2, "0")}-${String(s.getDate()).padStart(2, "0")}`;
     }, V = e.reactive({ kind: "notice", issuer: "", docNo: "", date: C(), title: "", recipients: "", points: "", attachments: "" }), L = e.ref(""), q = e.ref(7), P = e.ref(!0), F = e.ref(null), y = e.ref(!1), $ = e.computed(() => R.value?.officialDocs || []), o = e.computed(() => $.value.find((s) => s.id === U.value) || null), N = (s) => ({ notice: l.t("通知"), request: l.t("请示"), report: l.t("报告"), letter: l.t("函"), minutes: l.t("会议纪要") })[s];
     e.watch(() => o.value ? `${o.value.id}:${o.value.updatedAt}` : "", (s, T) => {
-      const k = o.value;
-      if ((!T || s.split(":")[0] !== T.split(":")[0]) && (y.value = !1), !k) {
+      const g = o.value;
+      if ((!T || s.split(":")[0] !== T.split(":")[0]) && (y.value = !1), !g) {
         L.value = "";
         return;
       }
-      Object.assign(V, { kind: k.kind, issuer: k.issuer, docNo: k.docNo, date: k.date, title: k.title, recipients: k.recipients, points: k.points, attachments: k.attachments }), L.value = k.body;
+      Object.assign(V, { kind: g.kind, issuer: g.issuer, docNo: g.docNo, date: g.date, title: g.title, recipients: g.recipients, points: g.points, attachments: g.attachments }), L.value = g.body;
     }, { immediate: !0 });
     const v = [
       { key: "gd-input", title: l.t("填写要点"), hint: l.t("文种、发文机关、标题、主送机关和正文要点") },
@@ -8068,7 +8068,7 @@ ${Q.reason}`
       const s = o.value, T = f.value;
       return {
         "gd-input": V.title.trim() && V.points.trim() ? { state: "done", summary: `${N(V.kind)} · ${V.title}` } : { state: "todo" },
-        "gd-draft": g.value === "draft" ? { state: "running", kind: "llm", progressAt: Date.now() } : T.draft ? { state: "failed", error: T.draft } : s ? { state: "done", summary: l.t("{n} 字", { n: s.body.length }) } : { state: "todo" },
+        "gd-draft": k.value === "draft" ? { state: "running", kind: "llm", progressAt: Date.now() } : T.draft ? { state: "failed", error: T.draft } : s ? { state: "done", summary: l.t("{n} 字", { n: s.body.length }) } : { state: "todo" },
         "gd-review": s && L.value === s.body && (!s.unverified.length || y.value) ? { state: "done", summary: l.t("数字已核对") } : { state: "todo" },
         "gd-export": T.export ? { state: "failed", error: T.export } : s?.docxPath && L.value === s.body ? { state: "done", summary: s.docxPath } : { state: "todo" }
       };
@@ -8076,14 +8076,14 @@ ${Q.reason}`
       K.scrollToStep(s);
     };
     async function O(s, T) {
-      g.value = s, f.value = { ...f.value, [s]: "" };
+      k.value = s, f.value = { ...f.value, [s]: "" };
       try {
-        const k = await T();
-        return await J(), k;
-      } catch (k) {
-        return f.value = { ...f.value, [s]: K.errorMessage(k) }, w.error(K.errorMessage(k)), null;
+        const g = await T();
+        return await J(), g;
+      } catch (g) {
+        return f.value = { ...f.value, [s]: K.errorMessage(g) }, w.error(K.errorMessage(g)), null;
       } finally {
-        g.value = "";
+        k.value = "";
       }
     }
     async function W() {
@@ -8106,8 +8106,8 @@ ${Q.reason}`
     }
     function E(s, T) {
       if (!T) return l.t("上期 {n}", { n: T });
-      const k = Math.round((s - T) / T * 100);
-      return k >= 0 ? l.t("比上期 +{n}%", { n: k }) : l.t("比上期 {n}%", { n: k });
+      const g = Math.round((s - T) / T * 100);
+      return g >= 0 ? l.t("比上期 +{n}%", { n: g }) : l.t("比上期 {n}%", { n: g });
     }
     return (s, T) => (e.openBlock(), e.createElementBlock("div", xc, [
       e.createElementVNode("nav", ed, [
@@ -8117,7 +8117,7 @@ ${Q.reason}`
           "aria-selected": h.value === "doc",
           class: e.normalizeClass({ on: h.value === "doc" }),
           "data-test": "ca-gov-doc",
-          onClick: T[0] || (T[0] = (k) => h.value = "doc")
+          onClick: T[0] || (T[0] = (g) => h.value = "doc")
         }, [
           T[15] || (T[15] = e.createElementVNode(
             "i",
@@ -8138,7 +8138,7 @@ ${Q.reason}`
           "aria-selected": h.value === "hot",
           class: e.normalizeClass({ on: h.value === "hot" }),
           "data-test": "ca-gov-hot",
-          onClick: T[1] || (T[1] = (k) => h.value = "hot")
+          onClick: T[1] || (T[1] = (g) => h.value = "hot")
         }, [
           T[16] || (T[16] = e.createElementVNode(
             "i",
@@ -8185,7 +8185,7 @@ ${Q.reason}`
                   e.withDirectives(e.createElementVNode(
                     "select",
                     {
-                      "onUpdate:modelValue": T[2] || (T[2] = (k) => U.value = k),
+                      "onUpdate:modelValue": T[2] || (T[2] = (g) => U.value = g),
                       class: "ca-sel"
                     },
                     [
@@ -8199,10 +8199,10 @@ ${Q.reason}`
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList($.value, (k) => (e.openBlock(), e.createElementBlock("option", {
-                          key: k.id,
-                          value: k.id
-                        }, e.toDisplayString(N(k.kind)) + " · " + e.toDisplayString(k.title), 9, rd))),
+                        e.renderList($.value, (g) => (e.openBlock(), e.createElementBlock("option", {
+                          key: g.id,
+                          value: g.id
+                        }, e.toDisplayString(N(g.kind)) + " · " + e.toDisplayString(g.title), 9, rd))),
                         128
                         /* KEYED_FRAGMENT */
                       ))
@@ -8226,16 +8226,16 @@ ${Q.reason}`
                   e.withDirectives(e.createElementVNode(
                     "select",
                     {
-                      "onUpdate:modelValue": T[3] || (T[3] = (k) => V.kind = k)
+                      "onUpdate:modelValue": T[3] || (T[3] = (g) => V.kind = g)
                     },
                     [
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(e.unref(B), (k) => (e.openBlock(), e.createElementBlock("option", {
-                          key: k,
-                          value: k
-                        }, e.toDisplayString(N(k)), 9, ud))),
+                        e.renderList(e.unref(B), (g) => (e.openBlock(), e.createElementBlock("option", {
+                          key: g,
+                          value: g
+                        }, e.toDisplayString(N(g)), 9, ud))),
                         128
                         /* KEYED_FRAGMENT */
                       ))
@@ -8255,7 +8255,7 @@ ${Q.reason}`
                     /* TEXT */
                   ),
                   e.withDirectives(e.createElementVNode("input", {
-                    "onUpdate:modelValue": T[4] || (T[4] = (k) => V.issuer = k),
+                    "onUpdate:modelValue": T[4] || (T[4] = (g) => V.issuer = g),
                     placeholder: e.unref(R)?.settings.schoolName || s.$t("如：某某学院党政办公室")
                   }, null, 8, pd), [
                     [e.vModelText, V.issuer]
@@ -8270,13 +8270,13 @@ ${Q.reason}`
                     /* TEXT */
                   ),
                   e.withDirectives(e.createElementVNode("input", {
-                    "onUpdate:modelValue": T[5] || (T[5] = (k) => V.docNo = k),
+                    "onUpdate:modelValue": T[5] || (T[5] = (g) => V.docNo = g),
                     placeholder: s.$t("如：某院发〔2026〕12号")
                   }, null, 8, yd), [
                     [e.vModelText, V.docNo]
                   ])
                 ]),
-                e.createElementVNode("label", gd, [
+                e.createElementVNode("label", kd, [
                   e.createElementVNode(
                     "span",
                     null,
@@ -8287,7 +8287,7 @@ ${Q.reason}`
                   e.withDirectives(e.createElementVNode(
                     "input",
                     {
-                      "onUpdate:modelValue": T[6] || (T[6] = (k) => V.date = k),
+                      "onUpdate:modelValue": T[6] || (T[6] = (g) => V.date = g),
                       type: "date"
                     },
                     null,
@@ -8298,7 +8298,7 @@ ${Q.reason}`
                   ])
                 ])
               ]),
-              e.createElementVNode("label", kd, [
+              e.createElementVNode("label", gd, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -8307,7 +8307,7 @@ ${Q.reason}`
                   /* TEXT */
                 ),
                 e.withDirectives(e.createElementVNode("input", {
-                  "onUpdate:modelValue": T[7] || (T[7] = (k) => V.title = k),
+                  "onUpdate:modelValue": T[7] || (T[7] = (g) => V.title = g),
                   placeholder: s.$t("如：关于做好2026年秋季学期学业预警工作的通知"),
                   "data-test": "ca-doc-title"
                 }, null, 8, Nd), [
@@ -8323,7 +8323,7 @@ ${Q.reason}`
                   /* TEXT */
                 ),
                 e.withDirectives(e.createElementVNode("input", {
-                  "onUpdate:modelValue": T[8] || (T[8] = (k) => V.recipients = k),
+                  "onUpdate:modelValue": T[8] || (T[8] = (g) => V.recipients = g),
                   placeholder: s.$t("如：各二级学院、各部门")
                 }, null, 8, Ed), [
                   [e.vModelText, V.recipients]
@@ -8338,7 +8338,7 @@ ${Q.reason}`
                   /* TEXT */
                 ),
                 e.withDirectives(e.createElementVNode("textarea", {
-                  "onUpdate:modelValue": T[9] || (T[9] = (k) => V.points = k),
+                  "onUpdate:modelValue": T[9] || (T[9] = (g) => V.points = g),
                   rows: "6",
                   "data-test": "ca-doc-points",
                   placeholder: s.$t(`每行一条，例如：
@@ -8360,7 +8360,7 @@ ${Q.reason}`
                 e.withDirectives(e.createElementVNode(
                   "textarea",
                   {
-                    "onUpdate:modelValue": T[10] || (T[10] = (k) => V.attachments = k),
+                    "onUpdate:modelValue": T[10] || (T[10] = (g) => V.attachments = g),
                     rows: "2"
                   },
                   null,
@@ -8381,21 +8381,21 @@ ${Q.reason}`
             hint: v[1].hint,
             runtime: D.value["gd-draft"],
             "is-current": z.value === "gd-draft",
-            retry: g.value ? void 0 : W
+            retry: k.value ? void 0 : W
           }, {
             default: e.withCtx(() => [
               e.createElementVNode("div", fd, [
                 e.createElementVNode("button", {
                   type: "button",
                   class: "ss-btn primary",
-                  disabled: !!g.value || !V.title.trim() || !V.points.trim(),
+                  disabled: !!k.value || !V.title.trim() || !V.points.trim(),
                   "data-test": "ca-doc-draft",
                   onClick: W
                 }, [
                   e.createElementVNode(
                     "i",
                     {
-                      class: e.normalizeClass(g.value === "draft" ? "ri-loader-4-line spin" : "ri-quill-pen-line")
+                      class: e.normalizeClass(k.value === "draft" ? "ri-loader-4-line spin" : "ri-quill-pen-line")
                     },
                     null,
                     2
@@ -8450,7 +8450,7 @@ ${Q.reason}`
                     e.withDirectives(e.createElementVNode(
                       "input",
                       {
-                        "onUpdate:modelValue": T[11] || (T[11] = (k) => y.value = k),
+                        "onUpdate:modelValue": T[11] || (T[11] = (g) => y.value = g),
                         type: "checkbox"
                       },
                       null,
@@ -8517,7 +8517,7 @@ ${Q.reason}`
                     e.withDirectives(e.createElementVNode(
                       "textarea",
                       {
-                        "onUpdate:modelValue": T[12] || (T[12] = (k) => L.value = k),
+                        "onUpdate:modelValue": T[12] || (T[12] = (g) => L.value = g),
                         class: "ca-paper__body",
                         rows: "14",
                         "data-test": "ca-doc-body"
@@ -8533,7 +8533,7 @@ ${Q.reason}`
                     e.createElementVNode("button", {
                       type: "button",
                       class: "ss-btn sm",
-                      disabled: L.value === o.value.body || !!g.value,
+                      disabled: L.value === o.value.body || !!k.value,
                       onClick: n
                     }, e.toDisplayString(s.$t("保存修改")), 9, zd)
                   ])
@@ -8564,7 +8564,7 @@ ${Q.reason}`
                 e.createElementVNode("button", {
                   type: "button",
                   class: "ss-btn primary",
-                  disabled: !o.value || !!g.value || L.value !== o.value.body,
+                  disabled: !o.value || !!k.value || L.value !== o.value.body,
                   "data-test": "ca-doc-export",
                   onClick: c
                 }, [
@@ -8609,7 +8609,7 @@ ${Q.reason}`
                   {
                     type: "button",
                     class: "ss-link",
-                    onClick: T[13] || (T[13] = (k) => e.unref(te)(o.value.docxPath))
+                    onClick: T[13] || (T[13] = (g) => e.unref(te)(o.value.docxPath))
                   },
                   e.toDisplayString(s.$t("打开")),
                   1
@@ -8653,12 +8653,12 @@ ${Q.reason}`
                 (e.openBlock(), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList([7, 30, 90], (k) => e.createElementVNode("button", {
-                    key: k,
+                  e.renderList([7, 30, 90], (g) => e.createElementVNode("button", {
+                    key: g,
                     type: "button",
-                    class: e.normalizeClass({ on: q.value === k }),
-                    onClick: (Z) => q.value = k
-                  }, e.toDisplayString(s.$t("近 {n} 天", { n: k })), 11, jd)),
+                    class: e.normalizeClass({ on: q.value === g }),
+                    onClick: (Z) => q.value = g
+                  }, e.toDisplayString(s.$t("近 {n} 天", { n: g })), 11, jd)),
                   64
                   /* STABLE_FRAGMENT */
                 ))
@@ -8667,7 +8667,7 @@ ${Q.reason}`
                 e.withDirectives(e.createElementVNode(
                   "input",
                   {
-                    "onUpdate:modelValue": T[14] || (T[14] = (k) => P.value = k),
+                    "onUpdate:modelValue": T[14] || (T[14] = (g) => P.value = g),
                     type: "checkbox"
                   },
                   null,
@@ -8685,14 +8685,14 @@ ${Q.reason}`
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary sm",
-                disabled: !!g.value,
+                disabled: !!k.value,
                 "data-test": "ca-hot-run",
                 onClick: d
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(g.value === "hot" ? "ri-loader-4-line spin" : "ri-line-chart-line")
+                    class: e.normalizeClass(k.value === "hot" ? "ri-loader-4-line spin" : "ri-line-chart-line")
                   },
                   null,
                   2
@@ -8898,13 +8898,13 @@ ${Q.reason}`
                         (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList(F.value.byDomain, (k) => (e.openBlock(), e.createElementBlock("tr", {
-                            key: k.id
+                          e.renderList(F.value.byDomain, (g) => (e.openBlock(), e.createElementBlock("tr", {
+                            key: g.id
                           }, [
                             e.createElementVNode(
                               "td",
                               null,
-                              e.toDisplayString(k.name),
+                              e.toDisplayString(g.name),
                               1
                               /* TEXT */
                             ),
@@ -8912,7 +8912,7 @@ ${Q.reason}`
                               e.createElementVNode(
                                 "b",
                                 null,
-                                e.toDisplayString(k.count),
+                                e.toDisplayString(g.count),
                                 1
                                 /* TEXT */
                               )
@@ -8920,16 +8920,16 @@ ${Q.reason}`
                             e.createElementVNode(
                               "td",
                               uu,
-                              e.toDisplayString(k.prev),
+                              e.toDisplayString(g.prev),
                               1
                               /* TEXT */
                             ),
                             e.createElementVNode(
                               "td",
                               {
-                                class: e.normalizeClass(["num", { warn: k.noEvidence }])
+                                class: e.normalizeClass(["num", { warn: g.noEvidence }])
                               },
-                              e.toDisplayString(k.noEvidence),
+                              e.toDisplayString(g.noEvidence),
                               3
                               /* TEXT, CLASS */
                             )
@@ -8969,14 +8969,14 @@ ${Q.reason}`
                           ),
                           e.createElementVNode(
                             "th",
-                            gu,
+                            ku,
                             e.toDisplayString(s.$t("已答复")),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "th",
-                            ku,
+                            gu,
                             e.toDisplayString(s.$t("平均响应")),
                             1
                             /* TEXT */
@@ -8994,45 +8994,45 @@ ${Q.reason}`
                         (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList(F.value.byDept, (k) => (e.openBlock(), e.createElementBlock(
+                          e.renderList(F.value.byDept, (g) => (e.openBlock(), e.createElementBlock(
                             "tr",
                             {
-                              key: k.dept,
-                              class: e.normalizeClass({ bad: k.overdue })
+                              key: g.dept,
+                              class: e.normalizeClass({ bad: g.overdue })
                             },
                             [
                               e.createElementVNode(
                                 "td",
                                 null,
-                                e.toDisplayString(k.dept),
+                                e.toDisplayString(g.dept),
                                 1
                                 /* TEXT */
                               ),
                               e.createElementVNode(
                                 "td",
                                 Vu,
-                                e.toDisplayString(k.open),
+                                e.toDisplayString(g.open),
                                 1
                                 /* TEXT */
                               ),
                               e.createElementVNode(
                                 "td",
                                 Eu,
-                                e.toDisplayString(k.answered),
+                                e.toDisplayString(g.answered),
                                 1
                                 /* TEXT */
                               ),
                               e.createElementVNode(
                                 "td",
                                 $u,
-                                e.toDisplayString(k.avgHours === null ? "—" : s.$t("{n} 小时", { n: k.avgHours })),
+                                e.toDisplayString(g.avgHours === null ? "—" : s.$t("{n} 小时", { n: g.avgHours })),
                                 1
                                 /* TEXT */
                               ),
                               e.createElementVNode(
                                 "td",
                                 bu,
-                                e.toDisplayString(k.overdue),
+                                e.toDisplayString(g.overdue),
                                 1
                                 /* TEXT */
                               )
@@ -9073,27 +9073,27 @@ ${Q.reason}`
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(F.value.gaps, (k) => (e.openBlock(), e.createElementBlock("li", {
-                      key: k.question
+                    e.renderList(F.value.gaps, (g) => (e.openBlock(), e.createElementBlock("li", {
+                      key: g.question
                     }, [
                       e.createElementVNode(
                         "span",
                         null,
-                        e.toDisplayString(k.question),
+                        e.toDisplayString(g.question),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "em",
                         null,
-                        e.toDisplayString(k.domain),
+                        e.toDisplayString(g.domain),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "b",
                         null,
-                        e.toDisplayString(s.$t("{n} 次", { n: k.count })),
+                        e.toDisplayString(s.$t("{n} 次", { n: g.count })),
                         1
                         /* TEXT */
                       )
@@ -9112,22 +9112,22 @@ ${Q.reason}`
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(F.value.keywords, (k) => (e.openBlock(), e.createElementBlock(
+                    e.renderList(F.value.keywords, (g) => (e.openBlock(), e.createElementBlock(
                       "span",
                       {
-                        key: k.term,
-                        style: e.normalizeStyle({ fontSize: `${12 + Math.min(8, k.count)}px` })
+                        key: g.term,
+                        style: e.normalizeStyle({ fontSize: `${12 + Math.min(8, g.count)}px` })
                       },
                       [
                         e.createTextVNode(
-                          e.toDisplayString(k.term),
+                          e.toDisplayString(g.term),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "sup",
                           null,
-                          e.toDisplayString(k.count),
+                          e.toDisplayString(g.count),
                           1
                           /* TEXT */
                         )
@@ -9150,7 +9150,7 @@ ${Q.reason}`
       ))
     ]));
   }
-}), Cu = /* @__PURE__ */ le(wu, [["__scopeId", "data-v-06081c59"]]), Tu = { class: "ca-wb" }, Lu = { class: "ca-banner" }, Au = ["src"], Fu = {
+}), Cu = /* @__PURE__ */ le(wu, [["__scopeId", "data-v-1fae361d"]]), Tu = { class: "ca-wb" }, Lu = { class: "ca-banner" }, Au = ["src"], Fu = {
   key: 1,
   class: "ri-government-line"
 }, Mu = { class: "ca-banner__text" }, zu = {
@@ -9210,13 +9210,13 @@ ${Q.reason}`
         return "overview";
       }
     }
-    const h = R, g = e.ref(B()), f = e.ref(!1), U = e.ref(!1), C = e.ref("");
+    const h = R, k = e.ref(B()), f = e.ref(!1), U = e.ref(!1), C = e.ref("");
     function V(y) {
       const $ = h.value?.stats;
       return $ ? y === "tickets" ? $.openTickets : y === "warning" ? $.warnPending : 0 : 0;
     }
     function L(y) {
-      g.value = y;
+      k.value = y;
       try {
         localStorage.setItem(Me, y);
       } catch {
@@ -9426,8 +9426,8 @@ ${Q.reason}`
               e.createElementVNode("button", {
                 type: "button",
                 role: "tab",
-                class: e.normalizeClass(["ca-tab", { active: g.value === o.key }]),
-                "aria-selected": g.value === o.key,
+                class: e.normalizeClass(["ca-tab", { active: k.value === o.key }]),
+                "aria-selected": k.value === o.key,
                 "data-test": `ca-tab-${o.key}`,
                 onClick: (v) => L(o.key)
               }, [
@@ -9467,13 +9467,13 @@ ${Q.reason}`
         ))
       ]),
       f.value ? (e.openBlock(), e.createElementBlock("div", Gu, [
-        g.value === "overview" ? (e.openBlock(), e.createBlock(ft, {
+        k.value === "overview" ? (e.openBlock(), e.createBlock(ft, {
           key: 0,
           onGo: $[0] || ($[0] = (o) => L(o))
-        })) : g.value === "apps" ? (e.openBlock(), e.createBlock(Ei, {
+        })) : k.value === "apps" ? (e.openBlock(), e.createBlock(Ei, {
           key: 1,
           onGo: $[1] || ($[1] = (o) => L(o))
-        })) : g.value === "teach" ? (e.openBlock(), e.createBlock(yc, { key: 2 })) : g.value === "research" ? (e.openBlock(), e.createBlock(Zc, { key: 3 })) : g.value === "gov" ? (e.openBlock(), e.createBlock(Cu, { key: 4 })) : g.value === "kb" ? (e.openBlock(), e.createBlock(Ul, { key: 5 })) : g.value === "qa" ? (e.openBlock(), e.createBlock(Dn, { key: 6 })) : g.value === "tickets" ? (e.openBlock(), e.createBlock(lo, { key: 7 })) : e.createCommentVNode("v-if", !0),
+        })) : k.value === "teach" ? (e.openBlock(), e.createBlock(yc, { key: 2 })) : k.value === "research" ? (e.openBlock(), e.createBlock(Zc, { key: 3 })) : k.value === "gov" ? (e.openBlock(), e.createBlock(Cu, { key: 4 })) : k.value === "kb" ? (e.openBlock(), e.createBlock(Ul, { key: 5 })) : k.value === "qa" ? (e.openBlock(), e.createBlock(Dn, { key: 6 })) : k.value === "tickets" ? (e.openBlock(), e.createBlock(lo, { key: 7 })) : e.createCommentVNode("v-if", !0),
         e.withDirectives(e.createVNode(
           As,
           null,
@@ -9481,10 +9481,10 @@ ${Q.reason}`
           512
           /* NEED_PATCH */
         ), [
-          [e.vShow, g.value === "warning"]
+          [e.vShow, k.value === "warning"]
         ]),
-        g.value === "ops" ? (e.openBlock(), e.createBlock(Oa, { key: 8 })) : e.createCommentVNode("v-if", !0),
-        g.value === "about" ? (e.openBlock(), e.createElementBlock("div", Ju, [
+        k.value === "ops" ? (e.openBlock(), e.createBlock(Oa, { key: 8 })) : e.createCommentVNode("v-if", !0),
+        k.value === "about" ? (e.openBlock(), e.createElementBlock("div", Ju, [
           e.createElementVNode("section", Hu, [
             e.createElementVNode(
               "h3",
@@ -9646,7 +9646,7 @@ ${Q.reason}`
       ]))
     ]));
   }
-}), om = /* @__PURE__ */ le(nm, [["__scopeId", "data-v-3f915ef2"]]);
+}), om = /* @__PURE__ */ le(nm, [["__scopeId", "data-v-7c03a939"]]);
 export {
   om as default
 };

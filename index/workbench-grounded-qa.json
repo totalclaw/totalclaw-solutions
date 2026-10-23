@@ -1,12 +1,12 @@
 {
   "id": "workbench-grounded-qa",
-  "version": "2.0.1",
-  "treeDigest": "be30e936fd0eead60ebca43ab56dc4d4c841607b8d4344d462cbed23629556d6",
+  "version": "2.0.2",
+  "treeDigest": "4f8e812e22a793bc38b635615ac440aa6ba751ddc13f97c5efd8ccab3a78a6af",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 694,
-      "sha256": "c91d93cb5edbf0db5446d21dc6646f48d2eecc0bd4c8d1df3a5e3185a170ca41"
+      "size": 910,
+      "sha256": "3d3ee602812ff2522c6534c35b0031ea12302982ca2ddc6bb3a3c92f3b6c8c9e"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 27478,
-      "sha256": "caaae95e9157b15934bc403f6c8510b0c817aff93ad4c3322a45ec96d195f828"
+      "size": 27832,
+      "sha256": "1cf837acb4b9d72ab8e74f53db370748fe9c27825a02263d4241ad0e87744f7f"
     },
     {
       "path": "dist/renderer.mjs",
       "size": 27077,
-      "sha256": "df4def63cb5bf3c50eeb79768717c1e9f738753f27598e5fe3f25bf01e3718c6"
+      "sha256": "a03eb259f89c2f4d24fc7f5b607f2df040eb1a049d0a60e4be7fc606e3e701bc"
     },
     {
       "path": "dist/style.css",
-      "size": 7003,
-      "sha256": "19ef26ec68f0152c9b0bf40c8ebf734dd19bd5f4dfde2876a7bb1cd8e237a878"
+      "size": 7310,
+      "sha256": "7e830a5d4580853bf1d935a17dfb73e1f2b817784fb2998f9901384489286401"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2178,
-      "sha256": "193153e9ebb5489b96d4292506722104a6ea00d132b2551aa1980950fe3b60a2"
+      "sha256": "49846ebe73d74dee33b962687e458c248f1dc6f562a5ed373b477e32eaee06e6"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-grounded-qa@2.0.2",
+      "treeDigest": "4f8e812e22a793bc38b635615ac440aa6ba751ddc13f97c5efd8ccab3a78a6af",
+      "filesRef": "index/workbench-grounded-qa/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-23"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-grounded-qa@2.0.1",

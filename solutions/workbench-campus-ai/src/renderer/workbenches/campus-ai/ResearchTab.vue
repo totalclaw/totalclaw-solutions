@@ -5,7 +5,7 @@
       <p class="ss-muted">{{ $t('导入科研处的成果登记表（论文、专利、纵向 / 横向项目、获奖、著作），按学院、类型、年度、级别统计数量与经费。数字全部由规则汇总，不经模型。') }}</p>
       <div class="ss-actions">
         <button type="button" class="ss-btn primary sm" :disabled="!!busy" data-test="ca-research-import" @click="importOutputs()"><i :class="busy === 'import' ? 'ri-loader-4-line spin' : 'ri-file-excel-2-line'"></i>{{ r?.outputs ? $t('重新导入成果表') : $t('导入成果表') }}</button>
-        <button type="button" class="ss-btn sm" :disabled="!!busy" data-test="ca-research-demo" @click="loadDemo"><i class="ri-magic-line"></i>{{ $t('载入示例') }}</button>
+        <button type="button" class="ss-btn sm" :disabled="!!busy" data-test="ca-research-demo" @click="loadDemo"><i class="ri-file-download-line"></i>{{ $t('载入示例') }}</button>
         <button type="button" class="ss-btn sm" :disabled="!r?.outputs" @click="exportStats"><i class="ri-download-2-line"></i>{{ $t('导出统计表') }}</button>
         <span v-if="r?.outputsFile" class="ss-muted">{{ fileName(r.outputsFile) }}<template v-if="r.skipped"> · {{ $t('跳过 {n} 行空行', { n: r.skipped }) }}</template></span>
       </div>
@@ -140,22 +140,22 @@ async function removeGuide(id: string): Promise<void> {
 <style scoped>
 .ca-research { display: grid; gap: 14px; }
 .ca-chart { display: grid; gap: 6px; }
-.ca-chart h4, .ca-research h4 { margin: 4px 0; font-size: 13px; font-family: var(--ca-serif); }
+.ca-chart h4, .ca-research h4 { margin: 4px 0; font-size: var(--font-size-md); font-family: var(--ca-serif); }
 .ca-bar-row { display: grid; grid-template-columns: 90px 1fr 36px; gap: 8px; align-items: center; font-size: 12.5px; }
 .ca-bar-row span { color: var(--color-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ca-bar-row i { height: 10px; border-radius: 3px; background: var(--ca-oxblood); min-width: 2px; }
+.ca-bar-row i { height: 10px; border-radius: var(--radius-1); background: var(--ca-oxblood); min-width: 2px; }
 .ca-bar-row i.gold { background: var(--ca-gold); }
 .ca-bar-row b { text-align: end; font-variant-numeric: tabular-nums; }
-.ca-guide { border: 1px solid var(--color-border); border-radius: 12px; padding: 12px 14px; display: grid; gap: 10px; }
+.ca-guide { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 12px 14px; display: grid; gap: 10px; }
 .ca-guide header { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-.ca-guide header b { font-family: var(--ca-serif); font-size: 15px; }
+.ca-guide header b { font-family: var(--ca-serif); font-size: var(--font-size-lg); }
 .ca-guide header .grow { flex: 1; }
 .ca-guide__grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
 .ca-guide__sec h4 { display: flex; gap: 6px; align-items: center; }
-.ca-guide__sec h4 em { font-style: normal; font-size: 11px; color: var(--color-text-secondary); }
+.ca-guide__sec h4 em { font-style: normal; font-size: var(--font-size-xs); color: var(--color-text-secondary); }
 .ca-guide__sec ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
-.ca-guide__sec p { margin: 0; font-size: 13px; line-height: 1.55; }
-.ca-guide__sec blockquote { margin: 4px 0 0; padding: 5px 10px; font-family: var(--ca-serif); font-size: 12px; line-height: 1.6; color: var(--color-text-secondary); background: color-mix(in srgb, var(--ca-gold) 10%, var(--color-bg-card)); border-radius: 6px; }
+.ca-guide__sec p { margin: 0; font-size: var(--font-size-md); line-height: 1.55; }
+.ca-guide__sec blockquote { margin: 4px 0 0; padding: 5px 10px; font-family: var(--ca-serif); font-size: var(--font-size-sm); line-height: 1.6; color: var(--color-text-secondary); background: color-mix(in srgb, var(--ca-gold) 10%, var(--color-bg-card)); border-radius: var(--radius-2); }
 .ca-guide__sec blockquote::before { content: '「'; color: var(--ca-gold); }
 .ca-guide__sec blockquote::after { content: '」'; color: var(--ca-gold); }
 .ca-guide__sec .empty { color: var(--color-text-secondary); font-size: 12.5px; }

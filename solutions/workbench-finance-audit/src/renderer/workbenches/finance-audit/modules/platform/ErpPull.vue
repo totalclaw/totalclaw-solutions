@@ -82,5 +82,5 @@ async function pull(): Promise<void> {
 
 <style scoped>
 .fau-erp { display: grid; gap: 8px; }
-.fau-erp textarea { width: 100%; font-family: var(--font-mono, monospace); font-size: 12px; }
+.fau-erp textarea { width: 100%; font-family: var(--font-mono); font-size: var(--font-size-sm); }
 </style>

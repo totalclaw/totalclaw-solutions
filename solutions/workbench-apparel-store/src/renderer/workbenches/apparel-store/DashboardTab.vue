@@ -98,22 +98,22 @@ const blocks = computed(() => [
 
 <style scoped>
 .ap-dash { display: grid; gap: 14px; }
-.ss-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
+.ss-panel { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; }
 .ap-head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.ap-head strong { font-size: 14px; }
+.ap-head strong { font-size: var(--font-size-base); }
 .ap-funnel { display: grid; gap: 8px; }
 .ap-funnel__row { display: grid; grid-template-columns: 90px 1fr 50px; gap: 10px; align-items: center; font-size: 12.5px; }
 .ap-funnel__row b { text-align: end; font-variant-numeric: tabular-nums; }
-.ap-funnel__bar { height: 14px; border-radius: 7px; background: var(--color-bg-hover); overflow: hidden; }
-.ap-funnel__bar i { display: block; height: 100%; background: var(--color-brand); border-radius: 7px; }
+.ap-funnel__bar { height: 14px; border-radius: var(--radius-2); background: var(--color-bg-hover); overflow: hidden; }
+.ap-funnel__bar i { display: block; height: 100%; background: var(--color-brand); border-radius: var(--radius-2); }
 .ap-days { display: flex; gap: 6px; align-items: flex-end; height: 140px; }
 .ap-days__col { flex: 1; display: grid; grid-template-rows: 1fr auto; gap: 4px; height: 100%; }
 .ap-days__bars { display: flex; gap: 2px; align-items: flex-end; justify-content: center; }
-.ap-days__bars i { width: 40%; max-width: 12px; border-radius: 3px 3px 0 0; min-height: 1px; }
+.ap-days__bars i { width: 40%; max-width: 12px; border-radius: var(--radius-1) var(--radius-1) 0 0; min-height: 1px; }
 .ap-days__col small { font-size: 10px; text-align: center; color: var(--color-text-secondary); }
 .a { background: var(--color-brand); }
 .b { background: var(--color-success); }
-.ap-dot { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin: 0 4px 0 10px; }
+.ap-dot { display: inline-block; width: 8px; height: 8px; border-radius: calc(var(--radius-1) / 2); margin: 0 4px 0 10px; }
 .ap-dash__two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .ap-rank { margin: 0; padding-inline-start: 20px; display: grid; gap: 4px; font-size: 12.5px; }
 .ap-rank li span { margin-inline-end: 8px; }

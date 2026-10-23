@@ -16,7 +16,7 @@
         <p class="aw-topic"><i class="ri-draft-line"></i>{{ project?.title || '—' }}</p>
         <div class="ss-actions">
           <button type="button" class="ss-btn primary" :disabled="!!busy || !project" @click="suggest">
-            <i :class="busy === 'topic' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ $t('生成检索式') }}
+            <i :class="busy === 'topic' ? 'ri-loader-4-line spin' : 'ri-search-eye-line'"></i>{{ $t('生成检索式') }}
           </button>
           <span v-if="suggestModel" class="ss-muted">{{ $t('由 {p0} 生成', { p0: suggestModel }) }}</span>
         </div>
@@ -229,33 +229,33 @@ function scrollTo(key: string): void { void scrollToStep(key); }
 
 <style scoped>
 .aw-head { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
-.aw-head__main { display: grid; gap: 4px; flex: 1; min-width: 0; font-size: 13px; }
-.aw-head__main strong { display: flex; gap: 6px; align-items: center; font-size: 15px; }
-.aw-topic { margin: 0; font-size: 14px; font-weight: 600; display: flex; gap: 6px; align-items: center; }
+.aw-head__main { display: grid; gap: 4px; flex: 1; min-width: 0; font-size: var(--font-size-md); }
+.aw-head__main strong { display: flex; gap: 6px; align-items: center; font-size: var(--font-size-lg); }
+.aw-topic { margin: 0; font-size: var(--font-size-base); font-weight: 600; display: flex; gap: 6px; align-items: center; }
 .aw-topic i { color: var(--color-brand); }
 .aw-chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-.aw-chip { display: inline-grid; gap: 1px; padding: 5px 10px; border-radius: 10px; border: 1px solid var(--color-border); background: var(--color-bg-primary); color: var(--color-text-primary); font: inherit; font-size: 12.5px; cursor: pointer; text-align: start; }
+.aw-chip { display: inline-grid; gap: 1px; padding: 5px 10px; border-radius: var(--radius-4); border: 1px solid var(--color-border); background: var(--color-bg-primary); color: var(--color-text-primary); font: inherit; font-size: 12.5px; cursor: pointer; text-align: start; }
 .aw-chip:hover { border-color: var(--color-brand); }
-.aw-chip small { font-size: 11px; color: var(--color-text-secondary); }
+.aw-chip small { font-size: var(--font-size-xs); color: var(--color-text-secondary); }
 .aw-wide { grid-column: 1 / -1; }
 .aw-sources { display: flex; flex-wrap: wrap; gap: 12px; }
-.aw-check { display: inline-flex; gap: 6px; align-items: center; font-size: 13px; cursor: pointer; }
+.aw-check { display: inline-flex; gap: 6px; align-items: center; font-size: var(--font-size-md); cursor: pointer; }
 .aw-grow { flex: 1; }
 .aw-results { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
-.aw-results li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; border-radius: 10px; background: var(--color-bg-primary); }
+.aw-results li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; border-radius: var(--radius-4); background: var(--color-bg-primary); }
 .aw-results li.inlib { opacity: .7; }
 .aw-results li input { margin-top: 4px; }
 .aw-results__body { display: grid; gap: 4px; min-width: 0; flex: 1; }
 .aw-title { border: none; background: none; padding: 0; text-align: start; font: inherit; font-size: 13.5px; font-weight: 600; color: var(--color-text-primary); cursor: pointer; }
 .aw-title:hover { color: var(--color-brand); }
-.aw-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12px; color: var(--color-text-secondary); }
+.aw-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: var(--font-size-sm); color: var(--color-text-secondary); }
 .aw-meta em { font-style: normal; }
 .aw-abstract { margin: 4px 0 0; font-size: 12.5px; line-height: 1.6; white-space: pre-wrap; color: var(--color-text-secondary); }
 .aw-sites { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
-.aw-site { display: grid; gap: 2px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--color-border); background: var(--color-bg-primary); color: var(--color-text-primary); font: inherit; cursor: pointer; text-align: start; }
+.aw-site { display: grid; gap: 2px; padding: 10px 12px; border-radius: var(--radius-4); border: 1px solid var(--color-border); background: var(--color-bg-primary); color: var(--color-text-primary); font: inherit; cursor: pointer; text-align: start; }
 .aw-site:hover { border-color: var(--color-brand); }
-.aw-site strong { font-size: 13px; }
-.aw-site small { font-size: 11px; color: var(--color-text-secondary); }
+.aw-site strong { font-size: var(--font-size-md); }
+.aw-site small { font-size: var(--font-size-xs); color: var(--color-text-secondary); }
 .spin { animation: aw-spin 1s linear infinite; }
 @keyframes aw-spin { to { transform: rotate(360deg); } }
 </style>

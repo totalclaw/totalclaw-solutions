@@ -182,22 +182,22 @@ onBeforeUnmount(() => {
 .ft-workbench { display: grid; gap: 14px; padding: 18px 22px 40px; max-width: 1440px; margin: 0 auto; width: 100%; box-sizing: border-box; flex: 1; min-height: 0; overflow-y: auto; align-content: start; }
 .workbench-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .heading { display: flex; gap: 14px; align-items: flex-start; }
-.heading-icon { width: 48px; height: 48px; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--color-brand) 14%, transparent); color: var(--color-brand); font-size: 24px; flex: 0 0 auto; }
-.eyebrow { margin: 0; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-secondary); }
+.heading-icon { width: 48px; height: 48px; border-radius: var(--radius-6); display: inline-flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--color-brand) 14%, transparent); color: var(--color-brand); font-size: var(--font-size-2xl); flex: 0 0 auto; }
+.eyebrow { margin: 0; font-size: var(--font-size-xs); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-secondary); }
 h1 { margin: 2px 0 4px; font-size: 22px; }
-.subtitle { margin: 0; color: var(--color-text-secondary); font-size: 13px; line-height: 1.6; max-width: 900px; }
+.subtitle { margin: 0; color: var(--color-text-secondary); font-size: var(--font-size-md); line-height: 1.6; max-width: 900px; }
 .header-actions { display: flex; gap: 8px; align-items: center; }
 
 
 /* 横向可滚动的 tab 条是滚动容器，min-height 默认会算成 0：外层网格高度固定、内容溢出时这一行被压扁成一条线 */
 .ft-tabs { display: flex; gap: 2px; overflow-x: auto; overflow-y: hidden; min-height: 44px; align-items: stretch; border-bottom: 1px solid var(--color-border); scrollbar-width: thin; }
-.ft-tab { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; background: transparent; cursor: pointer; font: inherit; font-size: 13px; font-weight: 600; color: var(--color-text-secondary); white-space: nowrap; flex: 0 0 auto; border-radius: 8px 8px 0 0; transition: .15s; }
+.ft-tab { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; background: transparent; cursor: pointer; font: inherit; font-size: var(--font-size-md); font-weight: 600; color: var(--color-text-secondary); white-space: nowrap; flex: 0 0 auto; border-radius: var(--radius-3) var(--radius-3) 0 0; transition: color .15s, border-color .15s, background-color .15s; }
 .ft-tab i { font-size: 16px; }
 .ft-tab:hover { color: var(--color-brand); background: var(--color-bg-hover); }
 .ft-tab.active { color: var(--color-brand); border-bottom-color: var(--color-brand); }
 .ft-tabs__grow { flex: 1 1 auto; }
 .ft-badge.warn { background: var(--color-warning); }
-.ft-badge { font-style: normal; font-size: 10.5px; font-weight: 800; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--color-danger); color: #fff; display: inline-flex; align-items: center; justify-content: center; }
+.ft-badge { font-style: normal; font-size: 10.5px; font-weight: 800; min-width: 18px; height: 18px; padding: 0 5px; border-radius: var(--radius-3); background: var(--color-danger); color: var(--color-on-accent); display: inline-flex; align-items: center; justify-content: center; }
 .ft-progress { position: sticky; top: 0; z-index: 5; }
 .ft-body { display: grid; gap: 14px; }
 .spin { animation: ft-spin 1s linear infinite; }

@@ -16,7 +16,7 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// node_modules/.cache/solutions-build/workbench-warehouse/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-warehouse/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -26,13 +26,13 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../totalclaw-solutions/solutions/workbench-warehouse/src/main/ipc/warehouseWorkbench.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-warehouse/src/main/ipc/warehouseWorkbench.ipc.ts
 var import_electron = require("electron");
 var import_ipc_contracts = require("npm:@totalclaw/ipc-contracts");
 var import_workbenchApi = require("host:apps/desktop-shell/src/main/ipc/workbenchApi.ts");
 var import_shared = require("host:apps/desktop-shell/src/main/ipc/shared.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-warehouse/src/main/services/warehouseNormalization.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-warehouse/src/main/services/warehouseNormalization.ts
 var import_i18n = require("npm:@totalclaw/i18n");
 var DEFAULT_UNIT_MULTIPLIERS = {
   EA: 1,
@@ -387,7 +387,7 @@ function reconcileWarehouseThreeWay(payload) {
   };
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-warehouse/src/main/ipc/warehouseWorkbench.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-warehouse/src/main/ipc/warehouseWorkbench.ipc.ts
 var import_i18n2 = require("npm:@totalclaw/i18n");
 function registerWarehouseWorkbenchHandlers(deps) {
   const workflowRuns = /* @__PURE__ */ new Map();
@@ -574,7 +574,7 @@ function registerWarehouseWorkbenchHandlers(deps) {
   );
 }
 
-// node_modules/.cache/solutions-build/workbench-warehouse/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-warehouse/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerWarehouseWorkbenchHandlers";
 var cleanup;

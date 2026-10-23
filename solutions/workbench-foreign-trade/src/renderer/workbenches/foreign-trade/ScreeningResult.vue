@@ -39,7 +39,7 @@ const levelLabel = computed(() => ({ high: i18nT('高度疑似命中'), review: 
 </script>
 
 <style scoped>
-.ft-scr { border: 1px solid var(--color-border); border-radius: 10px; padding: 8px 10px; display: grid; gap: 6px; font-size: 12.5px; }
+.ft-scr { border: 1px solid var(--color-border); border-radius: var(--radius-4); padding: 8px 10px; display: grid; gap: 6px; font-size: 12.5px; }
 .ft-scr.high { border-color: color-mix(in srgb, var(--color-danger) 55%, var(--color-border)); }
 .ft-scr.review { border-color: color-mix(in srgb, var(--color-warning) 55%, var(--color-border)); }
 .ft-scr__head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }

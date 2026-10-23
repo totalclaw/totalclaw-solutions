@@ -1,12 +1,12 @@
 {
   "id": "embedded-bid-desk",
   "version": "2.0.2",
-  "treeDigest": "af113910c44325529213be0ede6455993b29f8222f44b5a794c286faa3a9ebe8",
+  "treeDigest": "9211152805a3ecdae02e6ff61845e90bcdfdbe71cac595610842a64ae3024cfe",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1336,
-      "sha256": "ac9b561db8ba79c936facef1e82de350d9963be8dfa82de588d6e8dd2693ce4d"
+      "size": 1445,
+      "sha256": "0752237801a4f015fd087222610e1371e802709c9806378c02d7811b47ed5d61"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 36011,
-      "sha256": "a597dcf92d4761edf1dd08377017e202ca62b265dc4424127fdb0540dc82fd34"
+      "size": 36261,
+      "sha256": "df635cd79e86b59b511e9af9f2c9124ba06afb6cbe6816638da703e1301da2c6"
     },
     {
       "path": "dist/renderer.mjs",
       "size": 148818,
-      "sha256": "1ec6816097c22ba6aa77e32feb578d1a232ba9f4c8a3ac49bf117a706dc244af"
+      "sha256": "00ccd9d2d402fd26e6ceeece474285f7210f07729f8348db4a2eaa2785cfae1f"
     },
     {
       "path": "dist/style.css",
-      "size": 30585,
-      "sha256": "393b0a1c3d0137d6ae7e7af983578b4b25dd0928e5cc49b90a7537c502b145f0"
+      "size": 45339,
+      "sha256": "9dc818efbe3f9f833b82e72b01e7ccfdf51999b85005448926b007bb61222205"
     },
     {
       "path": "migrations/README.md",
@@ -41,20 +41,20 @@
     {
       "path": "solution.json",
       "size": 1777,
-      "sha256": "2d910181e7bcd38c7223f2202c4113cf7121138747149607254640572a45b4ec"
+      "sha256": "055cd6309ee952164fc1914eacf661391fac8fb7fa448c8f641b4566397a93df"
     }
   ],
   "versions": [
     {
       "version": "2.0.2",
       "ref": "embedded-bid-desk@2.0.2",
-      "treeDigest": "af113910c44325529213be0ede6455993b29f8222f44b5a794c286faa3a9ebe8",
+      "treeDigest": "9211152805a3ecdae02e6ff61845e90bcdfdbe71cac595610842a64ae3024cfe",
       "filesRef": "index/embedded-bid-desk/2.0.2.json",
       "channel": "stable",
       "rollout": 100,
-      "minAppVersion": "2.0.6",
+      "minAppVersion": "2.0.5",
       "hostApi": 2,
-      "publishedAt": "2026-10-22"
+      "publishedAt": "2026-10-23"
     },
     {
       "version": "2.0.1",

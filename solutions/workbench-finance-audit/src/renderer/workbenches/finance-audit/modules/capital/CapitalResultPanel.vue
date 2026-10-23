@@ -97,20 +97,20 @@ const LEVEL: Record<string, string> = { high: i18nKey('é«˜'), medium: i18nKey('ä
 
 <style scoped>
 .cap-res { contain: inline-size; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
-.cap-sec { border: 1px solid var(--color-border); border-radius: 12px; padding: 10px 12px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; background: var(--color-bg-card); }
+.cap-sec { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 10px 12px; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; background: var(--color-bg-card); }
 .cap-sec summary { cursor: pointer; font-weight: 700; font-size: 12.5px; }
 .cap-metrics { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 170px), 1fr)); }
-.cap-metric { border: 1px solid var(--color-border); border-radius: 10px; padding: 8px 10px; display: grid; gap: 2px; background: var(--color-bg-card); }
+.cap-metric { border: 1px solid var(--color-border); border-radius: var(--radius-4); padding: 8px 10px; display: grid; gap: 2px; background: var(--color-bg-card); }
 .cap-metric small { color: var(--color-text-secondary); font-size: 11.5px; }
-.cap-metric strong { font-size: 15px; }
+.cap-metric strong { font-size: var(--font-size-lg); }
 .cap-metric.warn { border-color: var(--color-warning); }
 .cap-metric.bad { border-color: var(--color-danger); }
 .cap-flags { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 12.5px; }
 .cap-flags li { display: flex; gap: 6px; align-items: center; }
 .cap-flags li.warn { color: var(--color-warning); }
-.cap-chip { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--color-bg-hover); }
-.cap-narr h4 { margin: 6px 0 2px; font-size: 13px; }
+.cap-chip { font-size: var(--font-size-sm); padding: 2px 8px; border-radius: var(--radius-pill); background: var(--color-bg-hover); }
+.cap-narr h4 { margin: 6px 0 2px; font-size: var(--font-size-md); }
 .cap-narr p { margin: 0 0 6px; font-size: 12.5px; line-height: 1.6; }
-.cap-narr p.bad { background: color-mix(in srgb, var(--color-danger) 7%, transparent); border-radius: 6px; padding: 2px 6px; }
+.cap-narr p.bad { background: color-mix(in srgb, var(--color-danger) 7%, transparent); border-radius: var(--radius-2); padding: 2px 6px; }
 .cap-unsourced { color: var(--color-warning); }
 </style>

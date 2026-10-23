@@ -2157,7 +2157,7 @@ const ka = { class: "cc-hero" }, ga = { class: "cc-hero__copy" }, ha = { class: 
               e.createElementVNode(
                 "i",
                 {
-                  class: e.normalizeClass(Ne.value ? "ri-loader-4-line cc-spin" : "ri-magic-line")
+                  class: e.normalizeClass(Ne.value ? "ri-loader-4-line cc-spin" : "ri-play-circle-line")
                 },
                 null,
                 2
@@ -2177,7 +2177,7 @@ const ka = { class: "cc-hero" }, ga = { class: "cc-hero__copy" }, ha = { class: 
             }, [
               l[41] || (l[41] = e.createElementVNode(
                 "i",
-                { class: "ri-sparkling-2-line" },
+                { class: "ri-folder-download-line" },
                 null,
                 -1
                 /* CACHED */
@@ -2477,7 +2477,7 @@ const ka = { class: "cc-hero" }, ga = { class: "cc-hero__copy" }, ha = { class: 
                   }, [
                     l[50] || (l[50] = e.createElementVNode(
                       "i",
-                      { class: "ri-sparkling-line" },
+                      { class: "ri-archive-line" },
                       null,
                       -1
                       /* CACHED */
@@ -3743,7 +3743,7 @@ const ka = { class: "cc-hero" }, ga = { class: "cc-hero__copy" }, ha = { class: 
                     [
                       l[82] || (l[82] = e.createElementVNode(
                         "i",
-                        { class: "ri-sparkling-2-line" },
+                        { class: "ri-movie-2-line" },
                         null,
                         -1
                         /* CACHED */
@@ -4104,7 +4104,7 @@ const ka = { class: "cc-hero" }, ga = { class: "cc-hero__copy" }, ha = { class: 
                       e.createElementVNode(
                         "i",
                         {
-                          class: e.normalizeClass(de.value === "ai" ? "ri-sparkling-2-line" : "ri-scissors-cut-line")
+                          class: e.normalizeClass(de.value === "ai" ? "ri-movie-2-line" : "ri-scissors-cut-line")
                         },
                         null,
                         2
@@ -4171,7 +4171,7 @@ const ka = { class: "cc-hero" }, ga = { class: "cc-hero__copy" }, ha = { class: 
                       e.createElementVNode(
                         "i",
                         {
-                          class: e.normalizeClass(n.source === "fal" ? "ri-sparkling-2-line" : "ri-image-line")
+                          class: e.normalizeClass(n.source === "fal" ? "ri-image-edit-line" : "ri-image-line")
                         },
                         null,
                         2
@@ -4708,7 +4708,7 @@ const ka = { class: "cc-hero" }, ga = { class: "cc-hero__copy" }, ha = { class: 
                         e.createElementVNode(
                           "i",
                           {
-                            class: e.normalizeClass(Ze.value ? "ri-loader-4-line cc-spin" : "ri-magic-line")
+                            class: e.normalizeClass(Ze.value ? "ri-loader-4-line cc-spin" : "ri-quill-pen-line")
                           },
                           null,
                           2
@@ -5040,7 +5040,7 @@ const ka = { class: "cc-hero" }, ga = { class: "cc-hero__copy" }, ha = { class: 
                       }, [
                         l[116] || (l[116] = e.createElementVNode(
                           "i",
-                          { class: "ri-sparkling-2-line" },
+                          { class: "ri-movie-2-line" },
                           null,
                           -1
                           /* CACHED */
@@ -5142,7 +5142,7 @@ const ka = { class: "cc-hero" }, ga = { class: "cc-hero__copy" }, ha = { class: 
               e.createElementVNode(
                 "i",
                 {
-                  class: e.normalizeClass(Xe.value === "ai" ? "ri-sparkling-2-line" : "ri-scissors-cut-line")
+                  class: e.normalizeClass(Xe.value === "ai" ? "ri-movie-2-line" : "ri-scissors-cut-line")
                 },
                 null,
                 2
@@ -5194,7 +5194,7 @@ const ka = { class: "cc-hero" }, ga = { class: "cc-hero__copy" }, ha = { class: 
   for (const [f, d] of c)
     r[f] = d;
   return r;
-}, Pi = /* @__PURE__ */ Ai(Li, [["__scopeId", "data-v-954361de"]]);
+}, Pi = /* @__PURE__ */ Ai(Li, [["__scopeId", "data-v-2611e084"]]);
 export {
   Pi as default
 };

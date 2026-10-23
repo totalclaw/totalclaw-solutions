@@ -206,22 +206,22 @@ function jump(key: string): void { void scrollToStep(key); }
 <style scoped>
 .fa-split { display: grid; grid-template-columns: minmax(200px, 250px) 1fr; gap: 14px; align-items: start; }
 @media (max-width: 960px) { .fa-split { grid-template-columns: 1fr; } }
-.fa-list { display: grid; gap: 8px; border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 10px; position: sticky; top: 0; max-height: calc(100vh - 160px); overflow: hidden; grid-template-rows: auto 1fr; }
+.fa-list { display: grid; gap: 8px; border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 10px; position: sticky; top: 0; max-height: calc(100vh - 160px); overflow: hidden; grid-template-rows: auto 1fr; }
 .fa-list ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; overflow-y: auto; align-content: start; }
-.fa-list li { padding: 8px 10px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; display: grid; gap: 3px; background: var(--color-bg-primary); }
+.fa-list li { padding: 8px 10px; border-radius: var(--radius-4); border: 1px solid transparent; cursor: pointer; display: grid; gap: 3px; background: var(--color-bg-primary); }
 .fa-list li.active { border-color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 8%, var(--color-bg-card)); }
-.fa-list__top { display: flex; justify-content: space-between; gap: 6px; align-items: center; font-size: 13px; }
-.fa-list__meta { display: flex; gap: 8px; font-size: 11px; color: var(--color-text-secondary); align-items: center; justify-content: space-between; }
+.fa-list__top { display: flex; justify-content: space-between; gap: 6px; align-items: center; font-size: var(--font-size-md); }
+.fa-list__meta { display: flex; gap: 8px; font-size: var(--font-size-xs); color: var(--color-text-secondary); align-items: center; justify-content: space-between; }
 .fa-detail { display: grid; gap: 12px; min-width: 0; }
 .fa-sub { display: flex; gap: 6px; flex-wrap: wrap; }
-.fa-sub__btn { padding: 5px 12px; border-radius: 999px; border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-secondary); cursor: pointer; font: inherit; font-size: 12.5px; font-weight: 600; }
+.fa-sub__btn { padding: 5px 12px; border-radius: var(--radius-pill); border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-secondary); cursor: pointer; font: inherit; font-size: 12.5px; font-weight: 600; }
 .fa-sub__btn.active { border-color: var(--color-brand); color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 8%, var(--color-bg-card)); }
 .fa-checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 12.5px; }
 .fa-checks li { display: flex; gap: 6px; align-items: flex-start; }
 .fa-checks li.ok i { color: var(--color-success); }
 .fa-checks li.warn i { color: var(--color-warning); }
 .fa-checks li.error i { color: var(--color-danger); }
-.fa-text { white-space: pre-wrap; font-size: 13px; line-height: 1.7; padding: 12px 14px; border-radius: 10px; background: var(--color-bg-primary); border: 1px solid var(--color-border); }
+.fa-text { white-space: pre-wrap; font-size: var(--font-size-md); line-height: 1.7; padding: 12px 14px; border-radius: var(--radius-4); background: var(--color-bg-primary); border: 1px solid var(--color-border); }
 .fa-out { font-size: 11.5px; color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 420px; }
 .spin { animation: fa-spin 1s linear infinite; }
 @keyframes fa-spin { to { transform: rotate(360deg); } }

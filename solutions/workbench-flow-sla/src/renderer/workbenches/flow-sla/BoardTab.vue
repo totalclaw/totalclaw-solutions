@@ -194,9 +194,9 @@ const typeOption = computed(() => {
 .fs-board { display: grid; gap: 14px; }
 .fs-filters select { max-width: 260px; }
 .fs-charts { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); }
-.fs-card { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; min-width: 0; align-content: start; }
+.fs-card { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; min-width: 0; align-content: start; }
 .fs-card header { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
-.fs-card h3 { margin: 0; font-size: 14px; }
+.fs-card h3 { margin: 0; font-size: var(--font-size-base); }
 .fs-only { margin-inline-start: auto; }
 .fs-only input { height: auto; }
 .fs-chart { height: 300px; width: 100%; }
@@ -204,9 +204,9 @@ const typeOption = computed(() => {
 .fs-scroll.tall { max-height: 520px; }
 .fs-click { cursor: pointer; }
 .fs-click:hover td { background: var(--color-bg-hover); }
-.fs-seg { display: inline-flex; border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden; margin-inline-start: auto; }
-.fs-seg button { height: 26px; padding: 0 12px; border: none; background: var(--color-bg-card); color: var(--color-text-secondary); font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
-.fs-seg button.on { background: var(--color-brand); color: #fff; }
+.fs-seg { display: inline-flex; border: 1px solid var(--color-border); border-radius: var(--radius-3); overflow: hidden; margin-inline-start: auto; }
+.fs-seg button { height: 26px; padding: 0 12px; border: none; background: var(--color-bg-card); color: var(--color-text-secondary); font: inherit; font-size: var(--font-size-sm); font-weight: 700; cursor: pointer; }
+.fs-seg button.on { background: var(--color-brand); color: var(--color-on-accent); }
 strong.bad { color: var(--color-danger); }
 .spin { animation: fs-spin 1s linear infinite; }
 @keyframes fs-spin { to { transform: rotate(360deg); } }

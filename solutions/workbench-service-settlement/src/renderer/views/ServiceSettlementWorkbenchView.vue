@@ -137,7 +137,7 @@ const router = useRouter();
 const notif = useNotificationStore();
 
 const MODULES = [
-  { key: 'review', icon: 'ri-star-smile-line', title: i18nT('服务电商好评激励'), desc: i18nT('京东安装 + 京东售后 + 天猫好评 · 4 步') },
+  { key: 'review', icon: 'ri-thumb-up-line', title: i18nT('服务电商好评激励'), desc: i18nT('京东安装 + 京东售后 + 天猫好评 · 4 步') },
   { key: 'settlement', icon: 'ri-file-list-3-line', title: i18nT('结案汇总、下发及付款跟踪'), desc: i18nT('汇总 → 拆分 → 邮件下发 → 发票 → 付款 · 5 步') },
   { key: 'scrap', icon: 'ri-delete-bin-6-line', title: i18nT('更新报废台账'), desc: i18nT('鉴定表 + 报废条码 → 对照表 → 台账 → 渠道品类汇总 · 4 步') },
   { key: 'marketing', icon: 'ri-line-chart-line', title: i18nT('服务营销激励结案'), desc: i18nT('有赞订单 → 达成率 → 激励 → 通知 → 个税 → 报告 · 11 步') },
@@ -258,14 +258,14 @@ onBeforeUnmount(() => { unsubEvent?.(); unsubEvent = null; });
 .ss-workbench { display: grid; gap: 14px; padding: 18px 22px 40px; max-width: 1440px; margin: 0 auto; width: 100%; box-sizing: border-box; flex: 1; min-height: 0; overflow-y: auto; align-content: start; }
 .workbench-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .heading { display: flex; gap: 14px; align-items: flex-start; }
-.heading-icon { width: 48px; height: 48px; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--color-brand) 14%, transparent); color: var(--color-brand); font-size: 24px; flex: 0 0 auto; }
-.eyebrow { margin: 0; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-secondary); }
+.heading-icon { width: 48px; height: 48px; border-radius: var(--radius-6); display: inline-flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--color-brand) 14%, transparent); color: var(--color-brand); font-size: var(--font-size-2xl); flex: 0 0 auto; }
+.eyebrow { margin: 0; font-size: var(--font-size-xs); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-secondary); }
 h1 { margin: 2px 0 4px; font-size: 22px; }
-.subtitle { margin: 0; color: var(--color-text-secondary); font-size: 13px; line-height: 1.6; max-width: 900px; }
+.subtitle { margin: 0; color: var(--color-text-secondary); font-size: var(--font-size-md); line-height: 1.6; max-width: 900px; }
 .header-actions { display: flex; gap: 8px; align-items: center; }
 
 .ss-toolbar { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 10px; }
-.ss-toolbar__item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg-card); min-width: 0; }
+.ss-toolbar__item { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-5); background: var(--color-bg-card); min-width: 0; }
 .ss-toolbar__item > i { font-size: 20px; color: var(--color-brand); flex: 0 0 auto; }
 .ss-toolbar__item > i.ok { color: var(--color-success); }
 .ss-toolbar__item > i.warn { color: var(--color-warning); }
@@ -273,21 +273,21 @@ h1 { margin: 2px 0 4px; font-size: 22px; }
 .ss-toolbar__item small { color: var(--color-text-secondary); font-size: 11.5px; }
 .ss-toolbar__item strong { font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: flex; gap: 4px; align-items: center; }
 
-.ss-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 12px 14px; display: grid; gap: 10px; }
-.ss-panel > header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; }
+.ss-panel { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 12px 14px; display: grid; gap: 10px; }
+.ss-panel > header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: var(--font-size-md); }
 .ss-panel > header .grow { flex: 1; }
 .ss-reminders { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; max-height: 320px; overflow: auto; }
-.ss-reminders li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; border-radius: 10px; background: var(--color-bg-primary); font-size: 12.5px; }
+.ss-reminders li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 10px; border-radius: var(--radius-4); background: var(--color-bg-primary); font-size: 12.5px; }
 .ss-reminders li.unread { border-inline-start: 3px solid var(--color-warning); }
-.ss-reminders li > i { font-size: 18px; color: var(--color-warning); }
+.ss-reminders li > i { font-size: var(--font-size-xl); color: var(--color-warning); }
 .ss-reminders p { margin: 2px 0; white-space: pre-wrap; color: var(--color-text-secondary); }
-.ss-reminders small { color: var(--color-text-muted, var(--color-text-secondary)); }
+.ss-reminders small { color: var(--color-text-muted); }
 
 .ss-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 8px; }
-.ss-tab { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--color-border); background: var(--color-bg-card); cursor: pointer; text-align: left; font: inherit; color: var(--color-text-primary); transition: .15s; }
+.ss-tab { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--radius-5); border: 1px solid var(--color-border); background: var(--color-bg-card); cursor: pointer; text-align: left; font: inherit; color: var(--color-text-primary); transition: color .15s, border-color .15s, background-color .15s, box-shadow .15s; }
 .ss-tab i { font-size: 20px; color: var(--color-text-secondary); }
 .ss-tab span { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-.ss-tab strong { font-size: 13px; }
+.ss-tab strong { font-size: var(--font-size-md); }
 .ss-tab small { font-size: 11.5px; color: var(--color-text-secondary); }
 .ss-tab:hover { border-color: var(--color-brand); }
 .ss-tab.active { border-color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 8%, var(--color-bg-card)); }

@@ -26,7 +26,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// node_modules/.cache/solutions-build/workbench-academic-writer/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-academic-writer/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -36,7 +36,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../totalclaw-solutions/solutions/workbench-academic-writer/src/main/ipc/academicWriter.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-academic-writer/src/main/ipc/academicWriter.ipc.ts
 var import_electron = require("electron");
 var import_node_fs2 = require("node:fs");
 var import_node_path2 = require("node:path");
@@ -45,7 +45,7 @@ var import_i18n3 = require("npm:@totalclaw/i18n");
 var import_userFacingError = require("host:apps/desktop-shell/src/main/utils/userFacingError.ts");
 var import_workbenchLlm = require("host:apps/desktop-shell/src/main/services/workbenchLlm.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-academic-writer/src/main/services/academicWriter/store.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-academic-writer/src/main/services/academicWriter/store.ts
 var import_node_fs = require("node:fs");
 var import_node_path = require("node:path");
 var import_node_crypto = require("node:crypto");
@@ -125,7 +125,7 @@ var AcademicWriterStore = class {
   }
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-academic-writer/src/main/services/academicWriter/sources.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-academic-writer/src/main/services/academicWriter/sources.ts
 var import_node_crypto2 = require("node:crypto");
 var import_i18n2 = require("npm:@totalclaw/i18n");
 var TIMEOUT_MS = 25e3;
@@ -375,10 +375,10 @@ function sourceLabel(s) {
   return { pubmed: "PubMed", europepmc: "Europe PMC", arxiv: "arXiv", crossref: "Crossref", openalex: "OpenAlex", web: (0, import_i18n2.t)("\u7F51\u9875\u6293\u53D6") }[s];
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-academic-writer/src/main/services/academicWriter/citationWords.json
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-academic-writer/src/main/services/academicWriter/citationWords.json
 var citationWords_default = { _note: "\u53C2\u8003\u6587\u732E\u683C\u5F0F\u91CC\u7684\u56FA\u5B9A\u7528\u5B57\uFF08GB/T 7714 \u4E2D\u6587\u6587\u732E\u7684\u300C\u7B49\u300D\uFF09\uFF0C\u662F\u683C\u5F0F\u89C4\u8303\u4E0D\u662F\u754C\u9762\u6587\u6848\uFF0C\u4E0D\u8FDB i18n \u8BCD\u5178\u3002", etalZh: "\u7B49" };
 
-// ../../../totalclaw-solutions/solutions/workbench-academic-writer/src/main/services/academicWriter/citations.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-academic-writer/src/main/services/academicWriter/citations.ts
 var CITE_RE = /\[(\d+(?:\s*[-–—,，、]\s*\d+)*)\]/g;
 function expand(group) {
   const out = [];
@@ -515,10 +515,10 @@ function wordCount(text) {
   return cjk + latin;
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-academic-writer/src/main/ipc/academicWriter.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-academic-writer/src/main/ipc/academicWriter.ipc.ts
 var import_openWithApps = require("host:apps/desktop-shell/src/main/services/openWithApps.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-academic-writer/src/main/services/academicWriter/prompts.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-academic-writer/src/main/services/academicWriter/prompts.ts
 var JSON_ONLY = "\u53EA\u8F93\u51FA\u4E00\u4E2A JSON \u5BF9\u8C61\uFF0C\u4E0D\u8981 Markdown \u4EE3\u7801\u5757\uFF0C\u4E0D\u8981\u89E3\u91CA\u3002";
 var TYPE_LABEL = { review: "\u7EFC\u8FF0", research: "\u7814\u7A76\u8BBA\u6587", thesis: "\u5B66\u4F4D\u8BBA\u6587", proposal: "\u5F00\u9898\u62A5\u544A" };
 function lang(p) {
@@ -597,7 +597,7 @@ function webExtractPrompt(url, text) {
   ].join("\n");
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-academic-writer/src/main/ipc/academicWriter.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-academic-writer/src/main/ipc/academicWriter.ipc.ts
 var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var store = new AcademicWriterStore();
 var ACADEMIC_BROWSER_CONTEXT = "academic-writer";
@@ -1060,7 +1060,7 @@ ${String(page?.text || "")}`.trim();
   });
 }
 
-// node_modules/.cache/solutions-build/workbench-academic-writer/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-academic-writer/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerAcademicWriterHandlers";
 var cleanup;

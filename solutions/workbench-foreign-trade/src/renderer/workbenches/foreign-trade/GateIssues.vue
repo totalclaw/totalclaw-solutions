@@ -27,7 +27,7 @@ const warns = computed(() => (props.result?.issues || []).filter((i) => i.level 
 </script>
 
 <style scoped>
-.ft-gate { border: 1px solid color-mix(in srgb, var(--color-warning) 45%, var(--color-border)); background: color-mix(in srgb, var(--color-warning) 7%, var(--color-bg-card)); border-radius: 10px; padding: 8px 10px; display: grid; gap: 6px; font-size: 12.5px; }
+.ft-gate { border: 1px solid color-mix(in srgb, var(--color-warning) 45%, var(--color-border)); background: color-mix(in srgb, var(--color-warning) 7%, var(--color-bg-card)); border-radius: var(--radius-4); padding: 8px 10px; display: grid; gap: 6px; font-size: 12.5px; }
 .ft-gate.blocked { border-color: color-mix(in srgb, var(--color-danger) 55%, var(--color-border)); background: color-mix(in srgb, var(--color-danger) 7%, var(--color-bg-card)); }
 .ft-gate__head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .ft-gate__head i { font-size: 16px; color: var(--color-warning); }

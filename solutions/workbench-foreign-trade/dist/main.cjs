@@ -26,7 +26,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// node_modules/.cache/solutions-build/workbench-foreign-trade/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-foreign-trade/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -36,7 +36,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../totalclaw-solutions/solutions/workbench-foreign-trade/src/main/ipc/foreignTrade.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-foreign-trade/src/main/ipc/foreignTrade.ipc.ts
 var import_electron = require("electron");
 var import_node_fs4 = require("node:fs");
 var import_node_dns = require("node:dns");
@@ -49,7 +49,7 @@ var import_userFacingError = require("host:apps/desktop-shell/src/main/utils/use
 var import_workbenchLlm = require("host:apps/desktop-shell/src/main/services/workbenchLlm.ts");
 var import_quitRegistry = require("host:apps/desktop-shell/src/main/util/quitRegistry.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/store.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/store.ts
 var import_node_fs = require("node:fs");
 var import_node_path = require("node:path");
 var import_accountScope = require("host:apps/desktop-shell/src/main/services/accountScope.ts");
@@ -251,7 +251,7 @@ var ForeignTradeStore = class {
   }
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/mailboxes.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/mailboxes.ts
 var import_node_crypto = require("node:crypto");
 var import_node_fs2 = require("node:fs");
 var import_node_path2 = require("node:path");
@@ -469,11 +469,11 @@ function humanizeMailError(error) {
   return raw.slice(0, 200);
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/logic.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/logic.ts
 var import_node_crypto2 = require("node:crypto");
 var import_i18n2 = require("npm:@totalclaw/i18n");
 
-// ../../../totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/columnKeywords.json
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/columnKeywords.json
 var columnKeywords_default = {
   product: {
     model: ["\u578B\u53F7", "\u8D27\u53F7", "model", "sku", "item no", "item", "art no"],
@@ -514,7 +514,7 @@ var columnKeywords_default = {
   tradeDocTotal: ["\u5408\u8BA1", "\u603B\u8BA1", "total", "totals", "grand total"]
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/logic.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/logic.ts
 function newId(prefix) {
   return `${prefix}_${(0, import_node_crypto2.randomUUID)().replace(/-/g, "").slice(0, 12)}`;
 }
@@ -1336,7 +1336,7 @@ function hostOfUrl(url) {
   }
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/tradeDocs.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/tradeDocs.ts
 var import_i18n3 = require("npm:@totalclaw/i18n");
 var roundTo = (n, d) => {
   const f = 10 ** d;
@@ -1916,7 +1916,7 @@ function validateTradeDocs(docs) {
   return out;
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/screening.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/screening.ts
 var import_node_crypto3 = require("node:crypto");
 var import_node_fs3 = require("node:fs");
 var import_node_path3 = require("node:path");
@@ -2544,7 +2544,7 @@ var ScreeningLists = class {
   }
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/hsCodes.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/hsCodes.ts
 function splitCsvLine(line) {
   const out = [];
   let cell = "";
@@ -2683,10 +2683,10 @@ function validateHsCode(table, raw) {
   return { ok: true, code, description: hsPath(table, code) };
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-foreign-trade/src/main/ipc/foreignTrade.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-foreign-trade/src/main/ipc/foreignTrade.ipc.ts
 var import_runtimeLocation = require("host:apps/desktop-shell/src/main/services/runtimeLocation.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/prompts.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-foreign-trade/src/main/services/foreignTrade/prompts.ts
 var import_i18n5 = require("npm:@totalclaw/i18n");
 var JSON_ONLY = "\u53EA\u8F93\u51FA\u4E00\u4E2A JSON \u5BF9\u8C61\uFF0C\u4E0D\u8981\u4EFB\u4F55\u89E3\u91CA\u3001\u4E0D\u8981\u4EE3\u7801\u56F4\u680F\u3002";
 function outputLanguage() {
@@ -2965,7 +2965,7 @@ function hsRerankPrompt(product, candidates) {
   ].join("\n");
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-foreign-trade/src/main/ipc/foreignTrade.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-foreign-trade/src/main/ipc/foreignTrade.ipc.ts
 var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var store = new ForeignTradeStore();
 var POLL_INTERVAL_MS = 12e4;
@@ -4852,7 +4852,7 @@ ${c.topic}`, Math.min(Math.max(p.count || 4, 1), 6)));
   return stopBackground;
 }
 
-// node_modules/.cache/solutions-build/workbench-foreign-trade/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-foreign-trade/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerForeignTradeHandlers";
 var cleanup;

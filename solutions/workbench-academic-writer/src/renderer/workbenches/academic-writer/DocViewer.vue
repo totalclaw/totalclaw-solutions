@@ -84,27 +84,37 @@ onBeforeUnmount(() => document.removeEventListener('mousedown', onDocClick));
 </script>
 
 <style scoped>
-.awv-backdrop { position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; padding: 18px; background: rgba(0, 0, 0, .55); }
-.awv { width: min(980px, 100%); height: min(92vh, 1200px); display: grid; grid-template-rows: auto 1fr; border-radius: 14px; overflow: hidden; background: var(--color-bg-card); border: 1px solid var(--color-border); }
+.awv-backdrop { position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; padding: 18px; background: var(--awdv-scrim-a55); }
+.awv { width: min(980px, 100%); height: min(92vh, 1200px); display: grid; grid-template-rows: auto 1fr; border-radius: var(--radius-6); overflow: hidden; background: var(--color-bg-card); border: 1px solid var(--color-border); }
 .awv-bar { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-bottom: 1px solid var(--color-border); background: var(--color-bg-primary); }
 .awv-grow { flex: 1; }
 .awv-file { position: relative; }
-.awv-file__btn { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; border-radius: 16px; border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-primary); font: inherit; font-size: 13px; cursor: pointer; }
-.awv-menu { position: absolute; top: calc(100% + 6px); left: 0; min-width: 240px; padding: 6px; border-radius: 12px; border: 1px solid var(--color-border); background: var(--color-bg-card); box-shadow: 0 12px 32px rgba(0, 0, 0, .22); z-index: 5; display: grid; gap: 2px; }
-.awv-menu__title { display: flex; gap: 8px; align-items: center; padding: 6px 8px; font-size: 13px; font-weight: 600; }
+.awv-file__btn { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 10px; border-radius: var(--radius-7); border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-md); cursor: pointer; }
+.awv-menu { position: absolute; top: calc(100% + 6px); left: 0; min-width: 240px; padding: 6px; border-radius: var(--radius-5); border: 1px solid var(--color-border); background: var(--color-bg-card); box-shadow: var(--awdv-shadow); z-index: 5; display: grid; gap: 2px; }
+.awv-menu__title { display: flex; gap: 8px; align-items: center; padding: 6px 8px; font-size: var(--font-size-md); font-weight: 600; }
 .awv-menu__sep { height: 1px; background: var(--color-border); margin: 4px 0; }
 .awv-sub { position: relative; }
 .awv-menu--sub { top: -6px; left: calc(100% + 4px); }
-.awv-item { display: flex; align-items: center; gap: 8px; width: 100%; padding: 7px 8px; border: none; border-radius: 8px; background: transparent; color: var(--color-text-primary); font: inherit; font-size: 13px; cursor: pointer; text-align: start; }
+.awv-item { display: flex; align-items: center; gap: 8px; width: 100%; padding: 7px 8px; border: none; border-radius: var(--radius-3); background: transparent; color: var(--color-text-primary); font: inherit; font-size: var(--font-size-md); cursor: pointer; text-align: start; }
 .awv-item:hover { background: var(--color-bg-hover); }
 .awv-appicon { width: 18px; height: 18px; }
-.awv-default { font-style: normal; font-size: 11px; color: var(--color-text-secondary); margin-inline-start: auto; }
-.awv-muted { margin: 4px 8px; font-size: 12px; color: var(--color-text-secondary); display: flex; gap: 6px; align-items: center; }
-.awv-icon { width: 30px; height: 30px; border: none; border-radius: 8px; background: transparent; color: var(--color-text-secondary); cursor: pointer; font-size: 18px; }
-.awv-error { color: var(--color-danger); font-size: 12px; }
+.awv-default { font-style: normal; font-size: var(--font-size-xs); color: var(--color-text-secondary); margin-inline-start: auto; }
+.awv-muted { margin: 4px 8px; font-size: var(--font-size-sm); color: var(--color-text-secondary); display: flex; gap: 6px; align-items: center; }
+.awv-icon { width: 30px; height: 30px; border: none; border-radius: var(--radius-3); background: transparent; color: var(--color-text-secondary); cursor: pointer; font-size: var(--font-size-xl); }
+.awv-error { color: var(--color-danger); font-size: var(--font-size-sm); }
 .awv-paper { overflow-y: auto; padding: 36px 56px; font-size: 14.5px; line-height: 1.85; color: var(--color-text-primary); }
 .awv-paper :deep(h1) { text-align: center; font-size: 22px; }
 .awv-paper :deep(h2) { font-size: 17px; margin-top: 1.6em; }
 .spin { animation: awv-spin 1s linear infinite; }
 @keyframes awv-spin { to { transform: rotate(360deg); } }
+
+/* ─── 调色板（docs/ui-design-system.md）：经典主题保持原值；界面主题（data-ui-theme）下映射全局 token ─── */
+.awv-backdrop { /* ui-theme-exempt: 经典主题原值 */
+  --awdv-scrim-a55: rgba(0, 0, 0, .55);
+  --awdv-shadow: 0 12px 32px rgba(0, 0, 0, .22);
+}
+:root[data-ui-theme] .awv-backdrop {
+  --awdv-scrim-a55: color-mix(in srgb, var(--color-scrim) 55%, transparent);
+  --awdv-shadow: var(--shadow-pop);
+}
 </style>

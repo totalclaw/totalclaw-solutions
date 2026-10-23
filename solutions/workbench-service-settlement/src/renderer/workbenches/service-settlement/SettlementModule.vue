@@ -155,7 +155,7 @@
                 <td>{{ r.sentAt ? fmtDate(r.sentAt) : $t('未下发') }}</td>
                 <td>
                   <span v-if="r.invoiceReceivedAt" class="ss-chip ok">{{ fmtDate(r.invoiceReceivedAt) }}</span>
-                  <span v-else-if="flagOf(r).invoiceOverdue" class="ss-chip bad">{{ $t('⚠ 超 20 天未开票') }}</span>
+                  <span v-else-if="flagOf(r).invoiceOverdue" class="ss-chip bad"><i class="ri-error-warning-line" aria-hidden="true"></i>{{ $t('超 20 天未开票') }}</span>
                   <span v-else-if="r.sentAt" class="ss-chip warn">{{ $t('等待开票 {d} 天', { d: flagOf(r).daysSinceSent ?? 0 }) }}</span>
                   <span v-else class="ss-chip">-</span>
                 </td>
@@ -554,7 +554,7 @@ watch(period, () => { if (!steps.isRunning()) restoreFromRecords(); });
 </script>
 
 <style scoped>
-.ss-source { display: grid; gap: 8px; padding: 10px 12px; border-radius: 12px; background: var(--color-bg-primary); border: 1px solid var(--color-border); }
+.ss-source { display: grid; gap: 8px; padding: 10px 12px; border-radius: var(--radius-5); background: var(--color-bg-primary); border: 1px solid var(--color-border); }
 .ss-fee { display: grid; gap: 6px; }
 .ss-switch { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; cursor: pointer; }
 .spin { animation: ss-spin 1s linear infinite; }

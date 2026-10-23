@@ -14,7 +14,7 @@
         <section class="ss-panel">
           <h3><i class="ri-book-shelf-line"></i>{{ $t('课程') }}</h3>
           <div class="ss-actions">
-            <button type="button" class="ss-btn sm" :disabled="!!busy" data-test="ca-teach-demo" @click="loadDemo"><i :class="busy === 'demo' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ $t('载入示例课程') }}</button>
+            <button type="button" class="ss-btn sm" :disabled="!!busy" data-test="ca-teach-demo" @click="loadDemo"><i :class="busy === 'demo' ? 'ri-loader-4-line spin' : 'ri-file-download-line'"></i>{{ $t('载入示例课程') }}</button>
             <span class="ss-muted">{{ $t('「电工电子技术」讲义 + 一份 5 题作业的标准答案与 20 名学生作答') }}</span>
           </div>
           <form class="ca-inline-form" @submit.prevent="saveCourse">
@@ -75,7 +75,7 @@
           <label class="ss-field wide"><span>{{ $t('侧重（可选）') }}</span><input v-model="focus" :placeholder="$t('如：基尔霍夫定律、有效值')" /></label>
         </div>
         <div class="ss-actions">
-          <button type="button" class="ss-btn primary" :disabled="!course || !!busy || !courseReady" data-test="ca-quiz-gen" @click="genQuiz"><i :class="busy === 'quiz' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ $t('出题') }}</button>
+          <button type="button" class="ss-btn primary" :disabled="!course || !!busy || !courseReady" data-test="ca-quiz-gen" @click="genQuiz"><i :class="busy === 'quiz' ? 'ri-loader-4-line spin' : 'ri-questionnaire-line'"></i>{{ $t('出题') }}</button>
           <span v-if="!course" class="ss-muted">{{ $t('先选一门课') }}</span>
           <span v-else-if="!courseReady" class="ss-muted">{{ $t('这门课还没有已构建的资料') }}</span>
           <span v-else-if="busy === 'quiz'" class="ss-muted">{{ $t('正在出题，通常 30～90 秒…') }}</span>
@@ -360,8 +360,8 @@ if (!courseId.value && courses.value[0]) courseId.value = courses.value[0].id;
 
 <style scoped>
 .ca-teach { display: grid; gap: 14px; }
-.ca-subnav { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; padding: 6px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg-card); }
-.ca-subnav button { display: inline-flex; gap: 6px; align-items: center; padding: 6px 14px; border: none; border-radius: 8px; background: transparent; font: inherit; font-size: 13px; font-weight: 600; color: var(--color-text-secondary); cursor: pointer; }
+.ca-subnav { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; padding: 6px; border: 1px solid var(--color-border); border-radius: var(--radius-5); background: var(--color-bg-card); }
+.ca-subnav button { display: inline-flex; gap: 6px; align-items: center; padding: 6px 14px; border: none; border-radius: var(--radius-3); background: transparent; font: inherit; font-size: var(--font-size-md); font-weight: 600; color: var(--color-text-secondary); cursor: pointer; }
 .ca-subnav button:hover { color: var(--ca-oxblood); }
 .ca-subnav button.on { background: var(--ca-oxblood); color: var(--ca-banner-ink); }
 .ca-subnav .grow { flex: 1; }
@@ -369,25 +369,25 @@ if (!courseId.value && courses.value[0]) courseId.value = courses.value[0].id;
 .ca-inline-form { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 .ca-input.sm { flex: 0 1 160px; min-width: 120px; }
 .ca-courses, .ca-docs { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
-.ca-courses li { display: flex; gap: 8px; align-items: center; padding: 8px 10px; border: 1px solid var(--color-border); border-radius: 10px; cursor: pointer; }
+.ca-courses li { display: flex; gap: 8px; align-items: center; padding: 8px 10px; border: 1px solid var(--color-border); border-radius: var(--radius-4); cursor: pointer; }
 .ca-courses li.on { border-color: var(--ca-oxblood); background: var(--color-brand-subtle); }
 .ca-courses li b { font-family: var(--ca-serif); }
-.ca-courses li small { color: var(--color-text-secondary); font-size: 12px; }
+.ca-courses li small { color: var(--color-text-secondary); font-size: var(--font-size-sm); }
 .ca-courses .grow { flex: 1; }
-.ca-docs li { display: flex; gap: 8px; align-items: center; font-size: 13px; }
+.ca-docs li { display: flex; gap: 8px; align-items: center; font-size: var(--font-size-md); }
 .ca-docs li span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.ca-courses .empty, .ca-docs .empty, .ca-bank .empty { color: var(--color-text-secondary); font-size: 13px; border: none; cursor: default; }
-.ca-answer { border: 1px solid var(--color-border); border-radius: 10px; padding: 12px 14px; display: grid; gap: 8px; }
+.ca-courses .empty, .ca-docs .empty, .ca-bank .empty { color: var(--color-text-secondary); font-size: var(--font-size-md); border: none; cursor: default; }
+.ca-answer { border: 1px solid var(--color-border); border-radius: var(--radius-4); padding: 12px 14px; display: grid; gap: 8px; }
 .ca-quiz-form { display: grid; gap: 10px; grid-template-columns: repeat(4, minmax(80px, 120px)) minmax(200px, 1fr); }
 @media (max-width: 900px) { .ca-quiz-form { grid-template-columns: repeat(2, 1fr); } .ca-quiz-form .wide { grid-column: 1 / -1; } }
 .ca-bank { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; counter-reset: q; }
-.ca-bank > li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: 10px; }
+.ca-bank > li { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-4); }
 .ca-bank > li.reviewed { border-color: color-mix(in srgb, var(--color-success) 40%, var(--color-border)); }
-.ca-bank__body p { margin: 0 0 4px; font-size: 13px; line-height: 1.6; }
-.ca-bank__opts { margin: 0 0 4px; padding-inline-start: 22px; font-size: 13px; }
+.ca-bank__body p { margin: 0 0 4px; font-size: var(--font-size-md); line-height: 1.6; }
+.ca-bank__opts { margin: 0 0 4px; padding-inline-start: 22px; font-size: var(--font-size-md); }
 .ca-bank__opts li.right { color: var(--color-success); font-weight: 700; }
 .ca-bank__ans { color: var(--ca-oxblood); }
-.ca-bank__src { color: var(--color-text-secondary); font-size: 12px !important; font-family: var(--ca-serif); }
+.ca-bank__src { color: var(--color-text-secondary); font-size: var(--font-size-sm) !important; font-family: var(--ca-serif); }
 .ca-bank__src i { color: var(--ca-gold); margin-inline-end: 4px; }
 .ca-key { display: flex; gap: 6px; flex-wrap: wrap; }
 .ca-cell.model { background: color-mix(in srgb, var(--ca-gold) 12%, transparent); }

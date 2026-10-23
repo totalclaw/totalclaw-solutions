@@ -191,14 +191,22 @@ function jump(key: string): void { void scrollToStep(key); }
 .ba-projbar { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
 .ba-projbar .ss-field { min-width: 320px; }
 .ba-types { display: flex; flex-wrap: wrap; gap: 8px; }
-.ba-type { padding: 8px 14px; border: 1px solid var(--color-border); border-radius: 10px; background: var(--color-bg-primary); color: var(--color-text-primary); cursor: pointer; font: inherit; font-size: 13px; }
+.ba-type { padding: 8px 14px; border: 1px solid var(--color-border); border-radius: var(--radius-4); background: var(--color-bg-primary); color: var(--color-text-primary); cursor: pointer; font: inherit; font-size: var(--font-size-md); }
 .ba-type.on { border-color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 8%, var(--color-bg-primary)); font-weight: 700; }
 .ba-facts { font-size: 12.5px; }
 .ba-facts ul { margin: 6px 0 0; padding-inline-start: 18px; max-height: 200px; overflow: auto; color: var(--color-text-secondary); }
-.ba-script { width: 100%; box-sizing: border-box; border-radius: 10px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 13.5px; line-height: 1.8; padding: 10px 12px; resize: vertical; }
+.ba-script { width: 100%; box-sizing: border-box; border-radius: var(--radius-4); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 13.5px; line-height: 1.8; padding: 10px 12px; resize: vertical; }
 .ba-check { display: inline-flex; gap: 4px; align-items: center; font-size: 12.5px; }
-.ba-video { width: 240px; aspect-ratio: 9 / 16; border-radius: 12px; background: #000; }
+.ba-video { width: 240px; aspect-ratio: 9 / 16; border-radius: var(--radius-5); background: var(--baat-dark); }
 .ba-video.wide { width: 480px; aspect-ratio: 16 / 9; }
 .spin { animation: ba-spin 1s linear infinite; }
 @keyframes ba-spin { to { transform: rotate(360deg); } }
+
+/* ─── 调色板（docs/ui-design-system.md）：经典主题保持原值；界面主题（data-ui-theme）下映射全局 token ─── */
+.ss-module { /* ui-theme-exempt: 经典主题原值 */
+  --baat-dark: #000;
+}
+:root[data-ui-theme] .ss-module {
+  --baat-dark: var(--color-bg-code);
+}
 </style>

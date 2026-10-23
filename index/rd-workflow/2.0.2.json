@@ -1,0 +1,47 @@
+{
+  "id": "rd-workflow",
+  "version": "2.0.2",
+  "treeDigest": "556bc644c5c80505e15fafff296b30483e54141d881e71df4e9c8b3a4233d776",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 1399,
+      "sha256": "525ae702d582d4c5ba890bdec3060d35e6dc71b4e958b7fe71171688dd2f7d2f"
+    },
+    {
+      "path": "README.md",
+      "size": 983,
+      "sha256": "941ecf4df1def25615f9ca7b462b16835db704f491ed78f66e2e06bafe3e1fb3"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 553,
+      "sha256": "f3822cdfa54ab38b1bf8ffc0519b5b384997d9a4fbd04cfc9a63815d610ead92"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 5257,
+      "sha256": "953eec451c6aaa8cd22215d1c4143ad80fdbc45bc2d5ad9984dc773f86fd9856"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 60200,
+      "sha256": "d26035b35fb403c52a20c74abf8a3382ecc3643dbb0a36b500a9772eb0f66ba4"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 27353,
+      "sha256": "558922d926dcfec6cd44340f327da8afdb061eb2b4cbceaf3c48f46cce6d380e"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2066,
+      "sha256": "005417071c2a1540770678a141cb6770dee16b1bc491b2094a51919781670bd9"
+    }
+  ]
+}

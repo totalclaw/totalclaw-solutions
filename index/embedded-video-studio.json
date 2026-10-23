@@ -1,12 +1,12 @@
 {
   "id": "embedded-video-studio",
-  "version": "2.0.1",
-  "treeDigest": "96b0e824f282eeceb8b9886d612f9cd80e9f1d9d97006cb9c92a149c8b4b0513",
+  "version": "2.0.2",
+  "treeDigest": "ff68b4ab6646fd0b8091c636804bf723b35e575870812f0e459bdc29ba77a788",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 610,
-      "sha256": "01282d7a35219e59a3f89f763c97b9a8f74c7ed5f5c0bd46aa64e879d3ae815d"
+      "size": 826,
+      "sha256": "aeb928e66c2d87929f80d40e4f05d6cf861287d56aec140c9d5a661ed3477c76"
     },
     {
       "path": "README.md",
@@ -20,13 +20,13 @@
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 165074,
-      "sha256": "c9f835cef9ad1b13de6f45d083c00842e2fa13b815c29c4becfb597b6e3ec6c2"
+      "size": 165071,
+      "sha256": "d7cbcf385bd3ea59a790f059599e430e69779a64e08e4dff852db57cb61e59cd"
     },
     {
       "path": "dist/style.css",
-      "size": 35753,
-      "sha256": "0f2e860ea2f8b2cd9819927e34a4ef5c29ae25bf3f2b6d4126e9b554bb1f800f"
+      "size": 42988,
+      "sha256": "ee13c30a981961b1c9bd8743b81a185b31aa2f2288fdfbf30e66bd0621404dbc"
     },
     {
       "path": "migrations/README.md",
@@ -36,10 +36,21 @@
     {
       "path": "solution.json",
       "size": 1873,
-      "sha256": "8ba3ad33e8c148664b7fd23527354405c9cdb61a49d34123effde2ad809211ba"
+      "sha256": "11d5a1b69a5677a7f48ccbed192e7345c4bd43aecda247481b3d0030a48c6242"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "embedded-video-studio@2.0.2",
+      "treeDigest": "ff68b4ab6646fd0b8091c636804bf723b35e575870812f0e459bdc29ba77a788",
+      "filesRef": "index/embedded-video-studio/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-23"
+    },
     {
       "version": "2.0.1",
       "ref": "embedded-video-studio@2.0.1",

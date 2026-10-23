@@ -19,7 +19,7 @@
           <small>{{ $t('PDF、Word、Excel、PPT、TXT、Markdown、HTML；扫描件自动识别文字') }}</small>
         </div>
         <div class="ss-actions">
-          <button type="button" class="ss-btn" :disabled="!!busy" data-test="ca-kb-demo" @click="loadDemo"><i :class="busy === 'kb-demo' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ $t('载入示例资料') }}</button>
+          <button type="button" class="ss-btn" :disabled="!!busy" data-test="ca-kb-demo" @click="loadDemo"><i :class="busy === 'kb-demo' ? 'ri-loader-4-line spin' : 'ri-file-download-line'"></i>{{ $t('载入示例资料') }}</button>
           <span class="ss-muted">{{ $t('5 份示例校园文档 + 7 条 FAQ，文件写在输出目录的「示例数据」里') }}</span>
         </div>
         <div v-if="docs.length" class="ss-table-wrap tall">
@@ -267,12 +267,12 @@ if (!dept.value) dept.value = settings.value?.depts[0] || '';
 </script>
 
 <style scoped>
-.ca-drop { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 16px; border: 1.5px dashed var(--color-border); border-radius: 12px; font-size: 13px; color: var(--color-text-secondary); }
+.ca-drop { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 16px; border: 1.5px dashed var(--color-border); border-radius: var(--radius-5); font-size: var(--font-size-md); color: var(--color-text-secondary); }
 .ca-drop.over { border-color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 6%, transparent); }
 .ca-drop i { font-size: 22px; color: var(--color-brand); }
 .ca-drop small { flex-basis: 100%; }
-.ca-input { flex: 1; min-width: 240px; height: 34px; border: 1px solid var(--color-border); border-radius: 8px; padding: 0 10px; font: inherit; background: var(--color-bg-input, var(--color-bg-card)); color: var(--color-text); }
+.ca-input { flex: 1; min-width: 240px; height: 34px; border: 1px solid var(--color-border); border-radius: var(--radius-3); padding: 0 10px; font: inherit; background: var(--color-bg-input); color: var(--color-text); }
 .ca-err { display: block; color: var(--color-danger); white-space: normal; max-width: 260px; }
-.ca-faq-form { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--color-border); border-radius: 10px; }
+.ca-faq-form { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-4); }
 tr.dim td { opacity: .55; }
 </style>

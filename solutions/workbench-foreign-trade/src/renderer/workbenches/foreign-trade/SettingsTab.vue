@@ -212,10 +212,10 @@ function openPath(path: string): void { void ft('path.open', { path }).catch((e)
 
 <style scoped>
 .ss-panel > header strong { display: flex; gap: 6px; align-items: center; }
-.ft-path { flex: 1; min-width: 200px; font-size: 12px; color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ft-path { flex: 1; min-width: 200px; font-size: var(--font-size-sm); color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .ss-table select { min-width: 280px; }
 .ss-table td i { color: var(--color-brand); margin-inline-end: 4px; }
-.ft-input { height: 30px; min-width: 200px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding-inline: 8px; }
+.ft-input { height: 30px; min-width: 200px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding-inline: 8px; }
 .ft-input.wide { flex: 1; }
 .ft-check { display: inline-flex; gap: 6px; align-items: center; font-size: 12.5px; }
 .ft-scroll { max-height: 260px; overflow: auto; }

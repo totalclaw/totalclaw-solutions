@@ -228,7 +228,7 @@ onMounted(async () => {
 .ft-mailboxes header strong { display: flex; gap: 6px; align-items: center; }
 .ft-row-actions { display: flex; gap: 4px; }
 .ft-err { max-width: 260px; white-space: normal; color: var(--color-danger); }
-.ft-mb-form { display: grid; gap: 10px; border: 1px solid var(--color-border); border-radius: 12px; padding: 10px 12px; background: var(--color-bg-primary); }
+.ft-mb-form { display: grid; gap: 10px; border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 10px 12px; background: var(--color-bg-primary); }
 .ft-mb-form__head { display: flex; gap: 10px; align-items: baseline; }
 .ft-check { display: inline-flex; gap: 6px; align-items: center; font-size: 12.5px; }
 .ft-test { display: flex; gap: 8px; flex-wrap: wrap; }

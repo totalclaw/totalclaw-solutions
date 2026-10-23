@@ -88,7 +88,7 @@
               <small v-if="sg.reason">{{ sg.reason }}</small>
             </div>
           </div>
-          <div class="ss-actions"><button type="button" class="ss-btn sm" :disabled="!customer.profile.suggestions.length" @click="applySuggestions"><i class="ri-magic-line"></i>{{ $t('套用这 {n} 组推荐', { n: customer.profile.suggestions.length }) }}</button></div>
+          <div class="ss-actions"><button type="button" class="ss-btn sm" :disabled="!customer.profile.suggestions.length" @click="applySuggestions"><i class="ri-lightbulb-line"></i>{{ $t('套用这 {n} 组推荐', { n: customer.profile.suggestions.length }) }}</button></div>
         </template>
       </StepCard>
 
@@ -122,7 +122,7 @@
       <StepCard step-key="ap-generate" :index="4" :title="metas[4].title" :hint="metas[4].hint" :runtime="runtime['ap-generate']" :is-current="currentKey === 'ap-generate'" :retry="pendingTryons.length ? undefined : retryGenerate">
         <p v-if="!state?.imageReady" class="ss-note warn"><i class="ri-key-2-line"></i>{{ $t('还没有配置图像服务：请到「设置 → 媒体模型」填写 fal 密钥，或联系管理员为本方案下发') }}</p>
         <div class="ss-actions">
-          <button type="button" class="ss-btn primary" :disabled="!!busy || !canGenerate" @click="generate"><i :class="busy === 'ap-generate' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ $t('生成 {n} 张试穿图', { n: picked.length * choices.length }) }}</button>
+          <button type="button" class="ss-btn primary" :disabled="!!busy || !canGenerate" @click="generate"><i :class="busy === 'ap-generate' ? 'ri-loader-4-line spin' : 'ri-shirt-line'"></i>{{ $t('生成 {n} 张试穿图', { n: picked.length * choices.length }) }}</button>
           <span class="ss-muted">{{ $t('{a} 件 × {b} 组造型，单张约 5–30 秒，同时生成 2 张', { a: picked.length, b: choices.length }) }}</span>
         </div>
         <div v-if="mine.length" class="ap-queue">
@@ -445,25 +445,25 @@ defineExpose({ focusCustomer: (id: string) => { customerId.value = id; } });
 
 <style scoped>
 .ap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); gap: 10px; }
-.ap-g { display: grid; gap: 2px; padding: 0 0 8px; border: 2px solid var(--color-border); border-radius: 12px; background: var(--color-bg-card); overflow: hidden; cursor: pointer; text-align: start; font: inherit; color: var(--color-text-primary); position: relative; }
-.ap-g img { width: 100%; aspect-ratio: 3 / 4; object-fit: contain; background: #fff; }
+.ap-g { display: grid; gap: 2px; padding: 0 0 8px; border: 2px solid var(--color-border); border-radius: var(--radius-5); background: var(--color-bg-card); overflow: hidden; cursor: pointer; text-align: start; font: inherit; color: var(--color-text-primary); position: relative; }
+.ap-g img { width: 100%; aspect-ratio: 3 / 4; object-fit: contain; background: var(--astf-surface); }
 .ap-g__name { font-size: 12.5px; font-weight: 700; padding: 0 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.ap-g__meta { font-size: 11px; color: var(--color-text-secondary); padding: 0 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ap-g__meta { font-size: var(--font-size-xs); color: var(--color-text-secondary); padding: 0 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ap-g.on { border-color: var(--color-brand); box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-brand) 16%, transparent); }
-.ap-g.on::after { content: "✓"; position: absolute; top: 6px; inset-inline-end: 6px; width: 22px; height: 22px; border-radius: 50%; background: var(--color-brand); color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; }
+.ap-g.on::after { content: "✓"; position: absolute; top: 6px; inset-inline-end: 6px; width: 22px; height: 22px; border-radius: 50%; background: var(--color-brand); color: var(--color-on-accent); font-size: var(--font-size-md); display: flex; align-items: center; justify-content: center; }
 .ap-grow { flex: 1; max-width: 420px; }
 .ap-consent { display: flex; gap: 8px; align-items: flex-start; font-size: 12.5px; color: var(--color-text-secondary); line-height: 1.55; }
 .ap-consent input { margin-top: 3px; accent-color: var(--color-brand); }
 .ap-customer { display: flex; gap: 14px; align-items: flex-start; }
-.ap-customer > img, .ap-customer__empty { width: 120px; height: 160px; object-fit: cover; border-radius: 12px; background: var(--color-bg-hover); flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-size: 30px; color: var(--color-text-secondary); }
+.ap-customer > img, .ap-customer__empty { width: 120px; height: 160px; object-fit: cover; border-radius: var(--radius-5); background: var(--color-bg-hover); flex: 0 0 auto; display: flex; align-items: center; justify-content: center; font-size: 30px; color: var(--color-text-secondary); }
 .ap-customer__info { flex: 1; display: grid; gap: 6px; min-width: 0; }
-.ap-inline { display: inline-flex; gap: 4px; align-items: center; font-size: 12px; color: var(--color-text-secondary); }
-.ap-inline input { width: 62px; height: 28px; border-radius: 7px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); padding: 0 6px; font: inherit; }
+.ap-inline { display: inline-flex; gap: 4px; align-items: center; font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+.ap-inline input { width: 62px; height: 28px; border-radius: var(--radius-2); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); padding: 0 6px; font: inherit; }
 .ap-sugs { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
-.ap-sug { display: grid; gap: 2px; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: 10px; background: var(--color-bg-primary); font-size: 12.5px; }
+.ap-sug { display: grid; gap: 2px; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-4); background: var(--color-bg-primary); font-size: 12.5px; }
 .ap-sug small { color: var(--color-text-secondary); }
 .ap-looks { display: flex; gap: 8px; flex-wrap: wrap; }
-.ap-look { display: grid; gap: 2px; text-align: start; padding: 8px 28px 8px 12px; border: 1px solid var(--color-border); border-radius: 10px; background: var(--color-bg-primary); color: var(--color-text-primary); font: inherit; font-size: 12px; max-width: 280px; cursor: pointer; position: relative; }
+.ap-look { display: grid; gap: 2px; text-align: start; padding: 8px 28px 8px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-4); background: var(--color-bg-primary); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-sm); max-width: 280px; cursor: pointer; position: relative; }
 .ap-look span { color: var(--color-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ap-look i { position: absolute; top: 6px; inset-inline-end: 6px; color: var(--color-text-secondary); }
 .ap-look.on { border-color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 8%, var(--color-bg-primary)); }
@@ -473,18 +473,18 @@ defineExpose({ focusCustomer: (id: string) => { customerId.value = id; } });
 .ap-q__what { color: var(--color-text-secondary); }
 .ap-q__err { color: var(--color-danger); flex-basis: 100%; padding-inline-start: 4px; }
 .ap-results { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
-.ap-results figure { margin: 0; border: 2px solid var(--color-border); border-radius: 12px; overflow: hidden; cursor: pointer; background: var(--color-bg-card); }
+.ap-results figure { margin: 0; border: 2px solid var(--color-border); border-radius: var(--radius-5); overflow: hidden; cursor: pointer; background: var(--color-bg-card); }
 .ap-results figure.on { border-color: var(--color-brand); }
 .ap-results img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
-.ap-results figcaption { padding: 6px 8px; display: grid; font-size: 12px; }
+.ap-results figcaption { padding: 6px 8px; display: grid; font-size: var(--font-size-sm); }
 .ap-results figcaption small { color: var(--color-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ap-preview { display: grid; grid-template-columns: minmax(0, 420px) 1fr; gap: 16px; align-items: start; }
-.ap-preview > img { width: 100%; border-radius: 14px; border: 1px solid var(--color-border); }
+.ap-preview > img { width: 100%; border-radius: var(--radius-6); border: 1px solid var(--color-border); }
 .ap-preview__side { display: grid; gap: 8px; align-content: start; }
-.ap-phone { display: grid; gap: 6px; justify-items: start; padding: 12px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg-primary); }
-.ap-phone strong { display: flex; gap: 6px; align-items: center; font-size: 13px; }
-.ap-phone img { width: 160px; height: 160px; border-radius: 8px; background: #fff; }
-.ap-phone small { color: var(--color-text-secondary); font-size: 12px; }
+.ap-phone { display: grid; gap: 6px; justify-items: start; padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-5); background: var(--color-bg-primary); }
+.ap-phone strong { display: flex; gap: 6px; align-items: center; font-size: var(--font-size-md); }
+.ap-phone img { width: 160px; height: 160px; border-radius: var(--radius-3); background: var(--astf-surface); }
+.ap-phone small { color: var(--color-text-secondary); font-size: var(--font-size-sm); }
 .ap-code { font-family: ui-monospace, Menlo, monospace; letter-spacing: .12em; color: var(--color-brand); }
 .ap-wrap { white-space: normal !important; min-width: 200px; }
 .ap-row-actions { display: flex; gap: 10px; align-items: center; }
@@ -492,4 +492,12 @@ defineExpose({ focusCustomer: (id: string) => { customerId.value = id; } });
 .spin { animation: ap-spin 1s linear infinite; }
 @keyframes ap-spin { to { transform: rotate(360deg); } }
 @media (max-width: 900px) { .ap-preview { grid-template-columns: 1fr; } }
+
+/* ─── 调色板（docs/ui-design-system.md）：经典主题保持原值；界面主题（data-ui-theme）下映射全局 token ─── */
+.ss-module { /* ui-theme-exempt: 经典主题原值 */
+  --astf-surface: #fff;
+}
+:root[data-ui-theme] .ss-module {
+  --astf-surface: var(--color-bg-card);
+}
 </style>

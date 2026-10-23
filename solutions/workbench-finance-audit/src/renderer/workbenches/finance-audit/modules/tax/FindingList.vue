@@ -27,7 +27,7 @@ const LEVEL: Record<string, string> = { info: i18nKey('提示'), warn: i18nKey('
 </script>
 
 <style scoped>
-.fau-sec { border: 1px solid var(--color-border); border-radius: 12px; padding: 10px 12px; display: grid; gap: 8px; background: var(--color-bg-card); }
+.fau-sec { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 10px 12px; display: grid; gap: 8px; background: var(--color-bg-card); }
 .fau-findings { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: 12.5px; }
 .fau-findings li { display: flex; gap: 8px; align-items: flex-start; }
 </style>

@@ -39,7 +39,7 @@ defineProps<{ report: FauValidationReport | null | undefined }>();
 <style scoped>
 .fau-vr { display: grid; gap: 8px; }
 .fau-issues { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
-.fau-issues li { display: flex; gap: 8px; align-items: flex-start; font-size: 12.5px; padding: 6px 10px; border-radius: 8px; }
+.fau-issues li { display: flex; gap: 8px; align-items: flex-start; font-size: 12.5px; padding: 6px 10px; border-radius: var(--radius-3); }
 .fau-issues li.block { background: color-mix(in srgb, var(--color-danger) 9%, transparent); color: var(--color-danger); }
 .fau-issues li.warn { background: color-mix(in srgb, var(--color-warning) 11%, transparent); color: var(--color-warning); }
 .fau-issues .grow { flex: 1; min-width: 0; }

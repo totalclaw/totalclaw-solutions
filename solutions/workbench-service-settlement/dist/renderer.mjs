@@ -1964,7 +1964,7 @@ const Xt = { class: "ss-module" }, Qt = { class: "ss-steps" }, Jt = { class: "ss
   for (const [U, X] of ie)
     Z[U] = X;
   return Z;
-}, mo = /* @__PURE__ */ tt(co, [["__scopeId", "data-v-5b5a726c"]]), Ce = { provider: "服务商", period: "结算期", payable: "应付合计", sentDate: "发送日期", seq: "序号", date: "日期", originalName: "原文件名" }, Dt = {
+}, mo = /* @__PURE__ */ tt(co, [["__scopeId", "data-v-345444c8"]]), Ce = { provider: "服务商", period: "结算期", payable: "应付合计", sentDate: "发送日期", seq: "序号", date: "日期", originalName: "原文件名" }, Dt = {
   服务商: { "en-US": "Provider", ar: "مزود_الخدمة" },
   结算期: { "en-US": "Period", ar: "فترة_التسوية" },
   应付合计: { "en-US": "Payable", ar: "المستحق" },
@@ -3498,13 +3498,23 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
                           e.toDisplayString(e.unref(r.fmtDate)(i.invoiceReceivedAt)),
                           1
                           /* TEXT */
-                        )) : W(i).invoiceOverdue ? (e.openBlock(), e.createElementBlock(
-                          "span",
-                          Ma,
-                          e.toDisplayString(o.$t("⚠ 超 20 天未开票")),
-                          1
-                          /* TEXT */
-                        )) : i.sentAt ? (e.openBlock(), e.createElementBlock(
+                        )) : W(i).invoiceOverdue ? (e.openBlock(), e.createElementBlock("span", Ma, [
+                          d[40] || (d[40] = e.createElementVNode(
+                            "i",
+                            {
+                              class: "ri-error-warning-line",
+                              "aria-hidden": "true"
+                            },
+                            null,
+                            -1
+                            /* CACHED */
+                          )),
+                          e.createTextVNode(
+                            e.toDisplayString(o.$t("超 20 天未开票")),
+                            1
+                            /* TEXT */
+                          )
+                        ])) : i.sentAt ? (e.openBlock(), e.createElementBlock(
                           "span",
                           Aa,
                           e.toDisplayString(o.$t("等待开票 {d} 天", { d: W(i).daysSinceSent ?? 0 })),
@@ -3539,7 +3549,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
                           class: "ss-btn sm ghost",
                           onClick: (E) => _(i.provider)
                         }, [
-                          d[40] || (d[40] = e.createElementVNode(
+                          d[41] || (d[41] = e.createElementVNode(
                             "i",
                             { class: "ri-upload-2-line" },
                             null,
@@ -3587,7 +3597,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
                 class: "ss-btn",
                 onClick: d[18] || (d[18] = (i) => e.unref(r.openPath)(y.value))
               }, [
-                d[41] || (d[41] = e.createElementVNode(
+                d[42] || (d[42] = e.createElementVNode(
                   "i",
                   { class: "ri-folder-open-line" },
                   null,
@@ -3645,7 +3655,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
                 disabled: !Re.value,
                 onClick: dt
               }, [
-                d[42] || (d[42] = e.createElementVNode(
+                d[43] || (d[43] = e.createElementVNode(
                   "i",
                   { class: "ri-external-link-line" },
                   null,
@@ -3663,7 +3673,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
                 class: "ss-btn sm ghost",
                 onClick: ut
               }, [
-                d[43] || (d[43] = e.createElementVNode(
+                d[44] || (d[44] = e.createElementVNode(
                   "i",
                   { class: "ri-file-upload-line" },
                   null,
@@ -3678,7 +3688,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
               ])
             ]),
             e.createElementVNode("p", xa, [
-              d[44] || (d[44] = e.createElementVNode(
+              d[45] || (d[45] = e.createElementVNode(
                 "i",
                 { class: "ri-information-line" },
                 null,
@@ -3921,7 +3931,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
                 1
                 /* TEXT */
               ),
-              d[46] || (d[46] = e.createElementVNode(
+              d[47] || (d[47] = e.createElementVNode(
                 "span",
                 { class: "grow" },
                 null,
@@ -3934,7 +3944,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
                 disabled: e.unref(V).isRunning(),
                 onClick: mt
               }, [
-                d[45] || (d[45] = e.createElementVNode(
+                d[46] || (d[46] = e.createElementVNode(
                   "i",
                   { class: "ri-file-chart-line" },
                   null,
@@ -3949,7 +3959,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
               ], 8, ds)
             ]),
             Fe.value ? (e.openBlock(), e.createElementBlock("div", us, [
-              d[47] || (d[47] = e.createElementVNode(
+              d[48] || (d[48] = e.createElementVNode(
                 "i",
                 { class: "ri-file-excel-2-line" },
                 null,
@@ -3993,7 +4003,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
       ])
     ]));
   }
-}), ms = /* @__PURE__ */ tt(cs, [["__scopeId", "data-v-31a2c878"]]), ps = { class: "ss-module" }, vs = { class: "ss-steps" }, ys = { class: "ss-note info" }, fs = { class: "ss-grid two" }, gs = { class: "ss-actions" }, Ns = {
+}), ms = /* @__PURE__ */ tt(cs, [["__scopeId", "data-v-cbea0006"]]), ps = { class: "ss-module" }, vs = { class: "ss-steps" }, ys = { class: "ss-note info" }, fs = { class: "ss-grid two" }, gs = { class: "ss-actions" }, Ns = {
   key: 0,
   class: "ss-dl"
 }, Vs = { class: "ss-subhead" }, Es = ["disabled", "onClick"], hs = { class: "ss-subhead ss-sources__head" }, ks = {
@@ -5452,7 +5462,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
       ])
     ]));
   }
-}), Br = /* @__PURE__ */ tt(wr, [["__scopeId", "data-v-175141c1"]]), Tr = { class: "ss-module" }, Cr = { class: "ss-steps" }, _r = { class: "ss-rule-row" }, Pr = { class: "lbl" }, Rr = { value: 1 }, Mr = { value: 2 }, Ar = { value: 3 }, Ur = { value: 4 }, Lr = { class: "lbl" }, Fr = ["disabled"], Or = {
+}), Br = /* @__PURE__ */ tt(wr, [["__scopeId", "data-v-8b6f8887"]]), Tr = { class: "ss-module" }, Cr = { class: "ss-steps" }, _r = { class: "ss-rule-row" }, Pr = { class: "lbl" }, Rr = { value: 1 }, Mr = { value: 2 }, Ar = { value: 3 }, Ur = { value: 4 }, Lr = { class: "lbl" }, Fr = ["disabled"], Or = {
   key: 0,
   class: "ss-dl"
 }, Ir = ["onClick"], qr = { class: "ss-actions" }, Kr = ["disabled"], zr = { class: "ss-grid" }, jr = { class: "ss-source" }, Wr = { class: "ss-subhead" }, Yr = { class: "ss-source" }, xr = { class: "ss-subhead" }, Xr = { class: "ss-grid" }, Qr = { class: "ss-source" }, Jr = { class: "ss-subhead" }, Zr = { class: "ss-source" }, Gr = { class: "ss-subhead" }, Hr = { class: "ss-actions" }, ei = ["disabled"], ti = { class: "ss-grid" }, ni = {
@@ -6639,7 +6649,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
               }, [
                 l[80] || (l[80] = e.createElementVNode(
                   "i",
-                  { class: "ri-sparkling-line" },
+                  { class: "ri-file-search-line" },
                   null,
                   -1
                   /* CACHED */
@@ -6685,7 +6695,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
               [
                 l[82] || (l[82] = e.createElementVNode(
                   "i",
-                  { class: "ri-sparkling-line" },
+                  { class: "ri-information-line" },
                   null,
                   -1
                   /* CACHED */
@@ -6859,7 +6869,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
                 }, [
                   l[86] || (l[86] = e.createElementVNode(
                     "i",
-                    { class: "ri-magic-line" },
+                    { class: "ri-file-settings-line" },
                     null,
                     -1
                     /* CACHED */
@@ -10453,7 +10463,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
       ])
     ]));
   }
-}), fp = /* @__PURE__ */ tt(yp, [["__scopeId", "data-v-da0fb423"]]), gp = { class: "ss-workbench" }, Np = { class: "workbench-header" }, Vp = { class: "heading" }, Ep = { class: "eyebrow" }, hp = { class: "subtitle" }, kp = { class: "header-actions" }, bp = ["disabled"], $p = { class: "ss-toolbar" }, Sp = { class: "ss-toolbar__item" }, Dp = ["title"], wp = ["disabled"], Bp = { class: "ss-toolbar__item" }, Tp = { class: "ss-toolbar__item" }, Cp = { class: "ss-toolbar__item" }, _p = {
+}), fp = /* @__PURE__ */ tt(yp, [["__scopeId", "data-v-a3f174a7"]]), gp = { class: "ss-workbench" }, Np = { class: "workbench-header" }, Vp = { class: "heading" }, Ep = { class: "eyebrow" }, hp = { class: "subtitle" }, kp = { class: "header-actions" }, bp = ["disabled"], $p = { class: "ss-toolbar" }, Sp = { class: "ss-toolbar__item" }, Dp = ["title"], wp = ["disabled"], Bp = { class: "ss-toolbar__item" }, Tp = { class: "ss-toolbar__item" }, Cp = { class: "ss-toolbar__item" }, _p = {
   key: 0,
   class: "ss-panel"
 }, Pp = { class: "ss-muted" }, Rp = ["disabled"], Mp = {
@@ -10481,7 +10491,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
   __name: "ServiceSettlementWorkbenchView",
   setup(pe) {
     const ie = Nt.useRouter(), Z = qe.useNotificationStore(), U = [
-      { key: "review", icon: "ri-star-smile-line", title: s.t("服务电商好评激励"), desc: s.t("京东安装 + 京东售后 + 天猫好评 · 4 步") },
+      { key: "review", icon: "ri-thumb-up-line", title: s.t("服务电商好评激励"), desc: s.t("京东安装 + 京东售后 + 天猫好评 · 4 步") },
       { key: "settlement", icon: "ri-file-list-3-line", title: s.t("结案汇总、下发及付款跟踪"), desc: s.t("汇总 → 拆分 → 邮件下发 → 发票 → 付款 · 5 步") },
       { key: "scrap", icon: "ri-delete-bin-6-line", title: s.t("更新报废台账"), desc: s.t("鉴定表 + 报废条码 → 对照表 → 台账 → 渠道品类汇总 · 4 步") },
       { key: "marketing", icon: "ri-line-chart-line", title: s.t("服务营销激励结案"), desc: s.t("有赞订单 → 达成率 → 激励 → 通知 → 个税 → 报告 · 11 步") }
@@ -11296,7 +11306,7 @@ const yo = { class: "ss-module" }, fo = { class: "ss-steps" }, go = { class: "ss
       ]))
     ]));
   }
-}), ev = /* @__PURE__ */ tt(Hp, [["__scopeId", "data-v-bb0efe65"]]);
+}), ev = /* @__PURE__ */ tt(Hp, [["__scopeId", "data-v-917a893f"]]);
 export {
   ev as default
 };

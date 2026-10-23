@@ -1,12 +1,12 @@
 {
   "id": "workbench-global-ads",
-  "version": "2.0.1",
-  "treeDigest": "68fd369590666879d881403f85246cf207a6086a0130fed0b391c44fbe335834",
+  "version": "2.0.2",
+  "treeDigest": "55f300dba4681920b90014f785fc7f3dde3df4257b61a647a633ffd7e4a99e6e",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 595,
-      "sha256": "1164b60c4972584a8335be8e343b6199eb730f48c2650541451102c0fd5fe325"
+      "size": 811,
+      "sha256": "c1f5eacdee9e31eab6af29fc0afa629639fc49925f763f7fda18503e7a4bdf3c"
     },
     {
       "path": "README.md",
@@ -20,13 +20,13 @@
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 347115,
-      "sha256": "eb2448347aadf21e538c34429d0510e84363546f86f642ffdd24527a13e5ef2c"
+      "size": 347106,
+      "sha256": "4b198a47ad08c646434078b4edc4f4b9e47565e37ae407189ca32b08715b93bf"
     },
     {
       "path": "dist/style.css",
-      "size": 65860,
-      "sha256": "203a9411fc71325243fec2451d5078838ae6fc93e5d4ee6ad67bb306e23d70f6"
+      "size": 74948,
+      "sha256": "f71370ad8c3b7c007c83ca690db56c688eee814accb9ecd236d0cc6abdc3ee7f"
     },
     {
       "path": "migrations/README.md",
@@ -36,10 +36,21 @@
     {
       "path": "solution.json",
       "size": 1950,
-      "sha256": "baf16b9cfc8523444f0eccf2738a5d1aadfe14f47e22d755e4e74c8abbbd06ac"
+      "sha256": "6b497ff634db59c6200203d9d8056274e0c415b1eece17281ebc2027cf9e2de7"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-global-ads@2.0.2",
+      "treeDigest": "55f300dba4681920b90014f785fc7f3dde3df4257b61a647a633ffd7e4a99e6e",
+      "filesRef": "index/workbench-global-ads/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-23"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-global-ads@2.0.1",

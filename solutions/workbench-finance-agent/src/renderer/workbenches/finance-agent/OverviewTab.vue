@@ -142,20 +142,20 @@ onMounted(async () => { try { ov.value = await fa('overview'); } catch { /* ж¶Ве
 .ss-panel > header strong { display: flex; gap: 6px; align-items: center; }
 .grow { flex: 1; }
 .fa-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
-.fa-card { display: grid; gap: 6px; align-content: start; padding: 12px; border-radius: 12px; border: 1px solid var(--color-border); background: var(--color-bg-primary); text-align: start; font: inherit; color: inherit; }
+.fa-card { display: grid; gap: 6px; align-content: start; padding: 12px; border-radius: var(--radius-5); border: 1px solid var(--color-border); background: var(--color-bg-primary); text-align: start; font: inherit; color: inherit; }
 .fa-card--click { cursor: pointer; transition: border-color .15s; }
 .fa-card--click:hover { border-color: var(--color-brand); }
 .fa-card.dim { opacity: .55; }
 .fa-card__head { display: flex; gap: 6px; align-items: center; font-size: 13.5px; }
-.fa-card__head i { color: var(--color-brand); font-size: 18px; }
+.fa-card__head i { color: var(--color-brand); font-size: var(--font-size-xl); }
 .fa-card p { margin: 0; font-size: 12.5px; color: var(--color-text-secondary); line-height: 1.6; }
 .fa-pack.active { border-color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 6%, var(--color-bg-primary)); }
 .fa-chips { display: flex; gap: 4px; flex-wrap: wrap; }
-.fa-quote { margin: 0; padding: 10px 14px; border-left: 3px solid var(--color-brand); background: var(--color-bg-primary); border-radius: 0 10px 10px 0; font-size: 14px; line-height: 1.7; }
+.fa-quote { margin: 0; padding: 10px 14px; border-left: 3px solid var(--color-brand); background: var(--color-bg-primary); border-radius: 0 var(--radius-4) var(--radius-4) 0; font-size: var(--font-size-base); line-height: 1.7; }
 .fa-rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
-.fa-rule { display: flex; gap: 8px; align-items: flex-start; padding: 10px 12px; border-radius: 10px; font-size: 13px; line-height: 1.6; }
+.fa-rule { display: flex; gap: 8px; align-items: flex-start; padding: 10px 12px; border-radius: var(--radius-4); font-size: var(--font-size-md); line-height: 1.6; }
 .fa-rule p { margin: 0; }
-.fa-rule i { font-size: 18px; }
+.fa-rule i { font-size: var(--font-size-xl); }
 .fa-rule.no { background: color-mix(in srgb, var(--color-danger) 8%, transparent); }
 .fa-rule.no i { color: var(--color-danger); }
 .fa-rule.yes { background: color-mix(in srgb, var(--color-success) 8%, transparent); }

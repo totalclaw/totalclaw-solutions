@@ -206,23 +206,32 @@ function trend(cur: number, prev: number): string {
 
 <style scoped>
 .ca-gov { display: grid; gap: 14px; }
-.ca-subnav { display: flex; gap: 6px; padding: 6px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg-card); width: fit-content; }
-.ca-subnav button { display: inline-flex; gap: 6px; align-items: center; padding: 6px 14px; border: none; border-radius: 8px; background: transparent; font: inherit; font-size: 13px; font-weight: 600; color: var(--color-text-secondary); cursor: pointer; }
+.ca-subnav { display: flex; gap: 6px; padding: 6px; border: 1px solid var(--color-border); border-radius: var(--radius-5); background: var(--color-bg-card); width: fit-content; }
+.ca-subnav button { display: inline-flex; gap: 6px; align-items: center; padding: 6px 14px; border: none; border-radius: var(--radius-3); background: transparent; font: inherit; font-size: var(--font-size-md); font-weight: 600; color: var(--color-text-secondary); cursor: pointer; }
 .ca-subnav button.on { background: var(--ca-oxblood); color: var(--ca-banner-ink); }
 /* 公文预览：白纸、红头、红线，与导出的 Word 同一套版式 */
-.ca-paper { background: #fffefb; color: #1a1a1a; border: 1px solid var(--color-border); border-radius: 6px; padding: 28px 40px; display: grid; gap: 6px; max-width: 820px; }
-.ca-paper__head { margin: 0; text-align: center; color: #d40000; font-family: var(--ca-serif); font-size: 30px; font-weight: 800; letter-spacing: .08em; }
-.ca-paper__no { margin: 0; text-align: center; font-size: 14px; }
-.ca-paper hr { border: none; border-top: 2px solid #d40000; margin: 4px 0 12px; width: 100%; }
+.ca-paper { background: var(--cagt-surface); color: var(--cagt-text); border: 1px solid var(--color-border); border-radius: var(--radius-2); padding: 28px 40px; display: grid; gap: 6px; max-width: 820px; }
+.ca-paper__head { margin: 0; text-align: center; color: var(--cagt-danger); font-family: var(--ca-serif); font-size: 30px; font-weight: 800; letter-spacing: .08em; }
+.ca-paper__no { margin: 0; text-align: center; font-size: var(--font-size-base); }
+.ca-paper hr { border: none; border-top: 2px solid var(--cagt-danger); margin: 4px 0 12px; width: 100%; }
 .ca-paper__title { margin: 0; text-align: center; font-family: var(--ca-serif); font-size: 20px; font-weight: 700; line-height: 1.5; text-wrap: balance; }
-.ca-paper__to { margin: 8px 0 0; font-size: 15px; }
-.ca-paper__body { width: 100%; border: 1px dashed #d8cfc4; border-radius: 4px; padding: 8px 10px; font: 15px/2 'FangSong', 'STFangsong', var(--ca-serif); color: #1a1a1a; background: transparent; resize: vertical; }
+.ca-paper__to { margin: 8px 0 0; font-size: var(--font-size-lg); }
+.ca-paper__body { width: 100%; border: 1px dashed var(--cagt-line-strong); border-radius: var(--radius-1); padding: 8px 10px; font: 15px/2 'FangSong', 'STFangsong', var(--ca-serif); color: var(--cagt-text); background: transparent; resize: vertical; }
 .ss-kpi.alert strong { color: var(--color-danger); }
 td.warn { color: var(--color-warning); font-weight: 700; }
-.ca-gaps { margin: 0; padding-inline-start: 20px; display: grid; gap: 6px; font-size: 13px; }
+.ca-gaps { margin: 0; padding-inline-start: 20px; display: grid; gap: 6px; font-size: var(--font-size-md); }
 .ca-gaps li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 10px; }
-.ca-gaps em { font-style: normal; color: var(--color-text-secondary); font-size: 12px; }
+.ca-gaps em { font-style: normal; color: var(--color-text-secondary); font-size: var(--font-size-sm); }
 .ca-kw { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; padding-top: 6px; }
 .ca-kw span { font-family: var(--ca-serif); color: var(--ca-oxblood); }
 .ca-kw sup { font-size: 10px; color: var(--color-text-secondary); margin-inline-start: 1px; }
+
+/* ─── 公文纸面色（docs/ui-design-system.md）：.ca-paper 是导出 Word 的所见即所得预览，
+   任何界面主题 / 深浅色下都保持白纸、黑字、红头，不随主题变色 ─── */
+.ca-gov { /* ui-theme-exempt: 公文纸面（GB/T 9704 红头）固定色 */
+  --cagt-surface: #fffefb;
+  --cagt-text: #1a1a1a;
+  --cagt-danger: #d40000;
+  --cagt-line-strong: #d8cfc4;
+}
 </style>

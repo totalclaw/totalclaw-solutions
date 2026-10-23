@@ -97,10 +97,10 @@ async function saveGoods(): Promise<void> { if (await act(() => iv('goods.upsert
 </script>
 
 <style scoped>
-.iv-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 16px; display: grid; gap: 12px; }
-.iv-panel h3 { margin: 0; font-size: 15px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
-.iv-panel h3 small { font-size: 12px; font-weight: 400; color: var(--color-text-secondary); }
+.iv-panel { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 16px; display: grid; gap: 12px; }
+.iv-panel h3 { margin: 0; font-size: var(--font-size-lg); display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.iv-panel h3 small { font-size: var(--font-size-sm); font-weight: 400; color: var(--color-text-secondary); }
 .iv-scroll { max-height: 380px; overflow-y: auto; }
-.iv-mono { font-family: var(--font-mono, ui-monospace, monospace); }
+.iv-mono { font-family: var(--font-mono); }
 .iv-ops { display: flex; gap: 10px; }
 </style>

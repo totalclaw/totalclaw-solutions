@@ -114,7 +114,7 @@
         <div class="ss-actions">
           <label class="fa-inline"><input v-model="includeFlagged" type="checkbox" />{{ $t('包含异常票据') }}</label>
           <button type="button" class="ss-btn primary" :disabled="!!busy || !pendingDocs.length" @click="generate">
-            <i :class="busy === 'generate' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ $t('为 {n} 张票据生成凭证', { n: pendingDocs.length }) }}
+            <i :class="busy === 'generate' ? 'ri-loader-4-line spin' : 'ri-bill-line'"></i>{{ $t('为 {n} 张票据生成凭证', { n: pendingDocs.length }) }}
           </button>
           <span class="ss-muted">{{ $t('分录按固定规则生成（进项专票拆税额、普票全额入费用、销项拆收入与销项税），不经过模型') }}</span>
         </div>
@@ -429,7 +429,7 @@ function scrollTo(key: string): void { void scrollToStep(key); }
 .fa-src { font-style: normal; font-size: 10.5px; color: var(--color-brand); margin-inline-start: 6px; }
 .fa-checks { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 12.5px; }
 .fa-checks li { display: flex; gap: 6px; align-items: center; }
-.fa-raw pre { white-space: pre-wrap; font-size: 11.5px; max-height: 260px; overflow: auto; background: var(--color-bg-card); padding: 8px; border-radius: 8px; }
+.fa-raw pre { white-space: pre-wrap; font-size: 11.5px; max-height: 260px; overflow: auto; background: var(--color-bg-card); padding: 8px; border-radius: var(--radius-3); }
 .fa-bad { color: var(--color-danger); }
 .fa-flag-list { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 4px; font-size: 12.5px; }
 .fa-flag-list li { display: flex; gap: 8px; }
@@ -440,10 +440,10 @@ function scrollTo(key: string): void { void scrollToStep(key); }
 .fa-period { max-width: 200px; }
 .fa-vedit { border-color: var(--color-brand); }
 .fa-vedit input, .fa-vedit select { width: 100%; box-sizing: border-box; }
-.fa-voucher { border: 1px solid var(--color-border); border-radius: 12px; padding: 8px 10px; display: grid; gap: 6px; background: var(--color-bg-card); }
+.fa-voucher { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 8px 10px; display: grid; gap: 6px; background: var(--color-bg-card); }
 .fa-voucher.reviewed { border-color: color-mix(in srgb, var(--color-success) 50%, var(--color-border)); }
 .fa-voucher__head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 12.5px; }
 .fa-basis { font-size: 11.5px; }
 .grow { flex: 1; }
-.fa-path { flex: 1; min-width: 200px; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-text-secondary); }
+.fa-path { flex: 1; min-width: 200px; font-size: var(--font-size-sm); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-text-secondary); }
 </style>

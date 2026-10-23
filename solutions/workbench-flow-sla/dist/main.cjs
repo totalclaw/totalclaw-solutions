@@ -26,7 +26,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// node_modules/.cache/solutions-build/workbench-flow-sla/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-flow-sla/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -36,7 +36,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/ipc/flowSla.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-flow-sla/src/main/ipc/flowSla.ipc.ts
 var import_electron = require("electron");
 var import_node_fs3 = require("node:fs");
 var import_node_path5 = require("node:path");
@@ -47,7 +47,7 @@ var import_quitRegistry = require("host:apps/desktop-shell/src/main/util/quitReg
 var import_workbenchLlm = require("host:apps/desktop-shell/src/main/services/workbenchLlm.ts");
 var import_excel3 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/calc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/calc.ts
 var import_i18n = require("npm:@totalclaw/i18n");
 var DAY = 864e5;
 function r2(n) {
@@ -542,13 +542,13 @@ function yearOverdueRunning(res, now) {
   return res.flows.filter((f) => f.status === "running" && f.runningLabel === "overdue" && f.startAt >= yearStart).sort((a, b) => b.overdueDays - a.overdueDays);
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/ingest.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/ingest.ts
 var import_node_path = require("node:path");
 var import_i18n2 = require("npm:@totalclaw/i18n");
 var import_spreadsheetRead = require("host:apps/desktop-shell/src/main/services/spreadsheetRead.ts");
 var import_excel = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/columnKeywords.json
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/columnKeywords.json
 var columnKeywords_default = {
   flow: {
     flowNo: [
@@ -1004,7 +1004,7 @@ var columnKeywords_default = {
   }
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/ingest.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/ingest.ts
 var FLOW_ROLES = ["flowNo", "flowName", "feeType", "title", "initiator", "dept", "status", "startAt", "endAt", "amount", "currentNode", "currentHandler"];
 var NODE_ROLES = ["node", "handler", "nodeStart", "nodeEnd"];
 var ROSTER_ROLES = ["name", "dept", "email", "identity"];
@@ -1577,13 +1577,13 @@ function makePeriod(kind, start, end, asOf) {
   return { kind, start: s, end: e, asOf: Math.max(asOf, s), label };
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/store.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/store.ts
 var import_node_fs = require("node:fs");
 var import_node_path2 = require("node:path");
 var import_node_crypto = require("node:crypto");
 var import_accountScope = require("host:apps/desktop-shell/src/main/services/accountScope.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/defaultRules.json
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/defaultRules.json
 var defaultRules_default = {
   version: "\u65F6\u6548\u770B\u677F\u6307\u6807(\u66F4\u65B0\u7248)",
   e2e: [
@@ -6073,7 +6073,7 @@ var defaultRules_default = {
   improveRemindDays: 7
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/store.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/store.ts
 var DEFAULT_RULES = defaultRules_default;
 var MAX_SNAPSHOTS = 80;
 function newId(prefix) {
@@ -6218,7 +6218,7 @@ var FlowSlaStore = class {
   }
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/rulesImport.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/rulesImport.ts
 var import_node_path3 = require("node:path");
 var import_i18n3 = require("npm:@totalclaw/i18n");
 var import_spreadsheetRead2 = require("host:apps/desktop-shell/src/main/services/spreadsheetRead.ts");
@@ -6354,7 +6354,7 @@ function parseRulesWorkbook(path, base) {
   };
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/demoData.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/demoData.ts
 var import_node_fs2 = require("node:fs");
 var import_node_path4 = require("node:path");
 var import_ipc_contracts = require("npm:@totalclaw/ipc-contracts");
@@ -6547,7 +6547,7 @@ function writeDemo(root, rules, now) {
   return { dir, oaFlow, oaNode, fkFlow, fkNode, css, roster, flows: all.length, nodes: all.reduce((n, f) => n + f.nodes.length, 0) };
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/reasons.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/reasons.ts
 var import_i18n4 = require("npm:@totalclaw/i18n");
 var import_ipc_contracts2 = require("npm:@totalclaw/ipc-contracts");
 var REASON_KW = columnKeywords_default.reasonKeywords;
@@ -6770,7 +6770,7 @@ function categoryCounts(cases) {
   return import_ipc_contracts2.FS_REASON_CATEGORIES.map((id) => ({ id, count: cases.filter((c) => c.reason.trim() && c.categoryId === id).length })).filter((x) => x.count > 0).sort((a, b) => b.count - a.count);
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/report.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/report.ts
 var import_i18n5 = require("npm:@totalclaw/i18n");
 var fmtRate = (r) => r == null ? "-" : `${(Math.round(r * 1e3) / 10).toFixed(1)}%`;
 var fmtDays = (d) => d == null ? "-" : String(Math.round(d * 100) / 100);
@@ -7240,7 +7240,7 @@ function detailSheets(ctx) {
   return sheets;
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/proc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/proc.ts
 var import_i18n6 = require("npm:@totalclaw/i18n");
 var TICK_MS = 10 * 60 * 1e3;
 var FIRST_TICK_MS = 30 * 1e3;
@@ -7489,7 +7489,7 @@ var FlowSlaProc = class {
   }
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/prompts.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-flow-sla/src/main/services/flowSla/prompts.ts
 var CATEGORY_GUIDE = [
   "materials  - \u8D44\u6599\u4E0D\u5168\u9000\u56DE\uFF1A\u53D1\u8D77\u65F6\u8D44\u6599\u7F3A\u5931\u3001\u586B\u5199\u9519\u8BEF\uFF0C\u88AB\u9000\u56DE\u8865\u5145\u540E\u91CD\u65B0\u6D41\u8F6C",
   "absence    - \u5BA1\u6279\u4EBA\u51FA\u5DEE/\u4F11\u5047\uFF1A\u5BA1\u6279\u4EBA\u4E0D\u5728\u5C97\u3001\u5F00\u4F1A\u3001\u57F9\u8BAD\uFF0C\u6CA1\u6709\u4EE3\u7406\u4EBA",
@@ -7533,7 +7533,7 @@ function summaryPrompt(kind, facts, names) {
   ].join("\n");
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-flow-sla/src/main/ipc/flowSla.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-flow-sla/src/main/ipc/flowSla.ipc.ts
 var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var store = new FlowSlaStore();
 var proc = null;
@@ -8352,7 +8352,7 @@ function registerFlowSlaHandlers(deps) {
   return stopBackground;
 }
 
-// node_modules/.cache/solutions-build/workbench-flow-sla/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-flow-sla/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerFlowSlaHandlers";
 var cleanup;

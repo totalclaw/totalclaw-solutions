@@ -30,7 +30,7 @@
                 <em v-for="s in p.foundIn || [p.source]" :key="s" class="ss-chip">{{ sourceLabel(s) }}</em>
                 <em v-if="p.citedBy != null" class="ss-chip">{{ $t('被引 {n}', { n: p.citedBy }) }}</em>
                 <span v-if="p.doi" class="aw-doi">DOI {{ p.doi }}
-                  <em v-if="p.doiCheck === 'ok'" class="ss-chip ok">✓</em>
+                  <em v-if="p.doiCheck === 'ok'" class="ss-chip ok"><i class="ri-check-line" aria-hidden="true"></i></em>
                   <em v-else-if="p.doiCheck === 'missing'" class="ss-chip bad">{{ $t('Crossref 查不到') }}</em>
                 </span>
                 <em v-if="p.summary" class="ss-chip brand">{{ $t('已精读') }}</em>
@@ -50,7 +50,7 @@
                   </div>
                   <ul v-if="p.summary.quotes.length" class="aw-quotes">
                     <li v-for="(q, qi) in p.summary.quotes" :key="qi" :class="{ unverified: !q.verified }">
-                      <span class="ss-chip" :class="q.verified ? 'ok' : ''">{{ q.verified ? $t('✓ 已在摘要中核实') : $t('未在摘要中找到') }}</span>
+                      <span class="ss-chip" :class="q.verified ? 'ok' : ''"><i v-if="q.verified" class="ri-check-line" aria-hidden="true"></i>{{ q.verified ? $t('已在摘要中核实') : $t('未在摘要中找到') }}</span>
                       <span>{{ $t('「{p0}」', { p0: q.quote }) }}</span>
                     </li>
                   </ul>
@@ -187,25 +187,25 @@ function scrollTo(key: string): void { void scrollToStep(key); }
 
 <style scoped>
 .aw-head { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
-.aw-head__main { display: grid; gap: 4px; flex: 1; min-width: 0; font-size: 13px; }
-.aw-head__main strong { display: flex; gap: 6px; align-items: center; font-size: 15px; }
+.aw-head__main { display: grid; gap: 4px; flex: 1; min-width: 0; font-size: var(--font-size-md); }
+.aw-head__main strong { display: flex; gap: 6px; align-items: center; font-size: var(--font-size-lg); }
 .aw-lib { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-.aw-lib > li { display: grid; gap: 5px; padding: 10px 12px; border-radius: 10px; background: var(--color-bg-primary); }
+.aw-lib > li { display: grid; gap: 5px; padding: 10px 12px; border-radius: var(--radius-4); background: var(--color-bg-primary); }
 .aw-lib__top { display: flex; gap: 8px; align-items: baseline; }
 .aw-no { font-weight: 800; color: var(--color-brand); font-variant-numeric: tabular-nums; flex: 0 0 auto; }
 .aw-title { border: none; background: none; padding: 0; text-align: start; font: inherit; font-size: 13.5px; font-weight: 600; color: var(--color-text-primary); cursor: pointer; }
 .aw-title:hover { color: var(--color-brand); }
-.aw-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 12px; color: var(--color-text-secondary); }
+.aw-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: var(--font-size-sm); color: var(--color-text-secondary); }
 .aw-meta em { font-style: normal; }
 .aw-doi { display: inline-flex; gap: 4px; align-items: center; }
 .aw-danger { color: var(--color-danger); }
-.aw-note { height: 28px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-primary); font: inherit; font-size: 12px; padding: 0 8px; }
+.aw-note { height: 28px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-sm); padding: 0 8px; }
 .aw-detail { display: grid; gap: 8px; padding-top: 4px; }
 .aw-sum { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 8px; }
-.aw-sum > div { padding: 8px 10px; border-radius: 8px; background: var(--color-bg-card); border: 1px solid var(--color-border); }
-.aw-sum small { font-size: 11px; color: var(--color-text-secondary); font-weight: 700; }
+.aw-sum > div { padding: 8px 10px; border-radius: var(--radius-3); background: var(--color-bg-card); border: 1px solid var(--color-border); }
+.aw-sum small { font-size: var(--font-size-xs); color: var(--color-text-secondary); font-weight: 700; }
 .aw-sum p { margin: 2px 0 0; font-size: 12.5px; line-height: 1.6; }
-.aw-quotes { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 12px; }
+.aw-quotes { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: var(--font-size-sm); }
 .aw-quotes li { display: flex; gap: 6px; align-items: flex-start; }
 .aw-quotes li.unverified { color: var(--color-text-secondary); }
 .aw-abstract { margin: 0; font-size: 12.5px; line-height: 1.6; white-space: pre-wrap; color: var(--color-text-secondary); }

@@ -67,7 +67,7 @@ function openConv(): void { void router.push(`/conversations/${convId.value}`).c
 <style scoped>
 .zc-rb { display: grid; gap: 8px; }
 .zc-rb__paste { display: grid; gap: 8px; justify-items: start; }
-.zc-rb__paste textarea { width: 100%; box-sizing: border-box; border-radius: 9px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: 12px/1.5 var(--font-mono, ui-monospace, monospace); padding: 8px 10px; resize: vertical; }
+.zc-rb__paste textarea { width: 100%; box-sizing: border-box; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: 12px/1.5 var(--font-mono); padding: 8px 10px; resize: vertical; }
 .spin { animation: zc-spin 1s linear infinite; }
 @keyframes zc-spin { to { transform: rotate(360deg); } }
 </style>

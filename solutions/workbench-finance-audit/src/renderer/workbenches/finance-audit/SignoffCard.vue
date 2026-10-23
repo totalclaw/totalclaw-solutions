@@ -164,13 +164,13 @@ async function verify(): Promise<void> {
 <style scoped>
 .fau-sign { display: grid; gap: 10px; }
 .fau-levels { display: flex; gap: 8px; flex-wrap: wrap; }
-.fau-level { border: 1px solid var(--color-border); border-radius: 10px; padding: 6px 12px; display: grid; gap: 2px; min-width: 130px; }
+.fau-level { border: 1px solid var(--color-border); border-radius: var(--radius-4); padding: 6px 12px; display: grid; gap: 2px; min-width: 130px; }
 .fau-level small { color: var(--color-text-secondary); font-size: 11.5px; }
 .fau-level.done { border-color: color-mix(in srgb, var(--color-success) 55%, var(--color-border)); }
 .fau-level.current { border-color: var(--color-brand); box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-brand) 15%, transparent); }
-.fau-sign__form { display: grid; gap: 10px; border: 1px solid var(--color-border); border-radius: 12px; padding: 10px 12px; }
+.fau-sign__form { display: grid; gap: 10px; border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 10px 12px; }
 .fau-acks { display: grid; gap: 4px; }
-.fau-ack { display: flex; align-items: center; gap: 8px; font-size: 12.5px; padding: 4px 6px; border-radius: 8px; }
+.fau-ack { display: flex; align-items: center; gap: 8px; font-size: 12.5px; padding: 4px 6px; border-radius: var(--radius-3); }
 .fau-ack.locked { opacity: .6; }
 .fau-ack .grow { flex: 1; min-width: 0; }
 </style>

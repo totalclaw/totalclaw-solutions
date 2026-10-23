@@ -280,22 +280,22 @@ onMounted(() => { void loadSummary(); });
 <style scoped>
 .fa-split { display: grid; grid-template-columns: minmax(230px, 290px) 1fr; gap: 14px; align-items: start; }
 @media (max-width: 960px) { .fa-split { grid-template-columns: 1fr; } }
-.fa-list { display: grid; gap: 8px; border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 10px; position: sticky; top: 0; max-height: calc(100vh - 160px); overflow: hidden; grid-template-rows: auto auto auto 1fr; }
+.fa-list { display: grid; gap: 8px; border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 10px; position: sticky; top: 0; max-height: calc(100vh - 160px); overflow: hidden; grid-template-rows: auto auto auto 1fr; }
 .fa-new { display: grid; gap: 6px; }
-.fa-new input { height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); padding: 0 8px; font: inherit; font-size: 12.5px; }
+.fa-new input { height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); padding: 0 8px; font: inherit; font-size: 12.5px; }
 .fa-list ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; overflow-y: auto; align-content: start; }
-.fa-list li { padding: 8px 10px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; display: grid; gap: 3px; background: var(--color-bg-primary); }
+.fa-list li { padding: 8px 10px; border-radius: var(--radius-4); border: 1px solid transparent; cursor: pointer; display: grid; gap: 3px; background: var(--color-bg-primary); }
 .fa-list li.active { border-color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 8%, var(--color-bg-card)); }
-.fa-list__top { display: flex; justify-content: space-between; gap: 6px; align-items: center; font-size: 13px; }
-.fa-list__meta { display: flex; gap: 8px; font-size: 11px; color: var(--color-text-secondary); align-items: center; flex-wrap: wrap; }
+.fa-list__top { display: flex; justify-content: space-between; gap: 6px; align-items: center; font-size: var(--font-size-md); }
+.fa-list__meta { display: flex; gap: 8px; font-size: var(--font-size-xs); color: var(--color-text-secondary); align-items: center; flex-wrap: wrap; }
 .fa-detail { display: grid; gap: 12px; min-width: 0; }
 .fa-file { max-width: 220px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .fa-wrap { white-space: normal !important; }
-.fa-check { display: flex; gap: 6px; align-items: center; font-size: 12px; margin: 2px 0; }
+.fa-check { display: flex; gap: 6px; align-items: center; font-size: var(--font-size-sm); margin: 2px 0; }
 .fa-reasons { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 12.5px; }
 .fa-reasons i { color: var(--color-danger); margin-inline-end: 4px; }
-.fa-notice { width: 100%; box-sizing: border-box; font: inherit; font-size: 12.5px; border-radius: 10px; border: 1px solid var(--color-border); background: var(--color-bg-primary); color: var(--color-text-primary); padding: 8px 10px; }
+.fa-notice { width: 100%; box-sizing: border-box; font: inherit; font-size: 12.5px; border-radius: var(--radius-4); border: 1px solid var(--color-border); background: var(--color-bg-primary); color: var(--color-text-primary); padding: 8px 10px; }
 .ss-panel > header strong { display: flex; gap: 6px; align-items: center; }
 .grow { flex: 1; }
-.fa-path { flex: 1; min-width: 200px; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-text-secondary); }
+.fa-path { flex: 1; min-width: 200px; font-size: var(--font-size-sm); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-text-secondary); }
 </style>

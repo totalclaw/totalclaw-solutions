@@ -180,8 +180,8 @@ async function clearHistory(): Promise<void> {
 .pa-board__cols { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 480px), 1fr)); align-items: start; }
 .pa-board__head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
 .pa-board__head .grow { flex: 1; }
-.ss-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 16px; display: grid; gap: 10px; min-width: 0; }
-h3 { margin: 0; font-size: 15px; }
+.ss-panel { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 16px; display: grid; gap: 10px; min-width: 0; }
+h3 { margin: 0; font-size: var(--font-size-lg); }
 p { margin: 0; }
 .pa-kpi { border-inline-start-width: 4px; }
 .pa-kpi.bad { border-inline-start-color: var(--color-danger); }

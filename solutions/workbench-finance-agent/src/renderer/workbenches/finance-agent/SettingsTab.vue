@@ -252,12 +252,12 @@ function open(path: string): void { openPath(path).catch((e) => notif.error(erro
 
 <style scoped>
 .ss-panel > header strong { display: flex; gap: 6px; align-items: center; }
-.fa-path { font-size: 12px; color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 520px; }
+.fa-path { font-size: var(--font-size-sm); color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 520px; }
 .fa-icon { color: var(--color-brand); }
 .ss-table select { min-width: 280px; }
 .ss-table input[type="text"], .ss-table input[type="number"] { width: 100%; min-width: 80px; box-sizing: border-box; }
 .fa-check { flex-direction: row !important; align-items: center; gap: 6px; }
 .fa-row { display: flex; gap: 8px; align-items: center; max-width: 520px; }
-.fa-row input { flex: 1; min-width: 0; height: 32px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-primary); color: var(--color-text-primary); padding: 0 8px; font: inherit; }
-.fa-code { margin: 0; padding: 10px 12px; border-radius: 10px; background: var(--color-bg-primary); font-size: 11.5px; overflow-x: auto; white-space: pre; }
+.fa-row input { flex: 1; min-width: 0; height: 32px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-primary); color: var(--color-text-primary); padding: 0 8px; font: inherit; }
+.fa-code { margin: 0; padding: 10px 12px; border-radius: var(--radius-4); background: var(--color-bg-primary); font-size: 11.5px; overflow-x: auto; white-space: pre; }
 </style>

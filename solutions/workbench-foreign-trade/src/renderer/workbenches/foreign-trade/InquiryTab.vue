@@ -76,7 +76,7 @@
           <StepCard step-key="extract" :index="1" :title="metas[1].title" :hint="metas[1].hint" :runtime="runtime.extract">
             <div class="ss-actions">
               <button type="button" class="ss-btn primary" :disabled="busy === 'extract'" @click="run('extract', () => ft('inquiry.extract', { id: current!.id }))">
-                <i :class="busy === 'extract' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ current.extractedAt ? $t('重新提取') : $t('提取信息') }}
+                <i :class="busy === 'extract' ? 'ri-loader-4-line spin' : 'ri-file-search-line'"></i>{{ current.extractedAt ? $t('重新提取') : $t('提取信息') }}
               </button>
               <span v-if="current.model" class="ss-muted">{{ $t('由 {p0} 提取', { p0: modelLabel(current.model) }) }}</span>
             </div>
@@ -307,19 +307,19 @@ function scrollTo(key: string): void { void scrollToStep(key); }
 <style scoped>
 .ft-split { display: grid; grid-template-columns: minmax(260px, 340px) 1fr; gap: 14px; align-items: start; }
 @media (max-width: 960px) { .ft-split { grid-template-columns: 1fr; } }
-.ft-list { display: grid; gap: 8px; border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 10px; position: sticky; top: 0; max-height: calc(100vh - 160px); overflow: hidden; grid-template-rows: auto 1fr; }
+.ft-list { display: grid; gap: 8px; border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 10px; position: sticky; top: 0; max-height: calc(100vh - 160px); overflow: hidden; grid-template-rows: auto 1fr; }
 .ft-list ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; overflow-y: auto; align-content: start; }
-.ft-list li { padding: 8px 10px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; display: grid; gap: 3px; background: var(--color-bg-primary); }
+.ft-list li { padding: 8px 10px; border-radius: var(--radius-4); border: 1px solid transparent; cursor: pointer; display: grid; gap: 3px; background: var(--color-bg-primary); }
 .ft-list li.active { border-color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 8%, var(--color-bg-card)); }
-.ft-list__top { display: flex; justify-content: space-between; gap: 6px; align-items: center; font-size: 13px; }
-.ft-list__sub { font-size: 12px; color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.ft-list__meta { display: flex; gap: 6px; flex-wrap: wrap; font-size: 11px; color: var(--color-text-secondary); align-items: center; }
-.ft-select { height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12px; max-width: 150px; }
+.ft-list__top { display: flex; justify-content: space-between; gap: 6px; align-items: center; font-size: var(--font-size-md); }
+.ft-list__sub { font-size: var(--font-size-sm); color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ft-list__meta { display: flex; gap: 6px; flex-wrap: wrap; font-size: var(--font-size-xs); color: var(--color-text-secondary); align-items: center; }
+.ft-select { height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-sm); max-width: 150px; }
 .ft-detail { display: grid; gap: 12px; min-width: 0; }
-.ft-mail { border: 1px solid var(--color-border); border-radius: 10px; padding: 8px 10px; display: grid; gap: 6px; }
+.ft-mail { border: 1px solid var(--color-border); border-radius: var(--radius-4); padding: 8px 10px; display: grid; gap: 6px; }
 .ft-mail__head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 12.5px; }
 .ft-body { margin: 0; white-space: pre-wrap; font: inherit; font-size: 12.5px; line-height: 1.55; max-height: 260px; overflow: auto; color: var(--color-text-primary); }
-.ft-quote { white-space: normal !important; max-width: 360px; font-size: 12px; color: var(--color-text-secondary); }
+.ft-quote { white-space: normal !important; max-width: 360px; font-size: var(--font-size-sm); color: var(--color-text-secondary); }
 .ft-unverified { color: var(--color-warning); text-decoration: underline dotted; }
 .ft-ol { margin: 4px 0 0; padding-inline-start: 20px; font-size: 12.5px; display: grid; gap: 3px; }
 .ft-check { display: inline-flex; gap: 6px; align-items: center; font-size: 12.5px; }

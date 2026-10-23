@@ -185,17 +185,17 @@ async function setDir(dir: string): Promise<void> {
 
 <style scoped>
 .fs-rules { display: grid; gap: 14px; }
-.fs-card { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; min-width: 0; }
+.fs-card { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 14px; display: grid; gap: 10px; min-width: 0; }
 .fs-card header { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .fs-card header .grow { flex: 1; }
-.fs-card h3 { margin: 0; font-size: 14px; }
+.fs-card h3 { margin: 0; font-size: var(--font-size-base); }
 .fs-scroll { max-height: 440px; overflow: auto; }
 .fs-cal { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
-.fs-cal textarea { font-family: var(--font-mono, ui-monospace, monospace); }
-.fs-seg { display: inline-flex; border: 1px solid var(--color-border); border-radius: 8px; overflow-x: auto; max-width: 100%; }
-.fs-seg button { height: 30px; padding: 0 12px; border: none; background: var(--color-bg-card); color: var(--color-text-secondary); font: inherit; font-size: 12px; font-weight: 700; cursor: pointer; white-space: nowrap; display: inline-flex; gap: 6px; align-items: center; }
+.fs-cal textarea { font-family: var(--font-mono); }
+.fs-seg { display: inline-flex; border: 1px solid var(--color-border); border-radius: var(--radius-3); overflow-x: auto; max-width: 100%; }
+.fs-seg button { height: 30px; padding: 0 12px; border: none; background: var(--color-bg-card); color: var(--color-text-secondary); font: inherit; font-size: var(--font-size-sm); font-weight: 700; cursor: pointer; white-space: nowrap; display: inline-flex; gap: 6px; align-items: center; }
 .fs-seg button em { font-style: normal; font-weight: 400; opacity: .8; }
-.fs-seg button.on { background: var(--color-brand); color: #fff; }
+.fs-seg button.on { background: var(--color-brand); color: var(--color-on-accent); }
 .spin { animation: fs-spin 1s linear infinite; }
 @keyframes fs-spin { to { transform: rotate(360deg); } }
 </style>

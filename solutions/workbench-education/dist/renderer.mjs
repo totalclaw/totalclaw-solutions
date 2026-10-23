@@ -2280,7 +2280,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(w.value ? "ri-loader-4-line spin" : "ri-sparkling-2-line")
+                    class: e.normalizeClass(w.value ? "ri-loader-4-line spin" : "ri-book-open-line")
                   },
                   null,
                   2
@@ -2725,7 +2725,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
   for (const [le, y] of K)
     j[le] = y;
   return j;
-}, In = /* @__PURE__ */ Rn(Kn, [["__scopeId", "data-v-94635c7c"]]);
+}, In = /* @__PURE__ */ Rn(Kn, [["__scopeId", "data-v-782e08c9"]]);
 export {
   In as default
 };

@@ -26,7 +26,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// node_modules/.cache/solutions-build/embedded-bid-desk/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/embedded-bid-desk/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -36,7 +36,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../totalclaw-solutions/solutions/embedded-bid-desk/src/main/ipc/bidDesk.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/embedded-bid-desk/src/main/ipc/bidDesk.ipc.ts
 var import_spreadsheetRead = require("host:apps/desktop-shell/src/main/services/spreadsheetRead.ts");
 var import_electron = require("electron");
 var import_node_fs = require("node:fs");
@@ -626,7 +626,7 @@ function registerBidDeskHandlers(deps) {
   import_electron.ipcMain.handle(import_ipc_contracts.IPC_CHANNELS.BID_DESK_EXPORT_PACKAGE, (_event, payload) => exportPackage(payload, actorFrom(deps)));
 }
 
-// node_modules/.cache/solutions-build/embedded-bid-desk/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/embedded-bid-desk/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerBidDeskHandlers";
 var cleanup;

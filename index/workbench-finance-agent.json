@@ -1,12 +1,12 @@
 {
   "id": "workbench-finance-agent",
-  "version": "2.0.2",
-  "treeDigest": "4d0b4a2da8a24a69572e2ac5476ee7784e70052314ef873a72ea08b2a2134bfa",
+  "version": "2.0.3",
+  "treeDigest": "dd98b5bdde4d7ef38ccaa511752436c403a127b2cfd3b64d1924eb6d6423b040",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1176,
-      "sha256": "0f472192dcfab8f82a8af50db9516b630f3e5ece9e009bef44b2322953f3c725"
+      "size": 1392,
+      "sha256": "5c756fbe55516d626ff6f6014f083bb1d08268e71de2d224f3ab0ef78f0c5348"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 142237,
-      "sha256": "12376ae0067b1e4a6e8ad76dbfd8a92bc414847100f260d119f208e3a34d0b1d"
+      "size": 143059,
+      "sha256": "91afbcbbefa6d5867ed65e3d395286dd51395e6f54147c9eeb45c19700954af7"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 583177,
-      "sha256": "4fa6bf310727bf6e21f68ab293dd150da5467ce35ceb5a708cd0f847046a81b6"
+      "size": 583176,
+      "sha256": "0c6e141c5f4eb2af03f0fc4814f8254e173cbe1998a7d0164a6f1e0b77c8d616"
     },
     {
       "path": "dist/style.css",
-      "size": 42108,
-      "sha256": "11408bb8e80852f3b494e75a2c6d6bf7fa2f6cdf54501a0560a5b9d7a60d2ad2"
+      "size": 43846,
+      "sha256": "f9d348353baffe28241768a2c3aac02fe7c5252d09cf6385db916c93a2cfb2aa"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2313,
-      "sha256": "e91a1b66c7d0bc1964957b4649be72a56b3664c7303d824cbd09f7d7bff42512"
+      "sha256": "e2f7bb46fd8fa669046c8314f3e7bb55f8f58eb383163d637dbfd79ee77c4b66"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.3",
+      "ref": "workbench-finance-agent@2.0.3",
+      "treeDigest": "dd98b5bdde4d7ef38ccaa511752436c403a127b2cfd3b64d1924eb6d6423b040",
+      "filesRef": "index/workbench-finance-agent/2.0.3.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-23"
+    },
     {
       "version": "2.0.2",
       "ref": "workbench-finance-agent@2.0.2",

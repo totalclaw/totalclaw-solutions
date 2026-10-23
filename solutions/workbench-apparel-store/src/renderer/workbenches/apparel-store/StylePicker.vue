@@ -77,7 +77,7 @@ function pickVariant(id: string): void {
 <style scoped>
 .ap-picker { display: grid; gap: 10px; }
 .ap-picker__kinds { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.ap-picker__kinds button { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 8px; align-items: center; text-align: start; padding: 8px 12px; border: 1px solid var(--color-border); border-radius: 10px; background: var(--color-bg-primary); color: var(--color-text-primary); cursor: pointer; font: inherit; }
+.ap-picker__kinds button { display: grid; grid-template-columns: auto 1fr; grid-template-rows: auto auto; column-gap: 8px; align-items: center; text-align: start; padding: 8px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-4); background: var(--color-bg-primary); color: var(--color-text-primary); cursor: pointer; font: inherit; }
 .ap-picker__kinds button i { grid-row: span 2; font-size: 20px; color: var(--color-text-secondary); }
 .ap-picker__kinds button span { font-size: 12.5px; font-weight: 700; }
 .ap-picker__kinds button em { font-style: normal; font-size: 11.5px; color: var(--color-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -86,12 +86,12 @@ function pickVariant(id: string): void {
 .ap-picker__groups { display: grid; gap: 8px; max-height: 260px; overflow-y: auto; padding-inline-end: 4px; }
 .ap-picker__group small, .ap-picker__variants small { display: block; font-size: 11.5px; font-weight: 700; color: var(--color-text-secondary); margin-bottom: 4px; }
 .ap-picker__chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.ap-chip { border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-primary); border-radius: 999px; padding: 4px 11px; font: inherit; font-size: 12.5px; cursor: pointer; }
+.ap-chip { border: 1px solid var(--color-border); background: var(--color-bg-card); color: var(--color-text-primary); border-radius: var(--radius-pill); padding: 4px 11px; font: inherit; font-size: 12.5px; cursor: pointer; }
 .ap-chip:hover { border-color: var(--color-brand); }
 .ap-chip img { width: 22px; height: 22px; object-fit: cover; border-radius: 50%; vertical-align: middle; margin-inline-end: 4px; }
 .ap-picker__all { justify-self: start; }
-.ap-chip.on { background: var(--color-brand); border-color: var(--color-brand); color: #fff; font-weight: 700; }
-.ap-chip.sub { background: var(--color-bg-primary); font-size: 12px; }
+.ap-chip.on { background: var(--color-brand); border-color: var(--color-brand); color: var(--color-on-accent); font-weight: 700; }
+.ap-chip.sub { background: var(--color-bg-primary); font-size: var(--font-size-sm); }
 .ap-chip.sub.on { background: color-mix(in srgb, var(--color-brand) 14%, transparent); color: var(--color-brand); }
-.ap-picker__variants { padding: 10px 12px; border-radius: 10px; background: var(--color-bg-hover); }
+.ap-picker__variants { padding: 10px 12px; border-radius: var(--radius-4); background: var(--color-bg-hover); }
 </style>

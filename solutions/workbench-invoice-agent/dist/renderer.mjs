@@ -858,7 +858,7 @@ const Et = { class: "ss-module" }, kt = { class: "ss-steps" }, gt = { class: "ss
                     e.createElementVNode(
                       "i",
                       {
-                        class: e.normalizeClass(c.value === "i-import" ? "ri-loader-4-line spin" : "ri-magic-line")
+                        class: e.normalizeClass(c.value === "i-import" ? "ri-loader-4-line spin" : "ri-file-search-line")
                       },
                       null,
                       2
@@ -1428,7 +1428,7 @@ const Et = { class: "ss-module" }, kt = { class: "ss-steps" }, gt = { class: "ss
                     e.createElementVNode(
                       "i",
                       {
-                        class: e.normalizeClass(c.value === "i-code" ? "ri-loader-4-line spin" : "ri-magic-line")
+                        class: e.normalizeClass(c.value === "i-code" ? "ri-loader-4-line spin" : "ri-barcode-line")
                       },
                       null,
                       2
@@ -3251,7 +3251,7 @@ const Et = { class: "ss-module" }, kt = { class: "ss-steps" }, gt = { class: "ss
   for (const [f, s] of D)
     B[f] = s;
   return B;
-}, Vs = /* @__PURE__ */ ue(Ns, [["__scopeId", "data-v-c4e49707"]]), Te = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
+}, Vs = /* @__PURE__ */ ue(Ns, [["__scopeId", "data-v-062b4f59"]]), Te = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
 if (!Te) throw new Error("宿主模块未就绪：npm:vue-router");
 Te.default;
 const Es = { class: "ss-module" }, ks = { class: "ss-kpis" }, gs = { class: "ss-kpi" }, hs = { class: "ss-kpi accent" }, fs = { class: "ss-kpi" }, bs = { class: "ss-kpi" }, $s = { class: "ss-kpi" }, Ds = { class: "ss-actions" }, Ss = ["placeholder"], _s = { value: "" }, Bs = ["value"], ws = ["disabled"], Cs = {
@@ -3712,7 +3712,7 @@ const Es = { class: "ss-module" }, ks = { class: "ss-kpis" }, gs = { class: "ss-
       ))
     ]));
   }
-}), ea = /* @__PURE__ */ ue(xs, [["__scopeId", "data-v-ec3aca5d"]]), ta = { class: "ss-module" }, la = { class: "iv-panel" }, na = { class: "ss-grid" }, oa = { class: "ss-field" }, sa = { class: "ss-field" }, aa = { class: "ss-field" }, ia = { class: "ss-field" }, ra = { class: "ss-field" }, da = { class: "ss-field" }, ca = { class: "ss-field" }, ua = { class: "ss-actions" }, ma = ["disabled"], pa = ["disabled"], va = {
+}), ea = /* @__PURE__ */ ue(xs, [["__scopeId", "data-v-a580ca8f"]]), ta = { class: "ss-module" }, la = { class: "iv-panel" }, na = { class: "ss-grid" }, oa = { class: "ss-field" }, sa = { class: "ss-field" }, aa = { class: "ss-field" }, ia = { class: "ss-field" }, ra = { class: "ss-field" }, da = { class: "ss-field" }, ca = { class: "ss-field" }, ua = { class: "ss-actions" }, ma = ["disabled"], pa = ["disabled"], va = {
   key: 0,
   class: "ss-empty"
 }, ya = {
@@ -4385,7 +4385,7 @@ const Es = { class: "ss-module" }, ks = { class: "ss-kpis" }, gs = { class: "ss-
       ])
     ]));
   }
-}), Fa = /* @__PURE__ */ ue(Oa, [["__scopeId", "data-v-8cf363ba"]]), Wa = { class: "ss-module iv-settings" }, za = { class: "iv-panel" }, Ra = { class: "ss-grid" }, Pa = { class: "ss-field" }, ja = { class: "ss-field" }, qa = { class: "ss-field" }, Qa = { class: "ss-field" }, Ga = { class: "ss-field" }, Ha = { class: "ss-muted" }, Ja = { class: "iv-panel" }, Ya = { class: "ss-grid" }, Xa = { class: "ss-field" }, Za = { value: "normal" }, xa = { value: "special" }, ei = { class: "ss-field" }, ti = { value: !0 }, li = { value: !1 }, ni = { class: "ss-field" }, oi = { class: "iv-panel" }, si = { class: "ss-muted" }, ai = { class: "ss-actions" }, ii = {
+}), Fa = /* @__PURE__ */ ue(Oa, [["__scopeId", "data-v-36916a01"]]), Wa = { class: "ss-module iv-settings" }, za = { class: "iv-panel" }, Ra = { class: "ss-grid" }, Pa = { class: "ss-field" }, ja = { class: "ss-field" }, qa = { class: "ss-field" }, Qa = { class: "ss-field" }, Ga = { class: "ss-field" }, Ha = { class: "ss-muted" }, Ja = { class: "iv-panel" }, Ya = { class: "ss-grid" }, Xa = { class: "ss-field" }, Za = { value: "normal" }, xa = { value: "special" }, ei = { class: "ss-field" }, ti = { value: !0 }, li = { value: !1 }, ni = { class: "ss-field" }, oi = { class: "iv-panel" }, si = { class: "ss-muted" }, ai = { class: "ss-actions" }, ii = {
   key: 0,
   class: "iv-path"
 }, ri = { class: "iv-panel" }, di = { class: "ss-actions" }, ci = { class: "iv-path" }, ui = { class: "ss-field iv-model" }, mi = { value: "" }, pi = ["value"], vi = { class: "ss-muted" }, yi = { class: "ss-actions" }, Ni = ["disabled"], Vi = { class: "iv-panel" }, Ei = {
@@ -4885,7 +4885,7 @@ const Es = { class: "ss-module" }, ks = { class: "ss-kpis" }, gs = { class: "ss-
       ])
     ]));
   }
-}), hi = /* @__PURE__ */ ue(gi, [["__scopeId", "data-v-d0a84f25"]]), fi = { class: "iv-workbench" }, bi = { class: "workbench-header" }, $i = { class: "heading" }, Di = { class: "eyebrow" }, Si = { class: "subtitle" }, _i = { class: "header-actions" }, Bi = ["disabled"], wi = {
+}), hi = /* @__PURE__ */ ue(gi, [["__scopeId", "data-v-9353fdba"]]), fi = { class: "iv-workbench" }, bi = { class: "workbench-header" }, $i = { class: "heading" }, Di = { class: "eyebrow" }, Si = { class: "subtitle" }, _i = { class: "header-actions" }, Bi = ["disabled"], wi = {
   key: 0,
   class: "iv-bar"
 }, Ci = { class: "ss-muted" }, Ti = { class: "iv-bar__rule" }, Li = { class: "no" }, Ai = { class: "yes" }, Mi = {
@@ -5271,7 +5271,7 @@ const Es = { class: "ss-module" }, ks = { class: "ss-kpis" }, gs = { class: "ss-
       ]))
     ]));
   }
-}), Hi = /* @__PURE__ */ ue(Gi, [["__scopeId", "data-v-177cfd6c"]]);
+}), Hi = /* @__PURE__ */ ue(Gi, [["__scopeId", "data-v-20d5b2e1"]]);
 export {
   Hi as default
 };

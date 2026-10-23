@@ -31,7 +31,7 @@
                   <div class="ft-hs" data-test="ft-hs-panel">
                     <p class="ss-muted">{{ $t('先在本地 HS2022 编码表里按关键词检索，再由模型从候选里排序并写理由；编码由你确认后才会写进 PI / CI。') }}</p>
                     <div class="ss-actions">
-                      <button type="button" class="ss-btn sm primary" :disabled="hsBusy === p.id" @click="hsSuggest(p.id, true)"><i :class="hsBusy === p.id ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ $t('检索并让模型排序') }}</button>
+                      <button type="button" class="ss-btn sm primary" :disabled="hsBusy === p.id" @click="hsSuggest(p.id, true)"><i :class="hsBusy === p.id ? 'ri-loader-4-line spin' : 'ri-search-line'"></i>{{ $t('检索并让模型排序') }}</button>
                       <button type="button" class="ss-btn sm" :disabled="hsBusy === p.id" data-test="ft-hs-local" @click="hsSuggest(p.id, false)"><i class="ri-search-line"></i>{{ $t('只做本地检索') }}</button>
                       <span v-if="p.hsModel" class="ss-muted">{{ $t('由 {p0} 排序', { p0: modelLabel(p.hsModel) }) }}</span>
                       <span class="grow"></span>
@@ -493,7 +493,7 @@ function scrollTo(key: string): void { void scrollToStep(key); }
 .ft-scroll { max-height: 420px; overflow: auto; }
 .ft-hs-row td { background: var(--color-bg-primary); white-space: normal !important; }
 .ft-hs { display: grid; gap: 8px; }
-.ft-hs-input { height: 28px; width: 150px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12px; padding-inline: 8px; }
+.ft-hs-input { height: 28px; width: 150px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-sm); padding-inline: 8px; }
 .ft-hs-list { margin: 0; padding-inline-start: 20px; display: grid; gap: 8px; font-size: 12.5px; }
 .ft-hs-list__head { display: flex; gap: 8px; align-items: center; }
 .ft-hs-list__desc { color: var(--color-text-secondary); }

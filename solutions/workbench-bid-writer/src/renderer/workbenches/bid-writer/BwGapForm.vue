@@ -164,16 +164,24 @@ function apply(): void {
 </script>
 
 <style scoped>
-.bw-gaps { border-color: color-mix(in srgb, #e08c00 45%, var(--color-border)); }
-.bw-gaps .bw-panel__head { background: color-mix(in srgb, #e08c00 10%, transparent); }
+.bw-gaps { border-color: color-mix(in srgb, var(--bwbgf-warn) 45%, var(--color-border)); }
+.bw-gaps .bw-panel__head { background: color-mix(in srgb, var(--bwbgf-warn) 10%, transparent); }
 .bw-gap__ctx {
-  margin-top: 3px; font-size: 12px; line-height: 1.6; color: var(--color-text-secondary);
-  background: var(--color-bg-hover); border-radius: 7px; padding: 4px 8px;
+  margin-top: 3px; font-size: var(--font-size-sm); line-height: 1.6; color: var(--color-text-secondary);
+  background: var(--color-bg-hover); border-radius: var(--radius-2); padding: 4px 8px;
 }
-.bw-gap__ctx mark { background: color-mix(in srgb, #e08c00 25%, transparent); color: inherit; border-radius: 4px; padding: 0 2px; }
+.bw-gap__ctx mark { background: color-mix(in srgb, var(--bwbgf-warn) 25%, transparent); color: inherit; border-radius: var(--radius-1); padding: 0 2px; }
 .bw-gap__eg { margin-top: 3px; font-size: 11.5px; }
 .bw-gaps input[type="text"] {
-  width: 100%; padding: 6px 9px; border-radius: 8px; border: 1px solid var(--color-border);
-  background: var(--color-bg-primary); color: var(--color-text-primary); font: inherit; font-size: 13px;
+  width: 100%; padding: 6px 9px; border-radius: var(--radius-3); border: 1px solid var(--color-border);
+  background: var(--color-bg-primary); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-md);
+}
+
+/* ─── 调色板（docs/ui-design-system.md）：经典主题保持原值；界面主题（data-ui-theme）下映射全局 token ─── */
+.bw-panel { /* ui-theme-exempt: 经典主题原值 */
+  --bwbgf-warn: #e08c00;
+}
+:root[data-ui-theme] .bw-panel {
+  --bwbgf-warn: var(--color-warning);
 }
 </style>

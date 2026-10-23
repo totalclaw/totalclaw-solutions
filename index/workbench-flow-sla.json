@@ -1,12 +1,12 @@
 {
   "id": "workbench-flow-sla",
-  "version": "2.0.2",
-  "treeDigest": "516c2f04e28c4b0b9bbdc3194fd1e589c18cc31fa3096d2f5915fdc3bec728c4",
+  "version": "2.0.3",
+  "treeDigest": "712409f55a61e6a05b8177372567db9820797b5d31d7fde6cb78ac95ec944631",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1185,
-      "sha256": "cfe153f248cb8d9996b9f2c19c98ee41570b49dcc131aa7019b1343e33e12571"
+      "size": 1401,
+      "sha256": "bf09827d899ae38111a4ab69554867f1316384e6030e07ee1a547e1b3913e632"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 326934,
-      "sha256": "a95bb71688ea960015c06c734e703d071acbc3c744b0767f4af66aca91c71d07"
+      "size": 327912,
+      "sha256": "611889f5c859e9df3901134af95da1fda8b1ab5df4b032e89660cadbe7c8d5fa"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 337627,
-      "sha256": "6a06367c1694c0cedb8afe0afe7f0b620a57b842841e41a4dea571ece85133a4"
+      "size": 337637,
+      "sha256": "00e07a7bcf766900ddbdc0ad7ded99cbc4434943cc312afe8252b17e4c098466"
     },
     {
       "path": "dist/style.css",
-      "size": 19869,
-      "sha256": "08a2ef8ade00f28047002fa3d4f474878c896415198bc2fbb26c874325b34ad3"
+      "size": 20919,
+      "sha256": "3b31c0d10fced7e283f3d1e76d0558fe81dc2bb4834222313de1c2675f669f04"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2149,
-      "sha256": "95c31794109c511b8fe5a62ecb24433a53abee8a68b168cf7dad94192b558c14"
+      "sha256": "f3e0c491c866cd8ad4e81bcfafcd2ed3d791f98a697331f520ed3e02f0ed7ab0"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.3",
+      "ref": "workbench-flow-sla@2.0.3",
+      "treeDigest": "712409f55a61e6a05b8177372567db9820797b5d31d7fde6cb78ac95ec944631",
+      "filesRef": "index/workbench-flow-sla/2.0.3.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-23"
+    },
     {
       "version": "2.0.2",
       "ref": "workbench-flow-sla@2.0.2",

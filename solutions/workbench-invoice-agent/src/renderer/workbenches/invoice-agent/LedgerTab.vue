@@ -98,10 +98,10 @@ function openConv(id: string): void { void router.push(`/conversations/${id}`).c
 </script>
 
 <style scoped>
-.iv-search { flex: 1; min-width: 220px; max-width: 420px; height: 34px; border-radius: 9px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 13px; padding: 0 10px; }
-.iv-filter { height: 34px; border-radius: 9px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 13px; }
-.iv-sub { display: block; color: var(--color-text-secondary); font-size: 11px; font-family: var(--font-mono, ui-monospace, monospace); }
-.iv-mono { font-family: var(--font-mono, ui-monospace, monospace); }
+.iv-search { flex: 1; min-width: 220px; max-width: 420px; height: 34px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-md); padding: 0 10px; }
+.iv-filter { height: 34px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-md); }
+.iv-sub { display: block; color: var(--color-text-secondary); font-size: var(--font-size-xs); font-family: var(--font-mono); }
+.iv-mono { font-family: var(--font-mono); }
 .iv-ops { display: flex; gap: 10px; align-items: center; }
 .iv-red { white-space: normal !important; background: var(--color-bg-hover); }
 .iv-red p { margin: 0 0 8px; }

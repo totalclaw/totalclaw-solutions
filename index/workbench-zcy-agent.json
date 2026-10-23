@@ -1,12 +1,12 @@
 {
   "id": "workbench-zcy-agent",
-  "version": "2.0.1",
-  "treeDigest": "94686730915c62f7ac5ed7e5f46ce9beb327a706d23415aee8f27106f17d4441",
+  "version": "2.0.2",
+  "treeDigest": "f95b9cda3f27d3bd0990717a4320bd5f5eb8700dea41d765be8a2843662c4e74",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 645,
-      "sha256": "18490d5ba9aefc9035876c8299ee9ef5d56d9df1d86b3c24e384141fe9b8a44d"
+      "size": 861,
+      "sha256": "8198b4556054fa040d8479142b2c156d145a97c69a2b46c4be49d601e6c85223"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 84067,
-      "sha256": "6cf339c476a195a361de1a9920724b59e358b846e053bf495518cef46a0849c2"
+      "size": 84785,
+      "sha256": "7e5e87f066e948786493a7b937c04bbe571513cc2cb71bb912d735363dfe2b07"
     },
     {
       "path": "dist/renderer.mjs",
       "size": 206366,
-      "sha256": "f03b6dbcd9965e008aea6e0b4b8f3fc9c64c030a83a550e05470a295d880ac0b"
+      "sha256": "791ca2733398a47edef0c26268998b1b62d0e684ebe7b8465da80a24a6a17b72"
     },
     {
       "path": "dist/style.css",
-      "size": 16422,
-      "sha256": "f6b7e48a5002e4d1d1c3d916100e779493bb5092db67d5fd7c6a43fddfacbc8d"
+      "size": 17165,
+      "sha256": "f8a4591104b316e3d52a5162d9efd3160dc05db6fff0a1b1b3cd12c77124981c"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2233,
-      "sha256": "3c887074b6927732e81a989082fa2bd83ca3d2008a68cda23ab8eb7490c17428"
+      "sha256": "0c28e5b1cb843a76b4e8deee6519b20d18139b85adc134db5ea2a854ac7fa34e"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-zcy-agent@2.0.2",
+      "treeDigest": "f95b9cda3f27d3bd0990717a4320bd5f5eb8700dea41d765be8a2843662c4e74",
+      "filesRef": "index/workbench-zcy-agent/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-23"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-zcy-agent@2.0.1",

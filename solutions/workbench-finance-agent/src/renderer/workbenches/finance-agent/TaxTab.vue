@@ -343,29 +343,29 @@ function scrollTo(key: string): void { void scrollToStep(key); }
 .fa-compliance { font-weight: 600; }
 .fa-split { display: grid; grid-template-columns: minmax(200px, 250px) 1fr; gap: 14px; align-items: start; }
 @media (max-width: 960px) { .fa-split { grid-template-columns: 1fr; } }
-.fa-list { display: grid; gap: 8px; border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 10px; position: sticky; top: 0; max-height: calc(100vh - 160px); overflow: hidden; grid-template-rows: auto 1fr; }
+.fa-list { display: grid; gap: 8px; border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 10px; position: sticky; top: 0; max-height: calc(100vh - 160px); overflow: hidden; grid-template-rows: auto 1fr; }
 .fa-list ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; overflow-y: auto; align-content: start; }
-.fa-list li { padding: 8px 10px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; display: grid; gap: 3px; background: var(--color-bg-primary); }
+.fa-list li { padding: 8px 10px; border-radius: var(--radius-4); border: 1px solid transparent; cursor: pointer; display: grid; gap: 3px; background: var(--color-bg-primary); }
 .fa-list li.active { border-color: var(--color-brand); background: color-mix(in srgb, var(--color-brand) 8%, var(--color-bg-card)); }
-.fa-list__top { display: flex; justify-content: space-between; gap: 6px; align-items: center; font-size: 13px; }
-.fa-list__meta { display: flex; gap: 8px; font-size: 11px; color: var(--color-text-secondary); align-items: center; flex-wrap: wrap; }
+.fa-list__top { display: flex; justify-content: space-between; gap: 6px; align-items: center; font-size: var(--font-size-md); }
+.fa-list__meta { display: flex; gap: 8px; font-size: var(--font-size-xs); color: var(--color-text-secondary); align-items: center; flex-wrap: wrap; }
 .fa-detail { display: grid; gap: 12px; min-width: 0; }
-.fa-seg { display: inline-flex; border: 1px solid var(--color-border); border-radius: 9px; overflow: hidden; }
+.fa-seg { display: inline-flex; border: 1px solid var(--color-border); border-radius: var(--radius-3); overflow: hidden; }
 .fa-seg button { border: none; background: transparent; padding: 6px 12px; font: inherit; font-size: 12.5px; cursor: pointer; color: var(--color-text-secondary); }
-.fa-seg button.active { background: var(--color-brand); color: #fff; }
-.fa-input { height: 32px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); padding: 0 8px; font: inherit; font-size: 12.5px; }
+.fa-seg button.active { background: var(--color-brand); color: var(--color-on-accent); }
+.fa-input { height: 32px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); padding: 0 8px; font: inherit; font-size: 12.5px; }
 .fa-year { width: 90px; }
 .fa-edit input { width: 100%; box-sizing: border-box; min-width: 70px; }
 .fa-check { flex-direction: row !important; align-items: center; gap: 6px; }
 .fa-small { max-width: 220px; }
 .fa-wrap { white-space: normal !important; }
-.fa-finding { border: 1px solid var(--color-border); border-radius: 12px; padding: 8px 12px; display: grid; gap: 4px; }
+.fa-finding { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 8px 12px; display: grid; gap: 4px; }
 .fa-finding.high { border-color: color-mix(in srgb, var(--color-danger) 50%, var(--color-border)); }
 .fa-finding.warn { border-color: color-mix(in srgb, var(--color-warning) 50%, var(--color-border)); }
-.fa-finding__head { display: flex; gap: 8px; align-items: center; font-size: 13px; }
+.fa-finding__head { display: flex; gap: 8px; align-items: center; font-size: var(--font-size-md); }
 .fa-pre { margin: 0; white-space: pre-wrap; font-size: 12.5px; color: var(--color-text-secondary); }
 .fa-sugg { margin: 0; font-size: 12.5px; }
 .fa-sugg i { color: var(--color-warning); margin-inline-end: 4px; }
-.fa-note { white-space: pre-wrap; font-size: 13px; line-height: 1.65; padding: 10px 12px; border-radius: 10px; background: var(--color-bg-primary); }
-.fa-path { flex: 1; min-width: 200px; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-text-secondary); }
+.fa-note { white-space: pre-wrap; font-size: var(--font-size-md); line-height: 1.65; padding: 10px 12px; border-radius: var(--radius-4); background: var(--color-bg-primary); }
+.fa-path { flex: 1; min-width: 200px; font-size: var(--font-size-sm); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--color-text-secondary); }
 </style>

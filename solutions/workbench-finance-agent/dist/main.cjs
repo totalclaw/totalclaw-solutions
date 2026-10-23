@@ -26,7 +26,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// node_modules/.cache/solutions-build/workbench-finance-agent/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-finance-agent/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -36,7 +36,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../totalclaw-solutions/solutions/workbench-finance-agent/src/main/ipc/financeAgent.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-finance-agent/src/main/ipc/financeAgent.ipc.ts
 var import_electron = require("electron");
 var import_node_fs = require("node:fs");
 var import_node_path = require("node:path");
@@ -53,7 +53,7 @@ var import_voucher = require("host:apps/desktop-shell/src/main/services/financeA
 var import_tax = require("host:apps/desktop-shell/src/main/services/financeAgent/tax.ts");
 var import_expense = require("host:apps/desktop-shell/src/main/services/financeAgent/expense.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/reconcile.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/reconcile.ts
 var import_i18n = require("npm:@totalclaw/i18n");
 var import_common = require("host:apps/desktop-shell/src/main/services/financeAgent/common.ts");
 var DATE_WINDOW = 7;
@@ -211,17 +211,17 @@ function dunningLetter(counterparty, rows, asOf, ledgerName) {
   ].join("\n");
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-finance-agent/src/main/ipc/financeAgent.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-finance-agent/src/main/ipc/financeAgent.ipc.ts
 var import_statements = require("host:apps/desktop-shell/src/main/services/financeAgent/statements.ts");
 var import_risk = require("host:apps/desktop-shell/src/main/services/financeAgent/risk.ts");
 var import_budget = require("host:apps/desktop-shell/src/main/services/financeAgent/budget.ts");
 var import_cost = require("host:apps/desktop-shell/src/main/services/financeAgent/cost.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/contract.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/contract.ts
 var import_i18n2 = require("npm:@totalclaw/i18n");
 var import_common2 = require("host:apps/desktop-shell/src/main/services/financeAgent/common.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/contractRules.json
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/contractRules.json
 var contractRules_default = {
   _note: "\u5408\u540C\u8D22\u7A0E\u5BA1\u6838\u7684\u786E\u5B9A\u6027\u89C4\u5219\u3002stampDuty \u6309\u300A\u5370\u82B1\u7A0E\u6CD5\u300B\uFF082022-07-01 \u65BD\u884C\uFF09\u7A0E\u76EE\u7A0E\u7387\u8868\uFF0C\u8BA1\u7A0E\u4F9D\u636E\u4E3A\u5408\u540C\u6240\u5217\u91D1\u989D\uFF0C\u4E0D\u542B\u5217\u660E\u7684\u589E\u503C\u7A0E\u7A0E\u6B3E\u3002types \u6309\u987A\u5E8F\u5339\u914D\u5408\u540C\u6807\u9898 / \u524D\u6587\u3002 \u6807\u9898\u4E0E\u5EFA\u8BAE\u6587\u6848\u5728 contract.ts \u91CC\uFF08\u8981\u8FDB\u4E09\u8BED\u8BCD\u5178\uFF09\uFF0C\u8FD9\u91CC\u53EA\u653E\u5339\u914D\u6A21\u5F0F\u3002",
   types: [
@@ -409,7 +409,7 @@ var contractRules_default = {
   ]
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/contract.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/contract.ts
 var TYPES = contractRules_default.types;
 var CHECKS = contractRules_default.checks;
 function typeLabel(type) {
@@ -522,10 +522,10 @@ ${String(r.detail).slice(0, 300)}` : "" }),
   return out;
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-finance-agent/src/main/ipc/financeAgent.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-finance-agent/src/main/ipc/financeAgent.ipc.ts
 var import_knowledge = require("host:apps/desktop-shell/src/main/services/financeAgent/knowledge.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/tables.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/tables.ts
 var import_i18n3 = require("npm:@totalclaw/i18n");
 var import_excel = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 var import_common3 = require("host:apps/desktop-shell/src/main/services/financeAgent/common.ts");
@@ -575,7 +575,7 @@ var columnKeywords_default = {
   monthIndex: ["\u7D2F\u8BA1\u6708\u6570", "\u4EFB\u804C\u6708\u6570", "\u6708\u6570"]
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/tables.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/tables.ts
 var KEYWORDS = columnKeywords_default;
 function detectCols(headers, roles) {
   const norm = (s) => s.replace(/\s+/g, "").toLowerCase();
@@ -795,7 +795,7 @@ function parseCostMaterials(table) {
   });
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/apiReceiver.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/apiReceiver.ts
 var import_node_http = require("node:http");
 var import_node_crypto = require("node:crypto");
 var MAX_BODY = 20 * 1024 * 1024;
@@ -861,7 +861,7 @@ var FinanceApiReceiver = class {
   }
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/prompts.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-finance-agent/src/main/services/financeAgent/prompts.ts
 var JSON_ONLY = "\u53EA\u8F93\u51FA\u4E00\u4E2A JSON \u5BF9\u8C61\uFF0C\u4E0D\u8981 Markdown \u4EE3\u7801\u5757\uFF0C\u4E0D\u8981\u89E3\u91CA\u3002";
 var NO_NUMBERS = "\u6587\u4E2D\u51FA\u73B0\u7684\u6240\u6709\u91D1\u989D\u3001\u6BD4\u4F8B\u5FC5\u987B\u539F\u6837\u53D6\u81EA\u4E0A\u9762\u7ED9\u51FA\u7684\u6570\u636E\uFF0C\u4E0D\u5F97\u81EA\u884C\u8BA1\u7B97\u3001\u56DB\u820D\u4E94\u5165\u6216\u7F16\u9020\u65B0\u7684\u6570\u5B57\uFF1B\u6570\u636E\u91CC\u6CA1\u6709\u7684\u5C31\u4E0D\u8981\u5199\u3002";
 function invoiceFillPrompt(text, missing, categories) {
@@ -982,7 +982,7 @@ function filingInstruction(input) {
   ].join("\n");
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-finance-agent/src/main/ipc/financeAgent.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-finance-agent/src/main/ipc/financeAgent.ipc.ts
 var import_filing = require("host:apps/desktop-shell/src/main/services/financeAgent/filing.ts");
 var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var store = new import_store.FinanceAgentStore();
@@ -2364,7 +2364,7 @@ ${f.detail}`).join("\n\n")));
   return stopBackground;
 }
 
-// node_modules/.cache/solutions-build/workbench-finance-agent/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-finance-agent/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerFinanceAgentHandlers";
 var cleanup;

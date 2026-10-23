@@ -11,7 +11,7 @@ const le = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules 
 if (!le) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/PageBackButton.vue");
 const pe = le.default, ne = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/StepCard.vue"];
 if (!ne) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/StepCard.vue");
-const W = ne.default, oe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/StickyProgress.vue"];
+const P = ne.default, oe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/StickyProgress.vue"];
 if (!oe) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/StickyProgress.vue");
 const G = oe.default, Q = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/ipcPlain.ts"];
 if (!Q) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/ipcPlain.ts");
@@ -19,33 +19,33 @@ Q.default;
 const D = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/shared.ts"];
 if (!D) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/shared.ts");
 D.default;
-async function C(V, u) {
+async function B(N, u) {
   const y = window.electronAPI?.workbenches?.academicWriter;
   if (!y?.invoke) throw new Error(s.t("学术写作接口不可用，请重启应用"));
-  return y.invoke(V, Q.toPlain(u ?? {}));
+  return y.invoke(N, Q.toPlain(u ?? {}));
 }
-function ve(V) {
+function ve(N) {
   const u = window.electronAPI?.workbenches?.academicWriter;
-  return u?.onEvent ? u.onEvent(V) : () => {
+  return u?.onEvent ? u.onEvent(N) : () => {
   };
 }
 const z = e.ref(null), x = e.reactive({});
 function U() {
-  const V = z.value;
-  return V && (V.projects.find((u) => u.id === V.activeProjectId) || V.projects[0]) || null;
+  const N = z.value;
+  return N && (N.projects.find((u) => u.id === N.activeProjectId) || N.projects[0]) || null;
 }
 async function I() {
-  const V = await C("state.get");
-  return z.value = V, V;
+  const N = await B("state.get");
+  return z.value = N, N;
 }
-function X(V) {
-  return { pubmed: "PubMed", europepmc: "Europe PMC", arxiv: "arXiv", crossref: "Crossref", openalex: "OpenAlex", web: s.t("网页抓取") }[V];
+function X(N) {
+  return { pubmed: "PubMed", europepmc: "Europe PMC", arxiv: "arXiv", crossref: "Crossref", openalex: "OpenAlex", web: s.t("网页抓取") }[N];
 }
-function R(V) {
-  return { review: s.t("综述"), research: s.t("研究论文"), thesis: s.t("学位论文"), proposal: s.t("开题报告") }[V] || V;
+function R(N) {
+  return { review: s.t("综述"), research: s.t("研究论文"), thesis: s.t("学位论文"), proposal: s.t("开题报告") }[N] || N;
 }
-function J(V) {
-  return { gbt7714: "GB/T 7714-2015", apa: "APA 7", ieee: "IEEE" }[V] || V;
+function J(N) {
+  return { gbt7714: "GB/T 7714-2015", apa: "APA 7", ieee: "IEEE" }[N] || N;
 }
 function ye() {
   return [
@@ -65,10 +65,10 @@ function ye() {
   ];
 }
 const he = "academic-writer";
-async function se(V) {
+async function se(N) {
   const u = window.electronAPI?.browserTabs;
   if (!u?.create) return !1;
-  const y = /^https?:\/\//i.test(V) ? V : `https://${V}`, m = await u.create({ url: y, contextId: he, source: "agent", activate: !0 });
+  const y = /^https?:\/\//i.test(N) ? N : `https://${N}`, m = await u.create({ url: y, contextId: he, source: "agent", activate: !0 });
   if (m?.id && u.navigate)
     try {
       await u.navigate(m.id, y);
@@ -80,24 +80,24 @@ async function se(V) {
   }
   return !0;
 }
-function ae(V) {
-  return [V.authors.length ? `${V.authors[0]}${V.authors.length > 1 ? s.t(" 等") : ""}` : "", V.journal, V.year].filter(Boolean).join(" · ");
+function ae(N) {
+  return [N.authors.length ? `${N.authors[0]}${N.authors.length > 1 ? s.t(" 等") : ""}` : "", N.journal, N.year].filter(Boolean).join(" · ");
 }
-async function re(V, u) {
+async function re(N, u) {
   const y = window.electronAPI?.cowrite;
   if (!y?.open || !y?.apply) throw new Error(s.t("当前版本没有人机双写编辑器"));
   const m = await y.open({ mode: "local" });
   if (m && m.ok === !1) throw new Error(s.t("人机双写编辑器没有打开"));
-  const N = await y.apply({ mode: "local", applyMode: "loadDoc", title: V, text: u });
-  if (N && N.ok === !1) throw new Error(s.t("没能把文稿载入人机双写编辑器"));
+  const b = await y.apply({ mode: "local", applyMode: "loadDoc", title: N, text: u });
+  if (b && b.ok === !1) throw new Error(s.t("没能把文稿载入人机双写编辑器"));
 }
 async function ke() {
-  const V = window.electronAPI?.cowrite;
-  if (!V?.get) throw new Error(s.t("当前版本没有人机双写编辑器"));
-  const u = await V.get({ mode: "local" });
+  const N = window.electronAPI?.cowrite;
+  if (!N?.get) throw new Error(s.t("当前版本没有人机双写编辑器"));
+  const u = await N.get({ mode: "local" });
   return String(u?.text || "");
 }
-const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { class: "aw-head__main" }, Ve = { class: "ss-muted" }, Ne = {
+const ge = { class: "ss-module" }, fe = { class: "ss-panel aw-head" }, Ee = { class: "aw-head__main" }, Ve = { class: "ss-muted" }, Ne = {
   key: 0,
   class: "ss-note info"
 }, be = { class: "ss-steps" }, $e = { class: "aw-topic" }, we = { class: "ss-actions" }, _e = ["disabled"], Se = {
@@ -106,10 +106,10 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
 }, De = {
   key: 0,
   class: "aw-chips"
-}, Ce = { class: "ss-muted" }, Be = ["title", "onClick"], Te = { key: 0 }, Le = {
+}, Be = { class: "ss-muted" }, Ce = ["title", "onClick"], Te = { key: 0 }, Le = {
   key: 1,
   class: "aw-chips"
-}, Ae = { class: "ss-muted" }, Me = ["onClick"], Oe = { class: "ss-grid" }, Ie = { class: "ss-field aw-wide" }, We = ["placeholder"], qe = { class: "ss-field" }, Pe = { class: "ss-field" }, Ke = { class: "aw-sources" }, xe = ["value"], ze = { class: "ss-actions" }, Fe = ["disabled"], je = { class: "ss-actions" }, Ue = { class: "ss-muted" }, Re = ["disabled"], Xe = ["disabled"], Ge = { class: "aw-results" }, Je = ["disabled", "checked", "onChange"], Ze = { class: "aw-results__body" }, He = ["onClick"], Qe = { class: "aw-meta" }, Ye = {
+}, Ae = { class: "ss-muted" }, Me = ["onClick"], Oe = { class: "ss-grid" }, Ie = { class: "ss-field aw-wide" }, We = ["placeholder"], Pe = { class: "ss-field" }, qe = { class: "ss-field" }, Ke = { class: "aw-sources" }, xe = ["value"], ze = { class: "ss-actions" }, Fe = ["disabled"], je = { class: "ss-actions" }, Ue = { class: "ss-muted" }, Re = ["disabled"], Xe = ["disabled"], Ge = { class: "aw-results" }, Je = ["disabled", "checked", "onChange"], Ze = { class: "aw-results__body" }, He = ["onClick"], Qe = { class: "aw-meta" }, Ye = {
   key: 0,
   class: "ss-chip"
 }, et = {
@@ -133,9 +133,9 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
 }, ht = /* @__PURE__ */ e.defineComponent({
   __name: "SearchTab",
   emits: ["goto"],
-  setup(V) {
-    const u = F.useNotificationStore(), y = ["pubmed", "europepmc", "arxiv", "crossref", "openalex"], m = e.computed(() => (z.value, U())), N = e.computed(() => m.value?.lastSearch || null), d = e.computed(() => N.value?.results || []), w = ye(), g = e.ref(N.value?.query || ""), h = e.ref(""), v = e.ref(N.value?.yearFrom), a = e.ref(15), f = e.ref([...z.value?.settings.defaultSources || ["pubmed", "europepmc", "arxiv", "openalex"]].filter((c) => c !== "web")), _ = e.ref([]), T = e.ref([]), A = e.ref(""), L = e.ref([]), M = e.ref([]), $ = e.ref(""), k = e.ref({}), B = e.ref(""), q = e.ref(!1);
-    e.watch(N, () => {
+  setup(N) {
+    const u = F.useNotificationStore(), y = ["pubmed", "europepmc", "arxiv", "crossref", "openalex"], m = e.computed(() => (z.value, U())), b = e.computed(() => m.value?.lastSearch || null), d = e.computed(() => b.value?.results || []), w = ye(), g = e.ref(b.value?.query || ""), h = e.ref(""), v = e.ref(b.value?.yearFrom), a = e.ref(15), E = e.ref([...z.value?.settings.defaultSources || ["pubmed", "europepmc", "arxiv", "openalex"]].filter((c) => c !== "web")), _ = e.ref([]), T = e.ref([]), A = e.ref(""), L = e.ref([]), M = e.ref([]), $ = e.ref(""), k = e.ref({}), C = e.ref(""), q = e.ref(!1);
+    e.watch(b, () => {
       L.value = [];
     });
     function i(c) {
@@ -150,10 +150,10 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
     ], l = e.computed(() => {
       const c = (p, O, me) => $.value === p ? { state: "running" } : k.value[p] ? { state: "failed", error: k.value[p] } : O ? { state: "done", summary: me } : { state: "todo" }, S = m.value?.library.length || 0;
       return {
-        topic: c("topic", _.value.length > 0 || !!N.value, _.value.length ? s.t("{n} 条检索式", { n: _.value.length }) : ""),
-        search: c("search", !!N.value, N.value ? s.t("{n} 篇", { n: d.value.length }) : ""),
+        topic: c("topic", _.value.length > 0 || !!b.value, _.value.length ? s.t("{n} 条检索式", { n: _.value.length }) : ""),
+        search: c("search", !!b.value, b.value ? s.t("{n} 篇", { n: d.value.length }) : ""),
         results: c("results", S > 0, s.t("文献库 {n} 篇", { n: S })),
-        sites: c("sites", q.value || !!B.value, B.value ? s.t("已抓取") : s.t("已打开"))
+        sites: c("sites", q.value || !!C.value, C.value ? s.t("已抓取") : s.t("已打开"))
       };
     }), r = e.computed(() => t.find((c) => l.value[c.key].state !== "done")?.key || "sites");
     async function o(c, S) {
@@ -166,19 +166,19 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
         $.value = "";
       }
     }
-    async function b() {
+    async function V() {
       await o("topic", async () => {
-        const c = await C("query.suggest", { topic: m.value?.title });
+        const c = await B("query.suggest", { topic: m.value?.title });
         _.value = c.queries, T.value = c.zhKeywords, A.value = c.model, !g.value && c.queries[0] && (g.value = c.queries[0].query);
       });
     }
-    async function E() {
-      !g.value || !f.value.length || await o("search", () => C("search.run", { query: g.value, sources: f.value, yearFrom: v.value || void 0, limit: a.value || 15 }));
+    async function f() {
+      !g.value || !E.value.length || await o("search", () => B("search.run", { query: g.value, sources: E.value, yearFrom: v.value || void 0, limit: a.value || 15 }));
     }
     function K(c) {
       L.value = L.value.includes(c) ? L.value.filter((S) => S !== c) : [...L.value, c];
     }
-    function P(c) {
+    function W(c) {
       M.value = M.value.includes(c) ? M.value.filter((S) => S !== c) : [...M.value, c];
     }
     function Z() {
@@ -186,7 +186,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
     }
     async function ie() {
       await o("add", async () => {
-        const S = await C("library.add", { ids: L.value });
+        const S = await B("library.add", { ids: L.value });
         u.success(s.t("已加入文献库 {n} 篇", { n: S.added })), L.value = [];
       }) || u.error(k.value.add);
     }
@@ -202,17 +202,17 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
       await H(S), q.value = !0;
     }
     async function de() {
-      B.value = "", await o("sites", async () => {
-        const c = await C("web.capture");
-        B.value = c.added ? s.t("已抓取进文献库：{p0}", { p0: c.paper.title }) : s.t("这篇已经在文献库里：{p0}", { p0: c.paper.title });
+      C.value = "", await o("sites", async () => {
+        const c = await B("web.capture");
+        C.value = c.added ? s.t("已抓取进文献库：{p0}", { p0: c.paper.title }) : s.t("这篇已经在文献库里：{p0}", { p0: c.paper.title });
       });
     }
     function ue(c) {
       D.scrollToStep(c);
     }
     return (c, S) => (e.openBlock(), e.createElementBlock("div", ge, [
-      e.createElementVNode("section", Ee, [
-        e.createElementVNode("div", fe, [
+      e.createElementVNode("section", fe, [
+        e.createElementVNode("div", Ee, [
           e.createElementVNode("strong", null, [
             S[5] || (S[5] = e.createElementVNode(
               "i",
@@ -259,7 +259,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
       ])) : e.createCommentVNode("v-if", !0),
       e.createElementVNode("div", be, [
         e.createCommentVNode(" ① 选题与检索式 "),
-        e.createVNode(W, {
+        e.createVNode(P, {
           "step-key": "topic",
           index: 0,
           title: t[0].title,
@@ -286,12 +286,12 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                 type: "button",
                 class: "ss-btn primary",
                 disabled: !!$.value || !m.value,
-                onClick: b
+                onClick: V
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass($.value === "topic" ? "ri-loader-4-line spin" : "ri-magic-line")
+                    class: e.normalizeClass($.value === "topic" ? "ri-loader-4-line spin" : "ri-search-eye-line")
                   },
                   null,
                   2
@@ -314,7 +314,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
             _.value.length ? (e.openBlock(), e.createElementBlock("div", De, [
               e.createElementVNode(
                 "span",
-                Ce,
+                Be,
                 e.toDisplayString(c.$t("英文检索式（点一下填入检索框）")),
                 1
                 /* TEXT */
@@ -341,7 +341,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                     1
                     /* TEXT */
                   )) : e.createCommentVNode("v-if", !0)
-                ], 8, Be))),
+                ], 8, Ce))),
                 128
                 /* KEYED_FRAGMENT */
               ))
@@ -372,7 +372,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           /* STABLE */
         }, 8, ["title", "hint", "runtime"]),
         e.createCommentVNode(" ② 学术库检索 "),
-        e.createVNode(W, {
+        e.createVNode(P, {
           "step-key": "search",
           index: 1,
           title: t[1].title,
@@ -393,7 +393,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                   "onUpdate:modelValue": S[0] || (S[0] = (p) => g.value = p),
                   type: "text",
                   placeholder: c.$t("英文检索效果最好，如 large language model radiology"),
-                  onKeyup: e.withKeys(E, ["enter"])
+                  onKeyup: e.withKeys(f, ["enter"])
                 }, null, 40, We), [
                   [
                     e.vModelText,
@@ -403,7 +403,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                   ]
                 ])
               ]),
-              e.createElementVNode("label", qe, [
+              e.createElementVNode("label", Pe, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -431,7 +431,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                   ]
                 ])
               ]),
-              e.createElementVNode("label", Pe, [
+              e.createElementVNode("label", qe, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -469,11 +469,11 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                   class: "aw-check"
                 }, [
                   e.withDirectives(e.createElementVNode("input", {
-                    "onUpdate:modelValue": S[3] || (S[3] = (O) => f.value = O),
+                    "onUpdate:modelValue": S[3] || (S[3] = (O) => E.value = O),
                     type: "checkbox",
                     value: p
                   }, null, 8, xe), [
-                    [e.vModelCheckbox, f.value]
+                    [e.vModelCheckbox, E.value]
                   ]),
                   e.createElementVNode(
                     "span",
@@ -491,8 +491,8 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !!$.value || !g.value || !f.value.length,
-                onClick: E
+                disabled: !!$.value || !g.value || !E.value.length,
+                onClick: f
               }, [
                 e.createElementVNode(
                   "i",
@@ -513,7 +513,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(N.value?.errors || [], (p) => (e.openBlock(), e.createElementBlock("p", {
+              e.renderList(b.value?.errors || [], (p) => (e.openBlock(), e.createElementBlock("p", {
                 key: p.source,
                 class: "ss-note warn"
               }, [
@@ -538,7 +538,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           /* STABLE */
         }, 8, ["title", "hint", "runtime"]),
         e.createCommentVNode(" ③ 结果 "),
-        e.createVNode(W, {
+        e.createVNode(P, {
           "step-key": "results",
           index: 2,
           title: t[2].title,
@@ -546,7 +546,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           runtime: l.value.results
         }, {
           default: e.withCtx(() => [
-            N.value ? (e.openBlock(), e.createElementBlock(
+            b.value ? (e.openBlock(), e.createElementBlock(
               e.Fragment,
               { key: 0 },
               [
@@ -554,7 +554,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                   e.createElementVNode(
                     "span",
                     Ue,
-                    e.toDisplayString(c.$t("「{p0}」共 {n} 篇（已跨库去重）", { p0: N.value.query, n: d.value.length })),
+                    e.toDisplayString(c.$t("「{p0}」共 {n} 篇（已跨库去重）", { p0: b.value.query, n: d.value.length })),
                     1
                     /* TEXT */
                   ),
@@ -614,7 +614,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                           e.createElementVNode("button", {
                             type: "button",
                             class: "aw-title",
-                            onClick: (O) => P(p.id)
+                            onClick: (O) => W(p.id)
                           }, e.toDisplayString(p.title), 9, He),
                           e.createElementVNode("div", Qe, [
                             e.createElementVNode(
@@ -712,7 +712,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           /* STABLE */
         }, 8, ["title", "hint", "runtime"]),
         e.createCommentVNode(" ④ 学术网站 "),
-        e.createVNode(W, {
+        e.createVNode(P, {
           "step-key": "sites",
           index: 3,
           title: t[3].title,
@@ -812,7 +812,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                 /* TEXT */
               )
             ]),
-            B.value ? (e.openBlock(), e.createElementBlock("p", yt, [
+            C.value ? (e.openBlock(), e.createElementBlock("p", yt, [
               S[10] || (S[10] = e.createElementVNode(
                 "i",
                 { class: "ri-check-line" },
@@ -821,7 +821,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(B.value),
+                e.toDisplayString(C.value),
                 1
                 /* TEXT */
               )
@@ -833,18 +833,18 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
       ])
     ]));
   }
-}), j = (V, u) => {
-  const y = V.__vccOpts || V;
-  for (const [m, N] of u)
-    y[m] = N;
+}), j = (N, u) => {
+  const y = N.__vccOpts || N;
+  for (const [m, b] of u)
+    y[m] = b;
   return y;
-}, kt = /* @__PURE__ */ j(ht, [["__scopeId", "data-v-79a13ce2"]]), gt = { class: "ss-module" }, Et = { class: "ss-panel aw-head" }, ft = { class: "aw-head__main" }, Vt = { class: "ss-muted" }, Nt = {
+}, kt = /* @__PURE__ */ j(ht, [["__scopeId", "data-v-76254ba3"]]), gt = { class: "ss-module" }, ft = { class: "ss-panel aw-head" }, Et = { class: "aw-head__main" }, Vt = { class: "ss-muted" }, Nt = {
   key: 0,
   class: "ss-note info"
 }, bt = {
   key: 0,
   class: "ss-note info"
-}, $t = { class: "ss-steps" }, wt = { class: "aw-lib" }, _t = { class: "aw-lib__top" }, St = { class: "aw-no" }, Dt = ["onClick"], Ct = { class: "aw-meta" }, Bt = {
+}, $t = { class: "ss-steps" }, wt = { class: "aw-lib" }, _t = { class: "aw-lib__top" }, St = { class: "aw-no" }, Dt = ["onClick"], Bt = { class: "aw-meta" }, Ct = {
   key: 0,
   class: "ss-chip"
 }, Tt = {
@@ -859,99 +859,103 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
 }, Mt = {
   key: 2,
   class: "ss-chip brand"
-}, Ot = ["onClick"], It = ["onClick"], Wt = ["disabled", "onClick"], qt = ["onClick"], Pt = ["value", "placeholder", "onBlur"], Kt = {
+}, Ot = ["onClick"], It = ["onClick"], Wt = ["disabled", "onClick"], Pt = ["onClick"], qt = ["value", "placeholder", "onBlur"], Kt = {
   key: 0,
   class: "aw-detail"
 }, xt = { class: "aw-sum" }, zt = {
   key: 0,
   class: "aw-quotes"
-}, Ft = { class: "ss-muted" }, jt = { class: "aw-abstract" }, Ut = { class: "ss-actions" }, Rt = ["disabled"], Xt = { class: "ss-muted" }, Gt = {
+}, Ft = {
+  key: 0,
+  class: "ri-check-line",
+  "aria-hidden": "true"
+}, jt = { class: "ss-muted" }, Ut = { class: "aw-abstract" }, Rt = { class: "ss-actions" }, Xt = ["disabled"], Gt = { class: "ss-muted" }, Jt = {
   key: 0,
   class: "aw-failed"
-}, Jt = { class: "ss-actions" }, Zt = ["disabled"], Ht = ["disabled"], Qt = {
+}, Zt = { class: "ss-actions" }, Ht = ["disabled"], Qt = ["disabled"], Yt = {
   key: 0,
   class: "ss-muted"
-}, Yt = /* @__PURE__ */ e.defineComponent({
+}, el = /* @__PURE__ */ e.defineComponent({
   __name: "LibraryTab",
   emits: ["goto"],
-  setup(V) {
-    const u = F.useNotificationStore(), y = e.computed(() => (z.value, U())), m = e.computed(() => y.value?.library || []), N = e.computed(() => m.value.filter((o) => !o.summary)), d = e.computed(() => m.value.filter((o) => o.doi)), w = e.computed(() => d.value.some((o) => o.doiCheck)), g = e.computed(() => d.value.filter((o) => o.doiCheck === "ok").length), h = e.computed(() => d.value.filter((o) => o.doiCheck === "missing").length), v = e.ref([]), a = e.ref(""), f = e.ref({}), _ = e.ref([]), T = [
+  setup(N) {
+    const u = F.useNotificationStore(), y = e.computed(() => (z.value, U())), m = e.computed(() => y.value?.library || []), b = e.computed(() => m.value.filter((o) => !o.summary)), d = e.computed(() => m.value.filter((o) => o.doi)), w = e.computed(() => d.value.some((o) => o.doiCheck)), g = e.computed(() => d.value.filter((o) => o.doiCheck === "ok").length), h = e.computed(() => d.value.filter((o) => o.doiCheck === "missing").length), v = e.ref([]), a = e.ref(""), E = e.ref({}), _ = e.ref([]), T = [
       { key: "list", title: s.t("文献库"), hint: s.t("编号 [n] 就是写作时的引用编号") },
       { key: "read", title: s.t("精读"), hint: s.t("研究问题、方法、主要发现、局限，每项附摘要原句") },
       { key: "doi", title: s.t("查验 DOI 与导出"), hint: s.t("Crossref 核对 DOI 真实存在，导出 BibTeX 给 Zotero / EndNote") }
     ], A = e.computed(() => {
-      const o = (b, E, K) => a.value === b ? { state: "running" } : f.value[b] ? { state: "failed", error: f.value[b] } : E ? { state: "done", summary: K } : { state: "todo" };
+      const o = (V, f, K) => a.value === V ? { state: "running" } : E.value[V] ? { state: "failed", error: E.value[V] } : f ? { state: "done", summary: K } : { state: "todo" };
       return {
         list: o("list", m.value.length > 0, s.t("{n} 篇", { n: m.value.length })),
-        read: o("read", m.value.length > 0 && !N.value.length, s.t("全部已精读")),
+        read: o("read", m.value.length > 0 && !b.value.length, s.t("全部已精读")),
         doi: o("doi", w.value, s.t("查到 {a}，查不到 {b}", { a: g.value, b: h.value }))
       };
     }), L = e.computed(() => T.find((o) => A.value[o.key].state !== "done")?.key || "doi");
-    async function M(o, b) {
-      a.value = o, f.value = { ...f.value, [o]: "" }, D.scrollToStep(o);
+    async function M(o, V) {
+      a.value = o, E.value = { ...E.value, [o]: "" }, D.scrollToStep(o);
       try {
-        return await b(), await I(), !0;
-      } catch (E) {
-        return f.value = { ...f.value, [o]: D.errorMessage(E) }, !1;
+        return await V(), await I(), !0;
+      } catch (f) {
+        return E.value = { ...E.value, [o]: D.errorMessage(f) }, !1;
       } finally {
         a.value = "";
       }
     }
     function $(o) {
-      v.value = v.value.includes(o) ? v.value.filter((b) => b !== o) : [...v.value, o];
+      v.value = v.value.includes(o) ? v.value.filter((V) => V !== o) : [...v.value, o];
     }
     async function k() {
       _.value = [], await M("read", async () => {
-        const o = await C("read.run", {});
+        const o = await B("read.run", {});
         _.value = o.failed || [], u.success(s.t("精读完成 {n} 篇", { n: o.done }));
       });
     }
-    async function B(o) {
+    async function C(o) {
       _.value = [], await M("read", async () => {
-        const E = await C("read.run", { ids: [o] });
-        _.value = E.failed || [], E.done && !v.value.includes(o) && (v.value = [...v.value, o]);
-      }) || u.error(f.value.read);
+        const f = await B("read.run", { ids: [o] });
+        _.value = f.failed || [], f.done && !v.value.includes(o) && (v.value = [...v.value, o]);
+      }) || u.error(E.value.read);
     }
-    async function q(o, b, E) {
-      if ((E || "") !== b)
+    async function q(o, V, f) {
+      if ((f || "") !== V)
         try {
-          await C("library.note", { id: o, note: b }), await I();
+          await B("library.note", { id: o, note: V }), await I();
         } catch (K) {
           u.error(D.errorMessage(K));
         }
     }
-    async function i(o, b) {
-      if (window.confirm(s.t("从文献库删除 [{n}]？后面文献的编号会前移，稿子里的引用会同步改。", { n: b })))
+    async function i(o, V) {
+      if (window.confirm(s.t("从文献库删除 [{n}]？后面文献的编号会前移，稿子里的引用会同步改。", { n: V })))
         try {
-          await C("library.remove", { id: o }), await I();
-        } catch (E) {
-          u.error(D.errorMessage(E));
+          await B("library.remove", { id: o }), await I();
+        } catch (f) {
+          u.error(D.errorMessage(f));
         }
     }
     async function n() {
-      await M("doi", () => C("library.checkDoi"));
+      await M("doi", () => B("library.checkDoi"));
     }
     async function t() {
       await M("doi", async () => {
-        const b = await C("export", { format: "bib" });
-        await C("path.open", { path: b.path, reveal: !0 });
-      }) || u.error(f.value.doi);
+        const V = await B("export", { format: "bib" });
+        await B("path.open", { path: V.path, reveal: !0 });
+      }) || u.error(E.value.doi);
     }
     async function l(o) {
       try {
         await se(o) || u.error(s.t("内置浏览器不可用"));
-      } catch (b) {
-        u.error(D.errorMessage(b));
+      } catch (V) {
+        u.error(D.errorMessage(V));
       }
     }
     function r(o) {
       D.scrollToStep(o);
     }
-    return (o, b) => (e.openBlock(), e.createElementBlock("div", gt, [
-      e.createElementVNode("section", Et, [
-        e.createElementVNode("div", ft, [
+    return (o, V) => (e.openBlock(), e.createElementBlock("div", gt, [
+      e.createElementVNode("section", ft, [
+        e.createElementVNode("div", Et, [
           e.createElementVNode("strong", null, [
-            b[1] || (b[1] = e.createElementVNode(
+            V[1] || (V[1] = e.createElementVNode(
               "i",
               { class: "ri-book-shelf-line" },
               null,
@@ -985,7 +989,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
             onJump: r
           }, null, 8, ["title", "runtime", "current-key"]),
           e.unref(x).read || e.unref(x).library ? (e.openBlock(), e.createElementBlock("p", bt, [
-            b[3] || (b[3] = e.createElementVNode(
+            V[3] || (V[3] = e.createElementVNode(
               "i",
               { class: "ri-loader-4-line spin" },
               null,
@@ -1000,7 +1004,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           ])) : e.createCommentVNode("v-if", !0),
           e.createElementVNode("div", $t, [
             e.createCommentVNode(" ① 文献库 "),
-            e.createVNode(W, {
+            e.createVNode(P, {
               "step-key": "list",
               index: 0,
               title: T[0].title,
@@ -1012,8 +1016,8 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(m.value, (E, K) => (e.openBlock(), e.createElementBlock("li", {
-                      key: E.id
+                    e.renderList(m.value, (f, K) => (e.openBlock(), e.createElementBlock("li", {
+                      key: f.id
                     }, [
                       e.createElementVNode("div", _t, [
                         e.createElementVNode(
@@ -1026,47 +1030,58 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                         e.createElementVNode("button", {
                           type: "button",
                           class: "aw-title",
-                          onClick: (P) => $(E.id)
-                        }, e.toDisplayString(E.title), 9, Dt)
+                          onClick: (W) => $(f.id)
+                        }, e.toDisplayString(f.title), 9, Dt)
                       ]),
-                      e.createElementVNode("div", Ct, [
+                      e.createElementVNode("div", Bt, [
                         e.createElementVNode(
                           "span",
                           null,
-                          e.toDisplayString(e.unref(ae)(E)),
+                          e.toDisplayString(e.unref(ae)(f)),
                           1
                           /* TEXT */
                         ),
                         (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList(E.foundIn || [E.source], (P) => (e.openBlock(), e.createElementBlock(
+                          e.renderList(f.foundIn || [f.source], (W) => (e.openBlock(), e.createElementBlock(
                             "em",
                             {
-                              key: P,
+                              key: W,
                               class: "ss-chip"
                             },
-                            e.toDisplayString(e.unref(X)(P)),
+                            e.toDisplayString(e.unref(X)(W)),
                             1
                             /* TEXT */
                           ))),
                           128
                           /* KEYED_FRAGMENT */
                         )),
-                        E.citedBy != null ? (e.openBlock(), e.createElementBlock(
+                        f.citedBy != null ? (e.openBlock(), e.createElementBlock(
                           "em",
-                          Bt,
-                          e.toDisplayString(o.$t("被引 {n}", { n: E.citedBy })),
+                          Ct,
+                          e.toDisplayString(o.$t("被引 {n}", { n: f.citedBy })),
                           1
                           /* TEXT */
                         )) : e.createCommentVNode("v-if", !0),
-                        E.doi ? (e.openBlock(), e.createElementBlock("span", Tt, [
+                        f.doi ? (e.openBlock(), e.createElementBlock("span", Tt, [
                           e.createTextVNode(
-                            "DOI " + e.toDisplayString(E.doi) + " ",
+                            "DOI " + e.toDisplayString(f.doi) + " ",
                             1
                             /* TEXT */
                           ),
-                          E.doiCheck === "ok" ? (e.openBlock(), e.createElementBlock("em", Lt, "✓")) : E.doiCheck === "missing" ? (e.openBlock(), e.createElementBlock(
+                          f.doiCheck === "ok" ? (e.openBlock(), e.createElementBlock("em", Lt, [...V[4] || (V[4] = [
+                            e.createElementVNode(
+                              "i",
+                              {
+                                class: "ri-check-line",
+                                "aria-hidden": "true"
+                              },
+                              null,
+                              -1
+                              /* CACHED */
+                            )
+                          ])])) : f.doiCheck === "missing" ? (e.openBlock(), e.createElementBlock(
                             "em",
                             At,
                             e.toDisplayString(o.$t("Crossref 查不到")),
@@ -1074,46 +1089,46 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                             /* TEXT */
                           )) : e.createCommentVNode("v-if", !0)
                         ])) : e.createCommentVNode("v-if", !0),
-                        E.summary ? (e.openBlock(), e.createElementBlock(
+                        f.summary ? (e.openBlock(), e.createElementBlock(
                           "em",
                           Mt,
                           e.toDisplayString(o.$t("已精读")),
                           1
                           /* TEXT */
                         )) : e.createCommentVNode("v-if", !0),
-                        E.url ? (e.openBlock(), e.createElementBlock("button", {
+                        f.url ? (e.openBlock(), e.createElementBlock("button", {
                           key: 3,
                           type: "button",
                           class: "ss-link",
-                          onClick: (P) => l(E.url)
+                          onClick: (W) => l(f.url)
                         }, e.toDisplayString(o.$t("打开网页")), 9, Ot)) : e.createCommentVNode("v-if", !0),
-                        E.pdfUrl ? (e.openBlock(), e.createElementBlock("button", {
+                        f.pdfUrl ? (e.openBlock(), e.createElementBlock("button", {
                           key: 4,
                           type: "button",
                           class: "ss-link",
-                          onClick: (P) => l(E.pdfUrl)
+                          onClick: (W) => l(f.pdfUrl)
                         }, "PDF", 8, It)) : e.createCommentVNode("v-if", !0),
                         e.createElementVNode("button", {
                           type: "button",
                           class: "ss-link",
                           disabled: !!a.value,
-                          onClick: (P) => B(E.id)
-                        }, e.toDisplayString(E.summary ? o.$t("重读") : o.$t("精读")), 9, Wt),
+                          onClick: (W) => C(f.id)
+                        }, e.toDisplayString(f.summary ? o.$t("重读") : o.$t("精读")), 9, Wt),
                         e.createElementVNode("button", {
                           type: "button",
                           class: "ss-link aw-danger",
-                          onClick: (P) => i(E.id, K + 1)
-                        }, e.toDisplayString(o.$t("删除")), 9, qt)
+                          onClick: (W) => i(f.id, K + 1)
+                        }, e.toDisplayString(o.$t("删除")), 9, Pt)
                       ]),
                       e.createElementVNode("input", {
                         class: "aw-note",
                         type: "text",
-                        value: E.note || "",
+                        value: f.note || "",
                         placeholder: o.$t("备注（可选）"),
-                        onBlur: (P) => q(E.id, P.target.value, E.note)
-                      }, null, 40, Pt),
-                      v.value.includes(E.id) ? (e.openBlock(), e.createElementBlock("div", Kt, [
-                        E.summary ? (e.openBlock(), e.createElementBlock(
+                        onBlur: (W) => q(f.id, W.target.value, f.note)
+                      }, null, 40, qt),
+                      v.value.includes(f.id) ? (e.openBlock(), e.createElementBlock("div", Kt, [
+                        f.summary ? (e.openBlock(), e.createElementBlock(
                           e.Fragment,
                           { key: 0 },
                           [
@@ -1129,7 +1144,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                                 e.createElementVNode(
                                   "p",
                                   null,
-                                  e.toDisplayString(E.summary.question),
+                                  e.toDisplayString(f.summary.question),
                                   1
                                   /* TEXT */
                                 )
@@ -1145,7 +1160,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                                 e.createElementVNode(
                                   "p",
                                   null,
-                                  e.toDisplayString(E.summary.method),
+                                  e.toDisplayString(f.summary.method),
                                   1
                                   /* TEXT */
                                 )
@@ -1161,7 +1176,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                                 e.createElementVNode(
                                   "p",
                                   null,
-                                  e.toDisplayString(E.summary.findings),
+                                  e.toDisplayString(f.summary.findings),
                                   1
                                   /* TEXT */
                                 )
@@ -1177,36 +1192,43 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                                 e.createElementVNode(
                                   "p",
                                   null,
-                                  e.toDisplayString(E.summary.limitations),
+                                  e.toDisplayString(f.summary.limitations),
                                   1
                                   /* TEXT */
                                 )
                               ])
                             ]),
-                            E.summary.quotes.length ? (e.openBlock(), e.createElementBlock("ul", zt, [
+                            f.summary.quotes.length ? (e.openBlock(), e.createElementBlock("ul", zt, [
                               (e.openBlock(!0), e.createElementBlock(
                                 e.Fragment,
                                 null,
-                                e.renderList(E.summary.quotes, (P, Z) => (e.openBlock(), e.createElementBlock(
+                                e.renderList(f.summary.quotes, (W, Z) => (e.openBlock(), e.createElementBlock(
                                   "li",
                                   {
                                     key: Z,
-                                    class: e.normalizeClass({ unverified: !P.verified })
+                                    class: e.normalizeClass({ unverified: !W.verified })
                                   },
                                   [
                                     e.createElementVNode(
                                       "span",
                                       {
-                                        class: e.normalizeClass(["ss-chip", P.verified ? "ok" : ""])
+                                        class: e.normalizeClass(["ss-chip", W.verified ? "ok" : ""])
                                       },
-                                      e.toDisplayString(P.verified ? o.$t("✓ 已在摘要中核实") : o.$t("未在摘要中找到")),
-                                      3
-                                      /* TEXT, CLASS */
+                                      [
+                                        W.verified ? (e.openBlock(), e.createElementBlock("i", Ft)) : e.createCommentVNode("v-if", !0),
+                                        e.createTextVNode(
+                                          e.toDisplayString(W.verified ? o.$t("已在摘要中核实") : o.$t("未在摘要中找到")),
+                                          1
+                                          /* TEXT */
+                                        )
+                                      ],
+                                      2
+                                      /* CLASS */
                                     ),
                                     e.createElementVNode(
                                       "span",
                                       null,
-                                      e.toDisplayString(o.$t("「{p0}」", { p0: P.quote })),
+                                      e.toDisplayString(o.$t("「{p0}」", { p0: W.quote })),
                                       1
                                       /* TEXT */
                                     )
@@ -1220,8 +1242,8 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                             ])) : e.createCommentVNode("v-if", !0),
                             e.createElementVNode(
                               "p",
-                              Ft,
-                              e.toDisplayString(o.$t("由 {p0} 精读", { p0: E.summary.model })),
+                              jt,
+                              e.toDisplayString(o.$t("由 {p0} 精读", { p0: f.summary.model })),
                               1
                               /* TEXT */
                             )
@@ -1231,8 +1253,8 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                         )) : e.createCommentVNode("v-if", !0),
                         e.createElementVNode(
                           "p",
-                          jt,
-                          e.toDisplayString(E.abstract || o.$t("这条没有摘要")),
+                          Ut,
+                          e.toDisplayString(f.abstract || o.$t("这条没有摘要")),
                           1
                           /* TEXT */
                         )
@@ -1247,7 +1269,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
               /* STABLE */
             }, 8, ["title", "hint", "runtime"]),
             e.createCommentVNode(" ② 精读 "),
-            e.createVNode(W, {
+            e.createVNode(P, {
               "step-key": "read",
               index: 1,
               title: T[1].title,
@@ -1255,11 +1277,11 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
               runtime: A.value.read
             }, {
               default: e.withCtx(() => [
-                e.createElementVNode("div", Ut, [
+                e.createElementVNode("div", Rt, [
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn primary",
-                    disabled: !!a.value || !N.value.length,
+                    disabled: !!a.value || !b.value.length,
                     onClick: k
                   }, [
                     e.createElementVNode(
@@ -1272,25 +1294,25 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                       /* CLASS */
                     ),
                     e.createTextVNode(
-                      e.toDisplayString(o.$t("精读全部未读的（{n}）", { n: N.value.length })),
+                      e.toDisplayString(o.$t("精读全部未读的（{n}）", { n: b.value.length })),
                       1
                       /* TEXT */
                     )
-                  ], 8, Rt),
+                  ], 8, Xt),
                   e.createElementVNode(
                     "span",
-                    Xt,
+                    Gt,
                     e.toDisplayString(o.$t("每篇提炼问题、方法、发现、局限，依据句回摘要核对；点标题展开看结果")),
                     1
                     /* TEXT */
                   )
                 ]),
-                _.value.length ? (e.openBlock(), e.createElementBlock("ul", Gt, [
+                _.value.length ? (e.openBlock(), e.createElementBlock("ul", Jt, [
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(_.value, (E, K) => (e.openBlock(), e.createElementBlock("li", { key: K }, [
-                      b[4] || (b[4] = e.createElementVNode(
+                    e.renderList(_.value, (f, K) => (e.openBlock(), e.createElementBlock("li", { key: K }, [
+                      V[5] || (V[5] = e.createElementVNode(
                         "i",
                         { class: "ri-error-warning-line" },
                         null,
@@ -1298,7 +1320,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                         /* CACHED */
                       )),
                       e.createTextVNode(
-                        e.toDisplayString(E),
+                        e.toDisplayString(f),
                         1
                         /* TEXT */
                       )
@@ -1312,7 +1334,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
               /* STABLE */
             }, 8, ["title", "hint", "runtime"]),
             e.createCommentVNode(" ③ 查验 DOI 与导出 "),
-            e.createVNode(W, {
+            e.createVNode(P, {
               "step-key": "doi",
               index: 2,
               title: T[2].title,
@@ -1320,7 +1342,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
               runtime: A.value.doi
             }, {
               default: e.withCtx(() => [
-                e.createElementVNode("div", Jt, [
+                e.createElementVNode("div", Zt, [
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn primary",
@@ -1341,14 +1363,14 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                       1
                       /* TEXT */
                     )
-                  ], 8, Zt),
+                  ], 8, Ht),
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn ghost",
                     disabled: !!a.value,
                     onClick: t
                   }, [
-                    b[5] || (b[5] = e.createElementVNode(
+                    V[6] || (V[6] = e.createElementVNode(
                       "i",
                       { class: "ri-download-line" },
                       null,
@@ -1360,11 +1382,11 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                       1
                       /* TEXT */
                     )
-                  ], 8, Ht)
+                  ], 8, Qt)
                 ]),
                 w.value ? (e.openBlock(), e.createElementBlock(
                   "p",
-                  Qt,
+                  Yt,
                   e.toDisplayString(o.$t("Crossref 查到 {a} 篇，查不到 {b} 篇", { a: g.value, b: h.value })),
                   1
                   /* TEXT */
@@ -1378,7 +1400,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
         64
         /* STABLE_FRAGMENT */
       )) : (e.openBlock(), e.createElementBlock("p", Nt, [
-        b[2] || (b[2] = e.createElementVNode(
+        V[2] || (V[2] = e.createElementVNode(
           "i",
           { class: "ri-information-line" },
           null,
@@ -1395,7 +1417,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           {
             type: "button",
             class: "ss-link",
-            onClick: b[0] || (b[0] = (E) => o.$emit("goto", "search"))
+            onClick: V[0] || (V[0] = (f) => o.$emit("goto", "search"))
           },
           e.toDisplayString(o.$t("去文献检索")),
           1
@@ -1404,29 +1426,29 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
       ]))
     ]));
   }
-}), el = /* @__PURE__ */ j(Yt, [["__scopeId", "data-v-2b8592db"]]), tl = { class: "ss-module" }, ll = { class: "ss-panel aw-head" }, nl = { class: "ss-muted" }, ol = { class: "ss-steps" }, sl = {
+}), tl = /* @__PURE__ */ j(el, [["__scopeId", "data-v-f65d2db5"]]), ll = { class: "ss-module" }, nl = { class: "ss-panel aw-head" }, ol = { class: "ss-muted" }, sl = { class: "ss-steps" }, al = {
   key: 0,
   class: "ss-note warn"
-}, al = { class: "ss-actions" }, rl = ["disabled"], il = {
+}, rl = { class: "ss-actions" }, il = ["disabled"], cl = {
   key: 0,
-  class: "ss-muted"
-}, cl = {
-  key: 1,
   class: "ss-muted"
 }, dl = {
+  key: 1,
+  class: "ss-muted"
+}, ul = {
   key: 0,
   class: "ss-empty"
-}, ul = { class: "aw-sec__head" }, ml = { class: "ss-chip brand" }, pl = ["onUpdate:modelValue", "placeholder"], vl = ["disabled", "title", "onClick"], yl = ["disabled", "title", "onClick"], hl = ["title", "onClick"], kl = { class: "ss-field" }, gl = ["value", "onInput"], El = { class: "aw-cites" }, fl = { class: "ss-muted" }, Vl = ["title", "onClick"], Nl = { class: "ss-actions" }, bl = ["disabled"], $l = {
+}, ml = { class: "aw-sec__head" }, pl = { class: "ss-chip brand" }, vl = ["onUpdate:modelValue", "placeholder"], yl = ["disabled", "title", "onClick"], hl = ["disabled", "title", "onClick"], kl = ["title", "onClick"], gl = { class: "ss-field" }, fl = ["value", "onInput"], El = { class: "aw-cites" }, Vl = { class: "ss-muted" }, Nl = ["title", "onClick"], bl = { class: "ss-actions" }, $l = ["disabled"], wl = {
   key: 0,
   class: "ss-muted"
-}, wl = { class: "ss-actions" }, _l = ["disabled"], Sl = {
+}, _l = { class: "ss-actions" }, Sl = ["disabled"], Dl = {
   key: 0,
   class: "ss-muted"
-}, Dl = /* @__PURE__ */ e.defineComponent({
+}, Bl = /* @__PURE__ */ e.defineComponent({
   __name: "OutlineTab",
   emits: ["goto"],
-  setup(V) {
-    const u = F.useNotificationStore(), y = e.computed(() => (z.value, U())), m = e.computed(() => y.value?.library || []), N = e.computed(() => m.value.length), d = e.computed(() => y.value?.outline || []), w = e.ref([]), g = e.ref(!1), h = e.ref(""), v = e.ref({});
+  setup(N) {
+    const u = F.useNotificationStore(), y = e.computed(() => (z.value, U())), m = e.computed(() => y.value?.library || []), b = e.computed(() => m.value.length), d = e.computed(() => y.value?.outline || []), w = e.ref([]), g = e.ref(!1), h = e.ref(""), v = e.ref({});
     e.watch(d, (n) => {
       g.value || (w.value = n.map((t) => ({ ...t, points: [...t.points], cites: [...t.cites] })));
     }, { immediate: !0, deep: !0 });
@@ -1434,14 +1456,14 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
       { key: "generate", title: s.t("生成提纲"), hint: s.t("按论文类型和文献库拟各节标题、要点与引用") },
       { key: "edit", title: s.t("修改提纲"), hint: s.t("改标题、要点，勾选每节要引用的文献") },
       { key: "next", title: s.t("去写作"), hint: s.t("按提纲分节成稿") }
-    ], f = e.computed(() => {
+    ], E = e.computed(() => {
       const n = (t, l, r) => h.value === t ? { state: "running" } : v.value[t] ? { state: "failed", error: v.value[t] } : l ? { state: "done", summary: r } : { state: "todo" };
       return {
         generate: n("generate", d.value.length > 0, s.t("{n} 节", { n: d.value.length })),
         edit: n("edit", d.value.length > 0 && !g.value, s.t("已保存")),
         next: n("next", (y.value?.sections.length || 0) > 0, s.t("已开始写作"))
       };
-    }), _ = e.computed(() => a.find((n) => f.value[n.key].state !== "done")?.key || "next");
+    }), _ = e.computed(() => a.find((n) => E.value[n.key].state !== "done")?.key || "next");
     async function T(n, t) {
       h.value = n, v.value = { ...v.value, [n]: "" };
       try {
@@ -1453,10 +1475,10 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
       }
     }
     async function A() {
-      d.value.length && !window.confirm(s.t("重新生成会覆盖当前提纲，继续？")) || (g.value = !1, await T("generate", () => C("outline.generate")));
+      d.value.length && !window.confirm(s.t("重新生成会覆盖当前提纲，继续？")) || (g.value = !1, await T("generate", () => B("outline.generate")));
     }
     async function L() {
-      await T("edit", () => C("outline.save", { outline: w.value })) && (g.value = !1, u.success(s.t("提纲已保存")));
+      await T("edit", () => B("outline.save", { outline: w.value })) && (g.value = !1, u.success(s.t("提纲已保存")));
     }
     function M(n, t) {
       n.points = t.split(`
@@ -1469,7 +1491,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
       const l = [...w.value];
       [l[n], l[n + t]] = [l[n + t], l[n]], w.value = l, g.value = !0;
     }
-    function B(n) {
+    function C(n) {
       w.value = w.value.filter((t, l) => l !== n), g.value = !0;
     }
     function q() {
@@ -1478,8 +1500,8 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
     function i(n) {
       D.scrollToStep(n);
     }
-    return (n, t) => (e.openBlock(), e.createElementBlock("div", tl, [
-      e.createElementVNode("section", ll, [
+    return (n, t) => (e.openBlock(), e.createElementBlock("div", ll, [
+      e.createElementVNode("section", nl, [
         e.createElementVNode("div", null, [
           e.createElementVNode("strong", null, [
             t[3] || (t[3] = e.createElementVNode(
@@ -1497,7 +1519,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           ]),
           e.createElementVNode(
             "p",
-            nl,
+            ol,
             e.toDisplayString(n.$t("只依据文献库里的文献拟提纲；每节标出要引用的文献，写作时模型只能引用这些。")),
             1
             /* TEXT */
@@ -1507,20 +1529,20 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
       e.createVNode(G, {
         title: n.$t("提纲"),
         metas: a,
-        runtime: f.value,
+        runtime: E.value,
         "current-key": _.value,
         onJump: i
       }, null, 8, ["title", "runtime", "current-key"]),
-      e.createElementVNode("div", ol, [
-        e.createVNode(W, {
+      e.createElementVNode("div", sl, [
+        e.createVNode(P, {
           "step-key": "generate",
           index: 0,
           title: a[0].title,
           hint: a[0].hint,
-          runtime: f.value.generate
+          runtime: E.value.generate
         }, {
           default: e.withCtx(() => [
-            N.value < 3 ? (e.openBlock(), e.createElementBlock("p", sl, [
+            b.value < 3 ? (e.openBlock(), e.createElementBlock("p", al, [
               t[4] || (t[4] = e.createElementVNode(
                 "i",
                 { class: "ri-information-line" },
@@ -1529,7 +1551,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(n.$t("文献库只有 {n} 篇，至少 3 篇才能拟提纲。", { n: N.value })) + " ",
+                e.toDisplayString(n.$t("文献库只有 {n} 篇，至少 3 篇才能拟提纲。", { n: b.value })) + " ",
                 1
                 /* TEXT */
               ),
@@ -1545,17 +1567,17 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                 /* TEXT */
               )
             ])) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("div", al, [
+            e.createElementVNode("div", rl, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: N.value < 3 || !!h.value,
+                disabled: b.value < 3 || !!h.value,
                 onClick: A
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(h.value === "generate" ? "ri-loader-4-line spin" : "ri-magic-line")
+                    class: e.normalizeClass(h.value === "generate" ? "ri-loader-4-line spin" : "ri-list-ordered")
                   },
                   null,
                   2
@@ -1566,10 +1588,10 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                   1
                   /* TEXT */
                 )
-              ], 8, rl),
+              ], 8, il),
               y.value?.outlineModel ? (e.openBlock(), e.createElementBlock(
                 "span",
-                il,
+                cl,
                 e.toDisplayString(n.$t("由 {p0} 生成", { p0: y.value.outlineModel })),
                 1
                 /* TEXT */
@@ -1577,7 +1599,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
             ]),
             d.value.length ? (e.openBlock(), e.createElementBlock(
               "p",
-              cl,
+              dl,
               e.toDisplayString(n.$t("重新生成会覆盖下面的提纲（已写的正文不受影响）。")),
               1
               /* TEXT */
@@ -1586,17 +1608,17 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           _: 1
           /* STABLE */
         }, 8, ["title", "hint", "runtime"]),
-        e.createVNode(W, {
+        e.createVNode(P, {
           "step-key": "edit",
           index: 1,
           title: a[1].title,
           hint: a[1].hint,
-          runtime: f.value.edit
+          runtime: E.value.edit
         }, {
           default: e.withCtx(() => [
             w.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
               "div",
-              dl,
+              ul,
               e.toDisplayString(n.$t("还没有提纲：先生成，或手动新增一节。")),
               1
               /* TEXT */
@@ -1608,10 +1630,10 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                 key: l.id,
                 class: "aw-sec"
               }, [
-                e.createElementVNode("div", ul, [
+                e.createElementVNode("div", ml, [
                   e.createElementVNode(
                     "span",
-                    ml,
+                    pl,
                     e.toDisplayString(r + 1),
                     1
                     /* TEXT */
@@ -1622,7 +1644,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                     class: "aw-sec__title",
                     placeholder: n.$t("节标题"),
                     onInput: t[1] || (t[1] = (o) => g.value = !0)
-                  }, null, 40, pl), [
+                  }, null, 40, vl), [
                     [e.vModelText, l.heading]
                   ]),
                   e.createElementVNode("button", {
@@ -1639,7 +1661,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                       -1
                       /* CACHED */
                     )
-                  ])], 8, vl),
+                  ])], 8, yl),
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn sm ghost",
@@ -1654,12 +1676,12 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                       -1
                       /* CACHED */
                     )
-                  ])], 8, yl),
+                  ])], 8, hl),
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn sm ghost",
                     title: n.$t("删除这一节"),
-                    onClick: (o) => B(r)
+                    onClick: (o) => C(r)
                   }, [...t[7] || (t[7] = [
                     e.createElementVNode(
                       "i",
@@ -1668,9 +1690,9 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                       -1
                       /* CACHED */
                     )
-                  ])], 8, hl)
+                  ])], 8, kl)
                 ]),
-                e.createElementVNode("label", kl, [
+                e.createElementVNode("label", gl, [
                   e.createElementVNode(
                     "span",
                     null,
@@ -1683,12 +1705,12 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
 `),
                     rows: "3",
                     onInput: (o) => M(l, o.target.value)
-                  }, null, 40, gl)
+                  }, null, 40, fl)
                 ]),
                 e.createElementVNode("div", El, [
                   e.createElementVNode(
                     "span",
-                    fl,
+                    Vl,
                     e.toDisplayString(n.$t("本节引用：")),
                     1
                     /* TEXT */
@@ -1696,13 +1718,13 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(m.value, (o, b) => (e.openBlock(), e.createElementBlock("button", {
+                    e.renderList(m.value, (o, V) => (e.openBlock(), e.createElementBlock("button", {
                       key: o.id,
                       type: "button",
                       class: e.normalizeClass(["aw-cite", { on: l.cites.includes(o.id) }]),
                       title: o.title,
-                      onClick: (E) => $(l, o.id)
-                    }, "[" + e.toDisplayString(b + 1) + "] " + e.toDisplayString(o.title.slice(0, 28)) + e.toDisplayString(o.title.length > 28 ? "…" : ""), 11, Vl))),
+                      onClick: (f) => $(l, o.id)
+                    }, "[" + e.toDisplayString(V + 1) + "] " + e.toDisplayString(o.title.slice(0, 28)) + e.toDisplayString(o.title.length > 28 ? "…" : ""), 11, Nl))),
                     128
                     /* KEYED_FRAGMENT */
                   ))
@@ -1711,7 +1733,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
               128
               /* KEYED_FRAGMENT */
             )),
-            e.createElementVNode("div", Nl, [
+            e.createElementVNode("div", bl, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn ghost",
@@ -1750,10 +1772,10 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                   1
                   /* TEXT */
                 )
-              ], 8, bl),
+              ], 8, $l),
               g.value ? (e.openBlock(), e.createElementBlock(
                 "span",
-                $l,
+                wl,
                 e.toDisplayString(n.$t("有未保存的修改")),
                 1
                 /* TEXT */
@@ -1763,15 +1785,15 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           _: 1
           /* STABLE */
         }, 8, ["title", "hint", "runtime"]),
-        e.createVNode(W, {
+        e.createVNode(P, {
           "step-key": "next",
           index: 2,
           title: a[2].title,
           hint: a[2].hint,
-          runtime: f.value.next
+          runtime: E.value.next
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", wl, [
+            e.createElementVNode("div", _l, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
@@ -1790,10 +1812,10 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                   1
                   /* TEXT */
                 )
-              ], 8, _l),
+              ], 8, Sl),
               g.value ? (e.openBlock(), e.createElementBlock(
                 "span",
-                Sl,
+                Dl,
                 e.toDisplayString(n.$t("先保存提纲")),
                 1
                 /* TEXT */
@@ -1806,35 +1828,35 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
       ])
     ]));
   }
-}), Cl = /* @__PURE__ */ j(Dl, [["__scopeId", "data-v-19f3cc6b"]]), Bl = { class: "ss-module" }, Tl = { class: "ss-panel aw-head" }, Ll = { class: "ss-muted" }, Al = {
+}), Cl = /* @__PURE__ */ j(Bl, [["__scopeId", "data-v-6943272f"]]), Tl = { class: "ss-module" }, Ll = { class: "ss-panel aw-head" }, Al = { class: "ss-muted" }, Ml = {
   key: 0,
   class: "ss-note info"
-}, Ml = { class: "ss-steps" }, Ol = {
+}, Ol = { class: "ss-steps" }, Il = {
   key: 0,
   class: "ss-note warn"
-}, Il = {
+}, Wl = {
   key: 1,
   class: "ss-actions"
-}, Wl = ["disabled"], ql = { class: "ss-muted" }, Pl = { class: "aw-sec__head" }, Kl = { class: "ss-chip brand" }, xl = { class: "aw-grow" }, zl = {
+}, Pl = ["disabled"], ql = { class: "ss-muted" }, Kl = { class: "aw-sec__head" }, xl = { class: "ss-chip brand" }, zl = { class: "aw-grow" }, Fl = {
   key: 0,
   class: "ss-muted"
-}, Fl = ["disabled", "onClick"], jl = {
+}, jl = ["disabled", "onClick"], Ul = {
   key: 0,
   class: "ss-note danger"
-}, Ul = {
+}, Rl = {
   key: 0,
   class: "ss-note danger"
-}, Rl = ["value", "onBlur"], Xl = { class: "ss-note info" }, Gl = { class: "ss-actions" }, Jl = ["disabled"], Zl = ["disabled"], Hl = {
+}, Xl = ["value", "onBlur"], Gl = { class: "ss-note info" }, Jl = { class: "ss-actions" }, Zl = ["disabled"], Hl = ["disabled"], Ql = {
   key: 0,
   class: "ss-note danger"
-}, Ql = {
+}, Yl = {
   key: 1,
   class: "ss-note ok aw-ms"
-}, Yl = { class: "ss-actions" }, en = ["disabled"], tn = /* @__PURE__ */ e.defineComponent({
+}, en = { class: "ss-actions" }, tn = ["disabled"], ln = /* @__PURE__ */ e.defineComponent({
   __name: "WriteTab",
   emits: ["goto"],
-  setup(V) {
-    const u = F.useNotificationStore(), y = e.computed(() => (z.value, U())), m = e.computed(() => y.value?.outline || []), N = e.computed(() => y.value?.sections || []), d = (t) => N.value.find((l) => l.id === t), w = e.computed(() => m.value.filter((t) => !d(t.id)?.text.trim())), g = e.computed(() => N.value.some((t) => t.text.trim()) || !!y.value?.manuscript), h = e.ref(""), v = e.ref({}), a = e.ref(!1), f = e.computed(() => {
+  setup(N) {
+    const u = F.useNotificationStore(), y = e.computed(() => (z.value, U())), m = e.computed(() => y.value?.outline || []), b = e.computed(() => y.value?.sections || []), d = (t) => b.value.find((l) => l.id === t), w = e.computed(() => m.value.filter((t) => !d(t.id)?.text.trim())), g = e.computed(() => b.value.some((t) => t.text.trim()) || !!y.value?.manuscript), h = e.ref(""), v = e.ref({}), a = e.ref(!1), E = e.computed(() => {
       const t = y.value?.manuscript || "";
       return (t.match(/[一-鿿]/g) || []).length + (t.replace(/[一-鿿]/g, " ").match(/[A-Za-z0-9]+/g) || []).length;
     }), _ = [
@@ -1852,7 +1874,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
     async function L(t, l = t) {
       h.value = l, v.value = { ...v.value, [t]: "" };
       try {
-        return await C("write.section", { outlineId: t }), await I(), !0;
+        return await B("write.section", { outlineId: t }), await I(), !0;
       } catch (r) {
         return v.value = { ...v.value, [t]: D.errorMessage(r) }, !1;
       } finally {
@@ -1872,7 +1894,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
     async function $(t, l) {
       if (d(t)?.text !== l)
         try {
-          await C("sections.save", { id: t, text: l }), await I();
+          await B("sections.save", { id: t, text: l }), await I();
         } catch (r) {
           u.error(D.errorMessage(r));
         }
@@ -1881,7 +1903,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
       if (!(y.value?.manuscript && !window.confirm(s.t("会把当前稿子作为新文档载入双写编辑器，编辑器里没取回的修改会被替换。继续？")))) {
         h.value = "cowrite", v.value = { ...v.value, cowrite: "" };
         try {
-          const t = await C("manuscript.compose");
+          const t = await B("manuscript.compose");
           await re(y.value.title, t), a.value = !0, u.success(s.t("已载入人机双写编辑器，改完回来点「从双写编辑器取回」"));
         } catch (t) {
           v.value = { ...v.value, cowrite: q(t) };
@@ -1890,10 +1912,10 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
         }
       }
     }
-    async function B() {
+    async function C() {
       h.value = "pull", v.value = { ...v.value, cowrite: "" };
       try {
-        const t = await ke(), l = await C("manuscript.save", { text: t });
+        const t = await ke(), l = await B("manuscript.save", { text: t });
         await I(), u.success(s.t("已取回 {n} 字", { n: l.words }));
       } catch (t) {
         v.value = { ...v.value, cowrite: q(t) };
@@ -1908,7 +1930,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
     async function i() {
       if (window.confirm(s.t("放弃从双写编辑器取回的版本，改回按节拼接？")))
         try {
-          await C("manuscript.reset"), await I();
+          await B("manuscript.reset"), await I();
         } catch (t) {
           u.error(D.errorMessage(t));
         }
@@ -1916,8 +1938,8 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
     function n(t) {
       D.scrollToStep(t);
     }
-    return (t, l) => (e.openBlock(), e.createElementBlock("div", Bl, [
-      e.createElementVNode("section", Tl, [
+    return (t, l) => (e.openBlock(), e.createElementBlock("div", Tl, [
+      e.createElementVNode("section", Ll, [
         e.createElementVNode("div", null, [
           e.createElementVNode("strong", null, [
             l[2] || (l[2] = e.createElementVNode(
@@ -1935,7 +1957,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           ]),
           e.createElementVNode(
             "p",
-            Ll,
+            Al,
             e.toDisplayString(t.$t("按提纲逐节写初稿，引用只能用文献库编号；写完送进人机双写编辑器，由你逐句改定。")),
             1
             /* TEXT */
@@ -1949,7 +1971,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
         "current-key": A.value,
         onJump: n
       }, null, 8, ["title", "runtime", "current-key"]),
-      h.value && e.unref(x).write ? (e.openBlock(), e.createElementBlock("p", Al, [
+      h.value && e.unref(x).write ? (e.openBlock(), e.createElementBlock("p", Ml, [
         l[3] || (l[3] = e.createElementVNode(
           "i",
           { class: "ri-loader-4-line spin" },
@@ -1963,8 +1985,8 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           /* TEXT */
         )
       ])) : e.createCommentVNode("v-if", !0),
-      e.createElementVNode("div", Ml, [
-        e.createVNode(W, {
+      e.createElementVNode("div", Ol, [
+        e.createVNode(P, {
           "step-key": "sections",
           index: 0,
           title: _[0].title,
@@ -1972,7 +1994,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           runtime: T.value.sections
         }, {
           default: e.withCtx(() => [
-            m.value.length ? (e.openBlock(), e.createElementBlock("div", Il, [
+            m.value.length ? (e.openBlock(), e.createElementBlock("div", Wl, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
@@ -1993,7 +2015,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                   1
                   /* TEXT */
                 )
-              ], 8, Wl),
+              ], 8, Pl),
               e.createElementVNode(
                 "span",
                 ql,
@@ -2001,7 +2023,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                 1
                 /* TEXT */
               )
-            ])) : (e.openBlock(), e.createElementBlock("p", Ol, [
+            ])) : (e.openBlock(), e.createElementBlock("p", Il, [
               l[4] || (l[4] = e.createElementVNode(
                 "i",
                 { class: "ri-information-line" },
@@ -2033,24 +2055,24 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                 key: r.id,
                 class: "aw-sec"
               }, [
-                e.createElementVNode("div", Pl, [
+                e.createElementVNode("div", Kl, [
                   e.createElementVNode(
                     "span",
-                    Kl,
+                    xl,
                     e.toDisplayString(o + 1),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "strong",
-                    xl,
+                    zl,
                     e.toDisplayString(r.heading),
                     1
                     /* TEXT */
                   ),
                   d(r.id)?.model ? (e.openBlock(), e.createElementBlock(
                     "span",
-                    zl,
+                    Fl,
                     e.toDisplayString(t.$t("由 {p0} 写", { p0: d(r.id).model })),
                     1
                     /* TEXT */
@@ -2059,7 +2081,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                     type: "button",
                     class: e.normalizeClass(["ss-btn sm", d(r.id) ? "ghost" : "primary"]),
                     disabled: !!h.value,
-                    onClick: (b) => L(r.id)
+                    onClick: (V) => L(r.id)
                   }, [
                     e.createElementVNode(
                       "i",
@@ -2075,9 +2097,9 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                       1
                       /* TEXT */
                     )
-                  ], 10, Fl)
+                  ], 10, jl)
                 ]),
-                v.value[r.id] ? (e.openBlock(), e.createElementBlock("p", jl, [
+                v.value[r.id] ? (e.openBlock(), e.createElementBlock("p", Ul, [
                   l[5] || (l[5] = e.createElementVNode(
                     "i",
                     { class: "ri-error-warning-line" },
@@ -2095,7 +2117,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                   e.Fragment,
                   { key: 1 },
                   [
-                    d(r.id).badRefs.length ? (e.openBlock(), e.createElementBlock("p", Ul, [
+                    d(r.id).badRefs.length ? (e.openBlock(), e.createElementBlock("p", Rl, [
                       l[6] || (l[6] = e.createElementVNode(
                         "i",
                         { class: "ri-error-warning-line" },
@@ -2104,7 +2126,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                         /* CACHED */
                       )),
                       e.createTextVNode(
-                        e.toDisplayString(t.$t("引用了文献库里没有的编号：{p0}，请改成库里的编号或删掉", { p0: d(r.id).badRefs.map((b) => `[${b}]`).join(" ") })),
+                        e.toDisplayString(t.$t("引用了文献库里没有的编号：{p0}，请改成库里的编号或删掉", { p0: d(r.id).badRefs.map((V) => `[${V}]`).join(" ") })),
                         1
                         /* TEXT */
                       )
@@ -2114,8 +2136,8 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                       value: d(r.id).text,
                       rows: "10",
                       dir: "auto",
-                      onBlur: (b) => $(r.id, b.target.value)
-                    }, null, 40, Rl)
+                      onBlur: (V) => $(r.id, V.target.value)
+                    }, null, 40, Xl)
                   ],
                   64
                   /* STABLE_FRAGMENT */
@@ -2128,7 +2150,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           _: 1
           /* STABLE */
         }, 8, ["title", "hint", "runtime"]),
-        e.createVNode(W, {
+        e.createVNode(P, {
           "step-key": "cowrite",
           index: 1,
           title: _[1].title,
@@ -2136,7 +2158,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           runtime: T.value.cowrite
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("p", Xl, [
+            e.createElementVNode("p", Gl, [
               l[7] || (l[7] = e.createElementVNode(
                 "i",
                 { class: "ri-information-line" },
@@ -2150,7 +2172,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", Gl, [
+            e.createElementVNode("div", Jl, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
@@ -2171,12 +2193,12 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                   1
                   /* TEXT */
                 )
-              ], 8, Jl),
+              ], 8, Zl),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn ghost",
                 disabled: !!h.value,
-                onClick: B
+                onClick: C
               }, [
                 e.createElementVNode(
                   "i",
@@ -2192,9 +2214,9 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                   1
                   /* TEXT */
                 )
-              ], 8, Zl)
+              ], 8, Hl)
             ]),
-            v.value.cowrite ? (e.openBlock(), e.createElementBlock("p", Hl, [
+            v.value.cowrite ? (e.openBlock(), e.createElementBlock("p", Ql, [
               l[8] || (l[8] = e.createElementVNode(
                 "i",
                 { class: "ri-error-warning-line" },
@@ -2208,7 +2230,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                 /* TEXT */
               )
             ])) : e.createCommentVNode("v-if", !0),
-            y.value?.manuscript ? (e.openBlock(), e.createElementBlock("div", Ql, [
+            y.value?.manuscript ? (e.openBlock(), e.createElementBlock("div", Yl, [
               l[9] || (l[9] = e.createElementVNode(
                 "i",
                 { class: "ri-check-line" },
@@ -2219,7 +2241,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
               e.createElementVNode(
                 "span",
                 null,
-                e.toDisplayString(t.$t("当前以双写编辑器取回的版本为准（{p0}，{n} 字）", { p0: e.unref(D.fmtDateTime)(y.value.manuscriptAt), n: f.value })),
+                e.toDisplayString(t.$t("当前以双写编辑器取回的版本为准（{p0}，{n} 字）", { p0: e.unref(D.fmtDateTime)(y.value.manuscriptAt), n: E.value })),
                 1
                 /* TEXT */
               ),
@@ -2239,7 +2261,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           _: 1
           /* STABLE */
         }, 8, ["title", "hint", "runtime"]),
-        e.createVNode(W, {
+        e.createVNode(P, {
           "step-key": "next",
           index: 2,
           title: _[2].title,
@@ -2247,7 +2269,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
           runtime: T.value.next
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", Yl, [
+            e.createElementVNode("div", en, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
@@ -2266,7 +2288,7 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
                   1
                   /* TEXT */
                 )
-              ], 8, en)
+              ], 8, tn)
             ])
           ]),
           _: 1
@@ -2275,50 +2297,50 @@ const ge = { class: "ss-module" }, Ee = { class: "ss-panel aw-head" }, fe = { cl
       ])
     ]));
   }
-}), ln = /* @__PURE__ */ j(tn, [["__scopeId", "data-v-66032d16"]]), Y = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/markdown.ts"];
+}), nn = /* @__PURE__ */ j(ln, [["__scopeId", "data-v-7030b630"]]), Y = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/markdown.ts"];
 if (!Y) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/markdown.ts");
 Y.default;
-const nn = {
+const on = {
   class: "awv",
   role: "dialog",
   "aria-modal": "true"
-}, on = { class: "awv-bar" }, sn = ["aria-expanded"], an = {
+}, sn = { class: "awv-bar" }, an = ["aria-expanded"], rn = {
   key: 0,
   class: "awv-menu",
   role: "menu"
-}, rn = { class: "awv-menu__title" }, cn = {
+}, cn = { class: "awv-menu__title" }, dn = {
   key: 0,
   class: "awv-menu awv-menu--sub",
   role: "menu"
-}, dn = {
+}, un = {
   key: 0,
   class: "awv-muted"
-}, un = ["onClick"], mn = ["src"], pn = {
+}, mn = ["onClick"], pn = ["src"], vn = {
   key: 1,
   class: "ri-apps-line"
-}, vn = {
+}, yn = {
   key: 2,
   class: "awv-default"
-}, yn = {
+}, hn = {
   key: 1,
   class: "awv-muted"
-}, hn = {
+}, kn = {
   key: 0,
   class: "awv-error"
-}, kn = ["title"], gn = ["innerHTML"], En = /* @__PURE__ */ e.defineComponent({
+}, gn = ["title"], fn = ["innerHTML"], En = /* @__PURE__ */ e.defineComponent({
   __name: "DocViewer",
   props: {
     path: {},
     markdown: {}
   },
   emits: ["close", "cowrite"],
-  setup(V) {
-    const u = V, y = e.computed(() => u.path.split(/[\\/]/).pop() || u.path), m = e.computed(() => /\.docx?$/i.test(u.path) ? "ri-file-word-2-line" : /\.bib$/i.test(u.path) ? "ri-book-2-line" : "ri-markdown-line"), N = e.computed(() => Y.renderMarkdown(u.markdown)), d = e.ref(!1), w = e.ref(!1), g = e.ref([]), h = e.ref(!1), v = e.ref(""), a = e.ref(null);
-    async function f() {
+  setup(N) {
+    const u = N, y = e.computed(() => u.path.split(/[\\/]/).pop() || u.path), m = e.computed(() => /\.docx?$/i.test(u.path) ? "ri-file-word-2-line" : /\.bib$/i.test(u.path) ? "ri-book-2-line" : "ri-markdown-line"), b = e.computed(() => Y.renderMarkdown(u.markdown)), d = e.ref(!1), w = e.ref(!1), g = e.ref([]), h = e.ref(!1), v = e.ref(""), a = e.ref(null);
+    async function E() {
       if (d.value = !d.value, d.value && !g.value.length && !h.value) {
         h.value = !0;
         try {
-          g.value = await C("openIn.apps", { path: u.path });
+          g.value = await B("openIn.apps", { path: u.path });
         } catch ($) {
           v.value = D.errorMessage($);
         } finally {
@@ -2334,17 +2356,17 @@ const nn = {
         v.value = D.errorMessage(k);
       }
     }
-    const T = ($) => _(() => C("openIn.open", { path: u.path, appPath: $ })), A = () => _(() => C("openIn.choose", { path: u.path })), L = () => _(() => C("path.open", { path: u.path, reveal: !0 }));
+    const T = ($) => _(() => B("openIn.open", { path: u.path, appPath: $ })), A = () => _(() => B("openIn.choose", { path: u.path })), L = () => _(() => B("path.open", { path: u.path, reveal: !0 }));
     function M($) {
       d.value && a.value && !a.value.contains($.target) && (d.value = !1);
     }
     return e.onMounted(() => document.addEventListener("mousedown", M)), e.onBeforeUnmount(() => document.removeEventListener("mousedown", M)), ($, k) => (e.openBlock(), e.createBlock(e.Teleport, { to: "body" }, [
       e.createElementVNode("div", {
         class: "awv-backdrop",
-        onClick: k[5] || (k[5] = e.withModifiers((B) => $.$emit("close"), ["self"]))
+        onClick: k[5] || (k[5] = e.withModifiers((C) => $.$emit("close"), ["self"]))
       }, [
-        e.createElementVNode("section", nn, [
-          e.createElementVNode("header", on, [
+        e.createElementVNode("section", on, [
+          e.createElementVNode("header", sn, [
             e.createElementVNode(
               "div",
               {
@@ -2357,7 +2379,7 @@ const nn = {
                   type: "button",
                   class: "awv-file__btn",
                   "aria-expanded": d.value,
-                  onClick: f
+                  onClick: E
                 }, [
                   e.createElementVNode(
                     "i",
@@ -2382,9 +2404,9 @@ const nn = {
                     -1
                     /* CACHED */
                   ))
-                ], 8, sn),
-                d.value ? (e.openBlock(), e.createElementBlock("div", an, [
-                  e.createElementVNode("div", rn, [
+                ], 8, an),
+                d.value ? (e.openBlock(), e.createElementBlock("div", rn, [
+                  e.createElementVNode("div", cn, [
                     e.createElementVNode(
                       "i",
                       {
@@ -2411,15 +2433,15 @@ const nn = {
                     "div",
                     {
                       class: "awv-sub",
-                      onMouseenter: k[1] || (k[1] = (B) => w.value = !0),
-                      onMouseleave: k[2] || (k[2] = (B) => w.value = !1)
+                      onMouseenter: k[1] || (k[1] = (C) => w.value = !0),
+                      onMouseleave: k[2] || (k[2] = (C) => w.value = !1)
                     },
                     [
                       e.createElementVNode("button", {
                         type: "button",
                         role: "menuitem",
                         class: "awv-item",
-                        onClick: k[0] || (k[0] = (B) => w.value = !w.value)
+                        onClick: k[0] || (k[0] = (C) => w.value = !w.value)
                       }, [
                         k[7] || (k[7] = e.createElementVNode(
                           "i",
@@ -2441,8 +2463,8 @@ const nn = {
                           /* CACHED */
                         ))
                       ]),
-                      w.value ? (e.openBlock(), e.createElementBlock("div", cn, [
-                        h.value ? (e.openBlock(), e.createElementBlock("p", dn, [
+                      w.value ? (e.openBlock(), e.createElementBlock("div", dn, [
+                        h.value ? (e.openBlock(), e.createElementBlock("p", un, [
                           k[9] || (k[9] = e.createElementVNode(
                             "i",
                             { class: "ri-loader-4-line spin" },
@@ -2459,40 +2481,40 @@ const nn = {
                         (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList(g.value, (B) => (e.openBlock(), e.createElementBlock("button", {
-                            key: B.path,
+                          e.renderList(g.value, (C) => (e.openBlock(), e.createElementBlock("button", {
+                            key: C.path,
                             type: "button",
                             role: "menuitem",
                             class: "awv-item",
-                            onClick: (q) => T(B.path)
+                            onClick: (q) => T(C.path)
                           }, [
-                            B.icon ? (e.openBlock(), e.createElementBlock("img", {
+                            C.icon ? (e.openBlock(), e.createElementBlock("img", {
                               key: 0,
-                              src: B.icon,
+                              src: C.icon,
                               alt: "",
                               class: "awv-appicon"
-                            }, null, 8, mn)) : (e.openBlock(), e.createElementBlock("i", pn)),
+                            }, null, 8, pn)) : (e.openBlock(), e.createElementBlock("i", vn)),
                             e.createElementVNode(
                               "span",
                               null,
-                              e.toDisplayString(B.name),
+                              e.toDisplayString(C.name),
                               1
                               /* TEXT */
                             ),
-                            B.isDefault ? (e.openBlock(), e.createElementBlock(
+                            C.isDefault ? (e.openBlock(), e.createElementBlock(
                               "em",
-                              vn,
+                              yn,
                               e.toDisplayString($.$t("默认")),
                               1
                               /* TEXT */
                             )) : e.createCommentVNode("v-if", !0)
-                          ], 8, un))),
+                          ], 8, mn))),
                           128
                           /* KEYED_FRAGMENT */
                         )),
                         !h.value && !g.value.length ? (e.openBlock(), e.createElementBlock(
                           "p",
-                          yn,
+                          hn,
                           e.toDisplayString($.$t("没有找到能打开它的应用")),
                           1
                           /* TEXT */
@@ -2551,7 +2573,7 @@ const nn = {
                     type: "button",
                     role: "menuitem",
                     class: "awv-item",
-                    onClick: k[3] || (k[3] = (B) => {
+                    onClick: k[3] || (k[3] = (C) => {
                       $.$emit("cowrite"), d.value = !1;
                     })
                   }, [
@@ -2582,7 +2604,7 @@ const nn = {
             )),
             v.value ? (e.openBlock(), e.createElementBlock(
               "span",
-              hn,
+              kn,
               e.toDisplayString(v.value),
               1
               /* TEXT */
@@ -2591,7 +2613,7 @@ const nn = {
               type: "button",
               class: "awv-icon",
               title: $.$t("关闭"),
-              onClick: k[4] || (k[4] = (B) => $.$emit("close"))
+              onClick: k[4] || (k[4] = (C) => $.$emit("close"))
             }, [...k[15] || (k[15] = [
               e.createElementVNode(
                 "i",
@@ -2600,63 +2622,63 @@ const nn = {
                 -1
                 /* CACHED */
               )
-            ])], 8, kn)
+            ])], 8, gn)
           ]),
           e.createCommentVNode(" eslint-disable-next-line vue/no-v-html "),
           e.createElementVNode("article", {
             class: "awv-paper",
             dir: "auto",
-            innerHTML: N.value
-          }, null, 8, gn)
+            innerHTML: b.value
+          }, null, 8, fn)
         ])
       ])
     ]));
   }
-}), fn = /* @__PURE__ */ j(En, [["__scopeId", "data-v-ba580a58"]]), Vn = { class: "ss-module" }, Nn = { class: "ss-note warn" }, bn = { class: "ss-steps" }, $n = { class: "ss-actions" }, wn = ["disabled"], _n = {
+}), Vn = /* @__PURE__ */ j(En, [["__scopeId", "data-v-8483e756"]]), Nn = { class: "ss-module" }, bn = { class: "ss-note warn" }, $n = { class: "ss-steps" }, wn = { class: "ss-actions" }, _n = ["disabled"], Sn = {
   key: 0,
   class: "ss-muted"
-}, Sn = { class: "ss-kpis" }, Dn = { class: "ss-kpi" }, Cn = { class: "ss-kpi accent" }, Bn = { class: "ss-kpi" }, Tn = { class: "ss-kpi" }, Ln = {
+}, Dn = { class: "ss-kpis" }, Bn = { class: "ss-kpi" }, Cn = { class: "ss-kpi accent" }, Tn = { class: "ss-kpi" }, Ln = { class: "ss-kpi" }, An = {
   key: 0,
   class: "ss-note danger"
-}, An = {
+}, Mn = {
   key: 1,
   class: "ss-note ok"
-}, Mn = {
+}, On = {
   key: 2,
   class: "aw-list"
-}, On = { class: "ss-subhead" }, In = {
+}, In = { class: "ss-subhead" }, Wn = {
   key: 3,
   class: "aw-list"
-}, Wn = { class: "ss-subhead aw-bad" }, qn = { class: "ss-actions" }, Pn = { class: "ss-field aw-inline" }, Kn = ["value"], xn = { value: "gbt7714" }, zn = { value: "apa" }, Fn = { value: "ieee" }, jn = ["disabled"], Un = {
+}, Pn = { class: "ss-subhead aw-bad" }, qn = { class: "ss-actions" }, Kn = { class: "ss-field aw-inline" }, xn = ["value"], zn = { value: "gbt7714" }, Fn = { value: "apa" }, jn = { value: "ieee" }, Un = ["disabled"], Rn = {
   key: 0,
   class: "aw-refs"
-}, Rn = {
+}, Xn = {
   key: 1,
   class: "ss-muted"
-}, Xn = { class: "ss-actions" }, Gn = ["disabled"], Jn = ["disabled"], Zn = ["disabled"], Hn = { class: "ss-muted" }, Qn = {
+}, Gn = { class: "ss-actions" }, Jn = ["disabled"], Zn = ["disabled"], Hn = ["disabled"], Qn = { class: "ss-muted" }, Yn = {
   key: 0,
   class: "ss-empty"
-}, Yn = {
+}, eo = {
   key: 1,
   class: "ss-table-wrap"
-}, eo = { class: "ss-table" }, to = ["title"], lo = { class: "ss-chip" }, no = { class: "aw-ops" }, oo = ["onClick"], so = ["onClick"], ao = { class: "ss-muted" }, ro = /* @__PURE__ */ e.defineComponent({
+}, to = { class: "ss-table" }, lo = ["title"], no = { class: "ss-chip" }, oo = { class: "aw-ops" }, so = ["onClick"], ao = ["onClick"], ro = { class: "ss-muted" }, io = /* @__PURE__ */ e.defineComponent({
   __name: "ExportTab",
   emits: ["goto"],
-  setup(V) {
-    const u = F.useNotificationStore(), y = e.computed(() => (z.value, U())), m = e.computed(() => y.value?.check || null), N = e.computed(() => y.value?.exports || []), d = e.ref([]), w = e.ref(!1), g = e.ref(""), h = e.ref({}), v = e.ref(null), a = [
+  setup(N) {
+    const u = F.useNotificationStore(), y = e.computed(() => (z.value, U())), m = e.computed(() => y.value?.check || null), b = e.computed(() => y.value?.exports || []), d = e.ref([]), w = e.ref(!1), g = e.ref(""), h = e.ref({}), v = e.ref(null), a = [
       { key: "check", title: s.t("引用查验"), hint: s.t("库外编号、未被引用的文献、DOI 查不到的") },
       { key: "refs", title: s.t("参考文献"), hint: s.t("按所选格式由题录拼出，模型不参与") },
       { key: "export", title: s.t("导出"), hint: s.t("Word、Markdown、BibTeX") },
       { key: "files", title: s.t("预览与打开"), hint: s.t("内置预览，或选本机软件打开") }
-    ], f = e.computed(() => {
-      const l = (r, o, b) => g.value === r || r === "export" && ["docx", "md", "bib"].includes(g.value) ? { state: "running" } : h.value[r] ? { state: "failed", error: h.value[r] } : o ? { state: "done", summary: b } : { state: "todo" };
+    ], E = e.computed(() => {
+      const l = (r, o, V) => g.value === r || r === "export" && ["docx", "md", "bib"].includes(g.value) ? { state: "running" } : h.value[r] ? { state: "failed", error: h.value[r] } : o ? { state: "done", summary: V } : { state: "todo" };
       return {
         check: l("check", !!m.value, m.value ? s.t("引用 {a} 篇，库外 {b} 处", { a: m.value.cited.length, b: m.value.badRefs.length }) : ""),
         refs: l("refs", d.value.length > 0, s.t("{n} 条", { n: d.value.length })),
-        export: l("export", N.value.length > 0, s.t("{n} 个文件", { n: N.value.length })),
-        files: l("files", !!v.value || N.value.length > 0, "")
+        export: l("export", b.value.length > 0, s.t("{n} 个文件", { n: b.value.length })),
+        files: l("files", !!v.value || b.value.length > 0, "")
       };
-    }), _ = e.computed(() => a.find((l) => f.value[l.key].state !== "done")?.key || "files");
+    }), _ = e.computed(() => a.find((l) => E.value[l.key].state !== "done")?.key || "files");
     function T(l) {
       return (y.value?.library.findIndex((r) => r.id === l) ?? -1) + 1;
     }
@@ -2673,39 +2695,39 @@ const nn = {
         g.value = "";
       }
     }
-    const M = () => L("check", () => C("check.run"));
+    const M = () => L("check", () => B("check.run"));
     async function $() {
       await L("refs", async () => {
-        d.value = await C("references.preview"), w.value = !0;
+        d.value = await B("references.preview"), w.value = !0;
       });
     }
     async function k(l) {
       try {
-        await C("project.update", { patch: { style: l } }), await I(), w.value && await $();
+        await B("project.update", { patch: { style: l } }), await I(), w.value && await $();
       } catch (r) {
         u.error(D.errorMessage(r));
       }
     }
-    async function B(l) {
+    async function C(l) {
       let r = "";
       await L(l, async () => {
-        r = (await C("export", { format: l })).path;
+        r = (await B("export", { format: l })).path;
       }) && r && await q(r, l);
     }
     async function q(l, r) {
       try {
-        const o = r === "bib" ? s.t("BibTeX 文件包含文献库全部 {n} 条题录，可导入 Zotero、EndNote、NoteExpress 等文献管理软件。用左上角「打开方式」选本机软件查看。", { n: y.value?.library.length || 0 }) : await C("manuscript.rendered");
+        const o = r === "bib" ? s.t("BibTeX 文件包含文献库全部 {n} 条题录，可导入 Zotero、EndNote、NoteExpress 等文献管理软件。用左上角「打开方式」选本机软件查看。", { n: y.value?.library.length || 0 }) : await B("manuscript.rendered");
         v.value = { path: l, markdown: o };
       } catch (o) {
         u.error(D.errorMessage(o));
       }
     }
     function i(l) {
-      C("path.open", { path: l, reveal: !0 }).catch((r) => u.error(D.errorMessage(r)));
+      B("path.open", { path: l, reveal: !0 }).catch((r) => u.error(D.errorMessage(r)));
     }
     async function n() {
       try {
-        await re(y.value.title, await C("manuscript.compose")), v.value = null, u.success(s.t("已载入人机双写编辑器"));
+        await re(y.value.title, await B("manuscript.compose")), v.value = null, u.success(s.t("已载入人机双写编辑器"));
       } catch (l) {
         u.error(D.errorMessage(l));
       }
@@ -2713,8 +2735,8 @@ const nn = {
     function t(l) {
       D.scrollToStep(l);
     }
-    return (l, r) => (e.openBlock(), e.createElementBlock("div", Vn, [
-      e.createElementVNode("p", Nn, [
+    return (l, r) => (e.openBlock(), e.createElementBlock("div", Nn, [
+      e.createElementVNode("p", bn, [
         r[6] || (r[6] = e.createElementVNode(
           "i",
           { class: "ri-shield-user-line" },
@@ -2731,20 +2753,20 @@ const nn = {
       e.createVNode(G, {
         title: l.$t("参考文献与导出"),
         metas: a,
-        runtime: f.value,
+        runtime: E.value,
         "current-key": _.value,
         onJump: t
       }, null, 8, ["title", "runtime", "current-key"]),
-      e.createElementVNode("div", bn, [
-        e.createVNode(W, {
+      e.createElementVNode("div", $n, [
+        e.createVNode(P, {
           "step-key": "check",
           index: 0,
           title: a[0].title,
           hint: a[0].hint,
-          runtime: f.value.check
+          runtime: E.value.check
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", $n, [
+            e.createElementVNode("div", wn, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
@@ -2765,10 +2787,10 @@ const nn = {
                   1
                   /* TEXT */
                 )
-              ], 8, wn),
+              ], 8, _n),
               m.value ? (e.openBlock(), e.createElementBlock(
                 "span",
-                _n,
+                Sn,
                 e.toDisplayString(e.unref(D.fmtDateTime)(m.value.at)),
                 1
                 /* TEXT */
@@ -2778,8 +2800,8 @@ const nn = {
               e.Fragment,
               { key: 0 },
               [
-                e.createElementVNode("div", Sn, [
-                  e.createElementVNode("div", Dn, [
+                e.createElementVNode("div", Dn, [
+                  e.createElementVNode("div", Bn, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -2811,7 +2833,7 @@ const nn = {
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", Bn, [
+                  e.createElementVNode("div", Tn, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -2829,7 +2851,7 @@ const nn = {
                       /* TEXT, CLASS */
                     )
                   ]),
-                  e.createElementVNode("div", Tn, [
+                  e.createElementVNode("div", Ln, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -2846,7 +2868,7 @@ const nn = {
                     )
                   ])
                 ]),
-                m.value.badRefs.length ? (e.openBlock(), e.createElementBlock("p", Ln, [
+                m.value.badRefs.length ? (e.openBlock(), e.createElementBlock("p", An, [
                   r[7] || (r[7] = e.createElementVNode(
                     "i",
                     { class: "ri-error-warning-line" },
@@ -2859,7 +2881,7 @@ const nn = {
                     1
                     /* TEXT */
                   )
-                ])) : (e.openBlock(), e.createElementBlock("p", An, [
+                ])) : (e.openBlock(), e.createElementBlock("p", Mn, [
                   r[8] || (r[8] = e.createElementVNode(
                     "i",
                     { class: "ri-check-line" },
@@ -2873,10 +2895,10 @@ const nn = {
                     /* TEXT */
                   )
                 ])),
-                m.value.uncited.length ? (e.openBlock(), e.createElementBlock("div", Mn, [
+                m.value.uncited.length ? (e.openBlock(), e.createElementBlock("div", On, [
                   e.createElementVNode(
                     "div",
-                    On,
+                    In,
                     e.toDisplayString(l.$t("文献库里没被引用的（可以删掉，或在正文补上引用）")),
                     1
                     /* TEXT */
@@ -2897,10 +2919,10 @@ const nn = {
                     ))
                   ])
                 ])) : e.createCommentVNode("v-if", !0),
-                m.value.doiMissing.length ? (e.openBlock(), e.createElementBlock("div", In, [
+                m.value.doiMissing.length ? (e.openBlock(), e.createElementBlock("div", Wn, [
                   e.createElementVNode(
                     "div",
-                    Wn,
+                    Pn,
                     e.toDisplayString(l.$t("DOI 在 Crossref 查不到的（建议到文献库里核对这几篇是否真实）")),
                     1
                     /* TEXT */
@@ -2940,16 +2962,16 @@ const nn = {
           _: 1
           /* STABLE */
         }, 8, ["title", "hint", "runtime"]),
-        e.createVNode(W, {
+        e.createVNode(P, {
           "step-key": "refs",
           index: 1,
           title: a[1].title,
           hint: a[1].hint,
-          runtime: f.value.refs
+          runtime: E.value.refs
         }, {
           default: e.withCtx(() => [
             e.createElementVNode("div", qn, [
-              e.createElementVNode("label", Pn, [
+              e.createElementVNode("label", Kn, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -2963,26 +2985,26 @@ const nn = {
                 }, [
                   e.createElementVNode(
                     "option",
-                    xn,
+                    zn,
                     e.toDisplayString(e.unref(J)("gbt7714")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "option",
-                    zn,
+                    Fn,
                     e.toDisplayString(e.unref(J)("apa")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "option",
-                    Fn,
+                    jn,
                     e.toDisplayString(e.unref(J)("ieee")),
                     1
                     /* TEXT */
                   )
-                ], 40, Kn)
+                ], 40, xn)
               ]),
               e.createElementVNode("button", {
                 type: "button",
@@ -3004,16 +3026,16 @@ const nn = {
                   1
                   /* TEXT */
                 )
-              ], 8, jn)
+              ], 8, Un)
             ]),
-            d.value.length ? (e.openBlock(), e.createElementBlock("ol", Un, [
+            d.value.length ? (e.openBlock(), e.createElementBlock("ol", Rn, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(d.value, (o, b) => (e.openBlock(), e.createElementBlock(
+                e.renderList(d.value, (o, V) => (e.openBlock(), e.createElementBlock(
                   "li",
                   {
-                    key: b,
+                    key: V,
                     dir: "auto"
                   },
                   e.toDisplayString(o),
@@ -3025,7 +3047,7 @@ const nn = {
               ))
             ])) : w.value ? (e.openBlock(), e.createElementBlock(
               "p",
-              Rn,
+              Xn,
               e.toDisplayString(l.$t("稿子里还没有引用文献库的文献")),
               1
               /* TEXT */
@@ -3034,20 +3056,20 @@ const nn = {
           _: 1
           /* STABLE */
         }, 8, ["title", "hint", "runtime"]),
-        e.createVNode(W, {
+        e.createVNode(P, {
           "step-key": "export",
           index: 2,
           title: a[2].title,
           hint: a[2].hint,
-          runtime: f.value.export
+          runtime: E.value.export
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", Xn, [
+            e.createElementVNode("div", Gn, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
                 disabled: !!g.value,
-                onClick: r[2] || (r[2] = (o) => B("docx"))
+                onClick: r[2] || (r[2] = (o) => C("docx"))
               }, [
                 e.createElementVNode(
                   "i",
@@ -3063,12 +3085,12 @@ const nn = {
                   1
                   /* TEXT */
                 )
-              ], 8, Gn),
+              ], 8, Jn),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn ghost",
                 disabled: !!g.value,
-                onClick: r[3] || (r[3] = (o) => B("md"))
+                onClick: r[3] || (r[3] = (o) => C("md"))
               }, [
                 r[9] || (r[9] = e.createElementVNode(
                   "i",
@@ -3082,12 +3104,12 @@ const nn = {
                   1
                   /* TEXT */
                 )
-              ], 8, Jn),
+              ], 8, Zn),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn ghost",
                 disabled: !!g.value || !y.value?.library.length,
-                onClick: r[4] || (r[4] = (o) => B("bib"))
+                onClick: r[4] || (r[4] = (o) => C("bib"))
               }, [
                 r[10] || (r[10] = e.createElementVNode(
                   "i",
@@ -3101,11 +3123,11 @@ const nn = {
                   1
                   /* TEXT */
                 )
-              ], 8, Zn)
+              ], 8, Hn)
             ]),
             e.createElementVNode(
               "p",
-              Hn,
+              Qn,
               e.toDisplayString(l.$t("导出时引用按所选格式重新编号，并在文末生成参考文献表；以双写编辑器取回的版本优先。")),
               1
               /* TEXT */
@@ -3114,16 +3136,16 @@ const nn = {
           _: 1
           /* STABLE */
         }, 8, ["title", "hint", "runtime"]),
-        e.createVNode(W, {
+        e.createVNode(P, {
           "step-key": "files",
           index: 3,
           title: a[3].title,
           hint: a[3].hint,
-          runtime: f.value.files
+          runtime: E.value.files
         }, {
           default: e.withCtx(() => [
-            N.value.length ? (e.openBlock(), e.createElementBlock("div", Yn, [
-              e.createElementVNode("table", eo, [
+            b.value.length ? (e.openBlock(), e.createElementBlock("div", eo, [
+              e.createElementVNode("table", to, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -3160,17 +3182,17 @@ const nn = {
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(N.value, (o) => (e.openBlock(), e.createElementBlock("tr", {
+                    e.renderList(b.value, (o) => (e.openBlock(), e.createElementBlock("tr", {
                       key: o.path
                     }, [
                       e.createElementVNode("td", {
                         class: "aw-file",
                         title: o.path
-                      }, e.toDisplayString(o.path.split(/[\\/]/).pop()), 9, to),
+                      }, e.toDisplayString(o.path.split(/[\\/]/).pop()), 9, lo),
                       e.createElementVNode("td", null, [
                         e.createElementVNode(
                           "span",
-                          lo,
+                          no,
                           e.toDisplayString(o.kind === "docx" ? "Word" : o.kind === "md" ? "Markdown" : "BibTeX"),
                           1
                           /* TEXT */
@@ -3183,17 +3205,17 @@ const nn = {
                         1
                         /* TEXT */
                       ),
-                      e.createElementVNode("td", no, [
+                      e.createElementVNode("td", oo, [
                         e.createElementVNode("button", {
                           type: "button",
                           class: "ss-link",
-                          onClick: (b) => q(o.path, o.kind)
-                        }, e.toDisplayString(l.$t("预览")), 9, oo),
+                          onClick: (V) => q(o.path, o.kind)
+                        }, e.toDisplayString(l.$t("预览")), 9, so),
                         e.createElementVNode("button", {
                           type: "button",
                           class: "ss-link",
-                          onClick: (b) => i(o.path)
-                        }, e.toDisplayString(l.$t("打开所在文件夹")), 9, so)
+                          onClick: (V) => i(o.path)
+                        }, e.toDisplayString(l.$t("打开所在文件夹")), 9, ao)
                       ])
                     ]))),
                     128
@@ -3203,14 +3225,14 @@ const nn = {
               ])
             ])) : (e.openBlock(), e.createElementBlock(
               "div",
-              Qn,
+              Yn,
               e.toDisplayString(l.$t("还没有导出文件")),
               1
               /* TEXT */
             )),
             e.createElementVNode(
               "p",
-              ao,
+              ro,
               e.toDisplayString(l.$t("预览里左上角的文件名下拉可以选本机软件打开（WPS、Pages、LibreOffice 等）。")),
               1
               /* TEXT */
@@ -3220,7 +3242,7 @@ const nn = {
           /* STABLE */
         }, 8, ["title", "hint", "runtime"])
       ]),
-      v.value ? (e.openBlock(), e.createBlock(fn, {
+      v.value ? (e.openBlock(), e.createBlock(Vn, {
         key: 0,
         path: v.value.path,
         markdown: v.value.markdown,
@@ -3229,46 +3251,46 @@ const nn = {
       }, null, 8, ["path", "markdown"])) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), io = /* @__PURE__ */ j(ro, [["__scopeId", "data-v-8c00cca3"]]), ee = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:@totalclaw/ipc-contracts"];
+}), co = /* @__PURE__ */ j(io, [["__scopeId", "data-v-8c00cca3"]]), ee = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:@totalclaw/ipc-contracts"];
 if (!ee) throw new Error("宿主模块未就绪：npm:@totalclaw/ipc-contracts");
 ee.default;
-const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss-muted" }, po = { class: "ss-actions" }, vo = { class: "aw-path" }, yo = ["disabled"], ho = { class: "ss-panel" }, ko = { class: "ss-field" }, go = { class: "ss-muted" }, Eo = { class: "ss-subhead" }, fo = { class: "aw-sources" }, Vo = ["value"], No = { class: "ss-actions" }, bo = ["disabled"], $o = {
+const uo = { class: "ss-module" }, mo = { class: "ss-panel" }, po = { class: "ss-muted" }, vo = { class: "ss-actions" }, yo = { class: "aw-path" }, ho = ["disabled"], ko = { class: "ss-panel" }, go = { class: "ss-field" }, fo = { class: "ss-muted" }, Eo = { class: "ss-subhead" }, Vo = { class: "aw-sources" }, No = ["value"], bo = { class: "ss-actions" }, $o = ["disabled"], wo = {
   key: 0,
   class: "ss-muted"
-}, wo = /* @__PURE__ */ e.defineComponent({
+}, _o = /* @__PURE__ */ e.defineComponent({
   __name: "SettingsTab",
   emits: ["goto"],
-  setup(V) {
-    const u = F.useNotificationStore(), y = z, m = ee.AW_API_SOURCES, N = e.ref(""), d = e.ref([]);
+  setup(N) {
+    const u = F.useNotificationStore(), y = z, m = ee.AW_API_SOURCES, b = e.ref(""), d = e.ref([]);
     e.watch(() => y.value?.settings, (a) => {
-      a && (N.value = a.contactEmail || "", d.value = [...a.defaultSources || []]);
+      a && (b.value = a.contactEmail || "", d.value = [...a.defaultSources || []]);
     }, { immediate: !0 });
     const w = e.computed(() => {
       const a = y.value?.settings;
-      return a ? N.value !== (a.contactEmail || "") || [...d.value].sort().join() !== [...a.defaultSources || []].sort().join() : !1;
+      return a ? b.value !== (a.contactEmail || "") || [...d.value].sort().join() !== [...a.defaultSources || []].sort().join() : !1;
     });
     async function g() {
       try {
-        await C("settings.patch", { patch: { contactEmail: N.value, defaultSources: d.value } }), await I(), u.success(s.t("已保存"));
+        await B("settings.patch", { patch: { contactEmail: b.value, defaultSources: d.value } }), await I(), u.success(s.t("已保存"));
       } catch (a) {
         u.error(D.errorMessage(a));
       }
     }
     async function h() {
       try {
-        await C("outputDir.pick") && await I();
+        await B("outputDir.pick") && await I();
       } catch (a) {
         u.error(D.errorMessage(a));
       }
     }
     function v() {
-      y.value?.outputDir && C("path.open", { path: y.value.outputDir }).catch((a) => u.error(D.errorMessage(a)));
+      y.value?.outputDir && B("path.open", { path: y.value.outputDir }).catch((a) => u.error(D.errorMessage(a)));
     }
-    return (a, f) => (e.openBlock(), e.createElementBlock("div", co, [
-      e.createElementVNode("section", uo, [
+    return (a, E) => (e.openBlock(), e.createElementBlock("div", uo, [
+      e.createElementVNode("section", mo, [
         e.createElementVNode("header", null, [
           e.createElementVNode("strong", null, [
-            f[2] || (f[2] = e.createElementVNode(
+            E[2] || (E[2] = e.createElementVNode(
               "i",
               { class: "ri-folder-3-line" },
               null,
@@ -3283,16 +3305,16 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
           ]),
           e.createElementVNode(
             "span",
-            mo,
+            po,
             e.toDisplayString(a.$t("导出的 Word、Markdown、BibTeX 按论文题目分文件夹存放。")),
             1
             /* TEXT */
           )
         ]),
-        e.createElementVNode("div", po, [
+        e.createElementVNode("div", vo, [
           e.createElementVNode(
             "code",
-            vo,
+            yo,
             e.toDisplayString(e.unref(y)?.outputDir || "—"),
             1
             /* TEXT */
@@ -3302,7 +3324,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
             class: "ss-btn sm ghost",
             onClick: h
           }, [
-            f[3] || (f[3] = e.createElementVNode(
+            E[3] || (E[3] = e.createElementVNode(
               "i",
               { class: "ri-folder-settings-line" },
               null,
@@ -3321,7 +3343,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
             disabled: !e.unref(y)?.outputDir,
             onClick: v
           }, [
-            f[4] || (f[4] = e.createElementVNode(
+            E[4] || (E[4] = e.createElementVNode(
               "i",
               { class: "ri-external-link-line" },
               null,
@@ -3333,13 +3355,13 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
               1
               /* TEXT */
             )
-          ], 8, yo)
+          ], 8, ho)
         ])
       ]),
-      e.createElementVNode("section", ho, [
+      e.createElementVNode("section", ko, [
         e.createElementVNode("header", null, [
           e.createElementVNode("strong", null, [
-            f[5] || (f[5] = e.createElementVNode(
+            E[5] || (E[5] = e.createElementVNode(
               "i",
               { class: "ri-search-eye-line" },
               null,
@@ -3353,7 +3375,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
             )
           ])
         ]),
-        e.createElementVNode("label", ko, [
+        e.createElementVNode("label", go, [
           e.createElementVNode(
             "span",
             null,
@@ -3364,7 +3386,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
           e.withDirectives(e.createElementVNode(
             "input",
             {
-              "onUpdate:modelValue": f[0] || (f[0] = (_) => N.value = _),
+              "onUpdate:modelValue": E[0] || (E[0] = (_) => b.value = _),
               type: "email",
               placeholder: "name@university.edu"
             },
@@ -3374,7 +3396,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
           ), [
             [
               e.vModelText,
-              N.value,
+              b.value,
               void 0,
               { trim: !0 }
             ]
@@ -3382,7 +3404,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
         ]),
         e.createElementVNode(
           "p",
-          go,
+          fo,
           e.toDisplayString(a.$t("PubMed、Crossref、OpenAlex 建议请求里带联系邮箱，限流更宽；只发给这些学术库，不发给别处。")),
           1
           /* TEXT */
@@ -3394,7 +3416,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
           1
           /* TEXT */
         ),
-        e.createElementVNode("div", fo, [
+        e.createElementVNode("div", Vo, [
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
@@ -3403,10 +3425,10 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
               class: "aw-check"
             }, [
               e.withDirectives(e.createElementVNode("input", {
-                "onUpdate:modelValue": f[1] || (f[1] = (T) => d.value = T),
+                "onUpdate:modelValue": E[1] || (E[1] = (T) => d.value = T),
                 type: "checkbox",
                 value: _
-              }, null, 8, Vo), [
+              }, null, 8, No), [
                 [e.vModelCheckbox, d.value]
               ]),
               e.createElementVNode(
@@ -3421,14 +3443,14 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
             /* KEYED_FRAGMENT */
           ))
         ]),
-        e.createElementVNode("div", No, [
+        e.createElementVNode("div", bo, [
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn primary",
             disabled: !w.value || !d.value.length,
             onClick: g
           }, [
-            f[6] || (f[6] = e.createElementVNode(
+            E[6] || (E[6] = e.createElementVNode(
               "i",
               { class: "ri-save-3-line" },
               null,
@@ -3440,10 +3462,10 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
               1
               /* TEXT */
             )
-          ], 8, bo),
+          ], 8, $o),
           d.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
             "span",
-            $o,
+            wo,
             e.toDisplayString(a.$t("至少选一个来源")),
             1
             /* TEXT */
@@ -3452,47 +3474,47 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
       ])
     ]));
   }
-}), _o = /* @__PURE__ */ j(wo, [["__scopeId", "data-v-db0c08a3"]]), So = { class: "aw-workbench" }, Do = { class: "workbench-header" }, Co = { class: "heading" }, Bo = { class: "eyebrow" }, To = { class: "subtitle" }, Lo = { class: "header-actions" }, Ao = ["disabled"], Mo = {
+}), So = /* @__PURE__ */ j(_o, [["__scopeId", "data-v-afdea3fb"]]), Do = { class: "aw-workbench" }, Bo = { class: "workbench-header" }, Co = { class: "heading" }, To = { class: "eyebrow" }, Lo = { class: "subtitle" }, Ao = { class: "header-actions" }, Mo = ["disabled"], Oo = {
   key: 0,
   class: "aw-bar"
-}, Oo = { class: "aw-bar__pick" }, Io = ["value"], Wo = ["value"], qo = { class: "ss-chip" }, Po = { class: "ss-chip" }, Ko = { class: "ss-chip" }, xo = { class: "ss-chip brand" }, zo = { class: "aw-rule" }, Fo = {
+}, Io = { class: "aw-bar__pick" }, Wo = ["value"], Po = ["value"], qo = { class: "ss-chip" }, Ko = { class: "ss-chip" }, xo = { class: "ss-chip" }, zo = { class: "ss-chip brand" }, Fo = { class: "aw-rule" }, jo = {
   key: 1,
   class: "ss-panel"
-}, jo = { class: "ss-grid" }, Uo = { class: "ss-field aw-wide" }, Ro = { class: "ss-field" }, Xo = ["placeholder"], Go = { class: "ss-field" }, Jo = { value: "review" }, Zo = { value: "research" }, Ho = { value: "thesis" }, Qo = { value: "proposal" }, Yo = { class: "ss-field" }, es = { value: "zh" }, ts = { class: "ss-field" }, ls = { class: "ss-field" }, ns = { class: "ss-actions" }, os = ["disabled"], ss = {
+}, Uo = { class: "ss-grid" }, Ro = { class: "ss-field aw-wide" }, Xo = { class: "ss-field" }, Go = ["placeholder"], Jo = { class: "ss-field" }, Zo = { value: "review" }, Ho = { value: "research" }, Qo = { value: "thesis" }, Yo = { value: "proposal" }, es = { class: "ss-field" }, ts = { value: "zh" }, ls = { class: "ss-field" }, ns = { class: "ss-field" }, os = { class: "ss-actions" }, ss = ["disabled"], as = {
   class: "aw-tabs",
   role: "tablist"
-}, as = ["title", "onClick"], rs = {
+}, rs = ["title", "onClick"], is = {
   key: 0,
   class: "aw-badge"
-}, is = {
+}, cs = {
   key: 2,
   class: "ss-note info aw-progress"
-}, cs = {
+}, ds = {
   key: 3,
   class: "aw-body"
-}, ds = {
+}, us = {
   key: 4,
   class: "ss-note danger"
-}, us = {
+}, ms = {
   key: 5,
   class: "ss-note"
-}, te = "totalclaw:academic-writer-tab:v1", ms = /* @__PURE__ */ e.defineComponent({
+}, te = "totalclaw:academic-writer-tab:v1", ps = /* @__PURE__ */ e.defineComponent({
   __name: "AcademicWriterWorkbenchView",
-  setup(V) {
-    const u = { search: kt, library: el, outline: Cl, write: ln, export: io, settings: _o }, y = [
+  setup(N) {
+    const u = { search: kt, library: tl, outline: Cl, write: nn, export: co, settings: So }, y = [
       { key: "search", icon: "ri-search-eye-line", title: s.t("文献检索"), desc: s.t("PubMed、Europe PMC、arXiv、Crossref、OpenAlex 一键检索；知网、万方等在内置浏览器打开并抓取") },
       { key: "library", icon: "ri-book-shelf-line", title: s.t("文献库与精读"), desc: s.t("问题、方法、发现、局限，依据句回摘要核对") },
       { key: "outline", icon: "ri-list-ordered-2", title: s.t("提纲"), desc: s.t("按文献库拟提纲，每节标出要引用的文献") },
       { key: "write", icon: "ri-quill-pen-line", title: s.t("写作与双写"), desc: s.t("分节成稿，送进人机双写编辑器由你改，再取回") },
       { key: "export", icon: "ri-file-word-2-line", title: s.t("参考文献与导出"), desc: s.t("引用查验、参考文献格式、导出与本机应用打开") }
-    ], m = F.useNotificationStore(), N = z, d = e.computed(() => (N.value, U())), w = e.ref((() => {
+    ], m = F.useNotificationStore(), b = z, d = e.computed(() => (b.value, U())), w = e.ref((() => {
       try {
         const i = localStorage.getItem(te);
         return i && (i === "settings" || y.some((n) => n.key === i)) ? i : "search";
       } catch {
         return "search";
       }
-    })()), g = e.ref(!1), h = e.ref(!1), v = e.ref(""), a = e.ref(null), f = e.computed(() => x[w.value] || "");
+    })()), g = e.ref(!1), h = e.ref(!1), v = e.ref(""), a = e.ref(null), E = e.computed(() => x[w.value] || "");
     function _(i) {
       const n = d.value;
       if (!n) return "";
@@ -3518,23 +3540,23 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
       if (a.value)
         try {
           const { id: i, ...n } = a.value;
-          i ? await C("project.update", { patch: n }) : await C("project.create", { input: n }), a.value = null, await I();
+          i ? await B("project.update", { patch: n }) : await B("project.create", { input: n }), a.value = null, await I();
         } catch (i) {
           m.error(D.errorMessage(i));
         }
     }
     async function M(i) {
       try {
-        await C("project.switch", { id: i }), await I();
+        await B("project.switch", { id: i }), await I();
       } catch (n) {
         m.error(D.errorMessage(n));
       }
     }
     async function $(i) {
-      const n = N.value?.projects.find((t) => t.id === i);
+      const n = b.value?.projects.find((t) => t.id === i);
       if (!(!n || !window.confirm(s.t("删除论文「{p0}」及其文献库、提纲和稿子？已导出的文件不会删。", { p0: n.title }))))
         try {
-          await C("project.remove", { id: i }), a.value = null, await I();
+          await B("project.remove", { id: i }), a.value = null, await I();
         } catch (t) {
           m.error(D.errorMessage(t));
         }
@@ -3549,22 +3571,22 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
         h.value = !1;
       }
     }
-    let B = null, q = null;
+    let C = null, q = null;
     return e.onMounted(() => {
       k(), q = ve((i) => {
         if (i.type === "progress" && i.payload?.key) {
           x[String(i.payload.key)] = String(i.payload.message || "");
           return;
         }
-        B || (B = setTimeout(() => {
-          B = null, I().catch(() => {
+        C || (C = setTimeout(() => {
+          C = null, I().catch(() => {
           });
         }, 300));
       });
     }), e.onBeforeUnmount(() => {
-      q?.(), B && clearTimeout(B);
-    }), (i, n) => (e.openBlock(), e.createElementBlock("div", So, [
-      e.createElementVNode("header", Do, [
+      q?.(), C && clearTimeout(C);
+    }), (i, n) => (e.openBlock(), e.createElementBlock("div", Do, [
+      e.createElementVNode("header", Bo, [
         e.createElementVNode("div", Co, [
           e.createVNode(pe),
           n[12] || (n[12] = e.createElementVNode(
@@ -3579,7 +3601,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
           e.createElementVNode("div", null, [
             e.createElementVNode(
               "p",
-              Bo,
+              To,
               e.toDisplayString(i.$t("行业工作台")),
               1
               /* TEXT */
@@ -3593,14 +3615,14 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
             ),
             e.createElementVNode(
               "p",
-              To,
+              Lo,
               e.toDisplayString(i.$t("检索真实文献、精读、拟提纲、分节成稿，再到人机双写编辑器里由你改定。参考文献只来自你的文献库，AI 不编造文献；成稿是草稿，学术责任在作者。")),
               1
               /* TEXT */
             )
           ])
         ]),
-        e.createElementVNode("div", Lo, [
+        e.createElementVNode("div", Ao, [
           e.createElementVNode("button", {
             class: "ss-btn",
             disabled: h.value,
@@ -3620,12 +3642,12 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
               1
               /* TEXT */
             )
-          ], 8, Ao)
+          ], 8, Mo)
         ])
       ]),
       e.createCommentVNode(" 论文项目 "),
-      d.value ? (e.openBlock(), e.createElementBlock("section", Mo, [
-        e.createElementVNode("label", Oo, [
+      d.value ? (e.openBlock(), e.createElementBlock("section", Oo, [
+        e.createElementVNode("label", Io, [
           n[13] || (n[13] = e.createElementVNode(
             "i",
             { class: "ri-draft-line" },
@@ -3641,20 +3663,20 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
             /* TEXT */
           ),
           e.createElementVNode("select", {
-            value: e.unref(N)?.activeProjectId,
+            value: e.unref(b)?.activeProjectId,
             onChange: n[0] || (n[0] = (t) => M(t.target.value))
           }, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(e.unref(N)?.projects || [], (t) => (e.openBlock(), e.createElementBlock("option", {
+              e.renderList(e.unref(b)?.projects || [], (t) => (e.openBlock(), e.createElementBlock("option", {
                 key: t.id,
                 value: t.id
-              }, e.toDisplayString(t.title), 9, Wo))),
+              }, e.toDisplayString(t.title), 9, Po))),
               128
               /* KEYED_FRAGMENT */
             ))
-          ], 40, Io)
+          ], 40, Wo)
         ]),
         e.createElementVNode(
           "span",
@@ -3665,21 +3687,21 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
         ),
         e.createElementVNode(
           "span",
-          Po,
+          Ko,
           e.toDisplayString(d.value.language === "en" ? "English" : i.$t("中文")),
           1
           /* TEXT */
         ),
         e.createElementVNode(
           "span",
-          Ko,
+          xo,
           e.toDisplayString(e.unref(J)(d.value.style)),
           1
           /* TEXT */
         ),
         e.createElementVNode(
           "span",
-          xo,
+          zo,
           e.toDisplayString(i.$t("文献库 {n} 篇", { n: d.value.library.length })),
           1
           /* TEXT */
@@ -3713,7 +3735,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
           -1
           /* CACHED */
         )),
-        e.createElementVNode("span", zo, [
+        e.createElementVNode("span", Fo, [
           n[14] || (n[14] = e.createElementVNode(
             "i",
             { class: "ri-shield-check-line" },
@@ -3728,7 +3750,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
           )
         ])
       ])) : e.createCommentVNode("v-if", !0),
-      a.value ? (e.openBlock(), e.createElementBlock("section", Fo, [
+      a.value ? (e.openBlock(), e.createElementBlock("section", jo, [
         e.createElementVNode("header", null, [
           e.createElementVNode("strong", null, [
             n[16] || (n[16] = e.createElementVNode(
@@ -3745,8 +3767,8 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
             )
           ])
         ]),
-        e.createElementVNode("div", jo, [
-          e.createElementVNode("label", Uo, [
+        e.createElementVNode("div", Uo, [
+          e.createElementVNode("label", Ro, [
             e.createElementVNode(
               "span",
               null,
@@ -3772,7 +3794,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
               ]
             ])
           ]),
-          e.createElementVNode("label", Ro, [
+          e.createElementVNode("label", Xo, [
             e.createElementVNode(
               "span",
               null,
@@ -3784,7 +3806,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
               "onUpdate:modelValue": n[4] || (n[4] = (t) => a.value.field = t),
               type: "text",
               placeholder: i.$t("如：医学影像、教育技术")
-            }, null, 8, Xo), [
+            }, null, 8, Go), [
               [
                 e.vModelText,
                 a.value.field,
@@ -3793,7 +3815,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
               ]
             ])
           ]),
-          e.createElementVNode("label", Go, [
+          e.createElementVNode("label", Jo, [
             e.createElementVNode(
               "span",
               null,
@@ -3809,28 +3831,28 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
               [
                 e.createElementVNode(
                   "option",
-                  Jo,
+                  Zo,
                   e.toDisplayString(e.unref(R)("review")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "option",
-                  Zo,
+                  Ho,
                   e.toDisplayString(e.unref(R)("research")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "option",
-                  Ho,
+                  Qo,
                   e.toDisplayString(e.unref(R)("thesis")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "option",
-                  Qo,
+                  Yo,
                   e.toDisplayString(e.unref(R)("proposal")),
                   1
                   /* TEXT */
@@ -3842,7 +3864,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
               [e.vModelSelect, a.value.paperType]
             ])
           ]),
-          e.createElementVNode("label", Yo, [
+          e.createElementVNode("label", es, [
             e.createElementVNode(
               "span",
               null,
@@ -3858,7 +3880,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
               [
                 e.createElementVNode(
                   "option",
-                  es,
+                  ts,
                   e.toDisplayString(i.$t("中文")),
                   1
                   /* TEXT */
@@ -3877,7 +3899,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
               [e.vModelSelect, a.value.language]
             ])
           ]),
-          e.createElementVNode("label", ts, [
+          e.createElementVNode("label", ls, [
             e.createElementVNode(
               "span",
               null,
@@ -3920,7 +3942,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
             ])
           ])
         ]),
-        e.createElementVNode("label", ls, [
+        e.createElementVNode("label", ns, [
           e.createElementVNode(
             "span",
             null,
@@ -3941,7 +3963,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
             [e.vModelText, a.value.requirements]
           ])
         ]),
-        e.createElementVNode("div", ns, [
+        e.createElementVNode("div", os, [
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn primary",
@@ -3960,7 +3982,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
               1
               /* TEXT */
             )
-          ], 8, os),
+          ], 8, ss),
           e.createElementVNode(
             "button",
             {
@@ -4000,7 +4022,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
           ])) : e.createCommentVNode("v-if", !0)
         ])
       ])) : e.createCommentVNode("v-if", !0),
-      e.createElementVNode("nav", ss, [
+      e.createElementVNode("nav", as, [
         (e.openBlock(), e.createElementBlock(
           e.Fragment,
           null,
@@ -4030,12 +4052,12 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
             ),
             _(t.key) ? (e.openBlock(), e.createElementBlock(
               "em",
-              rs,
+              is,
               e.toDisplayString(_(t.key)),
               1
               /* TEXT */
             )) : e.createCommentVNode("v-if", !0)
-          ], 10, as)),
+          ], 10, rs)),
           64
           /* STABLE_FRAGMENT */
         )),
@@ -4074,7 +4096,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
           /* CLASS */
         )
       ]),
-      f.value ? (e.openBlock(), e.createElementBlock("p", is, [
+      E.value ? (e.openBlock(), e.createElementBlock("p", cs, [
         n[24] || (n[24] = e.createElementVNode(
           "i",
           { class: "ri-loader-4-line spin" },
@@ -4083,12 +4105,12 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(f.value),
+          e.toDisplayString(E.value),
           1
           /* TEXT */
         )
       ])) : e.createCommentVNode("v-if", !0),
-      g.value && d.value ? (e.openBlock(), e.createElementBlock("div", cs, [
+      g.value && d.value ? (e.openBlock(), e.createElementBlock("div", ds, [
         (e.openBlock(), e.createBlock(
           e.resolveDynamicComponent(u[w.value]),
           {
@@ -4099,7 +4121,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
           32
           /* NEED_HYDRATION */
         ))
-      ])) : v.value ? (e.openBlock(), e.createElementBlock("p", ds, [
+      ])) : v.value ? (e.openBlock(), e.createElementBlock("p", us, [
         n[25] || (n[25] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -4112,7 +4134,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
           1
           /* TEXT */
         )
-      ])) : (e.openBlock(), e.createElementBlock("p", us, [
+      ])) : (e.openBlock(), e.createElementBlock("p", ms, [
         n[26] || (n[26] = e.createElementVNode(
           "i",
           { class: "ri-loader-4-line spin" },
@@ -4128,7 +4150,7 @@ const co = { class: "ss-module" }, uo = { class: "ss-panel" }, mo = { class: "ss
       ]))
     ]));
   }
-}), ps = /* @__PURE__ */ j(ms, [["__scopeId", "data-v-c7d84439"]]);
+}), vs = /* @__PURE__ */ j(ps, [["__scopeId", "data-v-986d43f2"]]);
 export {
-  ps as default
+  vs as default
 };

@@ -16,7 +16,7 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// node_modules/.cache/solutions-build/workbench-edu-hub/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-edu-hub/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -26,17 +26,17 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../totalclaw-solutions/solutions/workbench-edu-hub/src/main/ipc/eduHub.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-edu-hub/src/main/ipc/eduHub.ipc.ts
 var import_electron = require("electron");
 var import_ipc_contracts = require("npm:@totalclaw/ipc-contracts");
 var import_shared = require("host:apps/desktop-shell/src/main/ipc/shared.ts");
 var import_qiyeApiClient = require("host:apps/desktop-shell/src/main/services/qiyeApiClient.ts");
 var import_eduHubStore = require("host:apps/desktop-shell/src/main/services/eduHubStore.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-edu-hub/src/main/services/eduHubProc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-edu-hub/src/main/services/eduHubProc.ts
 var import_i18n = require("npm:@totalclaw/i18n");
 
-// ../../../totalclaw-solutions/solutions/workbench-edu-hub/src/main/services/eduHubStudentPage.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-edu-hub/src/main/services/eduHubStudentPage.ts
 var STUDENT_PAGE_HTML = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -681,7 +681,7 @@ rerender();
 </body>
 </html>`;
 
-// ../../../totalclaw-solutions/solutions/workbench-edu-hub/src/main/services/eduHubProc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-edu-hub/src/main/services/eduHubProc.ts
 var import_lanServer = require("host:apps/desktop-shell/src/main/services/lanServer.ts");
 var JOIN_FAIL_LIMIT = 10;
 var JOIN_LOCK_MS = 6e4;
@@ -913,7 +913,7 @@ var EduHubProc = class {
   }
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-edu-hub/src/main/ipc/eduHub.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-edu-hub/src/main/ipc/eduHub.ipc.ts
 var import_digitalHumanProc = require("host:apps/desktop-shell/src/main/services/digitalHumanProc.ts");
 var import_councilChatRouter = require("host:apps/desktop-shell/src/main/services/councilChatRouter.ts");
 var import_accountScope = require("host:apps/desktop-shell/src/main/services/accountScope.ts");
@@ -1219,7 +1219,7 @@ function registerEduHubHandlers(deps) {
   };
 }
 
-// node_modules/.cache/solutions-build/workbench-edu-hub/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-edu-hub/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerEduHubHandlers";
 var cleanup;

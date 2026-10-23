@@ -95,9 +95,9 @@ onMounted(async () => { try { Object.assign(models, await iv('models.list')); } 
 
 <style scoped>
 .iv-settings { max-width: 1100px; }
-.iv-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 16px; display: grid; gap: 12px; }
-.iv-panel h3 { margin: 0; font-size: 15px; display: flex; gap: 10px; align-items: baseline; }
-.iv-path { font-size: 12px; color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; flex: 1; }
+.iv-panel { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 16px; display: grid; gap: 12px; }
+.iv-panel h3 { margin: 0; font-size: var(--font-size-lg); display: flex; gap: 10px; align-items: baseline; }
+.iv-path { font-size: var(--font-size-sm); color: var(--color-text-secondary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; flex: 1; }
 .iv-model { max-width: 520px; }
 .iv-log { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 12.5px; max-height: 320px; overflow-y: auto; }
 .iv-log time { color: var(--color-text-secondary); margin-inline-end: 10px; font-variant-numeric: tabular-nums; }

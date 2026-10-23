@@ -42,7 +42,7 @@ async function onChange(value: string): Promise<void> {
 </script>
 
 <style scoped>
-.ba-mhead { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; padding: 12px 14px; border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); }
+.ba-mhead { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; padding: 12px 14px; border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); }
 .ba-mhead__main { display: grid; gap: 6px; min-width: 0; flex: 1; }
 .ba-mhead h2 { margin: 0; font-size: 16px; display: flex; align-items: center; gap: 8px; }
 .ba-mhead h2 i { color: var(--color-brand); font-size: 20px; }
@@ -51,5 +51,5 @@ async function onChange(value: string): Promise<void> {
 .ba-mhead__split em { font-style: normal; flex: 0 0 auto; }
 .ba-mhead__model { display: grid; gap: 4px; min-width: 240px; }
 .ba-mhead__model small { font-size: 11.5px; color: var(--color-text-secondary); display: flex; gap: 4px; align-items: center; }
-.ba-mhead__model select { height: 34px; border-radius: 9px; border: 1px solid var(--color-brand); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 8px; max-width: 360px; }
+.ba-mhead__model select { height: 34px; border-radius: var(--radius-3); border: 1px solid var(--color-brand); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 8px; max-width: 360px; }
 </style>

@@ -440,7 +440,7 @@ const Ue = ["data-test"], je = { class: "pa-slot__head" }, qe = {
   for (const [$, y] of v)
     c[$] = y;
   return c;
-}, at = /* @__PURE__ */ z(ot, [["__scopeId", "data-v-c27ba65f"]]), rt = { class: "pa-rt" }, it = { class: "ss-actions" }, ct = ["placeholder"], dt = ["onClick"], ut = { class: "ss-muted" }, mt = { class: "ss-table-wrap" }, pt = {
+}, at = /* @__PURE__ */ z(ot, [["__scopeId", "data-v-45ab2081"]]), rt = { class: "pa-rt" }, it = { class: "ss-actions" }, ct = ["placeholder"], dt = ["onClick"], ut = { class: "ss-muted" }, mt = { class: "ss-table-wrap" }, pt = {
   class: "ss-table",
   "data-test": "pa-result-table"
 }, yt = ["onClick"], kt = ["data-test", "onClick"], vt = { class: "ss-muted" }, ht = { class: "num" }, gt = { class: "num" }, Nt = { class: "num" }, Et = { class: "num" }, ft = { class: "num" }, Vt = {
@@ -811,7 +811,7 @@ const Ue = ["data-test"], je = { class: "pa-slot__head" }, qe = {
       ])) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), Ot = /* @__PURE__ */ z(At, [["__scopeId", "data-v-bd7a0617"]]), Mt = { class: "pa-plan" }, Kt = ["data-test"], Pt = { class: "pa-plan__head" }, Wt = ["onClick"], Ft = { class: "ss-chip" }, zt = {
+}), Ot = /* @__PURE__ */ z(At, [["__scopeId", "data-v-cc15c054"]]), Mt = { class: "pa-plan" }, Kt = ["data-test"], Pt = { class: "pa-plan__head" }, Wt = ["onClick"], Ft = { class: "ss-chip" }, zt = {
   key: 1,
   class: "ss-chip ok"
 }, Qt = {
@@ -1122,7 +1122,7 @@ const Ue = ["data-test"], je = { class: "pa-slot__head" }, qe = {
       ))
     ]));
   }
-}), ll = /* @__PURE__ */ z(tl, [["__scopeId", "data-v-fd1526ff"]]), nl = { class: "ss-module" }, sl = { class: "ss-steps" }, ol = { class: "ss-actions" }, al = ["disabled"], rl = { class: "ss-muted" }, il = {
+}), ll = /* @__PURE__ */ z(tl, [["__scopeId", "data-v-811e59b6"]]), nl = { class: "ss-module" }, sl = { class: "ss-steps" }, ol = { class: "ss-actions" }, al = ["disabled"], rl = { class: "ss-muted" }, il = {
   key: 0,
   class: "ss-file-out"
 }, cl = { class: "pa-slots" }, dl = {
@@ -1322,7 +1322,7 @@ const Ue = ["data-test"], je = { class: "pa-slot__head" }, qe = {
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(u.value === "pa-feed" ? "ri-loader-4-line spin" : "ri-magic-line")
+                    class: e.normalizeClass(u.value === "pa-feed" ? "ri-loader-4-line spin" : "ri-file-download-line")
                   },
                   null,
                   2
@@ -2199,7 +2199,7 @@ const Ue = ["data-test"], je = { class: "pa-slot__head" }, qe = {
       ])
     ]));
   }
-}), yn = /* @__PURE__ */ z(pn, [["__scopeId", "data-v-1c0b42c5"]]), le = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:echarts/core"];
+}), yn = /* @__PURE__ */ z(pn, [["__scopeId", "data-v-cbfef771"]]), le = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:echarts/core"];
 if (!le) throw new Error("宿主模块未就绪：npm:echarts/core");
 le.default;
 const ne = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:echarts/renderers"];
@@ -2923,7 +2923,7 @@ const ue = fe.default, kn = { class: "pa-board" }, vn = {
       ))
     ]));
   }
-}), cs = /* @__PURE__ */ z(is, [["__scopeId", "data-v-5b7f66e5"]]), ds = { class: "pa-rules" }, us = { class: "ss-panel" }, ms = { class: "pa-rules__head" }, ps = { class: "ss-muted" }, ys = { class: "pa-rule__input" }, ks = ["onUpdate:modelValue", "min", "max", "data-test"], vs = {
+}), cs = /* @__PURE__ */ z(is, [["__scopeId", "data-v-e10ef176"]]), ds = { class: "pa-rules" }, us = { class: "ss-panel" }, ms = { class: "pa-rules__head" }, ps = { class: "ss-muted" }, ys = { class: "pa-rule__input" }, ks = ["onUpdate:modelValue", "min", "max", "data-test"], vs = {
   key: 0,
   class: "ss-muted"
 }, hs = { class: "pa-rule" }, gs = { class: "pa-rule__input" }, Ns = {
@@ -3243,7 +3243,7 @@ const ue = fe.default, kn = { class: "pa-board" }, vn = {
       ])
     ]));
   }
-}), Bs = /* @__PURE__ */ z(Ds, [["__scopeId", "data-v-06850d87"]]), Ts = { class: "pa-sched" }, Cs = { class: "ss-panel" }, ws = { class: "pa-sched__head" }, Ls = { class: "ss-muted" }, As = { class: "ss-grid" }, Os = { class: "ss-field inline pa-check" }, Ms = { class: "ss-field" }, Ks = { class: "ss-field" }, Ps = { class: "pa-folder" }, Ws = ["placeholder"], Fs = { class: "pa-kw" }, zs = { class: "ss-muted" }, Qs = { key: 0 }, Rs = ["onUpdate:modelValue", "data-test"], Is = { class: "ss-grid" }, Us = { class: "ss-field inline pa-check" }, js = { class: "ss-field inline pa-check" }, qs = {
+}), Bs = /* @__PURE__ */ z(Ds, [["__scopeId", "data-v-040e6a94"]]), Ts = { class: "pa-sched" }, Cs = { class: "ss-panel" }, ws = { class: "pa-sched__head" }, Ls = { class: "ss-muted" }, As = { class: "ss-grid" }, Os = { class: "ss-field inline pa-check" }, Ms = { class: "ss-field" }, Ks = { class: "ss-field" }, Ps = { class: "pa-folder" }, Ws = ["placeholder"], Fs = { class: "pa-kw" }, zs = { class: "ss-muted" }, Qs = { key: 0 }, Rs = ["onUpdate:modelValue", "data-test"], Is = { class: "ss-grid" }, Us = { class: "ss-field inline pa-check" }, js = { class: "ss-field inline pa-check" }, qs = {
   key: 0,
   class: "ss-field"
 }, Gs = {
@@ -3869,7 +3869,7 @@ const ue = fe.default, kn = { class: "pa-board" }, vn = {
       ])
     ]));
   }
-}), io = /* @__PURE__ */ z(ro, [["__scopeId", "data-v-a669f22f"]]), co = { class: "pa-workbench" }, uo = { class: "workbench-header" }, mo = { class: "heading" }, po = { class: "eyebrow" }, yo = { class: "subtitle" }, ko = { class: "header-actions" }, vo = ["disabled"], ho = {
+}), io = /* @__PURE__ */ z(ro, [["__scopeId", "data-v-db82c885"]]), co = { class: "pa-workbench" }, uo = { class: "workbench-header" }, mo = { class: "heading" }, po = { class: "eyebrow" }, yo = { class: "subtitle" }, ko = { class: "header-actions" }, vo = ["disabled"], ho = {
   key: 0,
   class: "pa-bar"
 }, go = { key: 0 }, No = { key: 1 }, Eo = { class: "ss-muted" }, fo = { class: "pa-bar__rule" }, Vo = { class: "no" }, $o = { class: "yes" }, bo = {
@@ -4339,7 +4339,7 @@ const ue = fe.default, kn = { class: "pa-board" }, vn = {
       ]))
     ]));
   }
-}), zo = /* @__PURE__ */ z(Fo, [["__scopeId", "data-v-de04378c"]]);
+}), zo = /* @__PURE__ */ z(Fo, [["__scopeId", "data-v-fa3ffff7"]]);
 export {
   zo as default
 };

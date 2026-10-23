@@ -256,7 +256,7 @@ function scrollTo(key: string): void { void scrollToStep(key); }
 </script>
 
 <style scoped>
-.ft-select { height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12px; max-width: 260px; }
+.ft-select { height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-sm); max-width: 260px; }
 .ft-wrap { white-space: normal !important; max-width: 260px; }
 .ft-active td { background: color-mix(in srgb, var(--color-brand) 8%, transparent); }
 .ft-timeline ul { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 5px; font-size: 12.5px; max-height: 220px; overflow: auto; }

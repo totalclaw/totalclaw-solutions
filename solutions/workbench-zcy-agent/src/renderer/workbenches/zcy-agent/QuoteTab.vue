@@ -187,10 +187,10 @@ function jump(key: string): void { void scrollToStep(key); }
 </script>
 
 <style scoped>
-.zc-inq { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--color-border); border-radius: 12px; }
+.zc-inq { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-5); }
 .zc-inq.bad { border-color: color-mix(in srgb, var(--color-danger) 45%, var(--color-border)); }
-.zc-inq__head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; }
-.zc-inq__head input { height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 13px; padding: 0 8px; }
+.zc-inq__head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: var(--font-size-md); }
+.zc-inq__head input { height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-md); padding: 0 8px; }
 .zc-title { font-weight: 700; min-width: 240px; flex: 1; }
 .zc-no { width: 170px; }
 .zc-grow { flex: 1; }
@@ -198,5 +198,5 @@ function jump(key: string): void { void scrollToStep(key); }
 .zc-unit { width: 60px !important; min-width: 0 !important; }
 .zc-total { font-variant-numeric: tabular-nums; }
 .zc-ops { display: flex; gap: 10px; align-items: center; }
-.zc-pre { margin: 0; padding: 12px; border-radius: 10px; background: var(--color-bg-hover); font: 12px/1.6 var(--font-mono, ui-monospace, monospace); white-space: pre-wrap; max-height: 320px; overflow: auto; }
+.zc-pre { margin: 0; padding: 12px; border-radius: var(--radius-4); background: var(--color-bg-hover); font: 12px/1.6 var(--font-mono); white-space: pre-wrap; max-height: 320px; overflow: auto; }
 </style>

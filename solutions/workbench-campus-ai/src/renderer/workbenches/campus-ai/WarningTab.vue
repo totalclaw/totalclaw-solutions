@@ -5,7 +5,7 @@
       <!-- 1 导入数据 -->
       <StepCard step-key="cw-data" :index="0" :title="metas[0].title" :hint="metas[0].hint" :runtime="runtime['cw-data']" :is-current="currentKey === 'cw-data'">
         <div class="ss-actions">
-          <button type="button" class="ss-btn" :disabled="!!busy" data-test="ca-warn-demo" @click="loadDemo"><i :class="busy === 'cw-demo' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ $t('载入示例数据') }}</button>
+          <button type="button" class="ss-btn" :disabled="!!busy" data-test="ca-warn-demo" @click="loadDemo"><i :class="busy === 'cw-demo' ? 'ri-loader-4-line spin' : 'ri-file-download-line'"></i>{{ $t('载入示例数据') }}</button>
           <span class="ss-muted">{{ $t('4 个班 120 名学生的名单、成绩、考勤（人名随机生成），写在输出目录的「示例数据」里') }}</span>
         </div>
         <div class="ca-slots">
@@ -360,7 +360,7 @@ void ca<Record<string, string>>('warn.roles').then((r) => { roleLabels.value = r
 
 <style scoped>
 .ca-slots { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
-.ca-slot { border: 1px solid var(--color-border); border-radius: 12px; padding: 12px; display: grid; gap: 8px; align-content: start; }
+.ca-slot { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 12px; display: grid; gap: 8px; align-content: start; }
 .ca-slot.ok { border-color: color-mix(in srgb, var(--color-success) 45%, var(--color-border)); }
 .ca-slot.bad { border-color: color-mix(in srgb, var(--color-danger) 45%, var(--color-border)); }
 .ca-slot header { display: flex; gap: 6px; align-items: center; }
@@ -372,12 +372,12 @@ void ca<Record<string, string>>('warn.roles').then((r) => { roleLabels.value = r
 .ss-kpi.lv-red strong { color: var(--color-danger); }
 .ss-kpi.lv-orange strong { color: var(--color-warning); }
 .ss-kpi.lv-yellow strong { color: var(--color-brand); }
-.ca-sel { height: 28px; border: 1px solid var(--color-border); border-radius: 8px; padding: 0 6px; font: inherit; font-size: 12px; background: var(--color-bg-card); color: var(--color-text); }
+.ca-sel { height: 28px; border: 1px solid var(--color-border); border-radius: var(--radius-3); padding: 0 6px; font: inherit; font-size: var(--font-size-sm); background: var(--color-bg-card); color: var(--color-text); }
 .ca-review { display: flex; gap: 4px; align-items: center; }
 .ca-note { width: 140px; }
 .ca-check { display: inline-flex; gap: 6px; align-items: center; font-size: 12.5px; }
 .ca-notices { display: grid; gap: 6px; }
-.ca-notice { border: 1px solid var(--color-border); border-radius: 10px; padding: 8px 12px; }
+.ca-notice { border: 1px solid var(--color-border); border-radius: var(--radius-4); padding: 8px 12px; }
 .ca-notice summary { cursor: pointer; display: flex; gap: 6px; align-items: center; }
 .ca-notice h4 { margin: 8px 0 4px; font-size: 12.5px; color: var(--color-text-secondary); }
 .ca-mail { display: grid; gap: 8px; border-top: 1px dashed var(--color-border); padding-top: 10px; }

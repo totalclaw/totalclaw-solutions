@@ -1012,163 +1012,163 @@ onUnmounted(() => {
   flex: 1; min-height: 0; overflow-y: auto;
 }
 .hero, .panel, .workbench-tabs {
-  border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card);
+  border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card);
 }
 .hero { display: flex; gap: 16px; justify-content: space-between; align-items: flex-start; padding: 20px 22px; flex-wrap: wrap; }
 .hero-copy { max-width: 780px; margin-inline-end: auto; }
 .hero-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.eyebrow { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-muted); }
+.eyebrow { font-size: var(--font-size-xs); letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-muted); }
 .hero h1 { margin: 6px 0; font-size: 22px; }
-.hero p, .section-heading p { margin: 0; font-size: 13px; color: var(--color-text-muted); line-height: 1.7; }
+.hero p, .section-heading p { margin: 0; font-size: var(--font-size-md); color: var(--color-text-muted); line-height: 1.7; }
 
 /* 计费横幅：sticky —— 实时会话在跑时这条不允许滚出视口 */
 .dh-billing {
   position: sticky; top: 0; z-index: 20;
   display: flex; align-items: center; gap: 12px; padding: 12px 16px;
-  border-radius: 12px; border: 1px solid rgba(247, 144, 9, .45);
-  background: rgba(247, 144, 9, .12); color: #b45309;
+  border-radius: var(--radius-5); border: 1px solid var(--dhw-warn-a45);
+  background: var(--dhw-warn-a12); color: var(--dhw-warn);
 }
 .dh-billing i { font-size: 20px; }
 .dh-billing-text { display: flex; flex-direction: column; flex: 1; gap: 2px; }
-.dh-billing-text small { font-size: 11px; opacity: .85; }
+.dh-billing-text small { font-size: var(--font-size-xs); opacity: .85; }
 
 .workbench-tabs { display: flex; gap: 4px; padding: 6px; }
 .tab {
   flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
-  padding: 9px 12px; border: 0; border-radius: 9px; background: transparent; cursor: pointer;
-  font-size: 13px; color: var(--color-text-secondary);
+  padding: 9px 12px; border: 0; border-radius: var(--radius-3); background: transparent; cursor: pointer;
+  font-size: var(--font-size-md); color: var(--color-text-secondary);
 }
 .tab:hover:not(.active) { background: color-mix(in srgb, var(--color-bg-input) 60%, transparent); }
 .tab.active {
-  background: color-mix(in srgb, var(--color-brand, #5b6ef5) 15%, transparent);
-  color: var(--color-brand, #5b6ef5); font-weight: 600;
+  background: color-mix(in srgb, var(--color-brand) 15%, transparent);
+  color: var(--color-brand); font-weight: 600;
 }
 
 .panel { padding: 20px 22px; display: flex; flex-direction: column; gap: 16px; }
 .section-heading { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; flex-wrap: wrap; }
-.section-kicker { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--color-text-muted); }
+.section-kicker { font-size: var(--font-size-xs); letter-spacing: .06em; text-transform: uppercase; color: var(--color-text-muted); }
 .section-heading h2 { margin: 4px 0; font-size: 19px; }
 .status-pill {
-  display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; border-radius: 999px;
-  background: var(--color-bg-input); font-size: 12px;
+  display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; border-radius: var(--radius-pill);
+  background: var(--color-bg-input); font-size: var(--font-size-sm);
 }
 .status-pill i { font-size: 7px; }
-.status-pill.success { color: var(--color-success, #12b76a); }
-.status-pill.danger { color: var(--color-danger, #ef4444); }
-.status-pill.loading { color: var(--color-info, #3b82f6); }
+.status-pill.success { color: var(--color-success); }
+.status-pill.danger { color: var(--color-danger); }
+.status-pill.loading { color: var(--color-info); }
 
 /* 分步进度：sticky，长任务跑起来后仍在视口里（UX 硬规则二） */
 .dh-steps {
   position: sticky; top: 60px; z-index: 10;
-  display: flex; gap: 8px; padding: 12px; border-radius: 12px;
+  display: flex; gap: 8px; padding: 12px; border-radius: var(--radius-5);
   background: var(--color-bg-input); flex-wrap: wrap;
 }
-.dh-step { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 150px; font-size: 12px; opacity: .55; }
+.dh-step { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 150px; font-size: var(--font-size-sm); opacity: .55; }
 .dh-step.done, .dh-step.running, .dh-step.failed { opacity: 1; }
 .dh-step-no {
   width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
-  background: var(--color-bg-card); border: 1px solid var(--color-border); font-size: 11px; flex-shrink: 0;
+  background: var(--color-bg-card); border: 1px solid var(--color-border); font-size: var(--font-size-xs); flex-shrink: 0;
 }
-.dh-step.done .dh-step-no { background: var(--color-success, #12b76a); color: #fff; border-color: transparent; }
-.dh-step.running .dh-step-no { background: var(--color-info, #3b82f6); color: #fff; border-color: transparent; }
-.dh-step.failed .dh-step-no { background: var(--color-danger, #ef4444); color: #fff; border-color: transparent; }
-.dh-step.failed .dh-step-label { color: var(--color-danger, #ef4444); }
+.dh-step.done .dh-step-no { background: var(--color-success); color: var(--color-on-accent); border-color: transparent; }
+.dh-step.running .dh-step-no { background: var(--color-info); color: var(--color-on-accent); border-color: transparent; }
+.dh-step.failed .dh-step-no { background: var(--color-danger); color: var(--color-on-accent); border-color: transparent; }
+.dh-step.failed .dh-step-label { color: var(--color-danger); }
 /* 停止等待：中性灰，既不是对勾也不是红 */
 .dh-step.stopped { opacity: 1; }
 .dh-step.stopped .dh-step-no { background: var(--color-bg-hover); color: var(--color-text-secondary); }
 .dh-step-label { display: flex; flex-direction: column; }
-.dh-step-label em { font-style: normal; font-size: 11px; color: var(--color-text-muted); }
+.dh-step-label em { font-style: normal; font-size: var(--font-size-xs); color: var(--color-text-muted); }
 
 .dh-form { display: flex; flex-direction: column; gap: 16px; }
 /* 一长条平铺的表单扫读时找不到边界，给凭据块和输入框补出层次 */
 .dh-form > .sp-toggle {
-  padding: 14px 16px; border-radius: 12px;
+  padding: 14px 16px; border-radius: var(--radius-5);
   background: var(--color-bg-input); border: 1px solid var(--color-border);
 }
 .dh-row { display: flex; gap: 12px; flex-wrap: wrap; }
 .dh-row > .dh-field { flex: 1; min-width: 200px; }
-.dh-field { display: flex; flex-direction: column; gap: 5px; font-size: 12px; color: var(--color-text-secondary); }
+.dh-field { display: flex; flex-direction: column; gap: 5px; font-size: var(--font-size-sm); color: var(--color-text-secondary); }
 .dh-field input, .dh-field select, .dh-field textarea {
-  padding: 9px 12px; border-radius: 9px; border: 1px solid var(--color-border);
-  background: var(--color-bg-card); color: var(--color-text-primary); font-size: 13px; font-family: inherit;
+  padding: 9px 12px; border-radius: var(--radius-3); border: 1px solid var(--color-border);
+  background: var(--color-bg-card); color: var(--color-text-primary); font-size: var(--font-size-md); font-family: inherit;
   transition: border-color .15s ease;
 }
 .dh-field input:focus, .dh-field select:focus, .dh-field textarea:focus {
-  outline: none; border-color: var(--color-brand, #5b6ef5);
+  outline: none; border-color: var(--color-brand);
 }
 .dh-field textarea { resize: vertical; line-height: 1.6; }
-.dh-field small { font-size: 11px; color: var(--color-text-muted); line-height: 1.5; }
+.dh-field small { font-size: var(--font-size-xs); color: var(--color-text-muted); line-height: 1.5; }
 .dh-check { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
 .dh-check span { display: flex; flex-direction: column; gap: 2px; }
-.dh-check strong { font-size: 13px; }
-.dh-check small { font-size: 11px; color: var(--color-text-muted); line-height: 1.5; }
+.dh-check strong { font-size: var(--font-size-md); }
+.dh-check small { font-size: var(--font-size-xs); color: var(--color-text-muted); line-height: 1.5; }
 .dh-cred {
-  border: 1px solid var(--color-border); border-radius: 12px; padding: 14px 16px;
+  border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 14px 16px;
   background: var(--color-bg-input);
 }
 .dh-cred summary {
-  cursor: pointer; font-size: 13px; font-weight: 600; margin-bottom: 8px;
+  cursor: pointer; font-size: var(--font-size-md); font-weight: 600; margin-bottom: 8px;
   color: var(--color-text-primary);
 }
 .dh-cred[open] summary { margin-bottom: 12px; }
 .dh-cred > *:not(summary) { margin-top: 10px; }
-.dh-tip { font-size: 11px; color: var(--color-text-muted); line-height: 1.6; margin: 0; }
+.dh-tip { font-size: var(--font-size-xs); color: var(--color-text-muted); line-height: 1.6; margin: 0; }
 .dh-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.dh-hint { font-size: 12px; color: var(--color-text-muted); }
+.dh-hint { font-size: var(--font-size-sm); color: var(--color-text-muted); }
 
 .button {
-  display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 9px;
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--radius-3);
   border: 1px solid var(--color-border); background: var(--color-bg-input);
-  color: var(--color-text-primary); font-size: 13px; cursor: pointer;
+  color: var(--color-text-primary); font-size: var(--font-size-md); cursor: pointer;
 }
 .button:disabled { opacity: .55; cursor: not-allowed; }
-.button.primary { background: var(--color-primary, #2563eb); border-color: transparent; color: #fff; }
-.button.danger { background: var(--color-danger, #ef4444); border-color: transparent; color: #fff; }
+.button.primary { background: var(--color-primary, var(--dhw-info)); border-color: transparent; color: var(--color-on-accent); }
+.button.danger { background: var(--color-danger); border-color: transparent; color: var(--color-on-accent); }
 .button.ghost { background: transparent; }
 
-.message { display: flex; align-items: flex-start; gap: 8px; padding: 10px 12px; border-radius: 9px; font-size: 12px; }
-.message.error { background: rgba(239, 68, 68, .1); color: var(--color-danger, #ef4444); }
+.message { display: flex; align-items: flex-start; gap: 8px; padding: 10px 12px; border-radius: var(--radius-3); font-size: var(--font-size-sm); }
+.message.error { background: var(--dhw-danger-a10); color: var(--color-danger); }
 
 .dh-providers { display: flex; gap: 10px; flex-wrap: wrap; }
 .dh-provider {
-  border: 1px solid var(--color-border); border-radius: 11px; padding: 11px 14px;
+  border: 1px solid var(--color-border); border-radius: var(--radius-4); padding: 11px 14px;
   background: var(--color-bg-input);
   display: flex; flex-direction: column; gap: 4px; min-width: 190px;
 }
-.dh-provider strong { font-size: 13px; }
-.dh-provider small { font-size: 11px; color: var(--color-text-muted); }
-.mini-status { font-size: 11px; }
-.mini-status.available { color: var(--color-success, #12b76a); }
+.dh-provider strong { font-size: var(--font-size-md); }
+.dh-provider small { font-size: var(--font-size-xs); color: var(--color-text-muted); }
+.mini-status { font-size: var(--font-size-xs); }
+.mini-status.available { color: var(--color-success); }
 .mini-status.unknown { color: var(--color-text-muted); }
 
-.dh-result { display: flex; align-items: center; gap: 10px; font-size: 12px; }
-.dh-result i { color: var(--color-success, #12b76a); }
+.dh-result { display: flex; align-items: center; gap: 10px; font-size: var(--font-size-sm); }
+.dh-result i { color: var(--color-success); }
 .dh-result-url { flex: 1; word-break: break-all; color: var(--color-text-secondary); }
 
 .dh-disclosure {
-  display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 10px;
-  background: rgba(37, 99, 235, .08); color: var(--color-info, #2563eb);
+  display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: var(--radius-4);
+  background: var(--dhw-info-a8); color: var(--color-info);
 }
 .dh-disclosure span { display: flex; flex-direction: column; gap: 3px; }
-.dh-disclosure small { font-size: 11px; line-height: 1.6; opacity: .9; }
+.dh-disclosure small { font-size: var(--font-size-xs); line-height: 1.6; opacity: .9; }
 .dh-live-grid { display: flex; gap: 16px; flex-wrap: wrap; }
 .dh-live-col { flex: 1; min-width: 280px; display: flex; flex-direction: column; gap: 10px; }
 .dh-live-bar {
   position: sticky; bottom: 0; z-index: 10;
   display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
-  padding: 10px 14px; border-radius: 10px; background: var(--color-bg-input);
+  padding: 10px 14px; border-radius: var(--radius-4); background: var(--color-bg-input);
 }
-.dh-metric { font-size: 12px; color: var(--color-text-secondary); }
+.dh-metric { font-size: var(--font-size-sm); color: var(--color-text-secondary); }
 .dh-metric strong { color: var(--color-text-primary); font-variant-numeric: tabular-nums; }
-.dh-metric em { font-style: normal; margin-left: 6px; color: #b45309; font-size: 11px; }
+.dh-metric em { font-style: normal; margin-left: 6px; color: var(--dhw-warn); font-size: var(--font-size-xs); }
 .dh-spacer { flex: 1; }
 
-.dh-empty { font-size: 12px; color: var(--color-text-muted); }
-.dh-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.dh-empty { font-size: var(--font-size-sm); color: var(--color-text-muted); }
+.dh-table { width: 100%; border-collapse: collapse; font-size: var(--font-size-sm); }
 .dh-table th, .dh-table td { text-align: start; padding: 8px 10px; border-bottom: 1px solid var(--color-border); }
 .dh-table th { color: var(--color-text-muted); font-weight: 500; }
-.dh-usage h3 { font-size: 13px; margin: 0 0 8px; }
-.dh-usage-row { display: flex; gap: 12px; font-size: 12px; padding: 4px 0; }
+.dh-usage h3 { font-size: var(--font-size-md); margin: 0 0 8px; }
+.dh-usage-row { display: flex; gap: 12px; font-size: var(--font-size-sm); padding: 4px 0; }
 .dh-usage-row strong { min-width: 140px; }
 
 .spin { animation: dh-spin 1s linear infinite; }
@@ -1183,4 +1183,21 @@ onUnmounted(() => {
   .dh-step { min-width: 0; flex-basis: calc(50% - 12px); }
 }
 
+/* ─── 调色板（docs/ui-design-system.md）：经典主题保持原值；界面主题（data-ui-theme）下映射全局 token ─── */
+.workbench { /* ui-theme-exempt: 经典主题原值 */
+  --dhw-warn-a45: rgba(247, 144, 9, .45);
+  --dhw-warn-a12: rgba(247, 144, 9, .12);
+  --dhw-warn: #b45309;
+  --dhw-info: #2563eb;
+  --dhw-danger-a10: rgba(239, 68, 68, .1);
+  --dhw-info-a8: rgba(37, 99, 235, .08);
+}
+:root[data-ui-theme] .workbench {
+  --dhw-warn-a45: color-mix(in srgb, var(--color-warning) 45%, transparent);
+  --dhw-warn-a12: color-mix(in srgb, var(--color-warning) 12%, transparent);
+  --dhw-warn: var(--color-warning);
+  --dhw-info: var(--color-info);
+  --dhw-danger-a10: color-mix(in srgb, var(--color-danger) 10%, transparent);
+  --dhw-info-a8: color-mix(in srgb, var(--color-info) 8%, transparent);
+}
 </style>

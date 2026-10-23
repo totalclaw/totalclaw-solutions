@@ -57,10 +57,10 @@ const bounds: Array<[string, string]> = [
 
 <style scoped>
 .ap-ov { display: grid; gap: 14px; max-width: 1100px; }
-.ss-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 16px; display: grid; gap: 10px; }
-h3 { margin: 0; font-size: 15px; }
+.ss-panel { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 16px; display: grid; gap: 10px; }
+h3 { margin: 0; font-size: var(--font-size-lg); }
 .ap-ov__cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
-.ap-ov__card { display: grid; gap: 4px; padding: 12px; border-radius: 12px; background: var(--color-bg-primary); border: 1px solid var(--color-border); font-size: 12.5px; }
+.ap-ov__card { display: grid; gap: 4px; padding: 12px; border-radius: var(--radius-5); background: var(--color-bg-primary); border: 1px solid var(--color-border); font-size: 12.5px; }
 .ap-ov__card i { font-size: 22px; color: var(--color-brand); }
 .ap-ov__card span { color: var(--color-text-secondary); line-height: 1.55; }
 .ap-list { margin: 0; padding-inline-start: 18px; font-size: 12.5px; color: var(--color-text-secondary); display: grid; gap: 4px; }

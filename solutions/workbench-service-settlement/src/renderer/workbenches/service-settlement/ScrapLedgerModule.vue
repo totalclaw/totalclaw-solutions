@@ -483,7 +483,7 @@ function confirmSummary(): void {
 .ss-sources { max-height: 240px; overflow: auto; }
 .ss-sources__head { display: flex; align-items: center; gap: 8px; }
 .ss-sources__head .ss-chip { text-transform: none; letter-spacing: 0; }
-.ss-sources__input { width: 160px; height: 28px; padding: 0 8px; border: 1px solid var(--color-border); border-radius: 7px; background: var(--color-bg-primary); color: var(--color-text-primary); font: inherit; font-size: 12.5px; }
+.ss-sources__input { width: 160px; height: 28px; padding: 0 8px; border: 1px solid var(--color-border); border-radius: var(--radius-2); background: var(--color-bg-primary); color: var(--color-text-primary); font: inherit; font-size: 12.5px; }
 .ss-sources__input:focus { outline: none; border-color: var(--color-brand); }
 .ss-sources__input.missing { border-color: var(--color-warning); background: color-mix(in srgb, var(--color-warning) 8%, var(--color-bg-primary)); }
 .spin { animation: ss-spin 1s linear infinite; }

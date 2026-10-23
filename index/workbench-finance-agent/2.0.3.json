@@ -1,0 +1,47 @@
+{
+  "id": "workbench-finance-agent",
+  "version": "2.0.3",
+  "treeDigest": "dd98b5bdde4d7ef38ccaa511752436c403a127b2cfd3b64d1924eb6d6423b040",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 1392,
+      "sha256": "5c756fbe55516d626ff6f6014f083bb1d08268e71de2d224f3ab0ef78f0c5348"
+    },
+    {
+      "path": "README.md",
+      "size": 1225,
+      "sha256": "faa28dbc8faa493e690e6bee9080ea22105a8e5c2db351bbae1bd4f6f4c3a16d"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 1927,
+      "sha256": "f60520c6252d76121a55d540e27b084d3ece734e2f2039866d42c685e11a4554"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 143059,
+      "sha256": "91afbcbbefa6d5867ed65e3d395286dd51395e6f54147c9eeb45c19700954af7"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 583176,
+      "sha256": "0c6e141c5f4eb2af03f0fc4814f8254e173cbe1998a7d0164a6f1e0b77c8d616"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 43846,
+      "sha256": "f9d348353baffe28241768a2c3aac02fe7c5252d09cf6385db916c93a2cfb2aa"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2313,
+      "sha256": "e2f7bb46fd8fa669046c8314f3e7bb55f8f58eb383163d637dbfd79ee77c4b66"
+    }
+  ]
+}

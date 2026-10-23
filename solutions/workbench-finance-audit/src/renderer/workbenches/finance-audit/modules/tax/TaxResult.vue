@@ -139,7 +139,7 @@
             <tbody>
               <tr v-for="c in tp.comparables" :key="c.row" :class="{ warn: !c.included }">
                 <td>{{ c.name }}</td><td><FauNum :value="c.year" /></td><td class="num"><FauNum :ratio="c.pli" /></td>
-                <td>{{ c.included ? '✓' : msg(c.reason) }}</td>
+                <td><i v-if="c.included" class="ri-check-line"></i><template v-else>{{ msg(c.reason) }}</template></td>
               </tr>
             </tbody>
           </table>
@@ -157,7 +157,7 @@
             <thead><tr><th>{{ $t('文档') }}</th><th>{{ $t('须准备') }}</th><th>{{ $t('依据') }}</th><th>{{ $t('已准备') }}</th></tr></thead>
             <tbody>
               <tr v-for="d in tp.docs" :key="d.id" :class="{ bad: d.required && !d.prepared }" :data-test="`fau-tp-doc-${d.id}`">
-                <td>{{ $t(DOC_LABEL[d.id]) }}</td><td>{{ d.required ? '✓' : '—' }}</td><td class="wrap">{{ msg(d.reason) }}</td><td>{{ d.prepared ? '✓' : '—' }}</td>
+                <td>{{ $t(DOC_LABEL[d.id]) }}</td><td><i v-if="d.required" class="ri-check-line"></i><template v-else>—</template></td><td class="wrap">{{ msg(d.reason) }}</td><td><i v-if="d.prepared" class="ri-check-line"></i><template v-else>—</template></td>
               </tr>
             </tbody>
           </table>
@@ -240,7 +240,7 @@ async function rerunZakat(): Promise<void> {
 
 <style scoped>
 .fau-tax { display: grid; gap: 10px; }
-.fau-sec { border: 1px solid var(--color-border); border-radius: 12px; padding: 10px 12px; display: grid; gap: 8px; background: var(--color-bg-card); }
+.fau-sec { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 10px 12px; display: grid; gap: 8px; background: var(--color-bg-card); }
 .fau-narr { margin: 0; white-space: pre-wrap; line-height: 1.6; font-size: 12.5px; }
-.fau-tax select { height: 28px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12px; }
+.fau-tax select { height: 28px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-sm); }
 </style>

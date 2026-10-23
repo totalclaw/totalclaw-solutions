@@ -113,13 +113,13 @@ onMounted(async () => { try { Object.assign(models, await zc('models.list')); } 
 
 <style scoped>
 .zc-settings { max-width: 1100px; }
-.zc-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 16px; display: grid; gap: 12px; }
-.zc-panel h3 { margin: 0; font-size: 15px; display: flex; gap: 10px; align-items: baseline; }
-.zc-region { display: grid; gap: 10px; padding: 12px; border: 2px solid var(--color-border); border-radius: 12px; }
+.zc-panel { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 16px; display: grid; gap: 12px; }
+.zc-panel h3 { margin: 0; font-size: var(--font-size-lg); display: flex; gap: 10px; align-items: baseline; }
+.zc-region { display: grid; gap: 10px; padding: 12px; border: 2px solid var(--color-border); border-radius: var(--radius-5); }
 .zc-region.on { border-color: var(--color-brand); }
 .zc-region__head { display: flex; gap: 10px; align-items: center; justify-content: space-between; }
 .zc-region__head label { display: flex; gap: 8px; align-items: center; }
-.zc-name { height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 13px; font-weight: 700; padding: 0 8px; }
+.zc-name { height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-md); font-weight: 700; padding: 0 8px; }
 .zc-model { max-width: 520px; }
 .zc-log { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: 12.5px; max-height: 320px; overflow-y: auto; }
 .zc-log time { color: var(--color-text-secondary); margin-inline-end: 10px; font-variant-numeric: tabular-nums; }

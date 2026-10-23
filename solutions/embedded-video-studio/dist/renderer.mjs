@@ -137,7 +137,7 @@ const ll = { class: "video-studio-page" }, nl = { class: "studio-hero" }, al = {
   setup(N) {
     const y = `totalclaw:video-studio-draft:v6:${bt.currentLocale()}`, P = /TOMORROW\s*WORLD|TomorrowCommercialTower|Tomorrow\s+Commercial\s+Tower|明日世界|TCT2/i, X = vt.useRouter(), h = gt.useNotificationStore(), ye = [
       { label: l.t("素材"), icon: "ri-gallery-upload-line" },
-      { label: l.t("创作"), icon: "ri-magic-line" },
+      { label: l.t("创作"), icon: "ri-quill-pen-line" },
       { label: l.t("合成"), icon: "ri-film-line" },
       { label: l.t("发布"), icon: "ri-send-plane-line" }
     ], Ve = [
@@ -150,7 +150,7 @@ const ll = { class: "video-studio-page" }, nl = { class: "studio-hero" }, al = {
       { id: "platform_publish", phase: 3, label: l.t("分平台发布") }
     ], yt = [
       { id: "smart", label: l.t("AI 自动判断"), desc: l.t("根据素材类型选择最合适流程"), icon: "ri-brain-line" },
-      { id: "seedance", label: l.t("fal 动态视频"), desc: l.t("根据分镜提示词生成动态镜头"), icon: "ri-sparkling-2-line" },
+      { id: "seedance", label: l.t("fal 动态视频"), desc: l.t("根据分镜提示词生成动态镜头"), icon: "ri-movie-2-line" },
       { id: "slideshow", label: l.t("图片成片"), desc: l.t("图片、字幕和节拍快速合成"), icon: "ri-slideshow-3-line" }
     ], Je = Ee.publishPlatforms(), Vt = [
       { id: "auto", label: l.t("AI 按内容自动选择") },
@@ -2029,7 +2029,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 "span",
                 { class: "model-icon video" },
                 [
-                  e.createElementVNode("i", { class: "ri-sparkling-2-line" })
+                  e.createElementVNode("i", { class: "ri-movie-2-line" })
                 ],
                 -1
                 /* CACHED */
@@ -2138,7 +2138,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 }, [
                   o[39] || (o[39] = e.createElementVNode(
                     "i",
-                    { class: "ri-magic-line" },
+                    { class: "ri-lightbulb-line" },
                     null,
                     -1
                     /* CACHED */
@@ -2265,7 +2265,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     e.createElementVNode(
                       "i",
                       {
-                        class: e.normalizeClass(ee.value ? "ri-loader-4-line spin" : "ri-sparkling-line")
+                        class: e.normalizeClass(ee.value ? "ri-loader-4-line spin" : "ri-edit-2-line")
                       },
                       null,
                       2
@@ -3669,7 +3669,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
   for (const [X, h] of y)
     P[X] = h;
   return P;
-}, _a = /* @__PURE__ */ ka(Sa, [["__scopeId", "data-v-bfd81787"]]);
+}, _a = /* @__PURE__ */ ka(Sa, [["__scopeId", "data-v-e3974816"]]);
 export {
   _a as default
 };

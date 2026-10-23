@@ -92,15 +92,15 @@ async function update(id: string, patch: { dept?: string; status?: CaTicketStatu
 
 <style scoped>
 .ca-tk { display: grid; gap: 14px; max-width: 1100px; }
-.ca-sel { height: 28px; border: 1px solid var(--color-border); border-radius: 8px; padding: 0 6px; font: inherit; font-size: 12px; background: var(--color-bg-card); color: var(--color-text); }
-.ca-ticket { border: 1px solid var(--color-border); border-radius: 12px; padding: 12px 14px; display: grid; gap: 8px; }
+.ca-sel { height: 28px; border: 1px solid var(--color-border); border-radius: var(--radius-3); padding: 0 6px; font: inherit; font-size: var(--font-size-sm); background: var(--color-bg-card); color: var(--color-text); }
+.ca-ticket { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 12px 14px; display: grid; gap: 8px; }
 .ca-ticket.sensitive { border-color: color-mix(in srgb, var(--color-danger) 50%, var(--color-border)); }
 .ca-ticket.done { opacity: .85; }
 .ca-ticket header { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-.ca-q { margin: 0; font-size: 14px; font-weight: 600; }
-.ca-reply { background: var(--color-bg-hover); border-radius: 8px; padding: 8px 10px; }
+.ca-q { margin: 0; font-size: var(--font-size-base); font-weight: 600; }
+.ca-reply { background: var(--color-bg-hover); border-radius: var(--radius-3); padding: 8px 10px; }
 .ca-reply-form { display: grid; gap: 8px; }
-.ca-reply-form textarea { min-height: 90px; border: 1px solid var(--color-border); border-radius: 8px; padding: 8px 10px; font: inherit; background: var(--color-bg-input, var(--color-bg-card)); color: var(--color-text); resize: vertical; }
+.ca-reply-form textarea { min-height: 90px; border: 1px solid var(--color-border); border-radius: var(--radius-3); padding: 8px 10px; font: inherit; background: var(--color-bg-input); color: var(--color-text); resize: vertical; }
 .ca-check { display: flex; gap: 6px; align-items: center; font-size: 12.5px; }
 .ca-filter em { font-style: normal; font-weight: 800; }
 </style>

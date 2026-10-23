@@ -138,7 +138,7 @@ async function retrace(breakId: string): Promise<void> {
 
 <style scoped>
 .fau-recon { display: grid; gap: 10px; }
-.fau-sec { border: 1px solid var(--color-border); border-radius: 12px; padding: 10px 12px; display: grid; gap: 8px; background: var(--color-bg-card); }
+.fau-sec { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 10px 12px; display: grid; gap: 8px; background: var(--color-bg-card); }
 .fau-sec summary { cursor: pointer; font-weight: 700; font-size: 12.5px; }
 .fau-counts { display: flex; flex-wrap: wrap; gap: 6px; }
 .fau-esc { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }

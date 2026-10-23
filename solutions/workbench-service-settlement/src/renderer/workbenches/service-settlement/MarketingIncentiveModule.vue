@@ -73,9 +73,9 @@
       <!-- 3 规则 PDF → 初始激励 -->
       <StepCard step-key="rules" :index="2" :title="steps.metas[2].title" :hint="steps.metas[2].hint" :runtime="steps.runtime.rules" :is-current="steps.currentKey.value === 'rules'">
         <FileDropField :label="$t('【服务营销激励计算规则】PDF')" :hint="$t('支持多选、拖入和追加多个 PDF；选齐后统一抽取，扫描件会先做 OCR')" kind="pdf" :multi="true" :disabled="steps.isRunning()" :files="rulesPdfs.map(path => ({ path, name: baseName(path) }))" @picked="addRulesPdfs" @remove="removeRulesPdf" />
-        <div class="ss-actions"><button type="button" class="ss-btn" :disabled="!rulesPdfs.length || steps.isRunning()" @click="extractRules"><i class="ri-sparkling-line"></i>{{ $t('{p0}（{p1}）', { p0: $t('读取全部 PDF 并抽取规则'), p1: rulesPdfs.length }) }}</button></div>
+        <div class="ss-actions"><button type="button" class="ss-btn" :disabled="!rulesPdfs.length || steps.isRunning()" @click="extractRules"><i class="ri-file-search-line"></i>{{ $t('{p0}（{p1}）', { p0: $t('读取全部 PDF 并抽取规则'), p1: rulesPdfs.length }) }}</button></div>
         <div v-if="rulesError" class="ss-error-banner"><i class="ri-error-warning-fill"></i><div><strong>{{ $t('规则未抽取成功，下方仍是上次的规则') }}</strong><div>{{ rulesError }}</div></div></div>
-        <p v-if="rulesNote" class="ss-note" :class="rulesNoteKind"><i class="ri-sparkling-line"></i>{{ rulesNote }}</p>
+        <p v-if="rulesNote" class="ss-note" :class="rulesNoteKind"><i class="ri-information-line"></i>{{ rulesNote }}</p>
         <!-- 不阻塞但需要人工核对的事情单独用警告色。混进上面那条绿色成功提示里等于没提示。 -->
         <p v-if="rulesWarn" class="ss-note warn"><i class="ri-error-warning-line"></i>{{ rulesWarn }}</p>
         <div v-if="rulesDraft" class="ss-rules">
@@ -96,7 +96,7 @@
           <h4><i class="ri-file-list-3-line"></i>{{ $t('规则（来源：{s}）', { s: rules.source || $t('默认') }) }}</h4>
           <div class="ss-actions">
             <!-- 预设不受 isRunning 约束：扫描件 OCR 最坏十几分钟，等的时候得能直接套预设（P1-8；晚到的抽取结果按序号丢弃） -->
-            <button type="button" class="ss-btn sm" @click="applyPreset"><i class="ri-magic-line"></i>{{ $t('套用 2026 默认政策') }}</button>
+            <button type="button" class="ss-btn sm" @click="applyPreset"><i class="ri-file-settings-line"></i>{{ $t('套用 2026 默认政策') }}</button>
             <button type="button" class="ss-btn sm ghost" @click="resetRules"><i class="ri-refresh-line"></i>{{ $t('恢复示例规则') }}</button>
             <button v-if="rulesReviewPending || rulesError || rulesDraft" type="button" class="ss-btn sm ghost" @click="confirmManualRules">{{ $t('已对照原件核对下方全部规则，使用手工设置') }}</button>
             <span class="ss-muted">{{ $t('档位「整体」= 命中区间时实际 × 比例；「边际」= 目标倍数区间内的增量 × 比例累加（如 A×3% + (B−A)×4%）') }}</span>
@@ -1020,12 +1020,12 @@ async function genReport(): Promise<void> {
 </script>
 
 <style scoped>
-.ss-source { display: grid; gap: 8px; padding: 10px 12px; border-radius: 12px; background: var(--color-bg-primary); border: 1px solid var(--color-border); }
+.ss-source { display: grid; gap: 8px; padding: 10px 12px; border-radius: var(--radius-5); background: var(--color-bg-primary); border: 1px solid var(--color-border); }
 .ss-dl { display: flex; flex-wrap: wrap; gap: 6px; }
 .ss-dl .ss-chip { cursor: pointer; border: none; font: inherit; }
 .ss-switch { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; cursor: pointer; white-space: nowrap; }
-.ss-report { white-space: pre-wrap; font: inherit; font-size: 12.5px; line-height: 1.6; max-height: 420px; overflow: auto; padding: 12px 14px; border: 1px solid var(--color-border); border-radius: 10px; background: var(--color-bg-primary); margin: 0; }
-.ss-error-banner { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--color-danger, #d92d20); background: color-mix(in srgb, var(--color-danger, #d92d20) 10%, var(--color-bg-primary)); color: var(--color-danger, #d92d20); font-size: 13px; line-height: 1.5; }
+.ss-report { white-space: pre-wrap; font: inherit; font-size: 12.5px; line-height: 1.6; max-height: 420px; overflow: auto; padding: 12px 14px; border: 1px solid var(--color-border); border-radius: var(--radius-4); background: var(--color-bg-primary); margin: 0; }
+.ss-error-banner { display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: var(--radius-4); border: 1px solid var(--color-danger); background: color-mix(in srgb, var(--color-danger) 10%, var(--color-bg-primary)); color: var(--color-danger); font-size: var(--font-size-md); line-height: 1.5; }
 .ss-error-banner i { font-size: 20px; line-height: 1; }
 .ss-rules .ss-subhead { margin-top: 10px; }
 .spin { animation: ss-spin 1s linear infinite; }

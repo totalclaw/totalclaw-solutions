@@ -47,11 +47,11 @@ function onDrop(ev: DragEvent): void {
 </script>
 
 <style scoped>
-.fau-drop { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1.5px dashed var(--color-border); border-radius: 12px; background: var(--color-bg-primary); cursor: pointer; }
+.fau-drop { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1.5px dashed var(--color-border); border-radius: var(--radius-5); background: var(--color-bg-primary); cursor: pointer; }
 .fau-drop:hover, .fau-drop.over { border-color: var(--color-brand); }
 .fau-drop.disabled { opacity: .6; cursor: not-allowed; }
 .fau-drop > i { font-size: 22px; color: var(--color-brand); }
 .fau-drop__text { flex: 1; min-width: 0; display: grid; gap: 2px; }
-.fau-drop__text strong { font-size: 13px; }
-.fau-drop__text small { color: var(--color-text-secondary); font-size: 12px; }
+.fau-drop__text strong { font-size: var(--font-size-md); }
+.fau-drop__text small { color: var(--color-text-secondary); font-size: var(--font-size-sm); }
 </style>

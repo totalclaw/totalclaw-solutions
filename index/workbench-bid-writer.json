@@ -1,12 +1,12 @@
 {
   "id": "workbench-bid-writer",
-  "version": "2.0.1",
-  "treeDigest": "78febe1d5e85772b174a6b7631055c1e9d861db747b784e946f0a8b4714e46ff",
+  "version": "2.0.2",
+  "treeDigest": "ebc65642d8a04729924dd7dfeb0a8422afb64e298e88f72c089b5fdd395de362",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 738,
-      "sha256": "6c76a4c596c169b349db927a57fe4efb973d37d08fb9b00111495784c1fe26cb"
+      "size": 954,
+      "sha256": "2d9a6210605b6bc190672ea14a50b0b82878e9776557945e3707916ebc32dbd9"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 90342,
-      "sha256": "01a38cc8339a7e99fdb7bdd938a3d739351e77ebb951ad7592816f97d957a362"
+      "size": 91008,
+      "sha256": "864e9e8e7723eb7c1a7a3aa6c049521b0cd8ab3811d6b538dc38f0c5ad003cef"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 168996,
-      "sha256": "8f62ded6cf47ec3feb7d56474d8442ba5d7ef0fa74e6da224cce5bf4850d792b"
+      "size": 169004,
+      "sha256": "b03809f3c75f4808965bd1b24d1e8e678f6491909326d7ed49952ed59495769d"
     },
     {
       "path": "dist/style.css",
-      "size": 9389,
-      "sha256": "c104070ea557fa2d3e2defb02e02b26bd9bc15f780149d6bef7a5c1bbc1d7fc4"
+      "size": 10321,
+      "sha256": "29d7041db92afa29b0711641a3457cb195a86865cf070c42099e25314fc8560c"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2667,
-      "sha256": "4875c2e3b73e9018a01a72829705c209efe9e5d9467d66157f0a12cfdc65949c"
+      "sha256": "1ebefc5093fa61c2c465c29140ea681292920c15c8caae05c980da1e3ec70442"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-bid-writer@2.0.2",
+      "treeDigest": "ebc65642d8a04729924dd7dfeb0a8422afb64e298e88f72c089b5fdd395de362",
+      "filesRef": "index/workbench-bid-writer/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-23"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-bid-writer@2.0.1",

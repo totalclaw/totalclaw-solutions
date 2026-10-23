@@ -15,9 +15,9 @@
       <div class="cc-hero__actions">
         <FalServiceConfig solution-id="workbench-charity-content" />
         <button v-if="line === 'event'" type="button" class="cc-btn hero" :disabled="oneClickBusy || steps.isRunning() || !hasMaterials" :title="hasMaterials ? '' : $t('先放进素材')" @click="runOneClick">
-          <i :class="oneClickBusy ? 'ri-loader-4-line cc-spin' : 'ri-magic-line'"></i>{{ oneClickBusy ? $t('一键流程进行中…') : $t('一键完整流程') }}
+          <i :class="oneClickBusy ? 'ri-loader-4-line cc-spin' : 'ri-play-circle-line'"></i>{{ oneClickBusy ? $t('一键流程进行中…') : $t('一键完整流程') }}
         </button>
-        <button v-if="line === 'event' && prebaked?.available && !hasMaterials" type="button" class="cc-btn ghost" @click="loadDemoMaterials"><i class="ri-sparkling-2-line"></i>{{ $t('载入演示素材') }}</button>
+        <button v-if="line === 'event' && prebaked?.available && !hasMaterials" type="button" class="cc-btn ghost" @click="loadDemoMaterials"><i class="ri-folder-download-line"></i>{{ $t('载入演示素材') }}</button>
         <!--
           演示现场最常用的一条：不跑任何生成，直接摆出一整套真跑出来的成品。
           讲解的人没有十分钟等真跑，而这些报告 / 海报 / 语音 / 成片本来就是真跑的产物。
@@ -80,7 +80,7 @@
             <span class="grow"></span>
             <span v-if="archive" class="cc-chip" :class="archive.source === 'vlm' ? 'ok' : archive.source === 'demo' ? 'info' : ''">{{ archive.source === 'vlm' ? $t('视觉模型草案') : archive.source === 'demo' ? $t('演示档案') : $t('手工填写') }}</span>
             <button type="button" class="cc-btn sm primary" :disabled="!countKind('image') || steps.isRunning()" @click="draftArchive()"><i class="ri-eye-2-line"></i>{{ archive ? $t('重新识别') : $t('看图生成档案') }}</button>
-            <button v-if="prebaked?.archive" type="button" class="cc-btn sm ghost" :disabled="steps.isRunning()" @click="archive = clone(prebaked!.archive!)"><i class="ri-sparkling-line"></i>{{ $t('用演示档案') }}</button>
+            <button v-if="prebaked?.archive" type="button" class="cc-btn sm ghost" :disabled="steps.isRunning()" @click="archive = clone(prebaked!.archive!)"><i class="ri-archive-line"></i>{{ $t('用演示档案') }}</button>
           </header>
           <div v-if="steps.runtime.material.state === 'running' && !archive" class="cc-skeleton cc-skeleton--form" aria-hidden="true"><span v-for="n in 6" :key="n"></span></div>
           <div v-else-if="archive" class="cc-archive">
@@ -256,7 +256,7 @@
           <header class="cc-panel__head"><strong><i class="ri-clapperboard-line"></i>{{ $t('成片方式') }}</strong></header>
           <div class="cc-modes">
             <button type="button" class="cc-mode" :class="{ active: videoMode === 'ai' }" @click="videoMode = 'ai'">
-              <i class="ri-sparkling-2-line"></i><strong>{{ $t('AI 增强版') }}</strong><small>{{ $t('fal 图生视频把照片变成 2–3 个动态镜头 + Stable Audio 配乐，再本地合成') }}</small>
+              <i class="ri-movie-2-line"></i><strong>{{ $t('AI 增强版') }}</strong><small>{{ $t('fal 图生视频把照片变成 2–3 个动态镜头 + Stable Audio 配乐，再本地合成') }}</small>
               <small v-if="prebaked && prebaked.falReady === false" class="warn"><i class="ri-error-warning-line"></i> {{ $t('未检测到 fal 密钥：生成时会自动改用素材剪辑版') }}</small>
               <span class="cc-mode__badge">{{ $t('推荐') }}</span><span class="cc-mode__check"><i class="ri-check-line"></i></span>
             </button>
@@ -297,14 +297,14 @@
         <section v-else-if="Object.keys(videos).length" class="cc-panel">
           <header class="cc-panel__head">
             <strong><i class="ri-movie-2-line"></i>{{ $t('成片') }}</strong>
-            <span class="cc-chip" :class="videoResultMode === 'ai' ? 'ok' : ''"><i :class="videoResultMode === 'ai' ? 'ri-sparkling-2-line' : 'ri-scissors-cut-line'"></i>{{ $t('9:16 · {mode}', { mode: videoResultMode === 'ai' ? $t('AI 增强版') : $t('素材剪辑版') }) }}</span>
+            <span class="cc-chip" :class="videoResultMode === 'ai' ? 'ok' : ''"><i :class="videoResultMode === 'ai' ? 'ri-movie-2-line' : 'ri-scissors-cut-line'"></i>{{ $t('9:16 · {mode}', { mode: videoResultMode === 'ai' ? $t('AI 增强版') : $t('素材剪辑版') }) }}</span>
             <span class="grow"></span>
             <span v-if="videoAi && videoAi.estUsd > 0" class="cc-chip info" :title="$t('按 fal 单价估算：动态镜头按秒计，配乐按次计；上传不计费')"><i class="ri-coins-line"></i>{{ $t('本次 fal 费用约 {usd} 美元', { usd: videoAi.estUsd.toFixed(2) }) }}</span>
           </header>
           <p v-if="videoAi?.fallbackReason" class="cc-note warn"><i class="ri-error-warning-line"></i>{{ $t('已改用素材剪辑版（{why}）', { why: videoAi.fallbackReason }) }}</p>
           <ul v-if="videoAi && videoResultMode === 'ai'" class="cc-shots">
             <li v-for="s in videoAi.shots" :key="s.index" :class="s.source" :title="s.reason || ''">
-              <i :class="s.source === 'fal' ? 'ri-sparkling-2-line' : 'ri-image-line'"></i>
+              <i :class="s.source === 'fal' ? 'ri-image-edit-line' : 'ri-image-line'"></i>
               {{ s.source === 'fal' ? (s.reused ? $t('镜头 {n} · AI 动态（复用）', { n: s.index }) : $t('镜头 {n} · AI 动态', { n: s.index })) : $t('镜头 {n} · 本地推拉（回退）', { n: s.index }) }}
               <small v-if="s.source !== 'fal' && s.reason">{{ s.reason }}</small>
             </li>
@@ -404,7 +404,7 @@
               <strong><i class="ri-chat-quote-line"></i>{{ $t('发布文案') }}</strong>
               <span class="cc-muted">{{ $t('发布前可改；话题标签单独填，正文里不用再写') }}</span>
               <span class="grow"></span>
-              <button type="button" class="cc-btn sm ghost" :disabled="captionBusy" @click="fillPublishCaption(true)"><i :class="captionBusy ? 'ri-loader-4-line cc-spin' : 'ri-magic-line'"></i>{{ $t('重新生成文案') }}</button>
+              <button type="button" class="cc-btn sm ghost" :disabled="captionBusy" @click="fillPublishCaption(true)"><i :class="captionBusy ? 'ri-loader-4-line cc-spin' : 'ri-quill-pen-line'"></i>{{ $t('重新生成文案') }}</button>
             </header>
             <textarea v-model="publishCaption" class="cc-textarea" rows="3" :dir="LANG_DIR[publishLang]" :lang="publishLang" :placeholder="$t('这条视频的发布正文')"></textarea>
             <label class="cc-field"><span>{{ $t('话题标签') }}</span><input v-model="publishTopics" type="text" :placeholder="$t('公益 慈善 用空格分隔')" /></label>
@@ -437,7 +437,7 @@
             <span v-for="l in LANGS.filter((x) => r.speech?.[x])" :key="'s' + l" class="cc-chip link" @click="openVerified(r.speech![l]!)"><i class="ri-mic-line"></i>{{ $t('语音') }} {{ LANG_LABEL[l] }}</span>
             <!-- 成片这一类多一个发布入口：看一眼是预览，直接发是发布，两个动作分开不误点 -->
             <span v-for="l in LANGS.filter((x) => r.videoAi?.[x])" :key="'va' + l" class="cc-chip link ok cc-chip--act">
-              <span class="cc-chip__main" @click="previewHistoryVideo(r.videoAi![l]!, 'ai')"><i class="ri-sparkling-2-line"></i>{{ $t('视频') }} {{ LANG_LABEL[l] }} · {{ $t('AI 增强版') }}</span>
+              <span class="cc-chip__main" @click="previewHistoryVideo(r.videoAi![l]!, 'ai')"><i class="ri-movie-2-line"></i>{{ $t('视频') }} {{ LANG_LABEL[l] }} · {{ $t('AI 增强版') }}</span>
               <button type="button" class="cc-chip__act" :title="$t('发布这一条')" @click.stop="publishFromHistory(r, l, r.videoAi![l]!, 'ai')"><i class="ri-send-plane-line"></i>{{ $t('发布') }}</button>
             </span>
             <span v-for="l in LANGS.filter((x) => r.video?.[x])" :key="'v' + l" class="cc-chip link cc-chip--act">
@@ -449,7 +449,7 @@
       </ul>
     </section>
     <div v-if="historyVideoUrl" class="cc-lightbox" @click.self="historyVideoUrl = ''">
-      <span class="cc-chip" :class="historyVideoMode === 'ai' ? 'ok' : ''"><i :class="historyVideoMode === 'ai' ? 'ri-sparkling-2-line' : 'ri-scissors-cut-line'"></i>{{ historyVideoMode === 'ai' ? $t('AI 增强版') : $t('素材剪辑版') }}</span>
+      <span class="cc-chip" :class="historyVideoMode === 'ai' ? 'ok' : ''"><i :class="historyVideoMode === 'ai' ? 'ri-movie-2-line' : 'ri-scissors-cut-line'"></i>{{ historyVideoMode === 'ai' ? $t('AI 增强版') : $t('素材剪辑版') }}</span>
       <div class="cc-video__phone big"><video :src="historyVideoUrl" controls autoplay playsinline></video></div>
       <button type="button" class="cc-btn ghost light" @click="historyVideoUrl = ''"><i class="ri-close-line"></i>{{ $t('关闭') }}</button>
     </div>

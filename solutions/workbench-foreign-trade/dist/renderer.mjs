@@ -885,7 +885,7 @@ const Te = { class: "ss-panel ft-mailboxes" }, Me = { class: "ss-muted" }, Le = 
   for (const [B, U] of W)
     M[B] = U;
   return M;
-}, Lt = /* @__PURE__ */ se(Mt, [["__scopeId", "data-v-aa51524c"]]), Ut = { class: "ss-module" }, It = { class: "ss-panel" }, Ft = { class: "ss-muted" }, Pt = { class: "ss-actions" }, At = { class: "ft-path" }, Ot = ["disabled"], zt = {
+}, Lt = /* @__PURE__ */ se(Mt, [["__scopeId", "data-v-e1d816fc"]]), Ut = { class: "ss-module" }, It = { class: "ss-panel" }, Ft = { class: "ss-muted" }, Pt = { class: "ss-actions" }, At = { class: "ft-path" }, Ot = ["disabled"], zt = {
   key: 0,
   class: "ss-panel",
   "data-test": "ft-send-rules"
@@ -1968,7 +1968,7 @@ const Te = { class: "ss-panel ft-mailboxes" }, Me = { class: "ss-muted" }, Le = 
       ])
     ]));
   }
-}), zl = /* @__PURE__ */ se(Ol, [["__scopeId", "data-v-beb0ffc7"]]), ve = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
+}), zl = /* @__PURE__ */ se(Ol, [["__scopeId", "data-v-b63bea22"]]), ve = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
 if (!ve) throw new Error("宿主模块未就绪：npm:vue-router");
 ve.default;
 const be = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/StepCard.vue"];
@@ -2170,7 +2170,7 @@ const ql = {
       ], 8, Gl)
     ]));
   }
-}), re = /* @__PURE__ */ se(ln, [["__scopeId", "data-v-1d5d7330"]]), nn = { class: "ss-module" }, on = { class: "ss-rules" }, sn = { class: "ss-rule-row" }, an = { class: "lbl" }, rn = ["onClick"], dn = { class: "ss-grid" }, cn = { class: "ss-field" }, un = { class: "ss-field" }, mn = { class: "ss-field" }, pn = { class: "ss-actions" }, vn = { class: "ss-steps" }, yn = { class: "ss-actions" }, Vn = { class: "ss-muted" }, Nn = { class: "ss-note info" }, En = { class: "ss-actions" }, gn = ["disabled"], hn = {
+}), re = /* @__PURE__ */ se(ln, [["__scopeId", "data-v-ee886dd5"]]), nn = { class: "ss-module" }, on = { class: "ss-rules" }, sn = { class: "ss-rule-row" }, an = { class: "lbl" }, rn = ["onClick"], dn = { class: "ss-grid" }, cn = { class: "ss-field" }, un = { class: "ss-field" }, mn = { class: "ss-field" }, pn = { class: "ss-actions" }, vn = { class: "ss-steps" }, yn = { class: "ss-actions" }, Vn = { class: "ss-muted" }, Nn = { class: "ss-note info" }, En = { class: "ss-actions" }, gn = ["disabled"], hn = {
   key: 0,
   class: "ss-muted"
 }, fn = {
@@ -2775,7 +2775,7 @@ const ql = {
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(P.value === "suggest" ? "ri-loader-4-line spin" : "ri-magic-line")
+                    class: e.normalizeClass(P.value === "suggest" ? "ri-loader-4-line spin" : "ri-lightbulb-line")
                   },
                   null,
                   2
@@ -3277,7 +3277,7 @@ const ql = {
       ])
     ]));
   }
-}), So = /* @__PURE__ */ se(Do, [["__scopeId", "data-v-03a2f52b"]]), _o = { class: "ft-gate__head" }, Bo = {
+}), So = /* @__PURE__ */ se(Do, [["__scopeId", "data-v-56db1ea0"]]), _o = { class: "ft-gate__head" }, Bo = {
   key: 0,
   class: "ss-muted"
 }, wo = ["data-rule"], Co = /* @__PURE__ */ e.defineComponent({
@@ -3368,7 +3368,7 @@ const ql = {
       /* CLASS */
     )) : e.createCommentVNode("v-if", !0);
   }
-}), pe = /* @__PURE__ */ se(Co, [["__scopeId", "data-v-922ba3dc"]]), To = { class: "ss-module" }, Mo = { class: "ss-rules" }, Lo = { class: "ss-grid" }, Uo = { class: "ss-field" }, Io = { class: "ss-field" }, Fo = { class: "ss-field" }, Po = { class: "ss-field" }, Ao = { class: "ss-field" }, Oo = ["placeholder"], zo = { class: "ss-field" }, qo = {
+}), pe = /* @__PURE__ */ se(Co, [["__scopeId", "data-v-53546b28"]]), To = { class: "ss-module" }, Mo = { class: "ss-rules" }, Lo = { class: "ss-grid" }, Uo = { class: "ss-field" }, Io = { class: "ss-field" }, Fo = { class: "ss-field" }, Po = { class: "ss-field" }, Ao = { class: "ss-field" }, Oo = ["placeholder"], zo = { class: "ss-field" }, qo = {
   key: 0,
   class: "ss-note info"
 }, jo = { class: "ss-steps" }, Ro = { class: "ss-actions" }, Ko = ["disabled"], xo = { class: "ss-muted" }, Wo = { value: "" }, Ho = ["value"], Jo = ["disabled", "title"], Qo = { class: "ss-actions" }, Go = ["disabled"], Xo = { class: "ss-muted" }, Yo = { class: "ss-actions" }, Zo = ["disabled"], es = ["disabled"], ts = ["disabled"], ls = {
@@ -4365,7 +4365,7 @@ ${ee}`
       ])
     ]));
   }
-}), Ls = /* @__PURE__ */ se(Ms, [["__scopeId", "data-v-276baf8b"]]), Us = { class: "ss-module" }, Is = { class: "ss-rules" }, Fs = { class: "ss-rule-row" }, Ps = { class: "ft-check" }, As = ["checked"], Os = { class: "ss-rule-row" }, zs = { class: "lbl" }, qs = ["value"], js = { value: "ack" }, Rs = { value: "full" }, Ks = { class: "lbl" }, xs = ["value"], Ws = { value: "high" }, Hs = { value: "medium" }, Js = { value: "low" }, Qs = { class: "ft-check" }, Gs = ["checked"], Xs = { class: "ss-muted" }, Ys = { class: "ft-split" }, Zs = { class: "ft-list" }, ea = { class: "ss-actions" }, ta = { value: "" }, la = ["value"], na = { value: "" }, oa = ["value"], sa = ["disabled"], aa = ["onClick"], ia = { class: "ft-list__top" }, ra = { class: "ft-list__sub" }, da = { class: "ft-list__meta" }, ca = {
+}), Ls = /* @__PURE__ */ se(Ms, [["__scopeId", "data-v-27200b2e"]]), Us = { class: "ss-module" }, Is = { class: "ss-rules" }, Fs = { class: "ss-rule-row" }, Ps = { class: "ft-check" }, As = ["checked"], Os = { class: "ss-rule-row" }, zs = { class: "lbl" }, qs = ["value"], js = { value: "ack" }, Rs = { value: "full" }, Ks = { class: "lbl" }, xs = ["value"], Ws = { value: "high" }, Hs = { value: "medium" }, Js = { value: "low" }, Qs = { class: "ft-check" }, Gs = ["checked"], Xs = { class: "ss-muted" }, Ys = { class: "ft-split" }, Zs = { class: "ft-list" }, ea = { class: "ss-actions" }, ta = { value: "" }, la = ["value"], na = { value: "" }, oa = ["value"], sa = ["disabled"], aa = ["onClick"], ia = { class: "ft-list__top" }, ra = { class: "ft-list__sub" }, da = { class: "ft-list__meta" }, ca = {
   key: 1,
   class: "ss-chip ok"
 }, ua = {
@@ -4915,7 +4915,7 @@ ${ee}`
                     e.createElementVNode(
                       "i",
                       {
-                        class: e.normalizeClass(V.value === "extract" ? "ri-loader-4-line spin" : "ri-magic-line")
+                        class: e.normalizeClass(V.value === "extract" ? "ri-loader-4-line spin" : "ri-file-search-line")
                       },
                       null,
                       2
@@ -5569,7 +5569,7 @@ ${ee}`
       ])
     ]));
   }
-}), li = /* @__PURE__ */ se(ti, [["__scopeId", "data-v-1a1c58eb"]]), ni = ["data-level"], oi = { class: "ft-scr__head" }, si = { class: "ss-muted" }, ai = {
+}), li = /* @__PURE__ */ se(ti, [["__scopeId", "data-v-b08405c7"]]), ni = ["data-level"], oi = { class: "ft-scr__head" }, si = { class: "ss-muted" }, ai = {
   key: 0,
   class: "ss-table-wrap"
 }, ii = { class: "ss-table" }, ri = { class: "num" }, di = { class: "num" }, ci = { class: "ft-wrap" }, ui = {
@@ -5752,7 +5752,7 @@ ${ee}`
       )
     ], 10, ni));
   }
-}), he = /* @__PURE__ */ se(Ei, [["__scopeId", "data-v-5f195ab8"]]), gi = { class: "ss-module" }, hi = { class: "ss-rules" }, fi = { class: "ss-grid" }, ki = { class: "ss-field" }, bi = { class: "ss-field" }, $i = { class: "ss-field" }, Di = { class: "ss-field" }, Si = { class: "ss-muted" }, _i = {
+}), he = /* @__PURE__ */ se(Ei, [["__scopeId", "data-v-3adb9fd5"]]), gi = { class: "ss-module" }, hi = { class: "ss-rules" }, fi = { class: "ss-grid" }, ki = { class: "ss-field" }, bi = { class: "ss-field" }, $i = { class: "ss-field" }, Di = { class: "ss-field" }, Si = { class: "ss-muted" }, _i = {
   class: "ss-panel",
   "data-test": "ft-screening"
 }, Bi = { class: "ss-muted" }, wi = ["disabled"], Ci = {
@@ -6966,7 +6966,7 @@ ${ee}`
       ])
     ]));
   }
-}), Wr = /* @__PURE__ */ se(xr, [["__scopeId", "data-v-e66843dd"]]), Hr = { class: "ss-module" }, Jr = { class: "ss-rules" }, Qr = { class: "ss-rule-row" }, Gr = { class: "lbl" }, Xr = ["value"], Yr = { class: "lbl" }, Zr = { class: "ss-rule-row" }, ed = { class: "lbl" }, td = ["value"], ld = { class: "lbl" }, nd = { class: "ss-rule-row" }, od = { class: "lbl" }, sd = ["value"], ad = { class: "lbl" }, id = { class: "ss-steps" }, rd = { class: "ss-kpis" }, dd = { class: "ss-kpi" }, cd = { class: "ss-kpi" }, ud = { class: "ss-kpi" }, md = { class: "ss-kpi" }, pd = { class: "ss-actions" }, vd = ["disabled"], yd = {
+}), Wr = /* @__PURE__ */ se(xr, [["__scopeId", "data-v-7c9753c8"]]), Hr = { class: "ss-module" }, Jr = { class: "ss-rules" }, Qr = { class: "ss-rule-row" }, Gr = { class: "lbl" }, Xr = ["value"], Yr = { class: "lbl" }, Zr = { class: "ss-rule-row" }, ed = { class: "lbl" }, td = ["value"], ld = { class: "lbl" }, nd = { class: "ss-rule-row" }, od = { class: "lbl" }, sd = ["value"], ad = { class: "lbl" }, id = { class: "ss-steps" }, rd = { class: "ss-kpis" }, dd = { class: "ss-kpi" }, cd = { class: "ss-kpi" }, ud = { class: "ss-kpi" }, md = { class: "ss-kpi" }, pd = { class: "ss-actions" }, vd = ["disabled"], yd = {
   key: 0,
   class: "ss-muted"
 }, Vd = {
@@ -7753,7 +7753,7 @@ ${h}`)
       ])
     ]));
   }
-}), qd = /* @__PURE__ */ se(zd, [["__scopeId", "data-v-c9ce3f1c"]]), jd = { class: "ss-module" }, Rd = { class: "ss-rules" }, Kd = {
+}), qd = /* @__PURE__ */ se(zd, [["__scopeId", "data-v-8b97cd54"]]), jd = { class: "ss-module" }, Rd = { class: "ss-rules" }, Kd = {
   key: 0,
   class: "ss-muted"
 }, xd = { class: "ss-grid" }, Wd = { class: "ss-field" }, Hd = { class: "ss-field" }, Jd = { class: "ss-field" }, Qd = { class: "ss-actions" }, Gd = { class: "ss-steps" }, Xd = { class: "ss-grid" }, Yd = { class: "ss-field" }, Zd = ["value"], ec = { class: "ss-field" }, tc = { value: "" }, lc = ["value"], nc = { class: "ss-field" }, oc = ["value"], sc = { class: "ss-field" }, ac = ["placeholder"], ic = { class: "ss-field" }, rc = { class: "ss-actions" }, dc = ["disabled"], cc = {
@@ -8978,7 +8978,7 @@ ${h}`)
       ])
     ]));
   }
-}), eu = /* @__PURE__ */ se(Zc, [["__scopeId", "data-v-43f98b15"]]), tu = { class: "ss-module" }, lu = { class: "ss-steps" }, nu = {
+}), eu = /* @__PURE__ */ se(Zc, [["__scopeId", "data-v-831d3821"]]), tu = { class: "ss-module" }, lu = { class: "ss-steps" }, nu = {
   key: 0,
   class: "ss-table-wrap"
 }, ou = { class: "ss-table" }, su = { class: "ft-wrap" }, au = {
@@ -9839,7 +9839,7 @@ ${h}`)
       ])
     ]));
   }
-}), Zu = /* @__PURE__ */ se(Yu, [["__scopeId", "data-v-e2c4d979"]]), em = { class: "ss-module" }, tm = { class: "ss-panel" }, lm = { class: "ss-muted" }, nm = ["disabled"], om = {
+}), Zu = /* @__PURE__ */ se(Yu, [["__scopeId", "data-v-d9e97b67"]]), em = { class: "ss-module" }, tm = { class: "ss-panel" }, lm = { class: "ss-muted" }, nm = ["disabled"], om = {
   key: 0,
   class: "ss-note ok"
 }, sm = {
@@ -10406,7 +10406,7 @@ ${h}`)
                               e.createElementVNode(
                                 "i",
                                 {
-                                  class: e.normalizeClass(h.value === v.id ? "ri-loader-4-line spin" : "ri-magic-line")
+                                  class: e.normalizeClass(h.value === v.id ? "ri-loader-4-line spin" : "ri-search-line")
                                 },
                                 null,
                                 2
@@ -12229,7 +12229,7 @@ ${h}`)
       ])
     ]));
   }
-}), jv = /* @__PURE__ */ se(qv, [["__scopeId", "data-v-34d6933a"]]), Rv = { class: "ss-module" }, Kv = { class: "ss-panel" }, xv = { class: "ss-grid" }, Wv = { class: "ss-field" }, Hv = { value: "" }, Jv = ["value"], Qv = { class: "ss-field" }, Gv = { class: "ss-field" }, Xv = { class: "ss-field" }, Yv = { class: "ss-field" }, Zv = { class: "ss-field" }, ey = { class: "ss-actions" }, ty = ["disabled"], ly = { class: "ft-split" }, ny = { class: "ft-list" }, oy = ["onClick"], sy = { class: "ft-list__top" }, ay = { class: "ft-list__sub" }, iy = { class: "ft-list__meta" }, ry = { key: 0 }, dy = {
+}), jv = /* @__PURE__ */ se(qv, [["__scopeId", "data-v-c22688ea"]]), Rv = { class: "ss-module" }, Kv = { class: "ss-panel" }, xv = { class: "ss-grid" }, Wv = { class: "ss-field" }, Hv = { value: "" }, Jv = ["value"], Qv = { class: "ss-field" }, Gv = { class: "ss-field" }, Xv = { class: "ss-field" }, Yv = { class: "ss-field" }, Zv = { class: "ss-field" }, ey = { class: "ss-actions" }, ty = ["disabled"], ly = { class: "ft-split" }, ny = { class: "ft-list" }, oy = ["onClick"], sy = { class: "ft-list__top" }, ay = { class: "ft-list__sub" }, iy = { class: "ft-list__meta" }, ry = { key: 0 }, dy = {
   key: 0,
   class: "ss-empty"
 }, cy = {
@@ -14280,7 +14280,7 @@ ${h}`)
                     e.createElementVNode(
                       "i",
                       {
-                        class: e.normalizeClass(k.value === "extract" ? "ri-loader-4-line spin" : "ri-magic-line")
+                        class: e.normalizeClass(k.value === "extract" ? "ri-loader-4-line spin" : "ri-file-search-line")
                       },
                       null,
                       2
@@ -14647,7 +14647,7 @@ ${h}`)
       ])
     ]));
   }
-}), fN = /* @__PURE__ */ se(hN, [["__scopeId", "data-v-db9c1c4e"]]), kN = { class: "ss-module" }, bN = {
+}), fN = /* @__PURE__ */ se(hN, [["__scopeId", "data-v-8b40d2d7"]]), kN = { class: "ss-module" }, bN = {
   key: 0,
   class: "ss-rules"
 }, $N = { class: "ss-rule-row" }, DN = { class: "ft-check" }, SN = { class: "lbl" }, _N = { class: "lbl" }, BN = { value: "" }, wN = ["value"], CN = { class: "ss-rule-row" }, TN = { class: "lbl" }, MN = {
@@ -15756,7 +15756,7 @@ ${h}`)
       ])) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), UE = /* @__PURE__ */ se(LE, [["__scopeId", "data-v-ea730f24"]]), IE = { class: "ft-workbench" }, FE = { class: "workbench-header" }, PE = { class: "heading" }, AE = { class: "eyebrow" }, OE = { class: "subtitle" }, zE = { class: "header-actions" }, qE = ["disabled"], jE = {
+}), UE = /* @__PURE__ */ se(LE, [["__scopeId", "data-v-00e84e48"]]), IE = { class: "ft-workbench" }, FE = { class: "workbench-header" }, PE = { class: "heading" }, AE = { class: "eyebrow" }, OE = { class: "subtitle" }, zE = { class: "header-actions" }, qE = ["disabled"], jE = {
   class: "ft-tabs",
   role: "tablist"
 }, RE = ["aria-selected", "title", "onClick"], KE = {
@@ -16042,7 +16042,7 @@ ${h}`)
       ]))
     ]));
   }
-}), YE = /* @__PURE__ */ se(XE, [["__scopeId", "data-v-cb23c6ca"]]);
+}), YE = /* @__PURE__ */ se(XE, [["__scopeId", "data-v-45aeb296"]]);
 export {
   YE as default
 };

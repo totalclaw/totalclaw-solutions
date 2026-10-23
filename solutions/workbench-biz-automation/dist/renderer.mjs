@@ -19,7 +19,7 @@ if (!de) throw new Error("宿主模块未就绪：apps/desktop-shell/src/rendere
 const oe = de.default, l = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/biz-automation/shared.ts"];
 if (!l) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/biz-automation/shared.ts");
 l.default;
-const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class: "ba-mhead__split" }, ye = { class: "ss-chip brand" }, he = { class: "ss-chip" }, ke = ["title"], Ve = ["value", "disabled"], ge = { value: "" }, be = ["label"], Ne = ["value"], Ee = ["value"], fe = /* @__PURE__ */ e.defineComponent({
+const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class: "ba-mhead__split" }, ye = { class: "ss-chip brand" }, he = { class: "ss-chip" }, ke = ["title"], Ve = ["value", "disabled"], ge = { value: "" }, Ne = ["label"], be = ["value"], Ee = ["value"], fe = /* @__PURE__ */ e.defineComponent({
   __name: "ModuleHeader",
   props: {
     moduleKey: {},
@@ -28,8 +28,8 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
     ability: {},
     output: {}
   },
-  setup(J) {
-    const R = J, A = Y.useNotificationStore(), v = e.ref(!1), $ = e.computed(() => R.moduleKey && l.baState.value?.settings.moduleModels[R.moduleKey] || "");
+  setup(q) {
+    const R = q, A = Y.useNotificationStore(), v = e.ref(!1), $ = e.computed(() => R.moduleKey && l.baState.value?.settings.moduleModels[R.moduleKey] || "");
     async function z(D) {
       if (R.moduleKey) {
         v.value = !0;
@@ -49,14 +49,14 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
           e.createElementVNode(
             "i",
             {
-              class: e.normalizeClass(J.icon)
+              class: e.normalizeClass(q.icon)
             },
             null,
             2
             /* CLASS */
           ),
           e.createTextVNode(
-            e.toDisplayString(J.title),
+            e.toDisplayString(q.title),
             1
             /* TEXT */
           )
@@ -71,7 +71,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
               /* TEXT */
             ),
             e.createTextVNode(
-              e.toDisplayString(J.ability),
+              e.toDisplayString(q.ability),
               1
               /* TEXT */
             )
@@ -85,14 +85,14 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
               /* TEXT */
             ),
             e.createTextVNode(
-              e.toDisplayString(J.output),
+              e.toDisplayString(q.output),
               1
               /* TEXT */
             )
           ])
         ])
       ]),
-      J.moduleKey ? (e.openBlock(), e.createElementBlock("label", {
+      q.moduleKey ? (e.openBlock(), e.createElementBlock("label", {
         key: 0,
         class: "ba-mhead__model",
         title: D.$t("本模块的脚本、文案、解读都用这个模型；金额与指标由规则计算，不经过模型")
@@ -136,11 +136,11 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                 e.renderList(F.options, (p) => (e.openBlock(), e.createElementBlock("option", {
                   key: p.value,
                   value: p.value
-                }, e.toDisplayString(p.label), 9, Ne))),
+                }, e.toDisplayString(p.label), 9, be))),
                 128
                 /* KEYED_FRAGMENT */
               ))
-            ], 8, be))),
+            ], 8, Ne))),
             128
             /* KEYED_FRAGMENT */
           )),
@@ -152,21 +152,21 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       ], 8, ke)) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), x = (J, R) => {
-  const A = J.__vccOpts || J;
+}), Q = (q, R) => {
+  const A = q.__vccOpts || q;
   for (const [v, $] of R)
     A[v] = $;
   return A;
-}, se = /* @__PURE__ */ x(fe, [["__scopeId", "data-v-fd959d3f"]]), $e = { class: "ss-module" }, _e = { class: "ba-projbar" }, Se = { class: "ss-field" }, De = { value: "" }, Be = ["value"], we = { class: "ss-steps" }, Ce = { class: "ba-types" }, Te = ["onClick"], Le = {
+}, se = /* @__PURE__ */ Q(fe, [["__scopeId", "data-v-4804e143"]]), $e = { class: "ss-module" }, _e = { class: "ba-projbar" }, Se = { class: "ss-field" }, De = { value: "" }, Be = ["value"], we = { class: "ss-steps" }, Ce = { class: "ba-types" }, Te = ["onClick"], Le = {
   key: 0,
   class: "ss-note warn"
-}, Me = { class: "ba-gpick" }, Ae = ["onClick"], Ie = ["src"], Fe = { class: "ss-field" }, Ue = { class: "ss-actions" }, Re = { class: "ss-muted" }, Oe = ["value"], Pe = { class: "ba-check" }, ze = { value: "female" }, Ke = { value: "male" }, je = { class: "ss-actions" }, We = ["disabled"], Je = {
+}, Me = { class: "ba-gpick" }, Ae = ["onClick"], Ie = ["src"], Fe = { class: "ss-field" }, Ue = { class: "ss-actions" }, Re = { class: "ss-muted" }, Oe = ["value"], Pe = { class: "ba-check" }, ze = { value: "female" }, Ke = { value: "male" }, je = { class: "ss-actions" }, We = ["disabled"], qe = {
   key: 1,
   class: "ba-summary"
-}, qe = { class: "ss-chip brand" }, He = {
+}, Je = { class: "ss-chip brand" }, He = {
   key: 0,
   class: "ss-muted"
-}, Ge = { class: "ss-muted" }, Ye = { class: "ba-thumbs" }, Qe = ["src"], xe = { class: "ss-actions" }, Xe = ["disabled"], Ze = ["disabled"], et = { class: "ss-muted" }, tt = { class: "ss-actions" }, lt = ["disabled"], nt = {
+}, Ge = { class: "ss-muted" }, Ye = { class: "ba-thumbs" }, xe = ["src"], Qe = { class: "ss-actions" }, Xe = ["disabled"], Ze = ["disabled"], et = { class: "ss-muted" }, tt = { class: "ss-actions" }, lt = ["disabled"], nt = {
   key: 0,
   class: "ss-muted"
 }, ot = {
@@ -184,7 +184,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
 }, kt = {
   key: 0,
   class: "ss-note warn"
-}, Vt = { class: "ss-actions" }, gt = ["disabled"], bt = ["disabled"], Nt = { class: "ss-muted" }, Et = {
+}, Vt = { class: "ss-actions" }, gt = ["disabled"], Nt = ["disabled"], bt = { class: "ss-muted" }, Et = {
   key: 1,
   class: "ba-player"
 }, ft = ["src"], $t = { class: "ba-player__side" }, _t = {
@@ -208,16 +208,16 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
 }, Rt = {
   key: 1,
   class: "ss-muted"
-}, Ot = { class: "ss-actions" }, Pt = ["disabled"], zt = { class: "ss-muted" }, Kt = { class: "ss-table-wrap" }, jt = { class: "ss-table" }, Wt = { class: "num" }, Jt = { class: "num" }, qt = { class: "num" }, Ht = { class: "num" }, Gt = ["onUpdate:modelValue"], Yt = ["onClick"], Qt = {
+}, Ot = { class: "ss-actions" }, Pt = ["disabled"], zt = { class: "ss-muted" }, Kt = { class: "ss-table-wrap" }, jt = { class: "ss-table" }, Wt = { class: "num" }, qt = { class: "num" }, Jt = { class: "num" }, Ht = { class: "num" }, Gt = ["onUpdate:modelValue"], Yt = ["onClick"], xt = {
   key: 0,
   class: "ss-muted"
-}, xt = { class: "ss-subhead" }, Xt = { class: "ss-table-wrap" }, Zt = { class: "ss-table" }, el = { class: "num" }, tl = { class: "num" }, ll = { class: "num" }, nl = { class: "num" }, ol = { class: "num" }, sl = { class: "num" }, al = { class: "num" }, il = { class: "num" }, rl = { class: "num" }, cl = { class: "num" }, dl = 120, ul = /* @__PURE__ */ e.defineComponent({
+}, Qt = { class: "ss-subhead" }, Xt = { class: "ss-table-wrap" }, Zt = { class: "ss-table" }, el = { class: "num" }, tl = { class: "num" }, ll = { class: "num" }, nl = { class: "num" }, ol = { class: "num" }, sl = { class: "num" }, al = { class: "num" }, il = { class: "num" }, rl = { class: "num" }, cl = { class: "num" }, dl = 120, ul = /* @__PURE__ */ e.defineComponent({
   __name: "VideoTab",
   props: {
     focus: {}
   },
-  setup(J) {
-    const R = J, A = Y.useNotificationStore(), v = ee.useRouter(), $ = l.baState;
+  setup(q) {
+    const R = q, A = Y.useNotificationStore(), v = ee.useRouter(), $ = l.baState;
     l.ensureBaProgressTracking();
     const z = ["new_arrival", "multi_look", "store_tour", "promotion", "styling_tips"], D = ["douyin", "kuaishou", "xiaohongshu", "wxchannels"], T = {
       new_arrival: n.t("商品图 + AI 模特图 + 卖点，15～30 秒"),
@@ -233,7 +233,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
     e.watch(o, (t) => {
       k.scenes = t ? JSON.parse(JSON.stringify(t.scenes)) : [], k.copies = t ? JSON.parse(JSON.stringify(t.copies)) : {};
     }, { immediate: !0 });
-    const b = e.computed(() => !!o.value && (JSON.stringify(k.scenes) !== JSON.stringify(o.value.scenes) || JSON.stringify(k.copies) !== JSON.stringify(o.value.copies))), g = e.ref(""), I = e.ref({}), w = e.ref(!1), S = [
+    const N = e.computed(() => !!o.value && (JSON.stringify(k.scenes) !== JSON.stringify(o.value.scenes) || JSON.stringify(k.copies) !== JSON.stringify(o.value.copies))), g = e.ref(""), I = e.ref({}), w = e.ref(!1), S = [
       { key: "v-pick", title: n.t("选类型与商品"), hint: n.t("新品上新 / 一衣多搭 / 门店探店 / 促销 / 穿搭教程") },
       { key: "v-material", title: n.t("素材准备"), hint: n.t("自动带入商品图与试穿图，可补充门店实拍") },
       { key: "v-script", title: n.t("脚本与文案"), hint: n.t("分镜口播 + 各平台标题、正文、话题，逐段可改") },
@@ -264,11 +264,11 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
         "v-publish": L("v-publish", t?.status === "published", t?.publishRunNote),
         "v-review": L("v-review", !!t?.stats && Object.keys(t.stats).length > 0)
       };
-    }), O = e.computed(() => S.find((t) => M.value[t.key].state !== "done")?.key || "v-review"), P = ["plays", "likes", "comments", "shares"], N = e.reactive({});
+    }), O = e.computed(() => S.find((t) => M.value[t.key].state !== "done")?.key || "v-review"), P = ["plays", "likes", "comments", "shares"], b = e.reactive({});
     e.watch(o, (t) => {
       for (const i of D) {
         const c = t?.stats?.[i];
-        N[i] = { plays: c?.plays || 0, likes: c?.likes || 0, comments: c?.comments || 0, shares: c?.shares || 0 };
+        b[i] = { plays: c?.plays || 0, likes: c?.likes || 0, comments: c?.comments || 0, shares: c?.shares || 0 };
       }
     }, { immediate: !0 });
     const B = e.ref([]);
@@ -315,7 +315,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
     async function W() {
       o.value && await m("v-script", () => l.ba("video.update", { id: o.value.id, patch: { scenes: k.scenes, copies: k.copies } }));
     }
-    async function Q() {
+    async function x() {
       const t = o.value;
       !t || g.value || t.status === "rendering" || (l.noteRenderStarted(t.id), await m("v-render", () => l.ba("video.render", { id: t.id })));
     }
@@ -368,9 +368,9 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       }) && A.success(n.t("已交给数字员工，读回后请把数字填到表里"));
     }
     async function y(t) {
-      o.value && (await m("v-review", () => l.ba("video.recordStats", { id: o.value.id, platform: t, stats: { ...N[t], source: "manual" } })), await C());
+      o.value && (await m("v-review", () => l.ba("video.recordStats", { id: o.value.id, platform: t, stats: { ...b[t], source: "manual" } })), await C());
     }
-    async function q() {
+    async function J() {
       if (!(!o.value || !window.confirm(n.t("删除视频项目「{p0}」？成片文件保留在输出目录。", { p0: o.value.name }))))
         try {
           await l.ba("video.remove", { id: o.value.id }), V.value = "", await l.refreshState();
@@ -432,7 +432,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
           key: 0,
           type: "button",
           class: "ss-btn sm ghost danger",
-          onClick: q
+          onClick: J
         }, [
           i[12] || (i[12] = e.createElementVNode(
             "i",
@@ -465,10 +465,10 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
           "is-current": O.value === "v-pick"
         }, {
           default: e.withCtx(() => [
-            o.value ? (e.openBlock(), e.createElementBlock("div", Je, [
+            o.value ? (e.openBlock(), e.createElementBlock("div", qe, [
               e.createElementVNode(
                 "span",
-                qe,
+                Je,
                 e.toDisplayString(e.unref(l.videoTypeLabel)(o.value.type)),
                 1
                 /* TEXT */
@@ -719,7 +719,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                         src: e.unref(l.fileUrl)(c),
                         alt: "",
                         loading: "lazy"
-                      }, null, 8, Qe),
+                      }, null, 8, xe),
                       e.createElementVNode(
                         "figcaption",
                         null,
@@ -732,7 +732,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                     /* KEYED_FRAGMENT */
                   ))
                 ]),
-                e.createElementVNode("div", xe, [
+                e.createElementVNode("div", Qe, [
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn sm",
@@ -971,7 +971,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn sm",
-                    disabled: !!g.value || !b.value,
+                    disabled: !!g.value || !N.value,
                     onClick: W
                   }, [
                     i[18] || (i[18] = e.createElementVNode(
@@ -987,7 +987,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                       /* TEXT */
                     )
                   ], 8, yt),
-                  b.value ? (e.openBlock(), e.createElementBlock(
+                  N.value ? (e.openBlock(), e.createElementBlock(
                     "span",
                     ht,
                     e.toDisplayString(t.$t("有未保存的修改（改了镜头要重新成片）")),
@@ -1011,7 +1011,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
           hint: S[3].hint,
           runtime: M.value["v-render"],
           "is-current": O.value === "v-render",
-          retry: Q,
+          retry: x,
           cancel: X,
           "retry-label": t.$t("重新成片")
         }, {
@@ -1038,8 +1038,8 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn primary",
-                    disabled: !!g.value || !o.value.scenes.length || o.value.status === "rendering" || b.value || !o.value.garmentIds.length,
-                    onClick: Q
+                    disabled: !!g.value || !o.value.scenes.length || o.value.status === "rendering" || N.value || !o.value.garmentIds.length,
+                    onClick: x
                   }, [
                     e.createElementVNode(
                       "i",
@@ -1062,10 +1062,10 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                     class: "ss-btn sm ghost",
                     disabled: G.value,
                     onClick: X
-                  }, e.toDisplayString(t.$t("取消")), 9, bt)) : e.createCommentVNode("v-if", !0),
+                  }, e.toDisplayString(t.$t("取消")), 9, Nt)) : e.createCommentVNode("v-if", !0),
                   e.createElementVNode(
                     "span",
-                    Nt,
+                    bt,
                     e.toDisplayString(t.$t("配音优先高保真，不可用时用标准音色；字幕与镜头逐句对齐")),
                     1
                     /* TEXT */
@@ -1389,14 +1389,14 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                         ),
                         e.createElementVNode(
                           "th",
-                          Jt,
+                          qt,
                           e.toDisplayString(t.$t("点赞")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
-                          qt,
+                          Jt,
                           e.toDisplayString(t.$t("评论")),
                           1
                           /* TEXT */
@@ -1434,14 +1434,14 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                             null,
                             e.renderList(P, (U) => e.createElementVNode("td", { key: U }, [
                               e.withDirectives(e.createElementVNode("input", {
-                                "onUpdate:modelValue": (H) => N[c][U] = H,
+                                "onUpdate:modelValue": (H) => b[c][U] = H,
                                 type: "number",
                                 min: "0",
                                 class: "ba-stat"
                               }, null, 8, Gt), [
                                 [
                                   e.vModelText,
-                                  N[c][U],
+                                  b[c][U],
                                   void 0,
                                   { number: !0 }
                                 ]
@@ -1458,7 +1458,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                             }, e.toDisplayString(t.$t("保存")), 9, Yt),
                             o.value.stats?.[c] ? (e.openBlock(), e.createElementBlock(
                               "small",
-                              Qt,
+                              xt,
                               " · " + e.toDisplayString(e.unref(l.fmtDateTime)(o.value.stats[c].at)),
                               1
                               /* TEXT */
@@ -1477,7 +1477,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                   [
                     e.createElementVNode(
                       "span",
-                      xt,
+                      Qt,
                       e.toDisplayString(t.$t("按款式看引流效果（全部视频）")),
                       1
                       /* TEXT */
@@ -1601,21 +1601,21 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       ])
     ]));
   }
-}), ml = /* @__PURE__ */ x(ul, [["__scopeId", "data-v-7732ac26"]]), pl = { class: "ss-module" }, vl = { class: "ba-projbar" }, yl = { class: "ss-field" }, hl = { value: "" }, kl = ["value"], Vl = { class: "ss-steps" }, gl = { class: "ba-types" }, bl = ["onClick"], Nl = { class: "ss-grid" }, El = { class: "ss-field" }, fl = { class: "ss-field" }, $l = { class: "ba-facts" }, _l = {
+}), ml = /* @__PURE__ */ Q(ul, [["__scopeId", "data-v-199dc913"]]), pl = { class: "ss-module" }, vl = { class: "ba-projbar" }, yl = { class: "ss-field" }, hl = { value: "" }, kl = ["value"], Vl = { class: "ss-steps" }, gl = { class: "ba-types" }, Nl = ["onClick"], bl = { class: "ss-grid" }, El = { class: "ss-field" }, fl = { class: "ss-field" }, $l = { class: "ba-facts" }, _l = {
   key: 0,
   class: "ss-muted"
 }, Sl = { class: "ss-actions" }, Dl = ["disabled"], Bl = {
   key: 1,
   class: "ss-muted"
-}, wl = { class: "ss-actions" }, Cl = ["disabled"], Tl = { class: "ss-muted" }, Ll = { class: "ss-grid" }, Ml = { class: "ss-field" }, Al = { class: "ss-field" }, Il = { class: "ss-field" }, Fl = { value: "9:16" }, Ul = { value: "16:9" }, Rl = { class: "ss-field" }, Ol = { class: "ss-actions" }, Pl = ["disabled"], zl = { class: "ss-muted" }, Kl = { class: "ss-actions" }, jl = ["disabled"], Wl = { class: "ss-muted" }, Jl = { class: "ss-muted" }, ql = ["src"], Hl = { class: "ss-actions" }, Gl = ["value"], Yl = ["disabled"], Ql = { class: "ss-muted" }, xl = 240, Xl = /* @__PURE__ */ e.defineComponent({
+}, wl = { class: "ss-actions" }, Cl = ["disabled"], Tl = { class: "ss-muted" }, Ll = { class: "ss-grid" }, Ml = { class: "ss-field" }, Al = { class: "ss-field" }, Il = { class: "ss-field" }, Fl = { value: "9:16" }, Ul = { value: "16:9" }, Rl = { class: "ss-field" }, Ol = { class: "ss-actions" }, Pl = ["disabled"], zl = { class: "ss-muted" }, Kl = { class: "ss-actions" }, jl = ["disabled"], Wl = { class: "ss-muted" }, ql = { class: "ss-muted" }, Jl = ["src"], Hl = { class: "ss-actions" }, Gl = ["value"], Yl = ["disabled"], xl = { class: "ss-muted" }, Ql = 240, Xl = /* @__PURE__ */ e.defineComponent({
   __name: "AvatarTab",
   emits: ["goto"],
-  setup(J, { emit: R }) {
+  setup(q, { emit: R }) {
     const A = R, v = Y.useNotificationStore();
     l.ensureBaProgressTracking();
-    const $ = ["company_intro", "brand_story", "store_opening", "service_intro", "recruiting", "holiday"], z = ["douyin", "kuaishou", "xiaohongshu", "wxchannels"], D = (a) => ({ company_intro: n.t("企业介绍"), brand_story: n.t("品牌故事"), store_opening: n.t("新店开业"), service_intro: n.t("门店服务介绍"), recruiting: n.t("招聘"), holiday: n.t("节日祝福") })[a], T = e.computed(() => l.baState.value?.avatars || []), F = e.ref(""), p = e.computed(() => T.value.find((a) => a.id === F.value) || null), V = e.reactive({ topic: "company_intro", seconds: 45, brief: "" }), o = e.ref([]), s = e.ref(null), k = e.ref(""), b = e.reactive({ avatarId: "", voiceId: "", aspectRatio: "9:16", likenessConsent: "" }), g = e.ref(["douyin", "wxchannels"]), I = e.ref(""), w = e.ref({});
+    const $ = ["company_intro", "brand_story", "store_opening", "service_intro", "recruiting", "holiday"], z = ["douyin", "kuaishou", "xiaohongshu", "wxchannels"], D = (a) => ({ company_intro: n.t("企业介绍"), brand_story: n.t("品牌故事"), store_opening: n.t("新店开业"), service_intro: n.t("门店服务介绍"), recruiting: n.t("招聘"), holiday: n.t("节日祝福") })[a], T = e.computed(() => l.baState.value?.avatars || []), F = e.ref(""), p = e.computed(() => T.value.find((a) => a.id === F.value) || null), V = e.reactive({ topic: "company_intro", seconds: 45, brief: "" }), o = e.ref([]), s = e.ref(null), k = e.ref(""), N = e.reactive({ avatarId: "", voiceId: "", aspectRatio: "9:16", likenessConsent: "" }), g = e.ref(["douyin", "wxchannels"]), I = e.ref(""), w = e.ref({});
     e.watch(p, (a) => {
-      k.value = a?.script || "", Object.assign(b, { avatarId: a?.avatarId || "", voiceId: a?.voiceId || "", aspectRatio: a?.aspectRatio || "9:16", likenessConsent: a?.likenessConsent || "" });
+      k.value = a?.script || "", Object.assign(N, { avatarId: a?.avatarId || "", voiceId: a?.voiceId || "", aspectRatio: a?.aspectRatio || "9:16", likenessConsent: a?.likenessConsent || "" });
     }, { immediate: !0 }), e.onMounted(async () => {
       o.value = await l.ba("avatar.facts").catch(() => []), s.value = await l.ba("avatar.status").catch(() => ({ ready: !1 }));
     });
@@ -1626,8 +1626,8 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       { key: "a-render", title: n.t("口播成片"), hint: n.t("带字幕与 AI 生成标识") },
       { key: "a-publish", title: n.t("进入发布"), hint: n.t("交给「短视频发布」审核后发出") }
     ];
-    function L(a, f, E, W = !1, Q = "", G) {
-      return I.value === a || W ? { state: "running", ...G || {} } : w.value[a] || Q ? { state: "failed", error: w.value[a] || Q } : f ? { state: "done", summary: E } : { state: "todo" };
+    function L(a, f, E, W = !1, x = "", G) {
+      return I.value === a || W ? { state: "running", ...G || {} } : w.value[a] || x ? { state: "failed", error: w.value[a] || x } : f ? { state: "done", summary: E } : { state: "todo" };
     }
     const M = e.computed(() => {
       const a = p.value;
@@ -1641,7 +1641,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
           "",
           a?.status === "rendering",
           a?.status === "failed" && a.error || "",
-          a ? { kind: "video", estimateSec: xl, startedAt: l.renderStartedAt(a), progressAt: l.baProgressAt.avatar } : void 0
+          a ? { kind: "video", estimateSec: Ql, startedAt: l.renderStartedAt(a), progressAt: l.baProgressAt.avatar } : void 0
         ),
         "a-publish": L("a-publish", !!a && (l.baState.value?.videos || []).some((f) => f.video === a.video && !!a.video))
       };
@@ -1656,7 +1656,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
         I.value = "";
       }
     }
-    async function N() {
+    async function b() {
       await P("a-topic", async () => {
         const a = await l.ba("avatar.create", { ...V });
         F.value = a.id;
@@ -1666,7 +1666,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       p.value && await P("a-script", () => l.ba("avatar.update", { id: p.value.id, patch: { script: k.value } }));
     }
     async function C() {
-      p.value && await P("a-avatar", () => l.ba("avatar.update", { id: p.value.id, patch: { ...b } }));
+      p.value && await P("a-avatar", () => l.ba("avatar.update", { id: p.value.id, patch: { ...N } }));
     }
     async function j() {
       const a = p.value;
@@ -1802,12 +1802,12 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                       type: "button",
                       class: e.normalizeClass(["ba-type", { on: V.topic === E }]),
                       onClick: (W) => V.topic = E
-                    }, e.toDisplayString(D(E)), 11, bl)),
+                    }, e.toDisplayString(D(E)), 11, Nl)),
                     64
                     /* STABLE_FRAGMENT */
                   ))
                 ]),
-                e.createElementVNode("div", Nl, [
+                e.createElementVNode("div", bl, [
                   e.createElementVNode("label", El, [
                     e.createElementVNode(
                       "span",
@@ -1903,7 +1903,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                     type: "button",
                     class: "ss-btn primary",
                     disabled: !!I.value,
-                    onClick: N
+                    onClick: b
                   }, [
                     e.createElementVNode(
                       "i",
@@ -2039,7 +2039,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                     e.withDirectives(e.createElementVNode(
                       "input",
                       {
-                        "onUpdate:modelValue": f[4] || (f[4] = (E) => b.avatarId = E),
+                        "onUpdate:modelValue": f[4] || (f[4] = (E) => N.avatarId = E),
                         type: "text"
                       },
                       null,
@@ -2048,7 +2048,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                     ), [
                       [
                         e.vModelText,
-                        b.avatarId,
+                        N.avatarId,
                         void 0,
                         { trim: !0 }
                       ]
@@ -2065,7 +2065,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                     e.withDirectives(e.createElementVNode(
                       "input",
                       {
-                        "onUpdate:modelValue": f[5] || (f[5] = (E) => b.voiceId = E),
+                        "onUpdate:modelValue": f[5] || (f[5] = (E) => N.voiceId = E),
                         type: "text"
                       },
                       null,
@@ -2074,7 +2074,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                     ), [
                       [
                         e.vModelText,
-                        b.voiceId,
+                        N.voiceId,
                         void 0,
                         { trim: !0 }
                       ]
@@ -2091,7 +2091,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                     e.withDirectives(e.createElementVNode(
                       "select",
                       {
-                        "onUpdate:modelValue": f[6] || (f[6] = (E) => b.aspectRatio = E)
+                        "onUpdate:modelValue": f[6] || (f[6] = (E) => N.aspectRatio = E)
                       },
                       [
                         e.createElementVNode(
@@ -2112,7 +2112,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                       512
                       /* NEED_PATCH */
                     ), [
-                      [e.vModelSelect, b.aspectRatio]
+                      [e.vModelSelect, N.aspectRatio]
                     ])
                   ])
                 ]),
@@ -2127,7 +2127,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                   e.withDirectives(e.createElementVNode(
                     "input",
                     {
-                      "onUpdate:modelValue": f[7] || (f[7] = (E) => b.likenessConsent = E),
+                      "onUpdate:modelValue": f[7] || (f[7] = (E) => N.likenessConsent = E),
                       type: "text"
                     },
                     null,
@@ -2136,7 +2136,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                   ), [
                     [
                       e.vModelText,
-                      b.likenessConsent,
+                      N.likenessConsent,
                       void 0,
                       { trim: !0 }
                     ]
@@ -2229,7 +2229,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                 ]),
                 e.createElementVNode(
                   "p",
-                  Jl,
+                  ql,
                   e.toDisplayString(a.$t("成片后自动在画面顶部加「本视频由 AI 生成」标识，最后 3 秒叠片尾（门店名、地址、营业时间，在「设置」里填）")),
                   1
                   /* TEXT */
@@ -2240,7 +2240,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                   controls: "",
                   playsinline: "",
                   class: e.normalizeClass(["ba-video", { wide: p.value.aspectRatio === "16:9" }])
-                }, null, 10, ql)) : e.createCommentVNode("v-if", !0)
+                }, null, 10, Jl)) : e.createCommentVNode("v-if", !0)
               ],
               64
               /* STABLE_FRAGMENT */
@@ -2308,7 +2308,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                 ]),
                 e.createElementVNode(
                   "p",
-                  Ql,
+                  xl,
                   e.toDisplayString(a.$t("生成一个已成片的视频项目，在「短视频发布」里审核后发布；文案末尾自动加「本视频由 AI 生成」")),
                   1
                   /* TEXT */
@@ -2324,7 +2324,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       ])
     ]));
   }
-}), Zl = /* @__PURE__ */ x(Xl, [["__scopeId", "data-v-f8ddb9b2"]]), en = { class: "ss-module" }, tn = { class: "ss-steps" }, ln = { class: "ss-actions" }, nn = ["disabled"], on = ["disabled"], sn = { class: "ss-muted" }, an = { class: "ss-muted" }, rn = {
+}), Zl = /* @__PURE__ */ Q(Xl, [["__scopeId", "data-v-41ca6478"]]), en = { class: "ss-module" }, tn = { class: "ss-steps" }, ln = { class: "ss-actions" }, nn = ["disabled"], on = ["disabled"], sn = { class: "ss-muted" }, an = { class: "ss-muted" }, rn = {
   key: 0,
   class: "ss-note info"
 }, cn = {
@@ -2333,7 +2333,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
 }, dn = {
   key: 2,
   class: "ss-table-wrap"
-}, un = { class: "ss-table" }, mn = { class: "ba-wrap" }, pn = ["onUpdate:modelValue"], vn = ["value"], yn = { class: "ba-row" }, hn = ["disabled", "onClick"], kn = ["onClick"], Vn = { class: "ba-gpick" }, gn = ["onClick"], bn = ["src"], Nn = { class: "ss-actions" }, En = { class: "ss-muted" }, fn = ["checked", "onChange"], $n = { class: "ss-actions" }, _n = ["disabled"], Sn = { class: "ss-muted" }, Dn = {
+}, un = { class: "ss-table" }, mn = { class: "ba-wrap" }, pn = ["onUpdate:modelValue"], vn = ["value"], yn = { class: "ba-row" }, hn = ["disabled", "onClick"], kn = ["onClick"], Vn = { class: "ba-gpick" }, gn = ["onClick"], Nn = ["src"], bn = { class: "ss-actions" }, En = { class: "ss-muted" }, fn = ["checked", "onChange"], $n = { class: "ss-actions" }, _n = ["disabled"], Sn = { class: "ss-muted" }, Dn = {
   key: 0,
   class: "ss-empty"
 }, Bn = { class: "ba-listing__imgs" }, wn = ["src"], Cn = { class: "ba-listing__body" }, Tn = { class: "ba-listing__head" }, Ln = { class: "ss-muted" }, Mn = ["onUpdate:modelValue"], An = ["onUpdate:modelValue", "placeholder"], In = ["onUpdate:modelValue"], Fn = { class: "ss-actions" }, Un = ["disabled", "onClick"], Rn = ["disabled", "onClick"], On = ["onClick"], Pn = { class: "ss-muted" }, zn = {
@@ -2342,17 +2342,17 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
 }, Kn = { class: "ss-chip" }, jn = ["disabled", "onClick"], Wn = {
   key: 0,
   class: "ss-empty"
-}, Jn = {
+}, qn = {
   key: 1,
   class: "ss-table-wrap"
-}, qn = { class: "ss-table" }, Hn = ["onUpdate:modelValue", "placeholder", "onChange"], Gn = { class: "ba-row" }, Yn = ["onClick"], Qn = ["onClick"], xn = ["onClick"], Xn = /* @__PURE__ */ e.defineComponent({
+}, Jn = { class: "ss-table" }, Hn = ["onUpdate:modelValue", "placeholder", "onChange"], Gn = { class: "ba-row" }, Yn = ["onClick"], xn = ["onClick"], Qn = ["onClick"], Xn = /* @__PURE__ */ e.defineComponent({
   __name: "ListingTab",
-  setup(J) {
+  setup(q) {
     const R = Y.useNotificationStore(), A = ee.useRouter(), v = l.baState, $ = e.computed(() => l.baGarments.value), z = e.computed(() => (v.value?.settings.channels || []).filter((r) => r.enabled)), D = e.computed(() => v.value?.ruleHits || []), T = e.computed(() => v.value?.listings || []), F = e.computed(() => T.value.filter((r) => r.status === "draft" || r.status === "confirmed")), p = e.computed(() => T.value.filter((r) => r.status === "confirmed")), V = e.computed(() => T.value.filter((r) => r.status === "handed" || r.status === "listed" || r.status === "delisted")), o = e.ref([]), s = e.ref([]);
     e.watch(z, (r) => {
       s.value.length || (s.value = r.slice(0, 1).map((t) => t.id));
     }, { immediate: !0 });
-    const k = e.ref(!1), b = e.ref([]), g = e.reactive({}), I = e.reactive({});
+    const k = e.ref(!1), N = e.ref([]), g = e.reactive({}), I = e.reactive({});
     e.watch(T, (r) => {
       for (const t of r)
         g[t.id] || (g[t.id] = { title: t.title, points: t.sellingPoints.join(`
@@ -2376,11 +2376,11 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       "l-confirm": M("l-confirm", T.value.some((r) => r.status !== "draft")),
       "l-hand": M("l-hand", V.value.length > 0),
       "l-ledger": M("l-ledger", T.value.some((r) => r.status === "listed"))
-    })), P = e.computed(() => L.find((r) => O.value[r.key].state !== "done")?.key || "l-ledger"), N = e.reactive({});
+    })), P = e.computed(() => L.find((r) => O.value[r.key].state !== "done")?.key || "l-ledger"), b = e.reactive({});
     e.watch(D, (r) => {
       for (const t of r) {
         const i = `${t.garmentId}:${t.rule}`;
-        N[i] || (N[i] = t.action);
+        b[i] || (b[i] = t.action);
       }
     }, { immediate: !0 });
     const B = (r) => ({ delist: n.t("下架"), presale: n.t("改为预售"), delist_color: n.t("下架该颜色"), badge_sale: n.t("主图加「断码特价」"), clearance: n.t("转入清仓专区"), swap_image: n.t("换主图（试穿最多的造型图）"), remind: n.t("提醒店长") })[r], C = e.ref("");
@@ -2392,7 +2392,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       });
     }
     async function u(r) {
-      const t = N[`${r.garmentId}:${r.rule}`] || r.action;
+      const t = b[`${r.garmentId}:${r.rule}`] || r.action;
       await W("l-rules", async () => {
         const i = await l.ba("rules.handle", { garmentId: r.garmentId, action: t });
         if (i.text) {
@@ -2417,7 +2417,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
         w.value = "";
       }
     }
-    async function Q() {
+    async function x() {
       await W("l-rules", async () => {
         const r = await l.ba("rules.evaluate");
         k.value = !0, r.delisted && R.info(n.t("已把 {n} 款售罄商品从门店试穿手机端下架", { n: r.delisted }));
@@ -2427,9 +2427,9 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       await W("l-rules", () => l.ba("local.shelf", { garmentId: r, onShelf: t }));
     }
     async function X() {
-      b.value = [], await W("l-gen", async () => {
+      N.value = [], await W("l-gen", async () => {
         const r = await l.ba("listing.generate", { garmentIds: o.value, channelIds: s.value });
-        b.value = r.errors;
+        N.value = r.errors;
       });
     }
     async function te(r) {
@@ -2461,7 +2461,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
     function y(r) {
       A.push(`/conversations/${r}`).catch((t) => R.error(l.errorMessage(t)));
     }
-    function q(r) {
+    function J(r) {
       l.scrollToStep(r);
     }
     return (r, t) => (e.openBlock(), e.createElementBlock("div", en, [
@@ -2477,7 +2477,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
         metas: L,
         runtime: O.value,
         "current-key": P.value,
-        onJump: q
+        onJump: J
       }, null, 8, ["title", "runtime", "current-key"]),
       e.createElementVNode("div", tn, [
         e.createVNode(K, {
@@ -2494,7 +2494,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                 type: "button",
                 class: "ss-btn primary",
                 disabled: !!w.value,
-                onClick: Q
+                onClick: x
               }, [
                 e.createElementVNode(
                   "i",
@@ -2646,7 +2646,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                       ),
                       e.createElementVNode("td", null, [
                         e.withDirectives(e.createElementVNode("select", {
-                          "onUpdate:modelValue": (U) => N[`${i.garmentId}:${i.rule}`] = U,
+                          "onUpdate:modelValue": (U) => b[`${i.garmentId}:${i.rule}`] = U,
                           class: "ba-mini"
                         }, [
                           (e.openBlock(!0), e.createElementBlock(
@@ -2660,7 +2660,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                             /* KEYED_FRAGMENT */
                           ))
                         ], 8, pn), [
-                          [e.vModelSelect, N[`${i.garmentId}:${i.rule}`]]
+                          [e.vModelSelect, b[`${i.garmentId}:${i.rule}`]]
                         ])
                       ]),
                       e.createElementVNode("td", yn, [
@@ -2711,7 +2711,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                     src: e.unref(l.fileUrl)(i.image),
                     alt: "",
                     loading: "lazy"
-                  }, null, 8, bn),
+                  }, null, 8, Nn),
                   e.createElementVNode(
                     "span",
                     null,
@@ -2731,7 +2731,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                 /* KEYED_FRAGMENT */
               ))
             ]),
-            e.createElementVNode("div", Nn, [
+            e.createElementVNode("div", bn, [
               e.createElementVNode(
                 "span",
                 En,
@@ -2784,7 +2784,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(w.value === "l-gen" ? "ri-loader-4-line spin" : "ri-magic-line")
+                    class: e.normalizeClass(w.value === "l-gen" ? "ri-loader-4-line spin" : "ri-quill-pen-line")
                   },
                   null,
                   2
@@ -2807,7 +2807,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(b.value, (i) => (e.openBlock(), e.createElementBlock("p", {
+              e.renderList(N.value, (i) => (e.openBlock(), e.createElementBlock("p", {
                 key: i,
                 class: "ss-note warn"
               }, [
@@ -3069,8 +3069,8 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
           "is-current": P.value === "l-ledger"
         }, {
           default: e.withCtx(() => [
-            V.value.length ? (e.openBlock(), e.createElementBlock("div", Jn, [
-              e.createElementVNode("table", qn, [
+            V.value.length ? (e.openBlock(), e.createElementBlock("div", qn, [
+              e.createElementVNode("table", Jn, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -3164,13 +3164,13 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                           type: "button",
                           class: "ss-link",
                           onClick: (c) => d(i.id, "listed")
-                        }, e.toDisplayString(r.$t("已上架")), 9, Qn)) : e.createCommentVNode("v-if", !0),
+                        }, e.toDisplayString(r.$t("已上架")), 9, xn)) : e.createCommentVNode("v-if", !0),
                         i.status === "listed" ? (e.openBlock(), e.createElementBlock("button", {
                           key: 2,
                           type: "button",
                           class: "ss-link",
                           onClick: (c) => d(i.id, "delisted")
-                        }, e.toDisplayString(r.$t("标记已下架")), 9, xn)) : e.createCommentVNode("v-if", !0)
+                        }, e.toDisplayString(r.$t("标记已下架")), 9, Qn)) : e.createCommentVNode("v-if", !0)
                       ])
                     ]))),
                     128
@@ -3192,7 +3192,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       ])
     ]));
   }
-}), Zn = /* @__PURE__ */ x(Xn, [["__scopeId", "data-v-87f721c0"]]), eo = { class: "ss-module" }, to = { class: "ss-steps" }, lo = { class: "ss-actions" }, no = ["disabled"], oo = { class: "ss-muted" }, so = { class: "ss-actions" }, ao = ["disabled"], io = { class: "ss-muted" }, ro = { class: "ss-muted" }, co = { class: "ss-actions" }, uo = ["disabled"], mo = { class: "ss-muted" }, po = { class: "ss-actions" }, vo = { class: "ss-field" }, yo = { class: "ss-field" }, ho = ["disabled"], ko = { class: "ss-kpis" }, Vo = { class: "ss-kpi accent" }, go = { key: 0 }, bo = { class: "ss-kpi" }, No = { class: "ss-kpi" }, Eo = { class: "ss-kpi" }, fo = { class: "ss-kpi" }, $o = { class: "ss-kpi" }, _o = { class: "ss-kpi" }, So = { class: "ss-kpi" }, Do = { key: 0 }, Bo = {
+}), Zn = /* @__PURE__ */ Q(Xn, [["__scopeId", "data-v-8add6534"]]), eo = { class: "ss-module" }, to = { class: "ss-steps" }, lo = { class: "ss-actions" }, no = ["disabled"], oo = { class: "ss-muted" }, so = { class: "ss-actions" }, ao = ["disabled"], io = { class: "ss-muted" }, ro = { class: "ss-muted" }, co = { class: "ss-actions" }, uo = ["disabled"], mo = { class: "ss-muted" }, po = { class: "ss-actions" }, vo = { class: "ss-field" }, yo = { class: "ss-field" }, ho = ["disabled"], ko = { class: "ss-kpis" }, Vo = { class: "ss-kpi accent" }, go = { key: 0 }, No = { class: "ss-kpi" }, bo = { class: "ss-kpi" }, Eo = { class: "ss-kpi" }, fo = { class: "ss-kpi" }, $o = { class: "ss-kpi" }, _o = { class: "ss-kpi" }, So = { class: "ss-kpi" }, Do = { key: 0 }, Bo = {
   key: 0,
   class: "ss-note warn"
 }, wo = ["title"], Co = ["title"], To = {
@@ -3201,7 +3201,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
 }, Lo = { class: "ba-blocks" }, Mo = {
   key: 0,
   class: "ss-muted"
-}, Ao = { class: "ss-actions" }, Io = { class: "ss-subhead" }, Fo = { value: "amount" }, Uo = { value: "qty" }, Ro = { value: "grossProfit" }, Oo = { value: "sellThrough" }, Po = { class: "ss-table-wrap ba-scroll" }, zo = { class: "ss-table" }, Ko = { class: "num" }, jo = { class: "num" }, Wo = { class: "num" }, Jo = { class: "num" }, qo = { class: "num" }, Ho = { class: "num" }, Go = { class: "num" }, Yo = { class: "num" }, Qo = { class: "ss-subhead" }, xo = { class: "ba-slow" }, Xo = { class: "ss-actions" }, Zo = ["disabled", "onClick"], es = ["disabled"], ts = {
+}, Ao = { class: "ss-actions" }, Io = { class: "ss-subhead" }, Fo = { value: "amount" }, Uo = { value: "qty" }, Ro = { value: "grossProfit" }, Oo = { value: "sellThrough" }, Po = { class: "ss-table-wrap ba-scroll" }, zo = { class: "ss-table" }, Ko = { class: "num" }, jo = { class: "num" }, Wo = { class: "num" }, qo = { class: "num" }, Jo = { class: "num" }, Ho = { class: "num" }, Go = { class: "num" }, Yo = { class: "num" }, xo = { class: "ss-subhead" }, Qo = { class: "ba-slow" }, Xo = { class: "ss-actions" }, Zo = ["disabled", "onClick"], es = ["disabled"], ts = {
   key: 0,
   class: "ba-report"
 }, ls = { class: "ss-muted" }, ns = {
@@ -3222,15 +3222,15 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
 }, ys = {
   key: 1,
   class: "ss-actions"
-}, hs = ["title"], ks = ["placeholder"], Vs = ["disabled"], gs = { class: "ss-muted" }, bs = /* @__PURE__ */ e.defineComponent({
+}, hs = ["title"], ks = ["placeholder"], Vs = ["disabled"], gs = { class: "ss-muted" }, Ns = /* @__PURE__ */ e.defineComponent({
   __name: "FinanceTab",
-  setup(J) {
+  setup(q) {
     const R = e.defineComponent({
       props: { items: { type: Array, required: !0 } },
       setup(d) {
         return () => d.items.length ? e.h("ul", { class: "ba-imports" }, d.items.slice(0, 5).map((h) => e.h("li", {}, n.t("{p0}：{a} ~ {b}，{n} 行（跳过 {m} 行）· 识别列 {c}", { p0: h.file, a: h.from, b: h.to, n: h.rows, m: h.skipped, c: Object.values(h.mapping).join(" / ") })))) : null;
       }
-    }), A = Y.useNotificationStore(), v = ee.useRouter(), $ = l.baState, z = ["daily", "weekly", "monthly"], D = e.computed(() => $.value?.imports || []), T = e.computed(() => $.value?.reports || []), F = e.ref(""), p = e.computed(() => T.value.find((d) => d.id === F.value) || T.value[0] || null), V = e.ref(""), o = e.ref(""), s = e.ref(null), k = e.ref(!1), b = e.ref(""), g = e.ref(""), I = e.ref({});
+    }), A = Y.useNotificationStore(), v = ee.useRouter(), $ = l.baState, z = ["daily", "weekly", "monthly"], D = e.computed(() => $.value?.imports || []), T = e.computed(() => $.value?.reports || []), F = e.ref(""), p = e.computed(() => T.value.find((d) => d.id === F.value) || T.value[0] || null), V = e.ref(""), o = e.ref(""), s = e.ref(null), k = e.ref(!1), N = e.ref(""), g = e.ref(""), I = e.ref({});
     e.onMounted(async () => {
       const d = await l.ba("finance.range").catch(() => ({ from: "", to: "" }));
       if (d.to) {
@@ -3265,7 +3265,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
         { title: n.t("畅销款"), rows: d.topItems.slice(0, 6).map((h) => ({ ...h, share: d.netRevenue ? h.value / d.netRevenue : 0 })), pct: !1 },
         { title: n.t("售罄率"), rows: d.sellThrough.slice(0, 6), pct: !0 }
       ] : [];
-    }), P = e.ref("amount"), N = e.computed(() => [...s.value?.items || []].sort((d, h) => (h[P.value] ?? -1) - (d[P.value] ?? -1)).slice(0, 30)), B = e.computed(() => Math.max(1, ...s.value?.daily.map((d) => d.netRevenue) || [1])), C = e.ref([]);
+    }), P = e.ref("amount"), b = e.computed(() => [...s.value?.items || []].sort((d, h) => (h[P.value] ?? -1) - (d[P.value] ?? -1)).slice(0, 30)), B = e.computed(() => Math.max(1, ...s.value?.daily.map((d) => d.netRevenue) || [1])), C = e.ref([]);
     async function j() {
       await f("f-sales", async () => {
         if (C.value = await l.ba("finance.folderImport"), !C.value.length) throw new Error(n.t("还没有配置共享文件夹：到「设置 → 共享文件夹取数」选择"));
@@ -3280,10 +3280,10 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
     async function _() {
       if (!p.value || !window.confirm(n.t("把 {a} ~ {b} 的营业额、成本、费用汇总成序时账草稿，导入财务智能体当前账套？金额为含税，价税分离与科目请在财务智能体里复核。", { a: p.value.metrics.from, b: p.value.metrics.to }))) return;
       await f("f-push", async () => {
-        const h = await l.ba("finance.toJournal", { id: p.value.id }), y = window.electronAPI, q = y?.workbenches?.financeAgent, r = new Error(n.t("财务智能体未开通，序时账已导出：{p0}", { p0: h })), t = await y?.solutionPkg?.prepare?.({ id: "workbench-finance-agent" }).catch(() => null);
-        if (!q?.invoke || t && t.ok === !1) throw r;
+        const h = await l.ba("finance.toJournal", { id: p.value.id }), y = window.electronAPI, J = y?.workbenches?.financeAgent, r = new Error(n.t("财务智能体未开通，序时账已导出：{p0}", { p0: h })), t = await y?.solutionPkg?.prepare?.({ id: "workbench-finance-agent" }).catch(() => null);
+        if (!J?.invoke || t && t.ok === !1) throw r;
         try {
-          await q.invoke("data.importJournal", { path: h, append: !0 });
+          await J.invoke("data.importJournal", { path: h, append: !0 });
         } catch (i) {
           throw /No handler registered/i.test(String(i?.message)) ? r : i;
         }
@@ -3317,7 +3317,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
     async function W(d) {
       window.confirm(n.t("清空已导入的数据？")) && (await f("f-sales", () => l.ba("finance.clear", { kind: d })), s.value = null);
     }
-    async function Q() {
+    async function x() {
       await f("f-metrics", async () => {
         s.value = await l.ba("finance.metrics", { from: V.value, to: o.value });
       });
@@ -3347,7 +3347,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
         }
     }
     async function Z() {
-      await f("f-qa", () => l.ba("finance.ask", { q: b.value })) && (b.value = "");
+      await f("f-qa", () => l.ba("finance.ask", { q: N.value })) && (N.value = "");
     }
     function ne(d) {
       l.scrollToStep(d);
@@ -3601,7 +3601,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                 type: "button",
                 class: "ss-btn primary",
                 disabled: !!g.value || !e.unref($)?.salesRows,
-                onClick: Q
+                onClick: x
               }, [
                 h[13] || (h[13] = e.createElementVNode(
                   "i",
@@ -3645,7 +3645,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                       /* TEXT */
                     )) : e.createCommentVNode("v-if", !0)
                   ]),
-                  e.createElementVNode("div", bo, [
+                  e.createElementVNode("div", No, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -3668,7 +3668,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", No, [
+                  e.createElementVNode("div", bo, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -3843,21 +3843,21 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(y.rows, (q) => (e.openBlock(), e.createElementBlock("div", {
-                          key: q.key,
+                        e.renderList(y.rows, (J) => (e.openBlock(), e.createElementBlock("div", {
+                          key: J.key,
                           class: "ba-bar"
                         }, [
                           e.createElementVNode(
                             "span",
                             null,
-                            e.toDisplayString(q.label),
+                            e.toDisplayString(J.label),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "i",
                             {
-                              style: e.normalizeStyle({ width: `${Math.max(2, (y.pct ? q.value : q.share ?? 0) * 100)}%` })
+                              style: e.normalizeStyle({ width: `${Math.max(2, (y.pct ? J.value : J.share ?? 0) * 100)}%` })
                             },
                             null,
                             4
@@ -3866,7 +3866,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                           e.createElementVNode(
                             "b",
                             null,
-                            e.toDisplayString(y.pct ? e.unref(l.fmtPct)(q.value, 0) : e.unref(l.fmtMoney)(q.value)),
+                            e.toDisplayString(y.pct ? e.unref(l.fmtPct)(J.value, 0) : e.unref(l.fmtMoney)(J.value)),
                             1
                             /* TEXT */
                           )
@@ -3963,7 +3963,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                         ),
                         e.createElementVNode(
                           "th",
-                          Jo,
+                          qo,
                           e.toDisplayString(d.$t("售罄率")),
                           1
                           /* TEXT */
@@ -3974,7 +3974,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(N.value, (y) => (e.openBlock(), e.createElementBlock("tr", {
+                        e.renderList(b.value, (y) => (e.openBlock(), e.createElementBlock("tr", {
                           key: y.key
                         }, [
                           e.createElementVNode(
@@ -3986,7 +3986,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                           ),
                           e.createElementVNode(
                             "td",
-                            qo,
+                            Jo,
                             e.toDisplayString(y.qty),
                             1
                             /* TEXT */
@@ -4025,12 +4025,12 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                   [
                     e.createElementVNode(
                       "span",
-                      Qo,
+                      xo,
                       e.toDisplayString(d.$t("滞销清单（有库存、本期卖出不超过 1 件）")),
                       1
                       /* TEXT */
                     ),
-                    e.createElementVNode("div", xo, [
+                    e.createElementVNode("div", Qo, [
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
@@ -4078,7 +4078,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                   type: "button",
                   class: e.normalizeClass(["ss-btn sm", { primary: y === "daily" }]),
                   disabled: !!g.value || !e.unref($)?.salesRows,
-                  onClick: (q) => G(y)
+                  onClick: (J) => G(y)
                 }, e.toDisplayString(m(y)), 11, Zo)),
                 64
                 /* STABLE_FRAGMENT */
@@ -4171,7 +4171,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                   key: y.id,
                   type: "button",
                   class: e.normalizeClass(["ss-chip", { brand: y.id === p.value?.id }]),
-                  onClick: (q) => F.value = y.id
+                  onClick: (J) => F.value = y.id
                 }, e.toDisplayString(m(y.kind)) + " " + e.toDisplayString(y.metrics.from), 11, rs))),
                 128
                 /* KEYED_FRAGMENT */
@@ -4317,7 +4317,22 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                       key: y.channel,
                       class: e.normalizeClass(["ss-chip", y.ok ? "ok" : "bad"]),
                       title: y.error
-                    }, e.toDisplayString(y.channel) + " " + e.toDisplayString(y.ok ? "✓" : "✗"), 11, hs))),
+                    }, [
+                      e.createTextVNode(
+                        e.toDisplayString(y.channel) + " ",
+                        1
+                        /* TEXT */
+                      ),
+                      e.createElementVNode(
+                        "i",
+                        {
+                          class: e.normalizeClass(y.ok ? "ri-check-line" : "ri-close-line")
+                        },
+                        null,
+                        2
+                        /* CLASS */
+                      )
+                    ], 10, hs))),
                     128
                     /* KEYED_FRAGMENT */
                   ))
@@ -4347,16 +4362,16 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
               },
               [
                 e.withDirectives(e.createElementVNode("input", {
-                  "onUpdate:modelValue": h[9] || (h[9] = (y) => b.value = y),
+                  "onUpdate:modelValue": h[9] || (h[9] = (y) => N.value = y),
                   type: "text",
                   placeholder: d.$t("例如：上个月连衣裙卖了多少？哪个渠道毛利最高？")
                 }, null, 8, ks), [
-                  [e.vModelText, b.value]
+                  [e.vModelText, N.value]
                 ]),
                 e.createElementVNode("button", {
                   type: "submit",
                   class: "ss-btn primary",
-                  disabled: !!g.value || !b.value.trim() || !e.unref($)?.salesRows
+                  disabled: !!g.value || !N.value.trim() || !e.unref($)?.salesRows
                 }, [
                   h[24] || (h[24] = e.createElementVNode(
                     "i",
@@ -4378,8 +4393,8 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList((e.unref($)?.qa || []).slice(0, 6), (y, q) => (e.openBlock(), e.createElementBlock("div", {
-                key: q,
+              e.renderList((e.unref($)?.qa || []).slice(0, 6), (y, J) => (e.openBlock(), e.createElementBlock("div", {
+                key: J,
                 class: "ba-qa"
               }, [
                 e.createElementVNode(
@@ -4414,12 +4429,12 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       ])
     ]));
   }
-}), Ns = /* @__PURE__ */ x(bs, [["__scopeId", "data-v-b0f97700"]]), Es = { class: "ba-sched" }, fs = { class: "ss-panel" }, $s = { class: "ba-head" }, _s = { class: "ss-muted" }, Ss = { class: "ba-jobs" }, Ds = { class: "ba-job" }, Bs = { class: "ba-check" }, ws = { class: "ba-check" }, Cs = { class: "ss-muted" }, Ts = { class: "ba-job" }, Ls = { class: "ba-check" }, Ms = { class: "ss-muted" }, As = { class: "ba-job" }, Is = { class: "ba-check" }, Fs = ["value"], Us = { class: "ss-muted" }, Rs = { class: "ba-job" }, Os = { class: "ba-check" }, Ps = { class: "ss-muted" }, zs = { class: "ba-job" }, Ks = { class: "ba-check" }, js = { class: "ba-check" }, Ws = { class: "ss-muted" }, Js = { class: "ba-job" }, qs = { class: "ba-check" }, Hs = { class: "ss-muted" }, Gs = { class: "ss-muted" }, Ys = { class: "ba-job ba-job--cal" }, Qs = { class: "ba-check" }, xs = { class: "ss-muted" }, Xs = { class: "ba-cal" }, Zs = ["onUpdate:modelValue"], ea = ["onUpdate:modelValue"], ta = ["onUpdate:modelValue"], la = { value: "holiday" }, na = { value: "store_opening" }, oa = ["onClick"], sa = { class: "ss-actions" }, aa = ["disabled"], ia = ["disabled"], ra = { class: "ss-panel" }, ca = { class: "ba-head" }, da = {
+}), bs = /* @__PURE__ */ Q(Ns, [["__scopeId", "data-v-96ec09ec"]]), Es = { class: "ba-sched" }, fs = { class: "ss-panel" }, $s = { class: "ba-head" }, _s = { class: "ss-muted" }, Ss = { class: "ba-jobs" }, Ds = { class: "ba-job" }, Bs = { class: "ba-check" }, ws = { class: "ba-check" }, Cs = { class: "ss-muted" }, Ts = { class: "ba-job" }, Ls = { class: "ba-check" }, Ms = { class: "ss-muted" }, As = { class: "ba-job" }, Is = { class: "ba-check" }, Fs = ["value"], Us = { class: "ss-muted" }, Rs = { class: "ba-job" }, Os = { class: "ba-check" }, Ps = { class: "ss-muted" }, zs = { class: "ba-job" }, Ks = { class: "ba-check" }, js = { class: "ba-check" }, Ws = { class: "ss-muted" }, qs = { class: "ba-job" }, Js = { class: "ba-check" }, Hs = { class: "ss-muted" }, Gs = { class: "ss-muted" }, Ys = { class: "ba-job ba-job--cal" }, xs = { class: "ba-check" }, Qs = { class: "ss-muted" }, Xs = { class: "ba-cal" }, Zs = ["onUpdate:modelValue"], ea = ["onUpdate:modelValue"], ta = ["onUpdate:modelValue"], la = { value: "holiday" }, na = { value: "store_opening" }, oa = ["onClick"], sa = { class: "ss-actions" }, aa = ["disabled"], ia = ["disabled"], ra = { class: "ss-panel" }, ca = { class: "ba-head" }, da = {
   key: 0,
   class: "ss-empty"
 }, ua = { class: "ba-log" }, ma = { class: "ss-chip" }, pa = /* @__PURE__ */ e.defineComponent({
   __name: "ScheduleTab",
-  setup(J) {
+  setup(q) {
     const R = Y.useNotificationStore(), A = [n.t("周日"), n.t("周一"), n.t("周二"), n.t("周三"), n.t("周四"), n.t("周五"), n.t("周六")], v = e.reactive({
       dailyReport: { enabled: !1, time: "08:30", push: !0 },
       inventoryPatrol: { enabled: !1, time: "09:00" },
@@ -4792,8 +4807,8 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
               /* TEXT */
             )
           ]),
-          e.createElementVNode("div", Js, [
-            e.createElementVNode("label", qs, [
+          e.createElementVNode("div", qs, [
+            e.createElementVNode("label", Js, [
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
@@ -4837,7 +4852,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             )
           ]),
           e.createElementVNode("div", Ys, [
-            e.createElementVNode("label", Qs, [
+            e.createElementVNode("label", xs, [
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
@@ -4899,7 +4914,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             )),
             e.createElementVNode(
               "small",
-              xs,
+              Qs,
               e.toDisplayString(V.$t("模块 B：到日子前生成数字人祝福讲稿草稿，等你审核后成片发布")),
               1
               /* TEXT */
@@ -4913,7 +4928,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                   class: "ba-cal__day"
                 }, [
                   e.withDirectives(e.createElementVNode("input", {
-                    "onUpdate:modelValue": (b) => s.date = b,
+                    "onUpdate:modelValue": (N) => s.date = N,
                     type: "text",
                     placeholder: "MM-DD",
                     class: "ba-num"
@@ -4921,13 +4936,13 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                     [e.vModelText, s.date]
                   ]),
                   e.withDirectives(e.createElementVNode("input", {
-                    "onUpdate:modelValue": (b) => s.name = b,
+                    "onUpdate:modelValue": (N) => s.name = N,
                     type: "text"
                   }, null, 8, ea), [
                     [e.vModelText, s.name]
                   ]),
                   e.withDirectives(e.createElementVNode("select", {
-                    "onUpdate:modelValue": (b) => s.topic = b
+                    "onUpdate:modelValue": (N) => s.topic = N
                   }, [
                     e.createElementVNode(
                       "option",
@@ -4949,7 +4964,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-link",
-                    onClick: (b) => v.calendar.days.splice(k, 1)
+                    onClick: (N) => v.calendar.days.splice(k, 1)
                   }, [...o[20] || (o[20] = [
                     e.createElementVNode(
                       "i",
@@ -5103,15 +5118,15 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       ])
     ]));
   }
-}), va = /* @__PURE__ */ x(pa, [["__scopeId", "data-v-17cc3a77"]]), ya = {
+}), va = /* @__PURE__ */ Q(pa, [["__scopeId", "data-v-8729ccfc"]]), ya = {
   key: 0,
   class: "ba-set"
-}, ha = { class: "ss-panel" }, ka = { class: "ba-head" }, Va = { class: "ss-grid" }, ga = { class: "ss-field" }, ba = { class: "ss-field" }, Na = { class: "ss-field" }, Ea = { class: "ss-muted" }, fa = { class: "ss-panel" }, $a = { class: "ba-head" }, _a = { class: "ss-muted" }, Sa = ["onClick"], Da = ["onClick"], Ba = { class: "ss-panel" }, wa = { class: "ba-head" }, Ca = { class: "ss-table-wrap" }, Ta = { class: "ss-table" }, La = ["title"], Ma = ["onUpdate:modelValue"], Aa = ["onUpdate:modelValue"], Ia = ["onUpdate:modelValue"], Fa = ["onUpdate:modelValue"], Ua = ["onUpdate:modelValue"], Ra = ["checked", "onChange"], Oa = { class: "ss-panel" }, Pa = { class: "ba-head" }, za = { class: "ba-check" }, Ka = { class: "ss-field" }, ja = { class: "ba-seasons" }, Wa = { class: "ss-subhead" }, Ja = ["value", "placeholder", "onChange"], qa = { class: "ss-panel" }, Ha = { class: "ba-head" }, Ga = { class: "ba-ready" }, Ya = { class: "ss-actions" }, Qa = ["disabled"], xa = {
+}, ha = { class: "ss-panel" }, ka = { class: "ba-head" }, Va = { class: "ss-grid" }, ga = { class: "ss-field" }, Na = { class: "ss-field" }, ba = { class: "ss-field" }, Ea = { class: "ss-muted" }, fa = { class: "ss-panel" }, $a = { class: "ba-head" }, _a = { class: "ss-muted" }, Sa = ["onClick"], Da = ["onClick"], Ba = { class: "ss-panel" }, wa = { class: "ba-head" }, Ca = { class: "ss-table-wrap" }, Ta = { class: "ss-table" }, La = ["title"], Ma = ["onUpdate:modelValue"], Aa = ["onUpdate:modelValue"], Ia = ["onUpdate:modelValue"], Fa = ["onUpdate:modelValue"], Ua = ["onUpdate:modelValue"], Ra = ["checked", "onChange"], Oa = { class: "ss-panel" }, Pa = { class: "ba-head" }, za = { class: "ba-check" }, Ka = { class: "ss-field" }, ja = { class: "ba-seasons" }, Wa = { class: "ss-subhead" }, qa = ["value", "placeholder", "onChange"], Ja = { class: "ss-panel" }, Ha = { class: "ba-head" }, Ga = { class: "ba-ready" }, Ya = { class: "ss-actions" }, xa = ["disabled"], Qa = {
   key: 0,
   class: "ss-muted"
 }, Xa = /* @__PURE__ */ e.defineComponent({
   __name: "SettingsTab",
-  setup(J) {
+  setup(q) {
     const R = Y.useNotificationStore(), A = e.computed(() => l.baState.value), v = e.reactive({}), $ = e.ref("");
     e.watch(() => A.value?.settings, (s) => {
       s && (Object.assign(v, JSON.parse(JSON.stringify(s))), $.value = s.coreSizes.join(","));
@@ -5175,7 +5190,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             e.withDirectives(e.createElementVNode(
               "input",
               {
-                "onUpdate:modelValue": k[0] || (k[0] = (b) => v.brandName = b),
+                "onUpdate:modelValue": k[0] || (k[0] = (N) => v.brandName = N),
                 type: "text",
                 maxlength: "30"
               },
@@ -5191,7 +5206,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
               ]
             ])
           ]),
-          e.createElementVNode("label", ba, [
+          e.createElementVNode("label", Na, [
             e.createElementVNode(
               "span",
               null,
@@ -5202,7 +5217,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             e.withDirectives(e.createElementVNode(
               "input",
               {
-                "onUpdate:modelValue": k[1] || (k[1] = (b) => v.storeAddress = b),
+                "onUpdate:modelValue": k[1] || (k[1] = (N) => v.storeAddress = N),
                 type: "text",
                 maxlength: "80"
               },
@@ -5218,7 +5233,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
               ]
             ])
           ]),
-          e.createElementVNode("label", Na, [
+          e.createElementVNode("label", ba, [
             e.createElementVNode(
               "span",
               null,
@@ -5229,7 +5244,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             e.withDirectives(e.createElementVNode(
               "input",
               {
-                "onUpdate:modelValue": k[2] || (k[2] = (b) => v.openingHours = b),
+                "onUpdate:modelValue": k[2] || (k[2] = (N) => v.openingHours = N),
                 type: "text",
                 maxlength: "40"
               },
@@ -5281,28 +5296,28 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
         (e.openBlock(), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(D, (b) => e.createElementVNode("div", {
-            key: b.key,
+          e.renderList(D, (N) => e.createElementVNode("div", {
+            key: N.key,
             class: "ba-folder"
           }, [
             e.createElementVNode(
               "b",
               null,
-              e.toDisplayString(b.label),
+              e.toDisplayString(N.label),
               1
               /* TEXT */
             ),
             e.createElementVNode(
               "code",
               null,
-              e.toDisplayString(v.dataFolders?.[b.key] || s.$t("未设置")),
+              e.toDisplayString(v.dataFolders?.[N.key] || s.$t("未设置")),
               1
               /* TEXT */
             ),
             e.createElementVNode("button", {
               type: "button",
               class: "ss-btn sm",
-              onClick: (g) => T(b.key)
+              onClick: (g) => T(N.key)
             }, [
               k[7] || (k[7] = e.createElementVNode(
                 "i",
@@ -5317,11 +5332,11 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                 /* TEXT */
               )
             ], 8, Sa),
-            v.dataFolders?.[b.key] ? (e.openBlock(), e.createElementBlock("button", {
+            v.dataFolders?.[N.key] ? (e.openBlock(), e.createElementBlock("button", {
               key: 0,
               type: "button",
               class: "ss-link",
-              onClick: (g) => v.dataFolders[b.key] = ""
+              onClick: (g) => v.dataFolders[N.key] = ""
             }, e.toDisplayString(s.$t("清除")), 9, Da)) : e.createCommentVNode("v-if", !0)
           ])),
           64
@@ -5393,25 +5408,25 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(v.channels, (b) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: b.id
+                e.renderList(v.channels, (N) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: N.id
                 }, [
                   e.createElementVNode("td", null, [
                     e.withDirectives(e.createElementVNode("input", {
-                      "onUpdate:modelValue": (g) => b.enabled = g,
+                      "onUpdate:modelValue": (g) => N.enabled = g,
                       type: "checkbox"
                     }, null, 8, Ma), [
-                      [e.vModelCheckbox, b.enabled]
+                      [e.vModelCheckbox, N.enabled]
                     ])
                   ]),
                   e.createElementVNode("td", null, [
                     e.withDirectives(e.createElementVNode("input", {
-                      "onUpdate:modelValue": (g) => b.name = g,
+                      "onUpdate:modelValue": (g) => N.name = g,
                       type: "text"
                     }, null, 8, Aa), [
                       [
                         e.vModelText,
-                        b.name,
+                        N.name,
                         void 0,
                         { trim: !0 }
                       ]
@@ -5419,13 +5434,13 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                   ]),
                   e.createElementVNode("td", null, [
                     e.withDirectives(e.createElementVNode("input", {
-                      "onUpdate:modelValue": (g) => b.url = g,
+                      "onUpdate:modelValue": (g) => N.url = g,
                       type: "text",
                       class: "ba-url"
                     }, null, 8, Ia), [
                       [
                         e.vModelText,
-                        b.url,
+                        N.url,
                         void 0,
                         { trim: !0 }
                       ]
@@ -5433,7 +5448,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                   ]),
                   e.createElementVNode("td", null, [
                     e.withDirectives(e.createElementVNode("select", {
-                      "onUpdate:modelValue": (g) => b.aspect = g
+                      "onUpdate:modelValue": (g) => N.aspect = g
                     }, [...k[9] || (k[9] = [
                       e.createElementVNode(
                         "option",
@@ -5450,19 +5465,19 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                         /* CACHED */
                       )
                     ])], 8, Fa), [
-                      [e.vModelSelect, b.aspect]
+                      [e.vModelSelect, N.aspect]
                     ])
                   ]),
                   e.createElementVNode("td", null, [
                     e.withDirectives(e.createElementVNode("input", {
-                      "onUpdate:modelValue": (g) => b.titleMax = g,
+                      "onUpdate:modelValue": (g) => N.titleMax = g,
                       type: "number",
                       min: "10",
                       max: "60"
                     }, null, 8, Ua), [
                       [
                         e.vModelText,
-                        b.titleMax,
+                        N.titleMax,
                         void 0,
                         { number: !0 }
                       ]
@@ -5471,8 +5486,8 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                   e.createElementVNode("td", null, [
                     e.createElementVNode("input", {
                       type: "checkbox",
-                      checked: !!b.autoSubmit,
-                      onChange: (g) => F(b, g.target)
+                      checked: !!N.autoSubmit,
+                      onChange: (g) => F(N, g.target)
                     }, null, 40, Ra)
                   ])
                 ]))),
@@ -5504,7 +5519,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
           e.withDirectives(e.createElementVNode(
             "input",
             {
-              "onUpdate:modelValue": k[3] || (k[3] = (b) => v.autoDelistLocal = b),
+              "onUpdate:modelValue": k[3] || (k[3] = (N) => v.autoDelistLocal = N),
               type: "checkbox"
             },
             null,
@@ -5530,7 +5545,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
           e.withDirectives(e.createElementVNode(
             "input",
             {
-              "onUpdate:modelValue": k[4] || (k[4] = (b) => $.value = b),
+              "onUpdate:modelValue": k[4] || (k[4] = (N) => $.value = N),
               type: "text"
             },
             null,
@@ -5551,7 +5566,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(v.seasonMonths, (b, g) => (e.openBlock(), e.createElementBlock("label", {
+            e.renderList(v.seasonMonths, (N, g) => (e.openBlock(), e.createElementBlock("label", {
               key: g,
               class: "ba-season"
             }, [
@@ -5563,18 +5578,18 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                 /* TEXT */
               ),
               e.createElementVNode("input", {
-                value: b.join(","),
+                value: N.join(","),
                 type: "text",
                 placeholder: s.$t("如 5,6,7,8；留空表示四季都卖"),
                 onChange: (I) => v.seasonMonths[g] = p(I.target.value)
-              }, null, 40, Ja)
+              }, null, 40, qa)
             ]))),
             128
             /* KEYED_FRAGMENT */
           ))
         ])
       ]),
-      e.createElementVNode("section", qa, [
+      e.createElementVNode("section", Ja, [
         e.createElementVNode("header", Ha, [
           e.createElementVNode("strong", null, [
             k[11] || (k[11] = e.createElementVNode(
@@ -5693,10 +5708,10 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             1
             /* TEXT */
           )
-        ], 8, Qa),
+        ], 8, xa),
         z.value ? (e.openBlock(), e.createElementBlock(
           "span",
-          xa,
+          Qa,
           e.toDisplayString(s.$t("有未保存的修改")),
           1
           /* TEXT */
@@ -5704,7 +5719,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       ])
     ])) : e.createCommentVNode("v-if", !0);
   }
-}), Za = /* @__PURE__ */ x(Xa, [["__scopeId", "data-v-1a3ea6a3"]]), ei = { class: "ba-hist" }, ti = { class: "ss-kpis" }, li = { class: "ss-kpi" }, ni = { class: "ss-kpi accent" }, oi = { class: "ss-kpi" }, si = { class: "ss-kpi" }, ai = { class: "ss-panel" }, ii = { class: "ba-hist__bar" }, ri = {
+}), Za = /* @__PURE__ */ Q(Xa, [["__scopeId", "data-v-f8f54ee4"]]), ei = { class: "ba-hist" }, ti = { class: "ss-kpis" }, li = { class: "ss-kpi" }, ni = { class: "ss-kpi accent" }, oi = { class: "ss-kpi" }, si = { class: "ss-kpi" }, ai = { class: "ss-panel" }, ii = { class: "ba-hist__bar" }, ri = {
   class: "ba-hist__filters",
   role: "tablist"
 }, ci = ["aria-selected", "onClick"], di = ["placeholder"], ui = {
@@ -5716,7 +5731,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
 }, hi = {
   key: 2,
   class: "ba-hist__dur"
-}, ki = { class: "ba-hist__main" }, Vi = { class: "ba-hist__title" }, gi = { class: "ss-chip" }, bi = { class: "ba-hist__meta" }, Ni = { key: 0 }, Ei = { key: 1 }, fi = {
+}, ki = { class: "ba-hist__main" }, Vi = { class: "ba-hist__title" }, gi = { class: "ss-chip" }, Ni = { class: "ba-hist__meta" }, bi = { key: 0 }, Ei = { key: 1 }, fi = {
   key: 0,
   class: "ba-hist__plats"
 }, $i = {
@@ -5737,13 +5752,13 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
 }, ji = {
   key: 0,
   class: "ss-muted"
-}, Wi = { class: "ss-subhead" }, Ji = { class: "ss-table-wrap" }, qi = { class: "ss-table" }, Hi = { class: "num" }, Gi = { class: "num" }, Yi = { class: "num" }, Qi = { class: "num" }, xi = { class: "num" }, Xi = { class: "num" }, Zi = { class: "num" }, er = { class: "num" }, tr = { class: "ss-subhead" }, lr = {
+}, Wi = { class: "ss-subhead" }, qi = { class: "ss-table-wrap" }, Ji = { class: "ss-table" }, Hi = { class: "num" }, Gi = { class: "num" }, Yi = { class: "num" }, xi = { class: "num" }, Qi = { class: "num" }, Xi = { class: "num" }, Zi = { class: "num" }, er = { class: "num" }, tr = { class: "ss-subhead" }, lr = {
   key: 0,
   class: "ss-muted"
 }, nr = /* @__PURE__ */ e.defineComponent({
   __name: "HistoryTab",
   emits: ["goto"],
-  setup(J) {
+  setup(q) {
     const R = [
       { key: "all", label: n.t("全部") },
       { key: "published", label: n.t("已发布") },
@@ -5755,7 +5770,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       return _.length ? Math.max(..._) : 0;
     }
     function T(u) {
-      const _ = b(u);
+      const _ = N(u);
       return u.status === "failed" || u.status !== "published" && !!_ && !_.published.length;
     }
     function F(u, _) {
@@ -5780,7 +5795,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
     function k(u) {
       return u.scenes[0]?.image || u.materials[0];
     }
-    function b(u) {
+    function N(u) {
       return u.publishRuns?.[u.publishRuns.length - 1];
     }
     function g(u) {
@@ -5817,7 +5832,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       schedule: n.t("定时"),
       publish: n.t("发布"),
       stats: n.t("数据回收")
-    }, N = {
+    }, b = {
       create: "ri-add-circle-line",
       material: "ri-image-add-line",
       script: "ri-quill-pen-line",
@@ -5832,7 +5847,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       return P[u] || u;
     }
     function C(u) {
-      return N[u] || "ri-checkbox-blank-circle-line";
+      return b[u] || "ri-checkbox-blank-circle-line";
     }
     function j(u) {
       if (u.history?.length) return [...u.history].reverse();
@@ -6016,7 +6031,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", bi, [
+                  e.createElementVNode("div", Ni, [
                     e.createElementVNode(
                       "span",
                       null,
@@ -6026,7 +6041,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                     ),
                     m.publishedAt ? (e.openBlock(), e.createElementBlock(
                       "span",
-                      Ni,
+                      bi,
                       e.toDisplayString(u.$t("发布 {p0}", { p0: e.unref(l.fmtDateTime)(m.publishedAt) })),
                       1
                       /* TEXT */
@@ -6045,11 +6060,11 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                       /* TEXT */
                     )
                   ]),
-                  b(m) ? (e.openBlock(), e.createElementBlock("div", fi, [
+                  N(m) ? (e.openBlock(), e.createElementBlock("div", fi, [
                     (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       null,
-                      e.renderList(O(b(m)), (a) => (e.openBlock(), e.createElementBlock(
+                      e.renderList(O(N(m)), (a) => (e.openBlock(), e.createElementBlock(
                         "span",
                         {
                           key: a.platform,
@@ -6310,8 +6325,8 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                           1
                           /* TEXT */
                         ),
-                        e.createElementVNode("div", Ji, [
-                          e.createElementVNode("table", qi, [
+                        e.createElementVNode("div", qi, [
+                          e.createElementVNode("table", Ji, [
                             e.createElementVNode("thead", null, [
                               e.createElementVNode("tr", null, [
                                 e.createElementVNode(
@@ -6344,7 +6359,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                                 ),
                                 e.createElementVNode(
                                   "th",
-                                  Qi,
+                                  xi,
                                   e.toDisplayString(u.$t("分享")),
                                   1
                                   /* TEXT */
@@ -6372,7 +6387,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                                   ),
                                   e.createElementVNode(
                                     "td",
-                                    xi,
+                                    Qi,
                                     e.toDisplayString(m.stats[a].plays),
                                     1
                                     /* TEXT */
@@ -6476,7 +6491,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       ])
     ]));
   }
-}), or = /* @__PURE__ */ x(nr, [["__scopeId", "data-v-98085cb3"]]), sr = { class: "ba-workbench" }, ar = { class: "workbench-header" }, ir = { class: "heading" }, rr = { class: "eyebrow" }, cr = { class: "subtitle" }, dr = { class: "header-actions" }, ur = ["disabled"], mr = {
+}), or = /* @__PURE__ */ Q(nr, [["__scopeId", "data-v-98085cb3"]]), sr = { class: "ba-workbench" }, ar = { class: "workbench-header" }, ir = { class: "heading" }, rr = { class: "eyebrow" }, cr = { class: "subtitle" }, dr = { class: "header-actions" }, ur = ["disabled"], mr = {
   key: 0,
   class: "ba-bar"
 }, pr = { class: "ss-muted" }, vr = { class: "ba-bar__rule" }, yr = { class: "no" }, hr = { class: "yes" }, kr = {
@@ -6485,7 +6500,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
 }, Vr = ["aria-selected", "onClick"], gr = {
   key: 0,
   class: "ba-badge"
-}, br = ["onClick"], Nr = {
+}, Nr = ["onClick"], br = {
   key: 1,
   class: "ss-note info ba-progress"
 }, Er = {
@@ -6502,7 +6517,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
   class: "ss-note"
 }, ie = "totalclaw:biz-automation-tab:v1", Ar = /* @__PURE__ */ e.defineComponent({
   __name: "BizAutomationWorkbenchView",
-  setup(J) {
+  setup(q) {
     const R = [
       { key: "video", icon: "ri-movie-2-line", title: n.t("短视频发布") },
       { key: "avatar", icon: "ri-user-voice-line", title: n.t("数字人介绍") },
@@ -6520,51 +6535,51 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
     ];
     function v() {
       try {
-        const N = localStorage.getItem(ie);
-        return R.some((B) => B.key === N) ? N : "overview";
+        const b = localStorage.getItem(ie);
+        return R.some((B) => B.key === b) ? b : "overview";
       } catch {
         return "overview";
       }
     }
-    const $ = l.baState, z = e.computed(() => l.baGarments.value), D = e.ref(v()), T = e.reactive({}), F = e.ref(!1), p = e.ref(!1), V = e.ref(""), o = e.computed(() => l.baProgress[D.value] || ""), s = e.computed(() => ($.value?.videos || []).filter((N) => N.publishDue && N.status === "approved")), k = ee.useRouter(), b = Y.useNotificationStore();
-    async function g(N) {
+    const $ = l.baState, z = e.computed(() => l.baGarments.value), D = e.ref(v()), T = e.reactive({}), F = e.ref(!1), p = e.ref(!1), V = e.ref(""), o = e.computed(() => l.baProgress[D.value] || ""), s = e.computed(() => ($.value?.videos || []).filter((b) => b.publishDue && b.status === "approved")), k = ee.useRouter(), N = Y.useNotificationStore();
+    async function g(b) {
       try {
-        const B = await l.ba("video.publishInput", { id: N });
-        await l.startPublishWorkflow(B, N), await k.push({ path: "/workflow" });
+        const B = await l.ba("video.publishInput", { id: b });
+        await l.startPublishWorkflow(B, b), await k.push({ path: "/workflow" });
       } catch (B) {
-        b.error(l.errorMessage(B));
+        N.error(l.errorMessage(B));
       }
     }
-    function I(N) {
+    function I(b) {
       const B = $.value;
       if (!B) return "";
-      if (N === "listing") {
+      if (b === "listing") {
         const C = B.ruleHits.filter((j) => j.rule === "soldout" || j.rule === "broken_size").length;
         return C ? String(C) : "";
       }
-      if (N === "video") {
+      if (b === "video") {
         const C = B.videos.filter((j) => j.status === "rendered" || j.status === "scripted").length;
         return C ? String(C) : "";
       }
       return "";
     }
-    function w(N) {
-      D.value = N;
+    function w(b) {
+      D.value = b;
       try {
-        localStorage.setItem(ie, N);
+        localStorage.setItem(ie, b);
       } catch {
       }
     }
-    function S(N, B) {
-      R.some((C) => C.key === N) && (T[N] = { ...B || {}, at: Date.now() }, w(N));
+    function S(b, B) {
+      R.some((C) => C.key === b) && (T[b] = { ...B || {}, at: Date.now() }, w(b));
     }
     async function L() {
       p.value = !0;
       try {
-        const N = await l.consumePublishResult().catch(() => !1);
-        await Promise.all([l.refreshState(), l.loadModels()]), N && b.info(n.t("发布结果已记入历史记录")), F.value = !0, V.value = "";
-      } catch (N) {
-        V.value = l.errorMessage(N);
+        const b = await l.consumePublishResult().catch(() => !1);
+        await Promise.all([l.refreshState(), l.loadModels()]), b && N.info(n.t("发布结果已记入历史记录")), F.value = !0, V.value = "";
+      } catch (b) {
+        V.value = l.errorMessage(b);
       } finally {
         p.value = !1;
       }
@@ -6573,14 +6588,14 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
     const O = {};
     let P = null;
     return e.onMounted(() => {
-      L(), P = l.onBaEvent((N) => {
-        if (N.type === "publish-due" && N.payload?.id) {
-          g(String(N.payload.id));
+      L(), P = l.onBaEvent((b) => {
+        if (b.type === "publish-due" && b.payload?.id) {
+          g(String(b.payload.id));
           return;
         }
-        if (N.type === "progress" && N.payload?.key) {
-          const B = String(N.payload.key);
-          l.baProgress[B] = String(N.payload.message || ""), clearTimeout(O[B]), O[B] = setTimeout(() => {
+        if (b.type === "progress" && b.payload?.key) {
+          const B = String(b.payload.key);
+          l.baProgress[B] = String(b.payload.message || ""), clearTimeout(O[B]), O[B] = setTimeout(() => {
             l.baProgress[B] = "";
           }, 2e4);
           return;
@@ -6592,8 +6607,8 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       });
     }), e.onBeforeUnmount(() => {
       P?.(), M && clearTimeout(M);
-      for (const N of Object.values(O)) clearTimeout(N);
-    }), (N, B) => (e.openBlock(), e.createElementBlock("div", sr, [
+      for (const b of Object.values(O)) clearTimeout(b);
+    }), (b, B) => (e.openBlock(), e.createElementBlock("div", sr, [
       e.createElementVNode("header", ar, [
         e.createElementVNode("div", ir, [
           e.createVNode(ue),
@@ -6610,21 +6625,21 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             e.createElementVNode(
               "p",
               rr,
-              e.toDisplayString(N.$t("行业工作台")),
+              e.toDisplayString(b.$t("行业工作台")),
               1
               /* TEXT */
             ),
             e.createElementVNode(
               "h1",
               null,
-              e.toDisplayString(N.$t("经营自动化智能体")),
+              e.toDisplayString(b.$t("经营自动化智能体")),
               1
               /* TEXT */
             ),
             e.createElementVNode(
               "p",
               cr,
-              e.toDisplayString(N.$t("短视频发自媒体、数字人介绍企业、商品图文上下架、经营数据自动统计推送。发布与上架默认停在提交前由你确认，数字全部由规则计算，财务数据只读。")),
+              e.toDisplayString(b.$t("短视频发自媒体、数字人介绍企业、商品图文上下架、经营数据自动统计推送。发布与上架默认停在提交前由你确认，数字全部由规则计算，财务数据只读。")),
               1
               /* TEXT */
             )
@@ -6646,7 +6661,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
               /* CLASS */
             ),
             e.createTextVNode(
-              e.toDisplayString(N.$t("刷新")),
+              e.toDisplayString(b.$t("刷新")),
               1
               /* TEXT */
             )
@@ -6663,7 +6678,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             /* CACHED */
           )),
           e.createTextVNode(
-            e.toDisplayString(e.unref($).settings.brandName || N.$t("未设置品牌名")),
+            e.toDisplayString(e.unref($).settings.brandName || b.$t("未设置品牌名")),
             1
             /* TEXT */
           )
@@ -6671,7 +6686,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
         e.createElementVNode(
           "span",
           pr,
-          e.toDisplayString(N.$t("商品 {a} · 视频 {b} · 上架 {c} · 销售数据 {d} 行", { a: z.value.length, b: e.unref($).videos.length, c: e.unref($).listings.filter((C) => C.status === "listed").length, d: e.unref($).salesRows })),
+          e.toDisplayString(b.$t("商品 {a} · 视频 {b} · 上架 {c} · 销售数据 {d} 行", { a: z.value.length, b: e.unref($).videos.length, c: e.unref($).listings.filter((C) => C.status === "listed").length, d: e.unref($).salesRows })),
           1
           /* TEXT */
         ),
@@ -6685,7 +6700,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(N.$t("模型不算钱、不改财务数据、不擅自提交")),
+              e.toDisplayString(b.$t("模型不算钱、不改财务数据、不擅自提交")),
               1
               /* TEXT */
             )
@@ -6699,7 +6714,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(N.$t("发布 / 上架停在提交前由你确认")),
+              e.toDisplayString(b.$t("发布 / 上架停在提交前由你确认")),
               1
               /* TEXT */
             )
@@ -6761,7 +6776,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             /* CACHED */
           )),
           e.createTextVNode(
-            e.toDisplayString(N.$t("「{p0}」到了定时发布时间", { p0: C.name })),
+            e.toDisplayString(b.$t("「{p0}」到了定时发布时间", { p0: C.name })),
             1
             /* TEXT */
           ),
@@ -6769,12 +6784,12 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             type: "button",
             class: "ss-btn sm primary",
             onClick: (j) => g(C.id)
-          }, e.toDisplayString(N.$t("立即发布")), 9, br)
+          }, e.toDisplayString(b.$t("立即发布")), 9, Nr)
         ]))),
         128
         /* KEYED_FRAGMENT */
       )),
-      o.value ? (e.openBlock(), e.createElementBlock("p", Nr, [
+      o.value ? (e.openBlock(), e.createElementBlock("p", br, [
         B[5] || (B[5] = e.createElementVNode(
           "i",
           { class: "ri-loader-4-line spin" },
@@ -6795,7 +6810,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
         }, null, 8, ["focus"])) : D.value === "avatar" ? (e.openBlock(), e.createBlock(Zl, {
           key: 1,
           onGoto: S
-        })) : D.value === "listing" ? (e.openBlock(), e.createBlock(Zn, { key: 2 })) : D.value === "finance" ? (e.openBlock(), e.createBlock(Ns, { key: 3 })) : D.value === "schedule" ? (e.openBlock(), e.createBlock(va, { key: 4 })) : D.value === "history" ? (e.openBlock(), e.createBlock(or, {
+        })) : D.value === "listing" ? (e.openBlock(), e.createBlock(Zn, { key: 2 })) : D.value === "finance" ? (e.openBlock(), e.createBlock(bs, { key: 3 })) : D.value === "schedule" ? (e.openBlock(), e.createBlock(va, { key: 4 })) : D.value === "history" ? (e.openBlock(), e.createBlock(or, {
           key: 5,
           onGoto: S
         })) : D.value === "settings" ? (e.openBlock(), e.createBlock(Za, { key: 6 })) : (e.openBlock(), e.createElementBlock("div", fr, [
@@ -6803,7 +6818,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             e.createElementVNode(
               "h3",
               null,
-              e.toDisplayString(N.$t("四个模块，一个商品库")),
+              e.toDisplayString(b.$t("四个模块，一个商品库")),
               1
               /* TEXT */
             ),
@@ -6848,7 +6863,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             e.createElementVNode(
               "p",
               Dr,
-              e.toDisplayString(N.$t("商品库在「服装实体店智能体」里维护（导入、AI 打标签、尺码库存）；试穿图会自动成为短视频与上架图的素材。")),
+              e.toDisplayString(b.$t("商品库在「服装实体店智能体」里维护（导入、AI 打标签、尺码库存）；试穿图会自动成为短视频与上架图的素材。")),
               1
               /* TEXT */
             )
@@ -6857,7 +6872,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             e.createElementVNode(
               "h3",
               null,
-              e.toDisplayString(N.$t("三条红线")),
+              e.toDisplayString(b.$t("三条红线")),
               1
               /* TEXT */
             ),
@@ -6865,21 +6880,21 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
               e.createElementVNode(
                 "li",
                 null,
-                e.toDisplayString(N.$t("钱和数字不交给模型算：营业额、毛利、库存、价格全部由规则计算；模型只写解读与文案，写出来的数字回原数据核对")),
+                e.toDisplayString(b.$t("钱和数字不交给模型算：营业额、毛利、库存、价格全部由规则计算；模型只写解读与文案，写出来的数字回原数据核对")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "li",
                 null,
-                e.toDisplayString(N.$t("对外发布与上下架有人工闸门：发布视频、上架、改价默认停在提交前等你确认，每次执行都留痕")),
+                e.toDisplayString(b.$t("对外发布与上下架有人工闸门：发布视频、上架、改价默认停在提交前等你确认，每次执行都留痕")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "li",
                 null,
-                e.toDisplayString(N.$t("财务数据只读：只导入、只统计，不写回收银或财务系统")),
+                e.toDisplayString(b.$t("财务数据只读：只导入、只统计，不写回收银或财务系统")),
                 1
                 /* TEXT */
               )
@@ -6889,7 +6904,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             e.createElementVNode(
               "h3",
               null,
-              e.toDisplayString(N.$t("合规")),
+              e.toDisplayString(b.$t("合规")),
               1
               /* TEXT */
             ),
@@ -6897,21 +6912,21 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
               e.createElementVNode(
                 "li",
                 null,
-                e.toDisplayString(N.$t("数字人视频画面带「AI 生成」标识，发布文案末尾注明；使用真人形象须本人书面授权")),
+                e.toDisplayString(b.$t("数字人视频画面带「AI 生成」标识，发布文案末尾注明；使用真人形象须本人书面授权")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "li",
                 null,
-                e.toDisplayString(N.$t("脚本、标题、讲稿自动检查广告法极限词；活动信息里没有的价格 / 折扣会被标出来")),
+                e.toDisplayString(b.$t("脚本、标题、讲稿自动检查广告法极限词；活动信息里没有的价格 / 折扣会被标出来")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "li",
                 null,
-                e.toDisplayString(N.$t("平台账号由你在内置浏览器登录，系统不保存密码；按人的节奏操作，建议每账号每天发布不超过 3 条")),
+                e.toDisplayString(b.$t("平台账号由你在内置浏览器登录，系统不保存密码；按人的节奏操作，建议每账号每天发布不超过 3 条")),
                 1
                 /* TEXT */
               )
@@ -6940,14 +6955,14 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(N.$t("正在加载工作台…")),
+          e.toDisplayString(b.$t("正在加载工作台…")),
           1
           /* TEXT */
         )
       ]))
     ]));
   }
-}), Ir = /* @__PURE__ */ x(Ar, [["__scopeId", "data-v-de2a97a7"]]);
+}), Ir = /* @__PURE__ */ Q(Ar, [["__scopeId", "data-v-6eb40d97"]]);
 export {
   Ir as default
 };

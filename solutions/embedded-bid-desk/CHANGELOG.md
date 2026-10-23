@@ -2,6 +2,7 @@
 
 ## 2.0.2 (2026-10-22)
 
+- 界面样式改用宿主设计 token（同步 qiye-app master 的界面改造）；需要 App 2.0.6 起。
 - 能力卡片标题随品牌显示（白标版不再写死 TotalClaw）（同步 qiye-app yitiji 分支的品牌统一改动）。
 - 需要 App 2.0.6 起（宿主模块注册表新增 renderer/utils/brand.ts）；更早的 App 继续使用 2.0.1。
 

@@ -559,7 +559,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       { id: "slideshow", icon: "ri-slideshow-3-line", label: o.t("图片成片"), desc: o.t("素材图片一键成片（oneclick_from_folder 脚本，快、稳定）") },
       {
         id: "dynamic",
-        icon: "ri-sparkling-2-line",
+        icon: "ri-movie-2-line",
         label: o.t("动态视频生成"),
         desc: ke.value ? o.t("由 {p0} 用参考图生成运镜与动态镜头", { p0: ke.value }) : o.t("用参考图生成运镜与动态镜头（需先在上方配置视频生成模型）")
       }
@@ -3579,7 +3579,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         e.createElementVNode(
                           "i",
                           {
-                            class: e.normalizeClass(se.value ? "ri-loader-4-line spin" : "ri-magic-line")
+                            class: e.normalizeClass(se.value ? "ri-loader-4-line spin" : "ri-quill-pen-line")
                           },
                           null,
                           2
@@ -3611,7 +3611,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         e.createElementVNode("span", null, [
                           n[60] || (n[60] = e.createElementVNode(
                             "i",
-                            { class: "ri-sparkling-2-line" },
+                            { class: "ri-film-line" },
                             null,
                             -1
                             /* CACHED */
@@ -7409,7 +7409,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       e.createElementVNode(
                         "i",
                         {
-                          class: e.normalizeClass(se.value ? "ri-loader-4-line spin" : "ri-sparkling-2-line")
+                          class: e.normalizeClass(se.value ? "ri-loader-4-line spin" : "ri-quill-pen-line")
                         },
                         null,
                         2
@@ -7875,7 +7875,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
   for (const [N, g] of je)
     H[N] = g;
   return H;
-}, Ou = /* @__PURE__ */ Mu(Iu, [["__scopeId", "data-v-e4035d99"]]);
+}, Ou = /* @__PURE__ */ Mu(Iu, [["__scopeId", "data-v-e3ebcf11"]]);
 export {
   Ou as default
 };

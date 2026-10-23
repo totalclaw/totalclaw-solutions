@@ -100,7 +100,7 @@
               <button
                 v-if="project.strategies.length" type="button" class="bw-btn sm"
                 :disabled="goalDrafting" @click="draftGoal(true)"
-              ><i class="ri-magic-line"></i>{{ project.goal.trim() ? $t('按所选侧重重写') : $t('生成目标') }}</button>
+              ><i class="ri-quill-pen-line"></i>{{ project.goal.trim() ? $t('按所选侧重重写') : $t('生成目标') }}</button>
             </span>
             <textarea
               v-model="project.goal" rows="3"
@@ -477,7 +477,7 @@
 
         <div class="bw-hero__actions">
           <button type="button" class="bw-btn primary" :disabled="busy || !canCompose" @click="composeAll">
-            <i class="ri-magic-line"></i>{{ $t('按大纲逐章生成') }}
+            <i class="ri-quill-pen-line"></i>{{ $t('按大纲逐章生成') }}
           </button>
           <button type="button" class="bw-btn" :disabled="!composing" @click="cancelCompose">
             <i class="ri-stop-circle-line"></i>{{ $t('停止') }}

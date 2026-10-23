@@ -12,12 +12,12 @@
       <label class="rdw-field">
         <span>
           {{ $t('需求描述') }} <em>*</em>
-          <button type="button" class="rdw-upload" :disabled="parsing" @click="uploadDoc">{{ parsing ? $t('解析中…') : $t('📎 上传文档解析') }}</button>
+          <button type="button" class="rdw-upload" :disabled="parsing" @click="uploadDoc"><i v-if="!parsing" class="ri-attachment-2" aria-hidden="true"></i> {{ parsing ? $t('解析中…') : $t('上传文档解析') }}</button>
         </span>
         <textarea v-model="form.requirement" rows="5" :placeholder="$t('把你要做的产品/功能讲清楚：目标用户、要解决的问题、核心功能…（也可上传需求文档，自动解析填入）')"></textarea>
         <div v-if="attached.length" class="rdw-attached">
           <span v-for="(f, i) in attached" :key="i" class="rdw-chip" :class="{ warn: !!f.reason }" :title="f.reason || ''">
-            📄 {{ f.name }}<template v-if="f.reason"> · {{ f.reason }}</template>
+            <i class="ri-file-text-line" aria-hidden="true"></i> {{ f.name }}<template v-if="f.reason"> · {{ f.reason }}</template>
           </span>
         </div>
       </label>
@@ -70,7 +70,7 @@
             <span v-if="h.devTypeLabel" class="rdw-history-type">{{ h.devTypeLabel }}</span>
             <span class="rdw-history-time">{{ historyTime(h.startedAt) }}</span>
           </div>
-          <div class="rdw-history-dir" :title="h.projectDir">📁 {{ h.projectDir }}</div>
+          <div class="rdw-history-dir" :title="h.projectDir"><i class="ri-folder-line" aria-hidden="true"></i> {{ h.projectDir }}</div>
           <div v-if="h.requirement" class="rdw-history-req">{{ h.requirement }}</div>
           <div class="rdw-history-actions">
             <button class="rdw-btn primary" :disabled="chatBusy === h.projectDir" @click="goToChat(h.projectDir, h.projectName)">
@@ -120,7 +120,7 @@
             <span v-if="stateOf(n.id).status === 'running'" class="rdw-node-elapsed">⏱ {{ elapsedSec(n.id) }}s</span>
             <span class="rdw-node-metrics">
               <template v-if="stateOf(n.id).output.length">{{ stateOf(n.id).output.length }} {{ $t('字') }}</template>
-              <template v-if="stateOf(n.id).files.length"> · 📄 {{ stateOf(n.id).files.length }} · +{{ addedLines(n.id) }} {{ $t('行') }}</template>
+              <template v-if="stateOf(n.id).files.length"> · <i class="ri-file-text-line" aria-hidden="true"></i> {{ stateOf(n.id).files.length }} · +{{ addedLines(n.id) }} {{ $t('行') }}</template>
             </span>
           </div>
           <div class="rdw-node-duty">{{ $t(n.duty) }}</div>
@@ -657,7 +657,7 @@ onBeforeUnmount(unsubscribe);
   margin-bottom: 20px;
   padding: 22px 26px 25px;
   border: 1px solid color-mix(in srgb, var(--rdw-accent) 22%, var(--rdw-border));
-  border-radius: var(--radius-xl, 20px);
+  border-radius: var(--radius-xl);
   background:
     linear-gradient(125deg, color-mix(in srgb, var(--rdw-accent-soft) 78%, var(--rdw-surface)) 0%, var(--rdw-surface) 54%, color-mix(in srgb, var(--color-brand-secondary) 8%, var(--rdw-surface)) 100%);
   box-shadow: var(--shadow-md);
@@ -710,9 +710,9 @@ onBeforeUnmount(unsubscribe);
   width: 12px;
   height: 12px;
   flex: 0 0 auto;
-  border-radius: 4px;
+  border-radius: var(--radius-1);
   background: var(--gradient-brand);
-  box-shadow: 0 0 0 6px var(--rdw-accent-soft), 0 7px 20px var(--color-brand-glow);
+  box-shadow: var(--rdw-p-shadow);
 }
 .rdw-sub {
   position: relative;
@@ -730,7 +730,7 @@ onBeforeUnmount(unsubscribe);
   min-width: 0;
   padding: 24px 26px 26px;
   border: 1px solid var(--rdw-border);
-  border-radius: 18px;
+  border-radius: var(--radius-7);
   background: color-mix(in srgb, var(--rdw-surface) 97%, transparent);
   box-shadow: var(--shadow-sm);
 }
@@ -751,7 +751,7 @@ onBeforeUnmount(unsubscribe);
   width: 30px;
   height: 30px;
   place-items: center;
-  border-radius: 9px;
+  border-radius: var(--radius-3);
   color: var(--rdw-accent);
   background: var(--rdw-accent-soft);
   font-family: var(--font-mono);
@@ -769,7 +769,7 @@ onBeforeUnmount(unsubscribe);
 }
 .rdw-field > span {
   color: var(--rdw-text-soft);
-  font-size: 12px;
+  font-size: var(--font-size-sm);
   font-weight: 650;
   letter-spacing: .01em;
 }
@@ -780,12 +780,12 @@ onBeforeUnmount(unsubscribe);
 .rdw-confirm textarea {
   width: 100%;
   border: 1px solid var(--rdw-border);
-  border-radius: 11px;
+  border-radius: var(--radius-4);
   outline: none;
   background: var(--rdw-surface-soft);
   color: var(--rdw-text);
   font-family: inherit;
-  font-size: 13px;
+  font-size: var(--font-size-md);
   transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
 }
 .rdw-field input,
@@ -812,39 +812,42 @@ onBeforeUnmount(unsubscribe);
 }
 .rdw-upload {
   margin-left: 10px;
-  font-size: 11px;
+  font-size: var(--font-size-xs);
   padding: 2px 9px;
   border: 1px solid var(--rdw-border);
-  border-radius: 6px;
+  border-radius: var(--radius-2);
   background: var(--rdw-surface);
-  color: var(--color-accent, #2f6fed);
+  color: var(--color-accent, var(--rdw-p-info));
   cursor: pointer;
   font-weight: 500;
 }
 .rdw-upload:disabled { opacity: .55; cursor: default; }
+/* 回形针图标替换原 emoji：行高定成原 emoji 撑出的 18px，按钮仍是 24px 高，下方表单不移位 */
+.rdw-upload { line-height: 18px; }
+.rdw-upload i { font-size: 1.36em; line-height: 1; vertical-align: middle; }
 .rdw-outdir { display: flex; gap: 10px; align-items: stretch; }
 .rdw-outdir input { flex: 1; cursor: pointer; }
 .rdw-outdir .rdw-btn { flex-shrink: 0; white-space: nowrap; }
-.rdw-outdir-hint { margin-top: 6px; font-size: 12px; color: var(--color-text-secondary); word-break: break-all; }
+.rdw-outdir-hint { margin-top: 6px; font-size: var(--font-size-sm); color: var(--color-text-secondary); word-break: break-all; }
 .rdw-attached { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
 .rdw-chip {
-  font-size: 11px;
+  font-size: var(--font-size-xs);
   padding: 3px 9px;
-  border-radius: 6px;
+  border-radius: var(--radius-2);
   border: 1px solid var(--rdw-border);
   background: var(--rdw-surface);
-  color: var(--color-text-secondary, #5b6472);
+  color: var(--color-text-secondary);
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.rdw-chip.warn { color: var(--color-status-warn-fg, #8a6100); background: color-mix(in srgb, var(--color-status-warn-bg, #fdf1d6) 70%, var(--rdw-surface)); }
+.rdw-chip.warn { color: var(--color-status-warn-fg, var(--rdw-p-warn)); background: color-mix(in srgb, var(--color-status-warn-bg, var(--rdw-p-warn-bg)) 70%, var(--rdw-surface)); }
 .rdw-err {
   margin: 0 0 14px;
   padding: 10px 12px;
   border: 1px solid color-mix(in srgb, var(--color-danger) 28%, var(--rdw-border));
-  border-radius: 10px;
+  border-radius: var(--radius-4);
   color: var(--color-status-danger-fg);
   background: color-mix(in srgb, var(--color-status-danger-bg) 76%, var(--rdw-surface));
   font-size: 12.5px;
@@ -856,16 +859,16 @@ onBeforeUnmount(unsubscribe);
   justify-self: end;
   padding: 10px 24px;
   border: 0;
-  border-radius: 11px;
-  color: #fff;
+  border-radius: var(--radius-4);
+  color: var(--color-on-accent);
   background: var(--gradient-brand);
-  box-shadow: 0 10px 26px var(--color-brand-glow);
+  box-shadow: var(--rdw-p-shadow-2);
   font-size: 13.5px;
   font-weight: 720;
   cursor: pointer;
   transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
 }
-.rdw-start:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 14px 32px var(--color-brand-glow); filter: saturate(1.08); }
+.rdw-start:hover:not(:disabled) { transform: translateY(-1px); box-shadow: var(--rdw-p-shadow-3); filter: saturate(1.08); }
 .rdw-start:active:not(:disabled) { transform: translateY(0); }
 .rdw-start:disabled { cursor: default; opacity: .52; box-shadow: none; filter: saturate(.7); }
 
@@ -874,35 +877,35 @@ onBeforeUnmount(unsubscribe);
   margin-top: 18px;
   padding: 20px 22px 22px;
   border: 1px solid var(--rdw-border);
-  border-radius: 18px;
+  border-radius: var(--radius-7);
   background: color-mix(in srgb, var(--rdw-surface) 97%, transparent);
   box-shadow: var(--shadow-sm);
 }
 .rdw-history-head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--rdw-divider); }
 .rdw-history-head h3 { margin: 0; color: var(--rdw-text); font-size: 15.5px; font-weight: 720; }
-.rdw-history-sub { color: var(--rdw-text-muted); font-size: 12px; }
+.rdw-history-sub { color: var(--rdw-text-muted); font-size: var(--font-size-sm); }
 .rdw-history-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 11px; }
 .rdw-history-item {
   min-width: 0;
   padding: 13px 15px;
   border: 1px solid var(--rdw-border);
-  border-radius: 13px;
+  border-radius: var(--radius-5);
   background: var(--rdw-surface-soft);
   transition: border-color .16s ease, box-shadow .16s ease;
 }
 .rdw-history-item:hover { border-color: color-mix(in srgb, var(--rdw-accent) 28%, var(--rdw-border)); box-shadow: var(--shadow-sm); }
 .rdw-history-main { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 .rdw-history-name { color: var(--rdw-text); font-size: 13.5px; font-weight: 700; }
-.rdw-history-badge { padding: 2px 9px; border-radius: 999px; font-size: 10.5px; font-weight: 650; border: 1px solid transparent; }
+.rdw-history-badge { padding: 2px 9px; border-radius: var(--radius-pill); font-size: 10.5px; font-weight: 650; border: 1px solid transparent; }
 .rdw-history-badge.running { color: var(--rdw-accent); background: var(--rdw-accent-soft); }
 .rdw-history-badge.paused { color: var(--color-status-warning-fg); background: var(--color-status-warning-bg); }
 .rdw-history-badge.done { color: var(--color-status-success-fg); background: var(--color-status-success-bg); }
 .rdw-history-badge.failed { color: var(--color-status-danger-fg); background: var(--color-status-danger-bg); }
 .rdw-history-badge.cancelled { color: var(--rdw-text-soft); background: var(--rdw-surface-raised); border-color: var(--rdw-border); }
 .rdw-history-type { color: var(--rdw-text-soft); font-size: 11.5px; }
-.rdw-history-time { margin-left: auto; color: var(--rdw-text-muted); font-size: 11px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rdw-history-time { margin-left: auto; color: var(--rdw-text-muted); font-size: var(--font-size-xs); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .rdw-history-dir { margin-top: 7px; color: var(--rdw-text-soft); font-size: 11.5px; word-break: break-all; }
-.rdw-history-req { margin-top: 5px; color: var(--rdw-text-muted); font-size: 12px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.rdw-history-req { margin-top: 5px; color: var(--rdw-text-muted); font-size: var(--font-size-sm); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .rdw-history-actions { margin-top: 11px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .rdw-history-actions .rdw-btn { min-height: 32px; padding: 5px 12px; }
 .rdw-history-del { color: var(--color-status-danger-fg) !important; }
@@ -921,11 +924,11 @@ onBeforeUnmount(unsubscribe);
   justify-content: space-between;
   gap: 14px;
   border: 1px solid var(--surface-stroke);
-  border-radius: 16px;
+  border-radius: var(--radius-7);
   background: var(--surface-glass);
   box-shadow: var(--shadow-md);
-  backdrop-filter: blur(16px) saturate(135%);
-  -webkit-backdrop-filter: blur(16px) saturate(135%);
+  backdrop-filter: var(--rdw-p-blur);
+  -webkit-backdrop-filter: var(--rdw-p-blur);
 }
 .rdw-run-head > div:first-child { min-width: 0; display: flex; align-items: center; gap: 9px; flex-wrap: wrap; }
 .rdw-run-head b { overflow: hidden; color: var(--rdw-text); font-size: 16px; font-weight: 740; text-overflow: ellipsis; white-space: nowrap; }
@@ -935,8 +938,8 @@ onBeforeUnmount(unsubscribe);
   display: inline-flex;
   align-items: center;
   border: 1px solid transparent;
-  border-radius: 999px;
-  font-size: 11px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
   font-weight: 680;
   line-height: 1.4;
 }
@@ -951,14 +954,14 @@ onBeforeUnmount(unsubscribe);
   margin: 0;
   padding: 7px 14px;
   border: 1px solid transparent;
-  border-radius: 9px;
-  font-size: 12px;
+  border-radius: var(--radius-3);
+  font-size: var(--font-size-sm);
   font-weight: 650;
   cursor: pointer;
   transition: border-color .16s ease, color .16s ease, background .16s ease, transform .16s ease;
 }
 .rdw-btn:hover:not(:disabled) { transform: translateY(-1px); }
-.rdw-btn.primary { color: #fff; background: var(--gradient-brand); box-shadow: 0 8px 20px var(--color-brand-glow); }
+.rdw-btn.primary { color: var(--color-on-accent); background: var(--gradient-brand); box-shadow: var(--rdw-p-shadow-4); }
 .rdw-btn.ghost { margin: 0; color: var(--rdw-text-soft); background: var(--rdw-surface-raised); border-color: var(--rdw-border); }
 .rdw-btn.ghost:hover { color: var(--rdw-accent); border-color: color-mix(in srgb, var(--rdw-accent) 45%, var(--rdw-border)); background: var(--rdw-accent-soft); }
 
@@ -974,7 +977,7 @@ onBeforeUnmount(unsubscribe);
   min-width: 0;
   padding: 17px 18px 17px 68px;
   border: 1px solid var(--rdw-border);
-  border-radius: 15px;
+  border-radius: var(--radius-6);
   background: color-mix(in srgb, var(--rdw-surface) 97%, transparent);
   box-shadow: var(--shadow-sm);
   counter-increment: rdw-step;
@@ -990,7 +993,7 @@ onBeforeUnmount(unsubscribe);
   display: grid;
   place-items: center;
   border: 1px solid var(--rdw-border);
-  border-radius: 11px;
+  border-radius: var(--radius-4);
   color: var(--rdw-text-muted);
   background: var(--rdw-surface-soft);
   font-family: var(--font-mono);
@@ -1012,16 +1015,16 @@ onBeforeUnmount(unsubscribe);
 .rdw-node.running {
   border-color: color-mix(in srgb, var(--rdw-accent) 58%, var(--rdw-border));
   background: linear-gradient(115deg, var(--rdw-accent-soft), var(--rdw-surface) 48%);
-  box-shadow: 0 14px 34px color-mix(in srgb, var(--color-brand-glow) 68%, transparent);
+  box-shadow: var(--rdw-p-shadow-5);
 }
-.rdw-node.running::before { color: #fff; border-color: transparent; background: var(--gradient-brand); box-shadow: 0 7px 18px var(--color-brand-glow); animation: rdw-pulse 1.6s ease-in-out infinite; }
+.rdw-node.running::before { color: var(--color-on-accent); border-color: transparent; background: var(--gradient-brand); box-shadow: var(--rdw-p-shadow-6); animation: rdw-pulse 1.6s ease-in-out infinite; }
 .rdw-node.paused { border-color: color-mix(in srgb, var(--color-warning) 44%, var(--rdw-border)); background: linear-gradient(115deg, color-mix(in srgb, var(--color-status-warning-bg) 68%, var(--rdw-surface)), var(--rdw-surface) 52%); }
 .rdw-node.paused::before { color: var(--color-status-warning-fg); border-color: color-mix(in srgb, var(--color-warning) 28%, var(--rdw-border)); background: var(--color-status-warning-bg); }
 .rdw-node.done::before { color: var(--color-status-success-fg); border-color: color-mix(in srgb, var(--color-success) 28%, var(--rdw-border)); background: var(--color-status-success-bg); }
 .rdw-node.failed { border-color: color-mix(in srgb, var(--color-danger) 44%, var(--rdw-border)); }
 .rdw-node.failed::before { color: var(--color-status-danger-fg); border-color: color-mix(in srgb, var(--color-danger) 28%, var(--rdw-border)); background: var(--color-status-danger-bg); }
 .rdw-dot { display: none; }
-@keyframes rdw-pulse { 0%, 100% { box-shadow: 0 7px 18px var(--color-brand-glow); } 50% { box-shadow: 0 7px 26px color-mix(in srgb, var(--rdw-accent) 46%, transparent); } }
+@keyframes rdw-pulse { 0%, 100% { box-shadow: var(--rdw-p-shadow-6); } 50% { box-shadow: var(--rdw-p-shadow-7); } }
 .rdw-node-head {
   min-height: 36px;
   margin: -5px -7px 0;
@@ -1029,16 +1032,16 @@ onBeforeUnmount(unsubscribe);
   display: flex;
   align-items: center;
   gap: 9px;
-  border-radius: 9px;
+  border-radius: var(--radius-3);
   cursor: pointer;
   transition: background .16s ease;
 }
 .rdw-node-head:hover { background: color-mix(in srgb, var(--rdw-hover) 74%, transparent); }
-.rdw-node-name { min-width: 0; color: var(--rdw-text); font-size: 14px; font-weight: 700; }
+.rdw-node-name { min-width: 0; color: var(--rdw-text); font-size: var(--font-size-base); font-weight: 700; }
 .rdw-node-badge {
   flex: 0 0 auto;
   padding: 3px 8px;
-  border-radius: 999px;
+  border-radius: var(--radius-pill);
   color: var(--rdw-text-muted);
   background: var(--rdw-surface-soft);
   font-size: 10.5px;
@@ -1053,17 +1056,17 @@ onBeforeUnmount(unsubscribe);
   padding: 4px 8px;
   flex: 0 0 auto;
   border: 1px solid var(--rdw-border);
-  border-radius: 8px;
+  border-radius: var(--radius-3);
   color: var(--rdw-text-soft);
   background: var(--rdw-surface-raised);
   font-size: 10.5px;
   line-height: 1.3;
 }
-.rdw-node-duty { margin: 7px 0 0; color: var(--rdw-text-muted); font-size: 12px; line-height: 1.55; }
-.rdw-node-elapsed { font-size: 11px; color: var(--color-accent, #2f6fed); margin-left: 6px; font-variant-numeric: tabular-nums; }
-.rdw-node-metrics { margin-left: auto; font-size: 11px; color: var(--rdw-text-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.rdw-node-activity { display: flex; align-items: center; gap: 7px; margin: 8px 0 0; font-size: 12px; color: var(--color-accent, #2f6fed); }
-.rdw-spin { width: 11px; height: 11px; border-radius: 50%; border: 2px solid color-mix(in srgb, var(--color-accent, #2f6fed) 30%, transparent); border-top-color: var(--color-accent, #2f6fed); animation: rdw-rot .7s linear infinite; flex-shrink: 0; }
+.rdw-node-duty { margin: 7px 0 0; color: var(--rdw-text-muted); font-size: var(--font-size-sm); line-height: 1.55; }
+.rdw-node-elapsed { font-size: var(--font-size-xs); color: var(--color-accent, var(--rdw-p-info)); margin-left: 6px; font-variant-numeric: tabular-nums; }
+.rdw-node-metrics { margin-left: auto; font-size: var(--font-size-xs); color: var(--rdw-text-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rdw-node-activity { display: flex; align-items: center; gap: 7px; margin: 8px 0 0; font-size: var(--font-size-sm); color: var(--color-accent, var(--rdw-p-info)); }
+.rdw-spin { width: 11px; height: 11px; border-radius: 50%; border: 2px solid color-mix(in srgb, var(--color-accent, var(--rdw-p-info)) 30%, transparent); border-top-color: var(--color-accent, var(--rdw-p-info)); animation: rdw-rot .7s linear infinite; flex-shrink: 0; }
 @keyframes rdw-rot { to { transform: rotate(360deg); } }
 .rdw-node-output {
   max-height: 360px;
@@ -1071,7 +1074,7 @@ onBeforeUnmount(unsubscribe);
   padding: 13px 14px;
   overflow: auto;
   border: 1px solid var(--rdw-border);
-  border-radius: 12px;
+  border-radius: var(--radius-5);
   color: var(--rdw-text);
   background: var(--rdw-surface-soft);
   font-size: 12.5px;
@@ -1086,7 +1089,7 @@ onBeforeUnmount(unsubscribe);
   margin: 14px 0 0;
   padding: 16px;
   border: 1px solid color-mix(in srgb, var(--color-warning) 38%, var(--rdw-border));
-  border-radius: 14px;
+  border-radius: var(--radius-6);
   background: color-mix(in srgb, var(--color-status-warning-bg) 70%, var(--rdw-surface));
   box-shadow: inset 3px 0 0 color-mix(in srgb, var(--color-warning) 70%, transparent);
 }
@@ -1097,10 +1100,10 @@ onBeforeUnmount(unsubscribe);
   padding: 10px 11px;
   overflow: auto;
   border: 1px solid color-mix(in srgb, var(--color-warning) 18%, var(--rdw-border));
-  border-radius: 10px;
+  border-radius: var(--radius-4);
   color: var(--rdw-text-soft);
   background: var(--rdw-surface-raised);
-  font-size: 12px;
+  font-size: var(--font-size-sm);
   line-height: 1.6;
   white-space: pre-wrap;
 }
@@ -1117,7 +1120,7 @@ onBeforeUnmount(unsubscribe);
   align-items: center;
   gap: 8px;
   border: 1px solid color-mix(in srgb, var(--color-warning) 18%, var(--rdw-border));
-  border-radius: 10px;
+  border-radius: var(--radius-4);
   color: var(--rdw-text-soft);
   background: var(--rdw-surface-raised);
   font-size: 12.5px;
@@ -1131,7 +1134,7 @@ onBeforeUnmount(unsubscribe);
 .rdw-confirm-actions { margin-top: 11px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
 /* 子组件主题衔接 */
-.rdw-node-changes :deep(.fdv) { border-color: var(--rdw-border); border-radius: 12px; box-shadow: var(--shadow-sm); }
+.rdw-node-changes :deep(.fdv) { border-color: var(--rdw-border); border-radius: var(--radius-5); box-shadow: var(--shadow-sm); }
 .rdw-node-changes :deep(.fdv-head) { min-height: 40px; background: var(--rdw-surface-soft); }
 .rdw-node-changes :deep(.fdv-body) { background: var(--color-bg-primary); }
 .rdw-node-changes :deep(.fdv-action.write) { color: var(--color-status-success-fg); background: var(--color-status-success-bg); }
@@ -1155,15 +1158,15 @@ onBeforeUnmount(unsubscribe);
 
 @container main-page (max-width: 500px) {
   .rdw { padding: 12px 12px 54px; scrollbar-gutter: auto; }
-  .rdw-top { margin-bottom: 12px; padding: 15px 16px 18px; border-radius: 16px; }
+  .rdw-top { margin-bottom: 12px; padding: 15px 16px 18px; border-radius: var(--radius-7); }
   .rdw-title { margin-top: 18px; font-size: 23px; }
   .rdw-sub { font-size: 12.5px; line-height: 1.58; }
-  .rdw-intake { padding: 16px; border-radius: 15px; }
+  .rdw-intake { padding: 16px; border-radius: var(--radius-6); }
   .rdw-intake h3 { font-size: 15.5px; }
   .rdw-start { width: 100%; justify-self: stretch; }
   .rdw-run-actions { display: grid; grid-template-columns: minmax(0, 1fr); }
   .rdw-btn { width: 100%; min-height: 42px; }
-  .rdw-node { padding: 14px; border-radius: 13px; }
+  .rdw-node { padding: 14px; border-radius: var(--radius-5); }
   .rdw-node::before, .rdw-node::after { display: none; }
   .rdw-dot { width: 10px; height: 10px; display: block; flex: 0 0 auto; border-radius: 50%; background: var(--rdw-text-muted); }
   .rdw-dot.running { background: var(--rdw-accent); animation: rdw-dot-pulse 1.5s ease-in-out infinite; }
@@ -1183,5 +1186,38 @@ onBeforeUnmount(unsubscribe);
 @keyframes rdw-dot-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
 @media (prefers-reduced-motion: reduce) {
   .rdw *, .rdw *::before, .rdw *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}
+/* 界面主题下页头去掉渐变、光圈与渐变细线，只留主题的 hero 底色 */
+:root[data-ui-theme] .rdw-top { background: var(--surface-hero); }
+:root[data-ui-theme] .rdw::before,
+:root[data-ui-theme] .rdw-top::before,
+:root[data-ui-theme] .rdw-top::after { display: none; }
+
+/* ─── 调色板（docs/ui-design-system.md）：经典主题保持原值；界面主题（data-ui-theme）下映射全局 token ─── */
+.rdw { /* ui-theme-exempt: 经典主题原值 */
+  --rdw-p-shadow: 0 0 0 6px var(--rdw-accent-soft), 0 7px 20px var(--color-brand-glow);
+  --rdw-p-info: #2f6fed;
+  --rdw-p-warn: #8a6100;
+  --rdw-p-warn-bg: #fdf1d6;
+  --rdw-p-shadow-2: 0 10px 26px var(--color-brand-glow);
+  --rdw-p-shadow-3: 0 14px 32px var(--color-brand-glow);
+  --rdw-p-blur: blur(16px) saturate(135%);
+  --rdw-p-shadow-4: 0 8px 20px var(--color-brand-glow);
+  --rdw-p-shadow-5: 0 14px 34px color-mix(in srgb, var(--color-brand-glow) 68%, transparent);
+  --rdw-p-shadow-6: 0 7px 18px var(--color-brand-glow);
+  --rdw-p-shadow-7: 0 7px 26px color-mix(in srgb, var(--rdw-accent) 46%, transparent);
+}
+:root[data-ui-theme] .rdw {
+  --rdw-p-shadow: var(--shadow-brand);
+  --rdw-p-info: var(--color-info);
+  --rdw-p-warn: var(--color-warning);
+  --rdw-p-warn-bg: var(--color-status-warning-bg);
+  --rdw-p-shadow-2: var(--shadow-brand);
+  --rdw-p-shadow-3: var(--shadow-brand-hover);
+  --rdw-p-blur: var(--glass-blur);
+  --rdw-p-shadow-4: var(--shadow-brand);
+  --rdw-p-shadow-5: var(--shadow-brand);
+  --rdw-p-shadow-6: var(--shadow-brand);
+  --rdw-p-shadow-7: var(--shadow-card);
 }
 </style>

@@ -324,14 +324,22 @@ function scrollTo(key: string): void { void scrollToStep(key); }
 
 <style scoped>
 .ft-prompt { display: flex; gap: 6px; align-items: flex-start; }
-.ft-prompt textarea { flex: 1; min-height: 44px; border-radius: 9px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 6px 10px; resize: vertical; }
+.ft-prompt textarea { flex: 1; min-height: 44px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 6px 10px; resize: vertical; }
 .ft-thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
-.ft-thumbs figure { margin: 0; border: 2px solid transparent; border-radius: 10px; overflow: hidden; cursor: pointer; background: var(--color-bg-primary); aspect-ratio: 1; }
+.ft-thumbs figure { margin: 0; border: 2px solid transparent; border-radius: var(--radius-4); overflow: hidden; cursor: pointer; background: var(--color-bg-primary); aspect-ratio: 1; }
 .ft-thumbs figure.picked { border-color: var(--color-brand); }
 .ft-thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .ft-videos { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
-.ft-videos video { width: 100%; border-radius: 10px; background: #000; }
-.ft-input { height: 34px; border-radius: 9px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 10px; min-width: 200px; flex: 1; }
+.ft-videos video { width: 100%; border-radius: var(--radius-4); background: var(--ftct-dark); }
+.ft-input { height: 34px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 10px; min-width: 200px; flex: 1; }
 .ft-wrap { white-space: normal !important; max-width: 320px; }
 .ft-active td { background: color-mix(in srgb, var(--color-brand) 8%, transparent); }
+
+/* ─── 调色板（docs/ui-design-system.md）：经典主题保持原值；界面主题（data-ui-theme）下映射全局 token ─── */
+.ss-module { /* ui-theme-exempt: 经典主题原值 */
+  --ftct-dark: #000;
+}
+:root[data-ui-theme] .ss-module {
+  --ftct-dark: var(--color-bg-code);
+}
 </style>

@@ -21,7 +21,7 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
 }, X = { class: "gqa__folder" }, Y = ["title"], Z = { key: 1 }, x = ["disabled"], ee = ["disabled"], te = {
   key: 1,
   class: "gqa__table-wrap"
-}, le = { class: "gqa__table" }, ne = ["title"], ae = { class: "gqa__switch" }, oe = ["checked", "onChange"], se = { class: "gqa__chat" }, re = { class: "gqa__chat-head" }, ie = { class: "gqa__panel-title" }, de = ["disabled"], ce = {
+}, le = { class: "gqa__table" }, ae = ["title"], ne = { class: "gqa__switch" }, oe = ["checked", "onChange"], se = { class: "gqa__chat" }, re = { class: "gqa__chat-head" }, ie = { class: "gqa__panel-title" }, de = ["disabled"], ce = {
   key: 0,
   class: "gqa__empty"
 }, ue = { class: "gqa__msg user" }, _e = {
@@ -105,15 +105,15 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
     async function f(t) {
       const l = (t ?? v.value).trim();
       if (!l || u.value) return;
-      const n = c.value.filter((a) => a.status === "answered" || a.status === "refused").map((a) => ({ question: String(a.question), ...a.answer ? { answer: String(a.answer) } : {} }));
+      const a = c.value.filter((n) => n.status === "answered" || n.status === "refused").map((n) => ({ question: String(n.question), ...n.answer ? { answer: String(n.answer) } : {} }));
       c.value.push({ id: ++$, question: l, status: "pending", citations: [] });
       const o = c.value[c.value.length - 1];
       v.value = "", u.value = !0, w();
       try {
-        const a = await _().ask({ question: l, history: n });
-        o.lang = a.lang, o.citations = a.citations || [], a.answered ? (o.status = "answered", o.answer = a.answer) : (o.status = "refused", o.refusal = a.refusal, o.reason = a.reason);
-      } catch (a) {
-        o.status = "failed", o.error = E(a);
+        const n = await _().ask({ question: l, history: a });
+        o.lang = n.lang, o.citations = n.citations || [], n.answered ? (o.status = "answered", o.answer = n.answer) : (o.status = "refused", o.refusal = n.refusal, o.reason = n.reason);
+      } catch (n) {
+        o.status = "failed", o.error = E(n);
       } finally {
         u.value = !1, w();
       }
@@ -124,7 +124,7 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
         m.value = t;
       }), T = _()?.onSuggestionsReady?.((t) => {
         const l = new Set(t.ready || []);
-        h.value = h.value.map((n) => ({ ...n, ready: l.has(n.q) }));
+        h.value = h.value.map((a) => ({ ...a, ready: l.has(a.q) }));
       }), await y(), await N();
     }), e.onUnmounted(() => {
       D?.(), T?.();
@@ -201,7 +201,7 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
               type: "button",
               class: "gqa__panel-head",
               "aria-expanded": g.value,
-              onClick: l[0] || (l[0] = (n) => g.value = !g.value)
+              onClick: l[0] || (l[0] = (a) => g.value = !g.value)
             }, [
               l[7] || (l[7] = e.createElementVNode(
                 "i",
@@ -393,38 +393,38 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(i.value, (n) => (e.openBlock(), e.createElementBlock("tr", {
-                          key: n.id
+                        e.renderList(i.value, (a) => (e.openBlock(), e.createElementBlock("tr", {
+                          key: a.id
                         }, [
                           e.createElementVNode("td", {
                             class: "gqa__name",
-                            title: n.name
-                          }, e.toDisplayString(n.name), 9, ne),
+                            title: a.name
+                          }, e.toDisplayString(a.name), 9, ae),
                           e.createElementVNode(
                             "td",
                             null,
-                            e.toDisplayString(n.pages),
+                            e.toDisplayString(a.pages),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
                             null,
-                            e.toDisplayString(n.chars.toLocaleString()),
+                            e.toDisplayString(a.chars.toLocaleString()),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode("td", null, [
-                            e.createElementVNode("label", ae, [
+                            e.createElementVNode("label", ne, [
                               e.createElementVNode("input", {
                                 type: "checkbox",
-                                checked: n.approved,
-                                onChange: (o) => A(n)
+                                checked: a.approved,
+                                onChange: (o) => A(a)
                               }, null, 40, oe),
                               e.createElementVNode(
                                 "span",
                                 null,
-                                e.toDisplayString(n.approved ? t.$t("已审批") : t.$t("未审批")),
+                                e.toDisplayString(a.approved ? t.$t("已审批") : t.$t("未审批")),
                                 1
                                 /* TEXT */
                               )
@@ -469,7 +469,7 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
             e.createElementVNode("button", {
               class: "btn ghost small",
               disabled: !c.value.length || u.value,
-              onClick: l[1] || (l[1] = (n) => c.value = [])
+              onClick: l[1] || (l[1] = (a) => c.value = [])
             }, [
               l[10] || (l[10] = e.createElementVNode(
                 "i",
@@ -512,23 +512,23 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(c.value, (n) => (e.openBlock(), e.createElementBlock(
+                e.renderList(c.value, (a) => (e.openBlock(), e.createElementBlock(
                   e.Fragment,
                   {
-                    key: n.id
+                    key: a.id
                   },
                   [
                     e.createElementVNode("div", ue, [
                       e.createElementVNode(
                         "div",
                         _e,
-                        e.toDisplayString(n.question),
+                        e.toDisplayString(a.question),
                         1
                         /* TEXT */
                       )
                     ]),
                     e.createElementVNode("div", pe, [
-                      n.status === "pending" ? (e.openBlock(), e.createElementBlock("div", me, [
+                      a.status === "pending" ? (e.openBlock(), e.createElementBlock("div", me, [
                         l[12] || (l[12] = e.createElementVNode(
                           "i",
                           { class: "ri-loader-4-line spin" },
@@ -541,7 +541,7 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
                           1
                           /* TEXT */
                         )
-                      ])) : n.status === "failed" ? (e.openBlock(), e.createElementBlock("div", ge, [
+                      ])) : a.status === "failed" ? (e.openBlock(), e.createElementBlock("div", ge, [
                         l[13] || (l[13] = e.createElementVNode(
                           "i",
                           { class: "ri-error-warning-line" },
@@ -550,11 +550,11 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
                           /* CACHED */
                         )),
                         e.createTextVNode(
-                          e.toDisplayString(n.error),
+                          e.toDisplayString(a.error),
                           1
                           /* TEXT */
                         )
-                      ])) : n.status === "refused" ? (e.openBlock(), e.createElementBlock("div", ve, [
+                      ])) : a.status === "refused" ? (e.openBlock(), e.createElementBlock("div", ve, [
                         e.createElementVNode("strong", null, [
                           l[14] || (l[14] = e.createElementVNode(
                             "i",
@@ -564,7 +564,7 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
                             /* CACHED */
                           )),
                           e.createTextVNode(
-                            e.toDisplayString(C(n.reason)),
+                            e.toDisplayString(C(a.reason)),
                             1
                             /* TEXT */
                           )
@@ -572,7 +572,7 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
                         e.createElementVNode(
                           "p",
                           he,
-                          e.toDisplayString(n.refusal),
+                          e.toDisplayString(a.refusal),
                           1
                           /* TEXT */
                         )
@@ -580,11 +580,11 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
                         e.createElementVNode(
                           "div",
                           ke,
-                          e.toDisplayString(n.answer),
+                          e.toDisplayString(a.answer),
                           1
                           /* TEXT */
                         ),
-                        n.citations.length ? (e.openBlock(), e.createElementBlock("div", ye, [
+                        a.citations.length ? (e.openBlock(), e.createElementBlock("div", ye, [
                           e.createElementVNode(
                             "span",
                             Ve,
@@ -595,8 +595,8 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(n.citations, (o, a) => (e.openBlock(), e.createElementBlock("span", {
-                              key: a,
+                            e.renderList(a.citations, (o, n) => (e.openBlock(), e.createElementBlock("span", {
+                              key: n,
                               class: "gqa__cite",
                               title: o.snippet,
                               dir: "auto"
@@ -642,33 +642,33 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(h.value, (n) => (e.openBlock(), e.createElementBlock("button", {
-                key: n.q,
-                class: e.normalizeClass(["chip", { "chip--boundary": !n.inScope, "chip--ready": n.ready }]),
-                title: n.inScope ? n.ready ? t.$t("答案已就绪，点击立即显示") : "" : t.$t("这个问题不在资料范围内，用来看助手怎么拒答"),
+              e.renderList(h.value, (a) => (e.openBlock(), e.createElementBlock("button", {
+                key: a.q,
+                class: e.normalizeClass(["chip", { "chip--boundary": !a.inScope, "chip--ready": a.ready }]),
+                title: a.inScope ? a.ready ? t.$t("答案已就绪，点击立即显示") : "" : t.$t("这个问题不在资料范围内，用来看助手怎么拒答"),
                 disabled: u.value,
-                onClick: (o) => f(n.q)
-              }, e.toDisplayString(n.q), 11, Se))),
+                onClick: (o) => f(a.q)
+              }, e.toDisplayString(a.q), 11, Se))),
               128
               /* KEYED_FRAGMENT */
             ))
           ]),
           e.createElementVNode("div", Be, [
             e.withDirectives(e.createElementVNode("textarea", {
-              "onUpdate:modelValue": l[2] || (l[2] = (n) => v.value = n),
+              "onUpdate:modelValue": l[2] || (l[2] = (a) => v.value = a),
               class: "gqa__input",
               rows: "2",
               dir: "auto",
               placeholder: t.$t("输入问题，Enter 发送，Shift+Enter 换行"),
               disabled: u.value,
-              onKeydown: l[3] || (l[3] = e.withKeys(e.withModifiers((n) => f(), ["exact", "prevent"]), ["enter"]))
+              onKeydown: l[3] || (l[3] = e.withKeys(e.withModifiers((a) => f(), ["exact", "prevent"]), ["enter"]))
             }, null, 40, we), [
               [e.vModelText, v.value]
             ]),
             e.createElementVNode("button", {
               class: "btn primary",
               disabled: u.value || !v.value.trim(),
-              onClick: l[4] || (l[4] = (n) => f())
+              onClick: l[4] || (l[4] = (a) => f())
             }, [
               e.createElementVNode(
                 "i",
@@ -695,7 +695,7 @@ const K = q.default, O = { class: "gqa" }, W = { class: "gqa__inner" }, z = { cl
   for (const [r, s] of p)
     i[r] = s;
   return i;
-}, $e = /* @__PURE__ */ qe(Te, [["__scopeId", "data-v-df004b41"]]);
+}, $e = /* @__PURE__ */ qe(Te, [["__scopeId", "data-v-ec0a03ad"]]);
 export {
   $e as default
 };

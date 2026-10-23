@@ -1,12 +1,12 @@
 {
   "id": "workbench-foreign-trade",
-  "version": "2.0.2",
-  "treeDigest": "b2c8d247718f565f05b4c6617f858da79264b105a190ab44f07b0b6defa3f1bf",
+  "version": "2.0.3",
+  "treeDigest": "0732aefffdfbbdeef6f1bf94cffa18539b07085342858fa056347e1c9c0bbab8",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1179,
-      "sha256": "3058c9d1adc31c104220200ce04203eaeed619e9006f4abe12cbda3ee03a7850"
+      "size": 1395,
+      "sha256": "3b48e032135b14d7702b463a96a7ff7b4eee780cef33674f17be0bf674419779"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 261803,
-      "sha256": "f7660635d18258f8084b29fa23fbca329ddca21fa6e9f0b4b2ab2bbfb5974be5"
+      "size": 262625,
+      "sha256": "491b834bba58219824e5ee47e4f89b0fbeb81f823b20b8f14a05f7d8661b8a68"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 617662,
-      "sha256": "54169f915d8e9734c3f08f1ccb298c5101f90b3df6913e0144428ae9f8474333"
+      "size": 617679,
+      "sha256": "a6429578728ba3206e1f00daeab1202a9dfb485dd69f282ae5f20ab521c1277a"
     },
     {
       "path": "dist/style.css",
-      "size": 25830,
-      "sha256": "f40087c70e71401fdbb275f2ad394aab32cdaf04e9191463b74af07471de787d"
+      "size": 26854,
+      "sha256": "d94c8cdcbdc8c6c40b5299dfab6d7f9426c7617217ccb8df8e12019b79ff0486"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2577,
-      "sha256": "54ddd6633fa0c3e1bf39426329e5fbb8bb6982d3b7ef091401af4e970974df4c"
+      "sha256": "1b43134209f756f7cdcc97d77108a1bfd340dd159d3d5bbeeb5aa6de73d35748"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.3",
+      "ref": "workbench-foreign-trade@2.0.3",
+      "treeDigest": "0732aefffdfbbdeef6f1bf94cffa18539b07085342858fa056347e1c9c0bbab8",
+      "filesRef": "index/workbench-foreign-trade/2.0.3.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-23"
+    },
     {
       "version": "2.0.2",
       "ref": "workbench-foreign-trade@2.0.2",

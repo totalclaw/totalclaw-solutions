@@ -77,8 +77,8 @@ async function clear(kind: 'journal' | 'balances'): Promise<void> {
 <style scoped>
 .ss-panel > header strong { display: flex; gap: 6px; align-items: center; }
 .fa-data__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px; }
-.fa-data__item { display: grid; gap: 8px; align-content: start; padding: 10px; border-radius: 12px; background: var(--color-bg-primary); }
-.fa-data__head { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-weight: 600; font-size: 13px; }
+.fa-data__item { display: grid; gap: 8px; align-content: start; padding: 10px; border-radius: var(--radius-5); background: var(--color-bg-primary); }
+.fa-data__head { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; font-weight: 600; font-size: var(--font-size-md); }
 .fa-data__period { max-width: 220px; }
 .fa-data p { margin: 0; }
 </style>

@@ -38,148 +38,152 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
   key: 2,
   class: "eh-banner",
   role: "alert"
-}, bt = ["aria-label"], Ct = { class: "eh-steps" }, $t = ["onClick"], wt = { class: "n" }, Tt = { class: "tx" }, Lt = { class: "eh-pane" }, At = { class: "eh-svc" }, Mt = { class: "eh-card" }, zt = {
+}, bt = ["aria-label"], Ct = { class: "eh-steps" }, $t = ["onClick"], wt = { class: "n" }, Tt = {
+  key: 0,
+  class: "ri-check-line",
+  "aria-hidden": "true"
+}, Lt = { class: "tx" }, At = { class: "eh-pane" }, Mt = { class: "eh-svc" }, zt = { class: "eh-card" }, Kt = {
   key: 0,
   class: "eh-url"
-}, Kt = {
+}, Wt = {
   key: 1,
   class: "eh-hint"
-}, Wt = { class: "eh-btns" }, Ot = ["disabled"], Pt = ["disabled"], It = { class: "eh-hint" }, Ft = { class: "eh-card eh-qr-card" }, qt = ["src"], Ht = {
+}, Ot = { class: "eh-btns" }, Pt = ["disabled"], It = ["disabled"], Ft = { class: "eh-hint" }, qt = { class: "eh-card eh-qr-card" }, Ht = ["src"], Ut = {
   key: 1,
   class: "eh-qr eh-qr-empty"
-}, Ut = { class: "eh-code" }, Rt = { class: "k" }, Qt = { class: "eh-btns" }, Xt = { class: "k num" }, Gt = {
+}, Rt = { class: "eh-code" }, Qt = { class: "k" }, Xt = { class: "eh-btns" }, Gt = { class: "k num" }, jt = {
   key: 0,
   class: "eh-codehist"
-}, jt = { class: "eh-codehist-code" }, Yt = {
+}, Yt = { class: "eh-codehist-code" }, Jt = {
   key: 0,
   class: "chip ok"
-}, Jt = {
+}, Zt = {
   key: 1,
   class: "k"
-}, Zt = {
+}, xt = {
   key: 2,
   class: "k"
-}, xt = ["onClick"], en = {
+}, en = ["onClick"], tn = {
   key: 0,
   class: "k"
-}, tn = { class: "eh-pane" }, nn = { class: "eh-row" }, an = { class: "k" }, ln = { class: "eh-mat-head" }, on = { class: "grow" }, sn = {
+}, nn = { class: "eh-pane" }, an = { class: "eh-row" }, ln = { class: "k" }, on = { class: "eh-mat-head" }, sn = { class: "grow" }, rn = {
   key: 0,
   class: "chip warn"
-}, rn = {
+}, cn = {
   key: 1,
   class: "chip bad"
-}, cn = {
+}, dn = {
   key: 2,
   class: "chip ok num"
-}, dn = ["disabled", "onClick"], un = ["onUpdate:modelValue", "aria-label"], mn = {
+}, un = ["disabled", "onClick"], mn = ["onUpdate:modelValue", "aria-label"], pn = {
   value: "",
   disabled: ""
-}, pn = ["value"], hn = ["onUpdate:modelValue", "aria-label"], gn = { value: 40 }, vn = { value: 45 }, kn = { value: 90 }, _n = ["onUpdate:modelValue", "aria-label"], yn = { value: "zh-CN" }, En = ["aria-label"], fn = ["title", "onClick"], Nn = ["title", "onClick"], Vn = ["disabled", "title", "onClick"], Sn = ["title", "onClick"], Bn = {
+}, hn = ["value"], gn = ["onUpdate:modelValue", "aria-label"], vn = { value: 40 }, kn = { value: 45 }, _n = { value: 90 }, yn = ["onUpdate:modelValue", "aria-label"], En = { value: "zh-CN" }, fn = ["aria-label"], Nn = ["title", "onClick"], Vn = ["title", "onClick"], Sn = ["disabled", "title", "onClick"], Bn = ["title", "onClick"], Dn = {
   key: 0,
   class: "eh-err"
-}, Dn = {
+}, bn = {
   key: 1,
   class: "k eh-suggest"
-}, bn = {
+}, Cn = {
   key: 2,
   class: "k eh-mode-hint"
-}, Cn = { class: "eh-lesson-head" }, $n = { class: "grow" }, wn = {
+}, $n = { class: "eh-lesson-head" }, wn = { class: "grow" }, Tn = {
   key: 0,
   class: "chip warn",
   "data-test": "eh-gen-chip"
-}, Tn = ["title"], Ln = ["title"], An = ["disabled", "onClick"], Mn = {
+}, Ln = ["title"], An = ["title"], Mn = ["disabled", "onClick"], zn = {
   key: 0,
   class: "ri-loader-4-line eh-spin",
   "aria-hidden": "true"
-}, zn = {
+}, Kn = {
   key: 0,
   class: "chip warn"
-}, Kn = ["title"], Wn = {
+}, Wn = ["title"], On = {
   key: 2,
   class: "chip mut"
-}, On = {
+}, Pn = {
   key: 3,
   class: "chip ok"
-}, Pn = ["onClick"], In = ["disabled", "onClick"], Fn = {
+}, In = ["onClick"], Fn = ["disabled", "onClick"], qn = {
   key: 5,
   class: "chip warn",
   "data-test": "eh-avatar-chip"
-}, qn = ["disabled", "onClick"], Hn = ["onClick"], Un = ["title", "onClick"], Rn = {
+}, Hn = ["disabled", "onClick"], Un = ["onClick"], Rn = ["title", "onClick"], Qn = {
   key: 2,
   class: "eh-err"
-}, Qn = ["onClick"], Xn = ["onClick"], Gn = {
+}, Xn = ["onClick"], Gn = ["onClick"], jn = {
   key: 3,
   class: "eh-detail"
-}, jn = ["innerHTML"], Yn = ["innerHTML"], Jn = {
+}, Yn = ["innerHTML"], Jn = ["innerHTML"], Zn = {
   class: "k",
   style: { margin: "0 0 8px" }
-}, Zn = { class: "eh-ills" }, xn = ["src", "alt"], ea = ["title"], ta = { class: "eh-ill-cap-in" }, na = ["disabled", "onClick"], aa = {
+}, xn = { class: "eh-ills" }, ea = ["src", "alt"], ta = ["title"], na = { class: "eh-ill-cap-in" }, aa = ["disabled", "onClick"], la = {
   key: 2,
   class: "eh-ill-cap"
-}, la = {
-  key: 0,
-  class: "chip src num"
 }, oa = {
   key: 0,
-  class: "k"
+  class: "chip src num"
 }, sa = {
+  key: 0,
+  class: "k"
+}, ia = {
   key: 1,
   class: "eh-avs"
-}, ia = { class: "eh-av-h" }, ra = ["src"], ca = {
+}, ra = { class: "eh-av-h" }, ca = ["src"], da = {
   key: 2,
   class: "k"
-}, da = { class: "eh-cols" }, ua = { class: "eh-body" }, ma = { class: "eh-table" }, pa = {
+}, ua = { class: "eh-cols" }, ma = { class: "eh-body" }, pa = { class: "eh-table" }, ha = {
   class: "num",
   style: { "white-space": "nowrap" }
-}, ha = { class: "k" }, ga = {
+}, ga = { class: "k" }, va = {
   key: 0,
   class: "chip src num"
-}, va = { class: "eh-opts" }, ka = { class: "k" }, _a = {
+}, ka = { class: "eh-opts" }, _a = { class: "k" }, ya = {
   key: 0,
   class: "chip src num"
-}, ya = {
+}, Ea = {
   key: 0,
   class: "eh-card eh-hint"
-}, Ea = { class: "eh-pane" }, fa = { class: "eh-row" }, Na = { class: "k" }, Va = { class: "ehs-summary" }, Sa = { class: "ehs-sum" }, Ba = { class: "v" }, Da = { class: "l" }, ba = { class: "ehs-sum" }, Ca = { class: "v ehs-online" }, $a = { class: "l" }, wa = { class: "ehs-sum" }, Ta = { class: "v" }, La = { class: "l" }, Aa = { class: "ehs-sum" }, Ma = { class: "l" }, za = { class: "ehs-sum grow" }, Ka = { class: "v" }, Wa = { class: "l" }, Oa = {
+}, fa = { class: "eh-pane" }, Na = { class: "eh-row" }, Va = { class: "k" }, Sa = { class: "ehs-summary" }, Ba = { class: "ehs-sum" }, Da = { class: "v" }, ba = { class: "l" }, Ca = { class: "ehs-sum" }, $a = { class: "v ehs-online" }, wa = { class: "l" }, Ta = { class: "ehs-sum" }, La = { class: "v" }, Aa = { class: "l" }, Ma = { class: "ehs-sum" }, za = { class: "l" }, Ka = { class: "ehs-sum grow" }, Wa = { class: "v" }, Oa = { class: "l" }, Pa = {
   key: 0,
   class: "ehs-list"
-}, Pa = ["onClick", "onKeydown"], Ia = { class: "ehs-rid" }, Fa = ["title"], qa = { class: "ehs-seen" }, Ha = {
+}, Ia = ["onClick", "onKeydown"], Fa = { class: "ehs-rid" }, qa = ["title"], Ha = { class: "ehs-seen" }, Ua = {
   key: 0,
   class: "ehs-no"
-}, Ua = { class: "ehs-rbar" }, Ra = { class: "ehs-rbar-track" }, Qa = ["aria-label"], Xa = ["title"], Ga = { class: "ehs-rstats" }, ja = ["title"], Ya = ["title"], Ja = { class: "ehs-rstat" }, Za = { class: "ehs-rpct" }, xa = ["title", "onClick"], el = {
+}, Ra = { class: "ehs-rbar" }, Qa = { class: "ehs-rbar-track" }, Xa = ["aria-label"], Ga = ["title"], ja = { class: "ehs-rstats" }, Ya = ["title"], Ja = ["title"], Za = { class: "ehs-rstat" }, xa = { class: "ehs-rpct" }, el = ["title", "onClick"], tl = {
   key: 1,
   class: "eh-card k"
-}, tl = { class: "ehs-sheet" }, nl = ["aria-label"], al = { class: "ehs-sheet-head" }, ll = { class: "ehs-sheet-id" }, ol = { class: "ehs-sheet-name" }, sl = {
+}, nl = { class: "ehs-sheet" }, al = ["aria-label"], ll = { class: "ehs-sheet-head" }, ol = { class: "ehs-sheet-id" }, sl = { class: "ehs-sheet-name" }, il = {
   key: 0,
   class: "ehs-sheet-no k"
-}, il = { class: "ehs-sheet-seen k" }, rl = { class: "ehs-kpis" }, cl = { class: "ehs-kpi" }, dl = { class: "v" }, ul = { class: "l" }, ml = { class: "ehs-kpi" }, pl = { class: "v" }, hl = { class: "l" }, gl = { class: "ehs-kpi" }, vl = { class: "v" }, kl = { class: "l" }, _l = { class: "ehs-kpi" }, yl = { class: "l" }, El = { class: "ehs-sec" }, fl = { class: "ehs-lessons" }, Nl = ["title"], Vl = { key: 0 }, Sl = {
+}, rl = { class: "ehs-sheet-seen k" }, cl = { class: "ehs-kpis" }, dl = { class: "ehs-kpi" }, ul = { class: "v" }, ml = { class: "l" }, pl = { class: "ehs-kpi" }, hl = { class: "v" }, gl = { class: "l" }, vl = { class: "ehs-kpi" }, kl = { class: "v" }, _l = { class: "l" }, yl = { class: "ehs-kpi" }, El = { class: "l" }, fl = { class: "ehs-sec" }, Nl = { class: "ehs-lessons" }, Vl = ["title"], Sl = { key: 0 }, Bl = {
   key: 0,
   class: "k"
-}, Bl = { class: "ehs-sec" }, Dl = {
+}, Dl = { class: "ehs-sec" }, bl = {
   key: 0,
   class: "k"
-}, bl = {
+}, Cl = {
   key: 1,
   class: "ehs-timeline"
-}, Cl = { class: "ehs-tl-body" }, $l = ["title"], wl = ["title"], Tl = { class: "ehs-tl-at k" }, Ll = {
+}, $l = { class: "ehs-tl-body" }, wl = ["title"], Tl = ["title"], Ll = { class: "ehs-tl-at k" }, Al = {
   key: 2,
   class: "k"
-}, Al = {
+}, Ml = {
   key: 0,
   class: "ehs-sec"
-}, Ml = { class: "ehs-q-q" }, zl = {
+}, zl = { class: "ehs-q-q" }, Kl = {
   key: 0,
   class: "chip mut"
-}, Kl = { class: "ehs-q-a k" }, Wl = {
+}, Wl = { class: "ehs-q-a k" }, Ol = {
   class: "eh-row",
   style: { "margin-top": "18px" }
-}, Ol = { class: "grow" }, Pl = { class: "eh-card eh-scroll" }, Il = { class: "eh-qa-h" }, Fl = { class: "k" }, ql = {
+}, Pl = { class: "grow" }, Il = { class: "eh-card eh-scroll" }, Fl = { class: "eh-qa-h" }, ql = { class: "k" }, Hl = {
   key: 0,
   class: "chip mut"
-}, Hl = ["title", "onClick"], Ul = { class: "eh-qa-q" }, Rl = { class: "k eh-qa-a" }, Ql = {
+}, Ul = ["title", "onClick"], Rl = { class: "eh-qa-q" }, Ql = { class: "k eh-qa-a" }, Xl = {
   key: 0,
   class: "k"
-}, Xl = /* @__PURE__ */ e.defineComponent({
+}, Gl = /* @__PURE__ */ e.defineComponent({
   __name: "EduHubWorkbenchView",
   setup(x) {
     const r = window?.electronAPI?.workbenches?.eduHub, k = he.useDialog(), f = Z.useRoute(), ee = Z.useRouter(), v = e.ref(f.query.direction === "quran" ? "quran" : "lesson"), N = e.ref(!1), Pe = e.computed(() => [
@@ -790,14 +794,22 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
               class: e.normalizeClass(["eh-step", _.value === n.id && "on", n.done() && "done"]),
               onClick: (l) => _.value = n.id
             }, [
-              e.createElementVNode(
-                "span",
-                wt,
-                e.toDisplayString(n.done() ? "✓" : n.n),
-                1
-                /* TEXT */
-              ),
-              e.createElementVNode("span", Tt, [
+              e.createElementVNode("span", wt, [
+                n.done() ? (e.openBlock(), e.createElementBlock("i", Tt)) : (e.openBlock(), e.createElementBlock(
+                  e.Fragment,
+                  { key: 1 },
+                  [
+                    e.createTextVNode(
+                      e.toDisplayString(n.n),
+                      1
+                      /* TEXT */
+                    )
+                  ],
+                  64
+                  /* STABLE_FRAGMENT */
+                ))
+              ]),
+              e.createElementVNode("span", Lt, [
                 e.createTextVNode(
                   e.toDisplayString(n.label),
                   1
@@ -824,10 +836,10 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
       e.createCommentVNode(" ① 服务与班级 "),
       e.withDirectives(e.createElementVNode(
         "section",
-        Lt,
+        At,
         [
-          e.createElementVNode("div", At, [
-            e.createElementVNode("div", Mt, [
+          e.createElementVNode("div", Mt, [
+            e.createElementVNode("div", zt, [
               e.createElementVNode(
                 "h3",
                 null,
@@ -837,18 +849,18 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
               ),
               u.value.running ? (e.openBlock(), e.createElementBlock(
                 "div",
-                zt,
+                Kt,
                 e.toDisplayString(u.value.url),
                 1
                 /* TEXT */
               )) : (e.openBlock(), e.createElementBlock(
                 "div",
-                Kt,
+                Wt,
                 e.toDisplayString(t.$t("启动后学生用浏览器/扫码进入，无需安装任何应用。")),
                 1
                 /* TEXT */
               )),
-              e.createElementVNode("div", Wt, [
+              e.createElementVNode("div", Ot, [
                 u.value.running ? (e.openBlock(), e.createElementBlock(
                   e.Fragment,
                   { key: 1 },
@@ -857,7 +869,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       class: "btn danger",
                       disabled: V.value,
                       onClick: Ze
-                    }, e.toDisplayString(t.$t("停止服务")), 9, Pt),
+                    }, e.toDisplayString(t.$t("停止服务")), 9, It),
                     e.createElementVNode(
                       "button",
                       {
@@ -876,33 +888,33 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                   class: "btn pri",
                   disabled: V.value,
                   onClick: $e
-                }, e.toDisplayString(t.$t("启动校内服务")), 9, Ot))
+                }, e.toDisplayString(t.$t("启动校内服务")), 9, Pt))
               ]),
               e.createElementVNode(
                 "p",
-                It,
+                Ft,
                 e.toDisplayString(t.$t("随本解决方案启停；退出应用自动停止。学生数据保存在本机，AI 请求经本机代理。")),
                 1
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", Ft, [
+            e.createElementVNode("div", qt, [
               F.value ? (e.openBlock(), e.createElementBlock("img", {
                 key: 0,
                 src: F.value,
                 class: "eh-qr",
                 alt: "QR"
-              }, null, 8, qt)) : (e.openBlock(), e.createElementBlock(
+              }, null, 8, Ht)) : (e.openBlock(), e.createElementBlock(
                 "div",
-                Ht,
+                Ut,
                 e.toDisplayString(t.$t("启动后生成二维码")),
                 1
                 /* TEXT */
               )),
-              e.createElementVNode("div", Ut, [
+              e.createElementVNode("div", Rt, [
                 e.createElementVNode(
                   "span",
-                  Rt,
+                  Qt,
                   e.toDisplayString(t.$t("班级码（学生登录用）")),
                   1
                   /* TEXT */
@@ -914,7 +926,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                   1
                   /* TEXT */
                 ),
-                e.createElementVNode("div", Qt, [
+                e.createElementVNode("div", Xt, [
                   e.createElementVNode(
                     "button",
                     {
@@ -938,13 +950,13 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                 ]),
                 e.createElementVNode(
                   "span",
-                  Xt,
+                  Gt,
                   e.toDisplayString(t.$t("在线 {online} / 共 {total} 名学生", { online: u.value.onlineStudents, total: u.value.totalStudents })),
                   1
                   /* TEXT */
                 ),
                 e.createCommentVNode(" 换码前发出去的那枚不再蒸发：留痕 + 可一键恢复（用户实拍：刷新完就找不回来了） "),
-                L.value ? (e.openBlock(), e.createElementBlock("div", Gt, [
+                L.value ? (e.openBlock(), e.createElementBlock("div", jt, [
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
@@ -954,27 +966,27 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     }, [
                       e.createElementVNode(
                         "b",
-                        jt,
+                        Yt,
                         e.toDisplayString(n.code),
                         1
                         /* TEXT */
                       ),
                       n.retiredAt ? (e.openBlock(), e.createElementBlock(
                         "span",
-                        Jt,
+                        Zt,
                         e.toDisplayString(t.$t("{t} 停用", { t: W(n.retiredAt) })),
                         1
                         /* TEXT */
                       )) : (e.openBlock(), e.createElementBlock(
                         "span",
-                        Yt,
+                        Jt,
                         e.toDisplayString(t.$t("在用")),
                         1
                         /* TEXT */
                       )),
                       n.students ? (e.openBlock(), e.createElementBlock(
                         "span",
-                        Zt,
+                        xt,
                         e.toDisplayString(t.$t("{n} 人", { n: n.students })),
                         1
                         /* TEXT */
@@ -990,14 +1002,14 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         key: 3,
                         class: "btn sm",
                         onClick: (l) => tt(n.code)
-                      }, e.toDisplayString(t.$t("设为当前")), 9, xt)) : e.createCommentVNode("v-if", !0)
+                      }, e.toDisplayString(t.$t("设为当前")), 9, en)) : e.createCommentVNode("v-if", !0)
                     ]))),
                     128
                     /* KEYED_FRAGMENT */
                   )),
                   me.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
                     "div",
-                    en,
+                    tn,
                     e.toDisplayString(t.$t("还没有换过班级码。")),
                     1
                     /* TEXT */
@@ -1015,9 +1027,9 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
       e.createCommentVNode(" ② 资料与教案 "),
       e.withDirectives(e.createElementVNode(
         "section",
-        tn,
+        nn,
         [
-          e.createElementVNode("div", nn, [
+          e.createElementVNode("div", an, [
             e.createElementVNode(
               "button",
               {
@@ -1030,7 +1042,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
             ),
             e.createElementVNode(
               "span",
-              an,
+              ln,
               e.toDisplayString(t.$t("导入即解析；解析完成后可一键生成教案，同一文档重复生成走缓存秒回。")),
               1
               /* TEXT */
@@ -1043,29 +1055,29 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
               key: n.id,
               class: "eh-card eh-mat"
             }, [
-              e.createElementVNode("div", ln, [
+              e.createElementVNode("div", on, [
                 e.createElementVNode(
                   "b",
-                  on,
+                  sn,
                   e.toDisplayString(n.name),
                   1
                   /* TEXT */
                 ),
                 n.status === "parsing" ? (e.openBlock(), e.createElementBlock(
                   "span",
-                  sn,
+                  rn,
                   e.toDisplayString(t.$t("解析中…")),
                   1
                   /* TEXT */
                 )) : n.status === "failed" ? (e.openBlock(), e.createElementBlock(
                   "span",
-                  rn,
+                  cn,
                   e.toDisplayString(t.$t("解析失败")),
                   1
                   /* TEXT */
                 )) : (e.openBlock(), e.createElementBlock(
                   "span",
-                  cn,
+                  dn,
                   e.toDisplayString(t.$t("{pages} 页 · {kchars}k 字", { pages: n.pages, kchars: Math.round(n.chars / 1e3) })),
                   1
                   /* TEXT */
@@ -1076,7 +1088,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                   class: "eh-retry",
                   disabled: E.value.has(n.id),
                   onClick: (l) => it(n)
-                }, e.toDisplayString(E.value.has(n.id) ? t.$t("重新解析中…") : t.$t("重新解析")), 9, dn)) : e.createCommentVNode("v-if", !0),
+                }, e.toDisplayString(E.value.has(n.id) ? t.$t("重新解析中…") : t.$t("重新解析")), 9, un)) : e.createCommentVNode("v-if", !0),
                 n.status === "ready" ? (e.openBlock(), e.createElementBlock(
                   e.Fragment,
                   { key: 4 },
@@ -1088,7 +1100,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     }, [
                       e.createElementVNode(
                         "option",
-                        mn,
+                        pn,
                         e.toDisplayString(t.$t("请选择学段")),
                         1
                         /* TEXT */
@@ -1099,11 +1111,11 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         e.renderList(He.value, (l) => (e.openBlock(), e.createElementBlock("option", {
                           key: l.key,
                           value: l.key
-                        }, e.toDisplayString(l.label), 9, pn))),
+                        }, e.toDisplayString(l.label), 9, hn))),
                         128
                         /* KEYED_FRAGMENT */
                       ))
-                    ], 10, un), [
+                    ], 10, mn), [
                       [e.vModelSelect, g(n.id).grade]
                     ]),
                     e.withDirectives(e.createElementVNode("select", {
@@ -1113,26 +1125,26 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     }, [
                       e.createElementVNode(
                         "option",
-                        gn,
+                        vn,
                         "40 " + e.toDisplayString(t.$t("分钟")),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "option",
-                        vn,
+                        kn,
                         "45 " + e.toDisplayString(t.$t("分钟")),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "option",
-                        kn,
+                        _n,
                         "90 " + e.toDisplayString(t.$t("分钟")),
                         1
                         /* TEXT */
                       )
-                    ], 8, hn), [
+                    ], 8, gn), [
                       [
                         e.vModelSelect,
                         g(n.id).minutes,
@@ -1147,7 +1159,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     }, [
                       e.createElementVNode(
                         "option",
-                        yn,
+                        En,
                         e.toDisplayString(t.$t("中文")),
                         1
                         /* TEXT */
@@ -1166,7 +1178,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         -1
                         /* CACHED */
                       ))
-                    ], 8, _n), [
+                    ], 8, yn), [
                       [e.vModelSelect, g(n.id).lang]
                     ]),
                     e.createElementVNode("div", {
@@ -1179,20 +1191,20 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         class: e.normalizeClass(["eh-seg-b", { on: g(n.id).mode === "rich" }]),
                         title: t.$t("大模型直出整页，最精美，约几分钟"),
                         onClick: (l) => g(n.id).mode = "rich"
-                      }, e.toDisplayString(t.$t("精美")), 11, fn),
+                      }, e.toDisplayString(t.$t("精美")), 11, Nn),
                       e.createElementVNode("button", {
                         type: "button",
                         class: e.normalizeClass(["eh-seg-b", { on: g(n.id).mode === "fast" }]),
                         title: t.$t("代码排版整页，约 1 分钟"),
                         onClick: (l) => g(n.id).mode = "fast"
-                      }, e.toDisplayString(t.$t("快速")), 11, Nn)
-                    ], 8, En),
+                      }, e.toDisplayString(t.$t("快速")), 11, Vn)
+                    ], 8, fn),
                     e.createElementVNode("button", {
                       class: "btn pri sm",
                       disabled: ye.value.has(n.id) || !g(n.id).grade,
                       title: g(n.id).grade ? "" : t.$t("先选学段：这份文档没判出来，猜错了整份教案的难度都会偏"),
                       onClick: (l) => Te(n)
-                    }, e.toDisplayString(ye.value.has(n.id) ? t.$t("生成中…") : t.$t("生成教案")), 9, Vn)
+                    }, e.toDisplayString(ye.value.has(n.id) ? t.$t("生成中…") : t.$t("生成教案")), 9, Sn)
                   ],
                   64
                   /* STABLE_FRAGMENT */
@@ -1209,9 +1221,9 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     -1
                     /* CACHED */
                   )
-                ])], 8, Sn)
+                ])], 8, Bn)
               ]),
-              n.status === "failed" ? (e.openBlock(), e.createElementBlock("p", Bn, [
+              n.status === "failed" ? (e.openBlock(), e.createElementBlock("p", Dn, [
                 a[7] || (a[7] = e.createElementVNode(
                   "i",
                   { class: "ri-error-warning-line" },
@@ -1225,7 +1237,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                   /* TEXT */
                 )
               ])) : e.createCommentVNode("v-if", !0),
-              n.status === "ready" && n.suggest ? (e.openBlock(), e.createElementBlock("p", Dn, [
+              n.status === "ready" && n.suggest ? (e.openBlock(), e.createElementBlock("p", bn, [
                 a[8] || (a[8] = e.createElementVNode(
                   "i",
                   { class: "ri-search-eye-line" },
@@ -1241,7 +1253,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
               ])) : e.createCommentVNode("v-if", !0),
               n.status === "ready" ? (e.openBlock(), e.createElementBlock(
                 "p",
-                bn,
+                Cn,
                 e.toDisplayString(g(n.id).mode === "rich" ? t.$t("精美：大模型亲自设计整页（版式更丰富），约几分钟。") : t.$t("快速：代码排版整页（示意图统一渲染），约 1 分钟。")),
                 1
                 /* TEXT */
@@ -1254,17 +1266,17 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                   key: l.id,
                   class: "eh-lesson"
                 }, [
-                  e.createElementVNode("div", Cn, [
+                  e.createElementVNode("div", $n, [
                     e.createElementVNode(
                       "b",
-                      $n,
+                      wn,
                       e.toDisplayString(l.plan?.title || l.materialName),
                       1
                       /* TEXT */
                     ),
                     l.status === "generating" ? (e.openBlock(), e.createElementBlock(
                       "span",
-                      wn,
+                      Tn,
                       e.toDisplayString(t.$t("AI 生成中…")) + " · " + e.toDisplayString(Ve("lesson", l.id)),
                       1
                       /* TEXT */
@@ -1272,7 +1284,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       key: 1,
                       class: "chip bad",
                       title: l.error
-                    }, e.toDisplayString(t.$t("生成失败")), 9, Tn)) : (e.openBlock(), e.createElementBlock(
+                    }, e.toDisplayString(t.$t("生成失败")), 9, Ln)) : (e.openBlock(), e.createElementBlock(
                       e.Fragment,
                       { key: 2 },
                       [
@@ -1292,20 +1304,20 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                               disabled: l.langStatus === "switching",
                               onClick: (m) => dt(l, o.value)
                             }, [
-                              l.langStatus === "switching" && l.langTarget === o.value ? (e.openBlock(), e.createElementBlock("i", Mn)) : e.createCommentVNode("v-if", !0),
+                              l.langStatus === "switching" && l.langTarget === o.value ? (e.openBlock(), e.createElementBlock("i", zn)) : e.createCommentVNode("v-if", !0),
                               e.createTextVNode(
                                 " " + e.toDisplayString(o.label),
                                 1
                                 /* TEXT */
                               )
-                            ], 10, An)),
+                            ], 10, Mn)),
                             64
                             /* STABLE_FRAGMENT */
                           ))
-                        ], 8, Ln),
+                        ], 8, An),
                         l.langStatus === "switching" ? (e.openBlock(), e.createElementBlock(
                           "span",
-                          zn,
+                          Kn,
                           e.toDisplayString(t.$t("正在生成 {lang} 版…", { lang: Ae(l.langTarget) })),
                           1
                           /* TEXT */
@@ -1313,10 +1325,10 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                           key: 1,
                           class: "chip bad",
                           title: l.langError
-                        }, e.toDisplayString(t.$t("语言切换失败")), 9, Kn)) : e.createCommentVNode("v-if", !0),
+                        }, e.toDisplayString(t.$t("语言切换失败")), 9, Wn)) : e.createCommentVNode("v-if", !0),
                         l.mode ? (e.openBlock(), e.createElementBlock(
                           "span",
-                          Wn,
+                          On,
                           e.toDisplayString(l.mode === "fast" ? t.$t("快速") : t.$t("精美")),
                           1
                           /* TEXT */
@@ -1333,7 +1345,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         ),
                         l.avatarStatus === "ready" ? (e.openBlock(), e.createElementBlock(
                           "span",
-                          On,
+                          Pn,
                           e.toDisplayString(t.$t("数字人讲解已生成")),
                           1
                           /* TEXT */
@@ -1341,16 +1353,16 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         e.createElementVNode("button", {
                           class: "btn sm",
                           onClick: (o) => mt(l.id)
-                        }, e.toDisplayString(D.value === l.id ? t.$t("收起") : t.$t("审核内容")), 9, Pn),
+                        }, e.toDisplayString(D.value === l.id ? t.$t("收起") : t.$t("审核内容")), 9, In),
                         l.sections && l.sections.length ? (e.openBlock(), e.createElementBlock("button", {
                           key: 4,
                           class: "btn sm",
                           disabled: H(l),
                           onClick: (o) => ht(l)
-                        }, e.toDisplayString(H(l) ? t.$t("数字人生成中…") : l.avatarStatus === "ready" ? t.$t("重生数字人") : t.$t("生成数字人讲解")), 9, In)) : e.createCommentVNode("v-if", !0),
+                        }, e.toDisplayString(H(l) ? t.$t("数字人生成中…") : l.avatarStatus === "ready" ? t.$t("重生数字人") : t.$t("生成数字人讲解")), 9, Fn)) : e.createCommentVNode("v-if", !0),
                         H(l) ? (e.openBlock(), e.createElementBlock(
                           "span",
-                          Fn,
+                          qn,
                           e.toDisplayString(Ve("avatar", l.id)),
                           1
                           /* TEXT */
@@ -1359,11 +1371,11 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                           class: "btn sm",
                           disabled: I.value === l.id,
                           onClick: (o) => gt(l)
-                        }, e.toDisplayString(I.value === l.id ? t.$t("音频生成中…") : t.$t("生成音频总结")), 9, qn),
+                        }, e.toDisplayString(I.value === l.id ? t.$t("音频生成中…") : t.$t("生成音频总结")), 9, Hn),
                         e.createElementVNode("button", {
                           class: e.normalizeClass(["btn sm", l.status === "published" ? "" : "pri"]),
                           onClick: (o) => pt(l, l.status !== "published")
-                        }, e.toDisplayString(l.status === "published" ? t.$t("结束授课") : t.$t("发布到学生端")), 11, Hn),
+                        }, e.toDisplayString(l.status === "published" ? t.$t("结束授课") : t.$t("发布到学生端")), 11, Un),
                         e.createElementVNode("button", {
                           class: "eh-del",
                           title: t.$t("删除这份教案"),
@@ -1376,7 +1388,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                             -1
                             /* CACHED */
                           )
-                        ])], 8, Un)
+                        ])], 8, Rn)
                       ],
                       64
                       /* STABLE_FRAGMENT */
@@ -1404,7 +1416,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     title: t.$t("数字人讲解可能已超时"),
                     onKeepWaiting: (o) => Se("avatar", l.id)
                   }), null, 16, ["title", "onKeepWaiting"])) : e.createCommentVNode("v-if", !0),
-                  l.status === "failed" ? (e.openBlock(), e.createElementBlock("p", Rn, [
+                  l.status === "failed" ? (e.openBlock(), e.createElementBlock("p", Qn, [
                     e.createTextVNode(
                       e.toDisplayString(l.error) + " ",
                       1
@@ -1413,14 +1425,14 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     e.createElementVNode("button", {
                       class: "btn sm",
                       onClick: (o) => ut(l)
-                    }, e.toDisplayString(t.$t("重试")), 9, Qn),
+                    }, e.toDisplayString(t.$t("重试")), 9, Xn),
                     e.createElementVNode("button", {
                       class: "btn sm",
                       onClick: (o) => we(l)
-                    }, e.toDisplayString(t.$t("删除")), 9, Xn)
+                    }, e.toDisplayString(t.$t("删除")), 9, Gn)
                   ])) : e.createCommentVNode("v-if", !0),
                   e.createCommentVNode(" 审核展开：图文学习页（学生所见）+ 教案 + 小测 "),
-                  D.value === l.id && l.plan ? (e.openBlock(), e.createElementBlock("div", Gn, [
+                  D.value === l.id && l.plan ? (e.openBlock(), e.createElementBlock("div", jn, [
                     l.lessonHtml ? (e.openBlock(), e.createElementBlock(
                       e.Fragment,
                       { key: 0 },
@@ -1436,7 +1448,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         e.createElementVNode("div", {
                           class: "eh-doc-wrap",
                           innerHTML: l.lessonHtml
-                        }, null, 8, jn)
+                        }, null, 8, Yn)
                       ],
                       64
                       /* STABLE_FRAGMENT */
@@ -1456,7 +1468,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         e.createElementVNode("div", {
                           class: "eh-map",
                           innerHTML: l.knowledgeMapSvg
-                        }, null, 8, Yn)
+                        }, null, 8, Jn)
                       ],
                       64
                       /* STABLE_FRAGMENT */
@@ -1474,12 +1486,12 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         ),
                         e.createElementVNode(
                           "p",
-                          Jn,
+                          Zn,
                           e.toDisplayString(t.$t("每张配图 AI 已按内容拟好画面，点「生成配图」用图像模型出图（需在设置里启用图像生成）。")),
                           1
                           /* TEXT */
                         ),
-                        e.createElementVNode("div", Zn, [
+                        e.createElementVNode("div", xn, [
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
@@ -1492,7 +1504,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                 src: o.imageDataUrl,
                                 alt: o.caption,
                                 class: "eh-ill-img"
-                              }, null, 8, xn)) : (e.openBlock(), e.createElementBlock("div", {
+                              }, null, 8, ea)) : (e.openBlock(), e.createElementBlock("div", {
                                 key: 1,
                                 class: "eh-ill-ph",
                                 title: o.prompt
@@ -1511,7 +1523,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                 )),
                                 e.createElementVNode(
                                   "span",
-                                  ta,
+                                  na,
                                   e.toDisplayString(o.caption),
                                   1
                                   /* TEXT */
@@ -1520,9 +1532,9 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                   class: "btn sm pri",
                                   disabled: P.value === l.id + ":" + m,
                                   onClick: (j) => ct(l, m)
-                                }, e.toDisplayString(P.value === l.id + ":" + m ? t.$t("生成中…") : t.$t("生成配图")), 9, na)
-                              ], 8, ea)),
-                              o.imageDataUrl ? (e.openBlock(), e.createElementBlock("div", aa, [
+                                }, e.toDisplayString(P.value === l.id + ":" + m ? t.$t("生成中…") : t.$t("生成配图")), 9, aa)
+                              ], 8, ta)),
+                              o.imageDataUrl ? (e.openBlock(), e.createElementBlock("div", la, [
                                 e.createTextVNode(
                                   e.toDisplayString(o.caption) + " ",
                                   1
@@ -1530,7 +1542,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                 ),
                                 o.sourcePage ? (e.openBlock(), e.createElementBlock(
                                   "span",
-                                  la,
+                                  oa,
                                   "P." + e.toDisplayString(o.sourcePage),
                                   1
                                   /* TEXT */
@@ -1558,11 +1570,11 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         ),
                         oe.value === l.id ? (e.openBlock(), e.createElementBlock(
                           "div",
-                          oa,
+                          sa,
                           e.toDisplayString(t.$t("载入数字人预览…")),
                           1
                           /* TEXT */
-                        )) : (b[l.id] || []).length ? (e.openBlock(), e.createElementBlock("div", sa, [
+                        )) : (b[l.id] || []).length ? (e.openBlock(), e.createElementBlock("div", ia, [
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
@@ -1570,27 +1582,37 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                               key: o.sec,
                               class: "eh-av"
                             }, [
-                              e.createElementVNode(
-                                "div",
-                                ia,
-                                "🧑‍🏫 " + e.toDisplayString(o.title),
-                                1
-                                /* TEXT */
-                              ),
+                              e.createElementVNode("div", ra, [
+                                a[11] || (a[11] = e.createElementVNode(
+                                  "i",
+                                  {
+                                    class: "ri-presentation-line",
+                                    "aria-hidden": "true"
+                                  },
+                                  null,
+                                  -1
+                                  /* CACHED */
+                                )),
+                                e.createTextVNode(
+                                  " " + e.toDisplayString(o.title),
+                                  1
+                                  /* TEXT */
+                                )
+                              ]),
                               e.createElementVNode("video", {
                                 class: "eh-av-vid",
                                 controls: "",
                                 preload: "metadata",
                                 playsinline: "",
                                 src: o.url
-                              }, null, 8, ra)
+                              }, null, 8, ca)
                             ]))),
                             128
                             /* KEYED_FRAGMENT */
                           ))
                         ])) : (e.openBlock(), e.createElementBlock(
                           "div",
-                          ca,
+                          da,
                           e.toDisplayString(t.$t("未取到数字人成片（可能已过期或未就绪），可点上方「重生数字人」。")),
                           1
                           /* TEXT */
@@ -1599,7 +1621,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       64
                       /* STABLE_FRAGMENT */
                     )) : e.createCommentVNode("v-if", !0),
-                    e.createElementVNode("div", da, [
+                    e.createElementVNode("div", ua, [
                       e.createElementVNode("div", null, [
                         e.createElementVNode(
                           "h4",
@@ -1698,7 +1720,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         ),
                         e.createElementVNode(
                           "p",
-                          ua,
+                          ma,
                           e.toDisplayString(l.plan.homework),
                           1
                           /* TEXT */
@@ -1712,7 +1734,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                           1
                           /* TEXT */
                         ),
-                        e.createElementVNode("table", ma, [
+                        e.createElementVNode("table", pa, [
                           e.createElementVNode("tbody", null, [
                             (e.openBlock(!0), e.createElementBlock(
                               e.Fragment,
@@ -1720,7 +1742,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                               e.renderList(l.plan.schedule, (o, m) => (e.openBlock(), e.createElementBlock("tr", { key: m }, [
                                 e.createElementVNode(
                                   "td",
-                                  pa,
+                                  ha,
                                   e.toDisplayString(o.minutes) + "′",
                                   1
                                   /* TEXT */
@@ -1733,7 +1755,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                     1
                                     /* TEXT */
                                   ),
-                                  a[11] || (a[11] = e.createElementVNode(
+                                  a[12] || (a[12] = e.createElementVNode(
                                     "br",
                                     null,
                                     null,
@@ -1742,7 +1764,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                   )),
                                   e.createElementVNode(
                                     "span",
-                                    ha,
+                                    ga,
                                     e.toDisplayString(o.activity),
                                     1
                                     /* TEXT */
@@ -1777,7 +1799,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                             ),
                             o.sourcePages.length ? (e.openBlock(), e.createElementBlock(
                               "span",
-                              ga,
+                              va,
                               "P." + e.toDisplayString(o.sourcePages.join(",")),
                               1
                               /* TEXT */
@@ -1824,7 +1846,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                           1
                           /* TEXT */
                         ),
-                        e.createElementVNode("div", va, [
+                        e.createElementVNode("div", ka, [
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
@@ -1842,7 +1864,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                             /* KEYED_FRAGMENT */
                           ))
                         ]),
-                        e.createElementVNode("span", ka, [
+                        e.createElementVNode("span", _a, [
                           e.createTextVNode(
                             e.toDisplayString(t.$t("解析：")) + e.toDisplayString(o.explain) + " ",
                             1
@@ -1850,7 +1872,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                           ),
                           o.sourcePage ? (e.openBlock(), e.createElementBlock(
                             "span",
-                            _a,
+                            ya,
                             "P." + e.toDisplayString(o.sourcePage),
                             1
                             /* TEXT */
@@ -1871,7 +1893,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
           )),
           p.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
             "div",
-            ya,
+            Ea,
             e.toDisplayString(t.$t("还没有资料。点上方「导入资料」，从教材或讲义开始。")),
             1
             /* TEXT */
@@ -1885,12 +1907,12 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
       e.createCommentVNode(" ③ 学情看板：每个学生 × 每节课 三态（未开始 / 已阅读 / 成绩） "),
       e.withDirectives(e.createElementVNode(
         "section",
-        Ea,
+        fa,
         [
-          e.createElementVNode("div", fa, [
+          e.createElementVNode("div", Na, [
             e.createElementVNode(
               "span",
-              Na,
+              Va,
               e.toDisplayString(t.$t("每个学生对每节已发布课程的进展：未开始 → 在学（打开了但小测没交）→ 已学完（交了小测）。10 秒自动刷新。")),
               1
               /* TEXT */
@@ -1907,56 +1929,56 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
             )
           ]),
           e.createCommentVNode(" 班级汇总条 "),
-          e.createElementVNode("div", Va, [
-            e.createElementVNode("div", Sa, [
+          e.createElementVNode("div", Sa, [
+            e.createElementVNode("div", Ba, [
               e.createElementVNode(
                 "span",
-                Ba,
+                Da,
                 e.toDisplayString(w.value.n),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "span",
-                Da,
+                ba,
                 e.toDisplayString(t.$t("学生")),
                 1
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", ba, [
+            e.createElementVNode("div", Ca, [
               e.createElementVNode(
                 "span",
-                Ca,
+                $a,
                 e.toDisplayString(w.value.online),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "span",
-                $a,
+                wa,
                 e.toDisplayString(t.$t("在线")),
                 1
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", wa, [
+            e.createElementVNode("div", Ta, [
               e.createElementVNode(
                 "span",
-                Ta,
+                La,
                 e.toDisplayString(w.value.avgDone) + "%",
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "span",
-                La,
+                Aa,
                 e.toDisplayString(t.$t("平均进度")),
                 1
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", Aa, [
+            e.createElementVNode("div", Ma, [
               e.createElementVNode(
                 "span",
                 {
@@ -1968,23 +1990,23 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
               ),
               e.createElementVNode(
                 "span",
-                Ma,
+                za,
                 e.toDisplayString(t.$t("平均得分")),
                 1
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", za, [
+            e.createElementVNode("div", Ka, [
               e.createElementVNode(
                 "span",
-                Ka,
+                Wa,
                 e.toDisplayString(se.value.length),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "span",
-                Wa,
+                Oa,
                 e.toDisplayString(t.$t("已发布课程")),
                 1
                 /* TEXT */
@@ -1992,7 +2014,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
             ])
           ]),
           e.createCommentVNode(" 学生列表：一人一行，点开看详情 "),
-          R.value.length ? (e.openBlock(), e.createElementBlock("div", Oa, [
+          R.value.length ? (e.openBlock(), e.createElementBlock("div", Pa, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
@@ -2014,15 +2036,15 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                   5
                   /* TEXT, STYLE */
                 ),
-                e.createElementVNode("div", Ia, [
+                e.createElementVNode("div", Fa, [
                   e.createElementVNode("b", {
                     class: "ehs-name",
                     title: n.name
-                  }, e.toDisplayString(n.name), 9, Fa),
-                  e.createElementVNode("span", qa, [
+                  }, e.toDisplayString(n.name), 9, qa),
+                  e.createElementVNode("span", Ha, [
                     n.studentNo ? (e.openBlock(), e.createElementBlock(
                       "span",
-                      Ha,
+                      Ua,
                       e.toDisplayString(t.$t("学号")) + " " + e.toDisplayString(n.studentNo),
                       1
                       /* TEXT */
@@ -2034,8 +2056,8 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     )
                   ])
                 ]),
-                e.createElementVNode("div", Ua, [
-                  e.createElementVNode("div", Ra, [
+                e.createElementVNode("div", Ra, [
+                  e.createElementVNode("div", Qa, [
                     e.createElementVNode(
                       "span",
                       {
@@ -2057,13 +2079,13 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         key: l.id,
                         class: e.normalizeClass(["ehs-seg2", l.status]),
                         title: Ge(l)
-                      }, null, 10, Xa))),
+                      }, null, 10, Ga))),
                       128
                       /* KEYED_FRAGMENT */
                     ))
-                  ], 8, Qa)
+                  ], 8, Xa)
                 ]),
-                e.createElementVNode("div", Ga, [
+                e.createElementVNode("div", ja, [
                   e.createElementVNode("span", {
                     class: "ehs-rstat",
                     title: t.$t("交了小测才算学完")
@@ -2089,7 +2111,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       1
                       /* TEXT */
                     )
-                  ], 8, ja),
+                  ], 8, Ya),
                   e.createElementVNode("span", {
                     class: "ehs-rstat",
                     title: t.$t("点开过但小测还没交")
@@ -2110,8 +2132,8 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       1
                       /* TEXT */
                     )
-                  ], 8, Ya),
-                  e.createElementVNode("span", Ja, [
+                  ], 8, Ja),
+                  e.createElementVNode("span", Za, [
                     e.createElementVNode(
                       "b",
                       {
@@ -2130,7 +2152,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     )
                   ])
                 ]),
-                e.createElementVNode("div", Za, [
+                e.createElementVNode("div", xa, [
                   e.createElementVNode(
                     "b",
                     null,
@@ -2142,7 +2164,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     class: "eh-del",
                     title: t.$t("删除这个学生账号及其全部学习记录"),
                     onClick: e.withModifiers((l) => at(n), ["stop"])
-                  }, [...a[12] || (a[12] = [
+                  }, [...a[13] || (a[13] = [
                     e.createElementVNode(
                       "i",
                       { class: "ri-delete-bin-line" },
@@ -2150,8 +2172,8 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       -1
                       /* CACHED */
                     )
-                  ])], 8, xa),
-                  a[13] || (a[13] = e.createElementVNode(
+                  ])], 8, el),
+                  a[14] || (a[14] = e.createElementVNode(
                     "span",
                     {
                       class: "ehs-chev",
@@ -2162,13 +2184,13 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     /* CACHED */
                   ))
                 ])
-              ], 40, Pa))),
+              ], 40, Ia))),
               128
               /* KEYED_FRAGMENT */
             ))
           ])) : (e.openBlock(), e.createElementBlock(
             "div",
-            el,
+            tl,
             e.toDisplayString(t.$t("还没有学生登录。让学生扫码或输入班级码进入。")),
             1
             /* TEXT */
@@ -2184,13 +2206,24 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                 "data-native-browser-hide": "true",
                 onClick: e.withModifiers(ce, ["self"])
               }, [
-                e.createElementVNode("div", tl, [
+                e.createElementVNode("div", nl, [
                   e.createElementVNode("button", {
                     class: "ehs-x",
                     "aria-label": t.$t("关闭"),
                     onClick: ce
-                  }, "✕", 8, nl),
-                  e.createElementVNode("div", al, [
+                  }, [...a[15] || (a[15] = [
+                    e.createElementVNode(
+                      "i",
+                      {
+                        class: "ri-close-line",
+                        "aria-hidden": "true"
+                      },
+                      null,
+                      -1
+                      /* CACHED */
+                    )
+                  ])], 8, al),
+                  e.createElementVNode("div", ll, [
                     e.createElementVNode(
                       "div",
                       {
@@ -2201,80 +2234,80 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       5
                       /* TEXT, STYLE */
                     ),
-                    e.createElementVNode("div", ll, [
+                    e.createElementVNode("div", ol, [
                       e.createElementVNode(
                         "b",
-                        ol,
+                        sl,
                         e.toDisplayString(h.value.name),
                         1
                         /* TEXT */
                       ),
                       h.value.studentNo ? (e.openBlock(), e.createElementBlock(
                         "div",
-                        sl,
+                        il,
                         e.toDisplayString(t.$t("学号")) + " " + e.toDisplayString(h.value.studentNo),
                         1
                         /* TEXT */
                       )) : e.createCommentVNode("v-if", !0),
                       e.createElementVNode(
                         "div",
-                        il,
+                        rl,
                         e.toDisplayString(t.$t("最近活跃 {t}", { t: W(h.value.lastSeenAt) })),
                         1
                         /* TEXT */
                       )
                     ])
                   ]),
-                  e.createElementVNode("div", rl, [
-                    e.createElementVNode("div", cl, [
+                  e.createElementVNode("div", cl, [
+                    e.createElementVNode("div", dl, [
                       e.createElementVNode(
                         "span",
-                        dl,
+                        ul,
                         e.toDisplayString(h.value.donePct) + "%",
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "span",
-                        ul,
+                        ml,
                         e.toDisplayString(t.$t("学习进度")),
                         1
                         /* TEXT */
                       )
                     ]),
-                    e.createElementVNode("div", ml, [
+                    e.createElementVNode("div", pl, [
                       e.createElementVNode(
                         "span",
-                        pl,
+                        hl,
                         e.toDisplayString(h.value.doneCount) + "/" + e.toDisplayString(h.value.total),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "span",
-                        hl,
+                        gl,
                         e.toDisplayString(t.$t("已学完（交了小测）")),
                         1
                         /* TEXT */
                       )
                     ]),
-                    e.createElementVNode("div", gl, [
+                    e.createElementVNode("div", vl, [
                       e.createElementVNode(
                         "span",
-                        vl,
+                        kl,
                         e.toDisplayString(h.value.readingCount),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "span",
-                        kl,
+                        _l,
                         e.toDisplayString(t.$t("在学（未交小测）")),
                         1
                         /* TEXT */
                       )
                     ]),
-                    e.createElementVNode("div", _l, [
+                    e.createElementVNode("div", yl, [
                       e.createElementVNode(
                         "span",
                         {
@@ -2286,14 +2319,14 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       ),
                       e.createElementVNode(
                         "span",
-                        yl,
+                        El,
                         e.toDisplayString(t.$t("平均得分")),
                         1
                         /* TEXT */
                       )
                     ])
                   ]),
-                  e.createElementVNode("div", El, [
+                  e.createElementVNode("div", fl, [
                     e.createElementVNode(
                       "h5",
                       null,
@@ -2301,7 +2334,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       1
                       /* TEXT */
                     ),
-                    e.createElementVNode("ul", fl, [
+                    e.createElementVNode("ul", Nl, [
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
@@ -2321,7 +2354,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                           e.createElementVNode("span", {
                             class: "ehs-ltitle",
                             title: n.title
-                          }, e.toDisplayString(n.title), 9, Nl),
+                          }, e.toDisplayString(n.title), 9, Vl),
                           e.createElementVNode(
                             "span",
                             {
@@ -2343,7 +2376,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                   ),
                                   n.pct != null ? (e.openBlock(), e.createElementBlock(
                                     "i",
-                                    Vl,
+                                    Sl,
                                     " · " + e.toDisplayString(n.pct) + "%",
                                     1
                                     /* TEXT */
@@ -2386,14 +2419,14 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       )),
                       h.value.perLesson.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
                         "li",
-                        Sl,
+                        Bl,
                         e.toDisplayString(t.$t("还没有已发布的课程。")),
                         1
                         /* TEXT */
                       ))
                     ])
                   ]),
-                  e.createElementVNode("div", Bl, [
+                  e.createElementVNode("div", Dl, [
                     e.createElementVNode(
                       "h5",
                       null,
@@ -2403,11 +2436,11 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     ),
                     re.value ? (e.openBlock(), e.createElementBlock(
                       "div",
-                      Dl,
+                      bl,
                       e.toDisplayString(t.$t("加载中…")),
                       1
                       /* TEXT */
-                    )) : z.value.length ? (e.openBlock(), e.createElementBlock("ul", bl, [
+                    )) : z.value.length ? (e.openBlock(), e.createElementBlock("ul", Cl, [
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
@@ -2427,11 +2460,11 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                               3
                               /* TEXT, CLASS */
                             ),
-                            e.createElementVNode("span", Cl, [
+                            e.createElementVNode("span", $l, [
                               e.createElementVNode("span", {
                                 class: "ehs-tl-title",
                                 title: n.title
-                              }, e.toDisplayString(n.title), 9, $l),
+                              }, e.toDisplayString(n.title), 9, wl),
                               n.kind === "test" || n.kind === "practice" ? (e.openBlock(), e.createElementBlock(
                                 "b",
                                 {
@@ -2445,11 +2478,11 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                                 key: 1,
                                 class: "ehs-tl-text",
                                 title: n.text
-                              }, e.toDisplayString(n.text), 9, wl)) : e.createCommentVNode("v-if", !0)
+                              }, e.toDisplayString(n.text), 9, Tl)) : e.createCommentVNode("v-if", !0)
                             ]),
                             e.createElementVNode(
                               "span",
-                              Tl,
+                              Ll,
                               e.toDisplayString(W(n.at)),
                               1
                               /* TEXT */
@@ -2463,13 +2496,13 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       ))
                     ])) : (e.openBlock(), e.createElementBlock(
                       "div",
-                      Ll,
+                      Al,
                       e.toDisplayString(t.$t("暂无学习记录")),
                       1
                       /* TEXT */
                     ))
                   ]),
-                  h.value.questions.length ? (e.openBlock(), e.createElementBlock("div", Al, [
+                  h.value.questions.length ? (e.openBlock(), e.createElementBlock("div", Ml, [
                     e.createElementVNode(
                       "h5",
                       null,
@@ -2484,7 +2517,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         key: n.id,
                         class: "ehs-q"
                       }, [
-                        e.createElementVNode("div", Ml, [
+                        e.createElementVNode("div", zl, [
                           e.createTextVNode(
                             e.toDisplayString(t.$t("Q：{p0}", { p0: n.q })),
                             1
@@ -2492,7 +2525,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                           ),
                           n.grounded ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
                             "span",
-                            zl,
+                            Kl,
                             e.toDisplayString(t.$t("超范围")),
                             1
                             /* TEXT */
@@ -2500,7 +2533,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                         ]),
                         e.createElementVNode(
                           "div",
-                          Kl,
+                          Wl,
                           e.toDisplayString(t.$t("A：{p0}", { p0: n.a })),
                           1
                           /* TEXT */
@@ -2517,10 +2550,10 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
             /* STABLE */
           }),
           e.createCommentVNode(" 学生受限提问记录（AI 答案锚定本课） "),
-          e.createElementVNode("div", Wl, [
+          e.createElementVNode("div", Ol, [
             e.createElementVNode(
               "b",
-              Ol,
+              Pl,
               e.toDisplayString(t.$t("学生提问（AI 只答本课内容）")),
               1
               /* TEXT */
@@ -2536,7 +2569,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
               /* TEXT */
             )
           ]),
-          e.createElementVNode("div", Pl, [
+          e.createElementVNode("div", Il, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
@@ -2544,7 +2577,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                 key: n.id,
                 class: "eh-qa"
               }, [
-                e.createElementVNode("div", Il, [
+                e.createElementVNode("div", Fl, [
                   e.createElementVNode(
                     "b",
                     null,
@@ -2554,19 +2587,19 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                   ),
                   e.createElementVNode(
                     "span",
-                    Fl,
+                    ql,
                     e.toDisplayString(W(n.at)),
                     1
                     /* TEXT */
                   ),
                   n.grounded ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
                     "span",
-                    ql,
+                    Hl,
                     e.toDisplayString(t.$t("超范围")),
                     1
                     /* TEXT */
                   )),
-                  a[15] || (a[15] = e.createElementVNode(
+                  a[17] || (a[17] = e.createElementVNode(
                     "span",
                     { class: "grow" },
                     null,
@@ -2577,7 +2610,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                     class: "eh-del",
                     title: t.$t("删除这条提问"),
                     onClick: (l) => lt(n)
-                  }, [...a[14] || (a[14] = [
+                  }, [...a[16] || (a[16] = [
                     e.createElementVNode(
                       "i",
                       { class: "ri-delete-bin-line" },
@@ -2585,18 +2618,18 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
                       -1
                       /* CACHED */
                     )
-                  ])], 8, Hl)
+                  ])], 8, Ul)
                 ]),
                 e.createElementVNode(
                   "div",
-                  Ul,
+                  Rl,
                   e.toDisplayString(t.$t("Q：{p0}", { p0: n.q })),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "div",
-                  Rl,
+                  Ql,
                   e.toDisplayString(t.$t("A：{p0}", { p0: n.a })),
                   1
                   /* TEXT */
@@ -2607,7 +2640,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
             )),
             C.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
               "div",
-              Ql,
+              Xl,
               e.toDisplayString(t.$t("还没有学生提问。")),
               1
               /* TEXT */
@@ -2621,12 +2654,12 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
       ])
     ]));
   }
-}), Gl = (x, r) => {
+}), jl = (x, r) => {
   const k = x.__vccOpts || x;
   for (const [f, ee] of r)
     k[f] = ee;
   return k;
-}, jl = /* @__PURE__ */ Gl(Xl, [["__scopeId", "data-v-d0174b14"]]);
+}, Yl = /* @__PURE__ */ jl(Gl, [["__scopeId", "data-v-acdb12ef"]]);
 export {
-  jl as default
+  Yl as default
 };

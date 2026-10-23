@@ -26,7 +26,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// node_modules/.cache/solutions-build/workbench-service-settlement/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-service-settlement/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -36,7 +36,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/policyReview.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/policyReview.ts
 var import_i18n = require("npm:@totalclaw/i18n");
 function beginPolicyReview(state) {
   state.rulesReviewPending = true;
@@ -51,10 +51,10 @@ function assertPolicyReviewComplete(state) {
   if (state.rulesReviewPending) throw new Error((0, import_i18n.t)("\u5F53\u524D\u653F\u7B56\u5C1A\u672A\u6838\u5BF9\uFF0C\u4E0D\u80FD\u8BA1\u7B97\u3002\u8BF7\u5E94\u7528\u5DF2\u6838\u5BF9\u8349\u7A3F\u3001\u786E\u8BA4\u624B\u5DE5\u89C4\u5219\u6216\u9009\u62E9\u9884\u8BBE\u3002"));
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/ipc/serviceSettlement.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/ipc/serviceSettlement.ipc.ts
 var import_quitRegistry = require("host:apps/desktop-shell/src/main/util/quitRegistry.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/policyExtraction.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/policyExtraction.ts
 var import_zod = require("npm:zod");
 var import_i18n2 = require("npm:@totalclaw/i18n");
 function readableChinese(text) {
@@ -232,7 +232,7 @@ marginal \u8868\u793A\u76EE\u6807\u500D\u6570\u533A\u95F4\u5185\u589E\u91CF\u4E5
 auxMinRate/managerMinRate:\u6700\u4F4E\u8FBE\u6210\u7387\uFF1BauxMissingTaskAsMet:\u65E0\u4EFB\u52A1\u662F\u5426\u89C6\u540C\u8FBE\u6210\uFF1Bqualifier:{enabled,productPattern}\uFF1Brebate:{enabled,tiers:[{minYears,ratio}]}\uFF1BmanagerBase:{perItemMax,minRate,quarterMax}\uFF08\u8BE5\u7ED3\u6784\u56FA\u5B9A\u6309\u8FBE\u6210\u7387\u6298\u7B97\u3001\u8FBE\u5230\u6EE1\u989D\u540E\u5C01\u9876\uFF1B\u4EC5\u539F\u6587\u786E\u5B9E\u5982\u6B64\u65F6\u624D\u8F93\u51FA\uFF09\uFF1BmanagerAdvanceRatio:\u9884\u53D1\u6BD4\u4F8B\uFF1BmanagerDiscountTiers:[{belowRate,discount}]\uFF1BperformanceCoefficients:{\u539F\u6587\u7B49\u7EA7:\u5BF9\u5E94\u7CFB\u6570}\uFF08\u7B49\u7EA7\u540D\u79F0\u4E0E\u6570\u91CF\u4EE5\u672C\u6279\u653F\u7B56\u539F\u6587\u4E3A\u51C6\uFF0C\u4E0D\u9884\u8BBE\u7B49\u7EA7\uFF1B\u5F15\u7528\u987B\u4FDD\u7559\u7B49\u7EA7\u4E0E\u6570\u5B57\u5BF9\u5E94\u5173\u7CFB\uFF0C\u65E0\u6CD5\u786E\u8BA4\u5B8C\u6574\u6027\u5219\u6574\u4E2A\u5B57\u6BB5\u7701\u7565\uFF09\uFF1BwarrantyMode:"ratio"\u6216"perOrder"\uFF1BwarrantyTiers:[{minRate,providerRatio,leaderRatio}]\uFF1BwarrantyPerOrder:\u6BCF\u5355\u91D1\u989D\uFF1BreturnDueDays:\u9000\u56DE\u5929\u6570\u3002
 \u6BD4\u4F8B\u7528\u5C0F\u6570\u3002\u5D4C\u5957\u5BF9\u8C61\u7F3A\u4EFB\u4E00\u5FC5\u9700\u503C\u5C31\u7701\u7565\u6574\u4E2A\u5B57\u6BB5\u3002\u53EA\u8FD4\u56DE\u539F\u6587\u660E\u786E\u652F\u6301\u7684\u8349\u7A3F\uFF0C\u4E0D\u5BA3\u79F0\u89C4\u5219\u5DF2\u9A8C\u8BC1\u6B63\u786E\u3002`;
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/rulesPdfSources.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/rulesPdfSources.ts
 var import_node_path = require("node:path");
 var import_i18n3 = require("npm:@totalclaw/i18n");
 function rulesPdfPaths(input) {
@@ -259,7 +259,7 @@ function combineRuleDocuments(documents) {
   return text;
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/ipc/serviceSettlement.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/ipc/serviceSettlement.ipc.ts
 var import_electron2 = require("electron");
 var import_fs2 = require("fs");
 var import_path4 = require("path");
@@ -268,17 +268,17 @@ var import_i18n11 = require("npm:@totalclaw/i18n");
 var import_workbenchApi = require("host:apps/desktop-shell/src/main/ipc/workbenchApi.ts");
 var import_userFacingError = require("host:apps/desktop-shell/src/main/utils/userFacingError.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/store.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/store.ts
 var import_path = require("path");
 var import_accountScope = require("host:apps/desktop-shell/src/main/services/accountScope.ts");
 var import_atomicJson = require("host:apps/desktop-shell/src/main/utils/atomicJson.ts");
 var import_excel3 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/settlementSummary.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/settlementSummary.ts
 var import_excel = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 var import_i18n4 = require("npm:@totalclaw/i18n");
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/templateTokens.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/templateTokens.ts
 var VAR = { provider: "\u670D\u52A1\u5546", period: "\u7ED3\u7B97\u671F", payable: "\u5E94\u4ED8\u5408\u8BA1", sentDate: "\u53D1\u9001\u65E5\u671F", seq: "\u5E8F\u53F7", date: "\u65E5\u671F", originalName: "\u539F\u6587\u4EF6\u540D" };
 var TEMPLATE_TOKENS = {
   \u670D\u52A1\u5546: { "en-US": "Provider", ar: "\u0645\u0632\u0648\u062F_\u0627\u0644\u062E\u062F\u0645\u0629" },
@@ -305,7 +305,7 @@ function normalizeTemplateTokens(tpl) {
   });
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/settlementSummary.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/settlementSummary.ts
 var round2 = (n) => Math.round(n * 100) / 100;
 function isBogusProvider(name) {
   const s = String(name || "").trim();
@@ -608,7 +608,7 @@ function renderInvoiceFileName(template, ctx) {
 }
 var INVOICE_EXTENSIONS = /* @__PURE__ */ new Set([".pdf", ".ofd", ".jpg", ".jpeg", ".png", ".xlsx", ".xls", ".zip"]);
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/marketingIncentive.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/marketingIncentive.ts
 var import_excel2 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
 // src/main/services/serviceSettlement/dataKeywords.json
@@ -626,7 +626,7 @@ var dataKeywords_default = {
   }
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/marketingIncentive.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/marketingIncentive.ts
 var import_i18n5 = require("npm:@totalclaw/i18n");
 var wholeTiers = (steps) => steps.map(([fromRate, ratio2], i) => ({
   fromRate,
@@ -1820,7 +1820,7 @@ function addDays(dateIso, days) {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/store.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/store.ts
 var import_i18n6 = require("npm:@totalclaw/i18n");
 var templateVars = () => {
   const loc = (0, import_i18n6.getLocale)();
@@ -2042,10 +2042,10 @@ var ServiceSettlementStore = class {
   }
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/proc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/proc.ts
 var import_events = require("events");
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/mailReceiptEvidence.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/mailReceiptEvidence.ts
 var import_mailparser = require("npm:mailparser");
 function receiptMessageIds(value) {
   const raw = Array.isArray(value) ? value.join(" ") : value || "";
@@ -2090,7 +2090,7 @@ function ownMailboxRead(message, flags, sentIds, recipients, mailbox) {
   return !!flags?.has("\\Seen") && receiptMessageIds(message.messageId).some((id) => ids.has(id));
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/proc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/proc.ts
 var import_fs = require("fs");
 var import_path2 = require("path");
 var import_electron = require("electron");
@@ -2691,10 +2691,10 @@ ${item.body}`;
   }
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/ipc/serviceSettlement.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/ipc/serviceSettlement.ipc.ts
 var import_excel8 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/reviewIncentive.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/reviewIncentive.ts
 var import_excel5 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 var import_i18n8 = require("npm:@totalclaw/i18n");
 var DEFAULT_REVIEW_RULES = {
@@ -3118,7 +3118,7 @@ function sanitizeRules(raw) {
   return out;
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/scrapLedger.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/scrapLedger.ts
 var import_excel6 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 var import_i18n9 = require("npm:@totalclaw/i18n");
 var SOURCE_COLUMN = (0, import_i18n9.t)("\u6765\u6E90\u6587\u4EF6");
@@ -3268,14 +3268,14 @@ function scrapPivot(result) {
   return { headers, rows };
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/scrapTemplate.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/scrapTemplate.ts
 var import_spreadsheetRead = require("host:apps/desktop-shell/src/main/services/spreadsheetRead.ts");
 var XLSX = __toESM(require("npm:xlsx"));
 var import_path3 = require("path");
 var import_i18n10 = require("npm:@totalclaw/i18n");
 var import_excel7 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/scrapTemplate.schema.json
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/scrapTemplate.schema.json
 var scrapTemplate_schema_default = {
   _comment: "\u62A5\u5E9F\u53F0\u8D26 8.21 \u6A21\u677F\uFF1A\u8FD9\u4E9B\u5168\u662F\u5339\u914D\u4E1A\u52A1\u5BFC\u51FA\u8868\u8868\u5934 / \u5199\u8FDB\u53F0\u8D26\u7684\u56FA\u5B9A\u503C\uFF0C\u5C5E\u4E8E\u6570\u636E\u4E0D\u662F\u5C55\u793A\u6587\u6848\uFF0C\u4E0D\u80FD\u8FDB i18n \u8BCD\u5178\uFF08\u4E0E columnKeywords.json \u540C\u7406\uFF09\u3002",
   templateHeaders: [
@@ -3381,7 +3381,7 @@ var scrapTemplate_schema_default = {
   ]
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/scrapTemplate.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/services/serviceSettlement/scrapTemplate.ts
 var S = scrapTemplate_schema_default;
 var LEDGER_HEADERS = S.templateHeaders;
 var H = {
@@ -4296,7 +4296,7 @@ function writeScrapSummaryWorkbook(outPath, result) {
   (0, import_excel7.writeWorkbook)(outPath, summarySheets(result));
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-service-settlement/src/main/ipc/serviceSettlement.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-service-settlement/src/main/ipc/serviceSettlement.ipc.ts
 var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var store = new ServiceSettlementStore();
 var proc = null;
@@ -5380,7 +5380,7 @@ function registerServiceSettlementHandlers(deps) {
   return stopBackground;
 }
 
-// node_modules/.cache/solutions-build/workbench-service-settlement/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-service-settlement/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerServiceSettlementHandlers";
 var cleanup;

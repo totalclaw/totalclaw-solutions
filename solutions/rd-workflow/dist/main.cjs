@@ -26,7 +26,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// node_modules/.cache/solutions-build/rd-workflow/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/rd-workflow/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -36,7 +36,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../totalclaw-solutions/solutions/rd-workflow/src/main/ipc/rdWorkflow.ipc.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/rd-workflow/src/main/ipc/rdWorkflow.ipc.ts
 var import_electron = require("electron");
 var import_path = require("path");
 var import_fs = require("fs");
@@ -89,7 +89,7 @@ ${f.text}`).join("\n\n");
   });
 }
 
-// node_modules/.cache/solutions-build/rd-workflow/entry.main.ts
+// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/rd-workflow/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerRdWorkflowHandlers";
 var cleanup;

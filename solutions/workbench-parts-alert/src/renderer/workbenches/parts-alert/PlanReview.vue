@@ -99,17 +99,17 @@ function saveText(r: PaPartResult, value: string): void {
 
 <style scoped>
 .pa-plan { display: grid; gap: 12px; }
-.pa-plan__group { border: 1px solid var(--color-border); border-radius: 12px; padding: 12px; display: grid; gap: 8px; background: var(--color-bg-primary); }
+.pa-plan__group { border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 12px; display: grid; gap: 8px; background: var(--color-bg-primary); }
 .pa-plan__group.blocking { border-color: color-mix(in srgb, var(--color-warning) 45%, var(--color-border)); }
 .pa-plan__head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.pa-plan__head strong { font-size: 14px; }
+.pa-plan__head strong { font-size: var(--font-size-base); }
 .pa-plan__head .grow, .pa-item__head .grow, .pa-item__ops .grow { flex: 1; }
 .pa-plan__hint { margin: 0; }
-.pa-item { border: 1px solid var(--color-border); border-radius: 10px; padding: 10px 12px; display: grid; gap: 8px; background: var(--color-bg-card); }
+.pa-item { border: 1px solid var(--color-border); border-radius: var(--radius-4); padding: 10px 12px; display: grid; gap: 8px; background: var(--color-bg-card); }
 .pa-item.confirmed { border-color: color-mix(in srgb, var(--color-success) 50%, var(--color-border)); }
 .pa-item.rejected { opacity: .75; border-style: dashed; }
 .pa-item__head { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 12.5px; }
-.pa-item textarea { width: 100%; box-sizing: border-box; border-radius: 9px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; line-height: 1.6; padding: 8px 10px; resize: vertical; }
+.pa-item textarea { width: 100%; box-sizing: border-box; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; line-height: 1.6; padding: 8px 10px; resize: vertical; }
 .pa-item__ops { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.pa-item__ops input { flex: 0 1 280px; height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 10px; }
+.pa-item__ops input { flex: 0 1 280px; height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 10px; }
 </style>

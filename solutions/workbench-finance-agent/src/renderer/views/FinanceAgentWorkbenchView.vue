@@ -266,16 +266,16 @@ onBeforeUnmount(() => {
 .fa-workbench { display: grid; gap: 12px; padding: 18px 22px 40px; max-width: 1440px; margin: 0 auto; width: 100%; box-sizing: border-box; flex: 1; min-height: 0; overflow-y: auto; align-content: start; }
 .workbench-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .heading { display: flex; gap: 14px; align-items: flex-start; }
-.heading-icon { width: 48px; height: 48px; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--color-brand) 14%, transparent); color: var(--color-brand); font-size: 24px; flex: 0 0 auto; }
-.eyebrow { margin: 0; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-secondary); }
+.heading-icon { width: 48px; height: 48px; border-radius: var(--radius-6); display: inline-flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--color-brand) 14%, transparent); color: var(--color-brand); font-size: var(--font-size-2xl); flex: 0 0 auto; }
+.eyebrow { margin: 0; font-size: var(--font-size-xs); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--color-text-secondary); }
 h1 { margin: 2px 0 4px; font-size: 22px; }
-.subtitle { margin: 0; color: var(--color-text-secondary); font-size: 13px; line-height: 1.6; max-width: 900px; }
+.subtitle { margin: 0; color: var(--color-text-secondary); font-size: var(--font-size-md); line-height: 1.6; max-width: 900px; }
 .header-actions { display: flex; gap: 8px; align-items: center; }
 
-.fa-bar { display: flex; gap: 10px 18px; align-items: center; flex-wrap: wrap; padding: 8px 12px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-bg-card); font-size: 12.5px; }
+.fa-bar { display: flex; gap: 10px 18px; align-items: center; flex-wrap: wrap; padding: 8px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-5); background: var(--color-bg-card); font-size: 12.5px; }
 .fa-bar label { display: flex; gap: 6px; align-items: center; }
 .fa-bar label > i { color: var(--color-brand); font-size: 16px; }
-.fa-bar select { height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; padding: 0 6px; max-width: 260px; }
+.fa-bar select { height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; padding: 0 6px; max-width: 260px; }
 .fa-bar__ledger select { border-color: var(--color-brand); font-weight: 600; }
 .fa-bar__rule { margin: 0 0 0 auto; display: flex; gap: 12px; flex-wrap: wrap; color: var(--color-text-secondary); }
 .fa-bar__rule span { display: inline-flex; gap: 4px; align-items: center; }
@@ -288,12 +288,12 @@ h1 { margin: 2px 0 4px; font-size: 22px; }
 
 /* 横向可滚动的 tab 条是滚动容器，min-height 默认会算成 0：外层网格高度固定、内容溢出时这一行被压扁成一条线 */
 .fa-tabs { display: flex; gap: 2px; overflow-x: auto; overflow-y: hidden; min-height: 44px; align-items: stretch; border-bottom: 1px solid var(--color-border); scrollbar-width: thin; }
-.fa-tab { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; background: transparent; cursor: pointer; font: inherit; font-size: 13px; font-weight: 600; color: var(--color-text-secondary); white-space: nowrap; flex: 0 0 auto; border-radius: 8px 8px 0 0; transition: .15s; }
+.fa-tab { display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border: none; border-bottom: 2px solid transparent; margin-bottom: -1px; background: transparent; cursor: pointer; font: inherit; font-size: var(--font-size-md); font-weight: 600; color: var(--color-text-secondary); white-space: nowrap; flex: 0 0 auto; border-radius: var(--radius-3) var(--radius-3) 0 0; transition: color .15s, border-color .15s, background-color .15s; }
 .fa-tab i { font-size: 16px; }
 .fa-tab:hover { color: var(--color-brand); background: var(--color-bg-hover); }
 .fa-tab.active { color: var(--color-brand); border-bottom-color: var(--color-brand); }
 .fa-tabs__grow { flex: 1 1 auto; }
-.fa-badge { font-style: normal; font-size: 10.5px; font-weight: 800; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 9px; background: var(--color-danger); color: #fff; display: inline-flex; align-items: center; justify-content: center; }
+.fa-badge { font-style: normal; font-size: 10.5px; font-weight: 800; min-width: 18px; height: 18px; padding: 0 5px; border-radius: var(--radius-3); background: var(--color-danger); color: var(--color-on-accent); display: inline-flex; align-items: center; justify-content: center; }
 .fa-progress { position: sticky; top: 0; z-index: 5; }
 .fa-body { display: grid; gap: 14px; }
 .spin { animation: fa-spin 1s linear infinite; }

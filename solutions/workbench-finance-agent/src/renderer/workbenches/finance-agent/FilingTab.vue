@@ -309,23 +309,23 @@ function scrollTo(key: string): void { void scrollToStep(key); }
 <style scoped>
 .ss-panel > header strong { display: flex; gap: 6px; align-items: center; }
 .fa-deadlines { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
-.fa-deadline { display: grid; gap: 2px; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--color-border); background: var(--color-bg-primary); font-size: 12px; color: var(--color-text-secondary); }
-.fa-deadline strong { font-size: 13px; color: var(--color-text-primary); }
+.fa-deadline { display: grid; gap: 2px; padding: 8px 10px; border-radius: var(--radius-4); border: 1px solid var(--color-border); background: var(--color-bg-primary); font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+.fa-deadline strong { font-size: var(--font-size-md); color: var(--color-text-primary); }
 .fa-deadline em { justify-self: start; font-style: normal; }
 .fa-deadline.soon { border-color: var(--color-warning); }
 .fa-deadline.over { border-color: var(--color-danger); }
 .fa-split { display: grid; grid-template-columns: minmax(200px, 250px) 1fr; gap: 14px; align-items: start; }
 @media (max-width: 960px) { .fa-split { grid-template-columns: 1fr; } }
-.fa-list { display: grid; gap: 8px; border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 10px; position: sticky; top: 0; }
+.fa-list { display: grid; gap: 8px; border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 10px; position: sticky; top: 0; }
 .fa-list ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; max-height: 50vh; overflow-y: auto; }
-.fa-list li { padding: 8px 10px; border-radius: 10px; border: 1px solid transparent; cursor: pointer; display: grid; gap: 3px; background: var(--color-bg-primary); }
+.fa-list li { padding: 8px 10px; border-radius: var(--radius-4); border: 1px solid transparent; cursor: pointer; display: grid; gap: 3px; background: var(--color-bg-primary); }
 .fa-list li.active { border-color: var(--color-brand); }
-.fa-list__top { display: flex; justify-content: space-between; gap: 6px; align-items: center; font-size: 13px; }
-.fa-list__meta { display: flex; gap: 8px; font-size: 11px; color: var(--color-text-secondary); }
+.fa-list__top { display: flex; justify-content: space-between; gap: 6px; align-items: center; font-size: var(--font-size-md); }
+.fa-list__meta { display: flex; gap: 8px; font-size: var(--font-size-xs); color: var(--color-text-secondary); }
 .fa-detail { display: grid; gap: 12px; min-width: 0; }
-.fa-checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 13px; }
-.fa-checklist label, .fa-inline { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; font-size: 13px; }
-.fa-url { font-size: 12px; color: var(--color-text-secondary); }
-.fa-instruction { width: 100%; box-sizing: border-box; font: inherit; font-size: 12px; line-height: 1.6; border-radius: 10px; border: 1px solid var(--color-border); background: var(--color-bg-primary); color: var(--color-text-primary); padding: 10px; }
+.fa-checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: var(--font-size-md); }
+.fa-checklist label, .fa-inline { display: flex; gap: 8px; align-items: flex-start; cursor: pointer; font-size: var(--font-size-md); }
+.fa-url { font-size: var(--font-size-sm); color: var(--color-text-secondary); }
+.fa-instruction { width: 100%; box-sizing: border-box; font: inherit; font-size: var(--font-size-sm); line-height: 1.6; border-radius: var(--radius-4); border: 1px solid var(--color-border); background: var(--color-bg-primary); color: var(--color-text-primary); padding: 10px; }
 .ss-table input, .ss-table select { max-width: 160px; }
 </style>

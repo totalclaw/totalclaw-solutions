@@ -161,19 +161,19 @@ async function changeOutputDir(): Promise<void> {
 
 <style scoped>
 .pa-sched { display: grid; gap: 14px; max-width: 1100px; }
-.ss-panel { border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-bg-card); padding: 16px; display: grid; gap: 12px; }
+.ss-panel { border: 1px solid var(--color-border); border-radius: var(--radius-6); background: var(--color-bg-card); padding: 16px; display: grid; gap: 12px; }
 .pa-sched__head { display: flex; align-items: center; gap: 10px; }
-h3 { margin: 0; font-size: 15px; }
+h3 { margin: 0; font-size: var(--font-size-lg); }
 p { margin: 0; }
 .pa-check { grid-template-columns: auto 1fr; align-items: center; }
 .pa-check input { width: 16px; height: 16px; padding: 0; }
 .pa-check span { color: var(--color-text-primary); }
 .pa-folder { display: flex; gap: 8px; }
 .pa-folder input { flex: 1; }
-.pa-kw { display: grid; gap: 8px; border: 1px solid var(--color-border); border-radius: 12px; padding: 12px; font-size: 12.5px; }
+.pa-kw { display: grid; gap: 8px; border: 1px solid var(--color-border); border-radius: var(--radius-5); padding: 12px; font-size: 12.5px; }
 .pa-kw__row { display: grid; grid-template-columns: 150px minmax(160px, 280px) 1fr; gap: 10px; align-items: center; }
 .pa-kw__row > span em { color: var(--color-danger); font-style: normal; margin-inline-start: 2px; }
-.pa-kw__row input { height: 32px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 10px; min-width: 0; }
+.pa-kw__row input { height: 32px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 10px; min-width: 0; }
 .pa-kw__row small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-flex; gap: 4px; align-items: center; }
 .pa-kw__row small.hit { color: var(--color-success); }
 .pa-kw__row small.miss { color: var(--color-text-secondary); }

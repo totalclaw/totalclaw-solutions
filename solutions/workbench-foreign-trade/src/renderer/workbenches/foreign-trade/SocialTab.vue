@@ -210,9 +210,9 @@ function scrollTo(key: string): void { void scrollToStep(key); }
 
 <style scoped>
 .ft-wrap { white-space: normal !important; max-width: 320px; }
-.ft-input { height: 34px; border-radius: 9px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 10px; min-width: 260px; flex: 1; }
+.ft-input { height: 34px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 12.5px; padding: 0 10px; min-width: 260px; flex: 1; }
 .ft-cal { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 6px; }
-.ft-cal li { display: flex; gap: 8px; align-items: center; font-size: 12.5px; padding: 6px 10px; border-radius: 8px; background: var(--color-bg-primary); }
+.ft-cal li { display: flex; gap: 8px; align-items: center; font-size: 12.5px; padding: 6px 10px; border-radius: var(--radius-3); background: var(--color-bg-primary); }
 .ft-cal li.past { opacity: .6; }
 .ft-issues { margin: 0; padding-inline-start: 20px; font-size: 12.5px; display: grid; gap: 3px; }
 </style>

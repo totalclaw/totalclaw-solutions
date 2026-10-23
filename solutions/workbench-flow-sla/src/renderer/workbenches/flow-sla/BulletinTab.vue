@@ -38,7 +38,7 @@
         </div>
         <div class="ss-actions">
           <button type="button" class="ss-btn primary" :disabled="!!busy || !canImport" data-test="fs-import-commit" @click="commit"><i :class="busy === 'fs-import' ? 'ri-loader-4-line spin' : 'ri-download-2-line'"></i>{{ $t('导入并标准化') }}</button>
-          <button type="button" class="ss-btn" :disabled="!!busy" data-test="fs-demo" @click="demo"><i class="ri-magic-line"></i>{{ $t('生成示例数据') }}</button>
+          <button type="button" class="ss-btn" :disabled="!!busy" data-test="fs-demo" @click="demo"><i class="ri-file-download-line"></i>{{ $t('生成示例数据') }}</button>
           <span v-if="importBlock" class="ss-muted">{{ importBlock }}</span>
         </div>
         <template v-if="ingest">
@@ -257,7 +257,7 @@
             </table></div>
             <div class="ss-actions">
               <button type="button" class="ss-btn" :disabled="!!busy || !filledCount" data-test="fs-classify-rule" @click="classify(false)"><i :class="busy === 'fs-classify' ? 'ri-loader-4-line spin' : 'ri-price-tag-3-line'"></i>{{ $t('按关键字归类') }}</button>
-              <button type="button" class="ss-btn" :disabled="!!busy || !filledCount" @click="classify(true)"><i class="ri-sparkling-line"></i>{{ $t('用模型归类并写根因') }}</button>
+              <button type="button" class="ss-btn" :disabled="!!busy || !filledCount" @click="classify(true)"><i class="ri-price-tag-3-line"></i>{{ $t('用模型归类并写根因') }}</button>
               <span class="ss-muted">{{ $t('模型只在固定的七类里选，不算任何数字；它写的话里出现材料里没有的数字会被去掉') }}</span>
             </div>
             <div v-if="categoryStats.length" class="fs-roots">
@@ -278,7 +278,7 @@
         <template v-else>
           <div class="ss-actions">
             <button type="button" class="ss-btn" :disabled="!!busy" data-test="fs-draft-rule" @click="draft(false)"><i :class="busy === 'fs-draft' ? 'ri-loader-4-line spin' : 'ri-file-text-line'"></i>{{ $t('按数据起草总结与建议') }}</button>
-            <button type="button" class="ss-btn" :disabled="!!busy" @click="draft(true)"><i class="ri-sparkling-line"></i>{{ $t('用模型起草') }}</button>
+            <button type="button" class="ss-btn" :disabled="!!busy" @click="draft(true)"><i class="ri-quill-pen-line"></i>{{ $t('用模型起草') }}</button>
             <span v-if="draftNote" class="ss-muted">{{ draftNote }}</span>
           </div>
           <label class="ss-field"><span>{{ calc.period.kind === 'monthly' ? $t('月度总结（整体表现 / 异常趋势 / 重点问题 / 责任维度）') : $t('小结（可留空）') }}</span>
@@ -765,12 +765,12 @@ defineExpose({ pick, commit, demo, runCalc, runCompare, tables, form });
 </script>
 
 <style scoped>
-.fs-seg { display: inline-flex; border: 1px solid var(--color-border); border-radius: 10px; overflow: hidden; }
+.fs-seg { display: inline-flex; border: 1px solid var(--color-border); border-radius: var(--radius-4); overflow: hidden; }
 .fs-seg button { height: 34px; padding: 0 16px; border: none; background: var(--color-bg-card); color: var(--color-text-secondary); font: inherit; font-size: 12.5px; font-weight: 700; cursor: pointer; }
-.fs-seg button.on { background: var(--color-brand); color: #fff; }
-.fs-sys { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--color-border); border-radius: 12px; }
+.fs-seg button.on { background: var(--color-brand); color: var(--color-on-accent); }
+.fs-sys { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-5); }
 .fs-sys h4 { margin: 0; font-size: 13.5px; display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
-.fs-sys h4 small { font-weight: 400; font-size: 12px; color: var(--color-text-secondary); }
+.fs-sys h4 small { font-weight: 400; font-size: var(--font-size-sm); color: var(--color-text-secondary); }
 .fs-slots { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); align-items: start; }
 .fs-slot { display: grid; gap: 8px; min-width: 0; }
 .fs-scroll { max-height: 380px; overflow: auto; }
@@ -783,13 +783,13 @@ defineExpose({ pick, commit, demo, runCalc, runCompare, tables, form });
 .fs-bad { color: var(--color-danger); }
 .fs-warn { color: var(--color-warning); }
 .fs-ok { color: var(--color-success); }
-.fs-small { font-size: 13px !important; }
+.fs-small { font-size: var(--font-size-md) !important; }
 .fs-wrap { white-space: normal !important; max-width: 320px; }
 :deep(.fs-wrap) { white-space: normal !important; max-width: 280px; }
 :deep(.fs-flowtable) { display: grid; gap: 6px; justify-items: start; }
 :deep(.fs-flowtable .ss-table-wrap) { width: 100%; }
-.fs-abn { display: grid; gap: 8px; padding: 12px; border: 1px solid color-mix(in srgb, var(--color-danger) 35%, var(--color-border)); border-radius: 12px; }
-.fs-abn header { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; }
+.fs-abn { display: grid; gap: 8px; padding: 12px; border: 1px solid color-mix(in srgb, var(--color-danger) 35%, var(--color-border)); border-radius: var(--radius-5); }
+.fs-abn header { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: var(--font-size-md); }
 .fs-mail { display: grid; gap: 6px; padding: 8px 4px; white-space: normal; }
 .fs-mail pre { margin: 0; white-space: pre-wrap; font: inherit; font-size: 12.5px; color: var(--color-text-secondary); line-height: 1.6; }
 .fs-mail small { color: var(--color-text-secondary); }
@@ -798,7 +798,15 @@ defineExpose({ pick, commit, demo, runCalc, runCompare, tables, form });
 .fs-roots textarea { min-height: 56px; }
 .fs-sug input { min-width: 110px; }
 .fs-sug .fs-wide { min-width: 220px; }
-.fs-preview { width: 100%; height: 520px; border: 1px solid var(--color-border); border-radius: 10px; background: #fff; }
+.fs-preview { width: 100%; height: 520px; border: 1px solid var(--color-border); border-radius: var(--radius-4); background: var(--fsbt2-surface); }
 .spin { animation: fs-spin 1s linear infinite; }
 @keyframes fs-spin { to { transform: rotate(360deg); } }
+
+/* ─── 调色板（docs/ui-design-system.md）：经典主题保持原值；界面主题（data-ui-theme）下映射全局 token ─── */
+.ss-module { /* ui-theme-exempt: 经典主题原值 */
+  --fsbt2-surface: #fff;
+}
+:root[data-ui-theme] .ss-module {
+  --fsbt2-surface: var(--color-bg-card);
+}
 </style>

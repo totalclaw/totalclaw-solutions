@@ -1,12 +1,12 @@
 {
   "id": "workbench-healthcare",
   "version": "2.0.2",
-  "treeDigest": "f6f575e480bf0d13c48a608823902d7c3a5f56f5f4cf34f48dda7eecfe3f47f4",
+  "treeDigest": "476e301a80f6e39ebf09ca8c4b7d3beec6ed391963fc7ce6ba76899bc110fe25",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 899,
-      "sha256": "aff66afacb548171941c082b03cd21530f428b8b55c7f6bc24c85bbcfb793d2f"
+      "size": 1008,
+      "sha256": "9c5fb0e625307d8b8fe4bf7e61973d14e24b9ed86dcff819a377bebc6a340f2c"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 13340,
-      "sha256": "5a0b2781baa2363e1ed93507eecf86971d9afbaadd662985d8945637d8b3ecbf"
+      "size": 13590,
+      "sha256": "88d2de683638af69a98a354d6799722ba2d6a141c7e3c8920a3285764ee80d8d"
     },
     {
       "path": "dist/renderer.mjs",
       "size": 116740,
-      "sha256": "5ba312304b818b01e6112b28d2769c12a9e24729bb6edd57ab91660a0dd88c0c"
+      "sha256": "40094b8ccaaea176a3aad6c9033d71f025b257a840ed538b0d33c658a5541380"
     },
     {
       "path": "dist/style.css",
-      "size": 15272,
-      "sha256": "f7cc706747aa184aec91ac5513c0deec4ce653316bcbfb77320d75d3befc1a47"
+      "size": 15936,
+      "sha256": "fd3541f75d65daf4c599a6046f65eda1c7c17a020489a05c7d99ec0a93488777"
     },
     {
       "path": "migrations/README.md",

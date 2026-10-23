@@ -44,7 +44,7 @@
           </div>
           <div v-if="showPaste" class="iv-paste">
             <textarea v-model="pasteText" rows="5" :placeholder="$t('把银行回单、付款通知里的文字粘贴到这里；模型只负责读出付款方和金额，读出来的内容会逐条回原文核对')"></textarea>
-            <button type="button" class="ss-btn sm primary" :disabled="!!busy || !pasteText.trim()" @click="importSlips([])"><i :class="busy === 'i-import' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ $t('抽取') }}</button>
+            <button type="button" class="ss-btn sm primary" :disabled="!!busy || !pasteText.trim()" @click="importSlips([])"><i :class="busy === 'i-import' ? 'ri-loader-4-line spin' : 'ri-file-search-line'"></i>{{ $t('抽取') }}</button>
           </div>
           <div v-for="(f, fi) in previews" :key="f.path" class="iv-preview">
             <div class="iv-preview__head">
@@ -116,7 +116,7 @@
         <p v-if="!batchId" class="ss-empty">{{ $t('导入后列出这一批用到的开票项目') }}</p>
         <template v-else>
           <div class="ss-actions">
-            <button type="button" class="ss-btn" :disabled="!!busy || !codeItems.some((x) => !x.goods?.taxCode)" @click="suggestCodes"><i :class="busy === 'i-code' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ $t('让模型建议编码') }}</button>
+            <button type="button" class="ss-btn" :disabled="!!busy || !codeItems.some((x) => !x.goods?.taxCode)" @click="suggestCodes"><i :class="busy === 'i-code' ? 'ri-loader-4-line spin' : 'ri-barcode-line'"></i>{{ $t('让模型建议编码') }}</button>
             <span class="ss-muted">{{ $t('批量导入模板里「商品和服务税收编码」是必填；模型建议的要你逐条确认') }}</span>
           </div>
           <p v-if="codeNote" class="ss-note info"><i class="ri-information-line"></i>{{ codeNote }}</p>
@@ -640,40 +640,40 @@ defineExpose({ addExcel });
 
 <style scoped>
 .iv-channels { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
-.iv-channel { display: grid; gap: 4px; text-align: start; padding: 12px; border-radius: 12px; border: 2px solid var(--color-border); background: var(--color-bg-card); font: inherit; font-size: 12.5px; color: var(--color-text-secondary); cursor: pointer; line-height: 1.55; }
+.iv-channel { display: grid; gap: 4px; text-align: start; padding: 12px; border-radius: var(--radius-5); border: 2px solid var(--color-border); background: var(--color-bg-card); font: inherit; font-size: 12.5px; color: var(--color-text-secondary); cursor: pointer; line-height: 1.55; }
 .iv-channel strong { display: flex; gap: 6px; align-items: center; color: var(--color-text-primary); font-size: 13.5px; }
 .iv-channel.on { border-color: var(--color-brand); }
 .iv-channel.on strong { color: var(--color-brand); }
 .iv-paste { display: grid; gap: 8px; justify-items: start; }
-.iv-paste textarea { width: 100%; box-sizing: border-box; border-radius: 9px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 13px; padding: 8px 10px; resize: vertical; }
-.iv-preview { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--color-border); border-radius: 12px; }
-.iv-preview__head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 13px; }
+.iv-paste textarea { width: 100%; box-sizing: border-box; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-md); padding: 8px 10px; resize: vertical; }
+.iv-preview { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-5); }
+.iv-preview__head { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: var(--font-size-md); }
 .iv-preview__head b { display: inline-flex; gap: 6px; align-items: center; }
-.iv-preview__head select { height: 28px; border-radius: 7px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 12px; }
+.iv-preview__head select { height: 28px; border-radius: var(--radius-2); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-sm); }
 .iv-map { display: grid; gap: 8px 12px; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
 .iv-map em { color: var(--color-danger); font-style: normal; margin-inline-start: 2px; }
 .iv-check { display: inline-flex; gap: 5px; align-items: center; font-size: 12.5px; }
 .iv-rows { max-height: 460px; overflow-y: auto; }
 .iv-rows input[type="text"] { min-width: 150px; }
-.iv-mono { font-family: var(--font-mono, ui-monospace, monospace); }
+.iv-mono { font-family: var(--font-mono); }
 .iv-num { width: 110px; text-align: end; }
 .iv-code { min-width: 190px; }
 .iv-issues { white-space: normal !important; max-width: 320px; }
-.iv-issues .ss-chip { white-space: normal; border-radius: 8px; margin: 1px 2px 1px 0; text-align: start; }
+.iv-issues .ss-chip { white-space: normal; border-radius: var(--radius-3); margin: 1px 2px 1px 0; text-align: start; }
 .iv-ops { display: flex; gap: 10px; align-items: center; }
 .iv-skipped td { opacity: .5; }
 .iv-bad { color: var(--color-danger); }
-.iv-draft { display: grid; gap: 8px; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: 12px; }
+.iv-draft { display: grid; gap: 8px; padding: 10px 12px; border: 1px solid var(--color-border); border-radius: var(--radius-5); }
 .iv-draft.bad { border-color: color-mix(in srgb, var(--color-danger) 45%, var(--color-border)); }
-.iv-draft__head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; }
+.iv-draft__head { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: var(--font-size-md); }
 .iv-draft__head code { font-size: 11.5px; color: var(--color-text-secondary); }
 .iv-grow { flex: 1; }
-.iv-sub-step { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--color-border); border-radius: 12px; }
-.iv-sub-step > b { font-size: 13px; }
+.iv-sub-step { display: grid; gap: 8px; padding: 12px; border: 1px solid var(--color-border); border-radius: var(--radius-5); }
+.iv-sub-step > b { font-size: var(--font-size-md); }
 .iv-etax { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 12.5px; }
 .iv-serial { font-size: 11.5px; color: var(--color-text-secondary); }
-.iv-qr { display: block; padding: 8px 10px; border-radius: 8px; background: var(--color-bg-hover); font-size: 11.5px; word-break: break-all; }
-.iv-sms { width: 140px; height: 30px; border-radius: 8px; border: 1px solid var(--color-border); background: var(--color-bg-input, var(--color-bg-primary)); color: var(--color-text-primary); font: inherit; font-size: 13px; padding: 0 8px; }
+.iv-qr { display: block; padding: 8px 10px; border-radius: var(--radius-3); background: var(--color-bg-hover); font-size: 11.5px; word-break: break-all; }
+.iv-sms { width: 140px; height: 30px; border-radius: var(--radius-3); border: 1px solid var(--color-border); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: var(--font-size-md); padding: 0 8px; }
 .iv-total { font-weight: 800; font-variant-numeric: tabular-nums; }
 .spin { animation: iv-spin 1s linear infinite; }
 @keyframes iv-spin { to { transform: rotate(360deg); } }

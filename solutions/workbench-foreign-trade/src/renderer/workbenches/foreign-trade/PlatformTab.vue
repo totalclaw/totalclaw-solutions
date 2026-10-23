@@ -58,7 +58,7 @@
 
       <StepCard step-key="suggest" :index="3" :title="metas[3].title" :hint="metas[3].hint" :runtime="runtime.suggest">
         <div class="ss-actions">
-          <button type="button" class="ss-btn primary" :disabled="!picked.length || busy === 'suggest'" @click="suggest"><i :class="busy === 'suggest' ? 'ri-loader-4-line spin' : 'ri-magic-line'"></i>{{ $t('为选中的 {n} 个商品生成修改稿', { n: picked.length }) }}</button>
+          <button type="button" class="ss-btn primary" :disabled="!picked.length || busy === 'suggest'" @click="suggest"><i :class="busy === 'suggest' ? 'ri-loader-4-line spin' : 'ri-lightbulb-line'"></i>{{ $t('为选中的 {n} 个商品生成修改稿', { n: picked.length }) }}</button>
           <button type="button" class="ss-link" @click="pickProblems">{{ $t('只选有问题的') }}</button>
         </div>
         <p v-if="busy === 'suggest' && ftProgress.platform" class="ss-muted">{{ ftProgress.platform }}</p>
@@ -260,7 +260,7 @@ function scrollTo(key: string): void { void scrollToStep(key); }
 .ft-wrap { white-space: normal !important; max-width: 420px; }
 .ft-wrap .ss-chip { margin: 1px 3px 1px 0; white-space: normal; }
 .ft-scroll { max-height: 420px; overflow: auto; }
-.ft-sugg { border: 1px solid var(--color-border); border-radius: 10px; padding: 8px 10px; display: grid; gap: 4px; font-size: 12.5px; }
+.ft-sugg { border: 1px solid var(--color-border); border-radius: var(--radius-4); padding: 8px 10px; display: grid; gap: 4px; font-size: 12.5px; }
 .ft-sugg__row { display: grid; grid-template-columns: 80px 1fr; gap: 8px; }
 .ft-apply { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; padding: 6px 0; border-bottom: 1px dashed var(--color-border); font-size: 12.5px; }
 .ft-apply .ft-wrap { flex: 1; min-width: 200px; }
