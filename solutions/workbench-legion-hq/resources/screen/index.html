@@ -335,6 +335,9 @@ function buildTopo(groups){
  layers.dyn2=mk('g',{},svg);
  nodes.core=mk('circle',{cx,cy,r:68,fill:'#0F5E6E',stroke:'#3FA7B5','stroke-width':2},svg);
  drawGM(svg,cx,cy-30,1.55);
+ {const ht=gmHostText();if(ht){const w=Math.max(120,ht.length*7.6+40);const pg=mk('g',{},svg);mk('rect',{x:cx-w/2,y:cy-104,width:w,height:24,rx:6,fill:'#101C33',stroke:'#3FA7B5'},pg);
+  const ix=cx-w/2+10,iy=cy-98;mk('rect',{x:ix,y:iy,width:14,height:9.5,rx:1.2,fill:'none',stroke:'#67E8F9','stroke-width':1.2},pg);mk('path',{d:`M${ix+7} ${iy+9.5} v2.8 M${ix+3.5} ${iy+12.6} h7`,stroke:'#67E8F9','stroke-width':1.2},pg);
+  mk('text',{x:ix+20,y:cy-87.5,'font-size':11.5,fill:'#A5F3FC'},pg,ht);}}
  mk('text',{x:cx,y:cy+30,'text-anchor':'middle',fill:'#fff','font-size':18,'font-weight':800},svg,tr('gm'));
  mk('text',{x:cx,y:cy+47,'text-anchor':'middle',fill:'#ECFEFF','font-size':LANG==='en'?9:10.5},svg,tr('gmSub'));
  layers.dyn3=mk('g',{},svg);
@@ -547,6 +550,8 @@ function drawGM(par,x,y,s){const g=mk('g',{class:'gmfig',transform:`translate(${
  mk('path',{d:'M-8.3 -1.5 Q-8.6 2 -7.6 3.6 L-7 -1 Z M8.3 -1.5 Q8.6 2 7.6 3.6 L7 -1 Z',fill:'#CBD5E1'},g);
  mk('path',{d:'M-13 18.5 L-9 18.5 L-10 21 Z',fill:'#F8FAFC'},g);
  return g;}
+// 总经理跑在主控上：大屏标出「在哪台」
+function gmHostText(){const m=(S.machines||[]).find(x=>x.local);if(!m)return '';return `${m.name}${m.ip?' · '+m.ip:''}`;}
 function buildOffice(){
  const svg=$('office');svg.innerHTML='';officeRooms={};
  const ids=ORDER.slice(0,8);
@@ -558,6 +563,7 @@ function buildOffice(){
  mk('text',{x:464,y:67,class:'ogm',fill:'#fff'},gm,LANG==='en'?'AI GM':'AI 总经理');
  mk('text',{x:464,y:81,id:'oGMst',fill:'#A5F3FC','font-size':10.5},gm,tr('gmSub'));
  drawGM(gm,424,56,1.42);
+ {const ht=gmHostText();if(ht)mk('text',{x:594,y:74,'font-size':10.5,fill:'#94A3B8'},gm,(LANG==='en'?'On: ':'所在：')+ht);}
  const defs=mk('defs',{},svg);defs.innerHTML='<filter id="gl" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><marker id="oArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="context-stroke"/></marker>';
  ids.forEach((id,i)=>{const L=LG[id];if(!L)return;const[x,y]=officeRoomXY(i);
   const g=mk('g',{class:'oroom'},svg);

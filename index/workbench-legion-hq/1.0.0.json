@@ -1,7 +1,7 @@
 {
   "id": "workbench-legion-hq",
   "version": "1.0.0",
-  "treeDigest": "e66bd5489426d645a0eed0682832b62e1ff3316a1e165b318ab04feea9d3ce6d",
+  "treeDigest": "70a655dde78ac2afb2d39a559c0dd88a82be28b8f4c9932fc4c82e394a92e801",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -55,8 +55,8 @@
     },
     {
       "path": "resources/screen/index.html",
-      "size": 73205,
-      "sha256": "690808b0d6679531924aa8695dc56883acd52d01f064d4ed3ea464bea4288540"
+      "size": 74008,
+      "sha256": "c6f160761b22041355cca841e59dcd89907323804923b7e924bb83a1e3f9acb8"
     },
     {
       "path": "resources/screen/remote.html",
@@ -90,8 +90,8 @@
     },
     {
       "path": "src/host-modules.json",
-      "size": 356,
-      "sha256": "c3a463d18e9084c7903daac65ce51a336dd65dffbece6bb3a9d309b6bc4d1fb3"
+      "size": 418,
+      "sha256": "9b73631bc7f8a7ef842f8af3a400f1ce394de45054fda5ba0b6eee5c0703c30b"
     },
     {
       "path": "src/main/autopilot.cjs",
@@ -140,8 +140,8 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 44319,
-      "sha256": "a497f06a1e62ec712ed807d17e82f440439d8a3331e2afc5219342b7b262930c"
+      "size": 49822,
+      "sha256": "807b7cdf3ba2c7d9b916232eeee0a97066df4fdf14af6bc54b82b43aac0fd0cb"
     },
     {
       "path": "src/main/legions.cjs",
@@ -165,8 +165,8 @@
     },
     {
       "path": "src/main/runner.cjs",
-      "size": 26236,
-      "sha256": "99d64624f2cafea4da96cd6645924e992b93334ba1407ba2845acde3d2e3b825"
+      "size": 26268,
+      "sha256": "ac75f21c3213867f6bb0c783b040e0dd67404dbe249a535da7aa0b50c0d0adc4"
     },
     {
       "path": "src/main/screenServer.cjs",
@@ -177,6 +177,11 @@
       "path": "src/main/screenState.cjs",
       "size": 9616,
       "sha256": "2e38606765f2ab22a0da5b6b28264436fc09c0ab2b9694914ad29462ebc32331"
+    },
+    {
+      "path": "src/main/storage.cjs",
+      "size": 5461,
+      "sha256": "5ad7c9b033dcca88af4c74a2b185b1878a2e85070fad14ef16a72dc3011774e5"
     },
     {
       "path": "src/main/triage.cjs",
@@ -190,8 +195,8 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 73522,
-      "sha256": "210d0d7f27c40e2495875da16d51a74f1410bed1d8b1d6be5ebb786c580da46a"
+      "size": 79116,
+      "sha256": "e999fee7d30a766875a6497f46e24d87cb80e99b95ebfb25d11b94bf06f93690"
     }
   ]
 }
