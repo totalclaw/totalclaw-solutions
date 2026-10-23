@@ -80,7 +80,9 @@ function hostCompanySources(deps) {
   const out = [];
   try {
     const u = deps?.serviceAuth?.readSession?.()?.user;
-    const name = u && (u.companyName || u.company?.name || u.enterpriseName || u.orgName);
+    // 「个人空间」是还没建企业时的占位公司（kind=personal），不当公司名，回落默认公司
+    const co = u?.company && u.company.kind !== 'personal' ? u.company.name : null;
+    const name = u && (u.companyName || co || u.enterpriseName || u.orgName);
     if (name) out.push({ name: String(name) });
   } catch {
     /* 未登录 / 字段不存在 */
