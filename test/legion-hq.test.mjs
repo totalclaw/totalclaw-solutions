@@ -1180,3 +1180,34 @@ test('产物存放：办完的事按「日期 / 时间-编号-标题」落结论
   // 没有任何产出的不落盘
   assert.equal(st.writeDeliverables({ ...rec, summary: '', outputs: {} }, () => ''), null);
 });
+
+test('关掉演示模式：还在等老板确认的示例事务自动批完，不留在老板待办里', async () => {
+  const dataRoot = mkdtempSync(join(tmpdir(), 'lhq-demo-off-'));
+  const handlers = new Map();
+  const ctx = {
+    id: 'workbench-legion-hq', version: '1.0.0', appVersion: '2.0.6', log: { info() {}, warn() {} },
+    dataPath: (rel) => join(dataRoot, rel),
+    readJson: (rel, fb) => { try { return JSON.parse(readFileSync(join(dataRoot, rel), 'utf8')); } catch { return fb; } },
+    writeJson: (rel, v) => { mkdirSync(join(dataRoot, rel, '..'), { recursive: true }); writeFileSync(join(dataRoot, rel), JSON.stringify(v)); },
+    packagePath: (rel) => join(DIR, rel), handle: (a, fn) => handlers.set(a, fn), emit: () => {},
+  };
+  ctx.writeJson('legion-hq/settings.json', { demoRun: false });
+  const mod = require('./index.cjs');
+  await mod.activate(ctx);
+  try {
+    const call = (a, p) => handlers.get(a)(p);
+    await call('fleet.assign', { legionId: 'legion-finance', machineId: (await call('fleet.list'))[0].id, on: true });
+    // 开演示模式但先停掉自动下令，手动下一件要老板确认的事（付款类），等它进待办
+    await call('demoRun.set', { on: true });
+    const { taskId } = await call('command', { text: '给供应商付款 5 万元', legions: ['legion-finance'] });
+    let st;
+    for (let i = 0; i < 300; i++) { st = await call('state'); if (st.tasks.find((t) => t.id === taskId)?.status === 'awaiting') break; await new Promise((r) => setTimeout(r, 100)); }
+    assert.equal(st.tasks.find((t) => t.id === taskId).status, 'awaiting');
+    await call('demoRun.set', { on: false });
+    st = await call('state');
+    assert.equal(st.tasks.find((t) => t.id === taskId).status, 'done');
+    assert.equal(st.counters.awaiting, 0);
+  } finally {
+    await mod.deactivate();
+  }
+});

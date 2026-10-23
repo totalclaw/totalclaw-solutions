@@ -259,7 +259,15 @@ module.exports = {
       if (fleet.mode() === 'employee') throw new Error('本机是员工机：演示模式只在主控（或单机）上开');
       saveSettings({ demoRun: !!on });
       if (on) autopilot.start();
-      else autopilot.stop();
+      else {
+        autopilot.stop();
+        // 演示时自动下的示例事务不留在老板待办里：关掉时把还在等确认的一并批完（还在办的照常办完，同样不调模型）
+        for (const t of runner.tasks.values()) {
+          if (t.simulated && t.status === 'awaiting') {
+            try { runner.confirm(t.id); } catch { /* 已被处理 */ }
+          }
+        }
+      }
       return { on: autopilot.on };
     };
     if (settings().demoRun !== false && fleet.mode() !== 'employee') autopilot.start();
