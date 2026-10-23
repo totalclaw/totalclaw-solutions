@@ -254,6 +254,10 @@ module.exports = {
       tasks: () => snapshot(state).tasks,
       submit: (c) => runner.submit({ text: c.text, title: c.title || undefined, source: c.source, forcedLegions: c.legions && c.legions.length ? c.legions : null }),
       approve: (taskId) => runner.confirm(taskId),
+      canIssue: (c) => {
+        const ok = new Set(fleet.availableLegionIds());
+        return c.legions && c.legions.length ? c.legions.every((id) => ok.has(id)) : ok.size > 0;
+      },
       onChange: (on) => bus.publish('demo:changed', { on }),
     });
     // 演示模式开关（主控页面与大屏共用）：开 = 自动下令 + 自动审批 + 不调模型

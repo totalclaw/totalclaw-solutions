@@ -41,9 +41,10 @@ class AutoPilot {
    * @param {(cmd) => any} o.submit        下令
    * @param {(taskId) => any} o.approve    批准
    * @param {(on:boolean) => void} [o.onChange]
+   * @param {(cmd) => boolean} [o.canIssue]  这条命令现在能不能下（要的部门有在线机器承载）；不能就先跳过、留到下一轮
    */
-  constructor({ pool, tasks, submit, approve, onChange, now = () => Date.now(), rand = Math.random, setInterval: si = setInterval, clearInterval: ci = clearInterval, tickMs = 3000, approveDelayMs = 6000, minGapMs = 20000, maxActive = 2 }) {
-    Object.assign(this, { pool, tasks, submit, approve, onChange, now, rand, si, ci, tickMs, approveDelayMs, minGapMs, maxActive });
+  constructor({ pool, tasks, submit, approve, onChange, canIssue = () => true, now = () => Date.now(), rand = Math.random, setInterval: si = setInterval, clearInterval: ci = clearInterval, tickMs = 3000, approveDelayMs = 6000, minGapMs = 20000, maxActive = 2 }) {
+    Object.assign(this, { pool, tasks, submit, approve, onChange, canIssue, now, rand, si, ci, tickMs, approveDelayMs, minGapMs, maxActive });
     this.timer = null;
     this.queue = [];
     this.lastText = '';
@@ -104,7 +105,15 @@ class AutoPilot {
     // 持续下令
     const active = tasks.filter((t) => ACTIVE.has(t.status)).length;
     if (active < this.maxActive && now - this.lastIssue >= this.minGapMs) {
-      const c = this.next();
+      // 刚启动员工机还没连上时，要的部门没人承载：跳过这条（放回队尾），一轮都下不了就等下次
+      let c = null;
+      const n = Math.max(1, (this.pool() || []).length);
+      for (let k = 0; k < n; k++) {
+        const x = this.next();
+        if (!x) break;
+        if (this.canIssue(x)) { c = x; break; }
+        this.queue.push(x);
+      }
       if (c) {
         this.lastIssue = now;
         try { this.submit(c); } catch { /* 下令失败下一轮再试 */ }

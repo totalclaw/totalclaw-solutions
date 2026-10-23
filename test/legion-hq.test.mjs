@@ -1222,3 +1222,28 @@ test('自动分配：有员工机时主控不承载部门，按人数均衡；�
   assert.ok(Math.abs(sum(p.a) - sum(p.b)) <= 5, `${sum(p.a)} vs ${sum(p.b)}`);
   assert.deepEqual(planPlacement(L, [], 'me').me.length, 8);
 });
+
+test('自动演示：要的部门没有在线机器承载时不下这条，等机器上线后再下', () => {
+  const { AutoPilot } = require('./autopilot.cjs');
+  let online = new Set();
+  const sent = [];
+  let tick = null;
+  const ap = new AutoPilot({
+    pool: () => [{ text: '招聘', legions: ['legion-hr'] }, { text: '报价', legions: ['legion-sales'] }],
+    tasks: () => [],
+    submit: (c) => sent.push(c.text),
+    approve: () => {},
+    canIssue: (c) => c.legions.every((id) => online.has(id)),
+    now: () => 0,
+    rand: () => 0.5,
+    setInterval: (fn) => { tick = fn; return 1; },
+    clearInterval: () => {},
+    minGapMs: 0,
+  });
+  ap.start();
+  assert.deepEqual(sent, [], '没有机器在线：一条都不下');
+  online = new Set(['legion-sales']);
+  tick();
+  assert.deepEqual(sent, ['报价'], '只下有机器承载的那条');
+  ap.stop();
+});
