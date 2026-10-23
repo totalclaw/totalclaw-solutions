@@ -145,7 +145,7 @@ input,textarea{-webkit-user-select:text;user-select:text}
 /* 下令时的判定卡片：办公室模式下浮在最上层、顶部居中，不被员工挡住 */
 .office-on #route{left:50%;transform:translateX(-50%);top:46px;width:min(520px,70%);z-index:6}
 /* 航路：AI 总经理 → 承办办公室（部门色），部门之间交接（黄），沿走廊走、流动虚线 + 箭头 */
-#office .oarc{fill:none;stroke-width:1.6;stroke-linecap:round;opacity:.55}
+#office .oarc{fill:none;stroke-width:1.8;stroke-linecap:round;opacity:.75}
 #office .oarc-glow{fill:none;stroke-width:6;opacity:.1}
 @keyframes oFlow{to{stroke-dashoffset:-16}}
 #office .ogm{font-size:12px;font-weight:700}
@@ -161,8 +161,8 @@ input,textarea{-webkit-user-select:text;user-select:text}
 @keyframes oNod{0%,100%{transform:rotate(0)}50%{transform:rotate(-4deg)}}
 #office .dk:not(.w) .hd{animation:oIdle 5s ease-in-out infinite}
 @keyframes oIdle{0%,80%,100%{transform:rotate(0)}88%{transform:rotate(8deg)}}
-#office .dk.w .glow{opacity:.28;animation:oGlow 1.4s ease-in-out infinite alternate}
-@keyframes oGlow{from{opacity:.15}to{opacity:.35}}
+#office .dk.w .glow{opacity:.12;animation:oGlow 1.4s ease-in-out infinite alternate}
+@keyframes oGlow{from{opacity:.06}to{opacity:.16}}
 #office .dk.w .lid{fill:#CBD5E1;stroke:#22D3EE}
 #office .dk.w .logo{fill:#22D3EE}
 #office .dk.done .tag{opacity:0}
@@ -170,6 +170,16 @@ input,textarea{-webkit-user-select:text;user-select:text}
 #office .bub{opacity:0;transition:opacity .4s}#office .bub.on{opacity:1}
 #office .oroom.on .rmbox{stroke-width:2.5}
 #office .mission{font-size:13px;fill:#CBD5E1}
+/* 小猫：沿过道来回走，到头转身，尾巴摇、腿交替 */
+#office .cat-walk{animation:catWalk 12s ease-in-out infinite}
+@keyframes catWalk{0%{transform:translateX(0)}45%{transform:translateX(var(--w))}50%{transform:translateX(var(--w))}95%{transform:translateX(0)}100%{transform:translateX(0)}}
+#office .cat{animation:catFace 12s step-end infinite;animation-duration:inherit;animation-delay:inherit}
+@keyframes catFace{0%{transform:scaleX(1)}47.5%{transform:scaleX(-1)}97.5%{transform:scaleX(1)}}
+#office .cat-tail{transform-box:fill-box;transform-origin:100% 100%;animation:catTail .9s ease-in-out infinite alternate}
+@keyframes catTail{from{transform:rotate(-12deg)}to{transform:rotate(14deg)}}
+#office .cat-leg{transform-box:fill-box;transform-origin:50% 0;animation:catLeg .35s ease-in-out infinite alternate}
+#office .cat-leg:nth-of-type(odd){animation-direction:alternate-reverse}
+@keyframes catLeg{from{transform:rotate(-18deg)}to{transform:rotate(18deg)}}
 </style></head><body>
 <div id="stage">
  <div class="top"><div id="logo">·</div><h1 id="title">…<small></small></h1>
@@ -524,7 +534,9 @@ function buildOffice(){
   const SKIN=['#F2C9A0','#E8B48A','#D19A6E','#A8714B'],HAIR=['#2B2B2B','#5A3A22','#1F2A44','#8C5A2B','#3E3E3E','#6B4A2F'];
   const n=Math.min(6,Math.max(1,L.staff||1));const cw=(ORW-20)/3,ch=(ORH-30-58)/2;const desks=[];
   for(let k=0;k<n;k++){const cx=x+10+(k%3)*cw+cw/2,cy=y+38+Math.floor(k/3)*ch;const seed=(i*7+k*3);
-   const skin=SKIN[seed%SKIN.length],hair=HAIR[(seed+k)%HAIR.length],glasses=(seed%3)===1,longHair=(seed%4)===2;
+   const skin=SKIN[seed%SKIN.length],hair=HAIR[(seed+k)%HAIR.length],glasses=(seed%3)===1;
+   // 约一半是女员工：扎小辫（两侧辫子 + 发圈）或长发
+   const female=((seed*5+k)%5)<2||((seed+k)%7)===3,braids=female&&((seed+k)%2===0),longHair=female&&!braids;const BOW=['#F472B6','#F59E0B','#60A5FA','#A78BFA'];
    const d=mk('g',{class:'dk'},g);
    mk('ellipse',{cx,cy:cy+50,rx:26,ry:5,fill:'#000',opacity:.08},d);
    mk('rect',{x:cx-12,y:cy+8,width:24,height:26,rx:7,fill:'#4A5568'},d);// 椅背
@@ -532,9 +544,11 @@ function buildOffice(){
    mk('rect',{x:cx-10,y:cy+21,width:20,height:16,rx:6,fill:L.color},p);// 衣服
    mk('rect',{x:cx-3,y:cy+21,width:6,height:4,rx:2,fill:skin},p);// 脖子
    const hd=mk('g',{class:'hd'},p);
-   if(longHair)mk('rect',{x:cx-8,y:cy+9,width:16,height:15,rx:6,fill:hair},hd);
+   if(longHair)mk('rect',{x:cx-8.5,y:cy+9,width:17,height:16,rx:6,fill:hair},hd);
+   if(braids){const bw=BOW[(seed+k)%BOW.length];for(const sx of [-1,1]){mk('ellipse',{cx:cx+sx*8.6,cy:cy+18,rx:2.3,ry:4.2,fill:hair},hd);mk('ellipse',{cx:cx+sx*9,cy:cy+22.5,rx:1.8,ry:2.6,fill:hair},hd);mk('circle',{cx:cx+sx*8.7,cy:cy+14.6,r:1.5,fill:bw},hd);}}
    mk('circle',{cx,cy:cy+15,r:7,fill:skin},hd);
    mk('path',{d:`M${cx-7.2} ${cy+14} Q${cx-7} ${cy+6} ${cx} ${cy+6.5} Q${cx+7} ${cy+6} ${cx+7.2} ${cy+14} Q${cx+3} ${cy+10} ${cx-7.2} ${cy+14} Z`,fill:hair},hd);
+   if(female){mk('circle',{cx:cx-4.2,cy:cy+18,r:1.2,fill:'#F87171',opacity:.45},hd);mk('circle',{cx:cx+4.2,cy:cy+18,r:1.2,fill:'#F87171',opacity:.45},hd);}
    mk('circle',{class:'eye',cx:cx-2.6,cy:cy+15.5,r:1.1,fill:'#2B2B2B'},hd);mk('circle',{class:'eye',cx:cx+2.6,cy:cy+15.5,r:1.1,fill:'#2B2B2B'},hd);
    if(glasses){mk('rect',{x:cx-5.2,y:cy+13.6,width:4.2,height:3.6,rx:1,fill:'none',stroke:'#2B2B2B','stroke-width':.8},hd);mk('rect',{x:cx+1,y:cy+13.6,width:4.2,height:3.6,rx:1,fill:'none',stroke:'#2B2B2B','stroke-width':.8},hd);}
    mk('rect',{class:'glow',x:cx-6,y:cy+16,width:12,height:6,rx:3,fill:'#67E8F9',opacity:0},hd);// 屏幕光映在脸上
@@ -555,6 +569,20 @@ function buildOffice(){
   // 底栏：机器 + 状态
   const st=mk('text',{x:x+10,y:y+ORH-9,'font-size':10.5,fill:'#1E293B'},g,'');
   officeRooms[id]={g,desks,bub,bt,st,host,cx:x+ORW/2,cy:y+ORH/2,i,x,y};});
+ // 小猫：随机挑 3 间办公室，在两排工位之间的过道里来回走（CSS 动画，走到头转身）
+ const roomIds=Object.keys(officeRooms);const picks=[];while(picks.length<Math.min(3,roomIds.length)){const r=roomIds[Math.floor(Math.random()*roomIds.length)];if(!picks.includes(r))picks.push(r);}
+ const CAT=['#F59E0B','#9CA3AF','#1F2937','#FDE68A'];
+ picks.forEach((rid,j)=>{const R=officeRooms[rid];const ch=(ORH-30-58)/2;const ay=R.y+38+ch-6;const wrap=mk('g',{transform:`translate(${R.x+18} ${ay})`},svg);
+  const walk=mk('g',{class:'cat-walk',style:`--w:${(ORW-50).toFixed(0)}px;animation-duration:${(9+j*3+Math.random()*4).toFixed(1)}s;animation-delay:-${(Math.random()*8).toFixed(1)}s`},wrap);
+  const cat=mk('g',{class:'cat'},walk);const col=CAT[(j+Math.floor(Math.random()*4))%CAT.length];
+  mk('ellipse',{cx:0,cy:6,rx:7,ry:1.6,fill:'#000',opacity:.12},cat);
+  mk('path',{class:'cat-tail',d:'M-6 1 Q-11 -3 -9 -8',stroke:col,'stroke-width':2,fill:'none','stroke-linecap':'round'},cat);
+  mk('ellipse',{cx:0,cy:1,rx:6.5,ry:3.6,fill:col},cat);
+  for(const lx of [-4,-1.5,2,4.5])mk('rect',{class:'cat-leg',x:lx-.7,y:3.2,width:1.4,height:3.2,rx:.6,fill:col},cat);
+  mk('circle',{cx:6.5,cy:-1.5,r:3.3,fill:col},cat);
+  mk('path',{d:'M4.4 -3.9 L5 -7.2 L6.6 -4.4 Z M6.8 -4.4 L8.3 -7.1 L8.7 -3.8 Z',fill:col},cat);
+  mk('circle',{cx:7.6,cy:-1.8,r:.6,fill:'#111827'},cat);mk('circle',{cx:5.6,cy:-1.8,r:.6,fill:'#111827'},cat);
+ });
  mk('g',{id:'oRoutes'},svg);oRouteKey='';
  seenHand=Math.max(seenHand,...(S.tasks||[]).flatMap(t=>(t.handoffs||[]).map(h=>h.ts||0)),0);
 }
@@ -587,6 +615,8 @@ function oArc(x1,y1,x2,y2){const dx=x2-x1,dy=y2-y1,d=Math.hypot(dx,dy);const lif
  // 顶点不越过顶部横幅（y≈36）与页签：控制点不低于 50
  const mx=(x1+x2)/2,my=Math.max(50,Math.min(y1,y2)-lift);return `M${x1.toFixed(1)} ${y1.toFixed(1)} Q${mx.toFixed(1)} ${my.toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;}
 function oAnchor(id){const R=officeRooms[id];return R?[R.x+ORW/2,R.y+16]:null;}
+// 按颜色生成箭头 marker（不用 context-stroke：部分 Chromium 不认，箭头会不显示）
+function oArrow(c){const id='oArr'+String(c).replace(/[^0-9a-zA-Z]/g,'');if(!document.getElementById(id)){const defs=$('office').querySelector('defs');if(defs){const m=document.createElementNS(NS,'marker');m.setAttribute('id',id);m.setAttribute('viewBox','0 0 10 10');m.setAttribute('refX','8');m.setAttribute('refY','5');m.setAttribute('markerWidth','7');m.setAttribute('markerHeight','7');m.setAttribute('orient','auto');m.setAttribute('markerUnits','userSpaceOnUse');const pa=document.createElementNS(NS,'path');pa.setAttribute('d','M0 0 L10 5 L0 10 z');pa.setAttribute('fill',c);m.appendChild(pa);defs.appendChild(m);}}return id;}
 function renderOfficeRoutes(){const layer=$('oRoutes');if(!layer)return;
  const tasks=(S.tasks||[]).filter(x=>ACTIVE.has(x.status));const now=Date.now();const lines=[];
  for(const t of tasks)for(const s of t.steps)if(s.status==='running'&&officeRooms[s.legionId])lines.push(['gm',s.legionId,(LG[s.legionId]||{}).color||'#22D3EE']);
@@ -597,7 +627,7 @@ function renderOfficeRoutes(){const layer=$('oRoutes');if(!layer)return;
   const A=a==='gm'?[450,72]:oAnchor(a),B=oAnchor(b);if(!A||!B)continue;
   const d=oArc(A[0],A[1],B[0],B[1]);
   mk('path',{class:'oarc-glow',d,stroke:c},layer);
-  mk('path',{class:'oarc',d,stroke:c},layer);
+  mk('path',{class:'oarc',d,stroke:c,'marker-end':`url(#${oArrow(c)})`},layer);
   // 任务包：发光圆点 + 拖尾，沿弧线循环抛射（SVG animateMotion，不占 JS）
   const pk=mk('g',{},layer);const dur=(1.6+(n%3)*.2).toFixed(1)+'s';n++;
   const dot=mk('circle',{r:5,fill:c,filter:'url(#gl)'},pk);
