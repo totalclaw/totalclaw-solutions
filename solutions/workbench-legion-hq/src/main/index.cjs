@@ -622,7 +622,10 @@ module.exports = {
         width,
         height,
         frame: false,
-        fullscreen: true,
+        // macOS 原生全屏会把窗口放进单独的桌面空间：App 不在前台时大屏「打开了却看不到」（本机实测）。
+        // macOS 用简单全屏（铺满所选显示器、留在当前空间），其它系统照旧原生全屏
+        fullscreen: process.platform !== 'darwin',
+        show: false,
         backgroundColor: '#050B1C',
         autoHideMenuBar: true,
         webPreferences: { contextIsolation: true, nodeIntegration: false, sandbox: true },
@@ -634,7 +637,8 @@ module.exports = {
       // Esc：先退出全屏，再按一次关闭
       screenWin.webContents.on('before-input-event', (e, input) => {
         if (input.type !== 'keyDown' || input.key !== 'Escape' || !screenWin) return;
-        if (screenWin.isFullScreen()) screenWin.setFullScreen(false);
+        if (screenWin.isSimpleFullScreen()) screenWin.setSimpleFullScreen(false);
+        else if (screenWin.isFullScreen()) screenWin.setFullScreen(false);
         else closeWindow();
       });
       screenWin.on('closed', () => {
@@ -643,6 +647,11 @@ module.exports = {
       const main = deps?.getMainWindow?.();
       if (main && !main.isDestroyed()) main.once('closed', closeWindow);
       await screenWin.loadURL(st.localUrl);
+      if (process.platform === 'darwin') screenWin.setSimpleFullScreen(true);
+      // 加载完再显示并拿焦点：点按钮时 App 可能不在前台，不主动拿就会躲在别的窗口后面
+      screenWin.show();
+      try { require('electron').app.focus({ steal: true }); } catch { /* 拿不到焦点也已显示 */ }
+      screenWin.focus();
       return { ok: true, displayId: display.id };
     });
     h('screen.closeWindow', () => {

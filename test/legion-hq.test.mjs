@@ -476,6 +476,16 @@ test('大屏地址：跳过代理 fake-IP 段（198.18/15）与链路本地、�
   assert.deepEqual(got.map((x) => x.address), ['192.168.3.60', '172.16.0.9', '10.8.0.2']);
 });
 
+test('二维码遥控地址：主控本机全屏窗口走 127.0.0.1 时换成局域网地址（手机连 127.0.0.1 打不开）', () => {
+  const { remoteQrUrl } = require(join(DIR, 'src/main/screenServer.cjs'));
+  const lan = [{ name: 'en1', address: '192.168.3.60' }];
+  assert.equal(remoteQrUrl('127.0.0.1:8240', 'tk', lan), 'http://192.168.3.60:8240/remote?t=tk');
+  assert.equal(remoteQrUrl('localhost:8240', 'tk', lan), 'http://192.168.3.60:8240/remote?t=tk');
+  assert.equal(remoteQrUrl('192.168.3.60:8240', 'tk', lan), 'http://192.168.3.60:8240/remote?t=tk');
+  assert.equal(remoteQrUrl('10.0.0.5:8241', 'tk', lan), 'http://10.0.0.5:8241/remote?t=tk', '会场用别的地址打开时照它');
+  assert.equal(remoteQrUrl('127.0.0.1:8240', 'tk', []), 'http://127.0.0.1:8240/remote?t=tk', '没有局域网地址时只能照旧');
+});
+
 test('大屏服务：端口被占顺延', async () => {
   const mk = () => new ScreenServer({ bus: new LegionBus(), getState: () => ({}), pages: () => ({ page: '', remote: '' }), onCommand() {}, onConfirm() {}, onCompany() {} });
   const a = mk();

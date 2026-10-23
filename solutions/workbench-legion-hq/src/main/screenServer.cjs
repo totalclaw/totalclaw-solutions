@@ -42,6 +42,20 @@ function lanAddresses(ifaces = os.networkInterfaces()) {
   return out.sort((a, b) => rank(a) - rank(b));
 }
 
+/**
+ * 二维码里的遥控地址：按访问大屏用的主机名生成；但主控「全屏打开大屏」走的是 127.0.0.1，
+ * 编进二维码手机连的是自己、打不开（现场实测）——本机回环时换成局域网地址（已滤掉代理虚拟网卡）。
+ */
+function remoteQrUrl(hostHeader, token, addrs = lanAddresses()) {
+  const host = String(hostHeader || '').replace(/[^\w.:\-\[\]]/g, '');
+  const m = /^(\[[^\]]+\]|[^:]+)(?::(\d+))?$/.exec(host);
+  const name = m ? m[1] : '';
+  const port = m && m[2] ? `:${m[2]}` : '';
+  const loopback = !name || /^(127\.|localhost$|\[::1\]$|::1$|0\.0\.0\.0$)/i.test(name);
+  const target = loopback && addrs.length ? `${addrs[0].address}${port}` : host;
+  return `http://${target}/remote?t=${token}`;
+}
+
 function safeEqual(a, b) {
   const x = Buffer.from(String(a || ''));
   const y = Buffer.from(String(b || ''));
@@ -229,8 +243,7 @@ class ScreenServer {
       if (req.method === 'GET' && url.pathname === '/api/coverage') return this.send(res, 200, this.getCoverage ? this.getCoverage() : { items: [] });
       // 大屏角落的「手机扫码下令」：按观众实际访问的主机名生成（换了网卡地址也对）
       if (req.method === 'GET' && url.pathname === '/api/remote-qr') {
-        const hostHeader = String(req.headers.host || '').replace(/[^\w.:\-\[\]]/g, '');
-        return this.send(res, 200, this.qr(`http://${hostHeader}/remote?t=${this.token}`), 'image/svg+xml; charset=utf-8');
+        return this.send(res, 200, this.qr(remoteQrUrl(String(req.headers.host || ''), this.token)), 'image/svg+xml; charset=utf-8');
       }
       if (req.method === 'GET' && url.pathname === '/api/events') return this.openStream(req, res);
       if (req.method === 'POST' && url.pathname === '/api/command') return this.send(res, 200, await this.onCommand(await this.readBody(req)));
@@ -283,4 +296,4 @@ function filePages(pagePath, remotePath) {
   return () => ({ page: readFileSync(pagePath, 'utf8'), remote: readFileSync(remotePath, 'utf8') });
 }
 
-module.exports = { ScreenServer, lanAddresses, filePages, DEFAULT_PORT };
+module.exports = { ScreenServer, lanAddresses, remoteQrUrl, filePages, DEFAULT_PORT };
