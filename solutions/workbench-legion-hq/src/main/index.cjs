@@ -418,6 +418,7 @@ module.exports = {
         outputChars: settings().outputChars || 900,
         responseLocale: settings().responseLocale || '',
         screenAutoStart: !!settings().screenAutoStart,
+        screenView: settings().screenView === 'office' ? 'office' : 'topo',
         screenPort: settings().screenPort || null,
         terms: settings().terms === 'legion' ? 'legion' : 'department',
         demoPack: !!settings().demoPack,
@@ -572,6 +573,7 @@ module.exports = {
       if (Number.isFinite(p?.outputChars)) patch.outputChars = Math.min(2000, Math.max(300, Math.round(p.outputChars)));
       if (['', 'zh-CN', 'en-US', 'ar'].includes(p?.responseLocale)) patch.responseLocale = p.responseLocale;
       if (typeof p?.screenAutoStart === 'boolean') patch.screenAutoStart = p.screenAutoStart;
+      if (p?.screenView === 'office' || p?.screenView === 'topo') patch.screenView = p.screenView;
       if (p?.screenPort === null || (Number.isInteger(p?.screenPort) && p.screenPort >= 1024 && p.screenPort <= 65000)) patch.screenPort = p.screenPort;
       if (['legion', 'department'].includes(p?.terms)) patch.terms = p.terms;
       if (typeof p?.demoPack === 'boolean') patch.demoPack = p.demoPack;
@@ -616,7 +618,9 @@ module.exports = {
       const display = es.getAllDisplays().find((d) => d.id === Number(p?.displayId)) || es.getPrimaryDisplay();
       closeWindow();
       const { x, y, width, height } = display.bounds;
-      screenWin = new BrowserWindow({
+      // 用局部变量：重开时旧窗口的 closed 回调晚到，原来会把全局 screenWin 置空，
+      // 新窗口的全屏 / 置顶 / 拿焦点全跳过（第二次打开起不全屏，本机实测）
+      const win = new BrowserWindow({
         x,
         y,
         width,
@@ -630,28 +634,35 @@ module.exports = {
         autoHideMenuBar: true,
         webPreferences: { contextIsolation: true, nodeIntegration: false, sandbox: true },
       });
-      screenWin.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
-      screenWin.webContents.on('will-navigate', (e, url) => {
+      win.webContents.setWindowOpenHandler(() => ({ action: 'deny' }));
+      win.webContents.on('will-navigate', (e, url) => {
         if (!url.startsWith(`http://127.0.0.1:${st.port}/`)) e.preventDefault();
       });
       // Esc：先退出全屏，再按一次关闭
-      screenWin.webContents.on('before-input-event', (e, input) => {
-        if (input.type !== 'keyDown' || input.key !== 'Escape' || !screenWin) return;
-        if (screenWin.isSimpleFullScreen()) screenWin.setSimpleFullScreen(false);
-        else if (screenWin.isFullScreen()) screenWin.setFullScreen(false);
-        else closeWindow();
+      screenWin = win;
+      win.webContents.on('before-input-event', (e, input) => {
+        if (input.type !== 'keyDown' || input.key !== 'Escape' || win.isDestroyed()) return;
+        if (win.isAlwaysOnTop()) win.setAlwaysOnTop(false);
+        if (win.isSimpleFullScreen()) win.setSimpleFullScreen(false);
+        else if (win.isFullScreen()) win.setFullScreen(false);
+        else win.close();
       });
-      screenWin.on('closed', () => {
-        screenWin = null;
+      win.on('closed', () => {
+        if (screenWin === win) screenWin = null;
       });
       const main = deps?.getMainWindow?.();
       if (main && !main.isDestroyed()) main.once('closed', closeWindow);
-      await screenWin.loadURL(st.localUrl);
-      if (process.platform === 'darwin') screenWin.setSimpleFullScreen(true);
+      // 默认画面（拓扑 / 办公室）：现场仍可按 F 或点右上角切换
+      await win.loadURL(st.localUrl + (settings().screenView === 'office' ? '&view=office' : ''));
+      if (win.isDestroyed()) return { ok: false, error: '大屏窗口已关闭' };
+      if (process.platform === 'darwin') win.setSimpleFullScreen(true);
+      // 展示大屏要在最上层：点按钮时 App 常不在前台，拿不到焦点就会被正在用的程序窗口挡住（本机实测）。点一下大屏再按 Esc 退出
+      win.setAlwaysOnTop(true, 'screen-saver');
+      win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
       // 加载完再显示并拿焦点：点按钮时 App 可能不在前台，不主动拿就会躲在别的窗口后面
-      screenWin.show();
+      win.show();
       try { require('electron').app.focus({ steal: true }); } catch { /* 拿不到焦点也已显示 */ }
-      screenWin.focus();
+      win.focus();
       return { ok: true, displayId: display.id };
     });
     h('screen.closeWindow', () => {

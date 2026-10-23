@@ -625,6 +625,13 @@ export default function createSolution(sdk) {
             sc.running ? h('span', { class: 'lhq-badge on' }, t('运行中 · 端口 {p0} · {p1} 个大屏在看', { p0: sc.port, p1: sc.viewers })) : h('span', { class: 'lhq-badge' }, t('未启动')),
             sc.running ? h('button', { class: 'lhq-btn', onClick: screenRotate }, t('换口令')) : null,
             h('label', { style: 'display:flex;gap:6px;align-items:center' }, [h('input', { type: 'checkbox', checked: auto, onChange: (e) => saveSettings({ screenAutoStart: e.target.checked, screenPort: port.value ? Number(port.value) : null }) }), t('打开 App 时自动启动')]),
+            h('label', { style: 'display:flex;gap:6px;align-items:center' }, [
+              t('大屏默认画面'),
+              h('select', { class: 'lhq-in', value: info.value?.settings?.screenView || 'topo', onChange: (e) => saveSettings({ screenView: e.target.value }) }, [
+                h('option', { value: 'topo' }, t('拓扑（部门与交接线）')),
+                h('option', { value: 'office' }, t('办公室（AI 员工在工位干活）')),
+              ]),
+            ]),
           ]),
           errLine('screen'),
           sc.running

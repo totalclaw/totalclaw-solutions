@@ -136,6 +136,32 @@ html,body{margin:0;height:100%;background:#050B1C;font-family:"Microsoft YaHei",
 /* 展示大屏：不让误触把整页文字选中（现场截图里一片蓝） */
 body{-webkit-user-select:none;user-select:none}
 input,textarea{-webkit-user-select:text;user-select:text}
+/* ── 办公室监控视图：每个部门一间办公室，工位上的 AI 员工有活就干（动画全交给 CSS，结构只在布局变化时重建） ── */
+#vtabs{position:absolute;right:14px;top:10px;z-index:3;display:flex;gap:4px;font-size:12.5px}
+#vtabs span{padding:3px 12px;border:1px solid #1E3A6E;border-radius:12px;color:#64748B;cursor:pointer}
+#vtabs span.on{border-color:#22D3EE;color:#22D3EE;background:rgba(34,211,238,.08)}
+#office{display:none;position:absolute;inset:0}
+.office-on #office{display:block}.office-on #topo,.office-on #route{display:none}
+#office .rm-title{font-size:13px;font-weight:700}
+#office .rm-sub{font-size:10.5px;fill:#64748B}
+#office .scr{fill:#0A1428;stroke:#1E3A6E}
+#office .ln{fill:#1E3A6E}
+#office .dk.w .scr{fill:#062a36;stroke:#22D3EE}
+#office .dk.w .ln{fill:#22D3EE;animation:oLn 1.1s steps(3) infinite}
+#office .dk.w .ln:nth-child(3){animation-delay:.35s}#office .dk.w .ln:nth-child(4){animation-delay:.7s}
+@keyframes oLn{0%{opacity:.25}50%{opacity:1}100%{opacity:.4}}
+#office .bot{transform-box:fill-box;transform-origin:50% 100%}
+#office .dk.w .bot{animation:oType .38s ease-in-out infinite alternate}
+@keyframes oType{from{transform:translateY(0)}to{transform:translateY(-2px)}}
+#office .eye{fill:#334155}
+#office .dk.w .eye{fill:#67E8F9}
+#office .dk:not(.w) .eye{animation:oBlink 4s infinite}
+@keyframes oBlink{0%,92%,100%{opacity:1}95%{opacity:.1}}
+#office .dk:not(.w){opacity:.62}
+#office .ok{opacity:0;transition:opacity .3s}#office .dk.done .ok{opacity:1}
+#office .bub{opacity:0;transition:opacity .4s}#office .bub.on{opacity:1}
+#office .oroom.on .rmbox{stroke-width:2.5}
+#office .mission{font-size:13px;fill:#CBD5E1}
 </style></head><body>
 <div id="stage">
  <div class="top"><div id="logo">·</div><h1 id="title">…<small></small></h1>
@@ -145,8 +171,10 @@ input,textarea{-webkit-user-select:text;user-select:text}
    <div class="panel"><div class="ph">▍<i data-t="tasks">公司事务</i><small data-t="tasksHint">点击只看这一件</small></div><div id="tasks"></div></div>
    <div class="panel inbox"><div class="ph">▍<i data-t="inbox">老板待办</i><small data-t="inboxHint">钱、签约、对外发布、录用由老板拍板</small></div><div id="inbox"></div></div>
   </div>
-  <div class="panel" style="padding:0"><div class="ph" style="position:absolute;left:14px;top:12px">▍<i data-t="topo">运营态势</i></div>
-   <svg id="topo" width="100%" height="100%" viewBox="0 0 900 604"></svg><div id="route"></div></div>
+  <div class="panel" style="padding:0"><div class="ph" style="position:absolute;left:14px;top:12px;z-index:2">▍<i data-t="topo">运营态势</i></div>
+   <div id="vtabs"><span data-v="topo" class="on">拓扑</span><span data-v="office">办公室</span></div>
+   <svg id="topo" width="100%" height="100%" viewBox="0 0 900 604"></svg><div id="route"></div>
+   <svg id="office" width="100%" height="100%" viewBox="0 0 900 604"></svg></div>
   <div class="panel"><div class="ph">▍<i data-t="feed">实时动态</i></div><div id="feed"></div></div>
  </div>
  <div class="bottom">
@@ -173,12 +201,12 @@ input,textarea{-webkit-user-select:text;user-select:text}
 </div></div>
 <div id="rmask" class="rm"><div class="dlg"><h3 id="rTitle"></h3><label id="rAsk"></label><input id="rText" maxlength="300"><div class="ft"><button class="sec" id="rCancel"></button><button class="pri" id="rOk"></button></div></div></div>
 <div id="conn"></div><div id="rep"></div><div id="toast"></div>
-<div class="hint" data-t="hint">O 组织架构 · M 能力地图 · V 军团营地 · Esc 返回</div>
+<div class="hint" data-t="hint">F 办公室 / 拓扑 · O 组织架构 · M 能力地图 · V 军团营地 · Esc 返回</div>
 <script>
 'use strict';
 const Q=new URLSearchParams(location.search);const TOKEN=Q.get('t')||'';
 const LANG=(Q.get('lang')||navigator.language||'zh').toLowerCase().startsWith('en')?'en':'zh';
-const I18N={en:{staff:'AI staff',running:'In progress',doneToday:'Done today',clock:'Clock',tasks:'Company tasks',tasksHint:'Click to focus',inbox:'Boss inbox',inboxHint:'Money, contracts, publishing and hiring need the boss',topo:'Operations',feed:'Live feed',cmd:'Give an order',cmdHint:'The AI GM picks departments',go:'Send',rule:'The AI GM first decides which departments a task needs (one, several or all), then hands it to the machines hosting them. Tasks run in parallel.',lload:'Department load',lloadHint:'running · done',mload:'Machine load',mloadHint:'Departments are installed as solutions',company:'Company',fName:'Full name',fShort:'Display name',fLogo:'Logo text (1–2)',fInd:'Industry',fBoss:'Boss title',companyNote:'Saved back to the controller; the screen and all outputs update.',cancel:'Cancel',save:'Save',hint:'O org chart · M capability map · V camp · Esc back',gm:'AI GM',gmSub:'triage · dispatch · summary',idle:'Idle',busyN:'Running {n}',busy1:'Running',waitIn:'Waiting',notPlaced:'Not deployed',judging:'Deciding which departments…',to:'Assigned: ',one:'One department',all:'Whole company',nDeps:'{n} departments',direct:'Handled by the AI GM directly',approve:'Approve',reject:'Reject',empty:'Nothing needs your decision. The company runs itself.',awaitBy:'#{no} awaiting {boss}',free:'Idle',runN:'{n} running',lost:'Disconnected from the controller. Reconnecting…',sent:'Sent: #{no}',bossChip:'Boss {boss} · pending <b>{n}</b>',orgTitle:'Organization',mapTitle:'Capability map (estimated from code; not yet measured)',viaRules:'keyword rules',viaModel:'AI GM',viaForced:'assigned',st:{triaging:'Deciding',planning:'Deciding',running:'Running',summarizing:'Summarizing',awaiting:'Awaiting boss',done:'Done',failed:'Not done',cancelled:'Stopped'},src:{boss:'Boss',cron:'Routine',customer:'Customer',mail:'Mail',script:'Script'},cov:{ready:'Ready',partial:'Partial',building:'Building',gap:'Gap'},domain:'Domain',taskCol:'Task',deptCol:'Departments',capCol:'Capability',stCol:'Status',rejectAsk:'Reason for rejecting:'},
+const I18N={en:{staff:'AI staff',running:'In progress',doneToday:'Done today',clock:'Clock',tasks:'Company tasks',tasksHint:'Click to focus',inbox:'Boss inbox',inboxHint:'Money, contracts, publishing and hiring need the boss',topo:'Operations',feed:'Live feed',cmd:'Give an order',cmdHint:'The AI GM picks departments',go:'Send',rule:'The AI GM first decides which departments a task needs (one, several or all), then hands it to the machines hosting them. Tasks run in parallel.',lload:'Department load',lloadHint:'running · done',mload:'Machine load',mloadHint:'Departments are installed as solutions',company:'Company',fName:'Full name',fShort:'Display name',fLogo:'Logo text (1–2)',fInd:'Industry',fBoss:'Boss title',companyNote:'Saved back to the controller; the screen and all outputs update.',cancel:'Cancel',save:'Save',hint:'F Office / topology · O org chart · M capability map · V camp · Esc back',gm:'AI GM',gmSub:'triage · dispatch · summary',idle:'Idle',busyN:'Running {n}',busy1:'Running',waitIn:'Waiting',notPlaced:'Not deployed',judging:'Deciding which departments…',to:'Assigned: ',one:'One department',all:'Whole company',nDeps:'{n} departments',direct:'Handled by the AI GM directly',approve:'Approve',reject:'Reject',empty:'Nothing needs your decision. The company runs itself.',awaitBy:'#{no} awaiting {boss}',free:'Idle',runN:'{n} running',lost:'Disconnected from the controller. Reconnecting…',sent:'Sent: #{no}',bossChip:'Boss {boss} · pending <b>{n}</b>',orgTitle:'Organization',mapTitle:'Capability map (estimated from code; not yet measured)',viaRules:'keyword rules',viaModel:'AI GM',viaForced:'assigned',st:{triaging:'Deciding',planning:'Deciding',running:'Running',summarizing:'Summarizing',awaiting:'Awaiting boss',done:'Done',failed:'Not done',cancelled:'Stopped'},src:{boss:'Boss',cron:'Routine',customer:'Customer',mail:'Mail',script:'Script'},cov:{ready:'Ready',partial:'Partial',building:'Building',gap:'Gap'},domain:'Domain',taskCol:'Task',deptCol:'Departments',capCol:'Capability',stCol:'Status',rejectAsk:'Reason for rejecting:'},
 zh:{gm:'AI 总经理',gmSub:'判定 · 派活 · 汇总',idle:'待命',busyN:'执行 {n} 项',busy1:'执行中',waitIn:'等待输入',notPlaced:'未部署',judging:'AI 总经理判断交给哪些部门…',to:'交给：',one:'一个部门即可',all:'全公司协同',nDeps:'{n} 个部门协同',direct:'不需要部门，AI 总经理直接处理',approve:'批准',reject:'驳回',empty:'暂无需要您拍板的事，公司在自己运转。',awaitBy:'#{no} 待{boss}确认',free:'空闲',runN:'{n} 项进行中',lost:'与主控断开，正在重连…',sent:'已下令：#{no}',bossChip:'老板 {boss} · 待确认 <b>{n}</b>',orgTitle:'组织架构',mapTitle:'公司能力地图（按现有代码估计，考卷实测前不对外宣称覆盖率）',viaRules:'关键词规则',viaModel:'AI 总经理',viaForced:'指定部门',st:{triaging:'判定中',planning:'判定中',running:'执行中',summarizing:'汇总中',awaiting:'待老板确认',done:'已完成',failed:'未完成',cancelled:'已中止'},src:{boss:'老板下令',cron:'定时例行',customer:'客户消息',mail:'来信',script:'剧本'},cov:{ready:'可用',partial:'部分',building:'新建',gap:'缺口'},domain:'领域',taskCol:'典型事务',deptCol:'部门',capCol:'现有能力',stCol:'状态',rejectAsk:'驳回意见：'}};
 const T=I18N[LANG];const tr=(k,p)=>{let s=k.split('.').reduce((o,x)=>o&&o[x],T);if(s==null)s=k.split('.').reduce((o,x)=>o&&o[x],I18N.zh)||k;if(p)for(const n in p)s=s.replace('{'+n+'}',p[n]);return s;};
 if(LANG==='en'){document.documentElement.lang='en';document.querySelectorAll('[data-t]').forEach(e=>{const v=I18N.en[e.dataset.t];if(typeof v==='string')e.textContent=v;});}
@@ -220,7 +248,7 @@ function onEvent(ev){
  else if(ev.type==='task:summarizing')fx.push({kind:'sum',at:t,taskId:ev.taskId});
  while(fx.length&&t-fx[0].at>8)fx.shift();
 }
-function applyState(s){S=s;relayout();renderPanels();renderCamp();}
+function applyState(s){S=s;relayout();renderPanels();renderCamp();if(typeof renderOffice==='function')renderOffice();}
 
 // ── 拓扑布局：按「机器 → 部门」动态分组（1–8 台都能排开），每台机器承载的部门排在一段连续弧上 ──
 const cx=450,cy=322,R=210;
@@ -432,12 +460,93 @@ async function renderMap(){if(!COV){try{COV=await (await fetch(api('/api/coverag
  const nm=id=>id==='chief'?tr('gm'):(S.legions.find(L=>L.id===id)||{short:id}).short;
  $('vMap').innerHTML=`<h2>${tr('mapTitle')}</h2><div class="sum">${Object.keys(col).map(k=>`<span class="s" style="border:1px solid ${col[k]};color:${col[k]}">${tr('cov.'+k)} ${cnt[k]||0}</span>`).join(' ')} · ${COV.items.length}</div><table class="cov"><tr><th>${tr('domain')}</th><th>${tr('taskCol')}</th><th>${tr('deptCol')}</th><th>${tr('capCol')}</th><th>${tr('stCol')}</th></tr>${COV.items.map(i=>`<tr><td>${esc(i.domain)}</td><td>${esc(i.task)}</td><td>${i.departments.map(nm).map(esc).join(' + ')}</td><td>${esc(i.capability)}</td><td><span class="s" style="border:1px solid ${col[i.status]};color:${col[i.status]}">${tr('cov.'+i.status)}</span></td></tr>`).join('')}</table>`;}
 document.addEventListener('keydown',e=>{if(document.activeElement&&['INPUT','TEXTAREA'].includes(document.activeElement.tagName))return;
- if(e.key==='o'||e.key==='O')showView('vOrg');else if(e.key==='m'||e.key==='M')showView('vMap');else if(e.key==='v'||e.key==='V')showView('vCamp');else if(e.key==='Escape'){for(const v of ['vOrg','vMap','vCamp'])$(v).classList.remove('on');focus=null;lastTaskHtml='';}});
+ if(e.key==='f'||e.key==='F')setView(OFFICE?'topo':'office');else if(e.key==='o'||e.key==='O')showView('vOrg');else if(e.key==='m'||e.key==='M')showView('vMap');else if(e.key==='v'||e.key==='V')showView('vCamp');else if(e.key==='Escape'){for(const v of ['vOrg','vMap','vCamp'])$(v).classList.remove('on');focus=null;lastTaskHtml='';}});
 
 function fit(){const s=Math.min(innerWidth/1600,innerHeight/900);$('stage').style.transform=`translate(${(innerWidth-1600*s)/2}px,${(innerHeight-900*s)/2}px) scale(${s})`;}
 addEventListener('resize',fit);fit();
 fetch(api('/api/state')).then(r=>r.json()).then(applyState).catch(()=>setConn(false)).finally(connect);
 // S3：手机扫码进遥控页（下令 / 拍板）
 (function(){const q=$('rqr');q.onload=()=>{q.style.display='block';};q.title=LANG==='en'?'Scan to open the phone remote':'手机扫码：下令 / 拍板';q.src=api('/api/remote-qr');})();
+
+// ── 办公室监控视图 ──
+let OFFICE=false;try{OFFICE=(Q.get('view')||localStorage.getItem('lhq-view'))==='office';}catch{OFFICE=Q.get('view')==='office';}
+let officeKey='',officeRooms={},seenHand=0;
+// 剧本 / 判定给的步骤目标常带「从 X 部的角度处理：」前缀，办公室里只显示真正在办的事
+const oGoal=t=>String(t||'').replace(/^从.{1,12}?的角度处理[:：]\s*/,'');
+function setView(v){OFFICE=v==='office';document.body.classList.toggle('office-on',OFFICE);for(const e of document.querySelectorAll('#vtabs span'))e.classList.toggle('on',e.dataset.v===(OFFICE?'office':'topo'));try{localStorage.setItem('lhq-view',OFFICE?'office':'topo');}catch{}if(OFFICE){officeKey='';renderOffice();}}
+for(const e of document.querySelectorAll('#vtabs span'))e.onclick=()=>setView(e.dataset.v);
+(function(){const t=document.querySelectorAll('#vtabs span');if(LANG==='en'){t[0].textContent='Topology';t[1].textContent='Office';}})();
+const OX=18,OY=84,OG=14,ORW=(900-OX*2-OG*3)/4,ORH=(604-OY-16-OG)/2;
+function officeRoomXY(i){return [OX+(i%4)*(ORW+OG),OY+Math.floor(i/4)*(ORH+OG)];}
+function buildOffice(){
+ const svg=$('office');svg.innerHTML='';officeRooms={};
+ const ids=ORDER.slice(0,8);
+ const ms=S.machines||[];
+ mk('text',{x:450,y:52,'text-anchor':'middle',class:'mission',id:'oMission'},svg,'');
+ ids.forEach((id,i)=>{const L=LG[id];if(!L)return;const[x,y]=officeRoomXY(i);
+  const g=mk('g',{class:'oroom'},svg);
+  mk('rect',{class:'rmbox',x,y,width:ORW,height:ORH,rx:10,fill:'#0B1730',stroke:L.color,'stroke-opacity':.55,'stroke-width':1.5},g);
+  mk('rect',{x,y,width:ORW,height:28,rx:10,fill:L.color,opacity:.16},g);
+  const nm=LANG==='en'&&L.shortEn?L.shortEn:L.name;
+  mk('text',{x:x+10,y:y+19,class:'rm-title',fill:L.color},g,nm);
+  mk('text',{x:x+ORW-10,y:y+19,'text-anchor':'end',class:'rm-sub'},g,`${L.staff||0}${LANG==='en'?' staff':' 人'}`);
+  const host=ms.filter(m=>(m.hosts||[]).includes(id)&&m.online!==false).map(m=>m.name);
+  // 工位：最多 6 个（3×2），多出的写「+N」
+  const n=Math.min(6,Math.max(1,L.staff||1));const cw=(ORW-20)/3,ch=(ORH-28-64)/2;const desks=[];
+  for(let k=0;k<n;k++){const cx=x+10+(k%3)*cw+cw/2,cy=y+36+Math.floor(k/3)*ch;
+   const d=mk('g',{class:'dk'},g);
+   // 显示器 + 代码行
+   const sg=mk('g',{},d);mk('rect',{class:'scr',x:cx-20,y:cy+4,width:40,height:26,rx:3},sg);
+   for(let r=0;r<3;r++)mk('rect',{class:'ln',x:cx-15,y:cy+10+r*6,width:[22,28,16][r],height:2.5,rx:1},sg);
+   mk('rect',{x:cx-3,y:cy+30,width:6,height:5,fill:'#1E3A6E'},d);
+   // 桌面
+   mk('rect',{x:cx-28,y:cy+35,width:56,height:6,rx:2,fill:'#16264a'},d);
+   // 机器人（桌前，面朝观众）
+   const b=mk('g',{class:'bot'},d);
+   mk('line',{x1:cx,y1:cy+44,x2:cx,y2:cy+49,stroke:L.color,'stroke-width':1.5},b);mk('circle',{cx,cy:cy+43,r:2,fill:L.color},b);
+   mk('rect',{x:cx-11,y:cy+49,width:22,height:16,rx:6,fill:'#CBD5E1'},b);
+   mk('circle',{class:'eye',cx:cx-4.5,cy:cy+57,r:2.2},b);mk('circle',{class:'eye',cx:cx+4.5,cy:cy+57,r:2.2},b);
+   mk('rect',{x:cx-13,y:cy+66,width:26,height:12,rx:5,fill:L.color,opacity:.85},b);
+   // 完成对勾
+   const ok=mk('g',{class:'ok'},d);mk('circle',{cx:cx+17,cy:cy+48,r:7,fill:'#10B981'},ok);mk('path',{d:`M${cx+13.5} ${cy+48} l2.5 2.5 l4.5 -5`,stroke:'#fff','stroke-width':1.8,fill:'none'},ok);
+   desks.push({g:d,cx,cy});}
+  if((L.staff||0)>n)mk('text',{x:x+ORW-10,y:y+ORH-28,'text-anchor':'end',class:'rm-sub'},g,`+${L.staff-n}`);
+  // 头顶气泡（正在办什么）
+  const bub=mk('g',{class:'bub'},g);const br=mk('rect',{x:x+8,y:y+ORH-44,width:ORW-16,height:20,rx:6,fill:L.color,opacity:.9},bub);const bt=mk('text',{x:x+16,y:y+ORH-30,'font-size':11.5,fill:'#0B1730','font-weight':700},bub,'');
+  // 底栏：机器 + 状态
+  const st=mk('text',{x:x+10,y:y+ORH-9,class:'rm-sub'},g,'');
+  officeRooms[id]={g,desks,bub,bt,st,host,cx:x+ORW/2,cy:y+ORH/2,i};});
+ seenHand=Math.max(seenHand,...(S.tasks||[]).flatMap(t=>(t.handoffs||[]).map(h=>h.ts||0)),0);
+}
+function renderOffice(){
+ if(!OFFICE)return;
+ const key=JSON.stringify([ORDER,(S.legions||[]).map(L=>[L.id,L.staff,L.color]),(S.machines||[]).map(m=>[m.name,m.online,m.hosts])]);
+ if(key!==officeKey){officeKey=key;buildOffice();}
+ const tasks=(S.tasks||[]).filter(x=>ACTIVE.has(x.status));const wb=wbByLegion();const now=Date.now();
+ for(const id in officeRooms){const R=officeRooms[id];
+  const jobs=tasks.flatMap(t=>t.steps.filter(s=>s.legionId===id&&s.status==='running').map(s=>({no:t.no,goal:s.goal,phase:s.phase,machine:s.machine})));
+  const wks=wb[id]||[];
+  const busy=jobs.length?Math.min(R.desks.length,Math.max(2,jobs.length*2)):wks.length?Math.min(R.desks.length,2):0;
+  R.desks.forEach((d,k)=>d.g.classList.toggle('w',k<busy));
+  R.g.classList.toggle('on',busy>0);
+  // 刚办完（4 秒内）的步骤：第一个工位亮对勾
+  const justDone=(S.tasks||[]).some(t=>t.steps.some(s=>s.legionId===id&&s.status==='done'&&s.endedAt&&now-s.endedAt<4000));
+  R.desks[0]&&R.desks[0].g.classList.toggle('done',justDone);
+  const j=jobs[0];const txt=j?`#${j.no} ${oGoal(j.goal)||j.phase||''}`:wks[0]?(wbText(wks[0])):'';
+  R.bub.classList.toggle('on',!!txt);const tx=txt.length>17?txt.slice(0,16)+'…':txt;if(R.bt.textContent!==tx)R.bt.textContent=tx;
+  const hostTxt=!R.host.length?(LANG==='en'?'Not deployed':'未部署'):R.host.length>2?(LANG==='en'?`${R.host[0]} +${R.host.length-1}`:`${R.host[0]} 等 ${R.host.length} 台`):R.host.join(' / ');const stTxt=`${hostTxt} · ${jobs.length?tr('busyN',{n:jobs.length}):tr('idle')}`;if(R.st.textContent!==stTxt)R.st.textContent=stTxt;}
+ // 本次任务横幅
+ const t0=tasks[0];const ms=$('oMission');if(ms){const m=t0?`${LANG==='en'?'Now':'本次任务'}  #${t0.no} ${t0.title}　${t0.legions.map(id=>(LG[id]||{}).short||id).join(' → ')}`:(LANG==='en'?'All departments on standby':'各部门待命中');if(ms.textContent!==m)ms.textContent=m;}
+ // 新交接：文件从上游办公室飞到下游
+ for(const t of S.tasks||[])for(const h of t.handoffs||[])if((h.ts||0)>seenHand){seenHand=h.ts;flyDoc(h.from,h.to,h.label);}
+}
+function flyDoc(from,to,label){const A=officeRooms[from],B=officeRooms[to];if(!A||!B||!OFFICE)return;
+ const svg=$('office');const g=mk('g',{},svg);const L=LG[to]||{color:'#FDE047'};
+ mk('rect',{x:-9,y:-11,width:18,height:22,rx:2,fill:'#FDE047'},g);mk('rect',{x:-5,y:-5,width:10,height:2,fill:'#0B1730'},g);mk('rect',{x:-5,y:0,width:10,height:2,fill:'#0B1730'},g);
+ const lb=mk('text',{x:14,y:4,'font-size':11,fill:'#FDE047'},g,oGoal(label).slice(0,12));
+ const t0=performance.now(),D=1600;const mx=(A.cx+B.cx)/2,my=Math.min(A.cy,B.cy)-90;
+ (function step(n){const k=Math.min(1,(n-t0)/D),u=1-k;const x=u*u*A.cx+2*u*k*mx+k*k*B.cx,y=u*u*A.cy+2*u*k*my+k*k*B.cy;g.setAttribute('transform',`translate(${x},${y})`);g.setAttribute('opacity',k>.85?(1-k)/.15:1);if(k<1&&g.isConnected)requestAnimationFrame(step);else g.remove();})(t0);
+}
+setView(OFFICE?'office':'topo');
 requestAnimationFrame(frame);
 </script></body></html>
