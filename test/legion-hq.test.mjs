@@ -545,6 +545,10 @@ test('activate：用假 ctx 跑通入口（无宿主 deps = 单机、无模型�
     emit: (e, p) => emitted.push([e, p]),
   };
   const mod = require('./index.cjs');
+  // 这些用例测真实运行：先关掉默认开启的演示模式
+
+  ctx.writeJson('legion-hq/settings.json', { ...ctx.readJson('legion-hq/settings.json', {}), demoRun: false });
+
   await mod.activate(ctx);
   try {
     const info = await handlers.get('info')();
@@ -689,6 +693,10 @@ test('activate：资料包进提示词、来信文件夹、导出 Word、考卷�
     packagePath: (rel) => join(DIR, rel), handle: (a, fn) => handlers.set(a, fn), emit: () => {},
   };
   const mod = require('./index.cjs');
+  // 这些用例测真实运行：先关掉默认开启的演示模式
+
+  ctx.writeJson('legion-hq/settings.json', { ...ctx.readJson('legion-hq/settings.json', {}), demoRun: false });
+
   await mod.activate(ctx);
   try {
     await handlers.get('settings.save')({ demoPack: true });
@@ -742,6 +750,10 @@ test('打开「同时发到老板 IM」：拍板 / 例行办完经宿主 pushToI
   const mod = require('./index.cjs');
   try {
     ctx.host = { deps: {} };
+    // 这些用例测真实运行：先关掉默认开启的演示模式
+
+    ctx.writeJson('legion-hq/settings.json', { ...ctx.readJson('legion-hq/settings.json', {}), demoRun: false });
+
     await mod.activate(ctx);
     assert.equal(handlers.get('info')().settings.imPushAvailable, true);
     await handlers.get('settings.save')({ imPush: true, notify: false });
@@ -788,6 +800,10 @@ test('L12 legionKeys.set / list：界面只拿打码后的 key；不改 key 时�
     packagePath: (rel) => join(DIR, rel), handle: (a, fn) => handlers.set(a, fn), emit: () => {},
   };
   const mod = require('./index.cjs');
+  // 这些用例测真实运行：先关掉默认开启的演示模式
+
+  ctx.writeJson('legion-hq/settings.json', { ...ctx.readJson('legion-hq/settings.json', {}), demoRun: false });
+
   await mod.activate(ctx);
   try {
     handlers.get('legionKeys.set')({ legionId: 'legion-legal', provider: 'deepseek', apiKey: 'sk-abcdefgh1234', model: 'm' });
@@ -820,6 +836,10 @@ test('O6 公司邮箱来信：开关打开后，宿主收件箱新到的真实�
     packagePath: (rel) => join(DIR, rel), handle: (a, fn) => handlers.set(a, fn), emit: () => {},
   };
   const mod = require('./index.cjs');
+  // 这些用例测真实运行：先关掉默认开启的演示模式
+
+  ctx.writeJson('legion-hq/settings.json', { ...ctx.readJson('legion-hq/settings.json', {}), demoRun: false });
+
   await mod.activate(ctx);
   try {
     const mail = { id: 'it-1', channel: 'email', simulated: false, from: { name: '华东经销商', address: 'a@b.com' }, subject: '询价 X1', body: '请报 500 台价格' };
@@ -903,6 +923,10 @@ test('E1 宿主工作流事件进大屏动态：开始 / 派到员工机（带�
   delete require.cache[path];
   const mod = require('./index.cjs');
   try {
+    // 这些用例测真实运行：先关掉默认开启的演示模式
+
+    ctx.writeJson('legion-hq/settings.json', { ...ctx.readJson('legion-hq/settings.json', {}), demoRun: false });
+
     await mod.activate(ctx);
     wf.emit('event', { kind: 'run:started', runId: 'run-abcd' });
     wf.emit('event', { kind: 'node:token', runId: 'run-abcd', delta: 'xx' });
@@ -1038,6 +1062,10 @@ test('L11 现场新建部门：AI 起草（编的角色被丢掉）→ 保存 �
   delete require.cache[path];
   const mod = require('./index.cjs');
   try {
+    // 这些用例测真实运行：先关掉默认开启的演示模式
+
+    ctx.writeJson('legion-hq/settings.json', { ...ctx.readJson('legion-hq/settings.json', {}), demoRun: false });
+
     await mod.activate(ctx);
     await handlers.get('settings.save')({ useModelTriage: false });
     const d = await handlers.get('legions.draftCustom')({ text: '一个负责展会与线下活动的部门' });
@@ -1109,4 +1137,17 @@ test('自动演示：待办过了延时才自动批准；在办少于上限且�
   ap.stop();
   assert.equal(ap.on, false);
   assert.equal(tick, null);
+});
+
+test('演示模式：判定不调模型、各部门与汇总都是模拟产物，全程零次模型调用', async () => {
+  let llmCalls = 0;
+  const { runner } = makeRunner({ llm: async () => { llmCalls++; return 'x'; }, placement: { local: ['legion-finance', 'legion-sales'] } });
+  runner.simulate = () => true;
+  runner.settings = () => ({});
+  const { taskId } = runner.submit({ text: '给客户出报价单', forcedLegions: ['legion-finance', 'legion-sales'] });
+  const t = runner.tasks.get(taskId);
+  for (let i = 0; i < 600 && !['done', 'failed', 'awaiting'].includes(t.status); i++) await new Promise((r) => setTimeout(r, 100));
+  assert.equal(llmCalls, 0);
+  assert.ok(['done', 'awaiting'].includes(t.status), t.status + ' ' + (t.error || ''));
+  for (const s of t.plan.steps) assert.match(t.outputs[s.id].text, /演示/);
 });

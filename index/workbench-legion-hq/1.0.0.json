@@ -1,7 +1,7 @@
 {
   "id": "workbench-legion-hq",
   "version": "1.0.0",
-  "treeDigest": "28d10355faf64c776a28d03a62ec30a758705f6ed98c322fd54607410be6240e",
+  "treeDigest": "d95953bed9a0182be0121617da7772d14172a54c88b05cc483ede3a8a2b177f6",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -55,8 +55,8 @@
     },
     {
       "path": "resources/screen/index.html",
-      "size": 71523,
-      "sha256": "db7b4e8766f5b32c917c8f3a4423b7454062b9c804657e57828ba52a65cc665b"
+      "size": 72765,
+      "sha256": "100e343a02be97327fc2bf28e88768029f4853a33c2d1e857102f71a466f1980"
     },
     {
       "path": "resources/screen/remote.html",
@@ -140,8 +140,8 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 43926,
-      "sha256": "febd0ff78e091a88a3fecc0408cc732756bae299722cdb86c2f53ff34f9ec0f3"
+      "size": 44319,
+      "sha256": "a497f06a1e62ec712ed807d17e82f440439d8a3331e2afc5219342b7b262930c"
     },
     {
       "path": "src/main/legions.cjs",
@@ -165,18 +165,18 @@
     },
     {
       "path": "src/main/runner.cjs",
-      "size": 24282,
-      "sha256": "0db0294bd0819877b5d00cc7666ddf493e9175d9ffd00a9e7101e3d892257a11"
+      "size": 26236,
+      "sha256": "99d64624f2cafea4da96cd6645924e992b93334ba1407ba2845acde3d2e3b825"
     },
     {
       "path": "src/main/screenServer.cjs",
-      "size": 11929,
-      "sha256": "9ec7d3386e981ca77b9682b7edc6e692b1c597263a9a52a7e832bad96660ec02"
+      "size": 12082,
+      "sha256": "f91bcda8f39421a58ab50bdd32848455f9eb254854149df48817a0f177fea293"
     },
     {
       "path": "src/main/screenState.cjs",
-      "size": 9627,
-      "sha256": "598f314456ecf8f4054ec0883916013ba6fa7f74fa11c804fd70d0acac40db5d"
+      "size": 9616,
+      "sha256": "2e38606765f2ab22a0da5b6b28264436fc09c0ab2b9694914ad29462ebc32331"
     },
     {
       "path": "src/main/triage.cjs",
@@ -190,8 +190,8 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 73215,
-      "sha256": "5b9daa947caa300841d35115472aaeff3c29e9220a7e783653c61c0e2c19670c"
+      "size": 73522,
+      "sha256": "210d0d7f27c40e2495875da16d51a74f1410bed1d8b1d6be5ebb786c580da46a"
     }
   ]
 }

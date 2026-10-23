@@ -183,6 +183,8 @@ module.exports = {
       fleet,
       company: profile,
       settings,
+      // 演示模式（默认开）：不调模型、不派员工机，执行与汇总都是本机模拟
+      simulate: () => settings().demoRun !== false && fleet.mode() !== 'employee',
       legionKeys: (id) => ctx.readJson(LEGION_KEYS, {})[id] || null,
       log: ctx.log,
       llm: async (prompt, opts) => {
@@ -228,9 +230,17 @@ module.exports = {
       tasks: () => snapshot(state).tasks,
       submit: (c) => runner.submit({ text: c.text, title: c.title || undefined, source: c.source, forcedLegions: c.legions && c.legions.length ? c.legions : null }),
       approve: (taskId) => runner.confirm(taskId),
-      onChange: (on) => bus.publish('autopilot:changed', { on }),
+      onChange: (on) => bus.publish('demo:changed', { on }),
     });
-    if (settings().autoPilot && fleet.mode() !== 'employee') autopilot.start();
+    // 演示模式开关（主控页面与大屏共用）：开 = 自动下令 + 自动审批 + 不调模型
+    const setDemoRun = (on) => {
+      if (fleet.mode() === 'employee') throw new Error('本机是员工机：演示模式只在主控（或单机）上开');
+      saveSettings({ demoRun: !!on });
+      if (on) autopilot.start();
+      else autopilot.stop();
+      return { on: autopilot.on };
+    };
+    if (settings().demoRun !== false && fleet.mode() !== 'employee') autopilot.start();
     disposers.push(() => autopilot.stop());
 
     // ── 大屏服务 ──
@@ -241,8 +251,9 @@ module.exports = {
       pages: filePages(ctx.packagePath('resources/screen/index.html'), ctx.packagePath('resources/screen/remote.html')),
       onCommand: (b) => runner.submit({ text: b?.text, source: ['boss', 'customer', 'mail'].includes(b?.source) ? b.source : 'boss' }),
       onConfirm: (b) => (b?.approve === false ? runner.reject(String(b.taskId), b.comment) : runner.confirm(String(b?.taskId))),
+      onDemo: (b) => setDemoRun(!!b?.on),
       onCompany: (b) => {
-        if (settings().demoMode) throw new Error('演示模式下不能在大屏改公司名，请在主控关闭演示模式');
+        if (settings().demoMode) throw new Error('已设为隐藏真实名称，不能在大屏改公司名，请在主控取消「隐藏真实名称」');
         saveCompany(b);
         return displayProfile(profile(), false);
       },
@@ -430,7 +441,7 @@ module.exports = {
         outputChars: settings().outputChars || 900,
         responseLocale: settings().responseLocale || '',
         screenAutoStart: !!settings().screenAutoStart,
-        autoPilot: autopilot.on,
+        demoRun: autopilot.on,
         screenView: ['topo', 'office'].includes(settings().screenView) ? settings().screenView : 'auto',
         screenPort: settings().screenPort || null,
         terms: settings().terms === 'legion' ? 'legion' : 'department',
@@ -459,14 +470,7 @@ module.exports = {
     h('state', () => snapshot(state));
     h('employee.state', () => employee.snapshot());
     h('command', (p) => runner.submit({ text: p?.text, title: p?.title, source: p?.source || 'boss', forcedLegions: Array.isArray(p?.legions) && p.legions.length ? p.legions : null }));
-    h('autopilot.set', (p) => {
-      if (fleet.mode() === 'employee') throw new Error('本机是员工机：自动演示只在主控（或单机）上开');
-      const on = !!p?.on;
-      saveSettings({ autoPilot: on });
-      if (on) autopilot.start();
-      else autopilot.stop();
-      return { on: autopilot.on };
-    });
+    h('demoRun.set', (p) => setDemoRun(!!p?.on));
     h('confirm', (p) => (p?.approve === false ? runner.reject(String(p.taskId), p.comment) : runner.confirm(String(p?.taskId))));
     h('cancel', (p) => runner.cancel(String(p?.taskId)));
     h('retry', (p) => runner.retryFailed(String(p?.taskId)));

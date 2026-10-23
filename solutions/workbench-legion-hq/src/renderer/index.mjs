@@ -360,11 +360,11 @@ export default function createSolution(sdk) {
         const s = await call('settings', 'settings.save', patch);
         info.value = { ...info.value, settings: s };
       }
-      async function setAutoPilot(on) {
+      async function setDemoRun(on) {
         try {
-          const r = await call('screen', 'autopilot.set', { on });
-          info.value = { ...info.value, settings: { ...(info.value?.settings || {}), autoPilot: r.on } };
-          sdk.notify.success(r.on ? t('已开自动演示：老板的待办会自动批准，并持续下不同的命令') : t('已关自动演示'));
+          const r = await call('demo', 'demoRun.set', { on });
+          info.value = { ...info.value, settings: { ...(info.value?.settings || {}), demoRun: r.on } };
+          sdk.notify.success(r.on ? t('已开演示模式：老板自动下令、自动审批，不调用模型、不消耗 token') : t('已关演示模式：之后下的命令会真实调用模型执行'));
         } catch (_) {
           /* 错误显示在 errLine */
         }
@@ -609,7 +609,7 @@ export default function createSolution(sdk) {
             h('button', { class: 'lhq-btn', onClick: async () => { await call('company', 'company.reset'); await loadCompany(); } }, t('恢复默认')),
             h('label', { style: 'display:flex;gap:6px;align-items:center;margin-left:12px' }, [
               h('input', { type: 'checkbox', checked: demo, onChange: (e) => saveSettings({ demoMode: e.target.checked }) }),
-              t('演示模式：对外只显示「示例科技」，不露真实名称'),
+              t('隐藏真实名称：对外只显示「示例科技」'),
             ]),
             h('label', { style: 'display:flex;gap:6px;align-items:center;margin-left:12px' }, [
               h('input', { type: 'checkbox', checked: !!info.value?.settings?.demoPack, onChange: (e) => saveSettings({ demoPack: e.target.checked }) }),
@@ -634,7 +634,6 @@ export default function createSolution(sdk) {
             sc.running ? h('span', { class: 'lhq-badge on' }, t('运行中 · 端口 {p0} · {p1} 个大屏在看', { p0: sc.port, p1: sc.viewers })) : h('span', { class: 'lhq-badge' }, t('未启动')),
             sc.running ? h('button', { class: 'lhq-btn', onClick: screenRotate }, t('换口令')) : null,
             h('label', { style: 'display:flex;gap:6px;align-items:center' }, [h('input', { type: 'checkbox', checked: auto, onChange: (e) => saveSettings({ screenAutoStart: e.target.checked, screenPort: port.value ? Number(port.value) : null }) }), t('打开 App 时自动启动')]),
-            h('label', { style: 'display:flex;gap:6px;align-items:center', title: t('无人值守演示用：命令轮流取自内置剧本；同时最多 2 件在办；进老板待办的事 6 秒后自动批准') }, [h('input', { type: 'checkbox', checked: !!info.value?.settings?.autoPilot, onChange: (e) => setAutoPilot(e.target.checked) }), t('自动演示（老板自动审批、持续下不同命令）')]),
             h('label', { style: 'display:flex;gap:6px;align-items:center' }, [
               t('大屏默认画面'),
               h('select', { class: 'lhq-in', value: info.value?.settings?.screenView || 'auto', onChange: (e) => saveSettings({ screenView: e.target.value }) }, [
@@ -986,6 +985,13 @@ export default function createSolution(sdk) {
               h('span', { class: 'lhq-badge on' }, { cluster: t('集群主控'), standalone: t('单机') }[info.value.mode] || info.value.mode),
               h('span', { class: `lhq-badge${screen.value.running ? ' on' : ''}` }, screen.value.running ? t('大屏运行中') : t('大屏未启动')),
               h('span', { class: 'lhq-badge' }, t('进行中 {p0} · 今日完成 {p1}', { p0: c.running || 0, p1: c.doneToday || 0 })),
+              h('span', { style: 'flex:1' }),
+              h('button', {
+                class: `lhq-btn${info.value.settings?.demoRun ? ' pri' : ''}`,
+                'data-test': 'demo-run-toggle',
+                title: t('演示模式：老板自动下令（轮流取内置剧本）、待办 6 秒后自动批准；判定用关键词规则，各部门执行与汇总在本机模拟，不调用模型、不消耗 token。关闭后为真实运行。'),
+                onClick: () => setDemoRun(!info.value.settings?.demoRun),
+              }, info.value.settings?.demoRun ? t('演示模式：开（点击关闭，改为真实运行）') : t('演示模式：关（点击开启）')),
               c.awaiting ? h('span', { class: 'lhq-badge warn', style: 'cursor:pointer', onClick: () => go('s4') }, t('待老板确认 {p0}', { p0: c.awaiting })) : null,
             ]),
             h('div', { class: 'lhq-steps' }, st.map((s, i) => h('button', { class: `${s.done ? 'done' : ''}${cur.value === s.id ? ' cur' : ''}`, onClick: () => go(s.id) }, `${i + 1} ${s.name}${s.done ? ' ✓' : ''}`))),

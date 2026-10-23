@@ -248,6 +248,7 @@ class ScreenServer {
       if (req.method === 'GET' && url.pathname === '/api/events') return this.openStream(req, res);
       if (req.method === 'POST' && url.pathname === '/api/command') return this.send(res, 200, await this.onCommand(await this.readBody(req)));
       if (req.method === 'POST' && url.pathname === '/api/confirm') return this.send(res, 200, await this.onConfirm(await this.readBody(req)));
+      if (req.method === 'POST' && url.pathname === '/api/demo' && this.onDemo) return this.send(res, 200, await this.onDemo(await this.readBody(req)));
       if (req.method === 'POST' && url.pathname === '/api/company') return this.send(res, 200, await this.onCompany(await this.readBody(req)));
       return this.send(res, 404, { error: 'NOT_FOUND' });
     } catch (e) {

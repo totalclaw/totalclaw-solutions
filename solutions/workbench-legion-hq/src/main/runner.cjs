@@ -43,6 +43,16 @@ function humanizeStepError(msg, machineName) {
   return m;
 }
 
+/** 演示模式下一步的模拟执行：按阶段推进度（像真的在干活），不调模型、不派员工机，返回示例产物 */
+const SIM_PHASES = ['读取任务与公司资料', '查阅资料', '调用工具：write_file', '起草交付物', '自检与整理'];
+function sleep(ms, signal) {
+  return new Promise((resolve, reject) => {
+    const tm = setTimeout(resolve, ms);
+    tm.unref?.();
+    signal?.addEventListener('abort', () => { clearTimeout(tm); reject(new Error('已中止')); }, { once: true });
+  });
+}
+
 class TaskRunner {
   /**
    * @param {object} o
@@ -55,7 +65,7 @@ class TaskRunner {
    * @param {() => object} [o.settings]        { useModelTriage, outputChars, responseLocale }
    */
   constructor(o) {
-    Object.assign(this, { saveTask: () => {}, settings: () => ({}), log: { info() {}, warn() {} }, now: () => Date.now() }, o);
+    Object.assign(this, { saveTask: () => {}, settings: () => ({}), simulate: () => false, log: { info() {}, warn() {} }, now: () => Date.now() }, o);
     this.tasks = new Map(); // taskId → 运行态
     this.seqNo = 0;
     this.dispatches = new Map(); // 派给员工机的 dispatchId → { taskId, stepId }（接收员工机回传的执行阶段）
@@ -106,9 +116,11 @@ class TaskRunner {
       cancelled: false,
       confirmWaiter: null,
       rejects: 0,
+      // 演示模式：收件时定下来，本件事全程不调模型（中途切换开关不影响已在办的事）
+      simulated: !!this.simulate(),
     };
     this.tasks.set(id, t);
-    this.publish(t, 'task:received', { title: t.title, source: t.source });
+    this.publish(t, 'task:received', { title: t.title, source: t.source, simulated: t.simulated });
     this.run(t).catch((e) => this.finish(t, false, String(e && e.message ? e.message : e)));
     return { taskId: id, no: t.no };
   }
@@ -125,7 +137,7 @@ class TaskRunner {
     const decision = await triage(t.text, legions, {
       forced: t.forced,
       company: this.company(),
-      llm: st.useModelTriage === false ? null : (prompt) => this.llm(prompt, { timeoutMs: 60_000 }),
+      llm: st.useModelTriage === false || t.simulated ? null : (prompt) => this.llm(prompt, { timeoutMs: 60_000 }),
     });
     if (t.cancelled) return;
     t.decision = decision;
@@ -304,6 +316,7 @@ class TaskRunner {
   }
 
   async execute(t, s, machine, signal) {
+    if (t.simulated) return this.simulateStep(t, s, machine, signal);
     const L = this.legions().find((x) => x.id === s.legionId);
     const prompt = this.stepPrompt(t, s, t.rejectNote && t.rejectStep === s.id ? `老板的修改意见：${t.rejectNote}` : '');
     // L12：部门专用模型 / key（主控本机保存）。专用 key 只随派往员工机的这一步走；主控本机执行的步骤用本机默认 key
@@ -366,6 +379,15 @@ class TaskRunner {
     return text;
   }
 
+  async simulateStep(t, s, machine, signal) {
+    const L = this.legions().find((x) => x.id === s.legionId);
+    for (const phase of SIM_PHASES) {
+      this.publish(t, 'node:progress', { stepId: s.id, phase: machine.local ? phase : `${machine.name}·${phase}` });
+      await sleep(1500 + Math.random() * 2000, signal);
+    }
+    return [`【演示产物】${L ? L.name : s.legionId}：${s.goal}`, '1. 已梳理要点与依据', '2. 已起草交付物并自检', '3. 已标注需要老板拍板的事项', '（演示模式：未调用模型，内容为示例）'].join('\n');
+  }
+
   /**
    * 员工机回传的执行阶段（宿主 task.progress，2026-10-22 起）：按 dispatchId 找到步骤，转成大屏「正在做什么」。
    * 只认本中心派出去、还在跑的步骤；阶段文字截短，不含原文。
@@ -382,6 +404,11 @@ class TaskRunner {
   async summarize(t) {
     t.status = 'summarizing';
     this.publish(t, 'task:summarizing');
+    if (t.simulated) {
+      await sleep(2500 + Math.random() * 2000);
+      const names = t.plan.steps.map((s) => (this.legions().find((x) => x.id === s.legionId) || {}).name || s.legionId);
+      return `【演示】结论：${t.title} 已由 ${names.join('、')} 协同办完，各部门产物见上。\n（演示模式：未调用模型，内容为示例）`;
+    }
     const parts = t.plan.steps.map((s) => {
       const L = this.legions().find((x) => x.id === s.legionId);
       const o = t.outputs[s.id] || {};
@@ -411,6 +438,10 @@ class TaskRunner {
   }
 
   async chiefAnswer(t) {
+    if (t.simulated) {
+      await sleep(2000);
+      return `【演示】AI 总经理已直接答复：${t.title}\n（演示模式：未调用模型，内容为示例）`;
+    }
     const extra = typeof this.extraContext === 'function' ? this.extraContext() : '';
     const prompt = `${identityLine(this.company(), null)}${extra ? `\n公司资料：\n${extra}` : ''}\n老板说：${t.text}\n请直接回答，简洁。`;
     return this.llm(prompt, { timeoutMs: 120_000 });
