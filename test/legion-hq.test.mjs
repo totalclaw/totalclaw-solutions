@@ -1,7 +1,7 @@
 // 运营中心（workbench-legion-hq）主进程核心：判定 / 计划 / 执行 / 快照 / 公司档案 / 例行 / 剧本 / 大屏服务 / 子机视角
 import assert from 'node:assert/strict';
 import { EventEmitter } from 'node:events';
-import { mkdtempSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { mkdtempSync, readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -1150,4 +1150,33 @@ test('演示模式：判定不调模型、各部门与汇总都是模拟产物�
   assert.equal(llmCalls, 0);
   assert.ok(['done', 'awaiting'].includes(t.status), t.status + ' ' + (t.error || ''));
   for (const s of t.plan.steps) assert.match(t.outputs[s.id].text, /演示/);
+});
+
+test('产物存放：办完的事按「日期 / 时间-编号-标题」落结论 + 各部门交付物；改根目录后写到新位置；按日期文件夹清理旧交付物', () => {
+  const { Storage } = require('./storage.cjs');
+  const base = mkdtempSync(join(tmpdir(), 'lhq-st-'));
+  let root = null;
+  const st = new Storage({ root: () => root, defaultRoot: () => join(base, 'default'), internalDirs: () => ({ tasks: join(base, 'tasks') }) });
+  const day = (y, m, d, hh = 9) => new Date(y, m - 1, d, hh, 5).getTime();
+  const rec = { no: 7, title: '给客户出报价单: 华东/500台', text: '给客户出报价单', createdAt: day(2026, 10, 1), status: 'done', summary: '结论：可以报 199 元', plan: { steps: [{ id: 's1', legionId: 'legion-finance', goal: '测算成本' }, { id: 's2', legionId: 'legion-sales', goal: '出报价单' }] }, outputs: { s1: { text: '成本 150 元' }, s2: { error: '超时' } } };
+  const dir = st.writeDeliverables(rec, (id) => ({ 'legion-finance': '财务部', 'legion-sales': '销售部' })[id]);
+  assert.ok(dir.startsWith(join(base, 'default', '交付物', '2026-10-01')));
+  assert.match(dir, /0905-#7-给客户出报价单_ 华东_500台$/);
+  const files = readdirSync(dir).sort();
+  assert.deepEqual(files, ['00-结论.md', '01-财务部-测算成本.md', '02-销售部-出报价单.md']);
+  assert.match(readFileSync(join(dir, '02-销售部-出报价单.md'), 'utf8'), /未完成：超时/);
+  // 改根目录：之后写到新位置
+  root = join(base, 'custom');
+  const dir2 = st.writeDeliverables({ ...rec, no: 8, createdAt: day(2026, 10, 20) }, () => '财务部');
+  assert.ok(dir2.startsWith(join(base, 'custom', '交付物', '2026-10-20')));
+  st.writeDeliverables({ ...rec, no: 9, createdAt: day(2026, 9, 1) }, () => '财务部');
+  const rep = st.report();
+  assert.equal(rep.custom, true);
+  assert.equal(rep.rows.find((r) => r.key === 'deliverables').files, 6);
+  // 清理 30 天前（相对 10-22）：只删 09-01 那个日期文件夹
+  const r = st.clean('deliverables', 30, day(2026, 10, 22));
+  assert.equal(r.removed, 3);
+  assert.deepEqual(readdirSync(join(base, 'custom', '交付物')), ['2026-10-20']);
+  // 没有任何产出的不落盘
+  assert.equal(st.writeDeliverables({ ...rec, summary: '', outputs: {} }, () => ''), null);
 });

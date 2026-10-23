@@ -360,6 +360,73 @@ export default function createSolution(sdk) {
         const s = await call('settings', 'settings.save', patch);
         info.value = { ...info.value, settings: s };
       }
+      // ── 产物存放位置与清理 ──
+      const stOpen = ref(false);
+      const stData = ref(null);
+      const stDays = ref(30);
+      const fmtSize = (b) => (b >= 1 << 30 ? `${(b / (1 << 30)).toFixed(1)} GB` : b >= 1 << 20 ? `${(b / (1 << 20)).toFixed(1)} MB` : `${Math.max(0, Math.round(b / 1024))} KB`);
+      async function loadStorage() {
+        try { stData.value = await call('storage', 'storage.get'); } catch (_) { /* 错误显示在 errLine */ }
+      }
+      async function stSetRoot(p) {
+        try {
+          const r = await call('storage', 'storage.setRoot', p);
+          if (!r?.canceled) { sdk.notify.success(p.root === null ? t('已恢复默认位置') : t('之后的交付物与导出会存到新位置（已有文件不搬，旧位置仍可打开）')); await loadStorage(); }
+        } catch (_) { /* 错误显示在 errLine */ }
+      }
+      async function stOpenDir(key) {
+        try { await call('storage', 'storage.open', { key }); } catch (_) { /* 错误显示在 errLine */ }
+      }
+      async function stClean(p, label) {
+        const days = Number(stDays.value) || 30;
+        if (!window.confirm(t('删除「{p0}」里 {p1} 天前的文件？删除后不能恢复。', { p0: label, p1: days }))) return;
+        try {
+          const r = await call('storage', 'storage.clean', { ...p, days });
+          const n = r?.removed ?? (r?.cleaned || []).reduce((x, c) => x + (c.removed || 0), 0);
+          const f = r?.freed ?? (r?.cleaned || []).reduce((x, c) => x + (c.freed || 0), 0);
+          sdk.notify.success(t('已删除 {p0} 个文件，释放 {p1}', { p0: n, p1: fmtSize(f) }));
+          await loadStorage();
+        } catch (_) { /* 错误显示在 errLine */ }
+      }
+      function storagePanel() {
+        if (!stOpen.value) return null;
+        const d = stData.value;
+        if (!d) return h('p', { class: 'lhq-sub' }, t('读取中…'));
+        const f = d.files;
+        return h('div', { class: 'lhq-card', style: 'padding:12px;margin:8px 0', 'data-test': 'storage-panel' }, [
+          h('p', { class: 'lhq-sub', style: 'margin-top:0' }, t('员工机的交付物随结果回传主控，统一存在主控的产物目录；员工机本地只有日志。交付物按「日期 / 时间-编号-标题」分文件夹，每件事一个结论文件 + 各部门一份。')),
+          h('div', { class: 'lhq-row' }, [
+            h('b', t('产物目录')),
+            h('code', { style: 'font-size:12px;word-break:break-all' }, f.root),
+            f.custom ? null : h('span', { class: 'lhq-badge' }, t('默认')),
+            h('button', { class: 'lhq-btn', onClick: () => stSetRoot({ pick: true }) }, t('更改…')),
+            f.custom ? h('button', { class: 'lhq-btn', onClick: () => stSetRoot({ root: null }) }, t('恢复默认')) : null,
+            h('button', { class: 'lhq-btn', onClick: () => stOpenDir('root') }, t('打开')),
+          ]),
+          h('div', { class: 'lhq-row' }, [h('span', t('清理时删除')), h('input', { class: 'lhq-in', style: 'width:64px', value: stDays.value, onInput: (e) => (stDays.value = e.target.value.replace(/\D/g, '')) }), h('span', t('天之前的文件'))]),
+          h('table', { class: 'lhq-tbl' }, [
+            h('thead', h('tr', [h('th', t('哪台')), h('th', t('类别')), h('th', t('位置')), h('th', t('占用')), h('th', '')])),
+            h('tbody', [
+              ...f.rows.map((r) => h('tr', { key: r.key }, [
+                h('td', t('主控（本机）')),
+                h('td', t(r.label)),
+                h('td', { style: 'font-size:11.5px;word-break:break-all;max-width:360px' }, r.dir),
+                h('td', t('{p0} · {p1} 个文件', { p0: fmtSize(r.bytes), p1: r.files })),
+                h('td', [h('button', { class: 'lhq-btn', onClick: () => stOpenDir(r.key) }, t('打开')), ' ', h('button', { class: 'lhq-btn danger', disabled: !r.files, onClick: () => stClean({ key: r.key }, t(r.label)) }, t('清理'))]),
+              ])),
+              ...(d.logs || []).flatMap((n) => (n.ok ? n.dirs : [{ key: 'x', label: '', dir: '', bytes: 0, files: 0, error: n.error }]).map((r) => h('tr', { key: `${n.nodeId}-${r.key}` }, [
+                h('td', [h('b', n.name), n.ip ? h('div', { class: 'lhq-sub', style: 'margin:0' }, n.ip) : null]),
+                h('td', r.error ? '—' : t(r.label)),
+                h('td', { style: 'font-size:11.5px;word-break:break-all;max-width:360px' }, r.error ? h('span', { class: 'lhq-err' }, r.error) : r.dir),
+                h('td', r.error ? '' : t('{p0} · {p1} 个文件', { p0: fmtSize(r.bytes), p1: r.files })),
+                h('td', r.error ? '' : [n.nodeId === 'local' ? h('button', { class: 'lhq-btn', onClick: () => stOpenDir(r.key) }, t('打开')) : null, ' ', h('button', { class: 'lhq-btn danger', disabled: !r.files, onClick: () => stClean({ kind: 'logs', nodeId: n.nodeId }, `${n.name} ${t('日志')}`) }, t('清理日志'))]),
+              ]))),
+            ]),
+          ]),
+          errLine('storage'),
+          h('p', { class: 'lhq-sub' }, t('日志清理只删 N 天前的文件，最近 1 小时内写过的不动；任务记录清理后，大屏和导出里就看不到那些旧事了。')),
+        ]);
+      }
       async function setDemoRun(on) {
         try {
           const r = await call('demo', 'demoRun.set', { on });
@@ -528,6 +595,10 @@ export default function createSolution(sdk) {
               ])
             : null,
           mcPanel(),
+          h('div', { class: 'lhq-row' }, [
+            h('button', { class: 'lhq-btn', 'data-test': 'storage-toggle', onClick: () => { stOpen.value = !stOpen.value; if (stOpen.value) loadStorage(); } }, stOpen.value ? t('收起存放位置') : t('产物存放位置与清理（交付物 / 导出 / 记录 / 各机器日志）')),
+          ]),
+          storagePanel(),
           h('p', { class: 'lhq-sub', style: 'margin-top:10px' }, t('没有任何在线机器承载的{p0}，派到它的活会报「没有在线机器承载」；主控本机勾选即作兜底。', { p0: term.value })),
           h('button', { class: 'lhq-btn', style: 'margin-right:6px', onClick: () => (customOpen.value = !customOpen.value) }, customOpen.value ? t('收起新建{p0}', { p0: term.value }) : t('现场新建一个{p0}', { p0: term.value })),
           customOpen.value

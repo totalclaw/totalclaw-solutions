@@ -552,6 +552,7 @@ class TaskRunner {
       error: t.error,
       rejects: t.rejects,
       retries: t.retries || 0,
+      simulated: !!t.simulated,
     };
   }
 

@@ -26,6 +26,7 @@ const { ScreenServer, filePages } = require('./screenServer.cjs');
 const { EmployeeWatch } = require('./employee.cjs');
 const X = require('./extras.cjs');
 const { buildDocx } = require('./docx.cjs');
+const { Storage } = require('./storage.cjs');
 
 const D = 'legion-hq';
 const SETTINGS = `${D}/settings.json`;
@@ -98,6 +99,19 @@ module.exports = {
       ctx.writeJson(SETTINGS, next);
       return next;
     };
+
+    // ── 产物存放位置（交付物 / 导出可改到任意文件夹；任务记录 / 录制只统计与清理）──
+    const storage = new Storage({
+      root: () => settings().storageRoot || null,
+      defaultRoot: () => ctx.dataPath(`${D}/files`),
+      internalDirs: () => ({ tasks: ctx.dataPath(`${D}/tasks`), records: ctx.dataPath(`${D}/records`) }),
+    });
+    let hostStorage = null;
+    try {
+      hostStorage = require('host:apps/desktop-shell/src/main/services/machineStorage.ts');
+    } catch {
+      /* 旧宿主没有日志统计：存放位置页只显示本方案的产物 */
+    }
 
     // ── 部门（军团）──
     // L11：方案包部门 + 自定义部门（运营中心数据里，角色从方案包部门的角色里选）
@@ -194,6 +208,14 @@ module.exports = {
       saveTask: (rec) => {
         ctx.writeJson(`${D}/tasks/${rec.id}.json`, rec);
         pruneTaskFiles(ctx);
+        // 办完（或待老板确认）的事把交付物写成文件，存到产物目录；演示模式的示例产物不落盘
+        if (!rec.simulated && (rec.status === 'done' || rec.status === 'awaiting')) {
+          try {
+            storage.writeDeliverables(rec, (id) => (legions.find((L) => L.id === id) || {}).name || id);
+          } catch (e) {
+            ctx.log.warn(`交付物落盘失败：${e.message}`);
+          }
+        }
       },
     });
     // D6 演示公司资料包：开启后作为「公司资料」附进各部门提示词
@@ -471,6 +493,72 @@ module.exports = {
     h('employee.state', () => employee.snapshot());
     h('command', (p) => runner.submit({ text: p?.text, title: p?.title, source: p?.source || 'boss', forcedLegions: Array.isArray(p?.legions) && p.legions.length ? p.legions : null }));
     h('demoRun.set', (p) => setDemoRun(!!p?.on));
+
+    // ── 产物存放位置与清理（主控统一管：本机产物 + 本机与各员工机的日志）──
+    const storageNodes = async () => {
+      const out = [];
+      const local = fleet.machines().find((m) => m.local);
+      if (hostStorage) {
+        const home = deps?.appConfig?.engines?.['totalclaw-agent']?.totalclawHome || deps?.totalclawAgentHome;
+        out.push({ nodeId: 'local', name: local ? local.name : '本机', ip: local?.ip || '', ok: true, dirs: hostStorage.storageReport(home) });
+      }
+      const proc = fleet.proc();
+      if (proc && fleet.mode() === 'cluster') {
+        const others = fleet.machines().filter((m) => !m.local && m.online !== false);
+        await Promise.all(others.map(async (m) => {
+          try {
+            const r = await proc.dispatchTask({ taskId: `st-${Date.now()}-${m.id}`, idempotencyKey: `st-${m.id}-${Date.now()}`, targetNodeId: m.id, roleId: 'machine.storage', priority: 'low', timeoutMs: 20_000, payload: { action: 'report' } });
+            if (r?.status !== 'success') throw new Error(r?.error || '员工机没回');
+            out.push({ nodeId: m.id, name: m.name, ip: m.ip || '', ok: true, dirs: r.output?.dirs || [] });
+          } catch (e) {
+            // 老版本员工机不认 machine.storage：如实显示，不拦其它机器
+            out.push({ nodeId: m.id, name: m.name, ip: m.ip || '', ok: false, error: /unknown|未知|not supported|不支持/i.test(String(e.message)) ? '员工机版本过旧，升级后可统计日志' : String(e.message).slice(0, 120), dirs: [] });
+          }
+        }));
+      }
+      return out;
+    };
+    h('storage.get', async () => ({ files: storage.report(), logs: await storageNodes() }));
+    h('storage.setRoot', async (p) => {
+      let dir = p?.root === null ? null : String(p?.root || '').trim() || null;
+      if (p?.pick) {
+        const { dialog } = require('electron');
+        const r = await dialog.showOpenDialog(deps?.getMainWindow?.() || undefined, { title: '选择产物存放文件夹', defaultPath: storage.rootDir(), properties: ['openDirectory', 'createDirectory'] });
+        if (r.canceled || !r.filePaths?.[0]) return { canceled: true };
+        dir = r.filePaths[0];
+      }
+      if (dir && !require('node:path').isAbsolute(dir)) throw new Error('请填写完整的文件夹路径');
+      if (dir) mkdirSync(dir, { recursive: true });
+      saveSettings({ storageRoot: dir });
+      // 之后的交付物 / 导出写到新位置；已有的不搬（避免大批移动出错），旧位置仍可打开查找
+      return storage.report();
+    });
+    h('storage.open', async (p) => {
+      const row = storage.report().rows.find((r) => r.key === p?.key);
+      const logRow = !row && hostStorage ? hostStorage.storageReport(deps?.appConfig?.engines?.['totalclaw-agent']?.totalclawHome || deps?.totalclawAgentHome).find((r) => r.key === p?.key) : null;
+      const dir = p?.key === 'root' ? storage.rootDir() : (row || logRow)?.dir;
+      if (!dir) throw new Error('没有这个位置');
+      mkdirSync(dir, { recursive: true });
+      const err = await require('electron').shell.openPath(dir);
+      if (err) throw new Error(err);
+      return { dir };
+    });
+    h('storage.clean', async (p) => {
+      const days = Number(p?.days);
+      if (!Number.isFinite(days) || days < 1) throw new Error('清理天数至少 1 天');
+      if (p?.kind === 'logs') {
+        if (p.nodeId === 'local') {
+          if (!hostStorage) throw new Error('本机宿主版本不支持日志清理');
+          return hostStorage.machineStorageHandle({ action: 'clean', days }, deps?.appConfig?.engines?.['totalclaw-agent']?.totalclawHome || deps?.totalclawAgentHome).output;
+        }
+        const r = await fleet.proc().dispatchTask({ taskId: `stc-${Date.now()}`, idempotencyKey: `stc-${p.nodeId}-${Date.now()}`, targetNodeId: String(p.nodeId), roleId: 'machine.storage', priority: 'normal', timeoutMs: 60_000, payload: { action: 'clean', days } });
+        if (r?.status !== 'success') throw new Error(r?.error || '员工机清理失败');
+        return r.output;
+      }
+      const r = storage.clean(String(p?.key), days);
+      ctx.log.info(`清理产物：${p.key} ${days} 天前，删除 ${r.removed} 个文件`);
+      return r;
+    });
     h('confirm', (p) => (p?.approve === false ? runner.reject(String(p.taskId), p.comment) : runner.confirm(String(p?.taskId))));
     h('cancel', (p) => runner.cancel(String(p?.taskId)));
     h('retry', (p) => runner.retryFailed(String(p?.taskId)));
@@ -769,14 +857,14 @@ module.exports = {
       const fileName = `${(co.short || co.name).replace(/[\\/:*?"<>|]/g, '')}-${t.title.replace(/[\\/:*?"<>|]/g, '_').slice(0, 30)}.docx`;
       try {
         const { dialog, app, shell } = require('electron');
-        const r = await dialog.showSaveDialog(deps?.getMainWindow?.() || undefined, { defaultPath: join(app.getPath('documents'), fileName), filters: [{ name: 'Word', extensions: ['docx'] }] });
+        const r = await dialog.showSaveDialog(deps?.getMainWindow?.() || undefined, { defaultPath: (mkdirSync(storage.exportsDir(), { recursive: true }), join(storage.exportsDir(), fileName)), filters: [{ name: 'Word', extensions: ['docx'] }] });
         if (r.canceled || !r.filePath) return { canceled: true };
         writeFileSync(r.filePath, buf);
         shell.showItemInFolder(r.filePath);
         return { path: r.filePath };
       } catch (e) {
         if (e && e.message && !/Cannot find module|electron/.test(e.message)) throw e;
-        const target = ctx.dataPath(`${D}/exports/${fileName}`);
+        const target = join(storage.exportsDir(), fileName);
         mkdirSync(join(target, '..'), { recursive: true });
         writeFileSync(target, buf);
         return { path: target };
@@ -814,12 +902,12 @@ module.exports = {
       const rep = X.examReport(exam(), examResults(), JSON.parse(readFileSync(ctx.packagePath('resources/coverage.json'), 'utf8')));
       try {
         const { dialog, app } = require('electron');
-        const r = await dialog.showSaveDialog(deps?.getMainWindow?.() || undefined, { defaultPath: join(app.getPath('documents'), 'opc-coverage-report.md'), filters: [{ name: 'Markdown', extensions: ['md'] }] });
+        const r = await dialog.showSaveDialog(deps?.getMainWindow?.() || undefined, { defaultPath: (mkdirSync(storage.exportsDir(), { recursive: true }), join(storage.exportsDir(), 'opc-coverage-report.md')), filters: [{ name: 'Markdown', extensions: ['md'] }] });
         if (r.canceled || !r.filePath) return { canceled: true };
         writeFileSync(r.filePath, rep.markdown);
         return { path: r.filePath };
       } catch {
-        const target = ctx.dataPath(`${D}/exports/opc-coverage-report.md`);
+        const target = join(storage.exportsDir(), 'opc-coverage-report.md');
         mkdirSync(join(target, '..'), { recursive: true });
         writeFileSync(target, rep.markdown);
         return { path: target };
