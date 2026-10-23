@@ -627,7 +627,8 @@ export default function createSolution(sdk) {
             h('label', { style: 'display:flex;gap:6px;align-items:center' }, [h('input', { type: 'checkbox', checked: auto, onChange: (e) => saveSettings({ screenAutoStart: e.target.checked, screenPort: port.value ? Number(port.value) : null }) }), t('打开 App 时自动启动')]),
             h('label', { style: 'display:flex;gap:6px;align-items:center' }, [
               t('大屏默认画面'),
-              h('select', { class: 'lhq-in', value: info.value?.settings?.screenView || 'topo', onChange: (e) => saveSettings({ screenView: e.target.value }) }, [
+              h('select', { class: 'lhq-in', value: info.value?.settings?.screenView || 'auto', onChange: (e) => saveSettings({ screenView: e.target.value }) }, [
+                h('option', { value: 'auto' }, t('自动（平时办公室，来新命令先看拓扑派发）')),
                 h('option', { value: 'topo' }, t('拓扑（部门与交接线）')),
                 h('option', { value: 'office' }, t('办公室（AI 员工在工位干活）')),
               ]),

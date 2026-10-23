@@ -418,7 +418,7 @@ module.exports = {
         outputChars: settings().outputChars || 900,
         responseLocale: settings().responseLocale || '',
         screenAutoStart: !!settings().screenAutoStart,
-        screenView: settings().screenView === 'office' ? 'office' : 'topo',
+        screenView: ['topo', 'office'].includes(settings().screenView) ? settings().screenView : 'auto',
         screenPort: settings().screenPort || null,
         terms: settings().terms === 'legion' ? 'legion' : 'department',
         demoPack: !!settings().demoPack,
@@ -573,7 +573,7 @@ module.exports = {
       if (Number.isFinite(p?.outputChars)) patch.outputChars = Math.min(2000, Math.max(300, Math.round(p.outputChars)));
       if (['', 'zh-CN', 'en-US', 'ar'].includes(p?.responseLocale)) patch.responseLocale = p.responseLocale;
       if (typeof p?.screenAutoStart === 'boolean') patch.screenAutoStart = p.screenAutoStart;
-      if (p?.screenView === 'office' || p?.screenView === 'topo') patch.screenView = p.screenView;
+      if (['auto', 'topo', 'office'].includes(p?.screenView)) patch.screenView = p.screenView;
       if (p?.screenPort === null || (Number.isInteger(p?.screenPort) && p.screenPort >= 1024 && p.screenPort <= 65000)) patch.screenPort = p.screenPort;
       if (['legion', 'department'].includes(p?.terms)) patch.terms = p.terms;
       if (typeof p?.demoPack === 'boolean') patch.demoPack = p.demoPack;
@@ -653,7 +653,7 @@ module.exports = {
       const main = deps?.getMainWindow?.();
       if (main && !main.isDestroyed()) main.once('closed', closeWindow);
       // 默认画面（拓扑 / 办公室）：现场仍可按 F 或点右上角切换
-      await win.loadURL(st.localUrl + (settings().screenView === 'office' ? '&view=office' : ''));
+      await win.loadURL(st.localUrl + `&view=${['topo', 'office'].includes(settings().screenView) ? settings().screenView : 'auto'}`);
       if (win.isDestroyed()) return { ok: false, error: '大屏窗口已关闭' };
       if (process.platform === 'darwin') win.setSimpleFullScreen(true);
       // 展示大屏要在最上层：点按钮时 App 常不在前台，拿不到焦点就会被正在用的程序窗口挡住（本机实测）。点一下大屏再按 Esc 退出
