@@ -53,6 +53,16 @@ function hostLlm(ctx, deps) {
   };
 }
 
+/** 主控统一管理员工机配置（宿主 services/employeeConfig.ts）：文字 / 图片 / 视频 / 语音模型，key 由宿主主进程下发。
+ *  旧宿主没有这个模块时返回 null（界面提示升级）。host: 模块只有本入口文件能 require。 */
+function hostEmployeeConfig() {
+  try {
+    return require('host:apps/desktop-shell/src/main/services/employeeConfig.ts').getEmployeeConfigService() || null;
+  } catch {
+    return null;
+  }
+}
+
 /** 员工画像：宿主 accountScope.privateRoot()/employee-profile.json（与 clusterDispatchRouter 同一处）。
  *  host: 模块只有本入口文件能 require（宿主只给入口注入专用 require），子模块经参数拿。 */
 function employeeProfilePath() {
@@ -438,6 +448,18 @@ module.exports = {
     h('confirm', (p) => (p?.approve === false ? runner.reject(String(p.taskId), p.comment) : runner.confirm(String(p?.taskId))));
     h('cancel', (p) => runner.cancel(String(p?.taskId)));
     h('retry', (p) => runner.retryFailed(String(p?.taskId)));
+    // 部门与机器：按机器配模型（与宿主「总控」页同一个服务、同一份配置）
+    const needCfg = () => {
+      const s = hostEmployeeConfig();
+      if (!s) throw new Error('当前 App 版本不支持统一配置员工机模型，请升级，或在「集群 → 总控」里配置');
+      return s;
+    };
+    h('machineConfig.get', async () => {
+      const s = hostEmployeeConfig();
+      return s ? { available: true, ...(await s.get()) } : { available: false };
+    });
+    h('machineConfig.save', async (p) => needCfg().save(String(p?.scope || ''), p?.desired || {}));
+    h('machineConfig.clear', async (p) => needCfg().clearNode(String(p?.nodeId || '')));
     h('tasks.list', () => listTaskFiles(ctx));
     h('tasks.get', (p) => runner.get(String(p?.taskId)) || ctx.readJson(`${D}/tasks/${String(p?.taskId).replace(/[^\w-]/g, '')}.json`, null));
 

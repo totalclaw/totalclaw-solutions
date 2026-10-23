@@ -99,6 +99,88 @@ export default function createSolution(sdk) {
       const examOpen = ref('');
       // L11：现场造一个新部门
       const customOpen = ref(false);
+      // 按机器配模型（宿主「主控统一管理员工机配置」，与总控页同一份配置）
+      const MC_ITEMS = [['text', '文字模型'], ['image', '图片模型'], ['video', '视频模型'], ['tts', '语音合成'], ['asr', '语音识别']];
+      const mcfg = ref(null);
+      const mcOpen = ref(''); // 'all' | 员工机 id
+      const mcDraft = reactive({});
+      const mcVal = (k, v) => (!v ? '' : k === 'text' ? v : `${v.provider}|${v.model || ''}`);
+      const mcDesc = (k, v) => (!v ? '' : k === 'text' ? v : v.model ? `${v.provider} · ${v.model}` : v.provider);
+      async function loadMcfg() {
+        try { mcfg.value = await sdk.invoke('machineConfig.get'); } catch { mcfg.value = { available: false }; }
+      }
+      function openMc(scope) {
+        if (mcOpen.value === scope) { mcOpen.value = ''; return; }
+        mcOpen.value = scope;
+        const own = scope === 'all' ? mcfg.value?.defaults || {} : mcfg.value?.perNode?.[scope];
+        for (const [k] of MC_ITEMS) mcDraft[k] = scope !== 'all' && (!own || !Object.prototype.hasOwnProperty.call(own, k)) ? '__inherit' : mcVal(k, own?.[k]);
+      }
+      function mcOptions(k) {
+        const o = mcfg.value?.options;
+        if (!o) return [];
+        if (k === 'text') return (o.text || []).map((m) => [m, m]);
+        return (o.media?.[k] || []).map((p) => [`${p.provider}|${p.model || ''}`, p.model ? `${p.label} · ${p.model}` : p.label]);
+      }
+      function mcCurrent(id) {
+        const cur = mcfg.value?.status?.[id]?.current;
+        if (!cur) return '';
+        const parts = [];
+        if (cur.text?.model) parts.push(cur.text.model);
+        for (const k of ['image', 'video']) if (cur.media?.[k]?.provider) parts.push(mcDesc(k, cur.media[k]));
+        return parts.join(' / ');
+      }
+      async function saveMc() {
+        const scope = mcOpen.value;
+        const desired = {};
+        for (const [k] of MC_ITEMS) {
+          const v = mcDraft[k];
+          if (v === '__inherit') desired[k] = '__inherit';
+          else if (k === 'text') desired.text = v || null;
+          else if (!v) desired[k] = null;
+          else { const [provider, model] = v.split('|'); desired[k] = model ? { provider, model } : { provider }; }
+        }
+        busy.mc = true;
+        try {
+          const r = await sdk.invoke('machineConfig.save', { scope, desired });
+          const rs = Object.values(r?.results || {});
+          const bad = rs.filter((x) => x.state !== 'ok');
+          if (!rs.length) sdk.notify.info(t('已保存；员工机上线后会自动下发'));
+          else if (!bad.length) sdk.notify.info(t('已下发到 {p0} 台员工机', { p0: rs.length }));
+          else sdk.notify.warn(t('{p0} 台没下发成功：{p1}', { p0: bad.length, p1: bad.map((x) => x.error).filter(Boolean).join('；').slice(0, 160) }));
+          await loadMcfg();
+          mcOpen.value = '';
+        } catch (e) {
+          sdk.notify.warn(e.message);
+        } finally {
+          busy.mc = false;
+        }
+      }
+      function mcPanel() {
+        if (!mcOpen.value) return null;
+        const scope = mcOpen.value;
+        const machine = machines.value.find((m) => m.id === scope);
+        const st = scope === 'all' ? null : mcfg.value?.status?.[scope];
+        return h('div', { class: 'lhq-card', style: 'padding:12px 14px;margin-top:10px' }, [
+          h('b', scope === 'all' ? t('全部员工机的模型') : t('{p0} 的模型', { p0: machine?.name || scope })),
+          h('p', { class: 'lhq-sub', style: 'margin:4px 0 8px' }, scope === 'all'
+            ? t('选一次，所有员工机都用它；员工机新加入或重装后自动补上。key 由主控下发，员工机不用另配。')
+            : t('每项可以跟随全部默认，或单独给这台指定。')),
+          ...MC_ITEMS.map(([k, label]) => h('div', { class: 'lhq-row' }, [
+            h('span', { style: 'width:72px;font-size:12.5px;color:var(--color-text-secondary,#6b7280)' }, t(label)),
+            h('select', { class: 'lhq-in', style: 'min-width:280px', value: mcDraft[k], onChange: (e) => (mcDraft[k] = e.target.value) }, [
+              scope !== 'all' ? h('option', { value: '__inherit' }, mcfg.value?.defaults?.[k] ? t('跟随全部默认（{p0}）', { p0: mcDesc(k, mcfg.value.defaults[k]) }) : t('跟随全部默认（不统一配置）')) : null,
+              h('option', { value: '' }, t('不统一配置（员工机用自己的）')),
+              ...mcOptions(k).map(([v, l]) => h('option', { value: v }, l)),
+            ]),
+          ])),
+          MC_ITEMS.every(([k]) => !mcOptions(k).length) ? h('p', { class: 'lhq-sub' }, t('主控本机还没有配置模型：先在「设置 → 模型」和「设置 → 媒体模型」里配好，这里才有可选项。')) : null,
+          st?.state && st.state !== 'ok' ? h('div', { class: 'lhq-err' }, st.error || '') : null,
+          h('div', { class: 'lhq-row' }, [
+            h('button', { class: 'lhq-btn pri', disabled: busy.mc, onClick: saveMc }, busy.mc ? t('下发中…') : scope === 'all' ? t('保存并下发到全部员工机') : t('保存并下发')),
+            h('button', { class: 'lhq-btn', onClick: () => (mcOpen.value = '') }, t('取消')),
+          ]),
+        ]);
+      }
       const customText = ref('');
       const customDraft = ref(null);
       async function draftCustom() {
@@ -199,6 +281,10 @@ export default function createSolution(sdk) {
           document.head.appendChild(s);
         }
         loadAll().catch((e) => sdk.notify.warn(e.message));
+        loadMcfg();
+        // 员工机配置的同步状态每分钟刷新一次（员工机加入 / 对账后宿主会补发）
+        const mcTimer = setInterval(() => { if (!mcOpen.value) loadMcfg(); }, 60_000);
+        offs.push(() => clearInterval(mcTimer));
         offs.push(sdk.on('state', (s) => (snap.value = s)));
         offs.push(sdk.on('employee', (s) => (employee.value = s)));
         offs.push(sdk.on('director', (s) => (director.value = s)));
@@ -395,7 +481,7 @@ export default function createSolution(sdk) {
                   h('td', [
                     m._edit
                       ? h('span', [h('input', { class: 'lhq-in', style: 'width:110px', value: m._alias ?? m.name, onInput: (e) => (m._alias = e.target.value) }), ' ', h('button', { class: 'lhq-btn', onClick: () => saveAlias(m) }, t('保存'))])
-                      : h('span', { title: m.id }, [h('b', m.name), ' ', m.local ? null : h('a', { style: 'cursor:pointer;font-size:12px;color:var(--color-brand,#6366f1)', onClick: () => renameMachine(m) }, t('改名'))]),
+                      : h('span', { title: m.id }, [h('b', m.name), ' ', m.local ? null : h('a', { style: 'cursor:pointer;font-size:12px;color:var(--color-brand,#6366f1)', onClick: () => renameMachine(m) }, t('改名')), ' ', !m.local && mcfg.value?.available ? h('a', { style: 'cursor:pointer;font-size:12px;color:var(--color-brand,#6366f1)', onClick: () => openMc(m.id) }, t('模型')) : null]),
                     h('div', { class: 'lhq-mono', style: 'color:var(--color-text-secondary,#6b7280)' }, m.ip || ''),
                     m.note ? h('div', { class: 'lhq-err' }, m.note) : null,
                   ]),
@@ -404,7 +490,8 @@ export default function createSolution(sdk) {
                     h('div', { style: 'font-size:12px;margin-top:4px;color:var(--color-text-secondary,#6b7280)' }, [
                       m.busy ? t('本中心派了 {p0} 步', { p0: m.busy }) : t('空闲'),
                       m.load ? h('div', t('本机忙碌会话 {p0}', { p0: m.load.busy })) : null,
-                      m.load?.model ? h('div', { class: 'lhq-mono' }, m.load.model) : null,
+                      !m.local && mcCurrent(m.id) ? h('div', { class: 'lhq-mono', title: t('员工机当前模型') }, mcCurrent(m.id)) : m.load?.model ? h('div', { class: 'lhq-mono' }, m.load.model) : null,
+                      !m.local && mcfg.value?.status?.[m.id]?.state === 'failed' ? h('div', { class: 'lhq-err' }, t('模型下发失败')) : null,
                       ...(m.load?.activities || []).map((a) => h('div', { style: 'color:var(--color-brand,#6366f1)' }, `#${a.taskNo ?? '?'} ${legionById.value[a.legionId]?.short || a.legionId} · ${a.phase || t('执行中')}`)),
                     ]),
                   ]),
@@ -425,6 +512,13 @@ export default function createSolution(sdk) {
               ),
             ]),
           ]),
+          mode === 'cluster' && mcfg.value?.available
+            ? h('div', { class: 'lhq-row' }, [
+                h('button', { class: 'lhq-btn', onClick: () => openMc('all') }, t('全部员工机的模型（文字 / 图片 / 视频 / 语音）')),
+                h('span', { class: 'lhq-sub', style: 'margin:0' }, t('单台要不同：点机器名旁的「模型」')),
+              ])
+            : null,
+          mcPanel(),
           h('p', { class: 'lhq-sub', style: 'margin-top:10px' }, t('没有任何在线机器承载的{p0}，派到它的活会报「没有在线机器承载」；主控本机勾选即作兜底。', { p0: term.value })),
           h('button', { class: 'lhq-btn', style: 'margin-right:6px', onClick: () => (customOpen.value = !customOpen.value) }, customOpen.value ? t('收起新建{p0}', { p0: term.value }) : t('现场新建一个{p0}', { p0: term.value })),
           customOpen.value
