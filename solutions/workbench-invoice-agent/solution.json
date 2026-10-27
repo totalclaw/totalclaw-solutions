@@ -2,11 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "workbench-invoice-agent",
-  "name": "发票智能体",
+  "name": "智能发票助手",
   "aliases": [
-    "invoice-agent"
+    "invoice-agent",
+    "发票智能体"
   ],
-  "version": "2.0.1",
+  "version": "2.0.2",
   "kind": "workbench",
   "category": "财税",
   "icon": "icon-solutions",

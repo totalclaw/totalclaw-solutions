@@ -1,12 +1,12 @@
 {
   "id": "workbench-advisory-report",
-  "version": "2.0.0",
-  "treeDigest": "3868bd28f046fe2734f289151356119d66b67c61046013e7d5a4dea2fd84991a",
+  "version": "2.0.1",
+  "treeDigest": "579698c6fe69c17be1af3a53ebeb09bb4d895a6113de7382d157975372954a7c",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 473,
-      "sha256": "93b89d13a6992efc166579a8f22d7d107412e5f2eabf7b3a5618857db0b283ee"
+      "size": 668,
+      "sha256": "9ecb4e9c60b8a7b1cb5ac730b7e4b62f023d9bdc1c281cb8dacfbff318e76914"
     },
     {
       "path": "README.md",
@@ -30,11 +30,22 @@
     },
     {
       "path": "solution.json",
-      "size": 1887,
-      "sha256": "d8fda05ae73344c10b449821f2eb25eb2b2f06aca283133b84850ec0be4ec0f2"
+      "size": 1913,
+      "sha256": "c0d2723b5f73d2cf468f86de3d1226a17ff4418659aaccdca56eebc37b9c138c"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.1",
+      "ref": "workbench-advisory-report@2.0.1",
+      "treeDigest": "579698c6fe69c17be1af3a53ebeb09bb4d895a6113de7382d157975372954a7c",
+      "filesRef": "index/workbench-advisory-report/2.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-27"
+    },
     {
       "version": "2.0.0",
       "ref": "workbench-advisory-report@2.0.0",

@@ -1,0 +1,42 @@
+{
+  "id": "embedded-video-studio",
+  "version": "2.0.3",
+  "treeDigest": "36b3aba22e4a1ef69f5fbcd2fc2d5126777562416cf42ba288db4ffc7b945670",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 1051,
+      "sha256": "0c26357fc5f6c67d7d482b39801f36c23e7ce149daf0928ebfee0bf15824e8a4"
+    },
+    {
+      "path": "README.md",
+      "size": 838,
+      "sha256": "b437c4f378dea73cc3bec69f5a1aeb4ba406ab16a24dbde83d0f3e4b09b6e6db"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 1027,
+      "sha256": "8a62b0164c1bf54d846e51dcd0189e16f81890094c4cf19f797f5cd962da1d32"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 165071,
+      "sha256": "d7cbcf385bd3ea59a790f059599e430e69779a64e08e4dff852db57cb61e59cd"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 42988,
+      "sha256": "ee13c30a981961b1c9bd8743b81a185b31aa2f2288fdfbf30e66bd0621404dbc"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 1914,
+      "sha256": "c24379aaf92d5189d53bf559858df6d59fb9c4d8155a0888761bd2080e6c9789"
+    }
+  ]
+}

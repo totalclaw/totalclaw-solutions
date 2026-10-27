@@ -2,11 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "workbench-digital-human",
-  "name": "数字人口播与直播工作台",
+  "name": "多媒体创作与发布工作台 · 数字人口播与直播",
   "aliases": [
-    "digital-human"
+    "digital-human",
+    "数字人口播与直播工作台"
   ],
-  "version": "2.0.2",
+  "version": "2.0.3",
   "kind": "workbench",
   "category": "数字人",
   "icon": "icon-solutions",

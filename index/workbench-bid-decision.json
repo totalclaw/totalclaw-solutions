@@ -1,12 +1,12 @@
 {
   "id": "workbench-bid-decision",
-  "version": "2.0.0",
-  "treeDigest": "45fd740b80310201fd931dc673e56b6826bbfe5cd0572ea3968b3c1d7e2a1910",
+  "version": "2.0.1",
+  "treeDigest": "f0d9a107d1750852b5d40de9ead09258115f4f530e3901d56625be95544adf6b",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 461,
-      "sha256": "84d83b76f47b9960b336b487c6ef9532bd2b6d6d988d4f3eb97a86a5ad3e46d9"
+      "size": 742,
+      "sha256": "6e2e50d4d7c5a3c9d600ac2357e7e22441b1dc7737a32ae49f5cc70c536b1453"
     },
     {
       "path": "README.md",
@@ -30,11 +30,22 @@
     },
     {
       "path": "solution.json",
-      "size": 1827,
-      "sha256": "af6c4de45085d3ba81fa1e359f4a3ff743156c7405c2695fc46fcad673165afe"
+      "size": 1872,
+      "sha256": "bfb6c9159fcd054f3526f3946bbfa450e16be99a872ae9555528634d9bc6941e"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.1",
+      "ref": "workbench-bid-decision@2.0.1",
+      "treeDigest": "f0d9a107d1750852b5d40de9ead09258115f4f530e3901d56625be95544adf6b",
+      "filesRef": "index/workbench-bid-decision/2.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-27"
+    },
     {
       "version": "2.0.0",
       "ref": "workbench-bid-decision@2.0.0",

@@ -1,12 +1,12 @@
 {
   "id": "workbench-finance-agent",
-  "version": "2.0.3",
-  "treeDigest": "dd98b5bdde4d7ef38ccaa511752436c403a127b2cfd3b64d1924eb6d6423b040",
+  "version": "2.0.4",
+  "treeDigest": "a76e1ec2c2798131e86793e083c61cf9dd99faeb3ced25837f5dce2914d31281",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1392,
-      "sha256": "5c756fbe55516d626ff6f6014f083bb1d08268e71de2d224f3ab0ef78f0c5348"
+      "size": 1646,
+      "sha256": "3196153277cc9f4990cd4345032fa86164d6069cd7b863bfd77289f2a3b00abe"
     },
     {
       "path": "README.md",
@@ -40,11 +40,22 @@
     },
     {
       "path": "solution.json",
-      "size": 2313,
-      "sha256": "e2f7bb46fd8fa669046c8314f3e7bb55f8f58eb383163d637dbfd79ee77c4b66"
+      "size": 2349,
+      "sha256": "210ba4e911a4c7494a9739b3738e7f09e52c97dc64a462fd8de88300093da78e"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.4",
+      "ref": "workbench-finance-agent@2.0.4",
+      "treeDigest": "a76e1ec2c2798131e86793e083c61cf9dd99faeb3ced25837f5dce2914d31281",
+      "filesRef": "index/workbench-finance-agent/2.0.4.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-27"
+    },
     {
       "version": "2.0.3",
       "ref": "workbench-finance-agent@2.0.3",

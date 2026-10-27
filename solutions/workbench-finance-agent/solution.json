@@ -2,11 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "workbench-finance-agent",
-  "name": "财务智能体",
+  "name": "智能发票助手 · 财务",
   "aliases": [
-    "finance-agent"
+    "finance-agent",
+    "财务智能体"
   ],
-  "version": "2.0.3",
+  "version": "2.0.4",
   "kind": "workbench",
   "category": "财务",
   "icon": "icon-solutions",

@@ -2,11 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "workbench-campus-ai",
-  "name": "高校一体化AI智能体",
+  "name": "校园 AI 中心",
   "aliases": [
-    "campus-ai"
+    "campus-ai",
+    "高校一体化AI智能体"
   ],
-  "version": "2.0.3",
+  "version": "2.0.4",
   "kind": "workbench",
   "category": "高校",
   "icon": "icon-solutions",

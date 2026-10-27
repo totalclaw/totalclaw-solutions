@@ -2,11 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "workbench-parts-alert",
-  "name": "配件预警与补库智能体",
+  "name": "智能库存管理",
   "aliases": [
-    "parts-alert"
+    "parts-alert",
+    "配件预警与补库智能体"
   ],
-  "version": "2.0.3",
+  "version": "2.0.4",
   "kind": "workbench",
   "category": "配件管理",
   "icon": "icon-solutions",

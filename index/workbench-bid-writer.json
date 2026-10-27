@@ -1,12 +1,12 @@
 {
   "id": "workbench-bid-writer",
-  "version": "2.0.2",
-  "treeDigest": "ebc65642d8a04729924dd7dfeb0a8422afb64e298e88f72c089b5fdd395de362",
+  "version": "2.0.3",
+  "treeDigest": "edafe07e0d79f1f4cfdd6191bf7edc5cfdf0e400da04924b2fa54b2da7bdcf32",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 954,
-      "sha256": "2d9a6210605b6bc190672ea14a50b0b82878e9776557945e3707916ebc32dbd9"
+      "size": 1149,
+      "sha256": "68444b53498db62f71e73490b4e333471f497495803dd1d9acc7a8cfc5493a83"
     },
     {
       "path": "README.md",
@@ -40,11 +40,22 @@
     },
     {
       "path": "solution.json",
-      "size": 2667,
-      "sha256": "1ebefc5093fa61c2c465c29140ea681292920c15c8caae05c980da1e3ec70442"
+      "size": 2693,
+      "sha256": "17af2b2f99f6c03818cc9ddf8a856fc0c0f55a84e411cdc7a54399e791044551"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.3",
+      "ref": "workbench-bid-writer@2.0.3",
+      "treeDigest": "edafe07e0d79f1f4cfdd6191bf7edc5cfdf0e400da04924b2fa54b2da7bdcf32",
+      "filesRef": "index/workbench-bid-writer/2.0.3.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-27"
+    },
     {
       "version": "2.0.2",
       "ref": "workbench-bid-writer@2.0.2",

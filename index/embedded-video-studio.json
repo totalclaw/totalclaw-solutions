@@ -1,12 +1,12 @@
 {
   "id": "embedded-video-studio",
-  "version": "2.0.2",
-  "treeDigest": "ff68b4ab6646fd0b8091c636804bf723b35e575870812f0e459bdc29ba77a788",
+  "version": "2.0.3",
+  "treeDigest": "36b3aba22e4a1ef69f5fbcd2fc2d5126777562416cf42ba288db4ffc7b945670",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 826,
-      "sha256": "aeb928e66c2d87929f80d40e4f05d6cf861287d56aec140c9d5a661ed3477c76"
+      "size": 1051,
+      "sha256": "0c26357fc5f6c67d7d482b39801f36c23e7ce149daf0928ebfee0bf15824e8a4"
     },
     {
       "path": "README.md",
@@ -35,11 +35,22 @@
     },
     {
       "path": "solution.json",
-      "size": 1873,
-      "sha256": "11d5a1b69a5677a7f48ccbed192e7345c4bd43aecda247481b3d0030a48c6242"
+      "size": 1914,
+      "sha256": "c24379aaf92d5189d53bf559858df6d59fb9c4d8155a0888761bd2080e6c9789"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.3",
+      "ref": "embedded-video-studio@2.0.3",
+      "treeDigest": "36b3aba22e4a1ef69f5fbcd2fc2d5126777562416cf42ba288db4ffc7b945670",
+      "filesRef": "index/embedded-video-studio/2.0.3.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-27"
+    },
     {
       "version": "2.0.2",
       "ref": "embedded-video-studio@2.0.2",

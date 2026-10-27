@@ -2,11 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "workbench-bid-writer",
-  "name": "标书制作智能体",
+  "name": "智能标书助手",
   "aliases": [
-    "bid-writer"
+    "bid-writer",
+    "标书制作智能体"
   ],
-  "version": "2.0.2",
+  "version": "2.0.3",
   "kind": "workbench",
   "category": "招投标",
   "icon": "icon-solutions",

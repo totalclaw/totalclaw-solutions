@@ -1,12 +1,12 @@
 {
   "id": "workbench-parts-alert",
-  "version": "2.0.3",
-  "treeDigest": "9184f45788ff020eece2220257dfcdb0009ae0e66352333922fa6365af78a3d9",
+  "version": "2.0.4",
+  "treeDigest": "5aa5425eb78fb0765c1bca0f7ac585d7b6278989adc0ca4bec87d645bd956bcd",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1404,
-      "sha256": "82bc871b504063fbc9ef1e97e34193c25ac1c8287dd7df2e47c0fd820a149ea6"
+      "size": 1599,
+      "sha256": "5c60f60576094bbf0c9c3eed25b4df3e9bc92d186e1cb70672de137875fda499"
     },
     {
       "path": "README.md",
@@ -40,11 +40,22 @@
     },
     {
       "path": "solution.json",
-      "size": 2152,
-      "sha256": "2948ee84945cacb8b85b7795b5b0df1e26c6e0c8d905f9f25c9ded7fe2a6af90"
+      "size": 2178,
+      "sha256": "68176ba6a028108c95a6117970e3f970ab7d59fbff304ea7ff2d6ca6b841faa0"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.4",
+      "ref": "workbench-parts-alert@2.0.4",
+      "treeDigest": "5aa5425eb78fb0765c1bca0f7ac585d7b6278989adc0ca4bec87d645bd956bcd",
+      "filesRef": "index/workbench-parts-alert/2.0.4.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-27"
+    },
     {
       "version": "2.0.3",
       "ref": "workbench-parts-alert@2.0.3",

@@ -2,11 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "workbench-biz-automation",
-  "name": "经营自动化智能体",
+  "name": "服装AI试衣 · 经营自动化",
   "aliases": [
-    "biz-automation"
+    "biz-automation",
+    "经营自动化智能体"
   ],
-  "version": "2.0.3",
+  "version": "2.0.4",
   "kind": "workbench",
   "category": "经营自动化",
   "icon": "icon-solutions",

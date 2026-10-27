@@ -1,12 +1,12 @@
 {
   "id": "workbench-edu-hub",
-  "version": "2.0.2",
-  "treeDigest": "f8d71f857b351e211ba4a66dacbb1550bc7b15fccb4bd4bc7ea00d1075c02bc2",
+  "version": "2.0.3",
+  "treeDigest": "77a7879cc1337c0d0a22f812ba1fcc837b529c5fab5728d0b2edfcd968f33498",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1130,
-      "sha256": "cbf0008d227d6fdf30e614a20c0d85fb0106e44cf7dfbae45b8be32630750f93"
+      "size": 1325,
+      "sha256": "494b174dc886d62267b2b501a90d6a606216c730b188e9f6395a07dad409da42"
     },
     {
       "path": "README.md",
@@ -40,11 +40,22 @@
     },
     {
       "path": "solution.json",
-      "size": 2044,
-      "sha256": "162057fb17725394ee4e47221df162585cc1118461fe412b6599953cd8ea7be0"
+      "size": 2070,
+      "sha256": "38323fdbf65d73487fc41391255ecb5ede1acf605e7fbdb44539741b799d5a14"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.3",
+      "ref": "workbench-edu-hub@2.0.3",
+      "treeDigest": "77a7879cc1337c0d0a22f812ba1fcc837b529c5fab5728d0b2edfcd968f33498",
+      "filesRef": "index/workbench-edu-hub/2.0.3.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-27"
+    },
     {
       "version": "2.0.2",
       "ref": "workbench-edu-hub@2.0.2",

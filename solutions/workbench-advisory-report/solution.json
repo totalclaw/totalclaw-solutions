@@ -2,11 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "workbench-advisory-report",
-  "name": "AI 客户问题与方案报告数字员工",
+  "name": "智能客诉助手",
   "aliases": [
-    "advisory-report"
+    "advisory-report",
+    "AI 客户问题与方案报告数字员工"
   ],
-  "version": "2.0.0",
+  "version": "2.0.1",
   "kind": "workbench",
   "category": "客户咨询",
   "icon": "icon-solutions",

@@ -2,11 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "workbench-bid-decision",
-  "name": "AI 招投标决策数字员工",
+  "name": "智能标书助手 · 招投标决策",
   "aliases": [
-    "bid-decision"
+    "bid-decision",
+    "AI 招投标决策数字员工"
   ],
-  "version": "2.0.0",
+  "version": "2.0.1",
   "kind": "workbench",
   "category": "招投标",
   "icon": "icon-solutions",

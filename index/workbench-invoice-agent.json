@@ -1,12 +1,12 @@
 {
   "id": "workbench-invoice-agent",
-  "version": "2.0.1",
-  "treeDigest": "e063f465da4c1957461f03a0b116f8bb1fdabbeb8abfb68009e1f8fc3f2d6c20",
+  "version": "2.0.2",
+  "treeDigest": "3aa4c752ae31e296922331f0d3f1d92a113250811b54f3758f63c576c50c49a1",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 662,
-      "sha256": "c54f45ac19701cc30307b640ae760f3694124fcb9255f6a41c7768476ddc81f8"
+      "size": 857,
+      "sha256": "b163a4ec0b120149124604c049935cb15f82b07934b464bde692c24fdff581e1"
     },
     {
       "path": "README.md",
@@ -35,11 +35,22 @@
     },
     {
       "path": "solution.json",
-      "size": 2132,
-      "sha256": "e1175fc51c84aabed6462d0249268f2d17d6ce98ba84cb9ea9fbf47135963e40"
+      "size": 2158,
+      "sha256": "b7f39aeec46b30be0227adc74bd03620f1061793bbc6df1673bee281e2792174"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-invoice-agent@2.0.2",
+      "treeDigest": "3aa4c752ae31e296922331f0d3f1d92a113250811b54f3758f63c576c50c49a1",
+      "filesRef": "index/workbench-invoice-agent/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-27"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-invoice-agent@2.0.1",

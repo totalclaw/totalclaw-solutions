@@ -2,11 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "workbench-industry-watch",
-  "name": "盘面情报台",
+  "name": "盯盘复盘助手",
   "aliases": [
-    "industry-watch"
+    "industry-watch",
+    "盘面情报台"
   ],
-  "version": "2.0.1",
+  "version": "2.0.2",
   "kind": "workbench",
   "category": "24 小时情报",
   "icon": "icon-solutions",

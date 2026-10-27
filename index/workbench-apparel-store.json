@@ -1,12 +1,12 @@
 {
   "id": "workbench-apparel-store",
-  "version": "2.0.1",
-  "treeDigest": "07272e0195c6af7deae62c43ed6c645b110129fe5f53b60e0d07b8f5ec7f350c",
+  "version": "2.0.2",
+  "treeDigest": "b4c64c323c024184401d824b55853760f9d07d727000bdc45e00f08996c5a578",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 671,
-      "sha256": "fffed0a9275abd906cdf021a6f7bdedb009f46366e207d019bdcde80e4718d77"
+      "size": 858,
+      "sha256": "2944187850a9a7082ca66de0900b4da99d9c353c8107b00e78ee8e8e3524442a"
     },
     {
       "path": "README.md",
@@ -35,11 +35,22 @@
     },
     {
       "path": "solution.json",
-      "size": 2108,
-      "sha256": "7f62d54da8732fb9b6380ba792058d6e203cad4a1e7e13537388c58a179070ee"
+      "size": 2130,
+      "sha256": "724101665ab24a9dac45d4574498ce7fb70fa84e0b970ea73bcfd5ebb5270b27"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-apparel-store@2.0.2",
+      "treeDigest": "b4c64c323c024184401d824b55853760f9d07d727000bdc45e00f08996c5a578",
+      "filesRef": "index/workbench-apparel-store/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-27"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-apparel-store@2.0.1",

@@ -2,11 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "embedded-video-studio",
-  "name": "短视频创作与发布工作台",
+  "name": "多媒体创作与发布工作台",
   "aliases": [
-    "video-studio"
+    "video-studio",
+    "短视频创作与发布工作台"
   ],
-  "version": "2.0.2",
+  "version": "2.0.3",
   "kind": "workbench",
   "category": "内置",
   "icon": "icon-solutions",

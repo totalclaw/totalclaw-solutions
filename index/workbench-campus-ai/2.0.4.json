@@ -1,0 +1,47 @@
+{
+  "id": "workbench-campus-ai",
+  "version": "2.0.4",
+  "treeDigest": "f9379f38db3c27f0e53313651bf97e1751b1a4607863d02448a0281eca068951",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 1456,
+      "sha256": "863a3d0f77e8bf3f0b4eb07dc2d827d7719b5ac52e221bf8388f5239fc47d0aa"
+    },
+    {
+      "path": "README.md",
+      "size": 1537,
+      "sha256": "861f77b44e565be8a0ffe30968ce0950c618ec8eef551458bbbaa1457a46b9c8"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 1473,
+      "sha256": "399f2e7243315d02b7ffd64816150ea7d0001db71753af7036962d6672585024"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 229810,
+      "sha256": "313f5b0a1f6151b36e7f3b191a8da39391c0627feb10f2c41ae1f45be666421f"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 376751,
+      "sha256": "d0a4d21842ba4f7c89e8728f60c470922d6f5dfeaa2d19e535bd79da360cf6e2"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 43287,
+      "sha256": "a4df3d1ab3cff0d52b279b9a23ceedd8a0e7d2a86f2cfc94809e05b81fad9d57"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2412,
+      "sha256": "b0f49939422693553a95f4a51e4b598fdd1f662c6165d604b551dfd8fb1f69ff"
+    }
+  ]
+}

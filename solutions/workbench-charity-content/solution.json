@@ -2,11 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "workbench-charity-content",
-  "name": "慈善活动内容工场",
+  "name": "活动运营工坊",
   "aliases": [
-    "charity-content"
+    "charity-content",
+    "慈善活动内容工场"
   ],
-  "version": "2.0.3",
+  "version": "2.0.4",
   "kind": "workbench",
   "category": "公益传播",
   "icon": "icon-solutions",

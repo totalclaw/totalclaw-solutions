@@ -2,11 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "workbench-apparel-store",
-  "name": "服装实体店智能体",
+  "name": "服装AI试衣",
   "aliases": [
-    "apparel-store"
+    "apparel-store",
+    "服装实体店智能体"
   ],
-  "version": "2.0.1",
+  "version": "2.0.2",
   "kind": "workbench",
   "category": "服装零售",
   "icon": "icon-solutions",

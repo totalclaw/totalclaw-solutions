@@ -1,0 +1,42 @@
+{
+  "id": "workbench-invoice-agent",
+  "version": "2.0.2",
+  "treeDigest": "3aa4c752ae31e296922331f0d3f1d92a113250811b54f3758f63c576c50c49a1",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 857,
+      "sha256": "b163a4ec0b120149124604c049935cb15f82b07934b464bde692c24fdff581e1"
+    },
+    {
+      "path": "README.md",
+      "size": 1285,
+      "sha256": "6cec55d692eeff8699dbbf58eed23d0e5c525ca44db3519f9bb09b034128f88e"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 613,
+      "sha256": "792a84ca18f56cb48ef4ac78f0fce552078860ca8723915ed8b2b897d106dfd1"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 212704,
+      "sha256": "91133c0ed7c20651116d1cc7eb6bb5a6eaa00d90e2a337e5c4ad2b58096a64c6"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 16296,
+      "sha256": "c8bf5d67d347389d23c33c82e4b911ef2a27ff78c3a7cc3b13148bc19b592136"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2158,
+      "sha256": "b7f39aeec46b30be0227adc74bd03620f1061793bbc6df1673bee281e2792174"
+    }
+  ]
+}

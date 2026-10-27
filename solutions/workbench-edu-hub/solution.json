@@ -2,11 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "workbench-edu-hub",
-  "name": "AI 学习中心（文档生成教案）",
+  "name": "智能备课助教",
   "aliases": [
-    "edu-hub"
+    "edu-hub",
+    "AI 学习中心（文档生成教案）"
   ],
-  "version": "2.0.2",
+  "version": "2.0.3",
   "kind": "workbench",
   "category": "教育",
   "icon": "icon-solutions",

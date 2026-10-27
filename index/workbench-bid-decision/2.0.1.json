@@ -1,0 +1,37 @@
+{
+  "id": "workbench-bid-decision",
+  "version": "2.0.1",
+  "treeDigest": "f0d9a107d1750852b5d40de9ead09258115f4f530e3901d56625be95544adf6b",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 742,
+      "sha256": "6e2e50d4d7c5a3c9d600ac2357e7e22441b1dc7737a32ae49f5cc70c536b1453"
+    },
+    {
+      "path": "README.md",
+      "size": 873,
+      "sha256": "88bc187527e4a0f0151202309da29d170ad8c52d690ff6359ea1760c04479c76"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 144,
+      "sha256": "d5c4136c2ca5d7d0a8615c41b348e88e2f3fc5be4a32d41c921611126462494f"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 751,
+      "sha256": "3260377f7fbba858c39a555b9067d71886b5766c78171c73b62bc3d785eac10c"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 1872,
+      "sha256": "bfb6c9159fcd054f3526f3946bbfa450e16be99a872ae9555528634d9bc6941e"
+    }
+  ]
+}

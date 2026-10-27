@@ -1,12 +1,12 @@
 {
   "id": "workbench-industry-watch",
-  "version": "2.0.1",
-  "treeDigest": "191816d4c4bc2bf60d4278924bfc751975103a4e47fcd3e6d8c7f11c45fc76e1",
+  "version": "2.0.2",
+  "treeDigest": "d706d530161d59b446c4d88c4efbd321905dd8573e9155567a90b0e8446f639a",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 662,
-      "sha256": "0dd1e82cce8cf8c6c895b4a7f15208b94fc533301bfd356764e5d6991e269c9d"
+      "size": 857,
+      "sha256": "c72d86896fe710d51426469bb846ca5b375bdc579c6e22fdea1b7c03ecb01e77"
     },
     {
       "path": "README.md",
@@ -35,11 +35,22 @@
     },
     {
       "path": "solution.json",
-      "size": 2181,
-      "sha256": "6565c85118f8b0b2a98677784a0565b123e2fd21e6ee8e902fbb58d47f7cc6e6"
+      "size": 2207,
+      "sha256": "89ffd1ffc7792188b6105abd0cac6653523d663b4b82e6f8fab752feefe7f194"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-industry-watch@2.0.2",
+      "treeDigest": "d706d530161d59b446c4d88c4efbd321905dd8573e9155567a90b0e8446f639a",
+      "filesRef": "index/workbench-industry-watch/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-27"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-industry-watch@2.0.1",

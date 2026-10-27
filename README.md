@@ -36,35 +36,35 @@ test/                    node:test
 
 | id | 名称 | 类型 |
 |---|---|---|
-| workbench-edu-hub | AI 学习中心（文档生成教案） | workbench |
+| workbench-edu-hub | 智能备课助教 | workbench |
 | rd-workflow | 研发工作流 | workbench |
 | workbench-education | 职教与高校工作台 | workbench |
 | workbench-grounded-qa | 知识问答助手 | workbench |
 | workbench-healthcare | 智慧医院运营工作台 | workbench |
 | workbench-warehouse | 产销存协同工作台 | workbench |
-| workbench-global-ads | 阿联酋广告代投放工作台 | workbench |
+| workbench-global-ads | 海外广告投放工作台 | workbench |
 | workbench-rfq-quote | AI 询价与报价数字员工 | workbench |
-| workbench-bid-decision | AI 招投标决策数字员工 | workbench |
-| workbench-bid-writer | 标书制作智能体 | workbench |
-| workbench-advisory-report | AI 客户问题与方案报告数字员工 | workbench |
-| workbench-industry-watch | 盘面情报台 | workbench |
-| workbench-digital-human | 数字人口播与直播工作台 | workbench |
+| workbench-bid-decision | 智能标书助手 · 招投标决策 | workbench |
+| workbench-bid-writer | 智能标书助手 | workbench |
+| workbench-advisory-report | 智能客诉助手 | workbench |
+| workbench-industry-watch | 盯盘复盘助手 | workbench |
+| workbench-digital-human | 多媒体创作与发布工作台 · 数字人口播与直播 | workbench |
 | workbench-foreign-trade | 外贸业务智能体 | workbench |
 | workbench-academic-writer | 学术写作智能体 | workbench |
-| workbench-finance-agent | 财务智能体 | workbench |
-| workbench-apparel-store | 服装实体店智能体 | workbench |
-| workbench-biz-automation | 经营自动化智能体 | workbench |
-| workbench-invoice-agent | 发票智能体 | workbench |
+| workbench-finance-agent | 智能发票助手 · 财务 | workbench |
+| workbench-apparel-store | 服装AI试衣 | workbench |
+| workbench-biz-automation | 服装AI试衣 · 经营自动化 | workbench |
+| workbench-invoice-agent | 智能发票助手 | workbench |
 | workbench-flow-sla | 流程时效监控智能体 | workbench |
-| workbench-parts-alert | 配件预警与补库智能体 | workbench |
-| workbench-campus-ai | 高校一体化AI智能体 | workbench |
-| workbench-zcy-agent | 政采云智能体 | workbench |
+| workbench-parts-alert | 智能库存管理 | workbench |
+| workbench-campus-ai | 校园 AI 中心 | workbench |
+| workbench-zcy-agent | 「政采云」助手 | workbench |
 | workbench-service-settlement | 服务商结算与激励核算 | workbench |
 | workbench-finance-audit | 财会审计解决方案 | workbench |
-| workbench-charity-content | 慈善活动内容工场 | workbench |
+| workbench-charity-content | 活动运营工坊 | workbench |
 | workbench-quran-teaching | 人工智能《古兰经》智能教学平台（演示） | workbench（hidden） |
 | embedded-bid-desk | 项目工作台 | workbench |
-| embedded-video-studio | 短视频创作与发布工作台 | workbench |
+| embedded-video-studio | 多媒体创作与发布工作台 | workbench |
 | material-to-table | 办公材料整理智能体 | runner |
 | kit-saudi-workbench | 沙特数字员工底座 | kit |
 | kit-automation-ops | 自动化运营控制台 | kit |

@@ -2,11 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "workbench-global-ads",
-  "name": "阿联酋广告代投放工作台",
+  "name": "海外广告投放工作台",
   "aliases": [
-    "global-ads"
+    "global-ads",
+    "阿联酋广告代投放工作台"
   ],
-  "version": "2.0.2",
+  "version": "2.0.3",
   "kind": "workbench",
   "category": "UAE 增长",
   "icon": "icon-solutions",
