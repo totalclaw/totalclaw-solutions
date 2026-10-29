@@ -7,7 +7,7 @@
     "industry-watch",
     "盘面情报台"
   ],
-  "version": "2.0.2",
+  "version": "2.0.3",
   "kind": "workbench",
   "category": "24 小时情报",
   "icon": "icon-solutions",
@@ -30,7 +30,7 @@
     "hidden": false
   },
   "compat": {
-    "minAppVersion": "2.0.5",
+    "minAppVersion": "2.0.6",
     "hostApi": 2
   },
   "runtime": {

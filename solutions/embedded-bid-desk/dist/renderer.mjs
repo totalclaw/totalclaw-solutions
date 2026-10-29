@@ -512,7 +512,7 @@ const Te = {
 function ft() {
   const v = e.computed(() => {
     const f = String(n.i18n.global.locale.value);
-    return f === "ar" || f === "en-US" ? f : "zh-CN";
+    return f === "ar" || f === "en-US" ? f : f === "vi" || f === "ms" ? "en-US" : "zh-CN";
   }), s = e.computed(() => v.value === "ar");
   return { locale: v, isRtl: s, bt: (f) => Te[v.value][f] || Te["zh-CN"][f] };
 }
@@ -3720,7 +3720,7 @@ ${r.join(`
   for (const [f, S] of s)
     c[f] = S;
   return c;
-}, gl = /* @__PURE__ */ vl(fl, [["__scopeId", "data-v-1de97cc6"]]);
+}, gl = /* @__PURE__ */ vl(fl, [["__scopeId", "data-v-4ba4862b"]]);
 export {
   gl as default
 };

@@ -24,7 +24,7 @@ if (!F) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer
 F.default;
 async function v(b, D) {
   const B = window.electronAPI?.workbenches?.invoiceAgent;
-  if (!B?.invoke) throw new Error(o.t("发票智能体接口不可用，请重启应用"));
+  if (!B?.invoke) throw new Error(o.t("智能发票助手接口不可用，请重启应用"));
   return B.invoke(b, Ce.toPlain(D ?? {}));
 }
 function Vt(b) {
@@ -4976,7 +4976,7 @@ const Es = { class: "ss-module" }, ks = { class: "ss-kpis" }, gs = { class: "ss-
             e.createElementVNode(
               "h1",
               null,
-              e.toDisplayString(y.$t("发票智能体")),
+              e.toDisplayString(y.$t("智能发票助手")),
               1
               /* TEXT */
             ),
@@ -5271,7 +5271,7 @@ const Es = { class: "ss-module" }, ks = { class: "ss-kpis" }, gs = { class: "ss-
       ]))
     ]));
   }
-}), Hi = /* @__PURE__ */ ue(Gi, [["__scopeId", "data-v-20d5b2e1"]]);
+}), Hi = /* @__PURE__ */ ue(Gi, [["__scopeId", "data-v-29b8ee4d"]]);
 export {
   Hi as default
 };

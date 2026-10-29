@@ -463,7 +463,8 @@ export function appendVideoEvent(history: BaVideoEvent[] | undefined, step: BaVi
  *
  * 回执节点（workflow.ipc 的 receipt 阶段）区分 published / unconfirmed / failed，
  * 这里只认 published 为「发出去了」；unconfirmed 是提交了但没读到成功特征，要人工核对，不能算成已发布。
- * 工作流在回执节点之前失败 / 取消时没有回执，整条记为未发布。
+ * 工作流中途停止 / 失败时不算发布成功；但提交阶段带回的已发布 / 点过发布的平台记待核对（不是失败），
+ * 免得被当成没发过、一键重发出重复作品。没有任何结论的平台记为未发布。
  */
 export function publishRunFromWorkflow(input: {
   kind: string; runId?: string; receipt?: unknown; platforms: string[]; videoFile?: string; at?: number | string;
@@ -479,10 +480,10 @@ export function publishRunFromWorkflow(input: {
   const outcome: BaPublishRun['outcome'] = input.kind === 'run:completed' ? 'completed' : input.kind === 'run:cancelled' ? 'cancelled' : 'failed';
   const pick = (st: string) => receipts.filter((x) => x.status === st).map((x) => x.platform);
   const published = outcome === 'completed' ? pick('published') : [];
-  const unconfirmed = outcome === 'completed' ? pick('unconfirmed') : [];
+  const unconfirmed = outcome === 'completed' ? pick('unconfirmed') : [...pick('unconfirmed'), ...pick('published')];
   const reported = new Set(receipts.map((x) => x.platform));
   // 没给回执的平台（工作流中途失败 / 取消、回执缺项）一律算失败，不让它在列表里「消失」
-  const failed = [...pick('failed'), ...input.platforms.filter((p) => !reported.has(p) || outcome !== 'completed')]
+  const failed = [...pick('failed'), ...input.platforms.filter((p) => !reported.has(p))]
     .filter((p, i, a) => a.indexOf(p) === i && !published.includes(p) && !unconfirmed.includes(p));
   return {
     at: Number.isNaN(at.getTime()) ? new Date().toISOString() : at.toISOString(),

@@ -26,7 +26,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-campus-ai/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-campus-ai/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -36,7 +36,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/ipc/campusAi.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/ipc/campusAi.ipc.ts
 var import_electron = require("electron");
 var import_node_fs6 = require("node:fs");
 var import_node_path7 = require("node:path");
@@ -48,7 +48,7 @@ var import_quitRegistry = require("host:apps/desktop-shell/src/main/util/quitReg
 var import_workbenchLlm = require("host:apps/desktop-shell/src/main/services/workbenchLlm.ts");
 var import_excel5 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/service.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/service.ts
 var import_node_fs2 = require("node:fs");
 var import_node_path2 = require("node:path");
 var import_ipc_contracts2 = require("npm:@totalclaw/ipc-contracts");
@@ -56,7 +56,7 @@ var import_i18n5 = require("npm:@totalclaw/i18n");
 var import_documentExtractor = require("host:apps/desktop-shell/src/main/services/documentExtractor.ts");
 var import_excel = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/kb.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/kb.ts
 var import_textAnalysis = require("host:apps/desktop-shell/src/main/services/knowledgeBase/textAnalysis.ts");
 var import_retrieval = require("host:apps/desktop-shell/src/main/services/knowledgeBase/retrieval.ts");
 function buildIndex(text) {
@@ -136,14 +136,14 @@ ${f.similar.join("\n")}`);
 }
 var DEPT_GUESS_MIN = 0.25;
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/qa.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/qa.ts
 var import_i18n2 = require("npm:@totalclaw/i18n");
 var import_groundedQa = require("host:apps/desktop-shell/src/main/services/groundedQa.logic.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/domains.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/domains.ts
 var import_i18n = require("npm:@totalclaw/i18n");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/domains.json
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/domains.json
 var domains_default = {
   domains: [
     { id: "admission", name: "\u62DB\u751F\u8FCE\u65B0\u52A9\u624B", dept: "\u62DB\u751F\u529E", keywords: ["\u62DB\u751F", "\u5F55\u53D6", "\u62A5\u5230", "\u65B0\u751F", "\u8FCE\u65B0", "\u519B\u8BAD", "\u4E13\u5347\u672C", "\u5355\u62DB", "\u5FD7\u613F", "\u5206\u6570\u7EBF", "\u63A5\u7AD9", "\u5165\u5B66"] },
@@ -160,7 +160,7 @@ var domains_default = {
   fallback: { id: "general", name: "\u6821\u56ED\u7EFC\u5408\u52A9\u624B", dept: "\u5F85\u5206\u6D3E" }
 };
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/domains.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/domains.ts
 var FALLBACK_DOMAIN = domains_default.fallback.id;
 function names() {
   return {
@@ -203,7 +203,7 @@ function classifyDomain(question) {
   return best.id;
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/qa.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/qa.ts
 var SENSITIVE_PATTERNS = [
   /自杀|轻生|不想活|活不下去|结束(自己的)?生命|寻死|跳楼|割腕|安眠药.*(吃|吞)|想死/,
   /自残|伤害自己|划(伤|破)自己/,
@@ -306,7 +306,7 @@ async function answerQuestion(input) {
   return { kind: "answer", domain, text: parsed.text, sources: used.map(toSource), model };
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/scenarios.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/scenarios.ts
 var import_ipc_contracts = require("npm:@totalclaw/ipc-contracts");
 var import_i18n3 = require("npm:@totalclaw/i18n");
 function builtinScenarios() {
@@ -377,7 +377,7 @@ function listScenarios(store2, audit, now = Date.now()) {
   return out;
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/store.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/store.ts
 var import_node_fs = require("node:fs");
 var import_node_path = require("node:path");
 var import_node_crypto = require("node:crypto");
@@ -689,7 +689,7 @@ var CampusAiStore = class {
   }
 };
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/service.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/service.ts
 var KB_EXTS = [".pdf", ".docx", ".doc", ".txt", ".md", ".xlsx", ".xls", ".csv", ".pptx", ".html", ".htm"];
 var AUTO_KINDS = ["faq", "answer", "quote"];
 function publicQa(r) {
@@ -1067,13 +1067,13 @@ var CampusAiService = class {
   }
 };
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/mobileServer.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/mobileServer.ts
 var import_node_crypto2 = require("node:crypto");
 var import_node_fs3 = require("node:fs");
 var import_node_path3 = require("node:path");
 var import_lanServer = require("host:apps/desktop-shell/src/main/services/lanServer.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/mobilePage.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/mobilePage.ts
 var CAMPUS_MOBILE_PAGE_HTML = `<!doctype html>
 <html lang="zh-CN"><head>
 <meta charset="utf-8" />
@@ -1169,7 +1169,7 @@ fetch('/api/info').then(function(r){return r.json()}).then(function(j){info=j||{
 </script>
 </body></html>`;
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/mobileServer.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/mobileServer.ts
 var today = () => (/* @__PURE__ */ new Date()).toISOString().slice(0, 10);
 var CampusMobileServer = class {
   constructor(svc, logger) {
@@ -1313,13 +1313,13 @@ var CampusMobileServer = class {
   }
 };
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/warning.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/warning.ts
 var import_node_path4 = require("node:path");
 var import_i18n6 = require("npm:@totalclaw/i18n");
 var import_ipc_contracts3 = require("npm:@totalclaw/ipc-contracts");
 var import_excel2 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/columnKeywords.json
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/columnKeywords.json
 var columnKeywords_default = {
   columns: {
     studentId: ["\u5B66\u53F7", "\u5B66\u751F\u5B66\u53F7", "\u5B66\u7C4D\u53F7", "\u5B66\u751F\u7F16\u53F7", "\u8003\u751F\u53F7", "student id", "studentid", "student no"],
@@ -1345,7 +1345,7 @@ var columnKeywords_default = {
   skipGrades: ["\u7F13\u8003", "\u672A\u5F55\u5165", "\u5F85\u5F55\u5165"]
 };
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/warning.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/warning.ts
 var COLS = columnKeywords_default.columns;
 var norm = (s) => String(s || "").toLowerCase().replace(/[\s_\-()（）:：]/g, "");
 function detectMapping(headers, dataset, preset) {
@@ -1633,7 +1633,7 @@ function computeWarnings(data, rules) {
   };
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/notice.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/notice.ts
 var import_i18n7 = require("npm:@totalclaw/i18n");
 var NAME_SLOT = "[STUDENT]";
 function levelLabel(l) {
@@ -1717,12 +1717,12 @@ function fillName(text, name) {
   return String(text || "").split(NAME_SLOT).join(name || (0, import_i18n7.t)("\u540C\u5B66"));
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/demoData.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/demoData.ts
 var import_node_fs4 = require("node:fs");
 var import_node_path5 = require("node:path");
 var import_excel3 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/demoCampus.json
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/demoCampus.json
 var demoCampus_default = {
   docs: [
     {
@@ -2065,7 +2065,7 @@ var demoCampus_default = {
   }
 };
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/demoData.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/demoData.ts
 function rng(seed) {
   let a = seed >>> 0;
   return () => {
@@ -2194,7 +2194,7 @@ function writeDemoGuide(dir) {
   return file;
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/ipc/campusAi.modules.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/ipc/campusAi.modules.ts
 var import_node_fs5 = require("node:fs");
 var import_node_path6 = require("node:path");
 var import_ipc_contracts5 = require("npm:@totalclaw/ipc-contracts");
@@ -2202,7 +2202,7 @@ var import_i18n11 = require("npm:@totalclaw/i18n");
 var import_documentExtractor2 = require("host:apps/desktop-shell/src/main/services/documentExtractor.ts");
 var import_excel4 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/teaching.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/teaching.ts
 var import_ipc_contracts4 = require("npm:@totalclaw/ipc-contracts");
 var import_i18n8 = require("npm:@totalclaw/i18n");
 function typeLabel(t) {
@@ -2419,7 +2419,7 @@ function newRow(sheet, key) {
   return { studentId: sheet.studentId, name: sheet.name, items, total: rowTotal(items), confirmed: false };
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/research.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/research.ts
 var import_i18n9 = require("npm:@totalclaw/i18n");
 var pick = (headers, res) => {
   for (const re of res) {
@@ -2543,7 +2543,7 @@ function verifyGuide(parts, fullText) {
   return { title, sections, dropped };
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/governance.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/governance.ts
 var import_i18n10 = require("npm:@totalclaw/i18n");
 var import_textAnalysis2 = require("host:apps/desktop-shell/src/main/services/knowledgeBase/textAnalysis.ts");
 function docKindLabel(k) {
@@ -2664,7 +2664,7 @@ function buildHotspotPrompt(facts, school) {
   ].join("\n");
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/govDocx.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/services/campusAi/govDocx.ts
 var import_adm_zip = __toESM(require("npm:adm-zip"));
 var xml = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 var FONT_TITLE = "\u65B9\u6B63\u5C0F\u6807\u5B8B\u7B80\u4F53";
@@ -2743,7 +2743,7 @@ function buildDocPrompt(input) {
   ].join("\n");
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/ipc/campusAi.modules.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/ipc/campusAi.modules.ts
 var stamp = () => {
   const d = /* @__PURE__ */ new Date();
   const p2 = (n) => String(n).padStart(2, "0");
@@ -3234,7 +3234,7 @@ function moduleActions(ctx) {
   };
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-campus-ai/src/main/ipc/campusAi.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-campus-ai/src/main/ipc/campusAi.ipc.ts
 var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var store = new CampusAiStore();
 function registerCampusAiHandlers(deps) {
@@ -3770,7 +3770,7 @@ function registerCampusAiHandlers(deps) {
   return stopBackground;
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-campus-ai/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-campus-ai/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerCampusAiHandlers";
 var cleanup;

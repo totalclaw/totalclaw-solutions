@@ -4,7 +4,7 @@
       <PageBackButton />
       <div class="hero-copy">
         <span class="hero-kicker"><i class="ri-movie-2-line"></i>{{ $t('内置 Skill · totalclaw-video-studio') }}</span>
-        <h1>{{ $t('短视频创作与发布工作台') }}</h1>
+        <h1>{{ $t('多媒体创作与发布工作台') }}</h1>
         <p>{{ $t('从素材整理、脚本、配音配乐到成片审核，一次准备抖音、快手、小红书和微信视频号版本。') }}</p>
       </div>
       <div class="hero-actions">
@@ -160,6 +160,9 @@
         </button>
       </footer>
     </section>
+
+    <!-- 发布在本页完成：预览、登录引导、确认提交、停止/继续与分平台回执（S17a） -->
+    <PublishRunPanel :owner-path="PUBLISH_OWNER_PATH" :focus-id="publishRunFocusId" @change="onPublishRunChange" />
 
     <section class="model-strip">
       <article class="model-card" :class="`status-${ttsStatus.tone}`">
@@ -401,7 +404,7 @@
               @click="openPublishConfirm"
             >
               <i :class="publishing ? 'ri-loader-4-line spin' : publishDone ? 'ri-refresh-line' : 'ri-send-plane-fill'"></i>
-              <span>{{ publishing && publishStageText ? publishStageText : publishDone ? $t('再次发布') : $t('进入发布工作流') }}</span>
+              <span>{{ publishing && publishStageText ? publishStageText : publishDone ? $t('再次发布') : $t('准备发布') }}</span>
             </button>
             <button
               class="local-preview-button"
@@ -451,7 +454,7 @@
               @click="openPublishConfirm"
             >
               <i :class="publishing ? 'ri-loader-4-line spin' : publishDone ? 'ri-refresh-line' : 'ri-send-plane-fill'"></i>
-              <span>{{ publishing && publishStageText ? publishStageText : publishDone ? $t('再次发布') : $t('进入发布工作流') }}</span>
+              <span>{{ publishing && publishStageText ? publishStageText : publishDone ? $t('再次发布') : $t('准备发布') }}</span>
             </button>
             <button
               class="job-preview-button"
@@ -593,7 +596,7 @@
             @click="openPublishConfirm"
           >
             <i :class="publishing ? 'ri-loader-4-line spin' : publishDone ? 'ri-refresh-line' : 'ri-send-plane-fill'"></i>
-            <span>{{ publishing && publishStageText ? publishStageText : publishDone ? $t('再次发布') : $t('进入发布工作流') }}</span>
+            <span>{{ publishing && publishStageText ? publishStageText : publishDone ? $t('再次发布') : $t('准备发布') }}</span>
           </button>
           <button class="preview-confirm" type="button" @click="closeVideoPreview">
             <i class="ri-check-line"></i>{{ $t('关闭预览') }}
@@ -629,7 +632,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, onUnmounted, reactive, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
-import type { MediaFalCapabilitiesResponse, MediaModelKindState } from '@totalclaw/ipc-contracts';
+import type { MediaFalCapabilitiesResponse, MediaModelKindState, PublishRun } from '@totalclaw/ipc-contracts';
 import { estimateVideoProduction } from '../utils/videoProductionEstimate';
 import PageBackButton from '../components/PageBackButton.vue';
 import { useNotificationStore } from '../stores/notification';
@@ -646,11 +649,7 @@ import {
   parseSeedanceShotList,
   SEEDANCE_SHOT_SYSTEM_PROMPT,
 } from '../utils/seedanceShots';
-import {
-  buildVideoPublishWorkflow,
-  FIXED_VIDEO_PUBLISH_WORKFLOW_ID,
-  setWorkflowAutoRun,
-} from '../composables/workflowAutoRun';
+import PublishRunPanel from '../components/PublishRunPanel.vue';
 import { PLATFORM_PUBLISH_URLS, type PublishPlatformId, publishPlatforms } from '../composables/publishPlatforms';
 import StepRunAlert from '../components/StepRunAlert.vue';
 import { useStepWatchdog } from '../composables/useStepWatchdog';
@@ -922,7 +921,7 @@ const videoPreviewPath = ref('');
 const publishConfirmOpen = ref(false);
 const publishing = ref(false);
 /**
- * 进入发布工作流的阶段提示。生成发布文案要调一次 LLM（几十秒），此前这段界面
+ * 准备发布的阶段提示。生成发布文案要调一次 LLM（几十秒），此前这段界面
  * 完全静默 —— 用户看到的就是「点了没反应/卡住了」。这里把每一步说清楚并带计时。
  */
 const publishStage = ref('');
@@ -945,6 +944,31 @@ const publishStageText = computed(() => {
   return s > 2 ? `${publishStage.value} ${used}` : publishStage.value;
 });
 const publishReceipt = ref('');
+/** 本页发布任务归属（主进程按它过滤，只在本页展示） */
+const PUBLISH_OWNER_PATH = '/video-studio';
+/** 刚准备的那条发布任务：发布预览切过去并滚到可见处 */
+const publishRunFocusId = ref('');
+/** 发布预览里的分平台结果同步成按钮旁的回执摘要（「再次发布」也据此出现） */
+function onPublishRunChange(run: PublishRun | null): void {
+  // 预览里改过并确认（或待确认时停止保留）的正文写回快照：「准备发布 / 再次发布」复用的是快照里的正文
+  const previous = loadLastPublishInput();
+  if (run && previous && previous.videoPath === run.input.videoPath && previous.caption !== run.input.caption) {
+    try { localStorage.setItem(LAST_PUBLISH_INPUT_KEY, JSON.stringify({ ...previous, caption: run.input.caption })); } catch { /* 本地存储不可用不影响发布 */ }
+  }
+  const settled = run && ['completed', 'partial', 'needs_review', 'failed'].includes(run.status);
+  const done = run?.platforms.filter((item) => item.state === 'published') || [];
+  // 预览里可能是别的成片的发布记录：回执只给当前这条成片，否则按钮旁的结果和「再次发布」都对不上片子
+  if (!run || run.input.videoPath !== lastJob.videoPath || !settled || (!done.length && run.status !== 'needs_review')) { publishReceipt.value = ''; return; }
+  const names = (state: string) => run.platforms.filter((item) => item.state === state)
+    .map((item) => publishPlatforms().find((p) => p.id === item.id)?.label || item.id);
+  publishReceipt.value = describePublishReceipt({
+    platformCount: done.length,
+    unconfirmedCount: names('unconfirmed').length,
+    failedCount: names('failed').length,
+    unconfirmedPlatforms: names('unconfirmed'),
+    failedPlatforms: names('failed'),
+  });
+}
 const publishNativeBrowserLock = createNativeBrowserModalLock();
 // 进度面板的运行态（jobRunStatus / jobNodeStates / jobProgressNodes / jobCurrentNodeName …）
 // 在 composables/videoStudioRunState.ts，模块级共享：换页回来仍是正在跑的那份。
@@ -2832,8 +2856,8 @@ async function openPublishConfirm(): Promise<void> {
   publishing.value = true;
   try {
     const api = (window as any).electronAPI;
-    if (!api?.saveWorkflow || !api?.runWorkflow) {
-      throw new Error(i18nT('当前版本未开放工作流运行'));
+    if (!api?.publishRuns?.start) {
+      throw new Error(i18nT('当前版本未开放本页发布'));
     }
     // 只发用户勾选的平台：未登录的在确认面板里被取消勾选，这里就不该再带上。
     const platformIds = (pickedPublishPlatforms.value.length ? pickedPublishPlatforms.value : selectedPlatforms.value)
@@ -2861,14 +2885,11 @@ async function openPublishConfirm(): Promise<void> {
       ? { ...previous!.topics, ...topics }
       : topics;
     const input = {
-      videoPath: lastJob.videoPath,
+      videoPath: lastJob.videoPath || '',
       projectName: lastJob.projectName || draft.projectName || i18nT('短视频发布任务'),
-      platforms: platformIds.join(','),
-      topics: JSON.stringify(mergedTopics),
+      platforms: [...platformIds] as string[],
+      topics: mergedTopics,
       caption,
-      workflowSource: 'video-studio',
-      returnPath: '/video-studio',
-      returnLabel: i18nT('返回短视频工作台'),
     };
     try {
       const snapshot: LastPublishInput = {
@@ -2881,13 +2902,16 @@ async function openPublishConfirm(): Promise<void> {
       };
       localStorage.setItem(LAST_PUBLISH_INPUT_KEY, JSON.stringify(snapshot));
     } catch { /* 本地存储不可用不影响发布 */ }
-    setPublishStage(i18nT('正在准备发布工作流…'));
-    await api.saveWorkflow(buildVideoPublishWorkflow(input));
-    setWorkflowAutoRun(FIXED_VIDEO_PUBLISH_WORKFLOW_ID, input);
-    setPublishStage(i18nT('正在打开发布工作流…'));
-    await router.push({ path: '/workflow' });
+    /**
+     * S17a：发布在本页完成。这里只「准备」：主进程校验成片、打开平台登录页并复核登录，
+     * 停在下方发布预览里等用户核对后点「确认发布」才提交。不建工作流、不跳工作流页或对话页。
+     */
+    setPublishStage(i18nT('正在准备发布预览…'));
+    const run = await api.publishRuns.start({ kind: 'video', ownerPath: PUBLISH_OWNER_PATH, input }) as PublishRun;
+    videoPreviewOpen.value = false;
+    publishRunFocusId.value = run.id;
   } catch (error) {
-    notif.fromException(i18nT('无法进入发布工作流'), error);
+    notif.fromException(i18nT('无法准备发布'), error);
   } finally {
     setPublishStage('');
     publishing.value = false;
@@ -3456,7 +3480,7 @@ onBeforeUnmount(() => {
 .publish-video-button > span { overflow: hidden; max-width: 15em; text-overflow: ellipsis; white-space: nowrap; }
 .publish-video-button:disabled { cursor: not-allowed; filter: grayscale(.28); opacity: .58; box-shadow: none; }
 .local-preview-button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; flex: 0 0 auto; height: 40px; padding: 0 13px; border: 1px solid var(--color-border); border-radius: var(--radius-4); color: var(--color-text-primary); background: var(--color-bg-card); cursor: pointer; font: inherit; font-size: var(--font-size-sm); font-weight: 700; }
-.local-preview-button:hover { border-color: var(--vsv-brand-a35); color: var(--color-brand); }
+.local-preview-button:hover:where(:not(:disabled)) { border-color: var(--vsv-brand-a35); color: var(--color-brand); }
 .local-preview-button:disabled { cursor: not-allowed; color: var(--color-text-muted); background: var(--color-bg-input); opacity: .52; }
 /* 原来是品牌渐变（紫→青）+ 大面积光晕：跨度太大、饱和度太高，在这一排里过分抢眼，
    而且和旁边的白底次级按钮不在一个量级上。收成品牌色实心 + 克制的投影。 */
@@ -3579,6 +3603,8 @@ onBeforeUnmount(() => {
 }
 /* 吸底操作条压在表单上：键盘聚焦 / 定位到被它挡住的控件时，留出操作条的高度 */
 .studio-form :is(input, select, textarea) { scroll-margin-bottom: 120px; }
+/* 发布预览滚到可见处时别钻到吸顶的制作进度面板底下 */
+.prp { scroll-margin-top: 240px; }
 /* 界面主题没有毛玻璃：吸底操作条改不透明，免得底下的表单透出来 */
 :root[data-ui-theme] .submit-bar { background: var(--color-bg-elevated); }
 

@@ -11,7 +11,8 @@
 import { rmSync } from 'node:fs';
 import { join, resolve, sep } from 'node:path';
 import { getLocale, t as i18nT } from '@totalclaw/i18n';
-import type { FauCompany, FauLocale, FauProject } from '@totalclaw/ipc-contracts';
+import type { FauCompany, FauProject } from '@totalclaw/ipc-contracts';
+import { FAU_LOCALES } from '@totalclaw/ipc-contracts';
 import { newId, nowIso } from '../../services/financeAudit/store';
 import { SAMPLE_PERIOD, SAMPLE_RUNS, SAMPLE_SIGNERS } from '../../services/financeAudit/sampleData';
 import { safeFileName } from '../../services/serviceSettlement/excel';
@@ -19,6 +20,12 @@ import { sanitizeInputs } from '../../services/financeAudit/engines/capital/inpu
 import { capSpec } from '../../../shared/financeAudit/capital/specs';
 import { ensureOutputRoot, importDataset, validateCompany } from './common.actions';
 import type { ActionTable, FauActionCtx } from './context';
+
+/** 报告只有中英阿三种输出语言：越南语 / 马来语等界面默认出英文报告（同宿主 common.actions；2.0.6 宿主还没有这个导出，放在包里） */
+function defaultOutputLocale(): FauCompany['outputLocale'] {
+  const ui = getLocale() as FauCompany['outputLocale'];
+  return FAU_LOCALES.includes(ui) ? ui : 'en-US';
+}
 
 export function sampleActions(ctx: FauActionCtx): ActionTable {
   const { store, runs } = ctx;
@@ -63,7 +70,7 @@ export function sampleActions(ctx: FauActionCtx): ActionTable {
       if (!company) {
         const base = validateCompany({
           name: i18nT('示例公司（示例数据）'), regions: ['CN'], region: 'CN', standard: 'CAS', currency: 'CNY',
-          signers: SAMPLE_SIGNERS.map((s) => ({ ...s, levels: [...s.levels] })), sodMode: 'block', outputLocale: getLocale() as FauLocale,
+          signers: SAMPLE_SIGNERS.map((s) => ({ ...s, levels: [...s.levels] })), sodMode: 'block', outputLocale: defaultOutputLocale(),
         }, null);
         company = store.saveCompany({ ...base, sample: true });
         ensureOutputRoot(store);

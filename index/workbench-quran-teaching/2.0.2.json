@@ -1,0 +1,37 @@
+{
+  "id": "workbench-quran-teaching",
+  "version": "2.0.2",
+  "treeDigest": "5958e278b03f990f7ac009481ae0f63c84951ee7b778c27c97ed09e4ec7205e3",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 948,
+      "sha256": "d013c40e5612da4fc3927d45929fb18d67da10276e32aae539b51772883d8ca1"
+    },
+    {
+      "path": "README.md",
+      "size": 1575,
+      "sha256": "55d4fd87f13abde3c8c37933f6cf1a8a836932d9350dedaf26387e7b29eb31a9"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 805,
+      "sha256": "34bce496e8b457c231e1093d0bf146db4af92328910ceb0c34c7b612c7d331ed"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 519733,
+      "sha256": "3cd6d7ddcc00b2ff7b609e32ae57f91d50e1c8286c7d1338e8f52e5917d7a7d5"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2863,
+      "sha256": "4062e4a681517692e347ae0179c3f9ecfb532dbb3436fb2fa619d86e224027d1"
+    }
+  ]
+}

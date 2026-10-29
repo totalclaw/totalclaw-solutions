@@ -1,12 +1,12 @@
 {
   "id": "embedded-bid-desk",
-  "version": "2.0.2",
-  "treeDigest": "9211152805a3ecdae02e6ff61845e90bcdfdbe71cac595610842a64ae3024cfe",
+  "version": "2.0.3",
+  "treeDigest": "038270377129c01ac8732bca7fc44444715d6370ee8bf61cf584bd66409cfae7",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1445,
-      "sha256": "0752237801a4f015fd087222610e1371e802709c9806378c02d7811b47ed5d61"
+      "size": 1941,
+      "sha256": "b8b3531e85376e8c0cf8dc19fbe136c9215fa4aa228082c1a565b97cdb3c7cb7"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 36261,
-      "sha256": "df635cd79e86b59b511e9af9f2c9124ba06afb6cbe6816638da703e1301da2c6"
+      "size": 36011,
+      "sha256": "a597dcf92d4761edf1dd08377017e202ca62b265dc4424127fdb0540dc82fd34"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 148818,
-      "sha256": "00ccd9d2d402fd26e6ceeece474285f7210f07729f8348db4a2eaa2785cfae1f"
+      "size": 148855,
+      "sha256": "3a3a7a59544ef87a7754630a101db9d0bfd7338b70c23a9f12a35df4d3228a07"
     },
     {
       "path": "dist/style.css",
-      "size": 45339,
-      "sha256": "9dc818efbe3f9f833b82e72b01e7ccfdf51999b85005448926b007bb61222205"
+      "size": 45362,
+      "sha256": "e1a7a5a9c8ce3be2ef50ec0993947471ce6b5784aeb7cd1fb3c172b8ab1495c5"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 1777,
-      "sha256": "055cd6309ee952164fc1914eacf661391fac8fb7fa448c8f641b4566397a93df"
+      "sha256": "4f5029c0d38fa92f587c527c40a046897fab0e29341589ceed011cb7611bd243"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.3",
+      "ref": "embedded-bid-desk@2.0.3",
+      "treeDigest": "038270377129c01ac8732bca7fc44444715d6370ee8bf61cf584bd66409cfae7",
+      "filesRef": "index/embedded-bid-desk/2.0.3.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.6",
+      "hostApi": 2,
+      "publishedAt": "2026-10-29"
+    },
     {
       "version": "2.0.2",
       "ref": "embedded-bid-desk@2.0.2",

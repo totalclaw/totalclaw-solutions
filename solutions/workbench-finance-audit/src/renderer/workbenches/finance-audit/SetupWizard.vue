@@ -161,7 +161,7 @@
  * 改阈值不影响已签核的运行（运行记录里存着当时的阈值版本）。
  */
 import { computed, onMounted, reactive, ref } from 'vue';
-import type { FauAccountClass, FauAccountMapEntry, FauCompany, FauErp, FauGroup, FauInspectResult, FauPackage, FauRegion, FauRegionProfile, FauSignLevel, FauSigner, FauStandard } from '@totalclaw/ipc-contracts';
+import type { FauAccountClass, FauAccountMapEntry, FauCompany, FauErp, FauGroup, FauInspectResult, FauPackage, FauRegion, FauRegionProfile, FauSignLevel, FauSigner, FauStandard, FauLocale } from '@totalclaw/ipc-contracts';
 import { DEFAULT_PACKAGES, FAU_MODULES, GROUP_LABELS, PACKAGE_LABELS } from '../../../shared/financeAudit/catalog';
 import { i18nKey, listSeparator, t as i18nT } from '../../i18n';
 import { currentLocale } from '../../composables/useLocale';
@@ -205,7 +205,8 @@ const form = reactive({
   signers: (c?.signers || []).map((s) => ({ ...s, levels: [...s.levels] })) as FauSigner[],
   sodMode: (c?.sodMode || 'block') as 'block' | 'record',
   packages: [...(c?.packages || DEFAULT_PACKAGES)] as FauPackage[],
-  outputLocale: c?.outputLocale || currentLocale(),
+  // 财会审计报告只有中英阿三种输出语言；越南语 / 马来语界面默认出英文报告
+  outputLocale: c?.outputLocale || ((['zh-CN', 'en-US', 'ar'] as string[]).includes(currentLocale()) ? currentLocale() as FauLocale : 'en-US'),
 });
 
 const profiles = ref<FauRegionProfile[]>([]);

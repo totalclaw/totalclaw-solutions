@@ -151,7 +151,7 @@ const errors = ref<Record<string, string>>({});
 
 const metas: StepMeta[] = [
   { key: 'l-rules', title: i18nT('库存巡检'), hint: i18nT('售罄下架、断码提醒、过季提醒、试穿多成交少换主图') },
-  { key: 'l-pick', title: i18nT('选商品与渠道'), hint: i18nT('商品来自服装实体店智能体的商品库') },
+  { key: 'l-pick', title: i18nT('选商品与渠道'), hint: i18nT('商品来自服装AI试衣的商品库') },
   { key: 'l-gen', title: i18nT('生成图文'), hint: i18nT('标题、卖点、详情、关键词 + 主图') },
   { key: 'l-confirm', title: i18nT('确认'), hint: i18nT('逐条改、逐条确认；含极限词的不能确认') },
   { key: 'l-hand', title: i18nT('数字员工上架'), hint: i18nT('在网店后台填写，停在提交前等你确认') },

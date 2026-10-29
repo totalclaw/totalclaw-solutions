@@ -1,5 +1,5 @@
 /**
- * 发票智能体 · 渲染层共享：动作调用、全局状态、标签。
+ * 智能发票助手 · 渲染层共享：动作调用、全局状态、标签。
  * 各页签只依赖这里，互不 import。
  */
 import { ref } from 'vue';
@@ -12,7 +12,7 @@ export type { StepMeta, StepRuntime } from '../service-settlement/shared';
 
 export async function iv<T = any>(action: string, payload?: unknown): Promise<T> {
   const bridge = (window as any).electronAPI?.workbenches?.invoiceAgent;
-  if (!bridge?.invoke) throw new Error(i18nT('发票智能体接口不可用，请重启应用'));
+  if (!bridge?.invoke) throw new Error(i18nT('智能发票助手接口不可用，请重启应用'));
   return bridge.invoke(action, toPlain(payload ?? {})) as Promise<T>;
 }
 

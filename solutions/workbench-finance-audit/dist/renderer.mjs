@@ -25,28 +25,28 @@ const Vt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules 
 if (!Vt) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/StepCard.vue");
 const se = Vt.default, Et = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/StickyProgress.vue"];
 if (!Et) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/StickyProgress.vue");
-const Qe = Et.default, kt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/TableMapping.vue"];
+const Je = Et.default, kt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/TableMapping.vue"];
 if (!kt) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/TableMapping.vue");
-const Je = kt.default, Q = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/shared.ts"];
+const Ze = kt.default, Q = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/shared.ts"];
 if (!Q) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/service-settlement/shared.ts");
 Q.default;
-const Ze = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/ipcPlain.ts"];
-if (!Ze) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/ipcPlain.ts");
-Ze.default;
+const Xe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/ipcPlain.ts"];
+if (!Xe) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/ipcPlain.ts");
+Xe.default;
 function vt() {
   return window.electronAPI?.workbenches?.financeAudit || null;
 }
-async function Y(i, B) {
+async function Y(c, _) {
   const t = vt();
   if (!t?.invoke) throw new Error(s.t("当前环境不支持财会审计工作台"));
-  return t.invoke(i, Ze.toPlain(B ?? {}));
+  return t.invoke(c, Xe.toPlain(_ ?? {}));
 }
-function gt(i) {
-  return vt()?.onEvent?.(i) ?? (() => {
+function gt(c) {
+  return vt()?.onEvent?.(c) ?? (() => {
   });
 }
-function Z(i) {
-  return i ? s.t(i.key, i.params) : "";
+function Z(c) {
+  return c ? s.t(c.key, c.params) : "";
 }
 const Se = ["setup", "upload", "validate", "analyze", "draft", "signoff", "archive"];
 function ft() {
@@ -60,48 +60,48 @@ function ft() {
     { key: "archive", title: s.t("归档与转交"), hint: s.t("签核后复制文件、签核页与哈希清单到项目归档区") }
   ];
 }
-function At(i) {
-  if (!i) return { state: "todo" };
-  const B = { startedAt: i.startedAt, finishedAt: i.finishedAt, progressAt: i.progressAt, kind: i.kind, estimateSec: i.estimateSec };
-  switch (i.status) {
+function At(c) {
+  if (!c) return { state: "todo" };
+  const _ = { startedAt: c.startedAt, finishedAt: c.finishedAt, progressAt: c.progressAt, kind: c.kind, estimateSec: c.estimateSec };
+  switch (c.status) {
     case "running":
-      return { ...B, state: "running" };
+      return { ..._, state: "running" };
     case "done":
-      return { ...B, state: "done", summary: Z(i.summary) || void 0 };
+      return { ..._, state: "done", summary: Z(c.summary) || void 0 };
     case "failed":
     case "blocked":
-      return { ...B, state: "failed", error: Z(i.error) || s.t("失败") };
+      return { ..._, state: "failed", error: Z(c.error) || s.t("失败") };
     case "interrupted":
-      return { ...B, state: "failed", error: s.t("已中断：应用重启前这一步还在运行，请重新运行") };
+      return { ..._, state: "failed", error: s.t("已中断：应用重启前这一步还在运行，请重新运行") };
     default:
-      return { ...B, state: "todo", summary: Z(i.summary) || void 0 };
+      return { ..._, state: "todo", summary: Z(c.summary) || void 0 };
   }
 }
 const ve = { prepare: s.i18nKey("编制"), review: s.i18nKey("复核"), approve: s.i18nKey("批准") };
-function Ce() {
-  const i = pe.currentLocale();
-  return i === "ar" ? "ar-u-nu-latn" : i;
+function we() {
+  const c = pe.currentLocale();
+  return c === "ar" ? "ar-u-nu-latn" : c;
 }
-function we(i) {
-  return i == null || !Number.isFinite(i) ? "-" : new Intl.NumberFormat(Ce(), { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(i / 100);
+function Te(c) {
+  return c == null || !Number.isFinite(c) ? "-" : new Intl.NumberFormat(we(), { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(c / 100);
 }
-function Ft(i) {
-  return i == null || !Number.isFinite(i) ? "-" : new Intl.NumberFormat(Ce(), { style: "percent", maximumFractionDigits: 1 }).format(i);
+function Ft(c) {
+  return c == null || !Number.isFinite(c) ? "-" : new Intl.NumberFormat(we(), { style: "percent", maximumFractionDigits: 1 }).format(c);
 }
-function Te(i) {
-  if (!i) return "";
-  const B = new Date(i);
-  if (Number.isNaN(B.getTime())) return i;
-  const t = (y) => String(y).padStart(2, "0");
-  return `${B.getFullYear()}-${t(B.getMonth() + 1)}-${t(B.getDate())} ${t(B.getHours())}:${t(B.getMinutes())}`;
+function Le(c) {
+  if (!c) return "";
+  const _ = new Date(c);
+  if (Number.isNaN(_.getTime())) return c;
+  const t = (N) => String(N).padStart(2, "0");
+  return `${_.getFullYear()}-${t(_.getMonth() + 1)}-${t(_.getDate())} ${t(_.getHours())}:${t(_.getMinutes())}`;
 }
-function De(i = /* @__PURE__ */ new Date()) {
-  const B = new Date(i.getFullYear(), i.getMonth() - 1, 1);
-  return `${B.getFullYear()}-${String(B.getMonth() + 1).padStart(2, "0")}`;
+function De(c = /* @__PURE__ */ new Date()) {
+  const _ = new Date(c.getFullYear(), c.getMonth() - 1, 1);
+  return `${_.getFullYear()}-${String(_.getMonth() + 1).padStart(2, "0")}`;
 }
 const ht = { "zh-CN": s.i18nKey("中文"), "en-US": "English", ar: "العربية" };
-function It(i, B) {
-  const y = {
+function It(c, _) {
+  const N = {
     journal: {
       yonyou: s.i18nKey("用友：总账 → 凭证 → 凭证查询，按月份筛选后引出为 Excel"),
       kingdee: s.i18nKey("金蝶：总账 → 凭证查询，选会计期间后引出"),
@@ -120,8 +120,8 @@ function It(i, B) {
     },
     bank: { other: s.i18nKey("企业网银 → 账户明细查询，选本月后导出 Excel 或 CSV；多个账户可以分别导出") },
     subledger: { other: s.i18nKey("应收、应付、固定资产或存货模块导出明细，带上与总账一致的键列（单号、资产编号或往来单位）") }
-  }[i];
-  return y ? s.t(y[B] || y.other || "") : "";
+  }[c];
+  return N ? s.t(N[_] || N.other || "") : "";
 }
 const $t = { xlsx: "Excel", docx: "Word", pdf: "PDF", pptx: "PowerPoint", md: "Markdown", je_import_xlsx: "Excel (JE)" }, Pt = {
   skill: s.i18nKey("技能"),
@@ -139,40 +139,40 @@ const $t = { xlsx: "Excel", docx: "Word", pdf: "PDF", pptx: "PowerPoint", md: "M
   "mcp-endpoint": s.i18nKey("数据连接器"),
   "cookbook-service": s.i18nKey("数据连接器")
 };
-function Ot(i, B) {
+function Ot(c, _) {
   const t = /* @__PURE__ */ new Map();
-  for (const y of i) {
-    const r = Pt[y.type] || s.i18nKey("工程组件");
+  for (const N of c) {
+    const r = Pt[N.type] || s.i18nKey("工程组件");
     t.set(r, (t.get(r) || 0) + 1);
   }
-  return [...t].map(([y, r]) => `${s.t(y)} ${r}`).join(B);
+  return [...t].map(([N, r]) => `${s.t(N)} ${r}`).join(_);
 }
-const Ue = (i) => Number(i.toFixed(6));
-function We(i, B) {
-  return i.amount ? Ue(B / 100) : i.percent ? Ue(B * 100) : B;
+const We = (c) => Number(c.toFixed(6));
+function Ye(c, _) {
+  return c.amount ? We(_ / 100) : c.percent ? We(_ * 100) : _;
 }
-function zt(i, B) {
-  const t = Number(B);
-  return B.trim() === "" || !Number.isFinite(t) || t < 0 ? null : i.amount ? Math.round(t * 100) : i.percent ? Ue(t / 100) : t;
+function zt(c, _) {
+  const t = Number(_);
+  return _.trim() === "" || !Number.isFinite(t) || t < 0 ? null : c.amount ? Math.round(t * 100) : c.percent ? We(t / 100) : t;
 }
-function _t(i, B) {
-  return i.amount ? we(B) : new Intl.NumberFormat(Ce(), { maximumFractionDigits: i.percent ? 2 : 4 }).format(We(i, B));
+function _t(c, _) {
+  return c.amount ? Te(_) : new Intl.NumberFormat(we(), { maximumFractionDigits: c.percent ? 2 : 4 }).format(Ye(c, _));
 }
-function Ye(i, B) {
-  return i.percent ? "%" : i.amount ? !B || B === "CNY" ? s.t("元") : B : "";
+function Ge(c, _) {
+  return c.percent ? "%" : c.amount ? !_ || _ === "CNY" ? s.t("元") : _ : "";
 }
-function Ge(i) {
-  return [i.basis ? s.t("依据：{p0}", { p0: s.t(i.basis) }) : "", i.section ? s.t(i.section) : ""].filter(Boolean).join(" · ");
+function He(c) {
+  return [c.basis ? s.t("依据：{p0}", { p0: s.t(c.basis) }) : "", c.section ? s.t(c.section) : ""].filter(Boolean).join(" · ");
 }
-function Oe(i) {
-  return i.original ? s.t(i.original) : "";
+function ze(c) {
+  return c.original ? s.t(c.original) : "";
 }
-function Bt(i) {
-  return i.label ? s.t(i.label) : Oe(i);
+function Bt(c) {
+  return c.label ? s.t(c.label) : ze(c);
 }
-const Ke = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
-if (!Ke) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/stores/notification.ts");
-Ke.default;
+const Ae = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
+if (!Ae) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/stores/notification.ts");
+Ae.default;
 const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ e.defineComponent({
   __name: "FauFileDrop",
   props: {
@@ -183,38 +183,38 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     disabled: { type: Boolean, default: !1 }
   },
   emits: ["picked"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = e.ref(!1), n = /\.(pdf|ofd|docx|xlsx|xls|png|jpe?g)$/i, c = /\.(xlsx|xls|xlsm|csv|sta|mt940|940|txt|xml|053)$/i;
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = e.ref(!1), n = /\.(pdf|ofd|docx|xlsx|xls|png|jpe?g)$/i, i = /\.(xlsx|xls|xlsm|csv|sta|mt940|940|txt|xml|053)$/i;
     async function a() {
       try {
         const E = await Y("data.pick", { kind: t.kind, multi: t.multi });
-        E?.paths?.length && y("picked", t.multi ? E.paths : E.paths.slice(0, 1));
+        E?.paths?.length && N("picked", t.multi ? E.paths : E.paths.slice(0, 1));
       } catch (E) {
-        Ke.useNotificationStore().error(Q.errorMessage(E));
+        Ae.useNotificationStore().error(Q.errorMessage(E));
       }
     }
-    function N(E) {
+    function m(E) {
       if (r.value = !1, t.disabled) return;
-      const u = Q.droppedPaths(E, t.kind === "evidence" ? n : t.kind === "bank" ? c : Q.EXCEL_RE);
-      u.length && y("picked", t.multi ? u : u.slice(0, 1));
+      const u = Q.droppedPaths(E, t.kind === "evidence" ? n : t.kind === "bank" ? i : Q.EXCEL_RE);
+      u.length && N("picked", t.multi ? u : u.slice(0, 1));
     }
     return (E, u) => (e.openBlock(), e.createElementBlock(
       "div",
       {
-        class: e.normalizeClass(["fau-drop", { over: r.value, disabled: i.disabled }]),
+        class: e.normalizeClass(["fau-drop", { over: r.value, disabled: c.disabled }]),
         role: "button",
         tabindex: "0",
-        onClick: u[0] || (u[0] = (L) => !i.disabled && a()),
-        onKeydown: u[1] || (u[1] = e.withKeys(e.withModifiers((L) => !i.disabled && a(), ["prevent"]), ["enter"])),
-        onDragover: u[2] || (u[2] = e.withModifiers((L) => !i.disabled && (r.value = !0), ["prevent"])),
+        onClick: u[0] || (u[0] = (L) => !c.disabled && a()),
+        onKeydown: u[1] || (u[1] = e.withKeys(e.withModifiers((L) => !c.disabled && a(), ["prevent"]), ["enter"])),
+        onDragover: u[2] || (u[2] = e.withModifiers((L) => !c.disabled && (r.value = !0), ["prevent"])),
         onDragleave: u[3] || (u[3] = e.withModifiers((L) => r.value = !1, ["prevent"])),
-        onDrop: e.withModifiers(N, ["prevent"])
+        onDrop: e.withModifiers(m, ["prevent"])
       },
       [
         e.createElementVNode(
           "i",
           {
-            class: e.normalizeClass(i.kind === "evidence" ? "ri-file-text-line" : "ri-file-excel-2-line")
+            class: e.normalizeClass(c.kind === "evidence" ? "ri-file-text-line" : "ri-file-excel-2-line")
           },
           null,
           2
@@ -224,14 +224,14 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           e.createElementVNode(
             "strong",
             null,
-            e.toDisplayString(i.label),
+            e.toDisplayString(c.label),
             1
             /* TEXT */
           ),
           e.createElementVNode(
             "small",
             null,
-            e.toDisplayString(i.hint || (i.multi ? E.$t("把文件拖到这里，或点击选择（可多选）") : E.$t("把文件拖到这里，或点击选择"))),
+            e.toDisplayString(c.hint || (c.multi ? E.$t("把文件拖到这里，或点击选择（可多选）") : E.$t("把文件拖到这里，或点击选择"))),
             1
             /* TEXT */
           )
@@ -239,7 +239,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         e.createElementVNode("button", {
           type: "button",
           class: "ss-btn ghost sm",
-          disabled: i.disabled,
+          disabled: c.disabled,
           onClick: e.withModifiers(a, ["stop"])
         }, [
           u[4] || (u[4] = e.createElementVNode(
@@ -260,10 +260,10 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       /* CLASS, NEED_HYDRATION */
     ));
   }
-}), ae = (i, B) => {
-  const t = i.__vccOpts || i;
-  for (const [y, r] of B)
-    t[y] = r;
+}), ae = (c, _) => {
+  const t = c.__vccOpts || c;
+  for (const [N, r] of _)
+    t[N] = r;
   return t;
 }, bt = /* @__PURE__ */ ae(Rt, [["__scopeId", "data-v-d1bc3c9f"]]), qt = {
   dir: "ltr",
@@ -275,10 +275,10 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     ratio: {},
     value: {}
   },
-  setup(i) {
-    const B = i, t = e.computed(() => B.cents !== void 0 ? we(B.cents) : B.ratio !== void 0 ? Ft(B.ratio) : B.value === null || B.value === void 0 || B.value === "" ? "-" : String(B.value));
-    return (y, r) => (e.openBlock(), e.createElementBlock("bdi", qt, [
-      e.renderSlot(y.$slots, "default", {}, () => [
+  setup(c) {
+    const _ = c, t = e.computed(() => _.cents !== void 0 ? Te(_.cents) : _.ratio !== void 0 ? Ft(_.ratio) : _.value === null || _.value === void 0 || _.value === "" ? "-" : String(_.value));
+    return (N, r) => (e.openBlock(), e.createElementBlock("bdi", qt, [
+      e.renderSlot(N.$slots, "default", {}, () => [
         e.createTextVNode(
           e.toDisplayString(t.value),
           1
@@ -287,15 +287,15 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       ])
     ]));
   }
-}), Ut = ["title"], Wt = { class: "ss-muted" }, Yt = ["aria-label"], Gt = ["aria-checked", "disabled", "data-test", "onClick"], ze = /* @__PURE__ */ e.defineComponent({
+}), Ut = ["title"], Wt = { class: "ss-muted" }, Yt = ["aria-label"], Gt = ["aria-checked", "disabled", "data-test", "onClick"], Me = /* @__PURE__ */ e.defineComponent({
   __name: "OutputLocalePicker",
   props: {
     modelValue: {},
     disabled: { type: Boolean }
   },
   emits: ["update:modelValue"],
-  setup(i, { emit: B }) {
-    const t = B, y = ["zh-CN", "en-US", "ar"];
+  setup(c, { emit: _ }) {
+    const t = _, N = ["zh-CN", "en-US", "ar"];
     return (r, n) => (e.openBlock(), e.createElementBlock("span", {
       class: "fau-row",
       title: r.$t("产出物语言与界面语言独立")
@@ -315,16 +315,16 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         (e.openBlock(), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(y, (c) => e.createElementVNode("button", {
-            key: c,
+          e.renderList(N, (i) => e.createElementVNode("button", {
+            key: i,
             type: "button",
             role: "radio",
-            "aria-checked": i.modelValue === c,
-            class: e.normalizeClass({ on: i.modelValue === c }),
-            disabled: i.disabled,
-            "data-test": `fau-locale-${c}`,
-            onClick: (a) => t("update:modelValue", c)
-          }, e.toDisplayString(r.$t(e.unref(ht)[c])), 11, Gt)),
+            "aria-checked": c.modelValue === i,
+            class: e.normalizeClass({ on: c.modelValue === i }),
+            disabled: c.disabled,
+            "data-test": `fau-locale-${i}`,
+            onClick: (a) => t("update:modelValue", i)
+          }, e.toDisplayString(r.$t(e.unref(ht)[i])), 11, Gt)),
           64
           /* STABLE_FRAGMENT */
         ))
@@ -370,22 +370,22 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     startAt: {}
   },
   emits: ["saved", "cancel", "sample"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = Q.useSteps([
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = Q.useSteps([
       { key: "company", title: s.t("公司与地区"), hint: s.t("公司名称、登记号与税号、地区档案、本位币、会计年度") },
       { key: "standard", title: s.t("准则与科目映射"), hint: s.t("选准则；上传一份余额表把科目映射到报表大类，以后各期复用") },
       { key: "erp", title: s.t("ERP 与数据来源"), hint: s.t("决定上传步骤里显示哪份导出指引") },
       { key: "thresholds", title: s.t("重要性水平与阈值"), hint: s.t("默认值逐条注明出处，可按公司修改") },
       { key: "signers", title: s.t("签核人与岗位"), hint: s.t("编制人、复核人、批准人；是否强制职责分离") },
       { key: "packages", title: s.t("启用套餐"), hint: s.t("选择首页显示的分组；投融资扩展包默认折叠") }
-    ]), n = ["prepare", "review", "approve"], c = s.listSeparator(), a = {
+    ]), n = ["prepare", "review", "approve"], i = s.listSeparator(), a = {
       asset: s.i18nKey("资产"),
       liability: s.i18nKey("负债"),
       equity: s.i18nKey("所有者权益"),
       revenue: s.i18nKey("收入"),
       expense: s.i18nKey("费用"),
       common: s.i18nKey("共同类")
-    }, N = {
+    }, m = {
       yonyou: s.i18nKey("用友"),
       kingdee: s.i18nKey("金蝶"),
       sap: "SAP",
@@ -410,24 +410,25 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       signers: (E?.signers || []).map((D) => ({ ...D, levels: [...D.levels] })),
       sodMode: E?.sodMode || "block",
       packages: [...E?.packages || ie.DEFAULT_PACKAGES],
-      outputLocale: E?.outputLocale || pe.currentLocale()
-    }), L = e.ref([]), g = e.ref({}), v = e.ref([]), b = e.ref(null), h = e.ref(null), K = e.ref(""), T = e.ref(!1), z = e.ref(!1), S = e.computed(() => L.value.find((D) => D.id === u.region)?.standards || ["CAS"]), w = e.ref(""), m = e.ref(/* @__PURE__ */ new Set()), f = (D) => !!w.value || m.value.has(D);
-    function p(D) {
-      const O = new Set(m.value);
-      O.has(D) ? O.delete(D) : O.add(D), m.value = O;
+      // 财会审计报告只有中英阿三种输出语言；越南语 / 马来语界面默认出英文报告
+      outputLocale: E?.outputLocale || (["zh-CN", "en-US", "ar"].includes(pe.currentLocale()) ? pe.currentLocale() : "en-US")
+    }), L = e.ref([]), g = e.ref({}), v = e.ref([]), b = e.ref(null), h = e.ref(null), K = e.ref(""), T = e.ref(!1), z = e.ref(!1), S = e.computed(() => L.value.find((D) => D.id === u.region)?.standards || ["CAS"]), w = e.ref(""), p = e.ref(/* @__PURE__ */ new Set()), f = (D) => !!w.value || p.value.has(D);
+    function y(D) {
+      const O = new Set(p.value);
+      O.has(D) ? O.delete(D) : O.add(D), p.value = O;
     }
     const I = e.computed(() => {
       const D = w.value.toLowerCase(), O = [];
       for (const P of ie.FAU_MODULES) {
         if (!u.packages.includes(P.package)) continue;
-        const J = v.value.filter((re) => re.module === P.id), X = (re) => !D || [s.t(P.name), P.code, re.label ? s.t(re.label) : "", re.original, Oe(re), Ge(re)].some((Ne) => Ne.toLowerCase().includes(D)), de = J.filter(X);
+        const J = v.value.filter((re) => re.module === P.id), X = (re) => !D || [s.t(P.name), P.code, re.label ? s.t(re.label) : "", re.original, ze(re), He(re)].some((Ne) => Ne.toLowerCase().includes(D)), de = J.filter(X);
         if (!de.length) continue;
         const he = J.filter((re) => u.thresholds[re.key] != null && u.thresholds[re.key] !== re.value).length;
         let oe = O.find((re) => re.group === P.group);
         oe || O.push(oe = { group: P.group, modules: [] }), oe.modules.push({ id: P.id, code: P.code, name: P.name, items: de, changed: he });
       }
       return O;
-    }), _ = e.computed(() => h.value ? h.value.entries.filter((D) => !D.cls).length : 0);
+    }), B = e.computed(() => h.value ? h.value.entries.filter((D) => !D.cls).length : 0);
     e.onMounted(async () => {
       if (t.startAt && r.indexOf(t.startAt) > 0) {
         for (const D of r.metas.slice(0, r.indexOf(t.startAt))) r.done(D.key);
@@ -462,7 +463,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         T.value = !0, r.start("company");
         try {
           const D = await Y("company.save", { company: { ...u, signers: [], quickStart: !0 } });
-          await Y("project.create", { type: "month_close", period: De() }), r.done("company", s.t("已保存")), y("saved", D);
+          await Y("project.create", { type: "month_close", period: De() }), r.done("company", s.t("已保存")), N("saved", D);
         } catch (D) {
           r.fail("company", D);
         } finally {
@@ -503,7 +504,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       T.value = !0, r.start("packages");
       try {
         const D = await Y("company.save", { company: { ...u, signers: u.signers.filter((O) => O.name) } });
-        r.done("packages", s.t("已保存")), y("saved", D);
+        r.done("packages", s.t("已保存")), N("saved", D);
       } catch (D) {
         r.fail("packages", D);
       } finally {
@@ -511,7 +512,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       }
     }
     return (D, O) => (e.openBlock(), e.createElementBlock("div", Ht, [
-      e.createVNode(Qe, {
+      e.createVNode(Je, {
         title: D.$t("首次配置"),
         metas: e.unref(r).metas,
         runtime: e.unref(r).runtime,
@@ -730,7 +731,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                     P.taxRegimes?.length ? (e.openBlock(), e.createElementBlock(
                       "small",
                       dl,
-                      e.toDisplayString(P.taxRegimes.map((J) => D.$t(J)).join(e.unref(c))),
+                      e.toDisplayString(P.taxRegimes.map((J) => D.$t(J)).join(e.unref(i))),
                       1
                       /* TEXT */
                     )) : e.createCommentVNode("v-if", !0)
@@ -755,7 +756,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 1
                 /* TEXT */
               ),
-              i.company ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
+              c.company ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 { key: 0 },
                 [
@@ -784,7 +785,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                     class: "ss-btn ghost",
                     disabled: T.value,
                     "data-test": "fau-setup-sample",
-                    onClick: O[7] || (O[7] = (P) => y("sample"))
+                    onClick: O[7] || (O[7] = (P) => N("sample"))
                   }, [
                     O[21] || (O[21] = e.createElementVNode(
                       "i",
@@ -804,7 +805,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 /* STABLE_FRAGMENT */
               ))
             ]),
-            i.company ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
+            c.company ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
               "p",
               yl,
               e.toDisplayString(D.$t("「用默认配置开始」：其余五步（准则与科目映射、ERP、阈值、签核人、套餐）先用默认值，直接进首页，之后随时可以完善。「打开示例项目」：用一套示例数据把各模块先跑一遍看效果。")),
@@ -862,7 +863,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               hint: D.$t("中国科目编码按前缀自动识别；其它科目表自动给出建议后由你确认"),
               onPicked: O[9] || (O[9] = (P) => te(P[0]))
             }, null, 8, ["label", "hint"]),
-            b.value && !h.value ? (e.openBlock(), e.createBlock(Je, {
+            b.value && !h.value ? (e.openBlock(), e.createBlock(Ze, {
               key: 0,
               table: b.value,
               roles: b.value.roles.map((P) => ({ ...P, label: D.$t(P.label) })),
@@ -895,7 +896,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                     /* CACHED */
                   )),
                   e.createTextVNode(
-                    e.toDisplayString(D.$t("这份科目表需要人工确认：{n} 个科目，其中 {m} 个还没有大类", { n: h.value.entries.length, m: _.value })),
+                    e.toDisplayString(D.$t("这份科目表需要人工确认：{n} 个科目，其中 {m} 个还没有大类", { n: h.value.entries.length, m: B.value })),
                     1
                     /* TEXT */
                   )
@@ -1009,7 +1010,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !!h.value && _.value > 0,
+                disabled: !!h.value && B.value > 0,
                 "data-test": "fau-setup-next-standard",
                 onClick: j
               }, e.toDisplayString(h.value ? D.$t("确认映射并继续") : D.$t("稍后再做，继续")), 9, bl)
@@ -1032,7 +1033,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(N, (P, J) => e.createElementVNode("button", {
+                e.renderList(m, (P, J) => e.createElementVNode("button", {
                   key: J,
                   type: "button",
                   class: e.normalizeClass({ on: u.erp === J }),
@@ -1167,7 +1168,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                                 class: "fau-th-toggle",
                                 "aria-expanded": f(J.id),
                                 "data-test": `fau-th-toggle-${J.id}`,
-                                onClick: (X) => p(J.id)
+                                onClick: (X) => y(J.id)
                               }, [
                                 e.createElementVNode(
                                   "i",
@@ -1215,7 +1216,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                                 e.createElementVNode("small", {
                                   class: "ss-muted",
                                   title: D.$t("以原文为准")
-                                }, e.toDisplayString(e.unref(Oe)(X)), 9, Yl)
+                                }, e.toDisplayString(e.unref(ze)(X)), 9, Yl)
                               ]),
                               e.createElementVNode("td", Gl, [
                                 e.createVNode(l, {
@@ -1225,7 +1226,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                                 e.createElementVNode(
                                   "small",
                                   null,
-                                  e.toDisplayString(e.unref(Ye)(X, u.currency)),
+                                  e.toDisplayString(e.unref(Ge)(X, u.currency)),
                                   1
                                   /* TEXT */
                                 )
@@ -1236,15 +1237,15 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                                   step: "any",
                                   min: "0",
                                   dir: "ltr",
-                                  value: u.thresholds[X.key] == null ? "" : e.unref(We)(X, u.thresholds[X.key]),
-                                  placeholder: String(e.unref(We)(X, X.value)),
+                                  value: u.thresholds[X.key] == null ? "" : e.unref(Ye)(X, u.thresholds[X.key]),
+                                  placeholder: String(e.unref(Ye)(X, X.value)),
                                   "data-test": `fau-th-input-${X.key}`,
                                   onChange: (de) => W(X, de.target.value)
                                 }, null, 40, Ql),
                                 e.createElementVNode(
                                   "small",
                                   null,
-                                  e.toDisplayString(e.unref(Ye)(X, u.currency)),
+                                  e.toDisplayString(e.unref(Ge)(X, u.currency)),
                                   1
                                   /* TEXT */
                                 )
@@ -1253,7 +1254,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                                 e.createElementVNode(
                                   "small",
                                   null,
-                                  e.toDisplayString(e.unref(Ge)(X)),
+                                  e.toDisplayString(e.unref(He)(X)),
                                   1
                                   /* TEXT */
                                 )
@@ -1489,7 +1490,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 /* KEYED_FRAGMENT */
               ))
             ]),
-            e.createVNode(ze, {
+            e.createVNode(Me, {
               modelValue: u.outputLocale,
               "onUpdate:modelValue": O[18] || (O[18] = (P) => u.outputLocale = P)
             }, null, 8, ["modelValue"]),
@@ -1514,13 +1515,13 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   /* TEXT */
                 )
               ], 8, mn),
-              i.company ? (e.openBlock(), e.createElementBlock(
+              c.company ? (e.openBlock(), e.createElementBlock(
                 "button",
                 {
                   key: 0,
                   type: "button",
                   class: "ss-btn ghost",
-                  onClick: O[19] || (O[19] = (P) => y("cancel"))
+                  onClick: O[19] || (O[19] = (P) => N("cancel"))
                 },
                 e.toDisplayString(D.$t("取消")),
                 1
@@ -1534,7 +1535,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       ])
     ]));
   }
-}), yn = /* @__PURE__ */ ae(pn, [["__scopeId", "data-v-299b7bef"]]), Nn = { class: "fau-row" }, Vn = { class: "ss-muted" }, En = ["value"], kn = {
+}), yn = /* @__PURE__ */ ae(pn, [["__scopeId", "data-v-5363012e"]]), Nn = { class: "fau-row" }, Vn = { class: "ss-muted" }, En = ["value"], kn = {
   key: 0,
   value: ""
 }, vn = ["value"], gn = {
@@ -1565,15 +1566,15 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     openDetailOnMount: { type: Boolean }
   },
   emits: ["changed", "open-run"],
-  setup(i, { expose: B, emit: t }) {
-    const y = i, r = t, n = {
+  setup(c, { expose: _, emit: t }) {
+    const N = c, r = t, n = {
       month_close: s.i18nKey("月结"),
       annual_audit: s.i18nKey("年审"),
       filing: s.i18nKey("申报"),
       controls: s.i18nKey("内控"),
       ma: s.i18nKey("并购"),
       custom: s.i18nKey("自定义")
-    }, c = { open: s.i18nKey("进行中"), closed: s.i18nKey("已关闭"), archived: s.i18nKey("已归档") }, a = {
+    }, i = { open: s.i18nKey("进行中"), closed: s.i18nKey("已关闭"), archived: s.i18nKey("已归档") }, a = {
       draft: s.i18nKey("草稿"),
       running: s.i18nKey("进行中"),
       ready: s.i18nKey("待签核"),
@@ -1581,15 +1582,15 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       returned: s.i18nKey("被退回"),
       archived: s.i18nKey("已归档"),
       void: s.i18nKey("已作废")
-    }, N = e.ref(!1), E = e.ref(!1), u = e.ref(""), L = e.ref(null), g = e.ref(""), v = e.ref({ type: "month_close", period: De(), name: "", prevProjectId: y.project?.id || "" });
-    function b(m) {
-      const f = ie.moduleById(m);
-      return f ? `${f.code} ${s.t(f.name)}` : m;
+    }, m = e.ref(!1), E = e.ref(!1), u = e.ref(""), L = e.ref(null), g = e.ref(""), v = e.ref({ type: "month_close", period: De(), name: "", prevProjectId: N.project?.id || "" });
+    function b(p) {
+      const f = ie.moduleById(p);
+      return f ? `${f.code} ${s.t(f.name)}` : p;
     }
-    async function h(m) {
-      if (m)
+    async function h(p) {
+      if (p)
         try {
-          await Y("project.switch", { id: m }), r("changed");
+          await Y("project.switch", { id: p }), r("changed");
         } catch (f) {
           u.value = Q.errorMessage(f);
         }
@@ -1597,9 +1598,9 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     async function K() {
       E.value = !0, u.value = "";
       try {
-        await Y("project.create", { ...v.value, prevProjectId: v.value.prevProjectId || void 0 }), N.value = !1, r("changed");
-      } catch (m) {
-        u.value = Q.errorMessage(m);
+        await Y("project.create", { ...v.value, prevProjectId: v.value.prevProjectId || void 0 }), m.value = !1, r("changed");
+      } catch (p) {
+        u.value = Q.errorMessage(p);
       } finally {
         E.value = !1;
       }
@@ -1607,9 +1608,9 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     async function T() {
       u.value = "";
       try {
-        L.value = await Y("project.status", { id: y.project?.id });
-      } catch (m) {
-        u.value = Q.errorMessage(m);
+        L.value = await Y("project.status", { id: N.project?.id });
+      } catch (p) {
+        u.value = Q.errorMessage(p);
       }
     }
     async function z() {
@@ -1617,8 +1618,8 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         E.value = !0, u.value = "";
         try {
           await Y("project.archive", { id: L.value.project.id }), await T(), r("changed");
-        } catch (m) {
-          u.value = Q.errorMessage(m);
+        } catch (p) {
+          u.value = Q.errorMessage(p);
         } finally {
           E.value = !1;
         }
@@ -1629,8 +1630,8 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         E.value = !0, u.value = "";
         try {
           g.value = (await Y("project.exportMd", { id: L.value.project.id })).path;
-        } catch (m) {
-          u.value = Q.errorMessage(m);
+        } catch (p) {
+          u.value = Q.errorMessage(p);
         } finally {
           E.value = !1;
         }
@@ -1639,13 +1640,13 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     async function w() {
       try {
         await Y("artifact.reveal", { path: g.value });
-      } catch (m) {
-        u.value = Q.errorMessage(m);
+      } catch (p) {
+        u.value = Q.errorMessage(p);
       }
     }
-    return B({ openDetail: T, openCreate: () => {
-      N.value = !0;
-    } }), y.openDetailOnMount && T(), (m, f) => (e.openBlock(), e.createElementBlock(
+    return _({ openDetail: T, openCreate: () => {
+      m.value = !0;
+    } }), N.openDetailOnMount && T(), (p, f) => (e.openBlock(), e.createElementBlock(
       e.Fragment,
       null,
       [
@@ -1653,29 +1654,29 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           e.createElementVNode(
             "small",
             Vn,
-            e.toDisplayString(m.$t("项目")),
+            e.toDisplayString(p.$t("项目")),
             1
             /* TEXT */
           ),
           e.createElementVNode("select", {
-            value: i.project?.id || "",
+            value: c.project?.id || "",
             "data-test": "fau-project-select",
-            onChange: f[0] || (f[0] = (p) => h(p.target.value))
+            onChange: f[0] || (f[0] = (y) => h(y.target.value))
           }, [
-            i.projects.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
+            c.projects.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
               "option",
               kn,
-              e.toDisplayString(m.$t("还没有项目")),
+              e.toDisplayString(p.$t("还没有项目")),
               1
               /* TEXT */
             )),
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(i.projects, (p) => (e.openBlock(), e.createElementBlock("option", {
-                key: p.id,
-                value: p.id
-              }, e.toDisplayString(p.name) + e.toDisplayString(p.status === "archived" ? ` · ${m.$t("已归档")}` : ""), 9, vn))),
+              e.renderList(c.projects, (y) => (e.openBlock(), e.createElementBlock("option", {
+                key: y.id,
+                value: y.id
+              }, e.toDisplayString(y.name) + e.toDisplayString(y.status === "archived" ? ` · ${p.$t("已归档")}` : ""), 9, vn))),
               128
               /* KEYED_FRAGMENT */
             ))
@@ -1684,7 +1685,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             type: "button",
             class: "ss-btn sm",
             "data-test": "fau-project-new",
-            onClick: f[1] || (f[1] = (p) => N.value = !N.value)
+            onClick: f[1] || (f[1] = (y) => m.value = !m.value)
           }, [
             f[9] || (f[9] = e.createElementVNode(
               "i",
@@ -1694,12 +1695,12 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(m.$t("新建项目")),
+              e.toDisplayString(p.$t("新建项目")),
               1
               /* TEXT */
             )
           ]),
-          i.project ? (e.openBlock(), e.createElementBlock("button", {
+          c.project ? (e.openBlock(), e.createElementBlock("button", {
             key: 0,
             type: "button",
             class: "ss-btn sm ghost",
@@ -1714,17 +1715,17 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(m.$t("项目详情")),
+              e.toDisplayString(p.$t("项目详情")),
               1
               /* TEXT */
             )
           ])) : e.createCommentVNode("v-if", !0)
         ]),
-        N.value ? (e.openBlock(), e.createElementBlock("div", gn, [
+        m.value ? (e.openBlock(), e.createElementBlock("div", gn, [
           e.createElementVNode(
             "h3",
             null,
-            e.toDisplayString(m.$t("新建项目")),
+            e.toDisplayString(p.$t("新建项目")),
             1
             /* TEXT */
           ),
@@ -1733,23 +1734,23 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               e.createElementVNode(
                 "span",
                 null,
-                e.toDisplayString(m.$t("类型")),
+                e.toDisplayString(p.$t("类型")),
                 1
                 /* TEXT */
               ),
               e.withDirectives(e.createElementVNode(
                 "select",
                 {
-                  "onUpdate:modelValue": f[2] || (f[2] = (p) => v.value.type = p)
+                  "onUpdate:modelValue": f[2] || (f[2] = (y) => v.value.type = y)
                 },
                 [
                   (e.openBlock(), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(n, (p, I) => e.createElementVNode("option", {
+                    e.renderList(n, (y, I) => e.createElementVNode("option", {
                       key: I,
                       value: I
-                    }, e.toDisplayString(m.$t(p)), 9, $n)),
+                    }, e.toDisplayString(p.$t(y)), 9, $n)),
                     64
                     /* STABLE_FRAGMENT */
                   ))
@@ -1764,14 +1765,14 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               e.createElementVNode(
                 "span",
                 null,
-                e.toDisplayString(v.value.type === "month_close" ? m.$t("期间（YYYY-MM）") : m.$t("期间（YYYY 或 YYYY-MM）")),
+                e.toDisplayString(v.value.type === "month_close" ? p.$t("期间（YYYY-MM）") : p.$t("期间（YYYY 或 YYYY-MM）")),
                 1
                 /* TEXT */
               ),
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": f[3] || (f[3] = (p) => v.value.period = p),
+                  "onUpdate:modelValue": f[3] || (f[3] = (y) => v.value.period = y),
                   dir: "ltr",
                   "data-test": "fau-project-period"
                 },
@@ -1791,14 +1792,14 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               e.createElementVNode(
                 "span",
                 null,
-                e.toDisplayString(m.$t("名称（可不填）")),
+                e.toDisplayString(p.$t("名称（可不填）")),
                 1
                 /* TEXT */
               ),
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": f[4] || (f[4] = (p) => v.value.name = p)
+                  "onUpdate:modelValue": f[4] || (f[4] = (y) => v.value.name = y)
                 },
                 null,
                 512
@@ -1816,30 +1817,30 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               e.createElementVNode(
                 "span",
                 null,
-                e.toDisplayString(m.$t("上一期项目（可选）")),
+                e.toDisplayString(p.$t("上一期项目（可选）")),
                 1
                 /* TEXT */
               ),
               e.withDirectives(e.createElementVNode(
                 "select",
                 {
-                  "onUpdate:modelValue": f[5] || (f[5] = (p) => v.value.prevProjectId = p)
+                  "onUpdate:modelValue": f[5] || (f[5] = (y) => v.value.prevProjectId = y)
                 },
                 [
                   e.createElementVNode(
                     "option",
                     Sn,
-                    e.toDisplayString(m.$t("无")),
+                    e.toDisplayString(p.$t("无")),
                     1
                     /* TEXT */
                   ),
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(i.projects, (p) => (e.openBlock(), e.createElementBlock("option", {
-                      key: p.id,
-                      value: p.id
-                    }, e.toDisplayString(p.name), 9, Dn))),
+                    e.renderList(c.projects, (y) => (e.openBlock(), e.createElementBlock("option", {
+                      key: y.id,
+                      value: y.id
+                    }, e.toDisplayString(y.name), 9, Dn))),
                     128
                     /* KEYED_FRAGMENT */
                   ))
@@ -1854,7 +1855,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           e.createElementVNode(
             "p",
             Cn,
-            e.toDisplayString(m.$t("关联上一期后，上期期末余额与未达账项会带入本期比对（如连续 3 个月同方向未达）。")),
+            e.toDisplayString(p.$t("关联上一期后，上期期末余额与未达账项会带入本期比对（如连续 3 个月同方向未达）。")),
             1
             /* TEXT */
           ),
@@ -1874,7 +1875,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(m.$t("创建")),
+                e.toDisplayString(p.$t("创建")),
                 1
                 /* TEXT */
               )
@@ -1884,9 +1885,9 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               {
                 type: "button",
                 class: "ss-btn ghost",
-                onClick: f[6] || (f[6] = (p) => N.value = !1)
+                onClick: f[6] || (f[6] = (y) => m.value = !1)
               },
-              e.toDisplayString(m.$t("取消")),
+              e.toDisplayString(p.$t("取消")),
               1
               /* TEXT */
             )
@@ -1909,13 +1910,13 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         L.value ? (e.openBlock(), e.createElementBlock("div", {
           key: 1,
           class: "fau-drawer-mask",
-          onClick: f[7] || (f[7] = (p) => L.value = null)
+          onClick: f[7] || (f[7] = (y) => L.value = null)
         })) : e.createCommentVNode("v-if", !0),
         L.value ? (e.openBlock(), e.createElementBlock("aside", {
           key: 2,
           class: "fau-drawer",
           role: "dialog",
-          "aria-label": m.$t("项目详情"),
+          "aria-label": p.$t("项目详情"),
           "data-test": "fau-project-drawer"
         }, [
           e.createElementVNode("header", null, [
@@ -1929,7 +1930,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             e.createElementVNode("button", {
               type: "button",
               class: "ss-btn ghost sm",
-              onClick: f[8] || (f[8] = (p) => L.value = null)
+              onClick: f[8] || (f[8] = (y) => L.value = null)
             }, [...f[13] || (f[13] = [
               e.createElementVNode(
                 "i",
@@ -1945,21 +1946,21 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               e.createElementVNode(
                 "dt",
                 null,
-                e.toDisplayString(m.$t("类型")),
+                e.toDisplayString(p.$t("类型")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "dd",
                 null,
-                e.toDisplayString(m.$t(n[L.value.project.type])),
+                e.toDisplayString(p.$t(n[L.value.project.type])),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "dt",
                 null,
-                e.toDisplayString(m.$t("期间")),
+                e.toDisplayString(p.$t("期间")),
                 1
                 /* TEXT */
               ),
@@ -1971,42 +1972,42 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               e.createElementVNode(
                 "dt",
                 null,
-                e.toDisplayString(m.$t("状态")),
+                e.toDisplayString(p.$t("状态")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "dd",
                 null,
-                e.toDisplayString(m.$t(c[L.value.project.status])),
+                e.toDisplayString(p.$t(i[L.value.project.status])),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "dt",
                 null,
-                e.toDisplayString(m.$t("上一期项目")),
+                e.toDisplayString(p.$t("上一期项目")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "dd",
                 null,
-                e.toDisplayString(L.value.prev?.name || m.$t("无")),
+                e.toDisplayString(L.value.prev?.name || p.$t("无")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "dt",
                 null,
-                e.toDisplayString(m.$t("签核")),
+                e.toDisplayString(p.$t("签核")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "dd",
                 null,
-                e.toDisplayString(m.$t("待签 {a} · 已归档 {b} · 被退回 {c}", { a: L.value.signoff.pending, b: L.value.signoff.signed, c: L.value.signoff.returned })),
+                e.toDisplayString(p.$t("待签 {a} · 已归档 {b} · 被退回 {c}", { a: L.value.signoff.pending, b: L.value.signoff.signed, c: L.value.signoff.returned })),
                 1
                 /* TEXT */
               )
@@ -2014,7 +2015,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             e.createElementVNode(
               "h4",
               null,
-              e.toDisplayString(m.$t("运行记录")),
+              e.toDisplayString(p.$t("运行记录")),
               1
               /* TEXT */
             ),
@@ -2022,20 +2023,20 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(L.value.runs, (p) => (e.openBlock(), e.createElementBlock("li", {
-                  key: p.id,
-                  onClick: (I) => r("open-run", p.moduleId, p.id)
+                e.renderList(L.value.runs, (y) => (e.openBlock(), e.createElementBlock("li", {
+                  key: y.id,
+                  onClick: (I) => r("open-run", y.moduleId, y.id)
                 }, [
                   e.createElementVNode(
                     "span",
                     On,
-                    e.toDisplayString(b(p.moduleId)) + " · " + e.toDisplayString(m.$t(a[p.status] || p.status)),
+                    e.toDisplayString(b(y.moduleId)) + " · " + e.toDisplayString(p.$t(a[y.status] || y.status)),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("small", zn, [
                     e.createVNode(l, {
-                      value: e.unref(Te)(p.updatedAt)
+                      value: e.unref(Le)(y.updatedAt)
                     }, null, 8, ["value"])
                   ])
                 ], 8, Pn))),
@@ -2045,7 +2046,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               L.value.runs.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
                 "li",
                 Mn,
-                e.toDisplayString(m.$t("还没有运行")),
+                e.toDisplayString(p.$t("还没有运行")),
                 1
                 /* TEXT */
               ))
@@ -2053,7 +2054,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             e.createElementVNode(
               "h4",
               null,
-              e.toDisplayString(m.$t("数据集")),
+              e.toDisplayString(p.$t("数据集")),
               1
               /* TEXT */
             ),
@@ -2061,20 +2062,20 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(L.value.datasets, (p) => (e.openBlock(), e.createElementBlock("li", {
-                  key: p.id
+                e.renderList(L.value.datasets, (y) => (e.openBlock(), e.createElementBlock("li", {
+                  key: y.id
                 }, [
                   e.createElementVNode(
                     "span",
                     Rn,
-                    e.toDisplayString(p.label),
+                    e.toDisplayString(y.label),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "small",
                     qn,
-                    e.toDisplayString(m.$t("{n} 行", { n: p.rowCount })),
+                    e.toDisplayString(p.$t("{n} 行", { n: y.rowCount })),
                     1
                     /* TEXT */
                   )
@@ -2085,7 +2086,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               L.value.datasets.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
                 "li",
                 Un,
-                e.toDisplayString(m.$t("还没有导入数据")),
+                e.toDisplayString(p.$t("还没有导入数据")),
                 1
                 /* TEXT */
               ))
@@ -2106,7 +2107,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(m.$t("导出项目上下文（project.md）")),
+                  e.toDisplayString(p.$t("导出项目上下文（project.md）")),
                   1
                   /* TEXT */
                 )
@@ -2126,7 +2127,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(m.$t("归档项目（只读）")),
+                  e.toDisplayString(p.$t("归档项目（只读）")),
                   1
                   /* TEXT */
                 )
@@ -2141,7 +2142,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(m.$t("已导出：{p0}", { p0: g.value })) + " ",
+                e.toDisplayString(p.$t("已导出：{p0}", { p0: g.value })) + " ",
                 1
                 /* TEXT */
               ),
@@ -2152,7 +2153,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   class: "ss-link",
                   onClick: w
                 },
-                e.toDisplayString(m.$t("在文件夹中显示")),
+                e.toDisplayString(p.$t("在文件夹中显示")),
                 1
                 /* TEXT */
               )
@@ -2190,13 +2191,13 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     items: {}
   },
   emits: ["open"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = (a) => t.items.filter((N) => !N.returned && N.level === a).length, n = e.computed(() => t.items.filter((a) => a.returned).length);
-    function c(a) {
-      const N = ie.moduleById(a);
-      return N ? `${N.code} ${s.t(N.name)}` : a;
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = (a) => t.items.filter((m) => !m.returned && m.level === a).length, n = e.computed(() => t.items.filter((a) => a.returned).length);
+    function i(a) {
+      const m = ie.moduleById(a);
+      return m ? `${m.code} ${s.t(m.name)}` : a;
     }
-    return (a, N) => (e.openBlock(), e.createElementBlock("div", Xn, [
+    return (a, m) => (e.openBlock(), e.createElementBlock("div", Xn, [
       e.createElementVNode("div", xn, [
         e.createElementVNode(
           "span",
@@ -2229,14 +2230,14 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           /* TEXT, CLASS */
         )
       ]),
-      i.items.length ? (e.openBlock(), e.createElementBlock("ul", na, [
+      c.items.length ? (e.openBlock(), e.createElementBlock("ul", na, [
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(i.items, (E) => (e.openBlock(), e.createElementBlock("li", {
+          e.renderList(c.items, (E) => (e.openBlock(), e.createElementBlock("li", {
             key: E.runId + E.level,
             "data-test": `fau-queue-${E.moduleId}`,
-            onClick: (u) => y("open", E)
+            onClick: (u) => N("open", E)
           }, [
             e.createElementVNode(
               "span",
@@ -2250,13 +2251,13 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             e.createElementVNode(
               "span",
               oa,
-              e.toDisplayString(c(E.moduleId)) + " · " + e.toDisplayString(E.returned ? a.$t("被退回") : a.$t("待{p0}", { p0: a.$t(e.unref(ve)[E.level]) })),
+              e.toDisplayString(i(E.moduleId)) + " · " + e.toDisplayString(E.returned ? a.$t("被退回") : a.$t("待{p0}", { p0: a.$t(e.unref(ve)[E.level]) })),
               1
               /* TEXT */
             ),
             e.createElementVNode("small", sa, [
               e.createVNode(l, {
-                value: e.unref(Te)(E.since)
+                value: e.unref(Le)(E.since)
               }, null, 8, ["value"])
             ])
           ], 8, aa))),
@@ -2294,25 +2295,25 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     artifacts: {},
     archived: { type: Boolean }
   },
-  setup(i) {
-    const B = e.ref(null), t = e.ref(null), y = e.ref(0), r = e.ref(""), n = (N) => N.split(/[\\/]/).pop() || N;
-    async function c(N) {
-      B.value = N, t.value = null, y.value = 0, r.value = "";
+  setup(c) {
+    const _ = e.ref(null), t = e.ref(null), N = e.ref(0), r = e.ref(""), n = (m) => m.split(/[\\/]/).pop() || m;
+    async function i(m) {
+      _.value = m, t.value = null, N.value = 0, r.value = "";
       try {
-        t.value = await Y("artifact.preview", { path: N.path, maxRows: 40 });
+        t.value = await Y("artifact.preview", { path: m.path, maxRows: 40 });
       } catch (E) {
         r.value = Q.errorMessage(E);
       }
     }
-    async function a(N, E) {
+    async function a(m, E) {
       try {
-        await Y(E ? "artifact.reveal" : "artifact.open", { path: N.path });
+        await Y(E ? "artifact.reveal" : "artifact.open", { path: m.path });
       } catch (u) {
-        Ke.useNotificationStore().error(Q.errorMessage(u));
+        Ae.useNotificationStore().error(Q.errorMessage(u));
       }
     }
-    return (N, E) => (e.openBlock(), e.createElementBlock("div", ca, [
-      i.artifacts.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", da, [
+    return (m, E) => (e.openBlock(), e.createElementBlock("div", ca, [
+      c.artifacts.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", da, [
         E[1] || (E[1] = e.createElementVNode(
           "i",
           { class: "ri-information-line" },
@@ -2321,7 +2322,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(N.$t("还没有生成文件")),
+          e.toDisplayString(m.$t("还没有生成文件")),
           1
           /* TEXT */
         )
@@ -2329,7 +2330,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       (e.openBlock(!0), e.createElementBlock(
         e.Fragment,
         null,
-        e.renderList(i.artifacts, (u) => (e.openBlock(), e.createElementBlock("div", {
+        e.renderList(c.artifacts, (u) => (e.openBlock(), e.createElementBlock("div", {
           key: u.id,
           class: "ss-file-out"
         }, [
@@ -2352,9 +2353,9 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           e.createElementVNode(
             "span",
             {
-              class: e.normalizeClass(["fau-badge", i.archived ? "ok" : "warn"])
+              class: e.normalizeClass(["fau-badge", c.archived ? "ok" : "warn"])
             },
-            e.toDisplayString(i.archived ? N.$t("已签核·已归档") : N.$t("草稿—待签核")),
+            e.toDisplayString(c.archived ? m.$t("已签核·已归档") : m.$t("草稿—待签核")),
             3
             /* TEXT, CLASS */
           ),
@@ -2368,7 +2369,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm",
-            onClick: (L) => c(u)
+            onClick: (L) => i(u)
           }, [
             E[2] || (E[2] = e.createElementVNode(
               "i",
@@ -2378,7 +2379,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(N.$t("预览")),
+              e.toDisplayString(m.$t("预览")),
               1
               /* TEXT */
             )
@@ -2396,7 +2397,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(N.$t("打开")),
+              e.toDisplayString(m.$t("打开")),
               1
               /* TEXT */
             )
@@ -2414,7 +2415,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(N.$t("在文件夹中显示")),
+              e.toDisplayString(m.$t("在文件夹中显示")),
               1
               /* TEXT */
             )
@@ -2423,12 +2424,12 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         128
         /* KEYED_FRAGMENT */
       )),
-      B.value ? (e.openBlock(), e.createElementBlock("div", Na, [
+      _.value ? (e.openBlock(), e.createElementBlock("div", Na, [
         e.createElementVNode("div", Va, [
           e.createElementVNode(
             "strong",
             Ea,
-            e.toDisplayString(e.unref(Z)(B.value.title)),
+            e.toDisplayString(e.unref(Z)(_.value.title)),
             1
             /* TEXT */
           ),
@@ -2436,7 +2437,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn ghost sm",
-            onClick: E[0] || (E[0] = (u) => B.value = null)
+            onClick: E[0] || (E[0] = (u) => _.value = null)
           }, [...E[5] || (E[5] = [
             e.createElementVNode(
               "i",
@@ -2471,8 +2472,8 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 e.renderList(t.value.sheets, (u, L) => (e.openBlock(), e.createElementBlock("button", {
                   key: u.name,
                   type: "button",
-                  class: e.normalizeClass({ on: y.value === L }),
-                  onClick: (g) => y.value = L
+                  class: e.normalizeClass({ on: N.value === L }),
+                  onClick: (g) => N.value = L
                 }, e.toDisplayString(u.name), 11, fa))),
                 128
                 /* KEYED_FRAGMENT */
@@ -2487,7 +2488,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(t.value.sheets[y.value]?.rows || [], (u, L) => (e.openBlock(), e.createElementBlock("tr", { key: L }, [
+                    e.renderList(t.value.sheets[N.value]?.rows || [], (u, L) => (e.openBlock(), e.createElementBlock("tr", { key: L }, [
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
@@ -2570,29 +2571,29 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     currency: {}
   },
   emits: ["close"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = e.ref([]), n = e.ref("");
-    return e.watch(() => t.open, async (c) => {
-      if (c)
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = e.ref([]), n = e.ref("");
+    return e.watch(() => t.open, async (i) => {
+      if (i)
         try {
           r.value = await Y("thresholds.get", { modules: t.modules }), n.value = "";
         } catch (a) {
           n.value = Q.errorMessage(a);
         }
-    }, { immediate: !0 }), (c, a) => (e.openBlock(), e.createElementBlock(
+    }, { immediate: !0 }), (i, a) => (e.openBlock(), e.createElementBlock(
       e.Fragment,
       null,
       [
-        i.open ? (e.openBlock(), e.createElementBlock("div", {
+        c.open ? (e.openBlock(), e.createElementBlock("div", {
           key: 0,
           class: "fau-drawer-mask",
-          onClick: a[0] || (a[0] = (N) => y("close"))
+          onClick: a[0] || (a[0] = (m) => N("close"))
         })) : e.createCommentVNode("v-if", !0),
-        i.open ? (e.openBlock(), e.createElementBlock("aside", {
+        c.open ? (e.openBlock(), e.createElementBlock("aside", {
           key: 1,
           class: "fau-drawer",
           role: "dialog",
-          "aria-label": c.$t("判断依据"),
+          "aria-label": i.$t("判断依据"),
           "data-test": "fau-judgement-drawer"
         }, [
           e.createElementVNode("header", null, [
@@ -2605,7 +2606,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 /* CACHED */
               )),
               e.createTextVNode(
-                " " + e.toDisplayString(c.$t("判断依据")),
+                " " + e.toDisplayString(i.$t("判断依据")),
                 1
                 /* TEXT */
               )
@@ -2613,7 +2614,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             e.createElementVNode("button", {
               type: "button",
               class: "ss-btn ghost sm",
-              onClick: a[1] || (a[1] = (N) => y("close"))
+              onClick: a[1] || (a[1] = (m) => N("close"))
             }, [...a[3] || (a[3] = [
               e.createElementVNode(
                 "i",
@@ -2634,7 +2635,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(c.$t("阈值默认值来自源技能的判断框架，可在首次配置里按公司修改；原文为中文，以原文为准。")),
+                e.toDisplayString(i.$t("阈值默认值来自源技能的判断框架，可在首次配置里按公司修改；原文为中文，以原文为准。")),
                 1
                 /* TEXT */
               )
@@ -2659,21 +2660,21 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                     e.createElementVNode(
                       "th",
                       null,
-                      e.toDisplayString(c.$t("阈值")),
+                      e.toDisplayString(i.$t("阈值")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
                       Ka,
-                      e.toDisplayString(c.$t("当前值")),
+                      e.toDisplayString(i.$t("当前值")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
                       null,
-                      e.toDisplayString(c.$t("依据")),
+                      e.toDisplayString(i.$t("依据")),
                       1
                       /* TEXT */
                     )
@@ -2683,35 +2684,35 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(r.value, (N) => (e.openBlock(), e.createElementBlock("tr", {
-                      key: N.key
+                    e.renderList(r.value, (m) => (e.openBlock(), e.createElementBlock("tr", {
+                      key: m.key
                     }, [
                       e.createElementVNode("td", Aa, [
                         e.createElementVNode(
                           "div",
                           null,
-                          e.toDisplayString(e.unref(Bt)(N)),
+                          e.toDisplayString(e.unref(Bt)(m)),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode("small", {
                           class: "ss-muted",
-                          title: c.$t("以原文为准")
-                        }, e.toDisplayString(e.unref(Oe)(N)), 9, Fa)
+                          title: i.$t("以原文为准")
+                        }, e.toDisplayString(e.unref(ze)(m)), 9, Fa)
                       ]),
                       e.createElementVNode("td", Ia, [
                         e.createVNode(l, {
-                          value: e.unref(_t)(N, N.override ?? N.value)
+                          value: e.unref(_t)(m, m.override ?? m.value)
                         }, null, 8, ["value"]),
                         e.createTextVNode(
-                          " " + e.toDisplayString(e.unref(Ye)(N, i.currency || "")) + " ",
+                          " " + e.toDisplayString(e.unref(Ge)(m, c.currency || "")) + " ",
                           1
                           /* TEXT */
                         ),
-                        N.override != null ? (e.openBlock(), e.createElementBlock(
+                        m.override != null ? (e.openBlock(), e.createElementBlock(
                           "small",
                           Pa,
-                          " · " + e.toDisplayString(c.$t("已按公司覆盖")),
+                          " · " + e.toDisplayString(i.$t("已按公司覆盖")),
                           1
                           /* TEXT */
                         )) : e.createCommentVNode("v-if", !0)
@@ -2720,7 +2721,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                         e.createElementVNode(
                           "small",
                           null,
-                          e.toDisplayString(e.unref(Ge)(N)),
+                          e.toDisplayString(e.unref(He)(m)),
                           1
                           /* TEXT */
                         )
@@ -2790,10 +2791,10 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     baseLevels: {}
   },
   emits: ["changed"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = ["validate", "analyze", "draft"], n = (_) => ft().find((k) => k.key === _)?.title || _, c = e.ref(!1), a = e.ref(""), N = e.ref([]), E = e.ref(""), u = e.ref("analyze"), L = e.ref(""), g = e.ref({ name: "", title: "" }), v = e.ref([]), b = e.ref(null), h = e.computed(() => !!t.nextLevel && t.run.artifacts.length > 0 && ["ready", "signing"].includes(t.run.status)), K = e.computed(() => t.run.requiredLevels.includes("approve") && !t.baseLevels.includes("approve")), T = e.computed(() => t.company.signers.filter((_) => t.nextLevel && _.levels.includes(t.nextLevel))), z = (_) => t.active.find((k) => k.level === _ && k.decision === "approve"), S = (_) => z(_) ? "done" : t.nextLevel === _ ? "current" : "todo";
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = ["validate", "analyze", "draft"], n = (B) => ft().find((k) => k.key === B)?.title || B, i = e.ref(!1), a = e.ref(""), m = e.ref([]), E = e.ref(""), u = e.ref("analyze"), L = e.ref(""), g = e.ref({ name: "", title: "" }), v = e.ref([]), b = e.ref(null), h = e.computed(() => !!t.nextLevel && t.run.artifacts.length > 0 && ["ready", "signing"].includes(t.run.status)), K = e.computed(() => t.run.requiredLevels.includes("approve") && !t.baseLevels.includes("approve")), T = e.computed(() => t.company.signers.filter((B) => t.nextLevel && B.levels.includes(t.nextLevel))), z = (B) => t.active.find((k) => k.level === B && k.decision === "approve"), S = (B) => z(B) ? "done" : t.nextLevel === B ? "current" : "todo";
     e.watch(() => [t.nextLevel, t.run.id], () => {
-      L.value = T.value[0]?.id || "__manual", N.value = [], E.value = "", a.value = "", w();
+      L.value = T.value[0]?.id || "__manual", m.value = [], E.value = "", a.value = "", w();
     }, { immediate: !0 });
     async function w() {
       try {
@@ -2802,43 +2803,43 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         v.value = [];
       }
     }
-    function m() {
-      N.value = t.run.reminders.filter((_) => !(_.approverOnly && t.nextLevel !== "approve")).map((_) => _.id);
+    function p() {
+      m.value = t.run.reminders.filter((B) => !(B.approverOnly && t.nextLevel !== "approve")).map((B) => B.id);
     }
     function f() {
       if (L.value === "__manual") return { ...g.value };
-      const _ = t.company.signers.find((k) => k.id === L.value);
-      return _ ? { name: _.name, title: _.title } : { name: "", title: "" };
+      const B = t.company.signers.find((k) => k.id === L.value);
+      return B ? { name: B.name, title: B.title } : { name: "", title: "" };
     }
-    async function p(_) {
+    async function y(B) {
       if (t.nextLevel) {
-        c.value = !0, a.value = "";
+        i.value = !0, a.value = "";
         try {
-          const k = { runId: t.run.id, level: t.nextLevel, decision: _, signer: f(), comment: E.value, acknowledged: N.value, returnToStep: u.value };
-          await Y(t.nextLevel === "prepare" ? "signoff.submit" : "signoff.decide", k), y("changed"), await w();
+          const k = { runId: t.run.id, level: t.nextLevel, decision: B, signer: f(), comment: E.value, acknowledged: m.value, returnToStep: u.value };
+          await Y(t.nextLevel === "prepare" ? "signoff.submit" : "signoff.decide", k), N("changed"), await w();
         } catch (k) {
           a.value = Q.errorMessage(k);
         } finally {
-          c.value = !1;
+          i.value = !1;
         }
       }
     }
     async function I() {
-      c.value = !0;
+      i.value = !0;
       try {
         b.value = await Y("signoff.verify", { runId: t.run.id });
-      } catch (_) {
-        a.value = Q.errorMessage(_);
+      } catch (B) {
+        a.value = Q.errorMessage(B);
       } finally {
-        c.value = !1;
+        i.value = !1;
       }
     }
-    return (_, k) => (e.openBlock(), e.createElementBlock("div", Ma, [
+    return (B, k) => (e.openBlock(), e.createElementBlock("div", Ma, [
       e.createElementVNode("div", ja, [
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(i.run.requiredLevels, (R) => (e.openBlock(), e.createElementBlock(
+          e.renderList(c.run.requiredLevels, (R) => (e.openBlock(), e.createElementBlock(
             "div",
             {
               key: R,
@@ -2848,7 +2849,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               e.createElementVNode(
                 "strong",
                 null,
-                e.toDisplayString(_.$t(e.unref(ve)[R])),
+                e.toDisplayString(B.$t(e.unref(ve)[R])),
                 1
                 /* TEXT */
               ),
@@ -2859,18 +2860,18 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   /* TEXT */
                 ),
                 e.createVNode(l, {
-                  value: e.unref(Te)(z(R).at)
+                  value: e.unref(Le)(z(R).at)
                 }, null, 8, ["value"])
-              ])) : i.nextLevel === R ? (e.openBlock(), e.createElementBlock(
+              ])) : c.nextLevel === R ? (e.openBlock(), e.createElementBlock(
                 "small",
                 qa,
-                e.toDisplayString(_.$t("轮到这一级")),
+                e.toDisplayString(B.$t("轮到这一级")),
                 1
                 /* TEXT */
               )) : (e.openBlock(), e.createElementBlock(
                 "small",
                 Ua,
-                e.toDisplayString(_.$t("待签")),
+                e.toDisplayString(B.$t("待签")),
                 1
                 /* TEXT */
               ))
@@ -2891,12 +2892,12 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(_.$t("命中升级条件（如试算不平、跨期 > 5 万、不明扣款 > 1000），必须由批准人签核")),
+          e.toDisplayString(B.$t("命中升级条件（如试算不平、跨期 > 5 万、不明扣款 > 1000），必须由批准人签核")),
           1
           /* TEXT */
         )
       ])) : e.createCommentVNode("v-if", !0),
-      i.run.status === "returned" && i.run.returned ? (e.openBlock(), e.createElementBlock("p", Ya, [
+      c.run.status === "returned" && c.run.returned ? (e.openBlock(), e.createElementBlock("p", Ya, [
         k[10] || (k[10] = e.createElementVNode(
           "i",
           { class: "ri-arrow-go-back-line" },
@@ -2905,7 +2906,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(_.$t("{p0}退回：{p1}（回到第 {n} 步）", { p0: _.$t(e.unref(ve)[i.run.returned.level]), p1: i.run.returned.comment, n: e.unref(Se).indexOf(i.run.returned.toStep) + 1 })),
+          e.toDisplayString(B.$t("{p0}退回：{p1}（回到第 {n} 步）", { p0: B.$t(e.unref(ve)[c.run.returned.level]), p1: c.run.returned.comment, n: e.unref(Se).indexOf(c.run.returned.toStep) + 1 })),
           1
           /* TEXT */
         )
@@ -2916,7 +2917,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             e.createElementVNode(
               "span",
               null,
-              e.toDisplayString(_.$t("签核人身份（{p0}）", { p0: _.$t(e.unref(ve)[i.nextLevel]) })),
+              e.toDisplayString(B.$t("签核人身份（{p0}）", { p0: B.$t(e.unref(ve)[c.nextLevel]) })),
               1
               /* TEXT */
             ),
@@ -2940,7 +2941,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 e.createElementVNode(
                   "option",
                   Za,
-                  e.toDisplayString(_.$t("手动填写")),
+                  e.toDisplayString(B.$t("手动填写")),
                   1
                   /* TEXT */
                 )
@@ -2959,7 +2960,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 e.createElementVNode(
                   "span",
                   null,
-                  e.toDisplayString(_.$t("姓名")),
+                  e.toDisplayString(B.$t("姓名")),
                   1
                   /* TEXT */
                 ),
@@ -2985,7 +2986,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 e.createElementVNode(
                   "span",
                   null,
-                  e.toDisplayString(_.$t("岗位")),
+                  e.toDisplayString(B.$t("岗位")),
                   1
                   /* TEXT */
                 ),
@@ -3012,12 +3013,12 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             /* STABLE_FRAGMENT */
           )) : e.createCommentVNode("v-if", !0)
         ]),
-        i.run.reminders.length ? (e.openBlock(), e.createElementBlock("div", eo, [
+        c.run.reminders.length ? (e.openBlock(), e.createElementBlock("div", eo, [
           e.createElementVNode("div", to, [
             e.createElementVNode(
               "strong",
               lo,
-              e.toDisplayString(_.$t("提醒项：逐条确认「已知悉」")),
+              e.toDisplayString(B.$t("提醒项：逐条确认「已知悉」")),
               1
               /* TEXT */
             ),
@@ -3026,9 +3027,9 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               {
                 type: "button",
                 class: "ss-link",
-                onClick: m
+                onClick: p
               },
-              e.toDisplayString(_.$t("全部勾选")),
+              e.toDisplayString(B.$t("全部勾选")),
               1
               /* TEXT */
             )
@@ -3036,21 +3037,21 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(i.run.reminders, (R) => (e.openBlock(), e.createElementBlock(
+            e.renderList(c.run.reminders, (R) => (e.openBlock(), e.createElementBlock(
               "label",
               {
                 key: R.id,
-                class: e.normalizeClass(["fau-ack", { locked: R.approverOnly && i.nextLevel !== "approve" }])
+                class: e.normalizeClass(["fau-ack", { locked: R.approverOnly && c.nextLevel !== "approve" }])
               },
               [
                 e.withDirectives(e.createElementVNode("input", {
-                  "onUpdate:modelValue": k[3] || (k[3] = (d) => N.value = d),
+                  "onUpdate:modelValue": k[3] || (k[3] = (d) => m.value = d),
                   type: "checkbox",
                   value: R.id,
-                  disabled: R.approverOnly && i.nextLevel !== "approve",
+                  disabled: R.approverOnly && c.nextLevel !== "approve",
                   "data-test": `fau-ack-${R.id}`
                 }, null, 8, no), [
-                  [e.vModelCheckbox, N.value]
+                  [e.vModelCheckbox, m.value]
                 ]),
                 e.createElementVNode(
                   "span",
@@ -3062,13 +3063,13 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 R.approverOnly ? (e.openBlock(), e.createElementBlock(
                   "span",
                   oo,
-                  e.toDisplayString(_.$t("批准人确认")),
+                  e.toDisplayString(B.$t("批准人确认")),
                   1
                   /* TEXT */
                 )) : R.source === "escalation" ? (e.openBlock(), e.createElementBlock(
                   "span",
                   so,
-                  e.toDisplayString(_.$t("升级")),
+                  e.toDisplayString(B.$t("升级")),
                   1
                   /* TEXT */
                 )) : e.createCommentVNode("v-if", !0)
@@ -3084,7 +3085,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           e.createElementVNode(
             "span",
             null,
-            e.toDisplayString(i.run.reminders.length ? _.$t("意见 / 知悉理由（必填）") : _.$t("意见")),
+            e.toDisplayString(c.run.reminders.length ? B.$t("意见 / 知悉理由（必填）") : B.$t("意见")),
             1
             /* TEXT */
           ),
@@ -3102,13 +3103,13 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           ])
         ]),
         e.createElementVNode("div", io, [
-          i.nextLevel === "prepare" ? (e.openBlock(), e.createElementBlock("button", {
+          c.nextLevel === "prepare" ? (e.openBlock(), e.createElementBlock("button", {
             key: 0,
             type: "button",
             class: "ss-btn primary",
-            disabled: c.value,
+            disabled: i.value,
             "data-test": "fau-sign-prepare",
-            onClick: k[5] || (k[5] = (R) => p("approve"))
+            onClick: k[5] || (k[5] = (R) => y("approve"))
           }, [
             k[11] || (k[11] = e.createElementVNode(
               "i",
@@ -3118,7 +3119,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(_.$t("编制签核")),
+              e.toDisplayString(B.$t("编制签核")),
               1
               /* TEXT */
             )
@@ -3129,9 +3130,9 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: c.value,
+                disabled: i.value,
                 "data-test": "fau-sign-approve",
-                onClick: k[6] || (k[6] = (R) => p("approve"))
+                onClick: k[6] || (k[6] = (R) => y("approve"))
               }, [
                 k[12] || (k[12] = e.createElementVNode(
                   "i",
@@ -3141,7 +3142,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(_.$t("通过（{p0}）", { p0: _.$t(e.unref(ve)[i.nextLevel]) })),
+                  e.toDisplayString(B.$t("通过（{p0}）", { p0: B.$t(e.unref(ve)[c.nextLevel]) })),
                   1
                   /* TEXT */
                 )
@@ -3157,7 +3158,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 e.createElementVNode(
                   "span",
                   null,
-                  e.toDisplayString(_.$t("退回到")),
+                  e.toDisplayString(B.$t("退回到")),
                   1
                   /* TEXT */
                 ),
@@ -3174,7 +3175,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                       e.renderList(r, (R) => e.createElementVNode("option", {
                         key: R,
                         value: R
-                      }, e.toDisplayString(_.$t("第 {n} 步", { n: e.unref(Se).indexOf(R) + 1 })) + " · " + e.toDisplayString(n(R)), 9, po)),
+                      }, e.toDisplayString(B.$t("第 {n} 步", { n: e.unref(Se).indexOf(R) + 1 })) + " · " + e.toDisplayString(n(R)), 9, po)),
                       64
                       /* STABLE_FRAGMENT */
                     ))
@@ -3188,9 +3189,9 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn danger",
-                disabled: c.value,
+                disabled: i.value,
                 "data-test": "fau-sign-return",
-                onClick: k[8] || (k[8] = (R) => p("return"))
+                onClick: k[8] || (k[8] = (R) => y("return"))
               }, [
                 k[13] || (k[13] = e.createElementVNode(
                   "i",
@@ -3200,7 +3201,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(_.$t("退回")),
+                  e.toDisplayString(B.$t("退回")),
                   1
                   /* TEXT */
                 )
@@ -3224,7 +3225,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             /* TEXT */
           )
         ])) : e.createCommentVNode("v-if", !0)
-      ])) : i.run.artifacts.length ? i.run.status === "archived" ? (e.openBlock(), e.createElementBlock("p", Eo, [
+      ])) : c.run.artifacts.length ? c.run.status === "archived" ? (e.openBlock(), e.createElementBlock("p", Eo, [
         k[17] || (k[17] = e.createElementVNode(
           "i",
           { class: "ri-shield-check-line" },
@@ -3233,7 +3234,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(_.$t("各级签核完成，已归档")),
+          e.toDisplayString(B.$t("各级签核完成，已归档")),
           1
           /* TEXT */
         )
@@ -3246,7 +3247,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(_.$t("还没有生成底稿，不能签核")),
+          e.toDisplayString(B.$t("还没有生成底稿，不能签核")),
           1
           /* TEXT */
         )
@@ -3255,14 +3256,14 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         e.createElementVNode(
           "strong",
           vo,
-          e.toDisplayString(_.$t("签核历史")),
+          e.toDisplayString(B.$t("签核历史")),
           1
           /* TEXT */
         ),
         e.createElementVNode("button", {
           type: "button",
           class: "ss-btn sm",
-          disabled: c.value,
+          disabled: i.value,
           "data-test": "fau-verify",
           onClick: I
         }, [
@@ -3274,7 +3275,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             /* CACHED */
           )),
           e.createTextVNode(
-            e.toDisplayString(_.$t("校验签核")),
+            e.toDisplayString(B.$t("校验签核")),
             1
             /* TEXT */
           )
@@ -3328,35 +3329,35 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               e.createElementVNode(
                 "th",
                 null,
-                e.toDisplayString(_.$t("签核级别")),
+                e.toDisplayString(B.$t("签核级别")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "th",
                 null,
-                e.toDisplayString(_.$t("决定")),
+                e.toDisplayString(B.$t("决定")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "th",
                 null,
-                e.toDisplayString(_.$t("签核人")),
+                e.toDisplayString(B.$t("签核人")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "th",
                 null,
-                e.toDisplayString(_.$t("签核时间")),
+                e.toDisplayString(B.$t("签核时间")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "th",
                 null,
-                e.toDisplayString(_.$t("意见")),
+                e.toDisplayString(B.$t("意见")),
                 1
                 /* TEXT */
               )
@@ -3376,20 +3377,20 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(_.$t(e.unref(ve)[R.level])),
+                    e.toDisplayString(B.$t(e.unref(ve)[R.level])),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("td", null, [
                     e.createTextVNode(
-                      e.toDisplayString(R.decision === "approve" ? _.$t("通过") : _.$t("退回")),
+                      e.toDisplayString(R.decision === "approve" ? B.$t("通过") : B.$t("退回")),
                       1
                       /* TEXT */
                     ),
                     R.sodWaived ? (e.openBlock(), e.createElementBlock(
                       "span",
                       _o,
-                      e.toDisplayString(_.$t("职责未分离")),
+                      e.toDisplayString(B.$t("职责未分离")),
                       1
                       /* TEXT */
                     )) : e.createCommentVNode("v-if", !0)
@@ -3403,7 +3404,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   ),
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: e.unref(Te)(R.at)
+                      value: e.unref(Le)(R.at)
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode(
@@ -3439,9 +3440,9 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
   props: {
     report: {}
   },
-  setup(i) {
-    return (B, t) => (e.openBlock(), e.createElementBlock("div", Do, [
-      i.report ? (e.openBlock(), e.createElementBlock(
+  setup(c) {
+    return (_, t) => (e.openBlock(), e.createElementBlock("div", Do, [
+      c.report ? (e.openBlock(), e.createElementBlock(
         e.Fragment,
         { key: 1 },
         [
@@ -3449,37 +3450,37 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             e.createElementVNode(
               "span",
               {
-                class: e.normalizeClass(["fau-badge", i.report.blockers.length ? "bad" : "ok"])
+                class: e.normalizeClass(["fau-badge", c.report.blockers.length ? "bad" : "ok"])
               },
-              e.toDisplayString(B.$t("阻断项 {n}", { n: i.report.blockers.length })),
+              e.toDisplayString(_.$t("阻断项 {n}", { n: c.report.blockers.length })),
               3
               /* TEXT, CLASS */
             ),
             e.createElementVNode(
               "span",
               {
-                class: e.normalizeClass(["fau-badge", i.report.warnings.length ? "warn" : "muted"])
+                class: e.normalizeClass(["fau-badge", c.report.warnings.length ? "warn" : "muted"])
               },
-              e.toDisplayString(B.$t("提醒项 {n}", { n: i.report.warnings.length })),
+              e.toDisplayString(_.$t("提醒项 {n}", { n: c.report.warnings.length })),
               3
               /* TEXT, CLASS */
             )
           ]),
-          i.report.checks.length ? (e.openBlock(), e.createElementBlock("div", To, [
+          c.report.checks.length ? (e.openBlock(), e.createElementBlock("div", To, [
             e.createElementVNode("table", Lo, [
               e.createElementVNode("thead", null, [
                 e.createElementVNode("tr", null, [
                   e.createElementVNode(
                     "th",
                     null,
-                    e.toDisplayString(B.$t("检查项")),
+                    e.toDisplayString(_.$t("检查项")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "th",
                     null,
-                    e.toDisplayString(B.$t("结果")),
+                    e.toDisplayString(_.$t("结果")),
                     1
                     /* TEXT */
                   )
@@ -3489,17 +3490,17 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(i.report.checks, (y) => (e.openBlock(), e.createElementBlock(
+                  e.renderList(c.report.checks, (N) => (e.openBlock(), e.createElementBlock(
                     "tr",
                     {
-                      key: y.id,
-                      class: e.normalizeClass({ bad: !y.ok && y.level === "block", warn: !y.ok && y.level === "warn" })
+                      key: N.id,
+                      class: e.normalizeClass({ bad: !N.ok && N.level === "block", warn: !N.ok && N.level === "warn" })
                     },
                     [
                       e.createElementVNode(
                         "td",
                         Ko,
-                        e.toDisplayString(e.unref(Z)(y.message)),
+                        e.toDisplayString(e.unref(Z)(N.message)),
                         1
                         /* TEXT */
                       ),
@@ -3507,9 +3508,9 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                         e.createElementVNode(
                           "span",
                           {
-                            class: e.normalizeClass(y.ok ? "fau-true" : "fau-false")
+                            class: e.normalizeClass(N.ok ? "fau-true" : "fau-false")
                           },
-                          e.toDisplayString(y.ok ? "TRUE" : "FALSE"),
+                          e.toDisplayString(N.ok ? "TRUE" : "FALSE"),
                           3
                           /* TEXT, CLASS */
                         )
@@ -3527,14 +3528,14 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList({ block: i.report.blockers, warn: i.report.warnings }, (y, r) => (e.openBlock(), e.createElementBlock("ul", {
+            e.renderList({ block: c.report.blockers, warn: c.report.warnings }, (N, r) => (e.openBlock(), e.createElementBlock("ul", {
               key: r,
               class: "fau-issues"
             }, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(y, (n) => (e.openBlock(), e.createElementBlock(
+                e.renderList(N, (n) => (e.openBlock(), e.createElementBlock(
                   "li",
                   {
                     key: n.id,
@@ -3559,7 +3560,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                     ),
                     n.rows?.length ? (e.openBlock(), e.createElementBlock("small", Fo, [
                       e.createTextVNode(
-                        e.toDisplayString(B.$t("行号")) + ": ",
+                        e.toDisplayString(_.$t("行号")) + ": ",
                         1
                         /* TEXT */
                       ),
@@ -3590,7 +3591,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(B.$t("还没有校验结果")),
+          e.toDisplayString(_.$t("还没有校验结果")),
           1
           /* TEXT */
         )
@@ -3666,8 +3667,8 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     def: {}
   },
   emits: ["changed"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = ye.useRouter(), n = e.computed(() => t.run.result), c = e.computed(() => ["signing", "archived", "void"].includes(t.run.status)), a = e.computed(() => (n.value?.rollForward || []).filter((S) => S.unexplained !== 0).length), N = e.computed(() => t.def.reuse || []), E = e.ref(!1), u = e.ref(""), L = { ok: s.i18nKey("通过"), warn: s.i18nKey("提醒"), fail: s.i18nKey("不通过"), pending: s.i18nKey("待评") }, g = {
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = ye.useRouter(), n = e.computed(() => t.run.result), i = e.computed(() => ["signing", "archived", "void"].includes(t.run.status)), a = e.computed(() => (n.value?.rollForward || []).filter((S) => S.unexplained !== 0).length), m = e.computed(() => t.def.reuse || []), E = e.ref(!1), u = e.ref(""), L = { ok: s.i18nKey("通过"), warn: s.i18nKey("提醒"), fail: s.i18nKey("不通过"), pending: s.i18nKey("待评") }, g = {
       trial: s.i18nKey("试算平衡"),
       bs: s.i18nKey("资产 = 负债 + 所有者权益"),
       np_retained: s.i18nKey("净利润 = 未分配利润本期增加"),
@@ -3675,10 +3676,10 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       opening: s.i18nKey("期初 = 上期期末"),
       movement: s.i18nKey("序时账发生额 = 余额表本期发生")
     }, v = { omitted: s.i18nKey("漏做"), early: s.i18nKey("提前"), late: s.i18nKey("延迟") }, b = { preparer: s.i18nKey("编制人"), reviewer: s.i18nKey("复核人"), approver: s.i18nKey("批准人") }, h = { none: s.i18nKey("未写说明"), verified: s.i18nKey("已核实"), unverified: s.i18nKey("未核实"), unknown: s.i18nKey("原因不明，待主管确认") }, K = { none: "muted", verified: "ok", unverified: "bad", unknown: "warn" };
-    async function T(S, w, m) {
+    async function T(S, w, p) {
       E.value = !0, u.value = "";
       try {
-        await Y("close.checklist.update", { runId: t.run.id, itemId: S, mark: w, evidence: m }), y("changed");
+        await Y("close.checklist.update", { runId: t.run.id, itemId: S, mark: w, evidence: p }), N("changed");
       } catch (f) {
         u.value = Q.errorMessage(f);
       } finally {
@@ -3691,7 +3692,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         const S = await Y("close.policyTemplate", { locale: t.run.outputLocale });
         await Y("artifact.reveal", { path: S.path });
       } catch (S) {
-        Ke.useNotificationStore().error(Q.errorMessage(S));
+        Ae.useNotificationStore().error(Q.errorMessage(S));
       } finally {
         E.value = !1;
       }
@@ -3725,10 +3726,10 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(n.value.checklist.reasons, (m, f) => (e.openBlock(), e.createElementBlock(
+            e.renderList(n.value.checklist.reasons, (p, f) => (e.openBlock(), e.createElementBlock(
               "li",
               { key: f },
-              e.toDisplayString(e.unref(Z)(m)),
+              e.toDisplayString(e.unref(Z)(p)),
               1
               /* TEXT */
             ))),
@@ -3781,11 +3782,11 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(n.value.checklist.items, (m, f) => (e.openBlock(), e.createElementBlock(
+                e.renderList(n.value.checklist.items, (p, f) => (e.openBlock(), e.createElementBlock(
                   "tr",
                   {
-                    key: m.id,
-                    class: e.normalizeClass({ bad: m.mark === "fail", warn: m.mark === "warn" })
+                    key: p.id,
+                    class: e.normalizeClass({ bad: p.mark === "fail", warn: p.mark === "warn" })
                   },
                   [
                     e.createElementVNode(
@@ -3797,11 +3798,11 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                     ),
                     e.createElementVNode("td", Uo, [
                       e.createTextVNode(
-                        e.toDisplayString(e.unref(Z)(m.label)) + " ",
+                        e.toDisplayString(e.unref(Z)(p.label)) + " ",
                         1
                         /* TEXT */
                       ),
-                      m.critical ? (e.openBlock(), e.createElementBlock(
+                      p.critical ? (e.openBlock(), e.createElementBlock(
                         "span",
                         Wo,
                         e.toDisplayString(S.$t("关键项")),
@@ -3812,43 +3813,43 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                     e.createElementVNode(
                       "td",
                       null,
-                      e.toDisplayString(m.auto ? S.$t("自动") : S.$t("人工")),
+                      e.toDisplayString(p.auto ? S.$t("自动") : S.$t("人工")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode("td", null, [
                       e.createElementVNode("select", {
-                        value: m.mark,
-                        disabled: c.value || E.value,
-                        "data-test": `fau-mark-${m.id}`,
-                        onChange: (p) => T(m.id, p.target.value, m.evidence)
+                        value: p.mark,
+                        disabled: i.value || E.value,
+                        "data-test": `fau-mark-${p.id}`,
+                        onChange: (y) => T(p.id, y.target.value, p.evidence)
                       }, [
                         (e.openBlock(), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList(L, (p, I) => e.createElementVNode("option", {
+                          e.renderList(L, (y, I) => e.createElementVNode("option", {
                             key: I,
                             value: I
-                          }, e.toDisplayString(S.$t(p)), 9, Go)),
+                          }, e.toDisplayString(S.$t(y)), 9, Go)),
                           64
                           /* STABLE_FRAGMENT */
                         ))
                       ], 40, Yo)
                     ]),
                     e.createElementVNode("td", Ho, [
-                      m.note ? (e.openBlock(), e.createElementBlock(
+                      p.note ? (e.openBlock(), e.createElementBlock(
                         "span",
                         Qo,
-                        e.toDisplayString(e.unref(Z)(m.note)),
+                        e.toDisplayString(e.unref(Z)(p.note)),
                         1
                         /* TEXT */
                       )) : e.createCommentVNode("v-if", !0),
-                      m.auto ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("input", {
+                      p.auto ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("input", {
                         key: 1,
-                        value: m.evidence || "",
-                        disabled: c.value || E.value,
+                        value: p.evidence || "",
+                        disabled: i.value || E.value,
                         placeholder: S.$t("证据（凭证号、文件名…）"),
-                        onChange: (p) => T(m.id, m.mark, p.target.value)
+                        onChange: (y) => T(p.id, p.mark, y.target.value)
                       }, null, 40, Jo))
                     ])
                   ],
@@ -4026,14 +4027,14 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(n.value.trial.checks, (m) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: m.id,
-                  class: e.normalizeClass({ bad: !m.ok }),
-                  "data-test": `fau-tie-${m.id}`
+                e.renderList(n.value.trial.checks, (p) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: p.id,
+                  class: e.normalizeClass({ bad: !p.ok }),
+                  "data-test": `fau-tie-${p.id}`
                 }, [
                   e.createElementVNode("td", Ns, [
                     e.createTextVNode(
-                      e.toDisplayString(S.$t(g[m.id] || m.id)),
+                      e.toDisplayString(S.$t(g[p.id] || p.id)),
                       1
                       /* TEXT */
                     ),
@@ -4047,33 +4048,33 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                     e.createElementVNode(
                       "small",
                       Vs,
-                      e.toDisplayString(e.unref(Z)(m.message)),
+                      e.toDisplayString(e.unref(Z)(p.message)),
                       1
                       /* TEXT */
                     )
                   ]),
                   e.createElementVNode("td", Es, [
                     e.createVNode(l, {
-                      cents: m.left
+                      cents: p.left
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", ks, [
                     e.createVNode(l, {
-                      cents: m.right
+                      cents: p.right
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", vs, [
                     e.createVNode(l, {
-                      cents: m.diff
+                      cents: p.diff
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", null, [
                     e.createElementVNode(
                       "span",
                       {
-                        class: e.normalizeClass(m.ok ? "fau-true" : "fau-false")
+                        class: e.normalizeClass(p.ok ? "fau-true" : "fau-false")
                       },
-                      e.toDisplayString(m.ok ? "TRUE" : "FALSE"),
+                      e.toDisplayString(p.ok ? "TRUE" : "FALSE"),
                       3
                       /* TEXT, CLASS */
                     )
@@ -4181,60 +4182,60 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(n.value.crossPeriod, (m) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: m.id,
-                  class: e.normalizeClass({ warn: m.adjustThisPeriod, bad: m.approval === "approver" }),
-                  "data-test": `fau-cross-${m.voucherNo}`
+                e.renderList(n.value.crossPeriod, (p) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: p.id,
+                  class: e.normalizeClass({ warn: p.adjustThisPeriod, bad: p.approval === "approver" }),
+                  "data-test": `fau-cross-${p.voucherNo}`
                 }, [
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: m.voucherNo
+                      value: p.voucherNo
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: m.date
+                      value: p.date
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: m.businessDate
+                      value: p.businessDate
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: m.accountCode
+                      value: p.accountCode
                     }, null, 8, ["value"]),
                     e.createTextVNode(
-                      " " + e.toDisplayString(m.accountName),
+                      " " + e.toDisplayString(p.accountName),
                       1
                       /* TEXT */
                     )
                   ]),
                   e.createElementVNode("td", bs, [
                     e.createVNode(l, {
-                      cents: m.amount
+                      cents: p.amount
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(S.$t(v[m.type])),
+                    e.toDisplayString(S.$t(v[p.type])),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("td", Ss, [
                     e.createVNode(l, {
-                      value: m.days
+                      value: p.days
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode("td", null, [
                     e.createTextVNode(
-                      e.toDisplayString(S.$t(b[m.approval])),
+                      e.toDisplayString(S.$t(b[p.approval])),
                       1
                       /* TEXT */
                     ),
-                    m.adjustThisPeriod ? (e.openBlock(), e.createElementBlock(
+                    p.adjustThisPeriod ? (e.openBlock(), e.createElementBlock(
                       "span",
                       Ds,
                       e.toDisplayString(S.$t("必须本期调整")),
@@ -4245,7 +4246,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   e.createElementVNode(
                     "td",
                     Cs,
-                    e.toDisplayString(e.unref(Z)(m.advice)),
+                    e.toDisplayString(e.unref(Z)(p.advice)),
                     1
                     /* TEXT */
                   )
@@ -4301,11 +4302,11 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(N.value, (m) => (e.openBlock(), e.createElementBlock("button", {
-              key: m.workbench,
+            e.renderList(m.value, (p) => (e.openBlock(), e.createElementBlock("button", {
+              key: p.workbench,
               type: "button",
               class: "ss-btn sm ghost",
-              onClick: (f) => e.unref(r).push(m.route || "/")
+              onClick: (f) => e.unref(r).push(p.route || "/")
             }, [
               w[4] || (w[4] = e.createElementVNode(
                 "i",
@@ -4315,7 +4316,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(S.$t(m.label || "")),
+                e.toDisplayString(S.$t(p.label || "")),
                 1
                 /* TEXT */
               )
@@ -4397,58 +4398,58 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(n.value.accruals, (m) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: m.policyId,
-                  "data-test": `fau-accrual-${m.policyId}`
+                e.renderList(n.value.accruals, (p) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: p.policyId,
+                  "data-test": `fau-accrual-${p.policyId}`
                 }, [
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: m.policyId
+                      value: p.policyId
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(m.description),
+                    e.toDisplayString(p.description),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: m.expenseAccount
+                      value: p.expenseAccount
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: m.liabilityAccount
+                      value: p.liabilityAccount
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode("td", Rs, [
                     e.createVNode(l, {
-                      cents: m.due
+                      cents: p.due
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", qs, [
                     e.createVNode(l, {
-                      cents: m.booked
+                      cents: p.booked
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", Us, [
                     e.createElementVNode("strong", null, [
                       e.createVNode(l, {
-                        cents: m.accrual
+                        cents: p.accrual
                       }, null, 8, ["cents"])
                     ])
                   ]),
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: m.formula
+                      value: p.formula
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(m.autoReverse ? S.$t("是") : S.$t("否")),
+                    e.toDisplayString(p.autoReverse ? S.$t("是") : S.$t("否")),
                     1
                     /* TEXT */
                   )
@@ -4571,65 +4572,65 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(n.value.rollForward, (m) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: m.accountCode,
-                  class: e.normalizeClass({ bad: m.unexplained !== 0 }),
-                  "data-test": `fau-roll-${m.accountCode}`
+                e.renderList(n.value.rollForward, (p) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: p.accountCode,
+                  class: e.normalizeClass({ bad: p.unexplained !== 0 }),
+                  "data-test": `fau-roll-${p.accountCode}`
                 }, [
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: m.accountCode
+                      value: p.accountCode
                     }, null, 8, ["value"]),
                     e.createTextVNode(
-                      " " + e.toDisplayString(m.accountName),
+                      " " + e.toDisplayString(p.accountName),
                       1
                       /* TEXT */
                     )
                   ]),
                   e.createElementVNode("td", sr, [
                     e.createVNode(l, {
-                      cents: m.opening
+                      cents: p.opening
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", rr, [
                     e.createVNode(l, {
-                      cents: m.additions
+                      cents: p.additions
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", ir, [
                     e.createVNode(l, {
-                      cents: m.accruals
+                      cents: p.accruals
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", cr, [
                     e.createVNode(l, {
-                      cents: m.reversals
+                      cents: p.reversals
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", dr, [
                     e.createVNode(l, {
-                      cents: m.payments
+                      cents: p.payments
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", ur, [
                     e.createVNode(l, {
-                      cents: m.other + m.reclass + m.fx
+                      cents: p.other + p.reclass + p.fx
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", mr, [
                     e.createVNode(l, {
-                      cents: m.computed
+                      cents: p.computed
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", pr, [
                     e.createVNode(l, {
-                      cents: m.closing
+                      cents: p.closing
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", yr, [
                     e.createElementVNode("strong", null, [
                       e.createVNode(l, {
-                        cents: m.unexplained
+                        cents: p.unexplained
                       }, null, 8, ["cents"])
                     ])
                   ])
@@ -4715,45 +4716,45 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(n.value.flux, (m) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: m.accountCode,
-                  class: e.normalizeClass({ bad: m.commentaryStatus === "unverified" }),
-                  "data-test": `fau-flux-${m.accountCode}`
+                e.renderList(n.value.flux, (p) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: p.accountCode,
+                  class: e.normalizeClass({ bad: p.commentaryStatus === "unverified" }),
+                  "data-test": `fau-flux-${p.accountCode}`
                 }, [
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: m.accountCode
+                      value: p.accountCode
                     }, null, 8, ["value"]),
                     e.createTextVNode(
-                      " " + e.toDisplayString(m.accountName),
+                      " " + e.toDisplayString(p.accountName),
                       1
                       /* TEXT */
                     )
                   ]),
                   e.createElementVNode("td", $r, [
                     e.createVNode(l, {
-                      cents: m.current
+                      cents: p.current
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", _r, [
                     e.createVNode(l, {
-                      cents: m.prior
+                      cents: p.prior
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", Br, [
                     e.createVNode(l, {
-                      cents: m.diffPrior
+                      cents: p.diffPrior
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", br, [
                     e.createVNode(l, {
-                      ratio: m.diffPriorPct
+                      ratio: p.diffPriorPct
                     }, null, 8, ["ratio"])
                   ]),
                   e.createElementVNode(
                     "td",
                     Sr,
-                    e.toDisplayString(m.commentary),
+                    e.toDisplayString(p.commentary),
                     1
                     /* TEXT */
                   ),
@@ -4761,9 +4762,9 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                     e.createElementVNode(
                       "span",
                       {
-                        class: e.normalizeClass(["fau-badge", K[m.commentaryStatus]])
+                        class: e.normalizeClass(["fau-badge", K[p.commentaryStatus]])
                       },
-                      e.toDisplayString(S.$t(h[m.commentaryStatus])),
+                      e.toDisplayString(S.$t(h[p.commentaryStatus])),
                       3
                       /* TEXT, CLASS */
                     )
@@ -4799,16 +4800,16 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(n.value.openItems, (m) => (e.openBlock(), e.createElementBlock("li", {
-              key: m.id
+            e.renderList(n.value.openItems, (p) => (e.openBlock(), e.createElementBlock("li", {
+              key: p.id
             }, [
               e.createTextVNode(
-                e.toDisplayString(m.description) + " · ",
+                e.toDisplayString(p.description) + " · ",
                 1
                 /* TEXT */
               ),
               e.createVNode(l, {
-                cents: m.amount
+                cents: p.amount
               }, null, 8, ["cents"])
             ]))),
             128
@@ -4860,8 +4861,8 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     run: {}
   },
   emits: ["open-run"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = e.computed(() => t.run.result), n = e.ref(!1), c = e.ref(""), a = ue.FAU_BANK_CLASSES, N = s.listSeparator(), E = ue.FAU_GLSUB_CLASSES, u = {
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = e.computed(() => t.run.result), n = e.ref(!1), i = e.ref(""), a = ue.FAU_BANK_CLASSES, m = s.listSeparator(), E = ue.FAU_GLSUB_CLASSES, u = {
       matched: s.i18nKey("已达"),
       book_out_bank_not: s.i18nKey("企业已付银行未付"),
       book_in_bank_not: s.i18nKey("企业已收银行未收"),
@@ -4888,12 +4889,12 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       unknown_deduction: s.i18nKey("不明扣款")
     }, v = (h) => h.items.some((K) => K.cls !== "matched");
     async function b(h) {
-      n.value = !0, c.value = "";
+      n.value = !0, i.value = "";
       try {
         const K = await Y("recon.break.retrace", { runId: t.run.id, breakId: h });
-        y("open-run", K.id);
+        N("open-run", K.id);
       } catch (K) {
-        c.value = Q.errorMessage(K);
+        i.value = Q.errorMessage(K);
       } finally {
         n.value = !1;
       }
@@ -5505,7 +5506,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(T.causes.map((z) => h.$t(g[z] || z)).join(e.unref(N))),
+                    e.toDisplayString(T.causes.map((z) => h.$t(g[z] || z)).join(e.unref(m))),
                     1
                     /* TEXT */
                   ),
@@ -5553,7 +5554,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                     ])) : e.createCommentVNode("v-if", !0)
                   ]),
                   e.createElementVNode("td", null, [
-                    i.run.modeId === "glsub" ? (e.openBlock(), e.createElementBlock("button", {
+                    c.run.modeId === "glsub" ? (e.openBlock(), e.createElementBlock("button", {
                       key: 0,
                       type: "button",
                       class: "ss-btn sm ghost",
@@ -5581,7 +5582,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             ])
           ])
         ]),
-        c.value ? (e.openBlock(), e.createElementBlock("p", Ti, [
+        i.value ? (e.openBlock(), e.createElementBlock("p", Ti, [
           K[8] || (K[8] = e.createElementVNode(
             "i",
             { class: "ri-error-warning-line" },
@@ -5590,7 +5591,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             /* CACHED */
           )),
           e.createTextVNode(
-            e.toDisplayString(c.value),
+            e.toDisplayString(i.value),
             1
             /* TEXT */
           )
@@ -5620,9 +5621,9 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
   props: {
     run: {}
   },
-  setup(i) {
-    const B = i, t = e.computed(() => B.run.result), y = { green: s.i18nKey("绿灯"), yellow: s.i18nKey("黄灯"), red: s.i18nKey("红灯") }, r = { green: "ok", yellow: "warn", red: "bad" }, n = { verified: s.i18nKey("已核实"), unverified: s.i18nKey("未核实"), unknown: s.i18nKey("原因不明，待主管确认") }, c = ["amount", "pct", "num"], a = (u) => typeof u == "number" ? u : null;
-    function N(u, L) {
+  setup(c) {
+    const _ = c, t = e.computed(() => _.run.result), N = { green: s.i18nKey("绿灯"), yellow: s.i18nKey("黄灯"), red: s.i18nKey("红灯") }, r = { green: "ok", yellow: "warn", red: "bad" }, n = { verified: s.i18nKey("已核实"), unverified: s.i18nKey("未核实"), unknown: s.i18nKey("原因不明，待主管确认") }, i = ["amount", "pct", "num"], a = (u) => typeof u == "number" ? u : null;
+    function m(u, L) {
       const g = Math.max(...u.series.flatMap((v) => v.values.map((b) => Math.abs(b ?? 0))), 0);
       return g && L != null ? Math.max(1, Math.round(Math.abs(L) / g * 75)) : 0;
     }
@@ -5657,7 +5658,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 {
                   class: e.normalizeClass(["fau-badge", r[g.level]])
                 },
-                e.toDisplayString(u.$t(y[g.level])),
+                e.toDisplayString(u.$t(N[g.level])),
                 3
                 /* TEXT, CLASS */
               ),
@@ -5777,7 +5778,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                         "span",
                         {
                           class: e.normalizeClass(["bar", [`s${K % 3}`, { neg: (h.values[b] ?? 0) < 0 }]]),
-                          style: e.normalizeStyle({ inlineSize: `${N(g, h.values[b])}%` })
+                          style: e.normalizeStyle({ inlineSize: `${m(g, h.values[b])}%` })
                         },
                         null,
                         6
@@ -5840,7 +5841,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                       "th",
                       {
                         key: v.key,
-                        class: e.normalizeClass({ num: c.includes(v.kind) })
+                        class: e.normalizeClass({ num: i.includes(v.kind) })
                       },
                       e.toDisplayString(u.$t(v.label)),
                       3
@@ -5867,7 +5868,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                         "td",
                         {
                           key: h.key,
-                          class: e.normalizeClass({ num: c.includes(h.kind), wrap: h.kind === "text" && String(v[h.key] ?? "").length > 40 })
+                          class: e.normalizeClass({ num: i.includes(h.kind), wrap: h.kind === "text" && String(v[h.key] ?? "").length > 40 })
                         },
                         [
                           h.kind === "amount" ? (e.openBlock(), e.createBlock(l, {
@@ -5885,7 +5886,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                               key: 3,
                               class: e.normalizeClass(["fau-badge", r[String(v[h.key])]])
                             },
-                            e.toDisplayString(u.$t(y[String(v[h.key])] || String(v[h.key]))),
+                            e.toDisplayString(u.$t(N[String(v[h.key])] || String(v[h.key]))),
                             3
                             /* TEXT, CLASS */
                           )) : h.kind === "label" ? (e.openBlock(), e.createElementBlock(
@@ -6045,8 +6046,8 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     editable: { type: Boolean }
   },
   emits: ["save"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = {
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = {
       vat_lines: s.i18nKey("销项与进项明细"),
       iit_rows: s.i18nKey("工资个税明细"),
       wht_payments: s.i18nKey("向非居民付款明细"),
@@ -6054,42 +6055,42 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       disclosure_events: s.i18nKey("重大事项与交易清单"),
       rp_transactions: s.i18nKey("关联交易明细"),
       tp_comparables: s.i18nKey("可比公司财务数据")
-    }, n = Object.keys(r), c = { key: "period", label: s.i18nKey("税期（不填用项目期间；YYYY-MM / YYYY-Qn / YYYY）"), type: "text", placeholder: "2026-09" }, a = (p, I) => ({ key: p, label: I, type: "number" }), N = (p, I) => ({ key: p, label: I, type: "bool", dflt: !1 }), E = {
+    }, n = Object.keys(r), i = { key: "period", label: s.i18nKey("税期（不填用项目期间；YYYY-MM / YYYY-Qn / YYYY）"), type: "text", placeholder: "2026-09" }, a = (y, I) => ({ key: y, label: I, type: "number" }), m = (y, I) => ({ key: y, label: I, type: "bool", dflt: !1 }), E = {
       cn: [
-        c,
+        i,
         { key: "taxpayerType", label: s.i18nKey("纳税人类型"), type: "select", dflt: "general", options: [{ value: "general", label: s.i18nKey("一般纳税人") }, { value: "small", label: s.i18nKey("小规模纳税人") }] },
         { key: "cityTier", label: s.i18nKey("城市维护建设税档次"), type: "select", dflt: "urban", options: [{ value: "urban", label: s.i18nKey("市区（7%）") }, { value: "county", label: s.i18nKey("县城、镇（5%）") }, { value: "other", label: s.i18nKey("其他（1%）") }] },
-        N("smallLowProfit", s.i18nKey("小型微利企业（享受所得税优惠与六税两费减半）")),
-        N("quarterly", s.i18nKey("按季申报")),
+        m("smallLowProfit", s.i18nKey("小型微利企业（享受所得税优惠与六税两费减半）")),
+        m("quarterly", s.i18nKey("按季申报")),
         a("uninvoicedSales", s.i18nKey("未开票收入（不含税）")),
         a("inputTransferOut", s.i18nKey("进项税额转出")),
         a("carriedCredit", s.i18nKey("上期留抵税额")),
         a("citPaidYtd", s.i18nKey("本年已预缴企业所得税"))
       ],
-      sa_vat: [c, a("carriedCredit", s.i18nKey("上期留抵税额")), a("priorCorrection", s.i18nKey("上期更正（补税为正，少报进项为负）"))],
-      ae_vat: [c, a("carriedCredit", s.i18nKey("上期留抵税额")), a("priorCorrection", s.i18nKey("上期更正（补税为正，少报进项为负）"))],
+      sa_vat: [i, a("carriedCredit", s.i18nKey("上期留抵税额")), a("priorCorrection", s.i18nKey("上期更正（补税为正，少报进项为负）"))],
+      ae_vat: [i, a("carriedCredit", s.i18nKey("上期留抵税额")), a("priorCorrection", s.i18nKey("上期更正（补税为正，少报进项为负）"))],
       sa_zakat: [
-        { ...c, label: s.i18nKey("会计年度（YYYY，或年末月份 YYYY-MM）"), placeholder: "2025" },
+        { ...i, label: s.i18nKey("会计年度（YYYY，或年末月份 YYYY-MM）"), placeholder: "2025" },
         { key: "zakatYearBasis", label: s.i18nKey("天课年度口径"), type: "select", dflt: "", options: [{ value: "", label: s.i18nKey("按公司档案") }, { value: "gregorian", label: s.i18nKey("公历年（按天数折算）") }, { value: "hijri", label: s.i18nKey("回历年") }] },
         { key: "saudiShare", label: s.i18nKey("沙特 / 海湾国家股东持股比例（%）"), type: "number", placeholder: "100" },
         a("profitAdjust", s.i18nKey("调整后净利润的调整额（不可扣除项为正）"))
       ],
-      sa_wht: [c],
+      sa_wht: [i],
       ae_cit: [
-        { ...c, label: s.i18nKey("税期（YYYY，或年末月份 YYYY-MM）"), placeholder: "2025" },
+        { ...i, label: s.i18nKey("税期（YYYY，或年末月份 YYYY-MM）"), placeholder: "2025" },
         a("citAdjust", s.i18nKey("纳税调整（不可扣除为正，免税收入为负）")),
-        N("smallBusinessRelief", s.i18nKey("选择适用小企业减免")),
-        N("qualifyingFreeZone", s.i18nKey("自由区合格主体"))
+        m("smallBusinessRelief", s.i18nKey("选择适用小企业减免")),
+        m("qualifyingFreeZone", s.i18nKey("自由区合格主体"))
       ],
       intl: [
-        c,
+        i,
         { key: "vatStandardRate", label: s.i18nKey("增值税 / 商品服务税标准税率（%）"), type: "number" },
         { key: "incomeTaxRate", label: s.i18nKey("所得税税率（%）"), type: "number" },
         a("taxAdjust", s.i18nKey("纳税调整（不可扣除为正，免税收入为负）")),
         a("carriedCredit", s.i18nKey("上期留抵税额"))
       ],
       disclosure: [
-        c,
+        i,
         { key: "regime", label: s.i18nKey("披露规则"), type: "select", dflt: "", options: [{ value: "", label: s.i18nKey("按公司主地区") }, { value: "cn_sse", label: s.i18nKey("中国：上交所股票上市规则") }, { value: "sa_cma", label: s.i18nKey("沙特：资本市场管理局规则") }, { value: "intl", label: s.i18nKey("国际：IAS 24 与重要性") }] },
         a("auditedTotalAssets", s.i18nKey("最近一期经审计总资产")),
         a("auditedNetAssets", s.i18nKey("最近一期经审计净资产")),
@@ -6099,7 +6100,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       local_file: [],
       benchmark: []
     }, u = [
-      c,
+      i,
       { key: "tpJurisdiction", label: s.i18nKey("按哪个地区的规定判断"), type: "select", dflt: "", options: [{ value: "", label: s.i18nKey("按公司主地区") }, { value: "CN", label: s.i18nKey("中国") }, { value: "SA", label: s.i18nKey("沙特") }, { value: "AE", label: s.i18nKey("阿联酋") }, { value: "INTL", label: s.i18nKey("国际") }] },
       { key: "pli", label: s.i18nKey("利润水平指标"), type: "select", dflt: "ncp", options: [{ value: "ncp", label: s.i18nKey("完全成本加成率") }, { value: "om", label: s.i18nKey("营业利润率") }] },
       a("testedRevenue", s.i18nKey("受测方营业收入")),
@@ -6107,11 +6108,11 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       a("testedTotalCost", s.i18nKey("受测方总成本"))
     ], L = [
       a("groupRevenue", s.i18nKey("集团合并收入")),
-      N("groupHasMasterFile", s.i18nKey("集团已准备主体文档")),
-      N("hasDisclosure", s.i18nKey("已准备关联交易披露表")),
-      N("hasMasterFile", s.i18nKey("已准备主体文档")),
-      N("hasLocalFile", s.i18nKey("已准备本地文档")),
-      N("hasCbcr", s.i18nKey("已准备国别报告")),
+      m("groupHasMasterFile", s.i18nKey("集团已准备主体文档")),
+      m("hasDisclosure", s.i18nKey("已准备关联交易披露表")),
+      m("hasMasterFile", s.i18nKey("已准备主体文档")),
+      m("hasLocalFile", s.i18nKey("已准备本地文档")),
+      m("hasCbcr", s.i18nKey("已准备国别报告")),
       a("intlCbcrThreshold", s.i18nKey("国际口径国别报告门槛（按本位币）"))
     ];
     E.local_file = [...u, ...L], E.benchmark = u;
@@ -6120,32 +6121,32 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       sa_zakat: s.i18nKey("天课基数按年末余额表逐行归类，计算结果为草稿口径，需当地专业人士复核。"),
       ae_cit: s.i18nKey("应纳税所得额 375,000 迪拉姆以内按 0%，超过部分按 9%；结果为草稿口径，需当地专业人士复核。"),
       disclosure: s.i18nKey("分母请填最近一期经审计的数字；不填时用上传的余额表计算。")
-    }, v = e.computed(() => E[t.run.modeId] || []), b = e.computed(() => g[t.run.modeId] || ""), h = e.computed(() => [...new Set(ie.inputsForMode(t.def, t.run.modeId).map((p) => p.kind).filter((p) => n.includes(p)))]), K = e.reactive({}), T = e.ref(!1), z = e.ref(!1), S = e.ref("");
+    }, v = e.computed(() => E[t.run.modeId] || []), b = e.computed(() => g[t.run.modeId] || ""), h = e.computed(() => [...new Set(ie.inputsForMode(t.def, t.run.modeId).map((y) => y.kind).filter((y) => n.includes(y)))]), K = e.reactive({}), T = e.ref(!1), z = e.ref(!1), S = e.ref("");
     function w() {
-      for (const p of Object.keys(K)) delete K[p];
-      for (const p of v.value) {
-        const I = t.run.params[p.key];
-        K[p.key] = I === void 0 ? p.dflt ?? "" : p.key === "saudiShare" && typeof I == "number" && I <= 1 ? I * 100 : I;
+      for (const y of Object.keys(K)) delete K[y];
+      for (const y of v.value) {
+        const I = t.run.params[y.key];
+        K[y.key] = I === void 0 ? y.dflt ?? "" : y.key === "saudiShare" && typeof I == "number" && I <= 1 ? I * 100 : I;
       }
     }
     e.watch(() => [t.run.id, t.run.modeId, t.run.updatedAt], w, { immediate: !0 });
-    function m() {
-      const p = {};
+    function p() {
+      const y = {};
       for (const I of v.value) {
-        const _ = K[I.key];
+        const B = K[I.key];
         if (I.type === "number") {
-          const k = Number(String(_ ?? "").replace(/[,\s%]/g, ""));
-          p[I.key] = String(_ ?? "").trim() !== "" && Number.isFinite(k) ? k : "";
-        } else I.type === "bool" ? p[I.key] = !!_ : p[I.key] = String(_ ?? "").trim();
+          const k = Number(String(B ?? "").replace(/[,\s%]/g, ""));
+          y[I.key] = String(B ?? "").trim() !== "" && Number.isFinite(k) ? k : "";
+        } else I.type === "bool" ? y[I.key] = !!B : y[I.key] = String(B ?? "").trim();
       }
-      y("save", p), z.value = !0, setTimeout(() => {
+      N("save", y), z.value = !0, setTimeout(() => {
         z.value = !1;
       }, 2e3);
     }
-    async function f(p) {
+    async function f(y) {
       T.value = !0, S.value = "";
       try {
-        const I = await Y("tax.template", { kind: p, locale: t.run.outputLocale });
+        const I = await Y("tax.template", { kind: y, locale: t.run.outputLocale });
         await Y("artifact.reveal", { path: I.path });
       } catch (I) {
         S.value = Q.errorMessage(I);
@@ -6153,19 +6154,19 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         T.value = !1;
       }
     }
-    return (p, I) => (e.openBlock(), e.createElementBlock("div", rc, [
+    return (y, I) => (e.openBlock(), e.createElementBlock("div", rc, [
       e.createElementVNode("header", null, [
         e.createElementVNode(
           "strong",
           null,
-          e.toDisplayString(p.$t("申报参数")),
+          e.toDisplayString(y.$t("申报参数")),
           1
           /* TEXT */
         ),
         e.createElementVNode(
           "span",
           ic,
-          e.toDisplayString(p.$t("金额按主单位填写")),
+          e.toDisplayString(y.$t("金额按主单位填写")),
           1
           /* TEXT */
         ),
@@ -6179,13 +6180,13 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(h.value, (_) => (e.openBlock(), e.createElementBlock("button", {
-            key: _,
+          e.renderList(h.value, (B) => (e.openBlock(), e.createElementBlock("button", {
+            key: B,
             type: "button",
             class: "ss-link",
-            "data-test": `fau-tax-template-${_}`,
+            "data-test": `fau-tax-template-${B}`,
             disabled: T.value,
-            onClick: (k) => f(_)
+            onClick: (k) => f(B)
           }, [
             I[0] || (I[0] = e.createElementVNode(
               "i",
@@ -6195,7 +6196,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(p.$t("下载模板：{p0}", { p0: p.$t(r[_] || _) })),
+              e.toDisplayString(y.$t("下载模板：{p0}", { p0: y.$t(r[B] || B) })),
               1
               /* TEXT */
             )
@@ -6208,58 +6209,58 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(v.value, (_) => (e.openBlock(), e.createElementBlock(
+          e.renderList(v.value, (B) => (e.openBlock(), e.createElementBlock(
             "label",
             {
-              key: _.key,
-              class: e.normalizeClass(["ss-field", { check: _.type === "bool" }])
+              key: B.key,
+              class: e.normalizeClass(["ss-field", { check: B.type === "bool" }])
             },
             [
               e.createElementVNode(
                 "span",
                 null,
-                e.toDisplayString(p.$t(_.label)),
+                e.toDisplayString(y.$t(B.label)),
                 1
                 /* TEXT */
               ),
-              _.type === "select" ? e.withDirectives((e.openBlock(), e.createElementBlock("select", {
+              B.type === "select" ? e.withDirectives((e.openBlock(), e.createElementBlock("select", {
                 key: 0,
-                "onUpdate:modelValue": (k) => K[_.key] = k,
-                disabled: !i.editable,
-                "data-test": `fau-param-${_.key}`
+                "onUpdate:modelValue": (k) => K[B.key] = k,
+                disabled: !c.editable,
+                "data-test": `fau-param-${B.key}`
               }, [
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(_.options, (k) => (e.openBlock(), e.createElementBlock("option", {
+                  e.renderList(B.options, (k) => (e.openBlock(), e.createElementBlock("option", {
                     key: k.value,
                     value: k.value
-                  }, e.toDisplayString(p.$t(k.label)), 9, mc))),
+                  }, e.toDisplayString(y.$t(k.label)), 9, mc))),
                   128
                   /* KEYED_FRAGMENT */
                 ))
               ], 8, uc)), [
-                [e.vModelSelect, K[_.key]]
-              ]) : _.type === "bool" ? e.withDirectives((e.openBlock(), e.createElementBlock("input", {
+                [e.vModelSelect, K[B.key]]
+              ]) : B.type === "bool" ? e.withDirectives((e.openBlock(), e.createElementBlock("input", {
                 key: 1,
-                "onUpdate:modelValue": (k) => K[_.key] = k,
+                "onUpdate:modelValue": (k) => K[B.key] = k,
                 type: "checkbox",
-                disabled: !i.editable,
-                "data-test": `fau-param-${_.key}`
+                disabled: !c.editable,
+                "data-test": `fau-param-${B.key}`
               }, null, 8, pc)), [
-                [e.vModelCheckbox, K[_.key]]
+                [e.vModelCheckbox, K[B.key]]
               ]) : e.withDirectives((e.openBlock(), e.createElementBlock("input", {
                 key: 2,
-                "onUpdate:modelValue": (k) => K[_.key] = k,
-                inputmode: _.type === "number" ? "decimal" : "text",
+                "onUpdate:modelValue": (k) => K[B.key] = k,
+                inputmode: B.type === "number" ? "decimal" : "text",
                 dir: "ltr",
-                placeholder: _.placeholder || "",
-                disabled: !i.editable,
-                "data-test": `fau-param-${_.key}`
+                placeholder: B.placeholder || "",
+                disabled: !c.editable,
+                "data-test": `fau-param-${B.key}`
               }, null, 8, yc)), [
                 [
                   e.vModelText,
-                  K[_.key],
+                  K[B.key],
                   void 0,
                   { trim: !0 }
                 ]
@@ -6281,7 +6282,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(p.$t(b.value)),
+          e.toDisplayString(y.$t(b.value)),
           1
           /* TEXT */
         )
@@ -6290,9 +6291,9 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         e.createElementVNode("button", {
           type: "button",
           class: "ss-btn sm",
-          disabled: !i.editable || T.value,
+          disabled: !c.editable || T.value,
           "data-test": "fau-tax-params-save",
-          onClick: m
+          onClick: p
         }, [
           I[3] || (I[3] = e.createElementVNode(
             "i",
@@ -6302,7 +6303,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             /* CACHED */
           )),
           e.createTextVNode(
-            e.toDisplayString(p.$t("保存参数")),
+            e.toDisplayString(y.$t("保存参数")),
             1
             /* TEXT */
           )
@@ -6310,7 +6311,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         z.value ? (e.openBlock(), e.createElementBlock(
           "span",
           kc,
-          e.toDisplayString(p.$t("已保存")),
+          e.toDisplayString(y.$t("已保存")),
           1
           /* TEXT */
         )) : e.createCommentVNode("v-if", !0)
@@ -6349,9 +6350,9 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
   props: {
     findings: {}
   },
-  setup(i) {
-    const B = { info: s.i18nKey("提示"), warn: s.i18nKey("提醒"), high: s.i18nKey("高风险") };
-    return (t, y) => i.findings.length ? (e.openBlock(), e.createElementBlock("section", hc, [
+  setup(c) {
+    const _ = { info: s.i18nKey("提示"), warn: s.i18nKey("提醒"), high: s.i18nKey("高风险") };
+    return (t, N) => c.findings.length ? (e.openBlock(), e.createElementBlock("section", hc, [
       e.createElementVNode(
         "strong",
         null,
@@ -6363,7 +6364,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(i.findings, (r) => (e.openBlock(), e.createElementBlock("li", {
+          e.renderList(c.findings, (r) => (e.openBlock(), e.createElementBlock("li", {
             key: r.id,
             class: e.normalizeClass(r.level),
             "data-test": `fau-finding-${r.id}`
@@ -6373,7 +6374,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               {
                 class: e.normalizeClass(["fau-badge", r.level === "high" ? "bad" : r.level === "warn" ? "warn" : "muted"])
               },
-              e.toDisplayString(t.$t(B[r.level])),
+              e.toDisplayString(t.$t(_[r.level])),
               3
               /* TEXT, CLASS */
             ),
@@ -6393,7 +6394,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 /* TEXT */
               )) : e.createCommentVNode("v-if", !0),
               r.suggestion ? (e.openBlock(), e.createElementBlock("small", bc, [
-                y[0] || (y[0] = e.createElementVNode(
+                N[0] || (N[0] = e.createElementVNode(
                   "br",
                   null,
                   null,
@@ -6407,7 +6408,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 )
               ])) : e.createCommentVNode("v-if", !0),
               r.rows?.length ? (e.openBlock(), e.createElementBlock("small", Sc, [
-                y[1] || (y[1] = e.createElementVNode(
+                N[1] || (N[1] = e.createElementVNode(
                   "br",
                   null,
                   null,
@@ -6431,7 +6432,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       ])
     ])) : e.createCommentVNode("v-if", !0);
   }
-}), je = /* @__PURE__ */ ae(Dc, [["__scopeId", "data-v-b2a27619"]]), Cc = ["open"], wc = { class: "fau-badge muted" }, Tc = {
+}), Re = /* @__PURE__ */ ae(Dc, [["__scopeId", "data-v-b2a27619"]]), Cc = ["open"], wc = { class: "fau-badge muted" }, Tc = {
   key: 0,
   class: "fau-badge warn",
   "data-test": "fau-rules-draft"
@@ -6453,77 +6454,81 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     rules: {},
     open: { type: Boolean }
   },
-  setup(i) {
-    const B = (n) => n.translations?.[pe.currentLocale()]?.label || n.label, t = (n) => typeof n.value == "number" || /^\d{4}-\d{2}-\d{2}$/.test(String(n.value)), y = (n) => String(n.translations?.[pe.currentLocale()]?.value || n.value), r = (n) => n.source.language === pe.currentLocale().slice(0, 2) ? "" : n.source.translations?.[pe.currentLocale()] || "";
-    return (n, c) => (e.openBlock(), e.createElementBlock("details", {
+  setup(c) {
+    function _(i, a) {
+      if (!(!i || !a))
+        return i[a] ?? (a !== "zh-CN" ? i["en-US"] : void 0);
+    }
+    const t = (i) => _(i.translations, pe.currentLocale())?.label || i.label, N = (i) => typeof i.value == "number" || /^\d{4}-\d{2}-\d{2}$/.test(String(i.value)), r = (i) => String(_(i.translations, pe.currentLocale())?.value || i.value), n = (i) => i.source.language === pe.currentLocale().slice(0, 2) ? "" : _(i.source.translations, pe.currentLocale()) || "";
+    return (i, a) => (e.openBlock(), e.createElementBlock("details", {
       class: "fau-sec",
       "data-test": "fau-rule-sources",
-      open: i.open
+      open: c.open
     }, [
       e.createElementVNode("summary", null, [
         e.createTextVNode(
-          e.toDisplayString(n.$t("地区规则与出处")) + " ",
+          e.toDisplayString(i.$t("地区规则与出处")) + " ",
           1
           /* TEXT */
         ),
         e.createElementVNode(
           "span",
           wc,
-          e.toDisplayString(i.rules.length),
+          e.toDisplayString(c.rules.length),
           1
           /* TEXT */
         ),
-        i.rules.some((a) => !a.reviewed) ? (e.openBlock(), e.createElementBlock(
+        c.rules.some((m) => !m.reviewed) ? (e.openBlock(), e.createElementBlock(
           "span",
           Tc,
-          e.toDisplayString(n.$t("草稿口径，需当地专业人士复核")),
+          e.toDisplayString(i.$t("草稿口径，需当地专业人士复核")),
           1
           /* TEXT */
         )) : e.createCommentVNode("v-if", !0)
       ]),
-      i.rules.length ? (e.openBlock(), e.createElementBlock("div", Kc, [
+      c.rules.length ? (e.openBlock(), e.createElementBlock("div", Kc, [
         e.createElementVNode("table", Ac, [
           e.createElementVNode("thead", null, [
             e.createElementVNode("tr", null, [
               e.createElementVNode(
                 "th",
                 null,
-                e.toDisplayString(n.$t("规则")),
+                e.toDisplayString(i.$t("规则")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "th",
                 null,
-                e.toDisplayString(n.$t("取值")),
+                e.toDisplayString(i.$t("取值")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "th",
                 null,
-                e.toDisplayString(n.$t("版本 / 生效日期")),
+                e.toDisplayString(i.$t("版本 / 生效日期")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "th",
                 null,
-                e.toDisplayString(n.$t("出处")),
+                e.toDisplayString(i.$t("出处")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "th",
                 null,
-                e.toDisplayString(n.$t("原文")),
+                e.toDisplayString(i.$t("原文")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "th",
                 null,
-                e.toDisplayString(n.$t("审核状态")),
+                e.toDisplayString(i.$t("审核状态")),
                 1
                 /* TEXT */
               )
@@ -6533,17 +6538,17 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(i.rules, (a) => (e.openBlock(), e.createElementBlock("tr", {
-                key: `${a.id}@${a.version}`,
-                "data-test": `fau-rule-${a.id}`
+              e.renderList(c.rules, (m) => (e.openBlock(), e.createElementBlock("tr", {
+                key: `${m.id}@${m.version}`,
+                "data-test": `fau-rule-${m.id}`
               }, [
                 e.createElementVNode("td", Ic, [
                   e.createTextVNode(
-                    e.toDisplayString(B(a)),
+                    e.toDisplayString(t(m)),
                     1
                     /* TEXT */
                   ),
-                  c[0] || (c[0] = e.createElementVNode(
+                  a[0] || (a[0] = e.createElementVNode(
                     "br",
                     null,
                     null,
@@ -6552,20 +6557,20 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   )),
                   e.createElementVNode("small", Pc, [
                     e.createVNode(l, {
-                      value: a.id
+                      value: m.id
                     }, null, 8, ["value"])
                   ])
                 ]),
                 e.createElementVNode("td", Oc, [
-                  t(a) ? (e.openBlock(), e.createBlock(l, {
+                  N(m) ? (e.openBlock(), e.createBlock(l, {
                     key: 0,
-                    value: `${a.value}${a.unit ? ` ${a.unit}` : ""}`
+                    value: `${m.value}${m.unit ? ` ${m.unit}` : ""}`
                   }, null, 8, ["value"])) : (e.openBlock(), e.createElementBlock(
                     e.Fragment,
                     { key: 1 },
                     [
                       e.createTextVNode(
-                        e.toDisplayString(y(a)),
+                        e.toDisplayString(r(m)),
                         1
                         /* TEXT */
                       )
@@ -6576,9 +6581,9 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 ]),
                 e.createElementVNode("td", null, [
                   e.createVNode(l, {
-                    value: a.version
+                    value: m.version
                   }, null, 8, ["value"]),
-                  c[2] || (c[2] = e.createElementVNode(
+                  a[2] || (a[2] = e.createElementVNode(
                     "br",
                     null,
                     null,
@@ -6587,19 +6592,19 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   )),
                   e.createElementVNode("small", zc, [
                     e.createVNode(l, {
-                      value: a.effectiveFrom
+                      value: m.effectiveFrom
                     }, null, 8, ["value"]),
-                    a.effectiveTo ? (e.openBlock(), e.createElementBlock(
+                    m.effectiveTo ? (e.openBlock(), e.createElementBlock(
                       e.Fragment,
                       { key: 0 },
                       [
-                        c[1] || (c[1] = e.createTextVNode(
+                        a[1] || (a[1] = e.createTextVNode(
                           " ~ ",
                           -1
                           /* CACHED */
                         )),
                         e.createVNode(l, {
-                          value: a.effectiveTo
+                          value: m.effectiveTo
                         }, null, 8, ["value"])
                       ],
                       64
@@ -6609,16 +6614,16 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 ]),
                 e.createElementVNode("td", Mc, [
                   e.createTextVNode(
-                    e.toDisplayString(a.source.issuer) + " · " + e.toDisplayString(a.source.title),
+                    e.toDisplayString(m.source.issuer) + " · " + e.toDisplayString(m.source.title),
                     1
                     /* TEXT */
                   ),
-                  a.source.clause ? (e.openBlock(), e.createElementBlock(
+                  m.source.clause ? (e.openBlock(), e.createElementBlock(
                     e.Fragment,
                     { key: 0 },
                     [
                       e.createTextVNode(
-                        " · " + e.toDisplayString(a.source.clause),
+                        " · " + e.toDisplayString(m.source.clause),
                         1
                         /* TEXT */
                       )
@@ -6628,27 +6633,27 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   )) : e.createCommentVNode("v-if", !0)
                 ]),
                 e.createElementVNode("td", jc, [
-                  a.source.originalText ? (e.openBlock(), e.createElementBlock(
+                  m.source.originalText ? (e.openBlock(), e.createElementBlock(
                     e.Fragment,
                     { key: 0 },
                     [
                       e.createElementVNode("div", {
-                        lang: a.source.language,
-                        dir: a.source.language === "ar" ? "rtl" : "ltr",
+                        lang: m.source.language,
+                        dir: m.source.language === "ar" ? "rtl" : "ltr",
                         class: "fau-original",
                         "data-test": "fau-rule-original"
-                      }, e.toDisplayString(a.source.originalText), 9, Rc),
-                      r(a) ? (e.openBlock(), e.createElementBlock(
+                      }, e.toDisplayString(m.source.originalText), 9, Rc),
+                      n(m) ? (e.openBlock(), e.createElementBlock(
                         "small",
                         qc,
-                        e.toDisplayString(n.$t("译文")) + ": " + e.toDisplayString(r(a)),
+                        e.toDisplayString(i.$t("译文")) + ": " + e.toDisplayString(n(m)),
                         1
                         /* TEXT */
                       )) : e.createCommentVNode("v-if", !0),
                       e.createElementVNode(
                         "small",
                         Uc,
-                        e.toDisplayString(n.$t("以原文为准")),
+                        e.toDisplayString(i.$t("以原文为准")),
                         1
                         /* TEXT */
                       )
@@ -6658,7 +6663,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   )) : (e.openBlock(), e.createElementBlock(
                     "small",
                     Wc,
-                    e.toDisplayString(n.$t("原文摘录待当地专业人员核对补录")),
+                    e.toDisplayString(i.$t("原文摘录待当地专业人员核对补录")),
                     1
                     /* TEXT */
                   ))
@@ -6667,9 +6672,9 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   e.createElementVNode(
                     "span",
                     {
-                      class: e.normalizeClass(["fau-badge", a.reviewed ? "ok" : "warn"])
+                      class: e.normalizeClass(["fau-badge", m.reviewed ? "ok" : "warn"])
                     },
-                    e.toDisplayString(a.reviewed ? n.$t("已经当地专业人员审核") : n.$t("草稿口径")),
+                    e.toDisplayString(m.reviewed ? i.$t("已经当地专业人员审核") : i.$t("草稿口径")),
                     3
                     /* TEXT, CLASS */
                   )
@@ -6683,13 +6688,13 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       ])) : (e.openBlock(), e.createElementBlock(
         "p",
         Lc,
-        e.toDisplayString(n.$t("本次没有用到地区规则（中国口径沿用财务智能体）")),
+        e.toDisplayString(i.$t("本次没有用到地区规则（中国口径沿用财务智能体）")),
         1
         /* TEXT */
       ))
     ], 8, Cc));
   }
-}), Re = /* @__PURE__ */ ae(Yc, [["__scopeId", "data-v-e341e573"]]), Gc = {
+}), qe = /* @__PURE__ */ ae(Yc, [["__scopeId", "data-v-42d41c70"]]), Gc = {
   class: "fau-tax",
   "data-test": "fau-tax-panel"
 }, Hc = {
@@ -6755,8 +6760,8 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     editable: { type: Boolean }
   },
   emits: ["changed"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = ye.useRouter(), n = e.computed(() => t.def.id === "tax" ? t.run.result : null), c = e.computed(() => t.def.id === "regulatory" ? t.run.result : null), a = e.computed(() => t.def.id === "transfer-pricing" ? t.run.result : null), N = e.computed(() => !!(n.value?.draftBasis || c.value?.draftBasis || a.value?.draftBasis)), E = ue.FAU_ZAKAT_CATEGORIES, u = ue.FAU_DISCLOSURE_LEVELS, L = {
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = ye.useRouter(), n = e.computed(() => t.def.id === "tax" ? t.run.result : null), i = e.computed(() => t.def.id === "regulatory" ? t.run.result : null), a = e.computed(() => t.def.id === "transfer-pricing" ? t.run.result : null), m = e.computed(() => !!(n.value?.draftBasis || i.value?.draftBasis || a.value?.draftBasis)), E = ue.FAU_ZAKAT_CATEGORIES, u = ue.FAU_DISCLOSURE_LEVELS, L = {
       add_equity: s.i18nKey("加项：权益"),
       add_provision: s.i18nKey("加项：准备"),
       add_liability: s.i18nKey("加项：非流动负债"),
@@ -6777,7 +6782,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
     e.watch(() => t.run.id, () => {
       for (const k of Object.keys(z)) delete z[k];
     });
-    const m = (k) => k.length > 12 ? `${k.slice(0, 12).join(",")} …` : k.join(","), f = (k) => `${Math.round(k * 1e6) / 1e4}%`, p = (k) => `${Math.round(k * 1e6) / 1e4}%`;
+    const p = (k) => k.length > 12 ? `${k.slice(0, 12).join(",")} …` : k.join(","), f = (k) => `${Math.round(k * 1e6) / 1e4}%`, y = (k) => `${Math.round(k * 1e6) / 1e4}%`;
     function I(k) {
       try {
         return new Intl.DateTimeFormat("en-u-ca-islamic-umalqura-nu-latn", { year: "numeric", month: "2-digit", day: "2-digit", timeZone: "UTC" }).format(/* @__PURE__ */ new Date(`${k}T00:00:00Z`));
@@ -6785,11 +6790,11 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
         return "";
       }
     }
-    async function _() {
+    async function B() {
       S.value = !0, w.value = "";
       try {
         const k = t.run.params.zakatMap || {};
-        await Y("run.setInputs", { runId: t.run.id, inputs: t.run.inputs, params: { zakatMap: { ...k, ...z } } }), await Y("run.start", { runId: t.run.id, fromStep: "validate" }), y("changed");
+        await Y("run.setInputs", { runId: t.run.id, inputs: t.run.inputs, params: { zakatMap: { ...k, ...z } } }), await Y("run.start", { runId: t.run.id, fromStep: "validate" }), N("changed");
       } catch (k) {
         w.value = Q.errorMessage(k);
       } finally {
@@ -6797,7 +6802,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
       }
     }
     return (k, R) => (e.openBlock(), e.createElementBlock("div", Gc, [
-      N.value ? (e.openBlock(), e.createElementBlock("p", Hc, [
+      m.value ? (e.openBlock(), e.createElementBlock("p", Hc, [
         R[1] || (R[1] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -6960,7 +6965,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                               /* TEXT */
                             ),
                             e.createVNode(l, {
-                              value: m(M.rows)
+                              value: p(M.rows)
                             }, null, 8, ["value"])
                           ])) : e.createCommentVNode("v-if", !0)
                         ]),
@@ -7087,7 +7092,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                       e.createElementVNode("td", null, [
                         e.createElementVNode("select", {
                           value: z[d.accountCode || d.accountName] || d.category,
-                          disabled: !i.editable || S.value,
+                          disabled: !c.editable || S.value,
                           onChange: (M) => z[d.accountCode || d.accountName] = M.target.value
                         }, [
                           (e.openBlock(!0), e.createElementBlock(
@@ -7183,13 +7188,13 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 }, null, 8, ["cents"])
               ])
             ]),
-            i.editable ? (e.openBlock(), e.createElementBlock("div", Dd, [
+            c.editable ? (e.openBlock(), e.createElementBlock("div", Dd, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn sm",
                 disabled: S.value || !Object.keys(z).length,
                 "data-test": "fau-zakat-rerun",
-                onClick: _
+                onClick: B
               }, [
                 R[5] || (R[5] = e.createElementVNode(
                   "i",
@@ -7285,19 +7290,19 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               ])
             ])
           ])) : e.createCommentVNode("v-if", !0),
-          e.createVNode(je, {
+          e.createVNode(Re, {
             findings: n.value.findings
           }, null, 8, ["findings"]),
-          e.createVNode(Re, {
+          e.createVNode(qe, {
             rules: n.value.rules,
-            open: N.value
+            open: m.value
           }, null, 8, ["rules", "open"])
         ],
         64
         /* STABLE_FRAGMENT */
       )) : e.createCommentVNode("v-if", !0),
       e.createCommentVNode(" C2 监管报送与信息披露 "),
-      c.value ? (e.openBlock(), e.createElementBlock(
+      i.value ? (e.openBlock(), e.createElementBlock(
         e.Fragment,
         { key: 2 },
         [
@@ -7316,7 +7321,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   /* TEXT */
                 ),
                 e.createVNode(l, {
-                  value: c.value.counts[d] || 0
+                  value: i.value.counts[d] || 0
                 }, null, 8, ["value"])
               ], 10, Id))),
               128
@@ -7333,7 +7338,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             ),
             e.createElementVNode("dd", null, [
               e.createVNode(l, {
-                cents: c.value.base.totalAssets
+                cents: i.value.base.totalAssets
               }, null, 8, ["cents"])
             ]),
             e.createElementVNode(
@@ -7345,7 +7350,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             ),
             e.createElementVNode("dd", null, [
               e.createVNode(l, {
-                cents: c.value.base.netAssets
+                cents: i.value.base.netAssets
               }, null, 8, ["cents"])
             ]),
             e.createElementVNode(
@@ -7357,7 +7362,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             ),
             e.createElementVNode("dd", null, [
               e.createVNode(l, {
-                cents: c.value.base.revenue
+                cents: i.value.base.revenue
               }, null, 8, ["cents"])
             ]),
             e.createElementVNode(
@@ -7369,7 +7374,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             ),
             e.createElementVNode("dd", null, [
               e.createVNode(l, {
-                cents: c.value.base.netProfit
+                cents: i.value.base.netProfit
               }, null, 8, ["cents"])
             ])
           ]),
@@ -7432,7 +7437,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(c.value.items, (d) => (e.openBlock(), e.createElementBlock("tr", {
+                  e.renderList(i.value.items, (d) => (e.openBlock(), e.createElementBlock("tr", {
                     key: d.id,
                     class: e.normalizeClass({ warn: d.level === "disclose", bad: d.level === "shareholder" }),
                     "data-test": `fau-disclosure-${d.row}`
@@ -7541,13 +7546,13 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
               ])
             ])
           ]),
-          e.createVNode(je, {
-            findings: c.value.dataChecks
+          e.createVNode(Re, {
+            findings: i.value.dataChecks
           }, null, 8, ["findings"]),
-          c.value.rules.length ? (e.openBlock(), e.createBlock(Re, {
+          i.value.rules.length ? (e.openBlock(), e.createBlock(qe, {
             key: 0,
-            rules: c.value.rules,
-            open: N.value
+            rules: i.value.rules,
+            open: m.value
           }, null, 8, ["rules", "open"])) : e.createCommentVNode("v-if", !0)
         ],
         64
@@ -7616,7 +7621,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   ),
                   e.createElementVNode("dd", Zd, [
                     e.createVNode(l, {
-                      value: p(a.value.range.q1)
+                      value: y(a.value.range.q1)
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode(
@@ -7628,7 +7633,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   ),
                   e.createElementVNode("dd", Xd, [
                     e.createVNode(l, {
-                      value: p(a.value.range.median)
+                      value: y(a.value.range.median)
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode(
@@ -7640,7 +7645,7 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
                   ),
                   e.createElementVNode("dd", xd, [
                     e.createVNode(l, {
-                      value: p(a.value.range.q3)
+                      value: y(a.value.range.q3)
                     }, null, 8, ["value"])
                   ])
                 ],
@@ -7936,13 +7941,13 @@ const Mt = { class: "fau-drop__text" }, jt = ["disabled"], Rt = /* @__PURE__ */ 
             128
             /* KEYED_FRAGMENT */
           )),
-          e.createVNode(je, {
+          e.createVNode(Re, {
             findings: a.value.findings
           }, null, 8, ["findings"]),
-          a.value.rules.length ? (e.openBlock(), e.createBlock(Re, {
+          a.value.rules.length ? (e.openBlock(), e.createBlock(qe, {
             key: 1,
             rules: a.value.rules,
-            open: N.value
+            open: m.value
           }, null, 8, ["rules", "open"])) : e.createCommentVNode("v-if", !0)
         ],
         64
@@ -8175,8 +8180,8 @@ const Iu = {
   "gua.single_over": o.i18nKey("单笔担保超过上限"),
   "gua.no_net_assets": o.i18nKey("没有担保方净资产，不能算担保比例")
 };
-function Ou(i) {
-  return Pu[i] || i;
+function Ou(c) {
+  return Pu[c] || c;
 }
 const zu = {
   key: 0,
@@ -8190,28 +8195,28 @@ const zu = {
     flags: {},
     okText: {}
   },
-  setup(i) {
-    return (B, t) => i.flags?.length ? (e.openBlock(), e.createElementBlock("span", zu, [
+  setup(c) {
+    return (_, t) => c.flags?.length ? (e.openBlock(), e.createElementBlock("span", zu, [
       (e.openBlock(!0), e.createElementBlock(
         e.Fragment,
         null,
-        e.renderList(i.flags, (y, r) => (e.openBlock(), e.createElementBlock(
+        e.renderList(c.flags, (N, r) => (e.openBlock(), e.createElementBlock(
           "span",
           {
-            key: `${y.code}-${r}`,
-            class: e.normalizeClass(["fau-badge", y.level === "block" ? "bad" : y.level === "warn" ? "warn" : "muted"])
+            key: `${N.code}-${r}`,
+            class: e.normalizeClass(["fau-badge", N.level === "block" ? "bad" : N.level === "warn" ? "warn" : "muted"])
           },
-          e.toDisplayString(B.$t(e.unref(Ou)(y.code), y.params || {})),
+          e.toDisplayString(_.$t(e.unref(Ou)(N.code), N.params || {})),
           3
           /* TEXT, CLASS */
         ))),
         128
         /* KEYED_FRAGMENT */
       ))
-    ])) : i.okText ? (e.openBlock(), e.createElementBlock(
+    ])) : c.okText ? (e.openBlock(), e.createElementBlock(
       "span",
       Mu,
-      e.toDisplayString(i.okText),
+      e.toDisplayString(c.okText),
       1
       /* TEXT */
     )) : e.createCommentVNode("v-if", !0);
@@ -8244,8 +8249,8 @@ const zu = {
     run: {},
     def: {}
   },
-  setup(i) {
-    const B = i, t = e.computed(() => B.run.result), y = s.listSeparator();
+  setup(c) {
+    const _ = c, t = e.computed(() => _.run.result), N = s.listSeparator();
     return (r, n) => t.value ? (e.openBlock(), e.createElementBlock("div", Ru, [
       e.createElementVNode("section", qu, [
         e.createElementVNode("header", null, [
@@ -8364,45 +8369,45 @@ const zu = {
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(t.value.buckets, (c) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: c.bucket,
-                  "data-test": `fau-ar-bucket-${c.bucket}`
+                e.renderList(t.value.buckets, (i) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: i.bucket,
+                  "data-test": `fau-ar-bucket-${i.bucket}`
                 }, [
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(r.$t(e.unref(hu)[c.bucket])),
+                    e.toDisplayString(r.$t(e.unref(hu)[i.bucket])),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("td", lm, [
                     e.createVNode(l, {
-                      cents: c.amount
+                      cents: i.amount
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", nm, [
                     e.createVNode(l, {
-                      ratio: c.share
+                      ratio: i.share
                     }, null, 8, ["ratio"])
                   ]),
                   e.createElementVNode("td", am, [
                     e.createVNode(l, {
-                      value: c.count
+                      value: i.count
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: e.unref($u)[c.bucket]
+                      value: e.unref($u)[i.bucket]
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode("td", om, [
                     e.createVNode(l, {
-                      ratio: c.provisionRate
+                      ratio: i.provisionRate
                     }, null, 8, ["ratio"])
                   ]),
                   e.createElementVNode("td", sm, [
                     e.createVNode(l, {
-                      cents: c.provision
+                      cents: i.provision
                     }, null, 8, ["cents"])
                   ])
                 ], 8, tm))),
@@ -8425,7 +8430,7 @@ const zu = {
           e.createElementVNode(
             "span",
             im,
-            e.toDisplayString(r.$t("TOP 风险客户")) + ": " + e.toDisplayString(t.value.top.join(e.unref(y)) || "-"),
+            e.toDisplayString(r.$t("TOP 风险客户")) + ": " + e.toDisplayString(t.value.top.join(e.unref(N)) || "-"),
             1
             /* TEXT */
           )
@@ -8503,60 +8508,60 @@ const zu = {
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(t.value.customers, (c) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: c.customer,
-                  class: e.normalizeClass({ bad: c.risk === "high", warn: c.risk === "medium" }),
-                  "data-test": `fau-ar-customer-${c.customer}`
+                e.renderList(t.value.customers, (i) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: i.customer,
+                  class: e.normalizeClass({ bad: i.risk === "high", warn: i.risk === "medium" }),
+                  "data-test": `fau-ar-customer-${i.customer}`
                 }, [
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(c.customer),
+                    e.toDisplayString(i.customer),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("td", Em, [
                     e.createVNode(l, {
-                      cents: c.open
+                      cents: i.open
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", km, [
                     e.createVNode(l, {
-                      cents: c.overdue
+                      cents: i.overdue
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", vm, [
                     e.createVNode(l, {
-                      value: c.maxOverdueDays
+                      value: i.maxOverdueDays
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode("td", gm, [
                     e.createVNode(l, {
-                      cents: c.provision
+                      cents: i.provision
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(r.$t(e.unref(_u)[c.risk])),
+                    e.toDisplayString(r.$t(e.unref(_u)[i.risk])),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(r.$t(e.unref(Bu)[c.stage])),
+                    e.toDisplayString(r.$t(e.unref(Bu)[i.stage])),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("td", fm, [
                     e.createVNode(l, {
-                      ratio: c.utilization
+                      ratio: i.utilization
                     }, null, 8, ["ratio"])
                   ]),
                   e.createElementVNode("td", hm, [
                     e.createVNode(me, {
-                      flags: c.flags
+                      flags: i.flags
                     }, null, 8, ["flags"])
                   ])
                 ], 10, Vm))),
@@ -8657,57 +8662,57 @@ const zu = {
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(t.value.credit, (c) => (e.openBlock(), e.createElementBlock(
+                e.renderList(t.value.credit, (i) => (e.openBlock(), e.createElementBlock(
                   "tr",
                   {
-                    key: c.customer,
-                    class: e.normalizeClass({ bad: c.grade === "D" })
+                    key: i.customer,
+                    class: e.normalizeClass({ bad: i.grade === "D" })
                   },
                   [
                     e.createElementVNode(
                       "td",
                       null,
-                      e.toDisplayString(c.customer),
+                      e.toDisplayString(i.customer),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "td",
                       null,
-                      e.toDisplayString(r.$t(e.unref(bu)[c.history])),
+                      e.toDisplayString(r.$t(e.unref(bu)[i.history])),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode("td", null, [
                       e.createVNode(l, {
-                        value: c.grade
+                        value: i.grade
                       }, null, 8, ["value"])
                     ]),
                     e.createElementVNode("td", wm, [
                       e.createVNode(l, {
-                        value: c.termDays
+                        value: i.termDays
                       }, null, 8, ["value"])
                     ]),
                     e.createElementVNode("td", Tm, [
                       e.createVNode(l, {
-                        cents: c.currentLimit
+                        cents: i.currentLimit
                       }, null, 8, ["cents"])
                     ]),
                     e.createElementVNode("td", Lm, [
                       e.createVNode(l, {
-                        cents: c.suggestedLimit
+                        cents: i.suggestedLimit
                       }, null, 8, ["cents"])
                     ]),
                     e.createElementVNode(
                       "td",
                       null,
-                      e.toDisplayString(r.$t(e.unref(Su)[c.approval])),
+                      e.toDisplayString(r.$t(e.unref(Su)[i.approval])),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode("td", Km, [
                       e.createVNode(me, {
-                        flags: c.reasons
+                        flags: i.reasons
                       }, null, 8, ["flags"])
                     ])
                   ],
@@ -8725,7 +8730,7 @@ const zu = {
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(t.value.escalations, (c, a) => (e.openBlock(), e.createElementBlock("li", { key: a }, [
+          e.renderList(t.value.escalations, (i, a) => (e.openBlock(), e.createElementBlock("li", { key: a }, [
             n[2] || (n[2] = e.createElementVNode(
               "i",
               { class: "ri-alarm-warning-line" },
@@ -8734,7 +8739,7 @@ const zu = {
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(e.unref(Z)(c)),
+              e.toDisplayString(e.unref(Z)(i)),
               1
               /* TEXT */
             )
@@ -8780,9 +8785,9 @@ const zu = {
     run: {},
     def: {}
   },
-  setup(i) {
-    const B = i, t = e.computed(() => B.run.result), y = ue.FAU_MATCH_GRADES, r = ue.FAU_PAY_PRIORITIES;
-    return (n, c) => t.value ? (e.openBlock(), e.createElementBlock("div", Im, [
+  setup(c) {
+    const _ = c, t = e.computed(() => _.run.result), N = ue.FAU_MATCH_GRADES, r = ue.FAU_PAY_PRIORITIES;
+    return (n, i) => t.value ? (e.openBlock(), e.createElementBlock("div", Im, [
       t.value.match ? (e.openBlock(), e.createElementBlock("section", Pm, [
         e.createElementVNode("header", null, [
           e.createElementVNode(
@@ -8795,7 +8800,7 @@ const zu = {
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(e.unref(y), (a) => (e.openBlock(), e.createElementBlock("span", {
+            e.renderList(e.unref(N), (a) => (e.openBlock(), e.createElementBlock("span", {
               key: a,
               class: e.normalizeClass(["fau-badge", a === "reject" ? "bad" : a === "review" ? "warn" : "ok"]),
               "data-test": `fau-ap-grade-${a}`
@@ -8917,7 +8922,7 @@ const zu = {
                       value: a.poNo
                     }, null, 8, ["value"]),
                     a.line ? (e.openBlock(), e.createElementBlock("small", Hm, [
-                      c[0] || (c[0] = e.createTextVNode(
+                      i[0] || (i[0] = e.createTextVNode(
                         " #",
                         -1
                         /* CACHED */
@@ -9115,7 +9120,7 @@ const zu = {
           ))
         ]),
         e.createElementVNode("p", up, [
-          c[1] || (c[1] = e.createElementVNode(
+          i[1] || (i[1] = e.createElementVNode(
             "i",
             { class: "ri-bank-line" },
             null,
@@ -9254,7 +9259,7 @@ const zu = {
                         /* TEXT */
                       ),
                       a.deferTo ? (e.openBlock(), e.createElementBlock("small", gp, [
-                        c[2] || (c[2] = e.createTextVNode(
+                        i[2] || (i[2] = e.createTextVNode(
                           " → ",
                           -1
                           /* CACHED */
@@ -9375,8 +9380,8 @@ const zu = {
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(t.value.escalations, (a, N) => (e.openBlock(), e.createElementBlock("li", { key: N }, [
-            c[3] || (c[3] = e.createElementVNode(
+          e.renderList(t.value.escalations, (a, m) => (e.openBlock(), e.createElementBlock("li", { key: m }, [
+            i[3] || (i[3] = e.createElementVNode(
               "i",
               { class: "ri-alarm-warning-line" },
               null,
@@ -9425,9 +9430,9 @@ const zu = {
     run: {},
     def: {}
   },
-  setup(i) {
-    const B = i, t = e.computed(() => B.run.result), y = e.computed(() => (t.value?.lines || []).filter((n) => n.qr)), r = ue.FAU_CLAIM_VERDICTS;
-    return (n, c) => t.value ? (e.openBlock(), e.createElementBlock("div", wp, [
+  setup(c) {
+    const _ = c, t = e.computed(() => _.run.result), N = e.computed(() => (t.value?.lines || []).filter((n) => n.qr)), r = ue.FAU_CLAIM_VERDICTS;
+    return (n, i) => t.value ? (e.openBlock(), e.createElementBlock("div", wp, [
       e.createElementVNode("section", Tp, [
         e.createElementVNode("header", null, [
           e.createElementVNode(
@@ -9644,8 +9649,8 @@ const zu = {
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(t.value.anomalies, (a, N) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: N,
+                e.renderList(t.value.anomalies, (a, m) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: m,
                   class: e.normalizeClass({ bad: a.level === "block", warn: a.level === "warn" }),
                   "data-test": `fau-exp-anomaly-${a.code}`
                 }, [
@@ -9699,7 +9704,7 @@ const zu = {
           /* TEXT */
         ))
       ]),
-      y.value.length ? (e.openBlock(), e.createElementBlock("section", Jp, [
+      N.value.length ? (e.openBlock(), e.createElementBlock("section", Jp, [
         e.createElementVNode("header", null, [
           e.createElementVNode(
             "strong",
@@ -9775,7 +9780,7 @@ const zu = {
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(y.value, (a) => (e.openBlock(), e.createElementBlock("tr", {
+                e.renderList(N.value, (a) => (e.openBlock(), e.createElementBlock("tr", {
                   key: a.row,
                   class: e.normalizeClass({ bad: !a.qr.ok }),
                   "data-test": `fau-exp-qr-${a.row}`
@@ -9827,13 +9832,13 @@ const zu = {
                     )) : (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       { key: 1 },
-                      e.renderList(a.qr.problems, (N) => (e.openBlock(), e.createElementBlock(
+                      e.renderList(a.qr.problems, (m) => (e.openBlock(), e.createElementBlock(
                         "span",
                         {
-                          key: N,
+                          key: m,
                           class: "fau-badge bad"
                         },
-                        e.toDisplayString(n.$t(e.unref(Ku)[N] || N)),
+                        e.toDisplayString(n.$t(e.unref(Ku)[m] || m)),
                         1
                         /* TEXT */
                       ))),
@@ -9920,7 +9925,7 @@ const zu = {
                   "tr",
                   {
                     key: a.row,
-                    class: e.normalizeClass({ bad: a.flags.some((N) => N.level === "block"), warn: a.flags.some((N) => N.level === "warn") })
+                    class: e.normalizeClass({ bad: a.flags.some((m) => m.level === "block"), warn: a.flags.some((m) => m.level === "warn") })
                   },
                   [
                     e.createElementVNode("td", null, [
@@ -9978,8 +9983,8 @@ const zu = {
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(t.value.escalations, (a, N) => (e.openBlock(), e.createElementBlock("li", { key: N }, [
-            c[0] || (c[0] = e.createElementVNode(
+          e.renderList(t.value.escalations, (a, m) => (e.openBlock(), e.createElementBlock("li", { key: m }, [
+            i[0] || (i[0] = e.createElementVNode(
               "i",
               { class: "ri-alarm-warning-line" },
               null,
@@ -10040,15 +10045,15 @@ const zu = {
     run: {},
     def: {}
   },
-  setup(i) {
-    const B = i, t = e.computed(() => B.run.result), y = e.ref(!1), r = e.computed(() => (t.value?.lines || []).filter((c) => c.flags.some((a) => a.level !== "info"))), n = e.computed(() => y.value || !r.value.length ? t.value?.lines || [] : r.value);
-    return (c, a) => t.value ? (e.openBlock(), e.createElementBlock("div", yy, [
+  setup(c) {
+    const _ = c, t = e.computed(() => _.run.result), N = e.ref(!1), r = e.computed(() => (t.value?.lines || []).filter((i) => i.flags.some((a) => a.level !== "info"))), n = e.computed(() => N.value || !r.value.length ? t.value?.lines || [] : r.value);
+    return (i, a) => t.value ? (e.openBlock(), e.createElementBlock("div", yy, [
       e.createElementVNode("section", Ny, [
         e.createElementVNode("header", null, [
           e.createElementVNode(
             "strong",
             null,
-            e.toDisplayString(c.$t("折旧核对表")),
+            e.toDisplayString(i.$t("折旧核对表")),
             1
             /* TEXT */
           ),
@@ -10060,7 +10065,7 @@ const zu = {
             },
             [
               e.createTextVNode(
-                e.toDisplayString(c.$t("差异")) + " ",
+                e.toDisplayString(i.$t("差异")) + " ",
                 1
                 /* TEXT */
               ),
@@ -10075,17 +10080,17 @@ const zu = {
             e.withDirectives(e.createElementVNode(
               "input",
               {
-                "onUpdate:modelValue": a[0] || (a[0] = (N) => y.value = N),
+                "onUpdate:modelValue": a[0] || (a[0] = (m) => N.value = m),
                 type: "checkbox"
               },
               null,
               512
               /* NEED_PATCH */
             ), [
-              [e.vModelCheckbox, y.value]
+              [e.vModelCheckbox, N.value]
             ]),
             e.createTextVNode(
-              " " + e.toDisplayString(c.$t("显示全部资产")),
+              " " + e.toDisplayString(i.$t("显示全部资产")),
               1
               /* TEXT */
             )
@@ -10098,70 +10103,70 @@ const zu = {
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(c.$t("资产编号")),
+                  e.toDisplayString(i.$t("资产编号")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(c.$t("资产名称")),
+                  e.toDisplayString(i.$t("资产名称")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(c.$t("折旧方法")),
+                  e.toDisplayString(i.$t("折旧方法")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   vy,
-                  e.toDisplayString(c.$t("原值")),
+                  e.toDisplayString(i.$t("原值")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   gy,
-                  e.toDisplayString(c.$t("本期应提（重算）")),
+                  e.toDisplayString(i.$t("本期应提（重算）")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   fy,
-                  e.toDisplayString(c.$t("本期账面")),
+                  e.toDisplayString(i.$t("本期账面")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   hy,
-                  e.toDisplayString(c.$t("本期差异")),
+                  e.toDisplayString(i.$t("本期差异")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   $y,
-                  e.toDisplayString(c.$t("累计折旧（重算）")),
+                  e.toDisplayString(i.$t("累计折旧（重算）")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   _y,
-                  e.toDisplayString(c.$t("累计差异")),
+                  e.toDisplayString(i.$t("累计差异")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(c.$t("提示")),
+                  e.toDisplayString(i.$t("提示")),
                   1
                   /* TEXT */
                 )
@@ -10171,63 +10176,63 @@ const zu = {
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(n.value, (N) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: N.assetNo,
-                  class: e.normalizeClass({ bad: N.flags.some((E) => E.level === "block"), warn: N.flags.some((E) => E.level === "warn") }),
-                  "data-test": `fau-fa-asset-${N.assetNo}`
+                e.renderList(n.value, (m) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: m.assetNo,
+                  class: e.normalizeClass({ bad: m.flags.some((E) => E.level === "block"), warn: m.flags.some((E) => E.level === "warn") }),
+                  "data-test": `fau-fa-asset-${m.assetNo}`
                 }, [
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: N.assetNo
+                      value: m.assetNo
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(N.name),
+                    e.toDisplayString(m.name),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(c.$t(e.unref(Au)[N.method])),
+                    e.toDisplayString(i.$t(e.unref(Au)[m.method])),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("td", by, [
                     e.createVNode(l, {
-                      cents: N.cost
+                      cents: m.cost
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", Sy, [
                     e.createVNode(l, {
-                      cents: N.expectedPeriod
+                      cents: m.expectedPeriod
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", Dy, [
                     e.createVNode(l, {
-                      cents: N.bookedPeriod
+                      cents: m.bookedPeriod
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", Cy, [
                     e.createVNode(l, {
-                      cents: N.diffPeriod
+                      cents: m.diffPeriod
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", wy, [
                     e.createVNode(l, {
-                      cents: N.expectedAccum
+                      cents: m.expectedAccum
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", Ty, [
                     e.createVNode(l, {
-                      cents: N.diffAccum
+                      cents: m.diffAccum
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", Ly, [
                     e.createVNode(me, {
-                      flags: N.flags
+                      flags: m.flags
                     }, null, 8, ["flags"])
                   ])
                 ], 10, By))),
@@ -10243,7 +10248,7 @@ const zu = {
           e.createElementVNode(
             "strong",
             null,
-            e.toDisplayString(c.$t("资产滚动表")),
+            e.toDisplayString(i.$t("资产滚动表")),
             1
             /* TEXT */
           )
@@ -10255,70 +10260,70 @@ const zu = {
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(c.$t("资产类别")),
+                  e.toDisplayString(i.$t("资产类别")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   Iy,
-                  e.toDisplayString(c.$t("期初原值")),
+                  e.toDisplayString(i.$t("期初原值")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   Py,
-                  e.toDisplayString(c.$t("本期新增")),
+                  e.toDisplayString(i.$t("本期新增")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   Oy,
-                  e.toDisplayString(c.$t("本期处置")),
+                  e.toDisplayString(i.$t("本期处置")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   zy,
-                  e.toDisplayString(c.$t("期末原值")),
+                  e.toDisplayString(i.$t("期末原值")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   My,
-                  e.toDisplayString(c.$t("期初累计折旧")),
+                  e.toDisplayString(i.$t("期初累计折旧")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   jy,
-                  e.toDisplayString(c.$t("本期折旧")),
+                  e.toDisplayString(i.$t("本期折旧")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   Ry,
-                  e.toDisplayString(c.$t("处置转出折旧")),
+                  e.toDisplayString(i.$t("处置转出折旧")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   qy,
-                  e.toDisplayString(c.$t("期末累计折旧")),
+                  e.toDisplayString(i.$t("期末累计折旧")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   Uy,
-                  e.toDisplayString(c.$t("期末净值")),
+                  e.toDisplayString(i.$t("期末净值")),
                   1
                   /* TEXT */
                 )
@@ -10328,59 +10333,59 @@ const zu = {
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(t.value.roll, (N) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: N.category
+                e.renderList(t.value.roll, (m) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: m.category
                 }, [
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(N.category),
+                    e.toDisplayString(m.category),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("td", Wy, [
                     e.createVNode(l, {
-                      cents: N.openingCost
+                      cents: m.openingCost
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", Yy, [
                     e.createVNode(l, {
-                      cents: N.additions
+                      cents: m.additions
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", Gy, [
                     e.createVNode(l, {
-                      cents: N.disposals
+                      cents: m.disposals
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", Hy, [
                     e.createVNode(l, {
-                      cents: N.closingCost
+                      cents: m.closingCost
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", Qy, [
                     e.createVNode(l, {
-                      cents: N.openingAccum
+                      cents: m.openingAccum
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", Jy, [
                     e.createVNode(l, {
-                      cents: N.depreciation
+                      cents: m.depreciation
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", Zy, [
                     e.createVNode(l, {
-                      cents: N.disposalAccum
+                      cents: m.disposalAccum
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", Xy, [
                     e.createVNode(l, {
-                      cents: N.closingAccum
+                      cents: m.closingAccum
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", xy, [
                     e.createVNode(l, {
-                      cents: N.nbv
+                      cents: m.nbv
                     }, null, 8, ["cents"])
                   ])
                 ]))),
@@ -10394,20 +10399,20 @@ const zu = {
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(t.value.glTie, (N) => (e.openBlock(), e.createElementBlock(
+            e.renderList(t.value.glTie, (m) => (e.openBlock(), e.createElementBlock(
               "span",
               {
-                key: N.item,
-                class: e.normalizeClass(["fau-badge", N.diff ? "bad" : "ok"])
+                key: m.item,
+                class: e.normalizeClass(["fau-badge", m.diff ? "bad" : "ok"])
               },
               [
                 e.createTextVNode(
-                  e.toDisplayString(N.item === "cost" ? c.$t("原值") : c.$t("累计折旧")) + " · " + e.toDisplayString(c.$t("与总账差")) + " ",
+                  e.toDisplayString(m.item === "cost" ? i.$t("原值") : i.$t("累计折旧")) + " · " + e.toDisplayString(i.$t("与总账差")) + " ",
                   1
                   /* TEXT */
                 ),
                 e.createVNode(l, {
-                  cents: N.diff
+                  cents: m.diff
                 }, null, 8, ["cents"])
               ],
               2
@@ -10423,7 +10428,7 @@ const zu = {
           e.createElementVNode(
             "strong",
             null,
-            e.toDisplayString(c.$t("购置与处置审核")),
+            e.toDisplayString(i.$t("购置与处置审核")),
             1
             /* TEXT */
           )
@@ -10435,42 +10440,42 @@ const zu = {
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(c.$t("资产编号")),
+                  e.toDisplayString(i.$t("资产编号")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(c.$t("处置日期")),
+                  e.toDisplayString(i.$t("处置日期")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   aN,
-                  e.toDisplayString(c.$t("账面净值")),
+                  e.toDisplayString(i.$t("账面净值")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   oN,
-                  e.toDisplayString(c.$t("净收入")),
+                  e.toDisplayString(i.$t("净收入")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   sN,
-                  e.toDisplayString(c.$t("处置损益")),
+                  e.toDisplayString(i.$t("处置损益")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(c.$t("提示")),
+                  e.toDisplayString(i.$t("提示")),
                   1
                   /* TEXT */
                 )
@@ -10480,38 +10485,38 @@ const zu = {
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(t.value.disposals, (N) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: `${N.assetNo}-${N.row}`,
-                  "data-test": `fau-fa-disposal-${N.assetNo}`
+                e.renderList(t.value.disposals, (m) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: `${m.assetNo}-${m.row}`,
+                  "data-test": `fau-fa-disposal-${m.assetNo}`
                 }, [
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: N.assetNo
+                      value: m.assetNo
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: N.date
+                      value: m.date
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode("td", iN, [
                     e.createVNode(l, {
-                      cents: N.nbv
+                      cents: m.nbv
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", cN, [
                     e.createVNode(l, {
-                      cents: N.net
+                      cents: m.net
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", dN, [
                     e.createVNode(l, {
-                      cents: N.gainLoss
+                      cents: m.gainLoss
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", uN, [
                     e.createVNode(me, {
-                      flags: N.flags
+                      flags: m.flags
                     }, null, 8, ["flags"])
                   ])
                 ], 8, rN))),
@@ -10525,25 +10530,25 @@ const zu = {
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(t.value.additions, (N) => (e.openBlock(), e.createElementBlock("li", {
-              key: `${N.assetNo}-${N.row}`
+            e.renderList(t.value.additions, (m) => (e.openBlock(), e.createElementBlock("li", {
+              key: `${m.assetNo}-${m.row}`
             }, [
               e.createVNode(l, {
-                value: N.assetNo
+                value: m.assetNo
               }, null, 8, ["value"]),
               e.createElementVNode(
                 "span",
                 pN,
-                e.toDisplayString(N.name),
+                e.toDisplayString(m.name),
                 1
                 /* TEXT */
               ),
               e.createVNode(l, {
-                cents: N.amount
+                cents: m.amount
               }, null, 8, ["cents"]),
               e.createVNode(me, {
-                flags: N.flags,
-                "ok-text": c.$t("符合资本化条件")
+                flags: m.flags,
+                "ok-text": i.$t("符合资本化条件")
               }, null, 8, ["flags", "ok-text"])
             ]))),
             128
@@ -10559,7 +10564,7 @@ const zu = {
             /* CACHED */
           )),
           e.createTextVNode(
-            e.toDisplayString(c.$t("处置分录草稿 {n} 行，借贷合计相等，只出导入格式，不过账", { n: t.value.je.length })),
+            e.toDisplayString(i.$t("处置分录草稿 {n} 行，借贷合计相等，只出导入格式，不过账", { n: t.value.je.length })),
             1
             /* TEXT */
           )
@@ -10569,7 +10574,7 @@ const zu = {
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(t.value.escalations, (N, E) => (e.openBlock(), e.createElementBlock("li", { key: E }, [
+          e.renderList(t.value.escalations, (m, E) => (e.openBlock(), e.createElementBlock("li", { key: E }, [
             a[2] || (a[2] = e.createElementVNode(
               "i",
               { class: "ri-alarm-warning-line" },
@@ -10578,7 +10583,7 @@ const zu = {
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(e.unref(Z)(N)),
+              e.toDisplayString(e.unref(Z)(m)),
               1
               /* TEXT */
             )
@@ -10630,21 +10635,21 @@ const zu = {
     run: {},
     def: {}
   },
-  setup(i) {
-    const B = i, t = e.computed(() => B.run.result);
-    return (y, r) => t.value ? (e.openBlock(), e.createElementBlock("div", EN, [
+  setup(c) {
+    const _ = c, t = e.computed(() => _.run.result);
+    return (N, r) => t.value ? (e.openBlock(), e.createElementBlock("div", EN, [
       e.createElementVNode("section", kN, [
         e.createElementVNode("header", null, [
           e.createElementVNode(
             "strong",
             null,
-            e.toDisplayString(y.$t("薪资复核表")) + " · " + e.toDisplayString(y.$t(e.unref(Fu)[t.value.regime])),
+            e.toDisplayString(N.$t("薪资复核表")) + " · " + e.toDisplayString(N.$t(e.unref(Fu)[t.value.regime])),
             1
             /* TEXT */
           ),
           e.createElementVNode("span", vN, [
             e.createTextVNode(
-              e.toDisplayString(y.$t("人数")) + " ",
+              e.toDisplayString(N.$t("人数")) + " ",
               1
               /* TEXT */
             ),
@@ -10654,7 +10659,7 @@ const zu = {
           ]),
           e.createElementVNode("span", gN, [
             e.createTextVNode(
-              e.toDisplayString(y.$t("应发合计")) + " ",
+              e.toDisplayString(N.$t("应发合计")) + " ",
               1
               /* TEXT */
             ),
@@ -10664,7 +10669,7 @@ const zu = {
           ]),
           e.createElementVNode("span", fN, [
             e.createTextVNode(
-              e.toDisplayString(y.$t("实发合计")) + " ",
+              e.toDisplayString(N.$t("实发合计")) + " ",
               1
               /* TEXT */
             ),
@@ -10674,7 +10679,7 @@ const zu = {
           ]),
           e.createElementVNode("span", hN, [
             e.createTextVNode(
-              e.toDisplayString(y.$t("单位负担")) + " ",
+              e.toDisplayString(N.$t("单位负担")) + " ",
               1
               /* TEXT */
             ),
@@ -10684,7 +10689,7 @@ const zu = {
           ]),
           t.value.regime === "sa" ? (e.openBlock(), e.createElementBlock("span", $N, [
             e.createTextVNode(
-              e.toDisplayString(y.$t("期末服务金本期计提")) + " ",
+              e.toDisplayString(N.$t("期末服务金本期计提")) + " ",
               1
               /* TEXT */
             ),
@@ -10702,7 +10707,7 @@ const zu = {
             /* CACHED */
           )),
           e.createTextVNode(
-            e.toDisplayString(y.$t("沙特 GOSI 比例与期末服务金口径为草稿口径，待当地专业人员审核")),
+            e.toDisplayString(N.$t("沙特 GOSI 比例与期末服务金口径为草稿口径，待当地专业人员审核")),
             1
             /* TEXT */
           )
@@ -10714,35 +10719,35 @@ const zu = {
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("员工编号")),
+                  e.toDisplayString(N.$t("员工编号")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("姓名")),
+                  e.toDisplayString(N.$t("姓名")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   SN,
-                  e.toDisplayString(y.$t("应发合计")),
+                  e.toDisplayString(N.$t("应发合计")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   DN,
-                  e.toDisplayString(t.value.regime === "sa" ? y.$t("GOSI 个人应扣") : y.$t("个人扣款（应扣）")),
+                  e.toDisplayString(t.value.regime === "sa" ? N.$t("GOSI 个人应扣") : N.$t("个人扣款（应扣）")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   CN,
-                  e.toDisplayString(y.$t("个人扣款（实扣）")),
+                  e.toDisplayString(N.$t("个人扣款（实扣）")),
                   1
                   /* TEXT */
                 ),
@@ -10753,14 +10758,14 @@ const zu = {
                     e.createElementVNode(
                       "th",
                       wN,
-                      e.toDisplayString(y.$t("个税应扣")),
+                      e.toDisplayString(N.$t("个税应扣")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
                       TN,
-                      e.toDisplayString(y.$t("个税实扣")),
+                      e.toDisplayString(N.$t("个税实扣")),
                       1
                       /* TEXT */
                     )
@@ -10775,21 +10780,21 @@ const zu = {
                     e.createElementVNode(
                       "th",
                       LN,
-                      e.toDisplayString(y.$t("服务年限")),
+                      e.toDisplayString(N.$t("服务年限")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
                       KN,
-                      e.toDisplayString(y.$t("期末服务金（重算）")),
+                      e.toDisplayString(N.$t("期末服务金（重算）")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
                       AN,
-                      e.toDisplayString(y.$t("期末服务金（账面）")),
+                      e.toDisplayString(N.$t("期末服务金（账面）")),
                       1
                       /* TEXT */
                     )
@@ -10800,14 +10805,14 @@ const zu = {
                 e.createElementVNode(
                   "th",
                   FN,
-                  e.toDisplayString(y.$t("实发（重算）")),
+                  e.toDisplayString(N.$t("实发（重算）")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("提示")),
+                  e.toDisplayString(N.$t("提示")),
                   1
                   /* TEXT */
                 )
@@ -10819,7 +10824,7 @@ const zu = {
                 null,
                 e.renderList(t.value.lines, (n) => (e.openBlock(), e.createElementBlock("tr", {
                   key: n.empId,
-                  class: e.normalizeClass({ bad: n.flags.some((c) => c.level === "block"), warn: n.flags.some((c) => c.level === "warn") }),
+                  class: e.normalizeClass({ bad: n.flags.some((i) => i.level === "block"), warn: n.flags.some((i) => i.level === "warn") }),
                   "data-test": `fau-pay-emp-${n.empId}`
                 }, [
                   e.createElementVNode("td", null, [
@@ -10913,7 +10918,7 @@ const zu = {
           e.createElementVNode(
             "strong",
             null,
-            e.toDisplayString(y.$t("增减员")),
+            e.toDisplayString(N.$t("增减员")),
             1
             /* TEXT */
           )
@@ -10930,7 +10935,7 @@ const zu = {
                 {
                   class: e.normalizeClass(["fau-badge", n.kind === "hire" ? "ok" : "muted"])
                 },
-                e.toDisplayString(n.kind === "hire" ? y.$t("新增") : y.$t("减员")),
+                e.toDisplayString(n.kind === "hire" ? N.$t("新增") : N.$t("减员")),
                 3
                 /* TEXT, CLASS */
               ),
@@ -10945,7 +10950,7 @@ const zu = {
                 /* TEXT */
               ),
               e.createVNode(me, {
-                flags: n.flags.filter((c) => c.level !== "info")
+                flags: n.flags.filter((i) => i.level !== "info")
               }, null, 8, ["flags"])
             ]))),
             128
@@ -10954,7 +10959,7 @@ const zu = {
         ])) : (e.openBlock(), e.createElementBlock(
           "p",
           HN,
-          e.toDisplayString(y.$t("无")),
+          e.toDisplayString(N.$t("无")),
           1
           /* TEXT */
         ))
@@ -10968,7 +10973,7 @@ const zu = {
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(y.$t("工资计提分录草稿 {n} 行，借贷合计相等，只出导入格式，不过账", { n: t.value.je.length })),
+          e.toDisplayString(N.$t("工资计提分录草稿 {n} 行，借贷合计相等，只出导入格式，不过账", { n: t.value.je.length })),
           1
           /* TEXT */
         )
@@ -10977,7 +10982,7 @@ const zu = {
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(t.value.escalations, (n, c) => (e.openBlock(), e.createElementBlock("li", { key: c }, [
+          e.renderList(t.value.escalations, (n, i) => (e.openBlock(), e.createElementBlock("li", { key: i }, [
             r[2] || (r[2] = e.createElementVNode(
               "i",
               { class: "ri-alarm-warning-line" },
@@ -11025,15 +11030,15 @@ const zu = {
     run: {},
     def: {}
   },
-  setup(i) {
-    const B = i, t = e.computed(() => B.run.result);
-    return (y, r) => t.value ? (e.openBlock(), e.createElementBlock("div", eV, [
+  setup(c) {
+    const _ = c, t = e.computed(() => _.run.result);
+    return (N, r) => t.value ? (e.openBlock(), e.createElementBlock("div", eV, [
       t.value.pairs.length ? (e.openBlock(), e.createElementBlock("section", tV, [
         e.createElementVNode("header", null, [
           e.createElementVNode(
             "strong",
             null,
-            e.toDisplayString(y.$t("对账汇总")),
+            e.toDisplayString(N.$t("对账汇总")),
             1
             /* TEXT */
           ),
@@ -11044,7 +11049,7 @@ const zu = {
             },
             [
               e.createTextVNode(
-                e.toDisplayString(y.$t("差异")) + " ",
+                e.toDisplayString(N.$t("差异")) + " ",
                 1
                 /* TEXT */
               ),
@@ -11061,7 +11066,7 @@ const zu = {
               class: e.normalizeClass(["fau-badge", t.value.balanced ? "ok" : "bad"]),
               "data-test": "fau-ic-balanced"
             },
-            e.toDisplayString(t.value.balanced ? y.$t("抵销分录借贷平衡") : y.$t("抵销分录借贷不平")),
+            e.toDisplayString(t.value.balanced ? N.$t("抵销分录借贷平衡") : N.$t("抵销分录借贷不平")),
             3
             /* TEXT, CLASS */
           )
@@ -11073,49 +11078,49 @@ const zu = {
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("配对类别")),
+                  e.toDisplayString(N.$t("配对类别")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("本方公司")),
+                  e.toDisplayString(N.$t("本方公司")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("对方公司")),
+                  e.toDisplayString(N.$t("对方公司")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   aV,
-                  e.toDisplayString(y.$t("本方金额")),
+                  e.toDisplayString(N.$t("本方金额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   oV,
-                  e.toDisplayString(y.$t("对方金额")),
+                  e.toDisplayString(N.$t("对方金额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   sV,
-                  e.toDisplayString(y.$t("差额")),
+                  e.toDisplayString(N.$t("差额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   rV,
-                  e.toDisplayString(y.$t("抵销金额")),
+                  e.toDisplayString(N.$t("抵销金额")),
                   1
                   /* TEXT */
                 )
@@ -11125,15 +11130,15 @@ const zu = {
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(t.value.pairs, (n, c) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: c,
+                e.renderList(t.value.pairs, (n, i) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: i,
                   class: e.normalizeClass({ warn: n.diff !== 0 }),
                   "data-test": `fau-ic-pair-${n.pair}-${n.entity}`
                 }, [
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(y.$t(e.unref(it)[n.pair])),
+                    e.toDisplayString(N.$t(e.unref(it)[n.pair])),
                     1
                     /* TEXT */
                   ),
@@ -11185,7 +11190,7 @@ const zu = {
           e.createElementVNode(
             "summary",
             null,
-            e.toDisplayString(y.$t("差异明细")),
+            e.toDisplayString(N.$t("差异明细")),
             1
             /* TEXT */
           ),
@@ -11196,49 +11201,49 @@ const zu = {
                   e.createElementVNode(
                     "th",
                     null,
-                    e.toDisplayString(y.$t("配对类别")),
+                    e.toDisplayString(N.$t("配对类别")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "th",
                     null,
-                    e.toDisplayString(y.$t("本方公司")),
+                    e.toDisplayString(N.$t("本方公司")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "th",
                     null,
-                    e.toDisplayString(y.$t("对账键")),
+                    e.toDisplayString(N.$t("对账键")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "th",
                     null,
-                    e.toDisplayString(y.$t("分类")),
+                    e.toDisplayString(N.$t("分类")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "th",
                     VV,
-                    e.toDisplayString(y.$t("本方金额")),
+                    e.toDisplayString(N.$t("本方金额")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "th",
                     EV,
-                    e.toDisplayString(y.$t("对方金额")),
+                    e.toDisplayString(N.$t("对方金额")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "th",
                     kV,
-                    e.toDisplayString(y.$t("差额")),
+                    e.toDisplayString(N.$t("差额")),
                     1
                     /* TEXT */
                   )
@@ -11254,7 +11259,7 @@ const zu = {
                     e.createElementVNode(
                       "td",
                       null,
-                      e.toDisplayString(y.$t(e.unref(it)[n.pair])),
+                      e.toDisplayString(N.$t(e.unref(it)[n.pair])),
                       1
                       /* TEXT */
                     ),
@@ -11273,7 +11278,7 @@ const zu = {
                     e.createElementVNode(
                       "td",
                       null,
-                      e.toDisplayString(y.$t(e.unref(Iu)[n.cls] || n.cls)),
+                      e.toDisplayString(N.$t(e.unref(Iu)[n.cls] || n.cls)),
                       1
                       /* TEXT */
                     ),
@@ -11309,7 +11314,7 @@ const zu = {
             /* CACHED */
           )),
           e.createTextVNode(
-            e.toDisplayString(y.$t("抵销分录不含存货中的未实现内部利润，需按毛利率与期末结存另行计算")),
+            e.toDisplayString(N.$t("抵销分录不含存货中的未实现内部利润，需按毛利率与期末结存另行计算")),
             1
             /* TEXT */
           )
@@ -11320,7 +11325,7 @@ const zu = {
           e.createElementVNode(
             "strong",
             null,
-            e.toDisplayString(y.$t("担保检查")),
+            e.toDisplayString(N.$t("担保检查")),
             1
             /* TEXT */
           )
@@ -11332,42 +11337,42 @@ const zu = {
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("担保方")),
+                  e.toDisplayString(N.$t("担保方")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("被担保方")),
+                  e.toDisplayString(N.$t("被担保方")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   bV,
-                  e.toDisplayString(y.$t("担保金额")),
+                  e.toDisplayString(N.$t("担保金额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("到期日")),
+                  e.toDisplayString(N.$t("到期日")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   SV,
-                  e.toDisplayString(y.$t("担保余额 / 净资产")),
+                  e.toDisplayString(N.$t("担保余额 / 净资产")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("提示")),
+                  e.toDisplayString(N.$t("提示")),
                   1
                   /* TEXT */
                 )
@@ -11381,7 +11386,7 @@ const zu = {
                   "tr",
                   {
                     key: n.row,
-                    class: e.normalizeClass({ bad: n.flags.some((c) => c.level === "block"), warn: n.flags.some((c) => c.level === "warn") })
+                    class: e.normalizeClass({ bad: n.flags.some((i) => i.level === "block"), warn: n.flags.some((i) => i.level === "warn") })
                   },
                   [
                     e.createElementVNode(
@@ -11434,7 +11439,7 @@ const zu = {
           e.createElementVNode(
             "strong",
             null,
-            e.toDisplayString(y.$t("内部定价偏离")),
+            e.toDisplayString(N.$t("内部定价偏离")),
             1
             /* TEXT */
           )
@@ -11446,49 +11451,49 @@ const zu = {
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("本方公司")),
+                  e.toDisplayString(N.$t("本方公司")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("对方公司")),
+                  e.toDisplayString(N.$t("对方公司")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("往来类型 / 科目")),
+                  e.toDisplayString(N.$t("往来类型 / 科目")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   AV,
-                  e.toDisplayString(y.$t("内部价格")),
+                  e.toDisplayString(N.$t("内部价格")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   FV,
-                  e.toDisplayString(y.$t("市场价格")),
+                  e.toDisplayString(N.$t("市场价格")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   IV,
-                  e.toDisplayString(y.$t("偏离率")),
+                  e.toDisplayString(N.$t("偏离率")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("结论")),
+                  e.toDisplayString(N.$t("结论")),
                   1
                   /* TEXT */
                 )
@@ -11544,7 +11549,7 @@ const zu = {
                     e.createElementVNode(
                       "td",
                       null,
-                      e.toDisplayString(n.flagged ? y.$t("偏离，转转让定价") : y.$t("在范围内")),
+                      e.toDisplayString(n.flagged ? N.$t("偏离，转转让定价") : N.$t("在范围内")),
                       1
                       /* TEXT */
                     )
@@ -11563,7 +11568,7 @@ const zu = {
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(t.value.escalations, (n, c) => (e.openBlock(), e.createElementBlock("li", { key: c }, [
+          e.renderList(t.value.escalations, (n, i) => (e.openBlock(), e.createElementBlock("li", { key: i }, [
             r[1] || (r[1] = e.createElementVNode(
               "i",
               { class: "ri-alarm-warning-line" },
@@ -11630,20 +11635,20 @@ const UV = {
     def: {}
   },
   emits: ["changed"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = e.computed(() => t.run.result), n = e.computed(() => !["signing", "archived", "void"].includes(t.run.status)), c = e.ref(!1), a = e.ref(""), N = e.ref(typeof t.run.params.seed == "number" ? t.run.params.seed : r.value?.plans[0]?.seed ?? 0), E = ["pass", "fail", "pending"], u = ue.FAU_DEFICIENCY_GRADES, L = ue.FAU_IMPACT_LEVELS, g = ue.FAU_COMPENSATING, v = { material_weakness: "bad", significant: "warn", deficiency: "muted", improvement: "ok" }, b = { effective: "ok", ineffective: "bad", pending: "muted" }, h = (w) => r.value?.tests.find((m) => m.controlId === w);
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = e.computed(() => t.run.result), n = e.computed(() => !["signing", "archived", "void"].includes(t.run.status)), i = e.ref(!1), a = e.ref(""), m = e.ref(typeof t.run.params.seed == "number" ? t.run.params.seed : r.value?.plans[0]?.seed ?? 0), E = ["pass", "fail", "pending"], u = ue.FAU_DEFICIENCY_GRADES, L = ue.FAU_IMPACT_LEVELS, g = ue.FAU_COMPENSATING, v = { material_weakness: "bad", significant: "warn", deficiency: "muted", improvement: "ok" }, b = { effective: "ok", ineffective: "bad", pending: "muted" }, h = (w) => r.value?.tests.find((p) => p.controlId === w);
     async function K(w) {
-      c.value = !0, a.value = "";
+      i.value = !0, a.value = "";
       try {
-        await w(), y("changed");
-      } catch (m) {
-        a.value = Q.errorMessage(m);
+        await w(), N("changed");
+      } catch (p) {
+        a.value = Q.errorMessage(p);
       } finally {
-        c.value = !1;
+        i.value = !1;
       }
     }
-    const T = (w, m, f) => K(() => Y("icfr.sample.update", { runId: t.run.id, controlId: w, row: m, result: f })), z = (w, m) => K(() => Y("icfr.deficiency.update", { runId: t.run.id, id: w, ...m })), S = () => K(() => Y("audit.params.set", { runId: t.run.id, moduleId: "icfr", params: { seed: Math.max(0, Math.floor(Number(N.value) || 0)) } }));
-    return (w, m) => r.value ? (e.openBlock(), e.createElementBlock("div", UV, [
+    const T = (w, p, f) => K(() => Y("icfr.sample.update", { runId: t.run.id, controlId: w, row: p, result: f })), z = (w, p) => K(() => Y("icfr.deficiency.update", { runId: t.run.id, id: w, ...p })), S = () => K(() => Y("audit.params.set", { runId: t.run.id, moduleId: "icfr", params: { seed: Math.max(0, Math.floor(Number(m.value) || 0)) } }));
+    return (w, p) => r.value ? (e.openBlock(), e.createElementBlock("div", UV, [
       r.value.mode === "design" ? (e.openBlock(), e.createElementBlock("section", WV, [
         e.createElementVNode("header", null, [
           e.createElementVNode(
@@ -11736,7 +11741,7 @@ const UV = {
                       1
                       /* TEXT */
                     ),
-                    m[1] || (m[1] = e.createElementVNode(
+                    p[1] || (p[1] = e.createElementVNode(
                       "br",
                       null,
                       null,
@@ -11834,7 +11839,7 @@ const UV = {
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(r.value.approvalMatrix, (f, p) => (e.openBlock(), e.createElementBlock("tr", { key: p }, [
+                  e.renderList(r.value.approvalMatrix, (f, y) => (e.openBlock(), e.createElementBlock("tr", { key: y }, [
                     e.createElementVNode(
                       "td",
                       null,
@@ -11892,7 +11897,7 @@ const UV = {
               /* TEXT */
             ),
             e.withDirectives(e.createElementVNode("input", {
-              "onUpdate:modelValue": m[0] || (m[0] = (f) => N.value = f),
+              "onUpdate:modelValue": p[0] || (p[0] = (f) => m.value = f),
               type: "number",
               min: "0",
               disabled: !n.value,
@@ -11900,7 +11905,7 @@ const UV = {
             }, null, 8, iE), [
               [
                 e.vModelText,
-                N.value,
+                m.value,
                 void 0,
                 { number: !0 }
               ]
@@ -11909,7 +11914,7 @@ const UV = {
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm",
-            disabled: c.value || !n.value,
+            disabled: i.value || !n.value,
             "data-test": "fau-icfr-reseed",
             onClick: S
           }, e.toDisplayString(w.$t("按这个种子重新抽样")), 9, cE)
@@ -12149,14 +12154,14 @@ const UV = {
                           (e.openBlock(), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(E, (p) => e.createElementVNode("button", {
-                              key: p,
+                            e.renderList(E, (y) => e.createElementVNode("button", {
+                              key: y,
                               type: "button",
-                              class: e.normalizeClass({ on: f.result === p }),
-                              disabled: c.value || !n.value,
-                              "data-test": `fau-sample-${f.controlId}-${f.seq}-${p}`,
-                              onClick: (I) => T(f.controlId, f.row, p)
-                            }, e.toDisplayString(w.$t(e.unref(ee.RESULT_LABEL)[p])), 11, wE)),
+                              class: e.normalizeClass({ on: f.result === y }),
+                              disabled: i.value || !n.value,
+                              "data-test": `fau-sample-${f.controlId}-${f.seq}-${y}`,
+                              onClick: (I) => T(f.controlId, f.row, y)
+                            }, e.toDisplayString(w.$t(e.unref(ee.RESULT_LABEL)[y])), 11, wE)),
                             64
                             /* STABLE_FRAGMENT */
                           ))
@@ -12295,17 +12300,17 @@ const UV = {
                   e.createElementVNode("td", null, [
                     e.createElementVNode("select", {
                       value: f.opImpact,
-                      disabled: c.value || !n.value,
+                      disabled: i.value || !n.value,
                       "data-test": `fau-def-op-${f.id}`,
-                      onChange: (p) => z(f.id, { opImpact: p.target.value })
+                      onChange: (y) => z(f.id, { opImpact: y.target.value })
                     }, [
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(e.unref(L), (p) => (e.openBlock(), e.createElementBlock("option", {
-                          key: p,
-                          value: p
-                        }, e.toDisplayString(w.$t(e.unref(ee.IMPACT_LABEL)[p])), 9, RE))),
+                        e.renderList(e.unref(L), (y) => (e.openBlock(), e.createElementBlock("option", {
+                          key: y,
+                          value: y
+                        }, e.toDisplayString(w.$t(e.unref(ee.IMPACT_LABEL)[y])), 9, RE))),
                         128
                         /* KEYED_FRAGMENT */
                       ))
@@ -12314,17 +12319,17 @@ const UV = {
                   e.createElementVNode("td", null, [
                     e.createElementVNode("select", {
                       value: f.compensating,
-                      disabled: c.value || !n.value,
+                      disabled: i.value || !n.value,
                       "data-test": `fau-def-comp-${f.id}`,
-                      onChange: (p) => z(f.id, { compensating: p.target.value })
+                      onChange: (y) => z(f.id, { compensating: y.target.value })
                     }, [
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(e.unref(g), (p) => (e.openBlock(), e.createElementBlock("option", {
-                          key: p,
-                          value: p
-                        }, e.toDisplayString(w.$t(e.unref(ee.COMP_LABEL)[p])), 9, UE))),
+                        e.renderList(e.unref(g), (y) => (e.openBlock(), e.createElementBlock("option", {
+                          key: y,
+                          value: y
+                        }, e.toDisplayString(w.$t(e.unref(ee.COMP_LABEL)[y])), 9, UE))),
                         128
                         /* KEYED_FRAGMENT */
                       ))
@@ -12351,7 +12356,7 @@ const UV = {
         ))
       ])) : e.createCommentVNode("v-if", !0),
       a.value ? (e.openBlock(), e.createElementBlock("p", YE, [
-        m[2] || (m[2] = e.createElementVNode(
+        p[2] || (p[2] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
           null,
@@ -12401,16 +12406,16 @@ const UV = {
     def: {}
   },
   emits: ["changed"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = e.computed(() => t.run.result), n = e.computed(() => !["signing", "archived", "void"].includes(t.run.status)), c = e.ref(!1), a = e.ref(""), N = e.ref(r.value?.plan?.availableDays ?? 240), E = e.ref(r.value?.asOf || ""), u = [3, 2, 1];
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = e.computed(() => t.run.result), n = e.computed(() => !["signing", "archived", "void"].includes(t.run.status)), i = e.ref(!1), a = e.ref(""), m = e.ref(r.value?.plan?.availableDays ?? 240), E = e.ref(r.value?.asOf || ""), u = [3, 2, 1];
     async function L(g) {
-      c.value = !0, a.value = "";
+      i.value = !0, a.value = "";
       try {
-        await Y("audit.params.set", { runId: t.run.id, moduleId: "internal-audit", params: g }), y("changed");
+        await Y("audit.params.set", { runId: t.run.id, moduleId: "internal-audit", params: g }), N("changed");
       } catch (v) {
         a.value = Q.errorMessage(v);
       } finally {
-        c.value = !1;
+        i.value = !1;
       }
     }
     return (g, v) => r.value ? (e.openBlock(), e.createElementBlock("div", HE, [
@@ -12432,7 +12437,7 @@ const UV = {
               /* TEXT */
             ),
             e.withDirectives(e.createElementVNode("input", {
-              "onUpdate:modelValue": v[0] || (v[0] = (b) => N.value = b),
+              "onUpdate:modelValue": v[0] || (v[0] = (b) => m.value = b),
               type: "number",
               min: "0",
               disabled: !n.value,
@@ -12440,7 +12445,7 @@ const UV = {
             }, null, 8, xE), [
               [
                 e.vModelText,
-                N.value,
+                m.value,
                 void 0,
                 { number: !0 }
               ]
@@ -12449,8 +12454,8 @@ const UV = {
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm",
-            disabled: c.value || !n.value,
-            onClick: v[1] || (v[1] = (b) => L({ availableDays: Number(N.value) || 0 }))
+            disabled: i.value || !n.value,
+            onClick: v[1] || (v[1] = (b) => L({ availableDays: Number(m.value) || 0 }))
           }, e.toDisplayString(g.$t("按新人天重算")), 9, e1)
         ]),
         e.createElementVNode("div", t1, [
@@ -12787,7 +12792,7 @@ const UV = {
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm",
-            disabled: c.value || !n.value,
+            disabled: i.value || !n.value,
             onClick: v[3] || (v[3] = (b) => L({ asOf: E.value }))
           }, e.toDisplayString(g.$t("按截至日重算")), 9, b1)
         ]),
@@ -13008,40 +13013,40 @@ const UV = {
     def: {}
   },
   emits: ["changed"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = e.computed(() => t.run.result), n = e.computed(() => !["signing", "archived", "void"].includes(t.run.status)), c = e.ref(!1), a = e.ref(""), N = e.ref(""), E = e.ref((r.value?.materiality || 0) / 100), u = e.ref(null), L = e.ref([]), g = e.computed(() => new Set(L.value.filter((m) => m.ok).map((m) => m.id))), v = s.listSeparator(), b = ["provided", "requested", "overdue"], h = { draft: "muted", sent: "warn", replied_match: "ok", replied_diff: "bad", no_reply: "bad" };
-    async function K(m) {
-      c.value = !0, a.value = "";
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = e.computed(() => t.run.result), n = e.computed(() => !["signing", "archived", "void"].includes(t.run.status)), i = e.ref(!1), a = e.ref(""), m = e.ref(""), E = e.ref((r.value?.materiality || 0) / 100), u = e.ref(null), L = e.ref([]), g = e.computed(() => new Set(L.value.filter((p) => p.ok).map((p) => p.id))), v = s.listSeparator(), b = ["provided", "requested", "overdue"], h = { draft: "muted", sent: "warn", replied_match: "ok", replied_diff: "bad", no_reply: "bad" };
+    async function K(p) {
+      i.value = !0, a.value = "";
       try {
-        await m();
+        await p();
       } catch (f) {
         a.value = Q.errorMessage(f);
       } finally {
-        c.value = !1;
+        i.value = !1;
       }
     }
-    const T = (m) => K(async () => {
-      await Y("audit.params.set", { runId: t.run.id, moduleId: "ext-audit", params: m }), y("changed");
+    const T = (p) => K(async () => {
+      await Y("audit.params.set", { runId: t.run.id, moduleId: "ext-audit", params: p }), N("changed");
     }), z = async () => {
       r.value?.mode === "confirm_prepare" && (L.value = await Y("ext-audit.confirm.sentLog", { runId: t.run.id }));
     }, S = () => K(async () => {
       u.value = await Y("ext-audit.confirm.prepareSend", { runId: t.run.id });
     }), w = () => K(async () => {
-      const m = u.value;
-      if (!m) return;
-      const f = await Y("ext-audit.confirm.send", { runId: t.run.id, token: m.token });
-      u.value = null, N.value = s.t("已发送 {n} 份，失败 {m} 份", { n: f.filter((p) => p.ok).length, m: f.filter((p) => !p.ok).length }), await z(), y("changed");
+      const p = u.value;
+      if (!p) return;
+      const f = await Y("ext-audit.confirm.send", { runId: t.run.id, token: p.token });
+      u.value = null, m.value = s.t("已发送 {n} 份，失败 {m} 份", { n: f.filter((y) => y.ok).length, m: f.filter((y) => !y.ok).length }), await z(), N("changed");
     });
     return e.onMounted(() => {
       z().catch(() => {
       });
-    }), (m, f) => r.value ? (e.openBlock(), e.createElementBlock("div", P1, [
+    }), (p, f) => r.value ? (e.openBlock(), e.createElementBlock("div", P1, [
       r.value.mode === "support" ? (e.openBlock(), e.createElementBlock("section", O1, [
         e.createElementVNode("header", null, [
           e.createElementVNode(
             "strong",
             z1,
-            e.toDisplayString(m.$t("资料清单与审计调整")),
+            e.toDisplayString(p.$t("资料清单与审计调整")),
             1
             /* TEXT */
           ),
@@ -13049,12 +13054,12 @@ const UV = {
             e.createElementVNode(
               "span",
               j1,
-              e.toDisplayString(m.$t("重要性水平")),
+              e.toDisplayString(p.$t("重要性水平")),
               1
               /* TEXT */
             ),
             e.withDirectives(e.createElementVNode("input", {
-              "onUpdate:modelValue": f[0] || (f[0] = (p) => E.value = p),
+              "onUpdate:modelValue": f[0] || (f[0] = (y) => E.value = y),
               type: "number",
               min: "0",
               disabled: !n.value,
@@ -13071,28 +13076,28 @@ const UV = {
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm",
-            disabled: c.value || !n.value,
-            onClick: f[1] || (f[1] = (p) => T({ materiality: Number(E.value) || 0 }))
-          }, e.toDisplayString(m.$t("按重要性水平重算")), 9, q1)
+            disabled: i.value || !n.value,
+            onClick: f[1] || (f[1] = (y) => T({ materiality: Number(E.value) || 0 }))
+          }, e.toDisplayString(p.$t("按重要性水平重算")), 9, q1)
         ]),
         e.createElementVNode("div", U1, [
           (e.openBlock(), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(b, (p) => e.createElementVNode(
+            e.renderList(b, (y) => e.createElementVNode(
               "span",
               {
-                key: p,
-                class: e.normalizeClass(["fau-badge", p === "provided" ? "ok" : p === "overdue" ? "bad" : "muted"])
+                key: y,
+                class: e.normalizeClass(["fau-badge", y === "provided" ? "ok" : y === "overdue" ? "bad" : "muted"])
               },
               [
                 e.createTextVNode(
-                  e.toDisplayString(m.$t(e.unref(ee.PBC_STATUS_LABEL)[p])) + " ",
+                  e.toDisplayString(p.$t(e.unref(ee.PBC_STATUS_LABEL)[y])) + " ",
                   1
                   /* TEXT */
                 ),
                 e.createVNode(l, {
-                  value: (r.value.pbc || []).filter((I) => I.status === p).length
+                  value: (r.value.pbc || []).filter((I) => I.status === y).length
                 }, null, 8, ["value"])
               ],
               2
@@ -13108,7 +13113,7 @@ const UV = {
           e.createElementVNode(
             "summary",
             null,
-            e.toDisplayString(m.$t("PBC 进度")),
+            e.toDisplayString(p.$t("PBC 进度")),
             1
             /* TEXT */
           ),
@@ -13119,35 +13124,35 @@ const UV = {
                   e.createElementVNode(
                     "th",
                     null,
-                    e.toDisplayString(m.$t("编号")),
+                    e.toDisplayString(p.$t("编号")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "th",
                     null,
-                    e.toDisplayString(m.$t("资料名称")),
+                    e.toDisplayString(p.$t("资料名称")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "th",
                     null,
-                    e.toDisplayString(m.$t("负责人")),
+                    e.toDisplayString(p.$t("负责人")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "th",
                     null,
-                    e.toDisplayString(m.$t("截止日期")),
+                    e.toDisplayString(p.$t("截止日期")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "th",
                     null,
-                    e.toDisplayString(m.$t("状态")),
+                    e.toDisplayString(p.$t("状态")),
                     1
                     /* TEXT */
                   )
@@ -13157,41 +13162,41 @@ const UV = {
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(r.value.pbc || [], (p) => (e.openBlock(), e.createElementBlock(
+                  e.renderList(r.value.pbc || [], (y) => (e.openBlock(), e.createElementBlock(
                     "tr",
                     {
-                      key: p.id,
-                      class: e.normalizeClass({ bad: p.status === "overdue" })
+                      key: y.id,
+                      class: e.normalizeClass({ bad: y.status === "overdue" })
                     },
                     [
                       e.createElementVNode("td", null, [
                         e.createVNode(l, {
-                          value: p.id
+                          value: y.id
                         }, null, 8, ["value"])
                       ]),
                       e.createElementVNode(
                         "td",
                         H1,
-                        e.toDisplayString(p.item),
+                        e.toDisplayString(y.item),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
                         null,
-                        e.toDisplayString(p.owner),
+                        e.toDisplayString(y.owner),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode("td", null, [
                         e.createVNode(l, {
-                          value: p.dueDate
+                          value: y.dueDate
                         }, null, 8, ["value"])
                       ]),
                       e.createElementVNode(
                         "td",
                         null,
-                        e.toDisplayString(m.$t(e.unref(ee.PBC_STATUS_LABEL)[p.status])),
+                        e.toDisplayString(p.$t(e.unref(ee.PBC_STATUS_LABEL)[y.status])),
                         1
                         /* TEXT */
                       )
@@ -13213,49 +13218,49 @@ const UV = {
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(m.$t("凭证号")),
+                  e.toDisplayString(p.$t("凭证号")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(m.$t("摘要")),
+                  e.toDisplayString(p.$t("摘要")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   Z1,
-                  e.toDisplayString(m.$t("利润影响")),
+                  e.toDisplayString(p.$t("利润影响")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   X1,
-                  e.toDisplayString(m.$t("资产影响")),
+                  e.toDisplayString(p.$t("资产影响")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   x1,
-                  e.toDisplayString(m.$t("负债影响")),
+                  e.toDisplayString(p.$t("负债影响")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   ek,
-                  e.toDisplayString(m.$t("权益影响")),
+                  e.toDisplayString(p.$t("权益影响")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(m.$t("超过重要性水平")),
+                  e.toDisplayString(p.$t("超过重要性水平")),
                   1
                   /* TEXT */
                 )
@@ -13265,47 +13270,47 @@ const UV = {
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(r.value.adjustments, (p) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: p.voucherNo,
-                  class: e.normalizeClass({ bad: p.exceedsMateriality || !p.balanced }),
-                  "data-test": `fau-ea-adj-${p.voucherNo}`
+                e.renderList(r.value.adjustments, (y) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: y.voucherNo,
+                  class: e.normalizeClass({ bad: y.exceedsMateriality || !y.balanced }),
+                  "data-test": `fau-ea-adj-${y.voucherNo}`
                 }, [
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: p.voucherNo
+                      value: y.voucherNo
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode(
                     "td",
                     lk,
-                    e.toDisplayString(p.summary),
+                    e.toDisplayString(y.summary),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("td", nk, [
                     e.createVNode(l, {
-                      cents: p.profitImpact
+                      cents: y.profitImpact
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", ak, [
                     e.createVNode(l, {
-                      cents: p.assetImpact
+                      cents: y.assetImpact
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", ok, [
                     e.createVNode(l, {
-                      cents: p.liabilityImpact
+                      cents: y.liabilityImpact
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", sk, [
                     e.createVNode(l, {
-                      cents: p.equityImpact
+                      cents: y.equityImpact
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(p.exceedsMateriality ? m.$t("是") : ""),
+                    e.toDisplayString(y.exceedsMateriality ? p.$t("是") : ""),
                     1
                     /* TEXT */
                   )
@@ -13318,7 +13323,7 @@ const UV = {
                   e.createElementVNode(
                     "strong",
                     null,
-                    e.toDisplayString(m.$t("合计")),
+                    e.toDisplayString(p.$t("合计")),
                     1
                     /* TEXT */
                   )
@@ -13362,13 +13367,13 @@ const UV = {
           e.createElementVNode(
             "strong",
             yk,
-            e.toDisplayString(m.$t("函证控制表")),
+            e.toDisplayString(p.$t("函证控制表")),
             1
             /* TEXT */
           ),
           r.value.responseRate !== null && r.value.responseRate !== void 0 ? (e.openBlock(), e.createElementBlock("span", Nk, [
             e.createTextVNode(
-              e.toDisplayString(m.$t("回函率")) + " ",
+              e.toDisplayString(p.$t("回函率")) + " ",
               1
               /* TEXT */
             ),
@@ -13380,17 +13385,17 @@ const UV = {
             e.Fragment,
             { key: 1 },
             [
-              i.run.status !== "archived" ? (e.openBlock(), e.createElementBlock(
+              c.run.status !== "archived" ? (e.openBlock(), e.createElementBlock(
                 "span",
                 Vk,
-                e.toDisplayString(m.$t("签核归档后才能发送")),
+                e.toDisplayString(p.$t("签核归档后才能发送")),
                 1
                 /* TEXT */
               )) : (e.openBlock(), e.createElementBlock("button", {
                 key: 1,
                 type: "button",
                 class: "ss-btn sm primary",
-                disabled: c.value,
+                disabled: i.value,
                 "data-test": "fau-ea-send",
                 onClick: S
               }, [
@@ -13402,7 +13407,7 @@ const UV = {
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(m.$t("发送函证")),
+                  e.toDisplayString(p.$t("发送函证")),
                   1
                   /* TEXT */
                 )
@@ -13421,7 +13426,7 @@ const UV = {
             /* CACHED */
           )),
           e.createTextVNode(
-            e.toDisplayString(m.$t("函证只生成草稿，不会自动发送；签核归档后由人点「发送」并在确认框确认")),
+            e.toDisplayString(p.$t("函证只生成草稿，不会自动发送；签核归档后由人点「发送」并在确认框确认")),
             1
             /* TEXT */
           )
@@ -13433,63 +13438,63 @@ const UV = {
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(m.$t("函证编号")),
+                  e.toDisplayString(p.$t("函证编号")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(m.$t("类型")),
+                  e.toDisplayString(p.$t("类型")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(m.$t("函证对象")),
+                  e.toDisplayString(p.$t("函证对象")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(m.$t("邮箱")),
+                  e.toDisplayString(p.$t("邮箱")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   fk,
-                  e.toDisplayString(m.$t("账面金额")),
+                  e.toDisplayString(p.$t("账面金额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   hk,
-                  e.toDisplayString(m.$t("回函金额")),
+                  e.toDisplayString(p.$t("回函金额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   $k,
-                  e.toDisplayString(m.$t("差额")),
+                  e.toDisplayString(p.$t("差额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(m.$t("状态")),
+                  e.toDisplayString(p.$t("状态")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(m.$t("替代程序")),
+                  e.toDisplayString(p.$t("替代程序")),
                   1
                   /* TEXT */
                 )
@@ -13499,59 +13504,59 @@ const UV = {
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(r.value.confirmations, (p) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: p.id,
-                  class: e.normalizeClass({ bad: p.status === "replied_diff" || p.status === "no_reply" }),
-                  "data-test": `fau-conf-${p.id}`
+                e.renderList(r.value.confirmations, (y) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: y.id,
+                  class: e.normalizeClass({ bad: y.status === "replied_diff" || y.status === "no_reply" }),
+                  "data-test": `fau-conf-${y.id}`
                 }, [
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: p.id
+                      value: y.id
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(m.$t(e.unref(ee.CONFIRM_TYPE_LABEL)[p.type])),
+                    e.toDisplayString(p.$t(e.unref(ee.CONFIRM_TYPE_LABEL)[y.type])),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(p.party),
+                    e.toDisplayString(y.party),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: p.email
+                      value: y.email
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode("td", Bk, [
                     e.createVNode(l, {
-                      cents: p.bookAmount
+                      cents: y.bookAmount
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", bk, [
                     e.createVNode(l, {
-                      cents: p.replyAmount
+                      cents: y.replyAmount
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", Sk, [
                     e.createVNode(l, {
-                      cents: p.diff
+                      cents: y.diff
                     }, null, 8, ["cents"])
                   ]),
                   e.createElementVNode("td", null, [
                     e.createElementVNode("span", {
-                      class: e.normalizeClass(["fau-badge", h[p.status]]),
-                      "data-test": `fau-conf-status-${p.id}`
-                    }, e.toDisplayString(m.$t(e.unref(ee.CONFIRM_STATUS_LABEL)[p.status])), 11, Dk),
-                    g.value.has(p.id) ? (e.openBlock(), e.createElementBlock(
+                      class: e.normalizeClass(["fau-badge", h[y.status]]),
+                      "data-test": `fau-conf-status-${y.id}`
+                    }, e.toDisplayString(p.$t(e.unref(ee.CONFIRM_STATUS_LABEL)[y.status])), 11, Dk),
+                    g.value.has(y.id) ? (e.openBlock(), e.createElementBlock(
                       "span",
                       Ck,
-                      e.toDisplayString(m.$t("已发送")),
+                      e.toDisplayString(p.$t("已发送")),
                       1
                       /* TEXT */
                     )) : e.createCommentVNode("v-if", !0)
@@ -13559,7 +13564,7 @@ const UV = {
                   e.createElementVNode(
                     "td",
                     wk,
-                    e.toDisplayString(p.alternative.map((I) => m.$t(I)).join(e.unref(v))),
+                    e.toDisplayString(y.alternative.map((I) => p.$t(I)).join(e.unref(v))),
                     1
                     /* TEXT */
                   )
@@ -13575,13 +13580,13 @@ const UV = {
         key: 2,
         class: "fau-modal-mask",
         "data-test": "fau-ea-confirm-dialog",
-        onClick: f[3] || (f[3] = e.withModifiers((p) => u.value = null, ["self"]))
+        onClick: f[3] || (f[3] = e.withModifiers((y) => u.value = null, ["self"]))
       }, [
         e.createElementVNode("div", Tk, [
           e.createElementVNode(
             "h3",
             null,
-            e.toDisplayString(m.$t("确认发送函证")),
+            e.toDisplayString(p.$t("确认发送函证")),
             1
             /* TEXT */
           ),
@@ -13594,7 +13599,7 @@ const UV = {
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(m.$t("以下函证将以邮件发给对方，附件是签核归档时的询证函副本。发出后不能撤回。")),
+              e.toDisplayString(p.$t("以下函证将以邮件发给对方，附件是签核归档时的询证函副本。发出后不能撤回。")),
               1
               /* TEXT */
             )
@@ -13602,7 +13607,7 @@ const UV = {
           u.value.via === "official" ? (e.openBlock(), e.createElementBlock(
             "p",
             Kk,
-            e.toDisplayString(m.$t("你没有配置自己的发信邮箱，将由官方代发；对方回信不会直接到你的邮箱")),
+            e.toDisplayString(p.$t("你没有配置自己的发信邮箱，将由官方代发；对方回信不会直接到你的邮箱")),
             1
             /* TEXT */
           )) : e.createCommentVNode("v-if", !0),
@@ -13610,27 +13615,27 @@ const UV = {
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(u.value.items, (p) => (e.openBlock(), e.createElementBlock("li", {
-                key: p.id,
-                "data-test": `fau-ea-send-item-${p.id}`
+              e.renderList(u.value.items, (y) => (e.openBlock(), e.createElementBlock("li", {
+                key: y.id,
+                "data-test": `fau-ea-send-item-${y.id}`
               }, [
                 e.createVNode(l, {
-                  value: p.id
+                  value: y.id
                 }, null, 8, ["value"]),
                 e.createElementVNode("span", Ik, [
                   e.createTextVNode(
-                    e.toDisplayString(p.party) + " · ",
+                    e.toDisplayString(y.party) + " · ",
                     1
                     /* TEXT */
                   ),
                   e.createVNode(l, {
-                    value: p.email
+                    value: y.email
                   }, null, 8, ["value"])
                 ]),
                 e.createElementVNode(
                   "small",
                   Pk,
-                  e.toDisplayString(p.attachment),
+                  e.toDisplayString(y.attachment),
                   1
                   /* TEXT */
                 )
@@ -13643,7 +13648,7 @@ const UV = {
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(u.value.blocked, (p, I) => (e.openBlock(), e.createElementBlock("li", { key: I }, [
+              e.renderList(u.value.blocked, (y, I) => (e.openBlock(), e.createElementBlock("li", { key: I }, [
                 f[8] || (f[8] = e.createElementVNode(
                   "i",
                   { class: "ri-forbid-line" },
@@ -13652,7 +13657,7 @@ const UV = {
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(e.unref(Z)(p)),
+                  e.toDisplayString(e.unref(Z)(y)),
                   1
                   /* TEXT */
                 )
@@ -13665,25 +13670,25 @@ const UV = {
             e.createElementVNode("button", {
               type: "button",
               class: "ss-btn primary",
-              disabled: c.value || !u.value.items.length,
+              disabled: i.value || !u.value.items.length,
               "data-test": "fau-ea-send-confirm",
               onClick: w
-            }, e.toDisplayString(m.$t("确认发送 {n} 份", { n: u.value.items.length })), 9, Mk),
+            }, e.toDisplayString(p.$t("确认发送 {n} 份", { n: u.value.items.length })), 9, Mk),
             e.createElementVNode(
               "button",
               {
                 type: "button",
                 class: "ss-btn ghost",
-                onClick: f[2] || (f[2] = (p) => u.value = null)
+                onClick: f[2] || (f[2] = (y) => u.value = null)
               },
-              e.toDisplayString(m.$t("取消")),
+              e.toDisplayString(p.$t("取消")),
               1
               /* TEXT */
             )
           ])
         ])
       ])) : e.createCommentVNode("v-if", !0),
-      N.value ? (e.openBlock(), e.createElementBlock("p", jk, [
+      m.value ? (e.openBlock(), e.createElementBlock("p", jk, [
         f[9] || (f[9] = e.createElementVNode(
           "i",
           { class: "ri-mail-check-line" },
@@ -13692,7 +13697,7 @@ const UV = {
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(N.value),
+          e.toDisplayString(m.value),
           1
           /* TEXT */
         )
@@ -13744,15 +13749,15 @@ const UV = {
     run: {},
     def: {}
   },
-  setup(i) {
-    const B = i, t = e.computed(() => B.run.result);
-    return (y, r) => t.value ? (e.openBlock(), e.createElementBlock("div", Uk, [
+  setup(c) {
+    const _ = c, t = e.computed(() => _.run.result);
+    return (N, r) => t.value ? (e.openBlock(), e.createElementBlock("div", Uk, [
       e.createElementVNode("section", Wk, [
         e.createElementVNode("header", null, [
           e.createElementVNode(
             "strong",
             Yk,
-            e.toDisplayString(y.$t("放行建议")),
+            e.toDisplayString(N.$t("放行建议")),
             1
             /* TEXT */
           ),
@@ -13762,7 +13767,7 @@ const UV = {
               class: e.normalizeClass(["fau-badge", t.value.recommendation === "release" ? "ok" : "bad"]),
               "data-test": "fau-review-decision"
             },
-            e.toDisplayString(t.value.recommendation === "release" ? y.$t("建议放行") : y.$t("建议暂扣")),
+            e.toDisplayString(t.value.recommendation === "release" ? N.$t("建议放行") : N.$t("建议暂扣")),
             3
             /* TEXT, CLASS */
           )
@@ -13771,7 +13776,7 @@ const UV = {
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(t.value.reasons, (n, c) => (e.openBlock(), e.createElementBlock("li", { key: c }, [
+            e.renderList(t.value.reasons, (n, i) => (e.openBlock(), e.createElementBlock("li", { key: i }, [
               r[0] || (r[0] = e.createElementVNode(
                 "i",
                 { class: "ri-alarm-warning-line" },
@@ -13795,7 +13800,7 @@ const UV = {
           e.createElementVNode(
             "strong",
             Qk,
-            e.toDisplayString(y.$t("报表勾稽")),
+            e.toDisplayString(N.$t("报表勾稽")),
             1
             /* TEXT */
           )
@@ -13835,7 +13840,7 @@ const UV = {
           e.createElementVNode(
             "strong",
             ev,
-            e.toDisplayString(y.$t("底稿质检")),
+            e.toDisplayString(N.$t("底稿质检")),
             1
             /* TEXT */
           ),
@@ -13866,35 +13871,35 @@ const UV = {
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("文件")),
+                  e.toDisplayString(N.$t("文件")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("单元格")),
+                  e.toDisplayString(N.$t("单元格")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("规则")),
+                  e.toDisplayString(N.$t("规则")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("严重程度")),
+                  e.toDisplayString(N.$t("严重程度")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("公式")),
+                  e.toDisplayString(N.$t("公式")),
                   1
                   /* TEXT */
                 )
@@ -13924,14 +13929,14 @@ const UV = {
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(y.$t(e.unref(ee.XLS_RULE_LABEL)[n.rule])),
+                    e.toDisplayString(N.$t(e.unref(ee.XLS_RULE_LABEL)[n.rule])),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(y.$t(e.unref(ee.QC_SEVERITY_LABEL)[n.severity])),
+                    e.toDisplayString(N.$t(e.unref(ee.QC_SEVERITY_LABEL)[n.severity])),
                     1
                     /* TEXT */
                   ),
@@ -13949,14 +13954,14 @@ const UV = {
         ])) : (e.openBlock(), e.createElementBlock(
           "p",
           tv,
-          e.toDisplayString(y.$t("没有发现问题")),
+          e.toDisplayString(N.$t("没有发现问题")),
           1
           /* TEXT */
         )),
         t.value.crossRefs?.length ? (e.openBlock(), e.createElementBlock("details", ov, [
           e.createElementVNode("summary", null, [
             e.createTextVNode(
-              e.toDisplayString(y.$t("交叉索引")) + " · ",
+              e.toDisplayString(N.$t("交叉索引")) + " · ",
               1
               /* TEXT */
             ),
@@ -13994,7 +13999,7 @@ const UV = {
                   {
                     class: e.normalizeClass(["fau-badge", n.found ? "ok" : "bad"])
                   },
-                  e.toDisplayString(n.found ? y.$t("已找到") : y.$t("断链")),
+                  e.toDisplayString(n.found ? N.$t("已找到") : N.$t("断链")),
                   3
                   /* TEXT, CLASS */
                 )
@@ -14010,7 +14015,7 @@ const UV = {
           e.createElementVNode(
             "strong",
             cv,
-            e.toDisplayString(y.$t("LP 资本账户重算")),
+            e.toDisplayString(N.$t("LP 资本账户重算")),
             1
             /* TEXT */
           ),
@@ -14019,7 +14024,7 @@ const UV = {
             {
               class: e.normalizeClass(["fau-badge", t.value.nav.navTies ? "ok" : "bad"])
             },
-            e.toDisplayString(y.$t("LP 期末资本合计 = 基金净值")),
+            e.toDisplayString(N.$t("LP 期末资本合计 = 基金净值")),
             3
             /* TEXT, CLASS */
           )
@@ -14031,42 +14036,42 @@ const UV = {
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("LP 编号")),
+                  e.toDisplayString(N.$t("LP 编号")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("行项目")),
+                  e.toDisplayString(N.$t("行项目")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   mv,
-                  e.toDisplayString(y.$t("对账单金额")),
+                  e.toDisplayString(N.$t("对账单金额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   pv,
-                  e.toDisplayString(y.$t("重算金额")),
+                  e.toDisplayString(N.$t("重算金额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   yv,
-                  e.toDisplayString(y.$t("差额")),
+                  e.toDisplayString(N.$t("差额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(y.$t("放行建议")),
+                  e.toDisplayString(N.$t("放行建议")),
                   1
                   /* TEXT */
                 )
@@ -14085,10 +14090,10 @@ const UV = {
                     (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       null,
-                      e.renderList(n.lines, (c) => (e.openBlock(), e.createElementBlock("tr", {
-                        key: `${n.lpId}:${c.line}`,
-                        class: e.normalizeClass({ bad: !c.ok }),
-                        "data-test": `fau-nav-${n.lpId}-${c.line}`
+                      e.renderList(n.lines, (i) => (e.openBlock(), e.createElementBlock("tr", {
+                        key: `${n.lpId}:${i.line}`,
+                        class: e.normalizeClass({ bad: !i.ok }),
+                        "data-test": `fau-nav-${n.lpId}-${i.line}`
                       }, [
                         e.createElementVNode("td", null, [
                           e.createVNode(l, {
@@ -14098,30 +14103,30 @@ const UV = {
                         e.createElementVNode(
                           "td",
                           null,
-                          e.toDisplayString(y.$t(e.unref(ee.NAV_LINE_LABEL)[c.line])),
+                          e.toDisplayString(N.$t(e.unref(ee.NAV_LINE_LABEL)[i.line])),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode("td", Vv, [
                           e.createVNode(l, {
-                            cents: c.statement
+                            cents: i.statement
                           }, null, 8, ["cents"])
                         ]),
                         e.createElementVNode("td", Ev, [
                           e.createVNode(l, {
-                            cents: c.recomputed
+                            cents: i.recomputed
                           }, null, 8, ["cents"])
                         ]),
                         e.createElementVNode("td", kv, [
                           e.createVNode(l, {
-                            cents: c.diff
+                            cents: i.diff
                           }, null, 8, ["cents"])
                         ]),
                         e.createElementVNode("td", null, [
                           e.createElementVNode("span", {
                             class: e.normalizeClass(["fau-badge", n.decision === "release" ? "ok" : "bad"]),
                             "data-test": `fau-nav-decision-${n.lpId}`
-                          }, e.toDisplayString(n.decision === "release" ? y.$t("建议放行") : y.$t("建议暂扣")), 11, vv)
+                          }, e.toDisplayString(n.decision === "release" ? N.$t("建议放行") : N.$t("建议暂扣")), 11, vv)
                         ])
                       ], 10, Nv))),
                       128
@@ -14172,9 +14177,9 @@ const UV = {
     run: {},
     def: {}
   },
-  setup(i) {
-    const B = i, t = e.computed(() => B.run.result), y = { high: s.i18nKey("高"), warn: s.i18nKey("中"), info: s.i18nKey("低") }, r = { close: "ok", acceptable: "ok", marginal: "warn", nonconformity: "bad", insufficient: "muted" };
-    return (n, c) => t.value ? (e.openBlock(), e.createElementBlock("div", fv, [
+  setup(c) {
+    const _ = c, t = e.computed(() => _.run.result), N = { high: s.i18nKey("高"), warn: s.i18nKey("中"), info: s.i18nKey("低") }, r = { close: "ok", acceptable: "ok", marginal: "warn", nonconformity: "bad", insufficient: "muted" };
+    return (n, i) => t.value ? (e.openBlock(), e.createElementBlock("div", fv, [
       e.createElementVNode("section", hv, [
         e.createElementVNode("header", null, [
           e.createElementVNode(
@@ -14195,7 +14200,7 @@ const UV = {
             /* TEXT, CLASS */
           ),
           e.createElementVNode("span", _v, [
-            c[0] || (c[0] = e.createTextVNode(
+            i[0] || (i[0] = e.createTextVNode(
               "n ",
               -1
               /* CACHED */
@@ -14203,7 +14208,7 @@ const UV = {
             e.createVNode(l, {
               value: t.value.benford.n
             }, null, 8, ["value"]),
-            c[1] || (c[1] = e.createTextVNode(
+            i[1] || (i[1] = e.createTextVNode(
               " · MAD ",
               -1
               /* CACHED */
@@ -14250,11 +14255,11 @@ const UV = {
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(t.value.benford.observed, (a, N) => (e.openBlock(), e.createElementBlock(
+                  e.renderList(t.value.benford.observed, (a, m) => (e.openBlock(), e.createElementBlock(
                     "td",
                     {
-                      key: N,
-                      class: e.normalizeClass(["num", { bad: t.value.benford.spikes.includes(N + 1) }])
+                      key: m,
+                      class: e.normalizeClass(["num", { bad: t.value.benford.spikes.includes(m + 1) }])
                     },
                     [
                       e.createVNode(l, { ratio: a }, null, 8, ["ratio"])
@@ -14277,8 +14282,8 @@ const UV = {
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(t.value.benford.expected, (a, N) => (e.openBlock(), e.createElementBlock("td", {
-                    key: N,
+                  e.renderList(t.value.benford.expected, (a, m) => (e.openBlock(), e.createElementBlock("td", {
+                    key: m,
                     class: "num"
                   }, [
                     e.createVNode(l, { ratio: a }, null, 8, ["ratio"])
@@ -14420,7 +14425,7 @@ const UV = {
                     e.createElementVNode(
                       "td",
                       null,
-                      e.toDisplayString(n.$t(y[a.level])),
+                      e.toDisplayString(n.$t(N[a.level])),
                       1
                       /* TEXT */
                     ),
@@ -14548,15 +14553,15 @@ const UV = {
     run: {},
     def: {}
   },
-  setup(i) {
-    const B = i, t = e.computed(() => B.run.result), y = { clear: "ok", "request-docs": "warn", "escalate-EDD": "bad", "decline-recommend": "bad" }, r = [
+  setup(c) {
+    const _ = c, t = e.computed(() => _.run.result), N = { clear: "ok", "request-docs": "warn", "escalate-EDD": "bad", "decline-recommend": "bad" }, r = [
       { key: "legalName", label: s.i18nKey("名称") },
       { key: "dobOrFormation", label: s.i18nKey("出生 / 成立日期") },
       { key: "jurisdiction", label: s.i18nKey("国籍 / 注册地") },
       { key: "address", label: s.i18nKey("地址") },
       { key: "sourceOfFunds", label: s.i18nKey("资金来源") }
     ];
-    return (n, c) => t.value ? (e.openBlock(), e.createElementBlock("div", Yv, [
+    return (n, i) => t.value ? (e.openBlock(), e.createElementBlock("div", Yv, [
       e.createElementVNode("section", Gv, [
         e.createElementVNode("header", null, [
           e.createElementVNode(
@@ -14567,7 +14572,7 @@ const UV = {
             /* TEXT */
           ),
           e.createElementVNode("span", {
-            class: e.normalizeClass(["fau-badge", y[t.value.disposition]]),
+            class: e.normalizeClass(["fau-badge", N[t.value.disposition]]),
             "data-test": "fau-kyc-disposition",
             "data-disposition": t.value.disposition
           }, e.toDisplayString(n.$t(e.unref(ee.KYC_DISPOSITION_LABEL)[t.value.disposition])), 11, Qv),
@@ -14582,7 +14587,7 @@ const UV = {
           )
         ]),
         e.createElementVNode("p", Jv, [
-          c[0] || (c[0] = e.createElementVNode(
+          i[0] || (i[0] = e.createElementVNode(
             "i",
             { class: "ri-shield-user-line" },
             null,
@@ -14600,7 +14605,7 @@ const UV = {
             e.Fragment,
             null,
             e.renderList(t.value.missingDocs, (a) => (e.openBlock(), e.createElementBlock("li", { key: a }, [
-              c[1] || (c[1] = e.createElementVNode(
+              i[1] || (i[1] = e.createElementVNode(
                 "i",
                 { class: "ri-file-warning-line" },
                 null,
@@ -14677,7 +14682,7 @@ const UV = {
           ))
         ]),
         t.value.record.dropped.length ? (e.openBlock(), e.createElementBlock("p", ng, [
-          c[2] || (c[2] = e.createElementVNode(
+          i[2] || (i[2] = e.createElementVNode(
             "i",
             { class: "ri-eraser-line" },
             null,
@@ -14694,7 +14699,7 @@ const UV = {
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(t.value.record.beneficialOwners, (a, N) => (e.openBlock(), e.createElementBlock("li", { key: N }, [
+            e.renderList(t.value.record.beneficialOwners, (a, m) => (e.openBlock(), e.createElementBlock("li", { key: m }, [
               e.createElementVNode("span", og, [
                 e.createElementVNode(
                   "bdi",
@@ -14707,7 +14712,7 @@ const UV = {
               e.createVNode(l, {
                 value: a.nationality
               }, null, 8, ["value"]),
-              c[3] || (c[3] = e.createTextVNode(
+              i[3] || (i[3] = e.createTextVNode(
                 " · ",
                 -1
                 /* CACHED */
@@ -14854,8 +14859,8 @@ const UV = {
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(t.value.hits, (a, N) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: N,
+                e.renderList(t.value.hits, (a, m) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: m,
                   class: "bad"
                 }, [
                   e.createElementVNode("td", null, [
@@ -14915,19 +14920,19 @@ const UV = {
 }, vg = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   PANELS: kg
-}, Symbol.toStringTag, { value: "Module" })), Le = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/shared/financeAudit/capital/specs.ts"];
-if (!Le) throw new Error("宿主模块未就绪：apps/desktop-shell/src/shared/financeAudit/capital/specs.ts");
-Le.default;
-const gg = ["money", "pct", "x", "num", "int", "years", "months", "bp"], fe = (i) => gg.includes(i);
-function be(i, B) {
-  if (i == null || i === "") return "-";
-  if (typeof i == "object") return Z(i);
-  if (typeof i != "number") return B === "text" || B === "select" || B === "date" ? i : s.t(i);
-  if (!Number.isFinite(i)) return "-";
-  const t = (y) => new Intl.NumberFormat(Ce(), y).format(i);
-  switch (B) {
+}, Symbol.toStringTag, { value: "Module" })), Ke = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/shared/financeAudit/capital/specs.ts"];
+if (!Ke) throw new Error("宿主模块未就绪：apps/desktop-shell/src/shared/financeAudit/capital/specs.ts");
+Ke.default;
+const gg = ["money", "pct", "x", "num", "int", "years", "months", "bp"], fe = (c) => gg.includes(c);
+function be(c, _) {
+  if (c == null || c === "") return "-";
+  if (typeof c == "object") return Z(c);
+  if (typeof c != "number") return _ === "text" || _ === "select" || _ === "date" ? c : s.t(c);
+  if (!Number.isFinite(c)) return "-";
+  const t = (N) => new Intl.NumberFormat(we(), N).format(c);
+  switch (_) {
     case "pct":
-      return new Intl.NumberFormat(Ce(), { style: "percent", minimumFractionDigits: 1, maximumFractionDigits: 2 }).format(i);
+      return new Intl.NumberFormat(we(), { style: "percent", minimumFractionDigits: 1, maximumFractionDigits: 2 }).format(c);
     case "money":
       return t({ minimumFractionDigits: 2, maximumFractionDigits: 2 });
     case "x":
@@ -14940,18 +14945,18 @@ function be(i, B) {
       return t({ maximumFractionDigits: 4 });
   }
 }
-function Pe(i) {
-  return Z(Le.sourceTag(i));
+function Oe(c) {
+  return Z(Ke.sourceTag(c));
 }
-function ct(i, B) {
-  return i == null ? "" : String(typeof i == "number" && B === "pct" ? Math.round(i * 1e8) / 1e6 : i);
+function ct(c, _) {
+  return c == null ? "" : String(typeof c == "number" && _ === "pct" ? Math.round(c * 1e8) / 1e6 : c);
 }
-function dt(i, B) {
-  const t = i.trim();
+function dt(c, _) {
+  const t = c.trim();
   if (!t) return null;
-  if (!fe(B)) return t;
-  const y = Number(t.replace(/[٠-٩]/g, (r) => String("٠١٢٣٤٥٦٧٨٩".indexOf(r))).replace(/[,\s%]/g, "").replace("٫", "."));
-  return Number.isFinite(y) ? B === "pct" ? y / 100 : y : null;
+  if (!fe(_)) return t;
+  const N = Number(t.replace(/[٠-٩]/g, (r) => String("٠١٢٣٤٥٦٧٨٩".indexOf(r))).replace(/[,\s%]/g, "").replace("٫", "."));
+  return Number.isFinite(N) ? _ === "pct" ? N / 100 : N : null;
 }
 const fg = {
   key: 0,
@@ -14992,17 +14997,17 @@ const fg = {
     editable: { type: Boolean }
   },
   emits: ["changed"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = ye.useRouter(), n = {
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = ye.useRouter(), n = {
       manual: s.i18nKey("手工录入"),
       public: s.i18nKey("公开数据（填链接）"),
       connector: s.i18nKey("来自授权连接器"),
       default: s.i18nKey("模板默认值（未注明来源）"),
       upload: s.i18nKey("上传文件"),
       handoff: s.i18nKey("上游转交")
-    }, c = { needs_auth: s.i18nKey("需授权"), added: s.i18nKey("已添加，待授权"), authorized: s.i18nKey("已授权") }, a = e.computed(() => Le.capSpec(t.def.id, t.run.modeId)), N = e.computed(() => t.def.quickActions?.find((j) => j.id === t.run.modeId)?.command || ""), E = e.reactive({}), u = e.reactive({}), L = e.ref([]), g = e.ref(null), v = e.ref(!1), b = e.ref(!1), h = e.ref(!1), K = e.ref("");
+    }, i = { needs_auth: s.i18nKey("需授权"), added: s.i18nKey("已添加，待授权"), authorized: s.i18nKey("已授权") }, a = e.computed(() => Ke.capSpec(t.def.id, t.run.modeId)), m = e.computed(() => t.def.quickActions?.find((j) => j.id === t.run.modeId)?.command || ""), E = e.reactive({}), u = e.reactive({}), L = e.ref([]), g = e.ref(null), v = e.ref(!1), b = e.ref(!1), h = e.ref(!1), K = e.ref("");
     function T() {
-      const j = t.run.params.cap || (a.value ? Le.initialInputs(t.def.id, t.run.modeId) : { fields: {}, tables: {} });
+      const j = t.run.params.cap || (a.value ? Ke.initialInputs(t.def.id, t.run.modeId) : { fields: {}, tables: {} });
       for (const W of Object.keys(E)) delete E[W];
       for (const W of Object.keys(u)) delete u[W];
       for (const [W, U] of Object.entries(j.fields || {})) E[W] = { v: U.v, src: { ...U.src } };
@@ -15014,19 +15019,19 @@ const fg = {
       const U = j.unit === "select" ? W || null : dt(W, j.unit);
       U === null ? delete E[j.key] : E[j.key] = { v: U, src: E[j.key] && E[j.key].src.kind !== "default" ? E[j.key].src : { kind: "manual" } }, v.value = !0;
     }
-    function m(j, W, U) {
+    function p(j, W, U) {
       j.cells[W.key] = W.unit === "select" ? U || null : dt(U, W.unit), (j.src.kind === "upload" || j.src.kind === "default") && (j.src = { kind: "manual" }), v.value = !0;
     }
     function f(j, W) {
       j && (j.src = { kind: W, ...W === "public" && j.src.url ? { url: j.src.url } : {} }, v.value = !0);
     }
-    function p(j, W) {
+    function y(j, W) {
       j && (j.src = { ...j.src, url: W.trim() }, v.value = !0);
     }
     function I(j) {
       (u[j] ||= []).push({ cells: {}, src: { kind: "manual" } }), v.value = !0;
     }
-    function _(j, W) {
+    function B(j, W) {
       u[j]?.splice(W, 1), v.value = !0;
     }
     async function k(j) {
@@ -15041,7 +15046,7 @@ const fg = {
     }
     function R() {
       return k(async () => {
-        await Y("capital.save", { runId: t.run.id, cap: { fields: E, tables: u } }), v.value = !1, b.value = !0, y("changed");
+        await Y("capital.save", { runId: t.run.id, cap: { fields: E, tables: u } }), v.value = !1, b.value = !0, N("changed");
       });
     }
     function d(j) {
@@ -15059,7 +15064,7 @@ const fg = {
     function V(j) {
       const W = g.value;
       return W?.inspect ? k(async () => {
-        v.value && await Y("capital.save", { runId: t.run.id, cap: { fields: E, tables: u } }), await Y("capital.importTable", { runId: t.run.id, path: W.path, tableId: W.tableId, mapping: W.inspect.mapping, sheet: W.inspect.sheetName, append: j }), g.value = null, v.value = !1, y("changed");
+        v.value && await Y("capital.save", { runId: t.run.id, cap: { fields: E, tables: u } }), await Y("capital.importTable", { runId: t.run.id, path: W.path, tableId: W.tableId, mapping: W.inspect.mapping, sheet: W.inspect.sheetName, append: j }), g.value = null, v.value = !1, N("changed");
       }) : Promise.resolve();
     }
     function te(j) {
@@ -15093,13 +15098,13 @@ const fg = {
             /* TEXT */
           )
         ]),
-        N.value ? (e.openBlock(), e.createElementBlock("span", _g, [
+        m.value ? (e.openBlock(), e.createElementBlock("span", _g, [
           e.createTextVNode(
             e.toDisplayString(j.$t("对应命令")) + " ",
             1
             /* TEXT */
           ),
-          e.createVNode(l, { value: N.value }, null, 8, ["value"])
+          e.createVNode(l, { value: m.value }, null, 8, ["value"])
         ])) : e.createCommentVNode("v-if", !0)
       ]),
       e.createElementVNode("p", Bg, [
@@ -15132,7 +15137,7 @@ const fg = {
             class: e.normalizeClass(["fau-badge", U.status === "authorized" ? "ok" : "muted"]),
             title: U.fallback ? j.$t(U.fallback) : "",
             "data-test": `cap-conn-${U.id}`
-          }, e.toDisplayString(j.$t(U.name)) + " · " + e.toDisplayString(j.$t(c[U.status])), 11, Dg))),
+          }, e.toDisplayString(j.$t(U.name)) + " · " + e.toDisplayString(j.$t(i[U.status])), 11, Dg))),
           128
           /* KEYED_FRAGMENT */
         )),
@@ -15170,7 +15175,7 @@ const fg = {
               U.unit === "select" ? (e.openBlock(), e.createElementBlock("select", {
                 key: 0,
                 value: E[U.key]?.v ?? "",
-                disabled: !i.editable,
+                disabled: !c.editable,
                 onChange: (H) => w(U, H.target.value)
               }, [
                 e.createElementVNode(
@@ -15196,7 +15201,7 @@ const fg = {
                 inputmode: e.unref(fe)(U.unit) ? "decimal" : void 0,
                 dir: "auto",
                 value: e.unref(ct)(E[U.key]?.v, U.unit),
-                disabled: !i.editable,
+                disabled: !c.editable,
                 onChange: (H) => w(U, H.target.value)
               }, null, 40, Pg)),
               U.unit === "pct" ? (e.openBlock(), e.createElementBlock("small", Og, "%")) : e.createCommentVNode("v-if", !0)
@@ -15204,7 +15209,7 @@ const fg = {
             e.createElementVNode("span", zg, [
               e.createElementVNode("select", {
                 value: z(U.key).kind,
-                disabled: !i.editable || E[U.key]?.v == null,
+                disabled: !c.editable || E[U.key]?.v == null,
                 "aria-label": j.$t("来源"),
                 onChange: (H) => f(E[U.key], H.target.value)
               }, [
@@ -15225,8 +15230,8 @@ const fg = {
                 dir: "ltr",
                 placeholder: j.$t("公开来源链接（https://…）"),
                 value: z(U.key).url || "",
-                disabled: !i.editable,
-                onChange: (H) => p(E[U.key], H.target.value)
+                disabled: !c.editable,
+                onChange: (H) => y(E[U.key], H.target.value)
               }, null, 40, Rg)) : e.createCommentVNode("v-if", !0)
             ])
           ], 10, wg))),
@@ -15271,7 +15276,7 @@ const fg = {
                 )) : e.createCommentVNode("v-if", !0)
               ])
             ]),
-            i.editable ? (e.openBlock(), e.createElementBlock("button", {
+            c.editable ? (e.openBlock(), e.createElementBlock("button", {
               key: 0,
               type: "button",
               class: "ss-btn sm ghost",
@@ -15321,7 +15326,7 @@ const fg = {
             e.Fragment,
             { key: 0 },
             [
-              e.createVNode(Je, {
+              e.createVNode(Ze, {
                 table: g.value.inspect,
                 roles: g.value.inspect.roles.map((H) => ({ ...H, label: j.$t(H.label) })),
                 onUpdate: W[1] || (W[1] = (H) => M(H)),
@@ -15443,8 +15448,8 @@ const fg = {
                           ne.unit === "select" ? (e.openBlock(), e.createElementBlock("select", {
                             key: 0,
                             value: H.cells[ne.key] ?? "",
-                            disabled: !i.editable,
-                            onChange: (D) => m(H, ne, D.target.value)
+                            disabled: !c.editable,
+                            onChange: (D) => p(H, ne, D.target.value)
                           }, [
                             W[12] || (W[12] = e.createElementVNode(
                               "option",
@@ -15468,8 +15473,8 @@ const fg = {
                             type: ne.unit === "date" ? "date" : "text",
                             dir: "auto",
                             value: e.unref(ct)(H.cells[ne.key], ne.unit),
-                            disabled: !i.editable,
-                            onChange: (D) => m(H, ne, D.target.value)
+                            disabled: !c.editable,
+                            onChange: (D) => p(H, ne, D.target.value)
                           }, null, 40, of))
                         ],
                         2
@@ -15481,7 +15486,7 @@ const fg = {
                     e.createElementVNode("td", sf, [
                       H.src.kind === "upload" || H.src.kind === "handoff" ? (e.openBlock(), e.createElementBlock("small", rf, [
                         e.createVNode(l, {
-                          value: e.unref(Pe)(H.src)
+                          value: e.unref(Oe)(H.src)
                         }, null, 8, ["value"])
                       ])) : (e.openBlock(), e.createElementBlock(
                         e.Fragment,
@@ -15489,7 +15494,7 @@ const fg = {
                         [
                           e.createElementVNode("select", {
                             value: H.src.kind,
-                            disabled: !i.editable,
+                            disabled: !c.editable,
                             "aria-label": j.$t("来源"),
                             onChange: (ne) => f(H, ne.target.value)
                           }, [
@@ -15510,8 +15515,8 @@ const fg = {
                             dir: "ltr",
                             placeholder: j.$t("公开来源链接（https://…）"),
                             value: H.src.url || "",
-                            disabled: !i.editable,
-                            onChange: (ne) => p(H, ne.target.value)
+                            disabled: !c.editable,
+                            onChange: (ne) => y(H, ne.target.value)
                           }, null, 40, uf)) : e.createCommentVNode("v-if", !0)
                         ],
                         64
@@ -15519,12 +15524,12 @@ const fg = {
                       ))
                     ]),
                     e.createElementVNode("td", null, [
-                      i.editable ? (e.openBlock(), e.createElementBlock("button", {
+                      c.editable ? (e.openBlock(), e.createElementBlock("button", {
                         key: 0,
                         type: "button",
                         class: "ss-iconbtn",
                         title: j.$t("删除这一行"),
-                        onClick: (ne) => _(U.id, ce)
+                        onClick: (ne) => B(U.id, ce)
                       }, [...W[13] || (W[13] = [
                         e.createElementVNode(
                           "i",
@@ -15542,7 +15547,7 @@ const fg = {
               ])
             ])
           ]),
-          i.editable ? (e.openBlock(), e.createElementBlock("button", {
+          c.editable ? (e.openBlock(), e.createElementBlock("button", {
             key: 1,
             type: "button",
             class: "ss-btn sm ghost",
@@ -15567,7 +15572,7 @@ const fg = {
         /* KEYED_FRAGMENT */
       )),
       e.createElementVNode("div", yf, [
-        i.editable ? (e.openBlock(), e.createElementBlock("button", {
+        c.editable ? (e.openBlock(), e.createElementBlock("button", {
           key: 0,
           type: "button",
           class: "ss-btn primary",
@@ -15667,13 +15672,13 @@ const fg = {
   props: {
     run: {}
   },
-  setup(i) {
-    const B = i, t = e.computed(() => B.run.result), y = {
+  setup(c) {
+    const _ = c, t = e.computed(() => _.run.result), N = {
       research: s.i18nKey("仅供内部研究，非投资建议"),
       markets: s.i18nKey("仅供分析参考，非投资建议，不构成交易指令"),
       wealth: s.i18nKey("仅供持牌顾问内部使用，非投资建议，不发给客户，不执行交易")
-    }, r = (c) => c.page ? s.t("[上传: {p0} 第 {n} 页]", { p0: c.doc, n: c.page }) : Pe({ kind: "upload", file: c.doc }), n = { high: s.i18nKey("高"), medium: s.i18nKey("中"), low: s.i18nKey("低") };
-    return (c, a) => t.value ? (e.openBlock(), e.createElementBlock("div", ff, [
+    }, r = (i) => i.page ? s.t("[上传: {p0} 第 {n} 页]", { p0: i.doc, n: i.page }) : Oe({ kind: "upload", file: i.doc }), n = { high: s.i18nKey("高"), medium: s.i18nKey("中"), low: s.i18nKey("低") };
+    return (i, a) => t.value ? (e.openBlock(), e.createElementBlock("div", ff, [
       t.value.degraded.authorized ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", hf, [
         a[0] || (a[0] = e.createElementVNode(
           "i",
@@ -15683,7 +15688,7 @@ const fg = {
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(c.$t("本结果未使用授权数据源，数据完整度：{p0}", { p0: c.$t(n[t.value.degraded.completeness]) })),
+          e.toDisplayString(i.$t("本结果未使用授权数据源，数据完整度：{p0}", { p0: i.$t(n[t.value.degraded.completeness]) })),
           1
           /* TEXT */
         )
@@ -15697,7 +15702,7 @@ const fg = {
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(c.$t(y[t.value.disclaimer])),
+          e.toDisplayString(i.$t(N[t.value.disclaimer])),
           1
           /* TEXT */
         )
@@ -15706,31 +15711,31 @@ const fg = {
         e.createElementVNode(
           "strong",
           null,
-          e.toDisplayString(c.$t("上游转交的估值引用")),
+          e.toDisplayString(i.$t("上游转交的估值引用")),
           1
           /* TEXT */
         ),
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(t.value.upstream, (N) => (e.openBlock(), e.createElementBlock("div", {
-            key: N.runId,
+          e.renderList(t.value.upstream, (m) => (e.openBlock(), e.createElementBlock("div", {
+            key: m.runId,
             class: "fau-row"
           }, [
             e.createElementVNode("span", Bf, [
               e.createVNode(l, {
-                value: e.unref(Pe)({ kind: "handoff", name: `${N.moduleId}/${N.modeId}` })
+                value: e.unref(Oe)({ kind: "handoff", name: `${m.moduleId}/${m.modeId}` })
               }, null, 8, ["value"])
             ]),
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(N.metrics.slice(0, 6), (E) => (e.openBlock(), e.createElementBlock("span", {
+              e.renderList(m.metrics.slice(0, 6), (E) => (e.openBlock(), e.createElementBlock("span", {
                 key: E.id,
                 class: "cap-chip"
               }, [
                 e.createTextVNode(
-                  e.toDisplayString(c.$t(E.label)) + " ",
+                  e.toDisplayString(i.$t(E.label)) + " ",
                   1
                   /* TEXT */
                 ),
@@ -15750,21 +15755,21 @@ const fg = {
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(t.value.metrics, (N) => (e.openBlock(), e.createElementBlock("div", {
-            key: N.id,
-            class: e.normalizeClass(["cap-metric", N.flag]),
-            "data-test": `cap-m-${N.id}`
+          e.renderList(t.value.metrics, (m) => (e.openBlock(), e.createElementBlock("div", {
+            key: m.id,
+            class: e.normalizeClass(["cap-metric", m.flag]),
+            "data-test": `cap-m-${m.id}`
           }, [
             e.createElementVNode(
               "small",
               null,
-              e.toDisplayString(c.$t(N.label)),
+              e.toDisplayString(i.$t(m.label)),
               1
               /* TEXT */
             ),
             e.createElementVNode("strong", null, [
               e.createVNode(l, {
-                value: e.unref(be)(N.value, N.unit)
+                value: e.unref(be)(m.value, m.unit)
               }, null, 8, ["value"])
             ])
           ], 10, Sf))),
@@ -15776,22 +15781,22 @@ const fg = {
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(t.value.flags, (N) => (e.openBlock(), e.createElementBlock("li", {
-            key: N.id,
-            class: e.normalizeClass(N.level),
-            "data-test": `cap-flag-${N.id}`
+          e.renderList(t.value.flags, (m) => (e.openBlock(), e.createElementBlock("li", {
+            key: m.id,
+            class: e.normalizeClass(m.level),
+            "data-test": `cap-flag-${m.id}`
           }, [
             e.createElementVNode(
               "i",
               {
-                class: e.normalizeClass(N.level === "warn" ? "ri-alarm-warning-line" : "ri-information-line")
+                class: e.normalizeClass(m.level === "warn" ? "ri-alarm-warning-line" : "ri-information-line")
               },
               null,
               2
               /* CLASS */
             ),
             e.createTextVNode(
-              e.toDisplayString(e.unref(Z)(N.message)),
+              e.toDisplayString(e.unref(Z)(m.message)),
               1
               /* TEXT */
             )
@@ -15803,22 +15808,22 @@ const fg = {
       (e.openBlock(!0), e.createElementBlock(
         e.Fragment,
         null,
-        e.renderList(t.value.tables, (N) => (e.openBlock(), e.createElementBlock("details", {
-          key: N.id,
+        e.renderList(t.value.tables, (m) => (e.openBlock(), e.createElementBlock("details", {
+          key: m.id,
           class: "cap-sec",
           open: t.value.tables.length <= 2,
-          "data-test": `cap-table-${N.id}`
+          "data-test": `cap-table-${m.id}`
         }, [
           e.createElementVNode("summary", null, [
             e.createTextVNode(
-              e.toDisplayString(c.$t(N.title)) + " ",
+              e.toDisplayString(i.$t(m.title)) + " ",
               1
               /* TEXT */
             ),
             e.createElementVNode(
               "small",
               Tf,
-              e.toDisplayString(c.$t("{n} 行", { n: N.rows.length })),
+              e.toDisplayString(i.$t("{n} 行", { n: m.rows.length })),
               1
               /* TEXT */
             )
@@ -15830,13 +15835,13 @@ const fg = {
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(N.columns, (E) => (e.openBlock(), e.createElementBlock(
+                    e.renderList(m.columns, (E) => (e.openBlock(), e.createElementBlock(
                       "th",
                       {
                         key: E.key,
                         class: e.normalizeClass({ num: e.unref(fe)(E.unit) })
                       },
-                      e.toDisplayString(c.$t(E.label)),
+                      e.toDisplayString(i.$t(E.label)),
                       3
                       /* TEXT, CLASS */
                     ))),
@@ -15849,11 +15854,11 @@ const fg = {
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(N.rows, (E, u) => (e.openBlock(), e.createElementBlock("tr", { key: u }, [
+                  e.renderList(m.rows, (E, u) => (e.openBlock(), e.createElementBlock("tr", { key: u }, [
                     (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       null,
-                      e.renderList(N.columns, (L) => (e.openBlock(), e.createElementBlock(
+                      e.renderList(m.columns, (L) => (e.openBlock(), e.createElementBlock(
                         "td",
                         {
                           key: L.key,
@@ -15898,28 +15903,28 @@ const fg = {
         e.createElementVNode(
           "strong",
           null,
-          e.toDisplayString(c.$t("叙述与回核")),
+          e.toDisplayString(i.$t("叙述与回核")),
           1
           /* TEXT */
         ),
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(t.value.sections, (N, E) => (e.openBlock(), e.createElementBlock("div", {
+          e.renderList(t.value.sections, (m, E) => (e.openBlock(), e.createElementBlock("div", {
             key: E,
             class: "cap-narr"
           }, [
             e.createElementVNode(
               "h4",
               null,
-              e.toDisplayString(N.heading),
+              e.toDisplayString(m.heading),
               1
               /* TEXT */
             ),
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(N.paragraphs, (u, L) => (e.openBlock(), e.createElementBlock("p", {
+              e.renderList(m.paragraphs, (u, L) => (e.openBlock(), e.createElementBlock("p", {
                 key: L,
                 class: e.normalizeClass({ bad: u.status !== "verified" }),
                 "data-test": `cap-p-${E}-${L}`
@@ -15932,14 +15937,14 @@ const fg = {
                 u.status !== "verified" ? (e.openBlock(), e.createElementBlock(
                   "span",
                   If,
-                  e.toDisplayString(c.$t("[未注明来源]")),
+                  e.toDisplayString(i.$t("[未注明来源]")),
                   1
                   /* TEXT */
                 )) : e.createCommentVNode("v-if", !0),
                 u.advice ? (e.openBlock(), e.createElementBlock(
                   "span",
                   Pf,
-                  e.toDisplayString(c.$t("含买卖或配置建议措辞，签核前须删改")),
+                  e.toDisplayString(i.$t("含买卖或配置建议措辞，签核前须删改")),
                   1
                   /* TEXT */
                 )) : e.createCommentVNode("v-if", !0),
@@ -15952,7 +15957,7 @@ const fg = {
                     /* CACHED */
                   )),
                   e.createTextVNode(
-                    e.toDisplayString(c.$t("数据里找不到")) + ": ",
+                    e.toDisplayString(i.$t("数据里找不到")) + ": ",
                     1
                     /* TEXT */
                   ),
@@ -15973,7 +15978,7 @@ const fg = {
         e.createElementVNode(
           "strong",
           null,
-          e.toDisplayString(c.$t("事实与出处")),
+          e.toDisplayString(i.$t("事实与出处")),
           1
           /* TEXT */
         ),
@@ -15984,28 +15989,28 @@ const fg = {
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(c.$t("指标 / 事实")),
+                  e.toDisplayString(i.$t("指标 / 事实")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(c.$t("数值")),
+                  e.toDisplayString(i.$t("数值")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(c.$t("来源")),
+                  e.toDisplayString(i.$t("来源")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
                   null,
-                  e.toDisplayString(c.$t("原文引文")),
+                  e.toDisplayString(i.$t("原文引文")),
                   1
                   /* TEXT */
                 )
@@ -16015,28 +16020,28 @@ const fg = {
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(t.value.facts, (N, E) => (e.openBlock(), e.createElementBlock("tr", { key: E }, [
+                e.renderList(t.value.facts, (m, E) => (e.openBlock(), e.createElementBlock("tr", { key: E }, [
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(N.label),
+                    e.toDisplayString(m.label),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: N.value
+                      value: m.value
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: r(N)
+                      value: r(m)
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode(
                     "td",
                     Rf,
-                    e.toDisplayString(N.quote),
+                    e.toDisplayString(m.quote),
                     1
                     /* TEXT */
                   )
@@ -16050,7 +16055,7 @@ const fg = {
         t.value.droppedFacts ? (e.openBlock(), e.createElementBlock(
           "p",
           qf,
-          e.toDisplayString(c.$t("模型给出的 {n} 条事实在原文里定位不到，已丢弃", { n: t.value.droppedFacts })),
+          e.toDisplayString(i.$t("模型给出的 {n} 条事实在原文里定位不到，已丢弃", { n: t.value.droppedFacts })),
           1
           /* TEXT */
         )) : e.createCommentVNode("v-if", !0)
@@ -16059,7 +16064,7 @@ const fg = {
         e.createElementVNode(
           "summary",
           null,
-          e.toDisplayString(c.$t("输入与来源")),
+          e.toDisplayString(i.$t("输入与来源")),
           1
           /* TEXT */
         ),
@@ -16069,29 +16074,29 @@ const fg = {
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(t.value.inputs.fields, (N) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: N.key
+                e.renderList(t.value.inputs.fields, (m) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: m.key
                 }, [
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(c.$t(N.label)),
+                    e.toDisplayString(i.$t(m.label)),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("td", Gf, [
                     e.createVNode(l, {
-                      value: e.unref(be)(N.value, N.unit)
+                      value: e.unref(be)(m.value, m.unit)
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode(
                     "td",
                     {
-                      class: e.normalizeClass({ "cap-unsourced": N.src.kind === "default" })
+                      class: e.normalizeClass({ "cap-unsourced": m.src.kind === "default" })
                     },
                     [
                       e.createVNode(l, {
-                        value: e.unref(Pe)(N.src)
+                        value: e.unref(Oe)(m.src)
                       }, null, 8, ["value"])
                     ],
                     2
@@ -16107,28 +16112,31 @@ const fg = {
       ])
     ])) : e.createCommentVNode("v-if", !0);
   }
-}), Qf = /* @__PURE__ */ ae(Hf, [["__scopeId", "data-v-aaad4525"]]), St = ["valuation", "capex", "ma", "ib", "pe", "research", "markets", "wealth"], Jf = Object.fromEntries(St.map((i) => [i, Qf])), Zf = Object.fromEntries(St.map((i) => [i, gf])), Xf = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}), Qf = /* @__PURE__ */ ae(Hf, [["__scopeId", "data-v-aaad4525"]]), St = ["valuation", "capex", "ma", "ib", "pe", "research", "markets", "wealth"], Jf = Object.fromEntries(St.map((c) => [c, Qf])), Zf = Object.fromEntries(St.map((c) => [c, gf])), Xf = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   INPUTS: Zf,
   PANELS: Jf
-}, Symbol.toStringTag, { value: "Module" })), Xe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/shared/releaseHidden.ts"];
-if (!Xe) throw new Error("宿主模块未就绪：apps/desktop-shell/src/shared/releaseHidden.ts");
-Xe.default;
+}, Symbol.toStringTag, { value: "Module" })), Ce = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/editionSnapshot.ts"];
+if (!Ce) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/editionSnapshot.ts");
+Ce.default;
 const xf = {
   class: "fau-panel",
   "data-test": "fau-skill-studio"
-}, eh = { class: "ss-muted" }, th = { class: "fau-steps-list" }, lh = { class: "ss-actions" }, nh = { class: "ss-note info" }, ah = /* @__PURE__ */ e.defineComponent({
+}, eh = { class: "ss-muted" }, th = { class: "fau-steps-list" }, lh = { key: 0 }, nh = { key: 1 }, ah = { class: "ss-actions" }, oh = {
+  key: 0,
+  class: "ss-note info"
+}, sh = /* @__PURE__ */ e.defineComponent({
   __name: "SkillStudioPanel",
-  setup(i) {
-    const B = ye.useRouter();
+  setup(c) {
+    const _ = ye.useRouter();
     function t() {
       try {
         localStorage.setItem("tc.autocoder.tab", "skill");
       } catch {
       }
-      B.push("/solution-studio");
+      _.push("/solution-studio");
     }
-    return (y, r) => (e.openBlock(), e.createElementBlock("section", xf, [
+    return (N, r) => (e.openBlock(), e.createElementBlock("section", xf, [
       e.createElementVNode("h3", null, [
         r[1] || (r[1] = e.createElementVNode(
           "i",
@@ -16138,7 +16146,7 @@ const xf = {
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(y.$t("把本企业的制度与模板做成技能")),
+          e.toDisplayString(N.$t("把本企业的制度与模板做成技能")),
           1
           /* TEXT */
         )
@@ -16146,35 +16154,42 @@ const xf = {
       e.createElementVNode(
         "p",
         eh,
-        e.toDisplayString(y.$t("报销制度、审批口径、底稿模板、科目使用说明……写成技能后，对话、专家团和流程里的 AI 员工遇到对应任务就按它来做。")),
+        e.toDisplayString(N.$t("报销制度、审批口径、底稿模板、科目使用说明……写成技能后，对话、专家团和流程里的 AI 员工遇到对应任务就按它来做。")),
         1
         /* TEXT */
       ),
       e.createElementVNode("ol", th, [
+        e.createCommentVNode(" AutoCoder 只按账号开通：没开通的账号这里不提它，改成在对话里做 "),
+        e.unref(Ce.autoCoderEnabled)() ? (e.openBlock(), e.createElementBlock(
+          "li",
+          lh,
+          e.toDisplayString(N.$t("在 AutoCoder 的「Skill 开发」里新建一个技能，把制度原文、模板和示例发给 AI。")),
+          1
+          /* TEXT */
+        )) : (e.openBlock(), e.createElementBlock(
+          "li",
+          nh,
+          e.toDisplayString(N.$t("在对话里直接说：「用 fa-skill-creator 把《费用报销制度》做成技能」，再把制度原文、模板和示例发给 AI。")),
+          1
+          /* TEXT */
+        )),
         e.createElementVNode(
           "li",
           null,
-          e.toDisplayString(y.$t("在 AutoCoder 的「Skill 开发」里新建一个技能，把制度原文、模板和示例发给 AI。")),
+          e.toDisplayString(N.$t("AI 按随本方案安装的 fa-skill-creator 的写法整理成技能说明与参考资料；财会口径沿用 fa-conventions、术语沿用 fa-glossary。")),
           1
           /* TEXT */
         ),
         e.createElementVNode(
           "li",
           null,
-          e.toDisplayString(y.$t("AI 按随本方案安装的 fa-skill-creator 的写法整理成技能说明与参考资料；财会口径沿用 fa-conventions、术语沿用 fa-glossary。")),
-          1
-          /* TEXT */
-        ),
-        e.createElementVNode(
-          "li",
-          null,
-          e.toDisplayString(y.$t("检查无误后装到本机；金额仍由工作台规则引擎计算，技能只负责口径与写法。")),
+          e.toDisplayString(N.$t("检查无误后装到本机；金额仍由工作台规则引擎计算，技能只负责口径与写法。")),
           1
           /* TEXT */
         )
       ]),
-      e.createElementVNode("div", lh, [
-        e.unref(Xe.RELEASE_HIDDEN).autoCoder ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("button", {
+      e.createElementVNode("div", ah, [
+        e.unref(Ce.autoCoderEnabled)() ? (e.openBlock(), e.createElementBlock("button", {
           key: 0,
           type: "button",
           class: "ss-btn primary",
@@ -16189,16 +16204,16 @@ const xf = {
             /* CACHED */
           )),
           e.createTextVNode(
-            e.toDisplayString(y.$t("去新建技能")),
+            e.toDisplayString(N.$t("去新建技能")),
             1
             /* TEXT */
           )
-        ])),
+        ])) : e.createCommentVNode("v-if", !0),
         e.createElementVNode("button", {
           type: "button",
           class: "ss-btn",
           "data-test": "fau-skill-store",
-          onClick: r[0] || (r[0] = (n) => e.unref(B).push("/store/skills"))
+          onClick: r[0] || (r[0] = (n) => e.unref(_).push("/store/skills"))
         }, [
           r[3] || (r[3] = e.createElementVNode(
             "i",
@@ -16208,13 +16223,13 @@ const xf = {
             /* CACHED */
           )),
           e.createTextVNode(
-            e.toDisplayString(y.$t("查看已装技能")),
+            e.toDisplayString(N.$t("查看已装技能")),
             1
             /* TEXT */
           )
         ])
       ]),
-      e.createElementVNode("p", nh, [
+      e.unref(Ce.autoCoderEnabled)() ? (e.openBlock(), e.createElementBlock("p", oh, [
         r[4] || (r[4] = e.createElementVNode(
           "i",
           { class: "ri-information-line" },
@@ -16223,48 +16238,48 @@ const xf = {
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(y.$t("不想用 AutoCoder 也可以在对话里直接说：「用 fa-skill-creator 把《费用报销制度》做成技能」。")),
+          e.toDisplayString(N.$t("不想用 AutoCoder 也可以在对话里直接说：「用 fa-skill-creator 把《费用报销制度》做成技能」。")),
           1
           /* TEXT */
         )
-      ])
+      ])) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), oh = /* @__PURE__ */ ae(ah, [["__scopeId", "data-v-1bbd6e4e"]]), sh = { "skill-studio": oh }, rh = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}), rh = /* @__PURE__ */ ae(sh, [["__scopeId", "data-v-f43fc037"]]), ih = { "skill-studio": rh }, ch = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  PANELS: sh
-}, Symbol.toStringTag, { value: "Module" })), qe = { ok: o.i18nKey("正常"), watch: o.i18nKey("关注"), breach: o.i18nKey("越线") }, ih = { ok: o.i18nKey("三方一致"), watch: o.i18nKey("轻微差异"), breach: o.i18nKey("差异较大") }, He = {
+  PANELS: ih
+}, Symbol.toStringTag, { value: "Module" })), Ue = { ok: o.i18nKey("正常"), watch: o.i18nKey("关注"), breach: o.i18nKey("越线") }, dh = { ok: o.i18nKey("三方一致"), watch: o.i18nKey("轻微差异"), breach: o.i18nKey("差异较大") }, Qe = {
   optimistic: o.i18nKey("乐观"),
   base: o.i18nKey("基准"),
   pessimistic: o.i18nKey("悲观")
 };
 o.i18nKey("确定"), o.i18nKey("预计"), o.i18nKey("可能");
 o.i18nKey("资金计划"), o.i18nKey("应收到期"), o.i18nKey("应付到期");
-const ch = { none: o.i18nKey("无缺口"), small: o.i18nKey("小额缺口"), large: o.i18nKey("大额缺口"), severe: o.i18nKey("超大额缺口") }, dh = {
+const uh = { none: o.i18nKey("无缺口"), small: o.i18nKey("小额缺口"), large: o.i18nKey("大额缺口"), severe: o.i18nKey("超大额缺口") }, mh = {
   P0: o.i18nKey("立即支付，不可延后（工资社保、税款、到期贷款、判决）"),
   P1: o.i18nKey("优先支付（紧急供应商、租金水电等固定支出）"),
   P2: o.i18nKey("正常支付（按账期的常规付款）"),
   P3: o.i18nKey("可延后 1–2 周"),
   P4: o.i18nKey("战略延后，与对方协商")
-}, uh = { schedule: o.i18nKey("排入计划"), defer: o.i18nKey("延后"), hold: o.i18nKey("暂停核实") }, mh = { given: o.i18nKey("表内指定"), category: o.i18nKey("按类别"), default: o.i18nKey("默认") }, ph = {
+}, ph = { schedule: o.i18nKey("排入计划"), defer: o.i18nKey("延后"), hold: o.i18nKey("暂停核实") }, yh = { given: o.i18nKey("表内指定"), category: o.i18nKey("按类别"), default: o.i18nKey("默认") }, Nh = {
   proceed: o.i18nKey("建议放行（由有权人审批）"),
   request_docs: o.i18nKey("补充资料"),
   hold: o.i18nKey("暂缓"),
   reject_recommend: o.i18nKey("建议拒绝")
-}, yh = { core: o.i18nKey("核心合作银行"), key: o.i18nKey("重点维护银行"), general: o.i18nKey("一般关系银行") };
+}, Vh = { core: o.i18nKey("核心合作银行"), key: o.i18nKey("重点维护银行"), general: o.i18nKey("一般关系银行") };
 o.i18nKey("一级优质流动性资产"), o.i18nKey("二级 A 优质流动性资产"), o.i18nKey("二级 B 优质流动性资产"), o.i18nKey("30 天现金流出"), o.i18nKey("30 天现金流入"), o.i18nKey("可用稳定资金"), o.i18nKey("所需稳定资金");
 o.i18nKey("外币应收"), o.i18nKey("外币应付"), o.i18nKey("预测外币收入"), o.i18nKey("预测外币支出"), o.i18nKey("外币资产"), o.i18nKey("外币负债"), o.i18nKey("外币计价收入"), o.i18nKey("外币计价成本"), o.i18nKey("已卖出远期"), o.i18nKey("已买入远期");
-const Nh = { firm: o.i18nKey("确定敞口"), highly_probable: o.i18nKey("很可能敞口"), possible: o.i18nKey("可能敞口") }, Vh = { sell: o.i18nKey("卖出外币"), buy: o.i18nKey("买入外币") }, Eh = {
+const Eh = { firm: o.i18nKey("确定敞口"), highly_probable: o.i18nKey("很可能敞口"), possible: o.i18nKey("可能敞口") }, kh = { sell: o.i18nKey("卖出外币"), buy: o.i18nKey("买入外币") }, vh = {
   debt_to_ebitda: o.i18nKey("有息负债 / EBITDA"),
   interest_cover: o.i18nKey("利息保障倍数"),
   current_ratio: o.i18nKey("流动比率"),
   debt_ratio: o.i18nKey("资产负债率"),
   dscr: o.i18nKey("偿债覆盖率"),
   net_worth: o.i18nKey("净资产")
-}, kh = { le: "≤", ge: "≥" };
+}, gh = { le: "≤", ge: "≥" };
 o.i18nKey("1 年内"), o.i18nKey("1–2 年"), o.i18nKey("2–3 年"), o.i18nKey("3–5 年"), o.i18nKey("5 年以上");
 o.i18nKey("银行贷款"), o.i18nKey("债券"), o.i18nKey("融资租赁"), o.i18nKey("其它");
-const vh = {
+const fh = {
   dpd90: o.i18nKey("逾期 90 天以上"),
   default_rating: o.i18nKey("评级为违约"),
   impaired: o.i18nKey("已发生信用减值"),
@@ -16272,7 +16287,7 @@ const vh = {
   downgrade: o.i18nKey("评级下调 2 级以上"),
   watchlist: o.i18nKey("进入关注名单"),
   ig_to_sub: o.i18nKey("投资级降为投机级")
-}, Ae = { 0: o.i18nKey("本期新增"), 1: o.i18nKey("第一阶段"), 2: o.i18nKey("第二阶段"), 3: o.i18nKey("第三阶段") }, gh = {
+}, Fe = { 0: o.i18nKey("本期新增"), 1: o.i18nKey("第一阶段"), 2: o.i18nKey("第二阶段"), 3: o.i18nKey("第三阶段") }, hh = {
   current: o.i18nKey("未到期"),
   d30: o.i18nKey("逾期 1–30 天"),
   d60: o.i18nKey("逾期 31–60 天"),
@@ -16280,12 +16295,12 @@ const vh = {
   d180: o.i18nKey("逾期 91–180 天"),
   d365: o.i18nKey("逾期 181–365 天"),
   d365plus: o.i18nKey("逾期 365 天以上")
-}, ut = { active: o.i18nKey("正常周转"), slow: o.i18nKey("呆滞"), obsolete: o.i18nKey("过时") }, fh = {
+}, ut = { active: o.i18nKey("正常周转"), slow: o.i18nKey("呆滞"), obsolete: o.i18nKey("过时") }, $h = {
   reverse_factoring: o.i18nKey("反向保理（供应商融资）"),
   receivables_factoring: o.i18nKey("应收账款保理"),
   dynamic_discounting: o.i18nKey("动态折扣（提前付款换折扣）"),
   inventory_finance: o.i18nKey("存货融资")
-}, hh = {
+}, _h = {
   deposit: o.i18nKey("存款"),
   money_fund: o.i18nKey("货币基金"),
   wmp: o.i18nKey("银行理财"),
@@ -16310,207 +16325,207 @@ if (!$e) throw new Error("宿主模块未就绪：npm:echarts/components");
 $e.default;
 const Dt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-echarts"];
 if (!Dt) throw new Error("宿主模块未就绪：npm:vue-echarts");
-const $h = Dt.default;
-function _h(i) {
+const Bh = Dt.default;
+function bh(c) {
   return {
     grid: { top: 36, bottom: 28, containLabel: !0 },
-    legend: { data: i.series.map((B) => B.name), top: 0, [i.rtl ? "right" : "left"]: 0, align: i.rtl ? "right" : "left" },
-    tooltip: { trigger: "axis", valueFormatter: (B) => i.fmt(B) },
-    xAxis: { type: "category", data: i.weeks, inverse: i.rtl, boundaryGap: !1 },
-    yAxis: { type: "value", position: i.rtl ? "right" : "left", axisLabel: { formatter: (B) => i.fmt(B) } },
-    series: i.series.map((B, t) => ({
-      name: B.name,
+    legend: { data: c.series.map((_) => _.name), top: 0, [c.rtl ? "right" : "left"]: 0, align: c.rtl ? "right" : "left" },
+    tooltip: { trigger: "axis", valueFormatter: (_) => c.fmt(_) },
+    xAxis: { type: "category", data: c.weeks, inverse: c.rtl, boundaryGap: !1 },
+    yAxis: { type: "value", position: c.rtl ? "right" : "left", axisLabel: { formatter: (_) => c.fmt(_) } },
+    series: c.series.map((_, t) => ({
+      name: _.name,
       type: "line",
-      data: B.data,
+      data: _.data,
       smooth: !1,
       symbolSize: 5,
       // 基准情景画 0 线，缺口一眼看出来
-      ...t === 1 ? { markLine: { silent: !0, symbol: "none", data: [{ yAxis: 0, name: i.zeroLabel }] } } : {}
+      ...t === 1 ? { markLine: { silent: !0, symbol: "none", data: [{ yAxis: 0, name: c.zeroLabel }] } } : {}
     }))
   };
 }
-const Bh = /* @__PURE__ */ e.defineComponent({
+const Sh = /* @__PURE__ */ e.defineComponent({
   __name: "CashForecastChart",
   props: {
     forecast: {}
   },
-  setup(i) {
+  setup(c) {
     xe.use([et.CanvasRenderer, tt.LineChart, $e.GridComponent, $e.LegendComponent, $e.TooltipComponent, $e.MarkLineComponent]);
-    const B = i, t = e.computed(() => _h({
-      weeks: B.forecast.scenarios[1].weeks.map((y) => `W${y.week}`),
-      series: B.forecast.scenarios.map((y) => ({ name: s.t(He[y.id]), data: y.weeks.map((r) => r.closing / 100) })),
+    const _ = c, t = e.computed(() => bh({
+      weeks: _.forecast.scenarios[1].weeks.map((N) => `W${N.week}`),
+      series: _.forecast.scenarios.map((N) => ({ name: s.t(Qe[N.id]), data: N.weeks.map((r) => r.closing / 100) })),
       rtl: pe.currentLocale() === "ar",
-      fmt: (y) => we(Math.round(y * 100)),
+      fmt: (N) => Te(Math.round(N * 100)),
       zeroLabel: "0"
     }));
-    return (y, r) => (e.openBlock(), e.createBlock(e.unref($h), {
+    return (N, r) => (e.openBlock(), e.createBlock(e.unref(Bh), {
       class: "fau-tr-chart",
       option: t.value,
       autoresize: "",
       "data-test": "fau-cash-chart"
     }, null, 8, ["option"]));
   }
-}), bh = /* @__PURE__ */ ae(Bh, [["__scopeId", "data-v-6127b65d"]]), Sh = {
+}), Dh = /* @__PURE__ */ ae(Sh, [["__scopeId", "data-v-6127b65d"]]), Ch = {
   key: 0,
   class: "fau-tr",
   "data-test": "fau-treasury-panel"
-}, Dh = {
+}, wh = {
   key: 0,
   class: "ss-note warn"
-}, Ch = {
+}, Th = {
   key: 1,
   class: "ss-note warn"
-}, wh = {
+}, Lh = {
   key: 2,
   class: "fau-sec",
   "data-test": "fau-cash-position"
-}, Th = { class: "fau-row" }, Lh = { class: "grow" }, Kh = { class: "fau-badge" }, Ah = { class: "fau-table-wrap" }, Fh = { class: "fau-table" }, Ih = { class: "num" }, Ph = { class: "num" }, Oh = { class: "num" }, zh = { class: "num" }, Mh = { class: "num" }, jh = ["data-test"], Rh = { class: "num" }, qh = { class: "num" }, Uh = { class: "num" }, Wh = { class: "num" }, Yh = {
+}, Kh = { class: "fau-row" }, Ah = { class: "grow" }, Fh = { class: "fau-badge" }, Ih = { class: "fau-table-wrap" }, Ph = { class: "fau-table" }, Oh = { class: "num" }, zh = { class: "num" }, Mh = { class: "num" }, jh = { class: "num" }, Rh = { class: "num" }, qh = ["data-test"], Uh = { class: "num" }, Wh = { class: "num" }, Yh = { class: "num" }, Gh = { class: "num" }, Hh = {
   key: 0,
   class: "fau-badge bad"
-}, Gh = { class: "num" }, Hh = {
+}, Qh = { class: "num" }, Jh = {
   key: 3,
   class: "fau-sec",
   "data-test": "fau-cash-forecast"
-}, Qh = { class: "fau-row" }, Jh = { class: "grow" }, Zh = {
+}, Zh = { class: "fau-row" }, Xh = { class: "grow" }, xh = {
   key: 0,
   class: "fau-badge muted"
-}, Xh = { class: "fau-table-wrap" }, xh = { class: "fau-table" }, e$ = { class: "num" }, t$ = { class: "num" }, l$ = { class: "num" }, n$ = { class: "num" }, a$ = { class: "num" }, o$ = ["data-test"], s$ = { class: "num" }, r$ = { class: "num" }, i$ = {
+}, e$ = { class: "fau-table-wrap" }, t$ = { class: "fau-table" }, l$ = { class: "num" }, n$ = { class: "num" }, a$ = { class: "num" }, o$ = { class: "num" }, s$ = { class: "num" }, r$ = ["data-test"], i$ = { class: "num" }, c$ = { class: "num" }, d$ = {
   class: "num",
   "data-test": "fau-scenario-end"
-}, c$ = { class: "num" }, d$ = { class: "num" }, u$ = {
+}, u$ = { class: "num" }, m$ = { class: "num" }, p$ = {
   key: 0,
   class: "fau-tr-flags"
-}, m$ = {
+}, y$ = {
   key: 4,
   class: "fau-sec",
   "data-test": "fau-payment-plan"
-}, p$ = { class: "fau-tr-kpis" }, y$ = { class: "fau-badge muted" }, N$ = { class: "fau-badge ok" }, V$ = { class: "fau-badge warn" }, E$ = { class: "fau-badge bad" }, k$ = {
+}, N$ = { class: "fau-tr-kpis" }, V$ = { class: "fau-badge muted" }, E$ = { class: "fau-badge ok" }, k$ = { class: "fau-badge warn" }, v$ = { class: "fau-badge bad" }, g$ = {
   key: 0,
   class: "fau-badge bad"
-}, v$ = { class: "fau-table-wrap" }, g$ = { class: "fau-table" }, f$ = { class: "num" }, h$ = ["data-test"], $$ = { class: "num" }, _$ = ["title"], B$ = { class: "ss-muted" }, b$ = { class: "wrap" }, S$ = {
+}, f$ = { class: "fau-table-wrap" }, h$ = { class: "fau-table" }, $$ = { class: "num" }, _$ = ["data-test"], B$ = { class: "num" }, b$ = ["title"], S$ = { class: "ss-muted" }, D$ = { class: "wrap" }, C$ = {
   key: 5,
   class: "fau-sec",
   "data-test": "fau-auth"
-}, D$ = { class: "fau-table-wrap" }, C$ = { class: "fau-table" }, w$ = { class: "num" }, T$ = ["data-test"], L$ = { class: "num" }, K$ = {
+}, w$ = { class: "fau-table-wrap" }, T$ = { class: "fau-table" }, L$ = { class: "num" }, K$ = ["data-test"], A$ = { class: "num" }, F$ = {
   key: 0,
   class: "fau-badge warn"
-}, A$ = { class: "wrap" }, F$ = {
+}, I$ = { class: "wrap" }, P$ = {
   key: 6,
   class: "fau-sec",
   "data-test": "fau-pool"
-}, I$ = { class: "fau-tr-kpis" }, P$ = { class: "fau-badge muted" }, O$ = { class: "fau-badge" }, z$ = { class: "fau-badge" }, M$ = { class: "fau-badge ok" }, j$ = {
+}, O$ = { class: "fau-tr-kpis" }, z$ = { class: "fau-badge muted" }, M$ = { class: "fau-badge" }, j$ = { class: "fau-badge" }, R$ = { class: "fau-badge ok" }, q$ = {
   class: "fau-badge ok",
   "data-test": "fau-pool-gain"
-}, R$ = { class: "fau-table-wrap" }, q$ = { class: "fau-table" }, U$ = { class: "num" }, W$ = { class: "num" }, Y$ = { class: "num" }, G$ = { class: "num" }, H$ = { class: "num" }, Q$ = { class: "num" }, J$ = {
+}, U$ = { class: "fau-table-wrap" }, W$ = { class: "fau-table" }, Y$ = { class: "num" }, G$ = { class: "num" }, H$ = { class: "num" }, Q$ = { class: "num" }, J$ = { class: "num" }, Z$ = { class: "num" }, X$ = {
   key: 7,
   class: "fau-sec",
   "data-test": "fau-banks"
-}, Z$ = { class: "fau-table-wrap" }, X$ = { class: "fau-table" }, x$ = { class: "num" }, e_ = { class: "num" }, t_ = { class: "num" }, l_ = ["data-test"], n_ = { class: "num" }, a_ = { class: "num" }, o_ = { class: "num" }, s_ = { class: "wrap" }, r_ = {
+}, x$ = { class: "fau-table-wrap" }, e_ = { class: "fau-table" }, t_ = { class: "num" }, l_ = { class: "num" }, n_ = { class: "num" }, a_ = ["data-test"], o_ = { class: "num" }, s_ = { class: "num" }, r_ = { class: "num" }, i_ = { class: "wrap" }, c_ = {
   key: 8,
   class: "fau-sec",
   "data-test": "fau-lcr"
-}, i_ = { class: "fau-tr-kpis" }, c_ = { class: "fau-badge muted" }, d_ = { class: "fau-badge muted" }, u_ = {
+}, d_ = { class: "fau-tr-kpis" }, u_ = { class: "fau-badge muted" }, m_ = { class: "fau-badge muted" }, p_ = {
   class: "fau-sec",
   "data-test": "fau-fx"
-}, m_ = { class: "fau-table-wrap" }, p_ = { class: "fau-table" }, y_ = { class: "num" }, N_ = { class: "num" }, V_ = { class: "num" }, E_ = { class: "num" }, k_ = { class: "num" }, v_ = { class: "num" }, g_ = { class: "num" }, f_ = ["data-test"], h_ = { class: "num" }, $_ = { class: "num" }, __ = { class: "num" }, B_ = { class: "num" }, b_ = { class: "num" }, S_ = { class: "num" }, D_ = { class: "num" }, C_ = {
+}, y_ = { class: "fau-table-wrap" }, N_ = { class: "fau-table" }, V_ = { class: "num" }, E_ = { class: "num" }, k_ = { class: "num" }, v_ = { class: "num" }, g_ = { class: "num" }, f_ = { class: "num" }, h_ = { class: "num" }, $_ = ["data-test"], __ = { class: "num" }, B_ = { class: "num" }, b_ = { class: "num" }, S_ = { class: "num" }, D_ = { class: "num" }, C_ = { class: "num" }, w_ = { class: "num" }, T_ = {
   key: 0,
   class: "fau-sec",
   "data-test": "fau-rfq"
-}, w_ = { class: "fau-table-wrap" }, T_ = { class: "fau-table" }, L_ = { class: "num" }, K_ = ["data-test"], A_ = { class: "num" }, F_ = {
+}, L_ = { class: "fau-table-wrap" }, K_ = { class: "fau-table" }, A_ = { class: "num" }, F_ = ["data-test"], I_ = { class: "num" }, P_ = {
   key: 10,
   class: "fau-sec",
   "data-test": "fau-fin-cost"
-}, I_ = { class: "fau-tr-kpis" }, P_ = { class: "fau-badge muted" }, O_ = { class: "fau-badge" }, z_ = { class: "fau-badge" }, M_ = {
+}, O_ = { class: "fau-tr-kpis" }, z_ = { class: "fau-badge muted" }, M_ = { class: "fau-badge" }, j_ = { class: "fau-badge" }, R_ = {
   class: "fau-badge ok",
   "data-test": "fau-wacc"
-}, j_ = ["disabled"], R_ = ["disabled"], q_ = ["disabled"], U_ = ["disabled"], W_ = ["disabled"], Y_ = ["disabled"], G_ = { class: "fau-table-wrap" }, H_ = { class: "fau-table" }, Q_ = { class: "num" }, J_ = { class: "num" }, Z_ = { class: "num" }, X_ = { class: "num" }, x_ = {
+}, q_ = ["disabled"], U_ = ["disabled"], W_ = ["disabled"], Y_ = ["disabled"], G_ = ["disabled"], H_ = ["disabled"], Q_ = { class: "fau-table-wrap" }, J_ = { class: "fau-table" }, Z_ = { class: "num" }, X_ = { class: "num" }, x_ = { class: "num" }, eB = { class: "num" }, tB = {
   key: 11,
   class: "fau-sec",
   "data-test": "fau-covenants"
-}, eB = { class: "fau-table-wrap" }, tB = { class: "fau-table" }, lB = {
+}, lB = { class: "fau-table-wrap" }, nB = { class: "fau-table" }, aB = {
   key: 0,
   class: "ss-muted"
-}, nB = ["data-test"], aB = { class: "ss-muted" }, oB = {
+}, oB = ["data-test"], sB = { class: "ss-muted" }, rB = {
   class: "fau-sec",
   "data-test": "fau-ecl"
-}, sB = { class: "fau-tr-kpis" }, rB = { class: "fau-badge muted" }, iB = {
+}, iB = { class: "fau-tr-kpis" }, cB = { class: "fau-badge muted" }, dB = {
   class: "fau-badge",
   "data-test": "fau-ecl-total"
-}, cB = { class: "fau-badge muted" }, dB = {
+}, uB = { class: "fau-badge muted" }, mB = {
   key: 0,
   class: "fau-table-wrap"
-}, uB = { class: "fau-table" }, mB = { class: "num" }, pB = { class: "num" }, yB = { class: "num" }, NB = { class: "num" }, VB = ["data-test"], EB = { class: "num" }, kB = { class: "num" }, vB = { class: "num" }, gB = { class: "num" }, fB = {
+}, pB = { class: "fau-table" }, yB = { class: "num" }, NB = { class: "num" }, VB = { class: "num" }, EB = { class: "num" }, kB = ["data-test"], vB = { class: "num" }, gB = { class: "num" }, fB = { class: "num" }, hB = { class: "num" }, $B = {
   key: 1,
   class: "fau-table-wrap"
-}, hB = { class: "fau-table" }, $B = { class: "num" }, _B = { class: "num" }, BB = { class: "num" }, bB = { class: "num" }, SB = {
+}, _B = { class: "fau-table" }, BB = { class: "num" }, bB = { class: "num" }, SB = { class: "num" }, DB = { class: "num" }, CB = {
   key: 2,
   class: "fau-table-wrap"
-}, DB = { class: "fau-table" }, CB = { class: "num" }, wB = { class: "num" }, TB = { class: "num" }, LB = ["data-test"], KB = { class: "num" }, AB = { class: "num" }, FB = { class: "num" }, IB = {
+}, wB = { class: "fau-table" }, TB = { class: "num" }, LB = { class: "num" }, KB = { class: "num" }, AB = ["data-test"], FB = { class: "num" }, IB = { class: "num" }, PB = { class: "num" }, OB = {
   key: 0,
   class: "fau-sec"
-}, PB = { class: "fau-table-wrap" }, OB = { class: "fau-table" }, zB = { class: "num" }, MB = { class: "num" }, jB = { class: "num" }, RB = { class: "wrap" }, qB = { class: "num" }, UB = {
+}, zB = { class: "fau-table-wrap" }, MB = { class: "fau-table" }, jB = { class: "num" }, RB = { class: "num" }, qB = { class: "num" }, UB = { class: "wrap" }, WB = { class: "num" }, YB = {
   key: 0,
   class: "fau-sec",
   "data-test": "fau-ccc"
-}, WB = { class: "fau-tr-kpis" }, YB = { class: "fau-badge" }, GB = { class: "fau-badge" }, HB = { class: "fau-badge" }, QB = {
+}, GB = { class: "fau-tr-kpis" }, HB = { class: "fau-badge" }, QB = { class: "fau-badge" }, JB = { class: "fau-badge" }, ZB = {
   class: "fau-badge ok",
   "data-test": "fau-ccc-value"
-}, JB = { class: "fau-badge muted" }, ZB = { class: "fau-badge warn" }, XB = {
+}, XB = { class: "fau-badge muted" }, xB = { class: "fau-badge warn" }, eb = {
   key: 1,
   class: "fau-sec",
   "data-test": "fau-inventory"
-}, xB = { class: "fau-tr-kpis" }, eb = { class: "fau-badge warn" }, tb = { class: "fau-badge bad" }, lb = {
+}, tb = { class: "fau-tr-kpis" }, lb = { class: "fau-badge warn" }, nb = { class: "fau-badge bad" }, ab = {
   class: "fau-badge ok",
   "data-test": "fau-inv-release"
-}, nb = {
+}, ob = {
   key: 2,
   class: "fau-sec",
   "data-test": "fau-suppliers"
-}, ab = { class: "fau-table-wrap" }, ob = { class: "fau-table" }, sb = { class: "num" }, rb = { class: "num" }, ib = { class: "num" }, cb = { class: "num" }, db = { class: "num" }, ub = { class: "num" }, mb = { class: "num" }, pb = { class: "num" }, yb = {
+}, sb = { class: "fau-table-wrap" }, rb = { class: "fau-table" }, ib = { class: "num" }, cb = { class: "num" }, db = { class: "num" }, ub = { class: "num" }, mb = { class: "num" }, pb = { class: "num" }, yb = { class: "num" }, Nb = { class: "num" }, Vb = {
   key: 3,
   class: "fau-sec",
   "data-test": "fau-scf"
-}, Nb = { class: "fau-table-wrap" }, Vb = { class: "fau-table" }, Eb = { class: "num" }, kb = { class: "num" }, vb = { class: "num" }, gb = { class: "num" }, fb = { class: "num" }, hb = { class: "num" }, $b = {
+}, Eb = { class: "fau-table-wrap" }, kb = { class: "fau-table" }, vb = { class: "num" }, gb = { class: "num" }, fb = { class: "num" }, hb = { class: "num" }, $b = { class: "num" }, _b = { class: "num" }, Bb = {
   key: 14,
   class: "fau-sec",
   "data-test": "fau-portfolio"
-}, _b = { class: "fau-tr-kpis" }, Bb = { class: "fau-badge muted" }, bb = { class: "fau-badge muted" }, Sb = { class: "fau-table-wrap" }, Db = { class: "fau-table" }, Cb = { class: "num" }, wb = { class: "num" }, Tb = { class: "num" }, Lb = { class: "num" }, Kb = { class: "wrap" }, Ab = {
+}, bb = { class: "fau-tr-kpis" }, Sb = { class: "fau-badge muted" }, Db = { class: "fau-badge muted" }, Cb = { class: "fau-table-wrap" }, wb = { class: "fau-table" }, Tb = { class: "num" }, Lb = { class: "num" }, Kb = { class: "num" }, Ab = { class: "num" }, Fb = { class: "wrap" }, Ib = {
   key: 15,
   class: "fau-sec",
   "data-test": "fau-liquidity"
-}, Fb = { class: "fau-tr-kpis" }, Ib = { class: "fau-badge ok" }, Pb = { class: "fau-badge muted" }, Ob = {
+}, Pb = { class: "fau-tr-kpis" }, Ob = { class: "fau-badge ok" }, zb = { class: "fau-badge muted" }, Mb = {
   key: 16,
   class: "fau-sec",
   "data-test": "fau-narrative"
-}, zb = {
+}, jb = {
   key: 17,
   class: "ss-note danger"
-}, Mb = /* @__PURE__ */ e.defineComponent({
+}, Rb = /* @__PURE__ */ e.defineComponent({
   __name: "TreasuryPanel",
   props: {
     run: {},
     def: {}
   },
   emits: ["changed"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = s.listSeparator(), n = e.ref(!1), c = e.ref(""), a = e.computed(() => t.run.result), N = e.computed(() => t.def.id === "cash" ? a.value : null), E = e.computed(() => t.def.id === "treasury" ? a.value : null), u = e.computed(() => t.def.id === "fx" ? a.value : null), L = e.computed(() => t.def.id === "financing" ? a.value : null), g = e.computed(() => t.def.id === "ifrs9" ? a.value : null), v = e.computed(() => t.def.id === "working-capital" ? a.value : null), b = e.computed(() => t.def.id === "investments" ? a.value : null), h = e.computed(() => N.value?.position || E.value?.position || null), K = e.computed(() => N.value?.forecast || E.value?.forecast || null), T = e.computed(() => N.value?.payments || null), z = e.computed(() => a.value?.narrative || []), S = e.computed(() => ["signing", "archived", "void"].includes(t.run.status)), w = { ok: "ok", watch: "warn", breach: "bad" }, m = { proceed: "ok", request_docs: "warn", hold: "bad", reject_recommend: "bad" }, f = (d) => d == null ? "-" : d.toFixed(1), p = (d) => d == null ? "-" : d.toFixed(2), I = (d) => we(d), _ = (d, M) => M == null ? "-" : d === "net_worth" ? we(M) : M.toFixed(2), k = e.reactive({ rf: "", beta: "", erp: "", taxRate: "", equity: "" });
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = s.listSeparator(), n = e.ref(!1), i = e.ref(""), a = e.computed(() => t.run.result), m = e.computed(() => t.def.id === "cash" ? a.value : null), E = e.computed(() => t.def.id === "treasury" ? a.value : null), u = e.computed(() => t.def.id === "fx" ? a.value : null), L = e.computed(() => t.def.id === "financing" ? a.value : null), g = e.computed(() => t.def.id === "ifrs9" ? a.value : null), v = e.computed(() => t.def.id === "working-capital" ? a.value : null), b = e.computed(() => t.def.id === "investments" ? a.value : null), h = e.computed(() => m.value?.position || E.value?.position || null), K = e.computed(() => m.value?.forecast || E.value?.forecast || null), T = e.computed(() => m.value?.payments || null), z = e.computed(() => a.value?.narrative || []), S = e.computed(() => ["signing", "archived", "void"].includes(t.run.status)), w = { ok: "ok", watch: "warn", breach: "bad" }, p = { proceed: "ok", request_docs: "warn", hold: "bad", reject_recommend: "bad" }, f = (d) => d == null ? "-" : d.toFixed(1), y = (d) => d == null ? "-" : d.toFixed(2), I = (d) => Te(d), B = (d, M) => M == null ? "-" : d === "net_worth" ? Te(M) : M.toFixed(2), k = e.reactive({ rf: "", beta: "", erp: "", taxRate: "", equity: "" });
     e.watch(() => L.value?.cost, (d) => {
       if (!d) return;
       const M = (V) => String(Math.round(V * 1e4) / 100);
       Object.assign(k, { rf: M(d.rf), beta: String(d.beta), erp: M(d.erp), taxRate: M(d.taxRate), equity: String(Math.round(d.equity) / 100) });
     }, { immediate: !0 });
     async function R() {
-      n.value = !0, c.value = "";
+      n.value = !0, i.value = "";
       try {
-        await Y("financing.params.update", { runId: t.run.id, ...k }), y("changed");
+        await Y("financing.params.update", { runId: t.run.id, ...k }), N("changed");
       } catch (d) {
-        c.value = Q.errorMessage(d);
+        i.value = Q.errorMessage(d);
       } finally {
         n.value = !1;
       }
     }
-    return (d, M) => a.value ? (e.openBlock(), e.createElementBlock("div", Sh, [
-      i.def.id === "cash" && i.run.modeId === "payment" || i.def.id === "treasury" && i.run.modeId === "authorization" ? (e.openBlock(), e.createElementBlock("p", Dh, [
+    return (d, M) => a.value ? (e.openBlock(), e.createElementBlock("div", Ch, [
+      c.def.id === "cash" && c.run.modeId === "payment" || c.def.id === "treasury" && c.run.modeId === "authorization" ? (e.openBlock(), e.createElementBlock("p", wh, [
         M[5] || (M[5] = e.createElementVNode(
           "i",
           { class: "ri-shield-check-line" },
@@ -16524,7 +16539,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
           /* TEXT */
         )
       ])) : e.createCommentVNode("v-if", !0),
-      i.def.id === "fx" ? (e.openBlock(), e.createElementBlock("p", Ch, [
+      c.def.id === "fx" ? (e.openBlock(), e.createElementBlock("p", Th, [
         M[6] || (M[6] = e.createElementVNode(
           "i",
           { class: "ri-shield-check-line" },
@@ -16539,9 +16554,9 @@ const Bh = /* @__PURE__ */ e.defineComponent({
         )
       ])) : e.createCommentVNode("v-if", !0),
       e.createCommentVNode(" 资金日报：三方核对 "),
-      h.value ? (e.openBlock(), e.createElementBlock("section", wh, [
-        e.createElementVNode("header", Th, [
-          e.createElementVNode("strong", Lh, [
+      h.value ? (e.openBlock(), e.createElementBlock("section", Lh, [
+        e.createElementVNode("header", Kh, [
+          e.createElementVNode("strong", Ah, [
             e.createTextVNode(
               e.toDisplayString(d.$t("资金日报")) + " · ",
               1
@@ -16551,7 +16566,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               value: h.value.asOf
             }, null, 8, ["value"])
           ]),
-          e.createElementVNode("span", Kh, [
+          e.createElementVNode("span", Fh, [
             e.createTextVNode(
               e.toDisplayString(d.$t("本位币可用余额")) + " ",
               1
@@ -16562,8 +16577,8 @@ const Bh = /* @__PURE__ */ e.defineComponent({
             }, null, 8, ["cents"])
           ])
         ]),
-        e.createElementVNode("div", Ah, [
-          e.createElementVNode("table", Fh, [
+        e.createElementVNode("div", Ih, [
+          e.createElementVNode("table", Ph, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
                 e.createElementVNode(
@@ -16589,28 +16604,28 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 ),
                 e.createElementVNode(
                   "th",
-                  Ih,
+                  Oh,
                   e.toDisplayString(d.$t("银行余额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  Ph,
+                  zh,
                   e.toDisplayString(d.$t("账面余额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  Oh,
+                  Mh,
                   e.toDisplayString(d.$t("资金系统余额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  zh,
+                  jh,
                   e.toDisplayString(d.$t("最大差额")),
                   1
                   /* TEXT */
@@ -16624,7 +16639,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 ),
                 e.createElementVNode(
                   "th",
-                  Mh,
+                  Rh,
                   e.toDisplayString(d.$t("可用余额")),
                   1
                   /* TEXT */
@@ -16657,22 +16672,22 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                       value: V.currency
                     }, null, 8, ["value"])
                   ]),
-                  e.createElementVNode("td", Rh, [
+                  e.createElementVNode("td", Uh, [
                     e.createVNode(l, {
                       cents: V.bankBalance
                     }, null, 8, ["cents"])
                   ]),
-                  e.createElementVNode("td", qh, [
+                  e.createElementVNode("td", Wh, [
                     e.createVNode(l, {
                       cents: V.bookBalance
                     }, null, 8, ["cents"])
                   ]),
-                  e.createElementVNode("td", Uh, [
+                  e.createElementVNode("td", Yh, [
                     e.createVNode(l, {
                       cents: V.systemBalance
                     }, null, 8, ["cents"])
                   ]),
-                  e.createElementVNode("td", Wh, [
+                  e.createElementVNode("td", Gh, [
                     e.createVNode(l, {
                       cents: V.maxDiff
                     }, null, 8, ["cents"])
@@ -16683,24 +16698,24 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                       {
                         class: e.normalizeClass(["fau-badge", w[V.status]])
                       },
-                      e.toDisplayString(V.sources < 2 ? d.$t("来源不足，未核对") : d.$t(e.unref(ih)[V.status])),
+                      e.toDisplayString(V.sources < 2 ? d.$t("来源不足，未核对") : d.$t(e.unref(dh)[V.status])),
                       3
                       /* TEXT, CLASS */
                     ),
                     V.belowSafety ? (e.openBlock(), e.createElementBlock(
                       "span",
-                      Yh,
+                      Hh,
                       e.toDisplayString(d.$t("低于安全线")),
                       1
                       /* TEXT */
                     )) : e.createCommentVNode("v-if", !0)
                   ]),
-                  e.createElementVNode("td", Gh, [
+                  e.createElementVNode("td", Qh, [
                     e.createVNode(l, {
                       cents: V.available
                     }, null, 8, ["cents"])
                   ])
-                ], 10, jh))),
+                ], 10, qh))),
                 128
                 /* KEYED_FRAGMENT */
               ))
@@ -16709,11 +16724,11 @@ const Bh = /* @__PURE__ */ e.defineComponent({
         ])
       ])) : e.createCommentVNode("v-if", !0),
       e.createCommentVNode(" 13 周预测 "),
-      K.value ? (e.openBlock(), e.createElementBlock("section", Hh, [
-        e.createElementVNode("header", Qh, [
+      K.value ? (e.openBlock(), e.createElementBlock("section", Jh, [
+        e.createElementVNode("header", Zh, [
           e.createElementVNode(
             "strong",
-            Jh,
+            Xh,
             e.toDisplayString(d.$t("13 周现金预测")),
             1
             /* TEXT */
@@ -16723,11 +16738,11 @@ const Bh = /* @__PURE__ */ e.defineComponent({
             {
               class: e.normalizeClass(["fau-badge", K.value.gapTier === "none" ? "ok" : "warn"])
             },
-            e.toDisplayString(d.$t(e.unref(ch)[K.value.gapTier])),
+            e.toDisplayString(d.$t(e.unref(uh)[K.value.gapTier])),
             3
             /* TEXT, CLASS */
           ),
-          K.value.facilityAvailable != null ? (e.openBlock(), e.createElementBlock("span", Zh, [
+          K.value.facilityAvailable != null ? (e.openBlock(), e.createElementBlock("span", xh, [
             e.createTextVNode(
               e.toDisplayString(d.$t("可用授信")) + " ",
               1
@@ -16738,9 +16753,9 @@ const Bh = /* @__PURE__ */ e.defineComponent({
             }, null, 8, ["cents"])
           ])) : e.createCommentVNode("v-if", !0)
         ]),
-        e.createVNode(bh, { forecast: K.value }, null, 8, ["forecast"]),
-        e.createElementVNode("div", Xh, [
-          e.createElementVNode("table", xh, [
+        e.createVNode(Dh, { forecast: K.value }, null, 8, ["forecast"]),
+        e.createElementVNode("div", e$, [
+          e.createElementVNode("table", t$, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
                 e.createElementVNode(
@@ -16752,28 +16767,28 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 ),
                 e.createElementVNode(
                   "th",
-                  e$,
+                  l$,
                   e.toDisplayString(d.$t("合计流入")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  t$,
+                  n$,
                   e.toDisplayString(d.$t("合计流出")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  l$,
+                  a$,
                   e.toDisplayString(d.$t("期末余额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  n$,
+                  o$,
                   e.toDisplayString(d.$t("最低余额")),
                   1
                   /* TEXT */
@@ -16787,7 +16802,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 ),
                 e.createElementVNode(
                   "th",
-                  a$,
+                  s$,
                   e.toDisplayString(d.$t("最大缺口")),
                   1
                   /* TEXT */
@@ -16806,26 +16821,26 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(d.$t(e.unref(He)[V.id])),
+                    e.toDisplayString(d.$t(e.unref(Qe)[V.id])),
                     1
                     /* TEXT */
                   ),
-                  e.createElementVNode("td", s$, [
+                  e.createElementVNode("td", i$, [
                     e.createVNode(l, {
                       cents: V.totalIn
                     }, null, 8, ["cents"])
                   ]),
-                  e.createElementVNode("td", r$, [
+                  e.createElementVNode("td", c$, [
                     e.createVNode(l, {
                       cents: V.totalOut
                     }, null, 8, ["cents"])
                   ]),
-                  e.createElementVNode("td", i$, [
+                  e.createElementVNode("td", d$, [
                     e.createVNode(l, {
                       cents: V.endBalance
                     }, null, 8, ["cents"])
                   ]),
-                  e.createElementVNode("td", c$, [
+                  e.createElementVNode("td", u$, [
                     e.createVNode(l, {
                       cents: V.minBalance
                     }, null, 8, ["cents"])
@@ -16835,19 +16850,19 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                       value: V.firstGapWeek ? `W${V.firstGapWeek}` : "-"
                     }, null, 8, ["value"])
                   ]),
-                  e.createElementVNode("td", d$, [
+                  e.createElementVNode("td", m$, [
                     e.createVNode(l, {
                       cents: V.maxGap
                     }, null, 8, ["cents"])
                   ])
-                ], 10, o$))),
+                ], 10, r$))),
                 128
                 /* KEYED_FRAGMENT */
               ))
             ])
           ])
         ]),
-        K.value.concentration.some((V) => V.status !== "ok") ? (e.openBlock(), e.createElementBlock("ul", u$, [
+        K.value.concentration.some((V) => V.status !== "ok") ? (e.openBlock(), e.createElementBlock("ul", p$, [
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
@@ -16870,7 +16885,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 ratio: V.share
               }, null, 8, ["ratio"]),
               e.createTextVNode(
-                " · " + e.toDisplayString(d.$t(e.unref(qe)[V.status])),
+                " · " + e.toDisplayString(d.$t(e.unref(Ue)[V.status])),
                 1
                 /* TEXT */
               )
@@ -16881,9 +16896,9 @@ const Bh = /* @__PURE__ */ e.defineComponent({
         ])) : e.createCommentVNode("v-if", !0)
       ])) : e.createCommentVNode("v-if", !0),
       e.createCommentVNode(" 付款计划草稿 "),
-      T.value ? (e.openBlock(), e.createElementBlock("section", m$, [
-        e.createElementVNode("div", p$, [
-          e.createElementVNode("span", y$, [
+      T.value ? (e.openBlock(), e.createElementBlock("section", y$, [
+        e.createElementVNode("div", N$, [
+          e.createElementVNode("span", V$, [
             e.createTextVNode(
               e.toDisplayString(d.$t("可用资金")) + " ",
               1
@@ -16893,7 +16908,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               cents: T.value.available
             }, null, 8, ["cents"])
           ]),
-          e.createElementVNode("span", N$, [
+          e.createElementVNode("span", E$, [
             e.createTextVNode(
               e.toDisplayString(d.$t("排入计划")) + " ",
               1
@@ -16903,7 +16918,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               cents: T.value.scheduled
             }, null, 8, ["cents"])
           ]),
-          e.createElementVNode("span", V$, [
+          e.createElementVNode("span", k$, [
             e.createTextVNode(
               e.toDisplayString(d.$t("延后")) + " ",
               1
@@ -16913,7 +16928,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               cents: T.value.deferred
             }, null, 8, ["cents"])
           ]),
-          e.createElementVNode("span", E$, [
+          e.createElementVNode("span", v$, [
             e.createTextVNode(
               e.toDisplayString(d.$t("暂停核实")) + " ",
               1
@@ -16923,7 +16938,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               cents: T.value.held
             }, null, 8, ["cents"])
           ]),
-          T.value.gap ? (e.openBlock(), e.createElementBlock("span", k$, [
+          T.value.gap ? (e.openBlock(), e.createElementBlock("span", g$, [
             e.createTextVNode(
               e.toDisplayString(d.$t("P0 资金缺口")) + " ",
               1
@@ -16934,8 +16949,8 @@ const Bh = /* @__PURE__ */ e.defineComponent({
             }, null, 8, ["cents"])
           ])) : e.createCommentVNode("v-if", !0)
         ]),
-        e.createElementVNode("div", v$, [
-          e.createElementVNode("table", g$, [
+        e.createElementVNode("div", f$, [
+          e.createElementVNode("table", h$, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
                 e.createElementVNode(
@@ -16954,7 +16969,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 ),
                 e.createElementVNode(
                   "th",
-                  f$,
+                  $$,
                   e.toDisplayString(d.$t("付款金额")),
                   1
                   /* TEXT */
@@ -17010,7 +17025,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     1
                     /* TEXT */
                   ),
-                  e.createElementVNode("td", $$, [
+                  e.createElementVNode("td", B$, [
                     e.createVNode(l, {
                       cents: V.amount
                     }, null, 8, ["cents"])
@@ -17021,7 +17036,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     }, null, 8, ["value"])
                   ]),
                   e.createElementVNode("td", {
-                    title: d.$t(e.unref(dh)[V.priority])
+                    title: d.$t(e.unref(mh)[V.priority])
                   }, [
                     e.createVNode(l, {
                       value: V.priority
@@ -17029,27 +17044,27 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     M[8] || (M[8] = e.createTextVNode()),
                     e.createElementVNode(
                       "small",
-                      B$,
-                      e.toDisplayString(d.$t(e.unref(mh)[V.prioritySource])),
+                      S$,
+                      e.toDisplayString(d.$t(e.unref(yh)[V.prioritySource])),
                       1
                       /* TEXT */
                     )
-                  ], 8, _$),
+                  ], 8, b$),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(d.$t(e.unref(uh)[V.plan])),
+                    e.toDisplayString(d.$t(e.unref(ph)[V.plan])),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "td",
-                    b$,
+                    D$,
                     e.toDisplayString(V.flags.map((te) => e.unref(Z)(te)).join(e.unref(r))),
                     1
                     /* TEXT */
                   )
-                ], 10, h$))),
+                ], 10, _$))),
                 128
                 /* KEYED_FRAGMENT */
               ))
@@ -17058,9 +17073,9 @@ const Bh = /* @__PURE__ */ e.defineComponent({
         ])
       ])) : e.createCommentVNode("v-if", !0),
       e.createCommentVNode(" 授权复核 "),
-      E.value?.authorizations ? (e.openBlock(), e.createElementBlock("section", S$, [
-        e.createElementVNode("div", D$, [
-          e.createElementVNode("table", C$, [
+      E.value?.authorizations ? (e.openBlock(), e.createElementBlock("section", C$, [
+        e.createElementVNode("div", w$, [
+          e.createElementVNode("table", T$, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
                 e.createElementVNode(
@@ -17079,7 +17094,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 ),
                 e.createElementVNode(
                   "th",
-                  w$,
+                  L$,
                   e.toDisplayString(d.$t("付款金额")),
                   1
                   /* TEXT */
@@ -17121,13 +17136,13 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     1
                     /* TEXT */
                   ),
-                  e.createElementVNode("td", L$, [
+                  e.createElementVNode("td", A$, [
                     e.createVNode(l, {
                       cents: V.amount
                     }, null, 8, ["cents"]),
                     V.large ? (e.openBlock(), e.createElementBlock(
                       "span",
-                      K$,
+                      F$,
                       e.toDisplayString(d.$t("大额")),
                       1
                       /* TEXT */
@@ -17137,21 +17152,21 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     e.createElementVNode(
                       "span",
                       {
-                        class: e.normalizeClass(["fau-badge", m[V.advice]])
+                        class: e.normalizeClass(["fau-badge", p[V.advice]])
                       },
-                      e.toDisplayString(d.$t(e.unref(ph)[V.advice])),
+                      e.toDisplayString(d.$t(e.unref(Nh)[V.advice])),
                       3
                       /* TEXT, CLASS */
                     )
                   ]),
                   e.createElementVNode(
                     "td",
-                    A$,
+                    I$,
                     e.toDisplayString(V.checks.filter((te) => !te.ok).map((te) => e.unref(Z)(te.message)).join(e.unref(r))),
                     1
                     /* TEXT */
                   )
-                ], 10, T$))),
+                ], 10, K$))),
                 128
                 /* KEYED_FRAGMENT */
               ))
@@ -17160,9 +17175,9 @@ const Bh = /* @__PURE__ */ e.defineComponent({
         ])
       ])) : e.createCommentVNode("v-if", !0),
       e.createCommentVNode(" 现金池 "),
-      E.value?.pool ? (e.openBlock(), e.createElementBlock("section", F$, [
-        e.createElementVNode("div", I$, [
-          e.createElementVNode("span", P$, [
+      E.value?.pool ? (e.openBlock(), e.createElementBlock("section", P$, [
+        e.createElementVNode("div", O$, [
+          e.createElementVNode("span", z$, [
             e.createTextVNode(
               e.toDisplayString(d.$t("主账户")) + " ",
               1
@@ -17172,7 +17187,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               value: E.value.pool.header
             }, null, 8, ["value"])
           ]),
-          e.createElementVNode("span", O$, [
+          e.createElementVNode("span", M$, [
             e.createTextVNode(
               e.toDisplayString(d.$t("上划合计")) + " ",
               1
@@ -17182,7 +17197,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               cents: E.value.pool.sweepUp
             }, null, 8, ["cents"])
           ]),
-          e.createElementVNode("span", z$, [
+          e.createElementVNode("span", j$, [
             e.createTextVNode(
               e.toDisplayString(d.$t("下拨合计")) + " ",
               1
@@ -17192,7 +17207,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               cents: E.value.pool.sweepDown
             }, null, 8, ["cents"])
           ]),
-          e.createElementVNode("span", M$, [
+          e.createElementVNode("span", R$, [
             e.createTextVNode(
               e.toDisplayString(d.$t("归集后可调度资金")) + " ",
               1
@@ -17202,7 +17217,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               cents: E.value.pool.pooled
             }, null, 8, ["cents"])
           ]),
-          e.createElementVNode("span", j$, [
+          e.createElementVNode("span", q$, [
             e.createTextVNode(
               e.toDisplayString(d.$t("年化利息增益估算")) + " ",
               1
@@ -17213,8 +17228,8 @@ const Bh = /* @__PURE__ */ e.defineComponent({
             }, null, 8, ["cents"])
           ])
         ]),
-        e.createElementVNode("div", R$, [
-          e.createElementVNode("table", q$, [
+        e.createElementVNode("div", U$, [
+          e.createElementVNode("table", W$, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
                 e.createElementVNode(
@@ -17233,21 +17248,21 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 ),
                 e.createElementVNode(
                   "th",
-                  U$,
+                  Y$,
                   e.toDisplayString(d.$t("余额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  W$,
+                  G$,
                   e.toDisplayString(d.$t("留存目标")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  Y$,
+                  H$,
                   e.toDisplayString(d.$t("上划 / 下拨")),
                   1
                   /* TEXT */
@@ -17273,17 +17288,17 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     1
                     /* TEXT */
                   ),
-                  e.createElementVNode("td", G$, [
+                  e.createElementVNode("td", Q$, [
                     e.createVNode(l, {
                       cents: V.balance
                     }, null, 8, ["cents"])
                   ]),
-                  e.createElementVNode("td", H$, [
+                  e.createElementVNode("td", J$, [
                     e.createVNode(l, {
                       cents: V.target
                     }, null, 8, ["cents"])
                   ]),
-                  e.createElementVNode("td", Q$, [
+                  e.createElementVNode("td", Z$, [
                     e.createVNode(l, {
                       cents: V.sweep
                     }, null, 8, ["cents"])
@@ -17297,9 +17312,9 @@ const Bh = /* @__PURE__ */ e.defineComponent({
         ])
       ])) : e.createCommentVNode("v-if", !0),
       e.createCommentVNode(" 银行关系 "),
-      E.value?.banks ? (e.openBlock(), e.createElementBlock("section", J$, [
-        e.createElementVNode("div", Z$, [
-          e.createElementVNode("table", X$, [
+      E.value?.banks ? (e.openBlock(), e.createElementBlock("section", X$, [
+        e.createElementVNode("div", x$, [
+          e.createElementVNode("table", e_, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
                 e.createElementVNode(
@@ -17311,21 +17326,21 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 ),
                 e.createElementVNode(
                   "th",
-                  x$,
+                  t_,
                   e.toDisplayString(d.$t("授信使用率")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  e_,
+                  l_,
                   e.toDisplayString(d.$t("利率")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  t_,
+                  n_,
                   e.toDisplayString(d.$t("综合评分")),
                   1
                   /* TEXT */
@@ -17361,17 +17376,17 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     1
                     /* TEXT */
                   ),
-                  e.createElementVNode("td", n_, [
+                  e.createElementVNode("td", o_, [
                     e.createVNode(l, {
                       ratio: V.utilization
                     }, null, 8, ["ratio"])
                   ]),
-                  e.createElementVNode("td", a_, [
+                  e.createElementVNode("td", s_, [
                     e.createVNode(l, {
                       ratio: V.rate
                     }, null, 8, ["ratio"])
                   ]),
-                  e.createElementVNode("td", o_, [
+                  e.createElementVNode("td", r_, [
                     e.createVNode(l, {
                       value: V.total.toFixed(2)
                     }, null, 8, ["value"])
@@ -17379,18 +17394,18 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(d.$t(e.unref(yh)[V.tier])),
+                    e.toDisplayString(d.$t(e.unref(Vh)[V.tier])),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "td",
-                    s_,
+                    i_,
                     e.toDisplayString(V.flags.map((te) => e.unref(Z)(te)).join(e.unref(r))),
                     1
                     /* TEXT */
                   )
-                ], 8, l_))),
+                ], 8, a_))),
                 128
                 /* KEYED_FRAGMENT */
               ))
@@ -17399,8 +17414,8 @@ const Bh = /* @__PURE__ */ e.defineComponent({
         ])
       ])) : e.createCommentVNode("v-if", !0),
       e.createCommentVNode(" LCR / NSFR "),
-      E.value?.liquidity ? (e.openBlock(), e.createElementBlock("section", r_, [
-        e.createElementVNode("div", i_, [
+      E.value?.liquidity ? (e.openBlock(), e.createElementBlock("section", c_, [
+        e.createElementVNode("div", d_, [
           e.createElementVNode(
             "span",
             {
@@ -17438,7 +17453,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
             2
             /* CLASS */
           ),
-          e.createElementVNode("span", c_, [
+          e.createElementVNode("span", u_, [
             e.createTextVNode(
               e.toDisplayString(d.$t("优质流动性资产合计")) + " ",
               1
@@ -17448,7 +17463,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               cents: E.value.liquidity.hqla.total
             }, null, 8, ["cents"])
           ]),
-          e.createElementVNode("span", d_, [
+          e.createElementVNode("span", m_, [
             e.createTextVNode(
               e.toDisplayString(d.$t("净现金流出")) + " ",
               1
@@ -17465,9 +17480,9 @@ const Bh = /* @__PURE__ */ e.defineComponent({
         e.Fragment,
         { key: 9 },
         [
-          e.createElementVNode("section", u_, [
-            e.createElementVNode("div", m_, [
-              e.createElementVNode("table", p_, [
+          e.createElementVNode("section", p_, [
+            e.createElementVNode("div", y_, [
+              e.createElementVNode("table", N_, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -17479,49 +17494,49 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     ),
                     e.createElementVNode(
                       "th",
-                      y_,
+                      V_,
                       e.toDisplayString(d.$t("交易敞口（外币）")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      N_,
+                      E_,
                       e.toDisplayString(d.$t("会计敞口（外币）")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      V_,
+                      k_,
                       e.toDisplayString(d.$t("交易敞口（本位币）")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      E_,
+                      v_,
                       e.toDisplayString(d.$t("已对冲")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      k_,
+                      g_,
                       e.toDisplayString(d.$t("目标对冲额")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      v_,
+                      f_,
                       e.toDisplayString(d.$t("还需对冲")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      g_,
+                      h_,
                       e.toDisplayString(d.$t("已对冲比例")),
                       1
                       /* TEXT */
@@ -17542,42 +17557,42 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                           value: V.currency
                         }, null, 8, ["value"])
                       ]),
-                      e.createElementVNode("td", h_, [
+                      e.createElementVNode("td", __, [
                         e.createVNode(l, {
                           cents: V.transaction
                         }, null, 8, ["cents"])
                       ]),
-                      e.createElementVNode("td", $_, [
+                      e.createElementVNode("td", B_, [
                         e.createVNode(l, {
                           cents: V.translation
                         }, null, 8, ["cents"])
                       ]),
-                      e.createElementVNode("td", __, [
+                      e.createElementVNode("td", b_, [
                         e.createVNode(l, {
                           cents: V.transactionLocal
                         }, null, 8, ["cents"])
                       ]),
-                      e.createElementVNode("td", B_, [
+                      e.createElementVNode("td", S_, [
                         e.createVNode(l, {
                           cents: V.hedged
                         }, null, 8, ["cents"])
                       ]),
-                      e.createElementVNode("td", b_, [
+                      e.createElementVNode("td", D_, [
                         e.createVNode(l, {
                           cents: V.hedgeTarget
                         }, null, 8, ["cents"])
                       ]),
-                      e.createElementVNode("td", S_, [
+                      e.createElementVNode("td", C_, [
                         e.createVNode(l, {
                           cents: V.hedgeNeed
                         }, null, 8, ["cents"])
                       ]),
-                      e.createElementVNode("td", D_, [
+                      e.createElementVNode("td", w_, [
                         e.createVNode(l, {
                           ratio: V.hedgeRatio
                         }, null, 8, ["ratio"])
                       ])
-                    ], 10, f_))),
+                    ], 10, $_))),
                     128
                     /* KEYED_FRAGMENT */
                   ))
@@ -17585,7 +17600,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               ])
             ])
           ]),
-          u.value.rfq.length ? (e.openBlock(), e.createElementBlock("section", C_, [
+          u.value.rfq.length ? (e.openBlock(), e.createElementBlock("section", T_, [
             e.createElementVNode(
               "strong",
               null,
@@ -17593,8 +17608,8 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               1
               /* TEXT */
             ),
-            e.createElementVNode("div", w_, [
-              e.createElementVNode("table", T_, [
+            e.createElementVNode("div", L_, [
+              e.createElementVNode("table", K_, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -17613,7 +17628,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     ),
                     e.createElementVNode(
                       "th",
-                      L_,
+                      A_,
                       e.toDisplayString(d.$t("名义本金（外币）")),
                       1
                       /* TEXT */
@@ -17650,11 +17665,11 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                       e.createElementVNode(
                         "td",
                         null,
-                        e.toDisplayString(d.$t(e.unref(Vh)[V.side])),
+                        e.toDisplayString(d.$t(e.unref(kh)[V.side])),
                         1
                         /* TEXT */
                       ),
-                      e.createElementVNode("td", A_, [
+                      e.createElementVNode("td", I_, [
                         e.createVNode(l, {
                           cents: V.notional
                         }, null, 8, ["cents"])
@@ -17667,11 +17682,11 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                       e.createElementVNode(
                         "td",
                         null,
-                        e.toDisplayString(d.$t(e.unref(Nh)[V.layer])),
+                        e.toDisplayString(d.$t(e.unref(Eh)[V.layer])),
                         1
                         /* TEXT */
                       )
-                    ], 8, K_))),
+                    ], 8, F_))),
                     128
                     /* KEYED_FRAGMENT */
                   ))
@@ -17684,9 +17699,9 @@ const Bh = /* @__PURE__ */ e.defineComponent({
         /* STABLE_FRAGMENT */
       )) : e.createCommentVNode("v-if", !0),
       e.createCommentVNode(" 融资 "),
-      L.value?.cost ? (e.openBlock(), e.createElementBlock("section", F_, [
-        e.createElementVNode("div", I_, [
-          e.createElementVNode("span", P_, [
+      L.value?.cost ? (e.openBlock(), e.createElementBlock("section", P_, [
+        e.createElementVNode("div", O_, [
+          e.createElementVNode("span", z_, [
             e.createTextVNode(
               e.toDisplayString(d.$t("有息负债合计")) + " ",
               1
@@ -17696,7 +17711,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               cents: L.value.cost.debt
             }, null, 8, ["cents"])
           ]),
-          e.createElementVNode("span", O_, [
+          e.createElementVNode("span", M_, [
             e.createTextVNode(
               e.toDisplayString(d.$t("税后债务成本")) + " ",
               1
@@ -17706,7 +17721,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               ratio: L.value.cost.kdAfterTax
             }, null, 8, ["ratio"])
           ]),
-          e.createElementVNode("span", z_, [
+          e.createElementVNode("span", j_, [
             e.createTextVNode(
               e.toDisplayString(d.$t("股权成本")) + " ",
               1
@@ -17716,7 +17731,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               ratio: L.value.cost.ke
             }, null, 8, ["ratio"])
           ]),
-          e.createElementVNode("span", M_, [
+          e.createElementVNode("span", R_, [
             M[11] || (M[11] = e.createTextVNode(
               "WACC ",
               -1
@@ -17746,7 +17761,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 step: "0.01",
                 disabled: S.value,
                 "data-test": "fau-param-rf"
-              }, null, 8, j_), [
+              }, null, 8, q_), [
                 [e.vModelText, k.rf]
               ])
             ]),
@@ -17762,7 +17777,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 step: "0.01",
                 disabled: S.value,
                 "data-test": "fau-param-beta"
-              }, null, 8, R_), [
+              }, null, 8, U_), [
                 [e.vModelText, k.beta]
               ])
             ]),
@@ -17777,7 +17792,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 type: "number",
                 step: "0.01",
                 disabled: S.value
-              }, null, 8, q_), [
+              }, null, 8, W_), [
                 [e.vModelText, k.erp]
               ])
             ]),
@@ -17792,7 +17807,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 type: "number",
                 step: "0.01",
                 disabled: S.value
-              }, null, 8, U_), [
+              }, null, 8, Y_), [
                 [e.vModelText, k.taxRate]
               ])
             ]),
@@ -17807,7 +17822,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 type: "number",
                 step: "0.01",
                 disabled: S.value
-              }, null, 8, W_), [
+              }, null, 8, G_), [
                 [e.vModelText, k.equity]
               ])
             ]),
@@ -17829,13 +17844,13 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 1
                 /* TEXT */
               )
-            ], 8, Y_)
+            ], 8, H_)
           ],
           32
           /* NEED_HYDRATION */
         ),
-        e.createElementVNode("div", G_, [
-          e.createElementVNode("table", H_, [
+        e.createElementVNode("div", Q_, [
+          e.createElementVNode("table", J_, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
                 e.createElementVNode(
@@ -17847,14 +17862,14 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 ),
                 e.createElementVNode(
                   "th",
-                  Q_,
+                  Z_,
                   e.toDisplayString(d.$t("本金余额")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  J_,
+                  X_,
                   e.toDisplayString(d.$t("综合成本")),
                   1
                   /* TEXT */
@@ -17882,12 +17897,12 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     1
                     /* TEXT */
                   ),
-                  e.createElementVNode("td", Z_, [
+                  e.createElementVNode("td", x_, [
                     e.createVNode(l, {
                       cents: V.principal
                     }, null, 8, ["cents"])
                   ]),
-                  e.createElementVNode("td", X_, [
+                  e.createElementVNode("td", eB, [
                     e.createVNode(l, {
                       ratio: V.allIn
                     }, null, 8, ["ratio"])
@@ -17905,9 +17920,9 @@ const Bh = /* @__PURE__ */ e.defineComponent({
           ])
         ])
       ])) : e.createCommentVNode("v-if", !0),
-      L.value?.covenants ? (e.openBlock(), e.createElementBlock("section", x_, [
-        e.createElementVNode("div", eB, [
-          e.createElementVNode("table", tB, [
+      L.value?.covenants ? (e.openBlock(), e.createElementBlock("section", tB, [
+        e.createElementVNode("div", lB, [
+          e.createElementVNode("table", nB, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
                 e.createElementVNode(
@@ -17942,7 +17957,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     }, null, 8, ["value"]),
                     V.forecast ? (e.openBlock(), e.createElementBlock(
                       "small",
-                      lB,
+                      aB,
                       " · " + e.toDisplayString(d.$t("预测")),
                       1
                       /* TEXT */
@@ -17977,15 +17992,15 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     ),
                     e.createElementVNode(
                       "small",
-                      aB,
-                      e.toDisplayString(d.$t(e.unref(Eh)[V.metric])),
+                      sB,
+                      e.toDisplayString(d.$t(e.unref(vh)[V.metric])),
                       1
                       /* TEXT */
                     )
                   ]),
                   e.createElementVNode("td", null, [
                     e.createVNode(l, {
-                      value: `${e.unref(kh)[V.op]} ${V.metric === "net_worth" ? I(V.limit) : V.limit}`
+                      value: `${e.unref(gh)[V.op]} ${V.metric === "net_worth" ? I(V.limit) : V.limit}`
                     }, null, 8, ["value"])
                   ]),
                   (e.openBlock(!0), e.createElementBlock(
@@ -18001,10 +18016,10 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                         },
                         [
                           e.createVNode(l, {
-                            value: _(V.metric, te.value)
+                            value: B(V.metric, te.value)
                           }, null, 8, ["value"]),
                           e.createTextVNode(
-                            " · " + e.toDisplayString(d.$t(e.unref(qe)[te.status])),
+                            " · " + e.toDisplayString(d.$t(e.unref(Ue)[te.status])),
                             1
                             /* TEXT */
                           )
@@ -18016,7 +18031,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     128
                     /* KEYED_FRAGMENT */
                   ))
-                ], 10, nB))),
+                ], 10, oB))),
                 128
                 /* KEYED_FRAGMENT */
               ))
@@ -18029,9 +18044,9 @@ const Bh = /* @__PURE__ */ e.defineComponent({
         e.Fragment,
         { key: 12 },
         [
-          e.createElementVNode("section", oB, [
-            e.createElementVNode("div", sB, [
-              e.createElementVNode("span", rB, [
+          e.createElementVNode("section", rB, [
+            e.createElementVNode("div", iB, [
+              e.createElementVNode("span", cB, [
                 e.createTextVNode(
                   e.toDisplayString(d.$t("违约敞口合计")) + " ",
                   1
@@ -18041,7 +18056,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                   cents: g.value.totalEad
                 }, null, 8, ["cents"])
               ]),
-              e.createElementVNode("span", iB, [
+              e.createElementVNode("span", dB, [
                 e.createTextVNode(
                   e.toDisplayString(d.$t("预期信用损失合计")) + " ",
                   1
@@ -18051,7 +18066,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                   cents: g.value.totalEcl
                 }, null, 8, ["cents"])
               ]),
-              e.createElementVNode("span", cB, [
+              e.createElementVNode("span", uB, [
                 e.createTextVNode(
                   e.toDisplayString(d.$t("前瞻系数")) + " ",
                   1
@@ -18069,7 +18084,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                   class: "fau-badge muted"
                 }, [
                   e.createTextVNode(
-                    e.toDisplayString(d.$t(e.unref(He)[V.id] || V.name)) + " ",
+                    e.toDisplayString(d.$t(e.unref(Qe)[V.id] || V.name)) + " ",
                     1
                     /* TEXT */
                   ),
@@ -18089,8 +18104,8 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 /* KEYED_FRAGMENT */
               ))
             ]),
-            g.value.stages ? (e.openBlock(), e.createElementBlock("div", dB, [
-              e.createElementVNode("table", uB, [
+            g.value.stages ? (e.openBlock(), e.createElementBlock("div", mB, [
+              e.createElementVNode("table", pB, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -18102,28 +18117,28 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     ),
                     e.createElementVNode(
                       "th",
-                      mB,
+                      yB,
                       e.toDisplayString(d.$t("笔数")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      pB,
+                      NB,
                       e.toDisplayString(d.$t("违约敞口")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      yB,
+                      VB,
                       e.toDisplayString(d.$t("加权 ECL")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      NB,
+                      EB,
                       e.toDisplayString(d.$t("覆盖率")),
                       1
                       /* TEXT */
@@ -18141,39 +18156,39 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                       e.createElementVNode(
                         "td",
                         null,
-                        e.toDisplayString(d.$t(e.unref(Ae)[V.stage])),
+                        e.toDisplayString(d.$t(e.unref(Fe)[V.stage])),
                         1
                         /* TEXT */
                       ),
-                      e.createElementVNode("td", EB, [
+                      e.createElementVNode("td", vB, [
                         e.createVNode(l, {
                           value: V.count
                         }, null, 8, ["value"])
                       ]),
-                      e.createElementVNode("td", kB, [
+                      e.createElementVNode("td", gB, [
                         e.createVNode(l, {
                           cents: V.ead
                         }, null, 8, ["cents"])
                       ]),
-                      e.createElementVNode("td", vB, [
+                      e.createElementVNode("td", fB, [
                         e.createVNode(l, {
                           cents: V.ecl
                         }, null, 8, ["cents"])
                       ]),
-                      e.createElementVNode("td", gB, [
+                      e.createElementVNode("td", hB, [
                         e.createVNode(l, {
                           ratio: V.coverage
                         }, null, 8, ["ratio"])
                       ])
-                    ], 8, VB))),
+                    ], 8, kB))),
                     128
                     /* KEYED_FRAGMENT */
                   ))
                 ])
               ])
             ])) : e.createCommentVNode("v-if", !0),
-            g.value.migration ? (e.openBlock(), e.createElementBlock("div", fB, [
-              e.createElementVNode("table", hB, [
+            g.value.migration ? (e.openBlock(), e.createElementBlock("div", $B, [
+              e.createElementVNode("table", _B, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -18192,14 +18207,14 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     ),
                     e.createElementVNode(
                       "th",
-                      $B,
+                      BB,
                       e.toDisplayString(d.$t("笔数")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      _B,
+                      bB,
                       e.toDisplayString(d.$t("违约敞口")),
                       1
                       /* TEXT */
@@ -18216,23 +18231,23 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                       e.createElementVNode(
                         "td",
                         null,
-                        e.toDisplayString(d.$t(e.unref(Ae)[V.from])),
+                        e.toDisplayString(d.$t(e.unref(Fe)[V.from])),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
                         null,
-                        e.toDisplayString(d.$t(e.unref(Ae)[V.to])),
+                        e.toDisplayString(d.$t(e.unref(Fe)[V.to])),
                         1
                         /* TEXT */
                       ),
-                      e.createElementVNode("td", BB, [
+                      e.createElementVNode("td", SB, [
                         e.createVNode(l, {
                           value: V.count
                         }, null, 8, ["value"])
                       ]),
-                      e.createElementVNode("td", bB, [
+                      e.createElementVNode("td", DB, [
                         e.createVNode(l, {
                           cents: V.ead
                         }, null, 8, ["cents"])
@@ -18244,8 +18259,8 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 ])
               ])
             ])) : e.createCommentVNode("v-if", !0),
-            g.value.matrix ? (e.openBlock(), e.createElementBlock("div", SB, [
-              e.createElementVNode("table", DB, [
+            g.value.matrix ? (e.openBlock(), e.createElementBlock("div", CB, [
+              e.createElementVNode("table", wB, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -18257,21 +18272,21 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     ),
                     e.createElementVNode(
                       "th",
-                      CB,
+                      TB,
                       e.toDisplayString(d.$t("应收余额")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      wB,
+                      LB,
                       e.toDisplayString(d.$t("损失率")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      TB,
+                      KB,
                       e.toDisplayString(d.$t("预期信用损失")),
                       1
                       /* TEXT */
@@ -18289,26 +18304,26 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                       e.createElementVNode(
                         "td",
                         null,
-                        e.toDisplayString(d.$t(e.unref(gh)[V.bucket])),
+                        e.toDisplayString(d.$t(e.unref(hh)[V.bucket])),
                         1
                         /* TEXT */
                       ),
-                      e.createElementVNode("td", KB, [
+                      e.createElementVNode("td", FB, [
                         e.createVNode(l, {
                           cents: V.amount
                         }, null, 8, ["cents"])
                       ]),
-                      e.createElementVNode("td", AB, [
+                      e.createElementVNode("td", IB, [
                         e.createVNode(l, {
                           ratio: V.rate
                         }, null, 8, ["ratio"])
                       ]),
-                      e.createElementVNode("td", FB, [
+                      e.createElementVNode("td", PB, [
                         e.createVNode(l, {
                           cents: V.ecl
                         }, null, 8, ["cents"])
                       ])
-                    ], 8, LB))),
+                    ], 8, AB))),
                     128
                     /* KEYED_FRAGMENT */
                   ))
@@ -18316,7 +18331,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               ])
             ])) : e.createCommentVNode("v-if", !0)
           ]),
-          g.value.lines ? (e.openBlock(), e.createElementBlock("details", IB, [
+          g.value.lines ? (e.openBlock(), e.createElementBlock("details", OB, [
             e.createElementVNode(
               "summary",
               null,
@@ -18324,8 +18339,8 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               1
               /* TEXT */
             ),
-            e.createElementVNode("div", PB, [
-              e.createElementVNode("table", OB, [
+            e.createElementVNode("div", zB, [
+              e.createElementVNode("table", MB, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -18344,7 +18359,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     ),
                     e.createElementVNode(
                       "th",
-                      zB,
+                      jB,
                       e.toDisplayString(d.$t("违约敞口")),
                       1
                       /* TEXT */
@@ -18365,7 +18380,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     ),
                     e.createElementVNode(
                       "th",
-                      MB,
+                      RB,
                       e.toDisplayString(d.$t("加权 ECL")),
                       1
                       /* TEXT */
@@ -18391,7 +18406,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                         1
                         /* TEXT */
                       ),
-                      e.createElementVNode("td", jB, [
+                      e.createElementVNode("td", qB, [
                         e.createVNode(l, {
                           cents: V.ead
                         }, null, 8, ["cents"])
@@ -18399,18 +18414,18 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                       e.createElementVNode(
                         "td",
                         null,
-                        e.toDisplayString(d.$t(e.unref(Ae)[V.stage])),
+                        e.toDisplayString(d.$t(e.unref(Fe)[V.stage])),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
-                        RB,
-                        e.toDisplayString(V.reasons.map((te) => d.$t(e.unref(vh)[te] || te)).join(e.unref(r))),
+                        UB,
+                        e.toDisplayString(V.reasons.map((te) => d.$t(e.unref(fh)[te] || te)).join(e.unref(r))),
                         1
                         /* TEXT */
                       ),
-                      e.createElementVNode("td", qB, [
+                      e.createElementVNode("td", WB, [
                         e.createVNode(l, {
                           cents: V.weighted
                         }, null, 8, ["cents"])
@@ -18432,9 +18447,9 @@ const Bh = /* @__PURE__ */ e.defineComponent({
         e.Fragment,
         { key: 13 },
         [
-          v.value.ccc ? (e.openBlock(), e.createElementBlock("section", UB, [
-            e.createElementVNode("div", WB, [
-              e.createElementVNode("span", YB, [
+          v.value.ccc ? (e.openBlock(), e.createElementBlock("section", YB, [
+            e.createElementVNode("div", GB, [
+              e.createElementVNode("span", HB, [
                 M[15] || (M[15] = e.createTextVNode(
                   "DSO ",
                   -1
@@ -18444,7 +18459,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                   value: f(v.value.ccc.dso)
                 }, null, 8, ["value"])
               ]),
-              e.createElementVNode("span", GB, [
+              e.createElementVNode("span", QB, [
                 M[16] || (M[16] = e.createTextVNode(
                   "DIO ",
                   -1
@@ -18454,7 +18469,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                   value: f(v.value.ccc.dio)
                 }, null, 8, ["value"])
               ]),
-              e.createElementVNode("span", HB, [
+              e.createElementVNode("span", JB, [
                 M[17] || (M[17] = e.createTextVNode(
                   "DPO ",
                   -1
@@ -18464,7 +18479,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                   value: f(v.value.ccc.dpo)
                 }, null, 8, ["value"])
               ]),
-              e.createElementVNode("span", QB, [
+              e.createElementVNode("span", ZB, [
                 M[18] || (M[18] = e.createTextVNode(
                   "CCC ",
                   -1
@@ -18474,7 +18489,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                   value: f(v.value.ccc.ccc)
                 }, null, 8, ["value"])
               ]),
-              e.createElementVNode("span", JB, [
+              e.createElementVNode("span", XB, [
                 e.createTextVNode(
                   e.toDisplayString(d.$t("应收每缩短 1 天释放")) + " ",
                   1
@@ -18484,7 +18499,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                   cents: v.value.ccc.perDay.dso
                 }, null, 8, ["cents"])
               ]),
-              e.createElementVNode("span", ZB, [
+              e.createElementVNode("span", xB, [
                 e.createTextVNode(
                   e.toDisplayString(d.$t("逾期应收")) + " ",
                   1
@@ -18496,8 +18511,8 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               ])
             ])
           ])) : e.createCommentVNode("v-if", !0),
-          v.value.inventory ? (e.openBlock(), e.createElementBlock("section", XB, [
-            e.createElementVNode("div", xB, [
+          v.value.inventory ? (e.openBlock(), e.createElementBlock("section", eb, [
+            e.createElementVNode("div", tb, [
               (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 null,
@@ -18522,7 +18537,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 64
                 /* STABLE_FRAGMENT */
               )),
-              e.createElementVNode("span", eb, [
+              e.createElementVNode("span", lb, [
                 e.createTextVNode(
                   e.toDisplayString(d.$t(e.unref(ut).slow)) + " ",
                   1
@@ -18532,7 +18547,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                   cents: v.value.inventory.slow
                 }, null, 8, ["cents"])
               ]),
-              e.createElementVNode("span", tb, [
+              e.createElementVNode("span", nb, [
                 e.createTextVNode(
                   e.toDisplayString(d.$t(e.unref(ut).obsolete)) + " ",
                   1
@@ -18542,7 +18557,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                   cents: v.value.inventory.obsolete
                 }, null, 8, ["cents"])
               ]),
-              e.createElementVNode("span", lb, [
+              e.createElementVNode("span", ab, [
                 e.createTextVNode(
                   e.toDisplayString(d.$t("可释放资金占用")) + " ",
                   1
@@ -18554,9 +18569,9 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               ])
             ])
           ])) : e.createCommentVNode("v-if", !0),
-          v.value.suppliers ? (e.openBlock(), e.createElementBlock("section", nb, [
-            e.createElementVNode("div", ab, [
-              e.createElementVNode("table", ob, [
+          v.value.suppliers ? (e.openBlock(), e.createElementBlock("section", ob, [
+            e.createElementVNode("div", sb, [
+              e.createElementVNode("table", rb, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -18568,28 +18583,28 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     ),
                     e.createElementVNode(
                       "th",
-                      sb,
+                      ib,
                       e.toDisplayString(d.$t("未清金额")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      rb,
+                      cb,
                       e.toDisplayString(d.$t("占比")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      ib,
+                      db,
                       e.toDisplayString(d.$t("平均账期（天）")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      cb,
+                      ub,
                       e.toDisplayString(d.$t("30 天内到期")),
                       1
                       /* TEXT */
@@ -18614,22 +18629,22 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                           1
                           /* TEXT */
                         ),
-                        e.createElementVNode("td", db, [
+                        e.createElementVNode("td", mb, [
                           e.createVNode(l, {
                             cents: V.open
                           }, null, 8, ["cents"])
                         ]),
-                        e.createElementVNode("td", ub, [
+                        e.createElementVNode("td", pb, [
                           e.createVNode(l, {
                             ratio: V.share
                           }, null, 8, ["ratio"])
                         ]),
-                        e.createElementVNode("td", mb, [
+                        e.createElementVNode("td", yb, [
                           e.createVNode(l, {
                             value: f(V.avgTermDays)
                           }, null, 8, ["value"])
                         ]),
-                        e.createElementVNode("td", pb, [
+                        e.createElementVNode("td", Nb, [
                           e.createVNode(l, {
                             cents: V.dueIn30
                           }, null, 8, ["cents"])
@@ -18645,9 +18660,9 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               ])
             ])
           ])) : e.createCommentVNode("v-if", !0),
-          v.value.scf ? (e.openBlock(), e.createElementBlock("section", yb, [
-            e.createElementVNode("div", Nb, [
-              e.createElementVNode("table", Vb, [
+          v.value.scf ? (e.openBlock(), e.createElementBlock("section", Vb, [
+            e.createElementVNode("div", Eb, [
+              e.createElementVNode("table", kb, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -18659,21 +18674,21 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     ),
                     e.createElementVNode(
                       "th",
-                      Eb,
+                      vb,
                       e.toDisplayString(d.$t("基数")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      kb,
+                      gb,
                       e.toDisplayString(d.$t("现金效应")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
-                      vb,
+                      fb,
                       e.toDisplayString(d.$t("年化成本（负数为节约）")),
                       1
                       /* TEXT */
@@ -18690,21 +18705,21 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                       e.createElementVNode(
                         "td",
                         null,
-                        e.toDisplayString(d.$t(e.unref(fh)[V.id])),
+                        e.toDisplayString(d.$t(e.unref($h)[V.id])),
                         1
                         /* TEXT */
                       ),
-                      e.createElementVNode("td", gb, [
+                      e.createElementVNode("td", hb, [
                         e.createVNode(l, {
                           cents: V.base
                         }, null, 8, ["cents"])
                       ]),
-                      e.createElementVNode("td", fb, [
+                      e.createElementVNode("td", $b, [
                         e.createVNode(l, {
                           cents: V.cashEffect
                         }, null, 8, ["cents"])
                       ]),
-                      e.createElementVNode("td", hb, [
+                      e.createElementVNode("td", _b, [
                         e.createVNode(l, {
                           cents: V.annualCost
                         }, null, 8, ["cents"])
@@ -18722,9 +18737,9 @@ const Bh = /* @__PURE__ */ e.defineComponent({
         /* STABLE_FRAGMENT */
       )) : e.createCommentVNode("v-if", !0),
       e.createCommentVNode(" 投融资 "),
-      b.value?.portfolio ? (e.openBlock(), e.createElementBlock("section", $b, [
-        e.createElementVNode("div", _b, [
-          e.createElementVNode("span", Bb, [
+      b.value?.portfolio ? (e.openBlock(), e.createElementBlock("section", Bb, [
+        e.createElementVNode("div", bb, [
+          e.createElementVNode("span", Sb, [
             e.createTextVNode(
               e.toDisplayString(d.$t("市值")) + " ",
               1
@@ -18753,7 +18768,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
             2
             /* CLASS */
           ),
-          e.createElementVNode("span", bb, [
+          e.createElementVNode("span", Db, [
             e.createTextVNode(
               e.toDisplayString(d.$t("加权收益率")) + " ",
               1
@@ -18764,8 +18779,8 @@ const Bh = /* @__PURE__ */ e.defineComponent({
             }, null, 8, ["ratio"])
           ])
         ]),
-        e.createElementVNode("div", Sb, [
-          e.createElementVNode("table", Db, [
+        e.createElementVNode("div", Cb, [
+          e.createElementVNode("table", wb, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
                 e.createElementVNode(
@@ -18784,14 +18799,14 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 ),
                 e.createElementVNode(
                   "th",
-                  Cb,
+                  Tb,
                   e.toDisplayString(d.$t("市值")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  wb,
+                  Lb,
                   e.toDisplayString(d.$t("浮动盈亏")),
                   1
                   /* TEXT */
@@ -18833,16 +18848,16 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     e.createElementVNode(
                       "td",
                       null,
-                      e.toDisplayString(d.$t(e.unref(hh)[V.type])),
+                      e.toDisplayString(d.$t(e.unref(_h)[V.type])),
                       1
                       /* TEXT */
                     ),
-                    e.createElementVNode("td", Tb, [
+                    e.createElementVNode("td", Kb, [
                       e.createVNode(l, {
                         cents: V.marketValue
                       }, null, 8, ["cents"])
                     ]),
-                    e.createElementVNode("td", Lb, [
+                    e.createElementVNode("td", Ab, [
                       e.createVNode(l, {
                         cents: V.pnl
                       }, null, 8, ["cents"])
@@ -18850,13 +18865,13 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     e.createElementVNode(
                       "td",
                       null,
-                      e.toDisplayString(d.$t(e.unref(qe)[V.status])),
+                      e.toDisplayString(d.$t(e.unref(Ue)[V.status])),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "td",
-                      Kb,
+                      Fb,
                       e.toDisplayString(V.flags.map((te) => e.unref(Z)(te)).join(e.unref(r))),
                       1
                       /* TEXT */
@@ -18872,9 +18887,9 @@ const Bh = /* @__PURE__ */ e.defineComponent({
           ])
         ])
       ])) : e.createCommentVNode("v-if", !0),
-      b.value?.liquidity ? (e.openBlock(), e.createElementBlock("section", Ab, [
-        e.createElementVNode("div", Fb, [
-          e.createElementVNode("span", Ib, [
+      b.value?.liquidity ? (e.openBlock(), e.createElementBlock("section", Ib, [
+        e.createElementVNode("div", Pb, [
+          e.createElementVNode("span", Ob, [
             e.createTextVNode(
               e.toDisplayString(d.$t("可用流动性合计")) + " ",
               1
@@ -18884,7 +18899,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               cents: b.value.liquidity.available
             }, null, 8, ["cents"])
           ]),
-          e.createElementVNode("span", Pb, [
+          e.createElementVNode("span", zb, [
             e.createTextVNode(
               e.toDisplayString(d.$t("一年内到期债务")) + " ",
               1
@@ -18906,7 +18921,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 /* TEXT */
               ),
               e.createVNode(l, {
-                value: p(b.value.liquidity.currentRatio)
+                value: y(b.value.liquidity.currentRatio)
               }, null, 8, ["value"])
             ],
             2
@@ -18924,7 +18939,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 /* TEXT */
               ),
               e.createVNode(l, {
-                value: p(b.value.liquidity.quickRatio)
+                value: y(b.value.liquidity.quickRatio)
               }, null, 8, ["value"])
             ],
             2
@@ -18942,7 +18957,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 /* TEXT */
               ),
               e.createVNode(l, {
-                value: p(b.value.liquidity.coverage)
+                value: y(b.value.liquidity.coverage)
               }, null, 8, ["value"])
             ],
             2
@@ -18969,7 +18984,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
         ])
       ])) : e.createCommentVNode("v-if", !0),
       e.createCommentVNode(" 模型说明（H 型） "),
-      z.value.length ? (e.openBlock(), e.createElementBlock("section", Ob, [
+      z.value.length ? (e.openBlock(), e.createElementBlock("section", Mb, [
         e.createElementVNode(
           "strong",
           null,
@@ -19011,7 +19026,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
           /* KEYED_FRAGMENT */
         ))
       ])) : e.createCommentVNode("v-if", !0),
-      c.value ? (e.openBlock(), e.createElementBlock("p", zb, [
+      i.value ? (e.openBlock(), e.createElementBlock("p", jb, [
         M[21] || (M[21] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -19020,127 +19035,127 @@ const Bh = /* @__PURE__ */ e.defineComponent({
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(c.value),
+          e.toDisplayString(i.value),
           1
           /* TEXT */
         )
       ])) : e.createCommentVNode("v-if", !0)
     ])) : e.createCommentVNode("v-if", !0);
   }
-}), jb = /* @__PURE__ */ ae(Mb, [["__scopeId", "data-v-391ff6ce"]]), Rb = Object.fromEntries(
-  ["cash", "treasury", "fx", "financing", "ifrs9", "working-capital", "investments"].map((i) => [i, jb])
-), qb = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}), qb = /* @__PURE__ */ ae(Rb, [["__scopeId", "data-v-391ff6ce"]]), Ub = Object.fromEntries(
+  ["cash", "treasury", "fx", "financing", "ifrs9", "working-capital", "investments"].map((c) => [c, qb])
+), Wb = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  PANELS: Rb
-}, Symbol.toStringTag, { value: "Module" })), Ct = /* @__PURE__ */ Object.assign({ "./accounting/panels.ts": qV, "./audit/panels.ts": vg, "./capital/panels.ts": Xf, "./platform/panels.ts": rh, "./treasury/panels.ts": qb }), Fe = Object.assign({}, ...Object.values(Ct).map((i) => i.PANELS || {})), mt = Object.assign({}, ...Object.values(Ct).map((i) => i.INPUTS || {})), Ub = {
+  PANELS: Ub
+}, Symbol.toStringTag, { value: "Module" })), Ct = /* @__PURE__ */ Object.assign({ "./accounting/panels.ts": qV, "./audit/panels.ts": vg, "./capital/panels.ts": Xf, "./platform/panels.ts": ch, "./treasury/panels.ts": Wb }), Ie = Object.assign({}, ...Object.values(Ct).map((c) => c.PANELS || {})), mt = Object.assign({}, ...Object.values(Ct).map((c) => c.INPUTS || {})), Yb = {
   class: "fau-audit ss-module",
   "data-test": "fau-qc-panel"
-}, Wb = { class: "fau-steps" }, Yb = { class: "ss-actions" }, Gb = ["disabled"], Hb = ["disabled"], Qb = {
+}, Gb = { class: "fau-steps" }, Hb = { class: "ss-actions" }, Qb = ["disabled"], Jb = ["disabled"], Zb = {
   key: 0,
   class: "ss-note info",
   "data-test": "fau-qc-file"
-}, Jb = {
+}, Xb = {
   key: 0,
   class: "ss-muted"
-}, Zb = { class: "fau-row" }, Xb = { class: "ss-muted" }, xb = { class: "fau-seg" }, eS = ["data-test", "onClick"], tS = {
+}, xb = { class: "fau-row" }, eS = { class: "ss-muted" }, tS = { class: "fau-seg" }, lS = ["data-test", "onClick"], nS = {
   key: 0,
   class: "fau-row"
-}, lS = { class: "fau-row" }, nS = { class: "ss-muted" }, aS = ["value"], oS = {
+}, aS = { class: "fau-row" }, oS = { class: "ss-muted" }, sS = ["value"], rS = {
   key: 0,
   class: "fau-row"
-}, sS = { class: "ss-muted" }, rS = {
+}, iS = { class: "ss-muted" }, cS = {
   key: 2,
   class: "ss-muted"
-}, iS = {
+}, dS = {
   key: 3,
   class: "ss-actions"
-}, cS = { class: "ss-actions" }, dS = ["disabled"], uS = { class: "fau-counts" }, mS = ["data-test"], pS = { class: "fau-table-wrap" }, yS = { class: "fau-table" }, NS = ["data-test"], VS = { class: "wrap" }, ES = {
+}, uS = { class: "ss-actions" }, mS = ["disabled"], pS = { class: "fau-counts" }, yS = ["data-test"], NS = { class: "fau-table-wrap" }, VS = { class: "fau-table" }, ES = ["data-test"], kS = { class: "wrap" }, vS = {
   key: 1,
   class: "ss-muted"
-}, kS = {
+}, gS = {
   key: 0,
   class: "ss-muted"
-}, vS = ["onUpdate:modelValue", "placeholder", "data-test"], gS = ["onUpdate:modelValue", "placeholder", "data-test"], fS = ["onClick"], hS = { class: "ss-actions" }, $S = ["disabled"], _S = { class: "fau-table-wrap" }, BS = { class: "fau-table" }, bS = ["data-test"], SS = {
+}, fS = ["onUpdate:modelValue", "placeholder", "data-test"], hS = ["onUpdate:modelValue", "placeholder", "data-test"], $S = ["onClick"], _S = { class: "ss-actions" }, BS = ["disabled"], bS = { class: "fau-table-wrap" }, SS = { class: "fau-table" }, DS = ["data-test"], CS = {
   key: 0,
   class: "fau-esc"
-}, DS = { class: "ss-actions" }, CS = ["disabled"], wS = {
+}, wS = { class: "ss-actions" }, TS = ["disabled"], LS = {
   key: 1,
   class: "ss-note ok",
   "data-test": "fau-qc-refreshed"
-}, TS = {
+}, KS = {
   key: 0,
   class: "ss-note danger",
   "data-test": "fau-qc-error"
-}, LS = /* @__PURE__ */ e.defineComponent({
+}, AS = /* @__PURE__ */ e.defineComponent({
   __name: "OfficeQcPanel",
   props: {
     home: {}
   },
-  setup(i) {
-    const B = i, t = Q.useSteps([
+  setup(c) {
+    const _ = c, t = Q.useSteps([
       { key: "qc-pick", title: s.t("选择文件"), hint: s.t("Excel 底稿 / 模型，或演示文稿；只读检查，不改原文件") },
       { key: "qc-scope", title: s.t("质检范围"), hint: s.t("选区、单表或整个模型（含资产负债平衡与隐藏表检查）") },
       { key: "qc-run", title: s.t("质检"), hint: s.t("按表格与模型审计、演示文稿质检的规则逐项检查") },
       { key: "qc-report", title: s.t("查看报告"), hint: s.t("按严重、重要、次要列出问题，另存一份质检报告") },
       { key: "qc-refresh", title: s.t("用新数字刷新"), hint: s.t("演示文稿：按旧值 → 新值找出所有写法，先出计划，确认后另存新文件") }
-    ]), y = ["selection", "sheet", "model"], r = { selection: s.i18nKey("选区"), sheet: s.i18nKey("单表"), model: s.i18nKey("整个模型") }, n = ["critical", "important", "minor"], c = e.ref(!1), a = e.ref(""), N = e.ref(""), E = e.ref(null), u = e.ref("model"), L = e.ref(""), g = e.ref(""), v = e.ref(B.home.company?.outputLocale || "zh-CN"), b = e.ref(null), h = e.reactive([{ from: "", to: "" }]), K = e.ref(null), T = e.ref("");
-    async function z(p) {
+    ]), N = ["selection", "sheet", "model"], r = { selection: s.i18nKey("选区"), sheet: s.i18nKey("单表"), model: s.i18nKey("整个模型") }, n = ["critical", "important", "minor"], i = e.ref(!1), a = e.ref(""), m = e.ref(""), E = e.ref(null), u = e.ref("model"), L = e.ref(""), g = e.ref(""), v = e.ref(_.home.company?.outputLocale || "zh-CN"), b = e.ref(null), h = e.reactive([{ from: "", to: "" }]), K = e.ref(null), T = e.ref("");
+    async function z(y) {
       a.value = "";
       try {
-        const I = await Y("office-output.pick", { kind: p });
+        const I = await Y("office-output.pick", { kind: y });
         if (!I.paths.length) return;
-        t.start("qc-pick"), N.value = I.paths[0], E.value = await Y("office-output.inspect", { path: N.value }), L.value = E.value?.sheets?.[0] || "", b.value = null, K.value = null, T.value = "", t.resetAfter("qc-pick"), t.done("qc-pick", E.value?.file);
+        t.start("qc-pick"), m.value = I.paths[0], E.value = await Y("office-output.inspect", { path: m.value }), L.value = E.value?.sheets?.[0] || "", b.value = null, K.value = null, T.value = "", t.resetAfter("qc-pick"), t.done("qc-pick", E.value?.file);
       } catch (I) {
         t.fail("qc-pick", I), a.value = Q.errorMessage(I);
       }
     }
     async function S() {
-      c.value = !0, a.value = "", t.start("qc-run");
+      i.value = !0, a.value = "", t.start("qc-run");
       try {
-        b.value = await Y("office-output.check", { path: N.value, scope: u.value, sheet: L.value, range: g.value, locale: v.value }), t.done("qc-run", s.t("问题 {n} 处", { n: b.value.findings.length })), t.done("qc-report");
-      } catch (p) {
-        t.fail("qc-run", p), a.value = Q.errorMessage(p);
+        b.value = await Y("office-output.check", { path: m.value, scope: u.value, sheet: L.value, range: g.value, locale: v.value }), t.done("qc-run", s.t("问题 {n} 处", { n: b.value.findings.length })), t.done("qc-report");
+      } catch (y) {
+        t.fail("qc-run", y), a.value = Q.errorMessage(y);
       } finally {
-        c.value = !1;
+        i.value = !1;
       }
     }
     async function w() {
       if (b.value) try {
         await Y("artifact.open", { path: b.value.reportPath });
-      } catch (p) {
-        a.value = Q.errorMessage(p);
+      } catch (y) {
+        a.value = Q.errorMessage(y);
       }
     }
-    async function m() {
-      c.value = !0, a.value = "", T.value = "", t.start("qc-refresh");
+    async function p() {
+      i.value = !0, a.value = "", T.value = "", t.start("qc-refresh");
       try {
-        K.value = await Y("office-output.refreshPlan", { path: N.value, mapping: h.map((p) => ({ ...p })) }), t.set("qc-refresh", { state: "todo", summary: s.t("计划替换 {n} 处，待确认", { n: K.value?.changes.length || 0 }) });
-      } catch (p) {
-        t.fail("qc-refresh", p), a.value = Q.errorMessage(p);
+        K.value = await Y("office-output.refreshPlan", { path: m.value, mapping: h.map((y) => ({ ...y })) }), t.set("qc-refresh", { state: "todo", summary: s.t("计划替换 {n} 处，待确认", { n: K.value?.changes.length || 0 }) });
+      } catch (y) {
+        t.fail("qc-refresh", y), a.value = Q.errorMessage(y);
       } finally {
-        c.value = !1;
+        i.value = !1;
       }
     }
     async function f() {
-      c.value = !0, a.value = "", t.start("qc-refresh");
+      i.value = !0, a.value = "", t.start("qc-refresh");
       try {
-        const p = await Y("office-output.refreshApply", { path: N.value, mapping: h.map((I) => ({ ...I })), confirmed: !0, locale: v.value });
-        T.value = p.path, t.done("qc-refresh", s.t("已替换 {n} 处", { n: p.changes }));
-      } catch (p) {
-        t.fail("qc-refresh", p), a.value = Q.errorMessage(p);
+        const y = await Y("office-output.refreshApply", { path: m.value, mapping: h.map((I) => ({ ...I })), confirmed: !0, locale: v.value });
+        T.value = y.path, t.done("qc-refresh", s.t("已替换 {n} 处", { n: y.changes }));
+      } catch (y) {
+        t.fail("qc-refresh", y), a.value = Q.errorMessage(y);
       } finally {
-        c.value = !1;
+        i.value = !1;
       }
     }
-    return (p, I) => (e.openBlock(), e.createElementBlock("div", Ub, [
-      e.createVNode(Qe, {
-        title: p.$t("办公产出与质检"),
+    return (y, I) => (e.openBlock(), e.createElementBlock("div", Yb, [
+      e.createVNode(Je, {
+        title: y.$t("办公产出与质检"),
         metas: e.unref(t).metas,
         runtime: e.unref(t).runtime,
         "current-key": e.unref(t).currentKey.value,
         onJump: e.unref(Q.scrollToStep)
       }, null, 8, ["title", "metas", "runtime", "current-key", "onJump"]),
-      e.createElementVNode("div", Wb, [
+      e.createElementVNode("div", Gb, [
         e.createCommentVNode(" ① 选择文件 "),
         e.createVNode(se, {
           "step-key": "qc-pick",
@@ -19151,13 +19166,13 @@ const Bh = /* @__PURE__ */ e.defineComponent({
           "is-current": e.unref(t).currentKey.value === "qc-pick"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", Yb, [
+            e.createElementVNode("div", Hb, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn",
-                disabled: c.value,
+                disabled: i.value,
                 "data-test": "fau-qc-pick-xlsx",
-                onClick: I[0] || (I[0] = (_) => z("xlsx"))
+                onClick: I[0] || (I[0] = (B) => z("xlsx"))
               }, [
                 I[7] || (I[7] = e.createElementVNode(
                   "i",
@@ -19167,17 +19182,17 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(p.$t("选择 Excel 底稿或模型")),
+                  e.toDisplayString(y.$t("选择 Excel 底稿或模型")),
                   1
                   /* TEXT */
                 )
-              ], 8, Gb),
+              ], 8, Qb),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn",
-                disabled: c.value,
+                disabled: i.value,
                 "data-test": "fau-qc-pick-pptx",
-                onClick: I[1] || (I[1] = (_) => z("pptx"))
+                onClick: I[1] || (I[1] = (B) => z("pptx"))
               }, [
                 I[8] || (I[8] = e.createElementVNode(
                   "i",
@@ -19187,13 +19202,13 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(p.$t("选择演示文稿")),
+                  e.toDisplayString(y.$t("选择演示文稿")),
                   1
                   /* TEXT */
                 )
-              ], 8, Hb)
+              ], 8, Jb)
             ]),
-            E.value ? (e.openBlock(), e.createElementBlock("p", Qb, [
+            E.value ? (e.openBlock(), e.createElementBlock("p", Zb, [
               I[9] || (I[9] = e.createElementVNode(
                 "i",
                 { class: "ri-file-line" },
@@ -19211,7 +19226,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 { key: 0 },
                 [
                   e.createTextVNode(
-                    e.toDisplayString(p.$t("{n} 张工作表", { n: E.value.sheets?.length || 0 })),
+                    e.toDisplayString(y.$t("{n} 张工作表", { n: E.value.sheets?.length || 0 })),
                     1
                     /* TEXT */
                   )
@@ -19223,7 +19238,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 { key: 1 },
                 [
                   e.createTextVNode(
-                    e.toDisplayString(p.$t("{n} 页", { n: E.value.slides || 0 })),
+                    e.toDisplayString(y.$t("{n} 页", { n: E.value.slides || 0 })),
                     1
                     /* TEXT */
                   )
@@ -19250,52 +19265,52 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               e.Fragment,
               { key: 1 },
               [
-                e.createElementVNode("div", Zb, [
+                e.createElementVNode("div", xb, [
                   e.createElementVNode(
                     "span",
-                    Xb,
-                    e.toDisplayString(p.$t("范围")),
+                    eS,
+                    e.toDisplayString(y.$t("范围")),
                     1
                     /* TEXT */
                   ),
-                  e.createElementVNode("span", xb, [
+                  e.createElementVNode("span", tS, [
                     (e.openBlock(), e.createElementBlock(
                       e.Fragment,
                       null,
-                      e.renderList(y, (_) => e.createElementVNode("button", {
-                        key: _,
+                      e.renderList(N, (B) => e.createElementVNode("button", {
+                        key: B,
                         type: "button",
-                        class: e.normalizeClass({ on: u.value === _ }),
-                        "data-test": `fau-qc-scope-${_}`,
-                        onClick: (k) => u.value = _
-                      }, e.toDisplayString(p.$t(r[_])), 11, eS)),
+                        class: e.normalizeClass({ on: u.value === B }),
+                        "data-test": `fau-qc-scope-${B}`,
+                        onClick: (k) => u.value = B
+                      }, e.toDisplayString(y.$t(r[B])), 11, lS)),
                       64
                       /* STABLE_FRAGMENT */
                     ))
                   ])
                 ]),
-                u.value !== "model" ? (e.openBlock(), e.createElementBlock("div", tS, [
-                  e.createElementVNode("label", lS, [
+                u.value !== "model" ? (e.openBlock(), e.createElementBlock("div", nS, [
+                  e.createElementVNode("label", aS, [
                     e.createElementVNode(
                       "span",
-                      nS,
-                      e.toDisplayString(p.$t("工作表")),
+                      oS,
+                      e.toDisplayString(y.$t("工作表")),
                       1
                       /* TEXT */
                     ),
                     e.withDirectives(e.createElementVNode(
                       "select",
                       {
-                        "onUpdate:modelValue": I[2] || (I[2] = (_) => L.value = _)
+                        "onUpdate:modelValue": I[2] || (I[2] = (B) => L.value = B)
                       },
                       [
                         (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList(E.value.sheets || [], (_) => (e.openBlock(), e.createElementBlock("option", {
-                            key: _,
-                            value: _
-                          }, e.toDisplayString(_), 9, aS))),
+                          e.renderList(E.value.sheets || [], (B) => (e.openBlock(), e.createElementBlock("option", {
+                            key: B,
+                            value: B
+                          }, e.toDisplayString(B), 9, sS))),
                           128
                           /* KEYED_FRAGMENT */
                         ))
@@ -19306,18 +19321,18 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                       [e.vModelSelect, L.value]
                     ])
                   ]),
-                  u.value === "selection" ? (e.openBlock(), e.createElementBlock("label", oS, [
+                  u.value === "selection" ? (e.openBlock(), e.createElementBlock("label", rS, [
                     e.createElementVNode(
                       "span",
-                      sS,
-                      e.toDisplayString(p.$t("区域")),
+                      iS,
+                      e.toDisplayString(y.$t("区域")),
                       1
                       /* TEXT */
                     ),
                     e.withDirectives(e.createElementVNode(
                       "input",
                       {
-                        "onUpdate:modelValue": I[3] || (I[3] = (_) => g.value = _),
+                        "onUpdate:modelValue": I[3] || (I[3] = (B) => g.value = B),
                         type: "text",
                         dir: "ltr",
                         placeholder: "B3:F20",
@@ -19341,27 +19356,27 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               /* STABLE_FRAGMENT */
             )) : (e.openBlock(), e.createElementBlock(
               "p",
-              rS,
-              e.toDisplayString(p.$t("演示文稿检查全部页：跨页数字一致性、单位与日期写法、措辞与占位符、数据来源")),
+              cS,
+              e.toDisplayString(y.$t("演示文稿检查全部页：跨页数字一致性、单位与日期写法、措辞与占位符、数据来源")),
               1
               /* TEXT */
             )) : (e.openBlock(), e.createElementBlock(
               "p",
-              Jb,
-              e.toDisplayString(p.$t("先完成第 1 步")),
+              Xb,
+              e.toDisplayString(y.$t("先完成第 1 步")),
               1
               /* TEXT */
             )),
-            E.value ? (e.openBlock(), e.createElementBlock("div", iS, [
+            E.value ? (e.openBlock(), e.createElementBlock("div", dS, [
               e.createElementVNode(
                 "button",
                 {
                   type: "button",
                   class: "ss-btn primary",
                   "data-test": "fau-qc-scope-next",
-                  onClick: I[4] || (I[4] = (_) => e.unref(t).done("qc-scope"))
+                  onClick: I[4] || (I[4] = (B) => e.unref(t).done("qc-scope"))
                 },
-                e.toDisplayString(p.$t("下一步")),
+                e.toDisplayString(y.$t("下一步")),
                 1
                 /* TEXT */
               )
@@ -19381,15 +19396,15 @@ const Bh = /* @__PURE__ */ e.defineComponent({
           retry: E.value ? S : void 0
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", cS, [
-              e.createVNode(ze, {
+            e.createElementVNode("div", uS, [
+              e.createVNode(Me, {
                 modelValue: v.value,
-                "onUpdate:modelValue": I[5] || (I[5] = (_) => v.value = _)
+                "onUpdate:modelValue": I[5] || (I[5] = (B) => v.value = B)
               }, null, 8, ["modelValue"]),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: c.value || !E.value || e.unref(t).runtime["qc-scope"].state !== "done",
+                disabled: i.value || !E.value || e.unref(t).runtime["qc-scope"].state !== "done",
                 "data-test": "fau-qc-run",
                 onClick: S
               }, [
@@ -19401,11 +19416,11 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  e.toDisplayString(p.$t("开始质检")),
+                  e.toDisplayString(y.$t("开始质检")),
                   1
                   /* TEXT */
                 )
-              ], 8, dS)
+              ], 8, mS)
             ])
           ]),
           _: 1
@@ -19425,24 +19440,24 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               e.Fragment,
               { key: 0 },
               [
-                e.createElementVNode("div", uS, [
+                e.createElementVNode("div", pS, [
                   (e.openBlock(), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(n, (_) => e.createElementVNode("span", {
-                      key: _,
-                      class: e.normalizeClass(["fau-badge", _ === "critical" ? "bad" : _ === "important" ? "warn" : "muted"]),
-                      "data-test": `fau-qc-count-${_}`
+                    e.renderList(n, (B) => e.createElementVNode("span", {
+                      key: B,
+                      class: e.normalizeClass(["fau-badge", B === "critical" ? "bad" : B === "important" ? "warn" : "muted"]),
+                      "data-test": `fau-qc-count-${B}`
                     }, [
                       e.createTextVNode(
-                        e.toDisplayString(p.$t(e.unref(ee.QC_SEVERITY_LABEL)[_])) + " ",
+                        e.toDisplayString(y.$t(e.unref(ee.QC_SEVERITY_LABEL)[B])) + " ",
                         1
                         /* TEXT */
                       ),
                       e.createVNode(l, {
-                        value: b.value.counts[_]
+                        value: b.value.counts[B]
                       }, null, 8, ["value"])
-                    ], 10, mS)),
+                    ], 10, yS)),
                     64
                     /* STABLE_FRAGMENT */
                   )),
@@ -19460,41 +19475,41 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                       /* CACHED */
                     )),
                     e.createTextVNode(
-                      e.toDisplayString(p.$t("打开质检报告")),
+                      e.toDisplayString(y.$t("打开质检报告")),
                       1
                       /* TEXT */
                     )
                   ])
                 ]),
-                e.createElementVNode("div", pS, [
-                  e.createElementVNode("table", yS, [
+                e.createElementVNode("div", NS, [
+                  e.createElementVNode("table", VS, [
                     e.createElementVNode("thead", null, [
                       e.createElementVNode("tr", null, [
                         e.createElementVNode(
                           "th",
                           null,
-                          e.toDisplayString(p.$t("位置")),
+                          e.toDisplayString(y.$t("位置")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
                           null,
-                          e.toDisplayString(p.$t("规则")),
+                          e.toDisplayString(y.$t("规则")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
                           null,
-                          e.toDisplayString(p.$t("严重程度")),
+                          e.toDisplayString(y.$t("严重程度")),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "th",
                           null,
-                          e.toDisplayString(p.$t("说明")),
+                          e.toDisplayString(y.$t("说明")),
                           1
                           /* TEXT */
                         )
@@ -19504,40 +19519,40 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(b.value.findings, (_) => (e.openBlock(), e.createElementBlock("tr", {
-                          key: _.id,
-                          class: e.normalizeClass({ bad: _.severity === "critical" }),
-                          "data-test": `fau-qc-finding-${_.rule}`
+                        e.renderList(b.value.findings, (B) => (e.openBlock(), e.createElementBlock("tr", {
+                          key: B.id,
+                          class: e.normalizeClass({ bad: B.severity === "critical" }),
+                          "data-test": `fau-qc-finding-${B.rule}`
                         }, [
                           e.createElementVNode("td", null, [
                             e.createVNode(l, {
-                              value: _.location
+                              value: B.location
                             }, null, 8, ["value"])
                           ]),
                           e.createElementVNode(
                             "td",
                             null,
-                            e.toDisplayString(p.$t(e.unref(ee.XLS_RULE_LABEL)[_.rule] || e.unref(ee.DECK_RULE_LABEL)[_.rule] || _.rule)),
+                            e.toDisplayString(y.$t(e.unref(ee.XLS_RULE_LABEL)[B.rule] || e.unref(ee.DECK_RULE_LABEL)[B.rule] || B.rule)),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "td",
                             null,
-                            e.toDisplayString(p.$t(e.unref(ee.QC_SEVERITY_LABEL)[_.severity])),
+                            e.toDisplayString(y.$t(e.unref(ee.QC_SEVERITY_LABEL)[B.severity])),
                             1
                             /* TEXT */
                           ),
-                          e.createElementVNode("td", VS, [
+                          e.createElementVNode("td", kS, [
                             e.createElementVNode(
                               "bdi",
                               null,
-                              e.toDisplayString(_.detail),
+                              e.toDisplayString(B.detail),
                               1
                               /* TEXT */
                             )
                           ])
-                        ], 10, NS))),
+                        ], 10, ES))),
                         128
                         /* KEYED_FRAGMENT */
                       ))
@@ -19549,8 +19564,8 @@ const Bh = /* @__PURE__ */ e.defineComponent({
               /* STABLE_FRAGMENT */
             )) : (e.openBlock(), e.createElementBlock(
               "p",
-              ES,
-              e.toDisplayString(p.$t("质检完成后在这里看结果")),
+              vS,
+              e.toDisplayString(y.$t("质检完成后在这里看结果")),
               1
               /* TEXT */
             ))
@@ -19570,8 +19585,8 @@ const Bh = /* @__PURE__ */ e.defineComponent({
           default: e.withCtx(() => [
             E.value?.kind !== "pptx" ? (e.openBlock(), e.createElementBlock(
               "p",
-              kS,
-              e.toDisplayString(p.$t("只对演示文稿可用")),
+              gS,
+              e.toDisplayString(y.$t("只对演示文稿可用")),
               1
               /* TEXT */
             )) : (e.openBlock(), e.createElementBlock(
@@ -19581,20 +19596,20 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(h, (_, k) => (e.openBlock(), e.createElementBlock("div", {
+                  e.renderList(h, (B, k) => (e.openBlock(), e.createElementBlock("div", {
                     key: k,
                     class: "fau-row"
                   }, [
                     e.withDirectives(e.createElementVNode("input", {
-                      "onUpdate:modelValue": (R) => _.from = R,
+                      "onUpdate:modelValue": (R) => B.from = R,
                       type: "text",
                       dir: "ltr",
-                      placeholder: p.$t("旧值，如 $485M"),
+                      placeholder: y.$t("旧值，如 $485M"),
                       "data-test": `fau-qc-from-${k}`
-                    }, null, 8, vS), [
+                    }, null, 8, fS), [
                       [
                         e.vModelText,
-                        _.from,
+                        B.from,
                         void 0,
                         { trim: !0 }
                       ]
@@ -19607,15 +19622,15 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                       /* CACHED */
                     )),
                     e.withDirectives(e.createElementVNode("input", {
-                      "onUpdate:modelValue": (R) => _.to = R,
+                      "onUpdate:modelValue": (R) => B.to = R,
                       type: "text",
                       dir: "ltr",
-                      placeholder: p.$t("新值，如 $512M"),
+                      placeholder: y.$t("新值，如 $512M"),
                       "data-test": `fau-qc-to-${k}`
-                    }, null, 8, gS), [
+                    }, null, 8, hS), [
                       [
                         e.vModelText,
-                        _.to,
+                        B.to,
                         void 0,
                         { trim: !0 }
                       ]
@@ -19625,57 +19640,57 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                       type: "button",
                       class: "ss-link",
                       onClick: (R) => h.splice(k, 1)
-                    }, e.toDisplayString(p.$t("删除")), 9, fS)) : e.createCommentVNode("v-if", !0)
+                    }, e.toDisplayString(y.$t("删除")), 9, $S)) : e.createCommentVNode("v-if", !0)
                   ]))),
                   128
                   /* KEYED_FRAGMENT */
                 )),
-                e.createElementVNode("div", hS, [
+                e.createElementVNode("div", _S, [
                   e.createElementVNode(
                     "button",
                     {
                       type: "button",
                       class: "ss-btn sm ghost",
-                      onClick: I[6] || (I[6] = (_) => h.push({ from: "", to: "" }))
+                      onClick: I[6] || (I[6] = (B) => h.push({ from: "", to: "" }))
                     },
-                    e.toDisplayString(p.$t("再加一组")),
+                    e.toDisplayString(y.$t("再加一组")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn sm",
-                    disabled: c.value,
+                    disabled: i.value,
                     "data-test": "fau-qc-plan",
-                    onClick: m
-                  }, e.toDisplayString(p.$t("生成刷新计划")), 9, $S)
+                    onClick: p
+                  }, e.toDisplayString(y.$t("生成刷新计划")), 9, BS)
                 ]),
                 K.value ? (e.openBlock(), e.createElementBlock(
                   e.Fragment,
                   { key: 0 },
                   [
-                    e.createElementVNode("div", _S, [
-                      e.createElementVNode("table", BS, [
+                    e.createElementVNode("div", bS, [
+                      e.createElementVNode("table", SS, [
                         e.createElementVNode("thead", null, [
                           e.createElementVNode("tr", null, [
                             e.createElementVNode(
                               "th",
                               null,
-                              e.toDisplayString(p.$t("页")),
+                              e.toDisplayString(y.$t("页")),
                               1
                               /* TEXT */
                             ),
                             e.createElementVNode(
                               "th",
                               null,
-                              e.toDisplayString(p.$t("原文")),
+                              e.toDisplayString(y.$t("原文")),
                               1
                               /* TEXT */
                             ),
                             e.createElementVNode(
                               "th",
                               null,
-                              e.toDisplayString(p.$t("改成")),
+                              e.toDisplayString(y.$t("改成")),
                               1
                               /* TEXT */
                             )
@@ -19685,37 +19700,37 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(K.value.changes, (_, k) => (e.openBlock(), e.createElementBlock("tr", {
+                            e.renderList(K.value.changes, (B, k) => (e.openBlock(), e.createElementBlock("tr", {
                               key: k,
                               "data-test": `fau-qc-change-${k}`
                             }, [
                               e.createElementVNode("td", null, [
                                 e.createVNode(l, {
-                                  value: _.slide
+                                  value: B.slide
                                 }, null, 8, ["value"])
                               ]),
                               e.createElementVNode("td", null, [
                                 e.createVNode(l, {
-                                  value: _.before
+                                  value: B.before
                                 }, null, 8, ["value"])
                               ]),
                               e.createElementVNode("td", null, [
                                 e.createVNode(l, {
-                                  value: _.after
+                                  value: B.after
                                 }, null, 8, ["value"])
                               ])
-                            ], 8, bS))),
+                            ], 8, DS))),
                             128
                             /* KEYED_FRAGMENT */
                           ))
                         ])
                       ])
                     ]),
-                    K.value.flagged.length ? (e.openBlock(), e.createElementBlock("ul", SS, [
+                    K.value.flagged.length ? (e.openBlock(), e.createElementBlock("ul", CS, [
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(K.value.flagged, (_, k) => (e.openBlock(), e.createElementBlock("li", { key: k }, [
+                        e.renderList(K.value.flagged, (B, k) => (e.openBlock(), e.createElementBlock("li", { key: k }, [
                           I[13] || (I[13] = e.createElementVNode(
                             "i",
                             { class: "ri-error-warning-line" },
@@ -19724,14 +19739,14 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                             /* CACHED */
                           )),
                           e.createTextVNode(
-                            e.toDisplayString(p.$t("第 {n} 页可能是派生数字，未改：", { n: _.slide })),
+                            e.toDisplayString(y.$t("第 {n} 页可能是派生数字，未改：", { n: B.slide })),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "bdi",
                             null,
-                            e.toDisplayString(_.text),
+                            e.toDisplayString(B.text),
                             1
                             /* TEXT */
                           )
@@ -19740,20 +19755,20 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                         /* KEYED_FRAGMENT */
                       ))
                     ])) : e.createCommentVNode("v-if", !0),
-                    e.createElementVNode("div", DS, [
+                    e.createElementVNode("div", wS, [
                       e.createElementVNode("button", {
                         type: "button",
                         class: "ss-btn primary",
-                        disabled: c.value || !K.value.changes.length,
+                        disabled: i.value || !K.value.changes.length,
                         "data-test": "fau-qc-apply",
                         onClick: f
-                      }, e.toDisplayString(p.$t("确认刷新（另存新文件，原文件不动）")), 9, CS)
+                      }, e.toDisplayString(y.$t("确认刷新（另存新文件，原文件不动）")), 9, TS)
                     ])
                   ],
                   64
                   /* STABLE_FRAGMENT */
                 )) : e.createCommentVNode("v-if", !0),
-                T.value ? (e.openBlock(), e.createElementBlock("p", wS, [
+                T.value ? (e.openBlock(), e.createElementBlock("p", LS, [
                   I[14] || (I[14] = e.createElementVNode(
                     "i",
                     { class: "ri-check-line" },
@@ -19762,7 +19777,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
                     /* CACHED */
                   )),
                   e.createTextVNode(
-                    e.toDisplayString(p.$t("已另存：{p0}", { p0: T.value })),
+                    e.toDisplayString(y.$t("已另存：{p0}", { p0: T.value })),
                     1
                     /* TEXT */
                   )
@@ -19776,7 +19791,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"])
       ]),
-      a.value ? (e.openBlock(), e.createElementBlock("p", TS, [
+      a.value ? (e.openBlock(), e.createElementBlock("p", KS, [
         I[15] || (I[15] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -19792,7 +19807,7 @@ const Bh = /* @__PURE__ */ e.defineComponent({
       ])) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), KS = [
+}), FS = [
   {
     id: "daloopa",
     name: "Daloopa",
@@ -20616,13 +20631,13 @@ const Bh = /* @__PURE__ */ e.defineComponent({
       "mcp-categories.json"
     ]
   }
-], AS = {
-  sources: KS
+], IS = {
+  sources: FS
 };
 o.i18nKey("ERP 与总账"), o.i18nKey("BI 与报表"), o.i18nKey("业务执行与资金"), o.i18nKey("文档与计划"), o.i18nKey("人力与税务"), o.i18nKey("ESG 与投资者关系"), o.i18nKey("市场与研究数据"), o.i18nKey("企业自有服务"), o.i18nKey("接入参考");
 o.i18nKey("可用"), o.i18nKey("需授权"), o.i18nKey("规划中");
 o.i18nKey("用友 NC / U8 / Cloud"), o.i18nKey("金蝶 K3 / Cloud"), o.i18nKey("畅捷通 T+"), o.i18nKey("帆软 FineReport"), o.i18nKey("万得 Wind");
-const FS = {
+const PS = {
   market: o.i18nKey("没有授权时：上传终端导出的 CSV / xlsx，或用公开数据、手工录入"),
   enterprise: o.i18nKey("企业自建 MCP 服务，填地址后可用；没有时上传导出文件"),
   reference: o.i18nKey("只作接入参考，加载项本体不迁移"),
@@ -20633,13 +20648,13 @@ const FS = {
   hr_tax: o.i18nKey("没有授权时：上传系统导出的文件"),
   esg_ir: o.i18nKey("没有授权时：上传系统导出的文件")
 };
-AS.sources.map((i) => ({ ...i, fallback: FS[i.layer] }));
-const Ie = [
+IS.sources.map((c) => ({ ...c, fallback: PS[c.layer] }));
+const Pe = [
   { id: "kingdee_cloud", name: o.i18nKey("金蝶云星空"), erp: "kingdee", capped: !0 },
   { id: "yonyou_u8", name: o.i18nKey("用友 U8"), erp: "yonyou", capped: !0 },
   { id: "changjietong", name: o.i18nKey("畅捷通 T+"), erp: "chanjet", capped: !1 },
   { id: "jdy", name: o.i18nKey("精斗云"), erp: "kingdee", capped: !1 }
-], IS = ["journal", "tb", "subledger", "ar", "ap", "po", "grn", "invoice", "fa_register", "payroll", "budget"], PS = 5e3, OS = {
+], OS = ["journal", "tb", "subledger", "ar", "ap", "po", "grn", "invoice", "fa_register", "payroll", "budget"], zS = 5e3, MS = {
   kingdee_cloud: {
     journal: {
       docType: "GL_VOUCHER",
@@ -20656,61 +20671,61 @@ const Ie = [
   changjietong: {
     ar: { docType: "/tplus/api/v2/receivable/Query", filters: { period: "{year}-{month}" } }
   }
-}, zS = ["data-test"], MS = ["data-test"], jS = { class: "fau-row" }, RS = { class: "grow" }, qS = {
+}, jS = ["data-test"], RS = ["data-test"], qS = { class: "fau-row" }, US = { class: "grow" }, WS = {
   key: 0,
   class: "ss-muted"
-}, US = {
+}, YS = {
   key: 1,
   class: "ss-note warn",
   "data-test": "fau-erp-unavailable"
-}, WS = { class: "ss-grid" }, YS = { class: "ss-field" }, GS = ["value"], HS = { class: "ss-field" }, QS = { class: "ss-field" }, JS = { class: "ss-muted" }, ZS = { class: "ss-muted" }, XS = { class: "ss-actions" }, xS = ["disabled"], e8 = {
+}, GS = { class: "ss-grid" }, HS = { class: "ss-field" }, QS = ["value"], JS = { class: "ss-field" }, ZS = { class: "ss-field" }, XS = { class: "ss-muted" }, xS = { class: "ss-muted" }, e8 = { class: "ss-actions" }, t8 = ["disabled"], l8 = {
   key: 3,
   class: "ss-note danger",
   "data-test": "fau-erp-error"
-}, t8 = /* @__PURE__ */ e.defineComponent({
+}, n8 = /* @__PURE__ */ e.defineComponent({
   __name: "ErpPull",
   props: {
     kind: {}
   },
   emits: ["picked"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = e.ref(!1), n = e.ref(!1), c = e.ref(""), a = e.ref(null), N = e.ref(Ie[0].id), E = e.ref(""), u = e.ref("{}"), L = (h) => !!a.value?.providers.find((K) => K.id === h)?.configured;
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = e.ref(!1), n = e.ref(!1), i = e.ref(""), a = e.ref(null), m = e.ref(Pe[0].id), E = e.ref(""), u = e.ref("{}"), L = (h) => !!a.value?.providers.find((K) => K.id === h)?.configured;
     function g() {
-      const h = OS[N.value]?.[t.kind];
+      const h = MS[m.value]?.[t.kind];
       E.value = h?.docType || "", u.value = JSON.stringify(h?.filters || {}, null, 2);
     }
     async function v() {
-      r.value = !0, c.value = "";
+      r.value = !0, i.value = "";
       try {
         a.value = await Y("erp.status");
-        const h = a.value.defaultProvider && Ie.some((K) => K.id === a.value.defaultProvider) ? a.value.defaultProvider : Ie.find((K) => L(K.id))?.id;
-        h && (N.value = h), g();
+        const h = a.value.defaultProvider && Pe.some((K) => K.id === a.value.defaultProvider) ? a.value.defaultProvider : Pe.find((K) => L(K.id))?.id;
+        h && (m.value = h), g();
       } catch (h) {
-        c.value = Q.errorMessage(h);
+        i.value = Q.errorMessage(h);
       }
     }
     async function b() {
-      n.value = !0, c.value = "";
+      n.value = !0, i.value = "";
       try {
-        const h = await Y("erp.pull", { provider: N.value, docType: E.value, filters: u.value });
-        y("picked", [h.path]), r.value = !1;
+        const h = await Y("erp.pull", { provider: m.value, docType: E.value, filters: u.value });
+        N("picked", [h.path]), r.value = !1;
       } catch (h) {
-        c.value = Q.errorMessage(h);
+        i.value = Q.errorMessage(h);
       } finally {
         n.value = !1;
       }
     }
-    return (h, K) => e.unref(IS).includes(i.kind) ? (e.openBlock(), e.createElementBlock("div", {
+    return (h, K) => e.unref(OS).includes(c.kind) ? (e.openBlock(), e.createElementBlock("div", {
       key: 0,
       class: "fau-erp",
-      "data-test": `fau-erp-${i.kind}`
+      "data-test": `fau-erp-${c.kind}`
     }, [
       r.value ? (e.openBlock(), e.createElementBlock(
         e.Fragment,
         { key: 1 },
         [
-          e.createElementVNode("header", jS, [
-            e.createElementVNode("strong", RS, [
+          e.createElementVNode("header", qS, [
+            e.createElementVNode("strong", US, [
               K[5] || (K[5] = e.createElementVNode(
                 "i",
                 { class: "ri-database-2-line" },
@@ -20736,7 +20751,7 @@ const Ie = [
               /* TEXT */
             )
           ]),
-          a.value ? !a.value.available || !a.value.enabled ? (e.openBlock(), e.createElementBlock("p", US, [
+          a.value ? !a.value.available || !a.value.enabled ? (e.openBlock(), e.createElementBlock("p", YS, [
             K[6] || (K[6] = e.createElementVNode(
               "i",
               { class: "ri-error-warning-line" },
@@ -20753,8 +20768,8 @@ const Ie = [
             e.Fragment,
             { key: 2 },
             [
-              e.createElementVNode("div", WS, [
-                e.createElementVNode("label", YS, [
+              e.createElementVNode("div", GS, [
+                e.createElementVNode("label", HS, [
                   K[7] || (K[7] = e.createElementVNode(
                     "span",
                     null,
@@ -20765,7 +20780,7 @@ const Ie = [
                   e.withDirectives(e.createElementVNode(
                     "select",
                     {
-                      "onUpdate:modelValue": K[1] || (K[1] = (T) => N.value = T),
+                      "onUpdate:modelValue": K[1] || (K[1] = (T) => m.value = T),
                       "data-test": "fau-erp-provider",
                       onChange: g
                     },
@@ -20773,10 +20788,10 @@ const Ie = [
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(e.unref(Ie), (T) => (e.openBlock(), e.createElementBlock("option", {
+                        e.renderList(e.unref(Pe), (T) => (e.openBlock(), e.createElementBlock("option", {
                           key: T.id,
                           value: T.id
-                        }, e.toDisplayString(h.$t(T.name)) + e.toDisplayString(L(T.id) ? "" : ` · ${h.$t("未配置")}`), 9, GS))),
+                        }, e.toDisplayString(h.$t(T.name)) + e.toDisplayString(L(T.id) ? "" : ` · ${h.$t("未配置")}`), 9, QS))),
                         128
                         /* KEYED_FRAGMENT */
                       ))
@@ -20784,10 +20799,10 @@ const Ie = [
                     544
                     /* NEED_HYDRATION, NEED_PATCH */
                   ), [
-                    [e.vModelSelect, N.value]
+                    [e.vModelSelect, m.value]
                   ])
                 ]),
-                e.createElementVNode("label", HS, [
+                e.createElementVNode("label", JS, [
                   e.createElementVNode(
                     "span",
                     null,
@@ -20815,14 +20830,14 @@ const Ie = [
                   ])
                 ])
               ]),
-              e.createElementVNode("label", QS, [
+              e.createElementVNode("label", ZS, [
                 e.createElementVNode("span", null, [
                   e.createTextVNode(
                     e.toDisplayString(h.$t("查询条件（JSON）")) + " ",
                     1
                     /* TEXT */
                   ),
-                  e.createElementVNode("small", JS, [
+                  e.createElementVNode("small", XS, [
                     e.createTextVNode(
                       e.toDisplayString(h.$t("占位符按项目期间代入")) + " ",
                       1
@@ -20854,12 +20869,12 @@ const Ie = [
               ]),
               e.createElementVNode(
                 "p",
-                ZS,
-                e.toDisplayString(h.$t("只调用只读查询；单次最多 {n} 行，被截断就判失败、不导入部分数据。取回后照上传文件同一步识别列、确认后导入。", { n: e.unref(PS) })),
+                xS,
+                e.toDisplayString(h.$t("只调用只读查询；单次最多 {n} 行，被截断就判失败、不导入部分数据。取回后照上传文件同一步识别列、确认后导入。", { n: e.unref(zS) })),
                 1
                 /* TEXT */
               ),
-              e.createElementVNode("div", XS, [
+              e.createElementVNode("div", e8, [
                 e.createElementVNode("button", {
                   type: "button",
                   class: "ss-btn primary sm",
@@ -20879,19 +20894,19 @@ const Ie = [
                     1
                     /* TEXT */
                   )
-                ], 8, xS)
+                ], 8, t8)
               ])
             ],
             64
             /* STABLE_FRAGMENT */
           )) : (e.openBlock(), e.createElementBlock(
             "p",
-            qS,
+            WS,
             e.toDisplayString(h.$t("正在读取 ERP 状态…")),
             1
             /* TEXT */
           )),
-          c.value ? (e.openBlock(), e.createElementBlock("p", e8, [
+          i.value ? (e.openBlock(), e.createElementBlock("p", l8, [
             K[10] || (K[10] = e.createElementVNode(
               "i",
               { class: "ri-error-warning-line" },
@@ -20900,7 +20915,7 @@ const Ie = [
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(c.value),
+              e.toDisplayString(i.value),
               1
               /* TEXT */
             )
@@ -20912,7 +20927,7 @@ const Ie = [
         key: 0,
         type: "button",
         class: "ss-link",
-        "data-test": `fau-erp-open-${i.kind}`,
+        "data-test": `fau-erp-open-${c.kind}`,
         onClick: v
       }, [
         K[4] || (K[4] = e.createElementVNode(
@@ -20927,93 +20942,93 @@ const Ie = [
           1
           /* TEXT */
         )
-      ], 8, MS))
-    ], 8, zS)) : e.createCommentVNode("v-if", !0);
+      ], 8, RS))
+    ], 8, jS)) : e.createCommentVNode("v-if", !0);
   }
-}), l8 = /* @__PURE__ */ ae(t8, [["__scopeId", "data-v-635593f7"]]), lt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/shared/financeAudit/auditTables.ts"];
+}), a8 = /* @__PURE__ */ ae(n8, [["__scopeId", "data-v-635593f7"]]), lt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/shared/financeAudit/auditTables.ts"];
 if (!lt) throw new Error("宿主模块未就绪：apps/desktop-shell/src/shared/financeAudit/auditTables.ts");
 lt.default;
-const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "fau-row" }, s8 = { class: "fau-code" }, r8 = { class: "grow" }, i8 = { class: "fau-badge muted" }, c8 = { class: "ss-muted" }, d8 = { class: "fau-kv" }, u8 = ["value"], m8 = { value: "" }, p8 = ["value"], y8 = {
+const o8 = ["data-test"], s8 = { class: "fau-panel fau-mhead" }, r8 = { class: "fau-row" }, i8 = { class: "fau-code" }, c8 = { class: "grow" }, d8 = { class: "fau-badge muted" }, u8 = { class: "ss-muted" }, m8 = { class: "fau-kv" }, p8 = ["value"], y8 = { value: "" }, N8 = ["value"], V8 = {
   key: 2,
   class: "fau-panel",
   "data-test": "fau-not-runnable"
-}, N8 = {
+}, E8 = {
   key: 0,
   class: "ss-note warn"
-}, V8 = {
+}, k8 = {
   key: 1,
   class: "ss-note info"
-}, E8 = { class: "ss-actions" }, k8 = {
+}, v8 = { class: "ss-actions" }, g8 = {
   key: 4,
   class: "fau-steps"
-}, v8 = {
+}, f8 = {
   key: 0,
   class: "ss-note warn"
-}, g8 = { class: "fau-row" }, f8 = { class: "ss-muted" }, h8 = { class: "fau-seg" }, $8 = ["disabled", "data-test", "onClick"], _8 = { class: "fau-row" }, B8 = { class: "fau-badge muted" }, b8 = { class: "fau-badge muted" }, S8 = {
+}, h8 = { class: "fau-row" }, $8 = { class: "ss-muted" }, _8 = { class: "fau-seg" }, B8 = ["disabled", "data-test", "onClick"], b8 = { class: "fau-row" }, S8 = { class: "fau-badge muted" }, D8 = { class: "fau-badge muted" }, C8 = {
   key: 1,
   class: "fau-row"
-}, D8 = { class: "ss-muted" }, C8 = ["value"], w8 = { value: "" }, T8 = ["value"], L8 = { class: "ss-actions" }, K8 = ["disabled"], A8 = {
+}, w8 = { class: "ss-muted" }, T8 = ["value"], L8 = { value: "" }, K8 = ["value"], A8 = { class: "ss-actions" }, F8 = ["disabled"], I8 = {
   key: 1,
   class: "fau-badge ok"
-}, F8 = {
+}, P8 = {
   key: 0,
   class: "ss-muted"
-}, I8 = ["data-test"], P8 = ["onClick"], O8 = ["data-test", "onClick"], z8 = {
+}, O8 = ["data-test"], z8 = ["onClick"], M8 = ["data-test", "onClick"], j8 = {
   key: 0,
   class: "ss-note info"
-}, M8 = {
+}, R8 = {
   key: 1,
   class: "fau-row"
-}, j8 = ["type", "name", "checked", "disabled", "onChange"], R8 = { class: "ss-muted" }, q8 = {
+}, q8 = ["type", "name", "checked", "disabled", "onChange"], U8 = { class: "ss-muted" }, W8 = {
   key: 0,
   class: "fau-badge warn"
-}, U8 = { class: "ss-actions" }, W8 = ["disabled", "data-test", "onClick"], Y8 = ["onClick"], G8 = {
+}, Y8 = { class: "ss-actions" }, G8 = ["disabled", "data-test", "onClick"], H8 = ["onClick"], Q8 = {
   key: 0,
   class: "fau-input",
   "data-test": "fau-bank-pairing"
-}, H8 = {
+}, J8 = {
   key: 0,
   class: "ss-note ok"
-}, Q8 = ["onUpdate:modelValue", "disabled"], J8 = { value: "" }, Z8 = ["value"], X8 = {
+}, Z8 = ["onUpdate:modelValue", "disabled"], X8 = { value: "" }, x8 = ["value"], eD = {
   key: 1,
   class: "ss-actions"
-}, x8 = ["disabled"], eD = {
+}, tD = ["disabled"], lD = {
   key: 3,
   class: "ss-note warn"
-}, tD = {
+}, nD = {
   key: 0,
   class: "ss-note warn"
-}, lD = { class: "ss-actions" }, nD = ["disabled"], aD = { class: "ss-muted" }, oD = {
+}, aD = { class: "ss-actions" }, oD = ["disabled"], sD = { class: "ss-muted" }, rD = {
   key: 0,
   class: "fau-subs"
-}, sD = { class: "ss-note warn" }, rD = {
+}, iD = { class: "ss-note warn" }, cD = {
   key: 0,
   class: "fau-row"
-}, iD = { class: "fau-badge" }, cD = { class: "fau-badge" }, dD = { class: "fau-badge" }, uD = {
+}, dD = { class: "fau-badge" }, uD = { class: "fau-badge" }, mD = { class: "fau-badge" }, pD = {
   key: 1,
   class: "fau-table-wrap",
   "data-test": "fau-verification"
-}, mD = { class: "fau-table" }, pD = { class: "wrap" }, yD = {
+}, yD = { class: "fau-table" }, ND = { class: "wrap" }, VD = {
   key: 0,
   class: "ss-muted"
-}, ND = {
+}, ED = {
   key: 0,
   class: "ss-note ok",
   "data-test": "fau-archived"
-}, VD = {
+}, kD = {
   key: 1,
   class: "ss-muted"
-}, ED = {
+}, vD = {
   key: 2,
   class: "ss-actions"
-}, kD = { class: "ss-muted" }, vD = ["data-test", "disabled", "title", "onClick"], gD = { key: 0 }, fD = {
+}, gD = { class: "ss-muted" }, fD = ["data-test", "disabled", "title", "onClick"], hD = { key: 0 }, $D = {
   key: 5,
   class: "ss-note danger",
   "data-test": "fau-runner-error"
-}, hD = {
+}, _D = {
   key: 1,
   class: "ss-note warn"
-}, $D = /* @__PURE__ */ e.defineComponent({
+}, BD = /* @__PURE__ */ e.defineComponent({
   __name: "ModuleRunner",
   props: {
     moduleId: {},
@@ -21022,8 +21037,8 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
     step: {}
   },
   emits: ["home-changed"],
-  setup(i, { emit: B }) {
-    const t = i, y = B, r = ye.useRouter(), n = { R: s.i18nKey("规则型"), S: s.i18nKey("技能型"), H: s.i18nKey("混合型"), P: s.i18nKey("平台") }, c = {
+  setup(c, { emit: _ }) {
+    const t = c, N = _, r = ye.useRouter(), n = { R: s.i18nKey("规则型"), S: s.i18nKey("技能型"), H: s.i18nKey("混合型"), P: s.i18nKey("平台") }, i = {
       draft: s.i18nKey("草稿"),
       running: s.i18nKey("进行中"),
       ready: s.i18nKey("待签核"),
@@ -21031,7 +21046,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
       returned: s.i18nKey("被退回"),
       archived: s.i18nKey("已归档"),
       void: s.i18nKey("已作废")
-    }, a = { high: s.i18nKey("高"), medium: s.i18nKey("中"), low: s.i18nKey("低") }, N = { todo: "ri-checkbox-blank-circle-line", running: "ri-loader-4-line spin", done: "ri-checkbox-circle-line", failed: "ri-close-circle-line", skipped: "ri-skip-forward-line" }, E = s.listSeparator(), u = e.computed(() => ie.moduleById(t.moduleId)), L = e.computed(() => !!u.value && u.value.status === "ready" && u.value.group !== "platform"), g = ft(), v = e.ref(null), b = e.ref(null), h = e.ref([]), K = e.ref([]), T = e.ref(null), z = e.ref(u.value?.modes[0]?.id || ""), S = e.ref(t.home.company?.outputLocale || "zh-CN"), w = e.reactive({}), m = e.reactive({}), f = e.ref(null), p = e.reactive({}), I = e.ref(""), _ = e.ref(!1), k = e.ref(""), R = e.ref(!1), d = e.computed(() => ge.regionProfile(t.home.company?.region || "CN").name), M = e.computed(() => u.value && v.value ? ie.inputsForMode(u.value, v.value.modeId) : []), V = e.computed(() => !!v.value && ["draft", "returned"].includes(v.value.status) && !te.value), te = e.computed(() => !!v.value && Object.values(v.value.steps).some(($) => $.status === "running")), j = e.computed(() => (b.value?.missing || []).map(($) => s.t($))), W = e.computed(() => {
+    }, a = { high: s.i18nKey("高"), medium: s.i18nKey("中"), low: s.i18nKey("低") }, m = { todo: "ri-checkbox-blank-circle-line", running: "ri-loader-4-line spin", done: "ri-checkbox-circle-line", failed: "ri-close-circle-line", skipped: "ri-skip-forward-line" }, E = s.listSeparator(), u = e.computed(() => ie.moduleById(t.moduleId)), L = e.computed(() => !!u.value && u.value.status === "ready" && u.value.group !== "platform"), g = ft(), v = e.ref(null), b = e.ref(null), h = e.ref([]), K = e.ref([]), T = e.ref(null), z = e.ref(u.value?.modes[0]?.id || ""), S = e.ref(t.home.company?.outputLocale || "zh-CN"), w = e.reactive({}), p = e.reactive({}), f = e.ref(null), y = e.reactive({}), I = e.ref(""), B = e.ref(!1), k = e.ref(""), R = e.ref(!1), d = e.computed(() => ge.regionProfile(t.home.company?.region || "CN").name), M = e.computed(() => u.value && v.value ? ie.inputsForMode(u.value, v.value.modeId) : []), V = e.computed(() => !!v.value && ["draft", "returned"].includes(v.value.status) && !te.value), te = e.computed(() => !!v.value && Object.values(v.value.steps).some(($) => $.status === "running")), j = e.computed(() => (b.value?.missing || []).map(($) => s.t($))), W = e.computed(() => {
       const $ = v.value, F = {};
       for (const C of Se) F[C] = $ ? At($.steps[C]) : { state: "todo" };
       return $ || (F.setup = { state: "todo" }), F;
@@ -21052,7 +21067,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
       const F = ie.moduleById($);
       return F ? `${F.code} ${s.t(F.name)}` : $;
     }
-    const ne = ($) => ie.moduleById($)?.status !== "ready", D = ($) => Te($), O = ($, F) => K.value.filter((C) => C.kind === $ && ($ !== "evidence" || !C.slot || !F || C.slot === F));
+    const ne = ($) => ie.moduleById($)?.status !== "ready", D = ($) => Le($), O = ($, F) => K.value.filter((C) => C.kind === $ && ($ !== "evidence" || !C.slot || !F || C.slot === F));
     async function P() {
       if (!u.value) return;
       const [$, F] = await Promise.all([Y("run.list", { moduleId: u.value.id }), Y("data.list")]);
@@ -21074,7 +21089,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
     async function X() {
       k.value = "";
       try {
-        await P(), v.value && await J(v.value.id), y("home-changed");
+        await P(), v.value && await J(v.value.id), N("home-changed");
       } catch ($) {
         k.value = Q.errorMessage($);
       }
@@ -21090,13 +21105,13 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
       r.push({ path: `/workbenches/finance-audit/m/${t.moduleId}`, query: { run: $ } });
     }
     async function oe($) {
-      _.value = !0, k.value = "";
+      B.value = !0, k.value = "";
       try {
         await $();
       } catch (F) {
         k.value = Q.errorMessage(F);
       } finally {
-        _.value = !1;
+        B.value = !1;
       }
     }
     function re() {
@@ -21114,19 +21129,19 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
         });
         return;
       }
-      m[$.id] = { path: F[0], inspect: null }, await _e($);
+      p[$.id] = { path: F[0], inspect: null }, await _e($);
     }
     async function _e($, F, C) {
-      const x = m[$.id];
+      const x = p[$.id];
       x && await oe(async () => {
         x.inspect = await Y("data.inspect", { path: x.path, kind: $.kind, mapping: F ?? x.inspect?.mapping, sheet: C ?? x.inspect?.sheetName });
       });
     }
-    function Me($) {
-      const F = m[$.id];
+    function je($) {
+      const F = p[$.id];
       return F ? oe(async () => {
         const C = await Y("data.import", { path: F.path, kind: $.kind, slot: $.id, moduleId: t.moduleId, mapping: F.inspect?.mapping, sheet: F.inspect?.sheetName });
-        delete m[$.id], await Ve({ ...w, [$.id]: $.multi ? [...w[$.id] || [], C.id] : [C.id] });
+        delete p[$.id], await Ve({ ...w, [$.id]: $.multi ? [...w[$.id] || [], C.id] : [C.id] });
       }) : Promise.resolve();
     }
     async function Ve($, F) {
@@ -21143,7 +21158,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
       });
     }
     function q() {
-      const $ = [...f.value?.pairing.pairs || [], ...Object.entries(p).filter(([, F]) => F).map(([F, C]) => ({ bookAccount: C, bankAccount: F }))];
+      const $ = [...f.value?.pairing.pairs || [], ...Object.entries(y).filter(([, F]) => F).map(([F, C]) => ({ bookAccount: C, bankAccount: F }))];
       return oe(() => Ve({ ...w }, { accountPairs: $ }));
     }
     function G() {
@@ -21161,12 +21176,12 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
     }
     function wt($) {
       return oe(async () => {
-        await Y("handoff.send", { fromRunId: v.value.id, toModuleId: $ }), y("home-changed");
+        await Y("handoff.send", { fromRunId: v.value.id, toModuleId: $ }), N("home-changed");
       });
     }
     async function Tt($) {
       await oe(async () => {
-        await Y("settings.patch", { moduleModels: { ...t.home.settings.moduleModels, [t.moduleId]: $ } }), y("home-changed");
+        await Y("settings.patch", { moduleModels: { ...t.home.settings.moduleModels, [t.moduleId]: $ } }), N("home-changed");
       });
     }
     let nt = null, Be = null;
@@ -21205,25 +21220,25 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
       "data-test": `fau-module-${u.value.id}`
     }, [
       e.createCommentVNode(" ModuleHeader "),
-      e.createElementVNode("section", a8, [
-        e.createElementVNode("div", o8, [
+      e.createElementVNode("section", s8, [
+        e.createElementVNode("div", r8, [
           e.createElementVNode(
             "span",
-            s8,
+            i8,
             e.toDisplayString(u.value.code),
             1
             /* TEXT */
           ),
           e.createElementVNode(
             "h2",
-            r8,
+            c8,
             e.toDisplayString($.$t(u.value.name)),
             1
             /* TEXT */
           ),
           e.createElementVNode(
             "span",
-            i8,
+            d8,
             e.toDisplayString($.$t(n[u.value.archetype])),
             1
             /* TEXT */
@@ -21250,12 +21265,12 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
         ]),
         e.createElementVNode(
           "p",
-          c8,
+          u8,
           e.toDisplayString($.$t(u.value.summary)),
           1
           /* TEXT */
         ),
-        e.createElementVNode("dl", d8, [
+        e.createElementVNode("dl", m8, [
           e.createElementVNode(
             "dt",
             null,
@@ -21320,13 +21335,13 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
           ),
           e.createElementVNode("dd", null, [
             e.createElementVNode("select", {
-              value: i.home.settings.moduleModels[u.value.id] || "",
+              value: c.home.settings.moduleModels[u.value.id] || "",
               "data-test": "fau-model",
               onChange: F[1] || (F[1] = (C) => Tt(C.target.value))
             }, [
               e.createElementVNode(
                 "option",
-                m8,
+                y8,
                 e.toDisplayString($.$t("系统默认（{p0}）", { p0: T.value?.defaultLabel || "-" })),
                 1
                 /* TEXT */
@@ -21337,20 +21352,20 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                 e.renderList(T.value?.options || [], (C) => (e.openBlock(), e.createElementBlock("option", {
                   key: C.value,
                   value: C.value
-                }, e.toDisplayString(C.group ? `${C.group} · ` : "") + e.toDisplayString(C.label), 9, p8))),
+                }, e.toDisplayString(C.group ? `${C.group} · ` : "") + e.toDisplayString(C.label), 9, N8))),
                 128
                 /* KEYED_FRAGMENT */
               ))
-            ], 40, u8)
+            ], 40, p8)
           ])
         ])
       ]),
       e.createCommentVNode(" 规划中 / 平台模块：没有七步流程，直接说明（从 URL 直达时不让人点出主进程报错） "),
-      u.value.id === "office-output" && u.value.status === "ready" ? (e.openBlock(), e.createBlock(LS, {
+      u.value.id === "office-output" && u.value.status === "ready" ? (e.openBlock(), e.createBlock(AS, {
         key: 0,
-        home: i.home
-      }, null, 8, ["home"])) : u.value.group === "platform" && u.value.status === "ready" && e.unref(Fe)[u.value.id] ? (e.openBlock(), e.createBlock(e.resolveDynamicComponent(e.unref(Fe)[u.value.id]), { key: 1 })) : L.value ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("section", y8, [
-        u.value.status !== "ready" ? (e.openBlock(), e.createElementBlock("p", N8, [
+        home: c.home
+      }, null, 8, ["home"])) : u.value.group === "platform" && u.value.status === "ready" && e.unref(Ie)[u.value.id] ? (e.openBlock(), e.createBlock(e.resolveDynamicComponent(e.unref(Ie)[u.value.id]), { key: 1 })) : L.value ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("section", V8, [
+        u.value.status !== "ready" ? (e.openBlock(), e.createElementBlock("p", E8, [
           F[8] || (F[8] = e.createElementVNode(
             "i",
             { class: "ri-time-line" },
@@ -21363,7 +21378,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
             1
             /* TEXT */
           )
-        ])) : (e.openBlock(), e.createElementBlock("p", V8, [
+        ])) : (e.openBlock(), e.createElementBlock("p", k8, [
           F[9] || (F[9] = e.createElementVNode(
             "i",
             { class: "ri-information-line" },
@@ -21377,7 +21392,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
             /* TEXT */
           )
         ])),
-        e.createElementVNode("div", E8, [
+        e.createElementVNode("div", v8, [
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn",
@@ -21398,7 +21413,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
           ])
         ])
       ])),
-      L.value ? (e.openBlock(), e.createBlock(Qe, {
+      L.value ? (e.openBlock(), e.createBlock(Je, {
         key: 3,
         title: `${u.value.code} · ${$.$t(u.value.name)}`,
         metas: e.unref(g),
@@ -21406,7 +21421,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
         "current-key": U.value,
         onJump: e.unref(Q.scrollToStep)
       }, null, 8, ["title", "metas", "runtime", "current-key", "onJump"])) : e.createCommentVNode("v-if", !0),
-      L.value ? (e.openBlock(), e.createElementBlock("div", k8, [
+      L.value ? (e.openBlock(), e.createElementBlock("div", g8, [
         e.createCommentVNode(" ① 选择项目与模式 "),
         e.createVNode(se, {
           "step-key": "setup",
@@ -21417,7 +21432,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
           "is-current": U.value === "setup"
         }, {
           default: e.withCtx(() => [
-            i.home.project?.status === "archived" ? (e.openBlock(), e.createElementBlock("p", v8, [
+            c.home.project?.status === "archived" ? (e.openBlock(), e.createElementBlock("p", f8, [
               F[11] || (F[11] = e.createElementVNode(
                 "i",
                 { class: "ri-lock-line" },
@@ -21431,15 +21446,15 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                 /* TEXT */
               )
             ])) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("div", g8, [
+            e.createElementVNode("div", h8, [
               e.createElementVNode(
                 "span",
-                f8,
+                $8,
                 e.toDisplayString($.$t("场景模式")),
                 1
                 /* TEXT */
               ),
-              e.createElementVNode("span", h8, [
+              e.createElementVNode("span", _8, [
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
@@ -21450,40 +21465,40 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                     disabled: !!v.value && v.value.status !== "draft",
                     "data-test": `fau-mode-${C.id}`,
                     onClick: (x) => z.value = C.id
-                  }, e.toDisplayString($.$t(C.name)), 11, $8))),
+                  }, e.toDisplayString($.$t(C.name)), 11, B8))),
                   128
                   /* KEYED_FRAGMENT */
                 ))
               ])
             ]),
-            e.createElementVNode("div", _8, [
-              e.createVNode(ze, {
+            e.createElementVNode("div", b8, [
+              e.createVNode(Me, {
                 modelValue: S.value,
                 "onUpdate:modelValue": F[3] || (F[3] = (C) => S.value = C),
                 disabled: !!v.value
               }, null, 8, ["modelValue", "disabled"]),
-              e.createElementVNode("span", B8, [
+              e.createElementVNode("span", S8, [
                 e.createTextVNode(
                   e.toDisplayString($.$t("期间")) + " ",
                   1
                   /* TEXT */
                 ),
                 e.createVNode(l, {
-                  value: i.home.project?.period
+                  value: c.home.project?.period
                 }, null, 8, ["value"])
               ]),
               e.createElementVNode(
                 "span",
-                b8,
-                e.toDisplayString($.$t(d.value)) + " · " + e.toDisplayString($.$t(e.unref(ge.STANDARD_LABELS)[i.home.company?.standard || "CAS"] || "")),
+                D8,
+                e.toDisplayString($.$t(d.value)) + " · " + e.toDisplayString($.$t(e.unref(ge.STANDARD_LABELS)[c.home.company?.standard || "CAS"] || "")),
                 1
                 /* TEXT */
               )
             ]),
-            h.value.length ? (e.openBlock(), e.createElementBlock("div", S8, [
+            h.value.length ? (e.openBlock(), e.createElementBlock("div", C8, [
               e.createElementVNode(
                 "span",
-                D8,
+                w8,
                 e.toDisplayString($.$t("继续本项目里的运行")),
                 1
                 /* TEXT */
@@ -21495,7 +21510,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
               }, [
                 e.createElementVNode(
                   "option",
-                  w8,
+                  L8,
                   e.toDisplayString($.$t("新建一次运行")),
                   1
                   /* TEXT */
@@ -21506,16 +21521,16 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                   e.renderList(h.value, (C) => (e.openBlock(), e.createElementBlock("option", {
                     key: C.id,
                     value: C.id
-                  }, e.toDisplayString(H(C.modeId)) + " · " + e.toDisplayString($.$t(c[C.status] || C.status)) + " · " + e.toDisplayString(D(C.updatedAt)), 9, T8))),
+                  }, e.toDisplayString(H(C.modeId)) + " · " + e.toDisplayString($.$t(i[C.status] || C.status)) + " · " + e.toDisplayString(D(C.updatedAt)), 9, K8))),
                   128
                   /* KEYED_FRAGMENT */
                 ))
-              ], 40, C8)
+              ], 40, T8)
             ])) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("div", L8, [
+            e.createElementVNode("div", A8, [
               v.value ? (e.openBlock(), e.createElementBlock(
                 "span",
-                A8,
+                I8,
                 e.toDisplayString($.$t("本次运行：{p0}", { p0: H(v.value.modeId) })) + " · " + e.toDisplayString($.$t(e.unref(ht)[v.value.outputLocale])),
                 1
                 /* TEXT */
@@ -21523,7 +21538,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                 key: 0,
                 type: "button",
                 class: "ss-btn primary",
-                disabled: _.value || i.home.project?.status === "archived",
+                disabled: B.value || c.home.project?.status === "archived",
                 "data-test": "fau-run-create",
                 onClick: re
               }, [
@@ -21539,7 +21554,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                   1
                   /* TEXT */
                 )
-              ], 8, K8))
+              ], 8, F8))
             ])
           ]),
           _: 1
@@ -21595,16 +21610,16 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                         type: "button",
                         class: "ss-link",
                         onClick: (x) => I.value = I.value === C.id ? "" : C.id
-                      }, e.toDisplayString($.$t("怎么导出这份数据")), 9, P8),
+                      }, e.toDisplayString($.$t("怎么导出这份数据")), 9, z8),
                       e.unref(lt.hasTemplate)(u.value.id, C.id) ? (e.openBlock(), e.createElementBlock("button", {
                         key: 0,
                         type: "button",
                         class: "ss-link",
                         "data-test": `fau-template-${C.id}`,
                         onClick: (x) => A(C)
-                      }, e.toDisplayString($.$t("下载模板")), 9, O8)) : e.createCommentVNode("v-if", !0)
+                      }, e.toDisplayString($.$t("下载模板")), 9, M8)) : e.createCommentVNode("v-if", !0)
                     ]),
-                    I.value === C.id ? (e.openBlock(), e.createElementBlock("p", z8, [
+                    I.value === C.id ? (e.openBlock(), e.createElementBlock("p", j8, [
                       F[14] || (F[14] = e.createElementVNode(
                         "i",
                         { class: "ri-question-line" },
@@ -21613,12 +21628,12 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                         /* CACHED */
                       )),
                       e.createTextVNode(
-                        e.toDisplayString($.$t(C.help)) + " " + e.toDisplayString(e.unref(It)(C.kind, i.home.company?.erp || "other")),
+                        e.toDisplayString($.$t(C.help)) + " " + e.toDisplayString(e.unref(It)(C.kind, c.home.company?.erp || "other")),
                         1
                         /* TEXT */
                       )
                     ])) : e.createCommentVNode("v-if", !0),
-                    O(C.kind, C.id).length ? (e.openBlock(), e.createElementBlock("div", M8, [
+                    O(C.kind, C.id).length ? (e.openBlock(), e.createElementBlock("div", R8, [
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
@@ -21632,7 +21647,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                             checked: (w[C.id] || []).includes(x.id),
                             disabled: !V.value,
                             onChange: (at) => ke(C.id, x.id, !!C.multi)
-                          }, null, 40, j8),
+                          }, null, 40, q8),
                           e.createTextVNode(
                             " " + e.toDisplayString(x.label) + " ",
                             1
@@ -21640,14 +21655,14 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                           ),
                           e.createElementVNode(
                             "small",
-                            R8,
+                            U8,
                             e.toDisplayString($.$t("{n} 行", { n: x.rowCount })),
                             1
                             /* TEXT */
                           ),
                           x.issues.length ? (e.openBlock(), e.createElementBlock(
                             "span",
-                            q8,
+                            W8,
                             e.toDisplayString(x.issues.length),
                             1
                             /* TEXT */
@@ -21664,29 +21679,29 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                       multi: C.kind === "evidence",
                       onPicked: (x) => Ne(C, x)
                     }, null, 8, ["label", "kind", "multi", "onPicked"])) : e.createCommentVNode("v-if", !0),
-                    V.value ? (e.openBlock(), e.createBlock(l8, {
+                    V.value ? (e.openBlock(), e.createBlock(a8, {
                       key: 3,
                       kind: C.kind,
                       onPicked: (x) => Ne(C, x)
                     }, null, 8, ["kind", "onPicked"])) : e.createCommentVNode("v-if", !0),
-                    m[C.id] ? (e.openBlock(), e.createElementBlock(
+                    p[C.id] ? (e.openBlock(), e.createElementBlock(
                       e.Fragment,
                       { key: 4 },
                       [
-                        m[C.id].inspect ? (e.openBlock(), e.createBlock(Je, {
+                        p[C.id].inspect ? (e.openBlock(), e.createBlock(Ze, {
                           key: 0,
-                          table: m[C.id].inspect,
-                          roles: m[C.id].inspect.roles.map((x) => ({ ...x, label: $.$t(x.label) })),
+                          table: p[C.id].inspect,
+                          roles: p[C.id].inspect.roles.map((x) => ({ ...x, label: $.$t(x.label) })),
                           onUpdate: (x) => _e(C, x),
                           onSheet: (x) => _e(C, void 0, x)
                         }, null, 8, ["table", "roles", "onUpdate", "onSheet"])) : e.createCommentVNode("v-if", !0),
-                        e.createElementVNode("div", U8, [
+                        e.createElementVNode("div", Y8, [
                           e.createElementVNode("button", {
                             type: "button",
                             class: "ss-btn primary sm",
-                            disabled: _.value || !!m[C.id].inspect?.missing.length,
+                            disabled: B.value || !!p[C.id].inspect?.missing.length,
                             "data-test": `fau-import-${C.id}`,
-                            onClick: (x) => Me(C)
+                            onClick: (x) => je(C)
                           }, [
                             F[15] || (F[15] = e.createElementVNode(
                               "i",
@@ -21700,22 +21715,22 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                               1
                               /* TEXT */
                             )
-                          ], 8, W8),
+                          ], 8, G8),
                           e.createElementVNode("button", {
                             type: "button",
                             class: "ss-btn ghost sm",
-                            onClick: (x) => delete m[C.id]
-                          }, e.toDisplayString($.$t("取消")), 9, Y8)
+                            onClick: (x) => delete p[C.id]
+                          }, e.toDisplayString($.$t("取消")), 9, H8)
                         ])
                       ],
                       64
                       /* STABLE_FRAGMENT */
                     )) : e.createCommentVNode("v-if", !0)
-                  ], 10, I8))),
+                  ], 10, O8))),
                   128
                   /* KEYED_FRAGMENT */
                 )),
-                u.value.id === "recon" && v.value.modeId === "bank" && f.value ? (e.openBlock(), e.createElementBlock("div", G8, [
+                u.value.id === "recon" && v.value.modeId === "bank" && f.value ? (e.openBlock(), e.createElementBlock("div", Q8, [
                   e.createElementVNode("header", null, [
                     e.createElementVNode(
                       "strong",
@@ -21725,7 +21740,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                       /* TEXT */
                     )
                   ]),
-                  !f.value.pairing.unpairedBook.length && !f.value.pairing.unpairedBank.length ? (e.openBlock(), e.createElementBlock("p", H8, [
+                  !f.value.pairing.unpairedBook.length && !f.value.pairing.unpairedBank.length ? (e.openBlock(), e.createElementBlock("p", J8, [
                     F[16] || (F[16] = e.createElementVNode(
                       "i",
                       { class: "ri-links-line" },
@@ -21753,12 +21768,12 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                         /* CACHED */
                       )),
                       e.withDirectives(e.createElementVNode("select", {
-                        "onUpdate:modelValue": (x) => p[C] = x,
+                        "onUpdate:modelValue": (x) => y[C] = x,
                         disabled: !V.value
                       }, [
                         e.createElementVNode(
                           "option",
-                          J8,
+                          X8,
                           e.toDisplayString($.$t("请选择…")),
                           1
                           /* TEXT */
@@ -21769,24 +21784,24 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                           e.renderList(f.value.book, (x) => (e.openBlock(), e.createElementBlock("option", {
                             key: x.code,
                             value: x.code
-                          }, e.toDisplayString(x.code) + " " + e.toDisplayString(x.name), 9, Z8))),
+                          }, e.toDisplayString(x.code) + " " + e.toDisplayString(x.name), 9, x8))),
                           128
                           /* KEYED_FRAGMENT */
                         ))
-                      ], 8, Q8), [
-                        [e.vModelSelect, p[C]]
+                      ], 8, Z8), [
+                        [e.vModelSelect, y[C]]
                       ])
                     ]))),
                     128
                     /* KEYED_FRAGMENT */
                   )),
-                  f.value.pairing.unpairedBank.length ? (e.openBlock(), e.createElementBlock("div", X8, [
+                  f.value.pairing.unpairedBank.length ? (e.openBlock(), e.createElementBlock("div", eD, [
                     e.createElementVNode("button", {
                       type: "button",
                       class: "ss-btn sm",
-                      disabled: _.value,
+                      disabled: B.value,
                       onClick: q
-                    }, e.toDisplayString($.$t("保存配对")), 9, x8)
+                    }, e.toDisplayString($.$t("保存配对")), 9, tD)
                   ])) : e.createCommentVNode("v-if", !0)
                 ])) : e.createCommentVNode("v-if", !0),
                 e.createCommentVNode(" 批次 4：税务组的申报参数与模板 "),
@@ -21804,7 +21819,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                   editable: V.value,
                   onChanged: X
                 }, null, 40, ["run", "def", "editable"])) : e.createCommentVNode("v-if", !0),
-                v.value.steps.upload.status !== "done" && j.value.length ? (e.openBlock(), e.createElementBlock("p", eD, [
+                v.value.steps.upload.status !== "done" && j.value.length ? (e.openBlock(), e.createElementBlock("p", lD, [
                   F[18] || (F[18] = e.createElementVNode(
                     "i",
                     { class: "ri-error-warning-line" },
@@ -21823,7 +21838,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
               /* STABLE_FRAGMENT */
             )) : (e.openBlock(), e.createElementBlock(
               "p",
-              F8,
+              P8,
               e.toDisplayString($.$t("先完成第 1 步")),
               1
               /* TEXT */
@@ -21844,7 +21859,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
           cancel: Ee
         }, {
           default: e.withCtx(() => [
-            v.value && j.value.length ? (e.openBlock(), e.createElementBlock("p", tD, [
+            v.value && j.value.length ? (e.openBlock(), e.createElementBlock("p", nD, [
               F[19] || (F[19] = e.createElementVNode(
                 "i",
                 { class: "ri-forbid-line" },
@@ -21858,11 +21873,11 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                 /* TEXT */
               )
             ])) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("div", lD, [
+            e.createElementVNode("div", aD, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !v.value || _.value || j.value.length > 0 || te.value || !V.value,
+                disabled: !v.value || B.value || j.value.length > 0 || te.value || !V.value,
                 "data-test": "fau-run-start",
                 onClick: G
               }, [
@@ -21878,10 +21893,10 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                   1
                   /* TEXT */
                 )
-              ], 8, nD),
+              ], 8, oD),
               e.createElementVNode(
                 "span",
-                aD,
+                sD,
                 e.toDisplayString($.$t("校验、计算、生成底稿会连续跑完；有阻断项会停在这一步")),
                 1
                 /* TEXT */
@@ -21907,7 +21922,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
           cancel: Ee
         }, {
           default: e.withCtx(() => [
-            v.value?.steps.analyze.sub?.length ? (e.openBlock(), e.createElementBlock("ul", oD, [
+            v.value?.steps.analyze.sub?.length ? (e.openBlock(), e.createElementBlock("ul", rD, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
@@ -21921,7 +21936,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                     e.createElementVNode(
                       "i",
                       {
-                        class: e.normalizeClass(N[C.status])
+                        class: e.normalizeClass(m[C.status])
                       },
                       null,
                       2
@@ -21958,7 +21973,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
               def: u.value,
               editable: V.value,
               onChanged: X
-            }, null, 8, ["run", "def", "editable"])) : v.value?.result && e.unref(Fe)[u.value.id] ? (e.openBlock(), e.createBlock(e.resolveDynamicComponent(e.unref(Fe)[u.value.id]), {
+            }, null, 8, ["run", "def", "editable"])) : v.value?.result && e.unref(Ie)[u.value.id] ? (e.openBlock(), e.createBlock(e.resolveDynamicComponent(e.unref(Ie)[u.value.id]), {
               key: 5,
               run: v.value,
               def: u.value,
@@ -21981,7 +21996,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
           cancel: Ee
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("p", sD, [
+            e.createElementVNode("p", iD, [
               F[21] || (F[21] = e.createElementVNode(
                 "i",
                 { class: "ri-draft-line" },
@@ -21995,31 +22010,31 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                 /* TEXT */
               )
             ]),
-            v.value?.confidence ? (e.openBlock(), e.createElementBlock("div", rD, [
+            v.value?.confidence ? (e.openBlock(), e.createElementBlock("div", cD, [
               e.createElementVNode(
                 "span",
-                iD,
+                dD,
                 e.toDisplayString($.$t("数据完整度")) + ": " + e.toDisplayString($.$t(a[v.value.confidence.data])),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "span",
-                cD,
+                uD,
                 e.toDisplayString($.$t("方案成熟度")) + ": " + e.toDisplayString($.$t(a[v.value.confidence.method])),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "span",
-                dD,
+                mD,
                 e.toDisplayString($.$t("整体置信度")) + ": " + e.toDisplayString($.$t(a[v.value.confidence.overall])),
                 1
                 /* TEXT */
               )
             ])) : e.createCommentVNode("v-if", !0),
-            v.value?.verification.length ? (e.openBlock(), e.createElementBlock("div", uD, [
-              e.createElementVNode("table", mD, [
+            v.value?.verification.length ? (e.openBlock(), e.createElementBlock("div", pD, [
+              e.createElementVNode("table", yD, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -22049,13 +22064,13 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                         class: e.normalizeClass({ bad: C.status === "unverified" })
                       },
                       [
-                        e.createElementVNode("td", pD, [
+                        e.createElementVNode("td", ND, [
                           e.createTextVNode(
                             e.toDisplayString(C.text),
                             1
                             /* TEXT */
                           ),
-                          C.missing?.length ? (e.openBlock(), e.createElementBlock("small", yD, [
+                          C.missing?.length ? (e.openBlock(), e.createElementBlock("small", VD, [
                             F[22] || (F[22] = e.createElementVNode(
                               "br",
                               null,
@@ -22113,10 +22128,10 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
           "is-current": U.value === "signoff"
         }, {
           default: e.withCtx(() => [
-            v.value && i.home.company && b.value ? (e.openBlock(), e.createBlock(So, {
+            v.value && c.home.company && b.value ? (e.openBlock(), e.createBlock(So, {
               key: 0,
               run: v.value,
-              company: i.home.company,
+              company: c.home.company,
               active: b.value.active,
               "next-level": b.value.nextLevel,
               "base-levels": u.value.signoff.levels,
@@ -22136,7 +22151,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
           "is-current": U.value === "archive"
         }, {
           default: e.withCtx(() => [
-            v.value?.status === "archived" ? (e.openBlock(), e.createElementBlock("p", ND, [
+            v.value?.status === "archived" ? (e.openBlock(), e.createElementBlock("p", ED, [
               F[23] || (F[23] = e.createElementVNode(
                 "i",
                 { class: "ri-archive-line" },
@@ -22151,15 +22166,15 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
               )
             ])) : (e.openBlock(), e.createElementBlock(
               "p",
-              VD,
+              kD,
               e.toDisplayString($.$t("最后一级签核通过后自动归档")),
               1
               /* TEXT */
             )),
-            u.value.handoffTo?.length ? (e.openBlock(), e.createElementBlock("div", ED, [
+            u.value.handoffTo?.length ? (e.openBlock(), e.createElementBlock("div", vD, [
               e.createElementVNode(
                 "span",
-                kD,
+                gD,
                 e.toDisplayString($.$t("转交下游模块")),
                 1
                 /* TEXT */
@@ -22172,7 +22187,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                   type: "button",
                   class: "ss-btn sm",
                   "data-test": `fau-handoff-${C}`,
-                  disabled: _.value || v.value?.status !== "archived" || ne(C),
+                  disabled: B.value || v.value?.status !== "archived" || ne(C),
                   title: ne(C) ? $.$t("即将上线") : "",
                   onClick: (x) => wt(C)
                 }, [
@@ -22190,12 +22205,12 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                   ),
                   ne(C) ? (e.openBlock(), e.createElementBlock(
                     "small",
-                    gD,
+                    hD,
                     " · " + e.toDisplayString($.$t("即将上线")),
                     1
                     /* TEXT */
                   )) : e.createCommentVNode("v-if", !0)
-                ], 8, vD))),
+                ], 8, fD))),
                 128
                 /* KEYED_FRAGMENT */
               ))
@@ -22205,7 +22220,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
           /* STABLE */
         }, 8, ["title", "hint", "runtime", "is-current"])
       ])) : e.createCommentVNode("v-if", !0),
-      k.value ? (e.openBlock(), e.createElementBlock("p", fD, [
+      k.value ? (e.openBlock(), e.createElementBlock("p", $D, [
         F[25] || (F[25] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -22222,10 +22237,10 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
       e.createVNode(za, {
         open: R.value,
         modules: [u.value.id],
-        currency: i.home.company?.currency,
+        currency: c.home.company?.currency,
         onClose: F[6] || (F[6] = (C) => R.value = !1)
       }, null, 8, ["open", "modules", "currency"])
-    ], 8, n8)) : (e.openBlock(), e.createElementBlock("p", hD, [
+    ], 8, o8)) : (e.openBlock(), e.createElementBlock("p", _D, [
       F[26] || (F[26] = e.createElementVNode(
         "i",
         { class: "ri-error-warning-line" },
@@ -22234,92 +22249,92 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
         /* CACHED */
       )),
       e.createTextVNode(
-        e.toDisplayString($.$t("未知模块：{p0}", { p0: i.moduleId })),
+        e.toDisplayString($.$t("未知模块：{p0}", { p0: c.moduleId })),
         1
         /* TEXT */
       )
     ]));
   }
-}), _D = /* @__PURE__ */ ae($D, [["__scopeId", "data-v-98a100ef"]]), BD = {
+}), bD = /* @__PURE__ */ ae(BD, [["__scopeId", "data-v-98a100ef"]]), SD = {
   class: "fau-page",
   "data-test": "fau-workbench"
-}, bD = { class: "fau-head" }, SD = { class: "grow" }, DD = { class: "fau-sub" }, CD = ["disabled"], wD = {
+}, DD = { class: "fau-head" }, CD = { class: "grow" }, wD = { class: "fau-sub" }, TD = ["disabled"], LD = {
   key: 0,
   class: "ss-note danger"
-}, TD = {
+}, KD = {
   key: 1,
   class: "ss-note"
-}, LD = {
+}, AD = {
   class: "fau-bar",
   "data-test": "fau-topbar"
-}, KD = { class: "fau-row" }, AD = { class: "ss-muted" }, FD = ["value"], ID = ["value"], PD = { value: "__new" }, OD = {
+}, FD = { class: "fau-row" }, ID = { class: "ss-muted" }, PD = ["value"], OD = ["value"], zD = { value: "__new" }, MD = {
   class: "fau-badge",
   "data-test": "fau-region-badge"
-}, zD = { class: "fau-row" }, MD = { class: "ss-muted" }, jD = ["value"], RD = ["value"], qD = ["disabled"], UD = { class: "fau-boundary" }, WD = {
+}, jD = { class: "fau-row" }, RD = { class: "ss-muted" }, qD = ["value"], UD = ["value"], WD = ["disabled"], YD = { class: "fau-boundary" }, GD = {
   key: 0,
   class: "ss-note warn fau-hint",
   "data-test": "fau-sample-banner"
-}, YD = { class: "grow" }, GD = ["disabled"], HD = {
+}, HD = { class: "grow" }, QD = ["disabled"], JD = {
   key: 1,
   class: "ss-note info fau-hint",
   "data-test": "fau-defaults-hint"
-}, QD = { class: "grow" }, JD = ["aria-label"], ZD = {
+}, ZD = { class: "grow" }, XD = ["aria-label"], xD = {
   key: 2,
   class: "fau-panel",
   "data-test": "fau-first-project"
-}, XD = { class: "ss-muted" }, xD = { class: "ss-actions" }, e2 = ["disabled"], t2 = { class: "fau-panels" }, l2 = {
+}, eC = { class: "ss-muted" }, tC = { class: "ss-actions" }, lC = ["disabled"], nC = { class: "fau-panels" }, aC = {
   class: "fau-panel",
   "data-test": "fau-todos"
-}, n2 = {
+}, oC = {
   key: 0,
   class: "fau-list"
-}, a2 = ["data-test", "onClick"], o2 = { class: "grow" }, s2 = {
+}, sC = ["data-test", "onClick"], rC = { class: "grow" }, iC = {
   key: 1,
   class: "ss-muted"
-}, r2 = {
+}, cC = {
   class: "fau-panel",
   "data-test": "fau-queue"
-}, i2 = {
+}, dC = {
   class: "fau-panel",
   "data-test": "fau-close-progress"
-}, c2 = { class: "fau-row" }, d2 = { class: "grow" }, u2 = { class: "fau-row" }, m2 = { class: "grow" }, p2 = { class: "fau-row" }, y2 = { class: "grow" }, N2 = {
+}, uC = { class: "fau-row" }, mC = { class: "grow" }, pC = { class: "fau-row" }, yC = { class: "grow" }, NC = { class: "fau-row" }, VC = { class: "grow" }, EC = {
   key: 1,
   class: "ss-muted"
-}, V2 = { class: "ss-actions" }, E2 = {
+}, kC = { class: "ss-actions" }, vC = {
   class: "ss-muted fau-overview",
   "data-test": "fau-overview"
-}, k2 = {
+}, gC = {
   class: "fau-groups",
   "data-test": "fau-modules"
-}, v2 = { class: "fau-badge muted" }, g2 = {
+}, fC = { class: "fau-badge muted" }, hC = {
   key: 0,
   class: "ss-muted"
-}, f2 = { class: "fau-mods" }, h2 = { class: "fau-code" }, $2 = { class: "fau-mod-foot" }, _2 = {
+}, $C = { class: "fau-mods" }, _C = { class: "fau-code" }, BC = { class: "fau-mod-foot" }, bC = {
   key: 0,
   class: "fau-badge ok"
-}, B2 = ["data-test", "data-batch"], b2 = {
+}, SC = ["data-test", "data-batch"], DC = {
   class: "fau-panel",
   "data-test": "fau-recent"
-}, S2 = {
+}, CC = {
   key: 0,
   class: "fau-list"
-}, D2 = ["onClick"], C2 = { class: "grow" }, w2 = {
+}, wC = ["onClick"], TC = { class: "grow" }, LC = {
   key: 1,
   class: "ss-muted"
-}, T2 = ["aria-label"], L2 = { class: "fau-drawer__body" }, K2 = { class: "ss-muted" }, A2 = { class: "fau-table-wrap" }, F2 = { class: "fau-table" }, I2 = { class: "num" }, P2 = { class: "wrap" }, O2 = {
+}, KC = ["aria-label"], AC = { class: "fau-drawer__body" }, FC = { class: "ss-muted" }, IC = { class: "fau-table-wrap" }, PC = { class: "fau-table" }, OC = { class: "num" }, zC = { class: "wrap" }, MC = {
   key: 0,
   class: "ss-muted"
-}, z2 = { class: "num" }, M2 = ["onClick"], j2 = { class: "fau-row" }, R2 = { value: "" }, q2 = ["value"], U2 = ["disabled"], W2 = {
+}, jC = { class: "num" }, RC = ["onClick"], qC = { class: "fau-row" }, UC = { value: "" }, WC = ["value"], YC = ["disabled"], GC = {
   key: 0,
   class: "ss-note danger"
-}, Y2 = {
+}, HC = {
   key: 5,
   class: "ss-note danger"
-}, pt = "totalclaw:finance-audit:capital-open:v1", yt = "totalclaw:finance-audit:defaults-hint-closed:v1:", G2 = /* @__PURE__ */ e.defineComponent({
+}, pt = "totalclaw:finance-audit:capital-open:v1", yt = "totalclaw:finance-audit:defaults-hint-closed:v1:", QC = /* @__PURE__ */ e.defineComponent({
   __name: "FinanceAuditWorkbenchView",
-  setup(i) {
-    const B = ye.useRoute(), t = ye.useRouter(), y = ue.FAU_GROUPS, r = e.ref(null), n = e.ref([]), c = e.ref(!1), a = e.ref(!1), N = e.ref(""), E = e.ref(""), u = e.ref(!1), L = e.ref(""), g = s.listSeparator(), v = e.ref(null), b = e.ref(!1), h = e.ref([]), K = e.ref([]), T = e.ref(""), z = e.ref(""), S = e.ref(""), w = e.computed(() => String(B.params.moduleId || "")), m = e.computed(() => ge.regionProfile(r.value?.company?.region || "CN").name), f = (A) => A.split(/[\\/]/).pop() || A, p = (A) => A === "capital", I = e.ref(_());
-    function _() {
+  setup(c) {
+    const _ = ye.useRoute(), t = ye.useRouter(), N = ue.FAU_GROUPS, r = e.ref(null), n = e.ref([]), i = e.ref(!1), a = e.ref(!1), m = e.ref(""), E = e.ref(""), u = e.ref(!1), L = e.ref(""), g = s.listSeparator(), v = e.ref(null), b = e.ref(!1), h = e.ref([]), K = e.ref([]), T = e.ref(""), z = e.ref(""), S = e.ref(""), w = e.computed(() => String(_.params.moduleId || "")), p = e.computed(() => ge.regionProfile(r.value?.company?.region || "CN").name), f = (A) => A.split(/[\\/]/).pop() || A, y = (A) => A === "capital", I = e.ref(B());
+    function B() {
       try {
         return localStorage.getItem(pt) === "1";
       } catch {
@@ -22365,14 +22380,14 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
       return n.value.filter((q) => q.group === A && q.applicable && q.visible);
     }
     async function H() {
-      c.value = !0;
+      i.value = !0;
       try {
         const [A, q] = await Promise.all([Y("home.get"), Y("catalog.get")]);
-        r.value = A, n.value = q, N.value = "", z.value || (z.value = A.project?.period || De());
+        r.value = A, n.value = q, m.value = "", z.value || (z.value = A.project?.period || De());
       } catch (A) {
-        N.value = Q.errorMessage(A);
+        m.value = Q.errorMessage(A);
       } finally {
-        c.value = !1;
+        i.value = !1;
       }
     }
     async function ce(A) {
@@ -22458,7 +22473,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
         S.value = Q.errorMessage(q);
       }
     }
-    async function Me() {
+    async function je() {
       a.value = !0;
       try {
         await Y("data.importFromFinanceAgent", { ledgerId: T.value, period: z.value }), await Ne();
@@ -22477,8 +22492,8 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
       });
     }), e.onBeforeUnmount(() => {
       Ve?.(), ke && clearTimeout(ke);
-    }), (A, q) => (e.openBlock(), e.createElementBlock("div", BD, [
-      e.createElementVNode("header", bD, [
+    }), (A, q) => (e.openBlock(), e.createElementBlock("div", SD, [
+      e.createElementVNode("header", DD, [
         e.createVNode(Kt),
         q[15] || (q[15] = e.createElementVNode(
           "span",
@@ -22489,7 +22504,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
           -1
           /* CACHED */
         )),
-        e.createElementVNode("div", SD, [
+        e.createElementVNode("div", CD, [
           e.createElementVNode(
             "h1",
             null,
@@ -22499,7 +22514,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
           ),
           e.createElementVNode(
             "p",
-            DD,
+            wD,
             e.toDisplayString(A.$t("月结关账、对账、审计与内控、税务合规、管理报告、资金风险与投融资估值，48 个模块分步出底稿，人工签核后归档；中英阿三语，适配中国、国际、沙特与阿联酋准则税制。")),
             1
             /* TEXT */
@@ -22528,13 +22543,13 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
         e.createElementVNode("button", {
           type: "button",
           class: "ss-btn",
-          disabled: c.value,
+          disabled: i.value,
           onClick: H
         }, [
           e.createElementVNode(
             "i",
             {
-              class: e.normalizeClass(c.value ? "ri-loader-4-line spin" : "ri-refresh-line")
+              class: e.normalizeClass(i.value ? "ri-loader-4-line spin" : "ri-refresh-line")
             },
             null,
             2
@@ -22545,9 +22560,9 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
             1
             /* TEXT */
           )
-        ], 8, CD)
+        ], 8, TD)
       ]),
-      N.value ? (e.openBlock(), e.createElementBlock("p", wD, [
+      m.value ? (e.openBlock(), e.createElementBlock("p", LD, [
         q[16] || (q[16] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -22556,7 +22571,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(N.value),
+          e.toDisplayString(m.value),
           1
           /* TEXT */
         )
@@ -22578,11 +22593,11 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
             { key: 1 },
             [
               e.createCommentVNode(" 顶部条 "),
-              e.createElementVNode("section", LD, [
-                e.createElementVNode("span", KD, [
+              e.createElementVNode("section", AD, [
+                e.createElementVNode("span", FD, [
                   e.createElementVNode(
                     "small",
-                    AD,
+                    ID,
                     e.toDisplayString(A.$t("公司")),
                     1
                     /* TEXT */
@@ -22598,18 +22613,18 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                       e.renderList(r.value.companies, (G) => (e.openBlock(), e.createElementBlock("option", {
                         key: G.id,
                         value: G.id
-                      }, e.toDisplayString(G.name), 9, ID))),
+                      }, e.toDisplayString(G.name), 9, OD))),
                       128
                       /* KEYED_FRAGMENT */
                     )),
                     e.createElementVNode(
                       "option",
-                      PD,
+                      zD,
                       e.toDisplayString(A.$t("+ 新建公司档案")),
                       1
                       /* TEXT */
                     )
-                  ], 40, FD)
+                  ], 40, PD)
                 ]),
                 e.createVNode(Zn, {
                   ref_key: "projectBar",
@@ -22621,19 +22636,19 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                 }, null, 8, ["projects", "project"]),
                 e.createElementVNode(
                   "span",
-                  OD,
-                  e.toDisplayString(A.$t(m.value)) + " · " + e.toDisplayString(A.$t(e.unref(ge.STANDARD_LABELS)[r.value.company.standard] || r.value.company.standard)),
+                  MD,
+                  e.toDisplayString(A.$t(p.value)) + " · " + e.toDisplayString(A.$t(e.unref(ge.STANDARD_LABELS)[r.value.company.standard] || r.value.company.standard)),
                   1
                   /* TEXT */
                 ),
-                e.createVNode(ze, {
+                e.createVNode(Me, {
                   "model-value": r.value.company.outputLocale,
                   "onUpdate:modelValue": J
                 }, null, 8, ["model-value"]),
-                e.createElementVNode("span", zD, [
+                e.createElementVNode("span", jD, [
                   e.createElementVNode(
                     "small",
-                    MD,
+                    RD,
                     e.toDisplayString(A.$t("套餐")),
                     1
                     /* TEXT */
@@ -22649,11 +22664,11 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                       e.renderList(e.unref(ie.BUNDLE_LABELS), (G, le) => (e.openBlock(), e.createElementBlock("option", {
                         key: le,
                         value: le
-                      }, e.toDisplayString(A.$t(G)), 9, RD))),
+                      }, e.toDisplayString(A.$t(G)), 9, UD))),
                       128
                       /* KEYED_FRAGMENT */
                     ))
-                  ], 40, jD)
+                  ], 40, qD)
                 ]),
                 e.createElementVNode("button", {
                   type: "button",
@@ -22693,8 +22708,8 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                     1
                     /* TEXT */
                   )
-                ], 8, qD)),
-                e.createElementVNode("span", UD, [
+                ], 8, WD)),
+                e.createElementVNode("span", YD, [
                   q[20] || (q[20] = e.createElementVNode(
                     "i",
                     { class: "ri-shield-check-line" },
@@ -22709,7 +22724,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                   )
                 ])
               ]),
-              r.value.company.sample ? (e.openBlock(), e.createElementBlock("p", WD, [
+              r.value.company.sample ? (e.openBlock(), e.createElementBlock("p", GD, [
                 q[22] || (q[22] = e.createElementVNode(
                   "i",
                   { class: "ri-flask-line" },
@@ -22719,7 +22734,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                 )),
                 e.createElementVNode(
                   "span",
-                  YD,
+                  HD,
                   e.toDisplayString(A.$t("这是示例项目，用的都是示例数据。每个模块的第 2 步已经备好数据，进去点「开始校验并计算」就能看到结果与底稿。")),
                   1
                   /* TEXT */
@@ -22743,8 +22758,8 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                     1
                     /* TEXT */
                   )
-                ], 8, GD)
-              ])) : M.value.length && !te.value ? (e.openBlock(), e.createElementBlock("p", HD, [
+                ], 8, QD)
+              ])) : M.value.length && !te.value ? (e.openBlock(), e.createElementBlock("p", JD, [
                 q[24] || (q[24] = e.createElementVNode(
                   "i",
                   { class: "ri-information-line" },
@@ -22754,7 +22769,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                 )),
                 e.createElementVNode(
                   "span",
-                  QD,
+                  ZD,
                   e.toDisplayString(A.$t("还有 {n} 项配置用的是默认值：{p0}", { n: M.value.length, p0: M.value.map((G) => A.$t(G.label)).join(e.unref(g)) })),
                   1
                   /* TEXT */
@@ -22785,21 +22800,21 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                     -1
                     /* CACHED */
                   )
-                ])], 8, JD)
+                ])], 8, XD)
               ])) : e.createCommentVNode("v-if", !0),
-              r.value.project ? w.value ? (e.openBlock(), e.createBlock(_D, {
+              r.value.project ? w.value ? (e.openBlock(), e.createBlock(bD, {
                 key: `${w.value}:${r.value.project.id}`,
                 "module-id": w.value,
                 home: r.value,
-                "run-id": String(e.unref(B).query.run || "") || void 0,
-                step: String(e.unref(B).query.step || "") || void 0,
+                "run-id": String(e.unref(_).query.run || "") || void 0,
+                step: String(e.unref(_).query.step || "") || void 0,
                 onHomeChanged: H
               }, null, 8, ["module-id", "home", "run-id", "step"])) : (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 { key: 4 },
                 [
-                  e.createElementVNode("div", t2, [
-                    e.createElementVNode("section", l2, [
+                  e.createElementVNode("div", nC, [
+                    e.createElementVNode("section", aC, [
                       e.createElementVNode("h3", null, [
                         q[26] || (q[26] = e.createElementVNode(
                           "i",
@@ -22814,7 +22829,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                           /* TEXT */
                         )
                       ]),
-                      r.value.todos.length ? (e.openBlock(), e.createElementBlock("ul", n2, [
+                      r.value.todos.length ? (e.openBlock(), e.createElementBlock("ul", oC, [
                         (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           null,
@@ -22834,7 +22849,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                             ),
                             e.createElementVNode(
                               "span",
-                              o2,
+                              rC,
                               e.toDisplayString(e.unref(Z)(G.message)),
                               1
                               /* TEXT */
@@ -22846,19 +22861,19 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                               -1
                               /* CACHED */
                             ))
-                          ], 8, a2))),
+                          ], 8, sC))),
                           128
                           /* KEYED_FRAGMENT */
                         ))
                       ])) : (e.openBlock(), e.createElementBlock(
                         "p",
-                        s2,
+                        iC,
                         e.toDisplayString(A.$t("没有待办")),
                         1
                         /* TEXT */
                       ))
                     ]),
-                    e.createElementVNode("section", r2, [
+                    e.createElementVNode("section", cC, [
                       e.createElementVNode("h3", null, [
                         q[28] || (q[28] = e.createElementVNode(
                           "i",
@@ -22878,7 +22893,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                         onOpen: q[8] || (q[8] = (G) => e.unref(t).push({ path: `/workbenches/finance-audit/m/${G.moduleId}`, query: { run: G.runId, step: "signoff" } }))
                       }, null, 8, ["items"])
                     ]),
-                    e.createElementVNode("section", i2, [
+                    e.createElementVNode("section", dC, [
                       e.createElementVNode("h3", null, [
                         q[29] || (q[29] = e.createElementVNode(
                           "i",
@@ -22897,10 +22912,10 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                         e.Fragment,
                         { key: 0 },
                         [
-                          e.createElementVNode("div", c2, [
+                          e.createElementVNode("div", uC, [
                             e.createElementVNode(
                               "span",
-                              d2,
+                              mC,
                               e.toDisplayString(A.$t("关账清单")),
                               1
                               /* TEXT */
@@ -22909,10 +22924,10 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                               value: `${r.value.closeProgress.checklistDone}/${r.value.closeProgress.checklistTotal}`
                             }, null, 8, ["value"])
                           ]),
-                          e.createElementVNode("div", u2, [
+                          e.createElementVNode("div", pC, [
                             e.createElementVNode(
                               "span",
-                              m2,
+                              yC,
                               e.toDisplayString(A.$t("试算平衡")),
                               1
                               /* TEXT */
@@ -22946,10 +22961,10 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                               /* CLASS */
                             )
                           ]),
-                          e.createElementVNode("div", p2, [
+                          e.createElementVNode("div", NC, [
                             e.createElementVNode(
                               "span",
-                              y2,
+                              VC,
                               e.toDisplayString(A.$t("勾稽未通过")),
                               1
                               /* TEXT */
@@ -22963,12 +22978,12 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                         /* STABLE_FRAGMENT */
                       )) : (e.openBlock(), e.createElementBlock(
                         "p",
-                        N2,
+                        EC,
                         e.toDisplayString(A.$t("本项目还没有跑月结关账")),
                         1
                         /* TEXT */
                       )),
-                      e.createElementVNode("div", V2, [
+                      e.createElementVNode("div", kC, [
                         e.createElementVNode(
                           "button",
                           {
@@ -22986,25 +23001,25 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                   e.createCommentVNode(" 模块入口：七个分组；每张卡说清楚能产出什么、现在能不能用 "),
                   e.createElementVNode(
                     "p",
-                    E2,
+                    vC,
                     e.toDisplayString(A.$t("{n} 个模块已可用、{m} 个即将上线：点可用的卡片进入，按七步出底稿；每张卡写着它产出什么。", { n: R.value, m: d.value })),
                     1
                     /* TEXT */
                   ),
-                  e.createElementVNode("div", k2, [
+                  e.createElementVNode("div", gC, [
                     (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       null,
-                      e.renderList(e.unref(y), (G) => (e.openBlock(), e.createBlock(e.resolveDynamicComponent(p(G) ? "details" : "section"), {
+                      e.renderList(e.unref(N), (G) => (e.openBlock(), e.createBlock(e.resolveDynamicComponent(y(G) ? "details" : "section"), {
                         key: G,
                         class: "fau-group",
                         "data-test": `fau-group-${G}`,
-                        open: p(G) ? I.value : void 0,
-                        onToggle: (le) => p(G) && k(le)
+                        open: y(G) ? I.value : void 0,
+                        onToggle: (le) => y(G) && k(le)
                       }, {
                         default: e.withCtx(() => [
                           (e.openBlock(), e.createBlock(
-                            e.resolveDynamicComponent(p(G) ? "summary" : "header"),
+                            e.resolveDynamicComponent(y(G) ? "summary" : "header"),
                             null,
                             {
                               default: e.withCtx(() => [
@@ -23017,14 +23032,14 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                                 ),
                                 e.createElementVNode(
                                   "span",
-                                  v2,
+                                  fC,
                                   e.toDisplayString(U(G).length),
                                   1
                                   /* TEXT */
                                 ),
-                                p(G) ? (e.openBlock(), e.createElementBlock(
+                                y(G) ? (e.openBlock(), e.createElementBlock(
                                   "small",
-                                  g2,
+                                  hC,
                                   e.toDisplayString(I.value ? A.$t("点击收起") : A.$t("点击展开")),
                                   1
                                   /* TEXT */
@@ -23036,7 +23051,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                             1024
                             /* DYNAMIC_SLOTS */
                           )),
-                          e.createElementVNode("div", f2, [
+                          e.createElementVNode("div", $C, [
                             (e.openBlock(!0), e.createElementBlock(
                               e.Fragment,
                               null,
@@ -23051,7 +23066,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                                   e.createElementVNode("strong", null, [
                                     e.createElementVNode(
                                       "span",
-                                      h2,
+                                      _C,
                                       e.toDisplayString(le.code),
                                       1
                                       /* TEXT */
@@ -23069,10 +23084,10 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                                     1
                                     /* TEXT */
                                   ),
-                                  e.createElementVNode("span", $2, [
+                                  e.createElementVNode("span", BC, [
                                     le.status === "ready" ? (e.openBlock(), e.createElementBlock(
                                       "span",
-                                      _2,
+                                      bC,
                                       e.toDisplayString(A.$t("可用")),
                                       1
                                       /* TEXT */
@@ -23081,7 +23096,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                                       class: "fau-badge muted",
                                       "data-test": `fau-planned-${le.id}`,
                                       "data-batch": le.batch
-                                    }, e.toDisplayString(A.$t("即将上线")), 9, B2)),
+                                    }, e.toDisplayString(A.$t("即将上线")), 9, SC)),
                                     (e.openBlock(!0), e.createElementBlock(
                                       e.Fragment,
                                       null,
@@ -23115,7 +23130,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                       /* KEYED_FRAGMENT */
                     ))
                   ]),
-                  e.createElementVNode("section", b2, [
+                  e.createElementVNode("section", DC, [
                     e.createElementVNode("h3", null, [
                       q[30] || (q[30] = e.createElementVNode(
                         "i",
@@ -23130,7 +23145,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                         /* TEXT */
                       )
                     ]),
-                    r.value.recent.length ? (e.openBlock(), e.createElementBlock("ul", S2, [
+                    r.value.recent.length ? (e.openBlock(), e.createElementBlock("ul", CC, [
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
@@ -23147,7 +23162,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                             2
                             /* CLASS */
                           ),
-                          e.createElementVNode("span", C2, [
+                          e.createElementVNode("span", TC, [
                             e.createTextVNode(
                               e.toDisplayString(e.unref(Z)(G.title)) + " · ",
                               1
@@ -23166,13 +23181,13 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                             3
                             /* TEXT, CLASS */
                           )
-                        ], 8, D2))),
+                        ], 8, wC))),
                         128
                         /* KEYED_FRAGMENT */
                       ))
                     ])) : (e.openBlock(), e.createElementBlock(
                       "p",
-                      w2,
+                      LC,
                       e.toDisplayString(A.$t("还没有产出")),
                       1
                       /* TEXT */
@@ -23181,7 +23196,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                 ],
                 64
                 /* STABLE_FRAGMENT */
-              )) : (e.openBlock(), e.createElementBlock("section", ZD, [
+              )) : (e.openBlock(), e.createElementBlock("section", xD, [
                 e.createElementVNode(
                   "h3",
                   null,
@@ -23191,12 +23206,12 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                 ),
                 e.createElementVNode(
                   "p",
-                  XD,
+                  eC,
                   e.toDisplayString(A.$t("每个项目对应一个月结期、年审或申报周期，数据、运行和签核都挂在项目下。")),
                   1
                   /* TEXT */
                 ),
-                e.createElementVNode("div", xD, [
+                e.createElementVNode("div", tC, [
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn primary",
@@ -23216,7 +23231,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                       1
                       /* TEXT */
                     )
-                  ], 8, e2),
+                  ], 8, lC),
                   e.createElementVNode(
                     "button",
                     {
@@ -23237,7 +23252,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
         ],
         64
         /* STABLE_FRAGMENT */
-      )) : (e.openBlock(), e.createElementBlock("p", TD, [
+      )) : (e.openBlock(), e.createElementBlock("p", KD, [
         q[17] || (q[17] = e.createElementVNode(
           "i",
           { class: "ri-loader-4-line spin" },
@@ -23286,16 +23301,16 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
             )
           ])])
         ]),
-        e.createElementVNode("div", L2, [
+        e.createElementVNode("div", AC, [
           e.createElementVNode(
             "p",
-            K2,
+            FC,
             e.toDisplayString(A.$t("在模块的第 2 步上传数据；这里管理本项目已导入的数据集，也可以从财务智能体账套只读导入。")),
             1
             /* TEXT */
           ),
-          e.createElementVNode("div", A2, [
-            e.createElementVNode("table", F2, [
+          e.createElementVNode("div", IC, [
+            e.createElementVNode("table", PC, [
               e.createElementVNode("thead", null, [
                 e.createElementVNode("tr", null, [
                   e.createElementVNode(
@@ -23314,7 +23329,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                   ),
                   e.createElementVNode(
                     "th",
-                    I2,
+                    OC,
                     e.toDisplayString(A.$t("行数")),
                     1
                     /* TEXT */
@@ -23335,7 +23350,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                   e.renderList(h.value, (G) => (e.openBlock(), e.createElementBlock("tr", {
                     key: G.id
                   }, [
-                    e.createElementVNode("td", P2, [
+                    e.createElementVNode("td", zC, [
                       e.createTextVNode(
                         e.toDisplayString(G.label),
                         1
@@ -23343,7 +23358,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                       ),
                       G.issues.length ? (e.openBlock(), e.createElementBlock(
                         "small",
-                        O2,
+                        MC,
                         " · " + e.toDisplayString(A.$t("问题 {n}", { n: G.issues.length })),
                         1
                         /* TEXT */
@@ -23356,7 +23371,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                       1
                       /* TEXT */
                     ),
-                    e.createElementVNode("td", z2, [
+                    e.createElementVNode("td", jC, [
                       e.createVNode(l, {
                         value: G.rowCount
                       }, null, 8, ["value"])
@@ -23374,7 +23389,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                           -1
                           /* CACHED */
                         )
-                      ])], 8, M2)
+                      ])], 8, RC)
                     ])
                   ]))),
                   128
@@ -23390,7 +23405,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
             1
             /* TEXT */
           ),
-          e.createElementVNode("div", j2, [
+          e.createElementVNode("div", qC, [
             e.withDirectives(e.createElementVNode(
               "select",
               {
@@ -23400,7 +23415,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
               [
                 e.createElementVNode(
                   "option",
-                  R2,
+                  UC,
                   e.toDisplayString(K.value.length ? A.$t("选择账套") : A.$t("财务智能体里还没有账套")),
                   1
                   /* TEXT */
@@ -23411,7 +23426,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
                   e.renderList(K.value, (G) => (e.openBlock(), e.createElementBlock("option", {
                     key: G.id,
                     value: G.id
-                  }, e.toDisplayString(G.name), 9, q2))),
+                  }, e.toDisplayString(G.name), 9, WC))),
                   128
                   /* KEYED_FRAGMENT */
                 ))
@@ -23443,10 +23458,10 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
               type: "button",
               class: "ss-btn sm",
               disabled: !T.value || a.value,
-              onClick: Me
-            }, e.toDisplayString(A.$t("只读导入")), 9, U2)
+              onClick: je
+            }, e.toDisplayString(A.$t("只读导入")), 9, YC)
           ]),
-          S.value ? (e.openBlock(), e.createElementBlock("p", W2, [
+          S.value ? (e.openBlock(), e.createElementBlock("p", GC, [
             q[34] || (q[34] = e.createElementVNode(
               "i",
               { class: "ri-error-warning-line" },
@@ -23461,8 +23476,8 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
             )
           ])) : e.createCommentVNode("v-if", !0)
         ])
-      ], 8, T2)) : e.createCommentVNode("v-if", !0),
-      E.value ? (e.openBlock(), e.createElementBlock("p", Y2, [
+      ], 8, KC)) : e.createCommentVNode("v-if", !0),
+      E.value ? (e.openBlock(), e.createElementBlock("p", HC, [
         q[35] || (q[35] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -23478,7 +23493,7 @@ const n8 = ["data-test"], a8 = { class: "fau-panel fau-mhead" }, o8 = { class: "
       ])) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), H2 = /* @__PURE__ */ ae(G2, [["__scopeId", "data-v-b6a33bbf"]]);
+}), JC = /* @__PURE__ */ ae(QC, [["__scopeId", "data-v-b6a33bbf"]]);
 export {
-  H2 as default
+  JC as default
 };

@@ -19,6 +19,12 @@ import { coverRows, type OutputCtx } from './close';
 import { hijriOf } from '../engines/tax/common';
 import { DOC_LABEL } from '../engines/tax/tp';
 
+// 缺本语言译文时回落英文（同宿主 core-domain pickLocaleTranslation）。放在包里：2.0.6 宿主还没有这个导出
+function pickLocaleTranslation<T>(translations: Record<string, T> | undefined, locale?: string): T | undefined {
+  if (!translations || !locale) return undefined;
+  return translations[locale] ?? (locale !== 'zh-CN' ? translations['en-US'] : undefined);
+}
+
 export const DRAFT_BASIS = i18nKey('草稿口径，需当地专业人士复核');
 export const NO_FILING = i18nKey('只出申报底稿，不提交申报：中国由人在电子税务局提交（代填可去财务智能体），沙特由人在 ZATCA 平台提交，阿联酋由人在 FTA 平台提交。');
 
@@ -50,17 +56,17 @@ function banner(t: L, draftBasis: boolean): string {
 
 /** 规则标签 / 文字取值：输出语言有译文用译文，否则用规则表里的中文原文 */
 function ruleLabel(u: FauRuleUse, locale: FauLocale): string {
-  return u.translations?.[locale]?.label || u.label;
+  return pickLocaleTranslation(u.translations, locale)?.label || u.label;
 }
 function ruleValue(u: FauRuleUse, locale: FauLocale): string | number {
-  return typeof u.value === 'number' ? u.value : (u.translations?.[locale]?.value || String(u.value));
+  return typeof u.value === 'number' ? u.value : (pickLocaleTranslation(u.translations, locale)?.value || String(u.value));
 }
 
 /** 地区规则与出处：原文按原语言保留，译文仅供参考（以原文为准）；未审核的标草稿口径 */
 function rulesSheetRows(rules: FauRuleUse[], t: L, locale: FauLocale): XCell[][] {
   return rules.map((u) => [
     u.id, ruleLabel(u, locale), ruleValue(u, locale), u.unit || '', u.version, u.effectiveFrom, u.effectiveTo || '',
-    u.source.issuer, u.source.title, u.source.clause || '', u.source.originalText || '', u.source.translations?.[locale] || '',
+    u.source.issuer, u.source.title, u.source.clause || '', u.source.originalText || '', pickLocaleTranslation(u.source.translations, locale) || '',
     t(i18nKey('以原文为准')), u.reviewed ? t(i18nKey('已经当地专业人员审核')) : t(DRAFT_BASIS),
   ]);
 }

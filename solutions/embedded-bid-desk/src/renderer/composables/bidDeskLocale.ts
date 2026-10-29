@@ -466,7 +466,8 @@ export type BidDeskMessageKey = keyof typeof messages['zh-CN'];
 export function useBidDeskLocale() {
   const locale = computed(() => {
     const value = String(i18n.global.locale.value);
-    return value === 'ar' || value === 'en-US' ? value : 'zh-CN';
+    // 工作台文案只备了中英阿：越南语 / 马来语界面用英文，不回落中文
+    return value === 'ar' || value === 'en-US' ? value : value === 'vi' || value === 'ms' ? 'en-US' : 'zh-CN';
   });
   const isRtl = computed(() => locale.value === 'ar');
   const bt = (key: BidDeskMessageKey): string => messages[locale.value][key] || messages['zh-CN'][key];

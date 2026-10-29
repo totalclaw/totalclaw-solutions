@@ -23,6 +23,9 @@ vi.mock('electron', () => ({
   shell: { openPath: async () => '', showItemInFolder: () => undefined },
   BrowserWindow: class {},
 }));
+// 运行状态每一步 / 每个进度都原子写并 fsync；并发全量跑时多 worker 抢磁盘落盘把单条用例拖过超时。
+// 这里只验业务结果不验断电持久性：保留「写临时文件 → rename」，只把 fsync 置空。
+vi.mock('fs', async (orig) => ({ ...(await orig<typeof import('fs')>()), fsyncSync: () => undefined }));
 vi.mock('../../services/audit', () => ({ audit: () => undefined }));
 vi.mock('../../services/bidWriter/docx', async (orig) => ({
   ...(await orig<typeof import('../../services/bidWriter/docx')>()),
@@ -331,12 +334,19 @@ describe('财会审计批次 5 · 财务分析与管理报告', () => {
     expect(table(a, 'adjustment').rows.map((r) => r.category).sort()).toEqual(['财务费用', '销售费用'].sort());
   });
 
-  it('D5 成本：标准成本差异、费用率归因、成本中心分摊', async () => {
+  // 三种模式各是一整次运行（建运行 → 跑步骤 → 落盘），合在一条里满载时会超 5s，按模式拆成单条（断言不变）
+  it('D5 成本：标准成本差异', async () => {
     const s = await runModule('cost', 'standard', { pv: [ds.pvCost] });
     expect(table(s, 'byElement').rows.map((r) => r.totalVar)).toEqual([28000, 144000, 51000]);
     expect(res(s).checks.every((c) => c.ok)).toBe(true);
+  });
+
+  it('D5 成本：费用率归因', async () => {
     const r = await runModule('cost', 'ratio', { tb: [ds.tb], tbPrior: [ds.tbPrior] });
     expect(table(r, 'ratios').rows.filter((x) => x.flag).map((x) => x.metric)).toEqual(['销售费用']);
+  });
+
+  it('D5 成本：成本中心分摊', async () => {
     const c = await runModule('cost', 'center', { journal: [ds.journal] });
     expect(Object.fromEntries(table(c, 'centers').rows.filter((x) => x.total).map((x) => [x.center, x.total]))).toEqual(F.expected.centers);
   });

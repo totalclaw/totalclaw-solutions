@@ -6,7 +6,7 @@
       <div class="cc-hero__glow" aria-hidden="true"></div>
       <div class="cc-hero__copy">
         <p class="cc-hero__eyebrow"><i class="ri-heart-3-line"></i>{{ $t('公益传播 · 项目工作台') }}</p>
-        <h1>{{ $t('慈善活动内容工场') }}</h1>
+        <h1>{{ $t('活动运营工坊') }}</h1>
         <p class="cc-hero__sub">{{ lineMeta.hint }}</p>
         <div class="cc-hero__chain" aria-hidden="true">
           <span v-for="(m, i) in steps.metas" :key="m.key" class="cc-hero__chip" :class="steps.runtime[m.key].state"><i :class="m.icon"></i>{{ m.title }}<i v-if="i < steps.metas.length - 1" class="ri-arrow-right-s-line arrow"></i></span>
@@ -1077,7 +1077,7 @@ async function runPublish(): Promise<void> {
   try {
     const caption = publishCaption.value.trim();
     const tags = publishTopics.value.split(/[\s,，#]+/).map((x) => x.trim()).filter(Boolean).slice(0, 8);
-    const projectName = target.archive?.eventName[l] || target.archive?.orgName[l] || i18nT('慈善活动内容工场');
+    const projectName = target.archive?.eventName[l] || target.archive?.orgName[l] || i18nT('活动运营工坊');
 
     if (overseasIds.value.length) {
       // contextBrief 由调用方自己拼：YouTube 上传向导的 LLM 靠它填标题与说明，
@@ -1106,7 +1106,7 @@ async function runPublish(): Promise<void> {
         caption,
         workflowSource: 'charity-content',
         returnPath: '/workbenches/charity-content',
-        returnLabel: i18nT('返回慈善活动内容工场'),
+        returnLabel: i18nT('返回活动运营工坊'),
       };
       await api.saveWorkflow(buildVideoPublishWorkflow(input));
       setWorkflowAutoRun(FIXED_VIDEO_PUBLISH_WORKFLOW_ID, input);

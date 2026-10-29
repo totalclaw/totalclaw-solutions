@@ -50,6 +50,8 @@ import {
   jobWaitExtendedAt,
   resetVideoStudioRunState,
 } from '../composables/videoStudioRunState';
+// 用 fake timers 一口气推进十几分钟（每秒一跳的看门狗 + 重渲染），满载时单条可超 5s 默认超时；断言不涉墙钟耗时
+vi.setConfig({ testTimeout: 30_000 });
 
 const flush = () => new Promise((r) => setTimeout(r, 0));
 const flushMany = async (rounds = 6) => { for (let i = 0; i < rounds; i += 1) await flush(); };

@@ -4,7 +4,7 @@
       <PageBackButton />
       <div class="bw-hero__copy">
         <p class="bw-hero__eyebrow"><i class="ri-draft-line"></i>{{ $t('招投标 · 项目工作台') }}</p>
-        <h1>{{ $t('标书制作智能体') }}</h1>
+        <h1>{{ $t('智能标书助手') }}</h1>
         <p class="bw-hero__sub">
           {{ $t('填投标目标与目标投标网站，自动抓公告并拆成逐条要求；标书模板可以上传，不上传就从知识库里找；公司资料取自知识库，逐章成文后做废标风险自检，最后导出 Word / PDF 正式件。') }}
         </p>

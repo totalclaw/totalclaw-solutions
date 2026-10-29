@@ -84,7 +84,8 @@
   border: 1px solid var(--color-border); background: var(--color-bg-primary); color: var(--color-text-primary);
   font-size: 12.5px; font-weight: 600; cursor: pointer; white-space: nowrap;
 }
-.bw-btn:hover:not(:disabled) { background: var(--color-bg-hover); }
+/* :where 包住禁用判断，优先级不高过 .bw-btn.primary 的品牌底色（否则主按钮悬停变浅灰、白字看不见） */
+.bw-btn:hover:where(:not(:disabled)) { background: var(--color-bg-hover); }
 .bw-btn:disabled { opacity: .55; cursor: not-allowed; }
 .bw-btn.primary { background: var(--color-brand); border-color: var(--color-brand); color: var(--color-on-accent); }
 .bw-btn.primary:hover:not(:disabled) { filter: brightness(1.06); }

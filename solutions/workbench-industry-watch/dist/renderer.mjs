@@ -277,7 +277,7 @@ const fe = { class: "intel-page" }, Ee = { class: "intel-hero" }, ye = { class: 
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(t.$t("盘面情报台")),
+              e.toDisplayString(t.$t("盯盘复盘助手")),
               1
               /* TEXT */
             )
@@ -928,7 +928,7 @@ const fe = { class: "intel-page" }, Ee = { class: "intel-hero" }, ye = { class: 
   for (const [S, K] of y)
     k[S] = K;
   return k;
-}, Lt = /* @__PURE__ */ Ct(Bt, [["__scopeId", "data-v-de665f4c"]]);
+}, Lt = /* @__PURE__ */ Ct(Bt, [["__scopeId", "data-v-3ed2d791"]]);
 export {
   Lt as default
 };

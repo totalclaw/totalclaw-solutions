@@ -37,13 +37,19 @@ import type { FauRuleUse } from '@totalclaw/ipc-contracts';
 import { currentLocale } from '../../../../composables/useLocale';
 import FauNum from '../../FauNum.vue';
 
+// 缺本语言译文时回落英文（同宿主 core-domain pickLocaleTranslation）。放在包里：2.0.6 宿主还没有这个导出
+function pickLocaleTranslation<T>(translations: Record<string, T> | undefined, locale?: string): T | undefined {
+  if (!translations || !locale) return undefined;
+  return translations[locale] ?? (locale !== 'zh-CN' ? translations['en-US'] : undefined);
+}
+
 defineProps<{ rules: FauRuleUse[]; open?: boolean }>();
 
-const label = (r: FauRuleUse) => r.translations?.[currentLocale()]?.label || r.label;
+const label = (r: FauRuleUse) => pickLocaleTranslation(r.translations, currentLocale())?.label || r.label;
 /** 数字与日期走 FauNum（<bdi dir="ltr">），文字取值按界面语言方向显示 */
 const numeric = (r: FauRuleUse) => typeof r.value === 'number' || /^\d{4}-\d{2}-\d{2}$/.test(String(r.value));
-const valueText = (r: FauRuleUse) => String(r.translations?.[currentLocale()]?.value || r.value);
-const translation = (r: FauRuleUse) => (r.source.language === currentLocale().slice(0, 2) ? '' : r.source.translations?.[currentLocale()] || '');
+const valueText = (r: FauRuleUse) => String(pickLocaleTranslation(r.translations, currentLocale())?.value || r.value);
+const translation = (r: FauRuleUse) => (r.source.language === currentLocale().slice(0, 2) ? '' : pickLocaleTranslation(r.source.translations, currentLocale()) || '');
 </script>
 
 <style scoped>

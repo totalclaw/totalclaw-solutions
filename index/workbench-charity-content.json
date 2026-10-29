@@ -1,12 +1,12 @@
 {
   "id": "workbench-charity-content",
-  "version": "2.0.4",
-  "treeDigest": "523c1ee6a16a9c37de5a566906be98db75325947ab55f7fb9248336258f83e5d",
+  "version": "2.0.5",
+  "treeDigest": "f12a0b90381cd089eef67ffb36a21634b35d2f572eb19987492e309a438176f3",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1272,
-      "sha256": "6710974187def4e3771104a0aff1edd8ab6a59c759975ce258747d51b2a1cc0a"
+      "size": 1867,
+      "sha256": "1d84a83be928744406044b0170c6c53cfaed34c88c786d960b41d58f04b3ae4f"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 61089,
-      "sha256": "bd5e25feae9c2ee9749531202d0e30a87fb168b3b084eb9e0274387db2f91f40"
+      "size": 60319,
+      "sha256": "2a32f5d92c597547e25bf7130f3014cc21ffe52d9713659be3e19032fe69cfed"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 214956,
-      "sha256": "c27e49379cb776352112da627e38a5fecf140a6651f1ea0c540cf0fd12a94d32"
+      "size": 214938,
+      "sha256": "1b1c59d3e3207ec38d6a93348623ee9fd175ce346b3b55aed5a31f2e4f8b25af"
     },
     {
       "path": "dist/style.css",
-      "size": 35250,
-      "sha256": "98b91eb598ac6c48fa83c34e0ee8ebc51d9f5caf4f8d5dae91c96b59f79a1d20"
+      "size": 35273,
+      "sha256": "163f51721c4322c3726334b7b8d2efde8b7db535955db8b0f6297bed0f95ca64"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 5805,
-      "sha256": "6e6edeaf832304d675a52bb70ccfecdb6a19a1d408c02f6ef0b3bcaf1207cdc3"
+      "sha256": "2231510d945d27e199ff2fb997a5743616053d5096552a435e93074a973dd6a6"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.5",
+      "ref": "workbench-charity-content@2.0.5",
+      "treeDigest": "f12a0b90381cd089eef67ffb36a21634b35d2f572eb19987492e309a438176f3",
+      "filesRef": "index/workbench-charity-content/2.0.5.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.6",
+      "hostApi": 2,
+      "publishedAt": "2026-10-29"
+    },
     {
       "version": "2.0.4",
       "ref": "workbench-charity-content@2.0.4",

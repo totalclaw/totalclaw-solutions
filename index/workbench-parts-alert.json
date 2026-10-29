@@ -1,12 +1,12 @@
 {
   "id": "workbench-parts-alert",
-  "version": "2.0.4",
-  "treeDigest": "5aa5425eb78fb0765c1bca0f7ac585d7b6278989adc0ca4bec87d645bd956bcd",
+  "version": "2.0.5",
+  "treeDigest": "4f6dffa171a4ad8d811d64fd6b7b856f076a0fe5b6718682cc6f25a2850401d9",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1599,
-      "sha256": "5c60f60576094bbf0c9c3eed25b4df3e9bc92d186e1cb70672de137875fda499"
+      "size": 1984,
+      "sha256": "39743ccf04da3fa6ea7151876b9066250fce8051c35529674d75cb87138a8ef0"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 100202,
-      "sha256": "c0bcc09aa7af33edc56d0014f21aed746ca9ca40f087ff28c9a42e4c0434dd4b"
+      "size": 99276,
+      "sha256": "2a556ce4bcaacd1846ca5b0a91163e1d6b1e1e03d934c1324581284e84c985b1"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 173147,
-      "sha256": "8e4d7e759879e7c7f54129e354731c013920a4ee5aa96fbafa28866e9b1727d9"
+      "size": 173135,
+      "sha256": "61256f64da1089173b5c7a304a17e61dd8b41f26b7c9e6c82628c902f67903dc"
     },
     {
       "path": "dist/style.css",
-      "size": 21331,
-      "sha256": "300c57ebdee1adf12bcb0464bcc13093fbb61c6be1d5231935f52007e456c753"
+      "size": 21354,
+      "sha256": "099e5948c324867ab733eca5a7eed3f8639e06b52a8bbd90527597d55e1d32f8"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2178,
-      "sha256": "68176ba6a028108c95a6117970e3f970ab7d59fbff304ea7ff2d6ca6b841faa0"
+      "sha256": "37ceef176b8c26205b5b16a7ef0683683589663b8dc897a31f8ef585c303b06f"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.5",
+      "ref": "workbench-parts-alert@2.0.5",
+      "treeDigest": "4f6dffa171a4ad8d811d64fd6b7b856f076a0fe5b6718682cc6f25a2850401d9",
+      "filesRef": "index/workbench-parts-alert/2.0.5.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.6",
+      "hostApi": 2,
+      "publishedAt": "2026-10-29"
+    },
     {
       "version": "2.0.4",
       "ref": "workbench-parts-alert@2.0.4",

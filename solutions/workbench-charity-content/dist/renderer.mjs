@@ -1896,7 +1896,7 @@ const ka = { class: "cc-hero" }, ga = { class: "cc-hero__copy" }, ha = { class: 
       Oe.value = !0, O.publish = () => zt();
       const n = s.value.start("publish");
       try {
-        const i = Y.value.trim(), y = ft.value.split(/[\s,，#]+/).map((x) => x.trim()).filter(Boolean).slice(0, 8), N = t.archive?.eventName[l] || t.archive?.orgName[l] || o.t("慈善活动内容工场");
+        const i = Y.value.trim(), y = ft.value.split(/[\s,，#]+/).map((x) => x.trim()).filter(Boolean).slice(0, 8), N = t.archive?.eventName[l] || t.archive?.orgName[l] || o.t("活动运营工坊");
         if (G.value.length) {
           const x = [
             o.t("机构：{p0}", { p0: t.archive?.orgName[l] || "" }),
@@ -1925,7 +1925,7 @@ const ka = { class: "cc-hero" }, ga = { class: "cc-hero__copy" }, ha = { class: 
             caption: i,
             workflowSource: "charity-content",
             returnPath: "/workbenches/charity-content",
-            returnLabel: o.t("返回慈善活动内容工场")
+            returnLabel: o.t("返回活动运营工坊")
           };
           await x.saveWorkflow(We.buildVideoPublishWorkflow(Rt)), We.setWorkflowAutoRun(We.FIXED_VIDEO_PUBLISH_WORKFLOW_ID, Rt), s.value.done("publish", o.t("已交给发布工作流：{n} 个平台 · {lang} 版", { n: ce.length, lang: z[l] }), n), await c.push({ path: "/workflow" });
           return;
@@ -2098,7 +2098,7 @@ const ka = { class: "cc-hero" }, ga = { class: "cc-hero__copy" }, ha = { class: 
             e.createElementVNode(
               "h1",
               null,
-              e.toDisplayString(t.$t("慈善活动内容工场")),
+              e.toDisplayString(t.$t("活动运营工坊")),
               1
               /* TEXT */
             ),
@@ -5194,7 +5194,7 @@ const ka = { class: "cc-hero" }, ga = { class: "cc-hero__copy" }, ha = { class: 
   for (const [f, d] of c)
     r[f] = d;
   return r;
-}, Pi = /* @__PURE__ */ Ai(Li, [["__scopeId", "data-v-2611e084"]]);
+}, Pi = /* @__PURE__ */ Ai(Li, [["__scopeId", "data-v-f5d58960"]]);
 export {
   Pi as default
 };

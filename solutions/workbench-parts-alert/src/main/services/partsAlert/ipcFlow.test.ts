@@ -28,13 +28,16 @@ vi.mock('electron', () => ({
 vi.mock('../accountScope', () => ({ accountPath: (...sub: string[]) => join(H.root, 'account', ...sub) }));
 vi.mock('../caseMailSender', () => ({ sendCaseMail: vi.fn(async (_c: any, input: any) => { H.mails.push(input); return H.mail; }) }));
 
+// 静态导入：放在 beforeAll 里动态导入，首次转译 + 加载整张动作通道模块图（含 i18n 词典）就算进 10s 钩子超时，
+// 全量并发跑时要 7s。模块里的路径都经 accountPath / app.getPath 现取，收集阶段加载不受 H.root 影响。
+import { IPC_CHANNELS } from '@totalclaw/ipc-contracts';
+import { registerPartsAlertHandlers } from '../../ipc/partsAlert.ipc';
+
 let invoke: <T = any>(action: string, payload?: unknown) => Promise<T>;
 const state = (): Promise<PaWorkbenchState> => invoke<PaWorkbenchState>('state.get');
 
-beforeAll(async () => {
+beforeAll(() => {
   H.root = mkdtempSync(join(tmpdir(), 'pa-ipc-'));
-  const { IPC_CHANNELS } = await import('@totalclaw/ipc-contracts');
-  const { registerPartsAlertHandlers } = await import('../../ipc/partsAlert.ipc');
   registerPartsAlertHandlers({ getMainWindow: () => ({ webContents: { send: (_ch: string, ev: any) => H.sent.push(ev) } }), logger: { warn: () => {} }, readEmailCredentials: () => ({}), serviceAuth: null } as any);
   const fn = H.handlers.get(IPC_CHANNELS.WORKBENCH_PA_INVOKE)!;
   invoke = (action, payload) => fn({}, { action, payload });

@@ -7,10 +7,10 @@
         <i v-else class="ri-government-line"></i>
       </div>
       <div class="ca-banner__text">
-        <h1>{{ state?.settings.schoolName || $t('高校一体化AI智能体') }}</h1>
+        <h1>{{ state?.settings.schoolName || $t('校园 AI 中心') }}</h1>
         <p v-if="state?.settings.profile.englishName" class="ca-banner__en">{{ state.settings.profile.englishName }}</p>
         <p v-if="state?.settings.profile.motto" class="ca-banner__motto">{{ state.settings.profile.motto }}</p>
-        <p v-if="state?.settings.schoolName" class="ca-banner__product">{{ $t('高校一体化AI智能体') }}</p>
+        <p v-if="state?.settings.schoolName" class="ca-banner__product">{{ $t('校园 AI 中心') }}</p>
         <p v-else class="ca-banner__product">{{ $t('在「运维与设置 → 学校档案」里填写学校名称、上传校徽') }}</p>
       </div>
       <div class="ca-banner__side">
@@ -180,7 +180,7 @@ onBeforeUnmount(() => { off?.(); if (timer) clearTimeout(timer); });
 .ca-pill.ok i { color: oklch(0.85 0.14 150); }
 .ca-pill.warn i { color: oklch(0.85 0.14 80); }
 .ca-banner__btn { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 14px; border-radius: var(--radius-3); border: 1px solid var(--ca-gold); background: transparent; color: var(--ca-banner-ink); font: inherit; font-size: var(--font-size-md); cursor: pointer; transition: background .15s; }
-.ca-banner__btn:hover { background: oklch(0.78 0.1 80 / 0.18); }
+.ca-banner__btn:hover:where(:not(:disabled)) { background: oklch(0.78 0.1 80 / 0.18); }
 .ca-banner__btn:disabled { opacity: .6; cursor: default; }
 .ca-rules { margin: 0; display: flex; gap: 8px 18px; flex-wrap: wrap; align-items: center; font-size: 12.5px; color: var(--color-text-secondary); padding: 0 4px; }
 .ca-rules span { display: inline-flex; gap: 5px; align-items: center; }

@@ -59,6 +59,17 @@ describe('useBidDeskLocale', () => {
     expect(ctx.bt('title')).toMatch(/[؀-ۿ]/);
   });
 
+  it('越南语 / 马来语界面用英文词表，不回落中文', () => {
+    for (const lang of ['vi', 'ms']) {
+      holder.locale.value = lang;
+      const ctx = useBidDeskLocale();
+      expect(ctx.locale.value).toBe('en-US');
+      expect(ctx.isRtl.value).toBe(false);
+      expect(ctx.bt('title')).not.toBe('AI 项目工作台');
+      expect(ctx.bt('title')).toMatch(/[A-Za-z]/);
+    }
+  });
+
   it('同一个实例随 i18n 语言切换而响应，不需要重建', () => {
     const { locale, isRtl, bt } = useBidDeskLocale();
     expect(locale.value).toBe('zh-CN');

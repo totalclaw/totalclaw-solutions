@@ -1555,7 +1555,7 @@ const $n = { class: "bw-workbench" }, Dn = { class: "bw-hero" }, Cn = { class: "
           e.createElementVNode(
             "h1",
             null,
-            e.toDisplayString(n.$t("标书制作智能体")),
+            e.toDisplayString(n.$t("智能标书助手")),
             1
             /* TEXT */
           ),

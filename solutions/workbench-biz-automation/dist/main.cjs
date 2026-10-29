@@ -26,7 +26,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-biz-automation/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-biz-automation/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -36,7 +36,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-biz-automation/src/main/ipc/bizAutomation.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/ipc/bizAutomation.ipc.ts
 var import_electron = require("electron");
 var import_node_fs3 = require("node:fs");
 var import_node_path3 = require("node:path");
@@ -48,17 +48,17 @@ var import_userFacingError = require("host:apps/desktop-shell/src/main/utils/use
 var import_quitRegistry = require("host:apps/desktop-shell/src/main/util/quitRegistry.ts");
 var import_workbenchLlm = require("host:apps/desktop-shell/src/main/services/workbenchLlm.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/store.ts
+// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/store.ts
 var import_node_fs = require("node:fs");
 var import_node_path = require("node:path");
 var import_node_crypto = require("node:crypto");
 var import_i18n2 = require("npm:@totalclaw/i18n");
 var import_accountScope = require("host:apps/desktop-shell/src/main/services/accountScope.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/logic.ts
+// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/logic.ts
 var import_i18n = require("npm:@totalclaw/i18n");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/columnKeywords.json
+// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/columnKeywords.json
 var columnKeywords_default = {
   _note: "\u7ECF\u8425\u81EA\u52A8\u5316\u667A\u80FD\u4F53\u5BFC\u5165\u6536\u94F6 / \u8D39\u7528\u8868\u683C\u7684\u5217\u8BC6\u522B\u5173\u952E\u5B57\uFF08\u6309\u4F18\u5148\u7EA7\uFF0C\u5148\u7CBE\u786E\u540E\u5305\u542B\uFF09\u3002\u4E0D\u8FDB i18n \u8BCD\u5178\uFF1A\u8981\u5339\u914D\u5BA2\u6237\u8868\u683C\u91CC\u7684\u771F\u5B9E\u8868\u5934\u3002",
   date: [
@@ -170,7 +170,7 @@ var columnKeywords_default = {
   ]
 };
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/bannedWords.json
+// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/bannedWords.json
 var bannedWords_default = {
   _note: "\u5E7F\u544A\u6CD5\u6781\u9650\u8BCD / \u7981\u7528\u8BCD\uFF08\u8282\u9009\u5E38\u89C1\u9879\uFF09\uFF0C\u7528\u4E8E\u77ED\u89C6\u9891\u6587\u6848\u3001\u4E0A\u67B6\u6807\u9898\u3001\u6570\u5B57\u4EBA\u8BB2\u7A3F\u81EA\u68C0\u3002\u662F\u5339\u914D\u6A21\u5F0F\uFF0C\u4E0D\u8FDB i18n \u8BCD\u5178\u3002",
   words: [
@@ -216,7 +216,7 @@ var bannedWords_default = {
   ]
 };
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/logic.ts
+// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/logic.ts
 var round2 = (n) => Math.round((Number(n) || 0) * 100) / 100;
 var ratio = (a, b) => b > 0 ? Math.round(a / b * 1e4) / 1e4 : 0;
 var KEYWORDS = columnKeywords_default;
@@ -639,9 +639,9 @@ function publishRunFromWorkflow(input) {
   const outcome = input.kind === "run:completed" ? "completed" : input.kind === "run:cancelled" ? "cancelled" : "failed";
   const pick = (st) => receipts.filter((x) => x.status === st).map((x) => x.platform);
   const published = outcome === "completed" ? pick("published") : [];
-  const unconfirmed = outcome === "completed" ? pick("unconfirmed") : [];
+  const unconfirmed = outcome === "completed" ? pick("unconfirmed") : [...pick("unconfirmed"), ...pick("published")];
   const reported = new Set(receipts.map((x) => x.platform));
-  const failed = [...pick("failed"), ...input.platforms.filter((p) => !reported.has(p) || outcome !== "completed")].filter((p, i, a) => a.indexOf(p) === i && !published.includes(p) && !unconfirmed.includes(p));
+  const failed = [...pick("failed"), ...input.platforms.filter((p) => !reported.has(p))].filter((p, i, a) => a.indexOf(p) === i && !published.includes(p) && !unconfirmed.includes(p));
   return {
     at: Number.isNaN(at.getTime()) ? (/* @__PURE__ */ new Date()).toISOString() : at.toISOString(),
     ...input.runId ? { runId: input.runId } : {},
@@ -654,7 +654,7 @@ function publishRunFromWorkflow(input) {
   };
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/store.ts
+// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/store.ts
 function newId(prefix) {
   return `${prefix}_${(0, import_node_crypto.randomUUID)().replace(/-/g, "").slice(0, 12)}`;
 }
@@ -809,7 +809,7 @@ var BizAutomationStore = class {
   }
 };
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/prompts.ts
+// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/prompts.ts
 var PLATFORM_STYLE = {
   douyin: "Douyin: punchy hook in the first 2 seconds, title <= 30 chars, 3-5 hashtags",
   kuaishou: "Kuaishou: down-to-earth and friendly, title <= 30 chars, 3-5 hashtags",
@@ -900,7 +900,7 @@ function modelShotPrompt(g) {
   ].join(" ");
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/videoRender.ts
+// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/videoRender.ts
 var import_node_fs2 = require("node:fs");
 var import_node_path2 = require("node:path");
 var import_i18n3 = require("npm:@totalclaw/i18n");
@@ -985,7 +985,7 @@ async function localBgm(tools, durationSec, workDir, registry) {
   return g.code === 0 && (0, import_node_fs2.existsSync)(generated) ? generated : null;
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-biz-automation/src/main/ipc/bizAutomation.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/ipc/bizAutomation.ipc.ts
 var import_excel = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 var import_excel2 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 var import_media2 = require("host:apps/desktop-shell/src/main/services/charityContent/media.ts");
@@ -1208,7 +1208,7 @@ function registerBizAutomationHandlers(deps) {
   };
   const createVideo = (p) => {
     const ids = (p.garmentIds || []).filter((id) => garment(id));
-    if (!ids.length) throw new Error((0, import_i18n4.t)("\u8BF7\u5148\u9009\u62E9\u5546\u54C1\uFF08\u5546\u54C1\u5E93\u5728\u300C\u670D\u88C5\u5B9E\u4F53\u5E97\u667A\u80FD\u4F53\u300D\u91CC\u7EF4\u62A4\uFF09"));
+    if (!ids.length) throw new Error((0, import_i18n4.t)("\u8BF7\u5148\u9009\u62E9\u5546\u54C1\uFF08\u5546\u54C1\u5E93\u5728\u300C\u670D\u88C5AI\u8BD5\u8863\u300D\u91CC\u7EF4\u62A4\uFF09"));
     const materials = [];
     for (const id of ids) {
       const g = garment(id);
@@ -1556,7 +1556,7 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? "#f4f4f4" : "#fff"}"><td s
       const parsed2 = parseInventory(table.headers, table.rows);
       if (!parsed2.rows.length) throw new Error((0, import_i18n4.t)("\u6CA1\u6709\u8BC6\u522B\u51FA\u6709\u6548\u7684\u5E93\u5B58\u884C\uFF08\u8D27\u53F7 / \u540D\u79F0\u4E0E\u5E93\u5B58\u90FD\u8981\u6709\uFF09"));
       const svc = (0, import_apparelStore.apparelService)();
-      if (!svc) throw new Error((0, import_i18n4.t)("\u670D\u88C5\u5B9E\u4F53\u5E97\u667A\u80FD\u4F53\u672A\u52A0\u8F7D"));
+      if (!svc) throw new Error((0, import_i18n4.t)("\u670D\u88C5AI\u8BD5\u8863\u672A\u52A0\u8F7D"));
       const { updates, unmatched } = applyInventory(garments(), parsed2.rows);
       for (const u of updates) svc.saveGarment({ id: u.id, stock: u.stock });
       const day = (/* @__PURE__ */ new Date()).toISOString().slice(0, 10);
@@ -1966,7 +1966,7 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
     },
     /**
      * 发布工作流结束后的回写（渲染层从工作流运行页留下的回执里取，带上发起时记下的视频 id）。
-     * 有平台确认发布 → 已发布；一个都没有 → 退回已审核可重发。同一 runId 只记一次（重复进页面不重复记账）。
+     * 有平台确认发布 → 已发布；只有待核对 → 停在发布中等人工核对；都没有 → 退回已审核可重发。同一 runId 只记一次（重复进页面不重复记账）。
      */
     "video.publishResult": (p) => {
       const v = videoById(p.id);
@@ -1976,14 +1976,14 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
       if (run.published.length) parts.push((0, import_i18n4.t)("{p0} \u5DF2\u53D1\u5E03", { p0: platformNames(run.published) }));
       if (run.unconfirmed.length) parts.push((0, import_i18n4.t)("{p0} \u5F85\u4EBA\u5DE5\u6838\u5BF9", { p0: platformNames(run.unconfirmed) }));
       if (run.failed.length) parts.push((0, import_i18n4.t)("{p0} \u672A\u53D1\u6210\u529F", { p0: platformNames(run.failed) }));
-      const note = run.outcome === "cancelled" ? (0, import_i18n4.t)("\u53D1\u5E03\u5DE5\u4F5C\u6D41\u5DF2\u53D6\u6D88") : parts.join((0, import_i18n4.t)("\uFF0C")) || (0, import_i18n4.t)("\u53D1\u5E03\u5DE5\u4F5C\u6D41\u6CA1\u6709\u8FD4\u56DE\u5E73\u53F0\u56DE\u6267");
+      const note = run.outcome === "cancelled" && !run.published.length && !run.unconfirmed.length ? (0, import_i18n4.t)("\u53D1\u5E03\u5DE5\u4F5C\u6D41\u5DF2\u53D6\u6D88") : parts.join((0, import_i18n4.t)("\uFF0C")) || (0, import_i18n4.t)("\u53D1\u5E03\u5DE5\u4F5C\u6D41\u6CA1\u6709\u8FD4\u56DE\u5E73\u53F0\u56DE\u6267");
       run.note = note;
       const ok = run.published.length > 0;
       store.update((s) => {
         const x = s.videos.find((y) => y.id === p.id);
         if (x) x.publishRuns = [...x.publishRuns || [], run].slice(-30);
       });
-      patchVideo(p.id, ok ? { status: "published", publishedAt: v.publishedAt && v.status === "published" ? v.publishedAt : run.at, publishRunNote: note } : { status: v.status === "published" ? "published" : "approved", publishRunNote: note });
+      patchVideo(p.id, ok ? { status: "published", publishedAt: v.publishedAt && v.status === "published" ? v.publishedAt : run.at, publishRunNote: note } : { status: v.status === "published" ? "published" : run.unconfirmed.length ? "publishing" : "approved", publishRunNote: note });
       track(p.id, "publish", (0, import_i18n4.t)("\u53D1\u5E03\u7ED3\u679C\uFF1A{p0}", { p0: note }), ok);
       return videoById(p.id);
     },
@@ -2253,7 +2253,7 @@ ${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
     },
     "local.shelf": (p) => {
       const svc = (0, import_apparelStore.apparelService)();
-      if (!svc) throw new Error((0, import_i18n4.t)("\u670D\u88C5\u5B9E\u4F53\u5E97\u667A\u80FD\u4F53\u672A\u52A0\u8F7D"));
+      if (!svc) throw new Error((0, import_i18n4.t)("\u670D\u88C5AI\u8BD5\u8863\u672A\u52A0\u8F7D"));
       return svc.saveGarment({ id: p.garmentId, onShelf: !!p.onShelf });
     },
     // D
@@ -2396,7 +2396,7 @@ ${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
   return stopBackground;
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-biz-automation/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-biz-automation/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerBizAutomationHandlers";
 var cleanup;

@@ -1306,7 +1306,7 @@ function complianceLabel(status: ComplianceStatus) {
 .bid-title p { margin: 4px 0 0; color: var(--color-text-secondary); font-size: var(--font-size-md); }
 .header-actions, .workflow-actions, .panel-actions, .decision-actions { display: flex; align-items: center; gap: 10px; }
 .btn { border: 1px solid transparent; border-radius: var(--radius-4); padding: 9px 14px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; font-size: var(--font-size-md); font-weight: 650; cursor: pointer; transition: color .18s ease, border-color .18s ease, background-color .18s ease, box-shadow .18s ease, transform .18s ease; }
-.btn:hover { transform: translateY(-1px); }
+.btn:hover:where(:not(:disabled)) { transform: translateY(-1px); }
 .btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
 .btn.primary { color: var(--color-on-accent); background: var(--bdk-grad-3); box-shadow: var(--bdk-shadow-2); }
 .btn.secondary { color: var(--bdk-brand); border-color: var(--bdk-brand-line-soft); background: var(--bdk-brand-bg); }

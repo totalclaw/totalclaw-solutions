@@ -169,11 +169,17 @@ describe('视频历史记录', () => {
     expect(r.at).toBe('2026-10-21T03:00:00.000Z');
   });
 
-  it('工作流失败 / 取消：即便有回执也不算发布成功', () => {
+  it('工作流失败 / 取消：即便有回执也不算发布成功，但带回的已发布 / 点过发布的平台记待核对，不算失败', () => {
     const r = publishRunFromWorkflow({ kind: 'run:failed', platforms: ['douyin'], receipt: { receipts: [{ platform: 'douyin', status: 'published' }] } });
     expect(r.outcome).toBe('failed');
     expect(r.published).toEqual([]);
-    expect(r.failed).toEqual(['douyin']);
-    expect(publishRunFromWorkflow({ kind: 'run:cancelled', platforms: ['douyin'], receipt: null }).outcome).toBe('cancelled');
+    expect(r.unconfirmed).toEqual(['douyin']);
+    expect(r.failed).toEqual([]);
+    const cancelled = publishRunFromWorkflow({
+      kind: 'run:cancelled', platforms: ['douyin', 'kuaishou', 'xiaohongshu'],
+      receipt: { status: 'unconfirmed', receipts: [{ platform: 'douyin', status: 'unconfirmed', note: '提交阶段中断' }, { platform: 'kuaishou', status: 'failed', error: '没出现上传控件' }] },
+    });
+    expect(cancelled).toMatchObject({ outcome: 'cancelled', published: [], unconfirmed: ['douyin'], failed: ['kuaishou', 'xiaohongshu'] });
+    expect(publishRunFromWorkflow({ kind: 'run:cancelled', platforms: ['douyin'], receipt: null })).toMatchObject({ outcome: 'cancelled', unconfirmed: [], failed: ['douyin'] });
   });
 });

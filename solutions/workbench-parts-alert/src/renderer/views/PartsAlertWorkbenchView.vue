@@ -6,7 +6,7 @@
         <span class="heading-icon"><i class="ri-alarm-warning-line"></i></span>
         <div>
           <p class="eyebrow">{{ $t('行业工作台') }}</p>
-          <h1>{{ $t('配件预警与补库智能体') }}</h1>
+          <h1>{{ $t('智能库存管理') }}</h1>
           <p class="subtitle">{{ $t('投喂配件历史发货、采购提前期、采购在途和实时库存，算出每个配件是呆滞、冗余、健康、将缺货还是已缺货，给出行动计划和补库清单；你检验后生成采购订单文件，并可每天定时运算预警。') }}</p>
         </div>
       </div>

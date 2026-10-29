@@ -27,7 +27,7 @@ I.default;
 const he = /\.(jpe?g|png|webp|heic|bmp)$/i;
 async function $(E, m) {
   const v = window.electronAPI?.workbenches?.apparelStore;
-  if (!v?.invoke) throw new Error(i.t("服装实体店智能体接口不可用，请重启应用"));
+  if (!v?.invoke) throw new Error(i.t("服装AI试衣接口不可用，请重启应用"));
   return v.invoke(E, x.toPlain(m ?? {}));
 }
 function Ve(E) {
@@ -4730,7 +4730,7 @@ const va = {
             e.createElementVNode(
               "h1",
               null,
-              e.toDisplayString(k.$t("服装实体店智能体")),
+              e.toDisplayString(k.$t("服装AI试衣")),
               1
               /* TEXT */
             ),
@@ -4951,7 +4951,7 @@ const va = {
       ]))
     ]));
   }
-}), xa = /* @__PURE__ */ O(Za, [["__scopeId", "data-v-df7b70ad"]]);
+}), xa = /* @__PURE__ */ O(Za, [["__scopeId", "data-v-67ed0fa6"]]);
 export {
   xa as default
 };

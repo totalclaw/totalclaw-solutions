@@ -16,7 +16,7 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-charity-content/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-charity-content/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -26,7 +26,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-charity-content/src/main/ipc/charityContent.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-charity-content/src/main/ipc/charityContent.ipc.ts
 var import_electron2 = require("electron");
 var import_node_fs3 = require("node:fs");
 var import_node_os = require("node:os");
@@ -35,7 +35,7 @@ var import_ipc_contracts = require("npm:@totalclaw/ipc-contracts");
 var import_i18n6 = require("npm:@totalclaw/i18n");
 var import_userFacingError = require("host:apps/desktop-shell/src/main/utils/userFacingError.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-charity-content/src/main/services/charityContent/runtime.ts
+// ../../../totalclaw-solutions/solutions/workbench-charity-content/src/main/services/charityContent/runtime.ts
 var import_electron = require("electron");
 var import_node_path = require("node:path");
 var import_i18n = require("npm:@totalclaw/i18n");
@@ -118,7 +118,7 @@ function createCharityRuntime(deps, agentHome) {
   return { defaultProviderSlug, requireDefaultModel, falFacade, vision, text };
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-charity-content/src/main/ipc/charityContent.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-charity-content/src/main/ipc/charityContent.ipc.ts
 var import_agentPython = require("host:apps/desktop-shell/src/main/services/agentPython.ts");
 var import_mediaModelConfig = require("host:apps/desktop-shell/src/main/services/mediaModelConfig.ts");
 var import_ffmpegPath = require("host:apps/desktop-shell/src/main/services/ffmpegPath.ts");
@@ -129,14 +129,14 @@ var import_archive2 = require("host:apps/desktop-shell/src/main/services/charity
 var import_media = require("host:apps/desktop-shell/src/main/services/charityContent/media.ts");
 var import_pipeline2 = require("host:apps/desktop-shell/src/main/services/charityContent/pipeline.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-charity-content/src/main/services/charityContent/prebaked.ts
+// ../../../totalclaw-solutions/solutions/workbench-charity-content/src/main/services/charityContent/prebaked.ts
 var import_node_fs = require("node:fs");
 var import_node_path2 = require("node:path");
 var import_i18n3 = require("npm:@totalclaw/i18n");
 var import_archive = require("host:apps/desktop-shell/src/main/services/charityContent/archive.ts");
 var import_reportText = require("host:apps/desktop-shell/src/main/services/charityContent/reportText.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-charity-content/src/main/services/charityContent/demoPack.ts
+// ../../../totalclaw-solutions/solutions/workbench-charity-content/src/main/services/charityContent/demoPack.ts
 var import_crypto = require("crypto");
 var import_fs = require("fs");
 var import_path = require("path");
@@ -328,7 +328,7 @@ function prebakedRoot(resourcesDir, bundledRoot) {
   return bundledRoot;
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-charity-content/src/main/services/charityContent/prebaked.ts
+// ../../../totalclaw-solutions/solutions/workbench-charity-content/src/main/services/charityContent/prebaked.ts
 var PREBAKED_REL = (0, import_node_path2.join)("bundled-solutions", "charity-content");
 function existingByLang(dir, prefix, ext, suffix = "") {
   const out = {};
@@ -410,10 +410,10 @@ function copyPrebakedFiles(files, outDir, rename, opts = {}) {
   return out;
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-charity-content/src/main/ipc/charityContent.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-charity-content/src/main/ipc/charityContent.ipc.ts
 var import_subtitles = require("host:apps/desktop-shell/src/main/services/charityContent/subtitles.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-charity-content/src/main/services/charityContent/demoMaterials.ts
+// ../../../totalclaw-solutions/solutions/workbench-charity-content/src/main/services/charityContent/demoMaterials.ts
 var import_node_fs2 = require("node:fs");
 var import_node_path3 = require("node:path");
 var import_i18n4 = require("npm:@totalclaw/i18n");
@@ -464,11 +464,11 @@ function prepareDemoMaterials(srcDir, destDir) {
   return { dir: destDir, copied, skipped };
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-charity-content/src/main/ipc/charityContent.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-charity-content/src/main/ipc/charityContent.ipc.ts
 var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var import_render2 = require("host:apps/desktop-shell/src/main/services/charityContent/render.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-charity-content/src/main/services/charityContent/validate.ts
+// ../../../totalclaw-solutions/solutions/workbench-charity-content/src/main/services/charityContent/validate.ts
 var import_node_path4 = require("node:path");
 var import_i18n5 = require("npm:@totalclaw/i18n");
 var import_pipeline = require("host:apps/desktop-shell/src/main/services/charityContent/pipeline.ts");
@@ -538,7 +538,7 @@ function requirePrompt(value, label, max = import_charityPrompts.CHARITY_PROMPT_
   return v;
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-charity-content/src/main/ipc/charityContent.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-charity-content/src/main/ipc/charityContent.ipc.ts
 function registerCharityContentHandlers(deps) {
   const runs = /* @__PURE__ */ new Map();
   const win = () => deps.getMainWindow();
@@ -1126,7 +1126,7 @@ function registerCharityContentHandlers(deps) {
   });
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-charity-content/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-charity-content/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerCharityContentHandlers";
 var cleanup;

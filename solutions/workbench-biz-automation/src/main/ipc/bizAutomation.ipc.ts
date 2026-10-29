@@ -217,7 +217,7 @@ export function registerBizAutomationHandlers(deps: WorkbenchIpcDeps): () => voi
 
   const createVideo = (p: { type: BaVideoType; garmentIds: string[]; brief?: string; platforms?: BaPublishPlatform[]; narration?: boolean; voiceGender?: 'female' | 'male'; name?: string }): BaVideoProject => {
     const ids = (p.garmentIds || []).filter((id) => garment(id));
-    if (!ids.length) throw new Error(i18nT('请先选择商品（商品库在「服装实体店智能体」里维护）'));
+    if (!ids.length) throw new Error(i18nT('请先选择商品（商品库在「服装AI试衣」里维护）'));
     const materials: string[] = [];
     for (const id of ids) {
       const g = garment(id)!;
@@ -513,7 +513,7 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? '#f4f4f4' : '#fff'}"><td s
       const parsed = parseInventory(table.headers, table.rows);
       if (!parsed.rows.length) throw new Error(i18nT('没有识别出有效的库存行（货号 / 名称与库存都要有）'));
       const svc = apparelService();
-      if (!svc) throw new Error(i18nT('服装实体店智能体未加载'));
+      if (!svc) throw new Error(i18nT('服装AI试衣未加载'));
       const { updates, unmatched } = applyInventory(garments(), parsed.rows);
       for (const u of updates) svc.saveGarment({ id: u.id, stock: u.stock });
       const day = new Date().toISOString().slice(0, 10);
@@ -855,7 +855,7 @@ ${r.staleNote ? `<p class="warn">⚠ ${esc(r.staleNote)}</p>` : ''}
     },
     /**
      * 发布工作流结束后的回写（渲染层从工作流运行页留下的回执里取，带上发起时记下的视频 id）。
-     * 有平台确认发布 → 已发布；一个都没有 → 退回已审核可重发。同一 runId 只记一次（重复进页面不重复记账）。
+     * 有平台确认发布 → 已发布；只有待核对 → 停在发布中等人工核对；都没有 → 退回已审核可重发。同一 runId 只记一次（重复进页面不重复记账）。
      */
     'video.publishResult': (p: { id: string; runId?: string; kind: string; receipt?: unknown; at?: number }) => {
       const v = videoById(p.id);
@@ -865,13 +865,15 @@ ${r.staleNote ? `<p class="warn">⚠ ${esc(r.staleNote)}</p>` : ''}
       if (run.published.length) parts.push(i18nT('{p0} 已发布', { p0: platformNames(run.published) }));
       if (run.unconfirmed.length) parts.push(i18nT('{p0} 待人工核对', { p0: platformNames(run.unconfirmed) }));
       if (run.failed.length) parts.push(i18nT('{p0} 未发成功', { p0: platformNames(run.failed) }));
-      const note = run.outcome === 'cancelled' ? i18nT('发布工作流已取消') : parts.join(i18nT('，')) || i18nT('发布工作流没有返回平台回执');
+      const note = run.outcome === 'cancelled' && !run.published.length && !run.unconfirmed.length
+        ? i18nT('发布工作流已取消') : parts.join(i18nT('，')) || i18nT('发布工作流没有返回平台回执');
       run.note = note;
       const ok = run.published.length > 0;
       store.update((s) => { const x = s.videos.find((y) => y.id === p.id); if (x) x.publishRuns = [...(x.publishRuns || []), run].slice(-30); });
+      // 只有待核对（点过发布、结果未知）：停在发布中等人工核对，不退回已审核，免得一键重发
       patchVideo(p.id, ok
         ? { status: 'published', publishedAt: v.publishedAt && v.status === 'published' ? v.publishedAt : run.at, publishRunNote: note }
-        : { status: v.status === 'published' ? 'published' : 'approved', publishRunNote: note });
+        : { status: v.status === 'published' ? 'published' : run.unconfirmed.length ? 'publishing' : 'approved', publishRunNote: note });
       track(p.id, 'publish', i18nT('发布结果：{p0}', { p0: note }), ok);
       return videoById(p.id);
     },
@@ -1085,7 +1087,7 @@ ${r.staleNote ? `<p class="warn">⚠ ${esc(r.staleNote)}</p>` : ''}
     'listing.remove': (p: { id: string }) => { store.update((s) => { s.listings = s.listings.filter((x) => x.id !== p.id); }); pushState(); return true; },
     'local.shelf': (p: { garmentId: string; onShelf: boolean }) => {
       const svc = apparelService();
-      if (!svc) throw new Error(i18nT('服装实体店智能体未加载'));
+      if (!svc) throw new Error(i18nT('服装AI试衣未加载'));
       return svc.saveGarment({ id: p.garmentId, onShelf: !!p.onShelf });
     },
 

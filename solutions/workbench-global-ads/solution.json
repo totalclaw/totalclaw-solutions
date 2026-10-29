@@ -7,7 +7,7 @@
     "global-ads",
     "阿联酋广告代投放工作台"
   ],
-  "version": "2.0.3",
+  "version": "2.0.4",
   "kind": "workbench",
   "category": "UAE 增长",
   "icon": "icon-solutions",
@@ -30,7 +30,7 @@
     "hidden": false
   },
   "compat": {
-    "minAppVersion": "2.0.5",
+    "minAppVersion": "2.0.6",
     "hostApi": 2
   },
   "runtime": {

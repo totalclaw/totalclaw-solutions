@@ -3,7 +3,7 @@
     <header class="intel-hero">
       <PageBackButton />
       <div class="hero-text">
-        <p class="hero-kicker"><i class="ri-radar-line"></i>{{ $t('盘面情报台') }}</p>
+        <p class="hero-kicker"><i class="ri-radar-line"></i>{{ $t('盯盘复盘助手') }}</p>
         <h1>{{ $t('24 小时盘面情报') }}</h1>
         <p class="hero-sub">{{ $t('加密与美股 7×24 不收盘：gate.io 现货与永续行情异动、多源新闻快讯汇成同一条时间线，每条可回溯原文，随时 AI 研判。') }}</p>
       </div>

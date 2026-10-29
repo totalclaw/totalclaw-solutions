@@ -6,7 +6,7 @@
   "aliases": [
     "finance-audit"
   ],
-  "version": "2.0.2",
+  "version": "2.0.3",
   "kind": "workbench",
   "category": "财会审计",
   "icon": "icon-solutions",
@@ -30,7 +30,7 @@
     "hidden": false
   },
   "compat": {
-    "minAppVersion": "2.0.5",
+    "minAppVersion": "2.0.7",
     "hostApi": 2
   },
   "runtime": {

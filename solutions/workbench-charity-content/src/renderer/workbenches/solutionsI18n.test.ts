@@ -15,6 +15,8 @@ import { join, relative } from 'node:path';
 import { containsHanText } from '@totalclaw/i18n';
 import en from '@totalclaw/i18n/locales/en.json';
 import ar from '@totalclaw/i18n/locales/ar.json';
+import vi from '@totalclaw/i18n/locales/vi.json';
+import ms from '@totalclaw/i18n/locales/ms.json';
 import { i18n, contentLangLabel, pickContentLang, listSeparator } from '../i18n';
 import { builtinWorkbenchDescriptors } from './registry';
 import { stepMetas as charitySteps , lineMetas as charityLines} from './charity-content/shared';
@@ -55,9 +57,9 @@ function literalKeys(src: string): string[] {
   return out;
 }
 
-const dict = { en: en as Record<string, string>, ar: ar as Record<string, string> };
+const dict = { en: en as Record<string, string>, ar: ar as Record<string, string>, vi: vi as Record<string, string>, ms: ms as Record<string, string> };
 
-describe('① 解决方案页用到的 key 在 en / ar 都有非中文译文', () => {
+describe('① 解决方案页用到的 key 在 en / ar / vi / ms 都有非中文译文', () => {
   const problems: string[] = [];
   let checked = 0;
   for (const surface of SURFACES) {
@@ -79,7 +81,7 @@ describe('① 解决方案页用到的 key 在 en / ar 都有非中文译文', (
   });
 });
 
-describe.each(['en-US', 'ar'] as const)('② ③ 界面语言 = %s', (locale) => {
+describe.each(['en-US', 'ar', 'vi', 'ms'] as const)('② ③ 界面语言 = %s', (locale) => {
   const prev = i18n.global.locale.value;
   afterEach(() => { i18n.global.locale.value = prev; });
   const use = () => { i18n.global.locale.value = locale; };
@@ -87,7 +89,7 @@ describe.each(['en-US', 'ar'] as const)('② ③ 界面语言 = %s', (locale) =>
   it('语言名按界面语言显示，不再写死「中文」', () => {
     use();
     for (const l of ['zh', 'en', 'ar'] as const) expect(containsHanText(contentLangLabel(l)), l).toBe(false);
-    expect(contentLangLabel('zh')).toBe(locale === 'ar' ? 'الصينية' : 'Chinese');
+    if (locale === 'en-US' || locale === 'ar') expect(contentLangLabel('zh')).toBe(locale === 'ar' ? 'الصينية' : 'Chinese');
     expect(containsHanText(listSeparator())).toBe(false);
   });
 
@@ -113,7 +115,11 @@ describe.each(['en-US', 'ar'] as const)('② ③ 界面语言 = %s', (locale) =>
     const text = [qa.name, qa.category, qa.description, qa.detail].join('\n');
     expect(text).not.toMatch(/missionar|evangel|proselyt|تبشير|تنصير/i);
     if (locale === 'ar') expect(qa.description).toContain('مواد الدعوة');
+    // 马来语本身就用 dakwah（马来西亚穆斯林语境的通行词）
+    else if (locale === 'ms') expect(qa.description).toMatch(/dakwah/i);
     else expect(qa.description).toContain('Dawah');
+    // 越南语 truyền giáo = 传教（基督教语境），不能用
+    expect(text).not.toMatch(/truyền giáo/i);
   });
 
   it('两个工作台的步骤条与各类标签', () => {

@@ -7,9 +7,9 @@ vt.default;
 const ft = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/videoProductionEstimate.ts"];
 if (!ft) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/videoProductionEstimate.ts");
 ft.default;
-const lo = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/PageBackButton.vue"];
-if (!lo) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/PageBackButton.vue");
-const Qo = lo.default, gt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
+const io = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/PageBackButton.vue"];
+if (!io) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/PageBackButton.vue");
+const xo = io.default, gt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
 if (!gt) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/stores/notification.ts");
 gt.default;
 const ht = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/humanizeChatError.ts"];
@@ -24,123 +24,122 @@ l.default;
 const bt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useLocale.ts"];
 if (!bt) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useLocale.ts");
 bt.default;
-const no = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/workflow/HumanConfirmCard.vue"];
-if (!no) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/workflow/HumanConfirmCard.vue");
-const Xo = no.default, Nt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useNativeBrowserModalLock.ts"];
+const ro = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/workflow/HumanConfirmCard.vue"];
+if (!ro) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/workflow/HumanConfirmCard.vue");
+const el = ro.default, Nt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useNativeBrowserModalLock.ts"];
 if (!Nt) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useNativeBrowserModalLock.ts");
 Nt.default;
-const Ne = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/seedanceShots.ts"];
-if (!Ne) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/seedanceShots.ts");
-Ne.default;
-const we = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/workflowAutoRun.ts"];
-if (!we) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/workflowAutoRun.ts");
-we.default;
-const Ee = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/publishPlatforms.ts"];
-if (!Ee) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/publishPlatforms.ts");
-Ee.default;
-const ao = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/StepRunAlert.vue"];
-if (!ao) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/StepRunAlert.vue");
-const Zo = ao.default, wt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts"];
-if (!wt) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts");
-wt.default;
-const Et = "totalclaw:video-studio-direct-run:v1", u = e.ref("idle"), g = e.ref({}), E = e.ref([]), v = e.ref(""), Fe = e.ref(0), F = e.ref(0), Q = e.ref(0), Ue = e.ref(0), _ = e.ref(""), B = e.ref(!1), ie = e.ref(!1);
-function xo(N = Date.now()) {
-  Q.value = N;
+const ye = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/seedanceShots.ts"];
+if (!ye) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/seedanceShots.ts");
+ye.default;
+const so = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/PublishRunPanel.vue"];
+if (!so) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/PublishRunPanel.vue");
+const tl = so.default, ie = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/publishPlatforms.ts"];
+if (!ie) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/publishPlatforms.ts");
+ie.default;
+const co = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/StepRunAlert.vue"];
+if (!co) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/StepRunAlert.vue");
+const ol = co.default, Et = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts"];
+if (!Et) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts");
+Et.default;
+const wt = "totalclaw:video-studio-direct-run:v1", u = e.ref("idle"), g = e.ref({}), y = e.ref([]), v = e.ref(""), Ke = e.ref(0), F = e.ref(0), Q = e.ref(0), ze = e.ref(0), D = e.ref(""), B = e.ref(!1), re = e.ref(!1);
+function ll(E = Date.now()) {
+  Q.value = E;
 }
 e.watch([v, g], () => {
-  u.value === "running" && _.value && xo();
+  u.value === "running" && D.value && ll();
 });
-function el() {
+function nl() {
   try {
-    const N = localStorage.getItem(Et);
-    if (!N) return null;
-    const y = JSON.parse(N);
-    if (!y || typeof y != "object") return null;
-    const P = y.mode === "seedance" || y.mode === "slideshow" ? y.mode : "";
-    return { startedAt: Number(y.startedAt) || 0, mode: P, project: String(y.project || "") };
+    const E = localStorage.getItem(wt);
+    if (!E) return null;
+    const V = JSON.parse(E);
+    if (!V || typeof V != "object") return null;
+    const $ = V.mode === "seedance" || V.mode === "slideshow" ? V.mode : "";
+    return { startedAt: Number(V.startedAt) || 0, mode: $, project: String(V.project || "") };
   } catch {
     return null;
   }
 }
-function tl(N) {
+function al(E) {
   try {
-    localStorage.setItem(Et, JSON.stringify(N));
+    localStorage.setItem(wt, JSON.stringify(E));
   } catch {
   }
 }
-function io() {
+function uo() {
   try {
-    localStorage.removeItem(Et);
+    localStorage.removeItem(wt);
   } catch {
   }
 }
-function Xt(N, y) {
-  const P = Date.now();
-  B.value = !1, ie.value = !1, _.value = N, Fe.value = P, F.value = 0, Q.value = P, Ue.value = 0, u.value = "running", tl({ startedAt: P, mode: N, project: y });
+function eo(E, V) {
+  const $ = Date.now();
+  B.value = !1, re.value = !1, D.value = E, Ke.value = $, F.value = 0, Q.value = $, ze.value = 0, u.value = "running", al({ startedAt: $, mode: E, project: V });
 }
-function Zt() {
-  io();
+function to() {
+  uo();
 }
-function ol() {
-  B.value = !1, io();
+function il() {
+  B.value = !1, uo();
 }
-function ro() {
+function po() {
   if (B.value || u.value === "running") return !1;
-  const N = el();
-  return N ? (B.value = !0, _.value = N.mode, Fe.value = N.startedAt, F.value = 0, Q.value = 0, Ue.value = 0, ie.value = !1, u.value = "failed", g.value = {}, v.value = l.t("应用重启或页面刷新导致上次成片中断，请重新生成"), !0) : !1;
+  const E = nl();
+  return E ? (B.value = !0, D.value = E.mode, Ke.value = E.startedAt, F.value = 0, Q.value = 0, ze.value = 0, re.value = !1, u.value = "failed", g.value = {}, v.value = l.t("应用重启或页面刷新导致上次成片中断，请重新生成"), !0) : !1;
 }
-ro();
-const ll = { class: "video-studio-page" }, nl = { class: "studio-hero" }, al = { class: "hero-copy" }, il = { class: "hero-kicker" }, rl = { class: "hero-actions" }, sl = ["aria-label"], dl = {
+po();
+const rl = { class: "video-studio-page" }, sl = { class: "studio-hero" }, dl = { class: "hero-copy" }, cl = { class: "hero-kicker" }, ul = { class: "hero-actions" }, pl = ["aria-label"], ml = {
   key: 0,
   class: "ri-arrow-right-s-line flow-arrow"
-}, cl = { class: "job-progress-heading" }, ul = { class: "job-progress-title" }, pl = { class: "job-progress-icon" }, ml = {
+}, vl = { class: "job-progress-heading" }, fl = { class: "job-progress-title" }, gl = { class: "job-progress-icon" }, hl = {
   key: 0,
   class: "job-progress-number"
-}, vl = {
+}, bl = {
   key: 0,
   class: "job-progress-time"
-}, fl = {
+}, Nl = {
   key: 1,
   class: "job-progress-number"
-}, gl = ["disabled"], hl = ["aria-valuenow"], bl = { class: "job-progress-stages" }, Nl = {
+}, El = ["disabled"], wl = ["aria-valuenow"], yl = { class: "job-progress-stages" }, Vl = {
   key: 0,
   class: "publish-confirm-panel"
-}, wl = { class: "publish-confirm-head" }, El = ["disabled"], yl = { class: "publish-confirm-hint" }, Vl = { class: "publish-confirm-list" }, Sl = { class: "publish-confirm-pick" }, kl = ["checked", "onChange"], _l = { class: "publish-confirm-name" }, Dl = ["onClick"], Tl = { class: "publish-confirm-actions" }, Al = { class: "publish-confirm-summary" }, $l = ["disabled"], Pl = ["disabled"], Il = { class: "model-strip" }, Cl = { class: "model-copy" }, Ll = { class: "model-heading" }, Ol = { class: "model-copy" }, Ml = { class: "model-heading" }, Bl = ["title", "disabled"], jl = { class: "studio-grid" }, Rl = { class: "studio-form" }, Wl = { class: "form-card" }, Kl = { class: "section-head" }, zl = { class: "field-grid" }, Fl = { class: "field" }, Ul = ["placeholder"], Jl = { class: "field" }, ql = ["placeholder"], Hl = { class: "field full" }, Yl = { class: "folder-picker" }, Gl = ["placeholder"], Ql = { class: "field full" }, Xl = { class: "field-label-row" }, Zl = ["disabled"], xl = ["placeholder"], en = { class: "form-card" }, tn = { class: "section-head" }, on = { class: "choice-grid production-grid" }, ln = ["disabled", "title", "onClick"], nn = { class: "choice-icon" }, an = { class: "field render-ratio" }, rn = { value: "9:16" }, sn = { value: "16:9" }, dn = { value: "1:1" }, cn = {
+}, Sl = { class: "publish-confirm-head" }, kl = ["disabled"], _l = { class: "publish-confirm-hint" }, Dl = { class: "publish-confirm-list" }, Tl = { class: "publish-confirm-pick" }, Al = ["checked", "onChange"], Pl = { class: "publish-confirm-name" }, $l = ["onClick"], Cl = { class: "publish-confirm-actions" }, Il = { class: "publish-confirm-summary" }, Ll = ["disabled"], Ol = ["disabled"], Ml = { class: "model-strip" }, Bl = { class: "model-copy" }, jl = { class: "model-heading" }, Rl = { class: "model-copy" }, Wl = { class: "model-heading" }, Kl = ["title", "disabled"], zl = { class: "studio-grid" }, Fl = { class: "studio-form" }, Ul = { class: "form-card" }, Jl = { class: "section-head" }, ql = { class: "field-grid" }, Hl = { class: "field" }, Yl = ["placeholder"], Gl = { class: "field" }, Ql = ["placeholder"], Zl = { class: "field full" }, Xl = { class: "folder-picker" }, xl = ["placeholder"], en = { class: "field full" }, tn = { class: "field-label-row" }, on = ["disabled"], ln = ["placeholder"], nn = { class: "form-card" }, an = { class: "section-head" }, rn = { class: "choice-grid production-grid" }, sn = ["disabled", "title", "onClick"], dn = { class: "choice-icon" }, cn = { class: "field render-ratio" }, un = { value: "9:16" }, pn = { value: "16:9" }, mn = { value: "1:1" }, vn = {
   key: 0,
   class: "config-hint"
-}, un = { class: "form-card" }, pn = { class: "section-head" }, mn = { class: "audio-row" }, vn = { class: "toggle-card" }, fn = { class: "toggle-copy" }, gn = { class: "field music-field" }, hn = ["value"], bn = {
+}, fn = { class: "form-card" }, gn = { class: "section-head" }, hn = { class: "audio-row" }, bn = { class: "toggle-card" }, Nn = { class: "toggle-copy" }, En = { class: "field music-field" }, wn = ["value"], yn = {
   key: 0,
   class: "field full voice-style"
-}, Nn = ["placeholder"], wn = {
+}, Vn = ["placeholder"], Sn = {
   key: 1,
   class: "config-hint"
-}, En = { class: "form-card" }, yn = { class: "section-head" }, Vn = { class: "platform-grid" }, Sn = ["checked", "onChange"], kn = { class: "platform-mark" }, _n = { class: "platform-topics" }, Dn = { class: "topics-heading" }, Tn = { class: "topic-grid" }, An = ["onUpdate:modelValue", "placeholder"], $n = { class: "release-policy" }, Pn = { class: "submit-bar" }, In = { class: "submit-summary" }, Cn = { class: "submit-actions" }, Ln = ["disabled"], On = ["disabled", "title"], Mn = ["disabled"], Bn = { class: "studio-aside" }, jn = { class: "aside-card skill-card" }, Rn = { class: "aside-title" }, Wn = { class: "capability-list" }, Kn = {
+}, kn = { class: "form-card" }, _n = { class: "section-head" }, Dn = { class: "platform-grid" }, Tn = ["checked", "onChange"], An = { class: "platform-mark" }, Pn = { class: "platform-topics" }, $n = { class: "topics-heading" }, Cn = { class: "topic-grid" }, In = ["onUpdate:modelValue", "placeholder"], Ln = { class: "release-policy" }, On = { class: "submit-bar" }, Mn = { class: "submit-summary" }, Bn = { class: "submit-actions" }, jn = ["disabled"], Rn = ["disabled", "title"], Wn = ["disabled"], Kn = { class: "studio-aside" }, zn = { class: "aside-card skill-card" }, Fn = { class: "aside-title" }, Un = { class: "capability-list" }, Jn = {
   key: 0,
   class: "aside-card job-card"
-}, zn = { class: "job-eyebrow" }, Fn = { class: "job-actions" }, Un = ["disabled"], Jn = ["disabled", "title"], qn = {
+}, qn = { class: "job-eyebrow" }, Hn = { class: "job-actions" }, Yn = ["disabled"], Gn = ["disabled", "title"], Qn = {
   key: 1,
   class: "aside-card history-card"
-}, Hn = { class: "job-eyebrow" }, Yn = { class: "history-list" }, Gn = { class: "history-main" }, Qn = ["title"], Xn = ["disabled", "title", "onClick"], Zn = {
+}, Zn = { class: "job-eyebrow" }, Xn = { class: "history-list" }, xn = { class: "history-main" }, ea = ["title"], ta = ["disabled", "title", "onClick"], oa = {
   key: 0,
   class: "history-pager"
-}, xn = ["disabled"], ea = ["disabled"], ta = { class: "aside-card tips-card" }, oa = { class: "job-eyebrow" }, la = ["aria-label"], na = { class: "preview-head" }, aa = ["aria-label"], ia = { class: "preview-summary" }, ra = {
+}, la = ["disabled"], na = ["disabled"], aa = { class: "aside-card tips-card" }, ia = { class: "job-eyebrow" }, ra = ["aria-label"], sa = { class: "preview-head" }, da = ["aria-label"], ca = { class: "preview-summary" }, ua = {
   key: 0,
   class: "preview-warning"
-}, sa = {
+}, pa = {
   class: "preview-source",
   role: "status"
-}, da = { key: 0 }, ca = { class: "prompt-preview" }, ua = { class: "preview-actions" }, pa = ["disabled"], ma = ["aria-label"], va = ["aria-label"], fa = { class: "video-stage" }, ga = ["src"], ha = {
+}, ma = { key: 0 }, va = { class: "prompt-preview" }, fa = { class: "preview-actions" }, ga = ["disabled"], ha = ["aria-label"], ba = ["aria-label"], Na = { class: "video-stage" }, Ea = ["src"], wa = {
   key: 1,
   class: "video-preview-empty"
-}, ba = ["title"], Na = ["disabled"], wa = ["aria-label"], pt = "totalclaw:video-studio-last-job:v2", xt = "/Users/mac03/Downloads/0725/明日世界TOMORROW WORLD 短视频大赛-素材/TomorrowCommercialTower1素材/外立面", Ea = 160, ya = 18, Va = 3, eo = "totalclaw:publish-workflow-result:video-studio", to = "totalclaw:video-studio-last-publish-input:v1", oo = "totalclaw:video-studio-direct-history:v1", mt = 10, Sa = /* @__PURE__ */ e.defineComponent({
+}, ya = ["title"], Va = ["disabled"], Sa = ["aria-label"], ut = "totalclaw:video-studio-last-job:v2", oo = "/Users/mac03/Downloads/0725/明日世界TOMORROW WORLD 短视频大赛-素材/TomorrowCommercialTower1素材/外立面", lo = "/video-studio", ka = 160, _a = 18, Da = 3, no = "totalclaw:publish-workflow-result:video-studio", pt = "totalclaw:video-studio-last-publish-input:v1", ao = "totalclaw:video-studio-direct-history:v1", mt = 10, Ta = /* @__PURE__ */ e.defineComponent({
   __name: "VideoStudioView",
-  setup(N) {
-    const y = `totalclaw:video-studio-draft:v6:${bt.currentLocale()}`, P = /TOMORROW\s*WORLD|TomorrowCommercialTower|Tomorrow\s+Commercial\s+Tower|明日世界|TCT2/i, X = vt.useRouter(), h = gt.useNotificationStore(), ye = [
+  setup(E) {
+    const V = `totalclaw:video-studio-draft:v6:${bt.currentLocale()}`, $ = /TOMORROW\s*WORLD|TomorrowCommercialTower|Tomorrow\s+Commercial\s+Tower|明日世界|TCT2/i, se = vt.useRouter(), h = gt.useNotificationStore(), Ve = [
       { label: l.t("素材"), icon: "ri-gallery-upload-line" },
       { label: l.t("创作"), icon: "ri-quill-pen-line" },
       { label: l.t("合成"), icon: "ri-film-line" },
       { label: l.t("发布"), icon: "ri-send-plane-line" }
-    ], Ve = [
+    ], Se = [
       { id: "creative_plan", phase: 1, label: l.t("脚本与平台方案") },
       { id: "creative_review", phase: 1, label: l.t("制作方案审核") },
       { id: "render_final", phase: 1, label: l.t("剪辑、配音与成片") },
@@ -152,7 +151,7 @@ const ll = { class: "video-studio-page" }, nl = { class: "studio-hero" }, al = {
       { id: "smart", label: l.t("AI 自动判断"), desc: l.t("根据素材类型选择最合适流程"), icon: "ri-brain-line" },
       { id: "seedance", label: l.t("fal 动态视频"), desc: l.t("根据分镜提示词生成动态镜头"), icon: "ri-movie-2-line" },
       { id: "slideshow", label: l.t("图片成片"), desc: l.t("图片、字幕和节拍快速合成"), icon: "ri-slideshow-3-line" }
-    ], Je = Ee.publishPlatforms(), Vt = [
+    ], Fe = ie.publishPlatforms(), Vt = [
       { id: "auto", label: l.t("AI 按内容自动选择") },
       { id: "upbeat", label: l.t("轻快活力") },
       { id: "energetic", label: l.t("热烈有冲击力") },
@@ -196,10 +195,10 @@ const ll = { class: "video-studio-page" }, nl = { class: "studio-hero" }, al = {
         }
       };
     }
-    function so() {
+    function mo() {
       Object.assign(r, St()), h.success(l.t("通用推荐方案和四平台话题已填好"));
     }
-    function qe(t, o) {
+    function Ue(t, o) {
       try {
         const a = localStorage.getItem(t);
         return a ? { ...o, ...JSON.parse(a) } : o;
@@ -207,12 +206,12 @@ const ll = { class: "video-studio-page" }, nl = { class: "studio-hero" }, al = {
         return o;
       }
     }
-    function Se(...t) {
-      return t.some((o) => P.test(
+    function ke(...t) {
+      return t.some((o) => $.test(
         typeof o == "string" ? o : JSON.stringify(o ?? "")
       ));
     }
-    function co() {
+    function vo() {
       try {
         for (const t of [
           "totalclaw:video-studio-draft:v1",
@@ -222,15 +221,15 @@ const ll = { class: "video-studio-page" }, nl = { class: "studio-hero" }, al = {
           "totalclaw:video-studio-last-job:v1"
         ]) {
           const o = localStorage.getItem(t);
-          o && Se(o) && localStorage.removeItem(t);
+          o && ke(o) && localStorage.removeItem(t);
         }
       } catch {
       }
     }
-    co();
-    function uo() {
+    vo();
+    function fo() {
       return {
-        materialDir: xt,
+        materialDir: oo,
         projectName: l.t("明日世界 · 商业塔楼外立面"),
         brandName: "TOMORROW WORLD",
         topics: "#TOMORROW_WORLD #TOMORROWCOMMERCIALTOWER2",
@@ -250,68 +249,90 @@ const ll = { class: "video-studio-page" }, nl = { class: "studio-hero" }, al = {
 `)
       };
     }
-    const re = St(), kt = qe(y, re), _t = Se(kt) ? re : kt, r = e.reactive({
+    const de = St(), kt = Ue(V, de), _t = ke(kt) ? de : kt, r = e.reactive({
       ..._t,
       topics: {
-        ...re.topics,
+        ...de.topics,
         ..._t.topics || {}
       }
-    }), ke = qe(pt, { conversationId: "", projectName: "" }), i = e.reactive(
-      Se(ke) ? { conversationId: "", projectName: "" } : { ...ke, videoPath: "", expectedVideoPath: ke.expectedVideoPath }
-    ), He = String(ke.videoPath || "");
+    }), _e = Ue(ut, { conversationId: "", projectName: "" }), i = e.reactive(
+      ke(_e) ? { conversationId: "", projectName: "" } : { ..._e, videoPath: "", expectedVideoPath: _e.expectedVideoPath }
+    ), Je = String(_e.videoPath || "");
     i.source || (i.source = i.taskId || i.conversationId ? "workflow" : i.videoPath ? "direct" : "none");
-    const se = e.ref([]), _e = e.ref(null), Z = e.computed(() => ft.estimateVideoProduction(r.brief, _e.value)), j = e.ref(!1), I = e.ref(!1), x = e.ref(!1), ee = e.ref(!1), De = e.ref(0);
-    let te = null;
-    const po = e.computed(() => {
-      const t = De.value;
+    const ce = e.ref([]), De = e.ref(null), Z = e.computed(() => ft.estimateVideoProduction(r.brief, De.value)), j = e.ref(!1), C = e.ref(!1), X = e.ref(!1), x = e.ref(!1), Te = e.ref(0);
+    let ee = null;
+    const go = e.computed(() => {
+      const t = Te.value;
       return t ? t >= 60 ? `${Math.floor(t / 60)}:${String(t % 60).padStart(2, "0")}` : `${t}s` : "";
-    }), Te = e.ref(!1), Ae = e.ref(!1), R = e.ref(""), L = e.ref(""), Dt = e.ref(!1), w = e.ref(!1), $e = e.ref(""), Ye = e.ref(0);
+    }), ue = e.ref(!1), Ae = e.ref(!1), R = e.ref(""), L = e.ref(""), Dt = e.ref(!1), w = e.ref(!1), Pe = e.ref(""), qe = e.ref(0);
     let U = null;
-    function Pe(t) {
-      if ($e.value = t, Ye.value = 0, U && window.clearInterval(U), !t) {
+    function He(t) {
+      if (Pe.value = t, qe.value = 0, U && window.clearInterval(U), !t) {
         U = null;
         return;
       }
       const o = Date.now();
       U = window.setInterval(() => {
-        Ye.value = Math.round((Date.now() - o) / 1e3);
+        qe.value = Math.round((Date.now() - o) / 1e3);
       }, 1e3);
     }
-    const oe = e.computed(() => {
-      if (!$e.value) return "";
-      const t = Ye.value, o = t >= 60 ? `${Math.floor(t / 60)}:${String(t % 60).padStart(2, "0")}` : `${t}s`;
-      return t > 2 ? `${$e.value} ${o}` : $e.value;
-    }), Ie = e.ref(""), Tt = Nt.createNativeBrowserModalLock(), Ce = [
+    const te = e.computed(() => {
+      if (!Pe.value) return "";
+      const t = qe.value, o = t >= 60 ? `${Math.floor(t / 60)}:${String(t % 60).padStart(2, "0")}` : `${t}s`;
+      return t > 2 ? `${Pe.value} ${o}` : Pe.value;
+    }), oe = e.ref(""), Tt = e.ref("");
+    function ho(t) {
+      const o = Lt();
+      if (t && o && o.videoPath === t.input.videoPath && o.caption !== t.input.caption)
+        try {
+          localStorage.setItem(pt, JSON.stringify({ ...o, caption: t.input.caption }));
+        } catch {
+        }
+      const a = t && ["completed", "partial", "needs_review", "failed"].includes(t.status), n = t?.platforms.filter((c) => c.state === "published") || [];
+      if (!t || t.input.videoPath !== i.videoPath || !a || !n.length && t.status !== "needs_review") {
+        oe.value = "";
+        return;
+      }
+      const d = (c) => t.platforms.filter((s) => s.state === c).map((s) => ie.publishPlatforms().find((p) => p.id === s.id)?.label || s.id);
+      oe.value = Xt({
+        platformCount: n.length,
+        unconfirmedCount: d("unconfirmed").length,
+        failedCount: d("failed").length,
+        unconfirmedPlatforms: d("unconfirmed"),
+        failedPlatforms: d("failed")
+      });
+    }
+    const At = Nt.createNativeBrowserModalLock(), $e = [
       { id: "scan", phase: 0, label: l.t("扫描素材") },
       { id: "stage", phase: 1, label: l.t("整理素材") },
       { id: "render", phase: 2, label: l.t("合成成片") }
-    ], mo = { id: "audio", phase: 3, label: l.t("配音与配乐") }, At = [
+    ], bo = { id: "audio", phase: 3, label: l.t("配音与配乐") }, Pt = [
       { id: "scan", phase: 0, label: l.t("扫描素材") },
       { id: "shots", phase: 1, label: l.t("专业分镜提示词") },
       { id: "render", phase: 2, label: l.t("Seedance 逐镜头生成 + 拼接合成") },
       { id: "qc", phase: 3, label: l.t("质检与修复") }
     ];
-    function vo(t, o) {
-      return Ea * (o === "standard" ? Va : 1) + t * ya;
+    function No(t, o) {
+      return ka * (o === "standard" ? Da : 1) + t * _a;
     }
     function $t(t) {
       const o = Math.max(0, Math.round(t)), a = Math.floor(o / 60);
       return a > 0 ? `${a}:${String(o % 60).padStart(2, "0")}` : `${o}s`;
     }
-    const W = wt.useStepWatchdog({
-      running: () => u.value === "running" && !!_.value && i.source === "direct",
-      startedAt: () => Fe.value || null,
+    const W = Et.useStepWatchdog({
+      running: () => u.value === "running" && !!D.value && i.source === "direct",
+      startedAt: () => Ke.value || null,
       estimateMs: () => F.value > 0 ? F.value * 1e3 : null,
       kind: "video",
       lastProgressAt: () => Q.value || null,
-      waitExtendedAt: () => Ue.value || null,
+      waitExtendedAt: () => ze.value || null,
       onHeartbeat: (t) => {
         Q.value = t;
       },
       onKeepWaiting: (t) => {
-        Ue.value = t;
+        ze.value = t;
       }
-    }), Pt = e.computed(() => {
+    }), Ct = e.computed(() => {
       if (W.verdict.value === "idle") return "";
       const t = W.elapsedSec.value, o = $t(t);
       if (W.suspect.value) return l.t("已用 {p0} · 可能已超时", { p0: o });
@@ -319,49 +340,49 @@ const ll = { class: "video-studio-page" }, nl = { class: "studio-hero" }, al = {
       if (!F.value) return l.t("已用 {p0}", { p0: o }) + n;
       const d = F.value - t;
       return d > 0 ? l.t("已用 {p0} · 预计还需 {p1}", { p0: o, p1: $t(d) }) : l.t("已用 {p0} · 已超预估，仍在生成", { p0: o }) + n;
-    }), le = e.ref(!1), Le = e.ref(!1), de = e.ref(!1);
-    ro(), E.value.length || (E.value = B.value ? [..._.value === "seedance" ? At : Ce] : [...Ve]), v.value || (v.value = l.t("尚未启动制作任务"));
-    const D = e.ref(""), T = e.ref(null), J = e.ref(!1), S = e.ref({}), O = e.ref({});
-    let Ge = null, Qe = null, Oe = null;
+    }), le = e.ref(!1), Ce = e.ref(!1), pe = e.ref(!1);
+    po(), y.value.length || (y.value = B.value ? [...D.value === "seedance" ? Pt : $e] : [...Se]), v.value || (v.value = l.t("尚未启动制作任务"));
+    const T = e.ref(""), A = e.ref(null), J = e.ref(!1), k = e.ref({}), O = e.ref({});
+    let Ye = null, Ge = null, Ie = null;
     e.watch(
       r,
       (t) => {
         try {
-          localStorage.setItem(y, JSON.stringify(t));
+          localStorage.setItem(V, JSON.stringify(t));
         } catch {
         }
       },
       { deep: !0 }
     );
-    const ce = e.computed(
-      () => Je.filter((t) => r.platforms.includes(t.id)).map((t) => t.label).join(l.t("、"))
-    ), A = e.computed(
-      () => Je.filter((t) => r.platforms.includes(t.id))
-    ), fo = e.computed(
-      () => A.value.map((t) => t.id).join(",")
-    ), Xe = e.computed(
+    const me = e.computed(
+      () => Fe.filter((t) => r.platforms.includes(t.id)).map((t) => t.label).join(l.t("、"))
+    ), P = e.computed(
+      () => Fe.filter((t) => r.platforms.includes(t.id))
+    ), Eo = e.computed(
+      () => P.value.map((t) => t.id).join(",")
+    ), Qe = e.computed(
       () => yt.find((t) => t.id === r.productionMode)?.label || l.t("AI 自动判断")
-    ), Me = e.computed(
+    ), Le = e.computed(
       () => Vt.find((t) => t.id === r.bgmMood)?.label || l.t("AI 按内容自动选择")
-    ), It = e.computed(() => !!r.brief.trim() && r.platforms.length > 0), Ze = e.computed(() => It.value && !!r.materialDir.trim()), V = e.computed(() => !!i.videoPath), q = e.computed(() => !!Ie.value);
-    function go() {
+    ), It = e.computed(() => !!r.brief.trim() && r.platforms.length > 0), Ze = e.computed(() => It.value && !!r.materialDir.trim()), S = e.computed(() => !!i.videoPath), q = e.computed(() => !!oe.value);
+    function Lt() {
       try {
-        const t = JSON.parse(localStorage.getItem(to) || "null");
+        const t = JSON.parse(localStorage.getItem(pt) || "null");
         return t && typeof t.caption == "string" && Array.isArray(t.platformIds) ? t : null;
       } catch {
         return null;
       }
     }
-    function xe() {
-      Ie.value = "";
+    function Xe() {
+      oe.value = "";
       try {
-        localStorage.removeItem(eo);
+        localStorage.removeItem(no);
       } catch {
       }
     }
-    const ho = e.computed(() => ({
+    const wo = e.computed(() => ({
       key: `video-publish-${i.projectName || "showcase"}`,
-      runId: D.value || "VIDEO-SHOWCASE",
+      runId: T.value || "VIDEO-SHOWCASE",
       nodeId: "publish_approval",
       nodeName: l.t("发布前人工确认"),
       question: l.t("是否确认将当前成片发布到所选平台？"),
@@ -372,50 +393,50 @@ const ll = { class: "video-studio-page" }, nl = { class: "studio-hero" }, al = {
       rejectLabel: l.t("退回修改"),
       approveEffect: l.t("按当前版本向所选平台执行发布，并写入发布时间与平台回执。"),
       rejectEffect: l.t("保留当前成片并返回修改，不执行发布。")
-    })), bo = {
+    })), yo = {
       video: l.t("待发布成片"),
       platforms: l.t("目标平台"),
       topics: l.t("各平台话题"),
       policy: l.t("执行策略")
-    }, No = e.computed(() => ({
+    }, Vo = e.computed(() => ({
       video: i.videoPath || l.t("现有演示成片"),
-      platforms: A.value.map((t) => t.label),
+      platforms: P.value.map((t) => t.label),
       topics: Object.fromEntries(
-        A.value.map((t) => [
+        P.value.map((t) => [
           t.label,
-          at(r.topics[t.id] || "")
+          nt(r.topics[t.id] || "")
         ])
       ),
       policy: l.t("逐平台执行；任何平台失败都会保留原始回执并停止该平台重试。")
-    })), wo = e.computed(() => `${i.projectName || l.t("短视频演示成片")}
-${ce.value}
-${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.value.filter((t) => g.value[t.id] === "done").length), Be = e.computed(
-      () => E.value.length ? Math.round(et.value / E.value.length * 100) : 0
-    ), tt = e.computed(() => ["cancelled", "failed"].includes(u.value)), ot = e.computed(() => B.value ? { state: "interrupted", message: "" } : i.source !== "direct" || !_.value ? null : u.value === "running" ? W.suspect.value ? { state: "suspect", message: "" } : null : u.value === "failed" ? { state: "failed", message: v.value || l.t("成片失败") } : null), je = e.computed(() => u.value === "running" && !!_.value && i.source === "direct"), Eo = e.computed(() => B.value ? l.t("上次成片已中断") : u.value === "running" ? l.t("视频制作进行中") : u.value === "waiting_human" ? l.t("等待人工审核") : u.value === "success" ? l.t("视频制作已完成") : u.value === "failed" ? l.t("视频制作遇到问题") : u.value === "cancelled" ? V.value ? l.t("上次制作已取消（成片仍可用）") : l.t("视频制作已取消") : i.taskId || i.conversationId ? l.t("制作任务等待执行") : l.t("尚未创建制作任务"));
+    })), So = e.computed(() => `${i.projectName || l.t("短视频演示成片")}
+${me.value}
+${oe.value}`), xe = e.computed(() => u.value === "success" ? y.value.length : y.value.filter((t) => g.value[t.id] === "done").length), Oe = e.computed(
+      () => y.value.length ? Math.round(xe.value / y.value.length * 100) : 0
+    ), et = e.computed(() => ["cancelled", "failed"].includes(u.value)), tt = e.computed(() => B.value ? { state: "interrupted", message: "" } : i.source !== "direct" || !D.value ? null : u.value === "running" ? W.suspect.value ? { state: "suspect", message: "" } : null : u.value === "failed" ? { state: "failed", message: v.value || l.t("成片失败") } : null), Me = e.computed(() => u.value === "running" && !!D.value && i.source === "direct"), ko = e.computed(() => B.value ? l.t("上次成片已中断") : u.value === "running" ? l.t("视频制作进行中") : u.value === "waiting_human" ? l.t("等待人工审核") : u.value === "success" ? l.t("视频制作已完成") : u.value === "failed" ? l.t("视频制作遇到问题") : u.value === "cancelled" ? S.value ? l.t("上次制作已取消（成片仍可用）") : l.t("视频制作已取消") : i.taskId || i.conversationId ? l.t("制作任务等待执行") : l.t("尚未创建制作任务"));
     function K(t) {
-      const o = E.value.filter((n) => n.phase === t);
+      const o = y.value.filter((n) => n.phase === t);
       if (!o.length)
-        return t === 0 && u.value !== "idle" || V.value && t < 2 ? "done" : "pending";
+        return t === 0 && u.value !== "idle" || S.value && t < 2 ? "done" : "pending";
       if (u.value === "success" || o.every((n) => g.value[n.id] === "done"))
         return "done";
-      if (!tt.value && o.some((n) => g.value[n.id] === "running" || g.value[n.id] === "failed"))
+      if (!et.value && o.some((n) => g.value[n.id] === "running" || g.value[n.id] === "failed"))
         return "active";
-      const a = ye.findIndex(
-        (n, d) => E.value.some((c) => c.phase === d && g.value[c.id] !== "done")
+      const a = Ve.findIndex(
+        (n, d) => y.value.some((c) => c.phase === d && g.value[c.id] !== "done")
       );
       return u.value === "running" && a === t ? "active" : "pending";
     }
-    function yo(t) {
-      const o = E.value.filter((n) => n.phase === t);
+    function _o(t) {
+      const o = y.value.filter((n) => n.phase === t);
       if (!o.length && t === 0 && u.value !== "idle") return l.t("启动前已扫描完成");
-      if (!o.length && V.value && t < 2) return l.t("成片已生成");
+      if (!o.length && S.value && t < 2) return l.t("成片已生成");
       const a = o.find(
         (n) => g.value[n.id] === "running" || g.value[n.id] === "failed"
       );
       return a ? a.label : K(t) === "done" ? l.t("已完成") : K(t) === "active" ? l.t("正在准备") : l.t("等待执行");
     }
-    function Vo() {
-      const t = se.value.find((n) => n.kind === "tts");
+    function Do() {
+      const t = ce.value.find((n) => n.kind === "tts");
       if (!t)
         return { tone: "missing", label: l.t("待检查"), detail: l.t("登录后可读取当前 TTS 配置") };
       const o = t.providers.find((n) => n.id === t.activeProvider);
@@ -432,36 +453,36 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         detail: l.t("已接入 {p0}，建议设为默认", { p0: a[0].label })
       } : { tone: "missing", label: l.t("未配置"), detail: l.t("配置一个配音引擎后再开始制作") };
     }
-    function So() {
-      if (!_e.value) return { tone: "missing", label: l.t("待检查"), detail: l.t("尚未读取动态视频通道状态") };
-      const { keys: t, quota: o } = _e.value;
+    function To() {
+      if (!De.value) return { tone: "missing", label: l.t("待检查"), detail: l.t("尚未读取动态视频通道状态") };
+      const { keys: t, quota: o } = De.value;
       return o?.dailyLimit != null && o.usedToday >= o.dailyLimit ? { tone: "missing", label: l.t("额度已用完"), detail: l.t("动态视频通道今日额度已用完，请联系管理员或等待额度恢复") } : t.primary || t.backup ? { tone: "ready", label: l.t("已就绪"), detail: l.t("动态视频走 fal 通道，按秒计费；文字策划仍使用当前聊天模型") } : { tone: "missing", label: l.t("未配置"), detail: l.t("请配置 fal 密钥或联系管理员开通此方案") };
     }
-    const Ct = e.computed(() => {
-      const t = se.value.find((a) => a.kind === "video"), o = String(t?.activeModel || "").toLowerCase();
+    const Ot = e.computed(() => {
+      const t = ce.value.find((a) => a.kind === "video"), o = String(t?.activeModel || "").toLowerCase();
       return /\b(standard|pro)\b/.test(o) || o.includes("seedance-2-0-2") ? "standard" : "fast";
-    }), ue = e.computed(Vo), H = e.computed(So), Re = e.computed(() => j.value || H.value.tone !== "missing"), Lt = e.ref(!1);
-    function ko(t) {
-      Lt.value = !0, r.productionMode = t;
+    }), ve = e.computed(Do), H = e.computed(To), Be = e.computed(() => j.value || H.value.tone !== "missing"), Mt = e.ref(!1);
+    function Ao(t) {
+      Mt.value = !0, r.productionMode = t;
     }
-    e.watch(Re, (t) => {
+    e.watch(Be, (t) => {
       !t && r.productionMode === "seedance" && (r.productionMode = "slideshow");
     }), e.watch(
       () => H.value.tone,
       (t) => {
-        j.value || t === "missing" || Lt.value || r.productionMode === "slideshow" && (r.productionMode = "seedance");
+        j.value || t === "missing" || Mt.value || r.productionMode === "slideshow" && (r.productionMode = "seedance");
       },
       { immediate: !0 }
     );
-    let lt = null;
+    let ot = null;
     e.onUnmounted(() => {
       try {
-        lt?.();
+        ot?.();
       } catch {
       }
-      lt = null;
+      ot = null;
     });
-    async function nt() {
+    async function lt() {
       j.value = !0;
       const t = window.electronAPI;
       try {
@@ -469,15 +490,15 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
           t?.mediaModel?.get?.(),
           t?.mediaFal?.capabilities?.({ solutionId: "workbench-global-ads" })
         ]), n = o.status === "fulfilled" ? o.value : null;
-        se.value = Array.isArray(n?.kinds) ? n.kinds : [], _e.value = a.status === "fulfilled" && a.value || null;
+        ce.value = Array.isArray(n?.kinds) ? n.kinds : [], De.value = a.status === "fulfilled" && a.value || null;
       } catch {
-        se.value = [];
+        ce.value = [];
       } finally {
         j.value = !1;
       }
     }
-    function We(t) {
-      X.push({
+    function je(t) {
+      se.push({
         path: "/settings",
         query: {
           section: "ai-models",
@@ -486,7 +507,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         }
       });
     }
-    async function Ot() {
+    async function Bt() {
       try {
         const t = await window.electronAPI?.solution?.pickFolder?.();
         t && (r.materialDir = t);
@@ -494,24 +515,24 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         h.fromException(l.t("选择素材文件夹失败"), t);
       }
     }
-    function _o(t) {
+    function Po(t) {
       const o = r.platforms.indexOf(t);
       o >= 0 ? r.platforms.splice(o, 1) : r.platforms.push(t);
     }
-    function at(t) {
+    function nt(t) {
       return t.split(/[\s,，]+/).map((o) => o.trim()).filter(Boolean).map((o) => o.startsWith("#") ? o : `#${o}`).join(" ");
     }
-    function Do() {
-      return A.value.map((t) => `${t.label}：${at(r.topics[t.id] || "") || l.t("未指定，可在发布前补充")}`).join(`
+    function $o() {
+      return P.value.map((t) => `${t.label}：${nt(r.topics[t.id] || "") || l.t("未指定，可在发布前补充")}`).join(`
 `);
     }
-    async function To() {
+    async function Co() {
       const t = r.brief.trim();
-      if (!t || ee.value) return;
-      ee.value = !0, De.value = 0;
+      if (!t || x.value) return;
+      x.value = !0, Te.value = 0;
       const o = Date.now();
-      te && window.clearInterval(te), te = window.setInterval(() => {
-        De.value = Math.round((Date.now() - o) / 1e3);
+      ee && window.clearInterval(ee), ee = window.setInterval(() => {
+        Te.value = Math.round((Date.now() - o) / 1e3);
       }, 1e3);
       try {
         const a = window.electronAPI;
@@ -533,7 +554,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
           prompt: l.t(`成片方式：{p0}
 画幅：{p1}
 当前视频提示词：
-{source}`, { p0: Xe.value, p1: r.aspectRatio, source: t }),
+{source}`, { p0: Qe.value, p1: r.aspectRatio, source: t }),
           timeoutMs: 3e5,
           // 纯补全：润色是一句进一句出的文本改写，绝不允许 worker 带工具把 brief 当任务执行
           plainCompletion: !0
@@ -543,11 +564,11 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
       } catch (a) {
         h.fromException(l.t("视频提示词润色失败"), a);
       } finally {
-        te && (window.clearInterval(te), te = null), De.value = 0, ee.value = !1;
+        ee && (window.clearInterval(ee), ee = null), Te.value = 0, x.value = !1;
       }
     }
-    function Ao(t) {
-      const o = ce.value, a = Do(), n = se.value.find((p) => p.kind === "tts"), d = n?.activeProvider ? `${n.activeProvider}${n.activeModel ? ` / ${n.activeModel}` : ""}` : l.t("未读取到明确默认项"), c = r.voiceover ? l.t("需要 TTS 旁白。旁白语气：{p0}。使用 AI 模型配置中的默认 TTS（{defaultTts}）；如果默认声线语言与文案不匹配，同一 provider 内改用对应语言的女声。", {
+    function Io(t) {
+      const o = me.value, a = $o(), n = ce.value.find((p) => p.kind === "tts"), d = n?.activeProvider ? `${n.activeProvider}${n.activeModel ? ` / ${n.activeModel}` : ""}` : l.t("未读取到明确默认项"), c = r.voiceover ? l.t("需要 TTS 旁白。旁白语气：{p0}。使用 AI 模型配置中的默认 TTS（{defaultTts}）；如果默认声线语言与文案不匹配，同一 provider 内改用对应语言的女声。", {
         p0: r.voiceStyle.trim() || l.t("请根据内容自动选择自然、适合短视频的表达"),
         defaultTts: d
       }) : l.t("不生成 TTS 旁白，保留素材原声并按需配乐。"), s = {
@@ -568,9 +589,9 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         l.t("【成片方式】{p0}", { p0: s[r.productionMode] }),
         l.t("【成片比例】{p0}", { p0: r.aspectRatio }),
         l.t("【配音】{voiceInstruction}", { voiceInstruction: c }),
-        l.t("【配乐】{p0}", { p0: r.bgmMood === "auto" ? l.t("按内容和镜头节奏自动选择") : Me.value }),
+        l.t("【配乐】{p0}", { p0: r.bgmMood === "auto" ? l.t("按内容和镜头节奏自动选择") : Le.value }),
         // 标签给人看，ID 给发布/登录工具用；发布范围以 ID 清单为准，不允许 agent 自行扩平台。
-        l.t("【目标平台】{platformNames}", { platformNames: `${o}（平台 ID，发布工具只认它们：${fo.value}）` }),
+        l.t("【目标平台】{platformNames}", { platformNames: `${o}（平台 ID，发布工具只认它们：${Eo.value}）` }),
         l.t(`【各平台发布话题】
 {platformTopics}`, { platformTopics: a }),
         "",
@@ -591,9 +612,9 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
       ].join(`
 `);
     }
-    const $o = e.computed(() => Ao());
-    function Po(t, o) {
-      const a = r.aspectRatio || "9:16", n = r.brandName.trim(), d = r.brief.trim(), c = r.bgmMood === "auto" ? l.t("按内容与镜头节奏自动选择") : Me.value;
+    const Lo = e.computed(() => Io());
+    function Oo(t, o) {
+      const a = r.aspectRatio || "9:16", n = r.brandName.trim(), d = r.brief.trim(), c = r.bgmMood === "auto" ? l.t("按内容与镜头节奏自动选择") : Le.value;
       return [
         l.t("项目：{p0}", { p0: t }),
         ...n ? [l.t("品牌/门店：{p0}", { p0: n })] : [],
@@ -643,27 +664,27 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
       ].join(`
 `);
     }
-    async function Io() {
-      !Ze.value || I.value || (x.value = !1, await zt());
+    async function Mo() {
+      !Ze.value || C.value || (X.value = !1, await Ut());
     }
-    const pe = e.ref([]);
-    function Mt() {
+    const fe = e.ref([]);
+    function jt() {
       try {
-        const t = JSON.parse(localStorage.getItem(oo) || "[]");
+        const t = JSON.parse(localStorage.getItem(ao) || "[]");
         return Array.isArray(t) ? t : [];
       } catch {
         return [];
       }
     }
-    function Bt(t) {
+    function Rt(t) {
       try {
-        const o = [t, ...Mt().filter((a) => a.videoPath !== t.videoPath)];
-        localStorage.setItem(oo, JSON.stringify(o.slice(0, 100)));
+        const o = [t, ...jt().filter((a) => a.videoPath !== t.videoPath)];
+        localStorage.setItem(ao, JSON.stringify(o.slice(0, 100)));
       } catch {
       }
     }
-    const M = e.ref(0), me = e.computed(() => Math.max(1, Math.ceil(pe.value.length / mt))), Co = e.computed(() => pe.value.slice(M.value * mt, (M.value + 1) * mt));
-    async function ve() {
+    const M = e.ref(0), ge = e.computed(() => Math.max(1, Math.ceil(fe.value.length / mt))), Bo = e.computed(() => fe.value.slice(M.value * mt, (M.value + 1) * mt));
+    async function he() {
       const t = window.electronAPI;
       if (t?.listWorkspaceTree)
         try {
@@ -672,7 +693,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
             for (const p of s?.departments || [])
               for (const f of p?.tasks || []) {
                 if (f?.origin?.kind !== "video-studio") continue;
-                const m = Array.isArray(f.runs) ? f.runs : [], b = m[m.length - 1], $ = (f.workflowDef?.inputs || []).find((ne) => ne?.key === "outputPath");
+                const m = Array.isArray(f.runs) ? f.runs : [], N = m[m.length - 1], b = (f.workflowDef?.inputs || []).find((ne) => ne?.key === "outputPath");
                 a.push({
                   taskId: String(f.id || ""),
                   workspaceId: String(s.id || ""),
@@ -680,11 +701,11 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   conversationId: String(f.conversationId || ""),
                   projectName: String(f.name || f.origin?.label || l.t("短视频项目")),
                   createdAt: Number(f.createdAt || 0),
-                  status: st(b?.status),
-                  videoPath: String($?.defaultValue || "")
+                  status: rt(N?.status),
+                  videoPath: String(b?.defaultValue || "")
                 });
               }
-          for (const s of Mt())
+          for (const s of jt())
             a.push({
               taskId: `direct:${s.videoPath}`,
               workspaceId: "",
@@ -707,14 +728,14 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
               }
             return n.includes(s.status) ? { ...s, videoPath: "" } : null;
           }))).filter((s) => !!s);
-          c.sort((s, p) => p.createdAt - s.createdAt), pe.value = c, M.value > me.value - 1 && (M.value = me.value - 1);
+          c.sort((s, p) => p.createdAt - s.createdAt), fe.value = c, M.value > ge.value - 1 && (M.value = ge.value - 1);
         } catch {
         }
     }
-    function Lo(t) {
+    function jo(t) {
       return t === "success" ? l.t("已完成") : t === "failed" ? l.t("制作失败") : t === "cancelled" ? l.t("已停止") : t === "waiting_human" ? l.t("等待确认") : t === "running" ? l.t("制作中") : l.t("等待开始");
     }
-    function Oo(t) {
+    function Ro(t) {
       if (!t) return "";
       try {
         return new Date(t).toLocaleString();
@@ -722,18 +743,18 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         return "";
       }
     }
-    async function Mo(t) {
-      if (t.taskId !== i.taskId && await rt()) {
+    async function Wo(t) {
+      if (t.taskId !== i.taskId && await it()) {
         h.warn(l.t("当前有制作正在进行，发布历史成片会丢失它的进度跟踪；请等它完成或先停止"));
         return;
       }
       if (t.taskId.startsWith("direct:")) {
-        i.source = "direct", i.conversationId = "", i.workspaceId = void 0, i.departmentId = void 0, i.taskId = void 0, i.projectName = t.projectName, i.expectedVideoPath = t.videoPath, i.videoPath = t.videoPath, k(), await G(t.videoPath), await he();
+        i.source = "direct", i.conversationId = "", i.workspaceId = void 0, i.departmentId = void 0, i.taskId = void 0, i.projectName = t.projectName, i.expectedVideoPath = t.videoPath, i.videoPath = t.videoPath, _(), await G(t.videoPath), await Ee();
         return;
       }
-      i.source = "workflow", i.conversationId = t.conversationId, i.projectName = t.projectName, i.workspaceId = t.workspaceId, i.departmentId = t.departmentId, i.taskId = t.taskId, i.expectedVideoPath = t.videoPath, i.videoPath = t.videoPath, k(), R.value = "", L.value = "", await z(), t.videoPath && await G(t.videoPath), await he();
+      i.source = "workflow", i.conversationId = t.conversationId, i.projectName = t.projectName, i.workspaceId = t.workspaceId, i.departmentId = t.departmentId, i.taskId = t.taskId, i.expectedVideoPath = t.videoPath, i.videoPath = t.videoPath, _(), R.value = "", L.value = "", await z(), t.videoPath && await G(t.videoPath), await Ee();
     }
-    function Bo(t, o) {
+    function Ko(t, o) {
       const a = t.includes("\\") ? "\\" : "/";
       return [
         t.replace(/[\\/]+$/, ""),
@@ -742,22 +763,22 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         "final.mp4"
       ].join(a);
     }
-    function fe() {
+    function be() {
       g.value = Object.fromEntries(
         Object.entries(g.value).map(([t, o]) => [t, o === "running" ? "pending" : o])
       ), u.value = "cancelled", v.value = l.t("已取消本次成片"), Y();
     }
-    async function it(t) {
+    async function at(t) {
       const o = window.electronAPI;
-      ie.value = !0;
+      re.value = !0;
       const a = [];
       t !== "seedance" && typeof o?.solution?.cancelVideo == "function" && a.push(Promise.resolve().then(() => o.solution.cancelVideo())), t !== "slideshow" && typeof o?.globalAdsRun?.cancelSlideshow == "function" && a.push(Promise.resolve().then(() => o.globalAdsRun.cancelSlideshow())), await Promise.allSettled(a);
     }
-    async function jo() {
-      if (!(le.value || !je.value)) {
+    async function zo() {
+      if (!(le.value || !Me.value)) {
         le.value = !0;
         try {
-          await it(_.value), await jt(() => u.value !== "running", 15e3);
+          await at(D.value), await Wt(() => u.value !== "running", 15e3);
         } catch (t) {
           h.fromException(l.t("停止成片失败"), t);
         } finally {
@@ -765,7 +786,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         }
       }
     }
-    function jt(t, o) {
+    function Wt(t, o) {
       return new Promise((a) => {
         if (t()) {
           a(!0);
@@ -780,24 +801,24 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         }, 200);
       });
     }
-    async function Ro() {
-      if (!Le.value) {
-        Le.value = !0;
+    async function Fo() {
+      if (!Ce.value) {
+        Ce.value = !0;
         try {
-          if (je.value) {
-            if (await it(_.value), !await jt(() => u.value !== "running" && !I.value, 2e4)) {
+          if (Me.value) {
+            if (await at(D.value), !await Wt(() => u.value !== "running" && !C.value, 2e4)) {
               h.warn(l.t("旧任务还没有退出，暂时无法重新生成；请稍后再试或重启应用。"));
               return;
             }
-          } else if (I.value)
+          } else if (C.value)
             return;
-          await zt();
+          await Ut();
         } finally {
-          Le.value = !1;
+          Ce.value = !1;
         }
       }
     }
-    async function Rt(t) {
+    async function Kt(t) {
       const o = window.electronAPI?.solution?.listMediaDir;
       if (typeof o != "function") return !0;
       let a = null;
@@ -808,13 +829,13 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
       }
       return a?.ok ? (Array.isArray(a.files) ? a.files : []).filter((d) => d?.kind === "image").length ? !0 : (h.warn(l.t("素材文件夹里没有图片（jpg/png/webp/heic…），图片成片无法开始：{p0}", { p0: t })), !1) : (h.warn(a?.error ? l.t("素材文件夹读取失败：{p0}", { p0: String(a.error) }) : l.t("素材文件夹读不到（可能已被移动或删除）：{p0}", { p0: t })), !1);
     }
-    async function Wt(t) {
+    async function zt(t) {
       const o = window.electronAPI, a = r.materialDir.trim();
       if (!a) throw new Error(l.t("请先选择素材目录，成片要用你自己的素材生成"));
       if (!o?.solution?.videoGenerate) throw new Error(l.t("成片服务尚未就绪"));
-      xe(), Y();
+      Xe(), Y();
       const n = r.voiceover || !!r.bgmMood;
-      i.source = "direct", i.conversationId = "", i.workspaceId = void 0, i.departmentId = void 0, i.taskId = void 0, k(), D.value = "", T.value = null, de.value = !0, Xt("slideshow", t), E.value = n ? [...Ce, mo] : [...Ce], g.value = n ? { scan: "running", stage: "pending", render: "pending", audio: "pending" } : { scan: "running", stage: "pending", render: "pending" }, v.value = l.t("正在扫描素材");
+      i.source = "direct", i.conversationId = "", i.workspaceId = void 0, i.departmentId = void 0, i.taskId = void 0, _(), T.value = "", A.value = null, pe.value = !0, eo("slideshow", t), y.value = n ? [...$e, bo] : [...$e], g.value = n ? { scan: "running", stage: "pending", render: "pending", audio: "pending" } : { scan: "running", stage: "pending", render: "pending" }, v.value = l.t("正在扫描素材");
       const d = o.solution.onVideoProgress?.((c) => {
         Q.value = Date.now();
         const s = String(c?.stage || "");
@@ -822,8 +843,8 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         const p = n ? ["scan", "stage", "render", "audio"] : ["scan", "stage", "render"], f = p.indexOf(s);
         if (f < 0) return;
         const m = {};
-        p.forEach((b, $) => {
-          m[b] = $ < f ? "done" : $ === f ? "running" : "pending";
+        p.forEach((N, b) => {
+          m[N] = b < f ? "done" : b === f ? "running" : "pending";
         }), g.value = m, v.value = String(c?.msg || s);
       });
       try {
@@ -848,8 +869,8 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
 `),
               timeoutMs: 12e4,
               plainCompletion: !0
-            }), b = String(m?.text || "").trim().slice(0, 200);
-            b && (c = [{ id: "s1", text: b, start: 0 }]);
+            }), N = String(m?.text || "").trim().slice(0, 200);
+            N && (c = [{ id: "s1", text: N, start: 0 }]);
           } catch {
           }
           if (!c.length) {
@@ -857,8 +878,8 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
             m && (c = [{ id: "s1", text: m, start: 0 }]);
           }
         }
-        if (ie.value)
-          return fe(), !1;
+        if (re.value)
+          return be(), !1;
         const s = await o.solution.videoGenerate({
           script: "oneclick",
           materialDir: a,
@@ -871,24 +892,24 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
           bgmMood: r.bgmMood || void 0
         });
         if (s?.cancelled)
-          return fe(), !1;
+          return be(), !1;
         if (!s?.ok) throw new Error(s?.error || l.t("成片失败"));
         const p = Array.isArray(s.skippedFiles) ? s.skippedFiles : [];
         if (p.length) {
-          const m = p.slice(0, 5).map((b) => `${String(b?.name)}（${String(b?.reason)}）`).join(l.t("、"));
+          const m = p.slice(0, 5).map((N) => `${String(N?.name)}（${String(N?.reason)}）`).join(l.t("、"));
           h.warn(l.t("有 {p0} 个素材读不出来，已跳过：{p1}", {
             p0: p.length,
             p1: m + (p.length > 5 ? "…" : "")
           }));
         }
         const f = String(s.videoPath || "");
-        return g.value = n ? { scan: "done", stage: "done", render: "done", audio: "done" } : { scan: "done", stage: "done", render: "done" }, i.projectName = t, i.expectedVideoPath = f, i.videoPath = f, k(), u.value = "success", v.value = l.t("成片已完成，可预览并进入发布"), f && (Bt({ videoPath: f, projectName: t, createdAt: Date.now() }), await G(f)), await ve(), h.success(l.t("成片已完成")), !0;
+        return g.value = n ? { scan: "done", stage: "done", render: "done", audio: "done" } : { scan: "done", stage: "done", render: "done" }, i.projectName = t, i.expectedVideoPath = f, i.videoPath = f, _(), u.value = "success", v.value = l.t("成片已完成，可预览并进入发布"), f && (Rt({ videoPath: f, projectName: t, createdAt: Date.now() }), await G(f)), await he(), h.success(l.t("成片已完成")), !0;
       } catch (c) {
         throw g.value = Object.fromEntries(
           Object.entries(g.value).map(([s, p]) => [s, p === "running" ? "failed" : p])
         ), u.value = "failed", v.value = ae.humanizeErrorMessage(c, l.t("成片失败")), Y(), c;
       } finally {
-        Zt(), de.value = !1;
+        to(), pe.value = !1;
         try {
           d?.();
         } catch {
@@ -896,14 +917,14 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
       }
     }
     function Y() {
-      i.videoPath = "", i.expectedVideoPath = void 0, k(), R.value = "", L.value = "";
+      i.videoPath = "", i.expectedVideoPath = void 0, _(), R.value = "", L.value = "";
     }
-    async function Wo(t) {
+    async function Uo(t) {
       const o = window.electronAPI, a = r.materialDir.trim();
       if (!a) throw new Error(l.t("请先选择素材目录，成片要用你自己的素材生成"));
       if (typeof o?.globalAdsRun?.slideshow != "function") throw new Error(l.t("成片服务尚未就绪"));
       if (!o?.llmOneshot) throw new Error(l.t("默认 LLM 服务尚未就绪"));
-      xe(), Y(), i.source = "direct", i.conversationId = "", i.workspaceId = void 0, i.departmentId = void 0, i.taskId = void 0, k(), D.value = "", T.value = null, de.value = !0, Xt("seedance", t), E.value = [...At], g.value = { scan: "running", shots: "pending", render: "pending", qc: "pending" }, v.value = l.t("正在扫描素材");
+      Xe(), Y(), i.source = "direct", i.conversationId = "", i.workspaceId = void 0, i.departmentId = void 0, i.taskId = void 0, _(), T.value = "", A.value = null, pe.value = !0, eo("seedance", t), y.value = [...Pt], g.value = { scan: "running", shots: "pending", render: "pending", qc: "pending" }, v.value = l.t("正在扫描素材");
       const n = (c, s) => {
         g.value = { ...g.value, [c]: s };
       }, d = o.globalAdsRun.onSlideshowProgress?.((c) => {
@@ -912,78 +933,78 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         s && (v.value = s, /质检|补生成/.test(s) && (n("render", "done"), n("qc", "running")));
       });
       try {
-        const c = await o.solution?.materialScan?.({ materialDir: a, aspect: r.aspectRatio || "9:16" }).catch((C) => ({ ok: !1, error: String(C?.message || C) }));
+        const c = await o.solution?.materialScan?.({ materialDir: a, aspect: r.aspectRatio || "9:16" }).catch((I) => ({ ok: !1, error: String(I?.message || I) }));
         if (!c?.ok) throw new Error(l.t("素材扫描失败：{p0}", { p0: String(c?.error || l.t("未知原因")).slice(0, 120) }));
-        const s = (c.included || []).filter((C) => C?.kind === "image" && C?.path).map((C) => String(C.path));
+        const s = (c.included || []).filter((I) => I?.kind === "image" && I?.path).map((I) => String(I.path));
         if (!s.length) throw new Error(l.t("素材目录里没有可用图片，请先添加清晰的参考素材"));
-        if (ie.value)
-          return fe(), !1;
+        if (re.value)
+          return be(), !1;
         n("scan", "done"), n("shots", "running"), v.value = l.t("正在按十要素规范撰写分镜提示词");
         const p = await o.llmOneshot({
-          systemPrompt: Ne.SEEDANCE_SHOT_SYSTEM_PROMPT,
-          prompt: Po(t, s),
+          systemPrompt: ye.SEEDANCE_SHOT_SYSTEM_PROMPT,
+          prompt: Oo(t, s),
           timeoutMs: 3e5,
           // 纯补全（F1 修复）：分镜是结构化文本生成。不带此标记时 worker 池按全量 toolset 建
           // agent，推理型模型会把「制作要求」当任务执行（E2E 实测 37+ 轮工具调用、13.5 分钟，
           // 最终回复不是分镜表 → parseSeedanceShotList 拒收 → 流水线打不起来）。
           plainCompletion: !0
-        }), f = String(p?.text || ""), m = Ne.parseSeedanceShotList(f, s);
+        }), f = String(p?.text || ""), m = ye.parseSeedanceShotList(f, s);
         if (!m.length) {
-          const C = {
+          const I = {
             replyLength: f.length,
             head: f.slice(0, 200),
             tail: f.length > 400 ? f.slice(-120) : ""
           };
-          console.warn("[video-studio] 分镜解析失败", C);
+          console.warn("[video-studio] 分镜解析失败", I);
           try {
             o?.sendRendererLog?.({
               level: "error",
               source: "video-studio",
               message: l.t("分镜解析失败：模型回复不是可用的结构化分镜"),
-              data: C
+              data: I
             });
           } catch {
           }
           throw new Error(l.t("模型没有返回可用的结构化分镜，未开始生成（不浪费生成额度）"));
         }
-        if (ie.value)
-          return fe(), !1;
+        if (re.value)
+          return be(), !1;
         n("shots", "done"), n("render", "running");
-        const b = Math.max(0, Math.round((Date.now() - Fe.value) / 1e3));
-        F.value = b + Math.max(30, Math.round(vo(m.length, Ct.value))), v.value = l.t("动态视频并行生成 {p0} 个镜头…", { p0: m.length });
-        const $ = `video_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`, ne = Bo(a, $), ze = await o.globalAdsRun.slideshow({
+        const N = Math.max(0, Math.round((Date.now() - Ke.value) / 1e3));
+        F.value = N + Math.max(30, Math.round(No(m.length, Ot.value))), v.value = l.t("动态视频并行生成 {p0} 个镜头…", { p0: m.length });
+        const b = `video_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`, ne = Ko(a, b), We = await o.globalAdsRun.slideshow({
           mode: "fal",
           materialDir: a,
           outputs: [{ aspect: r.aspectRatio || "9:16", path: ne }],
           title: t,
           bgmMood: r.bgmMood,
           scenes: m,
-          narration: r.voiceover ? Ne.narrationTimeline(m) : [],
-          seedanceQuality: Ct.value
+          narration: r.voiceover ? ye.narrationTimeline(m) : [],
+          seedanceQuality: Ot.value
         });
-        if (ze?.cancelled)
-          return fe(), !1;
-        if (!ze?.ok) throw new Error(ze?.error || l.t("动态视频生成失败"));
+        if (We?.cancelled)
+          return be(), !1;
+        if (!We?.ok) throw new Error(We?.error || l.t("动态视频生成失败"));
         n("render", "done"), n("qc", "running"), v.value = l.t("正在校验成片");
-        const be = String(ze.produced?.[0]?.path || ne), Qt = await o.solution?.inspectMedia?.(be);
-        if (Qt?.ok !== !0) throw new Error(l.t("成片校验未通过：{p0}", { p0: String(Qt?.error || l.t("文件不可播放")) }));
-        return n("qc", "done"), i.projectName = t, i.expectedVideoPath = be, i.videoPath = be, k(), u.value = "success", v.value = l.t("成片已完成，可预览并进入发布"), Bt({ videoPath: be, projectName: t, createdAt: Date.now() }), await G(be), await ve(), h.success(l.t("成片已完成")), !0;
+        const we = String(We.produced?.[0]?.path || ne), xt = await o.solution?.inspectMedia?.(we);
+        if (xt?.ok !== !0) throw new Error(l.t("成片校验未通过：{p0}", { p0: String(xt?.error || l.t("文件不可播放")) }));
+        return n("qc", "done"), i.projectName = t, i.expectedVideoPath = we, i.videoPath = we, _(), u.value = "success", v.value = l.t("成片已完成，可预览并进入发布"), Rt({ videoPath: we, projectName: t, createdAt: Date.now() }), await G(we), await he(), h.success(l.t("成片已完成")), !0;
       } catch (c) {
         throw g.value = Object.fromEntries(
           Object.entries(g.value).map(([s, p]) => [s, p === "running" ? "failed" : p])
         ), u.value = "failed", v.value = ae.humanizeErrorMessage(c, l.t("成片失败")), Y(), c;
       } finally {
-        Zt(), de.value = !1;
+        to(), pe.value = !1;
         try {
           d?.();
         } catch {
         }
       }
     }
-    const Kt = ["running", "waiting_human"];
-    async function rt() {
+    const Ft = ["running", "waiting_human"];
+    async function it() {
       if (i.source !== "workflow") return !1;
-      if (Kt.includes(u.value)) return !0;
+      if (Ft.includes(u.value)) return !0;
       if (!i.taskId) return !1;
       try {
         const t = await window.electronAPI?.listWorkspaceTree?.();
@@ -991,31 +1012,31 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
           for (const a of o?.departments || []) {
             const n = (a?.tasks || []).find((c) => c?.id === i.taskId);
             if (!n) continue;
-            return (Array.isArray(n.runs) ? n.runs : []).some((c) => Kt.includes(st(c?.status)));
+            return (Array.isArray(n.runs) ? n.runs : []).some((c) => Ft.includes(rt(c?.status)));
           }
       } catch {
       }
       return !1;
     }
-    async function zt() {
-      if (!Ze.value || I.value) return !1;
-      if (je.value || await rt())
+    async function Ut() {
+      if (!Ze.value || C.value) return !1;
+      if (Me.value || await it())
         return h.warn(l.t("已有制作正在进行（{p0}），等它完成或先停止后再开始新的", { p0: v.value || l.t("执行中") })), !1;
       if (!r.materialDir.trim())
         return h.warn(l.t("请先选择素材文件夹：真实生成需要读取本地素材")), !1;
-      I.value = !0;
+      C.value = !0;
       try {
-        B.value && (await it(""), ol(), await new Promise((a) => {
+        B.value && (await at(""), il(), await new Promise((a) => {
           window.setTimeout(a, 1e3);
         }));
         const t = r.projectName.trim() || r.brandName.trim() || l.t("短视频项目"), o = r.materialDir.trim();
         if (r.productionMode === "slideshow")
-          return await Rt(o) ? await Wt(t) : !1;
+          return await Kt(o) ? await zt(t) : !1;
         try {
-          return await Wo(t);
+          return await Uo(t);
         } catch (a) {
           if (r.productionMode !== "smart") throw a;
-          return h.warn(l.t("动态视频生成不可用（{p0}），已改用图片成片", { p0: ae.humanizeErrorMessage(a).slice(0, 120) })), await Rt(o) ? await Wt(t) : !1;
+          return h.warn(l.t("动态视频生成不可用（{p0}），已改用图片成片", { p0: ae.humanizeErrorMessage(a).slice(0, 120) })), await Kt(o) ? await zt(t) : !1;
         }
       } catch (t) {
         let o = null;
@@ -1026,17 +1047,17 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         }
         return o && (o.suggestModelConfig || o.suggestRecharge) ? h.actionable("warn", l.t("创建视频制作任务失败：{p0}", { p0: o.message }), {
           label: o.suggestRecharge ? l.t("去充值") : l.t("去配置"),
-          onClick: () => X.push({ path: "/settings", query: { section: "ai-models" } })
+          onClick: () => se.push({ path: "/settings", query: { section: "ai-models" } })
         }) : h.fromException(l.t("创建视频制作任务失败"), t), !1;
       } finally {
-        I.value = !1;
+        C.value = !1;
       }
     }
-    function st(t) {
+    function rt(t) {
       const o = String(t || "").toLowerCase();
       return o === "running" ? "running" : o === "waiting_human" ? "waiting_human" : o === "success" || o === "completed" || o === "done" ? "success" : o === "failed" || o === "error" ? "failed" : o === "cancelled" || o === "canceled" ? "cancelled" : o === "pending" ? "pending" : "idle";
     }
-    function Ko(t) {
+    function Jo(t) {
       return ["creative_plan", "creative_review", "render_final"].includes(t) ? 1 : ["video_review", "publish_validation"].includes(t) ? 2 : ["publish_approval", "platform_publish"].includes(t) ? 3 : 1;
     }
     async function z() {
@@ -1052,33 +1073,33 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
           const o = await t.listWorkspaceTree();
           let a = null;
           for (const m of Array.isArray(o) ? o : []) {
-            for (const b of m?.departments || []) {
-              const $ = (b?.tasks || []).find((ne) => ne?.id === i.taskId);
-              if ($) {
-                a = { workspace: m, department: b, task: $ };
+            for (const N of m?.departments || []) {
+              const b = (N?.tasks || []).find((ne) => ne?.id === i.taskId);
+              if (b) {
+                a = { workspace: m, department: N, task: b };
                 break;
               }
             }
             if (a) break;
           }
           if (!a) return;
-          i.workspaceId = String(a.workspace.id || ""), i.departmentId = String(a.department.id || ""), i.taskId = String(a.task.id || ""), k();
+          i.workspaceId = String(a.workspace.id || ""), i.departmentId = String(a.department.id || ""), i.taskId = String(a.task.id || ""), _();
           const n = (a.task.workflowDef?.nodes || []).filter((m) => m?.type !== "start" && m?.type !== "end").map((m) => ({
             id: String(m.id),
-            phase: Ko(String(m.id)),
+            phase: Jo(String(m.id)),
             label: String(m.name || m.id).replace(/^[①②③④⑤⑥⑦⑧]\s*/, "")
           }));
-          E.value = n.length ? n : [...Ve];
+          y.value = n.length ? n : [...Se];
           const d = Array.isArray(a.task.runs) ? a.task.runs : [], c = [...d].reverse().find(
             (m) => ["running", "waiting_human"].includes(String(m?.status || "").toLowerCase())
           ) || d[d.length - 1];
           if (!c) {
-            D.value = "", u.value = "pending", g.value = {}, v.value = l.t("任务已创建，等待工作流开始");
+            T.value = "", u.value = "pending", g.value = {}, v.value = l.t("任务已创建，等待工作流开始");
             return;
           }
-          D.value = String(c.runId || c.id || ""), u.value = st(c.status), g.value = { ...c.nodeStates || {} };
+          T.value = String(c.runId || c.id || ""), u.value = rt(c.status), g.value = { ...c.nodeStates || {} };
           const s = ["waiting_human", "running"].includes(u.value) ? c.pendingHumanConfirm : null;
-          T.value = s?.nodeId ? {
+          A.value = s?.nodeId ? {
             nodeId: String(s.nodeId),
             nodeName: s.nodeName ? String(s.nodeName).replace(/^[①②③④⑤⑥⑦⑧]\s*/, "") : void 0,
             question: s.question,
@@ -1089,24 +1110,24 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         } catch {
         }
     }
-    async function zo(t) {
-      const o = Ee.PLATFORM_PUBLISH_URLS[t];
+    async function qo(t) {
+      const o = ie.PLATFORM_PUBLISH_URLS[t];
       if (!o) return;
       const a = window.electronAPI;
       try {
-        await a?.browserTabs?.create?.({ url: o, activate: !0 }), S.value = { ...S.value, [t]: "unknown" };
+        await a?.browserTabs?.create?.({ url: o, activate: !0 }), k.value = { ...k.value, [t]: "unknown" };
       } catch (n) {
         h.fromException(l.t("打开平台登录页失败"), n);
       }
     }
-    async function Fo(t) {
-      const o = Ee.PLATFORM_PUBLISH_URLS[t], a = window.electronAPI;
+    async function Ho(t) {
+      const o = ie.PLATFORM_PUBLISH_URLS[t], a = window.electronAPI;
       if (!(!o || !a?.browserTabs?.create)) {
-        S.value = { ...S.value, [t]: "checking" };
+        k.value = { ...k.value, [t]: "checking" };
         try {
           const n = await a.browserTabs.create({ url: o, activate: !1 }), d = String(n?.id || "");
           if (!d) throw new Error(l.t("内置浏览器未能打开该平台"));
-          await new Promise(($) => setTimeout($, 4500));
+          await new Promise((b) => setTimeout(b, 4500));
           const c = await a.browserTabs.command({
             tabId: d,
             command: "eval",
@@ -1123,40 +1144,40 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
           return n;
         })(),
       })`]
-          }), s = c?.data ?? c?.result ?? c, p = typeof s == "string" ? JSON.parse(s) : s, f = String(p?.url || ""), b = !/login|signin|passport|\/auth/i.test(f) && Number(p?.fileInputs || 0) > 0;
-          S.value = { ...S.value, [t]: b ? "ready" : "absent" }, b || (O.value = { ...O.value, [t]: !1 });
+          }), s = c?.data ?? c?.result ?? c, p = typeof s == "string" ? JSON.parse(s) : s, f = String(p?.url || ""), N = !/login|signin|passport|\/auth/i.test(f) && Number(p?.fileInputs || 0) > 0;
+          k.value = { ...k.value, [t]: N ? "ready" : "absent" }, N || (O.value = { ...O.value, [t]: !1 });
         } catch {
-          S.value = { ...S.value, [t]: "absent" }, O.value = { ...O.value, [t]: !1 };
+          k.value = { ...k.value, [t]: "absent" }, O.value = { ...O.value, [t]: !1 };
         }
       }
     }
-    async function Ft() {
-      await Promise.all(A.value.map((t) => Fo(t.id)));
+    async function Jt() {
+      await Promise.all(P.value.map((t) => Ho(t.id)));
     }
-    const ge = e.computed(
-      () => A.value.filter((t) => O.value[t.id] !== !1)
-    ), dt = e.computed(
-      () => A.value.filter((t) => O.value[t.id] === !1)
+    const Ne = e.computed(
+      () => P.value.filter((t) => O.value[t.id] !== !1)
+    ), st = e.computed(
+      () => P.value.filter((t) => O.value[t.id] === !1)
     );
-    async function Ut(t) {
-      const o = T.value;
-      if (!(!o || !D.value || J.value)) {
+    async function qt(t) {
+      const o = A.value;
+      if (!(!o || !T.value || J.value)) {
         J.value = !0;
         try {
-          const a = ge.value.map((s) => s.label), n = dt.value.map((s) => s.label), d = t ? [
+          const a = Ne.value.map((s) => s.label), n = st.value.map((s) => s.label), d = t ? [
             l.t("确认发布的平台：{list}", { list: a.join("、") || l.t("（无）") }),
             n.length ? l.t("跳过的平台（未登录或本次不发）：{list}，请在回执中如实标注为未发布，不要写成成功。", { list: n.join("、") }) : ""
           ].filter(Boolean).join(`
 `) : l.t("暂不发布，请按修改意见调整后重新校验。"), c = await window.electronAPI?.respondTaskRunHumanConfirm?.({
-            runId: D.value,
+            runId: T.value,
             nodeId: o.nodeId,
             approved: t,
             reply: d,
             selectedOption: t ? a.join(l.t("、")) : void 0
           });
           !c || c.ok === !1 || c.stale ? h.warn(l.t("这条确认已经失效，正在刷新运行状态")) : (h.success(t ? l.t("已确认，开始分平台发布") : l.t("已退回，等待修改后重新校验")), window.dispatchEvent(new CustomEvent("totalclaw-human-confirm-resolved", {
-            detail: { runId: D.value, nodeId: o.nodeId }
-          })), T.value = null), await z();
+            detail: { runId: T.value, nodeId: o.nodeId }
+          })), A.value = null), await z();
         } catch (a) {
           h.fromException(l.t("提交发布确认失败"), a);
         } finally {
@@ -1164,26 +1185,26 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         }
       }
     }
-    function Uo(t) {
+    function Yo(t) {
       if (t?.runId && i.source === "workflow") {
-        if (!D.value) {
+        if (!T.value) {
           t.kind === "run-started" && z();
           return;
         }
-        String(t.runId) === D.value && (t.nodeStates && (g.value = { ...t.nodeStates }), (t.kind === "human-confirm-resolved" || t.kind === "node-completed" || t.kind === "node-failed") && t.nodeId && T.value?.nodeId === String(t.nodeId) && (T.value = null), t.kind === "run-started" ? (u.value = "running", v.value = l.t("工作流已启动")) : t.kind === "node-entered" ? (u.value = "running", t.nodeId && (g.value = { ...g.value, [t.nodeId]: "running" }), v.value = String(t.nodeName || t.roleName || t.nodeId || l.t("正在执行"))) : t.kind === "node-completed" ? t.nodeId && (g.value = { ...g.value, [t.nodeId]: "done" }) : t.kind === "node-failed" ? (u.value = "failed", t.nodeId && (g.value = { ...g.value, [t.nodeId]: "failed" }), v.value = String(t.error || t.nodeName || l.t("节点执行失败"))) : t.kind === "human-confirm-requested" ? (u.value = "waiting_human", v.value = String(t.nodeName || l.t("等待人工确认")), t.nodeId && (T.value = {
+        String(t.runId) === T.value && (t.nodeStates && (g.value = { ...t.nodeStates }), (t.kind === "human-confirm-resolved" || t.kind === "node-completed" || t.kind === "node-failed") && t.nodeId && A.value?.nodeId === String(t.nodeId) && (A.value = null), t.kind === "run-started" ? (u.value = "running", v.value = l.t("工作流已启动")) : t.kind === "node-entered" ? (u.value = "running", t.nodeId && (g.value = { ...g.value, [t.nodeId]: "running" }), v.value = String(t.nodeName || t.roleName || t.nodeId || l.t("正在执行"))) : t.kind === "node-completed" ? t.nodeId && (g.value = { ...g.value, [t.nodeId]: "done" }) : t.kind === "node-failed" ? (u.value = "failed", t.nodeId && (g.value = { ...g.value, [t.nodeId]: "failed" }), v.value = String(t.error || t.nodeName || l.t("节点执行失败"))) : t.kind === "human-confirm-requested" ? (u.value = "waiting_human", v.value = String(t.nodeName || l.t("等待人工确认")), t.nodeId && (A.value = {
           nodeId: String(t.nodeId),
           nodeName: t.nodeName ? String(t.nodeName).replace(/^[①②③④⑤⑥⑦⑧]\s*/, "") : void 0,
           question: t.humanConfirm?.question,
           detail: t.humanConfirm?.detail
-        }, Ft())) : t.kind === "run-completed" ? (u.value = "success", v.value = l.t("全部制作步骤已完成"), z(), ve()) : t.kind === "run-failed" ? (u.value = "failed", v.value = String(t.error || l.t("请进入制作对话查看失败原因")), z()) : t.kind === "run-cancelled" && (u.value = "cancelled", v.value = l.t("任务已停止"), z()));
+        }, Jt())) : t.kind === "run-completed" ? (u.value = "success", v.value = l.t("全部制作步骤已完成"), z(), he()) : t.kind === "run-failed" ? (u.value = "failed", v.value = String(t.error || l.t("请进入制作对话查看失败原因")), z()) : t.kind === "run-cancelled" && (u.value = "cancelled", v.value = l.t("任务已停止"), z()));
       }
     }
-    async function Jo() {
+    async function Go() {
       if (i.conversationId)
         try {
-          if (!(await window.electronAPI?.conversation?.get?.(i.conversationId))?.id && !await Ht())
+          if (!(await window.electronAPI?.conversation?.get?.(i.conversationId))?.id && !await Gt())
             throw new Error(l.t("这条制作任务已不存在"));
-          await X.push({
+          await se.push({
             path: "/conversations",
             query: { id: i.conversationId, returnTo: "/video-studio" }
           });
@@ -1194,7 +1215,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
     async function G(t) {
       const o = t.trim().replace(/^['"`]|['"`]$/g, "");
       if (!o || Ae.value) return !1;
-      Ae.value = !0, Te.value = !0;
+      Ae.value = !0, ue.value = !0;
       try {
         const a = await window.electronAPI?.solution?.previewMedia?.(o), n = a?.srcUrl || a?.dataUrl;
         if (!a?.ok || !n) throw new Error(a?.error || l.t("无法读取成片"));
@@ -1205,7 +1226,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         Ae.value = !1;
       }
     }
-    function ct(t) {
+    function dt(t) {
       const o = [], a = (d) => {
         const c = String(d || "").trim().replace(/^['"`]|['"`]$/g, "");
         c && !o.includes(c) && o.push(c);
@@ -1220,7 +1241,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
       }
       return o;
     }
-    function Jt(t) {
+    function Ht(t) {
       return [...new Set(t)].sort((o, a) => {
         const n = (d) => {
           const c = d.toLowerCase();
@@ -1230,7 +1251,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         return n(a) - n(o);
       });
     }
-    async function Ke(t) {
+    async function Re(t) {
       try {
         const o = await window.electronAPI?.solution?.inspectMedia?.(t);
         return o?.ok && o?.path ? String(o.path) : "";
@@ -1238,13 +1259,13 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         return "";
       }
     }
-    function k() {
+    function _() {
       try {
-        localStorage.setItem(pt, JSON.stringify(i));
+        localStorage.setItem(ut, JSON.stringify(i));
       } catch {
       }
     }
-    async function qt(t = !1) {
+    async function Yt(t = !1) {
       const o = i.conversationId;
       if (!o) return !1;
       try {
@@ -1254,66 +1275,63 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         ].filter((d) => !!d), n = await window.electronAPI?.conversation?.getTranscript?.(o);
         if (Array.isArray(n))
           for (let d = n.length - 1; d >= 0; d -= 1)
-            a.push(...ct(String(n[d]?.content || "")));
-        for (const d of Jt(a)) {
-          const c = await Ke(d);
+            a.push(...dt(String(n[d]?.content || "")));
+        for (const d of Ht(a)) {
+          const c = await Re(d);
           if (!c) continue;
           const s = i.videoPath !== c;
-          return i.videoPath = c, k(), t && s && await G(c), !0;
+          return i.videoPath = c, _(), t && s && await G(c), !0;
         }
-        i.videoPath && (i.videoPath = "", R.value = "", L.value = "", k());
+        i.videoPath && (i.videoPath = "", R.value = "", L.value = "", _());
       } catch {
       }
       return !1;
     }
-    async function Ht() {
+    async function Gt() {
       if (i.source === "direct" || i.expectedVideoPath || i.videoPath || i.taskId) return !1;
       const t = window.electronAPI?.conversation;
       if (!t?.list || !t?.getTranscript) return !1;
       try {
-        const o = await t.list(), a = (Array.isArray(o) ? o : []).filter((n) => /视频|seedance|短片/i.test(String(n?.title || n?.lastMessagePreview || ""))).filter((n) => !Se(n?.title, n?.lastMessagePreview)).slice(0, 20);
+        const o = await t.list(), a = (Array.isArray(o) ? o : []).filter((n) => /视频|seedance|短片/i.test(String(n?.title || n?.lastMessagePreview || ""))).filter((n) => !ke(n?.title, n?.lastMessagePreview)).slice(0, 20);
         for (const n of a) {
           const d = await t.getTranscript(n.id);
           if (!Array.isArray(d)) continue;
           const c = [];
           for (let s = d.length - 1; s >= 0; s -= 1) {
             const p = d[s] || {};
-            c.push(...ct(String(p.content || ""))), p.toolCalls && c.push(...ct(JSON.stringify(p.toolCalls)));
+            c.push(...dt(String(p.content || ""))), p.toolCalls && c.push(...dt(JSON.stringify(p.toolCalls)));
           }
-          for (const s of Jt(c)) {
-            const p = await Ke(s);
+          for (const s of Ht(c)) {
+            const p = await Re(s);
             if (p)
-              return i.source = "workflow", i.conversationId = String(n.id), i.projectName = String(n.title || l.t("视频制作任务")).replace(/^视频制作\s*[·\-]\s*/i, ""), i.workspaceId = void 0, i.departmentId = void 0, i.taskId = void 0, i.expectedVideoPath = void 0, i.videoPath = p, k(), !0;
+              return i.source = "workflow", i.conversationId = String(n.id), i.projectName = String(n.title || l.t("视频制作任务")).replace(/^视频制作\s*[·\-]\s*/i, ""), i.workspaceId = void 0, i.departmentId = void 0, i.taskId = void 0, i.expectedVideoPath = void 0, i.videoPath = p, _(), !0;
           }
         }
       } catch {
       }
       return !1;
     }
-    async function Yt() {
+    async function Qt() {
       const t = i.videoPath;
-      t && (R.value && L.value === t ? Te.value = !0 : await G(t));
+      t && (R.value && L.value === t ? ue.value = !0 : await G(t));
     }
-    async function he() {
-      if (!(!V.value || w.value)) {
-        q.value && xe(), w.value = !0;
+    async function Ee() {
+      if (!(!S.value || w.value)) {
+        q.value && Xe(), w.value = !0;
         try {
           const t = window.electronAPI;
-          if (!t?.saveWorkflow || !t?.runWorkflow)
-            throw new Error(l.t("当前版本未开放工作流运行"));
-          const o = (ge.value.length ? ge.value : A.value).map((b) => b.id), a = Object.fromEntries(
-            A.value.map((b) => [b.id, at(r.topics[b.id] || "")])
-          ), n = go(), d = !!n && n.videoPath === i.videoPath, c = !!n && n.platformIds.length === o.length && n.platformIds.every((b) => o.includes(b)), s = d && c && !!n?.caption;
-          Pe(s ? l.t("复用上次发布文案…") : l.t("正在生成发布文案…"));
-          const p = s ? n.caption : await qo(), f = s ? { ...n.topics, ...a } : a, m = {
-            videoPath: i.videoPath,
+          if (!t?.publishRuns?.start)
+            throw new Error(l.t("当前版本未开放本页发布"));
+          const o = (Ne.value.length ? Ne.value : P.value).map((b) => b.id), a = Object.fromEntries(
+            P.value.map((b) => [b.id, nt(r.topics[b.id] || "")])
+          ), n = Lt(), d = !!n && n.videoPath === i.videoPath, c = !!n && n.platformIds.length === o.length && n.platformIds.every((b) => o.includes(b)), s = d && c && !!n?.caption;
+          He(s ? l.t("复用上次发布文案…") : l.t("正在生成发布文案…"));
+          const p = s ? n.caption : await Qo(), f = s ? { ...n.topics, ...a } : a, m = {
+            videoPath: i.videoPath || "",
             projectName: i.projectName || r.projectName || l.t("短视频发布任务"),
-            platforms: o.join(","),
-            topics: JSON.stringify(f),
-            caption: p,
-            workflowSource: "video-studio",
-            returnPath: "/video-studio",
-            returnLabel: l.t("返回短视频工作台")
+            platforms: [...o],
+            topics: f,
+            caption: p
           };
           try {
             const b = {
@@ -1324,18 +1342,20 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
               projectName: m.projectName,
               savedAt: Date.now()
             };
-            localStorage.setItem(to, JSON.stringify(b));
+            localStorage.setItem(pt, JSON.stringify(b));
           } catch {
           }
-          Pe(l.t("正在准备发布工作流…")), await t.saveWorkflow(we.buildVideoPublishWorkflow(m)), we.setWorkflowAutoRun(we.FIXED_VIDEO_PUBLISH_WORKFLOW_ID, m), Pe(l.t("正在打开发布工作流…")), await X.push({ path: "/workflow" });
+          He(l.t("正在准备发布预览…"));
+          const N = await t.publishRuns.start({ kind: "video", ownerPath: lo, input: m });
+          ue.value = !1, Tt.value = N.id;
         } catch (t) {
-          h.fromException(l.t("无法进入发布工作流"), t);
+          h.fromException(l.t("无法准备发布"), t);
         } finally {
-          Pe(""), w.value = !1;
+          He(""), w.value = !1;
         }
       }
     }
-    async function qo() {
+    async function Qo() {
       const t = r.brandName || i.projectName || r.projectName || l.t("品牌短视频"), o = r.brief.trim();
       if (!o) return t;
       try {
@@ -1345,7 +1365,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
           systemPrompt: l.t("你是短视频运营，负责写发布文案。只输出正文本身，不要解释、不要引号、不要话题标签。"),
           prompt: [
             l.t("品牌 / 项目：{p0}", { p0: r.brandName || r.projectName || t }),
-            l.t("目标平台：{p0}", { p0: ce.value }),
+            l.t("目标平台：{p0}", { p0: me.value }),
             "",
             l.t("内容目标与关键信息："),
             o.slice(0, 1200),
@@ -1361,13 +1381,13 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         return t;
       }
     }
-    async function Gt() {
-      Dt.value = !1, Tt.set(!1);
+    async function Zt() {
+      Dt.value = !1, At.set(!1);
     }
-    async function Ho(t) {
+    async function Zo(t) {
       if (!w.value) {
         if (!t.approved) {
-          await Gt(), v.value = l.t("发布已退回修改，成片仍保留"), h.info(l.t("已退回修改，本次没有执行发布"));
+          await Zt(), v.value = l.t("发布已退回修改，成片仍保留"), h.info(l.t("已退回修改，本次没有执行发布"));
           return;
         }
         w.value = !0, g.value = {
@@ -1382,10 +1402,10 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         }
       }
     }
-    function ut() {
-      Te.value = !1;
+    function ct() {
+      ue.value = !1;
     }
-    function Yo(t) {
+    function Xt(t) {
       const o = Number(t?.platformCount || 0), a = Number(t?.unconfirmedCount || 0), n = Number(t?.failedCount || 0);
       if (!("unconfirmedCount" in (t || {})))
         return l.t("{p0} 个平台发布完成", { p0: o });
@@ -1398,63 +1418,63 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         p1: (t.failedPlatforms || []).join("、")
       })), d.join(l.t("，"));
     }
-    async function Go() {
-      if (!await window.electronAPI?.solution?.folderExists?.(xt).catch(() => !1)) return;
-      const o = uo();
-      r.materialDir.trim() || (r.materialDir = o.materialDir), r.projectName.trim() || (r.projectName = o.projectName), r.brandName.trim() || (r.brandName = o.brandName), r.brief.trim() === re.brief.trim() && (r.brief = o.brief);
+    async function Xo() {
+      if (!await window.electronAPI?.solution?.folderExists?.(oo).catch(() => !1)) return;
+      const o = fo();
+      r.materialDir.trim() || (r.materialDir = o.materialDir), r.projectName.trim() || (r.projectName = o.projectName), r.brandName.trim() || (r.brandName = o.brandName), r.brief.trim() === de.brief.trim() && (r.brief = o.brief);
       for (const a of Object.keys(r.topics)) {
         const n = String(r.topics[a] || "").trim();
-        (!n || n === re.topics[a]) && (r.topics[a] = o.topics);
+        (!n || n === de.topics[a]) && (r.topics[a] = o.topics);
       }
     }
     return e.onMounted(() => {
-      Go();
+      Xo();
       try {
-        const a = JSON.parse(localStorage.getItem(eo) || "null");
+        const a = JSON.parse(localStorage.getItem(no) || "null");
         if (a?.kind === "run:completed") {
           const n = JSON.parse(String(a?.finalVariables?.node_receipt_result || "{}"));
-          Ie.value = Yo(n);
+          oe.value = Xt(n);
         }
       } catch {
       }
-      nt();
+      lt();
       try {
-        lt = window.electronAPI?.onMediaModelChanged?.(() => {
-          nt();
+        ot = window.electronAPI?.onMediaModelChanged?.(() => {
+          lt();
         });
       } catch {
       }
       (async () => {
-        if (He) {
-          const c = await Ke(He);
-          c && (i.videoPath = He), c ? (E.value = [...Ce], g.value = { scan: "done", stage: "done", render: "done" }, u.value = "success", v.value = l.t("成片已完成，可预览并进入发布")) : (i.source = "none", Y(), u.value = "idle", g.value = {}, E.value = [...Ve], v.value = l.t("填写方案并启动后，这里会实时显示每一步"));
+        if (Je) {
+          const c = await Re(Je);
+          c && (i.videoPath = Je), c ? (y.value = [...$e], g.value = { scan: "done", stage: "done", render: "done" }, u.value = "success", v.value = l.t("成片已完成，可预览并进入发布")) : (i.source = "none", Y(), u.value = "idle", g.value = {}, y.value = [...Se], v.value = l.t("填写方案并启动后，这里会实时显示每一步"));
         }
         await z();
-        const a = await rt(), n = B.value || i.source === "direct" && !!_.value && u.value === "failed";
-        !a && !n && ["cancelled", "failed"].includes(u.value) && !(i.videoPath && await Ke(i.videoPath)) && (i.source = "none", i.taskId = void 0, i.workspaceId = void 0, i.departmentId = void 0, i.conversationId = "", i.videoPath = "", i.expectedVideoPath = void 0, k(), D.value = "", g.value = {}, E.value = [...Ve], u.value = "idle", _.value = "", v.value = l.t("填写方案并启动后，这里会实时显示每一步")), await ve();
-        const d = i.source === "direct" ? !1 : await qt(!1);
-        !a && !d && !i.expectedVideoPath && !i.taskId && await Ht();
-      })(), Ge = window.electronAPI?.conversation?.onUpdated?.((a) => {
-        a?.id === i.conversationId && (i.source === "direct" || u.value === "running" || qt(!0));
-      }) || null, Qe = window.electronAPI?.onTaskRunEvent?.(Uo) || null, Oe = window.setInterval(() => {
+        const a = await it(), n = B.value || i.source === "direct" && !!D.value && u.value === "failed";
+        !a && !n && ["cancelled", "failed"].includes(u.value) && !(i.videoPath && await Re(i.videoPath)) && (i.source = "none", i.taskId = void 0, i.workspaceId = void 0, i.departmentId = void 0, i.conversationId = "", i.videoPath = "", i.expectedVideoPath = void 0, _(), T.value = "", g.value = {}, y.value = [...Se], u.value = "idle", D.value = "", v.value = l.t("填写方案并启动后，这里会实时显示每一步")), await he();
+        const d = i.source === "direct" ? !1 : await Yt(!1);
+        !a && !d && !i.expectedVideoPath && !i.taskId && await Gt();
+      })(), Ye = window.electronAPI?.conversation?.onUpdated?.((a) => {
+        a?.id === i.conversationId && (i.source === "direct" || u.value === "running" || Yt(!0));
+      }) || null, Ge = window.electronAPI?.onTaskRunEvent?.(Yo) || null, Ie = window.setInterval(() => {
         z();
       }, 3e3);
     }), e.watch(u, (t, o) => {
-      if (!(de.value || o !== "running" || !_.value))
+      if (!(pe.value || o !== "running" || !D.value))
         if (t === "success") {
-          const a = qe(pt, { conversationId: "", projectName: "" });
+          const a = Ue(ut, { conversationId: "", projectName: "" });
           if (a.source !== "direct" || !a.videoPath) return;
-          i.source = "direct", i.conversationId = "", i.taskId = void 0, i.workspaceId = void 0, i.departmentId = void 0, i.projectName = String(a.projectName || i.projectName || ""), i.expectedVideoPath = a.expectedVideoPath || a.videoPath, i.videoPath = String(a.videoPath), G(i.videoPath), ve();
+          i.source = "direct", i.conversationId = "", i.taskId = void 0, i.workspaceId = void 0, i.departmentId = void 0, i.projectName = String(a.projectName || i.projectName || ""), i.expectedVideoPath = a.expectedVideoPath || a.videoPath, i.videoPath = String(a.videoPath), G(i.videoPath), he();
         } else (t === "failed" || t === "cancelled") && i.source === "direct" && Y();
     }), e.onBeforeUnmount(() => {
-      Tt.release(), Ge?.(), Ge = null, Qe?.(), Qe = null, Oe && window.clearInterval(Oe), Oe = null, U && window.clearInterval(U), U = null;
+      At.release(), Ye?.(), Ye = null, Ge?.(), Ge = null, Ie && window.clearInterval(Ie), Ie = null, U && window.clearInterval(U), U = null;
     }), (t, o) => {
       const a = e.resolveDirective("kb-fill");
-      return e.openBlock(), e.createElementBlock("div", ll, [
-        e.createElementVNode("header", nl, [
-          e.createVNode(Qo),
-          e.createElementVNode("div", al, [
-            e.createElementVNode("span", il, [
+      return e.openBlock(), e.createElementBlock("div", rl, [
+        e.createElementVNode("header", sl, [
+          e.createVNode(xo),
+          e.createElementVNode("div", dl, [
+            e.createElementVNode("span", cl, [
               o[24] || (o[24] = e.createElementVNode(
                 "i",
                 { class: "ri-movie-2-line" },
@@ -1471,7 +1491,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
             e.createElementVNode(
               "h1",
               null,
-              e.toDisplayString(t.$t("短视频创作与发布工作台")),
+              e.toDisplayString(t.$t("多媒体创作与发布工作台")),
               1
               /* TEXT */
             ),
@@ -1483,7 +1503,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
               /* TEXT */
             )
           ]),
-          e.createElementVNode("div", rl, [
+          e.createElementVNode("div", ul, [
             e.createElementVNode("div", {
               class: "hero-flow",
               "aria-label": t.$t("视频制作流程")
@@ -1491,7 +1511,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
               (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(ye, (n, d) => (e.openBlock(), e.createElementBlock(
+                e.renderList(Ve, (n, d) => (e.openBlock(), e.createElementBlock(
                   e.Fragment,
                   {
                     key: n.label
@@ -1528,7 +1548,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                       2
                       /* CLASS */
                     ),
-                    d < ye.length - 1 ? (e.openBlock(), e.createElementBlock("i", dl)) : e.createCommentVNode("v-if", !0)
+                    d < Ve.length - 1 ? (e.openBlock(), e.createElementBlock("i", ml)) : e.createCommentVNode("v-if", !0)
                   ],
                   64
                   /* STABLE_FRAGMENT */
@@ -1536,7 +1556,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 64
                 /* STABLE_FRAGMENT */
               ))
-            ], 8, sl)
+            ], 8, pl)
           ])
         ]),
         e.createElementVNode(
@@ -1545,13 +1565,13 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
             class: e.normalizeClass(["job-progress-panel", `is-${e.unref(u)}`])
           },
           [
-            e.createElementVNode("div", cl, [
-              e.createElementVNode("div", ul, [
-                e.createElementVNode("span", pl, [
+            e.createElementVNode("div", vl, [
+              e.createElementVNode("div", fl, [
+                e.createElementVNode("span", gl, [
                   e.createElementVNode(
                     "i",
                     {
-                      class: e.normalizeClass(e.unref(u) === "running" ? "ri-loader-4-line spin" : e.unref(u) === "failed" ? "ri-error-warning-line" : Be.value === 100 ? "ri-check-line" : "ri-time-line")
+                      class: e.normalizeClass(e.unref(u) === "running" ? "ri-loader-4-line spin" : e.unref(u) === "failed" ? "ri-error-warning-line" : Oe.value === 100 ? "ri-check-line" : "ri-time-line")
                     },
                     null,
                     2
@@ -1562,7 +1582,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   e.createElementVNode(
                     "strong",
                     null,
-                    e.toDisplayString(Eo.value),
+                    e.toDisplayString(ko.value),
                     1
                     /* TEXT */
                   ),
@@ -1575,44 +1595,44 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   )
                 ])
               ]),
-              tt.value ? (e.openBlock(), e.createElementBlock("div", fl, [
+              et.value ? (e.openBlock(), e.createElementBlock("div", Nl, [
                 e.createElementVNode(
                   "span",
                   null,
-                  e.toDisplayString(t.$t("停在第 {p0} 步（共 {p1} 步）", { p0: et.value, p1: e.unref(E).length })),
+                  e.toDisplayString(t.$t("停在第 {p0} 步（共 {p1} 步）", { p0: xe.value, p1: e.unref(y).length })),
                   1
                   /* TEXT */
                 )
-              ])) : (e.openBlock(), e.createElementBlock("div", ml, [
+              ])) : (e.openBlock(), e.createElementBlock("div", hl, [
                 e.createElementVNode(
                   "strong",
                   null,
-                  e.toDisplayString(Be.value) + "%",
+                  e.toDisplayString(Oe.value) + "%",
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "span",
                   null,
-                  e.toDisplayString(et.value) + "/" + e.toDisplayString(e.unref(E).length) + " " + e.toDisplayString(t.$t("步骤完成")),
+                  e.toDisplayString(xe.value) + "/" + e.toDisplayString(e.unref(y).length) + " " + e.toDisplayString(t.$t("步骤完成")),
                   1
                   /* TEXT */
                 ),
-                Pt.value ? (e.openBlock(), e.createElementBlock(
+                Ct.value ? (e.openBlock(), e.createElementBlock(
                   "span",
-                  vl,
-                  e.toDisplayString(Pt.value),
+                  bl,
+                  e.toDisplayString(Ct.value),
                   1
                   /* TEXT */
                 )) : e.createCommentVNode("v-if", !0)
               ])),
               e.createCommentVNode(" 直连成片跑着就能停：两条管线的取消通道都在（solution.cancelVideo / globalAdsRun.cancelSlideshow） "),
-              je.value ? (e.openBlock(), e.createElementBlock("button", {
+              Me.value ? (e.openBlock(), e.createElementBlock("button", {
                 key: 2,
                 type: "button",
                 class: "job-stop-btn",
                 disabled: le.value,
-                onClick: o[0] || (o[0] = (n) => jo())
+                onClick: o[0] || (o[0] = (n) => zo())
               }, [
                 e.createElementVNode(
                   "i",
@@ -1628,31 +1648,31 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   1
                   /* TEXT */
                 )
-              ], 8, gl)) : e.createCommentVNode("v-if", !0)
+              ], 8, El)) : e.createCommentVNode("v-if", !0)
             ]),
-            tt.value ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("div", {
+            et.value ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("div", {
               key: 0,
               class: "job-progress-track",
               role: "progressbar",
-              "aria-valuenow": Be.value,
+              "aria-valuenow": Oe.value,
               "aria-valuemin": "0",
               "aria-valuemax": "100"
             }, [
               e.createElementVNode(
                 "i",
                 {
-                  style: e.normalizeStyle({ width: `${Be.value}%` })
+                  style: e.normalizeStyle({ width: `${Oe.value}%` })
                 },
                 null,
                 4
                 /* STYLE */
               )
-            ], 8, hl)),
-            e.createElementVNode("div", bl, [
+            ], 8, wl)),
+            e.createElementVNode("div", yl, [
               (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(ye, (n, d) => e.createElementVNode(
+                e.renderList(Ve, (n, d) => e.createElementVNode(
                   "div",
                   {
                     key: `progress-${n.label}`,
@@ -1678,7 +1698,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     e.createElementVNode(
                       "small",
                       null,
-                      e.toDisplayString(yo(d)),
+                      e.toDisplayString(_o(d)),
                       1
                       /* TEXT */
                     )
@@ -1696,15 +1716,15 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
         超时由看门狗判（跑过预计的 3 倍或 10 分钟没进度），可「继续等待」或「重新生成」
         （重新生成会先取消还在跑的旧任务，等它退出再起，不堆僵尸子进程）。
       `),
-            ot.value ? (e.openBlock(), e.createBlock(Zo, {
+            tt.value ? (e.openBlock(), e.createBlock(ol, {
               key: 1,
-              state: ot.value.state,
-              message: ot.value.message,
+              state: tt.value.state,
+              message: tt.value.message,
               "elapsed-sec": e.unref(W).elapsedSec.value,
               "estimate-sec": e.unref(F) || null,
               "since-heartbeat-sec": e.unref(W).sinceHeartbeatSec.value,
-              busy: Le.value,
-              onRetry: o[1] || (o[1] = (n) => Ro()),
+              busy: Ce.value,
+              onRetry: o[1] || (o[1] = (n) => Fo()),
               onKeepWaiting: o[2] || (o[2] = (n) => e.unref(W).keepWaiting())
             }, null, 8, ["state", "message", "elapsed-sec", "estimate-sec", "since-heartbeat-sec", "busy"])) : e.createCommentVNode("v-if", !0)
           ],
@@ -1715,8 +1735,8 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
       发布确认就地弹在演示页上。以前这个确认只存在于全局待办中心，演示页只显示一行
       「等待发布确认」，用户在页面上找不到任何可点的东西，进度就永远停在最后一步。
     `),
-        T.value ? (e.openBlock(), e.createElementBlock("section", Nl, [
-          e.createElementVNode("header", wl, [
+        A.value ? (e.openBlock(), e.createElementBlock("section", Vl, [
+          e.createElementVNode("header", Sl, [
             o[26] || (o[26] = e.createElementVNode(
               "span",
               { class: "publish-confirm-icon" },
@@ -1730,14 +1750,14 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
               e.createElementVNode(
                 "strong",
                 null,
-                e.toDisplayString(T.value?.nodeName || t.$t("发布前确认")),
+                e.toDisplayString(A.value?.nodeName || t.$t("发布前确认")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "small",
                 null,
-                e.toDisplayString(T.value?.question || t.$t("请确认各平台登录状态后再发布")),
+                e.toDisplayString(A.value?.question || t.$t("请确认各平台登录状态后再发布")),
                 1
                 /* TEXT */
               )
@@ -1746,7 +1766,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
               type: "button",
               class: "ghost-btn",
               disabled: J.value,
-              onClick: Ft
+              onClick: Jt
             }, [
               o[25] || (o[25] = e.createElementVNode(
                 "i",
@@ -1760,31 +1780,31 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 1
                 /* TEXT */
               )
-            ], 8, El)
+            ], 8, kl)
           ]),
           e.createElementVNode(
             "p",
-            yl,
+            _l,
             e.toDisplayString(t.$t("不要求所有平台都已登录：只发布你勾选的平台，未勾选的会在回执里如实标注为未发布。登录一律在右侧内置浏览器完成。")),
             1
             /* TEXT */
           ),
-          e.createElementVNode("ul", Vl, [
+          e.createElementVNode("ul", Dl, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(A.value, (n) => (e.openBlock(), e.createElementBlock("li", {
+              e.renderList(P.value, (n) => (e.openBlock(), e.createElementBlock("li", {
                 key: `confirm-${n.id}`
               }, [
-                e.createElementVNode("label", Sl, [
+                e.createElementVNode("label", Tl, [
                   e.createElementVNode("input", {
                     type: "checkbox",
                     checked: O.value[n.id] !== !1,
                     onChange: (d) => O.value = { ...O.value, [n.id]: d.target.checked }
-                  }, null, 40, kl),
+                  }, null, 40, Al),
                   e.createElementVNode(
                     "span",
-                    _l,
+                    Pl,
                     e.toDisplayString(n.label),
                     1
                     /* TEXT */
@@ -1793,10 +1813,10 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 e.createElementVNode(
                   "span",
                   {
-                    class: e.normalizeClass(["publish-confirm-state", `is-${S.value[n.id] || "unknown"}`])
+                    class: e.normalizeClass(["publish-confirm-state", `is-${k.value[n.id] || "unknown"}`])
                   },
                   [
-                    S.value[n.id] === "checking" ? (e.openBlock(), e.createElementBlock(
+                    k.value[n.id] === "checking" ? (e.openBlock(), e.createElementBlock(
                       e.Fragment,
                       { key: 0 },
                       [
@@ -1815,7 +1835,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                       ],
                       64
                       /* STABLE_FRAGMENT */
-                    )) : S.value[n.id] === "ready" ? (e.openBlock(), e.createElementBlock(
+                    )) : k.value[n.id] === "ready" ? (e.openBlock(), e.createElementBlock(
                       e.Fragment,
                       { key: 1 },
                       [
@@ -1834,7 +1854,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                       ],
                       64
                       /* STABLE_FRAGMENT */
-                    )) : S.value[n.id] === "absent" ? (e.openBlock(), e.createElementBlock(
+                    )) : k.value[n.id] === "absent" ? (e.openBlock(), e.createElementBlock(
                       e.Fragment,
                       { key: 2 },
                       [
@@ -1880,7 +1900,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 e.createElementVNode("button", {
                   type: "button",
                   class: "ghost-btn small",
-                  onClick: (d) => zo(n.id)
+                  onClick: (d) => qo(n.id)
                 }, [
                   o[31] || (o[31] = e.createElementVNode(
                     "i",
@@ -1894,25 +1914,25 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     1
                     /* TEXT */
                   )
-                ], 8, Dl)
+                ], 8, $l)
               ]))),
               128
               /* KEYED_FRAGMENT */
             ))
           ]),
-          e.createElementVNode("footer", Tl, [
-            e.createElementVNode("span", Al, [
+          e.createElementVNode("footer", Cl, [
+            e.createElementVNode("span", Il, [
               e.createTextVNode(
-                e.toDisplayString(t.$t("本次将发布 {count} 个平台", { count: ge.value.length })) + " ",
+                e.toDisplayString(t.$t("本次将发布 {count} 个平台", { count: Ne.value.length })) + " ",
                 1
                 /* TEXT */
               ),
-              dt.value.length ? (e.openBlock(), e.createElementBlock(
+              st.value.length ? (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 { key: 0 },
                 [
                   e.createTextVNode(
-                    " · " + e.toDisplayString(t.$t("跳过 {count} 个", { count: dt.value.length })),
+                    " · " + e.toDisplayString(t.$t("跳过 {count} 个", { count: st.value.length })),
                     1
                     /* TEXT */
                   )
@@ -1925,13 +1945,13 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
               type: "button",
               class: "ghost-btn",
               disabled: J.value,
-              onClick: o[3] || (o[3] = (n) => Ut(!1))
-            }, e.toDisplayString(t.$t("暂不发布并修改")), 9, $l),
+              onClick: o[3] || (o[3] = (n) => qt(!1))
+            }, e.toDisplayString(t.$t("暂不发布并修改")), 9, Ll),
             e.createElementVNode("button", {
               type: "button",
               class: "primary-btn",
-              disabled: J.value || !ge.value.length,
-              onClick: o[4] || (o[4] = (n) => Ut(!0))
+              disabled: J.value || !Ne.value.length,
+              onClick: o[4] || (o[4] = (n) => qt(!0))
             }, [
               e.createElementVNode(
                 "i",
@@ -1947,14 +1967,20 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 1
                 /* TEXT */
               )
-            ], 8, Pl)
+            ], 8, Ol)
           ])
         ])) : e.createCommentVNode("v-if", !0),
-        e.createElementVNode("section", Il, [
+        e.createCommentVNode(" 发布在本页完成：预览、登录引导、确认提交、停止/继续与分平台回执（S17a） "),
+        e.createVNode(tl, {
+          "owner-path": lo,
+          "focus-id": Tt.value,
+          onChange: ho
+        }, null, 8, ["focus-id"]),
+        e.createElementVNode("section", Ml, [
           e.createElementVNode(
             "article",
             {
-              class: e.normalizeClass(["model-card", `status-${ue.value.tone}`])
+              class: e.normalizeClass(["model-card", `status-${ve.value.tone}`])
             },
             [
               o[34] || (o[34] = e.createElementVNode(
@@ -1966,8 +1992,8 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 -1
                 /* CACHED */
               )),
-              e.createElementVNode("div", Cl, [
-                e.createElementVNode("div", Ll, [
+              e.createElementVNode("div", Bl, [
+                e.createElementVNode("div", jl, [
                   e.createElementVNode(
                     "strong",
                     null,
@@ -1985,7 +2011,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   e.createElementVNode(
                     "em",
                     null,
-                    e.toDisplayString(t.$t(ue.value.label)),
+                    e.toDisplayString(t.$t(ve.value.label)),
                     1
                     /* TEXT */
                   )
@@ -1993,17 +2019,17 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 e.createElementVNode(
                   "p",
                   null,
-                  e.toDisplayString(ue.value.detail),
+                  e.toDisplayString(ve.value.detail),
                   1
                   /* TEXT */
                 )
               ]),
               e.createElementVNode("button", {
                 class: "model-action",
-                onClick: o[5] || (o[5] = (n) => We("tts"))
+                onClick: o[5] || (o[5] = (n) => je("tts"))
               }, [
                 e.createTextVNode(
-                  e.toDisplayString(ue.value.tone === "ready" ? t.$t("查看配置") : t.$t("去配置")),
+                  e.toDisplayString(ve.value.tone === "ready" ? t.$t("查看配置") : t.$t("去配置")),
                   1
                   /* TEXT */
                 ),
@@ -2034,8 +2060,8 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 -1
                 /* CACHED */
               )),
-              e.createElementVNode("div", Ol, [
-                e.createElementVNode("div", Ml, [
+              e.createElementVNode("div", Rl, [
+                e.createElementVNode("div", Wl, [
                   o[35] || (o[35] = e.createElementVNode(
                     "strong",
                     null,
@@ -2068,7 +2094,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
               ]),
               e.createElementVNode("button", {
                 class: "model-action",
-                onClick: o[6] || (o[6] = (n) => We("video"))
+                onClick: o[6] || (o[6] = (n) => je("video"))
               }, [
                 e.createTextVNode(
                   e.toDisplayString(H.value.tone === "ready" ? t.$t("查看配置") : t.$t("去配置")),
@@ -2091,7 +2117,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
             class: "refresh-models",
             title: t.$t("刷新配置状态"),
             disabled: j.value,
-            onClick: nt
+            onClick: lt
           }, [
             e.createElementVNode(
               "i",
@@ -2102,12 +2128,12 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
               2
               /* CLASS */
             )
-          ], 8, Bl)
+          ], 8, Kl)
         ]),
-        e.createElementVNode("div", jl, [
-          e.createElementVNode("main", Rl, [
-            e.createElementVNode("section", Wl, [
-              e.createElementVNode("div", Kl, [
+        e.createElementVNode("div", zl, [
+          e.createElementVNode("main", Fl, [
+            e.createElementVNode("section", Ul, [
+              e.createElementVNode("div", Jl, [
                 o[40] || (o[40] = e.createElementVNode(
                   "span",
                   { class: "section-index" },
@@ -2134,7 +2160,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 e.createElementVNode("button", {
                   class: "demo-preset-button",
                   type: "button",
-                  onClick: so
+                  onClick: mo
                 }, [
                   o[39] || (o[39] = e.createElementVNode(
                     "i",
@@ -2150,8 +2176,8 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   )
                 ])
               ]),
-              e.createElementVNode("div", zl, [
-                e.createElementVNode("label", Fl, [
+              e.createElementVNode("div", ql, [
+                e.createElementVNode("label", Hl, [
                   e.createElementVNode(
                     "span",
                     null,
@@ -2163,7 +2189,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     "onUpdate:modelValue": o[7] || (o[7] = (n) => r.projectName = n),
                     placeholder: t.$t("例如：新品推广短视频"),
                     maxlength: "80"
-                  }, null, 8, Ul), [
+                  }, null, 8, Yl), [
                     [
                       e.vModelText,
                       r.projectName,
@@ -2172,7 +2198,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     ]
                   ])
                 ]),
-                e.createElementVNode("label", Jl, [
+                e.createElementVNode("label", Gl, [
                   e.createElementVNode(
                     "span",
                     null,
@@ -2184,7 +2210,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     "onUpdate:modelValue": o[8] || (o[8] = (n) => r.brandName = n),
                     placeholder: t.$t("填写品牌或门店名称"),
                     maxlength: "80"
-                  }, null, 8, ql), [
+                  }, null, 8, Ql), [
                     [
                       e.vModelText,
                       r.brandName,
@@ -2195,7 +2221,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   ])
                 ])
               ]),
-              e.createElementVNode("label", Hl, [
+              e.createElementVNode("label", Zl, [
                 e.createElementVNode("span", null, [
                   e.createTextVNode(
                     e.toDisplayString(t.$t("素材文件夹")) + " ",
@@ -2210,7 +2236,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     /* TEXT */
                   )
                 ]),
-                e.createElementVNode("div", Yl, [
+                e.createElementVNode("div", Xl, [
                   o[41] || (o[41] = e.createElementVNode(
                     "i",
                     { class: "ri-folder-video-line" },
@@ -2221,7 +2247,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   e.withDirectives(e.createElementVNode("input", {
                     "onUpdate:modelValue": o[9] || (o[9] = (n) => r.materialDir = n),
                     placeholder: t.$t("选择包含图片、原视频或音频的文件夹")
-                  }, null, 8, Gl), [
+                  }, null, 8, xl), [
                     [
                       e.vModelText,
                       r.materialDir,
@@ -2233,7 +2259,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     "button",
                     {
                       type: "button",
-                      onClick: Ot
+                      onClick: Bt
                     },
                     e.toDisplayString(t.$t("选择文件夹")),
                     1
@@ -2241,8 +2267,8 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   )
                 ])
               ]),
-              e.createElementVNode("label", Ql, [
-                e.createElementVNode("span", Xl, [
+              e.createElementVNode("label", en, [
+                e.createElementVNode("span", tn, [
                   e.createElementVNode("span", null, [
                     e.createTextVNode(
                       e.toDisplayString(t.$t("内容目标与关键信息")) + " ",
@@ -2259,31 +2285,31 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   ]),
                   e.createElementVNode("button", {
                     type: "button",
-                    disabled: ee.value || !r.brief.trim(),
-                    onClick: e.withModifiers(To, ["prevent"])
+                    disabled: x.value || !r.brief.trim(),
+                    onClick: e.withModifiers(Co, ["prevent"])
                   }, [
                     e.createElementVNode(
                       "i",
                       {
-                        class: e.normalizeClass(ee.value ? "ri-loader-4-line spin" : "ri-edit-2-line")
+                        class: e.normalizeClass(x.value ? "ri-loader-4-line spin" : "ri-edit-2-line")
                       },
                       null,
                       2
                       /* CLASS */
                     ),
                     e.createTextVNode(
-                      " " + e.toDisplayString(ee.value ? t.$t("AI 润色中… {p0}", { p0: po.value }) : t.$t("AI 润色视频提示词")),
+                      " " + e.toDisplayString(x.value ? t.$t("AI 润色中… {p0}", { p0: go.value }) : t.$t("AI 润色视频提示词")),
                       1
                       /* TEXT */
                     )
-                  ], 8, Zl)
+                  ], 8, on)
                 ]),
                 e.withDirectives(e.createElementVNode("textarea", {
                   "onUpdate:modelValue": o[10] || (o[10] = (n) => r.brief = n),
                   rows: "5",
                   maxlength: "3000",
                   placeholder: t.$t("写清楚产品卖点、价格、门店位置、目标人群、活动时间和希望观众采取的行动。")
-                }, null, 8, xl), [
+                }, null, 8, ln), [
                   [e.vModelText, r.brief],
                   [a, "main_business"]
                 ]),
@@ -2296,8 +2322,8 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 )
               ])
             ]),
-            e.createElementVNode("section", en, [
-              e.createElementVNode("div", tn, [
+            e.createElementVNode("section", nn, [
+              e.createElementVNode("div", an, [
                 o[42] || (o[42] = e.createElementVNode(
                   "span",
                   { class: "section-index" },
@@ -2322,19 +2348,19 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   )
                 ])
               ]),
-              e.createElementVNode("div", on, [
+              e.createElementVNode("div", rn, [
                 (e.openBlock(), e.createElementBlock(
                   e.Fragment,
                   null,
                   e.renderList(yt, (n) => e.createElementVNode("button", {
                     key: n.id,
                     type: "button",
-                    class: e.normalizeClass(["choice-card", { active: r.productionMode === n.id, unavailable: n.id === "seedance" && !Re.value }]),
-                    disabled: n.id === "seedance" && !Re.value,
-                    title: n.id === "seedance" && !Re.value ? t.$t("动态视频需要 fal 密钥或管理员为此方案开通媒体服务") : "",
-                    onClick: (d) => ko(n.id)
+                    class: e.normalizeClass(["choice-card", { active: r.productionMode === n.id, unavailable: n.id === "seedance" && !Be.value }]),
+                    disabled: n.id === "seedance" && !Be.value,
+                    title: n.id === "seedance" && !Be.value ? t.$t("动态视频需要 fal 密钥或管理员为此方案开通媒体服务") : "",
+                    onClick: (d) => Ao(n.id)
                   }, [
-                    e.createElementVNode("span", nn, [
+                    e.createElementVNode("span", dn, [
                       e.createElementVNode(
                         "i",
                         {
@@ -2366,12 +2392,12 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                       -1
                       /* CACHED */
                     ))
-                  ], 10, ln)),
+                  ], 10, sn)),
                   64
                   /* STABLE_FRAGMENT */
                 ))
               ]),
-              e.createElementVNode("label", an, [
+              e.createElementVNode("label", cn, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -2387,21 +2413,21 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   [
                     e.createElementVNode(
                       "option",
-                      rn,
+                      un,
                       e.toDisplayString(t.$t("9:16（竖屏短视频）")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      sn,
+                      pn,
                       e.toDisplayString(t.$t("16:9（横屏视频）")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "option",
-                      dn,
+                      mn,
                       e.toDisplayString(t.$t("1:1（方形）")),
                       1
                       /* TEXT */
@@ -2420,7 +2446,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   [e.vModelSelect, r.aspectRatio]
                 ])
               ]),
-              r.productionMode === "seedance" && !j.value && H.value.tone === "missing" ? (e.openBlock(), e.createElementBlock("div", cn, [
+              r.productionMode === "seedance" && !j.value && H.value.tone === "missing" ? (e.openBlock(), e.createElementBlock("div", vn, [
                 o[45] || (o[45] = e.createElementVNode(
                   "i",
                   { class: "ri-alert-line" },
@@ -2439,7 +2465,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   "button",
                   {
                     type: "button",
-                    onClick: o[12] || (o[12] = (n) => We("video"))
+                    onClick: o[12] || (o[12] = (n) => je("video"))
                   },
                   e.toDisplayString(t.$t("配置视频通道")),
                   1
@@ -2447,8 +2473,8 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 )
               ])) : e.createCommentVNode("v-if", !0)
             ]),
-            e.createElementVNode("section", un, [
-              e.createElementVNode("div", pn, [
+            e.createElementVNode("section", fn, [
+              e.createElementVNode("div", gn, [
                 o[46] || (o[46] = e.createElementVNode(
                   "span",
                   { class: "section-index" },
@@ -2473,9 +2499,9 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   )
                 ])
               ]),
-              e.createElementVNode("div", mn, [
-                e.createElementVNode("label", vn, [
-                  e.createElementVNode("span", fn, [
+              e.createElementVNode("div", hn, [
+                e.createElementVNode("label", bn, [
+                  e.createElementVNode("span", Nn, [
                     o[47] || (o[47] = e.createElementVNode(
                       "i",
                       { class: "ri-mic-line" },
@@ -2520,7 +2546,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     /* CACHED */
                   ))
                 ]),
-                e.createElementVNode("label", gn, [
+                e.createElementVNode("label", En, [
                   e.createElementVNode(
                     "span",
                     null,
@@ -2540,7 +2566,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                         e.renderList(Vt, (n) => e.createElementVNode("option", {
                           key: n.id,
                           value: n.id
-                        }, e.toDisplayString(t.$t(n.label)), 9, hn)),
+                        }, e.toDisplayString(t.$t(n.label)), 9, wn)),
                         64
                         /* STABLE_FRAGMENT */
                       ))
@@ -2552,7 +2578,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   ])
                 ])
               ]),
-              r.voiceover ? (e.openBlock(), e.createElementBlock("label", bn, [
+              r.voiceover ? (e.openBlock(), e.createElementBlock("label", yn, [
                 e.createElementVNode(
                   "span",
                   null,
@@ -2564,7 +2590,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   "onUpdate:modelValue": o[15] || (o[15] = (n) => r.voiceStyle = n),
                   placeholder: t.$t("例如：自然亲切、语速稍快、重点词有力量"),
                   maxlength: "160"
-                }, null, 8, Nn), [
+                }, null, 8, Vn), [
                   [
                     e.vModelText,
                     r.voiceStyle,
@@ -2573,7 +2599,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   ]
                 ])
               ])) : e.createCommentVNode("v-if", !0),
-              r.voiceover && !j.value && ue.value.tone === "missing" ? (e.openBlock(), e.createElementBlock("div", wn, [
+              r.voiceover && !j.value && ve.value.tone === "missing" ? (e.openBlock(), e.createElementBlock("div", Sn, [
                 o[49] || (o[49] = e.createElementVNode(
                   "i",
                   { class: "ri-alert-line" },
@@ -2592,7 +2618,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   "button",
                   {
                     type: "button",
-                    onClick: o[16] || (o[16] = (n) => We("tts"))
+                    onClick: o[16] || (o[16] = (n) => je("tts"))
                   },
                   e.toDisplayString(t.$t("配置 TTS")),
                   1
@@ -2600,8 +2626,8 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 )
               ])) : e.createCommentVNode("v-if", !0)
             ]),
-            e.createElementVNode("section", En, [
-              e.createElementVNode("div", yn, [
+            e.createElementVNode("section", kn, [
+              e.createElementVNode("div", _n, [
                 o[50] || (o[50] = e.createElementVNode(
                   "span",
                   { class: "section-index" },
@@ -2626,11 +2652,11 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   )
                 ])
               ]),
-              e.createElementVNode("div", Vn, [
+              e.createElementVNode("div", Dn, [
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(e.unref(Je), (n) => (e.openBlock(), e.createElementBlock(
+                  e.renderList(e.unref(Fe), (n) => (e.openBlock(), e.createElementBlock(
                     "label",
                     {
                       key: n.id,
@@ -2640,11 +2666,11 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                       e.createElementVNode("input", {
                         type: "checkbox",
                         checked: r.platforms.includes(n.id),
-                        onChange: (d) => _o(n.id)
-                      }, null, 40, Sn),
+                        onChange: (d) => Po(n.id)
+                      }, null, 40, Tn),
                       e.createElementVNode(
                         "span",
-                        kn,
+                        An,
                         e.toDisplayString(n.mark),
                         1
                         /* TEXT */
@@ -2680,8 +2706,8 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   /* KEYED_FRAGMENT */
                 ))
               ]),
-              e.createElementVNode("div", _n, [
-                e.createElementVNode("div", Dn, [
+              e.createElementVNode("div", Pn, [
+                e.createElementVNode("div", $n, [
                   e.createElementVNode("div", null, [
                     e.createElementVNode(
                       "strong",
@@ -2713,11 +2739,11 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     )
                   ])
                 ]),
-                e.createElementVNode("div", Tn, [
+                e.createElementVNode("div", Cn, [
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(A.value, (n) => (e.openBlock(), e.createElementBlock("label", {
+                    e.renderList(P.value, (n) => (e.openBlock(), e.createElementBlock("label", {
                       key: `topic-${n.id}`,
                       class: "topic-field"
                     }, [
@@ -2741,7 +2767,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                         "onUpdate:modelValue": (d) => r.topics[n.id] = d,
                         placeholder: t.$t("#话题1 #话题2"),
                         maxlength: "240"
-                      }, null, 8, An), [
+                      }, null, 8, In), [
                         [e.vModelText, r.topics[n.id]]
                       ])
                     ]))),
@@ -2750,7 +2776,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   ))
                 ])
               ]),
-              e.createElementVNode("div", $n, [
+              e.createElementVNode("div", Ln, [
                 o[53] || (o[53] = e.createElementVNode(
                   "i",
                   { class: "ri-shield-check-line" },
@@ -2776,30 +2802,30 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 ])
               ])
             ]),
-            e.createElementVNode("div", Pn, [
-              e.createElementVNode("div", In, [
+            e.createElementVNode("div", On, [
+              e.createElementVNode("div", Mn, [
                 e.createElementVNode(
                   "strong",
                   null,
-                  e.toDisplayString(ce.value || t.$t("尚未选择平台")),
+                  e.toDisplayString(me.value || t.$t("尚未选择平台")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "span",
                   null,
-                  e.toDisplayString(Xe.value) + " · " + e.toDisplayString(r.aspectRatio) + " · " + e.toDisplayString(r.voiceover ? t.$t("含配音") : t.$t("不配音")) + " · " + e.toDisplayString(Me.value),
+                  e.toDisplayString(Qe.value) + " · " + e.toDisplayString(r.aspectRatio) + " · " + e.toDisplayString(r.voiceover ? t.$t("含配音") : t.$t("不配音")) + " · " + e.toDisplayString(Le.value),
                   1
                   /* TEXT */
                 )
               ]),
-              e.createElementVNode("div", Cn, [
-                V.value ? (e.openBlock(), e.createElementBlock("button", {
+              e.createElementVNode("div", Bn, [
+                S.value ? (e.openBlock(), e.createElementBlock("button", {
                   key: 0,
                   class: "publish-video-button",
                   type: "button",
                   disabled: w.value,
-                  onClick: he
+                  onClick: Ee
                 }, [
                   e.createElementVNode(
                     "i",
@@ -2813,17 +2839,17 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   e.createElementVNode(
                     "span",
                     null,
-                    e.toDisplayString(w.value && oe.value ? oe.value : q.value ? t.$t("再次发布") : t.$t("进入发布工作流")),
+                    e.toDisplayString(w.value && te.value ? te.value : q.value ? t.$t("再次发布") : t.$t("准备发布")),
                     1
                     /* TEXT */
                   )
-                ], 8, Ln)) : e.createCommentVNode("v-if", !0),
+                ], 8, jn)) : e.createCommentVNode("v-if", !0),
                 e.createElementVNode("button", {
                   class: "local-preview-button",
                   type: "button",
-                  disabled: !V.value,
-                  title: V.value ? i.videoPath : t.$t("成片生成到本地后可预览"),
-                  onClick: Yt
+                  disabled: !S.value,
+                  title: S.value ? i.videoPath : t.$t("成片生成到本地后可预览"),
+                  onClick: Qt
                 }, [
                   o[54] || (o[54] = e.createElementVNode(
                     "i",
@@ -2837,11 +2863,11 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     1
                     /* TEXT */
                   )
-                ], 8, On),
+                ], 8, Rn),
                 e.createElementVNode("button", {
                   class: "start-button",
-                  disabled: !It.value || I.value,
-                  onClick: o[17] || (o[17] = (n) => x.value = !0)
+                  disabled: !It.value || C.value,
+                  onClick: o[17] || (o[17] = (n) => X.value = !0)
                 }, [
                   o[55] || (o[55] = e.createElementVNode(
                     "i",
@@ -2855,13 +2881,13 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     1
                     /* TEXT */
                   )
-                ], 8, Mn)
+                ], 8, Wn)
               ])
             ])
           ]),
-          e.createElementVNode("aside", Bn, [
-            e.createElementVNode("section", jn, [
-              e.createElementVNode("div", Rn, [
+          e.createElementVNode("aside", Kn, [
+            e.createElementVNode("section", zn, [
+              e.createElementVNode("div", Fn, [
                 o[57] || (o[57] = e.createElementVNode(
                   "span",
                   null,
@@ -2888,7 +2914,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   ))
                 ])
               ]),
-              e.createElementVNode("ol", Wn, [
+              e.createElementVNode("ol", Un, [
                 e.createElementVNode("li", null, [
                   o[58] || (o[58] = e.createElementVNode(
                     "i",
@@ -2991,8 +3017,8 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 ])
               ])
             ]),
-            V.value || i.conversationId ? (e.openBlock(), e.createElementBlock("section", Kn, [
-              e.createElementVNode("span", zn, [
+            S.value || i.conversationId ? (e.openBlock(), e.createElementBlock("section", Jn, [
+              e.createElementVNode("span", qn, [
                 o[62] || (o[62] = e.createElementVNode(
                   "i",
                   { class: "ri-history-line" },
@@ -3009,22 +3035,22 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
               e.createElementVNode(
                 "h3",
                 null,
-                e.toDisplayString(V.value ? t.$t("本次成片已就绪") : t.$t("最近一次短视频制作")),
+                e.toDisplayString(S.value ? t.$t("本次成片已就绪") : t.$t("最近一次短视频制作")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "p",
                 null,
-                e.toDisplayString(V.value ? t.$t("本次制作产出的成片可立即播放审核，并继续进入多平台发布流程。") : t.$t("任务已经交给 AI。制作过程、缺失信息补问和发布确认都在这条对话里继续。")),
+                e.toDisplayString(S.value ? t.$t("本次制作产出的成片可立即播放审核，并继续进入多平台发布流程。") : t.$t("任务已经交给 AI。制作过程、缺失信息补问和发布确认都在这条对话里继续。")),
                 1
                 /* TEXT */
               ),
-              e.createElementVNode("div", Fn, [
+              e.createElementVNode("div", Hn, [
                 i.conversationId ? (e.openBlock(), e.createElementBlock("button", {
                   key: 0,
                   type: "button",
-                  onClick: Jo
+                  onClick: Go
                 }, [
                   o[63] || (o[63] = e.createElementVNode(
                     "i",
@@ -3039,12 +3065,12 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     /* TEXT */
                   )
                 ])) : e.createCommentVNode("v-if", !0),
-                V.value ? (e.openBlock(), e.createElementBlock("button", {
+                S.value ? (e.openBlock(), e.createElementBlock("button", {
                   key: 1,
                   class: "job-publish-button",
                   type: "button",
                   disabled: w.value,
-                  onClick: he
+                  onClick: Ee
                 }, [
                   e.createElementVNode(
                     "i",
@@ -3058,17 +3084,17 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   e.createElementVNode(
                     "span",
                     null,
-                    e.toDisplayString(w.value && oe.value ? oe.value : q.value ? t.$t("再次发布") : t.$t("进入发布工作流")),
+                    e.toDisplayString(w.value && te.value ? te.value : q.value ? t.$t("再次发布") : t.$t("准备发布")),
                     1
                     /* TEXT */
                   )
-                ], 8, Un)) : e.createCommentVNode("v-if", !0),
+                ], 8, Yn)) : e.createCommentVNode("v-if", !0),
                 e.createElementVNode("button", {
                   class: "job-preview-button",
                   type: "button",
-                  disabled: !V.value,
-                  title: V.value ? i.videoPath : t.$t("等待工作流生成本地成片"),
-                  onClick: Yt
+                  disabled: !S.value,
+                  title: S.value ? i.videoPath : t.$t("等待工作流生成本地成片"),
+                  onClick: Qt
                 }, [
                   o[64] || (o[64] = e.createElementVNode(
                     "i",
@@ -3082,11 +3108,11 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     1
                     /* TEXT */
                   )
-                ], 8, Jn)
+                ], 8, Gn)
               ])
             ])) : e.createCommentVNode("v-if", !0),
-            pe.value.length ? (e.openBlock(), e.createElementBlock("section", qn, [
-              e.createElementVNode("span", Hn, [
+            fe.value.length ? (e.openBlock(), e.createElementBlock("section", Qn, [
+              e.createElementVNode("span", Zn, [
                 o[65] || (o[65] = e.createElementVNode(
                   "i",
                   { class: "ri-history-line" },
@@ -3103,26 +3129,26 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
               e.createElementVNode(
                 "h3",
                 null,
-                e.toDisplayString(t.$t("共 {count} 条", { count: pe.value.length })),
+                e.toDisplayString(t.$t("共 {count} 条", { count: fe.value.length })),
                 1
                 /* TEXT */
               ),
-              e.createElementVNode("ul", Yn, [
+              e.createElementVNode("ul", Xn, [
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(Co.value, (n) => (e.openBlock(), e.createElementBlock("li", {
+                  e.renderList(Bo.value, (n) => (e.openBlock(), e.createElementBlock("li", {
                     key: n.taskId,
                     class: "history-item"
                   }, [
-                    e.createElementVNode("div", Gn, [
+                    e.createElementVNode("div", xn, [
                       e.createElementVNode("strong", {
                         title: n.projectName
-                      }, e.toDisplayString(n.projectName), 9, Qn),
+                      }, e.toDisplayString(n.projectName), 9, ea),
                       e.createElementVNode(
                         "small",
                         null,
-                        e.toDisplayString(Oo(n.createdAt)),
+                        e.toDisplayString(Ro(n.createdAt)),
                         1
                         /* TEXT */
                       )
@@ -3132,7 +3158,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                       {
                         class: e.normalizeClass(["history-status", `is-${n.status}`])
                       },
-                      e.toDisplayString(Lo(n.status)),
+                      e.toDisplayString(jo(n.status)),
                       3
                       /* TEXT, CLASS */
                     ),
@@ -3141,7 +3167,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                       class: "history-publish",
                       disabled: w.value || !n.videoPath,
                       title: n.videoPath || t.$t("这条任务还没有产出成片"),
-                      onClick: (d) => Mo(n)
+                      onClick: (d) => Wo(n)
                     }, [
                       o[66] || (o[66] = e.createElementVNode(
                         "i",
@@ -3155,13 +3181,13 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                         1
                         /* TEXT */
                       )
-                    ], 8, Xn)
+                    ], 8, ta)
                   ]))),
                   128
                   /* KEYED_FRAGMENT */
                 ))
               ]),
-              me.value > 1 ? (e.openBlock(), e.createElementBlock("footer", Zn, [
+              ge.value > 1 ? (e.openBlock(), e.createElementBlock("footer", oa, [
                 e.createElementVNode("button", {
                   type: "button",
                   disabled: M.value === 0,
@@ -3174,17 +3200,17 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     -1
                     /* CACHED */
                   )
-                ])], 8, xn),
+                ])], 8, la),
                 e.createElementVNode(
                   "span",
                   null,
-                  e.toDisplayString(M.value + 1) + " / " + e.toDisplayString(me.value),
+                  e.toDisplayString(M.value + 1) + " / " + e.toDisplayString(ge.value),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode("button", {
                   type: "button",
-                  disabled: M.value >= me.value - 1,
+                  disabled: M.value >= ge.value - 1,
                   onClick: o[19] || (o[19] = (n) => M.value += 1)
                 }, [...o[68] || (o[68] = [
                   e.createElementVNode(
@@ -3194,11 +3220,11 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     -1
                     /* CACHED */
                   )
-                ])], 8, ea)
+                ])], 8, na)
               ])) : e.createCommentVNode("v-if", !0)
             ])) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("section", ta, [
-              e.createElementVNode("span", oa, [
+            e.createElementVNode("section", aa, [
+              e.createElementVNode("span", ia, [
                 o[69] || (o[69] = e.createElementVNode(
                   "i",
                   { class: "ri-lightbulb-flash-line" },
@@ -3242,11 +3268,11 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
          困进局部堆叠上下文（fixed 退化成「相对该祖先」定位 + z-index 出不去），实测盖不住/被盖。
          backdrop 带 role="dialog" 供原生浏览器避让锁（nativeBrowserModalLock.invariant.test.ts）。 `),
         (e.openBlock(), e.createBlock(e.Teleport, { to: "body" }, [
-          x.value ? (e.openBlock(), e.createElementBlock("div", {
+          X.value ? (e.openBlock(), e.createElementBlock("div", {
             key: 0,
             role: "dialog",
             class: "preview-backdrop",
-            onClick: o[22] || (o[22] = e.withModifiers((n) => x.value = !1, ["self"]))
+            onClick: o[22] || (o[22] = e.withModifiers((n) => X.value = !1, ["self"]))
           }, [
             e.createElementVNode("section", {
               class: "preview-dialog",
@@ -3254,7 +3280,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
               "aria-modal": "true",
               "aria-label": t.$t("制作方案预览")
             }, [
-              e.createElementVNode("header", na, [
+              e.createElementVNode("header", sa, [
                 e.createElementVNode("div", null, [
                   e.createElementVNode("span", null, [
                     o[70] || (o[70] = e.createElementVNode(
@@ -3288,7 +3314,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 e.createElementVNode("button", {
                   type: "button",
                   "aria-label": t.$t("关闭"),
-                  onClick: o[20] || (o[20] = (n) => x.value = !1)
+                  onClick: o[20] || (o[20] = (n) => X.value = !1)
                 }, [...o[71] || (o[71] = [
                   e.createElementVNode(
                     "i",
@@ -3297,9 +3323,9 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     -1
                     /* CACHED */
                   )
-                ])], 8, aa)
+                ])], 8, da)
               ]),
-              e.createElementVNode("div", ia, [
+              e.createElementVNode("div", ca, [
                 e.createElementVNode("span", null, [
                   e.createElementVNode(
                     "strong",
@@ -3320,14 +3346,14 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   e.createElementVNode(
                     "strong",
                     null,
-                    e.toDisplayString(Xe.value),
+                    e.toDisplayString(Qe.value),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "small",
                     null,
-                    e.toDisplayString(r.aspectRatio) + " · " + e.toDisplayString(ce.value),
+                    e.toDisplayString(r.aspectRatio) + " · " + e.toDisplayString(me.value),
                     1
                     /* TEXT */
                   )
@@ -3343,13 +3369,13 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   e.createElementVNode(
                     "small",
                     null,
-                    e.toDisplayString(Me.value),
+                    e.toDisplayString(Le.value),
                     1
                     /* TEXT */
                   )
                 ])
               ]),
-              r.materialDir.trim() ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("div", ra, [
+              r.materialDir.trim() ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("div", ua, [
                 o[72] || (o[72] = e.createElementVNode(
                   "i",
                   { class: "ri-folder-warning-line" },
@@ -3368,14 +3394,14 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   "button",
                   {
                     type: "button",
-                    onClick: Ot
+                    onClick: Bt
                   },
                   e.toDisplayString(t.$t("选择素材文件夹")),
                   1
                   /* TEXT */
                 )
               ])),
-              e.createElementVNode("div", sa, [
+              e.createElementVNode("div", pa, [
                 r.productionMode === "seedance" ? (e.openBlock(), e.createElementBlock(
                   e.Fragment,
                   { key: 0 },
@@ -3410,7 +3436,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     ),
                     Z.value.inferred ? (e.openBlock(), e.createElementBlock(
                       "small",
-                      da,
+                      ma,
                       e.toDisplayString(t.$t("内容目标未写明时长，本次按 15 秒估算。")),
                       1
                       /* TEXT */
@@ -3443,18 +3469,18 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
               ]),
               e.createElementVNode(
                 "pre",
-                ca,
-                e.toDisplayString($o.value),
+                va,
+                e.toDisplayString(Lo.value),
                 1
                 /* TEXT */
               ),
-              e.createElementVNode("footer", ua, [
+              e.createElementVNode("footer", fa, [
                 e.createElementVNode(
                   "button",
                   {
                     class: "preview-cancel",
                     type: "button",
-                    onClick: o[21] || (o[21] = (n) => x.value = !1)
+                    onClick: o[21] || (o[21] = (n) => X.value = !1)
                   },
                   e.toDisplayString(t.$t("返回修改")),
                   1
@@ -3463,34 +3489,34 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 e.createElementVNode("button", {
                   class: "preview-confirm",
                   type: "button",
-                  disabled: !Ze.value || I.value,
-                  onClick: Io
+                  disabled: !Ze.value || C.value,
+                  onClick: Mo
                 }, [
                   e.createElementVNode(
                     "i",
                     {
-                      class: e.normalizeClass(I.value ? "ri-loader-4-line spin" : "ri-check-line")
+                      class: e.normalizeClass(C.value ? "ri-loader-4-line spin" : "ri-check-line")
                     },
                     null,
                     2
                     /* CLASS */
                   ),
                   e.createTextVNode(
-                    " " + e.toDisplayString(I.value ? t.$t("正在创建制作任务…") : t.$t("审核通过，开始制作")),
+                    " " + e.toDisplayString(C.value ? t.$t("正在创建制作任务…") : t.$t("审核通过，开始制作")),
                     1
                     /* TEXT */
                   )
-                ], 8, pa)
+                ], 8, ga)
               ])
-            ], 8, la)
+            ], 8, ra)
           ])) : e.createCommentVNode("v-if", !0)
         ])),
         (e.openBlock(), e.createBlock(e.Teleport, { to: "body" }, [
-          Te.value ? (e.openBlock(), e.createElementBlock("div", {
+          ue.value ? (e.openBlock(), e.createElementBlock("div", {
             key: 0,
             role: "dialog",
             class: "video-preview-backdrop",
-            onClick: e.withModifiers(ut, ["self"])
+            onClick: e.withModifiers(ct, ["self"])
           }, [
             e.createElementVNode("section", {
               class: "video-preview-dialog",
@@ -3532,7 +3558,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                 e.createElementVNode("button", {
                   type: "button",
                   "aria-label": t.$t("关闭"),
-                  onClick: ut
+                  onClick: ct
                 }, [...o[74] || (o[74] = [
                   e.createElementVNode(
                     "i",
@@ -3541,9 +3567,9 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                     -1
                     /* CACHED */
                   )
-                ])], 8, va)
+                ])], 8, ba)
               ]),
-              e.createElementVNode("div", fa, [
+              e.createElementVNode("div", Na, [
                 e.createCommentVNode(" @error：协议 404 / 解码失败时清 src 亮出失败态，不让用户对着黑屏（与确认卡预览同规则） "),
                 R.value ? (e.openBlock(), e.createElementBlock("video", {
                   key: 0,
@@ -3552,7 +3578,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   autoplay: "",
                   playsinline: "",
                   onError: o[23] || (o[23] = (n) => R.value = "")
-                }, null, 40, ga)) : (e.openBlock(), e.createElementBlock("div", ha, [
+                }, null, 40, Ea)) : (e.openBlock(), e.createElementBlock("div", wa, [
                   o[75] || (o[75] = e.createElementVNode(
                     "i",
                     { class: "ri-movie-line" },
@@ -3595,13 +3621,13 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   1
                   /* TEXT */
                 )
-              ], 8, ba)) : e.createCommentVNode("v-if", !0),
+              ], 8, ya)) : e.createCommentVNode("v-if", !0),
               e.createElementVNode("footer", null, [
                 e.createElementVNode("button", {
                   class: "preview-publish",
                   type: "button",
                   disabled: w.value,
-                  onClick: he
+                  onClick: Ee
                 }, [
                   e.createElementVNode(
                     "i",
@@ -3615,15 +3641,15 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   e.createElementVNode(
                     "span",
                     null,
-                    e.toDisplayString(w.value && oe.value ? oe.value : q.value ? t.$t("再次发布") : t.$t("进入发布工作流")),
+                    e.toDisplayString(w.value && te.value ? te.value : q.value ? t.$t("再次发布") : t.$t("准备发布")),
                     1
                     /* TEXT */
                   )
-                ], 8, Na),
+                ], 8, Va),
                 e.createElementVNode("button", {
                   class: "preview-confirm",
                   type: "button",
-                  onClick: ut
+                  onClick: ct
                 }, [
                   o[77] || (o[77] = e.createElementVNode(
                     "i",
@@ -3639,7 +3665,7 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
                   )
                 ])
               ])
-            ], 8, ma)
+            ], 8, ha)
           ])) : e.createCommentVNode("v-if", !0)
         ])),
         (e.openBlock(), e.createBlock(e.Teleport, { to: "body" }, [
@@ -3650,26 +3676,26 @@ ${Ie.value}`), et = e.computed(() => u.value === "success" ? E.value.length : E.
             "aria-modal": "true",
             "aria-label": t.$t("短视频发布人工确认")
           }, [
-            e.createVNode(Xo, {
-              request: ho.value,
+            e.createVNode(el, {
+              request: wo.value,
               busy: w.value,
-              "context-data": No.value,
-              "context-labels": bo,
-              "context-preview": wo.value,
-              onDecide: Ho,
-              onDismiss: Gt
+              "context-data": Vo.value,
+              "context-labels": yo,
+              "context-preview": So.value,
+              onDecide: Zo,
+              onDismiss: Zt
             }, null, 8, ["request", "busy", "context-data", "context-preview"])
-          ], 8, wa)) : e.createCommentVNode("v-if", !0)
+          ], 8, Sa)) : e.createCommentVNode("v-if", !0)
         ]))
       ]);
     };
   }
-}), ka = (N, y) => {
-  const P = N.__vccOpts || N;
-  for (const [X, h] of y)
-    P[X] = h;
-  return P;
-}, _a = /* @__PURE__ */ ka(Sa, [["__scopeId", "data-v-e3974816"]]);
+}), Aa = (E, V) => {
+  const $ = E.__vccOpts || E;
+  for (const [se, h] of V)
+    $[se] = h;
+  return $;
+}, Pa = /* @__PURE__ */ Aa(Ta, [["__scopeId", "data-v-8ea4330c"]]);
 export {
-  _a as default
+  Pa as default
 };

@@ -1,12 +1,12 @@
 {
   "id": "workbench-quran-teaching",
-  "version": "2.0.1",
-  "treeDigest": "0ef3a1f2e766ca1d94e1f0e40b0f84680361362f6ce3e472cc4c600ab78d5a3f",
+  "version": "2.0.2",
+  "treeDigest": "5958e278b03f990f7ac009481ae0f63c84951ee7b778c27c97ed09e4ec7205e3",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 870,
-      "sha256": "685c319a57638ac4700e311becaa0ce729902edf3b544acee40fb87a7bbec8ac"
+      "size": 948,
+      "sha256": "d013c40e5612da4fc3927d45929fb18d67da10276e32aae539b51772883d8ca1"
     },
     {
       "path": "README.md",
@@ -31,10 +31,21 @@
     {
       "path": "solution.json",
       "size": 2863,
-      "sha256": "5fdfcdd8001113279a0e95ae8e54849c421f2f0c5736167248ca4fc90384a51f"
+      "sha256": "4062e4a681517692e347ae0179c3f9ecfb532dbb3436fb2fa619d86e224027d1"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.2",
+      "ref": "workbench-quran-teaching@2.0.2",
+      "treeDigest": "5958e278b03f990f7ac009481ae0f63c84951ee7b778c27c97ed09e4ec7205e3",
+      "filesRef": "index/workbench-quran-teaching/2.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.6",
+      "hostApi": 2,
+      "publishedAt": "2026-10-29"
+    },
     {
       "version": "2.0.1",
       "ref": "workbench-quran-teaching@2.0.1",

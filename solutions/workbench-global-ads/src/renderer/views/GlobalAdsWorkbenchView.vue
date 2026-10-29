@@ -4,7 +4,7 @@
       <PageBackButton />
       <div class="hero-copy">
         <span class="eyebrow"><i class="ri-map-pin-2-line"></i>{{ $t('UAE GROWTH DESK · 阿联酋') }}</span>
-        <h1>{{ $t('阿联酋海外广告代投放工作台') }}</h1>
+        <h1>{{ $t('海外广告投放工作台') }}</h1>
         <p>{{ $t('依托 {p0} 等海外主流推广渠道，为客户提供产品广告投放、品牌曝光、用户增长、数据复盘与账户优化全链路服务，助力品牌实现持续增长与业务突破。', { p0: visiblePlatformLabels }) }}</p>
         <div class="hero-tags">
           <span><i class="ri-global-line"></i>{{ $t('四大主流渠道') }}</span>
@@ -5599,7 +5599,7 @@ onBeforeUnmount(() => {
   border-radius: var(--radius-5); color: var(--color-text-primary); background: color-mix(in srgb, var(--platform-color) 5%, var(--color-bg-input));
   cursor: pointer; text-align: start; font-family: inherit; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
 }
-.platform-login:hover {
+.platform-login:hover:where(:not(:disabled)) {
   transform: translateY(-2px); border-color: color-mix(in srgb, var(--platform-color) 58%, var(--color-border));
   box-shadow: var(--gaw-shadow-5);
 }

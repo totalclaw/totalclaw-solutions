@@ -25,6 +25,9 @@ vi.mock('electron', () => ({
   shell: { openPath: async () => '', showItemInFolder: () => undefined },
   BrowserWindow: class {},
 }));
+// 运行状态每一步 / 每个进度都原子写并 fsync；并发全量跑时多 worker 抢磁盘落盘把单条用例拖过超时。
+// 这里只验业务结果不验断电持久性：保留「写临时文件 → rename」，只把 fsync 置空。
+vi.mock('fs', async (orig) => ({ ...(await orig<typeof import('fs')>()), fsyncSync: () => undefined }));
 vi.mock('../../services/audit', () => ({ audit: () => undefined }));
 vi.mock('../../services/bidWriter/docx', async (orig) => ({
   ...(await orig<typeof import('../../services/bidWriter/docx')>()),
@@ -287,37 +290,36 @@ describe('财会审计批次 6：资金与金融风险', () => {
     void forecastRunId;
   });
 
-  it.each(['zh-CN', 'en-US', 'ar'] as FauLocale[])('本批每类产出（%s）：草稿警示、固定文案语言、xlsx RTL / docx bidi', async (locale) => {
-    const B = ds['cash:balances'];
-    const cases: Array<[string, string, Record<string, string>]> = [
-      ['cash', 'daily', { balances: B }], ['cash', 'payment', { balances: B, requests: ds['cash:requests'] }],
-      ['treasury', 'position', { balances: B, plan: ds['cash:plan'] }], ['treasury', 'authorization', { requests: ds['treasury:authRequests'], balances: B }],
-      ['treasury', 'cash_pool', { balances: B }], ['treasury', 'bank_relationship', { facilities: ds['cash:facilities'], balances: B }],
-      ['treasury', 'liquidity', { liquidityItems: ds['treasury:liquidityItems'] }], ['fx', 'hedge', { fxExposure: ds['fx:fxExposure'], fxRates: ds['fx:fxRates'] }],
-      ['financing', 'restructure', { loans: ds['financing:loans'], metrics: ds['financing:metrics'], covenants: ds['financing:covenants'] }],
-      ['ifrs9', 'simplified', { ar: ds['ar:agingAr'] }], ['working-capital', 'payables', { ap: ds['working-capital:wcAp'], metrics: ds['financing:metrics'] }],
-      ['working-capital', 'inventory', { inventory: ds['working-capital:inventory'] }],
-      ['investments', 'portfolio', { investments: ds['investments:investments'] }],
-    ];
-    for (const [moduleId, modeId, inputs] of cases) {
-      const run = await runModule(moduleId, modeId, inputs, locale);
-      for (const a of run.artifacts) {
-        const where = `${moduleId}/${modeId} ${a.title.key}`;
-        if (a.kind === 'docx') {
-          const zip = new AdmZip(a.path);
-          expect(zip.readAsText('word/document.xml').includes('<w:bidi/>'), where).toBe(locale === 'ar');
-          if (locale !== 'zh-CN') expect(containsHanText(zip.readAsText('word/header1.xml')), where).toBe(false);
-          continue;
-        }
-        const { wb } = sheetRows(a.path, 0);
-        expect(!!(wb.Workbook?.Views?.[0] as { RTL?: boolean } | undefined)?.RTL, where).toBe(locale === 'ar');
-        for (let i = 1; i < wb.SheetNames.length; i += 1) {
-          const rows = sheetRows(a.path, i).rows;
-          expect(rows[0][0], where).toBe(tIn(locale, '草稿—待签核'));
-          if (locale !== 'zh-CN') {
-            expect(containsHanText(wb.SheetNames[i]), `${where} ${wb.SheetNames[i]}`).toBe(false);
-            expect(HAN_FIXED(rows), `${where} ${wb.SheetNames[i]}`).toBe(false);
-          }
+  // 每个（语言 × 模块 / 模式）单独一条：一条只跑一次七步流程，不再把 13 次完整运行塞进同一条的超时里
+  const OUTPUT_CASES: Array<[string, string, Record<string, string>]> = [
+    ['cash', 'daily', { balances: 'cash:balances' }], ['cash', 'payment', { balances: 'cash:balances', requests: 'cash:requests' }],
+    ['treasury', 'position', { balances: 'cash:balances', plan: 'cash:plan' }], ['treasury', 'authorization', { requests: 'treasury:authRequests', balances: 'cash:balances' }],
+    ['treasury', 'cash_pool', { balances: 'cash:balances' }], ['treasury', 'bank_relationship', { facilities: 'cash:facilities', balances: 'cash:balances' }],
+    ['treasury', 'liquidity', { liquidityItems: 'treasury:liquidityItems' }], ['fx', 'hedge', { fxExposure: 'fx:fxExposure', fxRates: 'fx:fxRates' }],
+    ['financing', 'restructure', { loans: 'financing:loans', metrics: 'financing:metrics', covenants: 'financing:covenants' }],
+    ['ifrs9', 'simplified', { ar: 'ar:agingAr' }], ['working-capital', 'payables', { ap: 'working-capital:wcAp', metrics: 'financing:metrics' }],
+    ['working-capital', 'inventory', { inventory: 'working-capital:inventory' }],
+    ['investments', 'portfolio', { investments: 'investments:investments' }],
+  ];
+  it.each((['zh-CN', 'en-US', 'ar'] as FauLocale[]).flatMap((locale) => OUTPUT_CASES.map(([m, mode, keys]) => [locale, m, mode, keys] as const)))('本批每类产出（%s）%s/%s：草稿警示、固定文案语言、xlsx RTL / docx bidi', async (locale, moduleId, modeId, keys) => {
+    const inputs = Object.fromEntries(Object.entries(keys).map(([slot, key]) => [slot, ds[key]]));
+    const run = await runModule(moduleId, modeId, inputs, locale);
+    for (const a of run.artifacts) {
+      const where = `${moduleId}/${modeId} ${a.title.key}`;
+      if (a.kind === 'docx') {
+        const zip = new AdmZip(a.path);
+        expect(zip.readAsText('word/document.xml').includes('<w:bidi/>'), where).toBe(locale === 'ar');
+        if (locale !== 'zh-CN') expect(containsHanText(zip.readAsText('word/header1.xml')), where).toBe(false);
+        continue;
+      }
+      const { wb } = sheetRows(a.path, 0);
+      expect(!!(wb.Workbook?.Views?.[0] as { RTL?: boolean } | undefined)?.RTL, where).toBe(locale === 'ar');
+      for (let i = 1; i < wb.SheetNames.length; i += 1) {
+        const rows = sheetRows(a.path, i).rows;
+        expect(rows[0][0], where).toBe(tIn(locale, '草稿—待签核'));
+        if (locale !== 'zh-CN') {
+          expect(containsHanText(wb.SheetNames[i]), `${where} ${wb.SheetNames[i]}`).toBe(false);
+          expect(HAN_FIXED(rows), `${where} ${wb.SheetNames[i]}`).toBe(false);
         }
       }
     }

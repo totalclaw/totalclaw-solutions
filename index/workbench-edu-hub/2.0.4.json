@@ -1,0 +1,47 @@
+{
+  "id": "workbench-edu-hub",
+  "version": "2.0.4",
+  "treeDigest": "d0f42a908ffaf53a51acb6ca2a1b1d3ca23dd35c5329b5b9f6719c5adacc6e62",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 1656,
+      "sha256": "4b646f7a81092b218aa142b57a23ac5487e912517a118753ad7b669d9af0311e"
+    },
+    {
+      "path": "README.md",
+      "size": 987,
+      "sha256": "9e7c446a39e7165fdad446d95ba08fcc0dc41de74b8a5dd14f6d2bc635c4da2a"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 1178,
+      "sha256": "da490c99107b48231e90749fafb97a39cfacc58f7824469fd287a923dd49bfe2"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 89312,
+      "sha256": "485811c23fc9b1ddcc9a3b61181247e2aaeac5bfccfbc7a12a2c303ccabc4164"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 111744,
+      "sha256": "0baee59a05293c2e0a823f5e192028f8adc75e747d7b4195a786067a0537c4b1"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 27488,
+      "sha256": "238cfc99ac0ef9161d91df53b437a34eada6dc948091b558311992bc8dce22f9"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2070,
+      "sha256": "ee0e417da868aff0b003a165b729d3deca067cf7abb396e7447d09de7c8057c1"
+    }
+  ]
+}

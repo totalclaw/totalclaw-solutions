@@ -3964,7 +3964,7 @@ const ue = fe.default, kn = { class: "pa-board" }, vn = {
             e.createElementVNode(
               "h1",
               null,
-              e.toDisplayString(l.$t("配件预警与补库智能体")),
+              e.toDisplayString(l.$t("智能库存管理")),
               1
               /* TEXT */
             ),
@@ -4339,7 +4339,7 @@ const ue = fe.default, kn = { class: "pa-board" }, vn = {
       ]))
     ]));
   }
-}), zo = /* @__PURE__ */ z(Fo, [["__scopeId", "data-v-fa3ffff7"]]);
+}), zo = /* @__PURE__ */ z(Fo, [["__scopeId", "data-v-493b4ced"]]);
 export {
   zo as default
 };

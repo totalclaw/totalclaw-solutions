@@ -16,7 +16,7 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-grounded-qa/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-grounded-qa/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -26,13 +26,13 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-grounded-qa/src/main/ipc/groundedQa.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-grounded-qa/src/main/ipc/groundedQa.ipc.ts
 var import_node_fs2 = require("node:fs");
 var import_electron = require("electron");
 var import_ipc_contracts = require("npm:@totalclaw/ipc-contracts");
 var import_i18n2 = require("npm:@totalclaw/i18n");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-grounded-qa/src/main/services/groundedQaStore.ts
+// ../../../totalclaw-solutions/solutions/workbench-grounded-qa/src/main/services/groundedQaStore.ts
 var import_node_fs = require("node:fs");
 var import_node_path = require("node:path");
 var import_node_crypto = require("node:crypto");
@@ -352,7 +352,7 @@ function findHandbookDir(desktop) {
   return null;
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-grounded-qa/src/main/ipc/groundedQa.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-grounded-qa/src/main/ipc/groundedQa.ipc.ts
 var import_pdfOcr = require("host:apps/desktop-shell/src/main/services/pdfOcr.ts");
 var import_groundedQa2 = require("host:apps/desktop-shell/src/main/services/groundedQa.logic.ts");
 var import_eduHubStore = require("host:apps/desktop-shell/src/main/services/eduHubStore.ts");
@@ -370,7 +370,7 @@ function sendProgress(p) {
 var LOCALE_OF = { zh: "zh-CN", en: "en-US", ar: "ar" };
 function uiLang() {
   const l = (0, import_i18n2.getLocale)();
-  return l === "ar" ? "ar" : l === "en-US" ? "en" : "zh";
+  return l === "ar" ? "ar" : l === "zh-CN" ? "zh" : "en";
 }
 function sanitizeHistory(raw) {
   if (!Array.isArray(raw)) return [];
@@ -466,8 +466,7 @@ async function rewriteQuestion(deps, question, history) {
   }
 }
 async function answerQuestion(deps, kb, q, history) {
-  const ui = (0, import_i18n2.getLocale)();
-  const lang = (0, import_groundedQa2.detectLang)(q) ?? (0, import_groundedQa2.detectLang)(history[history.length - 1]?.question || "") ?? (ui === "ar" ? "ar" : ui === "en-US" ? "en" : "zh");
+  const lang = (0, import_groundedQa2.detectLang)(q) ?? (0, import_groundedQa2.detectLang)(history[history.length - 1]?.question || "") ?? uiLang();
   const locale = LOCALE_OF[lang];
   const noEvidence = (why) => {
     deps.logger.audit?.("grounded-qa", (0, import_i18n2.t)("\u62D2\u7B54"), { reason: "no_evidence", lang, ...why });
@@ -567,7 +566,7 @@ async function ensureSuggestionsInLang(deps, kb, lang) {
   deps.logger.info?.("grounded-qa", "\u793A\u4F8B\u95EE\u9898\u5DF2\u6309\u754C\u9762\u8BED\u8A00\u51C6\u5907\u597D", { lang, kept: kept.length, tried: translated.length });
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-grounded-qa/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-grounded-qa/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerGroundedQaHandlers";
 var cleanup;

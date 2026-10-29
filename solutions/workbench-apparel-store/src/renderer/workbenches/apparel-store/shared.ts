@@ -1,5 +1,5 @@
 /**
- * 服装实体店智能体 · 渲染层共享：动作调用、全局状态、选项库、格式化。
+ * 服装AI试衣 · 渲染层共享：动作调用、全局状态、选项库、格式化。
  * 各 tab 只依赖这里（和结算工作台的 StepCard / StickyProgress），tab 之间互不 import。
  */
 import { reactive, ref } from 'vue';
@@ -15,7 +15,7 @@ export { fileUrl } from '../foreign-trade/shared';
 
 export async function ap<T = any>(action: string, payload?: unknown): Promise<T> {
   const bridge = (window as any).electronAPI?.workbenches?.apparelStore;
-  if (!bridge?.invoke) throw new Error(i18nT('服装实体店智能体接口不可用，请重启应用'));
+  if (!bridge?.invoke) throw new Error(i18nT('服装AI试衣接口不可用，请重启应用'));
   return bridge.invoke(action, toPlain(payload ?? {})) as Promise<T>;
 }
 

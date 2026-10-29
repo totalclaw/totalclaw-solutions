@@ -6,7 +6,7 @@
         <span class="hud-title__mark"></span>
         <div>
           <h2>{{ $t('校级 AI 中枢') }}</h2>
-          <p>{{ s.settings.schoolName || $t('高校一体化AI智能体') }}</p>
+          <p>{{ s.settings.schoolName || $t('校园 AI 中心') }}</p>
         </div>
       </div>
       <div class="hud-clock" aria-live="off"><b>{{ clock.time }}</b><small>{{ clock.date }}</small></div>

@@ -7,7 +7,7 @@
     "parts-alert",
     "配件预警与补库智能体"
   ],
-  "version": "2.0.4",
+  "version": "2.0.5",
   "kind": "workbench",
   "category": "配件管理",
   "icon": "icon-solutions",
@@ -20,7 +20,7 @@
     "hidden": false
   },
   "compat": {
-    "minAppVersion": "2.0.5",
+    "minAppVersion": "2.0.6",
     "hostApi": 2
   },
   "runtime": {

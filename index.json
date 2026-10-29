@@ -22,13 +22,13 @@
       "icon": "icon-solutions",
       "order": 10,
       "description": "导入教材一键生成教案、学生要点与小测；启动校内服务，学生扫码用浏览器学习，进展实时回看。",
-      "version": "2.0.3",
+      "version": "2.0.4",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -69,10 +69,10 @@
       "capabilities": [],
       "path": "solutions/workbench-edu-hub",
       "fileCount": 8,
-      "size": 234852,
-      "treeDigest": "77a7879cc1337c0d0a22f812ba1fcc837b529c5fab5728d0b2edfcd968f33498",
+      "size": 234731,
+      "treeDigest": "d0f42a908ffaf53a51acb6ca2a1b1d3ca23dd35c5329b5b9f6719c5adacc6e62",
       "largeAssets": [],
-      "changelog": "- 改名：「AI 学习中心（文档生成教案）」→「智能备课助教」（id 不变，已开通的账号与已装方案不受影响；旧名保留为按名称安装的别名）。",
+      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。",
       "filesRef": "index/workbench-edu-hub.json"
     },
     {
@@ -146,13 +146,13 @@
       "icon": "icon-solutions",
       "order": 30,
       "description": "多 Agent 协同备课、实训辅导、学情分析、教学配图与教师审核。",
-      "version": "2.0.2",
+      "version": "2.0.3",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -191,10 +191,10 @@
       "capabilities": [],
       "path": "solutions/workbench-education",
       "fileCount": 8,
-      "size": 145892,
-      "treeDigest": "0e6ed8e4b79c421d450c6dd614895efe72ee9dc4b18d6adfe96cc1fbc2b34949",
+      "size": 145994,
+      "treeDigest": "5e486ffacb318012b9550e41dc200d8d7f85fe59771bb6117a48c8b7999da0f1",
       "largeAssets": [],
-      "changelog": "- 界面样式改用宿主设计 token（同步 qiye-app master 的界面改造）；需要 App 2.0.6 起。\n- 平台能力区的无障碍标签随品牌显示（同步 qiye-app yitiji 分支的品牌统一改动）。\n- 需要 App 2.0.6 起（宿主模块注册表新增 renderer/utils/brand.ts）；更早的 App 继续使用 2.0.1。",
+      "changelog": "- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。\n- 越南语 / 马来语界面：语言判定修正；只备了中英阿的内容（报告、规则来源与税务输出译文、默认输出语言）回落英文。",
       "filesRef": "index/workbench-education.json"
     },
     {
@@ -209,13 +209,13 @@
       "icon": "icon-solutions",
       "order": 40,
       "description": "只依据已审批的宣教资料回答，每条结论标注来源页码，教法裁决与超纲问题自动拒答并转人工。",
-      "version": "2.0.2",
+      "version": "2.0.3",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -254,10 +254,10 @@
       "capabilities": [],
       "path": "solutions/workbench-grounded-qa",
       "fileCount": 8,
-      "size": 67224,
-      "treeDigest": "4f8e812e22a793bc38b635615ac440aa6ba751ddc13f97c5efd8ccab3a78a6af",
+      "size": 66972,
+      "treeDigest": "36a897a76e8330af34fec07ec78b1a42829bc94dfff32344651b9069db65aae2",
       "largeAssets": [],
-      "changelog": "- 界面样式改用宿主设计 token（圆角 / 字号 / 主色等随主题统一，同步 qiye-app master 的界面改造）；需要 App 2.0.6 起（更早的 App 继续用上一版）。",
+      "changelog": "- 越南语 / 马来语界面：语言判定修正；只备了中英阿的内容（报告、规则来源与税务输出译文、默认输出语言）回落英文。",
       "filesRef": "index/workbench-grounded-qa.json"
     },
     {
@@ -473,13 +473,13 @@
       "icon": "icon-solutions",
       "order": 70,
       "description": "Facebook、Instagram、Google Ads 与 YouTube 全链路投放、复盘和账户优化。",
-      "version": "2.0.3",
+      "version": "2.0.4",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -520,10 +520,10 @@
       "capabilities": [],
       "path": "solutions/workbench-global-ads",
       "fileCount": 7,
-      "size": 427362,
-      "treeDigest": "73448dc4fec8b62c5598fa86785387b3af48835767f15f462486b19812a262c4",
+      "size": 427857,
+      "treeDigest": "631832803956048bbbd9dbba685344b1aae75ed52f221557456601b6ff5c324d",
       "largeAssets": [],
-      "changelog": "- 改名：「阿联酋广告代投放工作台」→「海外广告投放工作台」（id 不变，已开通的账号与已装方案不受影响；旧名保留为按名称安装的别名）。",
+      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。\n- 按钮交互状态：禁用的按钮悬停不再变色，选中 / 展开态不被悬停覆盖。\n- 测试用例同步 qiye-app（不影响功能）。",
       "filesRef": "index/workbench-global-ads.json"
     },
     {
@@ -655,13 +655,13 @@
       "icon": "icon-solutions",
       "order": 100,
       "description": "填投标目标与目标投标网站，自动抓公告拆成逐条要求；模板可上传也可从知识库找；公司资料取自知识库，逐章成文后自检废标风险，导出 Word / PDF。",
-      "version": "2.0.3",
+      "version": "2.0.4",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -700,10 +700,10 @@
       "capabilities": [],
       "path": "solutions/workbench-bid-writer",
       "fileCount": 8,
-      "size": 277477,
-      "treeDigest": "edafe07e0d79f1f4cfdd6191bf7edc5cfdf0e400da04924b2fa54b2da7bdcf32",
+      "size": 277207,
+      "treeDigest": "91f46bffad371ef0583f01f18caf4a94fa90d6191088335552573a1728241b98",
       "largeAssets": [],
-      "changelog": "- 改名：「标书制作智能体」→「智能标书助手」（id 不变，已开通的账号与已装方案不受影响；旧名保留为按名称安装的别名）。",
+      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。\n- 主按钮悬停不再变成浅灰底、白字看不见。",
       "filesRef": "index/workbench-bid-writer.json"
     },
     {
@@ -777,13 +777,13 @@
       "icon": "icon-solutions",
       "order": 120,
       "description": "加密与美股 7×24 情报流：gate.io 行情异动与多源新闻快讯同一条时间线，每条可回溯原文，随时 AI 研判。",
-      "version": "2.0.2",
+      "version": "2.0.3",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -821,10 +821,10 @@
       "capabilities": [],
       "path": "solutions/workbench-industry-watch",
       "fileCount": 7,
-      "size": 54241,
-      "treeDigest": "d706d530161d59b446c4d88c4efbd321905dd8573e9155567a90b0e8446f639a",
+      "size": 54412,
+      "treeDigest": "bdb49e5efa231f66380da817bbfc79c122f042de25546a02e7eceb075c894e98",
       "largeAssets": [],
-      "changelog": "- 改名：「盘面情报台」→「盯盘复盘助手」（id 不变，已开通的账号与已装方案不受影响；旧名保留为按名称安装的别名）。",
+      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。",
       "filesRef": "index/workbench-industry-watch.json"
     },
     {
@@ -1100,13 +1100,13 @@
       "icon": "icon-solutions",
       "order": 170,
       "description": "AI 一键换装：顾客手机扫码或店员电脑上传照片，自选背景、姿势、发型生成试穿图，手机电脑同时查看；试穿码到店核销，试穿数据看板指导主推款。",
-      "version": "2.0.2",
+      "version": "2.0.3",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -1146,10 +1146,10 @@
       "capabilities": [],
       "path": "solutions/workbench-apparel-store",
       "fileCount": 7,
-      "size": 217626,
-      "treeDigest": "b4c64c323c024184401d824b55853760f9d07d727000bdc45e00f08996c5a578",
+      "size": 217960,
+      "treeDigest": "d172061ffd7bcd5f3ccf6b7233d20a4ad4c57270afab6696f6963d7f92e1d8d3",
       "largeAssets": [],
-      "changelog": "- 改名：「服装实体店智能体」→「服装AI试衣」（id 不变，已开通的账号与已装方案不受影响；旧名保留为按名称安装的别名）。",
+      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。",
       "filesRef": "index/workbench-apparel-store.json"
     },
     {
@@ -1164,13 +1164,13 @@
       "icon": "icon-solutions",
       "order": 180,
       "description": "短视频生成并发抖音、快手、小红书、视频号；数字人出镜介绍企业；商品图文自动上下架；收银与财务数据自动取数、统计并推送经营日报。",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -1211,10 +1211,10 @@
       "capabilities": [],
       "path": "solutions/workbench-biz-automation",
       "fileCount": 8,
-      "size": 460893,
-      "treeDigest": "917656b0e5d2f0374b3ee5ea6bc63945e2b85803be15754582c88a91df4e1b56",
+      "size": 460691,
+      "treeDigest": "57d38594d95dde283cae44ec4fc3dbd73154c98884f504d535a0bfa0fe640b55",
       "largeAssets": [],
-      "changelog": "- 并入「服装AI试衣」，成为其中的「经营自动化」页签；显示名改为「服装AI试衣 · 经营自动化」（原名「经营自动化智能体」保留为别名，id 不变，已开通的账号不受影响）。",
+      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。\n- 停止时已点过「发布」的平台记为待核对，不再退回已审核状态一键重发。",
       "filesRef": "index/workbench-biz-automation.json"
     },
     {
@@ -1229,13 +1229,13 @@
       "icon": "icon-solutions",
       "order": 190,
       "description": "拿着付款单或一张开票申请表（很多行、很多家购买方）批量开票：自动识别列、逐行校验税号与金额、按规则组票拆票算税，生成电子税务局批量导入文件或由数字员工逐张填写，台账自动回填发票号码。",
-      "version": "2.0.2",
+      "version": "2.0.3",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -1275,10 +1275,10 @@
       "capabilities": [],
       "path": "solutions/workbench-invoice-agent",
       "fileCount": 7,
-      "size": 234209,
-      "treeDigest": "3aa4c752ae31e296922331f0d3f1d92a113250811b54f3758f63c576c50c49a1",
+      "size": 234569,
+      "treeDigest": "dfec18d2777c63551a58897f9bf25971f42b6c7cf752922e35c0cbc833efe5b2",
       "largeAssets": [],
-      "changelog": "- 改名：「发票智能体」→「智能发票助手」（id 不变，已开通的账号与已装方案不受影响；旧名保留为按名称安装的别名）。",
+      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。",
       "filesRef": "index/workbench-invoice-agent.json"
     },
     {
@@ -1357,13 +1357,13 @@
       "icon": "icon-solutions",
       "order": 210,
       "description": "投喂配件历史发货、采购提前期、采购在途和实时库存四类数据，算出每个配件是呆滞、冗余、健康、将缺货还是已缺货，给出处理建议和补库清单，人工检验后转采购订单，并可定时循环运算预警。",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -1404,10 +1404,10 @@
       "capabilities": [],
       "path": "solutions/workbench-parts-alert",
       "fileCount": 8,
-      "size": 301263,
-      "treeDigest": "5aa5425eb78fb0765c1bca0f7ac585d7b6278989adc0ca4bec87d645bd956bcd",
+      "size": 300733,
+      "treeDigest": "4f6dffa171a4ad8d811d64fd6b7b856f076a0fe5b6718682cc6f25a2850401d9",
       "largeAssets": [],
-      "changelog": "- 改名：「配件预警与补库智能体」→「智能库存管理」（id 不变，已开通的账号与已装方案不受影响；旧名保留为按名称安装的别名）。",
+      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。\n- 测试用例同步 qiye-app（不影响功能）。",
       "filesRef": "index/workbench-parts-alert.json"
     },
     {
@@ -1422,13 +1422,13 @@
       "icon": "icon-solutions",
       "order": 220,
       "description": "校级 AI 中心一体化平台：统一校园知识库，师生扫码就能问、答案带出处、答不了的转部门；按成绩和考勤算学业预警，辅导员复核后出谈话提纲与通知；模型服务、调用审计与数据保留统一运维。",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -1469,10 +1469,10 @@
       "capabilities": [],
       "path": "solutions/workbench-campus-ai",
       "fileCount": 8,
-      "size": 657022,
-      "treeDigest": "f9379f38db3c27f0e53313651bf97e1751b1a4607863d02448a0281eca068951",
+      "size": 655804,
+      "treeDigest": "05f2694994f55899b7feae6e5e12f6acde8da1f1886f9a2b18680b65210e2a08",
       "largeAssets": [],
-      "changelog": "- 改名：「高校一体化AI智能体」→「校园 AI 中心」（id 不变，已开通的账号与已装方案不受影响；旧名保留为按名称安装的别名）。",
+      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。\n- 按钮交互状态：禁用的按钮悬停不再变色，选中 / 展开态不被悬停覆盖。",
       "filesRef": "index/workbench-campus-ai.json"
     },
     {
@@ -1487,13 +1487,13 @@
       "icon": "icon-solutions",
       "order": 230,
       "description": "给它企业材料和政采云账号，在内置浏览器里代做供应商的日常工作：商品上架前的合规与比价检查、询价单读回与报价测算、订单接单发货预警、待开票订单转开票。",
-      "version": "2.0.3",
+      "version": "2.0.4",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -1534,10 +1534,10 @@
       "capabilities": [],
       "path": "solutions/workbench-zcy-agent",
       "fileCount": 8,
-      "size": 314592,
-      "treeDigest": "5721f020abc2603101a4bf2a6e12941bfc51b28b1e5af41497d117799acfcd9c",
+      "size": 314279,
+      "treeDigest": "c7541e1a4f471228567897f3050a322a70cbbcb1c7354af2585463ba1c921549",
       "largeAssets": [],
-      "changelog": "- 改名：「政采云智能体」→「「政采云」助手」（id 不变，已开通的账号与已装方案不受影响；旧名保留为按名称安装的别名）。",
+      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。",
       "filesRef": "index/workbench-zcy-agent.json"
     },
     {
@@ -1551,13 +1551,13 @@
       "icon": "icon-solutions",
       "order": 240,
       "description": "京东/天猫好评激励核算、服务费用结案汇总与邮件下发、发票监听与付款跟踪、报废台账更新、服务营销激励季度结案（含个税申报表与结案报告）。",
-      "version": "2.0.3",
+      "version": "2.0.4",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -1598,10 +1598,10 @@
       "capabilities": [],
       "path": "solutions/workbench-service-settlement",
       "fileCount": 8,
-      "size": 799828,
-      "treeDigest": "f1180c41bbf215c02ad45fb4c3b57d1016df4293f6ca13b4e2c37450a7a7ad48",
+      "size": 798587,
+      "treeDigest": "35b1f9f1006c86f9540b5d338f4bac1433f69a4f5ba64e83d968579618fb6800",
       "largeAssets": [],
-      "changelog": "- 界面样式改用宿主设计 token（圆角 / 字号 / 主色等随主题统一，同步 qiye-app master 的界面改造）；需要 App 2.0.6 起（更早的 App 继续用上一版）。",
+      "changelog": "- 测试用例同步 qiye-app（不影响功能）。",
       "filesRef": "index/workbench-service-settlement.json"
     },
     {
@@ -1615,13 +1615,13 @@
       "icon": "icon-solutions",
       "order": 250,
       "description": "月结关账、对账、审计与内控、税务合规、管理报告、资金风险与投融资估值，48 个模块分步出底稿，人工签核后归档；中英阿三语，适配中国、国际、沙特与阿联酋准则税制。",
-      "version": "2.0.2",
+      "version": "2.0.3",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.7",
         "hostApi": 2
       },
       "access": {
@@ -1667,10 +1667,10 @@
       "capabilities": [],
       "path": "solutions/workbench-finance-audit",
       "fileCount": 8,
-      "size": 2412646,
-      "treeDigest": "81876cb22de23b552b1f28992fbcf458232b2215b6cf2d2558ee9561d0c530ab",
+      "size": 2402098,
+      "treeDigest": "66ea9d9868999aaaa6b1020ec6d91184a4dde6588fcb2fdcd1cf11238f2f0d3f",
       "largeAssets": [],
-      "changelog": "- 界面样式改用宿主设计 token（同步 qiye-app master 的界面改造）；需要 App 2.0.6 起。\n- 样例数据加品牌字面量豁免标注（无行为变化）（同步 qiye-app yitiji 分支的品牌统一改动）。",
+      "changelog": "- 越南语 / 马来语界面：语言判定修正；只备了中英阿的内容（报告、规则来源与税务输出译文、默认输出语言）回落英文。\n- 「去新建技能」等 AutoCoder 入口与说明按账号是否开通 AutoCoder 显示，没开通的账号看不到。\n- 测试用例同步 qiye-app（不影响功能）。\n- 需要 App 2.0.7 起（AutoCoder 开关用到宿主 editionSnapshot；更早的 App 继续用上一版）。",
       "filesRef": "index/workbench-finance-audit.json"
     },
     {
@@ -1687,13 +1687,13 @@
       "description": "放进活动照片与视频：自动生成活动档案、中英阿三语报告 PDF 与海报、高保真语音、9:16 宣传短视频，一键完整流程。",
       "descriptionEn": "Turn one charity event's raw material (photos, field notes, donation data) into multilingual campaign content in one pass: posters and illustrations, short-video cuts, social posts and donor thank-you letters, exported per platform aspect ratio and language, with a reviewable trail.",
       "descriptionAr": "حوّل مواد فعالية خيرية واحدة (الصور، السجلات الميدانية، بيانات التبرعات) إلى محتوى ترويجي متعدد اللغات بخطوة واحدة: ملصقات وصور، مقاطع فيديو قصيرة، منشورات للتواصل الاجتماعي ورسائل شكر للمتبرعين، تُصدَّر حسب مقاس كل منصة ولغتها مع سجل كامل قابل للمراجعة.",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -1734,8 +1734,8 @@
       "capabilities": [],
       "path": "solutions/workbench-charity-content",
       "fileCount": 8,
-      "size": 322286,
-      "treeDigest": "523c1ee6a16a9c37de5a566906be98db75325947ab55f7fb9248336258f83e5d",
+      "size": 322116,
+      "treeDigest": "f12a0b90381cd089eef67ffb36a21634b35d2f572eb19987492e309a438176f3",
       "largeAssets": [
         {
           "path": "resources/bundled-solutions/charity-content/demo-materials/58865d8353e8b485e0ce7db1b3a23559.mp4",
@@ -1792,7 +1792,7 @@
           "origin": "resources/bundled-solutions/charity-content/prebaked/video-zh.mp4"
         }
       ],
-      "changelog": "- 改名：「慈善活动内容工场」→「活动运营工坊」（id 不变，已开通的账号与已装方案不受影响；旧名保留为按名称安装的别名）。",
+      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。\n- 按钮交互状态：禁用的按钮悬停不再变色，选中 / 展开态不被悬停覆盖。\n- 越南语 / 马来语界面：语言判定修正；只备了中英阿的内容（报告、规则来源与税务输出译文、默认输出语言）回落英文。",
       "filesRef": "index/workbench-charity-content.json"
     },
     {
@@ -1937,13 +1937,13 @@
       "description": "固定语料导入与校验、章节结构解析、提纲与课程生成、理解图、动态出题、5 名学生个人与群体薄弱点分析、强化教学与复测、图片卡片与视频脚本，中英阿三语。",
       "descriptionEn": "A university-facing demonstration of a closed AI teaching loop: locked scripture corpus import, lesson generation, comprehension maps, adaptive assessment, learning analytics and reinforcement, grounded strictly in the imported corpus.",
       "descriptionAr": "عرض توضيحي لحلقة تعليم مغلقة بالذكاء الاصطناعي موجّه للجامعات: استيراد مدونة نصية مُقفلة، توليد الدروس، خرائط الفهم، تقييم تكيفي، تحليلات التعلم والتعزيز، مع الالتزام الكامل بالمدونة المستوردة.",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -1977,10 +1977,10 @@
       "capabilities": [],
       "path": "solutions/workbench-quran-teaching",
       "fileCount": 6,
-      "size": 526142,
-      "treeDigest": "0ef3a1f2e766ca1d94e1f0e40b0f84680361362f6ce3e472cc4c600ab78d5a3f",
+      "size": 526220,
+      "treeDigest": "5958e278b03f990f7ac009481ae0f63c84951ee7b778c27c97ed09e4ec7205e3",
       "largeAssets": [],
-      "changelog": "- 修复：卸载 / 停用方案后，后台定时任务、本地服务、事件监听一并停止（之前要等 App 重启才停，期间可能继续收发邮件、重复提醒）。\n- 修复：主进程里按需加载的宿主模块 / npm 包（文档解析、邮件收发、PDF 等）运行时加载失败 —— 动态 import 改为经宿主模块注册表取得。",
+      "changelog": "- 测试用例同步 qiye-app（不影响功能）。",
       "filesRef": "index/workbench-quran-teaching.json"
     },
     {
@@ -1994,13 +1994,13 @@
       "icon": "icon-solutions",
       "order": 280,
       "description": "从 RFQ/BOQ 到审批文件的可追溯业务闭环",
-      "version": "2.0.2",
+      "version": "2.0.3",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.6",
         "hostApi": 2
       },
       "access": {
@@ -2039,10 +2039,10 @@
       "capabilities": [],
       "path": "solutions/embedded-bid-desk",
       "fileCount": 8,
-      "size": 235612,
-      "treeDigest": "9211152805a3ecdae02e6ff61845e90bcdfdbe71cac595610842a64ae3024cfe",
+      "size": 235918,
+      "treeDigest": "038270377129c01ac8732bca7fc44444715d6370ee8bf61cf584bd66409cfae7",
       "largeAssets": [],
-      "changelog": "- 界面样式改用宿主设计 token（同步 qiye-app master 的界面改造）；需要 App 2.0.6 起。\n- 能力卡片标题随品牌显示（白标版不再写死 TotalClaw）（同步 qiye-app yitiji 分支的品牌统一改动）。\n- 需要 App 2.0.6 起（宿主模块注册表新增 renderer/utils/brand.ts）；更早的 App 继续使用 2.0.1。",
+      "changelog": "- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。\n- 按钮交互状态：禁用的按钮悬停不再变色，选中 / 展开态不被悬停覆盖。\n- 越南语 / 马来语界面：语言判定修正；只备了中英阿的内容（报告、规则来源与税务输出译文、默认输出语言）回落英文。\n- 品牌名称统一取宿主品牌入口。",
       "filesRef": "index/embedded-bid-desk.json"
     },
     {
@@ -2057,13 +2057,13 @@
       "icon": "icon-solutions",
       "order": 290,
       "description": "从素材整理、脚本、配音配乐到成片审核，一次准备抖音、快手、小红书和微信视频号版本。",
-      "version": "2.0.3",
+      "version": "2.0.4",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.7",
         "hostApi": 2
       },
       "access": {
@@ -2101,10 +2101,10 @@
       "capabilities": [],
       "path": "solutions/embedded-video-studio",
       "fileCount": 7,
-      "size": 213185,
-      "treeDigest": "36b3aba22e4a1ef69f5fbcd2fc2d5126777562416cf42ba288db4ffc7b945670",
+      "size": 215119,
+      "treeDigest": "8d44a65829c4caa146ae1f3a6a1d3483ae30a7fc8679c359929a2d7149562eed",
       "largeAssets": [],
-      "changelog": "- 改名：「短视频创作与发布工作台」→「多媒体创作与发布工作台」（id 不变，已开通的账号与已装方案不受影响；旧名保留为按名称安装的别名）。",
+      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。\n- 按钮交互状态：禁用的按钮悬停不再变色，选中 / 展开态不被悬停覆盖。\n- 短视频本页发布：预览、登录引导、明确提交、停止 / 继续、分平台回执。\n- 预览里改过的正文不再被「准备发布 / 再次发布」或停止悄悄冲掉。\n- 按钮旁的发布回执只取当前成片的发布记录。\n- 测试用例同步 qiye-app（不影响功能）。\n- 需要 App 2.0.7 起（本页发布用到宿主 PublishRunPanel；更早的 App 继续用上一版）。",
       "filesRef": "index/embedded-video-studio.json"
     },
     {

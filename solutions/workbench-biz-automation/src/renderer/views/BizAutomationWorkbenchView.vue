@@ -47,7 +47,7 @@
           <div class="ba-ov__cards">
             <button v-for="c in cards" :key="c.key" type="button" class="ba-ov__card" @click="select(c.key)"><i :class="c.icon"></i><strong>{{ c.title }}</strong><span>{{ c.text }}</span></button>
           </div>
-          <p class="ss-muted">{{ $t('商品库在「服装实体店智能体」里维护（导入、AI 打标签、尺码库存）；试穿图会自动成为短视频与上架图的素材。') }}</p>
+          <p class="ss-muted">{{ $t('商品库在「服装AI试衣」里维护（导入、AI 打标签、尺码库存）；试穿图会自动成为短视频与上架图的素材。') }}</p>
         </section>
         <section class="ss-panel">
           <h3>{{ $t('三条红线') }}</h3>

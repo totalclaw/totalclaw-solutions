@@ -7,7 +7,7 @@
     "bid-writer",
     "标书制作智能体"
   ],
-  "version": "2.0.3",
+  "version": "2.0.4",
   "kind": "workbench",
   "category": "招投标",
   "icon": "icon-solutions",
@@ -30,7 +30,7 @@
     "hidden": false
   },
   "compat": {
-    "minAppVersion": "2.0.5",
+    "minAppVersion": "2.0.6",
     "hostApi": 2
   },
   "runtime": {

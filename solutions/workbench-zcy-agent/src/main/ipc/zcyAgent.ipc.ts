@@ -1,5 +1,5 @@
 /**
- * 解决方案 · 政采云智能体（主进程）。docs/zcy-agent-workbench.md
+ * 解决方案 · 「政采云」助手（主进程）。docs/zcy-agent-workbench.md
  *
  * 一条动作通道 WORKBENCH_ZC_INVOKE，按 action 分发；状态变化经 WORKBENCH_ZC_EVENT 推给渲染层。
  *
@@ -9,7 +9,7 @@
  *         → 数字员工填写，停在「提交审核」前；
  *   询价：数字员工只读回待报价的询价单 → 人填成本 → 规则算报价 → 人确认 → 数字员工填写，停在「提交报价」前；
  *   订单：数字员工只读回订单（或导入订单表）→ 接单 / 发货时限预警 → 接单、回填物流停在确认前
- *         → 待开票订单转入发票智能体。
+ *         → 待开票订单转入智能发票助手。
  */
 import { dialog, ipcMain, nativeImage, Notification, safeStorage, shell, type BrowserWindow } from 'electron';
 import { existsSync, statSync } from 'node:fs';
@@ -132,7 +132,7 @@ export function registerZcyAgentHandlers(deps: WorkbenchIpcDeps): () => void {
       store.update((st) => { st.lastPatrol[hm] = day; });
       const alerts = publicState().alerts;
       if (Notification.isSupported()) {
-        new Notification({ title: i18nT('政采云巡检时间到了'), body: alerts.length ? i18nT('有 {p0} 条待处理提醒，打开政采云智能体读回最新订单与询价单', { p0: alerts.length }) : i18nT('打开政采云智能体读回最新订单与询价单') }).show();
+        new Notification({ title: i18nT('政采云巡检时间到了'), body: alerts.length ? i18nT('有 {p0} 条待处理提醒，打开「政采云」助手读回最新订单与询价单', { p0: alerts.length }) : i18nT('打开「政采云」助手读回最新订单与询价单') }).show();
       }
       try { win()?.webContents.send(IPC_CHANNELS.WORKBENCH_ZC_EVENT, { type: 'patrol-due' }); } catch { /* 窗口已关 */ }
     } catch (e) { logger?.warn?.('zcy-agent', 'patrol tick failed', { error: (e as Error)?.message }); }
@@ -499,7 +499,7 @@ export function registerZcyAgentHandlers(deps: WorkbenchIpcDeps): () => void {
       return P.shipOrderInstruction(o, store.read().settings.account);
     },
     'order.remove': (p: { id: string }) => { store.update((s) => { s.orders = s.orders.filter((o) => o.id !== p.id); }); pushState(); return true; },
-    /** 待开票订单转入发票智能体：建一批开票行，金额按含税，项目名称要在发票智能体里改成规范的开票项目 */
+    /** 待开票订单转入智能发票助手：建一批开票行，金额按含税，项目名称要在智能发票助手里改成规范的开票项目 */
     'orders.toInvoice': (p: { ids: string[] }) => {
       const s = store.read();
       const list = s.orders.filter((o) => (p.ids || []).includes(o.id) && !o.invoiceBatchId);
@@ -512,7 +512,7 @@ export function registerZcyAgentHandlers(deps: WorkbenchIpcDeps): () => void {
         rows: list.map((o) => ({ buyerName: o.buyer, buyerTaxNo: o.buyerTaxNo, itemName: o.items, amount: o.amount, taxIncluded: true, taxRate: s.settings.invoiceTaxRate, orderNo: o.orderNo, kind: 'normal' as const, remark: i18nT('政采云订单 {p0}', { p0: o.orderNo }) })),
       });
       store.update(() => { for (const o of list) { o.invoiceBatchId = batchId; o.updatedAt = now(); } });
-      log('orders', i18nT('{p0} 张订单已转入发票智能体', { p0: list.length }));
+      log('orders', i18nT('{p0} 张订单已转入智能发票助手', { p0: list.length }));
       pushState();
       return { batchId, count: list.length };
     },

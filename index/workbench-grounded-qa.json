@@ -1,12 +1,12 @@
 {
   "id": "workbench-grounded-qa",
-  "version": "2.0.2",
-  "treeDigest": "4f8e812e22a793bc38b635615ac440aa6ba751ddc13f97c5efd8ccab3a78a6af",
+  "version": "2.0.3",
+  "treeDigest": "36a897a76e8330af34fec07ec78b1a42829bc94dfff32344651b9069db65aae2",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 910,
-      "sha256": "3d3ee602812ff2522c6534c35b0031ea12302982ca2ddc6bb3a3c92f3b6c8c9e"
+      "size": 1099,
+      "sha256": "915222017ea6545697159c280bd6dc9b8597b8bb34cfce485ae89c9d24211330"
     },
     {
       "path": "README.md",
@@ -20,8 +20,8 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 27832,
-      "sha256": "1cf837acb4b9d72ab8e74f53db370748fe9c27825a02263d4241ad0e87744f7f"
+      "size": 27391,
+      "sha256": "d1513f6b91b2f152e514a07a47f666517da58a033a0c1fdb413adab795c9d955"
     },
     {
       "path": "dist/renderer.mjs",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2178,
-      "sha256": "49846ebe73d74dee33b962687e458c248f1dc6f562a5ed373b477e32eaee06e6"
+      "sha256": "68c67a05fb4012cdb733876d1dd6399e99b80b8ae4d69a5943f660825924dede"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.3",
+      "ref": "workbench-grounded-qa@2.0.3",
+      "treeDigest": "36a897a76e8330af34fec07ec78b1a42829bc94dfff32344651b9069db65aae2",
+      "filesRef": "index/workbench-grounded-qa/2.0.3.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.6",
+      "hostApi": 2,
+      "publishedAt": "2026-10-29"
+    },
     {
       "version": "2.0.2",
       "ref": "workbench-grounded-qa@2.0.2",

@@ -6,7 +6,7 @@
         <span class="heading-icon"><i class="ri-t-shirt-air-line"></i></span>
         <div>
           <p class="eyebrow">{{ $t('行业工作台') }}</p>
-          <h1>{{ $t('服装实体店智能体') }}</h1>
+          <h1>{{ $t('服装AI试衣') }}</h1>
           <p class="subtitle">{{ $t('AI 一键换装：顾客在手机上、店员在电脑上都能看到试穿效果；背景、姿势、发型自由选；试穿码到店试实物，试穿数据指导主推款。') }}</p>
         </div>
       </div>

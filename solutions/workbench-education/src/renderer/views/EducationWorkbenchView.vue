@@ -1351,11 +1351,12 @@ function formatBytes(value: number): string {
 }
 
 onMounted(() => {
+  // 教案只出中英阿：越南语 / 马来语界面默认英文
   lessonForm.outputLanguage = locale.value === 'ar'
     ? 'ar'
-    : locale.value === 'en-US'
-      ? 'en-US'
-      : 'zh-CN';
+    : locale.value === 'zh-CN'
+      ? 'zh-CN'
+      : 'en-US';
   void loadStatus();
   void clearTeacherChat();
   void loadTeacherModelLabel();

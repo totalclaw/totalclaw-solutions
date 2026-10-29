@@ -35,7 +35,7 @@
       </StepCard>
 
       <StepCard step-key="o-invoice" :index="2" :title="metas[2].title" :hint="metas[2].hint" :runtime="runtime['o-invoice']" :is-current="currentKey === 'o-invoice'">
-        <p class="ss-muted">{{ $t('转入后在发票智能体里校验、组票、开具。订单里的商品摘要不是规范的开票项目，请在发票智能体的校验步骤里改成正式的项目名称。') }}</p>
+        <p class="ss-muted">{{ $t('转入后在智能发票助手里校验、组票、开具。订单里的商品摘要不是规范的开票项目，请在智能发票助手的校验步骤里改成正式的项目名称。') }}</p>
         <p v-if="!invoiceable.length" class="ss-empty">{{ $t('没有待开票的订单') }}</p>
         <template v-else>
           <div class="ss-table-wrap">
@@ -52,10 +52,10 @@
             </table>
           </div>
           <div class="ss-actions">
-            <button type="button" class="ss-btn primary" :disabled="!!busy || !picked.length" data-test="zc-to-invoice" @click="toInvoice"><i class="ri-bill-line"></i>{{ $t('转入发票智能体（{n} 张）', { n: picked.length }) }}</button>
+            <button type="button" class="ss-btn primary" :disabled="!!busy || !picked.length" data-test="zc-to-invoice" @click="toInvoice"><i class="ri-bill-line"></i>{{ $t('转入智能发票助手（{n} 张）', { n: picked.length }) }}</button>
           </div>
         </template>
-        <p v-if="invoiceNote" class="ss-note ok" data-test="zc-invoice-note"><i class="ri-check-line"></i>{{ invoiceNote }}<button type="button" class="ss-btn sm" @click="gotoInvoice">{{ $t('去发票智能体') }}</button></p>
+        <p v-if="invoiceNote" class="ss-note ok" data-test="zc-invoice-note"><i class="ri-check-line"></i>{{ invoiceNote }}<button type="button" class="ss-btn sm" @click="gotoInvoice">{{ $t('去智能发票助手') }}</button></p>
       </StepCard>
 
       <StepCard step-key="o-all" :index="3" :title="metas[3].title" :hint="metas[3].hint" :runtime="runtime['o-all']" :is-current="currentKey === 'o-all'">
@@ -79,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-/** 订单履约：读回订单 → 接单 / 发货（停在确认前）→ 待开票订单转入发票智能体 → 全部订单。 */
+/** 订单履约：读回订单 → 接单 / 发货（停在确认前）→ 待开票订单转入智能发票助手 → 全部订单。 */
 import { computed, reactive, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import type { ZcOrder, ZcOrderStatus } from '@totalclaw/ipc-contracts';
@@ -139,7 +139,7 @@ async function toInvoice(): Promise<void> {
   invoiceNote.value = '';
   await run('o-invoice', async () => {
     const r = await zc<{ batchId: string; count: number }>('orders.toInvoice', { ids: picked.value });
-    invoiceNote.value = i18nT('{n} 张订单已转入发票智能体，生成了一批待校验的开票行', { n: r.count });
+    invoiceNote.value = i18nT('{n} 张订单已转入智能发票助手，生成了一批待校验的开票行', { n: r.count });
     picked.value = [];
   });
 }
@@ -153,7 +153,7 @@ function openConv(id: string): void { void router.push(`/conversations/${id}`).c
 const metas: StepMeta[] = [
   { key: 'o-read', title: i18nT('读回订单'), hint: i18nT('数字员工只读订单列表，或导入订单表') },
   { key: 'o-todo', title: i18nT('接单与发货'), hint: i18nT('超时预警；接单、发货停在确认前') },
-  { key: 'o-invoice', title: i18nT('转开票'), hint: i18nT('待开票订单转入发票智能体') },
+  { key: 'o-invoice', title: i18nT('转开票'), hint: i18nT('待开票订单转入智能发票助手') },
   { key: 'o-all', title: i18nT('全部订单'), hint: i18nT('本机台账，状态以政采云为准') },
 ];
 function st(key: string, ok: boolean, summary?: string): StepRuntime {

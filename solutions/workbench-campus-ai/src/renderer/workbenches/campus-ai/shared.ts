@@ -11,7 +11,7 @@ export type { StepMeta, StepRuntime } from '../service-settlement/shared';
 
 export async function ca<T = any>(action: string, payload?: unknown): Promise<T> {
   const bridge = (window as any).electronAPI?.workbenches?.campusAi;
-  if (!bridge?.invoke) throw new Error(i18nT('高校一体化AI智能体接口不可用，请重启应用'));
+  if (!bridge?.invoke) throw new Error(i18nT('校园 AI 中心接口不可用，请重启应用'));
   return bridge.invoke(action, toPlain(payload ?? {})) as Promise<T>;
 }
 

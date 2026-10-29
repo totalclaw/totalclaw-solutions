@@ -20,9 +20,9 @@ const te = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules 
 if (!te) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/biz-automation/shared.ts");
 te.default;
 async function N(_, h) {
-  const $ = window.electronAPI?.workbenches?.zcyAgent;
-  if (!$?.invoke) throw new Error(s.t("政采云智能体接口不可用，请重启应用"));
-  return $.invoke(_, ie.toPlain(h ?? {}));
+  const b = window.electronAPI?.workbenches?.zcyAgent;
+  if (!b?.invoke) throw new Error(s.t("「政采云」助手接口不可用，请重启应用"));
+  return b.invoke(_, ie.toPlain(h ?? {}));
 }
 function Ve(_) {
   const h = window.electronAPI?.workbenches?.zcyAgent;
@@ -36,17 +36,17 @@ async function H() {
 }
 async function se(_ = !1) {
   let h = J.value?.workbench || null;
-  const $ = !!h && Date.now() - Date.parse(h.readAt) < 20 * 6e4;
-  if ((!h || !$ || !h.loggedIn) && (h = await N("site.readWorkbench"), await H()), !h?.loggedIn) throw new Error(s.t("政采云还没有登录：请先到「账号与材料」登录，再回来操作"));
+  const b = !!h && Date.now() - Date.parse(h.readAt) < 20 * 6e4;
+  if ((!h || !b || !h.loggedIn) && (h = await N("site.readWorkbench"), await H()), !h?.loggedIn) throw new Error(s.t("政采云还没有登录：请先到「账号与材料」登录，再回来操作"));
   if (_ && h.temporary) throw new Error(s.t("这个账号还是{p0}，进不了商品中心：请先在「账号与材料」里完成入驻", { p0: h.identity || s.t("临时供应商") }));
 }
 async function Ee(_) {
   const h = window.electronAPI?.conversation;
   if (!h?.getTranscript) throw new Error(s.t("当前版本读不到对话记录，请把数字员工的回复粘贴进来"));
-  const $ = await h.getTranscript(_), w = Array.isArray($) ? $ : [];
+  const b = await h.getTranscript(_), w = Array.isArray(b) ? b : [];
   for (let k = w.length - 1; k >= 0; k -= 1) {
-    const b = w[k] || {};
-    if (b.role !== "user" && String(b.content || "").trim()) return String(b.content);
+    const $ = w[k] || {};
+    if ($.role !== "user" && String($.content || "").trim()) return String($.content);
   }
   throw new Error(s.t("数字员工还没有回复，等它读完再点"));
 }
@@ -64,13 +64,13 @@ function ke(_) {
   if (!_) return s.t("未知");
   const h = new Date(_);
   if (!Number.isFinite(h.getTime())) return s.t("未知");
-  const $ = (w) => String(w).padStart(2, "0");
-  return `${h.getFullYear()}-${$(h.getMonth() + 1)}-${$(h.getDate())} ${$(h.getHours())}:${$(h.getMinutes())}`;
+  const b = (w) => String(w).padStart(2, "0");
+  return `${h.getFullYear()}-${b(h.getMonth() + 1)}-${b(h.getDate())} ${b(h.getHours())}:${b(h.getMinutes())}`;
 }
 function Ne(_, h = !1) {
   return N("path.open", { path: _, reveal: h });
 }
-const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss-grid" }, _e = { class: "ss-field" }, De = { class: "ss-field" }, Se = { class: "ss-field" }, we = { class: "ss-field" }, Be = { class: "ss-field" }, Ce = { class: "ss-field" }, Te = { class: "ss-field" }, ze = { class: "ss-field" }, Ue = { class: "ss-field" }, Me = ["value"], Le = {
+const be = { class: "ss-module" }, $e = { class: "ss-steps" }, fe = { class: "ss-grid" }, _e = { class: "ss-field" }, De = { class: "ss-field" }, Se = { class: "ss-field" }, we = { class: "ss-field" }, Be = { class: "ss-field" }, Ce = { class: "ss-field" }, Te = { class: "ss-field" }, ze = { class: "ss-field" }, Ue = { class: "ss-field" }, Me = ["value"], Le = {
   key: 0,
   class: "ss-grid"
 }, Ae = ["onUpdate:modelValue"], Ie = ["onUpdate:modelValue"], Oe = {
@@ -100,7 +100,7 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
   key: 1,
   class: "zc-wb",
   "data-test": "zc-wb-state"
-}, Nt = { class: "ss-chip ok" }, $t = { class: "ss-muted" }, bt = {
+}, Nt = { class: "ss-chip ok" }, bt = { class: "ss-muted" }, $t = {
   key: 0,
   class: "ss-note ok"
 }, ft = {
@@ -128,7 +128,7 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
 }, It = { class: "ss-note info" }, Ot = /* @__PURE__ */ e.defineComponent({
   __name: "AccountTab",
   setup(_) {
-    const h = J, $ = e.ref(""), w = e.ref({}), k = e.computed(() => h.value?.settings.account), b = e.computed(() => h.value?.settings.regions || []), D = e.computed(() => h.value?.settings.company.qualifications || []), g = e.reactive({ name: "", creditCode: "", legalPerson: "", contact: "", phone: "", address: "", bank: "", bankAccount: "", englishName: "", shortName: "", postcode: "", email: "", contactMobile: "", totalAssets: "", employees: "", income: "", intro: "", registerOrg: "", registerCapital: "", scope: "", onjobCount: "", socialPayCount: "" }), U = [
+    const h = J, b = e.ref(""), w = e.ref({}), k = e.computed(() => h.value?.settings.account), $ = e.computed(() => h.value?.settings.regions || []), D = e.computed(() => h.value?.settings.company.qualifications || []), g = e.reactive({ name: "", creditCode: "", legalPerson: "", contact: "", phone: "", address: "", bank: "", bankAccount: "", englishName: "", shortName: "", postcode: "", email: "", contactMobile: "", totalAssets: "", employees: "", income: "", intro: "", registerOrg: "", registerCapital: "", scope: "", onjobCount: "", socialPayCount: "" }), U = [
       { key: "shortName", label: s.t("商家简称") },
       { key: "englishName", label: s.t("英文名称") },
       { key: "postcode", label: s.t("邮政编码") },
@@ -143,7 +143,7 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
       { key: "socialPayCount", label: s.t("社保缴费人数") },
       { key: "scope", label: s.t("经营范围（照营业执照）"), wide: !0 },
       { key: "intro", label: s.t("店铺介绍"), wide: !0 }
-    ], M = e.ref(!1), E = e.computed(() => h.value?.workbench || null), B = e.ref(null), f = e.ref(null), L = e.ref("general"), V = e.computed(() => b.value.find((t) => t.id === L.value)), S = e.reactive({ username: "", password: "", loginUrl: "", homeUrl: "" }), y = () => ({ id: "", name: "", file: "", expireAt: "", note: "" }), v = e.reactive(y()), d = () => Object.assign(v, y()), m = e.ref(!1), C = e.ref(null), z = (t) => t.split(/[\\/]/).pop() || t;
+    ], M = e.ref(!1), E = e.computed(() => h.value?.workbench || null), B = e.ref(null), f = e.ref(null), L = e.ref("general"), V = e.computed(() => $.value.find((t) => t.id === L.value)), S = e.reactive({ username: "", password: "", loginUrl: "", homeUrl: "" }), y = () => ({ id: "", name: "", file: "", expireAt: "", note: "" }), v = e.reactive(y()), d = () => Object.assign(v, y()), m = e.ref(!1), C = e.ref(null), z = (t) => t.split(/[\\/]/).pop() || t;
     let I = !1;
     e.watch(h, (t) => {
       if (!t || I) return;
@@ -159,13 +159,13 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
       return t ? t.filled ? s.t("账号密码已填好：请在内置浏览器里过验证码并点登录") : t.reason === "no-credential" ? s.t("登录页已打开：还没有保存账号密码，请自己在登录框里输入") : t.reason === "off-site" ? s.t("页面跳到了政采云以外的域名，没有填密码；请确认地址后自己登录") : s.t("登录页已打开，但没找到账号密码输入框（可能默认是扫码或短信登录页签）：请切到账号密码登录后自己输入") : "";
     });
     async function q(t, r) {
-      $.value = t, w.value = { ...w.value, [t]: "" };
+      b.value = t, w.value = { ...w.value, [t]: "" };
       try {
         return await r(), await H(), !0;
       } catch (p) {
         return w.value = { ...w.value, [t]: A.errorMessage(p) }, A.scrollToStep(t), !1;
       } finally {
-        $.value = "";
+        b.value = "";
       }
     }
     async function j() {
@@ -224,7 +224,7 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
       { key: "a-onboard", title: s.t("入驻资料"), hint: s.t("把文本资料填进入驻页面，上传与提交由你来") }
     ];
     function X(t, r, p) {
-      return $.value === t ? { state: "running" } : w.value[t] ? { state: "failed", error: w.value[t] } : r ? { state: "done", summary: p } : { state: "todo" };
+      return b.value === t ? { state: "running" } : w.value[t] ? { state: "failed", error: w.value[t] } : r ? { state: "done", summary: p } : { state: "todo" };
     }
     const l = e.computed(() => ({
       "a-company": X("a-company", !!h.value?.settings.company.name, h.value?.settings.company.name),
@@ -237,7 +237,7 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
     function u(t) {
       A.scrollToStep(t);
     }
-    return (t, r) => (e.openBlock(), e.createElementBlock("div", $e, [
+    return (t, r) => (e.openBlock(), e.createElementBlock("div", be, [
       e.createVNode(oe, {
         title: t.$t("账号与材料"),
         metas: W,
@@ -245,7 +245,7 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
         "current-key": c.value,
         onJump: u
       }, null, 8, ["title", "runtime", "current-key"]),
-      e.createElementVNode("div", be, [
+      e.createElementVNode("div", $e, [
         e.createVNode(F, {
           "step-key": "a-company",
           index: 0,
@@ -443,7 +443,7 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
                     (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       null,
-                      e.renderList(b.value, (p) => (e.openBlock(), e.createElementBlock("option", {
+                      e.renderList($.value, (p) => (e.openBlock(), e.createElementBlock("option", {
                         key: p.id,
                         value: p.id
                       }, e.toDisplayString(p.name), 9, Me))),
@@ -526,7 +526,7 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !!$.value,
+                disabled: !!b.value,
                 "data-test": "zc-company-save",
                 onClick: j
               }, [
@@ -639,7 +639,7 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !!$.value || !v.name.trim(),
+                disabled: !!b.value || !v.name.trim(),
                 onClick: P
               }, [
                 r[25] || (r[25] = e.createElementVNode(
@@ -905,7 +905,7 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !!$.value,
+                disabled: !!b.value,
                 "data-test": "zc-account-save",
                 onClick: Q
               }, [
@@ -966,14 +966,14 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !!$.value,
+                disabled: !!b.value,
                 "data-test": "zc-login",
                 onClick: O
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass($.value === "a-login" ? "ri-loader-4-line spin" : "ri-login-box-line")
+                    class: e.normalizeClass(b.value === "a-login" ? "ri-loader-4-line spin" : "ri-login-box-line")
                   },
                   null,
                   2
@@ -989,7 +989,7 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
                 key: 0,
                 type: "button",
                 class: "ss-btn",
-                disabled: !!$.value,
+                disabled: !!b.value,
                 onClick: r[17] || (r[17] = (p) => m.value = !0)
               }, [
                 r[31] || (r[31] = e.createElementVNode(
@@ -1042,14 +1042,14 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !!$.value,
+                disabled: !!b.value,
                 "data-test": "zc-read-workbench",
                 onClick: a
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass($.value === "a-login" ? "ri-loader-4-line spin" : "ri-dashboard-line")
+                    class: e.normalizeClass(b.value === "a-login" ? "ri-loader-4-line spin" : "ri-dashboard-line")
                   },
                   null,
                   2
@@ -1120,7 +1120,7 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
                   )),
                   e.createElementVNode(
                     "span",
-                    $t,
+                    bt,
                     e.toDisplayString(t.$t("读取于 {p0}", { p0: e.unref(A.fmtDateTime)(E.value.readAt) })),
                     1
                     /* TEXT */
@@ -1156,7 +1156,7 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
           "is-current": c.value === "a-onboard"
         }, {
           default: e.withCtx(() => [
-            E.value?.loggedIn && !E.value.temporary && !E.value.identity ? (e.openBlock(), e.createElementBlock("p", bt, [
+            E.value?.loggedIn && !E.value.temporary && !E.value.identity ? (e.openBlock(), e.createElementBlock("p", $t, [
               r[34] || (r[34] = e.createElementVNode(
                 "i",
                 { class: "ri-check-line" },
@@ -1187,7 +1187,7 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn",
-                disabled: !!$.value,
+                disabled: !!b.value,
                 "data-test": "zc-onboard-open",
                 onClick: r[19] || (r[19] = (p) => o("onboard"))
               }, [
@@ -1207,14 +1207,14 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
-                disabled: !!$.value,
+                disabled: !!b.value,
                 "data-test": "zc-onboard-fill",
                 onClick: r[20] || (r[20] = (p) => T(!1))
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass($.value === "a-onboard" ? "ri-loader-4-line spin" : "ri-edit-2-line")
+                    class: e.normalizeClass(b.value === "a-onboard" ? "ri-loader-4-line spin" : "ri-edit-2-line")
                   },
                   null,
                   2
@@ -1304,7 +1304,7 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn sm",
-                    disabled: !!$.value,
+                    disabled: !!b.value,
                     onClick: r[21] || (r[21] = (p) => T(!0))
                   }, e.toDisplayString(t.$t("用我的资料覆盖")), 9, Lt)
                 ])) : e.createCommentVNode("v-if", !0),
@@ -1348,10 +1348,10 @@ const $e = { class: "ss-module" }, be = { class: "ss-steps" }, fe = { class: "ss
     ]));
   }
 }), x = (_, h) => {
-  const $ = _.__vccOpts || _;
+  const b = _.__vccOpts || _;
   for (const [w, k] of h)
-    $[w] = k;
-  return $;
+    b[w] = k;
+  return b;
 }, Kt = /* @__PURE__ */ x(Ot, [["__scopeId", "data-v-e8ebc6f0"]]), ne = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
 if (!ne) throw new Error("宿主模块未就绪：npm:vue-router");
 ne.default;
@@ -1381,7 +1381,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
 }, on = {
   key: 1,
   class: "zc-edit"
-}, sn = { class: "ss-grid" }, an = { class: "ss-field" }, rn = { class: "ss-field" }, cn = { class: "ss-field" }, dn = { class: "ss-field" }, un = { class: "ss-field" }, mn = { class: "ss-field" }, pn = { class: "ss-field" }, vn = { class: "ss-field" }, yn = { class: "ss-field" }, kn = { class: "ss-field" }, gn = ["disabled", "onClick"], hn = { class: "ss-subhead" }, Vn = ["onUpdate:modelValue", "placeholder"], En = ["onUpdate:modelValue", "placeholder"], Nn = ["onClick"], $n = { class: "ss-actions" }, bn = { class: "ss-muted" }, fn = { class: "ss-subhead" }, _n = { class: "zc-imgs" }, Dn = ["src"], Sn = ["onClick"], wn = ["disabled", "onClick"], Bn = { class: "ss-actions" }, Cn = ["disabled", "onClick"], Tn = {
+}, sn = { class: "ss-grid" }, an = { class: "ss-field" }, rn = { class: "ss-field" }, cn = { class: "ss-field" }, dn = { class: "ss-field" }, un = { class: "ss-field" }, mn = { class: "ss-field" }, pn = { class: "ss-field" }, vn = { class: "ss-field" }, yn = { class: "ss-field" }, kn = { class: "ss-field" }, gn = ["disabled", "onClick"], hn = { class: "ss-subhead" }, Vn = ["onUpdate:modelValue", "placeholder"], En = ["onUpdate:modelValue", "placeholder"], Nn = ["onClick"], bn = { class: "ss-actions" }, $n = { class: "ss-muted" }, fn = { class: "ss-subhead" }, _n = { class: "zc-imgs" }, Dn = ["src"], Sn = ["onClick"], wn = ["disabled", "onClick"], Bn = { class: "ss-actions" }, Cn = ["disabled", "onClick"], Tn = {
   key: 0,
   class: "ss-note warn",
   "data-test": "zc-listing-temp"
@@ -1401,7 +1401,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
 }, Wn = { class: "ss-table" }, Fn = { class: "num" }, jn = { class: "num" }, Pn = ["onUpdate:modelValue", "placeholder", "onChange"], Rn = { class: "zc-ops" }, qn = ["onClick"], Qn = ["onClick"], Hn = ["onClick"], Jn = ["onUpdate:modelValue", "placeholder"], Yn = ["disabled", "onClick"], Zn = ["onClick"], Gn = /* @__PURE__ */ e.defineComponent({
   __name: "ListingTab",
   setup(_) {
-    const h = le.useNotificationStore(), $ = ne.useRouter(), w = J, k = e.ref(""), b = e.ref({}), D = e.computed(() => w.value?.products || []), g = e.computed(() => w.value?.settings.regions.find((l) => l.id === w.value?.settings.regionId)), U = e.computed(() => D.value.filter((l) => l.status === "draft" || l.status === "confirmed" || l.status === "rejected")), M = e.computed(() => D.value.filter((l) => l.status === "confirmed")), E = e.computed(() => D.value.filter((l) => ["handed", "submitted", "listed", "delisted"].includes(l.status))), B = (l) => l.issues.some((c) => c.level === "error"), f = (l) => l.issues.filter((c) => c.level === "error").length, L = e.ref(""), V = e.ref(null), S = e.ref(""), y = e.reactive({}), v = e.reactive({});
+    const h = le.useNotificationStore(), b = ne.useRouter(), w = J, k = e.ref(""), $ = e.ref({}), D = e.computed(() => w.value?.products || []), g = e.computed(() => w.value?.settings.regions.find((l) => l.id === w.value?.settings.regionId)), U = e.computed(() => D.value.filter((l) => l.status === "draft" || l.status === "confirmed" || l.status === "rejected")), M = e.computed(() => D.value.filter((l) => l.status === "confirmed")), E = e.computed(() => D.value.filter((l) => ["handed", "submitted", "listed", "delisted"].includes(l.status))), B = (l) => l.issues.some((c) => c.level === "error"), f = (l) => l.issues.filter((c) => c.level === "error").length, L = e.ref(""), V = e.ref(null), S = e.ref(""), y = e.reactive({}), v = e.reactive({});
     e.watch(D, (l) => {
       for (const c of l) y[c.id] === void 0 && (y[c.id] = c.productUrl || "");
     }, { immediate: !0 });
@@ -1425,11 +1425,11 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
       c && L.value === l && (V.value = m(c));
     }
     async function I(l, c) {
-      k.value = l, b.value = { ...b.value, [l]: "" };
+      k.value = l, $.value = { ...$.value, [l]: "" };
       try {
         return await c(), await H(), !0;
       } catch (u) {
-        return b.value = { ...b.value, [l]: A.errorMessage(u) }, A.scrollToStep(l), !1;
+        return $.value = { ...$.value, [l]: A.errorMessage(u) }, A.scrollToStep(l), !1;
       } finally {
         k.value = "";
       }
@@ -1488,7 +1488,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
       await I("l-ledger", () => N("product.status", { id: l, status: c, ...u }));
     }
     function o(l) {
-      $.push(`/conversations/${l}`).catch((c) => h.error(A.errorMessage(c)));
+      b.push(`/conversations/${l}`).catch((c) => h.error(A.errorMessage(c)));
     }
     const a = [
       { key: "l-import", title: s.t("商品资料"), hint: s.t("导入商品表或手动添加") },
@@ -1497,7 +1497,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
       { key: "l-ledger", title: s.t("上架台账"), hint: s.t("跟进审核结果、驳回原因与商品链接") }
     ];
     function T(l, c, u) {
-      return k.value === l ? { state: "running" } : b.value[l] ? { state: "failed", error: b.value[l] } : c ? { state: "done", summary: u } : { state: "todo" };
+      return k.value === l ? { state: "running" } : $.value[l] ? { state: "failed", error: $.value[l] } : c ? { state: "done", summary: u } : { state: "todo" };
     }
     const O = e.computed(() => ({
       "l-import": T("l-import", D.value.length > 0, s.t("{n} 个商品", { n: D.value.length })),
@@ -1997,7 +1997,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
                     128
                     /* KEYED_FRAGMENT */
                   )),
-                  e.createElementVNode("div", $n, [
+                  e.createElementVNode("div", bn, [
                     e.createElementVNode("button", {
                       type: "button",
                       class: "ss-btn sm",
@@ -2018,7 +2018,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
                     ]),
                     e.createElementVNode(
                       "span",
-                      bn,
+                      $n,
                       e.toDisplayString(l.$t("对方售价请照页面抄：系统不去抓取电商页面")),
                       1
                       /* TEXT */
@@ -2381,9 +2381,9 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
   },
   emits: ["done"],
   setup(_, { emit: h }) {
-    const $ = _, w = h, k = ne.useRouter(), b = `totalclaw:zcy-agent-readback:${$.kind}`, D = e.ref((() => {
+    const b = _, w = h, k = ne.useRouter(), $ = `totalclaw:zcy-agent-readback:${b.kind}`, D = e.ref((() => {
       try {
-        return localStorage.getItem(b) || "";
+        return localStorage.getItem($) || "";
       } catch {
         return "";
       }
@@ -2401,17 +2401,17 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
     async function L() {
       await f(async () => {
         await se();
-        const v = await N(`${$.kind}.patrolInstruction`);
-        D.value = await te.handToDigitalEmployee($.convTitle, v);
+        const v = await N(`${b.kind}.patrolInstruction`);
+        D.value = await te.handToDigitalEmployee(b.convTitle, v);
         try {
-          localStorage.setItem(b, D.value);
+          localStorage.setItem($, D.value);
         } catch {
         }
       });
     }
     async function V(v) {
       await f(async () => {
-        const d = await N(`${$.kind}.importReply`, { text: v });
+        const d = await N(`${b.kind}.importReply`, { text: v });
         await H(), B.value = s.t("新增 {a} 条，更新 {b} 条", { a: d.added, b: d.updated }) + (d.dropped ? s.t("；{n} 条缺编号或状态认不出，没有收", { n: d.dropped }) : ""), M.value = "", U.value = !1, w("done");
       });
     }
@@ -2550,7 +2550,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
 }), ge = /* @__PURE__ */ x(dl, [["__scopeId", "data-v-a61fb0b8"]]), ul = { class: "ss-module" }, ml = { class: "ss-steps" }, pl = ["disabled"], vl = { class: "ss-muted" }, yl = {
   key: 0,
   class: "ss-empty"
-}, kl = ["data-test"], gl = { class: "zc-inq__head" }, hl = ["onUpdate:modelValue", "placeholder"], Vl = ["onUpdate:modelValue", "placeholder"], El = { class: "ss-muted" }, Nl = ["onClick"], $l = { class: "ss-table-wrap" }, bl = { class: "ss-table" }, fl = { class: "num" }, _l = { class: "num" }, Dl = { class: "num" }, Sl = { class: "num" }, wl = ["onUpdate:modelValue"], Bl = ["onUpdate:modelValue"], Cl = { class: "num" }, Tl = ["onUpdate:modelValue"], zl = ["onUpdate:modelValue"], Ul = { class: "num" }, Ml = ["onUpdate:modelValue"], Ll = { class: "num" }, Al = ["onUpdate:modelValue", "data-test"], Il = { class: "num" }, Ol = ["data-test"], Kl = ["onClick"], Wl = { class: "ss-actions" }, Fl = ["onClick"], jl = { class: "ss-field inline" }, Pl = ["onUpdate:modelValue"], Rl = { class: "ss-field inline" }, ql = ["onUpdate:modelValue"], Ql = { class: "ss-field inline" }, Hl = ["onUpdate:modelValue"], Jl = {
+}, kl = ["data-test"], gl = { class: "zc-inq__head" }, hl = ["onUpdate:modelValue", "placeholder"], Vl = ["onUpdate:modelValue", "placeholder"], El = { class: "ss-muted" }, Nl = ["onClick"], bl = { class: "ss-table-wrap" }, $l = { class: "ss-table" }, fl = { class: "num" }, _l = { class: "num" }, Dl = { class: "num" }, Sl = { class: "num" }, wl = ["onUpdate:modelValue"], Bl = ["onUpdate:modelValue"], Cl = { class: "num" }, Tl = ["onUpdate:modelValue"], zl = ["onUpdate:modelValue"], Ul = { class: "num" }, Ml = ["onUpdate:modelValue"], Ll = { class: "num" }, Al = ["onUpdate:modelValue", "data-test"], Il = { class: "num" }, Ol = ["data-test"], Kl = ["onClick"], Wl = { class: "ss-actions" }, Fl = ["onClick"], jl = { class: "ss-field inline" }, Pl = ["onUpdate:modelValue"], Rl = { class: "ss-field inline" }, ql = ["onUpdate:modelValue"], Ql = { class: "ss-field inline" }, Hl = ["onUpdate:modelValue"], Jl = {
   key: 0,
   class: "zc-total",
   "data-test": "zc-inq-total"
@@ -2570,7 +2570,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
 }, co = { class: "ss-table" }, uo = { class: "num" }, mo = { class: "num" }, po = { class: "zc-ops" }, vo = ["onClick"], yo = ["onClick"], ko = ["onClick"], go = ["onClick"], ho = ["onClick"], Vo = /* @__PURE__ */ e.defineComponent({
   __name: "QuoteTab",
   setup(_) {
-    const h = le.useNotificationStore(), $ = ne.useRouter(), w = J, k = e.ref(""), b = e.ref({}), D = e.ref(!1), g = e.ref(""), U = e.computed(() => w.value?.inquiries || []), M = e.computed(() => U.value.filter((i) => i.status === "new" || i.status === "priced")), E = e.computed(() => U.value.filter((i) => i.status === "confirmed")), B = e.computed(() => U.value.filter((i) => ["handed", "submitted", "won", "lost", "skipped"].includes(i.status))), f = e.reactive({}), L = (i) => {
+    const h = le.useNotificationStore(), b = ne.useRouter(), w = J, k = e.ref(""), $ = e.ref({}), D = e.ref(!1), g = e.ref(""), U = e.computed(() => w.value?.inquiries || []), M = e.computed(() => U.value.filter((i) => i.status === "new" || i.status === "priced")), E = e.computed(() => U.value.filter((i) => i.status === "confirmed")), B = e.computed(() => U.value.filter((i) => ["handed", "submitted", "won", "lost", "skipped"].includes(i.status))), f = e.reactive({}), L = (i) => {
       const n = new Date(i);
       if (!i || !Number.isFinite(n.getTime())) return "";
       const o = (a) => String(a).padStart(2, "0");
@@ -2584,11 +2584,11 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
       return n ? n.level === "error" ? "bad" : "warn" : "";
     };
     async function v(i, n) {
-      k.value = i, b.value = { ...b.value, [i]: "" };
+      k.value = i, $.value = { ...$.value, [i]: "" };
       try {
         return await n(), await H(), !0;
       } catch (o) {
-        return b.value = { ...b.value, [i]: A.errorMessage(o) }, A.scrollToStep(i), !1;
+        return $.value = { ...$.value, [i]: A.errorMessage(o) }, A.scrollToStep(i), !1;
       } finally {
         k.value = "";
       }
@@ -2624,7 +2624,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
       }) && h.success(s.t("已交给数字员工，它会停在「提交报价」前等你确认"));
     }
     function q(i) {
-      $.push(`/conversations/${i}`).catch((n) => h.error(A.errorMessage(n)));
+      b.push(`/conversations/${i}`).catch((n) => h.error(A.errorMessage(n)));
     }
     const j = [
       { key: "q-read", title: s.t("读回询价单"), hint: s.t("数字员工只读待报价的在线询价 / 反向竞价") },
@@ -2633,7 +2633,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
       { key: "q-result", title: s.t("登记结果"), hint: s.t("已提交、成交、未成交") }
     ];
     function K(i, n, o) {
-      return k.value === i ? { state: "running" } : b.value[i] ? { state: "failed", error: b.value[i] } : n ? { state: "done", summary: o } : { state: "todo" };
+      return k.value === i ? { state: "running" } : $.value[i] ? { state: "failed", error: $.value[i] } : n ? { state: "done", summary: o } : { state: "todo" };
     }
     const P = e.computed(() => ({
       "q-read": K("q-read", D.value || U.value.length > 0, s.t("{n} 张", { n: U.value.length })),
@@ -2783,8 +2783,8 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
                     onClick: (a) => z(o.id)
                   }, e.toDisplayString(i.$t("不参与")), 9, Nl)
                 ]),
-                e.createElementVNode("div", $l, [
-                  e.createElementVNode("table", bl, [
+                e.createElementVNode("div", bl, [
+                  e.createElementVNode("table", $l, [
                     e.createElementVNode("thead", null, [
                       e.createElementVNode("tr", null, [
                         e.createElementVNode(
@@ -3364,7 +3364,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
       ])
     ]));
   }
-}), Eo = /* @__PURE__ */ x(Vo, [["__scopeId", "data-v-99eedd77"]]), No = { class: "ss-module" }, $o = { class: "ss-steps" }, bo = ["disabled"], fo = {
+}), Eo = /* @__PURE__ */ x(Vo, [["__scopeId", "data-v-99eedd77"]]), No = { class: "ss-module" }, bo = { class: "ss-steps" }, $o = ["disabled"], fo = {
   key: 0,
   class: "ss-note ok"
 }, _o = { class: "ss-muted" }, Do = {
@@ -3398,7 +3398,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
 }, is = ["onClick"], rs = /* @__PURE__ */ e.defineComponent({
   __name: "OrdersTab",
   setup(_) {
-    const h = ["to_accept", "to_ship", "shipped", "to_settle", "to_invoice", "done", "closed"], $ = le.useNotificationStore(), w = ne.useRouter(), k = J, b = e.ref(""), D = e.ref({}), g = e.ref(!1), U = e.ref(""), M = e.ref(""), E = e.ref([]), B = e.computed(() => k.value?.orders || []), f = e.computed(() => k.value?.settings.regions.find((n) => n.id === k.value?.settings.regionId)), L = e.computed(() => B.value.filter((n) => n.status === "to_accept" || n.status === "to_ship")), V = e.computed(() => B.value.filter((n) => !n.invoiceBatchId && (n.status === "to_invoice" || n.status === "to_settle" || n.status === "done"))), S = e.reactive({});
+    const h = ["to_accept", "to_ship", "shipped", "to_settle", "to_invoice", "done", "closed"], b = le.useNotificationStore(), w = ne.useRouter(), k = J, $ = e.ref(""), D = e.ref({}), g = e.ref(!1), U = e.ref(""), M = e.ref(""), E = e.ref([]), B = e.computed(() => k.value?.orders || []), f = e.computed(() => k.value?.settings.regions.find((n) => n.id === k.value?.settings.regionId)), L = e.computed(() => B.value.filter((n) => n.status === "to_accept" || n.status === "to_ship")), V = e.computed(() => B.value.filter((n) => !n.invoiceBatchId && (n.status === "to_invoice" || n.status === "to_settle" || n.status === "done"))), S = e.reactive({});
     e.watch(B, (n) => {
       for (const o of n) S[o.id] || (S[o.id] = { company: o.logisticsCompany, no: o.logisticsNo });
       E.value = E.value.filter((o) => V.value.some((a) => a.id === o));
@@ -3409,13 +3409,13 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
       o >= 0 ? E.value.splice(o, 1) : E.value.push(n);
     }
     async function d(n, o) {
-      b.value = n, D.value = { ...D.value, [n]: "" };
+      $.value = n, D.value = { ...D.value, [n]: "" };
       try {
         return await o(), await H(), !0;
       } catch (a) {
         return D.value = { ...D.value, [n]: A.errorMessage(a) }, A.scrollToStep(n), !1;
       } finally {
-        b.value = "";
+        $.value = "";
       }
     }
     async function m() {
@@ -3436,31 +3436,31 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
         await se(), o === "ship" && await N("order.update", { id: n.id, patch: { logisticsCompany: S[n.id].company, logisticsNo: S[n.id].no } });
         const T = await N(o === "accept" ? "order.acceptInstruction" : "order.shipInstruction", { id: n.id }), O = await te.handToDigitalEmployee(o === "accept" ? s.t("政采云接单：{p0}", { p0: n.orderNo }) : s.t("政采云发货：{p0}", { p0: n.orderNo }), T);
         await N("order.update", { id: n.id, patch: { conversationId: O } });
-      }) && $.success(o === "accept" ? s.t("已交给数字员工，它会停在「确认接单」前等你确认") : s.t("已交给数字员工，它会停在「确认发货」前等你确认"));
+      }) && b.success(o === "accept" ? s.t("已交给数字员工，它会停在「确认接单」前等你确认") : s.t("已交给数字员工，它会停在「确认发货」前等你确认"));
     }
     async function Y() {
       M.value = "", await d("o-invoice", async () => {
         const n = await N("orders.toInvoice", { ids: E.value });
-        M.value = s.t("{n} 张订单已转入发票智能体，生成了一批待校验的开票行", { n: n.count }), E.value = [];
+        M.value = s.t("{n} 张订单已转入智能发票助手，生成了一批待校验的开票行", { n: n.count }), E.value = [];
       });
     }
     async function G(n) {
       window.confirm(s.t("从本机台账删除订单 {p0}？（不影响政采云上的订单）", { p0: n.orderNo })) && await d("o-all", () => N("order.remove", { id: n.id }));
     }
     function q() {
-      w.push("/workbenches/invoice-agent").catch((n) => $.error(A.errorMessage(n)));
+      w.push("/workbenches/invoice-agent").catch((n) => b.error(A.errorMessage(n)));
     }
     function j(n) {
-      w.push(`/conversations/${n}`).catch((o) => $.error(A.errorMessage(o)));
+      w.push(`/conversations/${n}`).catch((o) => b.error(A.errorMessage(o)));
     }
     const K = [
       { key: "o-read", title: s.t("读回订单"), hint: s.t("数字员工只读订单列表，或导入订单表") },
       { key: "o-todo", title: s.t("接单与发货"), hint: s.t("超时预警；接单、发货停在确认前") },
-      { key: "o-invoice", title: s.t("转开票"), hint: s.t("待开票订单转入发票智能体") },
+      { key: "o-invoice", title: s.t("转开票"), hint: s.t("待开票订单转入智能发票助手") },
       { key: "o-all", title: s.t("全部订单"), hint: s.t("本机台账，状态以政采云为准") }
     ];
     function P(n, o, a) {
-      return b.value === n ? { state: "running" } : D.value[n] ? { state: "failed", error: D.value[n] } : o ? { state: "done", summary: a } : { state: "todo" };
+      return $.value === n ? { state: "running" } : D.value[n] ? { state: "failed", error: D.value[n] } : o ? { state: "done", summary: a } : { state: "todo" };
     }
     const R = e.computed(() => ({
       "o-read": P("o-read", g.value || B.value.length > 0, s.t("{n} 张订单", { n: B.value.length })),
@@ -3479,7 +3479,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
         "current-key": Q.value,
         onJump: i
       }, null, 8, ["title", "runtime", "current-key"]),
-      e.createElementVNode("div", $o, [
+      e.createElementVNode("div", bo, [
         e.createVNode(F, {
           "step-key": "o-read",
           index: 0,
@@ -3499,7 +3499,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
                 e.createElementVNode("button", {
                   type: "button",
                   class: "ss-btn",
-                  disabled: !!b.value,
+                  disabled: !!$.value,
                   onClick: m
                 }, [
                   o[1] || (o[1] = e.createElementVNode(
@@ -3514,7 +3514,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
                     1
                     /* TEXT */
                   )
-                ], 8, bo)
+                ], 8, $o)
               ]),
               _: 1
               /* STABLE */
@@ -3636,7 +3636,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn sm primary",
-                    disabled: !!b.value,
+                    disabled: !!$.value,
                     onClick: (T) => I(a, "accept")
                   }, [
                     o[5] || (o[5] = e.createElementVNode(
@@ -3675,7 +3675,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn sm primary",
-                    disabled: !!b.value || !S[a.id].company || !S[a.id].no,
+                    disabled: !!$.value || !S[a.id].company || !S[a.id].no,
                     onClick: (T) => I(a, "ship")
                   }, [
                     o[6] || (o[6] = e.createElementVNode(
@@ -3723,7 +3723,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
             e.createElementVNode(
               "p",
               Wo,
-              e.toDisplayString(n.$t("转入后在发票智能体里校验、组票、开具。订单里的商品摘要不是规范的开票项目，请在发票智能体的校验步骤里改成正式的项目名称。")),
+              e.toDisplayString(n.$t("转入后在智能发票助手里校验、组票、开具。订单里的商品摘要不是规范的开票项目，请在智能发票助手的校验步骤里改成正式的项目名称。")),
               1
               /* TEXT */
             ),
@@ -3843,7 +3843,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn primary",
-                    disabled: !!b.value || !E.value.length,
+                    disabled: !!$.value || !E.value.length,
                     "data-test": "zc-to-invoice",
                     onClick: Y
                   }, [
@@ -3855,7 +3855,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
                       /* CACHED */
                     )),
                     e.createTextVNode(
-                      e.toDisplayString(n.$t("转入发票智能体（{n} 张）", { n: E.value.length })),
+                      e.toDisplayString(n.$t("转入智能发票助手（{n} 张）", { n: E.value.length })),
                       1
                       /* TEXT */
                     )
@@ -3891,7 +3891,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
                   class: "ss-btn sm",
                   onClick: q
                 },
-                e.toDisplayString(n.$t("去发票智能体")),
+                e.toDisplayString(n.$t("去智能发票助手")),
                 1
                 /* TEXT */
               )
@@ -4057,7 +4057,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
       ])
     ]));
   }
-}), cs = /* @__PURE__ */ x(rs, [["__scopeId", "data-v-20a890ad"]]), ds = { class: "ss-module zc-settings" }, us = { class: "zc-panel" }, ms = { class: "ss-muted" }, ps = { class: "zc-region__head" }, vs = ["value"], ys = ["onUpdate:modelValue"], ks = ["onClick"], gs = { class: "ss-grid tight" }, hs = { class: "ss-field" }, Vs = ["onUpdate:modelValue"], Es = { class: "ss-field" }, Ns = ["onUpdate:modelValue"], $s = { class: "ss-field" }, bs = ["onUpdate:modelValue"], fs = { class: "ss-field" }, _s = ["onUpdate:modelValue"], Ds = { value: "avg" }, Ss = { value: "min" }, ws = { class: "ss-field" }, Bs = ["value", "onChange"], Cs = { class: "ss-field" }, Ts = ["onUpdate:modelValue"], zs = { class: "ss-field" }, Us = ["onUpdate:modelValue"], Ms = { class: "ss-field" }, Ls = ["onUpdate:modelValue"], As = { class: "ss-field" }, Is = ["value", "onChange"], Os = { class: "ss-field" }, Ks = ["onUpdate:modelValue"], Ws = { class: "ss-actions" }, Fs = { class: "zc-panel" }, js = { class: "ss-grid" }, Ps = { class: "ss-field" }, Rs = { class: "ss-field" }, qs = ["value"], Qs = { class: "zc-panel" }, Hs = { class: "ss-muted" }, Js = { class: "ss-field" }, Ys = { class: "zc-panel" }, Zs = { class: "ss-field zc-model" }, Gs = { value: "" }, Xs = ["value"], xs = { class: "ss-muted" }, ea = { class: "ss-actions" }, ta = ["disabled"], na = { class: "zc-panel" }, la = {
+}), cs = /* @__PURE__ */ x(rs, [["__scopeId", "data-v-b00ae4ae"]]), ds = { class: "ss-module zc-settings" }, us = { class: "zc-panel" }, ms = { class: "ss-muted" }, ps = { class: "zc-region__head" }, vs = ["value"], ys = ["onUpdate:modelValue"], ks = ["onClick"], gs = { class: "ss-grid tight" }, hs = { class: "ss-field" }, Vs = ["onUpdate:modelValue"], Es = { class: "ss-field" }, Ns = ["onUpdate:modelValue"], bs = { class: "ss-field" }, $s = ["onUpdate:modelValue"], fs = { class: "ss-field" }, _s = ["onUpdate:modelValue"], Ds = { value: "avg" }, Ss = { value: "min" }, ws = { class: "ss-field" }, Bs = ["value", "onChange"], Cs = { class: "ss-field" }, Ts = ["onUpdate:modelValue"], zs = { class: "ss-field" }, Us = ["onUpdate:modelValue"], Ms = { class: "ss-field" }, Ls = ["onUpdate:modelValue"], As = { class: "ss-field" }, Is = ["value", "onChange"], Os = { class: "ss-field" }, Ks = ["onUpdate:modelValue"], Ws = { class: "ss-actions" }, Fs = { class: "zc-panel" }, js = { class: "ss-grid" }, Ps = { class: "ss-field" }, Rs = { class: "ss-field" }, qs = ["value"], Qs = { class: "zc-panel" }, Hs = { class: "ss-muted" }, Js = { class: "ss-field" }, Ys = { class: "zc-panel" }, Zs = { class: "ss-field zc-model" }, Gs = { value: "" }, Xs = ["value"], xs = { class: "ss-muted" }, ea = { class: "ss-actions" }, ta = ["disabled"], na = { class: "zc-panel" }, la = {
   key: 0,
   class: "ss-empty"
 }, oa = {
@@ -4066,13 +4066,13 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
 }, sa = /* @__PURE__ */ e.defineComponent({
   __name: "SettingsTab",
   setup(_) {
-    const h = le.useNotificationStore(), $ = e.ref(!1), w = e.ref([]), k = e.ref(""), b = e.ref(8), D = e.ref(0.13), g = e.ref(""), U = e.ref(""), M = e.reactive({ options: [], defaultLabel: "" }), E = e.computed(() => J.value?.log || []);
+    const h = le.useNotificationStore(), b = e.ref(!1), w = e.ref([]), k = e.ref(""), $ = e.ref(8), D = e.ref(0.13), g = e.ref(""), U = e.ref(""), M = e.reactive({ options: [], defaultLabel: "" }), E = e.computed(() => J.value?.log || []);
     let B = !1;
     e.watch(J, (y) => {
       if (!y || B) return;
       B = !0;
       const v = y.settings;
-      w.value = v.regions.map((d) => ({ ...d, bannedWords: [...d.bannedWords] })), k.value = v.regionId, b.value = Math.round(v.defaultMargin * 1e4) / 100, D.value = v.invoiceTaxRate, g.value = v.patrolTimes.join(", "), U.value = v.model;
+      w.value = v.regions.map((d) => ({ ...d, bannedWords: [...d.bannedWords] })), k.value = v.regionId, $.value = Math.round(v.defaultMargin * 1e4) / 100, D.value = v.invoiceTaxRate, g.value = v.patrolTimes.join(", "), U.value = v.model;
     }, { immediate: !0 });
     function f() {
       const y = w.value[0];
@@ -4082,13 +4082,13 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
       w.value = w.value.filter((v) => v.id !== y), k.value === y && (k.value = w.value[0].id);
     }
     async function V() {
-      $.value = !0;
+      b.value = !0;
       try {
-        await N("settings.patch", { patch: { regions: w.value, regionId: k.value, defaultMargin: (Number(b.value) || 0) / 100, invoiceTaxRate: D.value, model: U.value, patrolTimes: g.value.split(/[、,，\s]+/).map((y) => y.replace(/：/g, ":").trim()).filter(Boolean) } }), await H(), g.value = J.value.settings.patrolTimes.join(", "), h.success(s.t("已保存"));
+        await N("settings.patch", { patch: { regions: w.value, regionId: k.value, defaultMargin: (Number($.value) || 0) / 100, invoiceTaxRate: D.value, model: U.value, patrolTimes: g.value.split(/[、,，\s]+/).map((y) => y.replace(/：/g, ":").trim()).filter(Boolean) } }), await H(), g.value = J.value.settings.patrolTimes.join(", "), h.success(s.t("已保存"));
       } catch (y) {
         h.error(A.errorMessage(y));
       } finally {
-        $.value = !1;
+        b.value = !1;
       }
     }
     async function S() {
@@ -4196,7 +4196,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
                     ]
                   ])
                 ]),
-                e.createElementVNode("label", $s, [
+                e.createElementVNode("label", bs, [
                   e.createElementVNode(
                     "span",
                     null,
@@ -4208,7 +4208,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
                     "onUpdate:modelValue": (m) => d.imageMaxKb = m,
                     type: "number",
                     min: "1"
-                  }, null, 8, bs), [
+                  }, null, 8, $s), [
                     [
                       e.vModelText,
                       d.imageMaxKb,
@@ -4403,7 +4403,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
             e.withDirectives(e.createElementVNode(
               "input",
               {
-                "onUpdate:modelValue": v[1] || (v[1] = (d) => b.value = d),
+                "onUpdate:modelValue": v[1] || (v[1] = (d) => $.value = d),
                 type: "number",
                 min: "0",
                 step: "0.5"
@@ -4414,7 +4414,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
             ), [
               [
                 e.vModelText,
-                b.value,
+                $.value,
                 void 0,
                 { number: !0 }
               ]
@@ -4554,7 +4554,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
         e.createElementVNode("button", {
           type: "button",
           class: "ss-btn primary",
-          disabled: $.value,
+          disabled: b.value,
           "data-test": "zc-settings-save",
           onClick: V
         }, [
@@ -4642,10 +4642,10 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
   key: 1,
   class: "zc-alerts",
   "data-test": "zc-alerts"
-}, Na = ["onClick"], $a = {
+}, Na = ["onClick"], ba = {
   class: "zc-tabs",
   role: "tablist"
-}, ba = ["aria-selected", "data-test", "onClick"], fa = {
+}, $a = ["aria-selected", "data-test", "onClick"], fa = {
   key: 0,
   class: "zc-badge"
 }, _a = {
@@ -4670,11 +4670,11 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
       { key: "orders", icon: "ri-truck-line", title: s.t("订单履约") },
       { key: "overview", icon: "ri-book-open-line", title: s.t("方案说明") },
       { key: "settings", icon: "ri-settings-3-line", title: s.t("设置") }
-    ], $ = [
+    ], b = [
       { key: "account", icon: "ri-shield-keyhole-line", title: s.t("账号与材料"), text: s.t("企业信息、资质到期提醒、账号密码加密保存、登录") },
       { key: "listing", icon: "ri-store-3-line", title: s.t("商品上架"), text: s.t("商品表 → 标题、图片、比价链接与售价检查 → 数字员工填写，停在提交审核前") },
       { key: "quote", icon: "ri-price-tag-3-line", title: s.t("询价报价"), text: s.t("读回待报价的询价单 → 填成本、规则算报价 → 数字员工填写，停在提交报价前") },
-      { key: "orders", icon: "ri-truck-line", title: s.t("订单履约"), text: s.t("读回订单 → 接单与发货时限预警 → 回填物流 → 待开票订单转入发票智能体") }
+      { key: "orders", icon: "ri-truck-line", title: s.t("订单履约"), text: s.t("读回订单 → 接单与发货时限预警 → 回填物流 → 待开票订单转入智能发票助手") }
     ];
     function w() {
       try {
@@ -4684,13 +4684,13 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
         return "overview";
       }
     }
-    const k = J, b = e.ref(w()), D = e.ref(!1), g = e.ref(!1), U = e.ref(""), M = e.ref(!1), E = e.computed(() => k.value?.settings.regions.find((m) => m.id === k.value?.settings.regionId)?.name || ""), B = (m) => m === "qualification" ? "account" : m === "price" ? "listing" : m === "inquiry_deadline" ? "quote" : "orders", f = (m) => m === "qualification" ? "ri-file-warning-line" : m === "price" ? "ri-price-tag-3-line" : m === "inquiry_deadline" ? "ri-timer-flash-line" : "ri-truck-line";
+    const k = J, $ = e.ref(w()), D = e.ref(!1), g = e.ref(!1), U = e.ref(""), M = e.ref(!1), E = e.computed(() => k.value?.settings.regions.find((m) => m.id === k.value?.settings.regionId)?.name || ""), B = (m) => m === "qualification" ? "account" : m === "price" ? "listing" : m === "inquiry_deadline" ? "quote" : "orders", f = (m) => m === "qualification" ? "ri-file-warning-line" : m === "price" ? "ri-price-tag-3-line" : m === "inquiry_deadline" ? "ri-timer-flash-line" : "ri-truck-line";
     function L(m) {
       const C = (k.value?.alerts || []).filter((z) => B(z.kind) === m).length;
       return C ? String(C) : "";
     }
     function V(m) {
-      b.value = m;
+      $.value = m;
       try {
         localStorage.setItem(ue, m);
       } catch {
@@ -4743,7 +4743,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
             e.createElementVNode(
               "h1",
               null,
-              e.toDisplayString(m.$t("政采云智能体")),
+              e.toDisplayString(m.$t("「政采云」助手")),
               1
               /* TEXT */
             ),
@@ -4899,7 +4899,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
           /* TEXT */
         )) : e.createCommentVNode("v-if", !0)
       ])) : e.createCommentVNode("v-if", !0),
-      e.createElementVNode("nav", $a, [
+      e.createElementVNode("nav", ba, [
         (e.openBlock(), e.createElementBlock(
           e.Fragment,
           null,
@@ -4907,8 +4907,8 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
             key: z.key,
             type: "button",
             role: "tab",
-            class: e.normalizeClass(["zc-tab", { active: b.value === z.key }]),
-            "aria-selected": b.value === z.key,
+            class: e.normalizeClass(["zc-tab", { active: $.value === z.key }]),
+            "aria-selected": $.value === z.key,
             "data-test": `zc-tab-${z.key}`,
             onClick: (I) => V(z.key)
           }, [
@@ -4935,13 +4935,13 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
               1
               /* TEXT */
             )) : e.createCommentVNode("v-if", !0)
-          ], 10, ba)),
+          ], 10, $a)),
           64
           /* STABLE_FRAGMENT */
         ))
       ]),
       D.value ? (e.openBlock(), e.createElementBlock("div", _a, [
-        b.value === "account" ? (e.openBlock(), e.createBlock(Kt, { key: 0 })) : b.value === "listing" ? (e.openBlock(), e.createBlock(Xn, { key: 1 })) : b.value === "quote" ? (e.openBlock(), e.createBlock(Eo, { key: 2 })) : b.value === "orders" ? (e.openBlock(), e.createBlock(cs, { key: 3 })) : b.value === "settings" ? (e.openBlock(), e.createBlock(aa, { key: 4 })) : (e.openBlock(), e.createElementBlock("div", Da, [
+        $.value === "account" ? (e.openBlock(), e.createBlock(Kt, { key: 0 })) : $.value === "listing" ? (e.openBlock(), e.createBlock(Xn, { key: 1 })) : $.value === "quote" ? (e.openBlock(), e.createBlock(Eo, { key: 2 })) : $.value === "orders" ? (e.openBlock(), e.createBlock(cs, { key: 3 })) : $.value === "settings" ? (e.openBlock(), e.createBlock(aa, { key: 4 })) : (e.openBlock(), e.createElementBlock("div", Da, [
           e.createElementVNode("section", Sa, [
             e.createElementVNode(
               "h3",
@@ -4954,7 +4954,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
               (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList($, (z) => e.createElementVNode("button", {
+                e.renderList(b, (z) => e.createElementVNode("button", {
                   key: z.key,
                   type: "button",
                   class: "zc-ov__card",
@@ -5097,7 +5097,7 @@ const Wt = { class: "ss-module" }, Ft = { class: "ss-steps" }, jt = { class: "ss
       ]))
     ]));
   }
-}), Ia = /* @__PURE__ */ x(Aa, [["__scopeId", "data-v-76b4e1d3"]]);
+}), Ia = /* @__PURE__ */ x(Aa, [["__scopeId", "data-v-f74e03db"]]);
 export {
   Ia as default
 };

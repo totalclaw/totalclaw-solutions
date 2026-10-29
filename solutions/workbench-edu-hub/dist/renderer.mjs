@@ -674,7 +674,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
           e.createElementVNode(
             "h2",
             null,
-            e.toDisplayString(v.value === "quran" ? t.$t("AI 学习中心 · 古兰经教学平台") : t.$t("AI 学习中心 · 文档生成教案")),
+            e.toDisplayString(v.value === "quran" ? t.$t("智能备课助教 · 古兰经教学平台") : t.$t("智能备课助教 · 文档生成教案")),
             1
             /* TEXT */
           ),
@@ -2659,7 +2659,7 @@ const yt = { class: "eh-page" }, Et = { class: "eh-head" }, ft = { class: "eh-ti
   for (const [f, ee] of r)
     k[f] = ee;
   return k;
-}, Yl = /* @__PURE__ */ jl(Gl, [["__scopeId", "data-v-acdb12ef"]]);
+}, Yl = /* @__PURE__ */ jl(Gl, [["__scopeId", "data-v-c89b61fe"]]);
 export {
   Yl as default
 };

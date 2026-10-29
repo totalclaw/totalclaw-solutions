@@ -17,7 +17,7 @@ if (!K) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer
 K.default;
 async function _(I, w) {
   const B = window.electronAPI?.workbenches?.campusAi;
-  if (!B?.invoke) throw new Error(l.t("高校一体化AI智能体接口不可用，请重启应用"));
+  if (!B?.invoke) throw new Error(l.t("校园 AI 中心接口不可用，请重启应用"));
   return B.invoke(I, Te.toPlain(w ?? {}));
 }
 function Pe(I) {
@@ -152,7 +152,7 @@ const Ce = (I, w = 1) => I == null ? "—" : `${(I * 100).toFixed(w)}%`, Je = {
             e.createElementVNode(
               "p",
               null,
-              e.toDisplayString(w.value.settings.schoolName || o.$t("高校一体化AI智能体")),
+              e.toDisplayString(w.value.settings.schoolName || o.$t("校园 AI 中心")),
               1
               /* TEXT */
             )
@@ -744,7 +744,7 @@ const Ce = (I, w = 1) => I == null ? "—" : `${(I * 100).toFixed(w)}%`, Je = {
   for (const [h, k] of w)
     B[h] = k;
   return B;
-}, ft = /* @__PURE__ */ le(ht, [["__scopeId", "data-v-500cdf40"]]), ne = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
+}, ft = /* @__PURE__ */ le(ht, [["__scopeId", "data-v-978be3fd"]]), ne = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
 if (!ne) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/stores/notification.ts");
 ne.default;
 const qe = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/service-settlement/StepCard.vue"];
@@ -9268,7 +9268,7 @@ ${Q.reason}`
           e.createElementVNode(
             "h1",
             null,
-            e.toDisplayString(e.unref(h)?.settings.schoolName || y.$t("高校一体化AI智能体")),
+            e.toDisplayString(e.unref(h)?.settings.schoolName || y.$t("校园 AI 中心")),
             1
             /* TEXT */
           ),
@@ -9289,7 +9289,7 @@ ${Q.reason}`
           e.unref(h)?.settings.schoolName ? (e.openBlock(), e.createElementBlock(
             "p",
             Ou,
-            e.toDisplayString(y.$t("高校一体化AI智能体")),
+            e.toDisplayString(y.$t("校园 AI 中心")),
             1
             /* TEXT */
           )) : (e.openBlock(), e.createElementBlock(
@@ -9646,7 +9646,7 @@ ${Q.reason}`
       ]))
     ]));
   }
-}), om = /* @__PURE__ */ le(nm, [["__scopeId", "data-v-7c03a939"]]);
+}), om = /* @__PURE__ */ le(nm, [["__scopeId", "data-v-ee70eea4"]]);
 export {
   om as default
 };

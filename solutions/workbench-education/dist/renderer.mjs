@@ -42,7 +42,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
   key: 0,
   class: "message error",
   role: "alert"
-}, zt = { class: "capability-grid" }, Ut = { class: "capability-copy" }, Wt = { class: "capability-title-row" }, Ot = { key: 0 }, Kt = ["aria-label"], Rt = {
+}, zt = { class: "capability-grid" }, Wt = { class: "capability-copy" }, Ut = { class: "capability-title-row" }, Ot = { key: 0 }, Kt = ["aria-label"], Rt = {
   key: 0,
   class: "panel workspace-panel"
 }, It = { class: "section-heading" }, Pt = { class: "section-kicker" }, Ft = { class: "segmented" }, Ht = {
@@ -78,7 +78,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
 }, zl = {
   key: 1,
   class: "panel workspace-panel"
-}, Ul = { class: "section-heading" }, Wl = { class: "section-kicker" }, Ol = { class: "lesson-layout" }, Kl = { class: "field" }, Rl = ["placeholder"], Il = { class: "field-grid two" }, Pl = { class: "field" }, Fl = ["placeholder"], Hl = { class: "field" }, ql = { value: "入门" }, jl = { value: "基础" }, Gl = { value: "进阶" }, Jl = { value: "综合实训" }, Ql = { class: "field-grid two" }, Xl = { class: "field" }, Yl = { class: "field" }, Zl = { value: "zh-CN" }, xl = { value: "en-US" }, en = { value: "ar" }, tn = ["disabled"], ln = {
+}, Wl = { class: "section-heading" }, Ul = { class: "section-kicker" }, Ol = { class: "lesson-layout" }, Kl = { class: "field" }, Rl = ["placeholder"], Il = { class: "field-grid two" }, Pl = { class: "field" }, Fl = ["placeholder"], Hl = { class: "field" }, ql = { value: "入门" }, jl = { value: "基础" }, Gl = { value: "进阶" }, Jl = { value: "综合实训" }, Ql = { class: "field-grid two" }, Xl = { class: "field" }, Yl = { class: "field" }, Zl = { value: "zh-CN" }, xl = { value: "en-US" }, en = { value: "ar" }, tn = ["disabled"], ln = {
   key: 0,
   class: "step-elapsed",
   "data-test": "lesson-elapsed"
@@ -112,18 +112,18 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
 }, zn = {
   key: 3,
   class: "teaching-image-grid"
-}, Un = ["href"], Wn = ["src", "alt"], On = {
+}, Wn = ["href"], Un = ["src", "alt"], On = {
   key: 4,
   class: "empty-state"
 }, Kn = /* @__PURE__ */ e.defineComponent({
   __name: "EducationWorkbenchView",
   setup(te) {
-    const { locale: K } = ge.useI18n(), j = Ee.useRouter(), le = e.computed(() => K.value === "ar"), y = e.ref("practice"), R = e.ref("asr"), L = e.ref(!1), U = e.ref(""), I = e.ref(null), D = e.ref([]), T = e.ref(""), p = e.ref(!1), k = e.ref(""), P = e.ref(""), F = e.ref(""), h = e.ref(!1), C = e.ref(!1), V = e.ref(""), G = e.ref(!1), Ne = e.ref(null), Be = e.computed(() => F.value ? o.t("使用全局模型 {provider} 实时回复", { provider: F.value }) : o.t("使用全局当前大模型实时回复")), Ae = e.computed(() => h.value ? o.t("正在听取学生语音") : C.value ? o.t("正在把语音转成文本") : p.value ? o.t("实训导师正在回复") : V.value ? o.t("正在朗读教学消息") : o.t("多 Agent 教学链已就绪")), Le = e.computed(() => [
+    const { locale: K } = ge.useI18n(), j = Ee.useRouter(), le = e.computed(() => K.value === "ar"), y = e.ref("practice"), R = e.ref("asr"), L = e.ref(!1), W = e.ref(""), I = e.ref(null), D = e.ref([]), T = e.ref(""), p = e.ref(!1), k = e.ref(""), P = e.ref(""), F = e.ref(""), h = e.ref(!1), C = e.ref(!1), V = e.ref(""), G = e.ref(!1), Ne = e.ref(null), Be = e.computed(() => F.value ? o.t("使用全局模型 {provider} 实时回复", { provider: F.value }) : o.t("使用全局当前大模型实时回复")), Ae = e.computed(() => h.value ? o.t("正在听取学生语音") : C.value ? o.t("正在把语音转成文本") : p.value ? o.t("实训导师正在回复") : V.value ? o.t("正在朗读教学消息") : o.t("多 Agent 教学链已就绪")), Le = e.computed(() => [
       o.t("带我完成一次跨境电商商品上架策划"),
       o.t("模拟新能源汽车检修工单分析"),
       o.t("帮我拆解毕业设计的本周任务"),
       o.t("根据作品草稿给我形成性反馈")
-    ]), fe = () => o.t("你好！我是你的实训导师。请告诉我你的专业、课程和想完成的岗位任务；我会分步骤引导，并把关键评价点交给教师确认。"), Ce = e.computed(() => L.value ? o.t("检查中") : U.value ? o.t("不可用") : I.value?.ok ? o.t("服务已连接") : o.t("尚未检查")), Me = e.computed(() => L.value ? "loading" : U.value ? "danger" : I.value?.ok ? "success" : "neutral"), ze = e.computed(() => [
+    ]), fe = () => o.t("你好！我是你的实训导师。请告诉我你的专业、课程和想完成的岗位任务；我会分步骤引导，并把关键评价点交给教师确认。"), Ce = e.computed(() => L.value ? o.t("检查中") : W.value ? o.t("不可用") : I.value?.ok ? o.t("服务已连接") : o.t("尚未检查")), Me = e.computed(() => L.value ? "loading" : W.value ? "danger" : I.value?.ok ? "success" : "neutral"), ze = e.computed(() => [
       {
         id: "conversation",
         label: o.t("实训导师对话"),
@@ -166,7 +166,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
         description: o.t("需要学校教务系统授权和教师确认，当前未接入。"),
         icon: "ri-brush-2-line"
       }
-    ]), Ue = e.computed(() => {
+    ]), We = e.computed(() => {
       const t = I.value?.capabilities || {};
       return ze.value.map((l) => {
         const n = t[l.id];
@@ -212,7 +212,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
       language: "zh",
       audioUrl: "",
       diarization: !1
-    }), oe = e.ref(""), N = e.ref(!1), v = e.ref(""), J = e.ref([]), We = e.ref(["elevenlabs", "xunfei", "azure"]), u = e.reactive({
+    }), oe = e.ref(""), N = e.ref(!1), v = e.ref(""), J = e.ref([]), Ue = e.ref(["elevenlabs", "xunfei", "azure"]), u = e.reactive({
       backend: "elevenlabs",
       text: o.t("你好，我叫穆罕默德。"),
       voice: "",
@@ -230,8 +230,8 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
       prompt: "",
       style: o.t("教材插画"),
       size: "1024x1024"
-    }), W = e.computed(() => se.value.find((t) => t.kind === "image")), A = e.computed(() => W.value?.providers.filter((t) => t.configured) || []), Oe = e.computed(() => {
-      const t = W.value;
+    }), U = e.computed(() => se.value.find((t) => t.kind === "image")), A = e.computed(() => U.value?.providers.filter((t) => t.configured) || []), Oe = e.computed(() => {
+      const t = U.value;
       return t?.activeProvider ? t.providers.find((l) => l.id === t.activeProvider)?.label || t.activeProvider : o.t("未设置默认引擎");
     }), q = e.computed(() => {
       if (!Q.value) return "";
@@ -397,13 +397,13 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
       return ee.humanizeErrorMessage(t, l);
     }
     async function be() {
-      L.value = !0, U.value = "";
+      L.value = !0, W.value = "";
       try {
         const t = ye();
         if (!t?.status) throw new Error(o.t("教育工作台接口不可用"));
         I.value = await t.status();
       } catch (t) {
-        I.value = null, U.value = b(t, o.t("能力状态检查失败"));
+        I.value = null, W.value = b(t, o.t("能力状态检查失败"));
       } finally {
         L.value = !1;
       }
@@ -510,7 +510,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
       try {
         const t = await window.electronAPI?.mediaModel?.get?.();
         se.value = Array.isArray(t?.kinds) ? t.kinds : [];
-        const l = W.value, n = l?.providers.find((a) => a.id === l.activeProvider && a.configured);
+        const l = U.value, n = l?.providers.find((a) => a.id === l.activeProvider && a.configured);
         s.backend = n?.id || A.value[0]?.id || "", s.model = l?.activeModel || "";
       } catch (t) {
         se.value = [], _.value = b(t, o.t("读取图片模型配置失败"));
@@ -570,7 +570,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
       return !Number.isFinite(t) || t <= 0 ? "0 KB" : `${(t / 1024).toFixed(1)} KB`;
     }
     return e.onMounted(() => {
-      i.outputLanguage = K.value === "ar" ? "ar" : K.value === "en-US" ? "en-US" : "zh-CN", be(), de(), Ke(), Xe();
+      i.outputLanguage = K.value === "ar" ? "ar" : K.value === "zh-CN" ? "zh-CN" : "en-US", be(), de(), Ke(), Xe();
     }), e.onBeforeUnmount(() => {
       $?.state === "recording" && $.stop(), ue(), window.speechSynthesis?.cancel();
     }), (t, l) => (e.openBlock(), e.createElementBlock("div", {
@@ -1321,7 +1321,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
             /* CLASS */
           )
         ]),
-        U.value ? (e.openBlock(), e.createElementBlock("div", Mt, [
+        W.value ? (e.openBlock(), e.createElementBlock("div", Mt, [
           l[56] || (l[56] = e.createElementVNode(
             "i",
             { class: "ri-error-warning-line" },
@@ -1332,7 +1332,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
           e.createElementVNode(
             "span",
             null,
-            e.toDisplayString(U.value),
+            e.toDisplayString(W.value),
             1
             /* TEXT */
           )
@@ -1341,7 +1341,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(Ue.value, (n) => (e.openBlock(), e.createElementBlock("article", {
+            e.renderList(We.value, (n) => (e.openBlock(), e.createElementBlock("article", {
               key: n.id,
               class: "capability-card"
             }, [
@@ -1364,8 +1364,8 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
                 2
                 /* CLASS */
               ),
-              e.createElementVNode("div", Ut, [
-                e.createElementVNode("div", Wt, [
+              e.createElementVNode("div", Wt, [
+                e.createElementVNode("div", Ut, [
                   e.createElementVNode(
                     "strong",
                     null,
@@ -1820,7 +1820,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
                     (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       null,
-                      e.renderList(We.value, (n) => (e.openBlock(), e.createElementBlock("option", {
+                      e.renderList(Ue.value, (n) => (e.openBlock(), e.createElementBlock("option", {
                         key: n,
                         value: n
                       }, e.toDisplayString(n), 9, gl))),
@@ -2084,11 +2084,11 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
           ])
         ]))
       ])) : y.value === "lesson" ? (e.openBlock(), e.createElementBlock("section", zl, [
-        e.createElementVNode("div", Ul, [
+        e.createElementVNode("div", Wl, [
           e.createElementVNode("div", null, [
             e.createElementVNode(
               "span",
-              Wl,
+              Ul,
               e.toDisplayString(t.$t("教师备课")),
               1
               /* TEXT */
@@ -2427,10 +2427,10 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
               1
               /* TEXT */
             ),
-            W.value?.activeModel ? (e.openBlock(), e.createElementBlock(
+            U.value?.activeModel ? (e.openBlock(), e.createElementBlock(
               "small",
               mn,
-              e.toDisplayString(W.value.activeModel),
+              e.toDisplayString(U.value.activeModel),
               1
               /* TEXT */
             )) : e.createCommentVNode("v-if", !0)
@@ -2525,7 +2525,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
                 e.withDirectives(e.createElementVNode("input", {
                   "onUpdate:modelValue": l[25] || (l[25] = (n) => s.model = n),
                   type: "text",
-                  placeholder: W.value?.activeModel || t.$t("留空使用引擎默认模型")
+                  placeholder: U.value?.activeModel || t.$t("留空使用引擎默认模型")
                 }, null, 8, bn), [
                   [e.vModelText, s.model]
                 ])
@@ -2687,7 +2687,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
                   e.createElementVNode("img", {
                     src: n.url,
                     alt: n.revisedPrompt || s.prompt
-                  }, null, 8, Wn),
+                  }, null, 8, Un),
                   e.createElementVNode(
                     "small",
                     null,
@@ -2695,7 +2695,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
                     1
                     /* TEXT */
                   )
-                ], 8, Un))),
+                ], 8, Wn))),
                 128
                 /* KEYED_FRAGMENT */
               ))
@@ -2725,7 +2725,7 @@ const tt = ["dir"], lt = { class: "hero" }, nt = { class: "hero-copy" }, ot = { 
   for (const [le, y] of K)
     j[le] = y;
   return j;
-}, In = /* @__PURE__ */ Rn(Kn, [["__scopeId", "data-v-782e08c9"]]);
+}, In = /* @__PURE__ */ Rn(Kn, [["__scopeId", "data-v-59d946b1"]]);
 export {
   In as default
 };

@@ -7,7 +7,7 @@
     "apparel-store",
     "服装实体店智能体"
   ],
-  "version": "2.0.2",
+  "version": "2.0.3",
   "kind": "workbench",
   "category": "服装零售",
   "icon": "icon-solutions",
@@ -20,7 +20,7 @@
     "hidden": false
   },
   "compat": {
-    "minAppVersion": "2.0.5",
+    "minAppVersion": "2.0.6",
     "hostApi": 2
   },
   "runtime": {

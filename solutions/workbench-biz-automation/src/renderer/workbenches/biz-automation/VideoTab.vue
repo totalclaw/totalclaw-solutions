@@ -23,7 +23,7 @@
               <strong>{{ videoTypeLabel(t) }}</strong><small>{{ TYPE_HINT[t] }}</small>
             </button>
           </div>
-          <p v-if="!garments.length" class="ss-note warn"><i class="ri-information-line"></i>{{ $t('商品库是空的：先到「服装实体店智能体 → 商品库」导入服装图') }}</p>
+          <p v-if="!garments.length" class="ss-note warn"><i class="ri-information-line"></i>{{ $t('商品库是空的：先到「服装AI试衣 → 商品库」导入服装图') }}</p>
           <div class="ba-gpick">
             <button v-for="g in garments" :key="g.id" type="button" :class="{ on: form.garmentIds.includes(g.id) }" @click="toggle(g.id)">
               <img :src="fileUrl(g.image)" alt="" loading="lazy" /><span>{{ g.name }}</span>

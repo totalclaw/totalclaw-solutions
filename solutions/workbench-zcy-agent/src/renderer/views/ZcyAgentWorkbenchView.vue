@@ -6,7 +6,7 @@
         <span class="heading-icon"><i class="ri-government-line"></i></span>
         <div>
           <p class="eyebrow">{{ $t('行业工作台') }}</p>
-          <h1>{{ $t('政采云智能体') }}</h1>
+          <h1>{{ $t('「政采云」助手') }}</h1>
           <p class="subtitle">{{ $t('给它企业材料和政采云账号，它在内置浏览器里替你做供应商的日常工作：商品上架、询价报价、接单发货、待开票订单转开票。价格由规则计算，提交、报价、接单都停在最后一步由你确认。') }}</p>
         </div>
       </div>
@@ -107,7 +107,7 @@ const cards = [
   { key: 'account' as TabKey, icon: 'ri-shield-keyhole-line', title: i18nT('账号与材料'), text: i18nT('企业信息、资质到期提醒、账号密码加密保存、登录') },
   { key: 'listing' as TabKey, icon: 'ri-store-3-line', title: i18nT('商品上架'), text: i18nT('商品表 → 标题、图片、比价链接与售价检查 → 数字员工填写，停在提交审核前') },
   { key: 'quote' as TabKey, icon: 'ri-price-tag-3-line', title: i18nT('询价报价'), text: i18nT('读回待报价的询价单 → 填成本、规则算报价 → 数字员工填写，停在提交报价前') },
-  { key: 'orders' as TabKey, icon: 'ri-truck-line', title: i18nT('订单履约'), text: i18nT('读回订单 → 接单与发货时限预警 → 回填物流 → 待开票订单转入发票智能体') },
+  { key: 'orders' as TabKey, icon: 'ri-truck-line', title: i18nT('订单履约'), text: i18nT('读回订单 → 接单与发货时限预警 → 回填物流 → 待开票订单转入智能发票助手') },
 ];
 const TAB_KEY = 'totalclaw:zcy-agent-tab:v1';
 function savedTab(): TabKey {

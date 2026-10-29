@@ -26,7 +26,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-parts-alert/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-parts-alert/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -36,7 +36,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-parts-alert/src/main/ipc/partsAlert.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-parts-alert/src/main/ipc/partsAlert.ipc.ts
 var import_electron = require("electron");
 var import_node_fs6 = require("node:fs");
 var import_node_path6 = require("node:path");
@@ -45,7 +45,7 @@ var import_i18n4 = require("npm:@totalclaw/i18n");
 var import_userFacingError = require("host:apps/desktop-shell/src/main/utils/userFacingError.ts");
 var import_quitRegistry = require("host:apps/desktop-shell/src/main/util/quitRegistry.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/calc.ts
+// ../../../totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/calc.ts
 var import_i18n = require("npm:@totalclaw/i18n");
 var DEFAULT_PARAMS = {
   safetyDays: 15,
@@ -335,14 +335,14 @@ function computePartsAlert(input, params) {
   };
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/ingest.ts
+// ../../../totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/ingest.ts
 var import_node_fs = require("node:fs");
 var import_node_path = require("node:path");
 var import_i18n2 = require("npm:@totalclaw/i18n");
 var import_ipc_contracts = require("npm:@totalclaw/ipc-contracts");
 var import_excel = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/columnKeywords.json
+// ../../../totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/columnKeywords.json
 var columnKeywords_default = {
   columns: {
     partNo: ["\u914D\u4EF6\u7F16\u7801", "\u7269\u6599\u7F16\u7801", "\u914D\u4EF6\u4EE3\u7801", "\u7269\u6599\u4EE3\u7801", "\u914D\u4EF6\u7F16\u53F7", "\u7269\u6599\u7F16\u53F7", "\u5B58\u8D27\u7F16\u7801", "\u5546\u54C1\u7F16\u7801", "\u4EA7\u54C1\u7F16\u7801", "\u914D\u4EF6\u53F7", "\u7269\u6599\u53F7", "\u6599\u53F7", "\u7F16\u7801", "sku", "part no", "partno", "part number", "item code", "material"],
@@ -380,7 +380,7 @@ var columnKeywords_default = {
   }
 };
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/ingest.ts
+// ../../../totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/ingest.ts
 var COLUMNS = columnKeywords_default.columns;
 var AVOID = columnKeywords_default.avoid;
 var MAX_SKIPPED_KEPT = 50;
@@ -740,12 +740,12 @@ function periodRange(periods) {
   return { from: sorted[0], to: sorted[sorted.length - 1] };
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/demoData.ts
+// ../../../totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/demoData.ts
 var import_node_fs2 = require("node:fs");
 var import_node_path2 = require("node:path");
 var import_excel2 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/demoParts.json
+// ../../../totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/demoParts.json
 var demoParts_default = {
   files: {
     monthly: "\u914D\u4EF6\u5386\u53F2\u53D1\u8D27-\u6309\u6708.xlsx",
@@ -874,7 +874,7 @@ var demoParts_default = {
   ]
 };
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/demoData.ts
+// ../../../totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/demoData.ts
 var DAY2 = 864e5;
 var HISTORY_MONTHS = 36;
 function specs() {
@@ -1020,14 +1020,14 @@ function writeDemoFiles(dir, asOf) {
   return paths;
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/exporter.ts
+// ../../../totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/exporter.ts
 var import_node_fs3 = require("node:fs");
 var import_node_path3 = require("node:path");
 var import_i18n3 = require("npm:@totalclaw/i18n");
 var import_ipc_contracts2 = require("npm:@totalclaw/ipc-contracts");
 var import_excel3 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/plan.ts
+// ../../../totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/plan.ts
 var DAY3 = 864e5;
 function planGroupOf(r) {
   if (r.state === "stagnant") return "stagnant";
@@ -1126,7 +1126,7 @@ function diffNewAlerts(prev, cur) {
   return { newOut, newRisk };
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/exporter.ts
+// ../../../totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/exporter.ts
 function stateLabel(s) {
   return { stagnant: (0, import_i18n3.t)("\u5E93\u5B58\u5446\u6EDE"), redundant: (0, import_i18n3.t)("\u5E93\u5B58\u5197\u4F59"), healthy: (0, import_i18n3.t)("\u5E93\u5B58\u5065\u5EB7"), at_risk: (0, import_i18n3.t)("\u5E93\u5B58\u5C06\u7F3A\u8D27"), out_of_stock: (0, import_i18n3.t)("\u5E93\u5B58\u5DF2\u7F3A\u8D27") }[s];
 }
@@ -1240,7 +1240,7 @@ function exportStatusPlan(dir, results, reviews, summary) {
   return file;
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/schedule.ts
+// ../../../totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/schedule.ts
 var import_node_fs4 = require("node:fs");
 var import_node_path4 = require("node:path");
 var ASSIGN_ORDER = ["yearly", "leadTime", "inTransit", "stock", "monthly"];
@@ -1283,7 +1283,7 @@ function localDay(now = /* @__PURE__ */ new Date()) {
   return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/store.ts
+// ../../../totalclaw-solutions/solutions/workbench-parts-alert/src/main/services/partsAlert/store.ts
 var import_node_fs5 = require("node:fs");
 var import_node_path5 = require("node:path");
 var import_node_crypto = require("node:crypto");
@@ -1434,7 +1434,7 @@ var PartsAlertStore = class {
   }
 };
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-parts-alert/src/main/ipc/partsAlert.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-parts-alert/src/main/ipc/partsAlert.ipc.ts
 var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var store = new PartsAlertStore();
 var datasetLabel = (k) => ({
@@ -1949,7 +1949,7 @@ ${(0, import_i18n4.t)("\u90AE\u4EF6\u6CA1\u6709\u53D1\u51FA\uFF1A{p0}", { p0: ma
   return stopBackground;
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-parts-alert/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-parts-alert/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerPartsAlertHandlers";
 var cleanup;

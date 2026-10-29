@@ -7,7 +7,7 @@
     "edu-hub",
     "AI 学习中心（文档生成教案）"
   ],
-  "version": "2.0.3",
+  "version": "2.0.4",
   "kind": "workbench",
   "category": "教育",
   "icon": "icon-solutions",
@@ -30,7 +30,7 @@
     "hidden": false
   },
   "compat": {
-    "minAppVersion": "2.0.5",
+    "minAppVersion": "2.0.6",
     "hostApi": 2
   },
   "runtime": {

@@ -1,12 +1,12 @@
 {
   "id": "workbench-invoice-agent",
-  "version": "2.0.2",
-  "treeDigest": "3aa4c752ae31e296922331f0d3f1d92a113250811b54f3758f63c576c50c49a1",
+  "version": "2.0.3",
+  "treeDigest": "dfec18d2777c63551a58897f9bf25971f42b6c7cf752922e35c0cbc833efe5b2",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 857,
-      "sha256": "b163a4ec0b120149124604c049935cb15f82b07934b464bde692c24fdff581e1"
+      "size": 1188,
+      "sha256": "1a471ce3ee12fa96c6eca73b11032b0a927f59ad62d775cfbf8f47529312356b"
     },
     {
       "path": "README.md",
@@ -20,13 +20,13 @@
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 212704,
-      "sha256": "91133c0ed7c20651116d1cc7eb6bb5a6eaa00d90e2a337e5c4ad2b58096a64c6"
+      "size": 212710,
+      "sha256": "32c137e1432d651ef07eb17de88fb78f884ee7aabede6648c338901e75dedcf3"
     },
     {
       "path": "dist/style.css",
-      "size": 16296,
-      "sha256": "c8bf5d67d347389d23c33c82e4b911ef2a27ff78c3a7cc3b13148bc19b592136"
+      "size": 16319,
+      "sha256": "7ca630c622ea17f88fdc1c4b8c5849689c06f207c793cbe0cfe71753af91e1df"
     },
     {
       "path": "migrations/README.md",
@@ -36,10 +36,21 @@
     {
       "path": "solution.json",
       "size": 2158,
-      "sha256": "b7f39aeec46b30be0227adc74bd03620f1061793bbc6df1673bee281e2792174"
+      "sha256": "5f98e09fe2fcba34e4766a09d42429b06e9373b87d58d5d7d4e97e21f3d6821e"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.3",
+      "ref": "workbench-invoice-agent@2.0.3",
+      "treeDigest": "dfec18d2777c63551a58897f9bf25971f42b6c7cf752922e35c0cbc833efe5b2",
+      "filesRef": "index/workbench-invoice-agent/2.0.3.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.6",
+      "hostApi": 2,
+      "publishedAt": "2026-10-29"
+    },
     {
       "version": "2.0.2",
       "ref": "workbench-invoice-agent@2.0.2",

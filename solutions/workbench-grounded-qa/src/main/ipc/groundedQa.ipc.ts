@@ -39,10 +39,10 @@ function sendProgress(p: { file: string; done: number; total: number }): void {
 
 const LOCALE_OF: Record<AnswerLang, SupportedLocale> = { zh: 'zh-CN', en: 'en-US', ar: 'ar' };
 
-/** 界面语言 → 示例问题该用哪种语言。英文界面绝不显示中文示例问题。 */
+/** 界面语言 → 示例问题该用哪种语言。资料问答只有中 / 英 / 阿：越南语、马来语界面走英文，绝不显示中文示例问题。 */
 function uiLang(): AnswerLang {
   const l = getLocale();
-  return l === 'ar' ? 'ar' : l === 'en-US' ? 'en' : 'zh';
+  return l === 'ar' ? 'ar' : l === 'zh-CN' ? 'zh' : 'en';
 }
 
 /** 界面传来的历史只信形状，不信内容长度：截轮数、截长度，防止一个超长回答把提示词撑爆 */
@@ -171,10 +171,9 @@ async function answerQuestion(
   history: GroundedTurn[],
 ): Promise<{ answered: boolean; answer?: string; refusal?: string; reason?: string; lang: AnswerLang; citations: { docName: string; page: number; snippet: string }[] }> {
   // 回答语言跟提问走；纯数字/标点识别不出时沿用上一轮，再不行才看界面语言
-  const ui = getLocale();
   const lang: AnswerLang = detectLang(q)
     ?? detectLang(history[history.length - 1]?.question || '')
-    ?? (ui === 'ar' ? 'ar' : ui === 'en-US' ? 'en' : 'zh');
+    ?? uiLang();
   const locale = LOCALE_OF[lang];
   // 任何失败（模型没就绪、超时、通道报错）一律按「资料中无依据」拒答：客户面前只有答案或拒答两种结果，
   // 不出现技术报错；真实原因写日志排查

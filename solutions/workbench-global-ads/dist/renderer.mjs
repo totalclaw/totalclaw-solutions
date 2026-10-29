@@ -2673,7 +2673,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             e.createElementVNode(
               "h1",
               null,
-              e.toDisplayString(t.$t("阿联酋海外广告代投放工作台")),
+              e.toDisplayString(t.$t("海外广告投放工作台")),
               1
               /* TEXT */
             ),
@@ -7875,7 +7875,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
   for (const [N, g] of je)
     H[N] = g;
   return H;
-}, Ou = /* @__PURE__ */ Mu(Iu, [["__scopeId", "data-v-e3ebcf11"]]);
+}, Ou = /* @__PURE__ */ Mu(Iu, [["__scopeId", "data-v-77e3c604"]]);
 export {
   Ou as default
 };

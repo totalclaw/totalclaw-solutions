@@ -46,7 +46,11 @@ describe('进度条一定在视口内（规则二）', () => {
   it('StickyProgress 根节点 position: sticky 且贴顶', () => {
     const style = src.slice(src.indexOf('<style'));
     expect(style).toMatch(/\.ss-progress\s*\{[^}]*position:\s*sticky/);
-    expect(style).toMatch(/\.ss-progress\s*\{[^}]*top:\s*0/);
+    // 贴顶：9019aff1 起 top 抵掉滚动根节点的 padding-top（否则吸顶卡上方漏一条缝，内容从缝里穿过）
+    const view = readFileSync(join(__dirname, 'ServiceSettlementWorkbenchView.vue'), 'utf-8');
+    const padTop = view.match(/\.ss-workbench\s*\{[^}]*padding:\s*(\d+)px/)?.[1];
+    expect(padTop, '找不到结算工作台根节点 padding-top').toBeTruthy();
+    expect(style).toMatch(new RegExp(`\\.ss-progress\\s*\\{[^}]*top:\\s*(0|-${padTop}px)\\s*;`));
   });
   it('步骤卡失败态把错误原因写在这一步上（规则一）', () => {
     const card = read('StepCard.vue');

@@ -26,7 +26,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-bid-writer/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-bid-writer/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -36,7 +36,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-bid-writer/src/main/ipc/bidWriter.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-bid-writer/src/main/ipc/bidWriter.ipc.ts
 var import_electron = require("electron");
 var import_node_path2 = require("node:path");
 var import_node_fs2 = require("node:fs");
@@ -52,7 +52,7 @@ var import_fieldCatalog = require("host:apps/desktop-shell/src/main/services/kno
 var import_noticeFetch = require("host:apps/desktop-shell/src/main/services/bidWriter/noticeFetch.ts");
 var import_noticeSearch = require("host:apps/desktop-shell/src/main/services/bidWriter/noticeSearch.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-bid-writer/src/main/services/bidWriter/noticeRules.ts
+// ../../../totalclaw-solutions/solutions/workbench-bid-writer/src/main/services/bidWriter/noticeRules.ts
 var import_i18n = require("npm:@totalclaw/i18n");
 var import_matchPatterns = require("host:apps/desktop-shell/src/main/services/bidWriter/matchPatterns.ts");
 function normalizeNoticeText(raw) {
@@ -227,10 +227,10 @@ function qualificationKind(text) {
   return import_matchPatterns.DECLARATION_QUALIFICATION_RE.test(t) ? "declaration" : "evidence";
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-bid-writer/src/main/ipc/bidWriter.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-bid-writer/src/main/ipc/bidWriter.ipc.ts
 var import_matchPatterns5 = require("host:apps/desktop-shell/src/main/services/bidWriter/matchPatterns.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-bid-writer/src/main/services/bidWriter/outline.ts
+// ../../../totalclaw-solutions/solutions/workbench-bid-writer/src/main/services/bidWriter/outline.ts
 var import_i18n2 = require("npm:@totalclaw/i18n");
 var import_matchPatterns2 = require("host:apps/desktop-shell/src/main/services/bidWriter/matchPatterns.ts");
 function numberedLevel(text) {
@@ -355,7 +355,7 @@ function parseOutline(text) {
   };
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-bid-writer/src/main/services/bidWriter/compliance.ts
+// ../../../totalclaw-solutions/solutions/workbench-bid-writer/src/main/services/bidWriter/compliance.ts
 var import_i18n3 = require("npm:@totalclaw/i18n");
 var import_matchPatterns3 = require("host:apps/desktop-shell/src/main/services/bidWriter/matchPatterns.ts");
 var import_matchPatterns4 = require("host:apps/desktop-shell/src/main/services/bidWriter/matchPatterns.ts");
@@ -550,7 +550,7 @@ function hasBlocker(items) {
   return items.some((i) => i.level === "blocker");
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-bid-writer/src/main/services/bidWriter/prompts.ts
+// ../../../totalclaw-solutions/solutions/workbench-bid-writer/src/main/services/bidWriter/prompts.ts
 var import_i18n4 = require("npm:@totalclaw/i18n");
 var KIND_LABEL = {
   qualification: () => (0, import_i18n4.t)("\u8D44\u683C\u8981\u6C42"),
@@ -691,11 +691,11 @@ function sectionPrompt(options) {
   return lines.join("\n");
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-bid-writer/src/main/ipc/bidWriter.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-bid-writer/src/main/ipc/bidWriter.ipc.ts
 var import_docx = require("host:apps/desktop-shell/src/main/services/bidWriter/docx.ts");
 var import_llmReply = require("host:apps/desktop-shell/src/main/services/bidWriter/llmReply.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-bid-writer/src/main/services/bidWriter/store.ts
+// ../../../totalclaw-solutions/solutions/workbench-bid-writer/src/main/services/bidWriter/store.ts
 var import_node_fs = require("node:fs");
 var import_node_path = require("node:path");
 var import_i18n5 = require("npm:@totalclaw/i18n");
@@ -795,7 +795,7 @@ function safeFileName(raw) {
   return String(raw || "").replace(/[\\/:*?"<>|\n\r\t]/g, "_").replace(/\s+/g, " ").trim().slice(0, 60) || "bid-document";
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-bid-writer/src/main/ipc/bidWriter.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-bid-writer/src/main/ipc/bidWriter.ipc.ts
 var COMPOSE_TIMEOUT_MS = 24e4;
 var EXTRACT_TIMEOUT_MS = 18e4;
 var COMPANY_FIELD_KEYS = [
@@ -1539,7 +1539,7 @@ function registerBidWriterHandlers(deps) {
   });
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-bid-writer/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-bid-writer/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerBidWriterHandlers";
 var cleanup;

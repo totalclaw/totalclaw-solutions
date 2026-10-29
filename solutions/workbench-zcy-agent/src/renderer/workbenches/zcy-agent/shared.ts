@@ -1,5 +1,5 @@
 /**
- * 政采云智能体 · 渲染层共享：动作调用、全局状态、标签、交给数字员工与读回结果。
+ * 「政采云」助手 · 渲染层共享：动作调用、全局状态、标签、交给数字员工与读回结果。
  * 各页签只依赖这里，互不 import。
  */
 import { ref } from 'vue';
@@ -13,7 +13,7 @@ export { handToDigitalEmployee } from '../biz-automation/shared';
 
 export async function zc<T = any>(action: string, payload?: unknown): Promise<T> {
   const bridge = (window as any).electronAPI?.workbenches?.zcyAgent;
-  if (!bridge?.invoke) throw new Error(i18nT('政采云智能体接口不可用，请重启应用'));
+  if (!bridge?.invoke) throw new Error(i18nT('「政采云」助手接口不可用，请重启应用'));
   return bridge.invoke(action, toPlain(payload ?? {})) as Promise<T>;
 }
 

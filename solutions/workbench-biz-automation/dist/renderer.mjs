@@ -536,7 +536,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
                     /* CACHED */
                   )),
                   e.createTextVNode(
-                    e.toDisplayString(t.$t("商品库是空的：先到「服装实体店智能体 → 商品库」导入服装图")),
+                    e.toDisplayString(t.$t("商品库是空的：先到「服装AI试衣 → 商品库」导入服装图")),
                     1
                     /* TEXT */
                   )
@@ -1601,7 +1601,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       ])
     ]));
   }
-}), ml = /* @__PURE__ */ Q(ul, [["__scopeId", "data-v-199dc913"]]), pl = { class: "ss-module" }, vl = { class: "ba-projbar" }, yl = { class: "ss-field" }, hl = { value: "" }, kl = ["value"], Vl = { class: "ss-steps" }, gl = { class: "ba-types" }, Nl = ["onClick"], bl = { class: "ss-grid" }, El = { class: "ss-field" }, fl = { class: "ss-field" }, $l = { class: "ba-facts" }, _l = {
+}), ml = /* @__PURE__ */ Q(ul, [["__scopeId", "data-v-ff2d8821"]]), pl = { class: "ss-module" }, vl = { class: "ba-projbar" }, yl = { class: "ss-field" }, hl = { value: "" }, kl = ["value"], Vl = { class: "ss-steps" }, gl = { class: "ba-types" }, Nl = ["onClick"], bl = { class: "ss-grid" }, El = { class: "ss-field" }, fl = { class: "ss-field" }, $l = { class: "ba-facts" }, _l = {
   key: 0,
   class: "ss-muted"
 }, Sl = { class: "ss-actions" }, Dl = ["disabled"], Bl = {
@@ -2360,7 +2360,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
     }, { immediate: !0 });
     const w = e.ref(""), S = e.ref({}), L = [
       { key: "l-rules", title: n.t("库存巡检"), hint: n.t("售罄下架、断码提醒、过季提醒、试穿多成交少换主图") },
-      { key: "l-pick", title: n.t("选商品与渠道"), hint: n.t("商品来自服装实体店智能体的商品库") },
+      { key: "l-pick", title: n.t("选商品与渠道"), hint: n.t("商品来自服装AI试衣的商品库") },
       { key: "l-gen", title: n.t("生成图文"), hint: n.t("标题、卖点、详情、关键词 + 主图") },
       { key: "l-confirm", title: n.t("确认"), hint: n.t("逐条改、逐条确认；含极限词的不能确认") },
       { key: "l-hand", title: n.t("数字员工上架"), hint: n.t("在网店后台填写，停在提交前等你确认") },
@@ -3192,7 +3192,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       ])
     ]));
   }
-}), Zn = /* @__PURE__ */ Q(Xn, [["__scopeId", "data-v-8add6534"]]), eo = { class: "ss-module" }, to = { class: "ss-steps" }, lo = { class: "ss-actions" }, no = ["disabled"], oo = { class: "ss-muted" }, so = { class: "ss-actions" }, ao = ["disabled"], io = { class: "ss-muted" }, ro = { class: "ss-muted" }, co = { class: "ss-actions" }, uo = ["disabled"], mo = { class: "ss-muted" }, po = { class: "ss-actions" }, vo = { class: "ss-field" }, yo = { class: "ss-field" }, ho = ["disabled"], ko = { class: "ss-kpis" }, Vo = { class: "ss-kpi accent" }, go = { key: 0 }, No = { class: "ss-kpi" }, bo = { class: "ss-kpi" }, Eo = { class: "ss-kpi" }, fo = { class: "ss-kpi" }, $o = { class: "ss-kpi" }, _o = { class: "ss-kpi" }, So = { class: "ss-kpi" }, Do = { key: 0 }, Bo = {
+}), Zn = /* @__PURE__ */ Q(Xn, [["__scopeId", "data-v-aa93eb57"]]), eo = { class: "ss-module" }, to = { class: "ss-steps" }, lo = { class: "ss-actions" }, no = ["disabled"], oo = { class: "ss-muted" }, so = { class: "ss-actions" }, ao = ["disabled"], io = { class: "ss-muted" }, ro = { class: "ss-muted" }, co = { class: "ss-actions" }, uo = ["disabled"], mo = { class: "ss-muted" }, po = { class: "ss-actions" }, vo = { class: "ss-field" }, yo = { class: "ss-field" }, ho = ["disabled"], ko = { class: "ss-kpis" }, Vo = { class: "ss-kpi accent" }, go = { key: 0 }, No = { class: "ss-kpi" }, bo = { class: "ss-kpi" }, Eo = { class: "ss-kpi" }, fo = { class: "ss-kpi" }, $o = { class: "ss-kpi" }, _o = { class: "ss-kpi" }, So = { class: "ss-kpi" }, Do = { key: 0 }, Bo = {
   key: 0,
   class: "ss-note warn"
 }, wo = ["title"], Co = ["title"], To = {
@@ -6863,7 +6863,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
             e.createElementVNode(
               "p",
               Dr,
-              e.toDisplayString(b.$t("商品库在「服装实体店智能体」里维护（导入、AI 打标签、尺码库存）；试穿图会自动成为短视频与上架图的素材。")),
+              e.toDisplayString(b.$t("商品库在「服装AI试衣」里维护（导入、AI 打标签、尺码库存）；试穿图会自动成为短视频与上架图的素材。")),
               1
               /* TEXT */
             )
@@ -6962,7 +6962,7 @@ const me = { class: "ba-mhead" }, pe = { class: "ba-mhead__main" }, ve = { class
       ]))
     ]));
   }
-}), Ir = /* @__PURE__ */ Q(Ar, [["__scopeId", "data-v-6eb40d97"]]);
+}), Ir = /* @__PURE__ */ Q(Ar, [["__scopeId", "data-v-ee695bdf"]]);
 export {
   Ir as default
 };

@@ -16,7 +16,7 @@ var __copyProps = (to, from, except, desc) => {
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-zcy-agent/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-zcy-agent/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -26,7 +26,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-zcy-agent/src/main/ipc/zcyAgent.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-zcy-agent/src/main/ipc/zcyAgent.ipc.ts
 var import_electron = require("electron");
 var import_node_fs2 = require("node:fs");
 var import_ipc_contracts = require("npm:@totalclaw/ipc-contracts");
@@ -35,16 +35,16 @@ var import_userFacingError = require("host:apps/desktop-shell/src/main/utils/use
 var import_quitRegistry = require("host:apps/desktop-shell/src/main/util/quitRegistry.ts");
 var import_workbenchLlm = require("host:apps/desktop-shell/src/main/services/workbenchLlm.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-zcy-agent/src/main/services/zcyAgent/store.ts
+// ../../../totalclaw-solutions/solutions/workbench-zcy-agent/src/main/services/zcyAgent/store.ts
 var import_node_fs = require("node:fs");
 var import_node_path = require("node:path");
 var import_node_crypto = require("node:crypto");
 var import_accountScope = require("host:apps/desktop-shell/src/main/services/accountScope.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-zcy-agent/src/main/services/zcyAgent/logic.ts
+// ../../../totalclaw-solutions/solutions/workbench-zcy-agent/src/main/services/zcyAgent/logic.ts
 var import_i18n = require("npm:@totalclaw/i18n");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-zcy-agent/src/main/services/zcyAgent/keywords.json
+// ../../../totalclaw-solutions/solutions/workbench-zcy-agent/src/main/services/zcyAgent/keywords.json
 var keywords_default = {
   product: {
     name: ["\u5546\u54C1\u540D\u79F0", "\u54C1\u540D", "\u4EA7\u54C1\u540D\u79F0", "\u540D\u79F0"],
@@ -93,7 +93,7 @@ var keywords_default = {
   contactPattern: "(\u5FAE\u4FE1|QQ|\u52A0V|\u7535\u8BDD|\u624B\u673A|\u8054\u7CFB\u65B9\u5F0F)\\s*[:\uFF1A]?\\s*[0-9A-Za-z_-]{5,}"
 };
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-zcy-agent/src/main/services/zcyAgent/logic.ts
+// ../../../totalclaw-solutions/solutions/workbench-zcy-agent/src/main/services/zcyAgent/logic.ts
 var K = keywords_default;
 var cents = (v) => Math.round((Number(v) || 0) * 100);
 var yuan = (c) => Math.round(c) / 100;
@@ -386,7 +386,7 @@ function parseAgentJson(text) {
   throw new Error((0, import_i18n.t)("\u56DE\u590D\u91CC\u6CA1\u6709\u627E\u5230\u7ED3\u679C\u6E05\u5355\uFF1A\u6570\u5B57\u5458\u5DE5\u53EF\u80FD\u8FD8\u6CA1\u505A\u5B8C\uFF0C\u6216\u8005\u505C\u5728\u767B\u5F55 / \u9A8C\u8BC1\u7801\u4E0A\u4E86"));
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-zcy-agent/src/main/services/zcyAgent/store.ts
+// ../../../totalclaw-solutions/solutions/workbench-zcy-agent/src/main/services/zcyAgent/store.ts
 function newId(prefix) {
   return `${prefix}_${(0, import_node_crypto.randomUUID)().replace(/-/g, "").slice(0, 12)}`;
 }
@@ -469,7 +469,7 @@ var ZcyAgentStore = class {
   }
 };
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-zcy-agent/src/main/services/zcyAgent/prompts.ts
+// ../../../totalclaw-solutions/solutions/workbench-zcy-agent/src/main/services/zcyAgent/prompts.ts
 var RULES = [
   "\u786C\u6027\u8981\u6C42\uFF1A",
   "1. \u6211\u5DF2\u7ECF\u5728\u5185\u7F6E\u6D4F\u89C8\u5668\u91CC\u767B\u5F55\u4E86\u653F\u91C7\u4E91\u3002\u5982\u679C\u9875\u9762\u8981\u6C42\u767B\u5F55\u3001\u9A8C\u8BC1\u7801\u3001\u6ED1\u5757\u3001\u77ED\u4FE1\u6216 CA \u8BC1\u4E66\uFF0C\u505C\u4E0B\u6765\u544A\u8BC9\u6211\uFF0C\u4E0D\u8981\u5C1D\u8BD5\u7ED5\u8FC7\uFF0C\u4E5F\u4E0D\u8981\u5411\u6211\u7D22\u8981\u5BC6\u7801\u3002",
@@ -576,12 +576,12 @@ function describePrompt(p) {
   ].join("\n");
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-zcy-agent/src/main/ipc/zcyAgent.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-zcy-agent/src/main/ipc/zcyAgent.ipc.ts
 var import_excel = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 var import_invoiceAgent = require("host:apps/desktop-shell/src/main/ipc/invoiceAgent.ipc.ts");
 var import_login = require("host:apps/desktop-shell/src/main/services/zcyAgent/login.ts");
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-zcy-agent/src/main/services/zcyAgent/zcyPage.ts
+// ../../../totalclaw-solutions/solutions/workbench-zcy-agent/src/main/services/zcyAgent/zcyPage.ts
 var ZCY_WORKBENCH_URL = "https://middle.zcygov.cn/guide/supplier";
 var ZCY_ONBOARD_LIST_URL = "https://middle.zcygov.cn/supplier-v2/#/enter/supplier/list";
 var T = {
@@ -688,7 +688,7 @@ function parseFillResult(raw) {
   }
 }
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-solutions/solutions/workbench-zcy-agent/src/main/ipc/zcyAgent.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-zcy-agent/src/main/ipc/zcyAgent.ipc.ts
 var store = new ZcyAgentStore();
 var BROWSER_CONTEXT = "zcy-agent";
 function requireFound(v, what) {
@@ -821,7 +821,7 @@ function registerZcyAgentHandlers(deps) {
       });
       const alerts = publicState().alerts;
       if (import_electron.Notification.isSupported()) {
-        new import_electron.Notification({ title: (0, import_i18n2.t)("\u653F\u91C7\u4E91\u5DE1\u68C0\u65F6\u95F4\u5230\u4E86"), body: alerts.length ? (0, import_i18n2.t)("\u6709 {p0} \u6761\u5F85\u5904\u7406\u63D0\u9192\uFF0C\u6253\u5F00\u653F\u91C7\u4E91\u667A\u80FD\u4F53\u8BFB\u56DE\u6700\u65B0\u8BA2\u5355\u4E0E\u8BE2\u4EF7\u5355", { p0: alerts.length }) : (0, import_i18n2.t)("\u6253\u5F00\u653F\u91C7\u4E91\u667A\u80FD\u4F53\u8BFB\u56DE\u6700\u65B0\u8BA2\u5355\u4E0E\u8BE2\u4EF7\u5355") }).show();
+        new import_electron.Notification({ title: (0, import_i18n2.t)("\u653F\u91C7\u4E91\u5DE1\u68C0\u65F6\u95F4\u5230\u4E86"), body: alerts.length ? (0, import_i18n2.t)("\u6709 {p0} \u6761\u5F85\u5904\u7406\u63D0\u9192\uFF0C\u6253\u5F00\u300C\u653F\u91C7\u4E91\u300D\u52A9\u624B\u8BFB\u56DE\u6700\u65B0\u8BA2\u5355\u4E0E\u8BE2\u4EF7\u5355", { p0: alerts.length }) : (0, import_i18n2.t)("\u6253\u5F00\u300C\u653F\u91C7\u4E91\u300D\u52A9\u624B\u8BFB\u56DE\u6700\u65B0\u8BA2\u5355\u4E0E\u8BE2\u4EF7\u5355") }).show();
       }
       try {
         win()?.webContents.send(import_ipc_contracts.IPC_CHANNELS.WORKBENCH_ZC_EVENT, { type: "patrol-due" });
@@ -1322,7 +1322,7 @@ ${prod.brand}`);
       pushState();
       return true;
     },
-    /** 待开票订单转入发票智能体：建一批开票行，金额按含税，项目名称要在发票智能体里改成规范的开票项目 */
+    /** 待开票订单转入智能发票助手：建一批开票行，金额按含税，项目名称要在智能发票助手里改成规范的开票项目 */
     "orders.toInvoice": (p) => {
       const s = store.read();
       const list = s.orders.filter((o) => (p.ids || []).includes(o.id) && !o.invoiceBatchId);
@@ -1341,7 +1341,7 @@ ${prod.brand}`);
           o.updatedAt = now();
         }
       });
-      log("orders", (0, import_i18n2.t)("{p0} \u5F20\u8BA2\u5355\u5DF2\u8F6C\u5165\u53D1\u7968\u667A\u80FD\u4F53", { p0: list.length }));
+      log("orders", (0, import_i18n2.t)("{p0} \u5F20\u8BA2\u5355\u5DF2\u8F6C\u5165\u667A\u80FD\u53D1\u7968\u52A9\u624B", { p0: list.length }));
       pushState();
       return { batchId, count: list.length };
     }
@@ -1361,7 +1361,7 @@ ${prod.brand}`);
 var productStatusLabel = (s) => ({ draft: (0, import_i18n2.t)("\u8349\u7A3F"), confirmed: (0, import_i18n2.t)("\u5DF2\u786E\u8BA4"), handed: (0, import_i18n2.t)("\u6570\u5B57\u5458\u5DE5\u5904\u7406\u4E2D"), submitted: (0, import_i18n2.t)("\u5DF2\u63D0\u4EA4\u5BA1\u6838"), listed: (0, import_i18n2.t)("\u5DF2\u4E0A\u67B6"), rejected: (0, import_i18n2.t)("\u88AB\u9A73\u56DE"), delisted: (0, import_i18n2.t)("\u5DF2\u4E0B\u67B6") })[s];
 var inquiryStatusLabel = (s) => ({ new: (0, import_i18n2.t)("\u5F85\u7B97\u4EF7"), priced: (0, import_i18n2.t)("\u5DF2\u7B97\u4EF7"), confirmed: (0, import_i18n2.t)("\u5DF2\u786E\u8BA4"), handed: (0, import_i18n2.t)("\u6570\u5B57\u5458\u5DE5\u5904\u7406\u4E2D"), submitted: (0, import_i18n2.t)("\u5DF2\u63D0\u4EA4\u62A5\u4EF7"), won: (0, import_i18n2.t)("\u5DF2\u6210\u4EA4"), lost: (0, import_i18n2.t)("\u672A\u6210\u4EA4"), skipped: (0, import_i18n2.t)("\u4E0D\u53C2\u4E0E") })[s];
 
-// ../../../../../../../../../Users/mac02/Desktop/work/new-work/totalclaw-qiye-app/apps/desktop-shell/node_modules/.cache/solutions-build/workbench-zcy-agent/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-zcy-agent/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerZcyAgentHandlers";
 var cleanup;

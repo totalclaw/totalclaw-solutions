@@ -1,12 +1,12 @@
 {
   "id": "workbench-education",
-  "version": "2.0.2",
-  "treeDigest": "0e6ed8e4b79c421d450c6dd614895efe72ee9dc4b18d6adfe96cc1fbc2b34949",
+  "version": "2.0.3",
+  "treeDigest": "5e486ffacb318012b9550e41dc200d8d7f85fe59771bb6117a48c8b7999da0f1",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1276,
-      "sha256": "640de7294f73898a6fd10d58986ff87a83d66fd4751223ad71acf1a361d19341"
+      "size": 1628,
+      "sha256": "ed5548364e56ab662972b3719d66ddaf7206484d37257f9babf4418bbc0d2e46"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 15291,
-      "sha256": "e2deebac9e118af35c3b4295c4748ecdde132adfb4b71ce8d82095caa853b6c0"
+      "size": 15041,
+      "sha256": "ed3d78d5f1c16c4fb06bbd55f8ac56c8d9b85e4d70606995ddb203bf19eef754"
     },
     {
       "path": "dist/renderer.mjs",
       "size": 98647,
-      "sha256": "96b5ba4ca7f92b97b00ccf40f54e87a0b6e6f1f802e7bcd034b1368db53d3b00"
+      "sha256": "6e79a50b4671efc82679c88016602fad133dec4b02157cf17d360619c42b73a2"
     },
     {
       "path": "dist/style.css",
       "size": 26946,
-      "sha256": "5789c1eee5292e72fc48f5d17dc57f1e37ac5529dc918ed71dfcb7c253d2c7a6"
+      "sha256": "43b25babc5dadf1611ae293c285abfe534e508bff5b8867732b0a4a37f6aa513"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 1924,
-      "sha256": "3d1031695bea7ee963959e42f110259503f729c33ffd17acb23e61e50164368e"
+      "sha256": "bdb04d1cfea03a641462a7a43088b53d319d8f7e68227e308bdb4ef53b4aaf50"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.3",
+      "ref": "workbench-education@2.0.3",
+      "treeDigest": "5e486ffacb318012b9550e41dc200d8d7f85fe59771bb6117a48c8b7999da0f1",
+      "filesRef": "index/workbench-education/2.0.3.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.6",
+      "hostApi": 2,
+      "publishedAt": "2026-10-29"
+    },
     {
       "version": "2.0.2",
       "ref": "workbench-education@2.0.2",

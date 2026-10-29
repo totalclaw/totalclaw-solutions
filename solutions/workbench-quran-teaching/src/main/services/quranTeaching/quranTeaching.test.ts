@@ -324,6 +324,25 @@ describe('Store 端到端闭环（验收 02/10）', () => {
   });
   afterAll(() => rmSync(dir, { recursive: true, force: true }));
 
+  it('改学生答案按这名学生那一版的选项下标判分：学生卷里打乱过选项的题，原卷下标会判错', () => {
+    // 用别的章：同一个 store 里下一条用例要数第 103 章的试卷版本号
+    const paper = store.generatePaper({ chapter: 112, lang: 'zh', count: 10 }).paper;
+    store.simulate(paper.id);
+    const original = new Map(paper.questions.map((q) => [q.id, q]));
+    let checked = 0;
+    for (const sid of ['stu-a', 'stu-b', 'stu-c', 'stu-d', 'stu-e']) {
+      for (const q of store.questionsForStudentPinned(paper.id, sid)) {
+        const base = original.get(q.id)!;
+        if (typeof q.answer !== 'number' || q.answer === base.answer) continue;
+        expect(store.setAnswer(paper.id, sid, q.id, q.answer).correct).toBe(true);
+        expect(store.setAnswer(paper.id, sid, q.id, base.answer as number).correct).toBe(false);
+        checked++;
+      }
+    }
+    // 5 人 × 10 题里总有选项被打乱、正确答案下标变了的题，否则这条测不到东西
+    expect(checked).toBeGreaterThan(0);
+  });
+
   it('第 103 章：提纲 → 试卷 ×3 → 5 名学生 → 群体 → 强化 → 复测前后对比', async () => {
     expect(store.corpusStatus().allVerified).toBe(true);
     const plan = await store.generatePlan({ chapter: 103, from: 1, to: 3, grade: '大学', level: 'beginner', sessionsPerWeek: 1, sessionMinutes: 45, weeks: 2, lang: 'zh' });
@@ -349,7 +368,8 @@ describe('Store 端到端闭环（验收 02/10）', () => {
     expect(done.after).toBeTruthy();
     expect(done.after!.students.length).toBe(5);
     // 改一个答案 → 群体重算
-    const q = p1.questions[0];
+    // 改答案要按这名学生那一版（选项可能被打乱）的下标，拿原卷下标会把「改错」误判成答对
+    const q = store.questionsForStudentPinned(p1.id, 'stu-a')[0];
     const before = store.analyze(p1.id, 'zh').students.find((s) => s.studentId === 'stu-a')!.total.correct;
     store.setAnswer(p1.id, 'stu-a', q.id, typeof q.answer === 'number' ? (q.answer + 1) % q.options.length : []);
     const after = store.analyze(p1.id, 'zh').students.find((s) => s.studentId === 'stu-a')!.total.correct;

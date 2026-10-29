@@ -21,6 +21,9 @@ vi.mock('electron', () => ({
   shell: { openPath: async () => '', showItemInFolder: () => undefined },
   BrowserWindow: class {},
 }));
+// 运行状态每一步 / 每个进度都原子写并 fsync；并发全量跑时多 worker 抢磁盘落盘把单条用例拖过超时。
+// 这里只验业务结果不验断电持久性：保留「写临时文件 → rename」，只把 fsync 置空。
+vi.mock('fs', async (orig) => ({ ...(await orig<typeof import('fs')>()), fsyncSync: () => undefined }));
 vi.mock('../../services/audit', () => ({ audit: () => undefined }));
 vi.mock('../../services/bidWriter/docx', async (orig) => ({
   ...(await orig<typeof import('../../services/bidWriter/docx')>()),

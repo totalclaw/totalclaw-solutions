@@ -1,12 +1,12 @@
 {
   "id": "workbench-campus-ai",
-  "version": "2.0.4",
-  "treeDigest": "f9379f38db3c27f0e53313651bf97e1751b1a4607863d02448a0281eca068951",
+  "version": "2.0.5",
+  "treeDigest": "05f2694994f55899b7feae6e5e12f6acde8da1f1886f9a2b18680b65210e2a08",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1456,
-      "sha256": "863a3d0f77e8bf3f0b4eb07dc2d827d7719b5ac52e221bf8388f5239fc47d0aa"
+      "size": 1886,
+      "sha256": "6cd477d543f44ddc6985dc188f4e665eed7a13bdaeffeb45c57d5a00dbd8c9cb"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 229810,
-      "sha256": "313f5b0a1f6151b36e7f3b191a8da39391c0627feb10f2c41ae1f45be666421f"
+      "size": 228156,
+      "sha256": "aca41996fa3576015217d186021c53227fc456cb42ab44551d1c0d94a1d94cba"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 376751,
-      "sha256": "d0a4d21842ba4f7c89e8728f60c470922d6f5dfeaa2d19e535bd79da360cf6e2"
+      "size": 376711,
+      "sha256": "95c3cdd5f96d97fa8f698c01fc6f3dddb9386666d708e0d52ca854855e0be6a3"
     },
     {
       "path": "dist/style.css",
-      "size": 43287,
-      "sha256": "a4df3d1ab3cff0d52b279b9a23ceedd8a0e7d2a86f2cfc94809e05b81fad9d57"
+      "size": 43333,
+      "sha256": "6ee7fbfe4624f3837bc2d714163ae83d71d6a84f9dc80c21f3c27862b26215dd"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2412,
-      "sha256": "b0f49939422693553a95f4a51e4b598fdd1f662c6165d604b551dfd8fb1f69ff"
+      "sha256": "6a0d3fe5f87b8b336f7c9ee71fc6bb226127a95b5e1a97266d75b3541e0bacec"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.5",
+      "ref": "workbench-campus-ai@2.0.5",
+      "treeDigest": "05f2694994f55899b7feae6e5e12f6acde8da1f1886f9a2b18680b65210e2a08",
+      "filesRef": "index/workbench-campus-ai/2.0.5.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.6",
+      "hostApi": 2,
+      "publishedAt": "2026-10-29"
+    },
     {
       "version": "2.0.4",
       "ref": "workbench-campus-ai@2.0.4",

@@ -3,7 +3,7 @@
     <header class="eh-head">
       <PageBackButton />
       <div class="eh-title">
-        <h2>{{ direction === 'quran' ? $t('AI 学习中心 · 古兰经教学平台') : $t('AI 学习中心 · 文档生成教案') }}</h2>
+        <h2>{{ direction === 'quran' ? $t('智能备课助教 · 古兰经教学平台') : $t('智能备课助教 · 文档生成教案') }}</h2>
         <p>{{ direction === 'quran' ? $t('标准经文语料 → 章节结构与课程 → 动态出题与学情分析 → 强化教学与复测；学生用同一套校内服务扫码作答。') : $t('导入教材讲义 → 一次生成教案、学生要点与小测 → 审核发布 → 学生浏览器直接学习，数据不出本机。') }}</p>
       </div>
       <span :class="['eh-run', status.running ? 'on' : 'off']">
