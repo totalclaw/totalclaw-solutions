@@ -447,7 +447,8 @@ module.exports = {
     if (wbTimer.unref) wbTimer.unref();
     if (settings().screenAutoStart && fleet.mode() !== 'employee') screen.start({ port: settings().screenPort || undefined }).catch((e) => ctx.log.warn(e.message));
 
-    disposers = [
+    // push 而不是整体赋值：前面已登记的清理项（自动演示 autopilot.stop）不能被冲掉，否则停用 / 卸载后它的定时器还在跑
+    disposers.push(
       () => clearInterval(fleetTimer),
       () => clearInterval(wbTimer),
       () => clearInterval(mailTimer),
@@ -461,7 +462,7 @@ module.exports = {
       () => closeWindow(),
       () => screen.stop(),
       () => runner.resetAll(),
-    ];
+    );
 
     const info = () => ({
       id: ctx.id,
