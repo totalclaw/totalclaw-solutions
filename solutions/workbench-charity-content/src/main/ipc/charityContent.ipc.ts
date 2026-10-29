@@ -29,7 +29,7 @@ import { createCharityRuntime } from '../services/charityContent/runtime';
 import { resolveAgentPython } from '../services/agentPython';
 import { readAgentEnv } from '../services/mediaModelConfig';
 import { resolveFfmpegPair, ffmpegSpawnEnv } from '../services/ffmpegPath';
-import { shellResourcesPath } from '../services/runtimeLocation';
+import { shellResource, shellResourcesPath } from '../services/runtimeLocation';
 import { buildLocalMediaUrl } from '../services/mediaProtocol';
 import { extractDocument } from '../services/documentExtractor';
 import { LANGS, normalizeArchive } from '../services/charityContent/archive';
@@ -73,7 +73,7 @@ export function registerCharityContentHandlers(deps: WorkbenchIpcDeps): void {
     return {
       ffmpeg: pair.ffmpeg, ffprobe: pair.ffprobe,
       python: resolveAgentPython(res),
-      scriptsDir: join(res, 'bundled-skills', 'marketing-sales', 'totalclaw-video-studio', 'scripts'),
+      scriptsDir: shellResource('bundled-skills', 'marketing-sales', 'totalclaw-video-studio', 'scripts'),
       env: { ...process.env, ...agentEnv, ...ffmpegSpawnEnv(res), PYTHONUTF8: '1', PYTHONDONTWRITEBYTECODE: '1', PYTHONIOENCODING: 'utf-8' },
     };
   }

@@ -32,7 +32,7 @@ vi.mock('../services/councilChatRouter', () => ({ runOneshotChat: vi.fn(async ()
 vi.mock('../services/agentPython', () => ({ resolveAgentPython: () => null }));
 vi.mock('../services/mediaModelConfig', () => ({ readAgentEnv: () => ({}) }));
 vi.mock('../services/ffmpegPath', () => ({ resolveFfmpegPair: () => ({ ffmpeg: null, ffprobe: null }), ffmpegSpawnEnv: () => ({}) }));
-vi.mock('../services/runtimeLocation', () => ({ runtimeResourcesPath: () => H.resources, shellResourcesPath: () => H.resources }));
+vi.mock('../services/runtimeLocation', () => ({ runtimeResourcesPath: () => H.resources, shellResourcesPath: () => H.resources, shellResource: (...s: string[]) => join(H.resources, ...s) }));
 vi.mock('../services/documentExtractor', () => ({ extractDocument: vi.fn(async () => ({ pages: [{ page: 1, text: '' }, { page: 2, text: 'x'.repeat(50) }, { page: 3, text: 'y'.repeat(50) }, { page: 4, text: 'z'.repeat(50) }] })) }));
 vi.mock('../services/charityContent/render', () => ({
   renderHtmlToPdf: vi.fn(async (_h: string, out: string) => writeFileSync(out, 'pdf')),

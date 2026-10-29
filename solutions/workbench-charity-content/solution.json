@@ -7,7 +7,7 @@
     "charity-content",
     "慈善活动内容工场"
   ],
-  "version": "2.0.5",
+  "version": "2.0.6",
   "kind": "workbench",
   "category": "公益传播",
   "icon": "icon-solutions",
@@ -32,7 +32,7 @@
     "hidden": false
   },
   "compat": {
-    "minAppVersion": "2.0.6",
+    "minAppVersion": "2.0.7",
     "hostApi": 2
   },
   "runtime": {

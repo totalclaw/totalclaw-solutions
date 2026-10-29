@@ -6,7 +6,7 @@
   "aliases": [
     "foreign-trade"
   ],
-  "version": "2.0.3",
+  "version": "2.0.4",
   "kind": "workbench",
   "category": "外贸",
   "icon": "icon-solutions",
@@ -29,7 +29,7 @@
     "hidden": false
   },
   "compat": {
-    "minAppVersion": "2.0.5",
+    "minAppVersion": "2.0.7",
     "hostApi": 2
   },
   "runtime": {

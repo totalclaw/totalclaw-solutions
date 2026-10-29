@@ -31,7 +31,10 @@ vi.mock('../services/foreignTrade/store', async (orig) => {
   class TestStore extends m.ForeignTradeStore { constructor() { super(undefined, () => join(h.root, 'userData')); } }
   return { ...m, ForeignTradeStore: TestStore };
 });
-vi.mock('../services/runtimeLocation', () => ({ shellResourcesPath: () => resolve(__dirname, '../../../../../resources') }));
+vi.mock('../services/runtimeLocation', () => ({
+  shellResourcesPath: () => resolve(__dirname, '../../../../../resources'),
+  shellResource: (...segs: string[]) => resolve(__dirname, '../../../../../resources', ...segs),
+}));
 vi.mock('../util/quitRegistry', () => ({ onAppWillQuit: () => undefined }));
 vi.mock('../services/bidWriter/docx', () => ({ writePdfFromHtml: vi.fn(async (out: string, html: string) => { writeFileSync(out, `%PDF-fake ${html.length}`); }) }));
 vi.mock('../services/foreignTrade/mailboxes', async (orig) => ({

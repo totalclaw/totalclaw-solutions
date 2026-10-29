@@ -37,7 +37,7 @@ __export(entry_main_exports, {
 module.exports = __toCommonJS(entry_main_exports);
 
 // ../../../totalclaw-solutions/solutions/workbench-finance-audit/src/main/ipc/financeAudit.ipc.ts
-var import_electron3 = require("electron");
+var import_electron4 = require("electron");
 var import_i18n99 = require("npm:@totalclaw/i18n");
 var import_ipc_contracts23 = require("npm:@totalclaw/ipc-contracts");
 var import_userFacingError = require("host:apps/desktop-shell/src/main/utils/userFacingError.ts");
@@ -12326,14 +12326,24 @@ var import_node_path18 = require("node:path");
 var import_i18n57 = require("npm:@totalclaw/i18n");
 var import_pptxEditor = require("host:apps/desktop-shell/src/main/services/pptxEditor.ts");
 var import_skillRunner12 = require("host:apps/desktop-shell/src/main/services/financeAudit/skillRunner.ts");
+var import_electron = require("electron");
+var import_runtimeLocation = require("host:apps/desktop-shell/src/main/services/runtimeLocation.ts");
+function isPackagedApp() {
+  try {
+    return import_electron.app?.isPackaged ?? false;
+  } catch {
+    return false;
+  }
+}
 var DECK_SLIDES = 8;
 var DECK_BULLETS = 6;
 function templateRoots() {
   const out = [];
   try {
-    if (process.resourcesPath) out.push((0, import_node_path18.join)(process.resourcesPath, "finance-audit", "templates"));
+    if (process.resourcesPath) out.push((0, import_runtimeLocation.shellResource)("finance-audit", "templates"));
   } catch {
   }
+  if (isPackagedApp()) return out;
   for (let up = 3; up <= 8; up += 1) out.push((0, import_node_path18.join)(__dirname, ...Array(up).fill(".."), "resources", "finance-audit", "templates"));
   return out;
 }
@@ -19099,7 +19109,7 @@ function accountingActions(ctx) {
 }
 
 // ../../../totalclaw-solutions/solutions/workbench-finance-audit/src/main/ipc/financeAudit/audit.actions.ts
-var import_electron = require("electron");
+var import_electron2 = require("electron");
 var import_node_fs5 = require("node:fs");
 var import_node_path25 = require("node:path");
 var import_i18n90 = require("npm:@totalclaw/i18n");
@@ -19537,7 +19547,7 @@ function auditActions(ctx) {
     "office-output.pick": async (p3) => {
       const filters = p3?.kind === "pptx" ? [{ name: "PowerPoint", extensions: ["pptx"] }] : [{ name: "Excel", extensions: ["xlsx", "xlsm", "xls"] }];
       const w = ctx.win();
-      const r = w ? await import_electron.dialog.showOpenDialog(w, { properties: ["openFile"], filters }) : await import_electron.dialog.showOpenDialog({ properties: ["openFile"], filters });
+      const r = w ? await import_electron2.dialog.showOpenDialog(w, { properties: ["openFile"], filters }) : await import_electron2.dialog.showOpenDialog({ properties: ["openFile"], filters });
       return { paths: r.canceled ? [] : r.filePaths };
     },
     "office-output.inspect": (p3) => {
@@ -19802,7 +19812,7 @@ function treasuryActions(ctx) {
 }
 
 // ../../../totalclaw-solutions/solutions/workbench-finance-audit/src/main/ipc/financeAudit/capital.actions.ts
-var import_electron2 = require("electron");
+var import_electron3 = require("electron");
 var import_node_fs6 = require("node:fs");
 var import_node_path27 = require("node:path");
 var import_i18n94 = require("npm:@totalclaw/i18n");
@@ -19992,7 +20002,7 @@ function capitalActions(ctx) {
     "capital.pickTable": async () => {
       const w = ctx.win();
       const opts = { properties: ["openFile"], filters: [{ name: "Excel / CSV", extensions: ["xlsx", "xls", "xlsm", "csv"] }] };
-      const r = w ? await import_electron2.dialog.showOpenDialog(w, opts) : await import_electron2.dialog.showOpenDialog(opts);
+      const r = w ? await import_electron3.dialog.showOpenDialog(w, opts) : await import_electron3.dialog.showOpenDialog(opts);
       return { paths: r.canceled ? [] : r.filePaths };
     },
     "capital.inspectTable": (p3) => {
@@ -22019,7 +22029,7 @@ function registerFinanceAuditHandlers(deps) {
       actions[k4] = fn;
     }
   }
-  import_electron3.ipcMain.handle(import_ipc_contracts23.IPC_CHANNELS.WORKBENCH_FINAUDIT_INVOKE, async (_e, req2) => {
+  import_electron4.ipcMain.handle(import_ipc_contracts23.IPC_CHANNELS.WORKBENCH_FINAUDIT_INVOKE, async (_e, req2) => {
     const name = String(req2?.action || "");
     const fn = Object.prototype.hasOwnProperty.call(actions, name) ? actions[name] : null;
     if (!fn) throw new Error((0, import_i18n99.t)("\u672A\u77E5\u64CD\u4F5C\uFF1A{p0}", { p0: name }));

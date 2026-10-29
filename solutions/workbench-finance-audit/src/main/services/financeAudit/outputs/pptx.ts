@@ -12,14 +12,23 @@ import { i18nKey } from '@totalclaw/i18n';
 import type { FauLocale } from '@totalclaw/ipc-contracts';
 import { readPptx, writePptx, type PptPatch } from '../../pptxEditor';
 import { FauStepError } from '../skillRunner';
+import { app } from 'electron';
+import { shellResource } from '../../runtimeLocation';
+
+/** 同宿主 runtimeLocation.isPackagedApp；放在包里：2.0.6 宿主还没有这个导出 */
+function isPackagedApp(): boolean {
+  try { return app?.isPackaged ?? false; } catch { return false; }
+}
 
 export const DECK_SLIDES = 8;
 export const DECK_BULLETS = 6;
 
 function templateRoots(): string[] {
   const out: string[] = [];
-  try { if ((process as any).resourcesPath) out.push(join((process as any).resourcesPath, 'finance-audit', 'templates')); } catch { /* 非 electron */ }
-  // 源码（src/main/services/financeAudit/outputs）上溯 7 层；打包后的 dist/main 上溯 4 层
+  try { if ((process as any).resourcesPath) out.push(shellResource('finance-audit', 'templates')); } catch { /* 非 electron */ }
+  // 打包版只认壳 / 热更版本目录里那份（同 skillRunner.bundledSkillsRoots）
+  if (isPackagedApp()) return out;
+  // 源码（src/main/services/financeAudit/outputs）上溯 7 层；dist/main 上溯 4 层
   for (let up = 3; up <= 8; up += 1) out.push(join(__dirname, ...Array(up).fill('..'), 'resources', 'finance-audit', 'templates'));
   return out;
 }

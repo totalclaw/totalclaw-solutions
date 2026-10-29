@@ -68,6 +68,7 @@
     "apps/desktop-shell/src/main/services/pptxEditor.ts",
     "apps/desktop-shell/src/main/services/processLibrary/store.ts",
     "apps/desktop-shell/src/main/services/qiyeApiClient.ts",
+    "apps/desktop-shell/src/main/services/runtimeLocation.ts",
     "apps/desktop-shell/src/main/services/serviceSettlement/excel.ts",
     "apps/desktop-shell/src/main/services/workbenchLlm.ts",
     "apps/desktop-shell/src/main/utils/userFacingError.ts",

@@ -1,0 +1,47 @@
+{
+  "id": "workbench-finance-audit",
+  "version": "2.0.4",
+  "treeDigest": "799c00715e0d09055ab82af6e46eaf7e0eba832aad44e573c2f39c9df0ac02b0",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 1674,
+      "sha256": "3c137b6e5a2fbdd36dbce284f749c72bd492ae5639de7028e8b90b92a71d2ea6"
+    },
+    {
+      "path": "README.md",
+      "size": 1619,
+      "sha256": "c62ca94108e7822b2b73772a904efea19ff5118882e317f1209f18e2744c01f9"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 4882,
+      "sha256": "4d9f0e66b3d60c75c500bda0a45f51138d8d081441bd8e0da7a25a001bd2a010"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 1495923,
+      "sha256": "c96c39b6e044ada03ae9bd29e7e1a44148100460893698ee5b5c1d3c3d3b00af"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 862613,
+      "sha256": "afb9a51eaa977ca1b8fcb404ccc0b89784e8bbf4cfbbec9de83ed80ff474eec2"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 32820,
+      "sha256": "50c7fe4986704d73bf3e2bb7d0be97ee1d66f9da36632730d5a654b056f453d3"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2831,
+      "sha256": "aa4df5ab2a984c7f8f4672049459e041a921bc24e7d90f3c0e848f05ca3c511c"
+    }
+  ]
+}

@@ -899,13 +899,13 @@
       "icon": "icon-solutions",
       "order": 140,
       "description": "多邮箱接管，覆盖平台运营、客户开发、询盘处理、客户背调、跟进、内容生产、网站社媒、报价、订单推进与数据整理十项日常工作。",
-      "version": "2.0.3",
+      "version": "2.0.4",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.7",
         "hostApi": 2
       },
       "access": {
@@ -946,8 +946,8 @@
       "capabilities": [],
       "path": "solutions/workbench-foreign-trade",
       "fileCount": 8,
-      "size": 914385,
-      "treeDigest": "0732aefffdfbbdeef6f1bf94cffa18539b07085342858fa056347e1c9c0bbab8",
+      "size": 913713,
+      "treeDigest": "3bb0172e16bac1836ebb1253233b77e5d763d526064918856bb040a8e58dbaad",
       "largeAssets": [
         {
           "path": "resources/bundled-skills/foreign-trade/ft-trade-knowledge-base/references/领英获客.pdf",
@@ -956,7 +956,7 @@
           "origin": "resources/bundled-skills/foreign-trade/ft-trade-knowledge-base/references/领英获客.pdf"
         }
       ],
-      "changelog": "- 界面样式改用宿主设计 token（圆角 / 字号 / 主色等随主题统一，同步 qiye-app master 的界面改造）；需要 App 2.0.6 起（更早的 App 继续用上一版）。",
+      "changelog": "- 资源目录改按宿主 shellResource 定位：App 热更新生效后也能找到随包资源（同步 qiye-app 热更新 Phase B）。",
       "filesRef": "index/workbench-foreign-trade.json"
     },
     {
@@ -1164,13 +1164,13 @@
       "icon": "icon-solutions",
       "order": 180,
       "description": "短视频生成并发抖音、快手、小红书、视频号；数字人出镜介绍企业；商品图文自动上下架；收银与财务数据自动取数、统计并推送经营日报。",
-      "version": "2.0.5",
+      "version": "2.0.6",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.6",
+        "minAppVersion": "2.0.7",
         "hostApi": 2
       },
       "access": {
@@ -1211,10 +1211,10 @@
       "capabilities": [],
       "path": "solutions/workbench-biz-automation",
       "fileCount": 8,
-      "size": 460691,
-      "treeDigest": "57d38594d95dde283cae44ec4fc3dbd73154c98884f504d535a0bfa0fe640b55",
+      "size": 460878,
+      "treeDigest": "0f861a346ac25a1b0e5f0d9bc32bb9a805f9301d8f5c99f2a746d136588a5090",
       "largeAssets": [],
-      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。\n- 停止时已点过「发布」的平台记为待核对，不再退回已审核状态一键重发。",
+      "changelog": "- 成片脚本目录改按宿主 shellResource 定位：App 热更新生效后也能找到壳里的视频脚本（同步 qiye-app 热更新 Phase B）。",
       "filesRef": "index/workbench-biz-automation.json"
     },
     {
@@ -1615,7 +1615,7 @@
       "icon": "icon-solutions",
       "order": 250,
       "description": "月结关账、对账、审计与内控、税务合规、管理报告、资金风险与投融资估值，48 个模块分步出底稿，人工签核后归档；中英阿三语，适配中国、国际、沙特与阿联酋准则税制。",
-      "version": "2.0.3",
+      "version": "2.0.4",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1667,10 +1667,10 @@
       "capabilities": [],
       "path": "solutions/workbench-finance-audit",
       "fileCount": 8,
-      "size": 2402098,
-      "treeDigest": "66ea9d9868999aaaa6b1020ec6d91184a4dde6588fcb2fdcd1cf11238f2f0d3f",
+      "size": 2402658,
+      "treeDigest": "799c00715e0d09055ab82af6e46eaf7e0eba832aad44e573c2f39c9df0ac02b0",
       "largeAssets": [],
-      "changelog": "- 越南语 / 马来语界面：语言判定修正；只备了中英阿的内容（报告、规则来源与税务输出译文、默认输出语言）回落英文。\n- 「去新建技能」等 AutoCoder 入口与说明按账号是否开通 AutoCoder 显示，没开通的账号看不到。\n- 测试用例同步 qiye-app（不影响功能）。\n- 需要 App 2.0.7 起（AutoCoder 开关用到宿主 editionSnapshot；更早的 App 继续用上一版）。",
+      "changelog": "- 汇报 PPT 模板：打包版只认壳 / 热更版本目录里的模板，不再沿目录往上找（热更新生效时会找出校验范围），同步 qiye-app db4baaf4。",
       "filesRef": "index/workbench-finance-audit.json"
     },
     {
@@ -1687,13 +1687,13 @@
       "description": "放进活动照片与视频：自动生成活动档案、中英阿三语报告 PDF 与海报、高保真语音、9:16 宣传短视频，一键完整流程。",
       "descriptionEn": "Turn one charity event's raw material (photos, field notes, donation data) into multilingual campaign content in one pass: posters and illustrations, short-video cuts, social posts and donor thank-you letters, exported per platform aspect ratio and language, with a reviewable trail.",
       "descriptionAr": "حوّل مواد فعالية خيرية واحدة (الصور، السجلات الميدانية، بيانات التبرعات) إلى محتوى ترويجي متعدد اللغات بخطوة واحدة: ملصقات وصور، مقاطع فيديو قصيرة، منشورات للتواصل الاجتماعي ورسائل شكر للمتبرعين، تُصدَّر حسب مقاس كل منصة ولغتها مع سجل كامل قابل للمراجعة.",
-      "version": "2.0.5",
+      "version": "2.0.6",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.6",
+        "minAppVersion": "2.0.7",
         "hostApi": 2
       },
       "access": {
@@ -1734,8 +1734,8 @@
       "capabilities": [],
       "path": "solutions/workbench-charity-content",
       "fileCount": 8,
-      "size": 322116,
-      "treeDigest": "f12a0b90381cd089eef67ffb36a21634b35d2f572eb19987492e309a438176f3",
+      "size": 322303,
+      "treeDigest": "8c97e84f50479e9ea6f24a03cb2383557cd4bd01cd61729b568badedf703ea54",
       "largeAssets": [
         {
           "path": "resources/bundled-solutions/charity-content/demo-materials/58865d8353e8b485e0ce7db1b3a23559.mp4",
@@ -1792,7 +1792,7 @@
           "origin": "resources/bundled-solutions/charity-content/prebaked/video-zh.mp4"
         }
       ],
-      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。\n- 按钮交互状态：禁用的按钮悬停不再变色，选中 / 展开态不被悬停覆盖。\n- 越南语 / 马来语界面：语言判定修正；只备了中英阿的内容（报告、规则来源与税务输出译文、默认输出语言）回落英文。",
+      "changelog": "- 成片脚本目录改按宿主 shellResource 定位：App 热更新生效后也能找到壳里的视频脚本（同步 qiye-app 热更新 Phase B）。",
       "filesRef": "index/workbench-charity-content.json"
     },
     {

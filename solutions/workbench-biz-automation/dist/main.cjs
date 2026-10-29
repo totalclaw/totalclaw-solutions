@@ -1071,7 +1071,7 @@ function registerBizAutomationHandlers(deps) {
       ffmpeg: pair.ffmpeg,
       ffprobe: pair.ffprobe,
       python: (0, import_agentPython.resolveAgentPython)(res),
-      scriptsDir: (0, import_node_path3.join)(res, "bundled-skills", "marketing-sales", "totalclaw-video-studio", "scripts"),
+      scriptsDir: (0, import_runtimeLocation.shellResource)("bundled-skills", "marketing-sales", "totalclaw-video-studio", "scripts"),
       env: { ...process.env, ...agentEnv, ...(0, import_ffmpegPath.ffmpegSpawnEnv)(res), PYTHONUTF8: "1", PYTHONDONTWRITEBYTECODE: "1", PYTHONIOENCODING: "utf-8" }
     };
   };

@@ -34,7 +34,7 @@ vi.mock('../services/councilChatRouter', () => ({
 vi.mock('../services/agentPython', () => ({ resolveAgentPython: () => null }));
 vi.mock('../services/mediaModelConfig', () => ({ readAgentEnv: () => ({}) }));
 vi.mock('../services/ffmpegPath', () => ({ resolveFfmpegPair: () => ({ ffmpeg: null, ffprobe: null }), ffmpegSpawnEnv: () => ({}) }));
-vi.mock('../services/runtimeLocation', () => ({ runtimeResourcesPath: () => join(tmpdir(), 'cc-no-resources'), shellResourcesPath: () => join(tmpdir(), 'cc-no-resources') }));
+vi.mock('../services/runtimeLocation', () => ({ runtimeResourcesPath: () => join(tmpdir(), 'cc-no-resources'), shellResourcesPath: () => join(tmpdir(), 'cc-no-resources'), shellResource: (...s: string[]) => join(tmpdir(), 'cc-no-resources', ...s) }));
 vi.mock('../services/charityContent/render', () => ({
   renderHtmlToPdf: vi.fn(async (_h: string, out: string) => writeFileSync(out, 'pdf')),
   renderHtmlToImage: vi.fn(async (_h: string, out: string) => writeFileSync(out, 'img')),

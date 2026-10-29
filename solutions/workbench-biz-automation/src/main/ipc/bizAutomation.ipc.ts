@@ -43,7 +43,7 @@ import type { PipelineDeps } from '../services/charityContent/pipeline';
 import { resolveFfmpegPair, ffmpegSpawnEnv } from '../services/ffmpegPath';
 import { resolveAgentPython } from '../services/agentPython';
 import { readAgentEnv } from '../services/mediaModelConfig';
-import { shellResourcesPath } from '../services/runtimeLocation';
+import { shellResource, shellResourcesPath } from '../services/runtimeLocation';
 import { runFalJob, uploadFalFile, falKeysReady } from './mediaFal.ipc';
 import { bindTtsRouterToSolution, getTtsRouter } from '../services/media/ttsRouter';
 import { isTaskFailed, isTaskFinished } from '../services/digitalHumanProc';
@@ -107,7 +107,7 @@ export function registerBizAutomationHandlers(deps: WorkbenchIpcDeps): () => voi
     try { const home = agentHome(); if (home) agentEnv = readAgentEnv(home); } catch { agentEnv = {}; }
     return {
       ffmpeg: pair.ffmpeg, ffprobe: pair.ffprobe, python: resolveAgentPython(res),
-      scriptsDir: join(res, 'bundled-skills', 'marketing-sales', 'totalclaw-video-studio', 'scripts'),
+      scriptsDir: shellResource('bundled-skills', 'marketing-sales', 'totalclaw-video-studio', 'scripts'),
       env: { ...process.env, ...agentEnv, ...ffmpegSpawnEnv(res), PYTHONUTF8: '1', PYTHONDONTWRITEBYTECODE: '1', PYTHONIOENCODING: 'utf-8' },
     };
   };

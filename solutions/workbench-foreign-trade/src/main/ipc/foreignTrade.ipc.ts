@@ -47,7 +47,7 @@ import {
 } from '../services/foreignTrade/tradeDocs';
 import { normalizeName, ScreeningLists, SCREENING_IDS, SCREENING_STALE_DAYS } from '../services/foreignTrade/screening';
 import { buildHsTable, hsSearch, parseHsCsv, validateHsCode, type HsTable } from '../services/foreignTrade/hsCodes';
-import { shellResourcesPath } from '../services/runtimeLocation';
+import { shellResource } from '../services/runtimeLocation';
 import * as P from '../services/foreignTrade/prompts';
 import { documentsFolderName } from '../services/brandPaths';
 
@@ -672,7 +672,7 @@ export function registerForeignTradeHandlers(deps: WorkbenchIpcDeps): () => void
   let hsTable: HsTable | null = null;
   function hs(): HsTable {
     if (!hsTable) {
-      const p = join(shellResourcesPath(), 'foreign-trade', 'hs2022.csv');
+      const p = shellResource('foreign-trade', 'hs2022.csv');
       if (!existsSync(p)) throw new Error(i18nT('缺少 HS 编码表（foreign-trade/hs2022.csv），请重新安装应用'));
       hsTable = buildHsTable(parseHsCsv(readFileSync(p, 'utf-8')));
     }

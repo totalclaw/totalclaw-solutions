@@ -1,12 +1,12 @@
 {
   "id": "workbench-biz-automation",
-  "version": "2.0.5",
-  "treeDigest": "57d38594d95dde283cae44ec4fc3dbd73154c98884f504d535a0bfa0fe640b55",
+  "version": "2.0.6",
+  "treeDigest": "0f861a346ac25a1b0e5f0d9bc32bb9a805f9301d8f5c99f2a746d136588a5090",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 2223,
-      "sha256": "b458d0afcf33acc5904835a5cf49873c9c009c2336b9ecd30274121ab3159588"
+      "size": 2401,
+      "sha256": "b5326780efcad1017d36cc8fe645926fbd67697906adc01b32446794fb0a4b44"
     },
     {
       "path": "README.md",
@@ -20,8 +20,8 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 142486,
-      "sha256": "481782dc7296eba7cca0ee94e26b18b5e4ac9359b8b11dcfc378d9942c381499"
+      "size": 142495,
+      "sha256": "0ef92fa9d43eef5bf4d277e4af7cea1d3cd521d2e4d6d1ab1c74bc180555913d"
     },
     {
       "path": "dist/renderer.mjs",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2311,
-      "sha256": "e20a87086f7f72b556c048695e6e3d3a3fffe9ed6e4344aef28b6fb9ff0204f7"
+      "sha256": "1c20d69732a45ce3b9d60ef2c0534de885f2a2dda3a5bc8e665fa01a8d2f4234"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.6",
+      "ref": "workbench-biz-automation@2.0.6",
+      "treeDigest": "0f861a346ac25a1b0e5f0d9bc32bb9a805f9301d8f5c99f2a746d136588a5090",
+      "filesRef": "index/workbench-biz-automation/2.0.6.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.7",
+      "hostApi": 2,
+      "publishedAt": "2026-10-29"
+    },
     {
       "version": "2.0.5",
       "ref": "workbench-biz-automation@2.0.5",

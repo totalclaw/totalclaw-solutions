@@ -1,12 +1,12 @@
 {
   "id": "workbench-charity-content",
-  "version": "2.0.5",
-  "treeDigest": "f12a0b90381cd089eef67ffb36a21634b35d2f572eb19987492e309a438176f3",
+  "version": "2.0.6",
+  "treeDigest": "8c97e84f50479e9ea6f24a03cb2383557cd4bd01cd61729b568badedf703ea54",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1867,
-      "sha256": "1d84a83be928744406044b0170c6c53cfaed34c88c786d960b41d58f04b3ae4f"
+      "size": 2045,
+      "sha256": "1209cb500a0ee8e99c3eea76f630e7d1a562d63c54fd58340f367033d0576afe"
     },
     {
       "path": "README.md",
@@ -20,8 +20,8 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 60319,
-      "sha256": "2a32f5d92c597547e25bf7130f3014cc21ffe52d9713659be3e19032fe69cfed"
+      "size": 60328,
+      "sha256": "7a869e9d72057c7b7ee749527bec38a45c93b8dac11e7a72c8d22bc98e98a0bf"
     },
     {
       "path": "dist/renderer.mjs",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 5805,
-      "sha256": "2231510d945d27e199ff2fb997a5743616053d5096552a435e93074a973dd6a6"
+      "sha256": "80730fe8ce8852ef7d9c90d22a79f84c420bc850b6edef0aca5d2ace9a522ca8"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.6",
+      "ref": "workbench-charity-content@2.0.6",
+      "treeDigest": "8c97e84f50479e9ea6f24a03cb2383557cd4bd01cd61729b568badedf703ea54",
+      "filesRef": "index/workbench-charity-content/2.0.6.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.7",
+      "hostApi": 2,
+      "publishedAt": "2026-10-29"
+    },
     {
       "version": "2.0.5",
       "ref": "workbench-charity-content@2.0.5",
