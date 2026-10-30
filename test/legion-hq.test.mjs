@@ -1212,6 +1212,66 @@ test('关掉演示模式：还在等老板确认的示例事务自动批完，�
   }
 });
 
+// 运营中心随应用一起激活：没人开过就不能在后台自动下令 / 自动批准 / 发通知（用户实机：一晚上 200+ 条示例事务、通知不停）
+function legionCtx(prefix, settings) {
+  const dataRoot = mkdtempSync(join(tmpdir(), prefix));
+  const handlers = new Map();
+  const ctx = {
+    id: 'workbench-legion-hq', version: '1.0.2', appVersion: '2.0.8', log: { info() {}, warn() {} },
+    dataPath: (rel) => join(dataRoot, rel),
+    readJson: (rel, fb) => { try { return JSON.parse(readFileSync(join(dataRoot, rel), 'utf8')); } catch { return fb; } },
+    writeJson: (rel, v) => { mkdirSync(join(dataRoot, rel, '..'), { recursive: true }); writeFileSync(join(dataRoot, rel), JSON.stringify(v)); },
+    packagePath: (rel) => join(DIR, rel), handle: (a, fn) => handlers.set(a, fn), emit: () => {},
+  };
+  if (settings) ctx.writeJson('legion-hq/settings.json', settings);
+  return { ctx, call: (a, p) => handlers.get(a)(p) };
+}
+
+test('全新安装（没设过演示模式）：激活后演示模式是关的，不自动下令；手动下的事真实运行', async () => {
+  const { ctx, call } = legionCtx('lhq-fresh-');
+  const mod = require('./index.cjs');
+  await mod.activate(ctx);
+  try {
+    await call('fleet.assign', { legionId: 'legion-finance', machineId: (await call('fleet.list'))[0].id, on: true });
+    assert.equal(call('info').settings.demoRun, false);
+    await tick(300);
+    assert.equal((await call('state')).tasks.length, 0, '没开演示模式不能自己下令');
+    const { taskId } = await call('command', { text: '算一下成本', legions: ['legion-finance'] });
+    assert.equal((await call('tasks.get', { taskId })).simulated, false);
+  } finally {
+    await mod.deactivate();
+  }
+});
+
+test('用户开过演示模式（demoRun: true）：激活后照常自动下令并模拟；示例事务待拍板不发通知 / IM', async () => {
+  const sent = [];
+  const Module = createRequire(import.meta.url)('node:module');
+  const origLoad = Module._load;
+  Module._load = function (req, ...rest) {
+    if (req === 'host:apps/desktop-shell/src/main/services/imRunLink.ts') return { pushToImOwner: async (text) => (sent.push(text), true) };
+    return origLoad.call(this, req, ...rest);
+  };
+  const path = require.resolve('./index.cjs');
+  delete require.cache[path];
+  const mod = require('./index.cjs');
+  const { ctx, call } = legionCtx('lhq-demo-on-', { demoRun: true, imPush: true, notify: false });
+  ctx.host = { deps: {} };
+  try {
+    await mod.activate(ctx);
+    assert.equal(call('info').settings.demoRun, true);
+    await call('fleet.assign', { legionId: 'legion-finance', machineId: (await call('fleet.list'))[0].id, on: true });
+    const { taskId } = await call('command', { text: '给供应商付款 5 万元', legions: ['legion-finance'] });
+    await until(() => call('tasks.get', { taskId })?.status === 'awaiting', 30000);
+    assert.equal((await call('tasks.get', { taskId })).simulated, true);
+    await tick(50);
+    assert.deepEqual(sent, [], '演示事务 6 秒后自动批准，不是真要老板拍板');
+  } finally {
+    await mod.deactivate();
+    Module._load = origLoad;
+    delete require.cache[path];
+  }
+});
+
 test('自动分配：有员工机时主控不承载部门，按人数均衡；没有员工机时全在主控', () => {
   const { planPlacement } = require('./fleet.cjs');
   const L = [['rd', 10], ['legal', 5], ['hr', 4], ['finance', 11], ['ops', 9], ['sales', 7], ['cs', 4], ['admin', 5]].map(([id, staff]) => ({ id, staff }));

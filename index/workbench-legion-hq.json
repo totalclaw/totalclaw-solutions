@@ -1,12 +1,12 @@
 {
   "id": "workbench-legion-hq",
-  "version": "1.0.1",
-  "treeDigest": "36bbb83f4e43fac12f5b13f77f9d8307e16a23222a54cecffa46c3f905e6a535",
+  "version": "1.0.2",
+  "treeDigest": "51fc411feb9c65be1ae443e789a18e493ca5efdcea06bc9451f73f5941a2791f",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 3746,
-      "sha256": "1c114d2b2579675db966222c491ac3433ff8841a1db98b53e575c039805b56cf"
+      "size": 4284,
+      "sha256": "76d9f3afc6e0c9baf4915f0ed7b26b2df3cdb48fff6fb65c7c1e00039ec85eed"
     },
     {
       "path": "README.md",
@@ -86,7 +86,7 @@
     {
       "path": "solution.json",
       "size": 3066,
-      "sha256": "5389bda228c7c5bcfe7c089d431fea4a2299ae5174b36ef45c89037fd55d9099"
+      "sha256": "2b676da72da0b717773ab0c269a20c31a3b898a35e9c85767e42d513bbee2068"
     },
     {
       "path": "src/host-modules.json",
@@ -140,8 +140,8 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 52025,
-      "sha256": "04570a4ef6a8f9c8da3f0013401cfcbe5a37959cff29a25307c6d543b2cd0ef4"
+      "size": 52321,
+      "sha256": "81603bc32c9da2f2829ce7d819425d45fb8aedad0472fc1fe1c2bf5e4cd3e69e"
     },
     {
       "path": "src/main/legions.cjs",
@@ -200,6 +200,17 @@
     }
   ],
   "versions": [
+    {
+      "version": "1.0.2",
+      "ref": "workbench-legion-hq@1.0.2",
+      "treeDigest": "51fc411feb9c65be1ae443e789a18e493ca5efdcea06bc9451f73f5941a2791f",
+      "filesRef": "index/workbench-legion-hq/1.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-10-30"
+    },
     {
       "version": "1.0.1",
       "ref": "workbench-legion-hq@1.0.1",
