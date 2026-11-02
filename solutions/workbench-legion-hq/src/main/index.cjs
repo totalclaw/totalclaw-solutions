@@ -148,11 +148,12 @@ module.exports = {
     });
 
     // ── 公司档案 ──
+    // 默认公司的标志 = 宿主当前品牌的 logo（白标各用各的，包里不带任何品牌图）；旧版宿主没给 brand 就只用标志文字
     let defaultLogoImage = '';
     try {
-      defaultLogoImage = `data:image/png;base64,${readFileSync(ctx.packagePath('resources/company-logo.png')).toString('base64')}`;
+      if (ctx.brand?.logoPath) defaultLogoImage = `data:image/png;base64,${readFileSync(ctx.brand.logoPath).toString('base64')}`;
     } catch {
-      /* 没有包内 logo 就只用标志文字 */
+      /* 读不到品牌 logo 就只用标志文字 */
     }
     const profile = () => resolveProfile(ctx.readJson(COMPANY, {}), hostCompanySources(deps), { defaultLogoImage });
     const publishCompany = () => bus.publish('company:changed', { company: displayProfile(profile(), !!settings().demoMode) });

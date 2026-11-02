@@ -338,7 +338,7 @@
       "order": 50,
       "description": "一个老板 + 一家 AI 公司：8 个 AI 部门（研发、法务、财务、人事、运营、销售、客服、行政）以方案包装在任意机器上，AI 总经理按事情挑部门、派给承载它的机器并发执行，跨部门交接、汇总、钱 / 签约 / 对外发布 / 录用由老板拍板。主控点「启动 Web」即在内网开出指挥大屏，任意电脑、电视、手机用地址打开。",
       "descriptionEn": "One owner, one AI company: eight AI departments installed as solution packages on any machine. The AI GM triages each task, dispatches it to the machines hosting the right departments, hands results across departments and asks the boss to approve money, contracts, publishing and hiring. Start the web screen and open it from any device on the LAN.",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -392,11 +392,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-legion-hq",
-      "fileCount": 39,
-      "size": 441470,
-      "treeDigest": "51fc411feb9c65be1ae443e789a18e493ca5efdcea06bc9451f73f5941a2791f",
+      "fileCount": 38,
+      "size": 418151,
+      "treeDigest": "742f2bcfdfb0589cbd154fefa5ef5912f167c2f9e5d232a255487c5337112d41",
       "largeAssets": [],
-      "changelog": "- 演示模式改为默认关：只有用户在主控页 / 大屏打开过（`demoRun: true`）才在激活时自动下令、自动审批、本机模拟；没设过的当作关。之前没设过就当开，运营中心随应用激活后没人打开也在后台每 20 秒下一条示例事务，一晚上几百条。已明确设过开 / 关的保持原选择。\n- 演示模式的示例事务（待拍板、例行办完）不再发系统通知和老板 IM：它们 6 秒后自动批准，不是真要老板拍板。",
+      "changelog": "- 默认公司的标志改用宿主当前品牌的 logo（`ctx.brand.logoPath`），包里不再带 `resources/company-logo.png`：方案从在线库同步到各品牌的 App 时不再带进某一个品牌的 logo，各品牌用各自的图。旧版宿主没有 `ctx.brand` 时不挂标志图，只用标志文字。",
       "filesRef": "index/workbench-legion-hq.json"
     },
     {

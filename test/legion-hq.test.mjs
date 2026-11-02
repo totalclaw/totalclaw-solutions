@@ -1,7 +1,7 @@
 // 运营中心（workbench-legion-hq）主进程核心：判定 / 计划 / 执行 / 快照 / 公司档案 / 例行 / 剧本 / 大屏服务 / 子机视角
 import assert from 'node:assert/strict';
 import { EventEmitter } from 'node:events';
-import { mkdtempSync, readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, writeFileSync, mkdirSync, readdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -179,7 +179,7 @@ test('公司档案：本地 > 宿主 > 默认；演示模式；显示名推导�
   assert.match(identityLine(l, LEGIONS[1]), /甲乙丙股份有限公司.*法务部/);
 });
 
-test('默认公司 = 北京泰途科技有限公司 + App logo；换了公司名且没给标志图时不挂泰途 logo', () => {
+test('默认公司 = 北京泰途科技有限公司 + 宿主品牌 logo；换了公司名且没给标志图时不挂默认 logo', () => {
   const logo = 'data:image/png;base64,AAAA';
   const d = resolveProfile({}, [], { defaultLogoImage: logo });
   assert.equal(d.name, '北京泰途科技有限公司');
@@ -188,7 +188,7 @@ test('默认公司 = 北京泰途科技有限公司 + App logo；换了公司名
   assert.equal(resolveProfile({ boss: '张总' }, [], { defaultLogoImage: logo }).logoImage, logo, '只改老板称呼仍是泰途');
   assert.equal(resolveProfile({ name: '别的公司有限公司' }, [], { defaultLogoImage: logo }).logoImage, undefined);
   assert.equal(resolveProfile({ name: '别的公司有限公司', logoImage: 'data:image/png;base64,BBBB' }, [], { defaultLogoImage: logo }).logoImage, 'data:image/png;base64,BBBB');
-  assert.ok(readFileSync(join(DIR, 'resources', 'company-logo.png')).length > 1000, '包内带 App logo');
+  assert.ok(!existsSync(join(DIR, 'resources', 'company-logo.png')), '包里不带任何品牌 logo（白标隔离），标志由宿主 ctx.brand 给');
 });
 
 // ── 执行（R3–R9）：假集群 + 假模型 ──
@@ -543,7 +543,9 @@ test('activate：用假 ctx 跑通入口（无宿主 deps = 单机、无模型�
     packagePath: (rel) => join(DIR, rel),
     handle: (a, fn) => handlers.set(a, fn),
     emit: (e, p) => emitted.push([e, p]),
+    brand: { id: 'tuai', name: 'TuAI', logoPath: join(dataRoot, 'brand-logo.png') },
   };
+  writeFileSync(ctx.brand.logoPath, Buffer.from('fake-png'));
   const mod = require('./index.cjs');
   // 这些用例测真实运行：先关掉默认开启的演示模式
 
@@ -555,6 +557,7 @@ test('activate：用假 ctx 跑通入口（无宿主 deps = 单机、无模型�
     assert.equal(info.mode, 'standalone');
     assert.equal(info.legions.length, 8);
     assert.equal(info.hasModel, false);
+    assert.equal((await handlers.get('company.get')()).profile.logoImage, `data:image/png;base64,${Buffer.from('fake-png').toString('base64')}`, '默认公司标志 = 宿主品牌 logo');
     await handlers.get('company.save')({ name: '甲乙丙有限公司', boss: '李总' });
     assert.equal((await handlers.get('company.get')()).display.short, '甲乙丙');
     const { taskId } = await handlers.get('command')({ text: '审一下这份合同' });
