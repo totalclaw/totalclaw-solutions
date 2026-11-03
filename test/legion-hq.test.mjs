@@ -1429,3 +1429,37 @@ test('前台展示：主控本机步骤逐字推到前台、办完给结果；�
   assert.equal(run.payload.legionHq.workbench, (legal?.workbenches || [])[0] || '');
   assert.equal(Object.keys(run.payload)[0], 'legionHq');
 });
+
+test('AI 数字员工操作界面：法务部 + 合同审查 + 附件 → 交给工作台做，工作台的结果就是这一步的成果；没做成退回模型写', async () => {
+  const legal = LEGIONS.find((L) => L.id === 'legion-legal');
+  if (!(legal?.workbenches || []).includes('workbench-legal-agent')) return;
+  const calls = [];
+  const mk = (mode) => (meta) => ({
+    activity() {}, done: (ok, text) => calls.push(['done', ok, text]),
+    awaitWorkbench: async () => { calls.push(['await', meta.autopilot?.files?.map((f) => f.name)]); if (mode === 'ok') return '合同审查工作台：高风险 2 项'; throw new Error('工作台没有认领'); },
+  });
+  const llmCalls = [];
+  const { runner } = makeRunner({ placement: { local: LEGIONS.map((L) => L.id) }, llm: async (p) => { llmCalls.push(p); return '模型直接写的意见'; } });
+  runner.foreground = mk('ok');
+  const a = runner.submit({ text: '审一下这份合同', forcedLegions: ['legion-legal'], attachments: [{ id: 'att-00000001', name: '合同.docx', text: '账期 90 天', file: '/tmp/x.docx' }] });
+  await until(() => ['done', 'awaiting', 'failed'].includes(runner.get(a.taskId).status));
+  const rec = runner.get(a.taskId);
+  const step = rec.plan.steps.find((s) => s.legionId === 'legion-legal');
+  assert.equal(rec.outputs[step.id].text, '合同审查工作台：高风险 2 项');
+  assert.deepEqual(calls.find((c) => c[0] === 'await')[1], ['合同.docx']);
+  assert.equal(llmCalls.filter((p) => p.includes('本部门这一步要交付')).length, 0, '工作台做成了就不再调模型写这一步');
+
+  calls.length = 0;
+  runner.foreground = mk('fail');
+  const b = runner.submit({ text: '审一下这份合同', forcedLegions: ['legion-legal'], attachments: [{ id: 'att-00000002', name: '合同.docx', text: '账期 90 天' }] });
+  await until(() => ['done', 'awaiting', 'failed'].includes(runner.get(b.taskId).status));
+  const rb = runner.get(b.taskId);
+  const sb = rb.plan.steps.find((s) => s.legionId === 'legion-legal');
+  assert.equal(rb.outputs[sb.id].text, '模型直接写的意见', '工作台没做成：退回直接用模型写');
+
+  // 没附件：不走工作台
+  calls.length = 0;
+  const c = runner.submit({ text: '审一下合同风险', forcedLegions: ['legion-legal'] });
+  await until(() => ['done', 'awaiting', 'failed'].includes(runner.get(c.taskId).status));
+  assert.equal(calls.filter((x) => x[0] === 'await').length, 0);
+});

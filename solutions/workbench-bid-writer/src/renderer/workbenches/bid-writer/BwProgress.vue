@@ -1,5 +1,5 @@
 <template>
-  <nav class="bw-progress" :class="{ busy: running }" :aria-label="$t('流程进度')">
+  <nav class="bw-progress" :class="{ busy: running }" :aria-label="$t('流程进度')" :data-step-tabs="tabGroup">
     <div class="bw-progress__meta">
       <strong>{{ $t('标书制作进度') }}</strong>
       <em v-if="running" class="bw-progress__live" :class="{ suspect: watchdog.suspect.value }">
@@ -22,7 +22,8 @@
  * 时现记 Date.now() + setInterval，换 tab / 重挂载回来就归零。主进程的进度事件（live）= 心跳；
  * 跑过预计或 4 分钟没有进度就在这一行标「可能已超时」（主进程自带超时，这里不放动作按钮）。
  */
-import { computed, ref, watch } from 'vue';
+import { computed, onBeforeUnmount, ref, watch } from 'vue';
+import { registerStepTabs, setActiveStep, unregisterStepTabs } from './bwStepTabs';
 import WorkbenchStepBar, { type WorkbenchStep } from '../../components/WorkbenchStepBar.vue';
 import { formatStepDuration, useStepWatchdog } from '../../composables/useStepWatchdog';
 import { t as i18nT } from '../../i18n';
@@ -70,9 +71,13 @@ const barSteps = computed<WorkbenchStep[]>(() => props.metas.map((m, i) => {
 
 /** 用户在条上点选 / 上一步下一步的「查看位置」；运行态推进 currentKey 时跟着走 */
 const viewId = ref(currentIndex.value + 1);
-watch(currentIndex, (i) => { viewId.value = i + 1; });
+/** 页签模式：步骤卡只显示当前选中的这一步（见 bwStepTabs.ts） */
+const tabGroup = registerStepTabs(props.metas[currentIndex.value]?.key || '');
+onBeforeUnmount(() => unregisterStepTabs(tabGroup));
+watch(currentIndex, (i) => { viewId.value = i + 1; setActiveStep(tabGroup, props.metas[i]?.key || ''); });
 function pick(id: number): void {
   viewId.value = id;
+  setActiveStep(tabGroup, props.metas[id - 1]?.key || '');
   const key = props.metas[id - 1]?.key;
   if (key) emit('jump', key);
 }

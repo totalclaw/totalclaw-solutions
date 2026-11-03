@@ -82,6 +82,10 @@
       "from": "renderer/workbenches/bid-writer/styles.css"
     },
     {
+      "path": "src/renderer/workbenches/bid-writer/bwStepTabs.ts",
+      "from": "renderer/workbenches/bid-writer/bwStepTabs.ts"
+    },
+    {
       "path": "src/main/ipc/bidWriter.ipc.ts",
       "from": "main/ipc/bidWriter.ipc.ts"
     },

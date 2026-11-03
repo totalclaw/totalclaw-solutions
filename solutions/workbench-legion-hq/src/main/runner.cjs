@@ -9,7 +9,7 @@
  * 开跑前派发失败（机器刚离线）→ 换下一台候选机器；跑到一半失败 → 不重跑（避免重复执行），该步标失败。
  */
 const { attachmentBlock } = require('./attachments.cjs');
-const { pickWorkbench } = require('./foreground.cjs');
+const { pickWorkbench, canAutopilot } = require('./foreground.cjs');
 const { randomUUID } = require('node:crypto');
 const { triage } = require('./triage.cjs');
 const { buildPlan } = require('./planner.cjs');
@@ -337,10 +337,25 @@ class TaskRunner {
       attachments: (t.attachments || []).map((x) => x.name),
       company: this.company().short || this.company().name || '',
     };
+    // 合同审查这类工作台：附件交给工作台，在界面上一步步做（AI 数字员工操作界面），做完的结果作为这一步的成果
+    const auto = fgMeta && canAutopilot(fgMeta.workbench, t.attachments);
     if (machine.local) {
       this.publish(t, 'node:progress', { stepId: s.id, phase: '生成中' });
-      const fg = fgMeta && typeof this.foreground === 'function' ? this.foreground({ ...fgMeta, machine: machine.name }) : null;
+      const fg = fgMeta && typeof this.foreground === 'function'
+        ? this.foreground({ ...fgMeta, machine: machine.name, ...(auto ? { autopilot: { files: t.attachments.map((x) => ({ name: x.name, path: x.file, text: x.text })), taskText: t.text } } : {}) })
+        : null;
       try {
+        if (auto && fg && typeof fg.awaitWorkbench === 'function') {
+          try {
+            this.publish(t, 'node:progress', { stepId: s.id, phase: '在工作台里操作' });
+            const text = await fg.awaitWorkbench({ claimMs: 45_000, totalMs: STEP_TIMEOUT_MS - 30_000, signal });
+            fg.done(true, text);
+            return text;
+          } catch (e) {
+            if (signal.aborted) throw e;
+            this.log.warn(`工作台自动操作没做成，改为直接写：${e && e.message ? e.message : e}`);
+          }
+        }
         const text = await this.llm(prompt, { model, signal, timeoutMs: STEP_TIMEOUT_MS, ...(fg ? { onActivity: (a) => fg.activity(a) } : {}) });
         fg?.done(true, text);
         return text;
@@ -373,7 +388,7 @@ class TaskRunner {
         timeoutMs: STEP_TIMEOUT_MS + 60_000,
         payload: {
           // 放在最前：子机的方案读它显示「本机正在做什么」（入站历史只截 payload 前 300 字）；worker.run 忽略此字段
-          legionHq: { v: 1, taskNo: t.no, title: t.title, stepId: s.id, legionId: s.legionId, legionName: L ? L.name : s.legionId, goal: s.goal, company: this.company().short || this.company().name || '', ...(fgMeta ? { foreground: true, workbench: fgMeta.workbench, attachments: fgMeta.attachments } : {}) },
+          legionHq: { v: 1, taskNo: t.no, title: t.title, stepId: s.id, legionId: s.legionId, legionName: L ? L.name : s.legionId, goal: s.goal, company: this.company().short || this.company().name || '', ...(fgMeta ? { foreground: true, workbench: fgMeta.workbench, attachments: fgMeta.attachments } : {}), ...(auto ? { autopilot: { files: t.attachments.map((x) => ({ name: x.name, text: x.text })), taskText: t.text } } : {}) },
           roleId: s.roleId,
           prompt,
           model,

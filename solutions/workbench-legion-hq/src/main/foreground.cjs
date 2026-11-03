@@ -39,4 +39,11 @@ function pickWorkbench(legion, text) {
   return best || list[0];
 }
 
-module.exports = { pickWorkbench };
+/**
+ * 能在界面上自动操作的工作台（AI 数字员工一步步做，做完交结果）：需要附件的才走这条路（合同审查要有合同）。
+ * 其余工作台照旧：打开页面 + 停靠栏逐字显示。
+ */
+const AUTOPILOT = new Set(['workbench-legal-agent']);
+const canAutopilot = (workbench, attachments) => AUTOPILOT.has(workbench) && Array.isArray(attachments) && attachments.length > 0;
+
+module.exports = { pickWorkbench, canAutopilot, AUTOPILOT };

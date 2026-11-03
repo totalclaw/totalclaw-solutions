@@ -12,6 +12,7 @@ export default function createSolution(sdk) {
   const t = (s, p) => sdk.t(s, p);
 
   const CSS = `
+.lhq-scroll{height:100%;overflow-y:auto;overscroll-behavior:contain}
 .lhq{max-width:1180px;margin:0 auto;padding:0 24px 64px;font-size:14px;color:var(--color-text-primary,#111827)}
 .lhq-sticky{position:sticky;top:0;z-index:5;background:var(--color-bg-page,var(--color-bg,#f8fafc));padding:16px 0 10px;border-bottom:1px solid var(--color-border,#e5e7eb)}
 .lhq-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
@@ -19,10 +20,11 @@ export default function createSolution(sdk) {
 .lhq-badge{font-size:12px;padding:2px 8px;border-radius:10px;border:1px solid var(--color-border,#e5e7eb);color:var(--color-text-secondary,#6b7280)}
 .lhq-badge.on{border-color:#10b981;color:#047857;background:#ecfdf5}
 .lhq-badge.warn{border-color:#f59e0b;color:#b45309;background:#fffbeb}
-.lhq-steps{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
-.lhq-steps button{border:1px solid var(--color-border,#e5e7eb);background:var(--color-bg-card,#fff);border-radius:16px;padding:4px 12px;font-size:12.5px;cursor:pointer;color:inherit}
-.lhq-steps button.done{border-color:#10b981;color:#047857}
-.lhq-steps button.cur{border-color:var(--color-brand,#6366f1);color:var(--color-brand,#6366f1)}
+.lhq-steps{display:flex;gap:2px;margin-top:10px;flex-wrap:wrap;border-bottom:1px solid var(--color-border,#e5e7eb)}
+.lhq-steps button{border:none;border-bottom:2px solid transparent;background:none;border-radius:0;padding:7px 12px;margin-bottom:-1px;font-size:13px;cursor:pointer;color:var(--color-text-secondary,#6b7280)}
+.lhq-steps button:hover{color:var(--color-text-primary,#111827)}
+.lhq-steps button.done{color:#047857}
+.lhq-steps button.cur{border-bottom-color:var(--color-brand,#6366f1);color:var(--color-brand,#6366f1);font-weight:600}
 .lhq-prog{height:4px;background:var(--color-border,#e5e7eb);border-radius:2px;margin-top:8px;overflow:hidden}
 .lhq-prog i{display:block;height:100%;background:var(--color-brand,#6366f1);transition:width .3s}
 .lhq-card{border:1px solid var(--color-border,#e5e7eb);border-radius:12px;padding:16px 18px;margin-top:16px;background:var(--color-bg-card,#fff);scroll-margin-top:120px}
@@ -99,7 +101,10 @@ export default function createSolution(sdk) {
       const detail = ref(null);
       const busy = reactive({});
       const err = reactive({});
-      const cur = ref('s1');
+      // 页签：只渲染当前一页（原来九块一起渲染、整页 5000+ px，卡且宿主容器不滚动）；记住上次打开的页签
+      const TAB_KEY = 'lhq.tab';
+      const cur = ref((() => { try { const v = localStorage.getItem(TAB_KEY); return /^s[1-9]$/.test(v || '') ? v : 's1'; } catch { return 's1'; } })());
+      const scroller = ref(null);
       const touched = reactive({ company: false, played: false });
       const report = ref(null);
       const cost = ref(null);
@@ -262,15 +267,27 @@ export default function createSolution(sdk) {
           quiet(refreshFleet()),
           quiet(loadCompany()),
           quiet(sdk.invoke('routines.list').then((r) => (routines.value = r))),
-          quiet(sdk.invoke('scripts.list').then((r) => (scripts.value = r))),
-          quiet(sdk.invoke('director.status').then((r) => (director.value = r))),
-          quiet(sdk.invoke('records.list').then((r) => (records.value = r))),
-          quiet(sdk.invoke('coverage').then((r) => (coverage.value = r))),
-          quiet(sdk.invoke('displays.list').then((r) => {
-            displays.value = r;
-            displayId.value = (r.find((d) => !d.primary) || r[0] || {}).id ?? null;
-          })),
         ]);
+        await ensureTab(cur.value);
+      }
+      // 懒加载：页签第一次打开时才取它的数据（导演台的剧本与录制、能力地图、显示器列表）
+      const loadedTabs = new Set();
+      const TAB_LOADERS = {
+        s3: () => sdk.invoke('displays.list').then((r) => {
+          displays.value = r;
+          displayId.value = (r.find((d) => !d.primary) || r[0] || {}).id ?? null;
+        }),
+        s6: () => Promise.all([
+          sdk.invoke('scripts.list').then((r) => (scripts.value = r)),
+          sdk.invoke('director.status').then((r) => (director.value = r)),
+          sdk.invoke('records.list').then((r) => (records.value = r)),
+        ]),
+        s7: () => sdk.invoke('coverage').then((r) => (coverage.value = r)),
+      };
+      async function ensureTab(id) {
+        if (loadedTabs.has(id) || !TAB_LOADERS[id]) return;
+        loadedTabs.add(id);
+        await quiet(TAB_LOADERS[id]());
       }
       async function refreshFleet(force = false) {
         machines.value = await call('fleet', 'fleet.list', { force });
@@ -326,7 +343,9 @@ export default function createSolution(sdk) {
       });
       function go(id) {
         cur.value = id;
-        document.getElementById(`lhq-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        try { localStorage.setItem(TAB_KEY, id); } catch { /* 记不住也能用 */ }
+        void ensureTab(id);
+        if (scroller.value) scroller.value.scrollTop = 0;
       }
 
       // ── 动作 ──
@@ -1098,12 +1117,14 @@ export default function createSolution(sdk) {
       onUnmounted(() => clearInterval(timer));
 
       return () => {
-        void tick.value;
         if (!info.value) return h('div', { class: 'lhq', style: 'padding-top:32px' }, t('加载中…'));
-        if (isEmployee.value) return viewEmployee();
+        // 每秒刷新只给子机页面（「已执行 N 秒」）；主控页面不跟着每秒整页重绘
+        if (isEmployee.value) { void tick.value; return h('div', { class: 'lhq-scroll' }, viewEmployee()); }
         const st = steps.value;
         const c = snap.value.counters || {};
-        return h('div', { class: 'lhq', 'data-test': 'legion-hq' }, [
+        const VIEWS = { s1: viewFleet, s2: viewCompany, s3: viewScreen, s4: viewCommand, s5: viewRoutines, s6: viewDirector, s7: viewCoverage, s8: viewCost, s9: viewExam };
+        const idx = Math.max(0, st.findIndex((x) => x.id === cur.value));
+        return h('div', { class: 'lhq-scroll', ref: scroller }, h('div', { class: 'lhq', 'data-test': 'legion-hq' }, [
           h('div', { class: 'lhq-sticky' }, [
             h('div', { class: 'lhq-head' }, [
               h('h2', t('运营中心')),
@@ -1119,19 +1140,11 @@ export default function createSolution(sdk) {
               }, info.value.settings?.demoRun ? t('演示模式：开（点击关闭，改为真实运行）') : t('演示模式：关（点击开启）')),
               c.awaiting ? h('span', { class: 'lhq-badge warn', style: 'cursor:pointer', onClick: () => go('s4') }, t('待老板确认 {p0}', { p0: c.awaiting })) : null,
             ]),
-            h('div', { class: 'lhq-steps' }, st.map((s, i) => h('button', { class: `${s.done ? 'done' : ''}${cur.value === s.id ? ' cur' : ''}`, onClick: () => go(s.id) }, `${i + 1} ${s.name}${s.done ? ' ✓' : ''}`))),
+            h('div', { class: 'lhq-steps', role: 'tablist' }, st.map((s, i) => h('button', { role: 'tab', 'aria-selected': cur.value === s.id, 'data-test': `lhq-tab-${s.id}`, class: `${s.done ? 'done' : ''}${cur.value === s.id ? ' cur' : ''}`, onClick: () => go(s.id) }, `${i + 1} ${s.name}${s.done ? ' ✓' : ''}`))),
             h('div', { class: 'lhq-prog' }, h('i', { style: `width:${progress.value}%` })),
           ]),
-          viewFleet(st[0]),
-          viewCompany(st[1]),
-          viewScreen(st[2]),
-          viewCommand(st[3]),
-          viewRoutines(st[4]),
-          viewDirector(st[5]),
-          viewCoverage(st[6]),
-          viewCost(st[7]),
-          viewExam(st[8]),
-        ]);
+          h('div', { style: 'margin-top:16px' }, VIEWS[st[idx].id](st[idx])),
+        ]));
       };
     },
   });

@@ -4,7 +4,7 @@
   "id": "workbench-legal-agent",
   "name": "法务部 · 合同审查",
   "aliases": ["合同审查", "法务工作台", "legal-agent"],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "kind": "workbench",
   "category": "法务合规",
   "icon": "icon-solutions",

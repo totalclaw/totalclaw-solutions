@@ -95,7 +95,7 @@ class Attachments {
       const cap = Math.max(0, Math.min(PER_FILE_CHARS, left));
       const text = a.text.length > cap ? `${a.text.slice(0, cap)}\n…（后面还有 ${a.text.length - cap} 字未附上）` : a.text;
       left -= Math.min(a.text.length, cap);
-      out.push({ id: a.id, name: a.name, text, warning: a.warning || '' });
+      out.push({ id: a.id, name: a.name, text, warning: a.warning || '', ...(a.file && existsSync(a.file) ? { file: a.file } : {}) });
     }
     return out;
   }

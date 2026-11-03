@@ -3,16 +3,20 @@
  * 不 import 'vue'：用 sdk.vue。
  */
 export default function createSolution(sdk) {
-  const { defineComponent, h, ref, reactive, computed, onMounted } = sdk.vue;
+  const { defineComponent, h, ref, reactive, computed, onMounted, onUnmounted } = sdk.vue;
   const t = (s, p) => sdk.t(s, p);
 
   const CSS = `
+.lga-scroll{height:100%;overflow-y:auto;overscroll-behavior:contain}
 .lga{max-width:1320px;margin:0 auto;padding:0 20px 64px;font-size:14px;color:var(--color-text-primary,#111827)}
+.lga-auto{display:flex;align-items:center;gap:10px;margin-top:10px;padding:9px 12px;border-radius:10px;background:color-mix(in srgb,var(--color-brand,#6366f1) 10%,var(--color-bg-card,#fff));border:1px solid color-mix(in srgb,var(--color-brand,#6366f1) 40%,transparent);color:var(--color-brand,#6366f1);font-size:13px}
+.lga-auto b{font-weight:600}.lga-auto .sp{display:inline-block;animation:lga-spin 1s linear infinite}@keyframes lga-spin{to{transform:rotate(360deg)}}
+.lga-steps button:disabled{cursor:default}
 .lga-sticky{position:sticky;top:0;z-index:5;background:var(--color-bg-page,var(--color-bg,#f8fafc));padding:14px 0 10px;border-bottom:1px solid var(--color-border,#e5e7eb)}
 .lga-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.lga-head h2{margin:0;font-size:20px}
-.lga-steps{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
-.lga-steps button{border:1px solid var(--color-border,#e5e7eb);background:var(--color-bg-card,#fff);border-radius:16px;padding:4px 12px;font-size:12.5px;cursor:pointer;color:inherit}
-.lga-steps button.done{border-color:#10b981;color:#047857}.lga-steps button.cur{border-color:var(--color-brand,#6366f1);color:var(--color-brand,#6366f1)}
+.lga-steps{display:flex;gap:2px;margin-top:10px;flex-wrap:wrap;border-bottom:1px solid var(--color-border,#e5e7eb)}
+.lga-steps button{border:none;border-bottom:2px solid transparent;background:none;border-radius:0;padding:7px 12px;margin-bottom:-1px;font-size:13px;cursor:pointer;color:var(--color-text-secondary,#6b7280)}
+.lga-steps button.done{color:#047857}.lga-steps button.cur{border-bottom-color:var(--color-brand,#6366f1);color:var(--color-brand,#6366f1);font-weight:600}
 .lga-prog{height:4px;background:var(--color-border,#e5e7eb);border-radius:2px;margin-top:8px;overflow:hidden}.lga-prog i{display:block;height:100%;background:var(--color-brand,#6366f1);transition:width .3s}
 .lga-body{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:16px;align-items:start}
 @media (max-width:1100px){.lga-body{grid-template-columns:1fr}.lga-doc{position:static!important;max-height:none!important}}
@@ -62,6 +66,11 @@ export default function createSolution(sdk) {
       const book = ref(null);
       const bookDirty = ref(false);
       const filter = ref('all');
+      // 页签：七步一页一个，只渲染当前这一步（原来整页一长条，卡、宿主容器也不滚动）
+      const cur = ref(1);
+      const scroller = ref(null);
+      // AI 数字员工操作（运营中心派来的合同）：{ key, no, n, label }，界面顶部显示正在做哪一步
+      const auto = ref(null);
 
       async function call(key, action, payload) {
         busy[key] = true;
@@ -93,7 +102,85 @@ export default function createSolution(sdk) {
         bookDirty.value = false;
       }
 
+      // ── AI 数字员工操作界面：运营中心派来的合同，由本页一步步做完，结果交回运营中心 ──
+      const LF = () => (typeof window !== 'undefined' ? window.electronAPI?.legionForeground : null);
+      const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+      const handled = new Set();
+      const jobKey = () => {
+        try { return new URLSearchParams((location.hash.split('?')[1] || '')).get('lfjob') || ''; } catch { return ''; }
+      };
+      async function act(key, action, payload) {
+        const r = await call(key, action, payload);
+        return r;
+      }
+      function reportText(r) {
+        const s = r.summary || { count: { high: 0, medium: 0, low: 0 }, missing: 0, index: 0, verdict: '' };
+        const lvZh = { high: '高', medium: '中', low: '低' };
+        const order = { high: 0, medium: 1, low: 2 };
+        const risks = [...(r.review?.risks || [])].sort((a, b) => order[a.level] - order[b.level]).slice(0, 12);
+        const lines = [
+          `# 《${r.pre?.title || r.fileName}》合同审查意见`,
+          `（由法务部「合同审查」工作台逐步审查：预分析 → 立场 → 模板 → 条款抽取 → 逐条审查 → 采纳修订）`,
+          '',
+          `**结论**：${s.verdict}。高风险 ${s.count.high} 项、中风险 ${s.count.medium} 项、低风险 ${s.count.low} 项，缺失条款 ${s.missing} 项，风险指数 ${s.index}。`,
+          r.review?.overall ? `\n${r.review.overall}` : '',
+          '',
+          '## 主要风险与修改建议',
+          ...risks.map((x, i) => `${i + 1}. 【${lvZh[x.level]}】${ctName(x.clauseType)}${x.location ? `（第 ${x.location.para + 1} 段）` : '（缺失）'}：${x.reason}${x.suggestion ? `\n   建议：${x.suggestion}` : ''}`),
+          r.review?.missing?.length ? `\n## 缺失条款\n${r.review.missing.map(ctName).join('、')}` : '',
+          '',
+          `已采纳修订 ${(r.review?.risks || []).filter((x) => x.accepted).length} 条；带修订痕迹的 Word 与意见书可在「合同审查 → 报告与归档」导出。`,
+          '需老板确认：是否按以上建议与对方谈判修改；本意见供内部参考，签约前请执业律师复核。',
+        ];
+        return lines.filter((x) => x !== '').join('\n');
+      }
+      async function runAutopilot(key) {
+        if (!key || handled.has(key) || !LF()) return;
+        handled.add(key);
+        const job = await LF().job(key).catch(() => null);
+        if (!job || !job.files?.length) return;
+        const say = async (n, label) => {
+          go(n);
+          auto.value = { key, no: job.meta?.taskNo ?? null, n, label };
+          await LF().progress(key, `第 ${n} 步 · ${label}`).catch(() => undefined);
+          await sleep(900);
+        };
+        try {
+          const f = job.files[0];
+          await say(1, t('上传合同：{p0}', { p0: f.name }));
+          setRec(await act('upload', 'review.createFromPath', { path: f.path, name: f.name }));
+          await quiet(refreshList());
+          await say(1, t('预分析：识别合同类型、双方主体、金额与期限'));
+          setRec(await act('s1', 'review.preAnalyze', { id: rec.value.id }));
+          await loadBook(rec.value.playbook.id);
+          await say(2, t('立场声明：中立，只做风险提示'));
+          Object.assign(stanceForm, { side: 'neutral', partyName: job.meta?.company || stanceForm.partyName });
+          setRec(await act('s2', 'review.setStance', { id: rec.value.id, stance: { ...stanceForm } }));
+          await say(3, t('选审查模板：{p0}', { p0: book.value?.name ? t(book.value.name) : '' }));
+          setRec(await act('s3', 'review.setPlaybook', { id: rec.value.id, playbookId: book.value.id }));
+          await say(4, t('条款抽取：找出关键条款并在原文定位'));
+          setRec(await act('s4', 'review.extract', { id: rec.value.id }));
+          await say(5, t('逐条审查：分级、理由、法条依据与修改建议'));
+          setRec(await act('s5', 'review.run', { id: rec.value.id }));
+          await say(6, t('采纳修订：高风险与必争条款的修改建议'));
+          for (const x of rec.value.review?.risks || []) {
+            if (x.level === 'high' || x.priority === 'must') setRec(await sdk.invoke('review.accept', { id: rec.value.id, riskId: x.id, accepted: true, suggestion: x.suggestion }));
+          }
+          await say(7, t('出审查意见，交回运营中心'));
+          await LF().complete(key, { ok: true, text: reportText(rec.value) });
+        } catch (e) {
+          await LF().complete(key, { ok: false, error: (e && e.message) || String(e) }).catch(() => undefined);
+          sdk.notify.warn(t('自动审查没做完：{p0}', { p0: (e && e.message) || String(e) }));
+        } finally {
+          auto.value = null;
+          await quiet(refreshList());
+        }
+      }
+      const onHash = () => { void runAutopilot(jobKey()); };
+      onUnmounted(() => window.removeEventListener('hashchange', onHash));
+
       onMounted(async () => {
+        window.addEventListener('hashchange', onHash);
         if (!document.getElementById('lga-style')) {
           const s = document.createElement('style');
           s.id = 'lga-style';
@@ -106,6 +193,7 @@ export default function createSolution(sdk) {
         } catch (e) {
           sdk.notify.warn(e.message);
         }
+        void runAutopilot(jobKey());
       });
 
       async function upload(e) {
@@ -177,7 +265,10 @@ export default function createSolution(sdk) {
         ];
       });
       const progress = computed(() => Math.round((steps.value.filter((s) => s.done).length / 6) * 100));
-      const go = (n) => document.getElementById(`lga-s${n}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const go = (n) => {
+        cur.value = n;
+        if (scroller.value) scroller.value.scrollTop = 0;
+      };
       const ctName = (id) => meta.value?.clauseTypes.find((c) => c.id === id)?.zh || id;
 
       const head = (s, sub) => [
@@ -390,7 +481,9 @@ export default function createSolution(sdk) {
       return () => {
         if (!meta.value) return h('div', { class: 'lga', style: 'padding-top:32px' }, t('加载中…'));
         const st = steps.value;
-        return h('div', { class: 'lga', 'data-test': 'legal-agent' }, [
+        const VIEWS = [vStep1, vStep2, vStep3, vStep4, vStep5, vStep6, vStep7];
+        const a = auto.value;
+        return h('div', { class: 'lga-scroll', ref: scroller }, h('div', { class: 'lga', 'data-test': 'legal-agent' }, [
           h('div', { class: 'lga-sticky' }, [
             h('div', { class: 'lga-head' }, [
               h('h2', t('法务部 · 合同审查')),
@@ -398,11 +491,12 @@ export default function createSolution(sdk) {
               rec.value ? h('button', { class: 'lga-btn', onClick: () => { rec.value = null; sel.value = null; } }, t('新建审查')) : null,
               !meta.value.hasModel ? h('span', { class: 'lga-err' }, t('本机模型不可用，审查步骤无法执行')) : null,
             ]),
-            h('div', { class: 'lga-steps' }, st.map((s) => h('button', { class: s.done ? 'done' : '', onClick: () => go(s.n) }, `${s.n} ${s.name}${s.done ? ' ✓' : ''}`))),
+            h('div', { class: 'lga-steps', role: 'tablist' }, st.map((s) => h('button', { role: 'tab', 'aria-selected': cur.value === s.n, 'data-test': `lga-tab-${s.n}`, class: `${s.done ? 'done' : ''}${cur.value === s.n ? ' cur' : ''}`, disabled: !!a, onClick: () => go(s.n) }, `${s.n} ${s.name}${s.done ? ' ✓' : ''}`))),
             h('div', { class: 'lga-prog' }, h('i', { style: `width:${progress.value}%` })),
+            a ? h('div', { class: 'lga-auto', 'data-test': 'lga-autopilot' }, [h('span', { class: 'sp' }, '⟳'), h('b', t('AI 数字员工正在操作')), a.no != null ? t('（运营中心任务 #{p0}）', { p0: a.no }) : '', h('span', `· ${t('第 {p0} 步', { p0: a.n })}：${a.label}`)]) : null,
           ]),
-          h('div', { class: 'lga-body' }, [h('div', [vStep1(st[0]), vStep2(st[1]), vStep3(st[2]), vStep4(st[3]), vStep5(st[4]), vStep6(st[5]), vStep7(st[6])]), vDoc()]),
-        ]);
+          h('div', { class: 'lga-body' }, [h('div', [VIEWS[cur.value - 1](st[cur.value - 1])]), vDoc()]),
+        ]));
       };
     },
   });

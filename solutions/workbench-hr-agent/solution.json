@@ -4,7 +4,7 @@
   "id": "workbench-hr-agent",
   "name": "人事部 · 招聘",
   "aliases": ["招聘工作台", "人事工作台", "hr-agent"],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "kind": "workbench",
   "category": "人力资源",
   "icon": "icon-solutions",

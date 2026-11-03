@@ -338,7 +338,7 @@
       "order": 50,
       "description": "一个老板 + 一家 AI 公司：8 个 AI 部门（研发、法务、财务、人事、运营、销售、客服、行政）以方案包装在任意机器上，AI 总经理按事情挑部门、派给承载它的机器并发执行，跨部门交接、汇总、钱 / 签约 / 对外发布 / 录用由老板拍板。主控点「启动 Web」即在内网开出指挥大屏，任意电脑、电视、手机用地址打开。",
       "descriptionEn": "One owner, one AI company: eight AI departments installed as solution packages on any machine. The AI GM triages each task, dispatches it to the machines hosting the right departments, hands results across departments and asks the boss to approve money, contracts, publishing and hiring. Start the web screen and open it from any device on the LAN.",
-      "version": "1.0.4",
+      "version": "1.0.6",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -393,10 +393,10 @@
       "capabilities": [],
       "path": "solutions/workbench-legion-hq",
       "fileCount": 40,
-      "size": 440036,
-      "treeDigest": "0c77951cc5987fd19be11f3ffb31fec62f06ea67ff728a3f05e9e6d98322b20f",
+      "size": 449963,
+      "treeDigest": "b62978ae083fcf1be8ca16ef77c13b6eb4d996cc414c328734041f28b2022e29",
       "largeAssets": [],
-      "changelog": "- 老板下令可以附上文件（合同、报表等，PDF / Word / Excel / PPT / 文本 / 邮件，单个 ≤20MB，一次最多 5 个）：大屏输入框旁「📎」上传，App 运营中心「附件」按钮选文件。文字抽出后附进每个部门的提示词（标明是待处理的数据、不是指令），判定时也看得到附件名。\n- 真实运行时部门步骤在执行它的机器上前台展示：App 窗口拉到前面，自动打开该部门对应的工作台（部门有多个工作台时按事情挑最贴的，如财务部遇到发票打开发票智能体），右下角停靠栏逐字显示执行过程和结果。主控本机执行与派到员工机执行都生效；演示模式不弹；「下令与老板待办」里可关。需要 App 同版宿主（旧 App 照旧后台执行）。\n- 指挥大屏右上角「▶ AutoCoder」：页面里直接播放演示视频。地址默认官网固定地址 https://taituai.com/assets/video/autocoder-demo.mp4（换视频只换官网那个文件），也可在「指挥大屏」里改成别的地址。",
+      "changelog": "- AI 数字员工操作界面：派到法务部、挑中合同审查且带附件的步骤，附件交给合同审查工作台在界面上一步步做（主控本机给文件路径，员工机给文字），做完的审查意见作为这一步的成果；45 秒没人认领或没做成，退回直接用模型写。",
       "filesRef": "index/workbench-legion-hq.json"
     },
     {
@@ -655,13 +655,13 @@
       "icon": "icon-solutions",
       "order": 100,
       "description": "填投标目标与目标投标网站，自动抓公告拆成逐条要求；模板可上传也可从知识库找；公司资料取自知识库，逐章成文后自检废标风险，导出 Word / PDF。",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.6",
+        "minAppVersion": "2.0.11",
         "hostApi": 2
       },
       "access": {
@@ -700,10 +700,10 @@
       "capabilities": [],
       "path": "solutions/workbench-bid-writer",
       "fileCount": 8,
-      "size": 277207,
-      "treeDigest": "91f46bffad371ef0583f01f18caf4a94fa90d6191088335552573a1728241b98",
+      "size": 278592,
+      "treeDigest": "78fe5aff4b473cbfd182d97609dc3b0f74dc059a118782fca67bc06c17201bf6",
       "largeAssets": [],
-      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。\n- 主按钮悬停不再变成浅灰底、白字看不见。",
+      "changelog": "- 步骤改成页签：进度条点哪步只显示哪步，第一次切到才渲染内容，切走不卸载（已填内容不丢）；运行推进时页签跟着走。",
       "filesRef": "index/workbench-bid-writer.json"
     },
     {
@@ -1815,7 +1815,7 @@
       "order": 260,
       "description": "上传合同，按我方立场和审查模板逐条审查：风险分高中低，每条附原文位置、理由、法条依据、可直接放进合同的修改条文与退让方案；采纳后导出带修订痕迹的 Word 修订稿和审查意见书。",
       "descriptionEn": "Upload a contract and review it clause by clause from your side's position: high/medium/low risks with source location, reasons, legal basis, ready-to-insert redlines and fallbacks; export a tracked-changes Word draft and a review opinion.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1859,10 +1859,10 @@
       "capabilities": [],
       "path": "solutions/workbench-legal-agent",
       "fileCount": 17,
-      "size": 108309,
-      "treeDigest": "9c8d5d617cefdc8f782a75fcb005ff86bc12de6d54d3dad9cee4e3959a6438ee",
+      "size": 117091,
+      "treeDigest": "3a41baa5924e6c088ae9e2632e92af8ce9e3ca5708c7956d587abd9c9efeaedd",
       "largeAssets": [],
-      "changelog": "- 首版：七步合同审查（预分析、立场、模板、条款抽取、逐条审查、修订采纳、报告归档）。\n- 原文位置由程序定位；法条格式核对（34 部常用法律）；缺失条款按模板必备项计算；框架四问。\n- 内置 4 个审查模板（买卖 / 经销、服务 / 外包、保密、劳动），可编辑、按版本留快照。\n- 导出带修订痕迹与批注的 Word 修订稿、审查意见书；对方反驳推演；两版合同对比。\n- 长时间操作期间向宿主报进度（workbenchActivity），运营中心大屏可在对应部门节点下看到。",
+      "changelog": "- 七步改成页签：一页一步，只渲染当前这一步；页面自带滚动容器（原来整页一长条，卡而且滚不动）。\n- AI 数字员工操作界面：运营中心派来的合同（带 ?lfjob= 打开），本页认领后自己一步步做——上传 → 预分析 → 立场（中立）→ 模板 → 条款抽取 → 逐条审查 → 采纳高风险与必争修订，每步切到对应页签、顶部横幅显示正在做什么，做完把审查意见交回运营中心。新动作 review.createFromPath。需要 App 同版宿主。",
       "filesRef": "index/workbench-legal-agent.json"
     },
     {
@@ -1943,7 +1943,7 @@
       "order": 270,
       "description": "从岗位信息生成 JD 并体检歧视性用词，批量导入简历结构化，三层筛选（关键词预筛 → 硬条件门禁 → 0–4 锚定打分，证据必须是简历原话、总分由程序算），再出面试题与评分卡、邀约邮件、offer 与入职清单。",
       "descriptionEn": "Generate a job description and check it for discriminatory wording, bulk-import resumes, screen in three layers (keywords, hard gates, 0–4 anchored scores with verbatim evidence; totals computed by code), then draft interview kits, invitations, offers and onboarding checklists.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1987,10 +1987,10 @@
       "capabilities": [],
       "path": "solutions/workbench-hr-agent",
       "fileCount": 12,
-      "size": 116427,
-      "treeDigest": "e50f36c385e0e0b5b03d0110294d14e17fd2a7692a2b19a8faaa700e7a15529a",
+      "size": 117595,
+      "treeDigest": "5f628fd5fde7b41d61c854ca2be4b2b24c5202022ce9d8f6a3116eb8cf8f3f69",
       "largeAssets": [],
-      "changelog": "- 首版：JD 生成与歧视性用词体检、简历批量导入与结构化、三层筛选、面试题与评分卡、邀约草稿与确认后发送（宿主 caseMailSender）、offer 与入职清单、候选人看板。\n- 证据核对：门禁与打分的证据必须是简历原话；简历未提及只判「未知」；总分与决定由程序计算；筛选表导出 CSV。\n- 长时间操作期间向宿主报进度（workbenchActivity），运营中心大屏可在对应部门节点下看到。\n- 批量解析 / 筛选走集群分身（HR2）：本机是主控且有在线员工机时，每份简历的模型调用在本机与各员工机之间轮流分，员工机失败的那份回本机重做；可关。\n- 向量预筛（HR3）：按简历与岗位要求的文字相似度只保留前 80% / 60% / 40%，被筛掉的不调模型、标明原因、可手动改回。\n- 第 8 步绩效评估（HR8）：AI 起草考核目标（权重归一到 100）、按自评 / 上级评价给建议分（证据须是原话，否则作废）、上级逐项改分、程序算总分与等级（A ≥90 / B ≥75 / C ≥60 / D）、导出考核表。",
+      "changelog": "- 八步改成页签：一页一步，只渲染当前这一步；第 2–7 步没有岗位时提示先建岗位；页面自带滚动容器。",
       "filesRef": "index/workbench-hr-agent.json"
     },
     {

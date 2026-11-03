@@ -7,12 +7,13 @@ export default function createSolution(sdk) {
   const t = (s, p) => sdk.t(s, p);
 
   const CSS = `
+.hra-scroll{height:100%;overflow-y:auto;overscroll-behavior:contain}
 .hra{max-width:1320px;margin:0 auto;padding:0 20px 64px;font-size:14px;color:var(--color-text-primary,#111827)}
 .hra-sticky{position:sticky;top:0;z-index:5;background:var(--color-bg-page,var(--color-bg,#f8fafc));padding:14px 0 10px;border-bottom:1px solid var(--color-border,#e5e7eb)}
 .hra-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.hra-head h2{margin:0;font-size:20px}
-.hra-steps{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
-.hra-steps button{border:1px solid var(--color-border,#e5e7eb);background:var(--color-bg-card,#fff);border-radius:16px;padding:4px 12px;font-size:12.5px;cursor:pointer;color:inherit}
-.hra-steps button.done{border-color:#10b981;color:#047857}
+.hra-steps{display:flex;gap:2px;margin-top:10px;flex-wrap:wrap;border-bottom:1px solid var(--color-border,#e5e7eb)}
+.hra-steps button{border:none;border-bottom:2px solid transparent;background:none;border-radius:0;padding:7px 12px;margin-bottom:-1px;font-size:13px;cursor:pointer;color:var(--color-text-secondary,#6b7280)}
+.hra-steps button.done{color:#047857}.hra-steps button.cur{border-bottom-color:var(--color-brand,#6366f1);color:var(--color-brand,#6366f1);font-weight:600}
 .hra-prog{height:4px;background:var(--color-border,#e5e7eb);border-radius:2px;margin-top:8px;overflow:hidden}.hra-prog i{display:block;height:100%;background:var(--color-brand,#6366f1);transition:width .3s}
 .hra-batch{font-size:12.5px;color:var(--color-brand,#6366f1)}
 .hra-card{border:1px solid var(--color-border,#e5e7eb);border-radius:12px;padding:16px 18px;margin-top:16px;background:var(--color-bg-card,#fff);scroll-margin-top:120px}
@@ -156,7 +157,13 @@ export default function createSolution(sdk) {
         ];
       });
       const progress = computed(() => Math.round((steps.value.filter((s) => s.done).length / 6) * 100));
-      const go = (n) => document.getElementById(`hra-s${n}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // 页签：八步一页一个，只渲染当前这一步（原来整页一长条，卡、宿主容器也不滚动）
+      const cur = ref(1);
+      const scroller = ref(null);
+      const go = (n) => {
+        cur.value = n;
+        if (scroller.value) scroller.value.scrollTop = 0;
+      };
       const head = (s, sub) => [
         h('h3', [`${s.n}. ${s.name}`, h('span', { class: `hra-st${s.done ? ' done' : ''}` }, s.optional ? t('可选') : s.done ? t('已完成') : t('待执行'))]),
         h('p', { class: 'hra-sub' }, sub),
@@ -483,7 +490,14 @@ export default function createSolution(sdk) {
       return () => {
         if (!meta.value) return h('div', { class: 'hra', style: 'padding-top:32px' }, t('加载中…'));
         const st = steps.value;
-        return h('div', { class: 'hra', 'data-test': 'hr-agent' }, [
+        const n = cur.value;
+        const VIEWS = { 1: vStep1, 2: vStep2, 3: vStep3, 4: vStep4, 5: vStep5, 6: vStep6, 7: vStep7, 8: vStep8 };
+        // 第 2–7 步要先有岗位；候选人详情跟着第 3–7 步（筛选、面试、邀约、Offer、看板）
+        const needsJob = n >= 2 && n <= 7;
+        const body = needsJob && !job.value
+          ? h('div', { class: 'hra-card', style: 'margin-top:16px' }, h('div', { class: 'hra-sub' }, t('先在第 1 步新建或选一个岗位')))
+          : [VIEWS[n](st[n - 1]), n >= 3 && n <= 7 ? vDetail() : null];
+        return h('div', { class: 'hra-scroll', ref: scroller }, h('div', { class: 'hra', 'data-test': 'hr-agent' }, [
           h('div', { class: 'hra-sticky' }, [
             h('div', { class: 'hra-head' }, [
               h('h2', t('人事部 · 招聘')),
@@ -492,13 +506,11 @@ export default function createSolution(sdk) {
               prog.value ? h('span', { class: 'hra-batch' }, `${t(prog.value.label)} ${prog.value.done}/${prog.value.total}`) : null,
               !meta.value.hasModel ? h('span', { class: 'hra-err' }, t('本机模型不可用，生成与筛选步骤无法执行')) : null,
             ]),
-            h('div', { class: 'hra-steps' }, st.map((s) => h('button', { class: s.done ? 'done' : '', onClick: () => go(s.n) }, `${s.n} ${s.name}${s.done ? ' ✓' : ''}`))),
+            h('div', { class: 'hra-steps', role: 'tablist' }, st.map((s) => h('button', { role: 'tab', 'aria-selected': n === s.n, 'data-test': `hra-tab-${s.n}`, class: `${s.done ? 'done' : ''}${n === s.n ? ' cur' : ''}`, onClick: () => go(s.n) }, `${s.n} ${s.name}${s.done ? ' ✓' : ''}`))),
             h('div', { class: 'hra-prog' }, h('i', { style: `width:${progress.value}%` })),
           ]),
-          vStep1(st[0]),
-          job.value ? [vStep2(st[1]), vStep3(st[2]), vDetail(), vStep4(st[3]), vStep5(st[4]), vStep6(st[5]), vStep7(st[6])] : null,
-          vStep8(st[7]),
-        ]);
+          body,
+        ]));
       };
     },
   });

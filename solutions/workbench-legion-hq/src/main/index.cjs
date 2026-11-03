@@ -316,6 +316,20 @@ module.exports = {
       onCommand: (b) => runner.submit({ text: b?.text, source: ['boss', 'customer', 'mail'].includes(b?.source) ? b.source : 'boss', attachments: attachments.resolve(b?.attachments) }),
       onUpload: (name, buffer) => attachments.add({ name, buffer }),
       getConfig: () => ({ demoVideoUrl: settings().demoVideoUrl || DEFAULT_DEMO_VIDEO }),
+      // 大屏「查看结果」：汇总 + 各部门交付全文（同样要口令；只给办完 / 待确认 / 没办成的事）
+      getTask: (id) => {
+        if (!/^t-[0-9a-f]{8}$/.test(id)) return null;
+        const rec = runner.get(id) || ctx.readJson(`${D}/tasks/${id}.json`, null);
+        if (!rec) return null;
+        const nameOf = (lid) => (legions.find((L) => L.id === lid) || {}).name || lid;
+        const steps = (rec.plan?.steps || []).map((st) => ({
+          legion: nameOf(st.legionId),
+          goal: st.goal,
+          text: String(rec.outputs?.[st.id]?.text || '').slice(0, 20000),
+          error: rec.outputs?.[st.id]?.error || '',
+        }));
+        return { id: rec.id, no: rec.no, title: rec.title, text: rec.text, status: rec.status, summary: String(rec.summary || '').slice(0, 20000), error: rec.error || '', steps, simulated: !!rec.simulated };
+      },
       onConfirm: (b) => (b?.approve === false ? runner.reject(String(b.taskId), b.comment) : runner.confirm(String(b?.taskId))),
       onDemo: (b) => setDemoRun(!!b?.on),
       onCompany: (b) => {
@@ -850,7 +864,8 @@ module.exports = {
       const main = deps?.getMainWindow?.();
       if (main && !main.isDestroyed()) main.once('closed', closeWindow);
       // 默认画面（拓扑 / 办公室）：现场仍可按 F 或点右上角切换
-      await win.loadURL(st.localUrl + `&view=${['topo', 'office'].includes(settings().screenView) ? settings().screenView : 'auto'}`);
+      // &win=1：页面右上角显示「关闭」按钮（无边框全屏窗口，原来只有按两次 Esc 能关，现场找不到关法）
+      await win.loadURL(st.localUrl + `&view=${['topo', 'office'].includes(settings().screenView) ? settings().screenView : 'auto'}&win=1`);
       if (win.isDestroyed()) return { ok: false, error: '大屏窗口已关闭' };
       if (process.platform === 'darwin') win.setSimpleFullScreen(true);
       // 展示大屏要在最上层：点按钮时 App 常不在前台，拿不到焦点就会被正在用的程序窗口挡住（本机实测）。点一下大屏再按 Esc 退出

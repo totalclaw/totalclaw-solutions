@@ -6,6 +6,7 @@
  *   GET  /remote           手机竖屏简版（下令 + 待确认）
  *   GET  /api/state        快照
  *   GET  /api/screen-config 大屏配置（AutoCoder 演示视频地址）
+ *   GET  /api/task?id=     一件事的结果（汇总 + 各部门交付的全文），公司事务里点「查看结果」用
  *   GET  /api/events       SSE：先推一次快照，之后每条事件推 ev、状态变化节流推 state；15 秒心跳
  *   POST /api/command      下令 {text, attachments?: [附件 id]}
  *   POST /api/upload       上传下令附件（原始字节，请求头 X-File-Name = encodeURIComponent(文件名)，≤20MB）→ {id, name, chars, warning?}
@@ -262,6 +263,10 @@ class ScreenServer {
       if (req.method === 'GET' && url.pathname === '/') return this.send(res, 200, this.pages().page, 'text/html; charset=utf-8');
       if (req.method === 'GET' && url.pathname === '/remote') return this.send(res, 200, this.pages().remote, 'text/html; charset=utf-8');
       if (req.method === 'GET' && url.pathname === '/api/state') return this.send(res, 200, this.getState());
+      if (req.method === 'GET' && url.pathname === '/api/task' && this.getTask) {
+        const r = this.getTask(String(url.searchParams.get('id') || ''));
+        return r ? this.send(res, 200, r) : this.send(res, 404, { error: '没有这件事' });
+      }
       if (req.method === 'GET' && url.pathname === '/api/screen-config') return this.send(res, 200, this.getConfig ? this.getConfig() : {});
       if (req.method === 'GET' && url.pathname === '/api/coverage') return this.send(res, 200, this.getCoverage ? this.getCoverage() : { items: [] });
       // 大屏角落的「手机扫码下令」：按观众实际访问的主机名生成（换了网卡地址也对）

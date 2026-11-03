@@ -189,6 +189,28 @@ module.exports = {
       });
     });
 
+    /**
+     * 运营中心派来的合同（AI 数字员工在界面上操作）：按本机路径收合同，等同用户点「上传合同」。
+     * 路径来自宿主的自动操作单（运营中心附件 / 员工机临时文件），只收允许的类型，大小同上传上限。
+     */
+    h('review.createFromPath', async (p) => {
+      const path = String(p?.path || '');
+      const name = basename(String(p?.name || path));
+      if (!path || !existsSync(path)) throw new Error('合同文件不存在');
+      if (!ALLOWED.has(extname(path).toLowerCase()) && !ALLOWED.has(extname(name).toLowerCase())) throw new Error('只支持 docx / pdf / txt / md');
+      const buf = readFileSync(path);
+      if (buf.length > MAX_FILE) throw new Error('文件超过 20MB');
+      const fileName = ALLOWED.has(extname(name).toLowerCase()) ? name : basename(path);
+      const id = `lg-${Date.now().toString(36)}-${randomUUID().slice(0, 4)}`;
+      const { name: stored, doc } = await storeUpload(id, fileName, buf.toString('base64'));
+      if (!doc.paras.length) throw new Error(doc.warning || '没有读到合同文字');
+      return save({
+        id, fileName: stored, kind: doc.kind, ocr: doc.ocr, warning: doc.warning || null, paras: doc.paras, createdAt: Date.now(),
+        pre: null, stance: { side: 'neutral', partyName: '', mustKeep: [], tradeable: [] }, playbook: null, clauses: null, review: null, summary: null, rebuttals: {},
+        from: 'legion',
+      });
+    });
+
     h('review.preAnalyze', track('合同预分析', async (p) => {
       const r = load(p?.id);
       const text = r.paras.map((x) => x.text).join('\n');

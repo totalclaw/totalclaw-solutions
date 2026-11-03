@@ -1,12 +1,12 @@
 {
   "id": "workbench-hr-agent",
-  "version": "1.0.0",
-  "treeDigest": "e50f36c385e0e0b5b03d0110294d14e17fd2a7692a2b19a8faaa700e7a15529a",
+  "version": "1.0.1",
+  "treeDigest": "5f628fd5fde7b41d61c854ca2be4b2b24c5202022ce9d8f6a3116eb8cf8f3f69",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1196,
-      "sha256": "afa298122aee693fdf1d8253e5c1894075816625e0080115594973b57b60651f"
+      "size": 1362,
+      "sha256": "90ee0e66415425c42b0d6ed3a71102b166e533a62fccfb4fcf3ec1915cff4536"
     },
     {
       "path": "README.md",
@@ -21,7 +21,7 @@
     {
       "path": "solution.json",
       "size": 2279,
-      "sha256": "0935d9c00b013d4ee3a5aea151fc9a470995dc6e8260cf7c9b3c0c5c6dfea31d"
+      "sha256": "93ed44d9290c7d37b38930e78c617acfbd084f7ce5ec728d9f9d12d54622c97a"
     },
     {
       "path": "src/host-modules.json",
@@ -60,11 +60,22 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 39511,
-      "sha256": "1e127f53ddfcb01efc722e827b588b447b08b2f2daf089fd83688731786f87a4"
+      "size": 40513,
+      "sha256": "105bfb790b79625423654d647ac2e039d32e6a60bcf4dacf2c2e77a4538feac7"
     }
   ],
   "versions": [
+    {
+      "version": "1.0.1",
+      "ref": "workbench-hr-agent@1.0.1",
+      "treeDigest": "5f628fd5fde7b41d61c854ca2be4b2b24c5202022ce9d8f6a3116eb8cf8f3f69",
+      "filesRef": "index/workbench-hr-agent/1.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-11-03"
+    },
     {
       "version": "1.0.0",
       "ref": "workbench-hr-agent@1.0.0",

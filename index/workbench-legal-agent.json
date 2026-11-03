@@ -1,12 +1,12 @@
 {
   "id": "workbench-legal-agent",
-  "version": "1.0.0",
-  "treeDigest": "9c8d5d617cefdc8f782a75fcb005ff86bc12de6d54d3dad9cee4e3959a6438ee",
+  "version": "1.0.1",
+  "treeDigest": "3a41baa5924e6c088ae9e2632e92af8ce9e3ca5708c7956d587abd9c9efeaedd",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 676,
-      "sha256": "ecab4bdd854404e2b2d5c22925fe08226bfead59ea479d86b8aab29bc33e504d"
+      "size": 1257,
+      "sha256": "2c5829638b80aa908c71106cda7efa78a0178166b8016c0baa9e85dd504d41e1"
     },
     {
       "path": "README.md",
@@ -51,7 +51,7 @@
     {
       "path": "solution.json",
       "size": 2446,
-      "sha256": "fb4d67c8323b80d732d230702d0b10d257c4f77d32845d8f0a7afffae0a84e14"
+      "sha256": "9a7d058e3b8c2884d555b16b1aabc599b766cea3cd58fbcdd6f0c6aa9b7c04d8"
     },
     {
       "path": "src/host-modules.json",
@@ -70,8 +70,8 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 17830,
-      "sha256": "9004c003325af08a98d48e6cdff7ff9c7503216bb8e8fb891e6e300a040ebe2b"
+      "size": 19320,
+      "sha256": "9f13546b8315120a64c2fab82db2641882cfaebcecb5e816d43afbdeb32da5fe"
     },
     {
       "path": "src/main/review.cjs",
@@ -85,11 +85,22 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 27797,
-      "sha256": "fcb58298e271ecb488e0bca396f5e16ca0da59dc998a1503c9aad8c0494e4354"
+      "size": 34508,
+      "sha256": "dc916b3e6fb2ea35c24d4c6514608c3f1c9dd037c9e5468153b3e80ef1b0629e"
     }
   ],
   "versions": [
+    {
+      "version": "1.0.1",
+      "ref": "workbench-legal-agent@1.0.1",
+      "treeDigest": "3a41baa5924e6c088ae9e2632e92af8ce9e3ca5708c7956d587abd9c9efeaedd",
+      "filesRef": "index/workbench-legal-agent/1.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-11-03"
+    },
     {
       "version": "1.0.0",
       "ref": "workbench-legal-agent@1.0.0",
