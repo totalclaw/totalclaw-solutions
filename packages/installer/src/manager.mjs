@@ -17,7 +17,7 @@ import { digestDir, sha256, treeDigest } from './digest.mjs';
 import { assertSafeRelPath, ensureDir, moveDir, readJsonFile, rmrf, safeJoin } from './fsutil.mjs';
 import { beginJournal, clearJournal, commitJournal, recoverJournal } from './journal.mjs';
 import { DirLock, readLock, writeLock } from './lock.mjs';
-import { migrateData, ownedDataPaths } from './migrate.mjs';
+import { migrateData, ownedDataPaths, usedDataPaths } from './migrate.mjs';
 import * as semver from './semver.mjs';
 import { COMMIT_RE } from './sources.mjs';
 
@@ -726,8 +726,11 @@ export class SolutionManager {
       const purged = [];
       const kept = [];
       if (purgeData && manifest) {
-        // 别的已装方案也声明了的数据（同一路径或互为上下级）是共用的：不删，回报保留了哪些
-        const others = Object.values(lock.items).flatMap((it) => ownedDataPaths(readJsonFile(join(this.root, it.activePath, 'solution.json'), null)));
+        // 别的已装方案也声明了的数据（data.paths 或 data.uses；同一路径或互为上下级）是共用的：不删，回报保留了哪些
+        const others = Object.values(lock.items).flatMap((it) => {
+          const m = readJsonFile(join(this.root, it.activePath, 'solution.json'), null);
+          return [...ownedDataPaths(m), ...usedDataPaths(m)];
+        });
         const shared = (p) => others.some((q) => q === p || q.startsWith(`${p}/`) || p.startsWith(`${q}/`));
         for (const dataRoot of dataRoots) {
           for (const p of ownedDataPaths(manifest)) {
