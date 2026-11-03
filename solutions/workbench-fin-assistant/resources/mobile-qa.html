@@ -57,7 +57,7 @@ button.send:disabled{opacity:.5}
   function api(path,body){return fetch(path,{method:body?'POST':'GET',headers:Object.assign({'Authorization':'Bearer '+T},body?{'Content-Type':'application/json'}:{}),body:body?JSON.stringify(body):undefined}).then(function(r){if(r.status===401)throw new Error('访问口令已失效：请重新扫描电脑上的二维码');return r.json();});}
   function render(r){
     if(r.status==='answered'){
-      var c=(r.citations||[]).map(function(x){return '<div><b>['+x.n+']</b> 《'+esc(x.title)+'》'+esc(x.no)+(x.effectiveFrom?' · '+esc(x.effectiveFrom)+' 起施行':'')+'</div>';}).join('');
+      var c=(r.citations||[]).map(function(x){return x.kind==='kb'?'<div><b>['+x.n+']</b> 知识库 · '+esc(x.title)+(x.source?'（'+esc(x.source)+'）':'')+'</div>':'<div><b>['+x.n+']</b> 《'+esc(x.title)+'》'+esc(x.no)+(x.effectiveFrom?' · '+esc(x.effectiveFrom)+' 起施行':'')+'</div>';}).join('');
       var w=(r.unverified&&r.unverified.length)?'<div class="warn">以下数字在制度原文中没有找到，请人工核对：'+esc(r.unverified.join('、'))+'</div>':'';
       return '<div class="bub">'+esc(r.answer)+(c?'<div class="cites">依据'+c+'</div>':'')+w+'</div>';
     }

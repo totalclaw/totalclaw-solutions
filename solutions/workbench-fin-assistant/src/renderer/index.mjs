@@ -75,6 +75,8 @@ export default function createSolution(sdk) {
 .fa-tbl th{background:#f3f6fb;color:var(--fa-navy-2)}
 .fa-tbl td{font-variant-numeric:tabular-nums}
 .fa-src{font-size:11.5px;padding:0 6px;border-radius:4px;background:rgba(200,16,46,.08);color:var(--fa-red);white-space:nowrap}.fa-src.pc{background:#eef2f8;color:var(--fa-navy-2)}
+.fa-kbform{border:1px dashed var(--fa-line);border-radius:8px;padding:10px 12px;margin-top:8px;background:#f8fafd}
+.fa-kbdocs{margin-top:14px;padding-top:12px;border-top:1px solid var(--fa-line)}
 .fa-mobile{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-top:10px}
 .fa-qr{width:170px;height:170px;padding:8px;background:#fff;border:1px solid var(--fa-line);border-radius:8px;box-sizing:border-box}.fa-qr svg{width:100%;height:100%;display:block}
 .fa-mobile > div:last-child{flex:1;min-width:260px}
@@ -91,6 +93,7 @@ export default function createSolution(sdk) {
   // 业务页签在前；「设置」（安全与审计：数据分级与模型路由、审计记录、明确不做的事）放最后
   const TABS = [
     { key: 'qa', title: '制度与合规问答', icon: 'ri-book-read-line' },
+    { key: 'kb', title: '金融知识库', icon: 'ri-stack-line' },
     { key: 'ask', title: '智能问数', icon: 'ri-database-2-line' },
     { key: 'credit', title: '授信材料预审', icon: 'ri-file-search-line' },
     { key: 'mkt', title: '营销物料审查', icon: 'ri-megaphone-line' },
@@ -104,6 +107,19 @@ export default function createSolution(sdk) {
       const tab = ref('qa');
       // 手机端制度问答（局域网对话页）：{ available, running, url, qr }
       const mobile = ref({ available: true, running: false, url: '', qr: '' });
+      // 金融知识库：来源 / 文档 / 设置；新增来源的表单；检索测试结果
+      const kbOv = ref({ sources: [], docs: [], settings: { useInQa: true, topK: 4 }, capabilities: {} });
+      const kbForm = reactive({ kind: '', name: '', level: 'internal', graphId: '', dataSource: '', sql: "SELECT title, content FROM kb_articles WHERE content LIKE {{q}} OR title LIKE {{q}} LIMIT 20", titleCol: 'title', textCol: 'content', refCol: '', url: '', token: '', itemsPath: 'items', titleField: 'title', textField: 'content', urlField: 'url' });
+      const kbLevelNew = ref('internal');
+      const kbQ = ref('');
+      const kbRes = ref(null);
+      const appGraphs = ref([]);
+      const dbSources = ref([]);
+      const loadKb = async () => {
+        try { kbOv.value = await sdk.invoke('kb.overview'); } catch (_) { /* 旧版本 */ }
+        appGraphs.value = (await sdk.invoke('kb.appGraphs').catch(() => [])) || [];
+        dbSources.value = (await sdk.invoke('kb.dbSources').catch(() => [])) || [];
+      };
       const meta = ref(null);
       const busy = reactive({});
       const err = reactive({});
@@ -178,6 +194,11 @@ export default function createSolution(sdk) {
           { id: 'qa-3', title: '③ 缺口反馈', done: !!gaps.value },
           { id: 'qa-4', title: '④ 手机端提问', done: !!mobile.value.running },
         ];
+        if (tab.value === 'kb') return [
+          { id: 'kb-1', title: '① 知识来源', done: kbOv.value.sources.some((x) => x.enabled) },
+          { id: 'kb-2', title: '② 检索测试', done: !!kbRes.value },
+          { id: 'kb-3', title: '③ 用在哪里', done: !!kbOv.value.settings?.useInQa },
+        ];
         if (tab.value === 'ask') return [
           { id: 'ask-1', title: '① 数据与口径库', done: !!dataInfo.value?.rows },
           { id: 'ask-2', title: '② 提问取数', done: asks.value.some((a) => a.status === 'answered') },
@@ -207,6 +228,7 @@ export default function createSolution(sdk) {
         tab.value = k;
         if (k === 'overview') await loadAudit();
         if (k === 'qa') await Promise.all([loadQa(), loadMobile()]);
+        if (k === 'kb') await loadKb();
         if (k === 'ask') await loadAsk();
         if (k === 'credit') await loadCredits();
         if (k === 'mkt') await loadMkt();
@@ -284,7 +306,10 @@ export default function createSolution(sdk) {
                 el('div', { class: 'fa-ans', 'data-test': 'fa-qa-answer' }, q.answer),
                 q.unverified?.length ? el('p', { class: 'fa-note warn' }, t('以下数字没能在制度原文中找到，请人工核对：{p0}', { p0: q.unverified.join('、') })) : null,
                 el('p', { class: 'fa-sub', style: 'margin-top:10px' }, t('依据')),
-                (q.citations || []).map((c) => el('div', { class: 'fa-q' }, `[${c.n}]《${c.title}》${c.no} · v${c.version} · ${c.effectiveFrom ? `${c.effectiveFrom} 起施行` : '生效日未登记'}${c.dept ? ` · ${c.dept}` : ''}\n${c.text}`)),
+                (q.citations || []).map((c) => el('div', { class: 'fa-q' }, c.kind === 'kb'
+                  ? `[${c.n}] ${t('知识库')} · ${c.title}（${t('来源：{p0}', { p0: c.source || '' })}${c.ref && c.ref !== c.title ? ` · ${c.ref}` : ''}）\n${c.text}`
+                  : `[${c.n}]《${c.title}》${c.no} · v${c.version} · ${c.effectiveFrom ? `${c.effectiveFrom} 起施行` : '生效日未登记'}${c.dept ? ` · ${c.dept}` : ''}\n${c.text}`)),
+                q.note ? el('p', { class: 'fa-note info' }, q.note) : null,
                 el('div', { class: 'fa-row' }, t('这条回答：'), el('button', { class: 'fa-btn sm', onClick: () => call('qa', 'qa.rate', { id: q.id, rating: 1 }) }, t('有用')), el('button', { class: 'fa-btn sm', onClick: () => call('qa', 'qa.rate', { id: q.id, rating: -1 }) }, t('不满意（进缺口反馈）'))))) : null,
             qaList.value.length > 1 ? el('details', null, el('summary', null, t('历史问答（{n}）', { n: qaList.value.length })),
               el('table', { class: 'fa-tbl' }, el('tbody', null, qaList.value.slice(0, 50).map((x) => el('tr', null, el('td', null, x.at.slice(0, 16).replace('T', ' ')), el('td', null, x.source === 'mobile' ? el('span', { class: 'fa-src' }, t('手机')) : el('span', { class: 'fa-src pc' }, t('电脑'))), el('td', null, x.q), el('td', null, x.status === 'answered' ? t('已作答') : `${t('拒答')}：${x.reason}`)))))) : null),
@@ -434,6 +459,78 @@ export default function createSolution(sdk) {
             el('button', { class: 'fa-btn pri', disabled: !x, onClick: async () => { const p = await call('mkt', 'mkt.export', { id: x.id }); if (p) { mkt.value = { ...x, exported: p }; sdk.notify.success(t('已导出：{p0}', { p0: p })); } } }, t('导出预审意见'))));
       };
 
+      const KIND = { docs: '本方案文档库', app: '本机知识库', db: '远程数据库（只读）', http: '远程检索接口' };
+      const LEVEL = { public: '公开', internal: '内部', sensitive: '客户敏感' };
+      const levelSel = (v, on) => el('select', { class: 'fa-in', value: v, onChange: (e) => on(e.target.value) }, Object.entries(LEVEL).map(([k, x]) => el('option', { value: k }, t(x))));
+      const saveSource = async (src, token) => { await call('kb', 'kb.source.save', { source: src, ...(token ? { token } : {}) }); await loadKb(); };
+      const vKb = () => {
+        const ov = kbOv.value;
+        const cap = ov.capabilities || {};
+        const f = kbForm;
+        const form = () => {
+          if (!f.kind) return null;
+          const body = f.kind === 'app'
+            ? [el('label', null, t('知识库图谱'), ' ', el('select', { class: 'fa-in', value: f.graphId, onChange: (e) => (f.graphId = e.target.value) }, el('option', { value: '' }, t('当前图谱')), appGraphs.value.map((g) => el('option', { value: g.id }, g.name || g.id))))]
+            : f.kind === 'db'
+              ? [
+                  el('div', { class: 'fa-row' }, t('数据源'), ' ', el('select', { class: 'fa-in', value: f.dataSource, onChange: (e) => (f.dataSource = e.target.value) }, el('option', { value: '' }, dbSources.value.length ? t('选择数据源') : t('还没有数据源：在「设置 → 企业数据 · 多库分析」里添加')), dbSources.value.map((d) => el('option', { value: d.name }, `${d.name}${d.kind ? `（${d.kind}）` : ''}`)))),
+                  el('textarea', { class: 'fa-in fa-ta', style: 'min-height:70px;font-family:ui-monospace,Menlo,monospace;font-size:12px', value: f.sql, onInput: (e) => (f.sql = e.target.value) }),
+                  el('p', { class: 'fa-sub', style: 'margin:4px 0' }, t('只允许 SELECT；问题里的关键词以 {{q}} 代入（程序转义，按值替换，不拼接原句）。走 App 的只读数据库通道：只读守卫、子账号授权、脱敏与数据访问审计都生效。')),
+                  el('div', { class: 'fa-row' }, t('标题列'), el('input', { class: 'fa-in', style: 'width:120px', value: f.titleCol, onInput: (e) => (f.titleCol = e.target.value) }), t('内容列'), el('input', { class: 'fa-in', style: 'width:120px', value: f.textCol, onInput: (e) => (f.textCol = e.target.value) }), t('出处列（可空）'), el('input', { class: 'fa-in', style: 'width:120px', value: f.refCol, onInput: (e) => (f.refCol = e.target.value) })),
+                ]
+              : f.kind === 'http'
+                ? [
+                    el('div', { class: 'fa-row' }, el('input', { class: 'fa-in', style: 'flex:1;min-width:320px', placeholder: 'https://kb.example.bank/api/search', value: f.url, onInput: (e) => (f.url = e.target.value) }), el('input', { class: 'fa-in', type: 'password', style: 'width:220px', placeholder: t('访问令牌（可空，加密保存）'), value: f.token, onInput: (e) => (f.token = e.target.value) })),
+                    el('p', { class: 'fa-sub', style: 'margin:4px 0' }, t('请求：POST {query, keywords, topK}，带 Authorization: Bearer 令牌；8 秒超时、返回体 ≤2MB。按下面的字段路径取结果：')),
+                    el('div', { class: 'fa-row' }, t('列表'), el('input', { class: 'fa-in', style: 'width:120px', value: f.itemsPath, onInput: (e) => (f.itemsPath = e.target.value) }), t('标题'), el('input', { class: 'fa-in', style: 'width:110px', value: f.titleField, onInput: (e) => (f.titleField = e.target.value) }), t('正文'), el('input', { class: 'fa-in', style: 'width:110px', value: f.textField, onInput: (e) => (f.textField = e.target.value) }), t('链接'), el('input', { class: 'fa-in', style: 'width:110px', value: f.urlField, onInput: (e) => (f.urlField = e.target.value) })),
+                  ]
+                : [];
+          return el('div', { class: 'fa-kbform' },
+            el('div', { class: 'fa-row' }, el('b', null, t('新增：{p0}', { p0: t(KIND[f.kind]) })), el('input', { class: 'fa-in', placeholder: t('名称（可空）'), value: f.name, onInput: (e) => (f.name = e.target.value) }), t('数据级别'), levelSel(f.level, (v) => (f.level = v))),
+            body,
+            el('div', { class: 'fa-row' },
+              el('button', { class: 'fa-btn pri', disabled: busy.kb, 'data-test': 'fa-kb-save', onClick: async () => { try { await saveSource({ kind: f.kind, name: f.name, level: f.level, graphId: f.graphId, dataSource: f.dataSource, sql: f.sql, titleCol: f.titleCol, textCol: f.textCol, refCol: f.refCol, url: f.url, itemsPath: f.itemsPath, titleField: f.titleField, textField: f.textField, urlField: f.urlField }, f.token); f.kind = ''; f.token = ''; } catch (_) { /* errNote */ } } }, t('保存来源')),
+              el('button', { class: 'fa-btn', onClick: () => (f.kind = '') }, t('取消'))));
+        };
+        const r = kbRes.value;
+        return el('div', null,
+          card('kb-1', t('① 知识来源'), ov.sources.some((x) => x.enabled), t('知识来源可以是本地的（本方案文档库、App 本机知识库），也可以是远程的（只读数据库、内网检索接口）；可多选、各自设数据级别。客户敏感级的来源只有确认内网模型时才会被引用（「设置」页里确认）。'),
+            ov.sources.length ? el('table', { class: 'fa-tbl', 'data-test': 'fa-kb-sources' }, el('thead', null, el('tr', null, [t('来源'), t('类型'), t('数据级别'), t('启用'), ''].map((x) => el('th', null, x)))),
+              el('tbody', null, ov.sources.map((x) => el('tr', null,
+                el('td', null, x.name, x.kind === 'db' ? el('div', { class: 'fa-sub', style: 'margin:0' }, x.dataSource) : x.kind === 'http' ? el('div', { class: 'fa-sub', style: 'margin:0' }, `${x.url}${x.hasToken ? ` · ${t('已存令牌')}` : ''}`) : null),
+                el('td', null, t(KIND[x.kind])),
+                el('td', null, levelSel(x.level, (v) => saveSource({ ...x, level: v }))),
+                el('td', null, el('input', { type: 'checkbox', checked: x.enabled, onChange: (e) => saveSource({ ...x, enabled: e.target.checked }) })),
+                el('td', null, el('button', { class: 'fa-link', onClick: async () => { await call('kb', 'kb.source.remove', { id: x.id }); await loadKb(); } }, t('删除'))))))) : el('p', { class: 'fa-empty' }, t('还没有知识来源')),
+            el('div', { class: 'fa-row', style: 'margin-top:10px' },
+              el('span', { class: 'fa-sub', style: 'margin:0' }, t('新增来源：')),
+              el('button', { class: 'fa-btn', disabled: !cap.app, title: cap.app ? '' : t('当前 App 版本没有知识库检索'), onClick: () => Object.assign(f, { kind: 'app', level: 'internal' }) }, el('i', { class: 'ri-book-2-line' }), ' ', t('本机知识库')),
+              el('button', { class: 'fa-btn', disabled: !cap.db, title: cap.db ? '' : t('当前 App 版本没有只读数据库通道'), onClick: () => Object.assign(f, { kind: 'db', level: 'internal' }) }, el('i', { class: 'ri-database-2-line' }), ' ', t('远程数据库（只读）')),
+              el('button', { class: 'fa-btn', onClick: () => Object.assign(f, { kind: 'http', level: 'internal' }) }, el('i', { class: 'ri-global-line' }), ' ', t('远程检索接口'))),
+            form(),
+            errNote('kb'),
+            el('div', { class: 'fa-kbdocs' },
+              el('div', { class: 'fa-row' }, el('b', null, t('本方案文档库')), el('span', { class: 'fa-sub', style: 'margin:0' }, t('产品说明书、监管文件、培训材料（PDF / Word / Excel / PPT / 文本，扫描件自动识别文字）；只存本机')),
+                el('span', { style: 'flex:1' }), t('导入为'), levelSel(kbLevelNew.value, (v) => (kbLevelNew.value = v)),
+                el('label', { class: 'fa-btn pri', style: 'display:inline-block' }, busy.kbdoc ? t('导入中…') : t('导入文档'), el('input', { type: 'file', multiple: true, accept: '.pdf,.doc,.docx,.xls,.xlsx,.csv,.ppt,.pptx,.txt,.md', style: 'display:none', onChange: async (e) => { const files = [...e.target.files]; e.target.value = ''; for (const file of files) { try { await call('kbdoc', 'kb.doc.import', { fileName: file.name, base64: await readBase64(file), level: kbLevelNew.value }); } catch (_) { /* errNote */ } } await loadKb(); } })),
+                el('button', { class: 'fa-btn', disabled: busy.kbdoc, 'data-test': 'fa-kb-demo', onClick: async () => { await call('kbdoc', 'kb.doc.demo'); await loadKb(); } }, t('载入示例知识'))),
+              errNote('kbdoc'),
+              ov.docs.length ? el('table', { class: 'fa-tbl' }, el('tbody', null, ov.docs.map((d) => el('tr', null, el('td', null, d.name), el('td', null, t(LEVEL[d.level] || d.level)), el('td', null, t('{n} 段', { n: d.chunks })), el('td', null, el('button', { class: 'fa-link', onClick: async () => { await call('kb', 'kb.doc.remove', { id: d.id }); await loadKb(); } }, t('移除'))))))) : null)),
+          card('kb-2', t('② 检索测试'), !!r, t('输入一个问题，看各来源各自命中了什么（每个来源单独限时，某个来源出错不影响其它来源）。'),
+            el('div', { class: 'fa-row' },
+              el('input', { class: 'fa-in', style: 'flex:1;min-width:280px', 'data-test': 'fa-kb-q', placeholder: t('例如：稳盈 365 天的起购金额和费用是多少？'), value: kbQ.value, onInput: (e) => (kbQ.value = e.target.value), onKeydown: (e) => e.key === 'Enter' && !e.isComposing && document.querySelector('[data-test="fa-kb-search"]')?.click() }),
+              el('button', { class: 'fa-btn pri', disabled: busy.kbs || !kbQ.value.trim(), 'data-test': 'fa-kb-search', onClick: async () => { kbRes.value = await call('kbs', 'kb.search', { q: kbQ.value }); } }, busy.kbs ? t('检索中…') : t('检索'))),
+            errNote('kbs'),
+            r ? el('div', null,
+              el('div', { class: 'fa-row' }, r.status.map((x) => el('span', { class: `fa-st${x.ok ? ' done' : ''}`, title: x.error || '' }, `${x.name}：${x.ok ? t('{n} 条', { n: x.hits }) : t('出错')}`))),
+              r.droppedSensitive ? el('p', { class: 'fa-note warn' }, t('有 {n} 条客户敏感级知识没有使用：未确认内网模型', { n: r.droppedSensitive })) : null,
+              r.status.filter((x) => !x.ok).map((x) => el('p', { class: 'fa-note err' }, `${x.name}：${x.error}`)),
+              r.hits.length ? r.hits.map((x, i) => el('div', { class: 'fa-q', 'data-test': 'fa-kb-hit' }, `[${i + 1}] ${x.title} · ${x.sourceName} · ${t(LEVEL[x.level] || x.level)}${x.ref && x.ref !== x.title ? ` · ${x.ref}` : ''}\n${x.text}`)) : el('p', { class: 'fa-empty' }, t('没有命中'))) : null),
+          card('kb-3', t('③ 用在哪里'), !!ov.settings?.useInQa, t('打开后，制度问答（含手机端）会把知识库命中当补充依据：制度条款优先，与制度冲突以制度为准；回答里知识库出处单独标注，数字同样回原文核对。'),
+            el('label', { class: 'fa-row', style: 'cursor:pointer' }, el('input', { type: 'checkbox', checked: !!ov.settings?.useInQa, 'data-test': 'fa-kb-useqa', onChange: async (e) => { await call('kb', 'kb.settings', { useInQa: e.target.checked }); await loadKb(); } }), t('制度与合规问答（含手机端）引用金融知识库')),
+            el('div', { class: 'fa-row' }, t('每次最多引用'), el('select', { class: 'fa-in', value: String(ov.settings?.topK || 4), onChange: async (e) => { await call('kb', 'kb.settings', { topK: Number(e.target.value) }); await loadKb(); } }, [2, 3, 4, 5, 6, 8].map((n) => el('option', { value: String(n) }, String(n)))), t('条知识'))));
+      };
+
       const vOps = () => el('div', null,
         el('section', { class: 'fa-card' }, el('h3', null, t('已有现成工作台的场景')),
           el('p', { class: 'fa-sub' }, t('后台运营场景已有分步工作台：金额按规则以分为单位计算，模型不参与算账；每一笔结果都能追溯到原始单据；涉及资金和开票的最终按钮由人操作。')),
@@ -467,7 +564,7 @@ export default function createSolution(sdk) {
           steps.value.length ? el('div', null,
             el('div', { class: 'fa-steps' }, steps.value.map((s, i) => el('button', { class: `${s.done ? 'done' : ''}${!s.done && steps.value.findIndex((x) => !x.done) === i ? ' cur' : ''}`, onClick: () => go(s.id) }, `${s.done ? '✓ ' : ''}${s.title}`))),
             el('div', { class: 'fa-prog' }, el('i', { style: `width:${progress.value}%` }))) : null),
-        tab.value === 'overview' ? vOverview() : tab.value === 'qa' ? vQa() : tab.value === 'ask' ? vAsk() : tab.value === 'credit' ? vCredit() : tab.value === 'mkt' ? vMkt() : vOps());
+        tab.value === 'overview' ? vOverview() : tab.value === 'qa' ? vQa() : tab.value === 'kb' ? vKb() : tab.value === 'ask' ? vAsk() : tab.value === 'credit' ? vCredit() : tab.value === 'mkt' ? vMkt() : vOps());
     },
   });
 }

@@ -2,8 +2,12 @@
   "hostApi": 2,
   "renderer": [],
   "main": [
+    "apps/desktop-shell/src/main/services/dataFetch.ts",
     "apps/desktop-shell/src/main/services/documentExtractor.ts",
+    "apps/desktop-shell/src/main/services/knowledgeBase/retrieval.ts",
+    "apps/desktop-shell/src/main/services/knowledgeBase/service.ts",
     "apps/desktop-shell/src/main/services/lanServer.ts",
+    "apps/desktop-shell/src/main/services/qiyeApiClient.ts",
     "apps/desktop-shell/src/main/services/serviceSettlement/excel.ts",
     "apps/desktop-shell/src/main/services/workbenchLlm.ts"
   ]

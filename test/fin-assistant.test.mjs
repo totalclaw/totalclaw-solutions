@@ -240,3 +240,77 @@ test('手机端制度问答：没有宿主局域网服务时如实说不可用�
     assert.ok(au.items.some((x) => x.action === 'qa.ask' && x.source === 'mobile'));
   } finally { main.__setLlmForTests(null); }
 });
+
+// ── 金融知识库 ──
+const KB = (await import('node:module')).createRequire(import.meta.url)('../solutions/workbench-fin-assistant/src/main/knowledge.cjs');
+
+test('知识库纯逻辑：切块、SQL 模板只按值代入、只读校验、接口字段映射、合并与敏感剔除', () => {
+  const chunks = KB.chunkText('第一段内容。\n\n' + '很长的一段。'.repeat(200));
+  assert.ok(chunks.length > 2 && chunks.every((c) => c.length <= 520));
+  assert.equal(KB.buildSql("SELECT * FROM kb WHERE content LIKE {{q}}", ["起购'; DROP TABLE x;--"]), "SELECT * FROM kb WHERE content LIKE '%起购''; DROP TABLE x; %'");
+  assert.throws(() => KB.normalizeSource({ kind: 'db', sql: 'DELETE FROM kb WHERE x = {{q}}' }), /只允许 SELECT/);
+  assert.throws(() => KB.normalizeSource({ kind: 'db', sql: 'SELECT * FROM kb' }), /\{\{q\}\}/);
+  assert.throws(() => KB.normalizeSource({ kind: 'http', url: 'ftp://x' }), /http/);
+  const items = KB.mapHttpItems({ data: { hits: [{ t: '产品A', body: '起购 1 万元', link: 'u1' }, { t: '空', body: '' }] } }, { itemsPath: 'data.hits', titleField: 't', textField: 'body', urlField: 'link' });
+  assert.deepEqual(items, [{ title: '产品A', text: '起购 1 万元', ref: 'u1' }]);
+  const m = KB.mergeHits([
+    { source: { id: 'a', name: 'A', kind: 'docs', level: 'public' }, hits: [{ title: '1', text: 'x1' }, { title: '2', text: 'x2' }] },
+    { source: { id: 'b', name: 'B', kind: 'http', level: 'sensitive' }, hits: [{ title: '3', text: 'y1' }] },
+    { source: { id: 'c', name: 'C', kind: 'db', level: 'internal' }, hits: [{ title: '4', text: 'x1' }, { title: '5', text: 'z1' }] },
+  ], { limit: 5, allowSensitive: false });
+  assert.deepEqual(m.hits.map((h) => h.title), ['1', '2', '5'], '按来源轮流取、正文去重');
+  assert.equal(m.droppedSensitive, 1);
+  assert.equal(KB.maxLevel([{ level: 'public' }, { level: 'internal' }]), 'internal');
+});
+
+test('知识库：导入示例文档 → 检索命中带来源；远程接口来源（本地假接口）参与合并；接口出错不拖垮别的来源；审计不存原文', async () => {
+  const { call } = fakeCtx();
+  const n = await call('kb.doc.demo');
+  assert.equal(n, 2);
+  const ov = await call('kb.overview');
+  assert.ok(ov.sources.some((x) => x.kind === 'docs' && x.enabled));
+  const http = await import('node:http');
+  const srv = http.createServer((req, res) => { let b = ''; req.on('data', (c) => (b += c)); req.on('end', () => { const q = JSON.parse(b); res.setHeader('content-type', 'application/json'); res.end(JSON.stringify({ items: [{ title: '远程：稳盈费用', content: `销售服务费年化 0.20%（查询：${q.query}）`, url: 'kb://1' }] })); }); });
+  await new Promise((ok) => srv.listen(0, '127.0.0.1', ok));
+  try {
+    await call('kb.source.save', { source: { kind: 'http', name: '内网知识检索', url: `http://127.0.0.1:${srv.address().port}/s`, level: 'internal' } });
+    await call('kb.source.save', { source: { kind: 'http', name: '坏接口', url: 'http://127.0.0.1:9/none', level: 'public' } });
+    const r = await call('kb.search', { q: '稳盈 365 天的起购金额和费用是多少？' });
+    assert.ok(r.hits.some((h) => h.sourceKind === 'docs' && /起购金额：1 万元/.test(h.text)));
+    assert.ok(r.hits.some((h) => h.sourceKind === 'http' && h.ref === 'kb://1'));
+    assert.ok(r.status.find((x) => x.name === '坏接口' && !x.ok));
+    const au = await call('audit.list', {});
+    const last = au.items.find((x) => x.action === 'kb.search');
+    assert.ok(last && /^[0-9a-f]{16}$/.test(last.q), '审计只存问题指纹');
+  } finally { srv.close(); }
+});
+
+test('知识库进制度问答：知识命中作为补充依据、出处标「知识库」；敏感级来源未确认内网模型时不用', async () => {
+  const { call } = fakeCtx();
+  await call('policy.demo');
+  await call('kb.doc.demo');
+  let prompt = '';
+  main.__setLlmForTests(async (p) => { prompt = p; const m = /\[(\d+)\]稳盈365天理财产品说明书/.exec(p); return { text: m ? `稳盈 365 天起购金额为 1 万元 [${m[1]}]。` : '依据不足', model: 'stub' }; });
+  try {
+    const ov = await call('kb.overview');
+    const kbN = (await call('qa.ask', { q: '稳盈 365 天理财产品的起购金额是多少？' }));
+    assert.match(prompt, /金融知识库资料/);
+    assert.equal(kbN.status, 'answered');
+    const kbCite = (kbN.citations || []).find((c) => c.kind === 'kb');
+    assert.ok(kbCite, '回答带知识库出处');
+    assert.match(kbCite.source, /文档库/);
+    assert.deepEqual(kbN.unverified, [], '数字在知识库原文里能找到');
+    // 把文档库设成客户敏感级、未确认内网模型 → 不检索进来
+    const docsSrc = ov.sources.find((x) => x.kind === 'docs');
+    await call('kb.source.save', { source: { ...docsSrc, level: 'sensitive' } });
+    prompt = '';
+    await call('qa.ask', { q: '稳盈 365 天理财产品的起购金额是多少？' });
+    assert.doesNotMatch(prompt, /起购金额：1 万元/);
+  } finally { main.__setLlmForTests(null); }
+});
+
+test('知识库：文档与来源级别取更严的那个（敏感文档单独剔除）', () => {
+  const m = KB.mergeHits([{ source: { id: 'd', name: '文档库', kind: 'docs', level: 'public' }, hits: [{ title: '公开件', text: 'a', level: 'public' }, { title: '敏感件', text: 'b', level: 'sensitive' }] }], { allowSensitive: false });
+  assert.deepEqual(m.hits.map((h) => [h.title, h.level]), [['公开件', 'public']]);
+  assert.equal(m.droppedSensitive, 1);
+});

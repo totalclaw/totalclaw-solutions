@@ -1,12 +1,12 @@
 {
   "id": "workbench-fin-assistant",
-  "version": "1.0.1",
-  "treeDigest": "b717416ff5bd25d0d31e68ad24bdc8f690bf3e6c1070662c493893c45538bbb2",
+  "version": "1.0.3",
+  "treeDigest": "0506a49f91da293cb2a1df028cc3d3e696b74202b061ffd939d7d6467582210c",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1773,
-      "sha256": "249689634fe76fdcd06b88bbef2a6595c53e677ed809249030f8ad90a686752d"
+      "size": 3081,
+      "sha256": "71dceecc505bef54d7a97a70d144a5d6c8bb170bd54b50ac819162e02ed196f4"
     },
     {
       "path": "README.md",
@@ -42,6 +42,16 @@
       "path": "resources/demo/credit/银行流水-近6个月.csv",
       "size": 5835,
       "sha256": "27a833122a7e21b4dfe5d755b590ef7c2ec50852f77bde72d4dc24e23bfdf024"
+    },
+    {
+      "path": "resources/demo/knowledge/反洗钱客户身份识别操作指引（示例）.txt",
+      "size": 867,
+      "sha256": "6547d3a4ac881496deea13e87dc425456dfe8f340f9581812750b2c15ddb7d6b"
+    },
+    {
+      "path": "resources/demo/knowledge/稳盈365天理财产品说明书（示例）.txt",
+      "size": 923,
+      "sha256": "79261b4409e0ce4963106047b1870d7ba195a4b77a4cb8fbf73188dfc12dab75"
     },
     {
       "path": "resources/demo/marketing-sample.txt",
@@ -80,18 +90,18 @@
     },
     {
       "path": "resources/mobile-qa.html",
-      "size": 6689,
-      "sha256": "0f84768fec12db4d5d8628b207bbbe4f762028ea77c5d471532af4fe0e65ac9e"
+      "size": 6803,
+      "sha256": "e1fc01c16d0aac83be0078671a52accfb8b2abfe407ecedd43d662fe5c97787f"
     },
     {
       "path": "solution.json",
       "size": 2959,
-      "sha256": "68ba2c33def1b9c772d127c69217d9537989e2652b65b3d8bd53f952d22a7c6b"
+      "sha256": "6e80fca9e7246682b207336e4c32adf55d827a222f01c0ab840ef0ddbd6284e6"
     },
     {
       "path": "src/host-modules.json",
-      "size": 306,
-      "sha256": "b5bf339f8b7698ebe13e9e24bb96b5d25a47e670eaa5d7a3421446dbe80bd918"
+      "size": 564,
+      "sha256": "ba8d81fb098c5adc9c91861aa4753b7661ea889b941b27f52c26fd54fe52042f"
     },
     {
       "path": "src/main/docText.cjs",
@@ -100,8 +110,13 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 45096,
-      "sha256": "e91823eb3d6f376aaf8c8932c76a6e0de6de64a775ea1dcbd5843236f0561af8"
+      "size": 57773,
+      "sha256": "b386401109469482ef4a57d1389b4279c144f22dcceea2686c10b43a63aac1a9"
+    },
+    {
+      "path": "src/main/knowledge.cjs",
+      "size": 7925,
+      "sha256": "a2aad5890fd987c3ef6e7f97146dc417108e8ecb90067619ef6f670f9b7d3b4b"
     },
     {
       "path": "src/main/lib.cjs",
@@ -120,11 +135,33 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 58252,
-      "sha256": "b4d50bfd92d57cd9e3823ac7b8932703bea20f5b61a744e60c16c992c7217b65"
+      "size": 71941,
+      "sha256": "e1a7ab97ae68d143439a224ef3ba8eda39b16ae637bd2049da8fdf420ce81cb7"
     }
   ],
   "versions": [
+    {
+      "version": "1.0.3",
+      "ref": "workbench-fin-assistant@1.0.3",
+      "treeDigest": "0506a49f91da293cb2a1df028cc3d3e696b74202b061ffd939d7d6467582210c",
+      "filesRef": "index/workbench-fin-assistant/1.0.3.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-11-03"
+    },
+    {
+      "version": "1.0.2",
+      "ref": "workbench-fin-assistant@1.0.2",
+      "treeDigest": "ff5c5167d2e8e94d17fab6b267448a925846390e38988c4ca5e7537401bd453b",
+      "filesRef": "index/workbench-fin-assistant/1.0.2.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-11-03"
+    },
     {
       "version": "1.0.1",
       "ref": "workbench-fin-assistant@1.0.1",
