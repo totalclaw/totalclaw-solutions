@@ -4,7 +4,7 @@
   "id": "workbench-legion-hq",
   "name": "运营中心（军团集群指挥）",
   "aliases": ["AI 公司运营中心", "军团指挥大屏", "指挥大屏", "OPC 一人公司", "legion-hq"],
-  "version": "1.0.6",
+  "version": "1.0.7",
   "kind": "workbench",
   "category": "集群协同",
   "icon": "icon-solutions",

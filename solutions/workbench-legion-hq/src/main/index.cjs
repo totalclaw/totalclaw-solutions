@@ -30,8 +30,8 @@ const { Storage } = require('./storage.cjs');
 const { Attachments } = require('./attachments.cjs');
 
 const D = 'legion-hq';
-/** 大屏「AutoCoder 演示」视频的默认地址：官网固定目录（totalclaw-web 仓库 assets/video/），换视频只换那个文件 */
-const DEFAULT_DEMO_VIDEO = 'https://taituai.com/assets/video/autocoder-demo.mp4';
+/** 大屏「AutoCoder 演示」视频的默认地址：官网固定目录（totalclaw-web 仓库 assets/video/yanshi.mp4），换视频只换那个文件 */
+const DEFAULT_DEMO_VIDEO = 'https://taituai.com/assets/video/yanshi.mp4';
 const demoVideoOk = (u) => /^https?:\/\/[^\s"'<>]+$/i.test(String(u || ''));
 const SETTINGS = `${D}/settings.json`;
 // L12 部门专用模型 / key：单独一个文件，界面只拿打码后的

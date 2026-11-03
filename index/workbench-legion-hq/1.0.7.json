@@ -1,0 +1,207 @@
+{
+  "id": "workbench-legion-hq",
+  "version": "1.0.7",
+  "treeDigest": "c87a1913cc8f1591ec32c3b5377d6a8cac6dc4d8d54185d7cdf0a53795253970",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 7049,
+      "sha256": "3f11709604ced152a6d3f03fa811b4a73b2e7565434efefaed7371cf92cd694a"
+    },
+    {
+      "path": "README.md",
+      "size": 6685,
+      "sha256": "b28f776a4abeb6e78d102dc65f47fd7e6100788d37b02f7397a5071512000cf5"
+    },
+    {
+      "path": "resources/coverage.json",
+      "size": 10654,
+      "sha256": "d05b81c089d217e2c7657cb9296e757961d2da87998a32070f514529ba36f9e7"
+    },
+    {
+      "path": "resources/demo-pack/01-company.md",
+      "size": 514,
+      "sha256": "65e1837b935d865469f458be08f7a687bd435c9fa2bbe9acb5547ca425ab38bd"
+    },
+    {
+      "path": "resources/demo-pack/02-products.md",
+      "size": 481,
+      "sha256": "50b91879e90718b27cdd1b568ff40e2fd2550e01a38745cd2f156707c0e67d73"
+    },
+    {
+      "path": "resources/demo-pack/03-finance-2025.md",
+      "size": 404,
+      "sha256": "2b760f9a3e9c2b21d9869b265713bcab22da6a0d7b466201bd69815eba52b791"
+    },
+    {
+      "path": "resources/demo-pack/04-contract-template.md",
+      "size": 452,
+      "sha256": "edd402467e67ce0f947540c7edf464b41e02a6b57bb45124b4c9f24c4ec88a59"
+    },
+    {
+      "path": "resources/demo-pack/05-roster.md",
+      "size": 646,
+      "sha256": "a865b7702ab0089fde22d25d266a07a1319477fe4325d68daa7ac06426918991"
+    },
+    {
+      "path": "resources/opc-exam.json",
+      "size": 15627,
+      "sha256": "f460f2ba01b9aeff325df01c56850e2b44cd0929249ff6702aec3131544cfc64"
+    },
+    {
+      "path": "resources/screen/index.html",
+      "size": 83360,
+      "sha256": "0f59eb799b2da8ed26d6c93b7897114b9dd12845446ee262356b5393dc5c02db"
+    },
+    {
+      "path": "resources/screen/remote.html",
+      "size": 4939,
+      "sha256": "2a73b9b0f73724c1a5db59a98aa5741df319f791722a1da72a526030ac22432d"
+    },
+    {
+      "path": "resources/scripts/01-ai-company-day.json",
+      "size": 2330,
+      "sha256": "96715f6842d3b58a17103ea6451b2cceb7c62e1b70c72e4dcf0cb64b91241ea1"
+    },
+    {
+      "path": "resources/scripts/02-daily-morning.json",
+      "size": 1172,
+      "sha256": "f511085c6257f41c605b4e4b41b7c3b294c4a6f7db73f766b3f19bdc1395a615"
+    },
+    {
+      "path": "resources/scripts/03-new-product-launch.json",
+      "size": 734,
+      "sha256": "2b29015d26c2f904be07068a9b5fa12ec62a09b435a0dde852ba3b239bbe8f07"
+    },
+    {
+      "path": "resources/scripts/04-hundred-resumes.json",
+      "size": 1056,
+      "sha256": "d081ce7dcad69bc0b522f03eae4f59889cc68e82c4d13801b1d819a015fdd04b"
+    },
+    {
+      "path": "solution.json",
+      "size": 3066,
+      "sha256": "e19c596e1d1605c61aa7e721f051c6951d498e0b0c1db6f9663e97335ff3c038"
+    },
+    {
+      "path": "src/host-modules.json",
+      "size": 547,
+      "sha256": "2d1a963c7e72ecda405511e2be1b183e98442a1e87a20b8a1ff42f43aed0b484"
+    },
+    {
+      "path": "src/main/attachments.cjs",
+      "size": 5118,
+      "sha256": "54011c35518de12229a088e3fa2ac07bc3c776754d449f2c1ae1ef9440fca995"
+    },
+    {
+      "path": "src/main/autopilot.cjs",
+      "size": 4516,
+      "sha256": "b09bb85b079abeb78444dd9d6d888810f4e4124d1adfd4537016061013c02fd8"
+    },
+    {
+      "path": "src/main/bus.cjs",
+      "size": 4348,
+      "sha256": "136d1297358270f75d02084b7a0dbbf4579df1a2e27dbe602b40f93d638e8147"
+    },
+    {
+      "path": "src/main/company.cjs",
+      "size": 3866,
+      "sha256": "f7b752abd7d30605829b2f2d388f56e34d9e63494d569af7093dfcd6f052c0b2"
+    },
+    {
+      "path": "src/main/director.cjs",
+      "size": 7165,
+      "sha256": "37ec87f5f582a4f23f57042ed90290e275f6220a1ba15d513c48e1172580ffa7"
+    },
+    {
+      "path": "src/main/docText.cjs",
+      "size": 6027,
+      "sha256": "7a4997674c31ad11bc24288680cfbc75dd29fad1d49cb3bc85710b094db94973"
+    },
+    {
+      "path": "src/main/docx.cjs",
+      "size": 9424,
+      "sha256": "82ec543d96781cfd366b0580bc7380f9d50310a08c9408fa206aa751416444bd"
+    },
+    {
+      "path": "src/main/employee.cjs",
+      "size": 4161,
+      "sha256": "2bd122e80c04b78fc687c9f6a6e5c7e3d47bc0851e268e334c3f6f53473d90a5"
+    },
+    {
+      "path": "src/main/extras.cjs",
+      "size": 11208,
+      "sha256": "62eeccb911d78259e11e84b6e063d4400e1dc2050dd228c2614bd0e4518fa5ca"
+    },
+    {
+      "path": "src/main/fleet.cjs",
+      "size": 14432,
+      "sha256": "7c6dca0b9a16f3506882fbc95a39b7d6ff1f0e9b686ea72e370df11eb0852ce6"
+    },
+    {
+      "path": "src/main/foreground.cjs",
+      "size": 2619,
+      "sha256": "5854c2e36f94b6155bea4b83fb4641901b6bf6f67d08021490e5b32da0fc3df4"
+    },
+    {
+      "path": "src/main/index.cjs",
+      "size": 56247,
+      "sha256": "8cb9372ec8c6a8ce51726e34001db3f24e97644287f7becbb7baf6b24d5491df"
+    },
+    {
+      "path": "src/main/legions.cjs",
+      "size": 6024,
+      "sha256": "581b0a4fa21c7919394e733dc7a7641e8eb6c0cd7e5087120e9d2f77c2d7a5bd"
+    },
+    {
+      "path": "src/main/planner.cjs",
+      "size": 4372,
+      "sha256": "4f7d408df80e32e4d82cc1a8b081179bcac19314917ad318da1c231b7bb131af"
+    },
+    {
+      "path": "src/main/qr.cjs",
+      "size": 9978,
+      "sha256": "dc3d3926b678365a8e7435add0d951a579415bf604d1f09f1225c4d1483f8312"
+    },
+    {
+      "path": "src/main/routines.cjs",
+      "size": 6392,
+      "sha256": "2e4f360e15e9dd84357d24993ec23501753029d1b2c6ffb9fc2eb596175bd114"
+    },
+    {
+      "path": "src/main/runner.cjs",
+      "size": 29168,
+      "sha256": "c4a12054e393715aebd6ed6182650f8b89ca016c502f30b6f11e90311f717eb2"
+    },
+    {
+      "path": "src/main/screenServer.cjs",
+      "size": 13856,
+      "sha256": "5492323252dd641cba4336b68cd2167ced7a29eb260b6c4883ee633232c5891f"
+    },
+    {
+      "path": "src/main/screenState.cjs",
+      "size": 9616,
+      "sha256": "2e38606765f2ab22a0da5b6b28264436fc09c0ab2b9694914ad29462ebc32331"
+    },
+    {
+      "path": "src/main/storage.cjs",
+      "size": 5461,
+      "sha256": "5ad7c9b033dcca88af4c74a2b185b1878a2e85070fad14ef16a72dc3011774e5"
+    },
+    {
+      "path": "src/main/triage.cjs",
+      "size": 7736,
+      "sha256": "4f8e445b2f2dd86d3228f4ea55eb8adb527ed967f80e2b92baf8f58dec8c9c72"
+    },
+    {
+      "path": "src/main/zip.cjs",
+      "size": 4221,
+      "sha256": "9c092411e47b0914072db3c3925a89cef3d348675d0448203683b3b4d38e261d"
+    },
+    {
+      "path": "src/renderer/index.mjs",
+      "size": 84504,
+      "sha256": "f4ebbbc324d60dec81377e5885a975400382b3a85ed8fbbe65aa64466b8c3dbe"
+    }
+  ]
+}
