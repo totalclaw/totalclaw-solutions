@@ -1164,7 +1164,7 @@
       "icon": "icon-solutions",
       "order": 180,
       "description": "短视频生成并发抖音、快手、小红书、视频号；数字人出镜介绍企业；商品图文自动上下架；收银与财务数据自动取数、统计并推送经营日报。",
-      "version": "2.0.8",
+      "version": "2.0.9",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1214,10 +1214,10 @@
       "capabilities": [],
       "path": "solutions/workbench-biz-automation",
       "fileCount": 8,
-      "size": 495628,
-      "treeDigest": "9782b80665b463da4709ccafa2a752ace071d0819f10b691462d8e73febe8143",
+      "size": 496041,
+      "treeDigest": "b7991b4238911b0627cabffa1fe92ab10e4b65a62c6ee992315e82f953f2a597",
       "largeAssets": [],
-      "changelog": "- 名称改回「经营自动化智能体」：原名「服装AI试衣 · 经营自动化」在项目工作台里看着像两个服装AI试衣（id 不变，旧名保留为按名称安装的别名）。\n- 新增「演示模式」：顶部一键生成整套示例数据（短视频 4 个含已发布 / 待定时发布、数字人讲稿 2 份、上架记录 8 条、近 60 天收银与费用、日报 / 月报与问答），六个页签都能直接演示；商品库没有演示商品时连带生成服装AI试衣的演示数据。本机生成，不调用 AI、不发布、不推送，可一键清除，门店自己的数据不受影响。需要 App 2.0.9 起。",
+      "changelog": "- 设置页：状态刷新（切到设置页时的加载、后台推送）只更新没动过的字段，不再把刚选的文件夹、改到一半的门店名这类没保存的修改冲掉。",
       "filesRef": "index/workbench-biz-automation.json"
     },
     {

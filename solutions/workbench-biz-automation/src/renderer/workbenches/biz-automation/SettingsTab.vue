@@ -82,7 +82,20 @@ const notif = useNotificationStore();
 const s = computed(() => baState.value);
 const draft = reactive<BaSettings>({} as BaSettings);
 const coreSizes = ref('');
-watch(() => s.value?.settings, (v) => { if (v) { Object.assign(draft, JSON.parse(JSON.stringify(v))); coreSizes.value = v.coreSizes.join(','); } }, { immediate: true });
+// 状态刷新（切到本页签时的加载、后台推送）只更新用户没动过的字段：原先整张表单覆盖成已保存的值，
+// 刚选的文件夹、改到一半的门店名这类没保存的修改会被冲掉（接口慢一点就碰上：选完文件夹「清除」又没了）
+let loaded: BaSettings | null = null;
+const same = (a: unknown, b: unknown): boolean => JSON.stringify(a) === JSON.stringify(b);
+watch(() => s.value?.settings, (v) => {
+  if (!v) return;
+  const next = JSON.parse(JSON.stringify(v)) as BaSettings;
+  const prev = loaded;
+  for (const k of Object.keys(next) as Array<keyof BaSettings>) {
+    if (!prev || same((draft as any)[k], (prev as any)[k])) (draft as any)[k] = (next as any)[k];
+  }
+  if (!prev || coreSizes.value === prev.coreSizes.join(',')) coreSizes.value = next.coreSizes.join(',');
+  loaded = next;
+}, { immediate: true });
 const dirty = computed(() => !!s.value && (JSON.stringify({ ...draft, coreSizes: parseSizes(coreSizes.value) }) !== JSON.stringify(s.value.settings)));
 
 const FOLDER_KINDS: Array<{ key: 'sales' | 'expense' | 'inventory'; label: string }> = [

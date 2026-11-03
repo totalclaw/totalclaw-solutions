@@ -109,6 +109,10 @@
       "from": "renderer/workbenches/biz-automation/renderWatchdog.test.ts"
     },
     {
+      "path": "src/renderer/workbenches/biz-automation/settingsDraft.test.ts",
+      "from": "renderer/workbenches/biz-automation/settingsDraft.test.ts"
+    },
+    {
       "path": "src/main/ipc/bizAutomation.ipc.ts",
       "from": "main/ipc/bizAutomation.ipc.ts"
     },

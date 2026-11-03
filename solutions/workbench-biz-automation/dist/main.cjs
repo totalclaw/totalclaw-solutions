@@ -26,7 +26,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// node_modules/.cache/solutions-build/workbench-biz-automation/entry.main.ts
+// apps/desktop-shell/node_modules/.cache/solutions-build/workbench-biz-automation/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -36,7 +36,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/ipc/bizAutomation.ipc.ts
+// ../totalclaw-solutions/solutions/workbench-biz-automation/src/main/ipc/bizAutomation.ipc.ts
 var import_electron = require("electron");
 var import_node_fs4 = require("node:fs");
 var import_node_path4 = require("node:path");
@@ -48,17 +48,17 @@ var import_userFacingError = require("host:apps/desktop-shell/src/main/utils/use
 var import_quitRegistry = require("host:apps/desktop-shell/src/main/util/quitRegistry.ts");
 var import_workbenchLlm = require("host:apps/desktop-shell/src/main/services/workbenchLlm.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/store.ts
+// ../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/store.ts
 var import_node_fs = require("node:fs");
 var import_node_path = require("node:path");
 var import_node_crypto = require("node:crypto");
 var import_i18n2 = require("npm:@totalclaw/i18n");
 var import_accountScope = require("host:apps/desktop-shell/src/main/services/accountScope.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/logic.ts
+// ../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/logic.ts
 var import_i18n = require("npm:@totalclaw/i18n");
 
-// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/columnKeywords.json
+// ../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/columnKeywords.json
 var columnKeywords_default = {
   _note: "\u7ECF\u8425\u81EA\u52A8\u5316\u667A\u80FD\u4F53\u5BFC\u5165\u6536\u94F6 / \u8D39\u7528\u8868\u683C\u7684\u5217\u8BC6\u522B\u5173\u952E\u5B57\uFF08\u6309\u4F18\u5148\u7EA7\uFF0C\u5148\u7CBE\u786E\u540E\u5305\u542B\uFF09\u3002\u4E0D\u8FDB i18n \u8BCD\u5178\uFF1A\u8981\u5339\u914D\u5BA2\u6237\u8868\u683C\u91CC\u7684\u771F\u5B9E\u8868\u5934\u3002",
   date: [
@@ -170,7 +170,7 @@ var columnKeywords_default = {
   ]
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/bannedWords.json
+// ../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/bannedWords.json
 var bannedWords_default = {
   _note: "\u5E7F\u544A\u6CD5\u6781\u9650\u8BCD / \u7981\u7528\u8BCD\uFF08\u8282\u9009\u5E38\u89C1\u9879\uFF09\uFF0C\u7528\u4E8E\u77ED\u89C6\u9891\u6587\u6848\u3001\u4E0A\u67B6\u6807\u9898\u3001\u6570\u5B57\u4EBA\u8BB2\u7A3F\u81EA\u68C0\u3002\u662F\u5339\u914D\u6A21\u5F0F\uFF0C\u4E0D\u8FDB i18n \u8BCD\u5178\u3002",
   words: [
@@ -216,7 +216,7 @@ var bannedWords_default = {
   ]
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/logic.ts
+// ../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/logic.ts
 var round2 = (n) => Math.round((Number(n) || 0) * 100) / 100;
 var ratio = (a, b) => b > 0 ? Math.round(a / b * 1e4) / 1e4 : 0;
 var KEYWORDS = columnKeywords_default;
@@ -654,7 +654,7 @@ function publishRunFromWorkflow(input) {
   };
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/store.ts
+// ../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/store.ts
 function newId(prefix) {
   return `${prefix}_${(0, import_node_crypto.randomUUID)().replace(/-/g, "").slice(0, 12)}`;
 }
@@ -809,7 +809,7 @@ var BizAutomationStore = class {
   }
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/prompts.ts
+// ../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/prompts.ts
 var PLATFORM_STYLE = {
   douyin: "Douyin: punchy hook in the first 2 seconds, title <= 30 chars, 3-5 hashtags",
   kuaishou: "Kuaishou: down-to-earth and friendly, title <= 30 chars, 3-5 hashtags",
@@ -900,7 +900,7 @@ function modelShotPrompt(g) {
   ].join(" ");
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/videoRender.ts
+// ../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/videoRender.ts
 var import_node_fs2 = require("node:fs");
 var import_node_path2 = require("node:path");
 var import_i18n3 = require("npm:@totalclaw/i18n");
@@ -985,7 +985,7 @@ async function localBgm(tools, durationSec, workDir, registry) {
   return g.code === 0 && (0, import_node_fs2.existsSync)(generated) ? generated : null;
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/ipc/bizAutomation.ipc.ts
+// ../totalclaw-solutions/solutions/workbench-biz-automation/src/main/ipc/bizAutomation.ipc.ts
 var import_excel = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 var import_excel2 = require("host:apps/desktop-shell/src/main/services/serviceSettlement/excel.ts");
 var import_media2 = require("host:apps/desktop-shell/src/main/services/charityContent/media.ts");
@@ -1004,12 +1004,12 @@ var import_fieldCatalog = require("host:apps/desktop-shell/src/main/services/kno
 var import_apparelStore = require("host:apps/desktop-shell/src/main/ipc/apparelStore.ipc.ts");
 var import_demo = require("host:apps/desktop-shell/src/main/services/apparelStore/demo.ts");
 
-// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/demo.ts
+// ../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/demo.ts
 var import_node_fs3 = require("node:fs");
 var import_node_path3 = require("node:path");
 var import_i18n4 = require("npm:@totalclaw/i18n");
 
-// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/demoData.json
+// ../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/demoData.json
 var demoData_default = {
   _comment: "\u7ECF\u8425\u81EA\u52A8\u5316 \xB7 \u6F14\u793A\u6A21\u5F0F\u7684\u793A\u4F8B\u6587\u5B57\uFF08\u865A\u6784\uFF09\u3002\u6309\u754C\u9762\u8BED\u8A00\u53D6 zh / en\uFF0C\u5176\u5B83\u8BED\u8A00\u7528 en\u3002\u6570\u5B57\u7531\u4EE3\u7801\u6309\u6F14\u793A\u5546\u54C1\u4E0E\u9500\u552E\u6570\u636E\u7B97\uFF0C\u8FD9\u91CC\u4E0D\u5199\u6570\u5B57\u3002",
   zh: {
@@ -1308,7 +1308,7 @@ var demoData_default = {
   }
 };
 
-// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/demo.ts
+// ../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/demo.ts
 var DEMO_MARK = "-demo_";
 var isDemo = (id) => !!id && id.includes(DEMO_MARK);
 var demoId = (prefix) => newId(`${prefix}-demo`);
@@ -1571,7 +1571,7 @@ function clearBizDemo(store2) {
   return before;
 }
 
-// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/ipc/bizAutomation.ipc.ts
+// ../totalclaw-solutions/solutions/workbench-biz-automation/src/main/ipc/bizAutomation.ipc.ts
 var import_logic5 = require("host:apps/desktop-shell/src/main/services/apparelStore/logic.ts");
 var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var BIZ_SOLUTION_ID = "workbench-biz-automation";
@@ -3006,7 +3006,7 @@ ${(0, import_i18n5.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
   return stopBackground;
 }
 
-// node_modules/.cache/solutions-build/workbench-biz-automation/entry.main.ts
+// apps/desktop-shell/node_modules/.cache/solutions-build/workbench-biz-automation/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerBizAutomationHandlers";
 var cleanup;
