@@ -338,7 +338,7 @@
       "order": 50,
       "description": "一个老板 + 一家 AI 公司：8 个 AI 部门（研发、法务、财务、人事、运营、销售、客服、行政）以方案包装在任意机器上，AI 总经理按事情挑部门、派给承载它的机器并发执行，跨部门交接、汇总、钱 / 签约 / 对外发布 / 录用由老板拍板。主控点「启动 Web」即在内网开出指挥大屏，任意电脑、电视、手机用地址打开。",
       "descriptionEn": "One owner, one AI company: eight AI departments installed as solution packages on any machine. The AI GM triages each task, dispatches it to the machines hosting the right departments, hands results across departments and asks the boss to approve money, contracts, publishing and hiring. Start the web screen and open it from any device on the LAN.",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -392,11 +392,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-legion-hq",
-      "fileCount": 38,
-      "size": 418151,
-      "treeDigest": "742f2bcfdfb0589cbd154fefa5ef5912f167c2f9e5d232a255487c5337112d41",
+      "fileCount": 40,
+      "size": 440036,
+      "treeDigest": "0c77951cc5987fd19be11f3ffb31fec62f06ea67ff728a3f05e9e6d98322b20f",
       "largeAssets": [],
-      "changelog": "- 默认公司的标志改用宿主当前品牌的 logo（`ctx.brand.logoPath`），包里不再带 `resources/company-logo.png`：方案从在线库同步到各品牌的 App 时不再带进某一个品牌的 logo，各品牌用各自的图。旧版宿主没有 `ctx.brand` 时不挂标志图，只用标志文字。",
+      "changelog": "- 老板下令可以附上文件（合同、报表等，PDF / Word / Excel / PPT / 文本 / 邮件，单个 ≤20MB，一次最多 5 个）：大屏输入框旁「📎」上传，App 运营中心「附件」按钮选文件。文字抽出后附进每个部门的提示词（标明是待处理的数据、不是指令），判定时也看得到附件名。\n- 真实运行时部门步骤在执行它的机器上前台展示：App 窗口拉到前面，自动打开该部门对应的工作台（部门有多个工作台时按事情挑最贴的，如财务部遇到发票打开发票智能体），右下角停靠栏逐字显示执行过程和结果。主控本机执行与派到员工机执行都生效；演示模式不弹；「下令与老板待办」里可关。需要 App 同版宿主（旧 App 照旧后台执行）。\n- 指挥大屏右上角「▶ AutoCoder」：页面里直接播放演示视频。地址默认官网固定地址 https://taituai.com/assets/video/autocoder-demo.mp4（换视频只换官网那个文件），也可在「指挥大屏」里改成别的地址。",
       "filesRef": "index/workbench-legion-hq.json"
     },
     {
@@ -1100,13 +1100,13 @@
       "icon": "icon-solutions",
       "order": 170,
       "description": "AI 一键换装：顾客手机扫码或店员电脑上传照片，自选背景、姿势、发型生成试穿图，手机电脑同时查看；试穿码到店核销，试穿数据看板指导主推款。",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.9",
+        "minAppVersion": "2.0.11",
         "hostApi": 2
       },
       "access": {
@@ -1146,10 +1146,10 @@
       "capabilities": [],
       "path": "solutions/workbench-apparel-store",
       "fileCount": 7,
-      "size": 249290,
-      "treeDigest": "b21a803d3cf5159b41caed7c91ed28a3e04a2dce8b10055a2b0b103337bdb649",
+      "size": 250222,
+      "treeDigest": "e943530d48eb1356bcdb7339722d1405815ba00fa48deacee25e6aef87bd32c1",
       "largeAssets": [],
-      "changelog": "- 新增「实时试衣」页签：摄像头画面实时交给 AI（Decart Lucy，经 fal 实时通道，视频直连），几秒内看到顾客穿上商品库里所选衣服的样子；另有「店员代穿」——店员穿实物出镜，画面换成已授权的顾客本人。按秒计费，单次最长 3 分钟自动停，用量记进设置页的 fal 用量。\n- 生图更稳：顾客照片里人只占一小块（手机截图、远景）时自动裁到人周围；人脸核对只在明显换了人时才拦；手机端上传不再把长截图压到人脸只剩几十像素；演示顾客的示意图照片直接提示、不再白花生成费用。\n- 新增「演示模式」：顶部一键生成整套示例数据（商品 12 件、顾客 11 位、试穿图 30 多张，含待核销试穿码、到店结果和 14 天数据走势），每个页签都能直接演示；本机生成、不调用 AI、不产生费用，可一键清除，门店自己的数据不受影响。需要 App 2.0.9 起（更早的 App 不显示这个按钮）。",
+      "changelog": "- 照片检查没做成（图像服务余额用完、密钥无效、网络）时，不再显示「照片不适合试穿」、不禁用生成：显示服务侧真实原因，生成前会重新检查。需要 App 侧同版修复配合（旧 App 行为不变）。",
       "filesRef": "index/workbench-apparel-store.json"
     },
     {

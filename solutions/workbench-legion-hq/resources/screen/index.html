@@ -17,6 +17,15 @@ html,body{margin:0;height:100%;background:#050B1C;font-family:"Microsoft YaHei",
 .chips{margin-left:auto;display:flex;gap:18px;font-size:13.5px;color:#94A3B8;align-items:center}
 .chips b{color:#fff;font-size:18px;margin-left:5px;font-variant-numeric:tabular-nums}
 .boss{padding:4px 12px;border:1px solid #F59E0B;border-radius:16px;color:#FDE68A}
+.vbtn{padding:4px 12px;border:1px solid #22D3EE;border-radius:16px;color:#A5F3FC;cursor:pointer;white-space:nowrap}
+.vbtn:hover{background:#0E7490}
+.vbox{position:relative;width:min(1100px,90vw);background:#000;border:1px solid #22D3EE;border-radius:14px;overflow:hidden;box-shadow:0 0 50px #22D3EE44}
+.vbox video{display:block;width:100%;max-height:80vh;background:#000}
+.vbox .vt{display:flex;align-items:center;gap:10px;padding:8px 14px;background:#0B1B3A;color:#A5F3FC;font-size:14px}
+.vbox .vt b{flex:1;font-weight:600}
+.vbox .vt button{background:none;border:1px solid #1E3A6E;border-radius:8px;color:#CBD5E1;cursor:pointer;padding:3px 10px;font-family:inherit}
+.vbox .verr{display:none;padding:60px 24px;text-align:center;color:#94A3B8;font-size:15px;line-height:1.8}
+.vbox.err video{display:none}.vbox.err .verr{display:block}
 .boss b{color:#FBBF24}
 .main{display:grid;grid-template-columns:372px 1fr 330px;gap:12px;padding:12px 16px;height:604px}
 .panel{background:rgba(15,32,70,.55);border:1px solid #1E3A6E;border-radius:10px;padding:12px 14px;overflow:hidden;position:relative}
@@ -60,6 +69,13 @@ html,body{margin:0;height:100%;background:#050B1C;font-family:"Microsoft YaHei",
 #cmd input:focus{border-color:#22D3EE}
 #cmd button{background:#0E7490;border:none;color:#fff;border-radius:8px;padding:0 16px;font-size:14px;cursor:pointer;font-family:inherit}
 #cmd button:disabled{opacity:.5}
+#cmd #att{background:#0B1B3A;border:1px solid #1E3A6E;color:#7DD3FC;padding:0 11px;font-size:16px}
+#attList{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+#attList:empty{display:none}
+.achip{display:inline-flex;align-items:center;gap:6px;max-width:260px;background:#0B1B3A;border:1px solid #1E3A6E;border-radius:999px;padding:2px 4px 2px 10px;font-size:12px;color:#BAE6FD}
+.achip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.achip.warn{border-color:#B45309;color:#FCD34D}
+.achip button{background:none;border:none;color:#94A3B8;cursor:pointer;font-size:13px;padding:0 4px}
 .presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;margin-right:78px}
 .preset{background:transparent;border:1px solid #1E3A6E;color:#CBD5E1;padding:5px 10px;font-size:12.5px;border-radius:14px;cursor:pointer;font-family:inherit}
 .preset:hover{border-color:#22D3EE;color:#fff}
@@ -196,7 +212,7 @@ input,textarea{-webkit-user-select:text;user-select:text}
 </style></head><body>
 <div id="stage">
  <div class="top"><div id="logo">·</div><h1 id="title">…<small></small></h1>
-  <div class="chips"><span><i data-t="staff">AI 员工</i><b id="cStaff">0</b><small id="cStaffSub" class="sub"></small></span><span><i data-t="running">进行中</i><b id="cRun">0</b></span><span><i data-t="doneToday">今日完成</i><b id="cDone">0</b></span><span><i data-t="clock">时钟</i><b id="cT">--:--</b></span><span class="boss" id="bossChip"></span></div></div>
+  <div class="chips"><span><i data-t="staff">AI 员工</i><b id="cStaff">0</b><small id="cStaffSub" class="sub"></small></span><span><i data-t="running">进行中</i><b id="cRun">0</b></span><span><i data-t="doneToday">今日完成</i><b id="cDone">0</b></span><span><i data-t="clock">时钟</i><b id="cT">--:--</b></span><span class="vbtn" id="vBtn">▶ AutoCoder</span><span class="boss" id="bossChip"></span></div></div>
  <div class="main">
   <div class="leftcol">
    <div class="panel"><div class="ph">▍<i data-t="tasks">公司事务</i><small data-t="tasksHint">点击只看这一件</small></div><div id="tasks"></div></div>
@@ -210,7 +226,8 @@ input,textarea{-webkit-user-select:text;user-select:text}
  </div>
  <div class="bottom">
   <div class="panel bp"><div class="ph">▍<i data-t="cmd">老板下令</i><small data-t="cmdHint">AI 总经理按事情挑部门</small><span id="demoSw" class="dsw" title=""><b></b><em></em></span></div>
-   <div id="cmd"><input id="inp" maxlength="200"><button id="go" data-t="go">下令</button></div>
+   <div id="cmd"><input id="inp" maxlength="200"><button id="att" type="button" title="">📎</button><input id="attFile" type="file" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.pptx,.txt,.md,.eml,.msg" style="display:none"><button id="go" data-t="go">下令</button></div>
+   <div id="attList"></div>
    <div class="presets" id="presets"></div>
    <img id="rqr" alt="" title="" style="position:absolute;right:12px;bottom:12px;width:66px;height:66px;border-radius:6px;background:#fff;display:none">
    <div id="rule" data-t="rule">AI 总经理先判断这件事要哪几个部门（一个、几个或全公司），再交给装了这些部门的机器；多件事同时进行。</div></div>
@@ -230,6 +247,7 @@ input,textarea{-webkit-user-select:text;user-select:text}
  <div class="err" id="fErr"></div>
  <div class="ft"><button class="sec" id="cancel" data-t="cancel">取消</button><button class="pri" id="save" data-t="save">保存</button></div>
 </div></div>
+<div id="vmask" class="rm"><div class="vbox" id="vbox"><div class="vt"><b id="vTitle"></b><button id="vFull" type="button"></button><button id="vClose" type="button">✕</button></div><video id="vid" controls playsinline preload="metadata"></video><div class="verr" id="vErr"></div></div></div>
 <div id="rmask" class="rm"><div class="dlg"><h3 id="rTitle"></h3><label id="rAsk"></label><input id="rText" maxlength="300"><div class="ft"><button class="sec" id="rCancel"></button><button class="pri" id="rOk"></button></div></div></div>
 <div id="conn"></div><div id="rep"></div><div id="demoBadge"></div><div id="toast"></div>
 <div class="hint" data-t="hint">F 办公室 / 拓扑 · O 组织架构 · M 能力地图 · V 军团营地 · Esc 返回</div>
@@ -460,7 +478,15 @@ function frame(){
 
 // ── 交互 ──
 $('demoSw')&&($('demoSw').onclick=async()=>{const on=!S.demoRun;try{await post('/api/demo',{on});S.demoRun=on;toast(on?(LANG==='en'?'Demo mode on':'已开演示模式：不调用模型'):(LANG==='en'?'Live mode: orders use real models':'已关演示模式：下令会真实调用模型执行'));}catch(e){toast(String(e.message||e));}});
-async function command(text){text=String(text||'').trim();if(!text)return;$('go').disabled=true;try{const r=await post('/api/command',{text});toast(tr('sent',{no:r.no}));}catch(e){toast(String(e.message||e));}finally{$('go').disabled=false;}}
+// 下令附件（审合同这类要看原文的事）：先上传到主控，下令时带上附件 id
+let ATT=[];
+function renderAtt(){$('attList').innerHTML=ATT.map((a,i)=>`<span class="achip${a.warning?' warn':''}" title="${esc(a.warning||'')}"><span>📄 ${esc(a.name)}${a.uploading?' …':''}</span><button data-i="${i}">✕</button></span>`).join('');}
+async function uploadFiles(files){for(const f of Array.from(files||[]).slice(0,5-ATT.length)){const slot={name:f.name,uploading:true};ATT.push(slot);renderAtt();try{const r=await fetch(api('/api/upload'),{method:'POST',headers:{'Content-Type':'application/octet-stream','X-File-Name':encodeURIComponent(f.name)},body:f});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||r.status);Object.assign(slot,j,{uploading:false});if(j.warning)toast(`${f.name}：${j.warning}`);}catch(e){ATT=ATT.filter(x=>x!==slot);toast(`${f.name}：${e.message||e}`);}renderAtt();}}
+$('att').title=LANG==='en'?'Attach files (contract, report…)':'附上文件（合同、报表等），AI 会读原文';
+$('att').onclick=()=>$('attFile').click();
+$('attFile').onchange=e=>{uploadFiles(e.target.files);e.target.value='';};
+$('attList').onclick=e=>{const b=e.target.closest('button');if(!b)return;ATT.splice(Number(b.dataset.i),1);renderAtt();};
+async function command(text){text=String(text||'').trim();if(!text)return;if(ATT.some(a=>a.uploading)){toast(LANG==='en'?'Attachments still uploading…':'附件还在上传，稍等一下');return;}$('go').disabled=true;try{const ids=ATT.filter(a=>a.id).map(a=>a.id);const r=await post('/api/command',{text,...(ids.length?{attachments:ids}:{})});toast(tr('sent',{no:r.no}));ATT=[];renderAtt();}catch(e){toast(String(e.message||e));}finally{$('go').disabled=false;}}
 $('go').onclick=()=>{command($('inp').value);$('inp').value='';};
 $('inp').onkeydown=e=>{if(e.key==='Enter'&&!e.isComposing)$('go').onclick();};
 $('inp').placeholder=LANG==='en'?'e.g. Review this distribution contract':'例如：帮我审一下这份经销合同';
@@ -470,6 +496,16 @@ $('tasks').onclick=e=>{const c=e.target.closest('.task');if(!c)return;focus=focu
 $('inbox').onclick=async e=>{const b=e.target.closest('button');if(!b)return;try{if(b.dataset.ok)await post('/api/confirm',{taskId:b.dataset.ok,approve:true});else openReject(b.dataset.no);}catch(err){toast(String(err.message||err));}};
 // 驳回意见（Electron 窗口里没有 window.prompt，用页内对话框）
 let rejectId=null;
+// AutoCoder 演示视频：地址由主控下发（默认官网固定地址，主控「指挥大屏」里可改）；页面里直接播放
+let VIDEO_URL='';
+fetch(api('/api/screen-config')).then(r=>r.json()).then(c=>{VIDEO_URL=String(c.demoVideoUrl||'');}).catch(()=>{});
+function openVideo(){const en=LANG==='en';$('vTitle').textContent=en?'AutoCoder demo':'AutoCoder 演示：说需求，自动做出可用的方案页面';$('vFull').textContent=en?'Full screen':'全屏';$('vErr').innerHTML=en?'The demo video is not available yet.<br>Upload it to the configured address and reopen.':'演示视频还没上传，或地址打不开。<br>把视频放到主控「运营中心 → 指挥大屏」里填的地址后再打开。';$('vbox').classList.remove('err');const v=$('vid');if(!VIDEO_URL){$('vbox').classList.add('err');}else if(v.getAttribute('src')!==VIDEO_URL){v.src=VIDEO_URL;}$('vmask').classList.add('on');if(VIDEO_URL)v.play().catch(()=>{});}
+function closeVideo(){const v=$('vid');v.pause();$('vmask').classList.remove('on');}
+$('vBtn').onclick=openVideo;$('vClose').onclick=closeVideo;
+$('vFull').onclick=()=>{const v=$('vid');(v.requestFullscreen||v.webkitRequestFullscreen||(()=>{})).call(v);};
+$('vid').onerror=()=>$('vbox').classList.add('err');
+$('vmask').onclick=e=>{if(e.target===$('vmask'))closeVideo();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('vmask').classList.contains('on'))closeVideo();});
 function openReject(id){rejectId=id;const tk=(S.tasks||[]).find(x=>x.id===id);$('rTitle').textContent=`${tr('reject')} #${tk?tk.no:''}`;$('rAsk').textContent=tr('rejectAsk');$('rCancel').textContent=I18N[LANG].cancel||'取消';$('rOk').textContent=tr('reject');$('rText').value='';$('rmask').classList.add('on');$('rText').focus();}
 $('rCancel').onclick=()=>$('rmask').classList.remove('on');
 $('rOk').onclick=async()=>{try{await post('/api/confirm',{taskId:rejectId,approve:false,comment:$('rText').value});$('rmask').classList.remove('on');}catch(e){toast(String(e.message||e));}};

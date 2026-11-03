@@ -1,0 +1,42 @@
+{
+  "id": "workbench-apparel-store",
+  "version": "2.0.5",
+  "treeDigest": "e943530d48eb1356bcdb7339722d1405815ba00fa48deacee25e6aef87bd32c1",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 2539,
+      "sha256": "86745381c3e7fb9ae05595752dd7271585f6c92d976f997c8efafb33bc7589a7"
+    },
+    {
+      "path": "README.md",
+      "size": 1323,
+      "sha256": "eb5abcbb7cb6c04beb1a8781e2dcd6603b397bedc19b4d46ff836e57e032c259"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 748,
+      "sha256": "bbdbc82d93b26d21a0b3553a8cc7a73c893f18b695457beedd4fffeb825add94"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 210916,
+      "sha256": "120a76b1e78dcc3c1dc8065885b916f2b2fc41bb3fc0ac29beebcbfb0a881056"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 32269,
+      "sha256": "878a5a817919976ab1d67796efd7b32d05847ec4fff018837d2b8a6e566ea1e9"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2131,
+      "sha256": "61807375745f0069d191e12fbf52ffcad695ba5469ff8e2e755155d088078b85"
+    }
+  ]
+}

@@ -8,6 +8,8 @@
  * 跨机：员工机用现有 worker.run（真实引擎 + 角色提示词）执行；本机步骤直接调模型。
  * 开跑前派发失败（机器刚离线）→ 换下一台候选机器；跑到一半失败 → 不重跑（避免重复执行），该步标失败。
  */
+const { attachmentBlock } = require('./attachments.cjs');
+const { pickWorkbench } = require('./foreground.cjs');
 const { randomUUID } = require('node:crypto');
 const { triage } = require('./triage.cjs');
 const { buildPlan } = require('./planner.cjs');
@@ -105,6 +107,8 @@ class TaskRunner {
       forced: Array.isArray(input.forcedLegions) ? input.forcedLegions : null,
       // D7：剧本带来的按部门模型 / 输出上限（优先于部门设置）
       legionConfig: input.legionConfig && typeof input.legionConfig === 'object' ? input.legionConfig : null,
+      // 老板随命令附上的文件（审合同这类）：[{ id, name, text }]，执行时附进每个部门的提示词
+      attachments: Array.isArray(input.attachments) ? input.attachments.filter((x) => x && x.name).slice(0, 5) : [],
       status: 'triaging',
       createdAt: this.now(),
       decision: null,
@@ -120,7 +124,7 @@ class TaskRunner {
       simulated: !!this.simulate(),
     };
     this.tasks.set(id, t);
-    this.publish(t, 'task:received', { title: t.title, source: t.source, simulated: t.simulated });
+    this.publish(t, 'task:received', { title: t.title, source: t.source, simulated: t.simulated, ...(t.attachments.length ? { attachments: t.attachments.map((x) => x.name) } : {}) });
     this.run(t).catch((e) => this.finish(t, false, String(e && e.message ? e.message : e)));
     return { taskId: id, no: t.no };
   }
@@ -134,7 +138,9 @@ class TaskRunner {
     // 没有机器承载时让该步如实报「没有在线机器承载 X」，而不是悄悄换成总经理直接处理
     const legions = t.forced ? this.legions() : this.availableLegions();
     const st = this.settings();
-    const decision = await triage(t.text, legions, {
+    // 判定时把附件名一起给（「审一下这份」+《经销合同.docx》才看得出该派法务）
+    const triageText = t.attachments.length ? `${t.text}\n（附件：${t.attachments.map((x) => `《${x.name}》`).join('、')}）` : t.text;
+    const decision = await triage(triageText, legions, {
       forced: t.forced,
       company: this.company(),
       llm: st.useModelTriage === false || t.simulated ? null : (prompt) => this.llm(prompt, { timeoutMs: 60_000 }),
@@ -258,6 +264,7 @@ class TaskRunner {
       '',
       `老板交办的事：${t.text}`,
       `本部门这一步要交付：${s.goal}`,
+      t.attachments && t.attachments.length ? `\n${attachmentBlock(t.attachments)}\n` : '',
       ups.length ? `\n上游部门已经交给你的材料（必须基于它们，引用其中的数字和结论，不要另起炉灶）：\n${ups.join('\n\n')}` : '',
       extra ? `\n${extra}` : '',
       '',
@@ -323,9 +330,24 @@ class TaskRunner {
     const lk = (this.legionKeys && this.legionKeys(s.legionId)) || null;
     const model = this.legionCfg(t, s.legionId).model || L?.defaultModel || undefined;
     const credential = lk?.provider && lk?.apiKey ? { provider: lk.provider, apiKey: lk.apiKey, ...(lk.baseUrl ? { baseUrl: lk.baseUrl } : {}) } : undefined;
+    // 真实运行：这一步在执行机前台展示（窗口拉到前面、打开部门对应的工作台、逐字显示）。演示模式（simulated）走不到这里
+    const fgMeta = this.settings().foregroundRun === false ? null : {
+      taskNo: t.no, title: t.title, stepId: s.id, legionId: s.legionId, legionName: L ? L.name : s.legionId, goal: s.goal,
+      workbench: pickWorkbench(L, `${t.text}\n${s.goal}`),
+      attachments: (t.attachments || []).map((x) => x.name),
+      company: this.company().short || this.company().name || '',
+    };
     if (machine.local) {
       this.publish(t, 'node:progress', { stepId: s.id, phase: '生成中' });
-      return this.llm(prompt, { model, signal, timeoutMs: STEP_TIMEOUT_MS });
+      const fg = fgMeta && typeof this.foreground === 'function' ? this.foreground({ ...fgMeta, machine: machine.name }) : null;
+      try {
+        const text = await this.llm(prompt, { model, signal, timeoutMs: STEP_TIMEOUT_MS, ...(fg ? { onActivity: (a) => fg.activity(a) } : {}) });
+        fg?.done(true, text);
+        return text;
+      } catch (e) {
+        fg?.done(false, String(e && e.message ? e.message : e));
+        throw e;
+      }
     }
     const proc = this.fleet.proc();
     const dispatchId = `${t.id}-${s.id}-${randomUUID().slice(0, 6)}`;
@@ -351,7 +373,7 @@ class TaskRunner {
         timeoutMs: STEP_TIMEOUT_MS + 60_000,
         payload: {
           // 放在最前：子机的方案读它显示「本机正在做什么」（入站历史只截 payload 前 300 字）；worker.run 忽略此字段
-          legionHq: { v: 1, taskNo: t.no, title: t.title, stepId: s.id, legionId: s.legionId, legionName: L ? L.name : s.legionId, goal: s.goal, company: this.company().short || this.company().name || '' },
+          legionHq: { v: 1, taskNo: t.no, title: t.title, stepId: s.id, legionId: s.legionId, legionName: L ? L.name : s.legionId, goal: s.goal, company: this.company().short || this.company().name || '', ...(fgMeta ? { foreground: true, workbench: fgMeta.workbench, attachments: fgMeta.attachments } : {}) },
           roleId: s.roleId,
           prompt,
           model,

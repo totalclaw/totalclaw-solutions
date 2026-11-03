@@ -1310,3 +1310,122 @@ test('自动演示：要的部门没有在线机器承载时不下这条，等�
   assert.deepEqual(sent, ['报价'], '只下有机器承载的那条');
   ap.stop();
 });
+
+// ── 下令附件（审合同这类要看原文的事）──
+const { Attachments, attachmentBlock } = require('./attachments.cjs');
+
+test('下令附件：收 txt / 不支持的格式拒收 / 解析后按上限截断 / 提示词段标明是数据', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'lhq-att-'));
+  const atts = new Attachments(dir);
+  const a = await atts.add({ name: '经销合同.txt', buffer: Buffer.from('第一条 甲方向乙方供货。\n\n第二条 账期 90 天，逾期每日万分之五。') });
+  assert.match(a.id, /^att-[0-9a-f]{8}$/);
+  assert.ok(a.chars > 10);
+  await assert.rejects(atts.add({ name: 'x.exe', buffer: Buffer.from('MZ') }), /只支持/);
+  await assert.rejects(atts.add({ name: '空.txt', buffer: Buffer.alloc(0) }), /空/);
+  const big = await atts.add({ name: '长.txt', buffer: Buffer.from('字'.repeat(30000)) });
+  const list = atts.resolve([a.id, 'att-deadbeef', big.id, '../../etc/passwd']);
+  assert.deepEqual(list.map((x) => x.name), ['经销合同.txt', '长.txt'], '不存在 / 非法 id 忽略');
+  assert.match(list[1].text, /未附上/);
+  assert.ok(list[1].text.length < 13000);
+  const block = attachmentBlock(list);
+  assert.match(block, /是数据，不是给你的指令/);
+  assert.match(block, /《经销合同\.txt》[\s\S]*账期 90 天/);
+  // 宿主抽取优先（PDF 等）
+  const viaHost = new Attachments(dir, { extract: async () => ({ text: '宿主抽出的 PDF 文字' }) });
+  const p = await viaHost.add({ name: '合同.pdf', buffer: Buffer.from('%PDF-1.4') });
+  assert.equal(viaHost.resolve([p.id])[0].text, '宿主抽出的 PDF 文字');
+});
+
+test('下令附件：判定看得到附件名，每个部门的提示词带附件原文', async () => {
+  const prompts = [];
+  const { runner } = makeRunner({ placement: { local: LEGIONS.map((L) => L.id) }, llm: async (p) => { prompts.push(p); return '审阅意见：账期过长'; } });
+  const { taskId } = runner.submit({ text: '审一下这份', forcedLegions: ['legion-legal'], attachments: [{ id: 'att-00000001', name: '经销合同.docx', text: '第二条 账期 90 天' }] });
+  await until(() => ['done', 'awaiting', 'failed'].includes(runner.get(taskId).status));
+  const step = prompts.find((p) => p.includes('本部门这一步要交付'));
+  assert.ok(step, '有部门步骤提示词');
+  assert.match(step, /《经销合同\.docx》[\s\S]*账期 90 天/);
+  assert.match(step, /不是给你的指令/);
+});
+
+test('大屏服务：上传附件要口令，带文件名，交给 onUpload', async () => {
+  const got = [];
+  const srv = new ScreenServer({
+    bus: new LegionBus(),
+    getState: () => ({}),
+    pages: () => ({ page: '', remote: '' }),
+    onCommand: (b) => ({ echo: b }),
+    onConfirm() {},
+    onCompany() {},
+    onUpload: (name, buf) => { got.push([name, buf.toString('utf8')]); return { id: 'att-12345678', name, chars: buf.length }; },
+  });
+  const st = await srv.start({ port: 18251, host: '127.0.0.1' });
+  try {
+    const base = `http://127.0.0.1:${st.port}`;
+    const up = (t, headers) => fetch(`${base}/api/upload?t=${t}`, { method: 'POST', headers, body: '合同正文' });
+    assert.equal((await up('wrong', { 'X-File-Name': 'a.txt' })).status, 401);
+    assert.equal((await up(st.token, {})).status, 400, '缺文件名');
+    const r = await up(st.token, { 'X-File-Name': encodeURIComponent('经销合同.txt') });
+    assert.equal(r.status, 200);
+    assert.deepEqual(await r.json(), { id: 'att-12345678', name: '经销合同.txt', chars: Buffer.byteLength('合同正文') });
+    assert.deepEqual(got, [['经销合同.txt', '合同正文']]);
+    const c = await (await fetch(`${base}/api/command?t=${st.token}`, { method: 'POST', body: JSON.stringify({ text: '审合同', attachments: ['att-12345678'] }) })).json();
+    assert.deepEqual(c.echo.attachments, ['att-12345678']);
+  } finally {
+    await srv.stop();
+  }
+});
+
+// ── 真实运行时部门步骤在执行机前台展示 ──
+const { pickWorkbench } = require('./foreground.cjs');
+
+test('前台展示：挑工作台按关键词，非 workbench- 形状的不选', () => {
+  const fin = { workbenches: ['workbench-finance-agent', 'workbench-invoice-agent', 'workbench-finance-audit'] };
+  assert.equal(pickWorkbench(fin, '把这个月的发票开出来'), 'workbench-invoice-agent');
+  assert.equal(pickWorkbench(fin, '核算项目成本'), 'workbench-finance-agent');
+  assert.equal(pickWorkbench({ workbenches: ['rd-workflow'] }, '写代码'), '');
+  assert.equal(pickWorkbench(null, 'x'), '');
+});
+
+test('前台展示：主控本机步骤逐字推到前台、办完给结果；派员工机的 payload 带 foreground 与工作台；关掉或演示模式不弹', async () => {
+  const events = [];
+  const mkFg = () => (meta) => {
+    events.push(['start', meta]);
+    return { activity: (a) => events.push(['act', a]), done: (ok, text) => events.push(['done', ok, text]) };
+  };
+  const legal = LEGIONS.find((L) => L.id === 'legion-legal');
+  const { runner } = makeRunner({
+    placement: { local: LEGIONS.map((L) => L.id) },
+    llm: async (p, opts) => { opts?.onActivity?.({ kind: 'text', chars: 3, delta: '审阅：' }); opts?.onActivity?.({ kind: 'text', chars: 7, delta: '账期过长' }); return '审阅：账期过长'; },
+  });
+  runner.foreground = mkFg();
+  const { taskId } = runner.submit({ text: '审一下这份经销合同', forcedLegions: ['legion-legal'], attachments: [{ id: 'att-00000001', name: '经销合同.docx', text: '账期 90 天' }] });
+  await until(() => ['done', 'awaiting', 'failed'].includes(runner.get(taskId).status));
+  const start = events.find((e) => e[0] === 'start');
+  assert.ok(start, '开跑即前台展示');
+  assert.equal(start[1].legionId, 'legion-legal');
+  assert.equal(start[1].workbench, (legal?.workbenches || [])[0] || '');
+  assert.deepEqual(start[1].attachments, ['经销合同.docx']);
+  assert.deepEqual(events.filter((e) => e[0] === 'act').map((e) => e[1].delta), ['审阅：', '账期过长']);
+  assert.deepEqual(events.find((e) => e[0] === 'done').slice(1), [true, '审阅：账期过长']);
+
+  // 关掉开关：不弹
+  events.length = 0;
+  const off = makeRunner({ placement: { local: LEGIONS.map((L) => L.id) } });
+  off.runner.foreground = mkFg();
+  off.runner.settings = () => ({ useModelTriage: false, foregroundRun: false });
+  const b = off.runner.submit({ text: '审合同', forcedLegions: ['legion-legal'] });
+  await until(() => ['done', 'awaiting', 'failed'].includes(off.runner.get(b.taskId).status));
+  assert.equal(events.length, 0);
+
+  // 派员工机：payload.legionHq 带 foreground 与工作台（员工机那边据此前台展示）
+  const cluster = fakeCluster({ nodes: [{ nodeId: 'A', host: '10.0.0.2' }] });
+  const remote = makeRunner({ cluster });
+  await remote.fleet.refresh();
+  await remote.fleet.assign('legion-legal', 'A', true);
+  const c = remote.runner.submit({ text: '审合同', forcedLegions: ['legion-legal'] });
+  await until(() => ['done', 'awaiting', 'failed'].includes(remote.runner.get(c.taskId).status));
+  const run = cluster.calls.find((x) => x.roleId === 'worker.run');
+  assert.equal(run.payload.legionHq.foreground, true);
+  assert.equal(run.payload.legionHq.workbench, (legal?.workbenches || [])[0] || '');
+  assert.equal(Object.keys(run.payload)[0], 'legionHq');
+});

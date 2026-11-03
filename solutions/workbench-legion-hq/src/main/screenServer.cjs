@@ -5,8 +5,10 @@
  *   GET  /                 大屏页面
  *   GET  /remote           手机竖屏简版（下令 + 待确认）
  *   GET  /api/state        快照
+ *   GET  /api/screen-config 大屏配置（AutoCoder 演示视频地址）
  *   GET  /api/events       SSE：先推一次快照，之后每条事件推 ev、状态变化节流推 state；15 秒心跳
- *   POST /api/command      下令 {text}
+ *   POST /api/command      下令 {text, attachments?: [附件 id]}
+ *   POST /api/upload       上传下令附件（原始字节，请求头 X-File-Name = encodeURIComponent(文件名)，≤20MB）→ {id, name, chars, warning?}
  *   POST /api/confirm      老板确认 / 驳回 {taskId, approve, comment}
  *   POST /api/company      改公司信息（大屏上点公司名）
  *
@@ -21,6 +23,7 @@ const { toSvg } = require('./qr.cjs');
 
 const DEFAULT_PORT = 8240;
 const MAX_BODY = 16 * 1024;
+const MAX_UPLOAD = 20 * 1024 * 1024;
 const HEARTBEAT_MS = 15_000;
 const STATE_THROTTLE_MS = 250;
 
@@ -194,7 +197,7 @@ class ScreenServer {
       'Cache-Control': 'no-store',
       'X-Content-Type-Options': 'nosniff',
       'Referrer-Policy': 'no-referrer',
-      ...(type.startsWith('text/html') ? { 'Content-Security-Policy': "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: 'self'; connect-src 'self'" } : {}),
+      ...(type.startsWith('text/html') ? { 'Content-Security-Policy': "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: 'self'; media-src https: http:; connect-src 'self'" } : {}),
     });
     res.end(data);
   }
@@ -223,6 +226,25 @@ class ScreenServer {
     });
   }
 
+  /** 上传用：原始字节，限 MAX_UPLOAD */
+  readRaw(req) {
+    return new Promise((resolve, reject) => {
+      let size = 0;
+      const chunks = [];
+      req.on('data', (c) => {
+        size += c.length;
+        if (size > MAX_UPLOAD) {
+          reject(Object.assign(new Error('文件太大（上限 20MB）'), { status: 413 }));
+          req.destroy();
+          return;
+        }
+        chunks.push(c);
+      });
+      req.on('end', () => resolve(Buffer.concat(chunks)));
+      req.on('error', reject);
+    });
+  }
+
   async handle(req, res) {
     let url;
     try {
@@ -240,6 +262,7 @@ class ScreenServer {
       if (req.method === 'GET' && url.pathname === '/') return this.send(res, 200, this.pages().page, 'text/html; charset=utf-8');
       if (req.method === 'GET' && url.pathname === '/remote') return this.send(res, 200, this.pages().remote, 'text/html; charset=utf-8');
       if (req.method === 'GET' && url.pathname === '/api/state') return this.send(res, 200, this.getState());
+      if (req.method === 'GET' && url.pathname === '/api/screen-config') return this.send(res, 200, this.getConfig ? this.getConfig() : {});
       if (req.method === 'GET' && url.pathname === '/api/coverage') return this.send(res, 200, this.getCoverage ? this.getCoverage() : { items: [] });
       // 大屏角落的「手机扫码下令」：按观众实际访问的主机名生成（换了网卡地址也对）
       if (req.method === 'GET' && url.pathname === '/api/remote-qr') {
@@ -247,6 +270,12 @@ class ScreenServer {
       }
       if (req.method === 'GET' && url.pathname === '/api/events') return this.openStream(req, res);
       if (req.method === 'POST' && url.pathname === '/api/command') return this.send(res, 200, await this.onCommand(await this.readBody(req)));
+      if (req.method === 'POST' && url.pathname === '/api/upload' && this.onUpload) {
+        let name = '';
+        try { name = decodeURIComponent(String(req.headers['x-file-name'] || '')); } catch { name = ''; }
+        if (!name) return this.send(res, 400, { error: '缺少文件名' });
+        return this.send(res, 200, await this.onUpload(name, await this.readRaw(req)));
+      }
       if (req.method === 'POST' && url.pathname === '/api/confirm') return this.send(res, 200, await this.onConfirm(await this.readBody(req)));
       if (req.method === 'POST' && url.pathname === '/api/demo' && this.onDemo) return this.send(res, 200, await this.onDemo(await this.readBody(req)));
       if (req.method === 'POST' && url.pathname === '/api/company') return this.send(res, 200, await this.onCompany(await this.readBody(req)));

@@ -3,8 +3,10 @@
   "renderer": [],
   "main": [
     "apps/desktop-shell/src/main/services/accountScope.ts",
+    "apps/desktop-shell/src/main/services/documentExtractor.ts",
     "apps/desktop-shell/src/main/services/employeeConfig.ts",
     "apps/desktop-shell/src/main/services/imRunLink.ts",
+    "apps/desktop-shell/src/main/services/legionForeground.ts",
     "apps/desktop-shell/src/main/services/machineStorage.ts",
     "apps/desktop-shell/src/main/services/workbenchLlm.ts",
     "apps/desktop-shell/src/main/services/workflowEventBus.ts"

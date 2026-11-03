@@ -45,6 +45,7 @@ export default function createSolution(sdk) {
 .lhq-tbl th{font-weight:500;color:var(--color-text-secondary,#6b7280);white-space:nowrap}
 .lhq-chip{display:inline-block;font-size:12px;padding:1px 7px;border-radius:5px;border:1px solid;margin:0 4px 4px 0;white-space:nowrap}
 .lhq-chip.on{color:#fff}
+.lhq-x{background:none;border:none;cursor:pointer;color:var(--color-text-tertiary,#94a3b8);padding:0 2px;font-size:11px}
 .lhq-mono{font-family:Menlo,Consolas,monospace;font-size:12.5px;word-break:break-all}
 .lhq-task{border:1px solid var(--color-border,#e5e7eb);border-radius:10px;padding:10px 12px;margin-bottom:8px}
 .lhq-task .tt{display:flex;gap:8px;align-items:center;font-weight:600}
@@ -87,6 +88,14 @@ export default function createSolution(sdk) {
       const employee = ref({ hosted: [], running: [], recent: [], company: '' });
       const cmd = ref('');
       const forced = ref([]);
+      // 下令附件（审合同这类要看原文的事）：本机选文件 → 收进附件库，下令时带 id
+      const atts = ref([]);
+      async function pickAtt() {
+        const r = await call('att', 'attach.pick');
+        if (!Array.isArray(r)) return;
+        for (const a of r) if (a.warning) sdk.notify.warn(`${a.name}：${t(a.warning)}`);
+        atts.value = [...atts.value, ...r].slice(0, 5);
+      }
       const detail = ref(null);
       const busy = reactive({});
       const err = reactive({});
@@ -482,8 +491,10 @@ export default function createSolution(sdk) {
         const v = String(text || '').trim();
         if (!v) return;
         try {
-          const r = await call('cmd', 'command', { text: v, legions: forced.value });
+          const ids = atts.value.map((x) => x.id);
+          const r = await call('cmd', 'command', { text: v, legions: forced.value, ...(ids.length ? { attachments: ids } : {}) });
           cmd.value = '';
+          atts.value = [];
           sdk.notify.info(t('已下令 #{p0}', { p0: r.no }));
         } catch (e) {
           /* err */
@@ -735,6 +746,16 @@ export default function createSolution(sdk) {
               ]),
             ]),
           ]),
+          h('div', { class: 'lhq-row' }, [
+            h('span', t('AutoCoder 演示视频地址')),
+            h('input', {
+              class: 'lhq-in', style: 'flex:1;min-width:320px', 'data-test': 'lhq-demo-video',
+              placeholder: info.value?.settings?.demoVideoDefault || '',
+              value: info.value?.settings?.demoVideoUrl || '',
+              onChange: (e) => saveSettings({ demoVideoUrl: e.target.value.trim() }),
+            }),
+            h('span', { class: 'lhq-sub', style: 'margin:0' }, t('留空用官网固定地址；大屏右上角「▶ AutoCoder」点开直接播放')),
+          ]),
           errLine('screen'),
           sc.running
             ? h('table', { class: 'lhq-tbl', style: 'margin-top:8px' }, [
@@ -823,9 +844,21 @@ export default function createSolution(sdk) {
           ...stepHead(s, t('说一件事，AI 总经理判断要哪几个{p0}（一个 / 几个 / 全公司），派给承载它们的机器并发执行；多件事同时进行。钱、签约、对外发布、录用的最终动作进老板待办，AI 只准备不执行。', { p0: term.value })),
           h('div', { class: 'lhq-row' }, [
             h('input', { class: 'lhq-in', style: 'flex:1;min-width:260px', maxlength: 2000, placeholder: t('例如：帮我审一下这份经销合同'), value: cmd.value, onInput: (e) => (cmd.value = e.target.value), onKeydown: (e) => e.key === 'Enter' && !e.isComposing && send(cmd.value) }),
+            h('button', { class: 'lhq-btn', disabled: busy.att || atts.value.length >= 5, title: t('附上文件（合同、报表等），AI 会读原文'), 'data-test': 'lhq-attach', onClick: pickAtt }, [h('i', { class: 'ri-attachment-2' }), ' ', t('附件')]),
             h('button', { class: 'lhq-btn pri', disabled: busy.cmd, onClick: () => send(cmd.value) }, t('下令')),
           ]),
+          atts.value.length
+            ? h('div', { class: 'lhq-row', 'data-test': 'lhq-attach-list' }, atts.value.map((a, i) =>
+                h('span', { class: 'lhq-chip', title: a.warning ? t(a.warning) : t('已读到 {p0} 字', { p0: a.chars }) }, [
+                  h('i', { class: 'ri-file-text-line' }), ` ${a.name} `,
+                  h('button', { class: 'lhq-x', title: t('移除'), onClick: () => { atts.value = atts.value.filter((_, j) => j !== i); } }, '✕'),
+                ])))
+            : null,
           h('div', { class: 'lhq-row' }, PRESETS.map((p) => h('button', { class: 'lhq-btn', onClick: () => send(p) }, t(p)))),
+          h('label', { class: 'lhq-row', style: 'cursor:pointer;gap:6px', 'data-test': 'lhq-foreground' }, [
+            h('input', { type: 'checkbox', checked: info.value?.settings?.foregroundRun !== false, onChange: (e) => saveSettings({ foregroundRun: e.target.checked }) }),
+            t('真实运行时在执行的机器上前台展示：自动打开该部门对应的工作台，逐字显示执行过程和结果（演示模式不弹）'),
+          ]),
           h('div', { class: 'lhq-row' }, [
             h('span', { class: 'lhq-sub', style: 'margin:0' }, t('指定{p0}（可选，跳过判定）：', { p0: term.value })),
             ...legions.map((L) =>

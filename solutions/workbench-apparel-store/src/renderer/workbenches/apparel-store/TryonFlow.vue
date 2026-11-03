@@ -53,6 +53,7 @@
             <span class="ss-muted">{{ customer.source === 'mobile' ? $t('手机端顾客') : $t('店内建档') }} · {{ $t('授权于 {p0}', { p0: fmtDateTime(customer.consentAt) }) }}</span>
             <p v-if="customer.purgedAt" class="ss-note warn"><i class="ri-delete-bin-line"></i>{{ $t('该顾客的照片与试穿图已清除') }}</p>
             <p v-else-if="customer.photo && !customer.photoCheck" class="ss-muted"><i class="ri-loader-4-line spin"></i>{{ $t('正在检查照片…') }}</p>
+            <p v-else-if="customer.photoCheck?.unchecked" class="ss-note warn"><i class="ri-error-warning-line"></i>{{ customer.photoCheck.issues.join($t('；')) }}</p>
             <p v-else-if="customer.photoCheck && !customer.photoCheck.ok" class="ss-note danger"><i class="ri-error-warning-line"></i>{{ $t('照片不适合试穿：{p0}。请重拍一张单人、全身正面、光线充足的照片', { p0: customer.photoCheck.issues.join('；') || $t('不符合要求') }) }}</p>
             <p v-else-if="customer.photoCheck?.ok" class="ss-note ok"><i class="ri-check-line"></i>{{ $t('照片合格：单人、全身、光线正常') }}</p>
             <div class="ss-actions">
@@ -255,7 +256,7 @@ watch(choices, () => { touchedStyle.value = true; }, { deep: true });
 const mine = computed(() => (state.value?.tryons || []).filter((t) => t.customerId === customerId.value));
 const doneList = computed(() => mine.value.filter((t) => t.status === 'done' && t.image));
 const pendingTryons = computed(() => mine.value.filter((t) => t.status === 'queued' || t.status === 'running'));
-const photoOk = computed(() => !!customer.value?.photo && !customer.value.purgedAt && (!!customer.value.photoCheck?.ok || (!customer.value.photoCheck && !state.value?.imageReady)));
+const photoOk = computed(() => !!customer.value?.photo && !customer.value.purgedAt && (!!customer.value.photoCheck?.ok || !!customer.value.photoCheck?.unchecked || (!customer.value.photoCheck && !state.value?.imageReady)));
 const canGenerate = computed(() => photoOk.value && picked.value.length > 0 && choices.value.length > 0);
 
 const metas: StepMeta[] = [
@@ -286,7 +287,7 @@ const runtime = computed<Record<string, StepRuntime>>(() => {
   } : undefined;
   return {
     'ap-garment': st('ap-garment', picked.value.length > 0, i18nT('已选 {n} 件', { n: picked.value.length })),
-    'ap-photo': c?.photoCheck && !c.photoCheck.ok && !busy.value ? { state: 'failed', error: i18nT('照片不合格，请重拍') } : st('ap-photo', photoOk.value, c?.nickname),
+    'ap-photo': c?.photoCheck && !c.photoCheck.ok && !c.photoCheck.unchecked && !busy.value ? { state: 'failed', error: i18nT('照片不合格，请重拍') } : st('ap-photo', photoOk.value, c?.nickname),
     'ap-analyze': st('ap-analyze', !!c?.profile || (skipAnalyze.value && !!c?.photo), c?.profile ? bodyShapeLabel(c.profile.bodyShape) : i18nT('已跳过')),
     'ap-style': st('ap-style', !!c?.photo && (touchedStyle.value || !!c?.profile), i18nT('{n} 组造型', { n: choices.value.length })),
     // 预检 / 本组件自己的报错优先于「上一批全失败」的汇总，否则点生成被拦下时卡上还写着上一批的旧原因

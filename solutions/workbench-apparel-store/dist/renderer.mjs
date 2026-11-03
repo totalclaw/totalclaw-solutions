@@ -25,27 +25,27 @@ const P = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules &
 if (!P) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/foreign-trade/shared.ts");
 P.default;
 const De = /\.(jpe?g|png|webp|heic|bmp)$/i;
-async function C(h, u) {
+async function C(f, u) {
   const s = window.electronAPI?.workbenches?.apparelStore;
   if (!s?.invoke) throw new Error(r.t("服装AI试衣接口不可用，请重启应用"));
-  return s.invoke(h, pe.toPlain(u ?? {}));
+  return s.invoke(f, pe.toPlain(u ?? {}));
 }
-function we(h) {
+function we(f) {
   const u = window.electronAPI?.workbenches?.apparelStore;
-  return u?.onEvent ? u.onEvent(h) : () => {
+  return u?.onEvent ? u.onEvent(f) : () => {
   };
 }
 const K = e.ref(null), ne = e.ref([]), Be = e.ref(null), le = e.reactive({ message: "" }), Ce = e.ref(0);
-let ke = null, fe = null;
+let ke = null, he = null;
 function Ze() {
-  const h = window.electronAPI?.workbenches?.apparelStore;
-  !h?.onEvent || h === ke || (fe?.(), ke = h, fe = we((u) => {
+  const f = window.electronAPI?.workbenches?.apparelStore;
+  !f?.onEvent || f === ke || (he?.(), ke = f, he = we((u) => {
     (u.type === "progress" || u.type === "state") && (Ce.value = Date.now());
   }));
 }
-function xe(h) {
+function xe(f) {
   let u = Number.POSITIVE_INFINITY;
-  for (const s of h) {
+  for (const s of f) {
     if (s.status !== "queued" && s.status !== "running") continue;
     const d = Date.parse(s.status === "running" && s.startedAt || s.createdAt || "");
     Number.isFinite(d) && d < u && (u = d);
@@ -53,8 +53,8 @@ function xe(h) {
   return Number.isFinite(u) ? u : void 0;
 }
 async function F() {
-  const h = await C("state.get");
-  return K.value = h, h;
+  const f = await C("state.get");
+  return K.value = f, f;
 }
 async function et() {
   ne.value = await C("options.list");
@@ -62,48 +62,48 @@ async function et() {
 async function ce() {
   Be.value = await C("stats.get");
 }
-function Te(h) {
-  return ne.value.find((u) => u.id === h);
+function Te(f) {
+  return ne.value.find((u) => u.id === f);
 }
-function tt(h, u) {
-  return ne.value.filter((s) => s.kind === h && (!u || s.audience.includes(u)));
+function tt(f, u) {
+  return ne.value.filter((s) => s.kind === f && (!u || s.audience.includes(u)));
 }
-function re(h, u) {
-  const s = Te(h);
+function re(f, u) {
+  const s = Te(f);
   if (!s) return "";
   const d = s.variants.find((y) => y.id === u);
   return d ? `${s.label} · ${d.label}` : s.label;
 }
-function H(h) {
-  return [re(h.backgroundId, h.backgroundVariant), re(h.poseId, h.poseVariant), re(h.hairId, h.hairVariant)].filter(Boolean).join(" / ");
+function H(f) {
+  return [re(f.backgroundId, f.backgroundVariant), re(f.poseId, f.poseVariant), re(f.hairId, f.hairVariant)].filter(Boolean).join(" / ");
 }
-function Ae(h) {
-  return { background: r.t("背景"), pose: r.t("姿势"), hair: r.t("发型") }[h];
+function Ae(f) {
+  return { background: r.t("背景"), pose: r.t("姿势"), hair: r.t("发型") }[f];
 }
-function Le(h) {
-  return { women: r.t("女装"), men: r.t("男装"), kids: r.t("童装") }[h];
+function Le(f) {
+  return { women: r.t("女装"), men: r.t("男装"), kids: r.t("童装") }[f];
 }
-function he(h) {
-  return { pear: r.t("梨形"), apple: r.t("苹果形"), hourglass: r.t("沙漏形"), rectangle: r.t("直筒形"), inverted_triangle: r.t("倒三角形") }[h] || r.t("未判断");
+function fe(f) {
+  return { pear: r.t("梨形"), apple: r.t("苹果形"), hourglass: r.t("沙漏形"), rectangle: r.t("直筒形"), inverted_triangle: r.t("倒三角形") }[f] || r.t("未判断");
 }
-function nt(h) {
-  return { queued: r.t("排队中"), running: r.t("生成中"), done: r.t("已完成"), failed: r.t("失败") }[h];
+function nt(f) {
+  return { queued: r.t("排队中"), running: r.t("生成中"), done: r.t("已完成"), failed: r.t("失败") }[f];
 }
-function Ie(h) {
-  return { prepared: r.t("已备货"), tried: r.t("已试穿"), purchased: r.t("已成交"), left: r.t("未成交") }[h];
+function Ie(f) {
+  return { prepared: r.t("已备货"), tried: r.t("已试穿"), purchased: r.t("已成交"), left: r.t("未成交") }[f];
 }
-function Me(h) {
-  return { "fal-ai/nano-banana/edit": "Nano Banana Edit", "fal-ai/bytedance/seedream/v4/edit": "Seedream 4 Edit" }[h] || h;
+function Me(f) {
+  return { "fal-ai/nano-banana/edit": "Nano Banana Edit", "fal-ai/bytedance/seedream/v4/edit": "Seedream 4 Edit" }[f] || f;
 }
-async function ie(h = !0, u) {
-  const s = await C("files.pick", { multi: h, title: u });
+async function ie(f = !0, u) {
+  const s = await C("files.pick", { multi: f, title: u });
   return Array.isArray(s) ? s : [];
 }
-function lt(h) {
-  return Object.values(h || {}).reduce((u, s) => u + (Number(s) || 0), 0);
+function lt(f) {
+  return Object.values(f || {}).reduce((u, s) => u + (Number(s) || 0), 0);
 }
-async function Ve(h, u) {
-  const s = await fetch(h);
+async function Ve(f, u) {
+  const s = await fetch(f);
   if (!s.ok) throw new Error(r.t("读取试穿图失败（{status}）", { status: String(s.status) }));
   const d = await createImageBitmap(await s.blob()), y = document.createElement("canvas");
   y.width = d.width, y.height = d.height;
@@ -128,9 +128,9 @@ const ot = { class: "ap-picker" }, st = {
     disabledIds: {}
   },
   emits: ["update:modelValue"],
-  setup(h, { emit: u }) {
-    const s = h, d = u, y = ["background", "pose", "hair"], v = { background: "ri-landscape-line", pose: "ri-walk-line", hair: "ri-scissors-cut-line" }, g = e.ref("background"), c = e.computed(() => s.modelValue), t = (l) => l === "background" ? "backgroundId" : l === "pose" ? "poseId" : "hairId", n = (l) => l === "background" ? "backgroundVariant" : l === "pose" ? "poseVariant" : "hairVariant", V = e.ref(!1), D = e.computed(() => K.value?.thumbs || {}), A = e.computed(() => tt(g.value, V.value ? null : s.audience).filter((l) => !s.disabledIds?.includes(l.id))), U = e.computed(() => [...new Set(A.value.map((l) => l.group))]), k = (l) => A.value.filter((a) => a.group === l), E = e.computed(() => Te(c.value[t(g.value)]));
-    function f(l) {
+  setup(f, { emit: u }) {
+    const s = f, d = u, y = ["background", "pose", "hair"], v = { background: "ri-landscape-line", pose: "ri-walk-line", hair: "ri-scissors-cut-line" }, g = e.ref("background"), c = e.computed(() => s.modelValue), t = (l) => l === "background" ? "backgroundId" : l === "pose" ? "poseId" : "hairId", n = (l) => l === "background" ? "backgroundVariant" : l === "pose" ? "poseVariant" : "hairVariant", V = e.ref(!1), D = e.computed(() => K.value?.thumbs || {}), A = e.computed(() => tt(g.value, V.value ? null : s.audience).filter((l) => !s.disabledIds?.includes(l.id))), U = e.computed(() => [...new Set(A.value.map((l) => l.group))]), k = (l) => A.value.filter((a) => a.group === l), E = e.computed(() => Te(c.value[t(g.value)]));
+    function h(l) {
       const a = { ...s.modelValue };
       a[t(g.value)] = l, delete a[n(g.value)], d("update:modelValue", a);
     }
@@ -203,7 +203,7 @@ const ot = { class: "ap-picker" }, st = {
                   type: "button",
                   class: e.normalizeClass(["ap-chip", { on: c.value[t(g.value)] === $.id }]),
                   title: $.detail,
-                  onClick: (I) => f($.id)
+                  onClick: (I) => h($.id)
                 }, [
                   D.value[$.id] ? (e.openBlock(), e.createElementBlock("img", {
                     key: 0,
@@ -226,7 +226,7 @@ const ot = { class: "ap-picker" }, st = {
           /* KEYED_FRAGMENT */
         ))
       ]),
-      g.value === "hair" && h.audience ? (e.openBlock(), e.createElementBlock(
+      g.value === "hair" && f.audience ? (e.openBlock(), e.createElementBlock(
         "button",
         {
           key: 0,
@@ -277,12 +277,12 @@ const ot = { class: "ap-picker" }, st = {
       E.value?.needsUpload ? e.renderSlot(l.$slots, "upload", { key: 2 }, void 0, !0) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), j = (h, u) => {
-  const s = h.__vccOpts || h;
+}), j = (f, u) => {
+  const s = f.__vccOpts || f;
   for (const [d, y] of u)
     s[d] = y;
   return s;
-}, Ue = /* @__PURE__ */ j(gt, [["__scopeId", "data-v-cdfb2510"]]), vt = { class: "ss-module" }, yt = { class: "ss-steps" }, kt = ["title", "onClick"], ft = ["src"], ht = { class: "ap-g__name" }, Vt = { class: "ap-g__meta" }, Et = { class: "ss-actions" }, Nt = ["disabled"], _t = { class: "ss-muted" }, bt = { class: "ss-actions" }, $t = { class: "ss-field ap-grow" }, St = { value: "" }, Dt = ["value"], wt = { class: "ss-grid" }, Bt = { class: "ss-field" }, Ct = { class: "ss-field" }, Tt = { class: "ss-field" }, At = { class: "ap-consent" }, Lt = { class: "ss-actions" }, It = ["disabled"], Mt = { class: "ss-muted" }, Ut = {
+}, Ue = /* @__PURE__ */ j(gt, [["__scopeId", "data-v-cdfb2510"]]), vt = { class: "ss-module" }, yt = { class: "ss-steps" }, kt = ["title", "onClick"], ht = ["src"], ft = { class: "ap-g__name" }, Vt = { class: "ap-g__meta" }, Et = { class: "ss-actions" }, Nt = ["disabled"], _t = { class: "ss-muted" }, bt = { class: "ss-actions" }, $t = { class: "ss-field ap-grow" }, St = { value: "" }, Dt = ["value"], wt = { class: "ss-grid" }, Bt = { class: "ss-field" }, Ct = { class: "ss-field" }, Tt = { class: "ss-field" }, At = { class: "ap-consent" }, Lt = { class: "ss-actions" }, It = ["disabled"], Mt = { class: "ss-muted" }, Ut = {
   key: 1,
   class: "ap-customer"
 }, Ot = ["src"], zt = {
@@ -296,63 +296,66 @@ const ot = { class: "ap-picker" }, st = {
   class: "ss-muted"
 }, Rt = {
   key: 2,
-  class: "ss-note danger"
+  class: "ss-note warn"
 }, jt = {
   key: 3,
+  class: "ss-note danger"
+}, qt = {
+  key: 4,
   class: "ss-note ok"
-}, qt = { class: "ss-actions" }, Gt = ["disabled"], Ht = { class: "ap-inline" }, Qt = { class: "ap-inline" }, Yt = ["disabled"], Jt = { class: "ss-actions" }, Xt = ["disabled"], Zt = ["disabled"], xt = { class: "ss-muted" }, en = { class: "ss-kpis" }, tn = { class: "ss-kpi" }, nn = { class: "ss-kpi" }, ln = { class: "ss-kpi" }, on = {
+}, Gt = { class: "ss-actions" }, Ht = ["disabled"], Qt = { class: "ap-inline" }, Yt = { class: "ap-inline" }, Jt = ["disabled"], Xt = { class: "ss-actions" }, Zt = ["disabled"], xt = ["disabled"], en = { class: "ss-muted" }, tn = { class: "ss-kpis" }, nn = { class: "ss-kpi" }, ln = { class: "ss-kpi" }, on = { class: "ss-kpi" }, sn = {
   key: 0,
   class: "ss-note info"
-}, sn = { class: "ap-sugs" }, an = { key: 0 }, rn = { class: "ss-actions" }, cn = ["disabled"], dn = { class: "ap-looks" }, un = ["onClick"], mn = ["aria-label", "onClick"], pn = { class: "ss-actions" }, gn = { class: "ss-actions" }, vn = ["disabled"], yn = {
+}, an = { class: "ap-sugs" }, rn = { key: 0 }, cn = { class: "ss-actions" }, dn = ["disabled"], un = { class: "ap-looks" }, mn = ["onClick"], pn = ["aria-label", "onClick"], gn = { class: "ss-actions" }, vn = { class: "ss-actions" }, yn = ["disabled"], kn = {
   key: 0,
   class: "ss-chip ok"
-}, kn = {
+}, hn = {
   key: 0,
   class: "ss-note warn"
-}, fn = { class: "ss-actions" }, hn = ["disabled"], Vn = { class: "ss-muted" }, En = {
+}, fn = { class: "ss-actions" }, Vn = ["disabled"], En = { class: "ss-muted" }, Nn = {
   key: 1,
   class: "ap-queue"
-}, Nn = {
+}, _n = {
   key: 0,
   class: "ri-loader-4-line spin"
-}, _n = { class: "ap-q__what" }, bn = {
+}, bn = { class: "ap-q__what" }, $n = {
   key: 0,
   class: "ap-q__err"
-}, $n = ["onClick"], Sn = {
+}, Sn = ["onClick"], Dn = {
   key: 0,
   class: "ss-empty"
-}, Dn = {
+}, wn = {
   key: 1,
   class: "ap-results"
-}, wn = ["onClick"], Bn = ["src"], Cn = {
+}, Bn = ["onClick"], Cn = ["src"], Tn = {
   key: 2,
   class: "ap-preview"
-}, Tn = ["src"], An = { class: "ap-preview__side" }, Ln = { class: "ss-muted" }, In = { class: "ss-muted" }, Mn = { class: "ap-code" }, Un = { class: "ss-actions" }, On = { class: "ap-phone" }, zn = ["src"], Fn = {
+}, An = ["src"], Ln = { class: "ap-preview__side" }, In = { class: "ss-muted" }, Mn = { class: "ss-muted" }, Un = { class: "ap-code" }, On = { class: "ss-actions" }, zn = { class: "ap-phone" }, Fn = ["src"], Kn = {
   key: 1,
   class: "ss-muted"
-}, Kn = {
+}, Pn = {
   key: 0,
   class: "ss-empty"
-}, Pn = {
+}, Wn = {
   key: 1,
   class: "ss-table-wrap"
-}, Wn = { class: "ss-table" }, Rn = { class: "ap-wrap" }, jn = { class: "ap-code" }, qn = {
+}, Rn = { class: "ss-table" }, jn = { class: "ap-wrap" }, qn = { class: "ap-code" }, Gn = {
   key: 1,
   class: "ss-muted"
-}, Gn = { class: "ap-row-actions" }, Hn = ["onClick"], Qn = ["onClick"], Yn = ["onClick"], Jn = ["onClick"], Xn = ["onClick"], Zn = 30, xn = 2, el = /* @__PURE__ */ e.defineComponent({
+}, Hn = { class: "ap-row-actions" }, Qn = ["onClick"], Yn = ["onClick"], Jn = ["onClick"], Xn = ["onClick"], Zn = ["onClick"], xn = 30, el = 2, tl = /* @__PURE__ */ e.defineComponent({
   __name: "TryonFlow",
-  setup(h, { expose: u }) {
+  setup(f, { expose: u }) {
     const s = Q.useNotificationStore(), d = K;
     Ze();
-    const y = { backgroundId: "B29", backgroundVariant: "B29-1", poseId: "P01", poseVariant: "P01-1", hairId: "H00" }, v = e.computed(() => d.value?.garments || []), g = e.computed(() => (d.value?.customers || []).filter((o) => !o.purgedAt)), c = e.ref([]), t = e.ref(""), n = e.computed(() => d.value?.customers.find((o) => o.id === t.value) || null), V = e.computed(() => v.value.find((o) => o.id === c.value[0]) || null), D = e.reactive({ nickname: "", heightCm: void 0, weightKg: void 0, consent: !1 }), A = e.reactive({ heightCm: void 0, weightKg: void 0 }), U = e.ref(!1), k = e.ref([{ ...y }]), E = e.ref(0), f = e.ref(!1), B = e.ref(!1), l = e.ref(null), a = e.ref(""), i = e.ref(""), $ = e.ref({});
+    const y = { backgroundId: "B29", backgroundVariant: "B29-1", poseId: "P01", poseVariant: "P01-1", hairId: "H00" }, v = e.computed(() => d.value?.garments || []), g = e.computed(() => (d.value?.customers || []).filter((o) => !o.purgedAt)), c = e.ref([]), t = e.ref(""), n = e.computed(() => d.value?.customers.find((o) => o.id === t.value) || null), V = e.computed(() => v.value.find((o) => o.id === c.value[0]) || null), D = e.reactive({ nickname: "", heightCm: void 0, weightKg: void 0, consent: !1 }), A = e.reactive({ heightCm: void 0, weightKg: void 0 }), U = e.ref(!1), k = e.ref([{ ...y }]), E = e.ref(0), h = e.ref(!1), B = e.ref(!1), l = e.ref(null), a = e.ref(""), i = e.ref(""), $ = e.ref({});
     e.watch(n, (o) => {
       A.heightCm = o?.heightCm, A.weightKg = o?.weightKg, U.value = !1, a.value = "", l.value = null, ve();
     }, { immediate: !1 }), e.watch(t, () => {
       a.value = "";
     }), e.watch(k, () => {
-      f.value = !0;
+      h.value = !0;
     }, { deep: !0 });
-    const I = e.computed(() => (d.value?.tryons || []).filter((o) => o.customerId === t.value)), N = e.computed(() => I.value.filter((o) => o.status === "done" && o.image)), T = e.computed(() => I.value.filter((o) => o.status === "queued" || o.status === "running")), O = e.computed(() => !!n.value?.photo && !n.value.purgedAt && (!!n.value.photoCheck?.ok || !n.value.photoCheck && !d.value?.imageReady)), te = e.computed(() => O.value && c.value.length > 0 && k.value.length > 0), z = [
+    const I = e.computed(() => (d.value?.tryons || []).filter((o) => o.customerId === t.value)), N = e.computed(() => I.value.filter((o) => o.status === "done" && o.image)), T = e.computed(() => I.value.filter((o) => o.status === "queued" || o.status === "running")), O = e.computed(() => !!n.value?.photo && !n.value.purgedAt && (!!n.value.photoCheck?.ok || !!n.value.photoCheck?.unchecked || !n.value.photoCheck && !d.value?.imageReady)), te = e.computed(() => O.value && c.value.length > 0 && k.value.length > 0), z = [
       { key: "ap-garment", title: r.t("选衣服"), hint: r.t("从商品库挑 1～4 件要试的衣服；新款可当场导入，AI 自动打标签") },
       { key: "ap-photo", title: r.t("顾客照片与授权"), hint: r.t("勾选授权后上传一张全身正面照（电脑上传，或顾客扫门店码用手机上传）") },
       { key: "ap-analyze", title: r.t("AI 形象分析"), hint: r.t("识别体型、肤色、脸型，推荐 3 组造型（可跳过）") },
@@ -367,15 +370,15 @@ const ot = { class: "ap-picker" }, st = {
     const R = e.computed(() => {
       const o = n.value, p = T.value, m = p.length > 0, M = I.value.length > 0 && I.value.every((Z) => Z.status === "failed"), x = m ? {
         kind: "image",
-        estimateSec: Math.ceil(p.length / xn) * Zn,
+        estimateSec: Math.ceil(p.length / el) * xn,
         startedAt: xe(p),
         progressAt: Ce.value || void 0
       } : void 0;
       return {
         "ap-garment": q("ap-garment", c.value.length > 0, r.t("已选 {n} 件", { n: c.value.length })),
-        "ap-photo": o?.photoCheck && !o.photoCheck.ok && !i.value ? { state: "failed", error: r.t("照片不合格，请重拍") } : q("ap-photo", O.value, o?.nickname),
-        "ap-analyze": q("ap-analyze", !!o?.profile || U.value && !!o?.photo, o?.profile ? he(o.profile.bodyShape) : r.t("已跳过")),
-        "ap-style": q("ap-style", !!o?.photo && (f.value || !!o?.profile), r.t("{n} 组造型", { n: k.value.length })),
+        "ap-photo": o?.photoCheck && !o.photoCheck.ok && !o.photoCheck.unchecked && !i.value ? { state: "failed", error: r.t("照片不合格，请重拍") } : q("ap-photo", O.value, o?.nickname),
+        "ap-analyze": q("ap-analyze", !!o?.profile || U.value && !!o?.photo, o?.profile ? fe(o.profile.bodyShape) : r.t("已跳过")),
+        "ap-style": q("ap-style", !!o?.photo && (h.value || !!o?.profile), r.t("{n} 组造型", { n: k.value.length })),
         // 预检 / 本组件自己的报错优先于「上一批全失败」的汇总，否则点生成被拦下时卡上还写着上一批的旧原因
         "ap-generate": $.value["ap-generate"] && !m ? { state: "failed", error: $.value["ap-generate"] } : M && !m ? { state: "failed", error: I.value[0]?.error || r.t("生成失败") } : q("ap-generate", N.value.length > 0, r.t("{n} 张完成", { n: N.value.length }), m, x),
         "ap-view": q("ap-view", N.value.length > 0 && (!!l.value || !!a.value || o?.source === "mobile")),
@@ -574,10 +577,10 @@ const ot = { class: "ap-picker" }, st = {
                       src: e.unref(P.fileUrl)(m.image),
                       alt: "",
                       loading: "lazy"
-                    }, null, 8, ft),
+                    }, null, 8, ht),
                     e.createElementVNode(
                       "span",
-                      ht,
+                      ft,
                       e.toDisplayString(m.name),
                       1
                       /* TEXT */
@@ -746,8 +749,21 @@ const ot = { class: "ap-picker" }, st = {
                     1
                     /* TEXT */
                   )
-                ])) : n.value.photoCheck && !n.value.photoCheck.ok ? (e.openBlock(), e.createElementBlock("p", Rt, [
+                ])) : n.value.photoCheck?.unchecked ? (e.openBlock(), e.createElementBlock("p", Rt, [
                   p[17] || (p[17] = e.createElementVNode(
+                    "i",
+                    { class: "ri-error-warning-line" },
+                    null,
+                    -1
+                    /* CACHED */
+                  )),
+                  e.createTextVNode(
+                    e.toDisplayString(n.value.photoCheck.issues.join(o.$t("；"))),
+                    1
+                    /* TEXT */
+                  )
+                ])) : n.value.photoCheck && !n.value.photoCheck.ok ? (e.openBlock(), e.createElementBlock("p", jt, [
+                  p[18] || (p[18] = e.createElementVNode(
                     "i",
                     { class: "ri-error-warning-line" },
                     null,
@@ -759,8 +775,8 @@ const ot = { class: "ap-picker" }, st = {
                     1
                     /* TEXT */
                   )
-                ])) : n.value.photoCheck?.ok ? (e.openBlock(), e.createElementBlock("p", jt, [
-                  p[18] || (p[18] = e.createElementVNode(
+                ])) : n.value.photoCheck?.ok ? (e.openBlock(), e.createElementBlock("p", qt, [
+                  p[19] || (p[19] = e.createElementVNode(
                     "i",
                     { class: "ri-check-line" },
                     null,
@@ -773,14 +789,14 @@ const ot = { class: "ap-picker" }, st = {
                     /* TEXT */
                   )
                 ])) : e.createCommentVNode("v-if", !0),
-                e.createElementVNode("div", qt, [
+                e.createElementVNode("div", Gt, [
                   e.createElementVNode("button", {
                     type: "button",
                     class: e.normalizeClass(["ss-btn sm", { primary: !n.value.photo }]),
                     disabled: !!i.value,
                     onClick: _
                   }, [
-                    p[19] || (p[19] = e.createElementVNode(
+                    p[20] || (p[20] = e.createElementVNode(
                       "i",
                       { class: "ri-camera-line" },
                       null,
@@ -792,8 +808,8 @@ const ot = { class: "ap-picker" }, st = {
                       1
                       /* TEXT */
                     )
-                  ], 10, Gt),
-                  e.createElementVNode("label", Ht, [
+                  ], 10, Ht),
+                  e.createElementVNode("label", Qt, [
                     e.createTextVNode(
                       e.toDisplayString(o.$t("身高")) + " ",
                       1
@@ -818,13 +834,13 @@ const ot = { class: "ap-picker" }, st = {
                         { number: !0 }
                       ]
                     ]),
-                    p[20] || (p[20] = e.createTextVNode(
+                    p[21] || (p[21] = e.createTextVNode(
                       " cm",
                       -1
                       /* CACHED */
                     ))
                   ]),
-                  e.createElementVNode("label", Qt, [
+                  e.createElementVNode("label", Yt, [
                     e.createTextVNode(
                       e.toDisplayString(o.$t("体重")) + " ",
                       1
@@ -849,7 +865,7 @@ const ot = { class: "ap-picker" }, st = {
                         { number: !0 }
                       ]
                     ]),
-                    p[21] || (p[21] = e.createTextVNode(
+                    p[22] || (p[22] = e.createTextVNode(
                       " kg",
                       -1
                       /* CACHED */
@@ -866,7 +882,7 @@ const ot = { class: "ap-picker" }, st = {
                     1
                     /* TEXT */
                   ),
-                  p[23] || (p[23] = e.createElementVNode(
+                  p[24] || (p[24] = e.createElementVNode(
                     "span",
                     { class: "grow" },
                     null,
@@ -879,7 +895,7 @@ const ot = { class: "ap-picker" }, st = {
                     disabled: !!i.value || !!n.value.purgedAt,
                     onClick: L
                   }, [
-                    p[22] || (p[22] = e.createElementVNode(
+                    p[23] || (p[23] = e.createElementVNode(
                       "i",
                       { class: "ri-delete-bin-line" },
                       null,
@@ -891,7 +907,7 @@ const ot = { class: "ap-picker" }, st = {
                       1
                       /* TEXT */
                     )
-                  ], 8, Yt)
+                  ], 8, Jt)
                 ])
               ])
             ])) : (e.openBlock(), e.createElementBlock(
@@ -1050,7 +1066,7 @@ const ot = { class: "ap-picker" }, st = {
           "is-current": G.value === "ap-analyze"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", Jt, [
+            e.createElementVNode("div", Xt, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
@@ -1071,16 +1087,16 @@ const ot = { class: "ap-picker" }, st = {
                   1
                   /* TEXT */
                 )
-              ], 8, Xt),
+              ], 8, Zt),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn ghost sm",
                 disabled: !n.value?.photo,
                 onClick: p[9] || (p[9] = (m) => U.value = !0)
-              }, e.toDisplayString(o.$t("跳过")), 9, Zt),
+              }, e.toDisplayString(o.$t("跳过")), 9, xt),
               e.createElementVNode(
                 "span",
-                xt,
+                en,
                 e.toDisplayString(o.$t("AI 估计，仅供搭配参考")),
                 1
                 /* TEXT */
@@ -1090,8 +1106,8 @@ const ot = { class: "ap-picker" }, st = {
               e.Fragment,
               { key: 0 },
               [
-                e.createElementVNode("div", en, [
-                  e.createElementVNode("div", tn, [
+                e.createElementVNode("div", tn, [
+                  e.createElementVNode("div", nn, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -1102,12 +1118,12 @@ const ot = { class: "ap-picker" }, st = {
                     e.createElementVNode(
                       "strong",
                       null,
-                      e.toDisplayString(e.unref(he)(n.value.profile.bodyShape)),
+                      e.toDisplayString(e.unref(fe)(n.value.profile.bodyShape)),
                       1
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", nn, [
+                  e.createElementVNode("div", ln, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -1123,7 +1139,7 @@ const ot = { class: "ap-picker" }, st = {
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", ln, [
+                  e.createElementVNode("div", on, [
                     e.createElementVNode(
                       "small",
                       null,
@@ -1140,8 +1156,8 @@ const ot = { class: "ap-picker" }, st = {
                     )
                   ])
                 ]),
-                n.value.profile.notes ? (e.openBlock(), e.createElementBlock("p", on, [
-                  p[24] || (p[24] = e.createElementVNode(
+                n.value.profile.notes ? (e.openBlock(), e.createElementBlock("p", sn, [
+                  p[25] || (p[25] = e.createElementVNode(
                     "i",
                     { class: "ri-lightbulb-line" },
                     null,
@@ -1154,7 +1170,7 @@ const ot = { class: "ap-picker" }, st = {
                     /* TEXT */
                   )
                 ])) : e.createCommentVNode("v-if", !0),
-                e.createElementVNode("div", sn, [
+                e.createElementVNode("div", an, [
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
@@ -1178,7 +1194,7 @@ const ot = { class: "ap-picker" }, st = {
                       ),
                       m.reason ? (e.openBlock(), e.createElementBlock(
                         "small",
-                        an,
+                        rn,
                         e.toDisplayString(m.reason),
                         1
                         /* TEXT */
@@ -1188,14 +1204,14 @@ const ot = { class: "ap-picker" }, st = {
                     /* KEYED_FRAGMENT */
                   ))
                 ]),
-                e.createElementVNode("div", rn, [
+                e.createElementVNode("div", cn, [
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn sm",
                     disabled: !n.value.profile.suggestions.length,
                     onClick: Oe
                   }, [
-                    p[25] || (p[25] = e.createElementVNode(
+                    p[26] || (p[26] = e.createElementVNode(
                       "i",
                       { class: "ri-lightbulb-line" },
                       null,
@@ -1207,7 +1223,7 @@ const ot = { class: "ap-picker" }, st = {
                       1
                       /* TEXT */
                     )
-                  ], 8, cn)
+                  ], 8, dn)
                 ])
               ],
               64
@@ -1227,7 +1243,7 @@ const ot = { class: "ap-picker" }, st = {
           "is-current": G.value === "ap-style"
         }, {
           default: e.withCtx(() => [
-            e.createElementVNode("div", dn, [
+            e.createElementVNode("div", un, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
@@ -1257,8 +1273,8 @@ const ot = { class: "ap-picker" }, st = {
                     role: "button",
                     "aria-label": o.$t("删除"),
                     onClick: e.withModifiers((x) => Ke(M), ["stop"])
-                  }, null, 8, mn)) : e.createCommentVNode("v-if", !0)
-                ], 10, un))),
+                  }, null, 8, pn)) : e.createCommentVNode("v-if", !0)
+                ], 10, mn))),
                 128
                 /* KEYED_FRAGMENT */
               )),
@@ -1268,7 +1284,7 @@ const ot = { class: "ap-picker" }, st = {
                 class: "ap-look add",
                 onClick: Fe
               }, [
-                p[26] || (p[26] = e.createElementVNode(
+                p[27] || (p[27] = e.createElementVNode(
                   "i",
                   { class: "ri-add-line" },
                   null,
@@ -1282,14 +1298,14 @@ const ot = { class: "ap-picker" }, st = {
                 )
               ])) : e.createCommentVNode("v-if", !0)
             ]),
-            e.createElementVNode("div", pn, [
+            e.createElementVNode("div", gn, [
               V.value?.recommended ? (e.openBlock(), e.createElementBlock("button", {
                 key: 0,
                 type: "button",
                 class: "ss-btn sm ghost",
                 onClick: ze
               }, [
-                p[27] || (p[27] = e.createElementVNode(
+                p[28] || (p[28] = e.createElementVNode(
                   "i",
                   { class: "ri-star-line" },
                   null,
@@ -1309,14 +1325,14 @@ const ot = { class: "ap-picker" }, st = {
               audience: V.value?.audience || null
             }, {
               upload: e.withCtx(() => [
-                e.createElementVNode("div", gn, [
+                e.createElementVNode("div", vn, [
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn sm",
                     disabled: !n.value || !!i.value,
                     onClick: Pe
                   }, [
-                    p[28] || (p[28] = e.createElementVNode(
+                    p[29] || (p[29] = e.createElementVNode(
                       "i",
                       { class: "ri-image-add-line" },
                       null,
@@ -1328,10 +1344,10 @@ const ot = { class: "ap-picker" }, st = {
                       1
                       /* TEXT */
                     )
-                  ], 8, vn),
+                  ], 8, yn),
                   B.value ? (e.openBlock(), e.createElementBlock(
                     "span",
-                    yn,
+                    kn,
                     e.toDisplayString(o.$t("已上传")),
                     1
                     /* TEXT */
@@ -1359,8 +1375,8 @@ const ot = { class: "ap-picker" }, st = {
           retry: T.value.length ? void 0 : Re
         }, {
           default: e.withCtx(() => [
-            e.unref(d)?.imageReady ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", kn, [
-              p[29] || (p[29] = e.createElementVNode(
+            e.unref(d)?.imageReady ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", hn, [
+              p[30] || (p[30] = e.createElementVNode(
                 "i",
                 { class: "ri-key-2-line" },
                 null,
@@ -1394,16 +1410,16 @@ const ot = { class: "ap-picker" }, st = {
                   1
                   /* TEXT */
                 )
-              ], 8, hn),
+              ], 8, Vn),
               e.createElementVNode(
                 "span",
-                Vn,
+                En,
                 e.toDisplayString(o.$t("{a} 件 × {b} 组造型，单张约 5–30 秒，同时生成 2 张", { a: c.value.length, b: k.value.length })),
                 1
                 /* TEXT */
               )
             ]),
-            I.value.length ? (e.openBlock(), e.createElementBlock("div", En, [
+            I.value.length ? (e.openBlock(), e.createElementBlock("div", Nn, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
@@ -1420,7 +1436,7 @@ const ot = { class: "ap-picker" }, st = {
                         class: e.normalizeClass(["ss-chip", m.status === "done" ? "ok" : m.status === "failed" ? "bad" : "brand"])
                       },
                       [
-                        m.status === "running" || m.status === "queued" ? (e.openBlock(), e.createElementBlock("i", Nn)) : e.createCommentVNode("v-if", !0),
+                        m.status === "running" || m.status === "queued" ? (e.openBlock(), e.createElementBlock("i", _n)) : e.createCommentVNode("v-if", !0),
                         e.createTextVNode(
                           e.toDisplayString(e.unref(nt)(m.status)),
                           1
@@ -1432,14 +1448,14 @@ const ot = { class: "ap-picker" }, st = {
                     ),
                     e.createElementVNode(
                       "span",
-                      _n,
+                      bn,
                       e.toDisplayString(Y(m.garmentId)) + " · " + e.toDisplayString(e.unref(H)(m.choice)),
                       1
                       /* TEXT */
                     ),
                     m.error ? (e.openBlock(), e.createElementBlock(
                       "span",
-                      bn,
+                      $n,
                       e.toDisplayString(m.error),
                       1
                       /* TEXT */
@@ -1449,7 +1465,7 @@ const ot = { class: "ap-picker" }, st = {
                       type: "button",
                       class: "ss-link",
                       onClick: (M) => We(m.id)
-                    }, e.toDisplayString(o.$t("重试")), 9, $n)) : e.createCommentVNode("v-if", !0)
+                    }, e.toDisplayString(o.$t("重试")), 9, Sn)) : e.createCommentVNode("v-if", !0)
                   ],
                   2
                   /* CLASS */
@@ -1472,7 +1488,7 @@ const ot = { class: "ap-picker" }, st = {
           "is-current": G.value === "ap-view"
         }, {
           default: e.withCtx(() => [
-            N.value.length ? (e.openBlock(), e.createElementBlock("div", Dn, [
+            N.value.length ? (e.openBlock(), e.createElementBlock("div", wn, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
@@ -1485,7 +1501,7 @@ const ot = { class: "ap-picker" }, st = {
                     src: e.unref(P.fileUrl)(m.image),
                     alt: "",
                     loading: "lazy"
-                  }, null, 8, Bn),
+                  }, null, 8, Cn),
                   e.createElementVNode("figcaption", null, [
                     e.createElementVNode(
                       "b",
@@ -1502,23 +1518,23 @@ const ot = { class: "ap-picker" }, st = {
                       /* TEXT */
                     )
                   ])
-                ], 10, wn))),
+                ], 10, Bn))),
                 128
                 /* KEYED_FRAGMENT */
               ))
             ])) : (e.openBlock(), e.createElementBlock(
               "p",
-              Sn,
+              Dn,
               e.toDisplayString(o.$t("生成完成的试穿图会出现在这里")),
               1
               /* TEXT */
             )),
-            l.value ? (e.openBlock(), e.createElementBlock("div", Cn, [
+            l.value ? (e.openBlock(), e.createElementBlock("div", Tn, [
               e.createElementVNode("img", {
                 src: e.unref(P.fileUrl)(l.value.image),
                 alt: ""
-              }, null, 8, Tn),
-              e.createElementVNode("div", An, [
+              }, null, 8, An),
+              e.createElementVNode("div", Ln, [
                 e.createElementVNode(
                   "strong",
                   null,
@@ -1528,12 +1544,12 @@ const ot = { class: "ap-picker" }, st = {
                 ),
                 e.createElementVNode(
                   "span",
-                  Ln,
+                  In,
                   e.toDisplayString(e.unref(H)(l.value.choice)),
                   1
                   /* TEXT */
                 ),
-                e.createElementVNode("span", In, [
+                e.createElementVNode("span", Mn, [
                   e.createTextVNode(
                     e.toDisplayString(o.$t("试穿码")) + " ",
                     1
@@ -1541,7 +1557,7 @@ const ot = { class: "ap-picker" }, st = {
                   ),
                   e.createElementVNode(
                     "b",
-                    Mn,
+                    Un,
                     e.toDisplayString(l.value.code),
                     1
                     /* TEXT */
@@ -1552,13 +1568,13 @@ const ot = { class: "ap-picker" }, st = {
                     /* TEXT */
                   )
                 ]),
-                e.createElementVNode("div", Un, [
+                e.createElementVNode("div", On, [
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-btn sm",
                     onClick: p[11] || (p[11] = (m) => je(l.value))
                   }, [
-                    p[30] || (p[30] = e.createElementVNode(
+                    p[31] || (p[31] = e.createElementVNode(
                       "i",
                       { class: "ri-file-copy-line" },
                       null,
@@ -1576,7 +1592,7 @@ const ot = { class: "ap-picker" }, st = {
                     class: "ss-btn sm",
                     onClick: Ge
                   }, [
-                    p[31] || (p[31] = e.createElementVNode(
+                    p[32] || (p[32] = e.createElementVNode(
                       "i",
                       { class: "ri-download-2-line" },
                       null,
@@ -1590,9 +1606,9 @@ const ot = { class: "ap-picker" }, st = {
                     )
                   ])
                 ]),
-                e.createElementVNode("div", On, [
+                e.createElementVNode("div", zn, [
                   e.createElementVNode("strong", null, [
-                    p[32] || (p[32] = e.createElementVNode(
+                    p[33] || (p[33] = e.createElementVNode(
                       "i",
                       { class: "ri-smartphone-line" },
                       null,
@@ -1612,7 +1628,7 @@ const ot = { class: "ap-picker" }, st = {
                       e.createElementVNode("img", {
                         src: a.value,
                         alt: ""
-                      }, null, 8, zn),
+                      }, null, 8, Fn),
                       e.createElementVNode(
                         "small",
                         null,
@@ -1629,7 +1645,7 @@ const ot = { class: "ap-picker" }, st = {
                     class: "ss-btn sm",
                     onClick: He
                   }, [
-                    p[33] || (p[33] = e.createElementVNode(
+                    p[34] || (p[34] = e.createElementVNode(
                       "i",
                       { class: "ri-qr-code-line" },
                       null,
@@ -1643,7 +1659,7 @@ const ot = { class: "ap-picker" }, st = {
                     )
                   ])) : (e.openBlock(), e.createElementBlock(
                     "p",
-                    Fn,
+                    Kn,
                     e.toDisplayString(o.$t("先在「手机端」页签开启门店手机服务")),
                     1
                     /* TEXT */
@@ -1665,8 +1681,8 @@ const ot = { class: "ap-picker" }, st = {
           "is-current": G.value === "ap-visit"
         }, {
           default: e.withCtx(() => [
-            N.value.length ? (e.openBlock(), e.createElementBlock("div", Pn, [
-              e.createElementVNode("table", Wn, [
+            N.value.length ? (e.openBlock(), e.createElementBlock("div", Wn, [
+              e.createElementVNode("table", Rn, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
@@ -1704,7 +1720,7 @@ const ot = { class: "ap-picker" }, st = {
                       1
                       /* TEXT */
                     ),
-                    p[34] || (p[34] = e.createElementVNode(
+                    p[35] || (p[35] = e.createElementVNode(
                       "th",
                       null,
                       null,
@@ -1729,7 +1745,7 @@ const ot = { class: "ap-picker" }, st = {
                       ),
                       e.createElementVNode(
                         "td",
-                        Rn,
+                        jn,
                         e.toDisplayString(e.unref(H)(m.choice)),
                         1
                         /* TEXT */
@@ -1737,7 +1753,7 @@ const ot = { class: "ap-picker" }, st = {
                       e.createElementVNode("td", null, [
                         e.createElementVNode(
                           "b",
-                          jn,
+                          qn,
                           e.toDisplayString(m.wantVisit ? m.code : "—"),
                           1
                           /* TEXT */
@@ -1760,9 +1776,9 @@ const ot = { class: "ap-picker" }, st = {
                           e.toDisplayString(e.unref(Ie)(m.visit.status)) + e.toDisplayString(m.visit.size ? ` · ${m.visit.size}` : ""),
                           3
                           /* TEXT, CLASS */
-                        )) : (e.openBlock(), e.createElementBlock("span", qn, "—"))
+                        )) : (e.openBlock(), e.createElementBlock("span", Gn, "—"))
                       ]),
-                      e.createElementVNode("td", Gn, [
+                      e.createElementVNode("td", Hn, [
                         m.wantVisit ? (e.openBlock(), e.createElementBlock(
                           e.Fragment,
                           { key: 1 },
@@ -1771,22 +1787,22 @@ const ot = { class: "ap-picker" }, st = {
                               type: "button",
                               class: "ss-link",
                               onClick: (M) => ae(m.id, "prepared")
-                            }, e.toDisplayString(o.$t("已备货")), 9, Qn),
+                            }, e.toDisplayString(o.$t("已备货")), 9, Yn),
                             e.createElementVNode("button", {
                               type: "button",
                               class: "ss-link",
                               onClick: (M) => ae(m.id, "tried")
-                            }, e.toDisplayString(o.$t("已试穿")), 9, Yn),
+                            }, e.toDisplayString(o.$t("已试穿")), 9, Jn),
                             e.createElementVNode("button", {
                               type: "button",
                               class: "ss-link",
                               onClick: (M) => ae(m.id, "purchased")
-                            }, e.toDisplayString(o.$t("成交")), 9, Jn),
+                            }, e.toDisplayString(o.$t("成交")), 9, Xn),
                             e.createElementVNode("button", {
                               type: "button",
                               class: "ss-link",
                               onClick: (M) => ae(m.id, "left")
-                            }, e.toDisplayString(o.$t("未成交")), 9, Xn)
+                            }, e.toDisplayString(o.$t("未成交")), 9, Zn)
                           ],
                           64
                           /* STABLE_FRAGMENT */
@@ -1795,7 +1811,7 @@ const ot = { class: "ap-picker" }, st = {
                           type: "button",
                           class: "ss-btn sm primary",
                           onClick: (M) => Qe(m.id)
-                        }, e.toDisplayString(o.$t("想试实物")), 9, Hn))
+                        }, e.toDisplayString(o.$t("想试实物")), 9, Qn))
                       ])
                     ]))),
                     128
@@ -1805,7 +1821,7 @@ const ot = { class: "ap-picker" }, st = {
               ])
             ])) : (e.openBlock(), e.createElementBlock(
               "p",
-              Kn,
+              Pn,
               e.toDisplayString(o.$t("有试穿图后，顾客点「想试实物」就会得到试穿码与推荐尺码")),
               1
               /* TEXT */
@@ -1817,18 +1833,18 @@ const ot = { class: "ap-picker" }, st = {
       ])
     ]));
   }
-}), tl = /* @__PURE__ */ j(el, [["__scopeId", "data-v-f11bc0c7"]]), nl = { class: "ap-gl" }, ll = { class: "ap-head" }, ol = { class: "ss-muted" }, sl = ["disabled"], al = { class: "ss-muted" }, rl = {
+}), nl = /* @__PURE__ */ j(tl, [["__scopeId", "data-v-9bf72ce2"]]), ll = { class: "ap-gl" }, ol = { class: "ap-head" }, sl = { class: "ss-muted" }, al = ["disabled"], rl = { class: "ss-muted" }, il = {
   key: 0,
   class: "ss-empty"
-}, il = { class: "ap-gl__items" }, cl = ["onClick"], dl = ["src"], ul = {
+}, cl = { class: "ap-gl__items" }, dl = ["onClick"], ul = ["src"], ml = {
   key: 0,
   class: "ss-panel ap-gl__edit"
-}, ml = { class: "ap-head" }, pl = {
+}, pl = { class: "ap-head" }, gl = {
   key: 0,
   class: "ss-chip brand"
-}, gl = ["disabled"], vl = { class: "ap-gl__top" }, yl = ["src"], kl = { class: "ss-grid" }, fl = { class: "ss-field" }, hl = { class: "ss-field" }, Vl = { class: "ss-field" }, El = { class: "ss-field" }, Nl = { class: "ss-field" }, _l = { class: "ss-field" }, bl = { class: "ss-field" }, $l = { class: "ss-field" }, Sl = ["value"], Dl = { class: "ss-field" }, wl = { value: "women" }, Bl = { value: "men" }, Cl = { value: "kids" }, Tl = { class: "ss-field" }, Al = { class: "ss-field" }, Ll = { class: "ap-stock" }, Il = { class: "ss-subhead" }, Ml = { class: "ap-stock__row" }, Ul = ["onUpdate:modelValue"], Ol = ["aria-label", "onClick"], zl = { class: "ap-stock__add" }, Fl = ["placeholder", "onKeydown"], Kl = { class: "ap-check" }, Pl = { class: "ap-rec" }, Wl = { class: "ss-subhead" }, Rl = { class: "ss-actions" }, jl = ["disabled"], ql = ["disabled"], Gl = /* @__PURE__ */ e.defineComponent({
+}, vl = ["disabled"], yl = { class: "ap-gl__top" }, kl = ["src"], hl = { class: "ss-grid" }, fl = { class: "ss-field" }, Vl = { class: "ss-field" }, El = { class: "ss-field" }, Nl = { class: "ss-field" }, _l = { class: "ss-field" }, bl = { class: "ss-field" }, $l = { class: "ss-field" }, Sl = { class: "ss-field" }, Dl = ["value"], wl = { class: "ss-field" }, Bl = { value: "women" }, Cl = { value: "men" }, Tl = { value: "kids" }, Al = { class: "ss-field" }, Ll = { class: "ss-field" }, Il = { class: "ap-stock" }, Ml = { class: "ss-subhead" }, Ul = { class: "ap-stock__row" }, Ol = ["onUpdate:modelValue"], zl = ["aria-label", "onClick"], Fl = { class: "ap-stock__add" }, Kl = ["placeholder", "onKeydown"], Pl = { class: "ap-check" }, Wl = { class: "ap-rec" }, Rl = { class: "ss-subhead" }, jl = { class: "ss-actions" }, ql = ["disabled"], Gl = ["disabled"], Hl = /* @__PURE__ */ e.defineComponent({
   __name: "GarmentsTab",
-  setup(h) {
+  setup(f) {
     const u = Q.useNotificationStore(), s = [r.t("春"), r.t("夏"), r.t("秋"), r.t("冬"), r.t("四季")], d = e.computed(() => K.value?.garments || []), y = e.ref(null), v = e.reactive({}), g = e.ref({ backgroundId: "B29", poseId: "P01", hairId: "H00" }), c = e.ref(""), t = e.ref(""), n = e.ref("");
     function V(l) {
       const a = d.value.find((i) => i.id === l);
@@ -1878,7 +1894,7 @@ const ot = { class: "ap-picker" }, st = {
         }
       }
     }
-    async function f() {
+    async function h() {
       n.value = "save";
       try {
         await C("garment.save", { input: { ...v, tags: c.value.split(/[,，、\s]+/).filter(Boolean), recommended: g.value } }), await F(), V(v.id), u.success(r.t("已保存"));
@@ -1896,7 +1912,7 @@ const ot = { class: "ap-picker" }, st = {
           u.error(w.errorMessage(l));
         }
     }
-    return (l, a) => (e.openBlock(), e.createElementBlock("div", nl, [
+    return (l, a) => (e.openBlock(), e.createElementBlock("div", ll, [
       e.createElementVNode(
         "section",
         {
@@ -1906,7 +1922,7 @@ const ot = { class: "ap-picker" }, st = {
           onDrop: e.withModifiers(U, ["prevent"])
         },
         [
-          e.createElementVNode("header", ll, [
+          e.createElementVNode("header", ol, [
             e.createElementVNode("strong", null, [
               a[18] || (a[18] = e.createElementVNode(
                 "i",
@@ -1923,7 +1939,7 @@ const ot = { class: "ap-picker" }, st = {
             ]),
             e.createElementVNode(
               "span",
-              ol,
+              sl,
               e.toDisplayString(l.$t("{n} 件，手机端上架 {m} 件", { n: d.value.length, m: d.value.filter((i) => i.onShelf).length })),
               1
               /* TEXT */
@@ -1953,23 +1969,23 @@ const ot = { class: "ap-picker" }, st = {
                 1
                 /* TEXT */
               )
-            ], 8, sl)
+            ], 8, al)
           ]),
           e.createElementVNode(
             "p",
-            al,
+            rl,
             e.toDisplayString(l.$t("可把图片直接拖进来批量导入。")) + e.toDisplayString(l.$t("白底图或平铺图效果最好。导入后 AI 自动识别品类、颜色、风格、面料、季节与适用人群，并给一组推荐造型；识别结果可手改。经营自动化智能体的上下架与短视频也用这份商品库。")),
             1
             /* TEXT */
           ),
           d.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
             "p",
-            rl,
+            il,
             e.toDisplayString(l.$t("还没有商品")),
             1
             /* TEXT */
           )),
-          e.createElementVNode("div", il, [
+          e.createElementVNode("div", cl, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
@@ -1983,7 +1999,7 @@ const ot = { class: "ap-picker" }, st = {
                   src: e.unref(P.fileUrl)(i.image),
                   alt: "",
                   loading: "lazy"
-                }, null, 8, dl),
+                }, null, 8, ul),
                 e.createElementVNode("span", null, [
                   e.createElementVNode(
                     "b",
@@ -2016,7 +2032,7 @@ const ot = { class: "ap-picker" }, st = {
                   3
                   /* TEXT, CLASS */
                 )
-              ], 10, cl))),
+              ], 10, dl))),
               128
               /* KEYED_FRAGMENT */
             ))
@@ -2025,8 +2041,8 @@ const ot = { class: "ap-picker" }, st = {
         34
         /* CLASS, NEED_HYDRATION */
       ),
-      y.value ? (e.openBlock(), e.createElementBlock("section", ul, [
-        e.createElementVNode("header", ml, [
+      y.value ? (e.openBlock(), e.createElementBlock("section", ml, [
+        e.createElementVNode("header", pl, [
           e.createElementVNode(
             "strong",
             null,
@@ -2036,7 +2052,7 @@ const ot = { class: "ap-picker" }, st = {
           ),
           y.value.taggedBy ? (e.openBlock(), e.createElementBlock(
             "span",
-            pl,
+            gl,
             e.toDisplayString(l.$t("AI 已打标签")),
             1
             /* TEXT */
@@ -2068,14 +2084,14 @@ const ot = { class: "ap-picker" }, st = {
               1
               /* TEXT */
             )
-          ], 8, gl)
+          ], 8, vl)
         ]),
-        e.createElementVNode("div", vl, [
+        e.createElementVNode("div", yl, [
           e.createElementVNode("img", {
             src: e.unref(P.fileUrl)(y.value.image),
             alt: ""
-          }, null, 8, yl),
-          e.createElementVNode("div", kl, [
+          }, null, 8, kl),
+          e.createElementVNode("div", hl, [
             e.createElementVNode("label", fl, [
               e.createElementVNode(
                 "span",
@@ -2102,7 +2118,7 @@ const ot = { class: "ap-picker" }, st = {
                 ]
               ])
             ]),
-            e.createElementVNode("label", hl, [
+            e.createElementVNode("label", Vl, [
               e.createElementVNode(
                 "span",
                 null,
@@ -2128,7 +2144,7 @@ const ot = { class: "ap-picker" }, st = {
                 ]
               ])
             ]),
-            e.createElementVNode("label", Vl, [
+            e.createElementVNode("label", El, [
               e.createElementVNode(
                 "span",
                 null,
@@ -2155,7 +2171,7 @@ const ot = { class: "ap-picker" }, st = {
                 ]
               ])
             ]),
-            e.createElementVNode("label", El, [
+            e.createElementVNode("label", Nl, [
               e.createElementVNode(
                 "span",
                 null,
@@ -2181,7 +2197,7 @@ const ot = { class: "ap-picker" }, st = {
                 ]
               ])
             ]),
-            e.createElementVNode("label", Nl, [
+            e.createElementVNode("label", _l, [
               e.createElementVNode(
                 "span",
                 null,
@@ -2207,7 +2223,7 @@ const ot = { class: "ap-picker" }, st = {
                 ]
               ])
             ]),
-            e.createElementVNode("label", _l, [
+            e.createElementVNode("label", bl, [
               e.createElementVNode(
                 "span",
                 null,
@@ -2233,7 +2249,7 @@ const ot = { class: "ap-picker" }, st = {
                 ]
               ])
             ]),
-            e.createElementVNode("label", bl, [
+            e.createElementVNode("label", $l, [
               e.createElementVNode(
                 "span",
                 null,
@@ -2259,7 +2275,7 @@ const ot = { class: "ap-picker" }, st = {
                 ]
               ])
             ]),
-            e.createElementVNode("label", $l, [
+            e.createElementVNode("label", Sl, [
               e.createElementVNode(
                 "span",
                 null,
@@ -2286,7 +2302,7 @@ const ot = { class: "ap-picker" }, st = {
                     e.renderList(s, (i) => e.createElementVNode("option", {
                       key: i,
                       value: i
-                    }, e.toDisplayString(i), 9, Sl)),
+                    }, e.toDisplayString(i), 9, Dl)),
                     64
                     /* STABLE_FRAGMENT */
                   ))
@@ -2297,7 +2313,7 @@ const ot = { class: "ap-picker" }, st = {
                 [e.vModelSelect, v.season]
               ])
             ]),
-            e.createElementVNode("label", Dl, [
+            e.createElementVNode("label", wl, [
               e.createElementVNode(
                 "span",
                 null,
@@ -2313,21 +2329,21 @@ const ot = { class: "ap-picker" }, st = {
                 [
                   e.createElementVNode(
                     "option",
-                    wl,
+                    Bl,
                     e.toDisplayString(l.$t("女装")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "option",
-                    Bl,
+                    Cl,
                     e.toDisplayString(l.$t("男装")),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "option",
-                    Cl,
+                    Tl,
                     e.toDisplayString(l.$t("童装")),
                     1
                     /* TEXT */
@@ -2341,7 +2357,7 @@ const ot = { class: "ap-picker" }, st = {
             ])
           ])
         ]),
-        e.createElementVNode("label", Tl, [
+        e.createElementVNode("label", Al, [
           e.createElementVNode(
             "span",
             null,
@@ -2362,7 +2378,7 @@ const ot = { class: "ap-picker" }, st = {
             [e.vModelText, v.sellingPoints]
           ])
         ]),
-        e.createElementVNode("label", Al, [
+        e.createElementVNode("label", Ll, [
           e.createElementVNode(
             "span",
             null,
@@ -2383,15 +2399,15 @@ const ot = { class: "ap-picker" }, st = {
             [e.vModelText, c.value]
           ])
         ]),
-        e.createElementVNode("div", Ll, [
+        e.createElementVNode("div", Il, [
           e.createElementVNode(
             "span",
-            Il,
+            Ml,
             e.toDisplayString(l.$t("尺码与库存")),
             1
             /* TEXT */
           ),
-          e.createElementVNode("div", Ml, [
+          e.createElementVNode("div", Ul, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
@@ -2410,7 +2426,7 @@ const ot = { class: "ap-picker" }, st = {
                   "onUpdate:modelValue": (I) => v.stock[$] = I,
                   type: "number",
                   min: "0"
-                }, null, 8, Ul), [
+                }, null, 8, Ol), [
                   [
                     e.vModelText,
                     v.stock[$],
@@ -2431,18 +2447,18 @@ const ot = { class: "ap-picker" }, st = {
                     -1
                     /* CACHED */
                   )
-                ])], 8, Ol)
+                ])], 8, zl)
               ]))),
               128
               /* KEYED_FRAGMENT */
             )),
-            e.createElementVNode("span", zl, [
+            e.createElementVNode("span", Fl, [
               e.withDirectives(e.createElementVNode("input", {
                 "onUpdate:modelValue": a[14] || (a[14] = (i) => t.value = i),
                 type: "text",
                 placeholder: l.$t("加尺码，如 XL 或 120"),
                 onKeydown: e.withKeys(e.withModifiers(D, ["prevent"]), ["enter"])
-              }, null, 40, Fl), [
+              }, null, 40, Kl), [
                 [
                   e.vModelText,
                   t.value,
@@ -2464,7 +2480,7 @@ const ot = { class: "ap-picker" }, st = {
             ])
           ])
         ]),
-        e.createElementVNode("label", Kl, [
+        e.createElementVNode("label", Pl, [
           e.withDirectives(e.createElementVNode(
             "input",
             {
@@ -2483,10 +2499,10 @@ const ot = { class: "ap-picker" }, st = {
             /* TEXT */
           )
         ]),
-        e.createElementVNode("div", Pl, [
+        e.createElementVNode("div", Wl, [
           e.createElementVNode(
             "span",
-            Wl,
+            Rl,
             e.toDisplayString(l.$t("推荐造型（店长推荐）")),
             1
             /* TEXT */
@@ -2497,12 +2513,12 @@ const ot = { class: "ap-picker" }, st = {
             audience: v.audience
           }, null, 8, ["modelValue", "audience"])
         ]),
-        e.createElementVNode("div", Rl, [
+        e.createElementVNode("div", jl, [
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn primary",
             disabled: !!n.value,
-            onClick: f
+            onClick: h
           }, [
             a[24] || (a[24] = e.createElementVNode(
               "i",
@@ -2516,7 +2532,7 @@ const ot = { class: "ap-picker" }, st = {
               1
               /* TEXT */
             )
-          ], 8, jl),
+          ], 8, ql),
           e.createElementVNode(
             "button",
             {
@@ -2553,13 +2569,13 @@ const ot = { class: "ap-picker" }, st = {
               1
               /* TEXT */
             )
-          ], 8, ql)
+          ], 8, Gl)
         ])
       ])) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), Hl = /* @__PURE__ */ j(Gl, [["__scopeId", "data-v-b9476c55"]]), Ql = new TextEncoder(), Yl = new TextDecoder();
-function Jl(h) {
+}), Ql = /* @__PURE__ */ j(Hl, [["__scopeId", "data-v-b9476c55"]]), Yl = new TextEncoder(), Jl = new TextDecoder();
+function Xl(f) {
   const u = [], s = (c) => u.push(c & 255), d = (c) => {
     s(c >> 8), s(c);
   }, y = (c) => {
@@ -2591,7 +2607,7 @@ function Jl(h) {
       return;
     }
     if (typeof c == "string") {
-      const t = Ql.encode(c), n = t.length;
+      const t = Yl.encode(c), n = t.length;
       n < 32 ? s(160 | n) : n < 256 ? (s(217), s(n)) : n < 65536 ? (s(218), d(n)) : (s(219), y(n)), v(t);
       return;
     }
@@ -2615,16 +2631,16 @@ function Jl(h) {
     }
     throw new Error(`msgpack: unsupported ${typeof c}`);
   };
-  return g(h), Uint8Array.from(u);
+  return g(f), Uint8Array.from(u);
 }
-function Xl(h) {
-  const u = new DataView(h.buffer, h.byteOffset, h.byteLength);
+function Zl(f) {
+  const u = new DataView(f.buffer, f.byteOffset, f.byteLength);
   let s = 0;
   const d = (t) => {
-    const n = Yl.decode(h.subarray(s, s + t));
+    const n = Jl.decode(f.subarray(s, s + t));
     return s += t, n;
   }, y = (t) => {
-    const n = h.slice(s, s + t);
+    const n = f.slice(s, s + t);
     return s += t, n;
   }, v = (t) => {
     const n = [];
@@ -2737,42 +2753,42 @@ function Xl(h) {
   };
   return c();
 }
-const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-head" }, to = {
+const xl = { class: "ap-live" }, eo = { class: "ss-panel" }, to = { class: "ap-head" }, no = {
   key: 0,
   class: "ss-muted",
   "data-test": "ap-live-timer"
-}, no = ["disabled"], lo = { class: "ss-muted" }, oo = {
+}, lo = ["disabled"], oo = { class: "ss-muted" }, so = {
   key: 0,
   class: "ss-note warn"
-}, so = {
+}, ao = {
   key: 1,
   class: "ss-note danger",
   "data-test": "ap-live-error"
-}, ao = { class: "ap-live__grid" }, ro = { class: "ss-panel" }, io = { class: "ap-head" }, co = {
+}, ro = { class: "ap-live__grid" }, io = { class: "ss-panel" }, co = { class: "ap-head" }, uo = {
   class: "ap-live__modes",
   role: "radiogroup"
-}, uo = ["aria-checked", "data-test", "onClick"], mo = { class: "ap-head" }, po = { class: "ss-muted" }, go = {
+}, mo = ["aria-checked", "data-test", "onClick"], po = { class: "ap-head" }, go = { class: "ss-muted" }, vo = {
   key: 0,
   class: "ap-live__pick"
-}, vo = {
+}, yo = {
   key: 0,
   class: "ss-empty"
-}, yo = ["title", "data-test", "onClick"], ko = ["src"], fo = {
+}, ko = ["title", "data-test", "onClick"], ho = ["src"], fo = {
   key: 1,
   class: "ap-live__pick"
-}, ho = {
+}, Vo = {
   key: 0,
   class: "ss-empty"
-}, Vo = ["title", "onClick"], Eo = ["src"], No = { class: "ss-panel" }, _o = { class: "ap-head" }, bo = { class: "ss-muted" }, $o = { class: "ap-live__videos" }, So = /* @__PURE__ */ e.defineComponent({
+}, Eo = ["title", "onClick"], No = ["src"], _o = { class: "ss-panel" }, bo = { class: "ap-head" }, $o = { class: "ss-muted" }, So = { class: "ap-live__videos" }, Do = /* @__PURE__ */ e.defineComponent({
   __name: "LiveTab",
-  setup(h) {
+  setup(f) {
     const u = [
       { key: "outfit", icon: "ri-t-shirt-line", title: r.t("实时换衣"), desc: r.t("顾客站在镜头前，画面里身上换成选中的衣服") },
       { key: "person", icon: "ri-user-shared-line", title: r.t("店员代穿"), desc: r.t("店员穿着实物站在镜头前，画面里换成顾客本人（需顾客授权的照片）") }
-    ], s = [{ urls: "stun:stun.l.google.com:19302" }], d = K, y = e.ref("outfit"), v = e.ref(""), g = e.ref(""), c = e.ref("idle"), t = e.ref(""), n = e.ref(""), V = e.ref(0), D = e.ref(180), A = e.ref(null), U = e.ref(null), k = e.computed(() => (d.value?.garments || []).filter((b) => !!b.image)), E = e.computed(() => (d.value?.customers || []).filter((b) => !b.purgedAt && !!b.photo && !!b.consentAt && !b.demoPlaceholder)), f = e.computed(() => !!d.value?.imageReady && (y.value === "outfit" ? !!v.value : !!g.value)), B = e.computed(() => t.value || { idle: r.t("未连接"), connecting: r.t("连接中…"), live: r.t("直播中"), error: r.t("已停止") }[c.value]);
+    ], s = [{ urls: "stun:stun.l.google.com:19302" }], d = K, y = e.ref("outfit"), v = e.ref(""), g = e.ref(""), c = e.ref("idle"), t = e.ref(""), n = e.ref(""), V = e.ref(0), D = e.ref(180), A = e.ref(null), U = e.ref(null), k = e.computed(() => (d.value?.garments || []).filter((b) => !!b.image)), E = e.computed(() => (d.value?.customers || []).filter((b) => !b.purgedAt && !!b.photo && !!b.consentAt && !b.demoPlaceholder)), h = e.computed(() => !!d.value?.imageReady && (y.value === "outfit" ? !!v.value : !!g.value)), B = e.computed(() => t.value || { idle: r.t("未连接"), connecting: r.t("连接中…"), live: r.t("直播中"), error: r.t("已停止") }[c.value]);
     let l = null, a = null, i = null, $ = [], I = null, N = null, T = 0, O = 0;
     const te = (b) => {
-      l?.readyState === WebSocket.OPEN && l.send(Jl(b));
+      l?.readyState === WebSocket.OPEN && l.send(Xl(b));
     }, z = () => I && te({ prompt: I.prompt, enable_prompt_expansion: !0, reference_image_url: I.referenceImage }), q = () => y.value === "outfit" ? { mode: y.value, garmentId: v.value } : { mode: y.value, customerId: g.value };
     async function R() {
       X(!1), n.value = "", c.value = "connecting", t.value = r.t("连接中…");
@@ -2797,7 +2813,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
       }
     }
     async function G(b) {
-      const _ = typeof b.data == "string" ? JSON.parse(b.data) : Xl(new Uint8Array(b.data)), S = String(_?.type || "").toLowerCase();
+      const _ = typeof b.data == "string" ? JSON.parse(b.data) : Zl(new Uint8Array(b.data)), S = String(_?.type || "").toLowerCase();
       if (_?.error) {
         J(r.t("实时试衣服务报错：{p0}", { p0: `${_.error} ${_.reason ?? ""}`.trim() }));
         return;
@@ -2848,7 +2864,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
     function se(b) {
       if (y.value === b) return;
       const _ = !!l;
-      X(), y.value = b, _ && f.value && R();
+      X(), y.value = b, _ && h.value && R();
     }
     function J(b) {
       X(!1, b), c.value = "error", n.value = b, t.value = "";
@@ -2873,9 +2889,9 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
       }
       T = 0, b && (c.value = "idle", t.value = "");
     }
-    return e.onBeforeUnmount(() => X()), (b, _) => (e.openBlock(), e.createElementBlock("div", Zl, [
-      e.createElementVNode("section", xl, [
-        e.createElementVNode("header", eo, [
+    return e.onBeforeUnmount(() => X()), (b, _) => (e.openBlock(), e.createElementBlock("div", xl, [
+      e.createElementVNode("section", eo, [
+        e.createElementVNode("header", to, [
           e.createElementVNode("strong", null, [
             _[1] || (_[1] = e.createElementVNode(
               "i",
@@ -2901,7 +2917,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ),
           c.value === "live" || c.value === "connecting" ? (e.openBlock(), e.createElementBlock(
             "span",
-            to,
+            no,
             e.toDisplayString(b.$t("已用 {a} 秒 / 最长 {b} 秒", { a: V.value, b: D.value })),
             1
             /* TEXT */
@@ -2917,7 +2933,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             key: 1,
             type: "button",
             class: "ss-btn primary",
-            disabled: !f.value,
+            disabled: !h.value,
             "data-test": "ap-live-start",
             onClick: R
           }, [
@@ -2933,7 +2949,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
               1
               /* TEXT */
             )
-          ], 8, no)) : (e.openBlock(), e.createElementBlock("button", {
+          ], 8, lo)) : (e.openBlock(), e.createElementBlock("button", {
             key: 2,
             type: "button",
             class: "ss-btn",
@@ -2956,12 +2972,12 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
         ]),
         e.createElementVNode(
           "p",
-          lo,
+          oo,
           e.toDisplayString(b.$t("摄像头画面实时交给 AI：几秒后右边就是穿上所选衣服的样子，顾客转身、走动都跟着变。实时模型按秒计费，单次最长 {n} 秒自动停；不用时请点「停止」。", { n: D.value })),
           1
           /* TEXT */
         ),
-        e.unref(d)?.imageReady ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", oo, [
+        e.unref(d)?.imageReady ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", so, [
           _[5] || (_[5] = e.createElementVNode(
             "i",
             { class: "ri-key-2-line" },
@@ -2975,7 +2991,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             /* TEXT */
           )
         ])),
-        n.value ? (e.openBlock(), e.createElementBlock("p", so, [
+        n.value ? (e.openBlock(), e.createElementBlock("p", ao, [
           _[6] || (_[6] = e.createElementVNode(
             "i",
             { class: "ri-error-warning-line" },
@@ -2990,9 +3006,9 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           )
         ])) : e.createCommentVNode("v-if", !0)
       ]),
-      e.createElementVNode("div", ao, [
-        e.createElementVNode("section", ro, [
-          e.createElementVNode("header", io, [
+      e.createElementVNode("div", ro, [
+        e.createElementVNode("section", io, [
+          e.createElementVNode("header", co, [
             _[7] || (_[7] = e.createElementVNode(
               "span",
               { class: "ap-live__no" },
@@ -3008,7 +3024,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
               /* TEXT */
             )
           ]),
-          e.createElementVNode("div", co, [
+          e.createElementVNode("div", uo, [
             (e.openBlock(), e.createElementBlock(
               e.Fragment,
               null,
@@ -3044,12 +3060,12 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                   1
                   /* TEXT */
                 )
-              ], 10, uo)),
+              ], 10, mo)),
               64
               /* STABLE_FRAGMENT */
             ))
           ]),
-          e.createElementVNode("header", mo, [
+          e.createElementVNode("header", po, [
             _[8] || (_[8] = e.createElementVNode(
               "span",
               { class: "ap-live__no" },
@@ -3066,16 +3082,16 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             ),
             e.createElementVNode(
               "span",
-              po,
+              go,
               e.toDisplayString(y.value === "outfit" ? b.$t("上衣、外套、连衣裙效果最好；直播中点别的衣服几秒内就换") : b.$t("只列出已授权、已上传照片的顾客")),
               1
               /* TEXT */
             )
           ]),
-          y.value === "outfit" ? (e.openBlock(), e.createElementBlock("div", go, [
+          y.value === "outfit" ? (e.openBlock(), e.createElementBlock("div", vo, [
             k.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
               "p",
-              vo,
+              yo,
               e.toDisplayString(b.$t("商品库还没有带商品图的衣服：先到「商品库」导入，或点右上角「演示模式」")),
               1
               /* TEXT */
@@ -3095,7 +3111,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                   src: e.unref(P.fileUrl)(S.image),
                   alt: "",
                   loading: "lazy"
-                }, null, 8, ko),
+                }, null, 8, ho),
                 e.createElementVNode(
                   "span",
                   null,
@@ -3103,14 +3119,14 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                   1
                   /* TEXT */
                 )
-              ], 10, yo))),
+              ], 10, ko))),
               128
               /* KEYED_FRAGMENT */
             ))
           ])) : (e.openBlock(), e.createElementBlock("div", fo, [
             E.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
               "p",
-              ho,
+              Vo,
               e.toDisplayString(b.$t("还没有可用的顾客照片：先在「一键换装」里给顾客建档、勾选授权并上传照片")),
               1
               /* TEXT */
@@ -3129,7 +3145,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                   src: e.unref(P.fileUrl)(S.photo),
                   alt: "",
                   loading: "lazy"
-                }, null, 8, Eo),
+                }, null, 8, No),
                 e.createElementVNode(
                   "span",
                   null,
@@ -3137,14 +3153,14 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                   1
                   /* TEXT */
                 )
-              ], 10, Vo))),
+              ], 10, Eo))),
               128
               /* KEYED_FRAGMENT */
             ))
           ]))
         ]),
-        e.createElementVNode("section", No, [
-          e.createElementVNode("header", _o, [
+        e.createElementVNode("section", _o, [
+          e.createElementVNode("header", bo, [
             _[9] || (_[9] = e.createElementVNode(
               "span",
               { class: "ap-live__no" },
@@ -3161,13 +3177,13 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             ),
             e.createElementVNode(
               "span",
-              bo,
+              $o,
               e.toDisplayString(y.value === "outfit" ? b.$t("请顾客站在镜头前，上半身入镜") : b.$t("请店员穿上实物站在镜头前")),
               1
               /* TEXT */
             )
           ]),
-          e.createElementVNode("div", $o, [
+          e.createElementVNode("div", So, [
             e.createElementVNode("figure", null, [
               e.createElementVNode(
                 "video",
@@ -3219,42 +3235,42 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
       ])
     ]));
   }
-}), Do = /* @__PURE__ */ j(So, [["__scopeId", "data-v-2c1f2396"]]), wo = { class: "ap-lib" }, Bo = { class: "ap-lib__head" }, Co = {
+}), wo = /* @__PURE__ */ j(Do, [["__scopeId", "data-v-2c1f2396"]]), Bo = { class: "ap-lib" }, Co = { class: "ap-lib__head" }, To = {
   class: "ap-lib__kinds",
   role: "tablist"
-}, To = ["onClick"], Ao = { class: "ss-muted" }, Lo = { class: "ss-muted" }, Io = ["disabled"], Mo = {
+}, Ao = ["onClick"], Lo = { class: "ss-muted" }, Io = { class: "ss-muted" }, Mo = ["disabled"], Uo = {
   key: 0,
   class: "ss-note warn"
-}, Uo = { class: "ap-lib__cards" }, Oo = ["title"], zo = ["checked", "onChange"], Fo = ["src"], Ko = {
+}, Oo = { class: "ap-lib__cards" }, zo = ["title"], Fo = ["checked", "onChange"], Ko = ["src"], Po = {
   key: 1,
   class: "ss-muted"
-}, Po = { class: "ap-lib__vars" }, Wo = { class: "ss-muted" }, Ro = /* @__PURE__ */ e.defineComponent({
+}, Wo = { class: "ap-lib__vars" }, Ro = { class: "ss-muted" }, jo = /* @__PURE__ */ e.defineComponent({
   __name: "StylesTab",
-  setup(h) {
-    const u = Q.useNotificationStore(), s = ["background", "pose", "hair"], d = e.ref("background"), y = e.computed(() => K.value?.settings.disabledOptions || []), v = e.computed(() => ne.value.filter((f) => f.kind === d.value)), g = e.computed(() => [...new Set(v.value.map((f) => f.group))]), c = (f) => v.value.filter((B) => B.group === f), t = (f) => ne.value.filter((B) => B.kind === f).length, n = e.computed(() => K.value?.thumbs || {}), V = e.computed(() => ne.value.filter((f) => !f.needsUpload && f.id !== "H00")), D = e.computed(() => V.value.length), A = e.computed(() => V.value.filter((f) => n.value[f.id]).length), U = e.ref(!1);
+  setup(f) {
+    const u = Q.useNotificationStore(), s = ["background", "pose", "hair"], d = e.ref("background"), y = e.computed(() => K.value?.settings.disabledOptions || []), v = e.computed(() => ne.value.filter((h) => h.kind === d.value)), g = e.computed(() => [...new Set(v.value.map((h) => h.group))]), c = (h) => v.value.filter((B) => B.group === h), t = (h) => ne.value.filter((B) => B.kind === h).length, n = e.computed(() => K.value?.thumbs || {}), V = e.computed(() => ne.value.filter((h) => !h.needsUpload && h.id !== "H00")), D = e.computed(() => V.value.length), A = e.computed(() => V.value.filter((h) => n.value[h.id]).length), U = e.ref(!1);
     async function k() {
       U.value = !0;
       try {
-        const f = await C("options.thumbs", {});
-        await F(), f.errors.length ? u.warn(r.t("生成了 {n} 张，{m} 张失败：{p0}", { n: f.made, m: f.errors.length, p0: f.errors[0] })) : u.success(r.t("已生成 {n} 张示意图", { n: f.made }));
-      } catch (f) {
-        u.error(w.errorMessage(f));
+        const h = await C("options.thumbs", {});
+        await F(), h.errors.length ? u.warn(r.t("生成了 {n} 张，{m} 张失败：{p0}", { n: h.made, m: h.errors.length, p0: h.errors[0] })) : u.success(r.t("已生成 {n} 张示意图", { n: h.made }));
+      } catch (h) {
+        u.error(w.errorMessage(h));
       } finally {
         U.value = !1;
       }
     }
-    async function E(f) {
+    async function E(h) {
       const B = new Set(y.value);
-      B.has(f) ? B.delete(f) : B.add(f);
+      B.has(h) ? B.delete(h) : B.add(h);
       try {
         await C("settings.patch", { patch: { disabledOptions: [...B] } }), await F();
       } catch (l) {
         u.error(w.errorMessage(l));
       }
     }
-    return (f, B) => (e.openBlock(), e.createElementBlock("section", wo, [
-      e.createElementVNode("header", Bo, [
-        e.createElementVNode("div", Co, [
+    return (h, B) => (e.openBlock(), e.createElementBlock("section", Bo, [
+      e.createElementVNode("header", Co, [
+        e.createElementVNode("div", To, [
           (e.openBlock(), e.createElementBlock(
             e.Fragment,
             null,
@@ -3277,15 +3293,15 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                 1
                 /* TEXT */
               )
-            ], 10, To)),
+            ], 10, Ao)),
             64
             /* STABLE_FRAGMENT */
           ))
         ]),
         e.createElementVNode(
           "span",
-          Ao,
-          e.toDisplayString(f.$t("关掉的选项在顾客手机端不显示；每项都能再选细分场景")),
+          Lo,
+          e.toDisplayString(h.$t("关掉的选项在顾客手机端不显示；每项都能再选细分场景")),
           1
           /* TEXT */
         ),
@@ -3298,8 +3314,8 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
         )),
         e.createElementVNode(
           "span",
-          Lo,
-          e.toDisplayString(f.$t("示意图 {a} / {b}", { a: A.value, b: D.value })),
+          Io,
+          e.toDisplayString(h.$t("示意图 {a} / {b}", { a: A.value, b: D.value })),
           1
           /* TEXT */
         ),
@@ -3319,13 +3335,13 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             /* CLASS */
           ),
           e.createTextVNode(
-            e.toDisplayString(f.$t("生成缺少的示意图")),
+            e.toDisplayString(h.$t("生成缺少的示意图")),
             1
             /* TEXT */
           )
-        ], 8, Io)
+        ], 8, Mo)
       ]),
-      e.unref(K)?.imageReady ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", Mo, [
+      e.unref(K)?.imageReady ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", Uo, [
         B[1] || (B[1] = e.createElementVNode(
           "i",
           { class: "ri-key-2-line" },
@@ -3334,7 +3350,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(f.$t("示意图用图像服务生成（每张约 0.02～0.2 元）；还没有配置图像服务")),
+          e.toDisplayString(h.$t("示意图用图像服务生成（每张约 0.02～0.2 元）；还没有配置图像服务")),
           1
           /* TEXT */
         )
@@ -3353,7 +3369,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             1
             /* TEXT */
           ),
-          e.createElementVNode("div", Uo, [
+          e.createElementVNode("div", Oo, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
@@ -3381,13 +3397,13 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                     ),
                     e.createElementVNode("label", {
                       class: "ap-switch",
-                      title: y.value.includes(a.id) ? f.$t("已关闭") : f.$t("已开启")
+                      title: y.value.includes(a.id) ? h.$t("已关闭") : h.$t("已开启")
                     }, [
                       e.createElementVNode("input", {
                         type: "checkbox",
                         checked: !y.value.includes(a.id),
                         onChange: (i) => E(a.id)
-                      }, null, 40, zo),
+                      }, null, 40, Fo),
                       B[2] || (B[2] = e.createElementVNode(
                         "span",
                         null,
@@ -3395,7 +3411,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                         -1
                         /* CACHED */
                       ))
-                    ], 8, Oo)
+                    ], 8, zo)
                   ]),
                   n.value[a.id] ? (e.openBlock(), e.createElementBlock("img", {
                     key: 0,
@@ -3403,15 +3419,15 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                     alt: "",
                     class: "ap-lib__thumb",
                     loading: "lazy"
-                  }, null, 8, Fo)) : e.createCommentVNode("v-if", !0),
+                  }, null, 8, Ko)) : e.createCommentVNode("v-if", !0),
                   a.detail ? (e.openBlock(), e.createElementBlock(
                     "p",
-                    Ko,
+                    Po,
                     e.toDisplayString(a.detail),
                     1
                     /* TEXT */
                   )) : e.createCommentVNode("v-if", !0),
-                  e.createElementVNode("div", Po, [
+                  e.createElementVNode("div", Wo, [
                     (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       null,
@@ -3430,7 +3446,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                   ]),
                   e.createElementVNode(
                     "small",
-                    Wo,
+                    Ro,
                     e.toDisplayString(a.audience.map(e.unref(Le)).join(" / ")),
                     1
                     /* TEXT */
@@ -3449,22 +3465,22 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
       ))
     ]));
   }
-}), jo = /* @__PURE__ */ j(Ro, [["__scopeId", "data-v-b66be867"]]), qo = { class: "ap-mob" }, Go = { class: "ss-panel" }, Ho = { class: "ap-head" }, Qo = {
+}), qo = /* @__PURE__ */ j(jo, [["__scopeId", "data-v-b66be867"]]), Go = { class: "ap-mob" }, Ho = { class: "ss-panel" }, Qo = { class: "ap-head" }, Yo = {
   key: 0,
   class: "ss-muted"
-}, Yo = ["disabled"], Jo = ["disabled"], Xo = { class: "ss-muted" }, Zo = {
+}, Jo = ["disabled"], Xo = ["disabled"], Zo = { class: "ss-muted" }, xo = {
   key: 0,
   class: "ap-mob__qr"
-}, xo = ["src"], es = { class: "ap-mob__info" }, ts = { class: "ss-actions" }, ns = { class: "ss-muted" }, ls = { class: "ss-muted" }, os = { class: "ss-panel" }, ss = { class: "ap-head" }, as = { class: "ss-muted" }, rs = {
+}, es = ["src"], ts = { class: "ap-mob__info" }, ns = { class: "ss-actions" }, ls = { class: "ss-muted" }, os = { class: "ss-muted" }, ss = { class: "ss-panel" }, as = { class: "ap-head" }, rs = { class: "ss-muted" }, is = {
   key: 0,
   class: "ss-empty"
-}, is = {
+}, cs = {
   key: 1,
   class: "ss-table-wrap"
-}, cs = { class: "ss-table" }, ds = ["onClick"], us = /* @__PURE__ */ e.defineComponent({
+}, ds = { class: "ss-table" }, us = ["onClick"], ms = /* @__PURE__ */ e.defineComponent({
   __name: "MobileTab",
   emits: ["open-customer"],
-  setup(h) {
+  setup(f) {
     const u = Q.useNotificationStore(), s = K, d = e.computed(() => s.value?.mobile), y = e.ref(""), v = e.ref(!1), g = e.computed(() => (s.value?.customers || []).filter((k) => k.source === "mobile")), c = (k) => (s.value?.tryons || []).filter((E) => E.customerId === k);
     e.watch(() => d.value?.joinUrl, async (k) => {
       y.value = k ? await be.toDataURL(k, { margin: 1, width: 240 }) : "";
@@ -3496,14 +3512,14 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
       k.src = y.value, await k.decode();
       const E = document.createElement("canvas");
       E.width = 600, E.height = 760;
-      const f = E.getContext("2d");
-      f.fillStyle = "#fff", f.fillRect(0, 0, E.width, E.height), f.fillStyle = "#222", f.textAlign = "center", f.font = '700 36px -apple-system, "PingFang SC", sans-serif', f.fillText(s.value?.settings.storeName || "", 300, 80), f.font = '24px -apple-system, "PingFang SC", sans-serif', f.fillText(r.t("连店内 Wi-Fi，扫码 AI 试穿"), 300, 130), f.drawImage(k, 90, 170, 420, 420);
+      const h = E.getContext("2d");
+      h.fillStyle = "#fff", h.fillRect(0, 0, E.width, E.height), h.fillStyle = "#222", h.textAlign = "center", h.font = '700 36px -apple-system, "PingFang SC", sans-serif', h.fillText(s.value?.settings.storeName || "", 300, 80), h.font = '24px -apple-system, "PingFang SC", sans-serif', h.fillText(r.t("连店内 Wi-Fi，扫码 AI 试穿"), 300, 130), h.drawImage(k, 90, 170, 420, 420);
       const B = document.createElement("a");
       B.href = E.toDataURL("image/png"), B.download = `${s.value?.settings.storeName || "store"}-${r.t("门店码")}.png`, B.click();
     }
-    return (k, E) => (e.openBlock(), e.createElementBlock("div", qo, [
-      e.createElementVNode("section", Go, [
-        e.createElementVNode("header", Ho, [
+    return (k, E) => (e.openBlock(), e.createElementBlock("div", Go, [
+      e.createElementVNode("section", Ho, [
+        e.createElementVNode("header", Qo, [
           e.createElementVNode("strong", null, [
             E[1] || (E[1] = e.createElementVNode(
               "i",
@@ -3529,7 +3545,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ),
           d.value?.running ? (e.openBlock(), e.createElementBlock(
             "span",
-            Qo,
+            Yo,
             e.toDisplayString(k.$t("最近 10 分钟在线 {n} 位顾客", { n: d.value.activeSessions })),
             1
             /* TEXT */
@@ -3560,7 +3576,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
               1
               /* TEXT */
             )
-          ], 8, Jo)) : (e.openBlock(), e.createElementBlock("button", {
+          ], 8, Xo)) : (e.openBlock(), e.createElementBlock("button", {
             key: 1,
             type: "button",
             class: "ss-btn primary",
@@ -3579,22 +3595,22 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
               1
               /* TEXT */
             )
-          ], 8, Yo))
+          ], 8, Jo))
         ]),
         e.createElementVNode(
           "p",
-          Xo,
+          Zo,
           e.toDisplayString(k.$t("顾客连店内 Wi-Fi 扫下面的门店码，用手机浏览器即可：授权 → 拍照 → 选衣服与造型 → 生成试穿图 → 想试实物拿试穿码。照片只存在这台电脑上，不需要小程序。")),
           1
           /* TEXT */
         ),
-        d.value?.running && d.value.joinUrl ? (e.openBlock(), e.createElementBlock("div", Zo, [
+        d.value?.running && d.value.joinUrl ? (e.openBlock(), e.createElementBlock("div", xo, [
           y.value ? (e.openBlock(), e.createElementBlock("img", {
             key: 0,
             src: y.value,
             alt: ""
-          }, null, 8, xo)) : e.createCommentVNode("v-if", !0),
-          e.createElementVNode("div", es, [
+          }, null, 8, es)) : e.createCommentVNode("v-if", !0),
+          e.createElementVNode("div", ts, [
             e.createElementVNode(
               "strong",
               null,
@@ -3609,11 +3625,11 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
               1
               /* TEXT */
             ),
-            e.createElementVNode("div", ts, [
+            e.createElementVNode("div", ns, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn sm",
-                onClick: E[0] || (E[0] = (f) => A(d.value.joinUrl))
+                onClick: E[0] || (E[0] = (h) => A(d.value.joinUrl))
               }, [
                 E[5] || (E[5] = e.createElementVNode(
                   "i",
@@ -3667,7 +3683,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             ]),
             e.createElementVNode(
               "small",
-              ns,
+              ls,
               e.toDisplayString(k.$t("更换后旧码立刻失效（已进来的顾客不受影响）。建议贴在试衣间、收银台。")),
               1
               /* TEXT */
@@ -3678,7 +3694,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
               [
                 e.createElementVNode(
                   "small",
-                  ls,
+                  os,
                   e.toDisplayString(k.$t("顾客扫码打不开？换下面的地址试试（电脑有多块网卡时）：")),
                   1
                   /* TEXT */
@@ -3686,13 +3702,13 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(d.value.candidates, (f) => (e.openBlock(), e.createElementBlock(
+                  e.renderList(d.value.candidates, (h) => (e.openBlock(), e.createElementBlock(
                     "code",
                     {
-                      key: f,
+                      key: h,
                       class: "ap-mob__alt"
                     },
-                    e.toDisplayString(f),
+                    e.toDisplayString(h),
                     1
                     /* TEXT */
                   ))),
@@ -3706,8 +3722,8 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ])
         ])) : e.createCommentVNode("v-if", !0)
       ]),
-      e.createElementVNode("section", os, [
-        e.createElementVNode("header", ss, [
+      e.createElementVNode("section", ss, [
+        e.createElementVNode("header", as, [
           e.createElementVNode(
             "strong",
             null,
@@ -3717,14 +3733,14 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ),
           e.createElementVNode(
             "span",
-            as,
+            rs,
             e.toDisplayString(k.$t("按时间倒序")),
             1
             /* TEXT */
           )
         ]),
-        g.value.length ? (e.openBlock(), e.createElementBlock("div", is, [
-          e.createElementVNode("table", cs, [
+        g.value.length ? (e.openBlock(), e.createElementBlock("div", cs, [
+          e.createElementVNode("table", ds, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
                 e.createElementVNode(
@@ -3775,51 +3791,51 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(g.value, (f) => (e.openBlock(), e.createElementBlock("tr", {
-                  key: f.id
+                e.renderList(g.value, (h) => (e.openBlock(), e.createElementBlock("tr", {
+                  key: h.id
                 }, [
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(f.nickname),
+                    e.toDisplayString(h.nickname),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(f.purgedAt ? k.$t("已清除") : f.photo ? k.$t("已上传") : "—"),
+                    e.toDisplayString(h.purgedAt ? k.$t("已清除") : h.photo ? k.$t("已上传") : "—"),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(c(f.id).filter((B) => B.status === "done").length),
+                    e.toDisplayString(c(h.id).filter((B) => B.status === "done").length),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(c(f.id).filter((B) => B.wantVisit).length),
+                    e.toDisplayString(c(h.id).filter((B) => B.wantVisit).length),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "td",
                     null,
-                    e.toDisplayString(e.unref(w.fmtDateTime)(f.createdAt)),
+                    e.toDisplayString(e.unref(w.fmtDateTime)(h.createdAt)),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode("td", null, [
-                    f.purgedAt ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("button", {
+                    h.purgedAt ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("button", {
                       key: 0,
                       type: "button",
                       class: "ss-link",
-                      onClick: (B) => k.$emit("open-customer", f.id)
-                    }, e.toDisplayString(k.$t("在一键换装里打开")), 9, ds))
+                      onClick: (B) => k.$emit("open-customer", h.id)
+                    }, e.toDisplayString(k.$t("在一键换装里打开")), 9, us))
                   ])
                 ]))),
                 128
@@ -3829,7 +3845,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ])
         ])) : (e.openBlock(), e.createElementBlock(
           "p",
-          rs,
+          is,
           e.toDisplayString(k.$t("还没有顾客通过手机端使用")),
           1
           /* TEXT */
@@ -3837,24 +3853,24 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
       ])
     ]));
   }
-}), ms = /* @__PURE__ */ j(us, [["__scopeId", "data-v-b4e67dc8"]]), ps = { class: "ap-ci" }, gs = { class: "ss-panel" }, vs = { class: "ap-head" }, ys = { class: "ss-muted" }, ks = ["placeholder"], fs = ["disabled"], hs = {
+}), ps = /* @__PURE__ */ j(ms, [["__scopeId", "data-v-b4e67dc8"]]), gs = { class: "ap-ci" }, vs = { class: "ss-panel" }, ys = { class: "ap-head" }, ks = { class: "ss-muted" }, hs = ["placeholder"], fs = ["disabled"], Vs = {
   key: 0,
   class: "ss-note danger"
-}, Vs = {
+}, Es = {
   key: 1,
   class: "ap-ci__hit"
-}, Es = ["src"], Ns = { class: "ap-ci__info" }, _s = { class: "ss-muted" }, bs = {
+}, Ns = ["src"], _s = { class: "ap-ci__info" }, bs = { class: "ss-muted" }, $s = {
   key: 0,
   class: "ss-note warn"
-}, $s = { key: 1 }, Ss = { class: "ss-field ap-ci__size" }, Ds = ["value"], ws = { class: "ss-actions" }, Bs = ["onClick"], Cs = { class: "ss-muted" }, Ts = { class: "ss-panel" }, As = { class: "ap-head" }, Ls = { class: "ss-muted" }, Is = {
+}, Ss = { key: 1 }, Ds = { class: "ss-field ap-ci__size" }, ws = ["value"], Bs = { class: "ss-actions" }, Cs = ["onClick"], Ts = { class: "ss-muted" }, As = { class: "ss-panel" }, Ls = { class: "ap-head" }, Is = { class: "ss-muted" }, Ms = {
   key: 0,
   class: "ss-empty"
-}, Ms = {
+}, Us = {
   key: 1,
   class: "ss-table-wrap"
-}, Us = { class: "ss-table" }, Os = { class: "ap-code" }, zs = ["onClick"], Fs = /* @__PURE__ */ e.defineComponent({
+}, Os = { class: "ss-table" }, zs = { class: "ap-code" }, Fs = ["onClick"], Ks = /* @__PURE__ */ e.defineComponent({
   __name: "CheckinTab",
-  setup(h) {
+  setup(f) {
     const u = Q.useNotificationStore(), s = ["prepared", "tried", "purchased", "left"], d = e.ref(""), y = e.ref(""), v = e.ref(!1), g = e.ref(""), c = e.ref(""), t = e.computed(() => K.value?.tryons.find((l) => l.id === y.value) || null), n = e.computed(() => t.value ? A(t.value.garmentId) : void 0), V = e.computed(() => K.value?.customers.find((l) => l.id === t.value?.customerId)), D = e.computed(() => (K.value?.tryons || []).filter((l) => l.wantVisit && (!l.visit || l.visit.status === "prepared"))), A = (l) => K.value?.garments.find((a) => a.id === l), U = (l) => K.value?.customers.find((a) => a.id === l)?.nickname || "—";
     async function k() {
       v.value = !1;
@@ -3869,7 +3885,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
       const a = new Date(l.wantAt || l.createdAt), i = /* @__PURE__ */ new Date();
       return a.toDateString() === i.toDateString();
     }
-    function f(l) {
+    function h(l) {
       d.value = l, k();
     }
     async function B(l) {
@@ -3880,9 +3896,9 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           u.error(w.errorMessage(a));
         }
     }
-    return (l, a) => (e.openBlock(), e.createElementBlock("div", ps, [
-      e.createElementVNode("section", gs, [
-        e.createElementVNode("header", vs, [
+    return (l, a) => (e.openBlock(), e.createElementBlock("div", gs, [
+      e.createElementVNode("section", vs, [
+        e.createElementVNode("header", ys, [
           e.createElementVNode("strong", null, [
             a[2] || (a[2] = e.createElementVNode(
               "i",
@@ -3899,7 +3915,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ]),
           e.createElementVNode(
             "span",
-            ys,
+            ks,
             e.toDisplayString(l.$t("顾客出示 6 位试穿码；读混 0/O、1/I 也能认")),
             1
             /* TEXT */
@@ -3918,7 +3934,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
               maxlength: "8",
               placeholder: l.$t("输入试穿码"),
               autofocus: ""
-            }, null, 8, ks), [
+            }, null, 8, hs), [
               [e.vModelText, d.value]
             ]),
             e.createElementVNode("button", {
@@ -3943,7 +3959,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           32
           /* NEED_HYDRATION */
         ),
-        v.value ? (e.openBlock(), e.createElementBlock("p", hs, [
+        v.value ? (e.openBlock(), e.createElementBlock("p", Vs, [
           a[4] || (a[4] = e.createElementVNode(
             "i",
             { class: "ri-error-warning-line" },
@@ -3957,13 +3973,13 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             /* TEXT */
           )
         ])) : e.createCommentVNode("v-if", !0),
-        t.value ? (e.openBlock(), e.createElementBlock("div", Vs, [
+        t.value ? (e.openBlock(), e.createElementBlock("div", Es, [
           t.value.image ? (e.openBlock(), e.createElementBlock("img", {
             key: 0,
             src: e.unref(P.fileUrl)(t.value.image),
             alt: ""
-          }, null, 8, Es)) : e.createCommentVNode("v-if", !0),
-          e.createElementVNode("div", Ns, [
+          }, null, 8, Ns)) : e.createCommentVNode("v-if", !0),
+          e.createElementVNode("div", _s, [
             e.createElementVNode(
               "strong",
               null,
@@ -3973,12 +3989,12 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             ),
             e.createElementVNode(
               "span",
-              _s,
+              bs,
               e.toDisplayString(V.value?.nickname) + " · " + e.toDisplayString(e.unref(H)(t.value.choice)),
               1
               /* TEXT */
             ),
-            E(t.value) ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", bs, [
+            E(t.value) ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", $s, [
               a[5] || (a[5] = e.createElementVNode(
                 "i",
                 { class: "ri-time-line" },
@@ -4006,7 +4022,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                 /* TEXT */
               )
             ]),
-            n.value ? (e.openBlock(), e.createElementBlock("span", $s, [
+            n.value ? (e.openBlock(), e.createElementBlock("span", Ss, [
               e.createTextVNode(
                 e.toDisplayString(l.$t("{p0}：", { p0: l.$t("库存") })),
                 1
@@ -4029,7 +4045,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                 /* KEYED_FRAGMENT */
               ))
             ])) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("label", Ss, [
+            e.createElementVNode("label", Ds, [
               e.createElementVNode(
                 "span",
                 null,
@@ -4056,7 +4072,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                     e.renderList(n.value?.stock || {}, (i, $) => (e.openBlock(), e.createElementBlock("option", {
                       key: $,
                       value: $
-                    }, e.toDisplayString($), 9, Ds))),
+                    }, e.toDisplayString($), 9, ws))),
                     128
                     /* KEYED_FRAGMENT */
                   ))
@@ -4067,7 +4083,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                 [e.vModelSelect, g.value]
               ])
             ]),
-            e.createElementVNode("div", ws, [
+            e.createElementVNode("div", Bs, [
               (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 null,
@@ -4076,14 +4092,14 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                   type: "button",
                   class: e.normalizeClass(["ss-btn sm", { primary: t.value.visit?.status === i }]),
                   onClick: ($) => B(i)
-                }, e.toDisplayString(e.unref(Ie)(i)), 11, Bs)),
+                }, e.toDisplayString(e.unref(Ie)(i)), 11, Cs)),
                 64
                 /* STABLE_FRAGMENT */
               ))
             ]),
             e.createElementVNode(
               "small",
-              Cs,
+              Ts,
               e.toDisplayString(l.$t("登记「成交」会自动扣减该尺码库存 1 件")),
               1
               /* TEXT */
@@ -4091,8 +4107,8 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ])
         ])) : e.createCommentVNode("v-if", !0)
       ]),
-      e.createElementVNode("section", Ts, [
-        e.createElementVNode("header", As, [
+      e.createElementVNode("section", As, [
+        e.createElementVNode("header", Ls, [
           e.createElementVNode(
             "strong",
             null,
@@ -4102,14 +4118,14 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ),
           e.createElementVNode(
             "span",
-            Ls,
+            Is,
             e.toDisplayString(l.$t("顾客点了「想试实物」，还没登记结果")),
             1
             /* TEXT */
           )
         ]),
-        D.value.length ? (e.openBlock(), e.createElementBlock("div", Ms, [
-          e.createElementVNode("table", Us, [
+        D.value.length ? (e.openBlock(), e.createElementBlock("div", Us, [
+          e.createElementVNode("table", Os, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
                 e.createElementVNode(
@@ -4166,7 +4182,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                   e.createElementVNode("td", null, [
                     e.createElementVNode(
                       "b",
-                      Os,
+                      zs,
                       e.toDisplayString(i.code),
                       1
                       /* TEXT */
@@ -4204,8 +4220,8 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                     e.createElementVNode("button", {
                       type: "button",
                       class: "ss-link",
-                      onClick: ($) => f(i.code)
-                    }, e.toDisplayString(l.$t("核销")), 9, zs)
+                      onClick: ($) => h(i.code)
+                    }, e.toDisplayString(l.$t("核销")), 9, Fs)
                   ])
                 ]))),
                 128
@@ -4215,7 +4231,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ])
         ])) : (e.openBlock(), e.createElementBlock(
           "p",
-          Is,
+          Ms,
           e.toDisplayString(l.$t("暂无")),
           1
           /* TEXT */
@@ -4223,21 +4239,21 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
       ])
     ]));
   }
-}), Ks = /* @__PURE__ */ j(Fs, [["__scopeId", "data-v-77ae1de4"]]), Ps = {
+}), Ps = /* @__PURE__ */ j(Ks, [["__scopeId", "data-v-77ae1de4"]]), Ws = {
   key: 0,
   class: "ap-dash"
-}, Ws = { class: "ss-kpis" }, Rs = { class: "ss-kpi accent" }, js = { class: "ss-kpi" }, qs = { class: "ss-kpi" }, Gs = { class: "ss-kpi" }, Hs = { class: "ss-kpi" }, Qs = { class: "ss-kpi" }, Ys = { class: "ss-kpi" }, Js = { class: "ss-panel" }, Xs = { class: "ap-head" }, Zs = { class: "ss-muted" }, xs = { class: "ap-funnel" }, ea = { class: "ap-funnel__bar" }, ta = { class: "ss-panel" }, na = { class: "ap-head" }, la = { class: "ss-muted" }, oa = { class: "ap-days" }, sa = ["title"], aa = { class: "ap-days__bars" }, ra = { class: "ss-panel" }, ia = { class: "ap-head" }, ca = {
+}, Rs = { class: "ss-kpis" }, js = { class: "ss-kpi accent" }, qs = { class: "ss-kpi" }, Gs = { class: "ss-kpi" }, Hs = { class: "ss-kpi" }, Qs = { class: "ss-kpi" }, Ys = { class: "ss-kpi" }, Js = { class: "ss-kpi" }, Xs = { class: "ss-panel" }, Zs = { class: "ap-head" }, xs = { class: "ss-muted" }, ea = { class: "ap-funnel" }, ta = { class: "ap-funnel__bar" }, na = { class: "ss-panel" }, la = { class: "ap-head" }, oa = { class: "ss-muted" }, sa = { class: "ap-days" }, aa = ["title"], ra = { class: "ap-days__bars" }, ia = { class: "ss-panel" }, ca = { class: "ap-head" }, da = {
   key: 0,
   class: "ss-note warn"
-}, da = { class: "ss-table-wrap" }, ua = { class: "ss-table" }, ma = { class: "num" }, pa = { class: "num" }, ga = { class: "num" }, va = { class: "num" }, ya = { class: "num" }, ka = { class: "num" }, fa = { class: "num" }, ha = { class: "num" }, Va = { class: "num" }, Ea = { class: "num" }, Na = { class: "ap-dash__two" }, _a = { class: "ss-panel" }, ba = { class: "ap-head" }, $a = { class: "ss-muted" }, Sa = {
+}, ua = { class: "ss-table-wrap" }, ma = { class: "ss-table" }, pa = { class: "num" }, ga = { class: "num" }, va = { class: "num" }, ya = { class: "num" }, ka = { class: "num" }, ha = { class: "num" }, fa = { class: "num" }, Va = { class: "num" }, Ea = { class: "num" }, Na = { class: "num" }, _a = { class: "ap-dash__two" }, ba = { class: "ss-panel" }, $a = { class: "ap-head" }, Sa = { class: "ss-muted" }, Da = {
   key: 0,
   class: "ss-empty"
-}, Da = { class: "ap-rank" }, wa = { class: "ss-panel" }, Ba = { class: "ap-head" }, Ca = { class: "ap-mini__chips" }, Ta = {
+}, wa = { class: "ap-rank" }, Ba = { class: "ss-panel" }, Ca = { class: "ap-head" }, Ta = { class: "ap-mini__chips" }, Aa = {
   key: 1,
   class: "ss-note"
-}, Aa = /* @__PURE__ */ e.defineComponent({
+}, La = /* @__PURE__ */ e.defineComponent({
   __name: "DashboardTab",
-  setup(h) {
+  setup(f) {
     const u = Be;
     e.onMounted(() => {
       ce();
@@ -4259,9 +4275,9 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
       { title: r.t("姿势"), kind: "p", items: u.value?.poses || [] },
       { title: r.t("发型"), kind: "h", items: u.value?.hairs || [] }
     ]);
-    return (g, c) => e.unref(u) ? (e.openBlock(), e.createElementBlock("div", Ps, [
-      e.createElementVNode("div", Ws, [
-        e.createElementVNode("div", Rs, [
+    return (g, c) => e.unref(u) ? (e.openBlock(), e.createElementBlock("div", Ws, [
+      e.createElementVNode("div", Rs, [
+        e.createElementVNode("div", js, [
           e.createElementVNode(
             "small",
             null,
@@ -4277,7 +4293,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             /* TEXT */
           )
         ]),
-        e.createElementVNode("div", js, [
+        e.createElementVNode("div", qs, [
           e.createElementVNode(
             "small",
             null,
@@ -4293,7 +4309,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             /* TEXT */
           )
         ]),
-        e.createElementVNode("div", qs, [
+        e.createElementVNode("div", Gs, [
           e.createElementVNode(
             "small",
             null,
@@ -4309,7 +4325,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             /* TEXT */
           )
         ]),
-        e.createElementVNode("div", Gs, [
+        e.createElementVNode("div", Hs, [
           e.createElementVNode(
             "small",
             null,
@@ -4325,7 +4341,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             /* TEXT */
           )
         ]),
-        e.createElementVNode("div", Hs, [
+        e.createElementVNode("div", Qs, [
           e.createElementVNode(
             "small",
             null,
@@ -4341,7 +4357,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             /* TEXT */
           )
         ]),
-        e.createElementVNode("div", Qs, [
+        e.createElementVNode("div", Ys, [
           e.createElementVNode(
             "small",
             null,
@@ -4357,7 +4373,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             /* TEXT */
           )
         ]),
-        e.createElementVNode("div", Ys, [
+        e.createElementVNode("div", Js, [
           e.createElementVNode(
             "small",
             null,
@@ -4374,8 +4390,8 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           )
         ])
       ]),
-      e.createElementVNode("section", Js, [
-        e.createElementVNode("header", Xs, [
+      e.createElementVNode("section", Xs, [
+        e.createElementVNode("header", Zs, [
           e.createElementVNode(
             "strong",
             null,
@@ -4385,13 +4401,13 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ),
           e.createElementVNode(
             "span",
-            Zs,
+            xs,
             e.toDisplayString(g.$t("生成成功 → 想试实物 → 到店试穿 → 成交")),
             1
             /* TEXT */
           )
         ]),
-        e.createElementVNode("div", xs, [
+        e.createElementVNode("div", ea, [
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
@@ -4406,7 +4422,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                 1
                 /* TEXT */
               ),
-              e.createElementVNode("div", ea, [
+              e.createElementVNode("div", ta, [
                 e.createElementVNode(
                   "i",
                   {
@@ -4430,8 +4446,8 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ))
         ])
       ]),
-      e.createElementVNode("section", ta, [
-        e.createElementVNode("header", na, [
+      e.createElementVNode("section", na, [
+        e.createElementVNode("header", la, [
           e.createElementVNode(
             "strong",
             null,
@@ -4439,7 +4455,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             1
             /* TEXT */
           ),
-          e.createElementVNode("span", la, [
+          e.createElementVNode("span", oa, [
             c[0] || (c[0] = e.createElementVNode(
               "i",
               { class: "ap-dot a" },
@@ -4466,7 +4482,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             )
           ])
         ]),
-        e.createElementVNode("div", oa, [
+        e.createElementVNode("div", sa, [
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
@@ -4475,7 +4491,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
               class: "ap-days__col",
               title: `${t.day}：${g.$t("试穿")} ${t.tryons} / ${g.$t("成交")} ${t.purchased}`
             }, [
-              e.createElementVNode("div", aa, [
+              e.createElementVNode("div", ra, [
                 e.createElementVNode(
                   "i",
                   {
@@ -4504,14 +4520,14 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                 1
                 /* TEXT */
               )
-            ], 8, sa))),
+            ], 8, aa))),
             128
             /* KEYED_FRAGMENT */
           ))
         ])
       ]),
-      e.createElementVNode("section", ra, [
-        e.createElementVNode("header", ia, [
+      e.createElementVNode("section", ia, [
+        e.createElementVNode("header", ca, [
           e.createElementVNode(
             "strong",
             null,
@@ -4520,7 +4536,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             /* TEXT */
           )
         ]),
-        e.unref(u).lagging.length ? (e.openBlock(), e.createElementBlock("p", ca, [
+        e.unref(u).lagging.length ? (e.openBlock(), e.createElementBlock("p", da, [
           c[2] || (c[2] = e.createElementVNode(
             "i",
             { class: "ri-alert-line" },
@@ -4534,8 +4550,8 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             /* TEXT */
           )
         ])) : e.createCommentVNode("v-if", !0),
-        e.createElementVNode("div", da, [
-          e.createElementVNode("table", ua, [
+        e.createElementVNode("div", ua, [
+          e.createElementVNode("table", ma, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
                 e.createElementVNode(
@@ -4547,35 +4563,35 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                 ),
                 e.createElementVNode(
                   "th",
-                  ma,
+                  pa,
                   e.toDisplayString(g.$t("试穿")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  pa,
+                  ga,
                   e.toDisplayString(g.$t("成功")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  ga,
+                  va,
                   e.toDisplayString(g.$t("想试实物")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  va,
+                  ya,
                   e.toDisplayString(g.$t("到店")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "th",
-                  ya,
+                  ka,
                   e.toDisplayString(g.$t("成交")),
                   1
                   /* TEXT */
@@ -4602,7 +4618,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                     ),
                     e.createElementVNode(
                       "td",
-                      ka,
+                      ha,
                       e.toDisplayString(t.tryons),
                       1
                       /* TEXT */
@@ -4616,21 +4632,21 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                     ),
                     e.createElementVNode(
                       "td",
-                      ha,
+                      Va,
                       e.toDisplayString(t.wantVisit),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "td",
-                      Va,
+                      Ea,
                       e.toDisplayString(t.tried),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "td",
-                      Ea,
+                      Na,
                       e.toDisplayString(t.purchased),
                       1
                       /* TEXT */
@@ -4646,9 +4662,9 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ])
         ])
       ]),
-      e.createElementVNode("div", Na, [
-        e.createElementVNode("section", _a, [
-          e.createElementVNode("header", ba, [
+      e.createElementVNode("div", _a, [
+        e.createElementVNode("section", ba, [
+          e.createElementVNode("header", $a, [
             e.createElementVNode(
               "strong",
               null,
@@ -4658,7 +4674,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             ),
             e.createElementVNode(
               "span",
-              $a,
+              Sa,
               e.toDisplayString(g.$t("指导商品图拍摄与门店陈列主题")),
               1
               /* TEXT */
@@ -4666,12 +4682,12 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ]),
           e.unref(u).combos.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
             "p",
-            Sa,
+            Da,
             e.toDisplayString(g.$t("暂无数据")),
             1
             /* TEXT */
           )),
-          e.createElementVNode("ol", Da, [
+          e.createElementVNode("ol", wa, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
@@ -4696,8 +4712,8 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
             ))
           ])
         ]),
-        e.createElementVNode("section", wa, [
-          e.createElementVNode("header", Ba, [
+        e.createElementVNode("section", Ba, [
+          e.createElementVNode("header", Ca, [
             e.createElementVNode(
               "strong",
               null,
@@ -4720,7 +4736,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                 1
                 /* TEXT */
               ),
-              e.createElementVNode("div", Ca, [
+              e.createElementVNode("div", Ta, [
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
@@ -4744,7 +4760,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ))
         ])
       ])
-    ])) : (e.openBlock(), e.createElementBlock("p", Ta, [
+    ])) : (e.openBlock(), e.createElementBlock("p", Aa, [
       c[3] || (c[3] = e.createElementVNode(
         "i",
         { class: "ri-loader-4-line spin" },
@@ -4759,9 +4775,9 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
       )
     ]));
   }
-}), La = /* @__PURE__ */ j(Aa, [["__scopeId", "data-v-8dafc412"]]), Ia = { class: "ap-ov" }, Ma = { class: "ss-panel" }, Ua = { class: "ss-muted" }, Oa = { class: "ap-ov__cards" }, za = { class: "ss-panel" }, Fa = { class: "ss-table-wrap" }, Ka = { class: "ss-table" }, Pa = { class: "ap-wrap" }, Wa = { class: "ap-wrap" }, Ra = { class: "ss-panel" }, ja = { class: "ap-list" }, qa = { class: "ss-panel" }, Ga = { class: "ss-muted" }, Ha = /* @__PURE__ */ e.defineComponent({
+}), Ia = /* @__PURE__ */ j(La, [["__scopeId", "data-v-8dafc412"]]), Ma = { class: "ap-ov" }, Ua = { class: "ss-panel" }, Oa = { class: "ss-muted" }, za = { class: "ap-ov__cards" }, Fa = { class: "ss-panel" }, Ka = { class: "ss-table-wrap" }, Pa = { class: "ss-table" }, Wa = { class: "ap-wrap" }, Ra = { class: "ap-wrap" }, ja = { class: "ss-panel" }, qa = { class: "ap-list" }, Ga = { class: "ss-panel" }, Ha = { class: "ss-muted" }, Qa = /* @__PURE__ */ e.defineComponent({
   __name: "OverviewTab",
-  setup(h) {
+  setup(f) {
     const u = [
       { icon: "ri-t-shirt-air-line", title: r.t("AI 一键换装"), text: r.t("顾客照片 + 服装图，按所选背景、姿势、发型生成照片级试穿图") },
       { icon: "ri-landscape-line", title: r.t("75 项造型 · 200+ 细分场景"), text: r.t("背景 30、姿势 20、发型 25（含男装、童装），每项再选细分场景") },
@@ -4776,8 +4792,8 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
       [r.t("AI 合成、手机电脑同时查看、带码保存"), r.t("顾客在店外通过公网访问")],
       [r.t("试穿码核销、尺码助手、试穿数据看板"), r.t("会员营销、补货预测、巡店（后续规划）")]
     ];
-    return (d, y) => (e.openBlock(), e.createElementBlock("div", Ia, [
-      e.createElementVNode("section", Ma, [
+    return (d, y) => (e.openBlock(), e.createElementBlock("div", Ma, [
+      e.createElementVNode("section", Ua, [
         e.createElementVNode(
           "h3",
           null,
@@ -4787,12 +4803,12 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
         ),
         e.createElementVNode(
           "p",
-          Ua,
+          Oa,
           e.toDisplayString(d.$t("顾客在手机上 30 秒内看到自己穿上店里衣服的样子，想试实物再进试衣间；店员凭试穿码提前备好尺码；老板看每件款式的试穿、到店与成交，决定主推款。不需要智能试衣镜，也不需要小程序。")),
           1
           /* TEXT */
         ),
-        e.createElementVNode("div", Oa, [
+        e.createElementVNode("div", za, [
           (e.openBlock(), e.createElementBlock(
             e.Fragment,
             null,
@@ -4829,7 +4845,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ))
         ])
       ]),
-      e.createElementVNode("section", za, [
+      e.createElementVNode("section", Fa, [
         e.createElementVNode(
           "h3",
           null,
@@ -4837,8 +4853,8 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           1
           /* TEXT */
         ),
-        e.createElementVNode("div", Fa, [
-          e.createElementVNode("table", Ka, [
+        e.createElementVNode("div", Ka, [
+          e.createElementVNode("table", Pa, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
                 e.createElementVNode(
@@ -4864,14 +4880,14 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
                 e.renderList(s, (v, g) => e.createElementVNode("tr", { key: g }, [
                   e.createElementVNode(
                     "td",
-                    Pa,
+                    Wa,
                     e.toDisplayString(v[0]),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "td",
-                    Wa,
+                    Ra,
                     e.toDisplayString(v[1]),
                     1
                     /* TEXT */
@@ -4884,7 +4900,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           ])
         ])
       ]),
-      e.createElementVNode("section", Ra, [
+      e.createElementVNode("section", ja, [
         e.createElementVNode(
           "h3",
           null,
@@ -4892,7 +4908,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           1
           /* TEXT */
         ),
-        e.createElementVNode("ul", ja, [
+        e.createElementVNode("ul", qa, [
           e.createElementVNode(
             "li",
             null,
@@ -4930,7 +4946,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
           )
         ])
       ]),
-      e.createElementVNode("section", qa, [
+      e.createElementVNode("section", Ga, [
         e.createElementVNode(
           "h3",
           null,
@@ -4940,7 +4956,7 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
         ),
         e.createElementVNode(
           "p",
-          Ga,
+          Ha,
           e.toDisplayString(d.$t("同一个商品库继续用于：短视频生成并发布抖音 / 快手 / 小红书 / 视频号、商品图文上下架、数字人介绍门店、经营数据日报。")),
           1
           /* TEXT */
@@ -4948,18 +4964,18 @@ const Zl = { class: "ap-live" }, xl = { class: "ss-panel" }, eo = { class: "ap-h
       ])
     ]));
   }
-}), Qa = /* @__PURE__ */ j(Ha, [["__scopeId", "data-v-9661ab0e"]]), de = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:@totalclaw/ipc-contracts"];
+}), Ya = /* @__PURE__ */ j(Qa, [["__scopeId", "data-v-9661ab0e"]]), de = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:@totalclaw/ipc-contracts"];
 if (!de) throw new Error("宿主模块未就绪：npm:@totalclaw/ipc-contracts");
 de.default;
-const Ya = {
+const Ja = {
   key: 0,
   class: "ap-set"
-}, Ja = { class: "ss-panel" }, Xa = { class: "ap-head" }, Za = { class: "ss-grid" }, xa = { class: "ss-field" }, er = { class: "ss-field" }, tr = ["value"], nr = { class: "ss-field" }, lr = { class: "ap-check" }, or = { class: "ss-panel" }, sr = { class: "ap-head" }, ar = { class: "ss-grid" }, rr = { class: "ss-field" }, ir = { class: "ap-list" }, cr = { class: "ss-actions" }, dr = { class: "ss-actions" }, ur = ["disabled"], mr = {
+}, Xa = { class: "ss-panel" }, Za = { class: "ap-head" }, xa = { class: "ss-grid" }, er = { class: "ss-field" }, tr = { class: "ss-field" }, nr = ["value"], lr = { class: "ss-field" }, or = { class: "ap-check" }, sr = { class: "ss-panel" }, ar = { class: "ap-head" }, rr = { class: "ss-grid" }, ir = { class: "ss-field" }, cr = { class: "ap-list" }, dr = { class: "ss-actions" }, ur = { class: "ss-actions" }, mr = ["disabled"], pr = {
   key: 0,
   class: "ss-muted"
-}, pr = /* @__PURE__ */ e.defineComponent({
+}, gr = /* @__PURE__ */ e.defineComponent({
   __name: "SettingsTab",
-  setup(h) {
+  setup(f) {
     const u = Q.useNotificationStore(), s = e.computed(() => K.value), d = e.reactive({});
     e.watch(() => s.value?.settings, (t) => {
       t && Object.assign(d, t);
@@ -4989,9 +5005,9 @@ const Ya = {
           u.error(w.errorMessage(t));
         }
     }
-    return (t, n) => s.value ? (e.openBlock(), e.createElementBlock("div", Ya, [
-      e.createElementVNode("section", Ja, [
-        e.createElementVNode("header", Xa, [
+    return (t, n) => s.value ? (e.openBlock(), e.createElementBlock("div", Ja, [
+      e.createElementVNode("section", Xa, [
+        e.createElementVNode("header", Za, [
           e.createElementVNode("strong", null, [
             n[5] || (n[5] = e.createElementVNode(
               "i",
@@ -5007,8 +5023,8 @@ const Ya = {
             )
           ])
         ]),
-        e.createElementVNode("div", Za, [
-          e.createElementVNode("label", xa, [
+        e.createElementVNode("div", xa, [
+          e.createElementVNode("label", er, [
             e.createElementVNode(
               "span",
               null,
@@ -5035,7 +5051,7 @@ const Ya = {
               ]
             ])
           ]),
-          e.createElementVNode("label", er, [
+          e.createElementVNode("label", tr, [
             e.createElementVNode(
               "span",
               null,
@@ -5055,7 +5071,7 @@ const Ya = {
                   e.renderList(e.unref(de.AP_EDIT_MODELS), (V) => (e.openBlock(), e.createElementBlock("option", {
                     key: V,
                     value: V
-                  }, e.toDisplayString(e.unref(Me)(V)) + e.toDisplayString(V === e.unref(de.AP_EDIT_MODELS)[0] ? t.$t("（推荐，保脸更稳）") : t.$t("（中文提示友好）")), 9, tr))),
+                  }, e.toDisplayString(e.unref(Me)(V)) + e.toDisplayString(V === e.unref(de.AP_EDIT_MODELS)[0] ? t.$t("（推荐，保脸更稳）") : t.$t("（中文提示友好）")), 9, nr))),
                   128
                   /* KEYED_FRAGMENT */
                 ))
@@ -5066,7 +5082,7 @@ const Ya = {
               [e.vModelSelect, d.editModel]
             ])
           ]),
-          e.createElementVNode("label", nr, [
+          e.createElementVNode("label", lr, [
             e.createElementVNode(
               "span",
               null,
@@ -5095,7 +5111,7 @@ const Ya = {
             ])
           ])
         ]),
-        e.createElementVNode("label", lr, [
+        e.createElementVNode("label", or, [
           e.withDirectives(e.createElementVNode(
             "input",
             {
@@ -5139,8 +5155,8 @@ const Ya = {
           /* CLASS */
         )
       ]),
-      e.createElementVNode("section", or, [
-        e.createElementVNode("header", sr, [
+      e.createElementVNode("section", sr, [
+        e.createElementVNode("header", ar, [
           e.createElementVNode("strong", null, [
             n[6] || (n[6] = e.createElementVNode(
               "i",
@@ -5156,8 +5172,8 @@ const Ya = {
             )
           ])
         ]),
-        e.createElementVNode("div", ar, [
-          e.createElementVNode("label", rr, [
+        e.createElementVNode("div", rr, [
+          e.createElementVNode("label", ir, [
             e.createElementVNode(
               "span",
               null,
@@ -5186,7 +5202,7 @@ const Ya = {
             ])
           ])
         ]),
-        e.createElementVNode("ul", ir, [
+        e.createElementVNode("ul", cr, [
           e.createElementVNode(
             "li",
             null,
@@ -5216,7 +5232,7 @@ const Ya = {
             /* TEXT */
           )
         ]),
-        e.createElementVNode("div", cr, [
+        e.createElementVNode("div", dr, [
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn sm",
@@ -5255,7 +5271,7 @@ const Ya = {
           ])
         ])
       ]),
-      e.createElementVNode("div", dr, [
+      e.createElementVNode("div", ur, [
         e.createElementVNode("button", {
           type: "button",
           class: "ss-btn primary",
@@ -5274,10 +5290,10 @@ const Ya = {
             1
             /* TEXT */
           )
-        ], 8, ur),
+        ], 8, mr),
         y.value ? (e.openBlock(), e.createElementBlock(
           "span",
-          mr,
+          pr,
           e.toDisplayString(t.$t("有未保存的修改")),
           1
           /* TEXT */
@@ -5285,37 +5301,37 @@ const Ya = {
       ])
     ])) : e.createCommentVNode("v-if", !0);
   }
-}), gr = /* @__PURE__ */ j(pr, [["__scopeId", "data-v-e6af58e3"]]), ge = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useDialog.ts"];
+}), vr = /* @__PURE__ */ j(gr, [["__scopeId", "data-v-e6af58e3"]]), ge = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useDialog.ts"];
 if (!ge) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useDialog.ts");
 ge.default;
-const vr = { class: "ap-workbench" }, yr = { class: "workbench-header" }, kr = { class: "heading" }, fr = { class: "eyebrow" }, hr = { class: "subtitle" }, Vr = { class: "header-actions" }, Er = ["disabled"], Nr = ["disabled"], _r = ["disabled"], br = {
+const yr = { class: "ap-workbench" }, kr = { class: "workbench-header" }, hr = { class: "heading" }, fr = { class: "eyebrow" }, Vr = { class: "subtitle" }, Er = { class: "header-actions" }, Nr = ["disabled"], _r = ["disabled"], br = ["disabled"], $r = {
   key: 0,
   class: "ap-bar"
-}, $r = {
+}, Sr = {
   key: 0,
   class: "ss-chip warn",
   "data-test": "ap-demo-chip"
-}, Sr = { class: "ss-muted" }, Dr = { class: "ap-bar__rule" }, wr = {
+}, Dr = { class: "ss-muted" }, wr = { class: "ap-bar__rule" }, Br = {
   class: "ap-tabs",
   role: "tablist"
-}, Br = ["aria-selected", "onClick"], Cr = {
+}, Cr = ["aria-selected", "onClick"], Tr = {
   key: 0,
   class: "ap-badge"
-}, Tr = {
+}, Ar = {
   key: 1,
   class: "ss-note info ap-progress"
-}, Ar = {
+}, Lr = {
   key: 2,
   class: "ap-body"
-}, Lr = {
+}, Ir = {
   key: 3,
   class: "ss-note danger"
-}, Ir = {
+}, Mr = {
   key: 4,
   class: "ss-note"
-}, Ee = "totalclaw:apparel-store-tab:v1", Mr = /* @__PURE__ */ e.defineComponent({
+}, Ee = "totalclaw:apparel-store-tab:v1", Ur = /* @__PURE__ */ e.defineComponent({
   __name: "ApparelStoreWorkbenchView",
-  setup(h) {
+  setup(f) {
     const u = [
       { key: "flow", icon: "ri-shirt-line", title: r.t("一键换装") },
       { key: "live", icon: "ri-live-line", title: r.t("实时试衣") },
@@ -5372,7 +5388,7 @@ const vr = { class: "ap-workbench" }, yr = { class: "workbench-header" }, kr = {
       }
     }
     const E = e.computed(() => (d.value?.tryons || []).filter((N) => N.wantVisit && !N.visit).length);
-    function f(N) {
+    function h(N) {
       return N === "checkin" ? E.value ? String(E.value) : "" : N === "mobile" && d.value?.mobile.activeSessions ? String(d.value.mobile.activeSessions) : "";
     }
     function B(N) {
@@ -5411,9 +5427,9 @@ const vr = { class: "ap-workbench" }, yr = { class: "workbench-header" }, kr = {
       });
     }), e.onBeforeUnmount(() => {
       I?.(), i && clearTimeout(i), $ && clearTimeout($), le.message = "";
-    }), (N, T) => (e.openBlock(), e.createElementBlock("div", vr, [
-      e.createElementVNode("header", yr, [
-        e.createElementVNode("div", kr, [
+    }), (N, T) => (e.openBlock(), e.createElementBlock("div", yr, [
+      e.createElementVNode("header", kr, [
+        e.createElementVNode("div", hr, [
           e.createVNode(Je),
           T[1] || (T[1] = e.createElementVNode(
             "span",
@@ -5441,14 +5457,14 @@ const vr = { class: "ap-workbench" }, yr = { class: "workbench-header" }, kr = {
             ),
             e.createElementVNode(
               "p",
-              hr,
+              Vr,
               e.toDisplayString(N.$t("AI 一键换装：顾客在手机上、店员在电脑上都能看到试穿效果；背景、姿势、发型自由选；试穿码到店试实物，试穿数据指导主推款。")),
               1
               /* TEXT */
             )
           ])
         ]),
-        e.createElementVNode("div", Vr, [
+        e.createElementVNode("div", Er, [
           e.createCommentVNode(" 演示模式：一键给每个页签造好示例数据（本机生成、不调用 AI）；旧版 App 的主进程没有这个动作，就不显示 "),
           e.unref(d)?.demo ? (e.openBlock(), e.createElementBlock(
             e.Fragment,
@@ -5475,7 +5491,7 @@ const vr = { class: "ap-workbench" }, yr = { class: "workbench-header" }, kr = {
                   1
                   /* TEXT */
                 )
-              ], 8, Er)) : e.createCommentVNode("v-if", !0),
+              ], 8, Nr)) : e.createCommentVNode("v-if", !0),
               e.createElementVNode("button", {
                 class: e.normalizeClass(["ss-btn", { primary: !A.value }]),
                 disabled: D.value,
@@ -5496,7 +5512,7 @@ const vr = { class: "ap-workbench" }, yr = { class: "workbench-header" }, kr = {
                   1
                   /* TEXT */
                 )
-              ], 10, Nr)
+              ], 10, _r)
             ],
             64
             /* STABLE_FRAGMENT */
@@ -5520,10 +5536,10 @@ const vr = { class: "ap-workbench" }, yr = { class: "workbench-header" }, kr = {
               1
               /* TEXT */
             )
-          ], 8, _r)
+          ], 8, br)
         ])
       ]),
-      e.unref(d) ? (e.openBlock(), e.createElementBlock("section", br, [
+      e.unref(d) ? (e.openBlock(), e.createElementBlock("section", $r, [
         e.createElementVNode("span", null, [
           T[2] || (T[2] = e.createElementVNode(
             "i",
@@ -5586,7 +5602,7 @@ const vr = { class: "ap-workbench" }, yr = { class: "workbench-header" }, kr = {
           2
           /* CLASS */
         ),
-        A.value ? (e.openBlock(), e.createElementBlock("span", $r, [
+        A.value ? (e.openBlock(), e.createElementBlock("span", Sr, [
           T[4] || (T[4] = e.createElementVNode(
             "i",
             { class: "ri-slideshow-3-line" },
@@ -5602,12 +5618,12 @@ const vr = { class: "ap-workbench" }, yr = { class: "workbench-header" }, kr = {
         ])) : e.createCommentVNode("v-if", !0),
         e.createElementVNode(
           "span",
-          Sr,
+          Dr,
           e.toDisplayString(N.$t("商品 {a} · 顾客 {b} · 试穿图 {c}", { a: e.unref(d).garments.length, b: e.unref(d).customers.filter((O) => !O.purgedAt).length, c: e.unref(d).tryons.filter((O) => O.status === "done").length })),
           1
           /* TEXT */
         ),
-        e.createElementVNode("span", Dr, [
+        e.createElementVNode("span", wr, [
           T[5] || (T[5] = e.createElementVNode(
             "i",
             { class: "ri-shield-user-line" },
@@ -5622,7 +5638,7 @@ const vr = { class: "ap-workbench" }, yr = { class: "workbench-header" }, kr = {
           )
         ])
       ])) : e.createCommentVNode("v-if", !0),
-      e.createElementVNode("nav", wr, [
+      e.createElementVNode("nav", Br, [
         (e.openBlock(), e.createElementBlock(
           e.Fragment,
           null,
@@ -5650,19 +5666,19 @@ const vr = { class: "ap-workbench" }, yr = { class: "workbench-header" }, kr = {
               1
               /* TEXT */
             ),
-            f(O.key) ? (e.openBlock(), e.createElementBlock(
+            h(O.key) ? (e.openBlock(), e.createElementBlock(
               "em",
-              Cr,
-              e.toDisplayString(f(O.key)),
+              Tr,
+              e.toDisplayString(h(O.key)),
               1
               /* TEXT */
             )) : e.createCommentVNode("v-if", !0)
-          ], 10, Br)),
+          ], 10, Cr)),
           64
           /* STABLE_FRAGMENT */
         ))
       ]),
-      e.unref(le).message ? (e.openBlock(), e.createElementBlock("p", Tr, [
+      e.unref(le).message ? (e.openBlock(), e.createElementBlock("p", Ar, [
         T[6] || (T[6] = e.createElementVNode(
           "i",
           { class: "ri-loader-4-line spin" },
@@ -5676,9 +5692,9 @@ const vr = { class: "ap-workbench" }, yr = { class: "workbench-header" }, kr = {
           /* TEXT */
         )
       ])) : e.createCommentVNode("v-if", !0),
-      v.value ? (e.openBlock(), e.createElementBlock("div", Ar, [
+      v.value ? (e.openBlock(), e.createElementBlock("div", Lr, [
         e.withDirectives(e.createVNode(
-          tl,
+          nl,
           {
             ref_key: "flowRef",
             ref: t
@@ -5689,11 +5705,11 @@ const vr = { class: "ap-workbench" }, yr = { class: "workbench-header" }, kr = {
         ), [
           [e.vShow, y.value === "flow"]
         ]),
-        y.value === "live" ? (e.openBlock(), e.createBlock(Do, { key: 0 })) : y.value === "garments" ? (e.openBlock(), e.createBlock(Hl, { key: 1 })) : y.value === "styles" ? (e.openBlock(), e.createBlock(jo, { key: 2 })) : y.value === "mobile" ? (e.openBlock(), e.createBlock(ms, {
+        y.value === "live" ? (e.openBlock(), e.createBlock(wo, { key: 0 })) : y.value === "garments" ? (e.openBlock(), e.createBlock(Ql, { key: 1 })) : y.value === "styles" ? (e.openBlock(), e.createBlock(qo, { key: 2 })) : y.value === "mobile" ? (e.openBlock(), e.createBlock(ps, {
           key: 3,
           onOpenCustomer: l
-        })) : y.value === "checkin" ? (e.openBlock(), e.createBlock(Ks, { key: 4 })) : y.value === "dashboard" ? (e.openBlock(), e.createBlock(La, { key: 5 })) : y.value === "overview" ? (e.openBlock(), e.createBlock(Qa, { key: 6 })) : y.value === "settings" ? (e.openBlock(), e.createBlock(gr, { key: 7 })) : e.createCommentVNode("v-if", !0)
-      ])) : c.value ? (e.openBlock(), e.createElementBlock("p", Lr, [
+        })) : y.value === "checkin" ? (e.openBlock(), e.createBlock(Ps, { key: 4 })) : y.value === "dashboard" ? (e.openBlock(), e.createBlock(Ia, { key: 5 })) : y.value === "overview" ? (e.openBlock(), e.createBlock(Ya, { key: 6 })) : y.value === "settings" ? (e.openBlock(), e.createBlock(vr, { key: 7 })) : e.createCommentVNode("v-if", !0)
+      ])) : c.value ? (e.openBlock(), e.createElementBlock("p", Ir, [
         T[7] || (T[7] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -5706,7 +5722,7 @@ const vr = { class: "ap-workbench" }, yr = { class: "workbench-header" }, kr = {
           1
           /* TEXT */
         )
-      ])) : (e.openBlock(), e.createElementBlock("p", Ir, [
+      ])) : (e.openBlock(), e.createElementBlock("p", Mr, [
         T[8] || (T[8] = e.createElementVNode(
           "i",
           { class: "ri-loader-4-line spin" },
@@ -5722,7 +5738,7 @@ const vr = { class: "ap-workbench" }, yr = { class: "workbench-header" }, kr = {
       ]))
     ]));
   }
-}), Ur = /* @__PURE__ */ j(Mr, [["__scopeId", "data-v-4d607c95"]]);
+}), Or = /* @__PURE__ */ j(Ur, [["__scopeId", "data-v-4d607c95"]]);
 export {
-  Ur as default
+  Or as default
 };

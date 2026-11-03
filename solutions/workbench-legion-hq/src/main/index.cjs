@@ -27,8 +27,12 @@ const { EmployeeWatch } = require('./employee.cjs');
 const X = require('./extras.cjs');
 const { buildDocx } = require('./docx.cjs');
 const { Storage } = require('./storage.cjs');
+const { Attachments } = require('./attachments.cjs');
 
 const D = 'legion-hq';
+/** 大屏「AutoCoder 演示」视频的默认地址：官网固定目录（totalclaw-web 仓库 assets/video/），换视频只换那个文件 */
+const DEFAULT_DEMO_VIDEO = 'https://taituai.com/assets/video/autocoder-demo.mp4';
+const demoVideoOk = (u) => /^https?:\/\/[^\s"'<>]+$/i.test(String(u || ''));
 const SETTINGS = `${D}/settings.json`;
 // L12 部门专用模型 / key：单独一个文件，界面只拿打码后的
 const LEGION_KEYS = `${D}/legion-keys.json`;
@@ -50,7 +54,7 @@ function hostLlm(ctx, deps) {
   // 按次指定模型：模块名带上模型（workbenchLlm 按模块取模型），空 = 跟随本机默认
   const wl = mod.createWorkbenchLlm(deps, { logTag: 'legion-hq', moduleModel: (m) => (m.startsWith('model:') ? m.slice(6) : '') });
   return async (prompt, opts = {}) => {
-    const r = await wl.llm(opts.model ? `model:${opts.model}` : 'legion-hq', prompt, opts.timeoutMs || 180_000);
+    const r = await wl.llm(opts.model ? `model:${opts.model}` : 'legion-hq', prompt, opts.timeoutMs || 180_000, opts.onActivity ? { onActivity: opts.onActivity } : {});
     return r.text;
   };
 }
@@ -101,6 +105,18 @@ module.exports = {
       ctx.writeJson(SETTINGS, next);
       return next;
     };
+
+    // ── 老板下令的附件（审合同这类）：抽文字优先走宿主 documentExtractor ──
+    const attachments = new Attachments(ctx.dataPath(`${D}/attachments`), {
+      extract: (() => {
+        try {
+          const { extractDocument } = require('host:apps/desktop-shell/src/main/services/documentExtractor.ts');
+          return (file, name) => extractDocument(file, name);
+        } catch {
+          return null;
+        }
+      })(),
+    });
 
     // ── 产物存放位置（交付物 / 导出可改到任意文件夹；任务记录 / 录制只统计与清理）──
     const storage = new Storage({
@@ -205,6 +221,15 @@ module.exports = {
       // 演示模式：不调模型、不派员工机，执行与汇总都是本机模拟
       simulate: () => demoOn(),
       legionKeys: (id) => ctx.readJson(LEGION_KEYS, {})[id] || null,
+      // 真实运行时主控本机执行的步骤也在前台展示（宿主 legionForeground；旧宿主没有就照旧后台执行）
+      foreground: (() => {
+        try {
+          const mod = require('host:apps/desktop-shell/src/main/services/legionForeground.ts');
+          return (meta) => mod.beginLegionForeground(meta);
+        } catch {
+          return null;
+        }
+      })(),
       log: ctx.log,
       llm: async (prompt, opts) => {
         if (!llm) throw new Error('本机模型不可用（宿主未提供模型通道）');
@@ -288,7 +313,9 @@ module.exports = {
       getState: () => snapshot(state),
       getCoverage: () => JSON.parse(readFileSync(ctx.packagePath('resources/coverage.json'), 'utf8')),
       pages: filePages(ctx.packagePath('resources/screen/index.html'), ctx.packagePath('resources/screen/remote.html')),
-      onCommand: (b) => runner.submit({ text: b?.text, source: ['boss', 'customer', 'mail'].includes(b?.source) ? b.source : 'boss' }),
+      onCommand: (b) => runner.submit({ text: b?.text, source: ['boss', 'customer', 'mail'].includes(b?.source) ? b.source : 'boss', attachments: attachments.resolve(b?.attachments) }),
+      onUpload: (name, buffer) => attachments.add({ name, buffer }),
+      getConfig: () => ({ demoVideoUrl: settings().demoVideoUrl || DEFAULT_DEMO_VIDEO }),
       onConfirm: (b) => (b?.approve === false ? runner.reject(String(b.taskId), b.comment) : runner.confirm(String(b?.taskId))),
       onDemo: (b) => setDemoRun(!!b?.on),
       onCompany: (b) => {
@@ -486,6 +513,9 @@ module.exports = {
         demoRun: autopilot.on,
         screenView: ['topo', 'office'].includes(settings().screenView) ? settings().screenView : 'auto',
         screenPort: settings().screenPort || null,
+        foregroundRun: settings().foregroundRun !== false,
+        demoVideoUrl: settings().demoVideoUrl || '',
+        demoVideoDefault: DEFAULT_DEMO_VIDEO,
         terms: settings().terms === 'legion' ? 'legion' : 'department',
         demoPack: !!settings().demoPack,
         notify: settings().notify !== false,
@@ -511,7 +541,20 @@ module.exports = {
     h('info', info);
     h('state', () => snapshot(state));
     h('employee.state', () => employee.snapshot());
-    h('command', (p) => runner.submit({ text: p?.text, title: p?.title, source: p?.source || 'boss', forcedLegions: Array.isArray(p?.legions) && p.legions.length ? p.legions : null }));
+    h('command', (p) => runner.submit({ text: p?.text, title: p?.title, source: p?.source || 'boss', forcedLegions: Array.isArray(p?.legions) && p.legions.length ? p.legions : null, attachments: attachments.resolve(p?.attachments) }));
+    // 下令附件：本机选文件（多选），收进附件库，返回 [{ id, name, chars, warning? }]
+    h('attach.pick', async () => {
+      const { dialog } = require('electron');
+      const r = await dialog.showOpenDialog(deps?.getMainWindow?.() || undefined, {
+        title: '选择要随命令附上的文件',
+        properties: ['openFile', 'multiSelections'],
+        filters: [{ name: '文档', extensions: ['pdf', 'docx', 'doc', 'xlsx', 'xls', 'csv', 'pptx', 'txt', 'md', 'eml', 'msg'] }],
+      });
+      if (r.canceled) return [];
+      const out = [];
+      for (const path of (r.filePaths || []).slice(0, 5)) out.push(await attachments.add({ path }));
+      return out;
+    });
     h('demoRun.set', (p) => setDemoRun(!!p?.on));
 
     // ── 产物存放位置与清理（主控统一管：本机产物 + 本机与各员工机的日志）──
@@ -724,6 +767,9 @@ module.exports = {
       if (Number.isFinite(p?.outputChars)) patch.outputChars = Math.min(2000, Math.max(300, Math.round(p.outputChars)));
       if (['', 'zh-CN', 'en-US', 'ar'].includes(p?.responseLocale)) patch.responseLocale = p.responseLocale;
       if (typeof p?.screenAutoStart === 'boolean') patch.screenAutoStart = p.screenAutoStart;
+      if (typeof p?.foregroundRun === 'boolean') patch.foregroundRun = p.foregroundRun;
+      if (p?.demoVideoUrl === '' || demoVideoOk(p?.demoVideoUrl)) patch.demoVideoUrl = String(p.demoVideoUrl).trim();
+      else if (p?.demoVideoUrl != null) throw new Error('视频地址要以 http:// 或 https:// 开头');
       if (['auto', 'topo', 'office'].includes(p?.screenView)) patch.screenView = p.screenView;
       if (p?.screenPort === null || (Number.isInteger(p?.screenPort) && p.screenPort >= 1024 && p.screenPort <= 65000)) patch.screenPort = p.screenPort;
       if (['legion', 'department'].includes(p?.terms)) patch.terms = p.terms;
