@@ -143,6 +143,14 @@
     {
       "path": "src/main/services/bizAutomation/videoRender.ts",
       "from": "main/services/bizAutomation/videoRender.ts"
+    },
+    {
+      "path": "src/main/services/bizAutomation/demo.ts",
+      "from": "main/services/bizAutomation/demo.ts"
+    },
+    {
+      "path": "src/main/services/bizAutomation/demoData.json",
+      "from": "main/services/bizAutomation/demoData.json"
     }
   ],
   "sdkFiles": [

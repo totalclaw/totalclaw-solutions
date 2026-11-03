@@ -95,6 +95,14 @@
     {
       "path": "src/renderer/workbenches/apparel-store/tryonWatchdog.test.ts",
       "from": "renderer/workbenches/apparel-store/tryonWatchdog.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/apparel-store/LiveTab.vue",
+      "from": "renderer/workbenches/apparel-store/LiveTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/apparel-store/msgpackLite.ts",
+      "from": "renderer/workbenches/apparel-store/msgpackLite.ts"
     }
   ],
   "sdkFiles": [
