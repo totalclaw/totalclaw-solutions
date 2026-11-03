@@ -1164,7 +1164,7 @@
       "icon": "icon-solutions",
       "order": 180,
       "description": "短视频生成并发抖音、快手、小红书、视频号；数字人出镜介绍企业；商品图文自动上下架；收银与财务数据自动取数、统计并推送经营日报。",
-      "version": "2.0.6",
+      "version": "2.0.7",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1206,15 +1206,18 @@
         ],
         "localStorage": [
           "totalclaw:biz-automation"
+        ],
+        "uses": [
+          "apparel-store/"
         ]
       },
       "capabilities": [],
       "path": "solutions/workbench-biz-automation",
       "fileCount": 8,
-      "size": 460878,
-      "treeDigest": "0f861a346ac25a1b0e5f0d9bc32bb9a805f9301d8f5c99f2a746d136588a5090",
+      "size": 461156,
+      "treeDigest": "f326353f836d757bc6caa4813942f877cd38be4c44763e84c15133cefa39a15e",
       "largeAssets": [],
-      "changelog": "- 成片脚本目录改按宿主 shellResource 定位：App 热更新生效后也能找到壳里的视频脚本（同步 qiye-app 热更新 Phase B）。",
+      "changelog": "- 清单声明也在用服装店的商品库（data.uses：apparel-store/）：App 2.0.11 起卸载服装店并勾选删数据时，这份共用数据会保留。旧版 App 忽略这个字段，行为不变。",
       "filesRef": "index/workbench-biz-automation.json"
     },
     {
@@ -1487,7 +1490,7 @@
       "icon": "icon-solutions",
       "order": 230,
       "description": "给它企业材料和政采云账号，在内置浏览器里代做供应商的日常工作：商品上架前的合规与比价检查、询价单读回与报价测算、订单接单发货预警、待开票订单转开票。",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1529,15 +1532,18 @@
         ],
         "localStorage": [
           "totalclaw:zcy-agent"
+        ],
+        "uses": [
+          "invoice-agent/"
         ]
       },
       "capabilities": [],
       "path": "solutions/workbench-zcy-agent",
       "fileCount": 8,
-      "size": 314279,
-      "treeDigest": "c7541e1a4f471228567897f3050a322a70cbbcb1c7354af2585463ba1c921549",
+      "size": 314566,
+      "treeDigest": "2a27b9fad805d72d38517aeab4adf40fbd2c5b05f53fc700fd52ecd7f8e44f1f",
       "largeAssets": [],
-      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。",
+      "changelog": "- 清单声明也在用发票智能体的数据（data.uses：invoice-agent/）：App 2.0.11 起卸载发票智能体并勾选删数据时，这份共用数据会保留。旧版 App 忽略这个字段，行为不变。",
       "filesRef": "index/workbench-zcy-agent.json"
     },
     {

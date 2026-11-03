@@ -1,12 +1,12 @@
 {
   "id": "workbench-biz-automation",
-  "version": "2.0.6",
-  "treeDigest": "0f861a346ac25a1b0e5f0d9bc32bb9a805f9301d8f5c99f2a746d136588a5090",
+  "version": "2.0.7",
+  "treeDigest": "f326353f836d757bc6caa4813942f877cd38be4c44763e84c15133cefa39a15e",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 2401,
-      "sha256": "b5326780efcad1017d36cc8fe645926fbd67697906adc01b32446794fb0a4b44"
+      "size": 2635,
+      "sha256": "34207af2d229c1b36ed625407ff9cf54e01e9854ed05863e26b573f06cb9e754"
     },
     {
       "path": "README.md",
@@ -40,11 +40,22 @@
     },
     {
       "path": "solution.json",
-      "size": 2311,
-      "sha256": "1c20d69732a45ce3b9d60ef2c0534de885f2a2dda3a5bc8e665fa01a8d2f4234"
+      "size": 2355,
+      "sha256": "daf4fcd7710b0339d6d69a51337f3e137806c201a082b09a66bba32fef4bf5ed"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.7",
+      "ref": "workbench-biz-automation@2.0.7",
+      "treeDigest": "f326353f836d757bc6caa4813942f877cd38be4c44763e84c15133cefa39a15e",
+      "filesRef": "index/workbench-biz-automation/2.0.7.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.7",
+      "hostApi": 2,
+      "publishedAt": "2026-11-03"
+    },
     {
       "version": "2.0.6",
       "ref": "workbench-biz-automation@2.0.6",
