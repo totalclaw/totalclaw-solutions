@@ -37,19 +37,28 @@ export function readJsonFile(file, fallback = null) {
   }
 }
 
+/**
+ * 安装器里所有 rename 走这里。宿主可换成带退避重试的实现：Windows 上杀软 / 索引服务刚扫到新文件时
+ * rename 会短暂 EPERM / EBUSY，直接失败会让安装半途报错（锁文件已切换却回报失败）。
+ */
+let renameImpl = renameSync;
+export function setRenameImpl(fn) {
+  renameImpl = typeof fn === 'function' ? fn : renameSync;
+}
+
 /** tmp + rename 原子写 JSON */
 export function writeJsonAtomic(file, value) {
   mkdirSync(dirname(file), { recursive: true });
   const tmp = `${file}.tmp-${process.pid}-${Date.now()}`;
   writeFileSync(tmp, JSON.stringify(value, null, 2) + '\n');
-  renameSync(tmp, file);
+  renameImpl(tmp, file);
 }
 
 /** rename，跨设备（EXDEV）时退化为复制 + 删除 */
 export function moveDir(from, to) {
   mkdirSync(dirname(to), { recursive: true });
   try {
-    renameSync(from, to);
+    renameImpl(from, to);
   } catch (err) {
     if (err.code !== 'EXDEV') throw err;
     cpSync(from, to, { recursive: true });

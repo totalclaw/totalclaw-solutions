@@ -25,6 +25,9 @@ export class LocalSource {
   }
 
   async resolveRef() {
+    // 不是仓库根（如随 App 安装包的离线基线目录）就不跑 git：mac 没装命令行工具时 /usr/bin/git 会弹「安装开发者工具」，
+    // 在别人的仓库里还会拿到无关的提交号
+    if (!existsSync(join(this.root, '.git'))) return 'local';
     try {
       const head = execFileSync('git', ['rev-parse', 'HEAD'], { cwd: this.root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
       const dirty = execFileSync('git', ['status', '--porcelain'], { cwd: this.root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
