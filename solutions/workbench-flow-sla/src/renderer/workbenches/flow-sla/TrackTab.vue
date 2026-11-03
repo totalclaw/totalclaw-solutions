@@ -68,6 +68,7 @@
 import { computed, reactive, ref } from 'vue';
 import type { FsTrackItem } from '@totalclaw/ipc-contracts';
 import { useNotificationStore } from '../../stores/notification';
+import { useDialog } from '../../composables/useDialog';
 import { t as i18nT } from '../../i18n';
 import { errorMessage, fmtDateTime, fmtDays, fs, fsState, refreshState } from './shared';
 
@@ -75,6 +76,7 @@ type ViewKey = 'open' | 'due' | 'closed';
 const VIEWS: Array<{ key: ViewKey; title: string }> = [{ key: 'open', title: i18nT('跟进中') }, { key: 'due', title: i18nT('今天该跟进') }, { key: 'closed', title: i18nT('已闭环') }];
 
 const notif = useNotificationStore();
+const dialog = useDialog();
 const view = ref<ViewKey>('open');
 const keyword = ref('');
 const busy = ref(false);
@@ -124,7 +126,8 @@ async function sendMail(t: FsTrackItem): Promise<void> {
   });
 }
 async function close(t: FsTrackItem): Promise<void> {
-  const reason = window.prompt(i18nT('闭环原因（如：已线下办结）'), '');
+  // Electron 不支持 window.prompt（直接抛 "prompt() is not supported"）：走应用内输入框
+  const reason = await dialog.prompt(i18nT('闭环原因（如：已线下办结）'), '');
   if (reason === null) return;
   await act(async () => { await fs('track.close', { key: t.key, reason }); });
 }

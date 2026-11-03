@@ -11,6 +11,11 @@
         </div>
       </div>
       <div class="header-actions">
+        <!-- 演示模式：一键给每个页签造好示例数据（本机生成、不调用 AI）；旧版 App 的主进程没有这个动作，就不显示 -->
+        <template v-if="state?.demo">
+          <button v-if="hasDemo" class="ss-btn" :disabled="demoBusy" data-test="ap-demo-clear" @click="clearDemo"><i :class="demoBusy ? 'ri-loader-4-line spin' : 'ri-delete-bin-6-line'"></i>{{ $t('清除演示数据') }}</button>
+          <button class="ss-btn" :class="{ primary: !hasDemo }" :disabled="demoBusy" data-test="ap-demo-seed" @click="seedDemo"><i :class="demoBusy ? 'ri-loader-4-line spin' : 'ri-slideshow-3-line'"></i>{{ hasDemo ? $t('重新生成演示数据') : $t('演示模式') }}</button>
+        </template>
         <button class="ss-btn" :disabled="loading" @click="reload"><i :class="loading ? 'ri-loader-4-line spin' : 'ri-refresh-line'"></i>{{ $t('刷新') }}</button>
       </div>
     </header>
@@ -19,6 +24,7 @@
       <span><i class="ri-store-2-line"></i>{{ state.settings.storeName }}</span>
       <span class="ss-chip" :class="state.imageReady ? 'ok' : 'warn'"><i :class="state.imageReady ? 'ri-check-line' : 'ri-key-2-line'"></i>{{ state.imageReady ? $t('图像服务已就绪') : $t('图像服务未配置') }}</span>
       <button type="button" class="ss-chip" :class="state.mobile.running ? 'ok' : ''" @click="select('mobile')"><i class="ri-smartphone-line"></i>{{ state.mobile.running ? $t('手机端运行中') : $t('手机端未开启') }}</button>
+      <span v-if="hasDemo" class="ss-chip warn" data-test="ap-demo-chip"><i class="ri-slideshow-3-line"></i>{{ $t('含演示数据') }}</span>
       <span class="ss-muted">{{ $t('商品 {a} · 顾客 {b} · 试穿图 {c}', { a: state.garments.length, b: state.customers.filter((c) => !c.purgedAt).length, c: state.tryons.filter((t) => t.status === 'done').length }) }}</span>
       <span class="ap-bar__rule"><i class="ri-shield-user-line"></i>{{ $t('先授权后上传 · 照片只存本机 · {d} 天自动删除', { d: state.settings.retentionDays }) }}</span>
     </section>
@@ -33,7 +39,8 @@
 
     <div v-if="ready" class="ap-body">
       <TryonFlow v-show="active === 'flow'" ref="flowRef" />
-      <GarmentsTab v-if="active === 'garments'" />
+      <LiveTab v-if="active === 'live'" />
+      <GarmentsTab v-else-if="active === 'garments'" />
       <StylesTab v-else-if="active === 'styles'" />
       <MobileTab v-else-if="active === 'mobile'" @open-customer="openCustomer" />
       <CheckinTab v-else-if="active === 'checkin'" />
@@ -59,18 +66,22 @@ import { t as i18nT } from '../i18n';
 import PageBackButton from '../components/PageBackButton.vue';
 import TryonFlow from '../workbenches/apparel-store/TryonFlow.vue';
 import GarmentsTab from '../workbenches/apparel-store/GarmentsTab.vue';
+import LiveTab from '../workbenches/apparel-store/LiveTab.vue';
 import StylesTab from '../workbenches/apparel-store/StylesTab.vue';
 import MobileTab from '../workbenches/apparel-store/MobileTab.vue';
 import CheckinTab from '../workbenches/apparel-store/CheckinTab.vue';
 import DashboardTab from '../workbenches/apparel-store/DashboardTab.vue';
 import OverviewTab from '../workbenches/apparel-store/OverviewTab.vue';
 import SettingsTab from '../workbenches/apparel-store/SettingsTab.vue';
-import { apProgress, apState, errorMessage, loadOptions, onApEvent, refreshState } from '../workbenches/apparel-store/shared';
+import { ap, apProgress, apState, errorMessage, loadOptions, onApEvent, refreshState, refreshStats } from '../workbenches/apparel-store/shared';
+import { useDialog } from '../composables/useDialog';
+import { useNotificationStore } from '../stores/notification';
 import '../workbenches/service-settlement/styles.css';
 
-type TabKey = 'flow' | 'garments' | 'styles' | 'mobile' | 'checkin' | 'dashboard' | 'overview' | 'settings';
+type TabKey = 'flow' | 'live' | 'garments' | 'styles' | 'mobile' | 'checkin' | 'dashboard' | 'overview' | 'settings';
 const TABS: Array<{ key: TabKey; icon: string; title: string }> = [
   { key: 'flow', icon: 'ri-shirt-line', title: i18nT('一键换装') },
+  { key: 'live', icon: 'ri-live-line', title: i18nT('实时试衣') },
   { key: 'garments', icon: 'ri-t-shirt-line', title: i18nT('商品库') },
   { key: 'styles', icon: 'ri-landscape-line', title: i18nT('造型库') },
   { key: 'mobile', icon: 'ri-smartphone-line', title: i18nT('手机端') },
@@ -90,6 +101,36 @@ const ready = ref(false);
 const loading = ref(false);
 const loadError = ref('');
 const flowRef = ref<InstanceType<typeof TryonFlow> | null>(null);
+const dialog = useDialog();
+const notif = useNotificationStore();
+
+// ── 演示模式 ──
+const demoBusy = ref(false);
+const hasDemo = computed(() => { const d = state.value?.demo; return !!d && d.garments + d.customers + d.tryons > 0; });
+async function seedDemo(): Promise<void> {
+  const ok = await dialog.confirm({
+    title: hasDemo.value ? i18nT('重新生成演示数据') : i18nT('演示模式'),
+    message: i18nT('生成一整套示例数据，每个页签都能直接演示：商品 12 件、顾客 11 位（含 3 位已按保留期清除）、试穿图 30 多张（含待核销的试穿码、到店结果和 14 天数据走势）。\n全部在本机生成，不调用 AI、不产生费用；门店自己录入的数据不受影响，随时可以一键清除。'),
+    confirmLabel: i18nT('生成'),
+  });
+  if (!ok) return;
+  demoBusy.value = true;
+  try {
+    const r = await ap<{ garments: number; customers: number; tryons: number }>('demo.seed');
+    await Promise.all([refreshState(), refreshStats().catch(() => undefined)]);
+    notif.success(i18nT('已生成演示数据：商品 {a} 件、顾客 {b} 位、试穿 {c} 张', { a: r.garments, b: r.customers, c: r.tryons }));
+  } catch (e) { notif.error(errorMessage(e)); } finally { demoBusy.value = false; }
+}
+async function clearDemo(): Promise<void> {
+  const ok = await dialog.confirm({ title: i18nT('清除演示数据'), message: i18nT('只删除演示模式生成的商品、顾客和试穿图（连同图片）；门店自己录入的数据不受影响。'), confirmLabel: i18nT('清除'), danger: true });
+  if (!ok) return;
+  demoBusy.value = true;
+  try {
+    await ap('demo.clear');
+    await Promise.all([refreshState(), refreshStats().catch(() => undefined)]);
+    notif.success(i18nT('演示数据已清除'));
+  } catch (e) { notif.error(errorMessage(e)); } finally { demoBusy.value = false; }
+}
 
 const waiting = computed(() => (state.value?.tryons || []).filter((t) => t.wantVisit && !t.visit).length);
 function badge(k: TabKey): string {

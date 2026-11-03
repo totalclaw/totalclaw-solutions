@@ -38,12 +38,12 @@ module.exports = __toCommonJS(entry_main_exports);
 
 // ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/ipc/bizAutomation.ipc.ts
 var import_electron = require("electron");
-var import_node_fs3 = require("node:fs");
-var import_node_path3 = require("node:path");
+var import_node_fs4 = require("node:fs");
+var import_node_path4 = require("node:path");
 var import_node_stream = require("node:stream");
 var import_promises = require("node:stream/promises");
 var import_ipc_contracts = require("npm:@totalclaw/ipc-contracts");
-var import_i18n4 = require("npm:@totalclaw/i18n");
+var import_i18n5 = require("npm:@totalclaw/i18n");
 var import_userFacingError = require("host:apps/desktop-shell/src/main/utils/userFacingError.ts");
 var import_quitRegistry = require("host:apps/desktop-shell/src/main/util/quitRegistry.ts");
 var import_workbenchLlm = require("host:apps/desktop-shell/src/main/services/workbenchLlm.ts");
@@ -341,8 +341,8 @@ function applyInventory(garments, rows) {
   }
   return { updates: [...acc].map(([id, stock]) => ({ id, stock })), unmatched: [...unmatched] };
 }
-function shiftDate(day, deltaDays) {
-  const d = /* @__PURE__ */ new Date(`${day}T00:00:00`);
+function shiftDate(day2, deltaDays) {
+  const d = /* @__PURE__ */ new Date(`${day2}T00:00:00`);
   d.setDate(d.getDate() + deltaDays);
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
@@ -411,9 +411,9 @@ function computeMetrics(sales, expenses, garments, from, to) {
   }).sort((a, b) => b.amount - a.amount);
   const daily = [];
   for (let i = 0; i < len && i < 400; i++) {
-    const day = shiftDate(from, i);
-    const rows = c.inRange.filter((r) => r.date === day);
-    daily.push({ day, netRevenue: round2(rows.reduce((s, r) => s + r.amount, 0)), orders: new Set(rows.filter((r) => r.amount > 0).map((r) => r.orderNo)).size });
+    const day2 = shiftDate(from, i);
+    const rows = c.inRange.filter((r) => r.date === day2);
+    daily.push({ day: day2, netRevenue: round2(rows.reduce((s, r) => s + r.amount, 0)), orders: new Set(rows.filter((r) => r.amount > 0).map((r) => r.orderNo)).size });
   }
   const slowMovers = garments.map((g) => {
     const stock = Object.values(g.stock || {}).reduce((s, n) => s + (Number(n) || 0), 0);
@@ -480,33 +480,33 @@ function reportPeriod(kind, now = /* @__PURE__ */ new Date()) {
   return { from: fmt(first), to: fmt(last) };
 }
 function metricsFacts(m) {
-  const pct = (v) => `${(v * 100).toFixed(1)}%`;
+  const pct2 = (v) => `${(v * 100).toFixed(1)}%`;
   const out = [
     `period: ${m.from} ~ ${m.to}`,
     `netRevenue: ${m.netRevenue}`,
     `revenue: ${m.revenue}`,
     `refunds: ${m.refunds}`,
     `grossProfit: ${m.grossProfit}`,
-    `grossMargin: ${pct(m.grossMargin)}`,
-    `costCoverage: ${pct(m.costCoverage)}`,
+    `grossMargin: ${pct2(m.grossMargin)}`,
+    `costCoverage: ${pct2(m.costCoverage)}`,
     `orders: ${m.orders}`,
     `units: ${m.units}`,
     `avgOrderValue: ${m.avgOrderValue}`,
     `unitsPerOrder: ${m.unitsPerOrder}`,
     `expenses: ${m.expenses}`,
     `netProfit: ${m.netProfit}`,
-    `expenseRate: ${pct(m.expenseRate)}`
+    `expenseRate: ${pct2(m.expenseRate)}`
   ];
   if (m.prev) out.push(`prev.netRevenue: ${m.prev.revenue}`, `prev.grossProfit: ${m.prev.grossProfit}`, `prev.orders: ${m.prev.orders}`, `prev.avgOrderValue: ${m.prev.avgOrderValue}`);
-  if (m.prev?.revenue) out.push(`netRevenueChange: ${pct((m.netRevenue - m.prev.revenue) / m.prev.revenue)}`);
+  if (m.prev?.revenue) out.push(`netRevenueChange: ${pct2((m.netRevenue - m.prev.revenue) / m.prev.revenue)}`);
   if (m.inventoryValue != null) out.push(`inventoryValue: ${m.inventoryValue}`);
   if (m.turnoverDays != null) out.push(`inventoryTurnoverDays: ${m.turnoverDays}`);
   m.items.slice(0, 5).forEach((r, i) => out.push(`item${i + 1} ${r.label}: qty ${r.qty}, amount ${r.amount}${r.grossProfit != null ? `, grossProfit ${r.grossProfit}` : ""}`));
   if (m.slowMovers.length) out.push(`slowMovers: ${m.slowMovers.slice(0, 5).map((x) => `${x.label}(stock ${x.stock}, sold ${x.qty})`).join("; ")}`);
-  m.byChannel.slice(0, 5).forEach((r) => out.push(`channel ${r.label}: ${r.value} (${pct(r.share || 0)})`));
-  m.byCategory.slice(0, 6).forEach((r) => out.push(`category ${r.label}: ${r.value} (${pct(r.share || 0)})`));
+  m.byChannel.slice(0, 5).forEach((r) => out.push(`channel ${r.label}: ${r.value} (${pct2(r.share || 0)})`));
+  m.byCategory.slice(0, 6).forEach((r) => out.push(`category ${r.label}: ${r.value} (${pct2(r.share || 0)})`));
   m.topItems.slice(0, 5).forEach((r, i) => out.push(`top${i + 1} ${r.label}: ${r.value}`));
-  m.sellThrough.slice(0, 5).forEach((r) => out.push(`sellThrough ${r.label}: ${pct(r.value)}`));
+  m.sellThrough.slice(0, 5).forEach((r) => out.push(`sellThrough ${r.label}: ${pct2(r.value)}`));
   return out;
 }
 function unverifiedNumbers(text, m) {
@@ -1002,30 +1002,600 @@ var import_service = require("host:apps/desktop-shell/src/main/services/knowledg
 var import_retrieval = require("host:apps/desktop-shell/src/main/services/knowledgeBase/retrieval.ts");
 var import_fieldCatalog = require("host:apps/desktop-shell/src/main/services/knowledgeBase/fieldCatalog.ts");
 var import_apparelStore = require("host:apps/desktop-shell/src/main/ipc/apparelStore.ipc.ts");
-var import_logic4 = require("host:apps/desktop-shell/src/main/services/apparelStore/logic.ts");
+var import_demo = require("host:apps/desktop-shell/src/main/services/apparelStore/demo.ts");
+
+// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/demo.ts
+var import_node_fs3 = require("node:fs");
+var import_node_path3 = require("node:path");
+var import_i18n4 = require("npm:@totalclaw/i18n");
+
+// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/demoData.json
+var demoData_default = {
+  _comment: "\u7ECF\u8425\u81EA\u52A8\u5316 \xB7 \u6F14\u793A\u6A21\u5F0F\u7684\u793A\u4F8B\u6587\u5B57\uFF08\u865A\u6784\uFF09\u3002\u6309\u754C\u9762\u8BED\u8A00\u53D6 zh / en\uFF0C\u5176\u5B83\u8BED\u8A00\u7528 en\u3002\u6570\u5B57\u7531\u4EE3\u7801\u6309\u6F14\u793A\u5546\u54C1\u4E0E\u9500\u552E\u6570\u636E\u7B97\uFF0C\u8FD9\u91CC\u4E0D\u5199\u6570\u5B57\u3002",
+  zh: {
+    channels: [
+      "\u95E8\u5E97",
+      "\u6296\u5E97",
+      "\u5FAE\u4FE1\u5C0F\u5E97"
+    ],
+    expenses: [
+      "\u95E8\u5E97\u623F\u79DF",
+      "\u5458\u5DE5\u5DE5\u8D44",
+      "\u6C34\u7535\u7269\u4E1A",
+      "\u7EBF\u4E0A\u63A8\u5E7F\u8D39"
+    ],
+    videos: [
+      {
+        type: "new_arrival",
+        name: "\u79CB\u51AC\u65B0\u54C1\u4E0A\u65B0 \xB7 \u7B2C\u4E00\u6CE2",
+        brief: "\u79CB\u51AC\u65B0\u54C1\u5230\u5E97\uFF0C\u4E3B\u63A8\u897F\u88C5\u5916\u5957\u548C\u534A\u8EAB\u88D9\uFF1B\u5230\u5E97\u8BD5\u7A7F\u9001\u4E1D\u5DFE\u3002",
+        lines: [
+          "\u79CB\u51AC\u65B0\u54C1\u5230\u5E97\u5566\uFF0C\u5148\u770B\u8FD9\u4EF6\u4E00\u7C92\u6263\u897F\u88C5\u5916\u5957",
+          "\u7C73\u674F\u8272\u767E\u642D\uFF0C\u914D\u534A\u88D9\u548C\u897F\u88E4\u90FD\u597D\u770B",
+          "\u9AD8\u8170 A \u5B57\u534A\u8EAB\u88D9\uFF0C\u663E\u9AD8\u53C8\u906E\u80EF",
+          "\u5230\u5E97\u8BD5\u7A7F\u8FD8\u9001\u4E1D\u5DFE\uFF0C\u7B49\u4F60\u6765"
+        ],
+        copy: {
+          title: "\u79CB\u51AC\u65B0\u54C1\u5230\u5E97\uFF5C\u897F\u88C5\u5916\u5957 + \u534A\u8EAB\u88D9\u901A\u52E4\u4E00\u5468\u4E0D\u91CD\u6837",
+          caption: "\u7C73\u674F\u8272\u897F\u88C5\u5916\u5957 + \u5496\u5561\u8272 A \u5B57\u88D9\uFF0C\u901A\u52E4\u7EA6\u4F1A\u90FD\u80FD\u7A7F\u3002\u5230\u5E97\u8BD5\u7A7F\u9001\u4E1D\u5DFE\uFF5E",
+          topics: [
+            "\u79CB\u51AC\u7A7F\u642D",
+            "\u901A\u52E4\u7A7F\u642D",
+            "\u65B0\u54C1\u4E0A\u65B0"
+          ]
+        }
+      },
+      {
+        type: "multi_look",
+        name: "\u4E00\u4EF6\u5C0F\u9ED1\u88D9\u7684\u4E09\u79CD\u7A7F\u6CD5",
+        brief: "\u540C\u4E00\u6761\u7F0E\u9762\u5C0F\u9ED1\u88D9\uFF0C\u4E0A\u73ED\u3001\u7EA6\u4F1A\u3001\u665A\u5BB4\u4E09\u79CD\u642D\u914D\u3002",
+        lines: [
+          "\u4E00\u6761\u5C0F\u9ED1\u88D9\uFF0C\u4E0A\u73ED\u8FD9\u6837\u7A7F",
+          "\u7EA6\u4F1A\u6362\u53CC\u978B\u5C31\u591F\u4E86",
+          "\u665A\u5BB4\u52A0\u4E00\u4EF6\u5916\u5957\uFF0C\u6C14\u573A\u5168\u5F00"
+        ],
+        copy: {
+          title: "\u4E00\u6761\u5C0F\u9ED1\u88D9\u7A7F\u51FA 3 \u79CD\u573A\u5408",
+          caption: "\u7F0E\u9762\u5C0F\u9ED1\u88D9\uFF0C\u4E0A\u73ED\u3001\u7EA6\u4F1A\u3001\u665A\u5BB4\u4E00\u6761\u641E\u5B9A\uFF0C\u8BC4\u8BBA\u533A\u8BF4\u8BF4\u4F60\u6700\u559C\u6B22\u54EA\u5957\u3002",
+          topics: [
+            "\u5C0F\u9ED1\u88D9",
+            "\u4E00\u8863\u591A\u642D",
+            "\u7A7F\u642D\u6559\u7A0B"
+          ]
+        }
+      },
+      {
+        type: "promotion",
+        name: "\u53CC\u5341\u4E00\u5E97\u5E86\u6D3B\u52A8\u9884\u544A",
+        brief: "11 \u6708 8 \u65E5\u81F3 11 \u65E5\u5168\u573A\u6EE1 500 \u51CF 80\uFF0C\u4F1A\u5458\u518D\u4EAB 95 \u6298\u3002",
+        lines: [
+          "\u53CC\u5341\u4E00\u5E97\u5E86\u6765\u5566",
+          "\u5168\u573A\u6EE1 500 \u51CF 80",
+          "\u4F1A\u5458\u518D\u4EAB 95 \u6298\uFF0C11 \u6708 8 \u65E5\u5230 11 \u65E5"
+        ],
+        copy: {
+          title: "\u53CC\u5341\u4E00\u5E97\u5E86\uFF5C\u6EE1 500 \u51CF 80\uFF0C\u4F1A\u5458\u518D 95 \u6298",
+          caption: "11 \u6708 8 \u65E5\u81F3 11 \u65E5\uFF0C\u5230\u5E97\u6216\u7EBF\u4E0A\u4E0B\u5355\u90FD\u53C2\u52A0\u3002",
+          topics: [
+            "\u53CC\u5341\u4E00",
+            "\u5E97\u5E86",
+            "\u670D\u88C5\u5E97"
+          ]
+        }
+      },
+      {
+        type: "styling_tips",
+        name: "\u68A8\u5F62\u8EAB\u6750\u7A7F\u642D\u5C0F\u6280\u5DE7",
+        brief: "\u7ED9\u68A8\u5F62\u8EAB\u6750\u987E\u5BA2\u7684\u4E09\u6761\u7A7F\u642D\u5EFA\u8BAE\u3002",
+        lines: [],
+        copy: null
+      }
+    ],
+    platformNote: "\u6F14\u793A\u6570\u636E\uFF1A\u53D1\u5E03\u56DE\u6267\u4E3A\u793A\u4F8B\uFF0C\u672A\u771F\u6B63\u53D1\u5E03",
+    statsNote: "\u6F14\u793A\u6570\u636E",
+    avatars: [
+      {
+        topic: "company_intro",
+        name: "\u95E8\u5E97\u4ECB\u7ECD\uFF08\u5E97\u957F\u51FA\u955C\u7248\uFF09",
+        script: "\u5927\u5BB6\u597D\uFF0C\u6B22\u8FCE\u6765\u5230\u6211\u4EEC\u7684\u670D\u88C5\u5E97\u3002\u6211\u4EEC\u4E3B\u6253\u901A\u52E4\u4E0E\u7EA6\u4F1A\u4E24\u7C7B\u573A\u666F\uFF0C\u6BCF\u4E00\u5B63\u90FD\u4F1A\u4ECE\u5408\u4F5C\u5DE5\u5382\u76F4\u63A5\u62FF\u65B0\u6B3E\uFF0C\u4EF7\u683C\u5B9E\u5728\u3002\u5E97\u91CC\u6709 AI \u4E00\u952E\u8BD5\u8863\uFF0C\u626B\u7801\u5C31\u80FD\u5728\u624B\u673A\u4E0A\u770B\u5230\u81EA\u5DF1\u7A7F\u4E0A\u65B0\u8863\u670D\u7684\u6837\u5B50\uFF0C\u559C\u6B22\u518D\u5230\u5E97\u8BD5\u5B9E\u7269\u3002\u671F\u5F85\u5728\u5E97\u91CC\u89C1\u5230\u4F60\u3002",
+        facts: [
+          [
+            "\u4E3B\u8425\u54C1\u7C7B",
+            "\u901A\u52E4\u5973\u88C5\u3001\u7537\u88C5\u3001\u7AE5\u88C5"
+          ],
+          [
+            "\u7279\u8272\u670D\u52A1",
+            "AI \u4E00\u952E\u8BD5\u8863\uFF0C\u626B\u7801\u624B\u673A\u67E5\u770B"
+          ]
+        ]
+      },
+      {
+        topic: "holiday",
+        name: "\u53CC\u5341\u4E00\u5E97\u5E86\u795D\u798F",
+        script: "\u53CC\u5341\u4E00\u5E97\u5E86\u5230\u4E86\uFF0C\u611F\u8C22\u5927\u5BB6\u4E00\u76F4\u4EE5\u6765\u7684\u652F\u6301\u3002\u6D3B\u52A8\u671F\u95F4\u5168\u573A\u6EE1 500 \u51CF 80\uFF0C\u4F1A\u5458\u518D\u4EAB 95 \u6298\u3002\u95E8\u5E97\u5730\u5740\u3010\u5F85\u8865\u5145\u3011\uFF0C\u8425\u4E1A\u65F6\u95F4\u3010\u5F85\u8865\u5145\u3011\uFF0C\u6B22\u8FCE\u5230\u5E97\u3002",
+        facts: [
+          [
+            "\u6D3B\u52A8",
+            "\u6EE1 500 \u51CF 80\uFF0C\u4F1A\u5458 95 \u6298"
+          ]
+        ]
+      }
+    ],
+    listingDetail: "{name}\uFF0C{color}\uFF0C{fabric}\u9762\u6599\u3002{sellingPoints} \u5C3A\u7801\u9F50\u5168\uFF0C\u652F\u6301\u5230\u5E97\u8BD5\u7A7F\uFF1B\u9644\u5C3A\u7801\u8868\uFF0C\u4E0B\u5355\u524D\u53EF\u54A8\u8BE2\u5BA2\u670D\u3002",
+    keywords: [
+      "\u65B0\u6B3E",
+      "\u767E\u642D",
+      "\u663E\u7626"
+    ],
+    importFile: {
+      sales: "\u6F14\u793A\u6570\u636E \xB7 \u6536\u94F6\u9500\u552E\u660E\u7EC6",
+      expense: "\u6F14\u793A\u6570\u636E \xB7 \u95E8\u5E97\u8D39\u7528"
+    },
+    qa: [
+      {
+        q: "\u6700\u8FD1 7 \u5929\u54EA\u4E2A\u6E20\u9053\u5356\u5F97\u6700\u597D\uFF1F",
+        a: "\u6700\u8FD1 7 \u5929{top}\u7684\u9500\u552E\u989D\u6700\u9AD8\uFF0C\u4E3A {amount} \u5143\uFF0C\u5360\u5168\u90E8\u7684 {share}\u3002"
+      },
+      {
+        q: "\u8FD9\u4E2A\u6708\u7684\u6BDB\u5229\u7387\u662F\u591A\u5C11\uFF1F",
+        a: "{from} \u81F3 {to} \u7684\u6BDB\u5229\u4E3A {gp} \u5143\uFF0C\u6BDB\u5229\u7387 {gm}\u3002"
+      }
+    ],
+    commentary: "{from} \u81F3 {to} \u8425\u4E1A\u989D {revenue} \u5143\uFF0C\u5171 {orders} \u5355\uFF0C\u5BA2\u5355\u4EF7 {aov} \u5143\uFF1B\u6BDB\u5229 {gp} \u5143\uFF0C\u6BDB\u5229\u7387 {gm}\u3002\u9500\u552E\u989D\u6700\u9AD8\u7684\u6E20\u9053\u662F{topChannel}\uFF0C\u7545\u9500\u6B3E\u662F\u300C{topItem}\u300D\u3002",
+    log: [
+      "\u5BFC\u5165\u6536\u94F6\u9500\u552E\u660E\u7EC6\uFF08\u6F14\u793A\u6570\u636E\uFF09",
+      "\u5BFC\u5165\u95E8\u5E97\u8D39\u7528\uFF08\u6F14\u793A\u6570\u636E\uFF09",
+      "\u751F\u6210\u7ECF\u8425\u65E5\u62A5",
+      "\u5E93\u5B58\u5DE1\u68C0\uFF1A\u53D1\u73B0\u552E\u7F44\u4E0E\u65AD\u7801\u6B3E",
+      "\u4E0A\u67B6\u4EFB\u52A1\u5DF2\u4EA4\u7ED9\u6570\u5B57\u5458\u5DE5\uFF0C\u505C\u5728\u63D0\u4EA4\u524D\u7B49\u786E\u8BA4"
+    ],
+    history: {
+      create: "\u65B0\u5EFA\u89C6\u9891\u9879\u76EE",
+      script: "\u5DF2\u751F\u6210\u5206\u955C\u811A\u672C\u4E0E\u56DB\u4E2A\u5E73\u53F0\u7684\u6587\u6848",
+      render: "\u793A\u4F8B\u6210\u7247\u5DF2\u751F\u6210\uFF08\u6F14\u793A\u6570\u636E\uFF09",
+      approve: "\u5E97\u957F\u5BA1\u6838\u901A\u8FC7",
+      schedule: "\u5B9A\u65F6\u53D1\u5E03\uFF1A\u660E\u5929 10:00",
+      publish: "\u5DF2\u53D1\u5E03\u5230\u6296\u97F3\u3001\u5C0F\u7EA2\u4E66\uFF08\u6F14\u793A\u56DE\u6267\uFF09",
+      stats: "\u5DF2\u56DE\u586B\u5404\u5E73\u53F0\u64AD\u653E\u6570\u636E\uFF08\u6F14\u793A\u6570\u636E\uFF09"
+    }
+  },
+  en: {
+    channels: [
+      "In-store",
+      "Douyin Shop",
+      "WeChat Shop"
+    ],
+    expenses: [
+      "Store rent",
+      "Staff wages",
+      "Utilities and property fees",
+      "Online promotion"
+    ],
+    videos: [
+      {
+        type: "new_arrival",
+        name: "Autumn/Winter New Arrivals \xB7 Wave 1",
+        brief: "New autumn/winter pieces are in: the blazer and the midi skirt. Free scarf with any in-store try-on.",
+        lines: [
+          "Our autumn/winter arrivals are here, starting with this one-button blazer",
+          "Oatmeal beige goes with skirts and trousers alike",
+          "A high-waist A-line skirt that lengthens the legs",
+          "Try them on in store and take home a free scarf"
+        ],
+        copy: {
+          title: "New in: blazer + midi skirt for a week of office looks",
+          caption: "Oatmeal blazer with a coffee A-line skirt, for the office or a date. Free scarf with an in-store try-on.",
+          topics: [
+            "autumn outfits",
+            "office style",
+            "new arrivals"
+          ]
+        }
+      },
+      {
+        type: "multi_look",
+        name: "One Little Black Dress, Three Ways",
+        brief: "The same satin LBD styled for work, a date and a dinner party.",
+        lines: [
+          "One little black dress, styled for work",
+          "For a date, just change the shoes",
+          "Add a jacket for dinner"
+        ],
+        copy: {
+          title: "One LBD, three occasions",
+          caption: "A satin little black dress for work, dates and dinners. Which look is your favorite?",
+          topics: [
+            "little black dress",
+            "one piece many looks",
+            "styling tips"
+          ]
+        }
+      },
+      {
+        type: "promotion",
+        name: "Singles' Day Anniversary Sale Teaser",
+        brief: "Nov 8\u201311: 80 off every 500 spent, plus an extra 5% off for members.",
+        lines: [
+          "Our Singles' Day anniversary sale is here",
+          "80 off every 500 spent",
+          "Members get an extra 5% off, Nov 8 to 11"
+        ],
+        copy: {
+          title: "Anniversary sale: 80 off every 500, members extra 5% off",
+          caption: "Nov 8\u201311, in store and online.",
+          topics: [
+            "Singles' Day",
+            "anniversary sale",
+            "fashion store"
+          ]
+        }
+      },
+      {
+        type: "styling_tips",
+        name: "Styling Tips for Pear-Shaped Figures",
+        brief: "Three styling tips for pear-shaped customers.",
+        lines: [],
+        copy: null
+      }
+    ],
+    platformNote: "Demo data: sample receipt, not actually published",
+    statsNote: "Demo data",
+    avatars: [
+      {
+        topic: "company_intro",
+        name: "Store Introduction (manager on camera)",
+        script: "Hello and welcome to our store. We focus on office and date-night looks, and every season we bring in new styles straight from our partner factories at honest prices. Try our AI fitting: scan the code and see yourself in the new clothes on your phone, then come in and try the real thing. We look forward to seeing you.",
+        facts: [
+          [
+            "Main categories",
+            "Office womenswear, menswear, kidswear"
+          ],
+          [
+            "Special service",
+            "AI try-on, view on your phone"
+          ]
+        ]
+      },
+      {
+        topic: "holiday",
+        name: "Singles' Day Anniversary Greeting",
+        script: "Our Singles' Day anniversary is here. Thank you for your support. During the sale, get 80 off every 500 spent, and members get an extra 5% off. Store address [to be filled in], opening hours [to be filled in]. See you soon.",
+        facts: [
+          [
+            "Promotion",
+            "80 off every 500, members extra 5% off"
+          ]
+        ]
+      }
+    ],
+    listingDetail: "{name}, {color}, {fabric}. {sellingPoints} Full size range, in-store try-on available; size chart included, ask customer service before ordering.",
+    keywords: [
+      "new",
+      "versatile",
+      "flattering"
+    ],
+    importFile: {
+      sales: "Demo data \xB7 POS sales detail",
+      expense: "Demo data \xB7 Store expenses"
+    },
+    qa: [
+      {
+        q: "Which channel sold best in the last 7 days?",
+        a: "In the last 7 days, {top} had the highest sales at {amount}, {share} of the total."
+      },
+      {
+        q: "What is this month's gross margin?",
+        a: "From {from} to {to}, gross profit was {gp}, a gross margin of {gm}."
+      }
+    ],
+    commentary: 'From {from} to {to}: revenue {revenue} across {orders} orders, average order value {aov}; gross profit {gp}, gross margin {gm}. The top channel was {topChannel} and the best seller was "{topItem}".',
+    log: [
+      "Imported POS sales detail (demo data)",
+      "Imported store expenses (demo data)",
+      "Generated the daily business report",
+      "Inventory patrol: found sold-out and broken-size items",
+      "Listing task handed to the digital employee, paused before submission"
+    ],
+    history: {
+      create: "Video project created",
+      script: "Storyboard and copy for four platforms generated",
+      render: "Sample cut generated (demo data)",
+      approve: "Approved by the store manager",
+      schedule: "Scheduled: tomorrow 10:00",
+      publish: "Published to Douyin and Xiaohongshu (sample receipts)",
+      stats: "Platform play counts filled in (demo data)"
+    }
+  }
+};
+
+// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/services/bizAutomation/demo.ts
+var DEMO_MARK = "-demo_";
+var isDemo = (id) => !!id && id.includes(DEMO_MARK);
+var demoId = (prefix) => newId(`${prefix}-demo`);
+function bizDemoCounts(store2) {
+  const s = store2.read();
+  return {
+    videos: s.videos.filter((v) => isDemo(v.id)).length,
+    avatars: s.avatars.filter((a) => isDemo(a.id)).length,
+    listings: s.listings.filter((l) => isDemo(l.id)).length,
+    sales: store2.data().sales.filter((r) => r.orderNo.startsWith("DEMO-")).length,
+    reports: s.reports.filter((r) => isDemo(r.id)).length
+  };
+}
+function rng(seed) {
+  let a = seed >>> 0;
+  return () => {
+    a = a + 1831565813 >>> 0;
+    let t = a;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+var day = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+var money = (n) => (Math.round(n * 100) / 100).toLocaleString("en-US", { maximumFractionDigits: 2 });
+var pct = (v) => `${(v * 100).toFixed(1)}%`;
+var fill = (tpl, vars) => tpl.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ""));
+async function seedBizDemo(deps) {
+  const { store: store2 } = deps;
+  clearBizDemo(store2);
+  await deps.ensureDemoGarments();
+  const L = String((0, import_i18n4.getLocale)() || "").startsWith("zh") ? demoData_default.zh : demoData_default.en;
+  const now = deps.now ?? Date.now();
+  const r = rng(Math.floor(now / 864e5) + 17);
+  const iso = (t) => new Date(t).toISOString();
+  const all = deps.garments();
+  const gs = all.filter((g) => isDemo(g.id));
+  const pool = gs.length ? gs : all;
+  if (!pool.length) throw new Error("NO_GARMENTS");
+  const pick = (k2) => pool[k2 % pool.length];
+  const women = pool.filter((g) => g.audience === "women");
+  const byKey = (i) => women[i] || pick(i);
+  const dir = store2.dir("demo");
+  const platforms = ["douyin", "kuaishou", "xiaohongshu", "wxchannels"];
+  const videos = [];
+  const garmentSets = [[byKey(1), byKey(2)], [byKey(3), byKey(3)], [byKey(0), byKey(4)], [byKey(2)]];
+  for (const [i, def] of L.videos.entries()) {
+    const set = garmentSets[i].filter(Boolean);
+    const created = now - (6 - i * 1.5) * 864e5;
+    const scenes = def.lines.map((line, k2) => ({ image: set[k2 % set.length]?.image || "", line }));
+    const v = {
+      id: demoId("bav"),
+      type: def.type,
+      name: def.name,
+      garmentIds: [...new Set(set.map((g) => g.id))],
+      brief: def.brief,
+      materials: set.map((g) => g.image).filter(Boolean),
+      scenes,
+      copies: {},
+      platforms: i === 0 ? ["douyin", "xiaohongshu"] : ["douyin", "kuaishou", "xiaohongshu", "wxchannels"],
+      narration: true,
+      voiceGender: "female",
+      status: "draft",
+      warnings: [],
+      history: [],
+      publishRuns: [],
+      createdAt: iso(created)
+    };
+    v.history = appendVideoEvent(v.history, "create", L.history.create, true, new Date(created));
+    if (def.copy) {
+      for (const p of platforms) v.copies[p] = { title: def.copy.title, caption: def.copy.caption, topics: def.copy.topics };
+      v.status = "scripted";
+      v.history = appendVideoEvent(v.history, "script", L.history.script, true, new Date(created + 20 * 6e4));
+    }
+    if (i <= 1) {
+      const clip = await deps.makeClip(v.materials.length ? v.materials : set.map((g) => g.image), (0, import_node_path3.join)(dir, `${v.id}.mp4`));
+      if (clip && (0, import_node_fs3.existsSync)(clip)) {
+        v.video = clip;
+        v.durationSec = 3 * Math.max(2, v.materials.length);
+      }
+      v.status = "approved";
+      v.approvedAt = iso(created + 2 * 36e5);
+      if (clip) v.history = appendVideoEvent(v.history, "render", L.history.render, true, new Date(created + 60 * 6e4));
+      v.history = appendVideoEvent(v.history, "approve", L.history.approve, true, new Date(created + 2 * 36e5));
+      if (i === 1) {
+        const t = new Date(now + 864e5);
+        t.setHours(10, 0, 0, 0);
+        v.publishAt = t.toISOString();
+        v.history = appendVideoEvent(v.history, "schedule", L.history.schedule, true, new Date(created + 2.1 * 36e5));
+      } else {
+        v.status = "published";
+        v.publishedAt = iso(created + 3 * 36e5);
+        v.publishRuns = [{
+          at: v.publishedAt,
+          outcome: "completed",
+          published: ["douyin", "xiaohongshu"],
+          unconfirmed: [],
+          failed: [],
+          receipts: [{ platform: "douyin", status: "published" }, { platform: "xiaohongshu", status: "published" }],
+          videoFile: v.video,
+          note: L.platformNote
+        }];
+        v.publishRunNote = L.platformNote;
+        v.history = appendVideoEvent(v.history, "publish", L.history.publish, true, new Date(created + 3 * 36e5));
+        v.stats = {
+          douyin: { plays: 12840, likes: 516, comments: 47, shares: 23, source: "manual", at: iso(now - 864e5) },
+          xiaohongshu: { plays: 3260, likes: 288, comments: 31, shares: 12, source: "manual", at: iso(now - 864e5) }
+        };
+        v.history = appendVideoEvent(v.history, "stats", L.history.stats, true, new Date(now - 864e5));
+      }
+    }
+    v.updatedAt = iso(created + 3 * 36e5);
+    videos.push(v);
+  }
+  const avatars = L.avatars.map((a, i) => ({
+    id: demoId("baa"),
+    topic: a.topic,
+    name: a.name,
+    script: a.script,
+    facts: a.facts.map(([label, value]) => ({ label, value })),
+    durationHint: 45,
+    avatarId: "",
+    voiceId: "",
+    aspectRatio: "9:16",
+    likenessConsent: "",
+    status: i === 0 ? "scripted" : "draft",
+    warnings: [],
+    createdAt: iso(now - (3 - i) * 864e5)
+  }));
+  const settings = store2.read().settings;
+  const chans = settings.channels.filter((c) => c.id === "doudian" || c.id === "weixin_shop");
+  const statuses = ["listed", "listed", "handed", "confirmed", "draft", "draft", "delisted", "listed"];
+  const listings = [];
+  let k = 0;
+  for (const g of pool.slice(0, 4)) {
+    for (const ch of chans) {
+      const title = g.name.length > ch.titleMax ? g.name.slice(0, ch.titleMax) : g.name;
+      listings.push({
+        id: demoId("bal"),
+        garmentId: g.id,
+        channelId: ch.id,
+        title,
+        sellingPoints: (g.sellingPoints || "").split(/[，。,.;；]/).map((x) => x.trim()).filter(Boolean).slice(0, 4),
+        detail: fill(L.listingDetail, { name: g.name, color: g.color, fabric: g.fabric, sellingPoints: g.sellingPoints }),
+        keywords: [.../* @__PURE__ */ new Set([...g.tags || [], ...L.keywords])].slice(0, 6),
+        images: g.image ? [g.image] : [],
+        price: g.price,
+        status: statuses[k % statuses.length],
+        warnings: [],
+        createdAt: iso(now - (8 - k * 0.5) * 864e5)
+      });
+      k += 1;
+    }
+  }
+  const sales = [];
+  const today = new Date(now);
+  for (let d = 60; d >= 1; d -= 1) {
+    const date = day(new Date(today.getFullYear(), today.getMonth(), today.getDate() - d));
+    const weekend = [0, 6].includes(new Date(date).getDay());
+    const orders = (weekend ? 10 : 6) + Math.floor(r() * 6);
+    for (let o = 1; o <= orders; o += 1) {
+      const orderNo = `DEMO-${date.replace(/-/g, "")}-${String(o).padStart(3, "0")}`;
+      const channel = L.channels[r() < 0.55 ? 0 : r() < 0.6 ? 1 : 2];
+      const lines = r() < 0.3 ? 2 : 1;
+      for (let x = 0; x < lines; x += 1) {
+        const g = pool[Math.floor(r() * pool.length) % pool.length];
+        const qty = r() < 0.85 ? 1 : 2;
+        const disc = r() < 0.25 ? 0.85 : 1;
+        const amount = Math.round(g.price * qty * disc * 100) / 100;
+        sales.push({ date, orderNo, sku: g.sku, name: g.name, category: g.category, qty, amount, cost: Math.round(g.price * 0.42 * qty * 100) / 100, channel, demo: true });
+      }
+    }
+  }
+  for (const t of [sales[30], sales[sales.length - 40]].filter(Boolean)) {
+    sales.push({ ...t, orderNo: `${t.orderNo}-R`, qty: -t.qty, amount: -t.amount, cost: t.cost == null ? null : -t.cost, demo: true });
+  }
+  const expenses = [];
+  const amounts = [18e3, 26e3, 1800, 3e3];
+  for (const m of [2, 1, 0]) {
+    const first = new Date(today.getFullYear(), today.getMonth() - m, 1);
+    if (now - first.getTime() > 62 * 864e5) continue;
+    for (const [i, item] of L.expenses.entries()) expenses.push({ date: day(first), item, amount: amounts[i], demo: true });
+  }
+  const dates = sales.map((x) => x.date).sort();
+  const imports = [
+    { id: demoId("bai"), kind: "sales", source: "manual", file: L.importFile.sales, rows: sales.length, skipped: 0, mapping: {}, from: dates[0], to: dates[dates.length - 1], importedAt: iso(now - 2 * 36e5) },
+    { id: demoId("bai"), kind: "expense", source: "manual", file: L.importFile.expense, rows: expenses.length, skipped: 0, mapping: {}, from: expenses[0]?.date || dates[0], to: expenses[expenses.length - 1]?.date || dates[0], importedAt: iso(now - 2 * 36e5) }
+  ];
+  store2.updateData((d) => {
+    d.sales = [...d.sales, ...sales];
+    d.expenses = [...d.expenses, ...expenses];
+  });
+  const allSales = store2.data().sales;
+  const allExp = store2.data().expenses;
+  const reportOf = (kind, from, to, at) => {
+    const metrics = computeMetrics(allSales, allExp, deps.garments(), from, to);
+    const commentary = fill(L.commentary, {
+      from,
+      to,
+      revenue: money(metrics.netRevenue),
+      orders: metrics.orders,
+      aov: money(metrics.avgOrderValue),
+      gp: money(metrics.grossProfit),
+      gm: pct(metrics.grossMargin),
+      topChannel: metrics.byChannel[0]?.label || "-",
+      topItem: metrics.topItems[0]?.label || "-"
+    });
+    return { id: demoId("bar"), kind, metrics, commentary, unverified: unverifiedNumbers(commentary, metrics), model: "demo", createdAt: iso(at) };
+  };
+  const daily = reportPeriod("daily", new Date(now));
+  const monthly = reportPeriod("monthly", new Date(now));
+  const reports = [reportOf("daily", daily.from, daily.to, now - 36e5), reportOf("monthly", monthly.from, monthly.to, now - 2 * 864e5)];
+  const last = dates[dates.length - 1];
+  const week = computeMetrics(allSales, allExp, deps.garments(), shiftDate(last, -6), last);
+  const qa = [
+    { q: L.qa[0].q, a: fill(L.qa[0].a, { top: week.byChannel[0]?.label || "-", amount: money(week.byChannel[0]?.value || 0), share: pct(week.byChannel[0]?.share || 0) }), model: "demo", at: iso(now - 90 * 6e4), demo: true },
+    { q: L.qa[1].q, a: fill(L.qa[1].a, { from: monthly.from, to: monthly.to, gp: money(reports[1].metrics.grossProfit), gm: pct(reports[1].metrics.grossMargin) }), model: "demo", at: iso(now - 80 * 6e4), demo: true }
+  ];
+  const log = [
+    { at: iso(now - 2 * 36e5), module: "finance", text: L.log[0], ok: true, demo: true },
+    { at: iso(now - 2 * 36e5 + 6e4), module: "finance", text: L.log[1], ok: true, demo: true },
+    { at: iso(now - 36e5), module: "schedule", text: L.log[2], ok: true, demo: true },
+    { at: iso(now - 50 * 6e4), module: "listing", text: L.log[3], ok: true, demo: true },
+    { at: iso(now - 40 * 6e4), module: "listing", text: L.log[4], ok: true, demo: true }
+  ];
+  const ruleHits = evaluateRules(deps.garments(), settings, deps.apparelStats(), new Date(now));
+  store2.update((s) => {
+    s.videos = [...videos.reverse(), ...s.videos];
+    s.avatars = [...avatars.reverse(), ...s.avatars];
+    s.listings = [...listings, ...s.listings];
+    s.imports = [...imports, ...s.imports];
+    s.reports = [...reports, ...s.reports];
+    s.qa = [...qa, ...s.qa];
+    s.log = [...log.reverse(), ...s.log];
+    s.ruleHits = ruleHits;
+  });
+  return bizDemoCounts(store2);
+}
+function clearBizDemo(store2) {
+  const before = bizDemoCounts(store2);
+  const anyFlag = (x) => !!x.demo;
+  store2.update((s) => {
+    s.videos = s.videos.filter((v) => !isDemo(v.id));
+    s.avatars = s.avatars.filter((a) => !isDemo(a.id));
+    s.listings = s.listings.filter((l) => !isDemo(l.id) && !isDemo(l.garmentId));
+    s.imports = s.imports.filter((i) => !isDemo(i.id));
+    s.reports = s.reports.filter((r) => !isDemo(r.id));
+    s.qa = s.qa.filter((q) => !anyFlag(q));
+    s.log = s.log.filter((l) => !anyFlag(l));
+    s.ruleHits = s.ruleHits.filter((h) => !isDemo(h.garmentId));
+  });
+  store2.updateData((d) => {
+    d.sales = d.sales.filter((r) => !r.orderNo.startsWith("DEMO-") && !anyFlag(r));
+    d.expenses = d.expenses.filter((r) => !anyFlag(r));
+  });
+  try {
+    (0, import_node_fs3.rmSync)((0, import_node_path3.join)(store2.root(), "demo"), { recursive: true, force: true });
+  } catch {
+  }
+  return before;
+}
+
+// ../../../totalclaw-solutions/solutions/workbench-biz-automation/src/main/ipc/bizAutomation.ipc.ts
+var import_logic5 = require("host:apps/desktop-shell/src/main/services/apparelStore/logic.ts");
 var import_brandPaths = require("host:apps/desktop-shell/src/main/services/brandPaths.ts");
 var BIZ_SOLUTION_ID = "workbench-biz-automation";
 var store = new BizAutomationStore();
 var VIDEO_TYPE_LABEL = () => ({
-  new_arrival: (0, import_i18n4.t)("\u65B0\u54C1\u4E0A\u65B0"),
-  multi_look: (0, import_i18n4.t)("\u4E00\u8863\u591A\u642D"),
-  store_tour: (0, import_i18n4.t)("\u95E8\u5E97\u63A2\u5E97"),
-  promotion: (0, import_i18n4.t)("\u4FC3\u9500\u6D3B\u52A8"),
-  styling_tips: (0, import_i18n4.t)("\u7A7F\u642D\u6559\u7A0B")
+  new_arrival: (0, import_i18n5.t)("\u65B0\u54C1\u4E0A\u65B0"),
+  multi_look: (0, import_i18n5.t)("\u4E00\u8863\u591A\u642D"),
+  store_tour: (0, import_i18n5.t)("\u95E8\u5E97\u63A2\u5E97"),
+  promotion: (0, import_i18n5.t)("\u4FC3\u9500\u6D3B\u52A8"),
+  styling_tips: (0, import_i18n5.t)("\u7A7F\u642D\u6559\u7A0B")
 });
 var AVATAR_TOPIC_LABEL = () => ({
-  company_intro: (0, import_i18n4.t)("\u4F01\u4E1A\u4ECB\u7ECD"),
-  brand_story: (0, import_i18n4.t)("\u54C1\u724C\u6545\u4E8B"),
-  store_opening: (0, import_i18n4.t)("\u65B0\u5E97\u5F00\u4E1A"),
-  service_intro: (0, import_i18n4.t)("\u95E8\u5E97\u670D\u52A1\u4ECB\u7ECD"),
-  recruiting: (0, import_i18n4.t)("\u62DB\u8058"),
-  holiday: (0, import_i18n4.t)("\u8282\u65E5\u795D\u798F")
+  company_intro: (0, import_i18n5.t)("\u4F01\u4E1A\u4ECB\u7ECD"),
+  brand_story: (0, import_i18n5.t)("\u54C1\u724C\u6545\u4E8B"),
+  store_opening: (0, import_i18n5.t)("\u65B0\u5E97\u5F00\u4E1A"),
+  service_intro: (0, import_i18n5.t)("\u95E8\u5E97\u670D\u52A1\u4ECB\u7ECD"),
+  recruiting: (0, import_i18n5.t)("\u62DB\u8058"),
+  holiday: (0, import_i18n5.t)("\u8282\u65E5\u795D\u798F")
 });
 var PLATFORM_PARAM = { douyin: "douyin", kuaishou: "kuaishou", xiaohongshu: "xiaohongshu", wxchannels: "wxchannels" };
-var PLATFORM_LABEL = () => ({ douyin: (0, import_i18n4.t)("\u6296\u97F3"), kuaishou: (0, import_i18n4.t)("\u5FEB\u624B"), xiaohongshu: (0, import_i18n4.t)("\u5C0F\u7EA2\u4E66"), wxchannels: (0, import_i18n4.t)("\u89C6\u9891\u53F7") });
-var platformNames = (ids) => ids.map((x) => PLATFORM_LABEL()[x] || x).join((0, import_i18n4.t)("\u3001"));
+var PLATFORM_LABEL = () => ({ douyin: (0, import_i18n5.t)("\u6296\u97F3"), kuaishou: (0, import_i18n5.t)("\u5FEB\u624B"), xiaohongshu: (0, import_i18n5.t)("\u5C0F\u7EA2\u4E66"), wxchannels: (0, import_i18n5.t)("\u89C6\u9891\u53F7") });
+var platformNames = (ids) => ids.map((x) => PLATFORM_LABEL()[x] || x).join((0, import_i18n5.t)("\u3001"));
 function requireFound(v, what) {
-  if (v == null) throw new Error((0, import_i18n4.t)("{p0}\u4E0D\u5B58\u5728\u6216\u5DF2\u5220\u9664", { p0: what }));
+  if (v == null) throw new Error((0, import_i18n5.t)("{p0}\u4E0D\u5B58\u5728\u6216\u5DF2\u5220\u9664", { p0: what }));
   return v;
 }
 function registerBizAutomationHandlers(deps) {
@@ -1050,9 +1620,9 @@ function registerBizAutomationHandlers(deps) {
   });
   const outputDir = (sub, create = true) => {
     const s = store.read().settings;
-    const root = s.outputDir && (0, import_node_fs3.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path3.join)(import_electron.app.getPath("documents"), (0, import_brandPaths.documentsFolderName)(), (0, import_i18n4.t)("\u7ECF\u8425\u81EA\u52A8\u5316"));
-    const dir = sub ? (0, import_node_path3.join)(root, sub) : root;
-    if (create) (0, import_node_fs3.mkdirSync)(dir, { recursive: true });
+    const root = s.outputDir && (0, import_node_fs4.existsSync)(s.outputDir) ? s.outputDir : (0, import_node_path4.join)(import_electron.app.getPath("documents"), (0, import_brandPaths.documentsFolderName)(), (0, import_i18n5.t)("\u7ECF\u8425\u81EA\u52A8\u5316"));
+    const dir = sub ? (0, import_node_path4.join)(root, sub) : root;
+    if (create) (0, import_node_fs4.mkdirSync)(dir, { recursive: true });
     return dir;
   };
   const agentHome = () => deps.appConfig?.engines?.["totalclaw-agent"]?.totalclawHome || deps.totalclawAgentHome;
@@ -1117,7 +1687,7 @@ function registerBizAutomationHandlers(deps) {
   const tryonImages = (garmentId, max = 3) => {
     const s = (0, import_apparelStore.apparelService)()?.store.read();
     if (!s) return [];
-    return s.tryons.filter((t) => t.garmentId === garmentId && t.status === "done" && t.image && (0, import_node_fs3.existsSync)(t.image)).map((t) => t.image).slice(0, max);
+    return s.tryons.filter((t) => t.garmentId === garmentId && t.status === "done" && t.image && (0, import_node_fs4.existsSync)(t.image)).map((t) => t.image).slice(0, max);
   };
   const knowledgeFacts = () => {
     try {
@@ -1138,7 +1708,7 @@ function registerBizAutomationHandlers(deps) {
   };
   const pushOutlets = async (title, body) => {
     const settings = deps.cronNotifyStore?.get();
-    if (!settings || !Object.values(settings.outlets || {}).some(Boolean)) throw new Error((0, import_i18n4.t)("\u8FD8\u6CA1\u6709\u914D\u7F6E\u63A8\u9001\u6E20\u9053\uFF1A\u8BF7\u5230\u300C\u8BBE\u7F6E \u2192 \u901A\u77E5\u4E0E\u63A8\u9001\u300D\u586B\u5199\u4F01\u4E1A\u5FAE\u4FE1 / \u9489\u9489\u673A\u5668\u4EBA\u6216\u90AE\u7BB1"));
+    if (!settings || !Object.values(settings.outlets || {}).some(Boolean)) throw new Error((0, import_i18n5.t)("\u8FD8\u6CA1\u6709\u914D\u7F6E\u63A8\u9001\u6E20\u9053\uFF1A\u8BF7\u5230\u300C\u8BBE\u7F6E \u2192 \u901A\u77E5\u4E0E\u63A8\u9001\u300D\u586B\u5199\u4F01\u4E1A\u5FAE\u4FE1 / \u9489\u9489\u673A\u5668\u4EBA\u6216\u90AE\u7BB1"));
     const { notifyCronResult } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/cronResultNotifier.ts"), 1));
     const jobId = "biz-automation";
     const outcomes = await notifyCronResult(
@@ -1172,13 +1742,14 @@ function registerBizAutomationHandlers(deps) {
       qa: s.qa,
       log: s.log,
       ready: { ffmpeg: !!tools(), image: imageReady(), digitalHuman: !!deps.digitalHumanProc, knowledge, push: pushReady() },
-      outputDir: outputDir(void 0, false)
+      outputDir: outputDir(void 0, false),
+      demo: bizDemoCounts(store)
     };
   };
-  const videoById = (id) => requireFound(store.read().videos.find((v) => v.id === id), (0, import_i18n4.t)("\u89C6\u9891\u9879\u76EE"));
+  const videoById = (id) => requireFound(store.read().videos.find((v) => v.id === id), (0, import_i18n5.t)("\u89C6\u9891\u9879\u76EE"));
   const patchVideo = (id, patch) => {
     const r = store.update((s) => {
-      const v = requireFound(s.videos.find((x) => x.id === id), (0, import_i18n4.t)("\u89C6\u9891\u9879\u76EE"));
+      const v = requireFound(s.videos.find((x) => x.id === id), (0, import_i18n5.t)("\u89C6\u9891\u9879\u76EE"));
       Object.assign(v, patch, { updatedAt: (/* @__PURE__ */ new Date()).toISOString() });
       return v;
     });
@@ -1200,26 +1771,26 @@ function registerBizAutomationHandlers(deps) {
     const text = [...v.scenes.map((s) => s.line), ...Object.values(v.copies).flatMap((c) => [c?.title, c?.caption])].join("\n");
     const w = [];
     const banned = bannedHits(text);
-    if (banned.length) w.push((0, import_i18n4.t)("\u542B\u5E7F\u544A\u6CD5\u6781\u9650\u8BCD\uFF1A{p0}", { p0: banned.join((0, import_i18n4.t)("\u3001")) }));
+    if (banned.length) w.push((0, import_i18n5.t)("\u542B\u5E7F\u544A\u6CD5\u6781\u9650\u8BCD\uFF1A{p0}", { p0: banned.join((0, import_i18n5.t)("\u3001")) }));
     const prices = v.garmentIds.map((id) => garment(id)?.price || 0).filter(Boolean);
     const stray = strayPrices(text, v.brief, prices);
-    if (stray.length) w.push((0, import_i18n4.t)("\u51FA\u73B0\u6D3B\u52A8\u4FE1\u606F\u91CC\u6CA1\u6709\u7684\u4EF7\u683C / \u6298\u6263\uFF1A{p0}", { p0: stray.join((0, import_i18n4.t)("\u3001")) }));
+    if (stray.length) w.push((0, import_i18n5.t)("\u51FA\u73B0\u6D3B\u52A8\u4FE1\u606F\u91CC\u6CA1\u6709\u7684\u4EF7\u683C / \u6298\u6263\uFF1A{p0}", { p0: stray.join((0, import_i18n5.t)("\u3001")) }));
     return w;
   };
   const createVideo = (p) => {
     const ids = (p.garmentIds || []).filter((id) => garment(id));
-    if (!ids.length) throw new Error((0, import_i18n4.t)("\u8BF7\u5148\u9009\u62E9\u5546\u54C1\uFF08\u5546\u54C1\u5E93\u5728\u300C\u670D\u88C5AI\u8BD5\u8863\u300D\u91CC\u7EF4\u62A4\uFF09"));
+    if (!ids.length) throw new Error((0, import_i18n5.t)("\u8BF7\u5148\u9009\u62E9\u5546\u54C1\uFF08\u5546\u54C1\u5E93\u5728\u300C\u670D\u88C5AI\u8BD5\u8863\u300D\u91CC\u7EF4\u62A4\uFF09"));
     const materials = [];
     for (const id of ids) {
       const g = garment(id);
-      if (g.image && (0, import_node_fs3.existsSync)(g.image)) materials.push(g.image);
+      if (g.image && (0, import_node_fs4.existsSync)(g.image)) materials.push(g.image);
       materials.push(...tryonImages(id, p.type === "multi_look" ? 5 : 2));
     }
-    if (!materials.length) throw new Error((0, import_i18n4.t)("\u9009\u4E2D\u7684\u5546\u54C1\u6CA1\u6709\u56FE\u7247"));
+    if (!materials.length) throw new Error((0, import_i18n5.t)("\u9009\u4E2D\u7684\u5546\u54C1\u6CA1\u6709\u56FE\u7247"));
     const v = {
       id: newId("bav"),
       type: p.type,
-      name: p.name || `${VIDEO_TYPE_LABEL()[p.type]} \xB7 ${garment(ids[0]).name}${ids.length > 1 ? (0, import_i18n4.t)(" \u7B49 {n} \u6B3E", { n: ids.length }) : ""}`,
+      name: p.name || `${VIDEO_TYPE_LABEL()[p.type]} \xB7 ${garment(ids[0]).name}${ids.length > 1 ? (0, import_i18n5.t)(" \u7B49 {n} \u6B3E", { n: ids.length }) : ""}`,
       garmentIds: ids,
       brief: String(p.brief || ""),
       materials,
@@ -1232,7 +1803,7 @@ function registerBizAutomationHandlers(deps) {
       warnings: [],
       createdAt: (/* @__PURE__ */ new Date()).toISOString()
     };
-    v.history = appendVideoEvent([], "create", (0, import_i18n4.t)("\u521B\u5EFA\u9879\u76EE\uFF1A{p0} \xB7 {n} \u6B3E\u5546\u54C1 \xB7 {m} \u5F20\u7D20\u6750 \xB7 \u53D1\u5E03\u5230 {p1}", { p0: VIDEO_TYPE_LABEL()[v.type], n: ids.length, m: materials.length, p1: platformNames(v.platforms) }));
+    v.history = appendVideoEvent([], "create", (0, import_i18n5.t)("\u521B\u5EFA\u9879\u76EE\uFF1A{p0} \xB7 {n} \u6B3E\u5546\u54C1 \xB7 {m} \u5F20\u7D20\u6750 \xB7 \u53D1\u5E03\u5230 {p1}", { p0: VIDEO_TYPE_LABEL()[v.type], n: ids.length, m: materials.length, p1: platformNames(v.platforms) }));
     store.update((s) => {
       s.videos.unshift(v);
     });
@@ -1241,14 +1812,14 @@ function registerBizAutomationHandlers(deps) {
   };
   const scriptVideo = async (id) => {
     const v = videoById(id);
-    progress("video", (0, import_i18n4.t)("\u6B63\u5728\u5199\u5206\u955C\u811A\u672C\u4E0E\u5404\u5E73\u53F0\u6587\u6848\u2026"));
+    progress("video", (0, import_i18n5.t)("\u6B63\u5728\u5199\u5206\u955C\u811A\u672C\u4E0E\u5404\u5E73\u53F0\u6587\u6848\u2026"));
     const gs = v.garmentIds.map(garment).filter(Boolean);
     const { json, model } = await llmJson("video", videoScriptPrompt({ type: v.type, brand: store.read().settings.brandName, brief: v.brief, garments: gs, imageCount: v.materials.length, platforms: v.platforms }));
     const scenes = (Array.isArray(json.scenes) ? json.scenes : []).slice(0, 8).map((s, i) => {
       const idx = Number.isInteger(Number(s?.image)) ? Math.min(Math.max(Number(s.image), 0), v.materials.length - 1) : i % v.materials.length;
       return { image: v.materials[idx], line: String(s?.line || "").slice(0, 40) };
     }).filter((s) => s.line);
-    if (!scenes.length) throw new Error((0, import_i18n4.t)("\u6A21\u578B\u6CA1\u6709\u5199\u51FA\u5206\u955C\uFF0C\u8BF7\u91CD\u8BD5\u6216\u6362\u4E00\u4E2A\u6A21\u578B"));
+    if (!scenes.length) throw new Error((0, import_i18n5.t)("\u6A21\u578B\u6CA1\u6709\u5199\u51FA\u5206\u955C\uFF0C\u8BF7\u91CD\u8BD5\u6216\u6362\u4E00\u4E2A\u6A21\u578B"));
     const copies = {};
     for (const p of v.platforms) {
       const c = json.copies?.[p];
@@ -1258,31 +1829,31 @@ function registerBizAutomationHandlers(deps) {
     const next = { ...v, scenes, copies };
     const warnings = videoWarnings(next);
     const r = patchVideo(id, { scenes, copies, model, status: "scripted", error: void 0, video: void 0, warnings });
-    track(id, "script", (0, import_i18n4.t)("\u5199\u597D\u5206\u955C\u811A\u672C {n} \u4E2A\u955C\u5934\u3001{m} \u4E2A\u5E73\u53F0\u6587\u6848", { n: scenes.length, m: Object.keys(copies).length }) + (warnings.length ? (0, import_i18n4.t)("\uFF08{k} \u6761\u63D0\u793A\u5F85\u5904\u7406\uFF09", { k: warnings.length }) : ""));
+    track(id, "script", (0, import_i18n5.t)("\u5199\u597D\u5206\u955C\u811A\u672C {n} \u4E2A\u955C\u5934\u3001{m} \u4E2A\u5E73\u53F0\u6587\u6848", { n: scenes.length, m: Object.keys(copies).length }) + (warnings.length ? (0, import_i18n5.t)("\uFF08{k} \u6761\u63D0\u793A\u5F85\u5904\u7406\uFF09", { k: warnings.length }) : ""));
     return videoById(id) ?? r;
   };
   const renderVideo = async (id) => {
     const v = videoById(id);
-    if (!v.scenes.length) throw new Error((0, import_i18n4.t)("\u5148\u5199\u5206\u955C\u811A\u672C"));
+    if (!v.scenes.length) throw new Error((0, import_i18n5.t)("\u5148\u5199\u5206\u955C\u811A\u672C"));
     patchVideo(id, { status: "rendering", error: void 0 });
     const registry = registryFor(id);
     try {
-      const out = (0, import_node_path3.join)(outputDir((0, import_i18n4.t)("\u77ED\u89C6\u9891")), `${v.name.replace(/[\\/:*?"<>|\s]+/g, "_").slice(0, 40)}-${Date.now()}.mp4`);
+      const out = (0, import_node_path4.join)(outputDir((0, import_i18n5.t)("\u77ED\u89C6\u9891")), `${v.name.replace(/[\\/:*?"<>|\s]+/g, "_").slice(0, 40)}-${Date.now()}.mp4`);
       const r = await renderShortVideo(pipelineDeps("video"), {
         scenes: v.scenes,
         narration: v.narration,
         voiceGender: v.voiceGender,
         title: store.read().settings.brandName,
-        workDir: (0, import_node_path3.join)(store.dir("work"), id),
+        workDir: (0, import_node_path4.join)(store.dir("work"), id),
         outFile: out
       }, registry, (msg) => progress("video", msg));
       patchVideo(id, { status: "rendered", video: r.file, durationSec: r.durationSec, voiceQuality: r.voiceQuality || void 0 });
-      track(id, "render", (0, import_i18n4.t)("\u6210\u7247\u5B8C\u6210\uFF1A{s} \u79D2 \xB7 {f}", { s: r.durationSec, f: (0, import_node_path3.basename)(r.file) }));
+      track(id, "render", (0, import_i18n5.t)("\u6210\u7247\u5B8C\u6210\uFF1A{s} \u79D2 \xB7 {f}", { s: r.durationSec, f: (0, import_node_path4.basename)(r.file) }));
       return videoById(id);
     } catch (e) {
-      const msg = registry.signal.aborted ? (0, import_i18n4.t)("\u5DF2\u53D6\u6D88") : (0, import_userFacingError.userFacingError)(e);
+      const msg = registry.signal.aborted ? (0, import_i18n5.t)("\u5DF2\u53D6\u6D88") : (0, import_userFacingError.userFacingError)(e);
       patchVideo(id, { status: "failed", error: msg });
-      track(id, "render", (0, import_i18n4.t)("\u6210\u7247\u5931\u8D25\uFF1A{p0}", { p0: msg }), false);
+      track(id, "render", (0, import_i18n5.t)("\u6210\u7247\u5931\u8D25\uFF1A{p0}", { p0: msg }), false);
       throw new Error(msg);
     } finally {
       runs.delete(id);
@@ -1301,10 +1872,10 @@ function registerBizAutomationHandlers(deps) {
 ${(first.topics || []).map((t) => `#${t}`).join(" ")}`.trim() : name
     };
   };
-  const avatarById = (id) => requireFound(store.read().avatars.find((a) => a.id === id), (0, import_i18n4.t)("\u6570\u5B57\u4EBA\u9879\u76EE"));
+  const avatarById = (id) => requireFound(store.read().avatars.find((a) => a.id === id), (0, import_i18n5.t)("\u6570\u5B57\u4EBA\u9879\u76EE"));
   const patchAvatar = (id, patch) => {
     const r = store.update((s) => {
-      const a = requireFound(s.avatars.find((x) => x.id === id), (0, import_i18n4.t)("\u6570\u5B57\u4EBA\u9879\u76EE"));
+      const a = requireFound(s.avatars.find((x) => x.id === id), (0, import_i18n5.t)("\u6570\u5B57\u4EBA\u9879\u76EE"));
       Object.assign(a, patch, { updatedAt: (/* @__PURE__ */ new Date()).toISOString() });
       return a;
     });
@@ -1314,32 +1885,32 @@ ${(first.topics || []).map((t) => `#${t}`).join(" ")}`.trim() : name
   const avatarWarnings = (script) => {
     const w = [];
     const ph = placeholders(script);
-    if (ph.length) w.push((0, import_i18n4.t)("\u8FD8\u6709 {n} \u5904\u3010\u5F85\u8865\u5145\u3011\uFF0C\u8865\u5B8C\u624D\u80FD\u6210\u7247", { n: ph.length }));
+    if (ph.length) w.push((0, import_i18n5.t)("\u8FD8\u6709 {n} \u5904\u3010\u5F85\u8865\u5145\u3011\uFF0C\u8865\u5B8C\u624D\u80FD\u6210\u7247", { n: ph.length }));
     const banned = bannedHits(script);
-    if (banned.length) w.push((0, import_i18n4.t)("\u542B\u5E7F\u544A\u6CD5\u6781\u9650\u8BCD\uFF1A{p0}", { p0: banned.join((0, import_i18n4.t)("\u3001")) }));
+    if (banned.length) w.push((0, import_i18n5.t)("\u542B\u5E7F\u544A\u6CD5\u6781\u9650\u8BCD\uFF1A{p0}", { p0: banned.join((0, import_i18n5.t)("\u3001")) }));
     return w;
   };
   const downloadTo = async (url, dest) => {
     const res = await fetch(url);
-    if (!res.ok || !res.body) throw new Error((0, import_i18n4.t)("\u6210\u7247\u4E0B\u8F7D\u5931\u8D25\uFF08HTTP {p0}\uFF09", { p0: res.status }));
-    await (0, import_promises.pipeline)(import_node_stream.Readable.fromWeb(res.body), (0, import_node_fs3.createWriteStream)(dest));
+    if (!res.ok || !res.body) throw new Error((0, import_i18n5.t)("\u6210\u7247\u4E0B\u8F7D\u5931\u8D25\uFF08HTTP {p0}\uFF09", { p0: res.status }));
+    await (0, import_promises.pipeline)(import_node_stream.Readable.fromWeb(res.body), (0, import_node_fs4.createWriteStream)(dest));
   };
   const labelAvatarVideo = async (src, dest, aspect) => {
     const t = tools();
-    if (!t) throw new Error((0, import_i18n4.t)("\u627E\u4E0D\u5230 ffmpeg\uFF0C\u65E0\u6CD5\u7ED9\u6570\u5B57\u4EBA\u6210\u7247\u52A0 AI \u751F\u6210\u6807\u8BC6"));
+    if (!t) throw new Error((0, import_i18n5.t)("\u627E\u4E0D\u5230 ffmpeg\uFF0C\u65E0\u6CD5\u7ED9\u6570\u5B57\u4EBA\u6210\u7247\u52A0 AI \u751F\u6210\u6807\u8BC6"));
     const info = await (0, import_media2.probeMedia)(t, src);
     const dur = info?.durationSec || 0;
     const [w, h] = aspect === "9:16" ? [info?.width || import_media2.OUT_W, info?.height || import_media2.OUT_H] : [info?.width || import_media2.OUT_H, info?.height || import_media2.OUT_W];
     const st = store.read().settings;
     const line = [st.storeAddress, st.openingHours].filter(Boolean).join("  ");
-    const work = store.dir((0, import_node_path3.join)("work", `avatar-${Date.now()}`));
+    const work = store.dir((0, import_node_path4.join)("work", `avatar-${Date.now()}`));
     const fonts = (0, import_media2.prepareSubtitleFonts)(work);
-    const ass = (0, import_node_path3.join)(work, "label.ass");
-    (0, import_node_fs3.writeFileSync)(ass, (0, import_subtitles2.buildAss)([], "zh", {
+    const ass = (0, import_node_path4.join)(work, "label.ass");
+    (0, import_node_fs4.writeFileSync)(ass, (0, import_subtitles2.buildAss)([], "zh", {
       width: w,
       height: h,
       fontName: fonts.nameFor.zh,
-      title: (0, import_i18n4.t)("\u672C\u89C6\u9891\u7531 AI \u751F\u6210"),
+      title: (0, import_i18n5.t)("\u672C\u89C6\u9891\u7531 AI \u751F\u6210"),
       durationSec: dur || 1,
       ...dur > 4 && st.brandName ? { endCard: { start: Math.max(0, dur - 3), end: dur, title: st.brandName, line } } : {}
     }));
@@ -1348,14 +1919,14 @@ ${(first.topics || []).map((t) => `#${t}`).join(" ")}`.trim() : name
   };
   const fillModelImages = async (videoId) => {
     const v = videoById(videoId);
-    if (!imageReady()) throw new Error((0, import_i18n4.t)("\u8FD8\u6CA1\u6709\u914D\u7F6E\u56FE\u50CF\u670D\u52A1\uFF1A\u8BF7\u5230\u300C\u8BBE\u7F6E \u2192 \u5A92\u4F53\u6A21\u578B\u300D\u586B\u5199 fal \u5BC6\u94A5\uFF0C\u6216\u8054\u7CFB\u7BA1\u7406\u5458\u4E3A\u672C\u65B9\u6848\u4E0B\u53D1"));
-    const dir = store.dir((0, import_node_path3.join)("materials", v.id));
+    if (!imageReady()) throw new Error((0, import_i18n5.t)("\u8FD8\u6CA1\u6709\u914D\u7F6E\u56FE\u50CF\u670D\u52A1\uFF1A\u8BF7\u5230\u300C\u8BBE\u7F6E \u2192 \u5A92\u4F53\u6A21\u578B\u300D\u586B\u5199 fal \u5BC6\u94A5\uFF0C\u6216\u8054\u7CFB\u7BA1\u7406\u5458\u4E3A\u672C\u65B9\u6848\u4E0B\u53D1"));
+    const dir = store.dir((0, import_node_path4.join)("materials", v.id));
     const added = [];
     const errs = [];
     for (const id of v.garmentIds) {
       const g = garment(id);
-      if (!g?.image || !(0, import_node_fs3.existsSync)(g.image) || tryonImages(id, 1).length) continue;
-      progress("video", (0, import_i18n4.t)("\u6B63\u5728\u4E3A\u300C{p0}\u300D\u751F\u6210\u6A21\u7279\u56FE\u2026", { p0: g.name }));
+      if (!g?.image || !(0, import_node_fs4.existsSync)(g.image) || tryonImages(id, 1).length) continue;
+      progress("video", (0, import_i18n5.t)("\u6B63\u5728\u4E3A\u300C{p0}\u300D\u751F\u6210\u6A21\u7279\u56FE\u2026", { p0: g.name }));
       try {
         const r2 = await (0, import_mediaFal.runFalJob)(deps, { capability: "edit", prompt: modelShotPrompt(g), imageUrls: [g.image], num: 1, outDir: dir, solutionId: BIZ_SOLUTION_ID, maxWaitMs: 18e4 });
         const f = r2.files.find(Boolean);
@@ -1365,19 +1936,19 @@ ${(first.topics || []).map((t) => `#${t}`).join(" ")}`.trim() : name
       }
     }
     if (!added.length && errs.length) {
-      track(videoId, "material", (0, import_i18n4.t)("\u8865\u6A21\u7279\u56FE\u5931\u8D25\uFF1A{p0}", { p0: errs[0] }), false);
+      track(videoId, "material", (0, import_i18n5.t)("\u8865\u6A21\u7279\u56FE\u5931\u8D25\uFF1A{p0}", { p0: errs[0] }), false);
       throw new Error(errs[0]);
     }
     const r = patchVideo(videoId, { materials: [...v.materials, ...added] });
-    if (added.length) track(videoId, "material", (0, import_i18n4.t)("\u8865\u4E86 {n} \u5F20\u6A21\u7279\u56FE", { n: added.length }) + (errs.length ? (0, import_i18n4.t)("\uFF0C{m} \u6B3E\u5931\u8D25", { m: errs.length }) : ""));
+    if (added.length) track(videoId, "material", (0, import_i18n5.t)("\u8865\u4E86 {n} \u5F20\u6A21\u7279\u56FE", { n: added.length }) + (errs.length ? (0, import_i18n5.t)("\uFF0C{m} \u6B3E\u5931\u8D25", { m: errs.length }) : ""));
     return r;
   };
   const createAvatar = async (p) => {
     const topic = p?.topic && p.topic in AVATAR_TOPIC_LABEL() ? p.topic : "company_intro";
     const facts = knowledgeFacts();
     const seconds = Math.min(Math.max(Math.round(p?.seconds || 45), 20), 120);
-    progress("avatar", (0, import_i18n4.t)("\u6B63\u5728\u4ECE\u77E5\u8BC6\u5E93\u53D6\u8D44\u6599\u5199\u8BB2\u7A3F\u2026"));
-    const extra = p?.brief ? [{ label: (0, import_i18n4.t)("\u8865\u5145\u8BF4\u660E"), value: String(p.brief).slice(0, 500) }] : [];
+    progress("avatar", (0, import_i18n5.t)("\u6B63\u5728\u4ECE\u77E5\u8BC6\u5E93\u53D6\u8D44\u6599\u5199\u8BB2\u7A3F\u2026"));
+    const extra = p?.brief ? [{ label: (0, import_i18n5.t)("\u8865\u5145\u8BF4\u660E"), value: String(p.brief).slice(0, 500) }] : [];
     const { text, model } = await llm("avatar", avatarScriptPrompt({ topic: AVATAR_TOPIC_LABEL()[topic], brand: store.read().settings.brandName, facts: [...facts, ...extra], seconds }));
     const script = text.replace(/^```[a-z]*\s*|```$/g, "").trim();
     const a = {
@@ -1402,10 +1973,10 @@ ${(first.topics || []).map((t) => `#${t}`).join(" ")}`.trim() : name
     pushState();
     return a;
   };
-  const listingById = (id) => requireFound(store.read().listings.find((l) => l.id === id), (0, import_i18n4.t)("\u4E0A\u67B6\u8349\u7A3F"));
+  const listingById = (id) => requireFound(store.read().listings.find((l) => l.id === id), (0, import_i18n5.t)("\u4E0A\u67B6\u8349\u7A3F"));
   const patchListing = (id, patch) => {
     const r = store.update((s) => {
-      const l = requireFound(s.listings.find((x) => x.id === id), (0, import_i18n4.t)("\u4E0A\u67B6\u8349\u7A3F"));
+      const l = requireFound(s.listings.find((x) => x.id === id), (0, import_i18n5.t)("\u4E0A\u67B6\u8349\u7A3F"));
       Object.assign(l, patch, { updatedAt: (/* @__PURE__ */ new Date()).toISOString() });
       return l;
     });
@@ -1415,29 +1986,29 @@ ${(first.topics || []).map((t) => `#${t}`).join(" ")}`.trim() : name
   const mainImage = async (src, aspect, dest) => {
     const t = tools();
     if (!t) {
-      (0, import_node_fs3.copyFileSync)(src, dest);
+      (0, import_node_fs4.copyFileSync)(src, dest);
       return dest;
     }
     const [w, h] = aspect === "1:1" ? [1080, 1080] : [1080, 1440];
     const r = await (0, import_media2.runProc)(t.ffmpeg, ["-v", "error", "-y", "-i", src, "-vf", `scale=${w}:${h}:force_original_aspect_ratio=decrease,pad=${w}:${h}:(ow-iw)/2:(oh-ih)/2:white`, "-q:v", "2", dest], { env: t.env, timeoutMs: 6e4 });
-    if (r.code !== 0 || !(0, import_node_fs3.existsSync)(dest)) {
-      (0, import_node_fs3.copyFileSync)(src, dest);
+    if (r.code !== 0 || !(0, import_node_fs4.existsSync)(dest)) {
+      (0, import_node_fs4.copyFileSync)(src, dest);
     }
     return dest;
   };
   const esc = (x) => String(x).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
   const sizeChartImage = async (g, aspect, dest) => {
-    const rows = (0, import_logic4.sizeChartRows)(g.audience, Object.keys(g.stock || {}));
+    const rows = (0, import_logic5.sizeChartRows)(g.audience, Object.keys(g.stock || {}));
     if (!rows.length) return null;
     const [w, h] = aspect === "1:1" ? [1080, 1080] : [1080, 1440];
     const html = `<!doctype html><meta charset="utf-8"><body style="margin:0;width:${w}px;height:${h}px;display:flex;align-items:center;justify-content:center;background:#fff;font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif">
-<div style="width:86%"><h1 style="font-size:54px;margin:0 0 12px;color:#222">${esc((0, import_i18n4.t)("\u5C3A\u7801\u53C2\u8003"))}</h1><p style="font-size:30px;color:#777;margin:0 0 30px">${esc(g.name)}</p>
-<table style="width:100%;border-collapse:collapse;font-size:36px;text-align:center"><tr style="background:#222;color:#fff"><th style="padding:18px">${esc((0, import_i18n4.t)("\u5C3A\u7801"))}</th><th>${esc((0, import_i18n4.t)("\u8EAB\u9AD8"))}</th><th>${esc((0, import_i18n4.t)("\u4F53\u91CD"))}</th></tr>
+<div style="width:86%"><h1 style="font-size:54px;margin:0 0 12px;color:#222">${esc((0, import_i18n5.t)("\u5C3A\u7801\u53C2\u8003"))}</h1><p style="font-size:30px;color:#777;margin:0 0 30px">${esc(g.name)}</p>
+<table style="width:100%;border-collapse:collapse;font-size:36px;text-align:center"><tr style="background:#222;color:#fff"><th style="padding:18px">${esc((0, import_i18n5.t)("\u5C3A\u7801"))}</th><th>${esc((0, import_i18n5.t)("\u8EAB\u9AD8"))}</th><th>${esc((0, import_i18n5.t)("\u4F53\u91CD"))}</th></tr>
 ${rows.map((r, i) => `<tr style="background:${i % 2 ? "#f4f4f4" : "#fff"}"><td style="padding:18px;font-weight:700">${esc(r.size)}</td><td>${esc(r.height)}</td><td>${esc(r.weight)}</td></tr>`).join("")}</table>
-<p style="font-size:26px;color:#999;margin-top:26px">${esc((0, import_i18n4.t)("\u4EC5\u4F9B\u53C2\u8003\uFF0C\u4ECB\u4E8E\u4E24\u4E2A\u5C3A\u7801\u4E4B\u95F4\u5EFA\u8BAE\u9009\u5927\u4E00\u7801"))}</p></div></body>`;
+<p style="font-size:26px;color:#999;margin-top:26px">${esc((0, import_i18n5.t)("\u4EC5\u4F9B\u53C2\u8003\uFF0C\u4ECB\u4E8E\u4E24\u4E2A\u5C3A\u7801\u4E4B\u95F4\u5EFA\u8BAE\u9009\u5927\u4E00\u7801"))}</p></div></body>`;
     try {
       await (0, import_render.renderHtmlToImage)(html, dest, w, h);
-      return (0, import_node_fs3.existsSync)(dest) ? dest : null;
+      return (0, import_node_fs4.existsSync)(dest) ? dest : null;
     } catch {
       return null;
     }
@@ -1447,7 +2018,7 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? "#f4f4f4" : "#fff"}"><td s
     if (!t) return null;
     const [w, h] = aspect === "1:1" ? [1080, 1080] : [1080, 1440];
     const r = await (0, import_media2.runProc)(t.ffmpeg, ["-v", "error", "-y", "-i", src, "-vf", `crop=iw*0.5:ih*0.5:iw*0.25:ih*0.3,scale=${w}:${h}:force_original_aspect_ratio=increase,crop=${w}:${h}`, "-q:v", "2", dest], { env: t.env, timeoutMs: 6e4 });
-    return r.code === 0 && (0, import_node_fs3.existsSync)(dest) ? dest : null;
+    return r.code === 0 && (0, import_node_fs4.existsSync)(dest) ? dest : null;
   };
   const badgeImage = async (src, text, dest) => {
     const data = (0, import_render.imageToDataUrl)(src, 1080);
@@ -1456,7 +2027,7 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? "#f4f4f4" : "#fff"}"><td s
 <div style="position:absolute;top:40px;left:-10px;background:#d6332a;color:#fff;font-size:64px;font-weight:800;padding:16px 50px;border-radius:0 40px 40px 0;box-shadow:0 6px 18px rgba(0,0,0,.25)">${esc(text)}</div></body>`;
     try {
       await (0, import_render.renderHtmlToImage)(html, dest, 1080, 1080);
-      return (0, import_node_fs3.existsSync)(dest) ? dest : null;
+      return (0, import_node_fs4.existsSync)(dest) ? dest : null;
     } catch {
       return null;
     }
@@ -1464,7 +2035,7 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? "#f4f4f4" : "#fff"}"><td s
   const mostTriedImage = (garmentId) => {
     const s = (0, import_apparelStore.apparelService)()?.store.read();
     if (!s) return null;
-    const done = s.tryons.filter((t) => t.garmentId === garmentId && t.status === "done" && t.image && (0, import_node_fs3.existsSync)(t.image));
+    const done = s.tryons.filter((t) => t.garmentId === garmentId && t.status === "done" && t.image && (0, import_node_fs4.existsSync)(t.image));
     if (!done.length) return null;
     const count = /* @__PURE__ */ new Map();
     for (const t of done) {
@@ -1475,59 +2046,59 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? "#f4f4f4" : "#fff"}"><td s
     return done.filter((t) => `${t.choice.backgroundId}|${t.choice.poseId}|${t.choice.hairId}` === top).pop().image;
   };
   const RULE_ACTION_LABEL = () => ({
-    delist: (0, import_i18n4.t)("\u4E0B\u67B6"),
-    presale: (0, import_i18n4.t)("\u6539\u4E3A\u9884\u552E"),
-    delist_color: (0, import_i18n4.t)("\u4E0B\u67B6\u8BE5\u989C\u8272"),
-    badge_sale: (0, import_i18n4.t)("\u4E3B\u56FE\u52A0\u300C\u65AD\u7801\u7279\u4EF7\u300D"),
-    clearance: (0, import_i18n4.t)("\u8F6C\u5165\u6E05\u4ED3\u4E13\u533A"),
-    swap_image: (0, import_i18n4.t)("\u6362\u4E3B\u56FE\uFF08\u8BD5\u7A7F\u6700\u591A\u7684\u9020\u578B\u56FE\uFF09"),
-    remind: (0, import_i18n4.t)("\u63D0\u9192\u5E97\u957F")
+    delist: (0, import_i18n5.t)("\u4E0B\u67B6"),
+    presale: (0, import_i18n5.t)("\u6539\u4E3A\u9884\u552E"),
+    delist_color: (0, import_i18n5.t)("\u4E0B\u67B6\u8BE5\u989C\u8272"),
+    badge_sale: (0, import_i18n5.t)("\u4E3B\u56FE\u52A0\u300C\u65AD\u7801\u7279\u4EF7\u300D"),
+    clearance: (0, import_i18n5.t)("\u8F6C\u5165\u6E05\u4ED3\u4E13\u533A"),
+    swap_image: (0, import_i18n5.t)("\u6362\u4E3B\u56FE\uFF08\u8BD5\u7A7F\u6700\u591A\u7684\u9020\u578B\u56FE\uFF09"),
+    remind: (0, import_i18n5.t)("\u63D0\u9192\u5E97\u957F")
   });
   const handleRule = async (garmentId, action) => {
-    const g = requireFound(garment(garmentId), (0, import_i18n4.t)("\u5546\u54C1"));
+    const g = requireFound(garment(garmentId), (0, import_i18n5.t)("\u5546\u54C1"));
     const s = store.read();
     const done = [];
     const svc = (0, import_apparelStore.apparelService)();
     if ((action === "delist" || action === "clearance") && svc && g.onShelf) {
       svc.saveGarment({ id: g.id, onShelf: false });
-      done.push((0, import_i18n4.t)("\u95E8\u5E97\u8BD5\u7A7F\u624B\u673A\u7AEF\u5DF2\u4E0B\u67B6"));
+      done.push((0, import_i18n5.t)("\u95E8\u5E97\u8BD5\u7A7F\u624B\u673A\u7AEF\u5DF2\u4E0B\u67B6"));
     }
     if (action === "remind") {
-      const body = (0, import_i18n4.t)("\u300C{p0}\u300D\u9700\u8981\u5904\u7406\uFF1A{p1}", { p0: g.name, p1: s.ruleHits.filter((h) => h.garmentId === g.id).map((h) => h.detail).join("\uFF1B") });
+      const body = (0, import_i18n5.t)("\u300C{p0}\u300D\u9700\u8981\u5904\u7406\uFF1A{p1}", { p0: g.name, p1: s.ruleHits.filter((h) => h.garmentId === g.id).map((h) => h.detail).join("\uFF1B") });
       try {
-        new import_electron.Notification({ title: (0, import_i18n4.t)("\u7ECF\u8425\u81EA\u52A8\u5316 \xB7 \u5E93\u5B58\u63D0\u9192"), body }).show();
+        new import_electron.Notification({ title: (0, import_i18n5.t)("\u7ECF\u8425\u81EA\u52A8\u5316 \xB7 \u5E93\u5B58\u63D0\u9192"), body }).show();
       } catch {
       }
-      if (pushReady()) await pushOutlets((0, import_i18n4.t)("\u5E93\u5B58\u63D0\u9192"), body).catch(() => []);
-      done.push((0, import_i18n4.t)("\u5DF2\u63D0\u9192"));
+      if (pushReady()) await pushOutlets((0, import_i18n5.t)("\u5E93\u5B58\u63D0\u9192"), body).catch(() => []);
+      done.push((0, import_i18n5.t)("\u5DF2\u63D0\u9192"));
       log("listing", body);
       return { done, listingIds: [] };
     }
     const listed = s.listings.filter((l) => l.garmentId === g.id && (l.status === "listed" || l.status === "handed"));
     if (!listed.length) {
-      if (!done.length) done.push((0, import_i18n4.t)("\u8FD9\u6B3E\u5728\u7F51\u5E97\u8FD8\u6CA1\u6709\u4E0A\u67B6\u8BB0\u5F55\uFF0C\u53EA\u9700\u5904\u7406\u95E8\u5E97"));
+      if (!done.length) done.push((0, import_i18n5.t)("\u8FD9\u6B3E\u5728\u7F51\u5E97\u8FD8\u6CA1\u6709\u4E0A\u67B6\u8BB0\u5F55\uFF0C\u53EA\u9700\u5904\u7406\u95E8\u5E97"));
       return { done, listingIds: [] };
     }
     let img = null;
-    if (action === "badge_sale" && g.image) img = await badgeImage(g.image, (0, import_i18n4.t)("\u65AD\u7801\u7279\u4EF7"), (0, import_node_path3.join)(store.dir((0, import_node_path3.join)("listing", g.id)), `badge-${Date.now()}.jpg`));
+    if (action === "badge_sale" && g.image) img = await badgeImage(g.image, (0, import_i18n5.t)("\u65AD\u7801\u7279\u4EF7"), (0, import_node_path4.join)(store.dir((0, import_node_path4.join)("listing", g.id)), `badge-${Date.now()}.jpg`));
     if (action === "swap_image") img = mostTriedImage(g.id);
     const what = RULE_ACTION_LABEL()[action];
     const lines = listed.map((l) => {
       const ch = s.settings.channels.find((c) => c.id === l.channelId);
-      return `- ${ch?.name}\uFF08${ch?.url}\uFF09\uFF1A${l.productUrl || l.title}${ch?.autoSubmit ? (0, import_i18n4.t)("\uFF08\u8BE5\u5E97\u94FA\u5DF2\u6388\u6743\u5168\u81EA\u52A8\uFF0C\u53EF\u76F4\u63A5\u63D0\u4EA4\uFF09") : ""}`;
+      return `- ${ch?.name}\uFF08${ch?.url}\uFF09\uFF1A${l.productUrl || l.title}${ch?.autoSubmit ? (0, import_i18n5.t)("\uFF08\u8BE5\u5E97\u94FA\u5DF2\u6388\u6743\u5168\u81EA\u52A8\uFF0C\u53EF\u76F4\u63A5\u63D0\u4EA4\uFF09") : ""}`;
     });
     const text = [
-      (0, import_i18n4.t)("\u8BF7\u5728\u5185\u7F6E\u6D4F\u89C8\u5668\u91CC\u5BF9\u4E0B\u9762\u8FD9\u6B3E\u5546\u54C1\u6267\u884C\u300C{p0}\u300D\u3002\u53EA\u505A\u8FD9\u4E00\u9879\u4FEE\u6539\uFF0C\u4E0D\u8981\u5220\u9664\u5546\u54C1\u3001\u4E0D\u8981\u6539\u4EF7\uFF1B\u672A\u6388\u6743\u5168\u81EA\u52A8\u7684\u5E97\u94FA\uFF0C\u64CD\u4F5C\u505C\u5728\u4FDD\u5B58 / \u63D0\u4EA4\u524D\u622A\u56FE\u7ED9\u6211\u786E\u8BA4\u3002", { p0: what }),
-      (0, import_i18n4.t)("\u5546\u54C1\uFF1A{p0}\uFF08\u8D27\u53F7 {p1}\uFF09", { p0: g.name, p1: g.sku || "\u2014" }),
-      ...action === "delist_color" ? [(0, import_i18n4.t)("\u8981\u4E0B\u67B6\u7684\u989C\u8272\uFF1A{p0}", { p0: g.color || (0, import_i18n4.t)("\u5F53\u524D\u989C\u8272") })] : [],
-      ...img ? [(0, import_i18n4.t)("\u65B0\u4E3B\u56FE\uFF1A{p0}", { p0: img })] : [],
+      (0, import_i18n5.t)("\u8BF7\u5728\u5185\u7F6E\u6D4F\u89C8\u5668\u91CC\u5BF9\u4E0B\u9762\u8FD9\u6B3E\u5546\u54C1\u6267\u884C\u300C{p0}\u300D\u3002\u53EA\u505A\u8FD9\u4E00\u9879\u4FEE\u6539\uFF0C\u4E0D\u8981\u5220\u9664\u5546\u54C1\u3001\u4E0D\u8981\u6539\u4EF7\uFF1B\u672A\u6388\u6743\u5168\u81EA\u52A8\u7684\u5E97\u94FA\uFF0C\u64CD\u4F5C\u505C\u5728\u4FDD\u5B58 / \u63D0\u4EA4\u524D\u622A\u56FE\u7ED9\u6211\u786E\u8BA4\u3002", { p0: what }),
+      (0, import_i18n5.t)("\u5546\u54C1\uFF1A{p0}\uFF08\u8D27\u53F7 {p1}\uFF09", { p0: g.name, p1: g.sku || "\u2014" }),
+      ...action === "delist_color" ? [(0, import_i18n5.t)("\u8981\u4E0B\u67B6\u7684\u989C\u8272\uFF1A{p0}", { p0: g.color || (0, import_i18n5.t)("\u5F53\u524D\u989C\u8272") })] : [],
+      ...img ? [(0, import_i18n5.t)("\u65B0\u4E3B\u56FE\uFF1A{p0}", { p0: img })] : [],
       ...lines
     ].join("\n");
     return { done, text, listingIds: listed.map((l) => l.id) };
   };
   const listingWarnings = (l) => {
     const banned = bannedHits([l.title, ...l.sellingPoints, l.detail].join("\n"));
-    return banned.length ? [(0, import_i18n4.t)("\u542B\u5E7F\u544A\u6CD5\u6781\u9650\u8BCD\uFF1A{p0}", { p0: banned.join((0, import_i18n4.t)("\u3001")) })] : [];
+    return banned.length ? [(0, import_i18n5.t)("\u542B\u5E7F\u544A\u6CD5\u6781\u9650\u8BCD\uFF1A{p0}", { p0: banned.join((0, import_i18n5.t)("\u3001")) })] : [];
   };
   const evaluate = () => {
     const svc = (0, import_apparelStore.apparelService)();
@@ -1551,27 +2122,27 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? "#f4f4f4" : "#fff"}"><td s
   };
   const doImport = (path, kind, source, replace = false) => {
     const table = (0, import_excel.readTable)(path);
-    if (!table.rows.length) throw new Error((0, import_i18n4.t)("\u300C{p0}\u300D\u91CC\u6CA1\u6709\u6570\u636E\u884C", { p0: table.fileName }));
+    if (!table.rows.length) throw new Error((0, import_i18n5.t)("\u300C{p0}\u300D\u91CC\u6CA1\u6709\u6570\u636E\u884C", { p0: table.fileName }));
     if (kind === "inventory") {
       const parsed2 = parseInventory(table.headers, table.rows);
-      if (!parsed2.rows.length) throw new Error((0, import_i18n4.t)("\u6CA1\u6709\u8BC6\u522B\u51FA\u6709\u6548\u7684\u5E93\u5B58\u884C\uFF08\u8D27\u53F7 / \u540D\u79F0\u4E0E\u5E93\u5B58\u90FD\u8981\u6709\uFF09"));
+      if (!parsed2.rows.length) throw new Error((0, import_i18n5.t)("\u6CA1\u6709\u8BC6\u522B\u51FA\u6709\u6548\u7684\u5E93\u5B58\u884C\uFF08\u8D27\u53F7 / \u540D\u79F0\u4E0E\u5E93\u5B58\u90FD\u8981\u6709\uFF09"));
       const svc = (0, import_apparelStore.apparelService)();
-      if (!svc) throw new Error((0, import_i18n4.t)("\u670D\u88C5AI\u8BD5\u8863\u672A\u52A0\u8F7D"));
+      if (!svc) throw new Error((0, import_i18n5.t)("\u670D\u88C5AI\u8BD5\u8863\u672A\u52A0\u8F7D"));
       const { updates, unmatched } = applyInventory(garments(), parsed2.rows);
       for (const u of updates) svc.saveGarment({ id: u.id, stock: u.stock });
-      const day = (/* @__PURE__ */ new Date()).toISOString().slice(0, 10);
-      const imp2 = { id: newId("bai"), kind, source, file: table.fileName, rows: parsed2.rows.length, skipped: parsed2.skipped + unmatched.length, mapping: parsed2.mapping, from: day, to: day, importedAt: (/* @__PURE__ */ new Date()).toISOString() };
+      const day2 = (/* @__PURE__ */ new Date()).toISOString().slice(0, 10);
+      const imp2 = { id: newId("bai"), kind, source, file: table.fileName, rows: parsed2.rows.length, skipped: parsed2.skipped + unmatched.length, mapping: parsed2.mapping, from: day2, to: day2, importedAt: (/* @__PURE__ */ new Date()).toISOString() };
       store.update((s) => {
         s.imports.unshift(imp2);
         s.imports = s.imports.slice(0, 50);
       });
-      log("finance", (0, import_i18n4.t)("\u540C\u6B65\u5E93\u5B58\uFF1A{p0}\uFF0C\u66F4\u65B0 {n} \u6B3E{p1}", { p0: table.fileName, n: updates.length, p1: unmatched.length ? (0, import_i18n4.t)("\uFF0C{m} \u4E2A\u8D27\u53F7\u5728\u5546\u54C1\u5E93\u91CC\u627E\u4E0D\u5230\uFF1A{p2}", { m: unmatched.length, p2: unmatched.slice(0, 5).join((0, import_i18n4.t)("\u3001")) }) : "" }));
+      log("finance", (0, import_i18n5.t)("\u540C\u6B65\u5E93\u5B58\uFF1A{p0}\uFF0C\u66F4\u65B0 {n} \u6B3E{p1}", { p0: table.fileName, n: updates.length, p1: unmatched.length ? (0, import_i18n5.t)("\uFF0C{m} \u4E2A\u8D27\u53F7\u5728\u5546\u54C1\u5E93\u91CC\u627E\u4E0D\u5230\uFF1A{p2}", { m: unmatched.length, p2: unmatched.slice(0, 5).join((0, import_i18n5.t)("\u3001")) }) : "" }));
       evaluate();
       pushState();
       return { ...imp2, unmatched };
     }
     const parsed = kind === "expense" ? parseExpenses(table.headers, table.rows) : parseSales(table.headers, table.rows);
-    if (!parsed.rows.length) throw new Error((0, import_i18n4.t)("\u6CA1\u6709\u8BC6\u522B\u51FA\u6709\u6548\u6570\u636E\u884C\uFF08\u65E5\u671F\u3001\u91D1\u989D\u90FD\u8981\u6709\uFF09"));
+    if (!parsed.rows.length) throw new Error((0, import_i18n5.t)("\u6CA1\u6709\u8BC6\u522B\u51FA\u6709\u6548\u6570\u636E\u884C\uFF08\u65E5\u671F\u3001\u91D1\u989D\u90FD\u8981\u6709\uFF09"));
     const dates = parsed.rows.map((r) => r.date).sort();
     const from = dates[0];
     const to = dates[dates.length - 1];
@@ -1584,7 +2155,7 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? "#f4f4f4" : "#fff"}"><td s
       s.imports.unshift(imp);
       s.imports = s.imports.slice(0, 50);
     });
-    log("finance", (0, import_i18n4.t)("\u5BFC\u5165{p0}\uFF1A{p1}\uFF08{a} ~ {b}\uFF0C{n} \u884C\uFF09", { p0: kind === "expense" ? (0, import_i18n4.t)("\u8D39\u7528") : (0, import_i18n4.t)("\u9500\u552E"), p1: table.fileName, a: from, b: to, n: parsed.rows.length }));
+    log("finance", (0, import_i18n5.t)("\u5BFC\u5165{p0}\uFF1A{p1}\uFF08{a} ~ {b}\uFF0C{n} \u884C\uFF09", { p0: kind === "expense" ? (0, import_i18n5.t)("\u8D39\u7528") : (0, import_i18n5.t)("\u9500\u552E"), p1: table.fileName, a: from, b: to, n: parsed.rows.length }));
     pushState();
     return imp;
   };
@@ -1594,27 +2165,27 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? "#f4f4f4" : "#fff"}"><td s
     for (const kind of ["sales", "expense", "inventory"]) {
       const dir = folders[kind];
       if (!dir) continue;
-      const label = kind === "sales" ? (0, import_i18n4.t)("\u9500\u552E") : kind === "expense" ? (0, import_i18n4.t)("\u8D39\u7528") : (0, import_i18n4.t)("\u5E93\u5B58");
+      const label = kind === "sales" ? (0, import_i18n5.t)("\u9500\u552E") : kind === "expense" ? (0, import_i18n5.t)("\u8D39\u7528") : (0, import_i18n5.t)("\u5E93\u5B58");
       try {
-        if (!(0, import_node_fs3.existsSync)(dir)) throw new Error((0, import_i18n4.t)("\u6587\u4EF6\u5939\u4E0D\u5B58\u5728\uFF1A{p0}", { p0: dir }));
-        const files = (0, import_node_fs3.readdirSync)(dir).filter((f) => /\.(xlsx|xls|csv)$/i.test(f) && !f.startsWith("~$")).map((f) => ({ f: (0, import_node_path3.join)(dir, f), m: (0, import_node_fs3.statSync)((0, import_node_path3.join)(dir, f)).mtime.toISOString() })).sort((a, b) => b.m.localeCompare(a.m));
-        if (!files.length) throw new Error((0, import_i18n4.t)("\u6587\u4EF6\u5939\u91CC\u6CA1\u6709 Excel / CSV \u6587\u4EF6"));
+        if (!(0, import_node_fs4.existsSync)(dir)) throw new Error((0, import_i18n5.t)("\u6587\u4EF6\u5939\u4E0D\u5B58\u5728\uFF1A{p0}", { p0: dir }));
+        const files = (0, import_node_fs4.readdirSync)(dir).filter((f) => /\.(xlsx|xls|csv)$/i.test(f) && !f.startsWith("~$")).map((f) => ({ f: (0, import_node_path4.join)(dir, f), m: (0, import_node_fs4.statSync)((0, import_node_path4.join)(dir, f)).mtime.toISOString() })).sort((a, b) => b.m.localeCompare(a.m));
+        if (!files.length) throw new Error((0, import_i18n5.t)("\u6587\u4EF6\u5939\u91CC\u6CA1\u6709 Excel / CSV \u6587\u4EF6"));
         const latest = files[0];
         if (!force && store.read().seen.files[latest.f] === latest.m) {
-          out.push({ kind, file: (0, import_node_path3.basename)(latest.f), ok: true, note: (0, import_i18n4.t)("\u6CA1\u6709\u65B0\u6587\u4EF6") });
+          out.push({ kind, file: (0, import_node_path4.basename)(latest.f), ok: true, note: (0, import_i18n5.t)("\u6CA1\u6709\u65B0\u6587\u4EF6") });
           continue;
         }
         const imp = doImport(latest.f, kind, "folder");
         store.update((s) => {
           s.seen.files[latest.f] = latest.m;
         });
-        out.push({ kind, file: (0, import_node_path3.basename)(latest.f), ok: true, note: (0, import_i18n4.t)("{n} \u884C", { n: imp.rows }) });
+        out.push({ kind, file: (0, import_node_path4.basename)(latest.f), ok: true, note: (0, import_i18n5.t)("{n} \u884C", { n: imp.rows }) });
       } catch (e) {
         const msg = (0, import_userFacingError.userFacingError)(e);
         out.push({ kind, ok: false, note: msg });
-        log("finance", (0, import_i18n4.t)("{p0}\u53D6\u6570\u5931\u8D25\uFF1A{p1}", { p0: label, p1: msg }), false);
+        log("finance", (0, import_i18n5.t)("{p0}\u53D6\u6570\u5931\u8D25\uFF1A{p1}", { p0: label, p1: msg }), false);
         try {
-          new import_electron.Notification({ title: (0, import_i18n4.t)("\u7ECF\u8425\u81EA\u52A8\u5316 \xB7 \u53D6\u6570\u5931\u8D25"), body: `${label}\uFF1A${msg}` }).show();
+          new import_electron.Notification({ title: (0, import_i18n5.t)("\u7ECF\u8425\u81EA\u52A8\u5316 \xB7 \u53D6\u6570\u5931\u8D25"), body: `${label}\uFF1A${msg}` }).show();
         } catch {
         }
       }
@@ -1624,26 +2195,26 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? "#f4f4f4" : "#fff"}"><td s
   };
   const buildReport = async (kind, from, to) => {
     const d = store.data();
-    if (!d.sales.length) throw new Error((0, import_i18n4.t)("\u8FD8\u6CA1\u6709\u9500\u552E\u6570\u636E\uFF1A\u5148\u5BFC\u5165\u6536\u94F6\u7CFB\u7EDF\u5BFC\u51FA\u7684\u9500\u552E\u660E\u7EC6"));
+    if (!d.sales.length) throw new Error((0, import_i18n5.t)("\u8FD8\u6CA1\u6709\u9500\u552E\u6570\u636E\uFF1A\u5148\u5BFC\u5165\u6536\u94F6\u7CFB\u7EDF\u5BFC\u51FA\u7684\u9500\u552E\u660E\u7EC6"));
     const metrics = computeMetrics(d.sales, d.expenses, garments(), from, to);
     const hints = [];
-    if (!metrics.orders) hints.push((0, import_i18n4.t)("\u8FD9\u4E2A\u65F6\u95F4\u6BB5\u6CA1\u6709\u9500\u552E\u8BB0\u5F55"));
-    if (metrics.costCoverage < 1) hints.push((0, import_i18n4.t)("\u53EA\u6709\u90E8\u5206\u9500\u552E\u5E26\u6210\u672C\uFF0C\u6BDB\u5229\u6309\u5E26\u6210\u672C\u7684\u90E8\u5206\u8BA1\u7B97"));
-    const staleNote = metrics.lastDataDay && metrics.lastDataDay < to ? (0, import_i18n4.t)("\u9500\u552E\u6570\u636E\u53EA\u5230 {p0}\uFF0C{p1} \u4E4B\u540E\u8FD8\u6CA1\u53D6\u5230\u6570\u636E\uFF08\u53D6\u6570\u53EF\u80FD\u6CA1\u66F4\u65B0\uFF09\uFF0C\u8FD9\u90E8\u5206\u4E0D\u8BA1\u5165", { p0: metrics.lastDataDay, p1: metrics.lastDataDay }) : void 0;
+    if (!metrics.orders) hints.push((0, import_i18n5.t)("\u8FD9\u4E2A\u65F6\u95F4\u6BB5\u6CA1\u6709\u9500\u552E\u8BB0\u5F55"));
+    if (metrics.costCoverage < 1) hints.push((0, import_i18n5.t)("\u53EA\u6709\u90E8\u5206\u9500\u552E\u5E26\u6210\u672C\uFF0C\u6BDB\u5229\u6309\u5E26\u6210\u672C\u7684\u90E8\u5206\u8BA1\u7B97"));
+    const staleNote = metrics.lastDataDay && metrics.lastDataDay < to ? (0, import_i18n5.t)("\u9500\u552E\u6570\u636E\u53EA\u5230 {p0}\uFF0C{p1} \u4E4B\u540E\u8FD8\u6CA1\u53D6\u5230\u6570\u636E\uFF08\u53D6\u6570\u53EF\u80FD\u6CA1\u66F4\u65B0\uFF09\uFF0C\u8FD9\u90E8\u5206\u4E0D\u8BA1\u5165", { p0: metrics.lastDataDay, p1: metrics.lastDataDay }) : void 0;
     if (staleNote) hints.push(staleNote);
     const lowStock = store.read().ruleHits.filter((h) => h.rule === "soldout" || h.rule === "broken_size").slice(0, 5);
-    if (lowStock.length) hints.push((0, import_i18n4.t)("\u5E93\u5B58\u9884\u8B66\uFF1A{p0}", { p0: lowStock.map((h) => `${garment(h.garmentId)?.name || h.garmentId}\uFF08${h.detail}\uFF09`).join("\uFF1B") }));
+    if (lowStock.length) hints.push((0, import_i18n5.t)("\u5E93\u5B58\u9884\u8B66\uFF1A{p0}", { p0: lowStock.map((h) => `${garment(h.garmentId)?.name || h.garmentId}\uFF08${h.detail}\uFF09`).join("\uFF1B") }));
     let commentary = "";
     let model;
     let unverified = [];
     try {
-      progress("finance", (0, import_i18n4.t)("\u6B63\u5728\u5199\u7ECF\u8425\u89E3\u8BFB\u2026"));
+      progress("finance", (0, import_i18n5.t)("\u6B63\u5728\u5199\u7ECF\u8425\u89E3\u8BFB\u2026"));
       const r = await llm("finance", reportCommentaryPrompt({ kind, brand: store.read().settings.brandName, metrics, hints }));
       commentary = r.text.trim();
       model = r.model;
       unverified = unverifiedNumbers(commentary, metrics);
     } catch (e) {
-      commentary = (0, import_i18n4.t)("\uFF08\u7ECF\u8425\u89E3\u8BFB\u672A\u751F\u6210\uFF1A{p0}\uFF09", { p0: (0, import_userFacingError.userFacingError)(e) });
+      commentary = (0, import_i18n5.t)("\uFF08\u7ECF\u8425\u89E3\u8BFB\u672A\u751F\u6210\uFF1A{p0}\uFF09", { p0: (0, import_userFacingError.userFacingError)(e) });
     }
     const report = { id: newId("bar"), kind, metrics, commentary, unverified, model, staleNote, createdAt: (/* @__PURE__ */ new Date()).toISOString() };
     store.update((s) => {
@@ -1654,24 +2225,24 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? "#f4f4f4" : "#fff"}"><td s
   };
   const reportText = (r) => {
     const m = r.metrics;
-    const pct = (v) => `${(v * 100).toFixed(1)}%`;
+    const pct2 = (v) => `${(v * 100).toFixed(1)}%`;
     const lines = [
-      (0, import_i18n4.t)("\u3010{p0}\u3011{a} ~ {b}", { p0: store.read().settings.brandName || (0, import_i18n4.t)("\u7ECF\u8425\u65E5\u62A5"), a: m.from, b: m.to }),
-      (0, import_i18n4.t)("\u51C0\u8425\u4E1A\u989D {p0} \u5143\uFF08\u9000\u8D27 {p1}\uFF09\uFF5C\u8BA2\u5355 {p2}\uFF5C\u5BA2\u5355\u4EF7 {p3}\uFF5C\u8FDE\u5E26\u7387 {p4}", { p0: m.netRevenue, p1: m.refunds, p2: m.orders, p3: m.avgOrderValue, p4: m.unitsPerOrder }),
-      (0, import_i18n4.t)("\u6BDB\u5229 {p0} \u5143\uFF08\u6BDB\u5229\u7387 {p1}\uFF0C\u6210\u672C\u8986\u76D6 {p2}\uFF09\uFF5C\u8D39\u7528 {p3}\uFF5C\u51C0\u5229\u6DA6 {p4}", { p0: m.grossProfit, p1: pct(m.grossMargin), p2: pct(m.costCoverage), p3: m.expenses, p4: m.netProfit })
+      (0, import_i18n5.t)("\u3010{p0}\u3011{a} ~ {b}", { p0: store.read().settings.brandName || (0, import_i18n5.t)("\u7ECF\u8425\u65E5\u62A5"), a: m.from, b: m.to }),
+      (0, import_i18n5.t)("\u51C0\u8425\u4E1A\u989D {p0} \u5143\uFF08\u9000\u8D27 {p1}\uFF09\uFF5C\u8BA2\u5355 {p2}\uFF5C\u5BA2\u5355\u4EF7 {p3}\uFF5C\u8FDE\u5E26\u7387 {p4}", { p0: m.netRevenue, p1: m.refunds, p2: m.orders, p3: m.avgOrderValue, p4: m.unitsPerOrder }),
+      (0, import_i18n5.t)("\u6BDB\u5229 {p0} \u5143\uFF08\u6BDB\u5229\u7387 {p1}\uFF0C\u6210\u672C\u8986\u76D6 {p2}\uFF09\uFF5C\u8D39\u7528 {p3}\uFF5C\u51C0\u5229\u6DA6 {p4}", { p0: m.grossProfit, p1: pct2(m.grossMargin), p2: pct2(m.costCoverage), p3: m.expenses, p4: m.netProfit })
     ];
     if (r.staleNote) lines.unshift(`\u26A0 ${r.staleNote}`);
-    if (m.items.length) lines.push((0, import_i18n4.t)("\u7545\u9500\u524D 5\uFF1A{p0}", { p0: m.items.slice(0, 5).map((x) => `${x.label} ${x.qty}${(0, import_i18n4.t)("\u4EF6")} / ${x.amount}`).join((0, import_i18n4.t)("\u3001")) }));
-    if (m.turnoverDays != null) lines.push((0, import_i18n4.t)("\u5E93\u5B58\u91D1\u989D\u7EA6 {p0} \u5143\uFF0C\u5468\u8F6C\u7EA6 {p1} \u5929", { p0: m.inventoryValue, p1: m.turnoverDays }));
+    if (m.items.length) lines.push((0, import_i18n5.t)("\u7545\u9500\u524D 5\uFF1A{p0}", { p0: m.items.slice(0, 5).map((x) => `${x.label} ${x.qty}${(0, import_i18n5.t)("\u4EF6")} / ${x.amount}`).join((0, import_i18n5.t)("\u3001")) }));
+    if (m.turnoverDays != null) lines.push((0, import_i18n5.t)("\u5E93\u5B58\u91D1\u989D\u7EA6 {p0} \u5143\uFF0C\u5468\u8F6C\u7EA6 {p1} \u5929", { p0: m.inventoryValue, p1: m.turnoverDays }));
     const warn = store.read().ruleHits.filter((h) => h.rule === "soldout" || h.rule === "broken_size").slice(0, 5);
-    if (warn.length) lines.push((0, import_i18n4.t)("\u5E93\u5B58\u9884\u8B66\uFF1A{p0}", { p0: warn.map((h) => `${garment(h.garmentId)?.name || ""}\uFF08${h.detail}\uFF09`).join("\uFF1B") }));
+    if (warn.length) lines.push((0, import_i18n5.t)("\u5E93\u5B58\u9884\u8B66\uFF1A{p0}", { p0: warn.map((h) => `${garment(h.garmentId)?.name || ""}\uFF08${h.detail}\uFF09`).join("\uFF1B") }));
     if (r.commentary) lines.push("", r.commentary);
-    if (r.unverified.length) lines.push("", (0, import_i18n4.t)("\u26A0 \u89E3\u8BFB\u4E2D\u8FD9\u4E9B\u6570\u5B57\u672A\u80FD\u5728\u6570\u636E\u4E2D\u6838\u5BF9\u5230\uFF1A{p0}", { p0: r.unverified.join((0, import_i18n4.t)("\u3001")) }));
+    if (r.unverified.length) lines.push("", (0, import_i18n5.t)("\u26A0 \u89E3\u8BFB\u4E2D\u8FD9\u4E9B\u6570\u5B57\u672A\u80FD\u5728\u6570\u636E\u4E2D\u6838\u5BF9\u5230\uFF1A{p0}", { p0: r.unverified.join((0, import_i18n5.t)("\u3001")) }));
     return lines.join("\n");
   };
   const reportHtml = (r) => {
     const m = r.metrics;
-    const pct = (v) => `${(v * 100).toFixed(1)}%`;
+    const pct2 = (v) => `${(v * 100).toFixed(1)}%`;
     const max = Math.max(1, ...m.daily.map((d) => d.netRevenue));
     const bw = m.daily.length ? Math.max(4, Math.floor(640 / m.daily.length) - 4) : 10;
     const bars = m.daily.map((d, i) => {
@@ -1683,16 +2254,16 @@ ${rows.map((r, i) => `<tr style="background:${i % 2 ? "#f4f4f4" : "#fff"}"><td s
 body{font-family:-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;color:#222;padding:28px;font-size:12px}h1{font-size:20px;margin:0 0 4px}h2{font-size:14px;margin:18px 0 6px}
 .k{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.k div{border:1px solid #ddd;border-radius:8px;padding:8px}.k b{display:block;font-size:16px}
 table{border-collapse:collapse;width:100%}th,td{border:1px solid #ddd;padding:4px 6px;text-align:left}th{background:#f3f4f6}.warn{color:#b45309}pre{white-space:pre-wrap;font:inherit}</style>
-<h1>${esc(store.read().settings.brandName || (0, import_i18n4.t)("\u7ECF\u8425\u62A5\u8868"))} \xB7 ${esc(m.from)} ~ ${esc(m.to)}</h1>
+<h1>${esc(store.read().settings.brandName || (0, import_i18n5.t)("\u7ECF\u8425\u62A5\u8868"))} \xB7 ${esc(m.from)} ~ ${esc(m.to)}</h1>
 ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
-<div class="k"><div>${esc((0, import_i18n4.t)("\u51C0\u8425\u4E1A\u989D"))}<b>${m.netRevenue}</b></div><div>${esc((0, import_i18n4.t)("\u6BDB\u5229"))}<b>${m.grossProfit}\uFF08${pct(m.grossMargin)}\uFF09</b></div><div>${esc((0, import_i18n4.t)("\u8BA2\u5355 / \u5BA2\u5355\u4EF7"))}<b>${m.orders} / ${m.avgOrderValue}</b></div><div>${esc((0, import_i18n4.t)("\u8FDE\u5E26\u7387"))}<b>${m.unitsPerOrder}</b></div>
-<div>${esc((0, import_i18n4.t)("\u8D39\u7528 / \u8D39\u7528\u7387"))}<b>${m.expenses} / ${pct(m.expenseRate)}</b></div><div>${esc((0, import_i18n4.t)("\u51C0\u5229\u6DA6"))}<b>${m.netProfit}</b></div><div>${esc((0, import_i18n4.t)("\u5E93\u5B58\u91D1\u989D"))}<b>${m.inventoryValue ?? "\u2014"}</b></div><div>${esc((0, import_i18n4.t)("\u5E93\u5B58\u5468\u8F6C\u5929\u6570"))}<b>${m.turnoverDays ?? "\u2014"}</b></div></div>
-<h2>${esc((0, import_i18n4.t)("\u6BCF\u65E5\u8D8B\u52BF\uFF08\u51C0\u8425\u4E1A\u989D\uFF09"))}</h2><svg width="660" height="180">${bars}</svg>
-<h2>${esc((0, import_i18n4.t)("\u6E20\u9053"))}</h2>${table([(0, import_i18n4.t)("\u6E20\u9053"), (0, import_i18n4.t)("\u91D1\u989D"), (0, import_i18n4.t)("\u5360\u6BD4")], m.byChannel.map((x) => [x.label, x.value, pct(x.share || 0)]))}
-<h2>${esc((0, import_i18n4.t)("\u54C1\u7C7B"))}</h2>${table([(0, import_i18n4.t)("\u54C1\u7C7B"), (0, import_i18n4.t)("\u91D1\u989D"), (0, import_i18n4.t)("\u5360\u6BD4")], m.byCategory.map((x) => [x.label, x.value, pct(x.share || 0)]))}
-<h2>${esc((0, import_i18n4.t)("\u6B3E\u5F0F\u6392\u884C"))}</h2>${table([(0, import_i18n4.t)("\u5546\u54C1"), (0, import_i18n4.t)("\u9500\u91CF"), (0, import_i18n4.t)("\u91D1\u989D"), (0, import_i18n4.t)("\u6BDB\u5229"), (0, import_i18n4.t)("\u552E\u7F44\u7387")], m.items.slice(0, 20).map((x) => [x.label, x.qty, x.amount, x.grossProfit ?? "\u2014", x.sellThrough == null ? "\u2014" : pct(x.sellThrough)]))}
-<h2>${esc((0, import_i18n4.t)("\u6EDE\u9500\u6E05\u5355\uFF08\u6709\u5E93\u5B58\u3001\u672C\u671F\u5356\u51FA\u4E0D\u8D85\u8FC7 1 \u4EF6\uFF09"))}</h2>${m.slowMovers.length ? table([(0, import_i18n4.t)("\u5546\u54C1"), (0, import_i18n4.t)("\u5E93\u5B58"), (0, import_i18n4.t)("\u672C\u671F\u9500\u91CF")], m.slowMovers.map((x) => [x.label, x.stock, x.qty])) : `<p>${esc((0, import_i18n4.t)("\u65E0"))}</p>`}
-<h2>${esc((0, import_i18n4.t)("\u7ECF\u8425\u89E3\u8BFB"))}</h2><pre>${esc(r.commentary)}</pre>${r.unverified.length ? `<p class="warn">${esc((0, import_i18n4.t)("\u672A\u80FD\u6838\u5BF9\u7684\u6570\u5B57\uFF1A{p0}", { p0: r.unverified.join((0, import_i18n4.t)("\u3001")) }))}</p>` : ""}`;
+<div class="k"><div>${esc((0, import_i18n5.t)("\u51C0\u8425\u4E1A\u989D"))}<b>${m.netRevenue}</b></div><div>${esc((0, import_i18n5.t)("\u6BDB\u5229"))}<b>${m.grossProfit}\uFF08${pct2(m.grossMargin)}\uFF09</b></div><div>${esc((0, import_i18n5.t)("\u8BA2\u5355 / \u5BA2\u5355\u4EF7"))}<b>${m.orders} / ${m.avgOrderValue}</b></div><div>${esc((0, import_i18n5.t)("\u8FDE\u5E26\u7387"))}<b>${m.unitsPerOrder}</b></div>
+<div>${esc((0, import_i18n5.t)("\u8D39\u7528 / \u8D39\u7528\u7387"))}<b>${m.expenses} / ${pct2(m.expenseRate)}</b></div><div>${esc((0, import_i18n5.t)("\u51C0\u5229\u6DA6"))}<b>${m.netProfit}</b></div><div>${esc((0, import_i18n5.t)("\u5E93\u5B58\u91D1\u989D"))}<b>${m.inventoryValue ?? "\u2014"}</b></div><div>${esc((0, import_i18n5.t)("\u5E93\u5B58\u5468\u8F6C\u5929\u6570"))}<b>${m.turnoverDays ?? "\u2014"}</b></div></div>
+<h2>${esc((0, import_i18n5.t)("\u6BCF\u65E5\u8D8B\u52BF\uFF08\u51C0\u8425\u4E1A\u989D\uFF09"))}</h2><svg width="660" height="180">${bars}</svg>
+<h2>${esc((0, import_i18n5.t)("\u6E20\u9053"))}</h2>${table([(0, import_i18n5.t)("\u6E20\u9053"), (0, import_i18n5.t)("\u91D1\u989D"), (0, import_i18n5.t)("\u5360\u6BD4")], m.byChannel.map((x) => [x.label, x.value, pct2(x.share || 0)]))}
+<h2>${esc((0, import_i18n5.t)("\u54C1\u7C7B"))}</h2>${table([(0, import_i18n5.t)("\u54C1\u7C7B"), (0, import_i18n5.t)("\u91D1\u989D"), (0, import_i18n5.t)("\u5360\u6BD4")], m.byCategory.map((x) => [x.label, x.value, pct2(x.share || 0)]))}
+<h2>${esc((0, import_i18n5.t)("\u6B3E\u5F0F\u6392\u884C"))}</h2>${table([(0, import_i18n5.t)("\u5546\u54C1"), (0, import_i18n5.t)("\u9500\u91CF"), (0, import_i18n5.t)("\u91D1\u989D"), (0, import_i18n5.t)("\u6BDB\u5229"), (0, import_i18n5.t)("\u552E\u7F44\u7387")], m.items.slice(0, 20).map((x) => [x.label, x.qty, x.amount, x.grossProfit ?? "\u2014", x.sellThrough == null ? "\u2014" : pct2(x.sellThrough)]))}
+<h2>${esc((0, import_i18n5.t)("\u6EDE\u9500\u6E05\u5355\uFF08\u6709\u5E93\u5B58\u3001\u672C\u671F\u5356\u51FA\u4E0D\u8D85\u8FC7 1 \u4EF6\uFF09"))}</h2>${m.slowMovers.length ? table([(0, import_i18n5.t)("\u5546\u54C1"), (0, import_i18n5.t)("\u5E93\u5B58"), (0, import_i18n5.t)("\u672C\u671F\u9500\u91CF")], m.slowMovers.map((x) => [x.label, x.stock, x.qty])) : `<p>${esc((0, import_i18n5.t)("\u65E0"))}</p>`}
+<h2>${esc((0, import_i18n5.t)("\u7ECF\u8425\u89E3\u8BFB"))}</h2><pre>${esc(r.commentary)}</pre>${r.unverified.length ? `<p class="warn">${esc((0, import_i18n5.t)("\u672A\u80FD\u6838\u5BF9\u7684\u6570\u5B57\uFF1A{p0}", { p0: r.unverified.join((0, import_i18n5.t)("\u3001")) }))}</p>` : ""}`;
   };
   let ticking = false;
   const tick = async () => {
@@ -1708,7 +2279,7 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
       if (sc.folderImport.enabled && dueToday(sc.folderImport.time, store.read().lastRun.folderImport, now)) {
         mark("folderImport");
         const r = await folderImport();
-        log("schedule", (0, import_i18n4.t)("\u5171\u4EAB\u6587\u4EF6\u5939\u53D6\u6570\uFF1A{p0}", { p0: r.map((x) => `${x.kind} ${x.ok ? "\u2713" : "\u2717"} ${x.note}`).join("\uFF1B") || (0, import_i18n4.t)("\u6CA1\u6709\u914D\u7F6E\u6587\u4EF6\u5939") }), r.every((x) => x.ok));
+        log("schedule", (0, import_i18n5.t)("\u5171\u4EAB\u6587\u4EF6\u5939\u53D6\u6570\uFF1A{p0}", { p0: r.map((x) => `${x.kind} ${x.ok ? "\u2713" : "\u2717"} ${x.note}`).join("\uFF1B") || (0, import_i18n5.t)("\u6CA1\u6709\u914D\u7F6E\u6587\u4EF6\u5939") }), r.every((x) => x.ok));
       }
       if (sc.dailyReport.enabled && dueToday(sc.dailyReport.time, store.read().lastRun.dailyReport, now)) {
         mark("dailyReport");
@@ -1716,15 +2287,15 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
           const p = reportPeriod("daily", now);
           const r = await buildReport("daily", p.from, p.to);
           if (sc.dailyReport.push) {
-            const pushed = await pushOutlets((0, import_i18n4.t)("\u7ECF\u8425\u65E5\u62A5 {p0}", { p0: p.from }), reportText(r)).catch((e) => [{ channel: "push", ok: false, error: (0, import_userFacingError.userFacingError)(e) }]);
+            const pushed = await pushOutlets((0, import_i18n5.t)("\u7ECF\u8425\u65E5\u62A5 {p0}", { p0: p.from }), reportText(r)).catch((e) => [{ channel: "push", ok: false, error: (0, import_userFacingError.userFacingError)(e) }]);
             store.update((s) => {
               const x = s.reports.find((y) => y.id === r.id);
               if (x) x.pushed = pushed;
             });
           }
-          log("schedule", (0, import_i18n4.t)("\u5DF2\u751F\u6210 {p0} \u7ECF\u8425\u65E5\u62A5", { p0: p.from }));
+          log("schedule", (0, import_i18n5.t)("\u5DF2\u751F\u6210 {p0} \u7ECF\u8425\u65E5\u62A5", { p0: p.from }));
         } catch (e) {
-          log("schedule", (0, import_i18n4.t)("\u7ECF\u8425\u65E5\u62A5\u6CA1\u6709\u751F\u6210\uFF1A{p0}", { p0: (0, import_userFacingError.userFacingError)(e) }), false);
+          log("schedule", (0, import_i18n5.t)("\u7ECF\u8425\u65E5\u62A5\u6CA1\u6709\u751F\u6210\uFF1A{p0}", { p0: (0, import_userFacingError.userFacingError)(e) }), false);
         }
       }
       if (sc.monthlyReport.enabled && now.getDate() === Math.min(Math.max(sc.monthlyReport.day, 1), 28) && dueToday(sc.monthlyReport.time, store.read().lastRun.monthlyReport, now)) {
@@ -1733,15 +2304,15 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
           const p = reportPeriod("monthly", now);
           const r = await buildReport("monthly", p.from, p.to);
           if (sc.monthlyReport.push) {
-            const pushed = await pushOutlets((0, import_i18n4.t)("\u7ECF\u8425\u6708\u62A5 {a} ~ {b}", { a: p.from, b: p.to }), reportText(r)).catch((e) => [{ channel: "push", ok: false, error: (0, import_userFacingError.userFacingError)(e) }]);
+            const pushed = await pushOutlets((0, import_i18n5.t)("\u7ECF\u8425\u6708\u62A5 {a} ~ {b}", { a: p.from, b: p.to }), reportText(r)).catch((e) => [{ channel: "push", ok: false, error: (0, import_userFacingError.userFacingError)(e) }]);
             store.update((s) => {
               const x = s.reports.find((y) => y.id === r.id);
               if (x) x.pushed = pushed;
             });
           }
-          log("schedule", (0, import_i18n4.t)("\u5DF2\u751F\u6210 {a} ~ {b} \u7ECF\u8425\u6708\u62A5", { a: p.from, b: p.to }));
+          log("schedule", (0, import_i18n5.t)("\u5DF2\u751F\u6210 {a} ~ {b} \u7ECF\u8425\u6708\u62A5", { a: p.from, b: p.to }));
         } catch (e) {
-          log("schedule", (0, import_i18n4.t)("\u7ECF\u8425\u6708\u62A5\u6CA1\u6709\u751F\u6210\uFF1A{p0}", { p0: (0, import_userFacingError.userFacingError)(e) }), false);
+          log("schedule", (0, import_i18n5.t)("\u7ECF\u8425\u6708\u62A5\u6CA1\u6709\u751F\u6210\uFF1A{p0}", { p0: (0, import_userFacingError.userFacingError)(e) }), false);
         }
       }
       if (sc.newArrival.enabled) {
@@ -1759,56 +2330,56 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
           try {
             if (chIds.length) await actions["listing.generate"]({ garmentIds: fresh.map((g) => g.id), channelIds: chIds });
           } catch (e) {
-            log("schedule", (0, import_i18n4.t)("\u65B0\u54C1\u4E0A\u67B6\u8349\u7A3F\u6CA1\u6709\u751F\u6210\uFF1A{p0}", { p0: (0, import_userFacingError.userFacingError)(e) }), false);
+            log("schedule", (0, import_i18n5.t)("\u65B0\u54C1\u4E0A\u67B6\u8349\u7A3F\u6CA1\u6709\u751F\u6210\uFF1A{p0}", { p0: (0, import_userFacingError.userFacingError)(e) }), false);
           }
           try {
-            const v = createVideo({ type: "new_arrival", garmentIds: fresh.slice(0, 5).map((g) => g.id), name: (0, import_i18n4.t)("\u65B0\u54C1\u4E0A\u65B0 {p0}", { p0: today }) });
+            const v = createVideo({ type: "new_arrival", garmentIds: fresh.slice(0, 5).map((g) => g.id), name: (0, import_i18n5.t)("\u65B0\u54C1\u4E0A\u65B0 {p0}", { p0: today }) });
             await scriptVideo(v.id);
           } catch (e) {
-            log("schedule", (0, import_i18n4.t)("\u65B0\u54C1\u4E0A\u65B0\u89C6\u9891\u811A\u672C\u6CA1\u6709\u751F\u6210\uFF1A{p0}", { p0: (0, import_userFacingError.userFacingError)(e) }), false);
+            log("schedule", (0, import_i18n5.t)("\u65B0\u54C1\u4E0A\u65B0\u89C6\u9891\u811A\u672C\u6CA1\u6709\u751F\u6210\uFF1A{p0}", { p0: (0, import_userFacingError.userFacingError)(e) }), false);
           }
-          log("schedule", (0, import_i18n4.t)("\u65B0\u54C1\u5165\u5E93\u8054\u52A8\uFF1A{n} \u6B3E\u65B0\u54C1\u5DF2\u751F\u6210\u4E0A\u67B6\u8349\u7A3F\u4E0E\u89C6\u9891\u811A\u672C\uFF0C\u7B49\u4F60\u5BA1\u6838", { n: fresh.length }));
+          log("schedule", (0, import_i18n5.t)("\u65B0\u54C1\u5165\u5E93\u8054\u52A8\uFF1A{n} \u6B3E\u65B0\u54C1\u5DF2\u751F\u6210\u4E0A\u67B6\u8349\u7A3F\u4E0E\u89C6\u9891\u811A\u672C\uFF0C\u7B49\u4F60\u5BA1\u6838", { n: fresh.length }));
         }
       }
       if (sc.calendar.enabled && dueToday("09:00", store.read().lastRun.calendar, now)) {
         mark("calendar");
-        for (const day of sc.calendar.days) {
-          const [mm, dd] = String(day.date || "").split("-").map(Number);
+        for (const day2 of sc.calendar.days) {
+          const [mm, dd] = String(day2.date || "").split("-").map(Number);
           if (!mm || !dd) continue;
           let target = new Date(now.getFullYear(), mm - 1, dd);
           if (target.getTime() < new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()) target = new Date(now.getFullYear() + 1, mm - 1, dd);
           const days = Math.round((target.getTime() - new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime()) / 864e5);
-          const key = `calendar:${target.getFullYear()}-${day.date}`;
+          const key = `calendar:${target.getFullYear()}-${day2.date}`;
           if (days !== Math.max(0, sc.calendar.leadDays) || store.read().lastRun[key]) continue;
           store.update((s) => {
             s.lastRun[key] = today;
           });
           try {
-            await createAvatar({ topic: day.topic === "store_opening" ? "store_opening" : "holiday", brief: day.name, name: (0, import_i18n4.t)("{p0} \xB7 \u6570\u5B57\u4EBA\u795D\u798F", { p0: day.name }), seconds: 30 });
-            log("schedule", (0, import_i18n4.t)("\u5DF2\u751F\u6210\u300C{p0}\u300D\u6570\u5B57\u4EBA\u8BB2\u7A3F\u8349\u7A3F\uFF0C\u7B49\u4F60\u5BA1\u6838", { p0: day.name }));
+            await createAvatar({ topic: day2.topic === "store_opening" ? "store_opening" : "holiday", brief: day2.name, name: (0, import_i18n5.t)("{p0} \xB7 \u6570\u5B57\u4EBA\u795D\u798F", { p0: day2.name }), seconds: 30 });
+            log("schedule", (0, import_i18n5.t)("\u5DF2\u751F\u6210\u300C{p0}\u300D\u6570\u5B57\u4EBA\u8BB2\u7A3F\u8349\u7A3F\uFF0C\u7B49\u4F60\u5BA1\u6838", { p0: day2.name }));
           } catch (e) {
-            log("schedule", (0, import_i18n4.t)("\u300C{p0}\u300D\u6570\u5B57\u4EBA\u8BB2\u7A3F\u6CA1\u6709\u751F\u6210\uFF1A{p1}", { p0: day.name, p1: (0, import_userFacingError.userFacingError)(e) }), false);
+            log("schedule", (0, import_i18n5.t)("\u300C{p0}\u300D\u6570\u5B57\u4EBA\u8BB2\u7A3F\u6CA1\u6709\u751F\u6210\uFF1A{p1}", { p0: day2.name, p1: (0, import_userFacingError.userFacingError)(e) }), false);
           }
         }
       }
       for (const v of store.read().videos) {
         if (v.status !== "approved" || !v.publishAt || v.publishDue || Date.parse(v.publishAt) > now.getTime()) continue;
         patchVideo(v.id, { publishDue: true });
-        broadcast("progress", { key: "video", message: (0, import_i18n4.t)("\u300C{p0}\u300D\u5230\u4E86\u5B9A\u65F6\u53D1\u5E03\u65F6\u95F4", { p0: v.name }) });
+        broadcast("progress", { key: "video", message: (0, import_i18n5.t)("\u300C{p0}\u300D\u5230\u4E86\u5B9A\u65F6\u53D1\u5E03\u65F6\u95F4", { p0: v.name }) });
         try {
           win()?.webContents.send(import_ipc_contracts.IPC_CHANNELS.WORKBENCH_BA_EVENT, { type: "publish-due", payload: { id: v.id } });
         } catch {
         }
         try {
-          new import_electron.Notification({ title: (0, import_i18n4.t)("\u7ECF\u8425\u81EA\u52A8\u5316 \xB7 \u5B9A\u65F6\u53D1\u5E03"), body: (0, import_i18n4.t)("\u300C{p0}\u300D\u5230\u53D1\u5E03\u65F6\u95F4\u4E86\uFF0C\u6253\u5F00\u7ECF\u8425\u81EA\u52A8\u5316\u667A\u80FD\u4F53\u5373\u81EA\u52A8\u53D1\u8D77\u53D1\u5E03", { p0: v.name }) }).show();
+          new import_electron.Notification({ title: (0, import_i18n5.t)("\u7ECF\u8425\u81EA\u52A8\u5316 \xB7 \u5B9A\u65F6\u53D1\u5E03"), body: (0, import_i18n5.t)("\u300C{p0}\u300D\u5230\u53D1\u5E03\u65F6\u95F4\u4E86\uFF0C\u6253\u5F00\u7ECF\u8425\u81EA\u52A8\u5316\u667A\u80FD\u4F53\u5373\u81EA\u52A8\u53D1\u8D77\u53D1\u5E03", { p0: v.name }) }).show();
         } catch {
         }
-        log("video", (0, import_i18n4.t)("\u5B9A\u65F6\u53D1\u5E03\u5230\u70B9\uFF1A{p0}", { p0: v.name }));
+        log("video", (0, import_i18n5.t)("\u5B9A\u65F6\u53D1\u5E03\u5230\u70B9\uFF1A{p0}", { p0: v.name }));
       }
       if (sc.inventoryPatrol.enabled && dueToday(sc.inventoryPatrol.time, store.read().lastRun.inventoryPatrol, now)) {
         mark("inventoryPatrol");
         const { hits, delisted } = evaluate();
-        log("schedule", (0, import_i18n4.t)("\u5E93\u5B58\u5DE1\u68C0\uFF1A{n} \u6761\u63D0\u9192\uFF0C\u95E8\u5E97\u624B\u673A\u7AEF\u81EA\u52A8\u4E0B\u67B6 {m} \u6B3E", { n: hits.length, m: delisted }));
+        log("schedule", (0, import_i18n5.t)("\u5E93\u5B58\u5DE1\u68C0\uFF1A{n} \u6761\u63D0\u9192\uFF0C\u95E8\u5E97\u624B\u673A\u7AEF\u81EA\u52A8\u4E0B\u67B6 {m} \u6B3E", { n: hits.length, m: delisted }));
       }
       if (sc.weeklyVideo.enabled && now.getDay() === sc.weeklyVideo.weekday % 7 && dueToday(sc.weeklyVideo.time, store.read().lastRun.weeklyVideo, now)) {
         mark("weeklyVideo");
@@ -1817,12 +2388,12 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
           const m = computeMetrics(store.data().sales, [], garments(), p.from, p.to);
           const picks = m.topItems.map((x) => garments().find((g) => g.name === x.label || g.sku === x.key)).filter(Boolean).slice(0, 3);
           const ids = picks.length ? picks.map((g) => g.id) : garments().slice(0, 3).map((g) => g.id);
-          if (!ids.length) throw new Error((0, import_i18n4.t)("\u5546\u54C1\u5E93\u662F\u7A7A\u7684"));
-          const v = createVideo({ type: "new_arrival", garmentIds: ids, brief: (0, import_i18n4.t)("\u672C\u5468\u4E3B\u63A8\uFF1A{p0}\uFF08\u6309\u4E0A\u5468\u9500\u91CF\uFF09", { p0: ids.map((id) => garment(id).name).join((0, import_i18n4.t)("\u3001")) }), name: (0, import_i18n4.t)("\u672C\u5468\u4E3B\u63A8 {p0}", { p0: today }) });
+          if (!ids.length) throw new Error((0, import_i18n5.t)("\u5546\u54C1\u5E93\u662F\u7A7A\u7684"));
+          const v = createVideo({ type: "new_arrival", garmentIds: ids, brief: (0, import_i18n5.t)("\u672C\u5468\u4E3B\u63A8\uFF1A{p0}\uFF08\u6309\u4E0A\u5468\u9500\u91CF\uFF09", { p0: ids.map((id) => garment(id).name).join((0, import_i18n5.t)("\u3001")) }), name: (0, import_i18n5.t)("\u672C\u5468\u4E3B\u63A8 {p0}", { p0: today }) });
           await scriptVideo(v.id);
-          log("schedule", (0, import_i18n4.t)("\u5DF2\u751F\u6210\u672C\u5468\u4E3B\u63A8\u89C6\u9891\u811A\u672C\uFF0C\u5F85\u5BA1\u6838\u540E\u6210\u7247\u53D1\u5E03"));
+          log("schedule", (0, import_i18n5.t)("\u5DF2\u751F\u6210\u672C\u5468\u4E3B\u63A8\u89C6\u9891\u811A\u672C\uFF0C\u5F85\u5BA1\u6838\u540E\u6210\u7247\u53D1\u5E03"));
         } catch (e) {
-          log("schedule", (0, import_i18n4.t)("\u672C\u5468\u4E3B\u63A8\u89C6\u9891\u6CA1\u6709\u751F\u6210\uFF1A{p0}", { p0: (0, import_userFacingError.userFacingError)(e) }), false);
+          log("schedule", (0, import_i18n5.t)("\u672C\u5468\u4E3B\u63A8\u89C6\u9891\u6CA1\u6709\u751F\u6210\uFF1A{p0}", { p0: (0, import_userFacingError.userFacingError)(e) }), false);
         }
       }
     } catch (e) {
@@ -1877,7 +2448,7 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
       return r.canceled ? "" : r.filePaths[0] || "";
     },
     "path.open": async (p) => {
-      if (!p?.path || !(0, import_node_fs3.existsSync)(p.path)) throw new Error((0, import_i18n4.t)("\u6587\u4EF6\u4E0D\u5B58\u5728"));
+      if (!p?.path || !(0, import_node_fs4.existsSync)(p.path)) throw new Error((0, import_i18n5.t)("\u6587\u4EF6\u4E0D\u5B58\u5728"));
       if (p.reveal) {
         import_electron.shell.showItemInFolder(p.path);
         return true;
@@ -1885,6 +2456,45 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
       const err = await import_electron.shell.openPath(p.path);
       if (err) throw new Error(err);
       return true;
+    },
+    // 演示模式：六个页签都造好示例数据（本机生成，不调用模型 / 数字人 / 发布服务）；商品库没有演示商品时连带生成服装AI试衣那一份
+    "demo.seed": async () => {
+      progress("finance", (0, import_i18n5.t)("\u6B63\u5728\u751F\u6210\u6F14\u793A\u6570\u636E\u2026"));
+      const r = await seedBizDemo({
+        store,
+        garments,
+        ensureDemoGarments: async () => {
+          const svc = (0, import_apparelStore.apparelService)();
+          if (!svc) throw new Error((0, import_i18n5.t)("\u670D\u88C5AI\u8BD5\u8863\u672A\u52A0\u8F7D"));
+          if (!(0, import_demo.demoCounts)((0, import_apparelStore.apparelStoreInstance)().read()).garments) await (0, import_demo.seedApparelDemo)((0, import_apparelStore.apparelStoreInstance)(), svc.defs());
+        },
+        apparelStats: () => {
+          try {
+            return (0, import_apparelStore.apparelService)()?.stats() ?? null;
+          } catch {
+            return null;
+          }
+        },
+        makeClip: async (images, out) => {
+          const t = tools();
+          const imgs = images.filter((x) => x && (0, import_node_fs4.existsSync)(x)).slice(0, 4);
+          if (!t || !imgs.length) return null;
+          const args = ["-v", "error", "-y"];
+          for (const im of imgs) args.push("-loop", "1", "-t", "3", "-i", im);
+          const scaled = imgs.map((_, i) => `[${i}:v]scale=720:1280:force_original_aspect_ratio=decrease,pad=720:1280:(ow-iw)/2:(oh-ih)/2:white,setsar=1,fps=25[v${i}]`).join(";");
+          args.push("-filter_complex", `${scaled};${imgs.map((_, i) => `[v${i}]`).join("")}concat=n=${imgs.length}:v=1:a=0[out]`, "-map", "[out]", "-c:v", "libx264", "-pix_fmt", "yuv420p", "-movflags", "+faststart", out);
+          const r2 = await (0, import_media2.runProc)(t.ffmpeg, args, { env: t.env, timeoutMs: 12e4 });
+          return r2.code === 0 && (0, import_node_fs4.existsSync)(out) ? out : null;
+        }
+      });
+      progress("finance", "");
+      pushState();
+      return r;
+    },
+    "demo.clear": () => {
+      const r = clearBizDemo(store);
+      pushState();
+      return r;
     },
     "log.clear": () => {
       store.update((s) => {
@@ -1906,7 +2516,7 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
       try {
         return await scriptVideo(p.id);
       } catch (e) {
-        track(p.id, "script", (0, import_i18n4.t)("\u5199\u811A\u672C\u5931\u8D25\uFF1A{p0}", { p0: (0, import_userFacingError.userFacingError)(e) }), false);
+        track(p.id, "script", (0, import_i18n5.t)("\u5199\u811A\u672C\u5931\u8D25\uFF1A{p0}", { p0: (0, import_userFacingError.userFacingError)(e) }), false);
         throw e;
       }
     },
@@ -1918,20 +2528,20 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
       const contentChanged = allowed.scenes || allowed.narration !== void 0 || allowed.voiceGender;
       const r = patchVideo(p.id, { ...allowed, warnings: videoWarnings(next), ...contentChanged && v.video ? { video: void 0, status: "scripted", approvedAt: void 0 } : {}, ...allowed.copies && v.status === "approved" ? { status: "rendered", approvedAt: void 0 } : {} });
       if (allowed.scenes || allowed.copies) {
-        track(p.id, "edit", (allowed.scenes ? (0, import_i18n4.t)("\u4FEE\u6539\u4E86\u5206\u955C") : (0, import_i18n4.t)("\u4FEE\u6539\u4E86\u5E73\u53F0\u6587\u6848")) + (contentChanged && v.video ? (0, import_i18n4.t)("\uFF0C\u65E7\u6210\u7247\u4F5C\u5E9F\u9700\u91CD\u65B0\u6210\u7247") : allowed.copies && v.status === "approved" ? (0, import_i18n4.t)("\uFF0C\u9700\u91CD\u65B0\u5BA1\u6838") : ""));
+        track(p.id, "edit", (allowed.scenes ? (0, import_i18n5.t)("\u4FEE\u6539\u4E86\u5206\u955C") : (0, import_i18n5.t)("\u4FEE\u6539\u4E86\u5E73\u53F0\u6587\u6848")) + (contentChanged && v.video ? (0, import_i18n5.t)("\uFF0C\u65E7\u6210\u7247\u4F5C\u5E9F\u9700\u91CD\u65B0\u6210\u7247") : allowed.copies && v.status === "approved" ? (0, import_i18n5.t)("\uFF0C\u9700\u91CD\u65B0\u5BA1\u6838") : ""));
       }
       return r;
     },
     "video.addMaterials": (p) => {
       const v = videoById(p.id);
-      const dir = store.dir((0, import_node_path3.join)("materials", v.id));
-      const added = (p.paths || []).filter((x) => (0, import_node_fs3.existsSync)(x)).map((src) => {
-        const dest = (0, import_node_path3.join)(dir, `${Date.now()}_${(0, import_node_path3.basename)(src)}`);
-        (0, import_node_fs3.copyFileSync)(src, dest);
+      const dir = store.dir((0, import_node_path4.join)("materials", v.id));
+      const added = (p.paths || []).filter((x) => (0, import_node_fs4.existsSync)(x)).map((src) => {
+        const dest = (0, import_node_path4.join)(dir, `${Date.now()}_${(0, import_node_path4.basename)(src)}`);
+        (0, import_node_fs4.copyFileSync)(src, dest);
         return dest;
       });
       const r = patchVideo(p.id, { materials: [...v.materials, ...added] });
-      if (added.length) track(p.id, "material", (0, import_i18n4.t)("\u8865\u5145 {n} \u5F20\u7D20\u6750", { n: added.length }));
+      if (added.length) track(p.id, "material", (0, import_i18n5.t)("\u8865\u5145 {n} \u5F20\u7D20\u6750", { n: added.length }));
       return r;
     },
     "video.render": (p) => renderVideo(p.id),
@@ -1945,23 +2555,23 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
     },
     "video.approve": (p) => {
       const v = videoById(p.id);
-      if (!v.video || !(0, import_node_fs3.existsSync)(v.video)) throw new Error((0, import_i18n4.t)("\u8FD8\u6CA1\u6709\u6210\u7247"));
-      if (v.warnings.length && !p.force) throw new Error((0, import_i18n4.t)("\u8FD8\u6709\u672A\u5904\u7406\u7684\u63D0\u793A\uFF1A{p0}\u3002\u6539\u5B8C\u518D\u5BA1\u6838\uFF0C\u6216\u786E\u8BA4\u540E\u52FE\u9009\u300C\u4ECD\u7136\u901A\u8FC7\u300D", { p0: v.warnings.join("\uFF1B") }));
+      if (!v.video || !(0, import_node_fs4.existsSync)(v.video)) throw new Error((0, import_i18n5.t)("\u8FD8\u6CA1\u6709\u6210\u7247"));
+      if (v.warnings.length && !p.force) throw new Error((0, import_i18n5.t)("\u8FD8\u6709\u672A\u5904\u7406\u7684\u63D0\u793A\uFF1A{p0}\u3002\u6539\u5B8C\u518D\u5BA1\u6838\uFF0C\u6216\u786E\u8BA4\u540E\u52FE\u9009\u300C\u4ECD\u7136\u901A\u8FC7\u300D", { p0: v.warnings.join("\uFF1B") }));
       const r = patchVideo(p.id, { status: "approved", approvedAt: (/* @__PURE__ */ new Date()).toISOString() });
-      track(p.id, "approve", v.warnings.length ? (0, import_i18n4.t)("\u5BA1\u6838\u901A\u8FC7\uFF08\u5DF2\u786E\u8BA4 {n} \u6761\u63D0\u793A\uFF09", { n: v.warnings.length }) : (0, import_i18n4.t)("\u5BA1\u6838\u901A\u8FC7"));
+      track(p.id, "approve", v.warnings.length ? (0, import_i18n5.t)("\u5BA1\u6838\u901A\u8FC7\uFF08\u5DF2\u786E\u8BA4 {n} \u6761\u63D0\u793A\uFF09", { n: v.warnings.length }) : (0, import_i18n5.t)("\u5BA1\u6838\u901A\u8FC7"));
       return r;
     },
     "video.publishInput": (p) => {
       const v = videoById(p.id);
-      if (v.status !== "approved" && v.status !== "published" && v.status !== "publishing") throw new Error((0, import_i18n4.t)("\u5148\u5BA1\u6838\u901A\u8FC7\u518D\u53D1\u5E03"));
-      if (!v.video || !(0, import_node_fs3.existsSync)(v.video)) throw new Error((0, import_i18n4.t)("\u8FD8\u6CA1\u6709\u6210\u7247"));
+      if (v.status !== "approved" && v.status !== "published" && v.status !== "publishing") throw new Error((0, import_i18n5.t)("\u5148\u5BA1\u6838\u901A\u8FC7\u518D\u53D1\u5E03"));
+      if (!v.video || !(0, import_node_fs4.existsSync)(v.video)) throw new Error((0, import_i18n5.t)("\u8FD8\u6CA1\u6709\u6210\u7247"));
       patchVideo(p.id, { status: "publishing" });
-      track(p.id, "publish", (0, import_i18n4.t)("\u53D1\u8D77\u53D1\u5E03\uFF1A{p0}", { p0: platformNames(v.platforms) }));
+      track(p.id, "publish", (0, import_i18n5.t)("\u53D1\u8D77\u53D1\u5E03\uFF1A{p0}", { p0: platformNames(v.platforms) }));
       return publishInput(v.video, v.name, v.platforms, v.copies);
     },
     "video.markPublished": (p) => {
       const r = patchVideo(p.id, p.ok === false ? { status: "approved", publishRunNote: p.note } : { status: "published", publishedAt: (/* @__PURE__ */ new Date()).toISOString(), publishRunNote: p.note });
-      track(p.id, "publish", p.ok === false ? (0, import_i18n4.t)("\u4EBA\u5DE5\u6807\u8BB0\u672A\u53D1\u6210\u529F\uFF1A{p0}", { p0: p.note || "" }) : (0, import_i18n4.t)("\u4EBA\u5DE5\u786E\u8BA4\u5DF2\u53D1\u5E03"), p.ok !== false);
+      track(p.id, "publish", p.ok === false ? (0, import_i18n5.t)("\u4EBA\u5DE5\u6807\u8BB0\u672A\u53D1\u6210\u529F\uFF1A{p0}", { p0: p.note || "" }) : (0, import_i18n5.t)("\u4EBA\u5DE5\u786E\u8BA4\u5DF2\u53D1\u5E03"), p.ok !== false);
       return r;
     },
     /**
@@ -1973,10 +2583,10 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
       if (p.runId && (v.publishRuns || []).some((x) => x.runId === p.runId)) return v;
       const run = publishRunFromWorkflow({ kind: p.kind, runId: p.runId, receipt: p.receipt, platforms: v.platforms, videoFile: v.video, at: p.at });
       const parts = [];
-      if (run.published.length) parts.push((0, import_i18n4.t)("{p0} \u5DF2\u53D1\u5E03", { p0: platformNames(run.published) }));
-      if (run.unconfirmed.length) parts.push((0, import_i18n4.t)("{p0} \u5F85\u4EBA\u5DE5\u6838\u5BF9", { p0: platformNames(run.unconfirmed) }));
-      if (run.failed.length) parts.push((0, import_i18n4.t)("{p0} \u672A\u53D1\u6210\u529F", { p0: platformNames(run.failed) }));
-      const note = run.outcome === "cancelled" && !run.published.length && !run.unconfirmed.length ? (0, import_i18n4.t)("\u53D1\u5E03\u5DE5\u4F5C\u6D41\u5DF2\u53D6\u6D88") : parts.join((0, import_i18n4.t)("\uFF0C")) || (0, import_i18n4.t)("\u53D1\u5E03\u5DE5\u4F5C\u6D41\u6CA1\u6709\u8FD4\u56DE\u5E73\u53F0\u56DE\u6267");
+      if (run.published.length) parts.push((0, import_i18n5.t)("{p0} \u5DF2\u53D1\u5E03", { p0: platformNames(run.published) }));
+      if (run.unconfirmed.length) parts.push((0, import_i18n5.t)("{p0} \u5F85\u4EBA\u5DE5\u6838\u5BF9", { p0: platformNames(run.unconfirmed) }));
+      if (run.failed.length) parts.push((0, import_i18n5.t)("{p0} \u672A\u53D1\u6210\u529F", { p0: platformNames(run.failed) }));
+      const note = run.outcome === "cancelled" && !run.published.length && !run.unconfirmed.length ? (0, import_i18n5.t)("\u53D1\u5E03\u5DE5\u4F5C\u6D41\u5DF2\u53D6\u6D88") : parts.join((0, import_i18n5.t)("\uFF0C")) || (0, import_i18n5.t)("\u53D1\u5E03\u5DE5\u4F5C\u6D41\u6CA1\u6709\u8FD4\u56DE\u5E73\u53F0\u56DE\u6267");
       run.note = note;
       const ok = run.published.length > 0;
       store.update((s) => {
@@ -1984,17 +2594,17 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
         if (x) x.publishRuns = [...x.publishRuns || [], run].slice(-30);
       });
       patchVideo(p.id, ok ? { status: "published", publishedAt: v.publishedAt && v.status === "published" ? v.publishedAt : run.at, publishRunNote: note } : { status: v.status === "published" ? "published" : run.unconfirmed.length ? "publishing" : "approved", publishRunNote: note });
-      track(p.id, "publish", (0, import_i18n4.t)("\u53D1\u5E03\u7ED3\u679C\uFF1A{p0}", { p0: note }), ok);
+      track(p.id, "publish", (0, import_i18n5.t)("\u53D1\u5E03\u7ED3\u679C\uFF1A{p0}", { p0: note }), ok);
       return videoById(p.id);
     },
     "video.fillModels": (p) => fillModelImages(p.id),
     /** 定时发布：到点后系统通知，工作台打开时自动发起发布（需要内置浏览器里的平台登录态） */
     "video.schedule": (p) => {
       const v = videoById(p.id);
-      if (p.at && v.status !== "approved") throw new Error((0, import_i18n4.t)("\u5148\u5BA1\u6838\u901A\u8FC7\u518D\u8BBE\u5B9A\u65F6\u53D1\u5E03"));
-      if (p.at && Date.parse(p.at) < Date.now() - 6e4) throw new Error((0, import_i18n4.t)("\u53D1\u5E03\u65F6\u95F4\u8981\u665A\u4E8E\u73B0\u5728"));
+      if (p.at && v.status !== "approved") throw new Error((0, import_i18n5.t)("\u5148\u5BA1\u6838\u901A\u8FC7\u518D\u8BBE\u5B9A\u65F6\u53D1\u5E03"));
+      if (p.at && Date.parse(p.at) < Date.now() - 6e4) throw new Error((0, import_i18n5.t)("\u53D1\u5E03\u65F6\u95F4\u8981\u665A\u4E8E\u73B0\u5728"));
       const r = patchVideo(p.id, { publishAt: p.at || void 0, publishDue: false });
-      track(p.id, "schedule", p.at ? (0, import_i18n4.t)("\u8BBE\u5B9A\u65F6\u53D1\u5E03\uFF1A{p0}", { p0: new Date(p.at).toLocaleString() }) : (0, import_i18n4.t)("\u53D6\u6D88\u5B9A\u65F6\u53D1\u5E03"));
+      track(p.id, "schedule", p.at ? (0, import_i18n5.t)("\u8BBE\u5B9A\u65F6\u53D1\u5E03\uFF1A{p0}", { p0: new Date(p.at).toLocaleString() }) : (0, import_i18n5.t)("\u53D6\u6D88\u5B9A\u65F6\u53D1\u5E03"));
       return r;
     },
     "video.recordStats": (p) => {
@@ -2002,7 +2612,7 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
       const n = (x) => Math.max(0, Math.round(Number(x) || 0));
       const item = { plays: n(p.stats?.plays), likes: n(p.stats?.likes), comments: n(p.stats?.comments), shares: n(p.stats?.shares), source: p.stats?.source === "employee" ? "employee" : "manual", at: (/* @__PURE__ */ new Date()).toISOString() };
       const r = patchVideo(p.id, { stats: { ...v.stats || {}, [p.platform]: item } });
-      track(p.id, "stats", (0, import_i18n4.t)("{p0} \u6570\u636E\uFF1A\u64AD\u653E {a} \xB7 \u70B9\u8D5E {b} \xB7 \u8BC4\u8BBA {c} \xB7 \u5206\u4EAB {d}", { p0: PLATFORM_LABEL()[p.platform] || p.platform, a: item.plays, b: item.likes, c: item.comments, d: item.shares }));
+      track(p.id, "stats", (0, import_i18n5.t)("{p0} \u6570\u636E\uFF1A\u64AD\u653E {a} \xB7 \u70B9\u8D5E {b} \xB7 \u8BC4\u8BBA {c} \xB7 \u5206\u4EAB {d}", { p0: PLATFORM_LABEL()[p.platform] || p.platform, a: item.plays, b: item.likes, c: item.comments, d: item.shares }));
       return r;
     },
     /** 交给数字员工去各平台创作者后台读回数据（只读） */
@@ -2011,9 +2621,9 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
       const urls = { douyin: "https://creator.douyin.com/", kuaishou: "https://cp.kuaishou.com/", xiaohongshu: "https://creator.xiaohongshu.com/", wxchannels: "https://channels.weixin.qq.com/" };
       const title = v.platforms.map((x) => v.copies[x]?.title).find(Boolean) || v.name;
       return [
-        (0, import_i18n4.t)("\u8BF7\u5728\u5185\u7F6E\u6D4F\u89C8\u5668\u91CC\u5206\u522B\u6253\u5F00\u4E0B\u9762\u5E73\u53F0\u7684\u521B\u4F5C\u8005\u540E\u53F0\uFF0C\u627E\u5230\u6807\u9898\u4E3A\u300C{p0}\u300D\u7684\u89C6\u9891\uFF0C\u8BFB\u51FA\u64AD\u653E\u3001\u70B9\u8D5E\u3001\u8BC4\u8BBA\u3001\u5206\u4EAB\u6570\u3002\u53EA\u8BFB\u53D6\uFF0C\u4E0D\u8981\u505A\u4EFB\u4F55\u4FEE\u6539\u6216\u53D1\u5E03\u64CD\u4F5C\u3002", { p0: title }),
+        (0, import_i18n5.t)("\u8BF7\u5728\u5185\u7F6E\u6D4F\u89C8\u5668\u91CC\u5206\u522B\u6253\u5F00\u4E0B\u9762\u5E73\u53F0\u7684\u521B\u4F5C\u8005\u540E\u53F0\uFF0C\u627E\u5230\u6807\u9898\u4E3A\u300C{p0}\u300D\u7684\u89C6\u9891\uFF0C\u8BFB\u51FA\u64AD\u653E\u3001\u70B9\u8D5E\u3001\u8BC4\u8BBA\u3001\u5206\u4EAB\u6570\u3002\u53EA\u8BFB\u53D6\uFF0C\u4E0D\u8981\u505A\u4EFB\u4F55\u4FEE\u6539\u6216\u53D1\u5E03\u64CD\u4F5C\u3002", { p0: title }),
         ...v.platforms.map((x) => `- ${x}\uFF1A${urls[x]}`),
-        (0, import_i18n4.t)("\u8BFB\u5B8C\u540E\u6309\u8FD9\u4E2A\u683C\u5F0F\u9010\u884C\u56DE\u590D\uFF08\u6CA1\u627E\u5230\u5C31\u5199 \u672A\u627E\u5230\uFF09\uFF1A\u5E73\u53F0 | \u64AD\u653E | \u70B9\u8D5E | \u8BC4\u8BBA | \u5206\u4EAB")
+        (0, import_i18n5.t)("\u8BFB\u5B8C\u540E\u6309\u8FD9\u4E2A\u683C\u5F0F\u9010\u884C\u56DE\u590D\uFF08\u6CA1\u627E\u5230\u5C31\u5199 \u672A\u627E\u5230\uFF09\uFF1A\u5E73\u53F0 | \u64AD\u653E | \u70B9\u8D5E | \u8BC4\u8BBA | \u5206\u4EAB")
       ].join("\n");
     },
     /** 复盘：按款式汇总各视频的播放与互动（引流效果） */
@@ -2043,7 +2653,7 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
     },
     // B
     "avatar.status": async () => {
-      if (!deps.digitalHumanProc) return { ready: false, detail: (0, import_i18n4.t)("\u6570\u5B57\u4EBA\u670D\u52A1\u672A\u521D\u59CB\u5316") };
+      if (!deps.digitalHumanProc) return { ready: false, detail: (0, import_i18n5.t)("\u6570\u5B57\u4EBA\u670D\u52A1\u672A\u521D\u59CB\u5316") };
       try {
         const st = await deps.digitalHumanProc.getStatus();
         return { ready: st?.configured !== false && st?.ok !== false, detail: st };
@@ -2062,11 +2672,11 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
     "avatar.render": async (p) => {
       const a = avatarById(p.id);
       const dh = deps.digitalHumanProc;
-      if (!dh) throw new Error((0, import_i18n4.t)("\u6570\u5B57\u4EBA\u670D\u52A1\u672A\u5C31\u7EEA\uFF0C\u8BF7\u5148\u5230\u300C\u6570\u5B57\u4EBA\u5DE5\u4F5C\u53F0 \u2192 \u914D\u7F6E\u300D\u9009\u62E9\u670D\u52A1\u5546\u5E76\u586B\u51ED\u636E"));
-      if (placeholders(a.script).length) throw new Error((0, import_i18n4.t)("\u8BB2\u7A3F\u91CC\u8FD8\u6709\u3010\u5F85\u8865\u5145\u3011\uFF0C\u8865\u5B8C\u518D\u6210\u7247"));
+      if (!dh) throw new Error((0, import_i18n5.t)("\u6570\u5B57\u4EBA\u670D\u52A1\u672A\u5C31\u7EEA\uFF0C\u8BF7\u5148\u5230\u300C\u6570\u5B57\u4EBA\u5DE5\u4F5C\u53F0 \u2192 \u914D\u7F6E\u300D\u9009\u62E9\u670D\u52A1\u5546\u5E76\u586B\u51ED\u636E"));
+      if (placeholders(a.script).length) throw new Error((0, import_i18n5.t)("\u8BB2\u7A3F\u91CC\u8FD8\u6709\u3010\u5F85\u8865\u5145\u3011\uFF0C\u8865\u5B8C\u518D\u6210\u7247"));
       patchAvatar(p.id, { status: "rendering", error: void 0 });
       try {
-        progress("avatar", (0, import_i18n4.t)("\u5DF2\u63D0\u4EA4\u6570\u5B57\u4EBA\u6210\u7247\uFF0C\u901A\u5E38\u9700\u8981 1\uFF5E5 \u5206\u949F\u2026"));
+        progress("avatar", (0, import_i18n5.t)("\u5DF2\u63D0\u4EA4\u6570\u5B57\u4EBA\u6210\u7247\uFF0C\u901A\u5E38\u9700\u8981 1\uFF5E5 \u5206\u949F\u2026"));
         const body = { script: a.script, aspectRatio: a.aspectRatio, subtitle: true };
         if (a.avatarId) body.avatarId = a.avatarId;
         if (a.voiceId) body.voiceId = a.voiceId;
@@ -2074,24 +2684,24 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
         let url = (0, import_digitalHumanProc.isTaskFinished)(sub) ? String(sub?.videoUrl ?? sub?.video_url ?? "") : "";
         const taskId = sub?.taskId ?? sub?.task_id;
         if (!url) {
-          if (!taskId) throw new Error(String(sub?.error || (0, import_i18n4.t)("\u6570\u5B57\u4EBA\u6210\u7247\u63D0\u4EA4\u5931\u8D25")));
+          if (!taskId) throw new Error(String(sub?.error || (0, import_i18n5.t)("\u6570\u5B57\u4EBA\u6210\u7247\u63D0\u4EA4\u5931\u8D25")));
           patchAvatar(p.id, { taskId: String(taskId) });
           const deadline = Date.now() + 10 * 6e4;
           while (!url && Date.now() < deadline) {
             await new Promise((r) => setTimeout(r, 4e3));
             const q = await dh.queryTask(String(taskId));
-            if ((0, import_digitalHumanProc.isTaskFailed)(q)) throw new Error(String(q?.error || (0, import_i18n4.t)("\u6570\u5B57\u4EBA\u6210\u7247\u5931\u8D25")));
+            if ((0, import_digitalHumanProc.isTaskFailed)(q)) throw new Error(String(q?.error || (0, import_i18n5.t)("\u6570\u5B57\u4EBA\u6210\u7247\u5931\u8D25")));
             if ((0, import_digitalHumanProc.isTaskFinished)(q)) url = String(q?.videoUrl ?? q?.video_url ?? "");
           }
-          if (!url) throw new Error((0, import_i18n4.t)("\u6570\u5B57\u4EBA\u6210\u7247\u8D85\u65F6\uFF0C\u8BF7\u7A0D\u540E\u91CD\u8BD5"));
+          if (!url) throw new Error((0, import_i18n5.t)("\u6570\u5B57\u4EBA\u6210\u7247\u8D85\u65F6\uFF0C\u8BF7\u7A0D\u540E\u91CD\u8BD5"));
         }
-        const dest = (0, import_node_path3.join)(outputDir((0, import_i18n4.t)("\u6570\u5B57\u4EBA")), `${a.name.replace(/[\\/:*?"<>|\s]+/g, "_").slice(0, 40)}-${Date.now()}.mp4`);
-        progress("avatar", (0, import_i18n4.t)("\u6B63\u5728\u4E0B\u8F7D\u6210\u7247\u2026"));
+        const dest = (0, import_node_path4.join)(outputDir((0, import_i18n5.t)("\u6570\u5B57\u4EBA")), `${a.name.replace(/[\\/:*?"<>|\s]+/g, "_").slice(0, 40)}-${Date.now()}.mp4`);
+        progress("avatar", (0, import_i18n5.t)("\u6B63\u5728\u4E0B\u8F7D\u6210\u7247\u2026"));
         const raw = dest.replace(/\.mp4$/, "-raw.mp4");
         await downloadTo(url, raw);
-        progress("avatar", (0, import_i18n4.t)("\u6B63\u5728\u52A0 AI \u751F\u6210\u6807\u8BC6\u4E0E\u7247\u5C3E\u2026"));
+        progress("avatar", (0, import_i18n5.t)("\u6B63\u5728\u52A0 AI \u751F\u6210\u6807\u8BC6\u4E0E\u7247\u5C3E\u2026"));
         await labelAvatarVideo(raw, dest, a.aspectRatio);
-        log("avatar", (0, import_i18n4.t)("\u6570\u5B57\u4EBA\u6210\u7247\uFF1A{p0}", { p0: a.name }));
+        log("avatar", (0, import_i18n5.t)("\u6570\u5B57\u4EBA\u6210\u7247\uFF1A{p0}", { p0: a.name }));
         return patchAvatar(p.id, { status: "rendered", video: dest });
       } catch (e) {
         const msg = (0, import_userFacingError.userFacingError)(e);
@@ -2102,7 +2712,7 @@ ${r.staleNote ? `<p class="warn">\u26A0 ${esc(r.staleNote)}</p>` : ""}
     /** 数字人成片进入短视频发布：生成一个已成片的视频项目，文案由模型按讲稿写 */
     "avatar.toVideo": async (p) => {
       const a = avatarById(p.id);
-      if (!a.video || !(0, import_node_fs3.existsSync)(a.video)) throw new Error((0, import_i18n4.t)("\u8FD8\u6CA1\u6709\u6210\u7247"));
+      if (!a.video || !(0, import_node_fs4.existsSync)(a.video)) throw new Error((0, import_i18n5.t)("\u8FD8\u6CA1\u6709\u6210\u7247"));
       const platforms = p.platforms?.length ? p.platforms : ["douyin", "wxchannels"];
       const copies = {};
       try {
@@ -2113,7 +2723,7 @@ ${a.script}`,
           `Return ONLY JSON: {${platforms.map((x) => `"${x}": {"title": "...", "caption": "...", "topics": ["..."]}`).join(", ")}}`
         ].join("\n"));
         for (const x of platforms) if (json?.[x]) copies[x] = { title: clampTitle(String(json[x].title || a.name), x === "xiaohongshu" ? 20 : 30), caption: `${String(json[x].caption || "")}
-${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`, topics: (json[x].topics || []).map(String).slice(0, 6) };
+${(0, import_i18n5.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`, topics: (json[x].topics || []).map(String).slice(0, 6) };
       } catch {
       }
       const v = {
@@ -2134,7 +2744,7 @@ ${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
         createdAt: (/* @__PURE__ */ new Date()).toISOString()
       };
       v.warnings = videoWarnings(v);
-      v.history = appendVideoEvent(appendVideoEvent([], "create", (0, import_i18n4.t)("\u7531\u6570\u5B57\u4EBA\u9879\u76EE\u300C{p0}\u300D\u8F6C\u5165\uFF0C\u53D1\u5E03\u5230 {p1}", { p0: a.name, p1: platformNames(platforms) })), "render", (0, import_i18n4.t)("\u6570\u5B57\u4EBA\u6210\u7247\uFF1A{f}", { f: a.video ? (0, import_node_path3.basename)(a.video) : "" }));
+      v.history = appendVideoEvent(appendVideoEvent([], "create", (0, import_i18n5.t)("\u7531\u6570\u5B57\u4EBA\u9879\u76EE\u300C{p0}\u300D\u8F6C\u5165\uFF0C\u53D1\u5E03\u5230 {p1}", { p0: a.name, p1: platformNames(platforms) })), "render", (0, import_i18n5.t)("\u6570\u5B57\u4EBA\u6210\u7247\uFF1A{f}", { f: a.video ? (0, import_node_path4.basename)(a.video) : "" }));
       store.update((s) => {
         s.videos.unshift(v);
       });
@@ -2154,25 +2764,25 @@ ${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
       const s0 = store.read();
       const channels = s0.settings.channels.filter((c) => (p?.channelIds || []).includes(c.id));
       const gs = (p?.garmentIds || []).map(garment).filter(Boolean);
-      if (!gs.length || !channels.length) throw new Error((0, import_i18n4.t)("\u8BF7\u9009\u62E9\u5546\u54C1\u548C\u4E0A\u67B6\u6E20\u9053"));
+      if (!gs.length || !channels.length) throw new Error((0, import_i18n5.t)("\u8BF7\u9009\u62E9\u5546\u54C1\u548C\u4E0A\u67B6\u6E20\u9053"));
       const made = [];
       const errors = [];
       let n = 0;
       for (const g of gs) {
         for (const ch of channels) {
           n++;
-          progress("listing", (0, import_i18n4.t)("\u6B63\u5728\u751F\u6210 {a}/{b}\uFF1A{p0} \xB7 {p1}", { a: n, b: gs.length * channels.length, p0: g.name, p1: ch.name }));
+          progress("listing", (0, import_i18n5.t)("\u6B63\u5728\u751F\u6210 {a}/{b}\uFF1A{p0} \xB7 {p1}", { a: n, b: gs.length * channels.length, p0: g.name, p1: ch.name }));
           try {
             const { json, model } = await llmJson("listing", listingPrompt({ garment: g, channel: ch, brand: s0.settings.brandName }));
-            const dir = store.dir((0, import_node_path3.join)("listing", g.id));
+            const dir = store.dir((0, import_node_path4.join)("listing", g.id));
             const images = [];
-            if (g.image && (0, import_node_fs3.existsSync)(g.image)) images.push(await mainImage(g.image, ch.aspect, (0, import_node_path3.join)(dir, `${ch.id}-main${(0, import_node_path3.extname)(g.image) === ".png" ? ".png" : ".jpg"}`)));
-            for (const [i, t] of tryonImages(g.id, 4).entries()) images.push(await mainImage(t, ch.aspect, (0, import_node_path3.join)(dir, `${ch.id}-look${i + 1}.jpg`)));
-            if (g.image && (0, import_node_fs3.existsSync)(g.image)) {
-              const d = await detailImage(g.image, ch.aspect, (0, import_node_path3.join)(dir, `${ch.id}-detail.jpg`));
+            if (g.image && (0, import_node_fs4.existsSync)(g.image)) images.push(await mainImage(g.image, ch.aspect, (0, import_node_path4.join)(dir, `${ch.id}-main${(0, import_node_path4.extname)(g.image) === ".png" ? ".png" : ".jpg"}`)));
+            for (const [i, t] of tryonImages(g.id, 4).entries()) images.push(await mainImage(t, ch.aspect, (0, import_node_path4.join)(dir, `${ch.id}-look${i + 1}.jpg`)));
+            if (g.image && (0, import_node_fs4.existsSync)(g.image)) {
+              const d = await detailImage(g.image, ch.aspect, (0, import_node_path4.join)(dir, `${ch.id}-detail.jpg`));
               if (d) images.push(d);
             }
-            const sc = await sizeChartImage(g, ch.aspect, (0, import_node_path3.join)(dir, `${ch.id}-size.jpg`));
+            const sc = await sizeChartImage(g, ch.aspect, (0, import_node_path4.join)(dir, `${ch.id}-size.jpg`));
             if (sc) images.push(sc);
             const draft = {
               title: clampTitle(String(json.title || g.name), ch.titleMax),
@@ -2202,7 +2812,7 @@ ${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
         }
       }
       pushState();
-      if (!made.length) throw new Error(errors[0] || (0, import_i18n4.t)("\u6CA1\u6709\u751F\u6210\u4EFB\u4F55\u4E0A\u67B6\u8349\u7A3F"));
+      if (!made.length) throw new Error(errors[0] || (0, import_i18n5.t)("\u6CA1\u6709\u751F\u6210\u4EFB\u4F55\u4E0A\u67B6\u8349\u7A3F"));
       return { made, errors };
     },
     "listing.update": (p) => {
@@ -2218,28 +2828,28 @@ ${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
     "listing.status": (p) => {
       const l = patchListing(p.id, { status: p.status, ...p.conversationId ? { conversationId: p.conversationId } : {}, ...p.productUrl ? { productUrl: p.productUrl } : {} });
       const chn = store.read().settings.channels.find((c) => c.id === l.channelId);
-      log("listing", (0, import_i18n4.t)("{p0} \xB7 {p1}\uFF1A{p2}", { p0: garment(l.garmentId)?.name || "", p1: chn?.name || "", p2: p.status }) + (chn?.autoSubmit && p.status === "handed" ? (0, import_i18n4.t)("\uFF08\u81EA\u52A8\u6267\u884C\uFF09") : ""));
+      log("listing", (0, import_i18n5.t)("{p0} \xB7 {p1}\uFF1A{p2}", { p0: garment(l.garmentId)?.name || "", p1: chn?.name || "", p2: p.status }) + (chn?.autoSubmit && p.status === "handed" ? (0, import_i18n5.t)("\uFF08\u81EA\u52A8\u6267\u884C\uFF09") : ""));
       return l;
     },
     /** 交给数字员工的上架指令：按草稿逐项填写，停在「提交 / 发布」前等人确认 */
     "listing.instruction": (p) => {
       const l = listingById(p.id);
-      if (l.status === "draft") throw new Error((0, import_i18n4.t)("\u5148\u786E\u8BA4\u4E0A\u67B6\u8349\u7A3F"));
-      const ch = requireFound(store.read().settings.channels.find((c) => c.id === l.channelId), (0, import_i18n4.t)("\u6E20\u9053"));
+      if (l.status === "draft") throw new Error((0, import_i18n5.t)("\u5148\u786E\u8BA4\u4E0A\u67B6\u8349\u7A3F"));
+      const ch = requireFound(store.read().settings.channels.find((c) => c.id === l.channelId), (0, import_i18n5.t)("\u6E20\u9053"));
       const g = garment(l.garmentId);
-      const stock = g ? Object.entries(g.stock).map(([k, v]) => `${k}\xD7${v}`).join((0, import_i18n4.t)("\u3001")) : "";
+      const stock = g ? Object.entries(g.stock).map(([k, v]) => `${k}\xD7${v}`).join((0, import_i18n5.t)("\u3001")) : "";
       return [
-        (0, import_i18n4.t)("\u8BF7\u5728\u5185\u7F6E\u6D4F\u89C8\u5668\u91CC\u6253\u5F00 {p0} \u5546\u5BB6\u540E\u53F0\uFF08{p1}\uFF09\uFF0C\u7528\u6211\u5DF2\u767B\u5F55\u7684\u8D26\u53F7\u65B0\u5EFA\u5546\u54C1\u5E76\u6309\u4E0B\u9762\u7684\u5185\u5BB9\u586B\u5199\u3002", { p0: ch.name, p1: ch.url }),
-        ch.autoSubmit ? (0, import_i18n4.t)("\u8981\u6C42\uFF1A\u53EA\u586B\u5199\u4E0B\u5217\u5185\u5BB9\uFF0C\u4E0D\u8981\u6539\u4EF7\u3001\u4E0D\u8981\u5F00\u542F\u4EFB\u4F55\u4ED8\u8D39\u63A8\u5E7F\uFF1B\u8BE5\u5E97\u94FA\u5DF2\u6388\u6743\u5168\u81EA\u52A8\uFF0C\u586B\u5B8C\u6838\u5BF9\u65E0\u8BEF\u540E\u76F4\u63A5\u63D0\u4EA4\uFF0C\u5E76\u628A\u63D0\u4EA4\u7ED3\u679C\u4E0E\u5546\u54C1\u94FE\u63A5\u56DE\u590D\u7ED9\u6211\u3002\u5982\u9700\u767B\u5F55\u6216\u9A8C\u8BC1\u7801\uFF0C\u8BF7\u505C\u4E0B\u6765\u8BA9\u6211\u5904\u7406\u3002") : (0, import_i18n4.t)("\u8981\u6C42\uFF1A\u53EA\u586B\u5199\u4E0B\u5217\u5185\u5BB9\uFF0C\u4E0D\u8981\u6539\u4EF7\u3001\u4E0D\u8981\u5F00\u542F\u4EFB\u4F55\u4ED8\u8D39\u63A8\u5E7F\uFF1B\u586B\u5B8C\u505C\u5728\u300C\u63D0\u4EA4 / \u53D1\u5E03\u300D\u524D\uFF0C\u622A\u56FE\u7ED9\u6211\u786E\u8BA4\uFF0C\u7531\u6211\u4EB2\u81EA\u70B9\u63D0\u4EA4\u3002\u5982\u9700\u767B\u5F55\u6216\u9A8C\u8BC1\u7801\uFF0C\u8BF7\u505C\u4E0B\u6765\u8BA9\u6211\u5904\u7406\u3002"),
+        (0, import_i18n5.t)("\u8BF7\u5728\u5185\u7F6E\u6D4F\u89C8\u5668\u91CC\u6253\u5F00 {p0} \u5546\u5BB6\u540E\u53F0\uFF08{p1}\uFF09\uFF0C\u7528\u6211\u5DF2\u767B\u5F55\u7684\u8D26\u53F7\u65B0\u5EFA\u5546\u54C1\u5E76\u6309\u4E0B\u9762\u7684\u5185\u5BB9\u586B\u5199\u3002", { p0: ch.name, p1: ch.url }),
+        ch.autoSubmit ? (0, import_i18n5.t)("\u8981\u6C42\uFF1A\u53EA\u586B\u5199\u4E0B\u5217\u5185\u5BB9\uFF0C\u4E0D\u8981\u6539\u4EF7\u3001\u4E0D\u8981\u5F00\u542F\u4EFB\u4F55\u4ED8\u8D39\u63A8\u5E7F\uFF1B\u8BE5\u5E97\u94FA\u5DF2\u6388\u6743\u5168\u81EA\u52A8\uFF0C\u586B\u5B8C\u6838\u5BF9\u65E0\u8BEF\u540E\u76F4\u63A5\u63D0\u4EA4\uFF0C\u5E76\u628A\u63D0\u4EA4\u7ED3\u679C\u4E0E\u5546\u54C1\u94FE\u63A5\u56DE\u590D\u7ED9\u6211\u3002\u5982\u9700\u767B\u5F55\u6216\u9A8C\u8BC1\u7801\uFF0C\u8BF7\u505C\u4E0B\u6765\u8BA9\u6211\u5904\u7406\u3002") : (0, import_i18n5.t)("\u8981\u6C42\uFF1A\u53EA\u586B\u5199\u4E0B\u5217\u5185\u5BB9\uFF0C\u4E0D\u8981\u6539\u4EF7\u3001\u4E0D\u8981\u5F00\u542F\u4EFB\u4F55\u4ED8\u8D39\u63A8\u5E7F\uFF1B\u586B\u5B8C\u505C\u5728\u300C\u63D0\u4EA4 / \u53D1\u5E03\u300D\u524D\uFF0C\u622A\u56FE\u7ED9\u6211\u786E\u8BA4\uFF0C\u7531\u6211\u4EB2\u81EA\u70B9\u63D0\u4EA4\u3002\u5982\u9700\u767B\u5F55\u6216\u9A8C\u8BC1\u7801\uFF0C\u8BF7\u505C\u4E0B\u6765\u8BA9\u6211\u5904\u7406\u3002"),
         "",
-        (0, import_i18n4.t)("\u6807\u9898\uFF1A{p0}", { p0: l.title }),
-        (0, import_i18n4.t)("\u4EF7\u683C\uFF1A{p0} \u5143", { p0: l.price }),
-        (0, import_i18n4.t)("\u89C4\u683C\u4E0E\u5E93\u5B58\uFF1A{p0}", { p0: stock || (0, import_i18n4.t)("\u6309\u540E\u53F0\u9ED8\u8BA4") }),
-        (0, import_i18n4.t)("\u5C5E\u6027\uFF1A\u54C1\u7C7B {p0}\uFF0C\u9762\u6599 {p1}\uFF0C\u5B63\u8282 {p2}\uFF0C\u98CE\u683C {p3}\uFF0C\u989C\u8272 {p4}", { p0: g?.category || "\u2014", p1: g?.fabric || "\u2014", p2: g?.season || "\u2014", p3: g?.style || "\u2014", p4: g?.color || "\u2014" }),
-        (0, import_i18n4.t)("\u5356\u70B9\uFF1A{p0}", { p0: l.sellingPoints.join("\uFF1B") }),
-        (0, import_i18n4.t)("\u8BE6\u60C5\uFF1A{p0}", { p0: l.detail }),
-        (0, import_i18n4.t)("\u641C\u7D22\u5173\u952E\u8BCD\uFF1A{p0}", { p0: l.keywords.join((0, import_i18n4.t)("\u3001")) }),
-        (0, import_i18n4.t)("\u56FE\u7247\uFF08\u6309\u987A\u5E8F\u4E0A\u4F20\uFF0C\u7B2C\u4E00\u5F20\u4E3A\u4E3B\u56FE\uFF09\uFF1A"),
+        (0, import_i18n5.t)("\u6807\u9898\uFF1A{p0}", { p0: l.title }),
+        (0, import_i18n5.t)("\u4EF7\u683C\uFF1A{p0} \u5143", { p0: l.price }),
+        (0, import_i18n5.t)("\u89C4\u683C\u4E0E\u5E93\u5B58\uFF1A{p0}", { p0: stock || (0, import_i18n5.t)("\u6309\u540E\u53F0\u9ED8\u8BA4") }),
+        (0, import_i18n5.t)("\u5C5E\u6027\uFF1A\u54C1\u7C7B {p0}\uFF0C\u9762\u6599 {p1}\uFF0C\u5B63\u8282 {p2}\uFF0C\u98CE\u683C {p3}\uFF0C\u989C\u8272 {p4}", { p0: g?.category || "\u2014", p1: g?.fabric || "\u2014", p2: g?.season || "\u2014", p3: g?.style || "\u2014", p4: g?.color || "\u2014" }),
+        (0, import_i18n5.t)("\u5356\u70B9\uFF1A{p0}", { p0: l.sellingPoints.join("\uFF1B") }),
+        (0, import_i18n5.t)("\u8BE6\u60C5\uFF1A{p0}", { p0: l.detail }),
+        (0, import_i18n5.t)("\u641C\u7D22\u5173\u952E\u8BCD\uFF1A{p0}", { p0: l.keywords.join((0, import_i18n5.t)("\u3001")) }),
+        (0, import_i18n5.t)("\u56FE\u7247\uFF08\u6309\u987A\u5E8F\u4E0A\u4F20\uFF0C\u7B2C\u4E00\u5F20\u4E3A\u4E3B\u56FE\uFF09\uFF1A"),
         ...l.images.map((x, i) => `${i + 1}. ${x}`)
       ].join("\n");
     },
@@ -2253,7 +2863,7 @@ ${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
     },
     "local.shelf": (p) => {
       const svc = (0, import_apparelStore.apparelService)();
-      if (!svc) throw new Error((0, import_i18n4.t)("\u670D\u88C5AI\u8BD5\u8863\u672A\u52A0\u8F7D"));
+      if (!svc) throw new Error((0, import_i18n5.t)("\u670D\u88C5AI\u8BD5\u8863\u672A\u52A0\u8F7D"));
       return svc.saveGarment({ id: p.garmentId, onShelf: !!p.onShelf });
     },
     // D
@@ -2275,13 +2885,13 @@ ${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
     "finance.metrics": (p) => computeMetrics(store.data().sales, store.data().expenses, garments(), p.from, p.to),
     "finance.report": async (p) => {
       const period = p.kind === "custom" ? { from: String(p.from || ""), to: String(p.to || "") } : reportPeriod(p.kind);
-      if (!period.from || !period.to || period.from > period.to) throw new Error((0, import_i18n4.t)("\u8BF7\u9009\u62E9\u6B63\u786E\u7684\u8D77\u6B62\u65E5\u671F"));
+      if (!period.from || !period.to || period.from > period.to) throw new Error((0, import_i18n5.t)("\u8BF7\u9009\u62E9\u6B63\u786E\u7684\u8D77\u6B62\u65E5\u671F"));
       return buildReport(p.kind, period.from, period.to);
     },
-    "finance.reportText": (p) => reportText(requireFound(store.read().reports.find((r) => r.id === p.id), (0, import_i18n4.t)("\u62A5\u8868"))),
+    "finance.reportText": (p) => reportText(requireFound(store.read().reports.find((r) => r.id === p.id), (0, import_i18n5.t)("\u62A5\u8868"))),
     "finance.push": async (p) => {
-      const r = requireFound(store.read().reports.find((x) => x.id === p.id), (0, import_i18n4.t)("\u62A5\u8868"));
-      const pushed = await pushOutlets((0, import_i18n4.t)("\u7ECF\u8425\u62A5\u8868 {a} ~ {b}", { a: r.metrics.from, b: r.metrics.to }), reportText(r));
+      const r = requireFound(store.read().reports.find((x) => x.id === p.id), (0, import_i18n5.t)("\u62A5\u8868"));
+      const pushed = await pushOutlets((0, import_i18n5.t)("\u7ECF\u8425\u62A5\u8868 {a} ~ {b}", { a: r.metrics.from, b: r.metrics.to }), reportText(r));
       store.update((s) => {
         const x = s.reports.find((y) => y.id === r.id);
         if (x) x.pushed = pushed;
@@ -2290,32 +2900,32 @@ ${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
       return pushed;
     },
     "finance.export": (p) => {
-      const r = requireFound(store.read().reports.find((x) => x.id === p.id), (0, import_i18n4.t)("\u62A5\u8868"));
+      const r = requireFound(store.read().reports.find((x) => x.id === p.id), (0, import_i18n5.t)("\u62A5\u8868"));
       const m = r.metrics;
-      const file = (0, import_node_path3.join)(outputDir((0, import_i18n4.t)("\u7ECF\u8425\u62A5\u8868")), `${(0, import_i18n4.t)("\u7ECF\u8425\u62A5\u8868")}-${m.from}_${m.to}.xlsx`);
+      const file = (0, import_node_path4.join)(outputDir((0, import_i18n5.t)("\u7ECF\u8425\u62A5\u8868")), `${(0, import_i18n5.t)("\u7ECF\u8425\u62A5\u8868")}-${m.from}_${m.to}.xlsx`);
       (0, import_excel2.writeWorkbook)(file, [
-        { name: (0, import_i18n4.t)("\u6C47\u603B"), headers: [(0, import_i18n4.t)("\u6307\u6807"), (0, import_i18n4.t)("\u6570\u503C")], rows: [
-          [(0, import_i18n4.t)("\u671F\u95F4"), `${m.from} ~ ${m.to}`],
-          [(0, import_i18n4.t)("\u8425\u4E1A\u989D"), m.revenue],
-          [(0, import_i18n4.t)("\u9000\u8D27"), m.refunds],
-          [(0, import_i18n4.t)("\u51C0\u8425\u4E1A\u989D"), m.netRevenue],
-          [(0, import_i18n4.t)("\u9500\u552E\u6210\u672C"), m.cost],
-          [(0, import_i18n4.t)("\u6210\u672C\u8986\u76D6\u7387"), m.costCoverage],
-          [(0, import_i18n4.t)("\u6BDB\u5229"), m.grossProfit],
-          [(0, import_i18n4.t)("\u6BDB\u5229\u7387"), m.grossMargin],
-          [(0, import_i18n4.t)("\u8BA2\u5355\u6570"), m.orders],
-          [(0, import_i18n4.t)("\u4EF6\u6570"), m.units],
-          [(0, import_i18n4.t)("\u5BA2\u5355\u4EF7"), m.avgOrderValue],
-          [(0, import_i18n4.t)("\u8FDE\u5E26\u7387"), m.unitsPerOrder],
-          [(0, import_i18n4.t)("\u8D39\u7528"), m.expenses],
-          [(0, import_i18n4.t)("\u8D39\u7528\u7387"), m.expenseRate],
-          [(0, import_i18n4.t)("\u51C0\u5229\u6DA6"), m.netProfit]
+        { name: (0, import_i18n5.t)("\u6C47\u603B"), headers: [(0, import_i18n5.t)("\u6307\u6807"), (0, import_i18n5.t)("\u6570\u503C")], rows: [
+          [(0, import_i18n5.t)("\u671F\u95F4"), `${m.from} ~ ${m.to}`],
+          [(0, import_i18n5.t)("\u8425\u4E1A\u989D"), m.revenue],
+          [(0, import_i18n5.t)("\u9000\u8D27"), m.refunds],
+          [(0, import_i18n5.t)("\u51C0\u8425\u4E1A\u989D"), m.netRevenue],
+          [(0, import_i18n5.t)("\u9500\u552E\u6210\u672C"), m.cost],
+          [(0, import_i18n5.t)("\u6210\u672C\u8986\u76D6\u7387"), m.costCoverage],
+          [(0, import_i18n5.t)("\u6BDB\u5229"), m.grossProfit],
+          [(0, import_i18n5.t)("\u6BDB\u5229\u7387"), m.grossMargin],
+          [(0, import_i18n5.t)("\u8BA2\u5355\u6570"), m.orders],
+          [(0, import_i18n5.t)("\u4EF6\u6570"), m.units],
+          [(0, import_i18n5.t)("\u5BA2\u5355\u4EF7"), m.avgOrderValue],
+          [(0, import_i18n5.t)("\u8FDE\u5E26\u7387"), m.unitsPerOrder],
+          [(0, import_i18n5.t)("\u8D39\u7528"), m.expenses],
+          [(0, import_i18n5.t)("\u8D39\u7528\u7387"), m.expenseRate],
+          [(0, import_i18n5.t)("\u51C0\u5229\u6DA6"), m.netProfit]
         ] },
-        { name: (0, import_i18n4.t)("\u6E20\u9053"), headers: [(0, import_i18n4.t)("\u6E20\u9053"), (0, import_i18n4.t)("\u91D1\u989D"), (0, import_i18n4.t)("\u5360\u6BD4")], rows: m.byChannel.map((x) => [x.label, x.value, x.share ?? 0]) },
-        { name: (0, import_i18n4.t)("\u54C1\u7C7B"), headers: [(0, import_i18n4.t)("\u54C1\u7C7B"), (0, import_i18n4.t)("\u91D1\u989D"), (0, import_i18n4.t)("\u5360\u6BD4")], rows: m.byCategory.map((x) => [x.label, x.value, x.share ?? 0]) },
-        { name: (0, import_i18n4.t)("\u7545\u9500\u6B3E"), headers: [(0, import_i18n4.t)("\u5546\u54C1"), (0, import_i18n4.t)("\u91D1\u989D")], rows: m.topItems.map((x) => [x.label, x.value]) },
-        { name: (0, import_i18n4.t)("\u552E\u7F44\u7387"), headers: [(0, import_i18n4.t)("\u5546\u54C1"), (0, import_i18n4.t)("\u552E\u7F44\u7387")], rows: m.sellThrough.map((x) => [x.label, x.value]) },
-        { name: (0, import_i18n4.t)("\u7ECF\u8425\u89E3\u8BFB"), headers: [(0, import_i18n4.t)("\u5185\u5BB9")], rows: [...r.commentary.split("\n").map((x) => [x]), ...r.unverified.length ? [[(0, import_i18n4.t)("\u672A\u80FD\u6838\u5BF9\u7684\u6570\u5B57\uFF1A{p0}", { p0: r.unverified.join((0, import_i18n4.t)("\u3001")) })]] : []] }
+        { name: (0, import_i18n5.t)("\u6E20\u9053"), headers: [(0, import_i18n5.t)("\u6E20\u9053"), (0, import_i18n5.t)("\u91D1\u989D"), (0, import_i18n5.t)("\u5360\u6BD4")], rows: m.byChannel.map((x) => [x.label, x.value, x.share ?? 0]) },
+        { name: (0, import_i18n5.t)("\u54C1\u7C7B"), headers: [(0, import_i18n5.t)("\u54C1\u7C7B"), (0, import_i18n5.t)("\u91D1\u989D"), (0, import_i18n5.t)("\u5360\u6BD4")], rows: m.byCategory.map((x) => [x.label, x.value, x.share ?? 0]) },
+        { name: (0, import_i18n5.t)("\u7545\u9500\u6B3E"), headers: [(0, import_i18n5.t)("\u5546\u54C1"), (0, import_i18n5.t)("\u91D1\u989D")], rows: m.topItems.map((x) => [x.label, x.value]) },
+        { name: (0, import_i18n5.t)("\u552E\u7F44\u7387"), headers: [(0, import_i18n5.t)("\u5546\u54C1"), (0, import_i18n5.t)("\u552E\u7F44\u7387")], rows: m.sellThrough.map((x) => [x.label, x.value]) },
+        { name: (0, import_i18n5.t)("\u7ECF\u8425\u89E3\u8BFB"), headers: [(0, import_i18n5.t)("\u5185\u5BB9")], rows: [...r.commentary.split("\n").map((x) => [x]), ...r.unverified.length ? [[(0, import_i18n5.t)("\u672A\u80FD\u6838\u5BF9\u7684\u6570\u5B57\uFF1A{p0}", { p0: r.unverified.join((0, import_i18n5.t)("\u3001")) })]] : []] }
       ]);
       store.update((s) => {
         const x = s.reports.find((y) => y.id === r.id);
@@ -2325,8 +2935,8 @@ ${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
       return file;
     },
     "finance.exportPdf": async (p) => {
-      const r = requireFound(store.read().reports.find((x) => x.id === p.id), (0, import_i18n4.t)("\u62A5\u8868"));
-      const file = (0, import_node_path3.join)(outputDir((0, import_i18n4.t)("\u7ECF\u8425\u62A5\u8868")), `${(0, import_i18n4.t)("\u7ECF\u8425\u62A5\u8868")}-${r.metrics.from}_${r.metrics.to}.pdf`);
+      const r = requireFound(store.read().reports.find((x) => x.id === p.id), (0, import_i18n5.t)("\u62A5\u8868"));
+      const file = (0, import_node_path4.join)(outputDir((0, import_i18n5.t)("\u7ECF\u8425\u62A5\u8868")), `${(0, import_i18n5.t)("\u7ECF\u8425\u62A5\u8868")}-${r.metrics.from}_${r.metrics.to}.pdf`);
       await (0, import_render.renderHtmlToPdf)(reportHtml(r), file);
       store.update((s) => {
         const x = s.reports.find((y) => y.id === r.id);
@@ -2340,38 +2950,38 @@ ${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
      * 渲染层再调财务智能体的 data.importJournal 导入 —— 只生成草稿账，不改任何正式账套。
      */
     "finance.toJournal": (p) => {
-      const r = requireFound(store.read().reports.find((x) => x.id === p.id), (0, import_i18n4.t)("\u62A5\u8868"));
+      const r = requireFound(store.read().reports.find((x) => x.id === p.id), (0, import_i18n5.t)("\u62A5\u8868"));
       const m = r.metrics;
       const d = store.data();
       const exp = /* @__PURE__ */ new Map();
       for (const e of d.expenses.filter((x) => x.date >= m.from && x.date <= m.to)) exp.set(e.item, (exp.get(e.item) || 0) + e.amount);
       const no = `JY-${m.to.replace(/-/g, "")}`;
-      const memo = (0, import_i18n4.t)("\u7ECF\u8425\u81EA\u52A8\u5316\u8F6C\u5165 {a}~{b}\uFF08\u542B\u7A0E\uFF0C\u4EF7\u7A0E\u5206\u79BB\u8BF7\u590D\u6838\uFF09", { a: m.from, b: m.to });
+      const memo = (0, import_i18n5.t)("\u7ECF\u8425\u81EA\u52A8\u5316\u8F6C\u5165 {a}~{b}\uFF08\u542B\u7A0E\uFF0C\u4EF7\u7A0E\u5206\u79BB\u8BF7\u590D\u6838\uFF09", { a: m.from, b: m.to });
       const rows = [
-        [m.to, no, memo, "1002", (0, import_i18n4.t)("\u94F6\u884C\u5B58\u6B3E"), m.netRevenue, 0],
-        [m.to, no, memo, "6001", (0, import_i18n4.t)("\u4E3B\u8425\u4E1A\u52A1\u6536\u5165"), 0, m.netRevenue]
+        [m.to, no, memo, "1002", (0, import_i18n5.t)("\u94F6\u884C\u5B58\u6B3E"), m.netRevenue, 0],
+        [m.to, no, memo, "6001", (0, import_i18n5.t)("\u4E3B\u8425\u4E1A\u52A1\u6536\u5165"), 0, m.netRevenue]
       ];
-      if (m.cost) rows.push([m.to, no, memo, "6401", (0, import_i18n4.t)("\u4E3B\u8425\u4E1A\u52A1\u6210\u672C"), m.cost, 0], [m.to, no, memo, "1405", (0, import_i18n4.t)("\u5E93\u5B58\u5546\u54C1"), 0, m.cost]);
+      if (m.cost) rows.push([m.to, no, memo, "6401", (0, import_i18n5.t)("\u4E3B\u8425\u4E1A\u52A1\u6210\u672C"), m.cost, 0], [m.to, no, memo, "1405", (0, import_i18n5.t)("\u5E93\u5B58\u5546\u54C1"), 0, m.cost]);
       let k = 1;
       for (const [item, amt] of exp) {
         const n2 = `${no}-${k++}`;
-        rows.push([m.to, n2, `${memo} ${item}`, "6601", (0, import_i18n4.t)("\u9500\u552E\u8D39\u7528"), Math.round(amt * 100) / 100, 0], [m.to, n2, `${memo} ${item}`, "1002", (0, import_i18n4.t)("\u94F6\u884C\u5B58\u6B3E"), 0, Math.round(amt * 100) / 100]);
+        rows.push([m.to, n2, `${memo} ${item}`, "6601", (0, import_i18n5.t)("\u9500\u552E\u8D39\u7528"), Math.round(amt * 100) / 100, 0], [m.to, n2, `${memo} ${item}`, "1002", (0, import_i18n5.t)("\u94F6\u884C\u5B58\u6B3E"), 0, Math.round(amt * 100) / 100]);
       }
-      const file = (0, import_node_path3.join)(outputDir((0, import_i18n4.t)("\u7ECF\u8425\u62A5\u8868")), `${(0, import_i18n4.t)("\u5E8F\u65F6\u8D26")}-${m.from}_${m.to}.xlsx`);
-      (0, import_excel2.writeWorkbook)(file, [{ name: (0, import_i18n4.t)("\u5E8F\u65F6\u8D26"), headers: [(0, import_i18n4.t)("\u65E5\u671F"), (0, import_i18n4.t)("\u51ED\u8BC1\u53F7"), (0, import_i18n4.t)("\u6458\u8981"), (0, import_i18n4.t)("\u79D1\u76EE\u7F16\u7801"), (0, import_i18n4.t)("\u79D1\u76EE\u540D\u79F0"), (0, import_i18n4.t)("\u501F\u65B9\u91D1\u989D"), (0, import_i18n4.t)("\u8D37\u65B9\u91D1\u989D")], rows }]);
+      const file = (0, import_node_path4.join)(outputDir((0, import_i18n5.t)("\u7ECF\u8425\u62A5\u8868")), `${(0, import_i18n5.t)("\u5E8F\u65F6\u8D26")}-${m.from}_${m.to}.xlsx`);
+      (0, import_excel2.writeWorkbook)(file, [{ name: (0, import_i18n5.t)("\u5E8F\u65F6\u8D26"), headers: [(0, import_i18n5.t)("\u65E5\u671F"), (0, import_i18n5.t)("\u51ED\u8BC1\u53F7"), (0, import_i18n5.t)("\u6458\u8981"), (0, import_i18n5.t)("\u79D1\u76EE\u7F16\u7801"), (0, import_i18n5.t)("\u79D1\u76EE\u540D\u79F0"), (0, import_i18n5.t)("\u501F\u65B9\u91D1\u989D"), (0, import_i18n5.t)("\u8D37\u65B9\u91D1\u989D")], rows }]);
       return file;
     },
     "finance.ask": async (p) => {
       const q = String(p?.q || "").trim();
-      if (!q) throw new Error((0, import_i18n4.t)("\u8BF7\u8F93\u5165\u95EE\u9898"));
+      if (!q) throw new Error((0, import_i18n5.t)("\u8BF7\u8F93\u5165\u95EE\u9898"));
       const d = store.data();
-      if (!d.sales.length) throw new Error((0, import_i18n4.t)("\u8FD8\u6CA1\u6709\u9500\u552E\u6570\u636E\uFF1A\u5148\u5BFC\u5165\u6536\u94F6\u7CFB\u7EDF\u5BFC\u51FA\u7684\u9500\u552E\u660E\u7EC6"));
+      if (!d.sales.length) throw new Error((0, import_i18n5.t)("\u8FD8\u6CA1\u6709\u9500\u552E\u6570\u636E\uFF1A\u5148\u5BFC\u5165\u6536\u94F6\u7CFB\u7EDF\u5BFC\u51FA\u7684\u9500\u552E\u660E\u7EC6"));
       const dates = d.sales.map((r) => r.date).sort();
       const last = dates[dates.length - 1];
       const blocks = [
-        { title: (0, import_i18n4.t)("\u5168\u90E8\u6570\u636E {a} ~ {b}", { a: dates[0], b: last }), facts: metricsFacts(computeMetrics(d.sales, d.expenses, garments(), dates[0], last)) },
-        { title: (0, import_i18n4.t)("\u6700\u8FD1 7 \u5929"), facts: metricsFacts(computeMetrics(d.sales, d.expenses, garments(), shiftDate(last, -6), last)) },
-        { title: (0, import_i18n4.t)("\u6700\u8FD1 30 \u5929"), facts: metricsFacts(computeMetrics(d.sales, d.expenses, garments(), shiftDate(last, -29), last)) }
+        { title: (0, import_i18n5.t)("\u5168\u90E8\u6570\u636E {a} ~ {b}", { a: dates[0], b: last }), facts: metricsFacts(computeMetrics(d.sales, d.expenses, garments(), dates[0], last)) },
+        { title: (0, import_i18n5.t)("\u6700\u8FD1 7 \u5929"), facts: metricsFacts(computeMetrics(d.sales, d.expenses, garments(), shiftDate(last, -6), last)) },
+        { title: (0, import_i18n5.t)("\u6700\u8FD1 30 \u5929"), facts: metricsFacts(computeMetrics(d.sales, d.expenses, garments(), shiftDate(last, -29), last)) }
       ];
       const sources = store.read().imports.filter((i) => i.kind !== "inventory").slice(0, 5).map((i) => `${i.file}\uFF08${i.from}~${i.to}\uFF0C${i.rows}\uFF09`);
       const { text, model } = await llm("finance", financeQaPrompt({ question: q, brand: store.read().settings.brandName, blocks, sources }));
@@ -2385,7 +2995,7 @@ ${(0, import_i18n4.t)("\uFF08\u672C\u89C6\u9891\u7531 AI \u751F\u6210\uFF09")}`,
   };
   import_electron.ipcMain.handle(import_ipc_contracts.IPC_CHANNELS.WORKBENCH_BA_INVOKE, async (_e, req) => {
     const fn = actions[String(req?.action || "")];
-    if (!fn) throw new Error((0, import_i18n4.t)("\u672A\u77E5\u64CD\u4F5C\uFF1A{p0}", { p0: String(req?.action || "") }));
+    if (!fn) throw new Error((0, import_i18n5.t)("\u672A\u77E5\u64CD\u4F5C\uFF1A{p0}", { p0: String(req?.action || "") }));
     try {
       return await fn(req.payload ?? {});
     } catch (error) {

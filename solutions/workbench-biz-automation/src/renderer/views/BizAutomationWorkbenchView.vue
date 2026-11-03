@@ -11,12 +11,18 @@
         </div>
       </div>
       <div class="header-actions">
+        <!-- 演示模式：六个页签一键造好示例数据（本机生成、不调用 AI、不发布、不推送）；旧版 App 没有这个动作就不显示 -->
+        <template v-if="state?.demo">
+          <button v-if="hasDemo" class="ss-btn" :disabled="demoBusy" data-test="ba-demo-clear" @click="clearDemo"><i :class="demoBusy ? 'ri-loader-4-line spin' : 'ri-delete-bin-6-line'"></i>{{ $t('清除演示数据') }}</button>
+          <button class="ss-btn" :class="{ primary: !hasDemo }" :disabled="demoBusy" data-test="ba-demo-seed" @click="seedDemo"><i :class="demoBusy ? 'ri-loader-4-line spin' : 'ri-slideshow-3-line'"></i>{{ hasDemo ? $t('重新生成演示数据') : $t('演示模式') }}</button>
+        </template>
         <button class="ss-btn" :disabled="loading" @click="reload"><i :class="loading ? 'ri-loader-4-line spin' : 'ri-refresh-line'"></i>{{ $t('刷新') }}</button>
       </div>
     </header>
 
     <section v-if="state" class="ba-bar">
       <span><i class="ri-store-2-line"></i>{{ state.settings.brandName || $t('未设置品牌名') }}</span>
+      <span v-if="hasDemo" class="ss-chip warn" data-test="ba-demo-chip"><i class="ri-slideshow-3-line"></i>{{ $t('含演示数据') }}</span>
       <span class="ss-muted">{{ $t('商品 {a} · 视频 {b} · 上架 {c} · 销售数据 {d} 行', { a: garments.length, b: state.videos.length, c: state.listings.filter((l) => l.status === 'listed').length, d: state.salesRows }) }}</span>
       <p class="ba-bar__rule">
         <span class="no"><i class="ri-close-circle-line"></i>{{ $t('模型不算钱、不改财务数据、不擅自提交') }}</span>
@@ -89,6 +95,7 @@ import SettingsTab from '../workbenches/biz-automation/SettingsTab.vue';
 import HistoryTab from '../workbenches/biz-automation/HistoryTab.vue';
 import { useRouter } from 'vue-router';
 import { useNotificationStore } from '../stores/notification';
+import { useDialog } from '../composables/useDialog';
 import { ba, baGarments, baProgress, baState, consumePublishResult, errorMessage, loadModels, onBaEvent, refreshState, startPublishWorkflow } from '../workbenches/biz-automation/shared';
 import '../workbenches/service-settlement/styles.css';
 
@@ -149,6 +156,35 @@ function goto(key: string, payload?: any): void {
   if (!TABS.some((t) => t.key === key)) return;
   focus[key] = { ...(payload || {}), at: Date.now() };
   select(key as TabKey);
+}
+
+// ── 演示模式 ──
+const dialog = useDialog();
+const demoBusy = ref(false);
+const hasDemo = computed(() => { const d = state.value?.demo; return !!d && d.videos + d.avatars + d.listings + d.sales + d.reports > 0; });
+async function seedDemo(): Promise<void> {
+  const ok = await dialog.confirm({
+    title: hasDemo.value ? i18nT('重新生成演示数据') : i18nT('演示模式'),
+    message: i18nT('生成一整套示例数据，六个页签都能直接演示：短视频 4 个（含已发布、待定时发布）、数字人讲稿 2 份、上架记录 8 条、近 60 天收银与费用数据和日报 / 月报。商品库里没有演示商品时，会连带生成服装AI试衣的演示数据。\n全部在本机生成，不调用 AI、不发布、不推送；门店自己的数据不受影响，随时可以一键清除。'),
+    confirmLabel: i18nT('生成'),
+  });
+  if (!ok) return;
+  demoBusy.value = true;
+  try {
+    await ba('demo.seed');
+    await refreshState();
+    notif.success(i18nT('演示数据已生成'));
+  } catch (e) { notif.error(errorMessage(e)); } finally { demoBusy.value = false; }
+}
+async function clearDemo(): Promise<void> {
+  const ok = await dialog.confirm({ title: i18nT('清除演示数据'), message: i18nT('只删除演示模式生成的视频、讲稿、上架记录、收银与费用数据和报表；门店自己的数据不受影响。服装AI试衣的演示商品在那个页面单独清除。'), confirmLabel: i18nT('清除'), danger: true });
+  if (!ok) return;
+  demoBusy.value = true;
+  try {
+    await ba('demo.clear');
+    await refreshState();
+    notif.success(i18nT('演示数据已清除'));
+  } catch (e) { notif.error(errorMessage(e)); } finally { demoBusy.value = false; }
 }
 
 async function reload(): Promise<void> {

@@ -2,6 +2,7 @@
   "hostApi": 2,
   "renderer": [
     "apps/desktop-shell/src/renderer/components/PageBackButton.vue",
+    "apps/desktop-shell/src/renderer/composables/useDialog.ts",
     "apps/desktop-shell/src/renderer/i18n.ts",
     "apps/desktop-shell/src/renderer/stores/notification.ts",
     "apps/desktop-shell/src/renderer/workbenches/biz-automation/shared.ts",
@@ -15,6 +16,7 @@
     "apps/desktop-shell/src/main/ipc/mediaFal.ipc.ts",
     "apps/desktop-shell/src/main/services/accountScope.ts",
     "apps/desktop-shell/src/main/services/agentPython.ts",
+    "apps/desktop-shell/src/main/services/apparelStore/demo.ts",
     "apps/desktop-shell/src/main/services/apparelStore/logic.ts",
     "apps/desktop-shell/src/main/services/brandPaths.ts",
     "apps/desktop-shell/src/main/services/caseMailSender.ts",

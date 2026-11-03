@@ -1,12 +1,12 @@
 {
   "id": "workbench-flow-sla",
-  "version": "2.0.3",
-  "treeDigest": "712409f55a61e6a05b8177372567db9820797b5d31d7fde6cb78ac95ec944631",
+  "version": "2.0.4",
+  "treeDigest": "aabef21d7f559b7d04db4225189ca13ab987d2e37accbfa84a0d7e84dd42833f",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1401,
-      "sha256": "bf09827d899ae38111a4ab69554867f1316384e6030e07ee1a547e1b3913e632"
+      "size": 1599,
+      "sha256": "f5232df0d5fd2f5bf8cbaf7bde7c7b5277e2f2b6b752833689ec8fe70a26540e"
     },
     {
       "path": "README.md",
@@ -15,23 +15,23 @@
     },
     {
       "path": "dist/host-modules.json",
-      "size": 1544,
-      "sha256": "c004cf486066b12fe71ee3857cea4483362e0574b6a0ca1f4abaf7569b9adc89"
+      "size": 1608,
+      "sha256": "6e1ef9aacdfa5b3931d8e0fb522255de4902158f313b0dc0e0741befeefb8ca5"
     },
     {
       "path": "dist/main.cjs",
-      "size": 327912,
-      "sha256": "611889f5c859e9df3901134af95da1fda8b1ab5df4b032e89660cadbe7c8d5fa"
+      "size": 326934,
+      "sha256": "a95bb71688ea960015c06c734e703d071acbc3c744b0767f4af66aca91c71d07"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 337637,
-      "sha256": "00e07a7bcf766900ddbdc0ad7ded99cbc4434943cc312afe8252b17e4c098466"
+      "size": 337967,
+      "sha256": "ad9b27e6d0ab75561b65a52ccc6e715e1288de8716dab7a4feadecf60631e81b"
     },
     {
       "path": "dist/style.css",
-      "size": 20919,
-      "sha256": "3b31c0d10fced7e283f3d1e76d0558fe81dc2bb4834222313de1c2675f669f04"
+      "size": 20942,
+      "sha256": "96735a739706514a347811621af298e138213f790e686d2d2e2818c6ab8608e5"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2149,
-      "sha256": "f3e0c491c866cd8ad4e81bcfafcd2ed3d791f98a697331f520ed3e02f0ed7ab0"
+      "sha256": "f9356456e88d2925d6938b9e86f0647e09ffe9919b34dfb595ccec29e91f58f0"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.4",
+      "ref": "workbench-flow-sla@2.0.4",
+      "treeDigest": "aabef21d7f559b7d04db4225189ca13ab987d2e37accbfa84a0d7e84dd42833f",
+      "filesRef": "index/workbench-flow-sla/2.0.4.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.9",
+      "hostApi": 2,
+      "publishedAt": "2026-11-03"
+    },
     {
       "version": "2.0.3",
       "ref": "workbench-flow-sla@2.0.3",

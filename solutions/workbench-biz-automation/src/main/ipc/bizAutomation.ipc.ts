@@ -50,7 +50,9 @@ import { isTaskFailed, isTaskFinished } from '../services/digitalHumanProc';
 import { knowledgeStore } from '../services/knowledgeBase/service';
 import { rankFacts } from '../services/knowledgeBase/retrieval';
 import { fieldLabel } from '../services/knowledgeBase/fieldCatalog';
-import { apparelService } from './apparelStore.ipc';
+import { apparelService, apparelStoreInstance } from './apparelStore.ipc';
+import { demoCounts as apparelDemoCounts, seedApparelDemo } from '../services/apparelStore/demo';
+import { bizDemoCounts, clearBizDemo, seedBizDemo } from '../services/bizAutomation/demo';
 import { sizeChartRows } from '../services/apparelStore/logic';
 import { documentsFolderName } from '../services/brandPaths';
 
@@ -186,7 +188,8 @@ export function registerBizAutomationHandlers(deps: WorkbenchIpcDeps): () => voi
       salesRows: d.sales.length, expenseRows: d.expenses.length, reports: s.reports, qa: s.qa, log: s.log,
       ready: { ffmpeg: !!tools(), image: imageReady(), digitalHuman: !!deps.digitalHumanProc, knowledge, push: pushReady() },
       outputDir: outputDir(undefined, false),
-    };
+      demo: bizDemoCounts(store),
+    } as BaState;
   };
 
   // ── A 短视频 ─────────────────────────────────────
@@ -801,6 +804,35 @@ ${r.staleNote ? `<p class="warn">⚠ ${esc(r.staleNote)}</p>` : ''}
       if (err) throw new Error(err);
       return true;
     },
+    // 演示模式：六个页签都造好示例数据（本机生成，不调用模型 / 数字人 / 发布服务）；商品库没有演示商品时连带生成服装AI试衣那一份
+    'demo.seed': async () => {
+      progress('finance', i18nT('正在生成演示数据…'));
+      const r = await seedBizDemo({
+        store,
+        garments,
+        ensureDemoGarments: async () => {
+          const svc = apparelService();
+          if (!svc) throw new Error(i18nT('服装AI试衣未加载'));
+          if (!apparelDemoCounts(apparelStoreInstance().read()).garments) await seedApparelDemo(apparelStoreInstance(), svc.defs());
+        },
+        apparelStats: () => { try { return apparelService()?.stats() ?? null; } catch { return null; } },
+        makeClip: async (images, out) => {
+          const t = tools();
+          const imgs = images.filter((x) => x && existsSync(x)).slice(0, 4);
+          if (!t || !imgs.length) return null;
+          const args = ['-v', 'error', '-y'];
+          for (const im of imgs) args.push('-loop', '1', '-t', '3', '-i', im);
+          const scaled = imgs.map((_, i) => `[${i}:v]scale=720:1280:force_original_aspect_ratio=decrease,pad=720:1280:(ow-iw)/2:(oh-ih)/2:white,setsar=1,fps=25[v${i}]`).join(';');
+          args.push('-filter_complex', `${scaled};${imgs.map((_, i) => `[v${i}]`).join('')}concat=n=${imgs.length}:v=1:a=0[out]`, '-map', '[out]', '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', out);
+          const r2 = await runProc(t.ffmpeg, args, { env: t.env, timeoutMs: 120_000 });
+          return r2.code === 0 && existsSync(out) ? out : null;
+        },
+      });
+      progress('finance', '');
+      pushState();
+      return r;
+    },
+    'demo.clear': () => { const r = clearBizDemo(store); pushState(); return r; },
     'log.clear': () => { store.update((s) => { s.log = []; }); pushState(); return true; },
     'schedule.runNow': async () => { store.update((s) => { s.lastRun = {}; }); await tick(); return publicState().log.slice(0, 5); },
 

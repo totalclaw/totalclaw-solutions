@@ -17,7 +17,8 @@
     "pack:all": "node tools/pack.mjs --all",
     "test": "node --test test/*.test.mjs",
     "tcsol": "node bin/tcsol.mjs",
-    "release": "node tools/build-index.mjs && node tools/validate.mjs",
+    "release": "node tools/build-index.mjs && node tools/validate.mjs && npm run check:autocoder",
+    "check:autocoder": "node ../totalclaw-qiye-app/apps/desktop-shell/scripts/check-solutions-autocoder.mjs --from . --optional",
     "tag": "node tools/tag-release.mjs"
   },
   "bin": {

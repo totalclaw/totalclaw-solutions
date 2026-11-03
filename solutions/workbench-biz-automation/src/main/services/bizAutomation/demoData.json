@@ -1,0 +1,297 @@
+{
+ "_comment": "经营自动化 · 演示模式的示例文字（虚构）。按界面语言取 zh / en，其它语言用 en。数字由代码按演示商品与销售数据算，这里不写数字。",
+ "zh": {
+  "channels": [
+   "门店",
+   "抖店",
+   "微信小店"
+  ],
+  "expenses": [
+   "门店房租",
+   "员工工资",
+   "水电物业",
+   "线上推广费"
+  ],
+  "videos": [
+   {
+    "type": "new_arrival",
+    "name": "秋冬新品上新 · 第一波",
+    "brief": "秋冬新品到店，主推西装外套和半身裙；到店试穿送丝巾。",
+    "lines": [
+     "秋冬新品到店啦，先看这件一粒扣西装外套",
+     "米杏色百搭，配半裙和西裤都好看",
+     "高腰 A 字半身裙，显高又遮胯",
+     "到店试穿还送丝巾，等你来"
+    ],
+    "copy": {
+     "title": "秋冬新品到店｜西装外套 + 半身裙通勤一周不重样",
+     "caption": "米杏色西装外套 + 咖啡色 A 字裙，通勤约会都能穿。到店试穿送丝巾～",
+     "topics": [
+      "秋冬穿搭",
+      "通勤穿搭",
+      "新品上新"
+     ]
+    }
+   },
+   {
+    "type": "multi_look",
+    "name": "一件小黑裙的三种穿法",
+    "brief": "同一条缎面小黑裙，上班、约会、晚宴三种搭配。",
+    "lines": [
+     "一条小黑裙，上班这样穿",
+     "约会换双鞋就够了",
+     "晚宴加一件外套，气场全开"
+    ],
+    "copy": {
+     "title": "一条小黑裙穿出 3 种场合",
+     "caption": "缎面小黑裙，上班、约会、晚宴一条搞定，评论区说说你最喜欢哪套。",
+     "topics": [
+      "小黑裙",
+      "一衣多搭",
+      "穿搭教程"
+     ]
+    }
+   },
+   {
+    "type": "promotion",
+    "name": "双十一店庆活动预告",
+    "brief": "11 月 8 日至 11 日全场满 500 减 80，会员再享 95 折。",
+    "lines": [
+     "双十一店庆来啦",
+     "全场满 500 减 80",
+     "会员再享 95 折，11 月 8 日到 11 日"
+    ],
+    "copy": {
+     "title": "双十一店庆｜满 500 减 80，会员再 95 折",
+     "caption": "11 月 8 日至 11 日，到店或线上下单都参加。",
+     "topics": [
+      "双十一",
+      "店庆",
+      "服装店"
+     ]
+    }
+   },
+   {
+    "type": "styling_tips",
+    "name": "梨形身材穿搭小技巧",
+    "brief": "给梨形身材顾客的三条穿搭建议。",
+    "lines": [],
+    "copy": null
+   }
+  ],
+  "platformNote": "演示数据：发布回执为示例，未真正发布",
+  "statsNote": "演示数据",
+  "avatars": [
+   {
+    "topic": "company_intro",
+    "name": "门店介绍（店长出镜版）",
+    "script": "大家好，欢迎来到我们的服装店。我们主打通勤与约会两类场景，每一季都会从合作工厂直接拿新款，价格实在。店里有 AI 一键试衣，扫码就能在手机上看到自己穿上新衣服的样子，喜欢再到店试实物。期待在店里见到你。",
+    "facts": [
+     [
+      "主营品类",
+      "通勤女装、男装、童装"
+     ],
+     [
+      "特色服务",
+      "AI 一键试衣，扫码手机查看"
+     ]
+    ]
+   },
+   {
+    "topic": "holiday",
+    "name": "双十一店庆祝福",
+    "script": "双十一店庆到了，感谢大家一直以来的支持。活动期间全场满 500 减 80，会员再享 95 折。门店地址【待补充】，营业时间【待补充】，欢迎到店。",
+    "facts": [
+     [
+      "活动",
+      "满 500 减 80，会员 95 折"
+     ]
+    ]
+   }
+  ],
+  "listingDetail": "{name}，{color}，{fabric}面料。{sellingPoints} 尺码齐全，支持到店试穿；附尺码表，下单前可咨询客服。",
+  "keywords": [
+   "新款",
+   "百搭",
+   "显瘦"
+  ],
+  "importFile": {
+   "sales": "演示数据 · 收银销售明细",
+   "expense": "演示数据 · 门店费用"
+  },
+  "qa": [
+   {
+    "q": "最近 7 天哪个渠道卖得最好？",
+    "a": "最近 7 天{top}的销售额最高，为 {amount} 元，占全部的 {share}。"
+   },
+   {
+    "q": "这个月的毛利率是多少？",
+    "a": "{from} 至 {to} 的毛利为 {gp} 元，毛利率 {gm}。"
+   }
+  ],
+  "commentary": "{from} 至 {to} 营业额 {revenue} 元，共 {orders} 单，客单价 {aov} 元；毛利 {gp} 元，毛利率 {gm}。销售额最高的渠道是{topChannel}，畅销款是「{topItem}」。",
+  "log": [
+   "导入收银销售明细（演示数据）",
+   "导入门店费用（演示数据）",
+   "生成经营日报",
+   "库存巡检：发现售罄与断码款",
+   "上架任务已交给数字员工，停在提交前等确认"
+  ],
+  "history": {
+   "create": "新建视频项目",
+   "script": "已生成分镜脚本与四个平台的文案",
+   "render": "示例成片已生成（演示数据）",
+   "approve": "店长审核通过",
+   "schedule": "定时发布：明天 10:00",
+   "publish": "已发布到抖音、小红书（演示回执）",
+   "stats": "已回填各平台播放数据（演示数据）"
+  }
+ },
+ "en": {
+  "channels": [
+   "In-store",
+   "Douyin Shop",
+   "WeChat Shop"
+  ],
+  "expenses": [
+   "Store rent",
+   "Staff wages",
+   "Utilities and property fees",
+   "Online promotion"
+  ],
+  "videos": [
+   {
+    "type": "new_arrival",
+    "name": "Autumn/Winter New Arrivals · Wave 1",
+    "brief": "New autumn/winter pieces are in: the blazer and the midi skirt. Free scarf with any in-store try-on.",
+    "lines": [
+     "Our autumn/winter arrivals are here, starting with this one-button blazer",
+     "Oatmeal beige goes with skirts and trousers alike",
+     "A high-waist A-line skirt that lengthens the legs",
+     "Try them on in store and take home a free scarf"
+    ],
+    "copy": {
+     "title": "New in: blazer + midi skirt for a week of office looks",
+     "caption": "Oatmeal blazer with a coffee A-line skirt, for the office or a date. Free scarf with an in-store try-on.",
+     "topics": [
+      "autumn outfits",
+      "office style",
+      "new arrivals"
+     ]
+    }
+   },
+   {
+    "type": "multi_look",
+    "name": "One Little Black Dress, Three Ways",
+    "brief": "The same satin LBD styled for work, a date and a dinner party.",
+    "lines": [
+     "One little black dress, styled for work",
+     "For a date, just change the shoes",
+     "Add a jacket for dinner"
+    ],
+    "copy": {
+     "title": "One LBD, three occasions",
+     "caption": "A satin little black dress for work, dates and dinners. Which look is your favorite?",
+     "topics": [
+      "little black dress",
+      "one piece many looks",
+      "styling tips"
+     ]
+    }
+   },
+   {
+    "type": "promotion",
+    "name": "Singles' Day Anniversary Sale Teaser",
+    "brief": "Nov 8–11: 80 off every 500 spent, plus an extra 5% off for members.",
+    "lines": [
+     "Our Singles' Day anniversary sale is here",
+     "80 off every 500 spent",
+     "Members get an extra 5% off, Nov 8 to 11"
+    ],
+    "copy": {
+     "title": "Anniversary sale: 80 off every 500, members extra 5% off",
+     "caption": "Nov 8–11, in store and online.",
+     "topics": [
+      "Singles' Day",
+      "anniversary sale",
+      "fashion store"
+     ]
+    }
+   },
+   {
+    "type": "styling_tips",
+    "name": "Styling Tips for Pear-Shaped Figures",
+    "brief": "Three styling tips for pear-shaped customers.",
+    "lines": [],
+    "copy": null
+   }
+  ],
+  "platformNote": "Demo data: sample receipt, not actually published",
+  "statsNote": "Demo data",
+  "avatars": [
+   {
+    "topic": "company_intro",
+    "name": "Store Introduction (manager on camera)",
+    "script": "Hello and welcome to our store. We focus on office and date-night looks, and every season we bring in new styles straight from our partner factories at honest prices. Try our AI fitting: scan the code and see yourself in the new clothes on your phone, then come in and try the real thing. We look forward to seeing you.",
+    "facts": [
+     [
+      "Main categories",
+      "Office womenswear, menswear, kidswear"
+     ],
+     [
+      "Special service",
+      "AI try-on, view on your phone"
+     ]
+    ]
+   },
+   {
+    "topic": "holiday",
+    "name": "Singles' Day Anniversary Greeting",
+    "script": "Our Singles' Day anniversary is here. Thank you for your support. During the sale, get 80 off every 500 spent, and members get an extra 5% off. Store address [to be filled in], opening hours [to be filled in]. See you soon.",
+    "facts": [
+     [
+      "Promotion",
+      "80 off every 500, members extra 5% off"
+     ]
+    ]
+   }
+  ],
+  "listingDetail": "{name}, {color}, {fabric}. {sellingPoints} Full size range, in-store try-on available; size chart included, ask customer service before ordering.",
+  "keywords": [
+   "new",
+   "versatile",
+   "flattering"
+  ],
+  "importFile": {
+   "sales": "Demo data · POS sales detail",
+   "expense": "Demo data · Store expenses"
+  },
+  "qa": [
+   {
+    "q": "Which channel sold best in the last 7 days?",
+    "a": "In the last 7 days, {top} had the highest sales at {amount}, {share} of the total."
+   },
+   {
+    "q": "What is this month's gross margin?",
+    "a": "From {from} to {to}, gross profit was {gp}, a gross margin of {gm}."
+   }
+  ],
+  "commentary": "From {from} to {to}: revenue {revenue} across {orders} orders, average order value {aov}; gross profit {gp}, gross margin {gm}. The top channel was {topChannel} and the best seller was \"{topItem}\".",
+  "log": [
+   "Imported POS sales detail (demo data)",
+   "Imported store expenses (demo data)",
+   "Generated the daily business report",
+   "Inventory patrol: found sold-out and broken-size items",
+   "Listing task handed to the digital employee, paused before submission"
+  ],
+  "history": {
+   "create": "Video project created",
+   "script": "Storyboard and copy for four platforms generated",
+   "render": "Sample cut generated (demo data)",
+   "approve": "Approved by the store manager",
+   "schedule": "Scheduled: tomorrow 10:00",
+   "publish": "Published to Douyin and Xiaohongshu (sample receipts)",
+   "stats": "Platform play counts filled in (demo data)"
+  }
+ }
+}

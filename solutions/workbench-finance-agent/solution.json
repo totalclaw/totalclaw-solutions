@@ -2,12 +2,12 @@
   "manifestVersion": 2,
   "schemaVersion": 1,
   "id": "workbench-finance-agent",
-  "name": "智能发票助手 · 财务",
+  "name": "财务智能体",
   "aliases": [
-    "finance-agent",
-    "财务智能体"
+    "智能发票助手 · 财务",
+    "finance-agent"
   ],
-  "version": "2.0.4",
+  "version": "2.0.5",
   "kind": "workbench",
   "category": "财务",
   "icon": "icon-solutions",
@@ -30,7 +30,7 @@
     "hidden": false
   },
   "compat": {
-    "minAppVersion": "2.0.5",
+    "minAppVersion": "2.0.9",
     "hostApi": 2
   },
   "runtime": {
