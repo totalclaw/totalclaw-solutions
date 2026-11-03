@@ -1,12 +1,12 @@
 {
   "id": "workbench-legion-hq",
-  "version": "1.0.8",
-  "treeDigest": "14f01fab3da9037ae774b8879f4ba201969af71e79e4151fbf17c697d74b65b6",
+  "version": "1.0.11",
+  "treeDigest": "5a3957fb7d47bcbd294386cab9b22ffcf753d54f40da6f355833504001f385ed",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 7624,
-      "sha256": "5116a8f9abef460f8653e1b71fca5befde3c9821e0ae08760fb57f4aa393b7af"
+      "size": 8814,
+      "sha256": "8b83b2c23c09a2c66ed9f90ef2c16d0cfdaf4dbe0d9a8d3118ad3222c9ea5317"
     },
     {
       "path": "README.md",
@@ -50,8 +50,8 @@
     },
     {
       "path": "resources/screen/index.html",
-      "size": 86094,
-      "sha256": "64a2560238eaca4b699de71ad465dd0388f4b4030bb9ed2239119e28038f2ca1"
+      "size": 88956,
+      "sha256": "8a5a379a1ad49f02fd470ba455cd7a7a71ce16c470dce6eb74b20691f1941050"
     },
     {
       "path": "resources/screen/remote.html",
@@ -80,8 +80,8 @@
     },
     {
       "path": "solution.json",
-      "size": 3066,
-      "sha256": "49c479be54ff0900a1891e6c8c4183bd9982fb5e426d56261cdba53a9526a20b"
+      "size": 3067,
+      "sha256": "58429be9a6a32d1ff00fdc02600bf512c604b8f01142c9eb031397a788c2035d"
     },
     {
       "path": "src/host-modules.json",
@@ -100,8 +100,8 @@
     },
     {
       "path": "src/main/bus.cjs",
-      "size": 4348,
-      "sha256": "136d1297358270f75d02084b7a0dbbf4579df1a2e27dbe602b40f93d638e8147"
+      "size": 4498,
+      "sha256": "3742fb7d6bf5541d49b8fa38033bf9420166e3d97c5bd7793379559804432ad7"
     },
     {
       "path": "src/main/company.cjs",
@@ -145,8 +145,8 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 59835,
-      "sha256": "86ed44f078a199e8d242ad19a8040a458e204cd6c1919407aeabbbd8331b4fa6"
+      "size": 62744,
+      "sha256": "f03dd6f717c0ee2dd68bd302e20ee4f03eac1d9ea70111627ed0278ed9fd51e3"
     },
     {
       "path": "src/main/legions.cjs",
@@ -170,8 +170,8 @@
     },
     {
       "path": "src/main/runner.cjs",
-      "size": 30477,
-      "sha256": "8f78389108ffb35589d58571e10a3faa6080e443bbf1dede7c0177fa5514589e"
+      "size": 31088,
+      "sha256": "a39395e48b9f61694ba860a8eafedfeaec60add8e23e1913e79c0dd3d0522649"
     },
     {
       "path": "src/main/screenServer.cjs",
@@ -180,8 +180,8 @@
     },
     {
       "path": "src/main/screenState.cjs",
-      "size": 9958,
-      "sha256": "a62d8351b38e095b405b1bd2cfe82621975e500f3530f2ffbc1292a0f2a7316e"
+      "size": 11002,
+      "sha256": "c25bb498e69686f344b95594f8b52f21c047fd191f0458bf15aa625a47dcc15c"
     },
     {
       "path": "src/main/storage.cjs",
@@ -200,11 +200,44 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 85409,
-      "sha256": "c396378f9372b80d8d349db7bdd5bce47d0b73e07238c175341e6792bf8f7d9c"
+      "size": 97305,
+      "sha256": "dbcae96a56056a7f6cd5253b2ebfbc38d0729d063ae28f4e8efd612e367ab465"
     }
   ],
   "versions": [
+    {
+      "version": "1.0.11",
+      "ref": "workbench-legion-hq@1.0.11",
+      "treeDigest": "5a3957fb7d47bcbd294386cab9b22ffcf753d54f40da6f355833504001f385ed",
+      "filesRef": "index/workbench-legion-hq/1.0.11.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-11-03"
+    },
+    {
+      "version": "1.0.10",
+      "ref": "workbench-legion-hq@1.0.10",
+      "treeDigest": "4861d4973fb95509295e38d25d6781c7a4a2511e6aa1d060066c58bef3d57f53",
+      "filesRef": "index/workbench-legion-hq/1.0.10.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-11-03"
+    },
+    {
+      "version": "1.0.9",
+      "ref": "workbench-legion-hq@1.0.9",
+      "treeDigest": "6af9a3b057aefc420f67e8d86abd13b29e6c7f74fc27b4be3018c8189e0b396d",
+      "filesRef": "index/workbench-legion-hq/1.0.9.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-11-03"
+    },
     {
       "version": "1.0.8",
       "ref": "workbench-legion-hq@1.0.8",

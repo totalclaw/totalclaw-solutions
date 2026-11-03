@@ -338,7 +338,7 @@
       "order": 50,
       "description": "一个老板 + 一家 AI 公司：8 个 AI 部门（研发、法务、财务、人事、运营、销售、客服、行政）以方案包装在任意机器上，AI 总经理按事情挑部门、派给承载它的机器并发执行，跨部门交接、汇总、钱 / 签约 / 对外发布 / 录用由老板拍板。主控点「启动 Web」即在内网开出指挥大屏，任意电脑、电视、手机用地址打开。",
       "descriptionEn": "One owner, one AI company: eight AI departments installed as solution packages on any machine. The AI GM triages each task, dispatches it to the machines hosting the right departments, hands results across departments and asks the boss to approve money, contracts, publishing and hiring. Start the web screen and open it from any device on the LAN.",
-      "version": "1.0.8",
+      "version": "1.0.11",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -393,10 +393,10 @@
       "capabilities": [],
       "path": "solutions/workbench-legion-hq",
       "fileCount": 40,
-      "size": 461323,
-      "treeDigest": "14f01fab3da9037ae774b8879f4ba201969af71e79e4151fbf17c697d74b65b6",
+      "size": 481986,
+      "treeDigest": "5a3957fb7d47bcbd294386cab9b22ffcf753d54f40da6f355833504001f385ed",
       "largeAssets": [],
-      "changelog": "- 办完的事在大屏「实时动态」里带「📄 查看报告」「⬇ 下载报告（Word）」；部门交付了文件（合同审查的审查意见书 / 修订稿）时，那条动态直接给原件下载。结果窗口顶部同样有下载，公司事务卡片加「下载」。新接口 GET /api/task/report、/api/task/file（要口令）。\n- 部门交付文件存进 tasks/<任务>.files/（随任务记录一起清理），员工机做出的文件随结果回传主控；App 任务详情里可「打开」「在文件夹中显示」。",
+      "changelog": "- 运营中心首页加「AI 运营中枢」主视觉（深空蓝科技风）：真实运行统计（大模型执行步骤 / AI 产出字数 / 交付文件 / 每步平均用时 / 今日办完）、智能流水线按在办事项阶段点亮（理解指令 → 拆解派单 → 部门 AI 执行 → 汇总复核 → 老板拍板）、各部门模型输出逐字显示、直接给 AI 总经理下令。\n- 「一键开始一体化演示（真实执行）」：关排练模式、启动大屏（有副屏就全屏到副屏，只有一块屏不盖住 App）、播放主剧本，各部门真实调用大模型干活。\n- 指挥大屏：拓扑区底部「AI 正在写」实时思考条（逐字、按部门配色）+ 右上「真实运行 · 各部门正在调用大模型干活」标；演示 / 回放模式不显示。\n- 逐字输出事件（node:stream）不录制。\n- 运营中枢统计按保存的任务记录算（重启不归零）；事情结束 / 大屏重置时收掉残留的逐字输出。\n- 宿主停靠栏：部门开跑时自动弹出工作台打不开（本机没装该部门工作台）不再弹提示，手动点「打开工作台」时才说明原因。",
       "filesRef": "index/workbench-legion-hq.json"
     },
     {

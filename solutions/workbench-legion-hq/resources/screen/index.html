@@ -230,6 +230,18 @@ input,textarea{-webkit-user-select:text;user-select:text}
 #oGM.busy .gm-halo{animation-duration:.9s}
 @keyframes gmHalo{0%,100%{opacity:.08;transform:scale(.92)}50%{opacity:.32;transform:scale(1.08)}}
 .gmfig .gm-halo{transform-box:fill-box;transform-origin:50% 50%}
+/* AI 实时思考：真实运行时部门正在写的内容逐字显示（数据只来自 state.streams，演示 / 回放模式没有） */
+#think{position:absolute;left:12px;right:12px;bottom:12px;z-index:4;display:none;flex-direction:column;gap:6px;pointer-events:none}
+#think.on{display:flex}
+#think .tk{background:linear-gradient(90deg,rgba(6,20,48,.94),rgba(8,30,66,.88));border:1px solid #155E75;border-left:3px solid var(--c,#22D3EE);border-radius:8px;padding:6px 10px;box-shadow:0 0 18px rgba(34,211,238,.18);overflow:hidden}
+#think .tk .hd{display:flex;align-items:center;gap:8px;font-size:11.5px;color:#7DD3FC;letter-spacing:.5px}
+#think .tk .hd b{color:var(--c,#22D3EE);font-size:12.5px}
+#think .tk .hd .lv{margin-left:auto;font-family:Menlo,monospace;color:#34D399}
+#think .tk .hd .lv::before{content:'';display:inline-block;width:6px;height:6px;border-radius:3px;background:#34D399;margin-right:5px;vertical-align:1px;animation:apBlink 1s ease-in-out infinite}
+#think .tk .tx{margin-top:3px;font:12px/1.55 Menlo,"Microsoft YaHei",monospace;color:#E0F2FE;height:37px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-all}
+#think .tk .tx::after{content:'▌';color:#22D3EE;animation:apBlink .8s steps(2) infinite}
+#liveBadge{position:fixed;left:50%;top:6px;transform:translateX(-50%);padding:2px 10px;border-radius:10px;background:rgba(16,185,129,.14);border:1px solid rgba(52,211,153,.55);color:#6EE7B7;font-size:11.5px;letter-spacing:.5px;display:none;z-index:30}
+#liveBadge::before{content:'';display:inline-block;width:7px;height:7px;border-radius:4px;background:#34D399;margin-right:6px;vertical-align:1px;animation:apBlink 1.2s ease-in-out infinite}
 #demoBadge{position:fixed;left:50%;top:6px;transform:translateX(-50%);padding:2px 12px;border-radius:10px;background:rgba(245,158,11,.16);border:1px solid rgba(245,158,11,.55);color:#FCD34D;font-size:12px;display:none;z-index:30}
 #demoBadge::before{content:'';display:inline-block;width:7px;height:7px;border-radius:4px;background:#F59E0B;margin-right:6px;vertical-align:1px;animation:apBlink 1.2s ease-in-out infinite}
 @keyframes apBlink{50%{opacity:.25}}
@@ -250,7 +262,7 @@ input,textarea{-webkit-user-select:text;user-select:text}
   <div class="panel" style="padding:0"><div class="ph" style="position:absolute;left:14px;top:12px;z-index:2">▍<i data-t="topo">运营态势</i></div>
    <div id="vtabs"><span data-v="topo" class="on">拓扑</span><span data-v="office">办公室</span></div>
    <svg id="topo" width="100%" height="100%" viewBox="0 0 900 604"></svg><div id="route"></div>
-   <svg id="office" width="100%" height="100%" viewBox="0 0 900 604"></svg></div>
+   <svg id="office" width="100%" height="100%" viewBox="0 0 900 604"></svg><div id="think"></div></div>
   <div class="panel"><div class="ph">▍<i data-t="feed">实时动态</i></div><div id="feed"></div></div>
  </div>
  <div class="bottom">
@@ -280,7 +292,7 @@ input,textarea{-webkit-user-select:text;user-select:text}
 <button id="winClose" type="button"></button>
 <div id="vmask" class="rm"><div class="vbox" id="vbox"><div class="vt"><b id="vTitle"></b><button id="vFull" type="button"></button><button id="vClose" type="button">✕</button></div><video id="vid" controls playsinline preload="metadata"></video><div class="verr" id="vErr"></div></div></div>
 <div id="rmask" class="rm"><div class="dlg"><h3 id="rTitle"></h3><label id="rAsk"></label><input id="rText" maxlength="300"><div class="ft"><button class="sec" id="rCancel"></button><button class="pri" id="rOk"></button></div></div></div>
-<div id="conn"></div><div id="rep"></div><div id="demoBadge"></div><div id="toast"></div>
+<div id="conn"></div><div id="rep"></div><div id="demoBadge"></div><div id="liveBadge"></div><div id="toast"></div>
 <div class="hint" data-t="hint">F 办公室 / 拓扑 · O 组织架构 · M 能力地图 · V 军团营地 · Esc 返回</div>
 <script>
 'use strict';
@@ -409,6 +421,18 @@ const pools={};
 // ── 面板 ──
 let lastTaskHtml='',lastInbox='',lastFeedTop='',lastL='',lastM='';
 function companyName(){const c=S.company||{};return c.short||c.name||'';}
+// AI 实时思考 + LIVE 标：真实运行、有部门正在写时才出现（演示 / 回放模式不显示，不编造）
+let lastThink='';
+function renderThink(){
+ const live=!S.demoRun&&!S.replay;const run=(S.tasks||[]).some(t=>ACTIVE.has(t.status));
+ const lb=$('liveBadge');const lt=LANG==='en'?'LIVE · real model calls':'真实运行 · 各部门正在调用大模型干活';lb.style.display=live&&run?'block':'none';if(lb.textContent!==lt)lb.textContent=lt;
+ const st=live?(S.streams||[]):[];
+ const html=st.map(x=>{const L=LG[x.legionId]||{color:'#22D3EE',short:x.legionId};const nm=LANG==='en'&&L.shortEn?L.shortEn:(L.name||L.short);
+  const tail=String(x.text||'').replace(/\s+/g,' ').slice(-150);
+  return `<div class="tk" style="--c:${L.color}"><div class="hd"><b>${esc(nm)}</b><span>#${x.taskNo||''} ${esc(x.goal||'')}</span><span class="lv">${LANG==='en'?'AI writing':'AI 正在写'}</span></div><div class="tx">${esc(tail)}</div></div>`}).join('');
+ if(html!==lastThink){$('think').innerHTML=html;lastThink=html;}
+ $('think').classList.toggle('on',!!html);
+}
 function renderPanels(){
  const c=S.company||{};
  const logo=$('logo');logo.classList.toggle('img',!!c.logoImage);if(c.logoImage){if(!logo.querySelector('img'))logo.innerHTML='<img alt="">';const im=logo.querySelector('img');if(im.src!==c.logoImage)im.src=c.logoImage;}else logo.textContent=c.logo||companyName().slice(0,1)||'·';
@@ -420,6 +444,7 @@ function renderPanels(){
  $('rep').style.display=S.replay?'block':'none';
  {const on=!!S.demoRun;const bd=$('demoBadge');bd.style.display=on?'block':'none';const tx=LANG==='en'?'Demo mode · auto orders & approvals · no model calls':'演示模式 · 老板自动下令与审批 · 不调用模型';if(bd.textContent!==tx)bd.textContent=tx;
   const sw=$('demoSw');if(sw){sw.classList.toggle('on',on);const lb=LANG==='en'?(on?'Demo':'Live'):(on?'演示模式':'真实运行');if(sw.querySelector('em').textContent!==lb)sw.querySelector('em').textContent=lb;sw.title=on?(LANG==='en'?'Click to switch to live (real model calls)':'点击关闭演示模式，改为真实调用模型执行'):(LANG==='en'?'Click to switch to demo':'点击开启演示模式（不调用模型）');}}
+ renderThink();
  // 公司事务
  const list=(S.tasks||[]).slice(0,4);
  const html=list.map(t=>{const sc=ST_COLOR[t.status]||'#64748B';const src=SRC_COLOR[t.source]||'#F59E0B';

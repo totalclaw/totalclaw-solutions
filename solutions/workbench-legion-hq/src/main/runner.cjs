@@ -364,9 +364,22 @@ class TaskRunner {
             this.log.warn(`工作台自动操作没做成，改为直接写：${e && e.message ? e.message : e}`);
           }
         }
-        const text = await this.llm(prompt, { model, signal, timeoutMs: STEP_TIMEOUT_MS, ...(fg ? { onActivity: (a) => fg.activity(a) } : {}) });
-        fg?.done(true, text);
-        return text;
+        // 逐字输出同时推到大屏（「AI 正在工作」）：攒 400ms 推一段，结束前补推剩下的
+        let buf = '';
+        let timer = null;
+        const flush = () => { if (timer) { clearTimeout(timer); timer = null; } if (buf) { this.publish(t, 'node:stream', { stepId: s.id, legionId: s.legionId, text: buf }); buf = ''; } };
+        const onActivity = (a) => {
+          fg?.activity(a);
+          if (a && a.kind === 'text' && a.delta) { buf += a.delta; if (!timer) timer = setTimeout(flush, 400); }
+        };
+        try {
+          const text = await this.llm(prompt, { model, signal, timeoutMs: STEP_TIMEOUT_MS, onActivity });
+          flush();
+          fg?.done(true, text);
+          return text;
+        } finally {
+          if (timer) clearTimeout(timer);
+        }
       } catch (e) {
         fg?.done(false, String(e && e.message ? e.message : e));
         throw e;

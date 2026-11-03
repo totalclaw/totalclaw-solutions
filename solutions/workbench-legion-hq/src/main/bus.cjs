@@ -82,6 +82,8 @@ class Recorder {
   }
 
   write(ev) {
+    // 逐字输出的流事件不录（量大、回放时没有意义；步骤完成事件照录）
+    if (ev && ev.type === 'node:stream') return;
     if (!this.file) this.open();
     try {
       mkdirSync(dirname(this.file), { recursive: true });

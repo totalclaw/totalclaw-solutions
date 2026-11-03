@@ -1524,3 +1524,39 @@ test('交付文件：工作台交回的意见书存进这一步、员工机回�
     await srv.stop();
   }
 });
+
+test('AI 实时思考：本机部门步骤的模型逐字输出推到大屏（state.streams），步骤结束即移除；流事件不录制', async () => {
+  const llm = async (p, o) => {
+    if (o && o.onActivity) { o.onActivity({ kind: 'text', chars: 4, delta: '正在分析' }); o.onActivity({ kind: 'text', chars: 8, delta: '销售数据' }); }
+    await new Promise((r) => setTimeout(r, 450));
+    return '结论：下滑主因是渠道 A 断货。';
+  };
+  const { runner, state, bus } = makeRunner({ llm, placement: { local: ['legion-sales'] } });
+  const seen = [];
+  bus.on('event', (e) => { if (e.type === 'node:stream') seen.push({ text: e.text, streams: snapshot(state).streams.map((x) => x.text) }); });
+  const { taskId } = runner.submit({ text: '分析上月销售下滑原因', forcedLegions: ['legion-sales'] });
+  await until(() => ['done', 'awaiting', 'failed'].includes(runner.get(taskId).status));
+  assert.ok(seen.length >= 1, '有流事件');
+  assert.equal(seen.map((x) => x.text).join(''), '正在分析销售数据');
+  assert.match(seen[seen.length - 1].streams[0], /正在分析销售数据/);
+  assert.deepEqual(snapshot(state).streams, [], '步骤结束后移除');
+  const rec = new Recorder('/nonexistent-dir-for-test');
+  rec.write({ type: 'node:stream', text: 'x' });
+  assert.equal(rec.count || 0, 0, '流事件不录');
+});
+
+test('AI 实时思考：事情结束 / 大屏重置时把残留的逐字输出收掉', () => {
+  const st = createState();
+  let seq = 0;
+  const ap = (e) => applyEvent(st, { seq: ++seq, ts: Date.now(), ...e });
+  ap({ type: 'task:received', taskId: 'T1', taskNo: 1, title: 'x', source: 'boss' });
+  ap({ type: 'task:planned', taskId: 'T1', taskNo: 1, steps: [{ id: 's1', legionId: 'legion-admin', goal: 'g' }] });
+  ap({ type: 'node:started', taskId: 'T1', taskNo: 1, stepId: 's1', legionId: 'legion-admin' });
+  ap({ type: 'node:stream', taskId: 'T1', taskNo: 1, stepId: 's1', legionId: 'legion-admin', text: '正在写' });
+  assert.equal(snapshot(st).streams.length, 1);
+  ap({ type: 'task:done', taskId: 'T1', taskNo: 1, ok: false, cancelled: true });
+  assert.equal(snapshot(st).streams.length, 0);
+  st.streams['T9:s'] = { text: 'x' };
+  ap({ type: 'screen:reset' });
+  assert.equal(snapshot(st).streams.length, 0);
+});

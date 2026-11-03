@@ -13,6 +13,51 @@ export default function createSolution(sdk) {
 
   const CSS = `
 .lhq-scroll{height:100%;overflow-y:auto;overscroll-behavior:contain}
+/* AI 运营中枢（主视觉）：深空蓝底、网格与光带、实时数据；数据全部来自真实运行（stats / state），不编造 */
+.lhq-hero{position:relative;overflow:hidden;margin:16px 0 4px;border-radius:16px;padding:20px 22px 18px;color:#E2E8F0;background:radial-gradient(1200px 300px at 85% -40%,rgba(34,211,238,.28),transparent 60%),radial-gradient(800px 260px at 0% 120%,rgba(99,102,241,.30),transparent 60%),linear-gradient(135deg,#050B1C,#0A1A3F 55%,#071230);border:1px solid #1E3A6E;box-shadow:0 10px 40px rgba(2,8,23,.35)}
+.lhq-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(56,189,248,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,.07) 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(180deg,#000,transparent 95%);pointer-events:none}
+.lhq-hero::after{content:'';position:absolute;left:-30%;top:0;width:30%;height:2px;background:linear-gradient(90deg,transparent,#22D3EE,transparent);animation:lhqScan 4.5s linear infinite}
+@keyframes lhqScan{to{left:130%}}
+.lhq-hero>*{position:relative}
+.lhq-hero .tl{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.lhq-hero .tl h1{margin:0;font-size:22px;letter-spacing:1px;background:linear-gradient(90deg,#E0F2FE,#67E8F9 60%,#A5B4FC);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lhq-hero .tl .core{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;background:radial-gradient(circle,#22D3EE 0,#0E7490 70%);box-shadow:0 0 24px rgba(34,211,238,.6);animation:lhqPulse 2.4s ease-in-out infinite}
+@keyframes lhqPulse{50%{box-shadow:0 0 6px rgba(34,211,238,.3)}}
+.lhq-hero .tl .md{font-size:12px;padding:2px 10px;border-radius:10px;border:1px solid}
+.lhq-hero .tl .md.live{border-color:rgba(52,211,153,.6);color:#6EE7B7;background:rgba(16,185,129,.12)}
+.lhq-hero .tl .md.demo{border-color:rgba(245,158,11,.6);color:#FCD34D;background:rgba(245,158,11,.12)}
+.lhq-hero .sub2{margin:6px 0 0;color:#94A3B8;font-size:13px}
+.lhq-hero .acts{display:flex;gap:8px;flex-wrap:wrap}
+.lhq-hero .hb{padding:8px 16px;border-radius:10px;border:1px solid #155E75;background:rgba(14,116,144,.25);color:#A5F3FC;cursor:pointer;font-size:13px;font-family:inherit}
+.lhq-hero .hb:hover{border-color:#22D3EE;color:#fff}
+.lhq-hero .hb.go{border:none;color:#04121F;font-weight:700;background:linear-gradient(90deg,#22D3EE,#818CF8);box-shadow:0 0 22px rgba(34,211,238,.45)}
+.lhq-hero .hb.go:hover{filter:brightness(1.08)}
+.lhq-hero .hb:disabled{opacity:.55;cursor:default}
+.lhq-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:10px;margin-top:16px}
+.lhq-kpi{border:1px solid #1E3A6E;border-radius:12px;padding:10px 12px;background:rgba(15,32,70,.55)}
+.lhq-kpi .v{font-size:24px;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;font-family:"DIN Alternate","Helvetica Neue",sans-serif}
+.lhq-kpi .v small{font-size:12px;color:#67E8F9;margin-left:3px;font-weight:400}
+.lhq-kpi .k{font-size:12px;color:#94A3B8;margin-top:2px}
+.lhq-pipe{display:flex;align-items:center;gap:0;margin-top:16px;flex-wrap:wrap}
+.lhq-pipe .nd{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;border:1px solid #1E3A6E;font-size:12.5px;color:#94A3B8;background:rgba(15,32,70,.5);white-space:nowrap}
+.lhq-pipe .nd b{display:inline-flex;width:18px;height:18px;border-radius:9px;align-items:center;justify-content:center;font-size:11px;background:#1E3A6E;color:#CBD5E1}
+.lhq-pipe .nd.on{border-color:#22D3EE;color:#E0F2FE;box-shadow:0 0 16px rgba(34,211,238,.45);background:rgba(14,116,144,.35)}
+.lhq-pipe .nd.on b{background:#22D3EE;color:#04121F;animation:lhqPulse 1.2s ease-in-out infinite}
+.lhq-pipe .ln{flex:1;min-width:16px;height:2px;background:linear-gradient(90deg,#1E3A6E,#1E3A6E);position:relative;overflow:hidden}
+.lhq-pipe .ln.on::after{content:'';position:absolute;top:0;left:-40%;width:40%;height:100%;background:linear-gradient(90deg,transparent,#22D3EE,transparent);animation:lhqFlow 1.1s linear infinite}
+@keyframes lhqFlow{to{left:100%}}
+.lhq-live{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin-top:14px}
+.lhq-live .lc{border:1px solid #155E75;border-left:3px solid var(--c,#22D3EE);border-radius:10px;padding:8px 12px;background:rgba(6,20,48,.75)}
+.lhq-live .lc .hd{display:flex;gap:8px;align-items:center;font-size:12px;color:#7DD3FC}
+.lhq-live .lc .hd b{color:var(--c,#22D3EE)}
+.lhq-live .lc .hd i{margin-left:auto;font-style:normal;color:#34D399;font-family:Menlo,monospace}
+.lhq-live .lc .tx{margin-top:4px;font:12px/1.6 Menlo,"PingFang SC",monospace;color:#E0F2FE;height:58px;overflow:hidden;word-break:break-all}
+.lhq-live .lc .tx::after{content:'▌';color:#22D3EE;animation:lhqBlink .8s steps(2) infinite}
+@keyframes lhqBlink{50%{opacity:0}}
+.lhq-hero .idle{margin-top:14px;font-size:12.5px;color:#64748B}
+.lhq-hero .cmd{display:flex;gap:8px;margin-top:14px}
+.lhq-hero .cmd input{flex:1;min-width:0;background:rgba(2,8,23,.6);border:1px solid #1E3A6E;border-radius:10px;padding:9px 12px;color:#E2E8F0;font:inherit;font-size:13.5px;outline:none}
+.lhq-hero .cmd input:focus{border-color:#22D3EE;box-shadow:0 0 0 3px rgba(34,211,238,.15)}
 .lhq{max-width:1180px;margin:0 auto;padding:0 24px 64px;font-size:14px;color:var(--color-text-primary,#111827)}
 .lhq-sticky{position:sticky;top:0;z-index:5;background:var(--color-bg-page,var(--color-bg,#f8fafc));padding:16px 0 10px;border-bottom:1px solid var(--color-border,#e5e7eb)}
 .lhq-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
@@ -100,6 +145,10 @@ export default function createSolution(sdk) {
       }
       const detail = ref(null);
       const busy = reactive({});
+      // AI 运营中枢：真实运行统计（模型调用次数 / 产出字数 / 交付文件）
+      const hstats = ref({ tasks: 0, done: 0, steps: 0, chars: 0, files: 0, avgSec: 0 });
+      const loadStats = async () => { try { hstats.value = await sdk.invoke('stats'); } catch (_) { /* 旧版本 */ } };
+      const heroCmd = ref('');
       const err = reactive({});
       // 页签：只渲染当前一页（原来九块一起渲染、整页 5000+ px，卡且宿主容器不滚动）；记住上次打开的页签
       const TAB_KEY = 'lhq.tab';
@@ -307,6 +356,7 @@ export default function createSolution(sdk) {
           document.head.appendChild(s);
         }
         loadAll().catch((e) => sdk.notify.warn(e.message));
+        loadStats();
         loadMcfg();
         // 员工机配置的同步状态每分钟刷新一次（员工机加入 / 对账后宿主会补发）
         const mcTimer = setInterval(() => { if (!mcOpen.value) loadMcfg(); }, 60_000);
@@ -317,6 +367,7 @@ export default function createSolution(sdk) {
         offs.push(sdk.on('event', (ev) => {
           if (ev.type === 'fleet:changed') machines.value = machines.value.map((m) => ({ ...m, ...(ev.machines.find((x) => x.id === m.id) || {}) }));
           if (detail.value && ev.taskId === detail.value.id && ev.type === 'task:done') openDetail(ev.taskId);
+          if (ev.type === 'node:done' || ev.type === 'task:done') loadStats();
         }));
       });
       onUnmounted(() => offs.forEach((f) => f && f()));
@@ -489,6 +540,25 @@ export default function createSolution(sdk) {
       async function screenRotate() {
         screen.value = await call('screen', 'screen.rotate');
         sdk.notify.info(t('口令已更换，已打开的大屏需要用新地址重开'));
+      }
+      // 一键开始一体化演示（真实执行）：关排练模式 → 启动大屏（有副屏就全屏到副屏）→ 播放主剧本；各部门真实调用大模型
+      async function startDemo() {
+        try {
+          const r = await call('hero', 'demo.start', {});
+          info.value = { ...info.value, settings: { ...(info.value?.settings || {}), demoRun: false } };
+          director.value = r.director;
+          screen.value = r.screen || screen.value;
+          sdk.notify.success(r.window ? t('一体化演示已开始：大屏已在副屏打开，各部门正在真实调用大模型干活') : t('一体化演示已开始：各部门正在真实调用大模型干活；大屏地址 {p0}', { p0: r.screen?.url || r.screen?.localUrl || '' }));
+        } catch (_) { /* errLine */ }
+      }
+      async function heroCommand() {
+        const v = heroCmd.value.trim();
+        if (!v) return;
+        try {
+          const r = await call('hero', 'command', { text: v });
+          heroCmd.value = '';
+          sdk.notify.success(t('已交给 AI 总经理：#{p0}', { p0: r?.no ?? '' }));
+        } catch (_) { /* errLine */ }
       }
       async function openWindow() {
         try {
@@ -1123,6 +1193,67 @@ export default function createSolution(sdk) {
       const timer = setInterval(() => (tick.value++), 1000);
       onUnmounted(() => clearInterval(timer));
 
+      // 智能流水线：按当前在办的事所处阶段点亮（理解指令 → 拆解派单 → 部门 AI 执行 → 汇总复核 → 老板拍板）
+      const PIPE = [['triaging', '理解指令'], ['plan', '拆解派单'], ['running', '部门 AI 执行'], ['summarizing', '汇总复核'], ['awaiting', '老板拍板']];
+      const viewHero = () => {
+        const sp = snap.value;
+        const tasks = (sp.tasks || []).filter((x) => ['triaging', 'running', 'summarizing', 'awaiting', 'queued', 'planning'].includes(x.status));
+        const on = new Set(tasks.map((x) => (x.status === 'queued' || x.status === 'planning' ? 'plan' : x.status)));
+        if (tasks.some((x) => x.steps?.some((s) => s.status === 'waiting')) ) on.add('plan');
+        const live = !info.value.settings?.demoRun;
+        const online = (sp.machines || []).filter((m) => m.online).length;
+        const hs = hstats.value;
+        const kpi = (v, unit, k) => h('div', { class: 'lhq-kpi' }, [h('div', { class: 'v' }, [String(v), unit ? h('small', unit) : null]), h('div', { class: 'k' }, k)]);
+        const streams = live ? (sp.streams || []) : [];
+        const LG = Object.fromEntries((sp.legions || []).map((L) => [L.id, L]));
+        const playing = director.value?.mode === 'playing';
+        return h('div', { class: 'lhq-hero', 'data-test': 'lhq-hero' }, [
+          h('div', { class: 'tl' }, [
+            h('div', { class: 'core' }, '◆'),
+            h('div', { style: 'flex:1;min-width:260px' }, [
+              h('div', { style: 'display:flex;align-items:center;gap:10px;flex-wrap:wrap' }, [
+                h('h1', t('AI 运营中枢')),
+                h('span', { class: `md ${live ? 'live' : 'demo'}` }, live ? t('真实运行 · 调用大模型') : t('排练模式 · 不调用模型')),
+              ]),
+              h('p', { class: 'sub2' }, t('一句话下令 → AI 总经理理解并拆解 → 部门 AI 员工调用大模型真实执行、跨部门交接 → 汇总复核 → 老板只拍板')),
+            ]),
+            h('div', { class: 'acts' }, [
+              h('button', { class: 'hb go', 'data-test': 'lhq-demo-start', disabled: busy.hero || isEmployee.value, onClick: startDemo }, playing ? t('重新开始一体化演示') : t('▶ 一键开始一体化演示（真实执行）')),
+              h('button', { class: 'hb', disabled: busy.screen, onClick: openWindow }, t('全屏打开大屏')),
+              playing ? h('button', { class: 'hb', onClick: async () => { director.value = await sdk.invoke('director.reset'); } }, t('停止并清屏')) : null,
+            ]),
+          ]),
+          h('div', { class: 'lhq-kpis' }, [
+            kpi((sp.legions || []).length, '', t('部门')),
+            kpi((sp.counters || {}).staff || 0, '', t('AI 员工')),
+            kpi(online, '', t('在线机器')),
+            kpi(hs.steps, t('次'), t('大模型执行步骤')),
+            kpi(hs.chars >= 10000 ? (hs.chars / 10000).toFixed(1) : hs.chars, hs.chars >= 10000 ? t('万字') : t('字'), t('AI 产出')),
+            kpi(hs.files, t('份'), t('交付文件')),
+            kpi(hs.avgSec || '—', hs.avgSec ? t('秒') : '', t('每步平均用时')),
+            kpi((sp.counters || {}).doneToday || 0, '', t('今日办完')),
+          ]),
+          h('div', { class: 'lhq-pipe' }, PIPE.flatMap(([k, label], i) => [
+            i ? h('div', { class: `ln${on.has(k) || on.has(PIPE[i - 1][0]) ? ' on' : ''}` }) : null,
+            h('div', { class: `nd${on.has(k) ? ' on' : ''}` }, [h('b', String(i + 1)), t(label)]),
+          ])),
+          streams.length
+            ? h('div', { class: 'lhq-live', 'data-test': 'lhq-live' }, streams.map((x) => {
+                const L = LG[x.legionId] || { color: '#22D3EE', name: x.legionId };
+                return h('div', { class: 'lc', style: `--c:${L.color}` }, [
+                  h('div', { class: 'hd' }, [h('b', L.name || L.short), h('span', `#${x.taskNo || ''} ${x.goal || ''}`), h('i', t('AI 正在写'))]),
+                  h('div', { class: 'tx' }, String(x.text || '').replace(/\s+/g, ' ').slice(-220)),
+                ]);
+              }))
+            : h('div', { class: 'idle' }, live ? t('各部门空闲。点「一键开始一体化演示」或在下面直接给 AI 总经理下令，模型输出会在这里逐字出现。') : t('排练模式下各部门在本机模拟执行、不调用模型；要看真实干活请点「一键开始一体化演示（真实执行）」。')),
+          h('div', { class: 'cmd' }, [
+            h('input', { value: heroCmd.value, 'data-test': 'lhq-hero-cmd', placeholder: t('直接给 AI 总经理下令，例如：分析上月销售下滑原因并给出三条改进措施'), onInput: (e) => (heroCmd.value = e.target.value), onKeydown: (e) => e.key === 'Enter' && !e.isComposing && heroCommand() }),
+            h('button', { class: 'hb go', disabled: busy.hero || !heroCmd.value.trim(), onClick: heroCommand }, t('下令')),
+          ]),
+          errLine('hero'),
+        ]);
+      };
+
       return () => {
         if (!info.value) return h('div', { class: 'lhq', style: 'padding-top:32px' }, t('加载中…'));
         // 每秒刷新只给子机页面（「已执行 N 秒」）；主控页面不跟着每秒整页重绘
@@ -1132,6 +1263,7 @@ export default function createSolution(sdk) {
         const VIEWS = { s1: viewFleet, s2: viewCompany, s3: viewScreen, s4: viewCommand, s5: viewRoutines, s6: viewDirector, s7: viewCoverage, s8: viewCost, s9: viewExam };
         const idx = Math.max(0, st.findIndex((x) => x.id === cur.value));
         return h('div', { class: 'lhq-scroll', ref: scroller }, h('div', { class: 'lhq', 'data-test': 'legion-hq' }, [
+          viewHero(),
           h('div', { class: 'lhq-sticky' }, [
             h('div', { class: 'lhq-head' }, [
               h('h2', t('运营中心')),

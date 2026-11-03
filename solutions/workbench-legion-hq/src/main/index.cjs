@@ -583,7 +583,8 @@ module.exports = {
     });
 
     // ── action ──
-    const h = (name, fn) => ctx.handle(name, fn);
+    const hs = {};
+    const h = (name, fn) => { hs[name] = fn; ctx.handle(name, fn); };
     h('info', info);
     h('state', () => snapshot(state));
     h('employee.state', () => employee.snapshot());
@@ -935,6 +936,57 @@ module.exports = {
     h('director.pause', () => director.pause());
     h('director.resume', () => director.resume());
     h('director.reset', () => director.reset());
+
+    // ── AI 运营中枢（App 页面主视觉）：真实运行的统计 —— 调了多少次模型、产出多少字、交付多少文件 ──
+    // 统计口径：保存过的任务记录（重启后不归零）+ 内存里正在办的（同 id 以内存为准）
+    let statsCache = { at: 0, saved: [] };
+    h('stats', () => {
+      if (Date.now() - statsCache.at > 30_000) {
+        const dir = taskDir(ctx);
+        const saved = existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith('.json')).map((f) => ctx.readJson(`${D}/tasks/${f}`, null)).filter(Boolean) : [];
+        statsCache = { at: Date.now(), saved };
+      }
+      const byId = new Map(statsCache.saved.map((r) => [r.id, r]));
+      for (const r of runner.list()) byId.set(r.id, r);
+      const list = [...byId.values()].filter((t) => !t.simulated);
+      let steps = 0;
+      let chars = 0;
+      let files = 0;
+      let ms = 0;
+      for (const t of list) {
+        for (const o of Object.values(t.outputs || {})) {
+          if (!o || o.error || !o.text) continue;
+          steps += 1;
+          chars += String(o.text).length;
+          files += (o.files || []).length;
+          ms += Number(o.ms) || 0;
+        }
+      }
+      return { tasks: list.length, done: list.filter((t) => t.status === 'done').length, steps, chars, files, avgSec: steps ? Math.round(ms / steps / 1000) : 0, live: !autopilot.on };
+    });
+    /**
+     * 一键开始一体化演示（真实执行）：关掉排练模式（各部门真实调用大模型）→ 启动大屏并在副屏打开 → 播放主剧本。
+     * 已在演就先重置再开（不叠两场）。
+     */
+    h('demo.start', async (p) => {
+      if (fleet.mode() === 'employee') throw new Error('本机是员工机：一体化演示从主控开始');
+      if (autopilot.on) setDemoRun(false);
+      const scriptId = String(p?.scriptId || 'ai-company-day');
+      if (director.status().mode !== 'idle') director.reset();
+      // 大屏放到副屏（有副屏时）；只有一块屏时只启动大屏服务、不盖住 App（App 要在前台展示各部门干活）
+      let win = null;
+      const { screen: es } = require('electron');
+      const primary = es.getPrimaryDisplay();
+      const other = es.getAllDisplays().find((d) => d.id !== primary.id);
+      const displayId = p?.displayId ?? (other ? other.id : null);
+      if (displayId != null) {
+        try { win = await hs['screen.openWindow']({ displayId }); } catch (e) { ctx.log.warn(`大屏窗口没打开：${e.message}`); }
+      } else if (!screen.status().running) {
+        try { await screen.start({ port: settings().screenPort || undefined }); } catch (e) { ctx.log.warn(`大屏服务没启动：${e.message}`); }
+      }
+      const st = director.play(scriptId);
+      return { director: st, screen: screen.status(), window: win, live: true };
+    });
     h('director.replay', (p) => director.replay(String(p?.file), { speed: Number(p?.speed) || 1 }));
     h('records.list', () => recorder.list());
 

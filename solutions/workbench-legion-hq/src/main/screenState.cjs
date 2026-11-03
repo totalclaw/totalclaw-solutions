@@ -20,6 +20,8 @@ function createState() {
     tasks: [],
     feed: [],
     stats: {}, // legionId → { done }
+    // 正在写的部门步骤：模型逐字输出的最后一段（大屏「AI 正在工作」打字机效果）；步骤结束即移除
+    streams: {}, // `${taskId}:${stepId}` → { taskNo, legionId, text, ts }
     doneToday: 0,
     day: '',
   };
@@ -73,7 +75,7 @@ function applyEvent(state, ev) {
       state.demoRun = !!ev.on;
       return true;
     case 'screen:reset':
-      Object.assign(state, { tasks: [], feed: [], stats: {}, doneToday: 0, replay: !!ev.replay });
+      Object.assign(state, { tasks: [], feed: [], stats: {}, streams: {}, doneToday: 0, replay: !!ev.replay });
       return true;
     // E1：宿主工作流页（集群工作流）的运行，进动态（谁 = 'wf'，带部门时用部门颜色）
     case 'workflow:external':
@@ -140,12 +142,23 @@ function applyEvent(state, ev) {
     case 'node:done':
       if (!step) return false;
       Object.assign(step, { status: 'done', endedAt: ev.ts, phase: '' });
+      delete state.streams[`${task.id}:${step.id}`];
       state.stats[step.legionId] = { done: (state.stats[step.legionId]?.done || 0) + 1 };
       pushFeed(state, ev, step.legionId, `#${task.no} 完成：${short(step.goal, 22)}`, Array.isArray(ev.files) && ev.files.length ? { taskId: task.id, stepId: ev.stepId, files: ev.files.slice(0, 5) } : undefined);
       return true;
+    case 'node:stream': {
+      if (!step || typeof ev.text !== 'string' || !ev.text) return false;
+      const k = `${task.id}:${step.id}`;
+      const cur = state.streams[k] || { taskNo: task.no, legionId: step.legionId, goal: short(step.goal, 24), text: '' };
+      cur.text = (cur.text + ev.text).slice(-600);
+      cur.ts = ev.ts;
+      state.streams[k] = cur;
+      return true;
+    }
     case 'node:failed':
       if (!step) return false;
       Object.assign(step, { status: 'failed', endedAt: ev.ts, phase: short(ev.error, 16) });
+      delete state.streams[`${task.id}:${step.id}`];
       pushFeed(state, ev, step.legionId, `#${task.no} 失败：${short(ev.error, 30)}`);
       return true;
     case 'task:summarizing':
@@ -177,6 +190,8 @@ function applyEvent(state, ev) {
       const was = task.status;
       task.status = ev.cancelled ? 'cancelled' : ev.ok ? 'done' : 'failed';
       task.finishedAt = ev.ts;
+      // 这件事的逐字输出一并收掉（中止 / 重置时步骤不一定有 node:failed）
+      for (const k of Object.keys(state.streams || {})) if (k.startsWith(`${task.id}:`)) delete state.streams[k];
       task.result = ev.ok ? short(ev.summary, 80) : null;
       task.error = ev.ok ? null : short(ev.error, 60);
       for (const s of task.steps) if (s.status === 'running' || s.status === 'waiting') s.status = ev.ok ? 'done' : 'skipped';
@@ -220,6 +235,7 @@ function snapshot(state) {
     },
     replay: state.replay,
     demoRun: !!state.demoRun,
+    streams: Object.values(state.streams || {}).sort((a, b) => (b.ts || 0) - (a.ts || 0)).slice(0, 3),
     lastSeq: state.lastSeq,
   };
 }
