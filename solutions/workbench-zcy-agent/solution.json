@@ -51,6 +51,9 @@
     ],
     "localStorage": [
       "totalclaw:zcy-agent"
+    ],
+    "uses": [
+      "invoice-agent/"
     ]
   },
   "capabilities": [],
