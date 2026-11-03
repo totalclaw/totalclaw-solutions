@@ -338,7 +338,7 @@
       "order": 50,
       "description": "一个老板 + 一家 AI 公司：8 个 AI 部门（研发、法务、财务、人事、运营、销售、客服、行政）以方案包装在任意机器上，AI 总经理按事情挑部门、派给承载它的机器并发执行，跨部门交接、汇总、钱 / 签约 / 对外发布 / 录用由老板拍板。主控点「启动 Web」即在内网开出指挥大屏，任意电脑、电视、手机用地址打开。",
       "descriptionEn": "One owner, one AI company: eight AI departments installed as solution packages on any machine. The AI GM triages each task, dispatches it to the machines hosting the right departments, hands results across departments and asks the boss to approve money, contracts, publishing and hiring. Start the web screen and open it from any device on the LAN.",
-      "version": "1.0.1",
+      "version": "1.0.3",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -392,11 +392,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-legion-hq",
-      "fileCount": 39,
-      "size": 440636,
-      "treeDigest": "36bbb83f4e43fac12f5b13f77f9d8307e16a23222a54cecffa46c3f905e6a535",
+      "fileCount": 38,
+      "size": 418151,
+      "treeDigest": "742f2bcfdfb0589cbd154fefa5ef5912f167c2f9e5d232a255487c5337112d41",
       "largeAssets": [],
-      "changelog": "- 停用 / 卸载运营中心时自动演示的定时器没清掉、后台还在下令：激活后段整体重写清理清单，把前面登记的「停自动演示」冲掉了，改为追加。",
+      "changelog": "- 默认公司的标志改用宿主当前品牌的 logo（`ctx.brand.logoPath`），包里不再带 `resources/company-logo.png`：方案从在线库同步到各品牌的 App 时不再带进某一个品牌的 logo，各品牌用各自的图。旧版宿主没有 `ctx.brand` 时不挂标志图，只用标志文字。",
       "filesRef": "index/workbench-legion-hq.json"
     },
     {
@@ -1164,7 +1164,7 @@
       "icon": "icon-solutions",
       "order": 180,
       "description": "短视频生成并发抖音、快手、小红书、视频号；数字人出镜介绍企业；商品图文自动上下架；收银与财务数据自动取数、统计并推送经营日报。",
-      "version": "2.0.7",
+      "version": "2.0.8",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1206,13 +1206,16 @@
         ],
         "localStorage": [
           "totalclaw:biz-automation"
+        ],
+        "uses": [
+          "apparel-store/"
         ]
       },
       "capabilities": [],
       "path": "solutions/workbench-biz-automation",
       "fileCount": 8,
-      "size": 495350,
-      "treeDigest": "cf8ed92a5014a2ffdf69beccfd7d0debce814f6099eeb14e3ec9af7fb6d82426",
+      "size": 495628,
+      "treeDigest": "9782b80665b463da4709ccafa2a752ace071d0819f10b691462d8e73febe8143",
       "largeAssets": [],
       "changelog": "- 名称改回「经营自动化智能体」：原名「服装AI试衣 · 经营自动化」在项目工作台里看着像两个服装AI试衣（id 不变，旧名保留为按名称安装的别名）。\n- 新增「演示模式」：顶部一键生成整套示例数据（短视频 4 个含已发布 / 待定时发布、数字人讲稿 2 份、上架记录 8 条、近 60 天收银与费用、日报 / 月报与问答），六个页签都能直接演示；商品库没有演示商品时连带生成服装AI试衣的演示数据。本机生成，不调用 AI、不发布、不推送，可一键清除，门店自己的数据不受影响。需要 App 2.0.9 起。",
       "filesRef": "index/workbench-biz-automation.json"
@@ -1487,7 +1490,7 @@
       "icon": "icon-solutions",
       "order": 230,
       "description": "给它企业材料和政采云账号，在内置浏览器里代做供应商的日常工作：商品上架前的合规与比价检查、询价单读回与报价测算、订单接单发货预警、待开票订单转开票。",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1529,15 +1532,18 @@
         ],
         "localStorage": [
           "totalclaw:zcy-agent"
+        ],
+        "uses": [
+          "invoice-agent/"
         ]
       },
       "capabilities": [],
       "path": "solutions/workbench-zcy-agent",
       "fileCount": 8,
-      "size": 314279,
-      "treeDigest": "c7541e1a4f471228567897f3050a322a70cbbcb1c7354af2585463ba1c921549",
+      "size": 314566,
+      "treeDigest": "2a27b9fad805d72d38517aeab4adf40fbd2c5b05f53fc700fd52ecd7f8e44f1f",
       "largeAssets": [],
-      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。",
+      "changelog": "- 清单声明也在用发票智能体的数据（data.uses：invoice-agent/）：App 2.0.11 起卸载发票智能体并勾选删数据时，这份共用数据会保留。旧版 App 忽略这个字段，行为不变。",
       "filesRef": "index/workbench-zcy-agent.json"
     },
     {

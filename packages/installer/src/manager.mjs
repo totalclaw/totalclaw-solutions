@@ -17,7 +17,7 @@ import { digestDir, sha256, treeDigest } from './digest.mjs';
 import { assertSafeRelPath, ensureDir, moveDir, readJsonFile, rmrf, safeJoin } from './fsutil.mjs';
 import { beginJournal, clearJournal, commitJournal, recoverJournal } from './journal.mjs';
 import { DirLock, readLock, writeLock } from './lock.mjs';
-import { migrateData, ownedDataPaths } from './migrate.mjs';
+import { migrateData, ownedDataPaths, usedDataPaths } from './migrate.mjs';
 import * as semver from './semver.mjs';
 import { COMMIT_RE } from './sources.mjs';
 
@@ -434,8 +434,12 @@ export class SolutionManager {
     const dest = join(this.root, item.id, dirName);
     const activePath = `${item.id}/${dirName}`;
     beginJournal(this.root, { op: 'install', id: item.id, version: target.version, target: dest });
-    if (existsSync(dest)) rmrf(stage); // 同内容目录已在（例如回滚后再升级），直接复用
-    else moveDir(stage, dest);
+    if (existsSync(dest) && digestDir(dest).treeDigest === target.treeDigest) rmrf(stage); // 同内容目录已在且完好（例如回滚后再升级），直接复用
+    else {
+      // 目录名相同但内容坏了（文件被改 / 被删）：换成刚校验过的这份，否则「修复」永远修不好
+      if (existsSync(dest)) moveDir(dest, join(this.root, '.trash', `${item.id}-${dirName}-${randomUUID().slice(0, 8)}`));
+      moveDir(stage, dest);
+    }
 
     const lock = readLock(this.root);
     const now = new Date().toISOString();
@@ -486,7 +490,16 @@ export class SolutionManager {
       const trash = join(this.root, '.trash', `${id}-${name}-${randomUUID().slice(0, 8)}`);
       moveDir(join(dir, name), trash);
     }
-    rmrf(join(this.root, '.trash'));
+    this._emptyTrash();
+  }
+
+  /** 清 .trash 只是回收空间：Windows 上文件被占用删不掉就留到下次安装 / 卸载再清，不能让已切换好的锁文件回报失败 */
+  _emptyTrash() {
+    try {
+      rmrf(join(this.root, '.trash'));
+    } catch (err) {
+      this.log(`清理 .trash 失败，下次再清：${err.message}`);
+    }
   }
 
   // ── 升级 ──────────────────────────────────────────────────────────
@@ -686,7 +699,8 @@ export class SolutionManager {
 
   /**
    * 卸载：删代码目录与锁记录、写 tombstone（阻止授权同步自动重装）。
-   * 默认保留数据；purgeData=true 时只删清单 data.paths 声明的路径（需调用方二次确认）。
+   * 默认保留数据；purgeData=true 时只删清单 data.paths 声明的路径（需调用方二次确认），
+   * 其他已装方案也声明了的路径不删，记在返回的 kept 里。
    * @param {string} id
    * @param {{ purgeData?: boolean, dataRoots?: string[] }} [opts]
    */
@@ -698,7 +712,7 @@ export class SolutionManager {
         // 本机还没下载过（例如已开通但从没进入）：只记卸载墓碑 —— 不再自动安装，用户可在市场重新下载
         lock.tombstones[id] = { uninstalledAt: new Date().toISOString(), version: null, keepData: true };
         writeLock(this.root, lock);
-        return { id, status: 'uninstalled', keptData: true, purged: [], dependents: [] };
+        return { id, status: 'uninstalled', keptData: true, purged: [], kept: [], dependents: [] };
       }
       const manifest = readJsonFile(join(this.root, cur.activePath, 'solution.json'), null);
       const dependents = Object.values(lock.items).filter((it) => it.id !== id && this._dependsOn(it, id));
@@ -707,12 +721,23 @@ export class SolutionManager {
       writeLock(this.root, lock);
       const dir = join(this.root, id);
       if (existsSync(dir)) moveDir(dir, join(this.root, '.trash', `${id}-${randomUUID().slice(0, 8)}`));
-      rmrf(join(this.root, '.trash'));
+      this._emptyTrash();
 
       const purged = [];
+      const kept = [];
       if (purgeData && manifest) {
+        // 别的已装方案也声明了的数据（data.paths 或 data.uses；同一路径或互为上下级）是共用的：不删，回报保留了哪些
+        const others = Object.values(lock.items).flatMap((it) => {
+          const m = readJsonFile(join(this.root, it.activePath, 'solution.json'), null);
+          return [...ownedDataPaths(m), ...usedDataPaths(m)];
+        });
+        const shared = (p) => others.some((q) => q === p || q.startsWith(`${p}/`) || p.startsWith(`${q}/`));
         for (const dataRoot of dataRoots) {
           for (const p of ownedDataPaths(manifest)) {
+            if (shared(p)) {
+              if (!kept.includes(p)) kept.push(p);
+              continue;
+            }
             const abs = safeJoin(dataRoot, p);
             if (existsSync(abs)) {
               rmrf(abs);
@@ -722,7 +747,7 @@ export class SolutionManager {
           rmrf(join(dataRoot, '.solution-data', `${id}.json`));
         }
       }
-      return { id, status: 'uninstalled', keptData: !purgeData, purged, dependents: dependents.map((d) => d.id) };
+      return { id, status: 'uninstalled', keptData: !purgeData, purged, kept, dependents: dependents.map((d) => d.id) };
     });
   }
 

@@ -7,7 +7,7 @@
  */
 
 const LIMITS = { name: 40, short: 12, logo: 2, industry: 16, products: 80, location: 24, boss: 8, size: 16 };
-/** 默认公司（用户 2026-10-22 定）：北京泰途科技有限公司，标志用 App 自己的 logo（包内 resources/company-logo.png，由入口读成 data URL 传入） */
+/** 默认公司（用户 2026-10-22 定）：北京泰途科技有限公司，标志用宿主当前品牌的 logo（ctx.brand.logoPath，由入口读成 data URL 传入；旧版宿主没有就只用标志文字） */
 const DEFAULT = { name: '北京泰途科技有限公司', short: '泰途科技', logo: '泰', industry: 'AI 企业服务', products: '泰途AI 企业助手（TotalClaw）', location: '北京', boss: '老板', size: '' };
 const DEMO = { name: '示例科技有限公司', short: '示例科技', logo: '示', industry: '智能家电', products: '智能家电', location: '', boss: '王总', size: '' };
 const MAX_LOGO_IMAGE = 300 * 1024;

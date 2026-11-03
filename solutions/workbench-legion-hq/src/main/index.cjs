@@ -148,11 +148,12 @@ module.exports = {
     });
 
     // ── 公司档案 ──
+    // 默认公司的标志 = 宿主当前品牌的 logo（白标各用各的，包里不带任何品牌图）；旧版宿主没给 brand 就只用标志文字
     let defaultLogoImage = '';
     try {
-      defaultLogoImage = `data:image/png;base64,${readFileSync(ctx.packagePath('resources/company-logo.png')).toString('base64')}`;
+      if (ctx.brand?.logoPath) defaultLogoImage = `data:image/png;base64,${readFileSync(ctx.brand.logoPath).toString('base64')}`;
     } catch {
-      /* 没有包内 logo 就只用标志文字 */
+      /* 读不到品牌 logo 就只用标志文字 */
     }
     const profile = () => resolveProfile(ctx.readJson(COMPANY, {}), hostCompanySources(deps), { defaultLogoImage });
     const publishCompany = () => bus.publish('company:changed', { company: displayProfile(profile(), !!settings().demoMode) });
@@ -192,6 +193,8 @@ module.exports = {
     };
 
     // ── 执行 ──
+    // 演示模式只认用户明确打开过（demoRun === true）：没设过 = 关。运营中心随应用激活，不能没人开就在后台自动下令
+    const demoOn = () => settings().demoRun === true && fleet.mode() !== 'employee';
     const llm = hostLlm(ctx, deps);
     const runner = new TaskRunner({
       bus,
@@ -199,8 +202,8 @@ module.exports = {
       fleet,
       company: profile,
       settings,
-      // 演示模式（默认开）：不调模型、不派员工机，执行与汇总都是本机模拟
-      simulate: () => settings().demoRun !== false && fleet.mode() !== 'employee',
+      // 演示模式：不调模型、不派员工机，执行与汇总都是本机模拟
+      simulate: () => demoOn(),
       legionKeys: (id) => ctx.readJson(LEGION_KEYS, {})[id] || null,
       log: ctx.log,
       llm: async (prompt, opts) => {
@@ -276,7 +279,7 @@ module.exports = {
       }
       return { on: autopilot.on };
     };
-    if (settings().demoRun !== false && fleet.mode() !== 'employee') autopilot.start();
+    if (demoOn()) autopilot.start();
     disposers.push(() => autopilot.stop());
 
     // ── 大屏服务 ──
@@ -344,6 +347,8 @@ module.exports = {
     };
     bus.on('event', (ev) => {
       if (ev.replay) return;
+      // 演示模式的示例事务 6 秒后自动批准，不是真要老板拍板，不发系统通知 / IM
+      if (runner.tasks.get(ev.taskId)?.simulated) return;
       if (ev.type === 'task:awaiting_confirm') notify(`待你拍板：#${ev.taskNo}`, ev.approval?.label ? `${ev.approval.label} · ${ev.approval.reason || ''}` : '');
       if (ev.type === 'task:done' && ev.ok) {
         const t = runner.get(ev.taskId);

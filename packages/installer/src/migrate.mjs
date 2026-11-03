@@ -33,6 +33,16 @@ export function ownedDataPaths(manifest) {
   return (manifest?.data?.paths || []).filter((p) => !p.includes('#')).map((p) => p.replace(/\/$/, ''));
 }
 
+/**
+ * data.uses：本方案也读写、但属于别的方案的数据路径（如经营自动化读服装店的商品库）。
+ * 不参与本方案的快照 / 删除；只用于卸载别的方案删数据时，判定这些路径还有人在用、不能删。
+ * 放在 paths 之外是为了旧客户端：它们只认 paths，碰到 uses 直接忽略，不会把别人的数据当成自己的删掉。
+ */
+export function usedDataPaths(manifest) {
+  const uses = manifest?.data?.uses;
+  return (Array.isArray(uses) ? uses : []).filter((p) => typeof p === 'string' && p && !p.includes('#')).map((p) => p.replace(/\/$/, ''));
+}
+
 export function dataMetaFile(dataRoot, id) {
   return join(dataRoot, '.solution-data', `${id}.json`);
 }

@@ -78,7 +78,12 @@
           "items": { "type": "string" },
           "description": "账号目录（accounts/<key>/）下属于本方案的数据路径；目录以 / 结尾；`file#key` 表示宿主共享文件中的键（不参与快照/删除）。安装器永不写这些路径。"
         },
-        "localStorage": { "type": "array", "items": { "type": "string" }, "description": "渲染层 localStorage 键或前缀" }
+        "localStorage": { "type": "array", "items": { "type": "string" }, "description": "渲染层 localStorage 键或前缀" },
+        "uses": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "本方案也读写、但属于别的方案的数据路径（相对账号目录，目录以 / 结尾）。不参与本方案的快照/删除；别的方案卸载并删数据时，本方案已装则这些路径保留。旧客户端忽略此字段。"
+        }
       }
     },
     "capabilities": { "type": "array", "items": { "type": "string" }, "description": "所需宿主能力；升级时新增能力需用户确认" },
