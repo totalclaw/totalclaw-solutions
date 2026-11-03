@@ -1,0 +1,9 @@
+{
+  "hostApi": 2,
+  "renderer": [],
+  "main": [
+    "apps/desktop-shell/src/main/services/documentExtractor.ts",
+    "apps/desktop-shell/src/main/services/serviceSettlement/excel.ts",
+    "apps/desktop-shell/src/main/services/workbenchLlm.ts"
+  ]
+}

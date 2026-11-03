@@ -1,0 +1,117 @@
+{
+  "id": "workbench-fin-assistant",
+  "version": "1.0.0",
+  "treeDigest": "a661e504dffeb9b3681f385c1ddad9786b1f2f7f17c1156de6898ac9548fafb8",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 1068,
+      "sha256": "517dd328f535f16fca2098a1fd506e9f8aff3c578f56432bc913e6297b476eb4"
+    },
+    {
+      "path": "README.md",
+      "size": 1827,
+      "sha256": "fcfd0565b7358fd0a8d54f9b744113c20dfcf6af4d3bad4f7c678621503b7809"
+    },
+    {
+      "path": "resources/credit-checklists.json",
+      "size": 1970,
+      "sha256": "9a0ae22c239e83264de45d2c316613c662fb6628cc07bf32be733cb5758aebb4"
+    },
+    {
+      "path": "resources/demo/credit/公司章程.txt",
+      "size": 317,
+      "sha256": "34f63dfcc31c1559fb220d8e87f85be9ea0c75c543b4bd75ddff560025bbe503"
+    },
+    {
+      "path": "resources/demo/credit/营业执照.txt",
+      "size": 342,
+      "sha256": "9a123429a11ea0b7449704a1a6bfd14615945fa7cefe2f38a08856ea48942c1a"
+    },
+    {
+      "path": "resources/demo/credit/财务报表-2025年度.txt",
+      "size": 585,
+      "sha256": "11a3d611f5246f019ce860d08ea8c13f3c712860a43aa6480ed0048677b74667"
+    },
+    {
+      "path": "resources/demo/credit/购销合同-苏州恒达.txt",
+      "size": 317,
+      "sha256": "ad9283cb45c8749ab347aa8baf7583c94fbcbab5fcbecb5ea049d100e67430b3"
+    },
+    {
+      "path": "resources/demo/credit/银行流水-近6个月.csv",
+      "size": 5835,
+      "sha256": "27a833122a7e21b4dfe5d755b590ef7c2ec50852f77bde72d4dc24e23bfdf024"
+    },
+    {
+      "path": "resources/demo/marketing-sample.txt",
+      "size": 303,
+      "sha256": "b521da9ea8c6854ea76fec96e8ffc256198b242e08bc208f6577b72ea9b616cb"
+    },
+    {
+      "path": "resources/demo/policies/个人存款业务管理办法.txt",
+      "size": 1340,
+      "sha256": "9cf1ad8029d3ac3ad625c5d1920cb81e3dd40691635d021b2ecd35260646aadf"
+    },
+    {
+      "path": "resources/demo/policies/员工费用报销管理办法.txt",
+      "size": 720,
+      "sha256": "744ed26bffca90249abe8149591a3dc2c5c1731b35424d7ee3c68d572b464db5"
+    },
+    {
+      "path": "resources/demo/policies/营销宣传合规管理规定.txt",
+      "size": 1160,
+      "sha256": "00d41f858e9e946a78bf240e4afa7618239d6db4dd58ef1775d97caacb50cc8c"
+    },
+    {
+      "path": "resources/forbidden-topics.json",
+      "size": 1271,
+      "sha256": "ee08fdb3fe146db25f4aa87f9a3ae61aea37027d0804adc6ca95a666f3378c7f"
+    },
+    {
+      "path": "resources/marketing-rules.json",
+      "size": 3150,
+      "sha256": "99120a83ceec50d78ef9b0fd63b749c3085fca7607a3428bfc7873b8d60c00be"
+    },
+    {
+      "path": "resources/metrics.json",
+      "size": 3696,
+      "sha256": "68f01a0f11ab6314f5f1f340125398c4729a28da79702e4db2b87b14d3724f52"
+    },
+    {
+      "path": "solution.json",
+      "size": 2959,
+      "sha256": "36480eb36b6c32aaf53912ff75de4d650691d7a214c2b2d0beb94d155ca47886"
+    },
+    {
+      "path": "src/host-modules.json",
+      "size": 249,
+      "sha256": "a563e097cca4966a4aa88ab8177d307da9ef9faaba50bd7a32bd95d6cf5952d0"
+    },
+    {
+      "path": "src/main/docText.cjs",
+      "size": 6027,
+      "sha256": "7a4997674c31ad11bc24288680cfbc75dd29fad1d49cb3bc85710b094db94973"
+    },
+    {
+      "path": "src/main/index.cjs",
+      "size": 42357,
+      "sha256": "62f2dc6042c432bcb42b67422051fdd90ee5e31628d66f5b1fbb9f7387f60541"
+    },
+    {
+      "path": "src/main/lib.cjs",
+      "size": 21585,
+      "sha256": "c76d84a3f70cada4843da3d4eb2460782859901924a1f49c30924cd236ef48d4"
+    },
+    {
+      "path": "src/main/zip.cjs",
+      "size": 4221,
+      "sha256": "9c092411e47b0914072db3c3925a89cef3d348675d0448203683b3b4d38e261d"
+    },
+    {
+      "path": "src/renderer/index.mjs",
+      "size": 51816,
+      "sha256": "c7eb64f439f8e9d14602faeabee5dd6461e989664f7525d04f001decb918ee35"
+    }
+  ]
+}

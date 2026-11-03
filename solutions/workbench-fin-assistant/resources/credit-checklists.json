@@ -1,0 +1,22 @@
+{
+  "_comment": "授信材料清单（方案 6.3「按业务品种检查缺件」）。keywords 用于按文件名归类；由授信管理部门维护。",
+  "products": [
+    { "id": "working_capital", "name": "流动资金贷款", "items": [
+      { "id": "license", "name": "营业执照", "required": true, "keywords": ["营业执照", "执照"] },
+      { "id": "articles", "name": "公司章程", "required": true, "keywords": ["章程"] },
+      { "id": "financials", "name": "近三年及最近一期财务报表", "required": true, "keywords": ["财务报表", "财报", "资产负债表", "利润表", "审计报告"] },
+      { "id": "bank_flow", "name": "近 6 个月银行流水", "required": true, "keywords": ["流水", "对账单"] },
+      { "id": "contracts", "name": "购销合同 / 订单", "required": true, "keywords": ["合同", "订单"] },
+      { "id": "legal_rep_id", "name": "法定代表人身份证明", "required": true, "keywords": ["身份证", "法人", "法定代表人"] },
+      { "id": "board_resolution", "name": "股东会 / 董事会借款决议", "required": false, "keywords": ["决议"] },
+      { "id": "credit_report", "name": "企业征信报告", "required": false, "keywords": ["征信"] }
+    ] },
+    { "id": "small_micro", "name": "小微企业经营贷", "items": [
+      { "id": "license", "name": "营业执照", "required": true, "keywords": ["营业执照", "执照"] },
+      { "id": "bank_flow", "name": "近 12 个月经营流水", "required": true, "keywords": ["流水", "对账单"] },
+      { "id": "tax", "name": "近两年纳税证明", "required": true, "keywords": ["纳税", "完税", "税单"] },
+      { "id": "legal_rep_id", "name": "经营者身份证明", "required": true, "keywords": ["身份证", "法人", "经营者"] },
+      { "id": "financials", "name": "财务报表（如有）", "required": false, "keywords": ["财务报表", "财报", "资产负债表", "利润表"] }
+    ] }
+  ]
+}

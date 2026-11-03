@@ -1025,23 +1025,23 @@
     },
     {
       "id": "workbench-finance-agent",
-      "name": "智能发票助手 · 财务",
+      "name": "财务智能体",
       "aliases": [
-        "finance-agent",
-        "财务智能体"
+        "智能发票助手 · 财务",
+        "finance-agent"
       ],
       "kind": "workbench",
       "category": "财务",
       "icon": "icon-solutions",
       "order": 160,
       "description": "凭证、税务申报、费用报销、往来对账、财务报表、风险巡检、预算、成本、合同审核、财税问答十个智能体，多账套持续跟进。",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.9",
         "hostApi": 2
       },
       "access": {
@@ -1082,10 +1082,10 @@
       "capabilities": [],
       "path": "solutions/workbench-finance-agent",
       "fileCount": 8,
-      "size": 777524,
-      "treeDigest": "a76e1ec2c2798131e86793e083c61cf9dd99faeb3ced25837f5dce2914d31281",
+      "size": 776942,
+      "treeDigest": "66adf0539561742c674f6889a803271ebbc04ece3e6b239adda1a607a5774e0c",
       "largeAssets": [],
-      "changelog": "- 并入「智能发票助手」，成为其中的「财务」页签；显示名改为「智能发票助手 · 财务」（原名「财务智能体」保留为别名，id 不变，已开通的账号不受影响）。",
+      "changelog": "- 名称改回「财务智能体」：原名「智能发票助手 · 财务」在项目工作台里看着像两个智能发票助手（id 不变，旧名保留为按名称安装的别名）。",
       "filesRef": "index/workbench-finance-agent.json"
     },
     {
@@ -1100,13 +1100,13 @@
       "icon": "icon-solutions",
       "order": 170,
       "description": "AI 一键换装：顾客手机扫码或店员电脑上传照片，自选背景、姿势、发型生成试穿图，手机电脑同时查看；试穿码到店核销，试穿数据看板指导主推款。",
-      "version": "2.0.3",
+      "version": "2.0.4",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.6",
+        "minAppVersion": "2.0.9",
         "hostApi": 2
       },
       "access": {
@@ -1146,31 +1146,31 @@
       "capabilities": [],
       "path": "solutions/workbench-apparel-store",
       "fileCount": 7,
-      "size": 217960,
-      "treeDigest": "d172061ffd7bcd5f3ccf6b7233d20a4ad4c57270afab6696f6963d7f92e1d8d3",
+      "size": 249290,
+      "treeDigest": "b21a803d3cf5159b41caed7c91ed28a3e04a2dce8b10055a2b0b103337bdb649",
       "largeAssets": [],
-      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。",
+      "changelog": "- 新增「实时试衣」页签：摄像头画面实时交给 AI（Decart Lucy，经 fal 实时通道，视频直连），几秒内看到顾客穿上商品库里所选衣服的样子；另有「店员代穿」——店员穿实物出镜，画面换成已授权的顾客本人。按秒计费，单次最长 3 分钟自动停，用量记进设置页的 fal 用量。\n- 生图更稳：顾客照片里人只占一小块（手机截图、远景）时自动裁到人周围；人脸核对只在明显换了人时才拦；手机端上传不再把长截图压到人脸只剩几十像素；演示顾客的示意图照片直接提示、不再白花生成费用。\n- 新增「演示模式」：顶部一键生成整套示例数据（商品 12 件、顾客 11 位、试穿图 30 多张，含待核销试穿码、到店结果和 14 天数据走势），每个页签都能直接演示；本机生成、不调用 AI、不产生费用，可一键清除，门店自己的数据不受影响。需要 App 2.0.9 起（更早的 App 不显示这个按钮）。",
       "filesRef": "index/workbench-apparel-store.json"
     },
     {
       "id": "workbench-biz-automation",
-      "name": "服装AI试衣 · 经营自动化",
+      "name": "经营自动化智能体",
       "aliases": [
-        "biz-automation",
-        "经营自动化智能体"
+        "服装AI试衣 · 经营自动化",
+        "biz-automation"
       ],
       "kind": "workbench",
       "category": "经营自动化",
       "icon": "icon-solutions",
       "order": 180,
       "description": "短视频生成并发抖音、快手、小红书、视频号；数字人出镜介绍企业；商品图文自动上下架；收银与财务数据自动取数、统计并推送经营日报。",
-      "version": "2.0.6",
+      "version": "2.0.7",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.7",
+        "minAppVersion": "2.0.9",
         "hostApi": 2
       },
       "access": {
@@ -1211,10 +1211,10 @@
       "capabilities": [],
       "path": "solutions/workbench-biz-automation",
       "fileCount": 8,
-      "size": 460878,
-      "treeDigest": "0f861a346ac25a1b0e5f0d9bc32bb9a805f9301d8f5c99f2a746d136588a5090",
+      "size": 495350,
+      "treeDigest": "cf8ed92a5014a2ffdf69beccfd7d0debce814f6099eeb14e3ec9af7fb6d82426",
       "largeAssets": [],
-      "changelog": "- 成片脚本目录改按宿主 shellResource 定位：App 热更新生效后也能找到壳里的视频脚本（同步 qiye-app 热更新 Phase B）。",
+      "changelog": "- 名称改回「经营自动化智能体」：原名「服装AI试衣 · 经营自动化」在项目工作台里看着像两个服装AI试衣（id 不变，旧名保留为按名称安装的别名）。\n- 新增「演示模式」：顶部一键生成整套示例数据（短视频 4 个含已发布 / 待定时发布、数字人讲稿 2 份、上架记录 8 条、近 60 天收银与费用、日报 / 月报与问答），六个页签都能直接演示；商品库没有演示商品时连带生成服装AI试衣的演示数据。本机生成，不调用 AI、不发布、不推送，可一键清除，门店自己的数据不受影响。需要 App 2.0.9 起。",
       "filesRef": "index/workbench-biz-automation.json"
     },
     {
@@ -1292,13 +1292,13 @@
       "icon": "icon-solutions",
       "order": 200,
       "description": "导入 OA、费控、CSS 三个系统的流程报表，按时效规则算出每个流程和每位审核人是否超时，自动出时效看板、周报和月度分析报告，并跟进在途流程和改善建议。",
-      "version": "2.0.3",
+      "version": "2.0.4",
       "release": {
         "channel": "stable",
         "rollout": 100
       },
       "compat": {
-        "minAppVersion": "2.0.5",
+        "minAppVersion": "2.0.9",
         "hostApi": 2
       },
       "access": {
@@ -1339,10 +1339,10 @@
       "capabilities": [],
       "path": "solutions/workbench-flow-sla",
       "fileCount": 8,
-      "size": 693167,
-      "treeDigest": "712409f55a61e6a05b8177372567db9820797b5d31d7fde6cb78ac95ec944631",
+      "size": 692804,
+      "treeDigest": "aabef21d7f559b7d04db4225189ca13ab987d2e37accbfa84a0d7e84dd42833f",
       "largeAssets": [],
-      "changelog": "- 界面样式改用宿主设计 token（圆角 / 字号 / 主色等随主题统一，同步 qiye-app master 的界面改造）；需要 App 2.0.6 起（更早的 App 继续用上一版）。",
+      "changelog": "- 修复：在途跟进点「闭环」没有反应并报错 —— 改用应用内输入框填写闭环原因。需要 App 2.0.9 起（更早的 App 继续用上一版）。",
       "filesRef": "index/workbench-flow-sla.json"
     },
     {
@@ -1858,6 +1858,70 @@
       "largeAssets": [],
       "changelog": "- 首版：七步合同审查（预分析、立场、模板、条款抽取、逐条审查、修订采纳、报告归档）。\n- 原文位置由程序定位；法条格式核对（34 部常用法律）；缺失条款按模板必备项计算；框架四问。\n- 内置 4 个审查模板（买卖 / 经销、服务 / 外包、保密、劳动），可编辑、按版本留快照。\n- 导出带修订痕迹与批注的 Word 修订稿、审查意见书；对方反驳推演；两版合同对比。\n- 长时间操作期间向宿主报进度（workbenchActivity），运营中心大屏可在对应部门节点下看到。",
       "filesRef": "index/workbench-legal-agent.json"
+    },
+    {
+      "id": "workbench-fin-assistant",
+      "name": "智能金融助手",
+      "aliases": [
+        "金融助手",
+        "金融行业智能体",
+        "fin-assistant"
+      ],
+      "kind": "workbench",
+      "category": "金融",
+      "icon": "icon-solutions",
+      "order": 265,
+      "description": "银行、消费金融、保险机构的业务 AI 工作台：制度与合规问答、智能问数、授信材料预审、营销物料审查。模型只做理解与起草，取数、计算、校验、拦截、审批和审计由程序确定性执行。",
+      "descriptionEn": "An AI workbench for banks, consumer finance and insurers: policy & compliance Q&A, governed data queries, credit file pre-review and marketing material review. Models only interpret and draft; data access, calculation, checks, blocking, approval and audit are done by code.",
+      "version": "1.0.0",
+      "release": {
+        "channel": "stable",
+        "rollout": 100
+      },
+      "compat": {
+        "minAppVersion": "2.0.5",
+        "hostApi": 2
+      },
+      "access": {
+        "requiresSolutionGrant": true,
+        "feature": null,
+        "hidden": false
+      },
+      "runtime": {
+        "mode": "dynamic",
+        "runner": "workbench",
+        "route": "/workbenches/fin-assistant",
+        "renderer": "src/renderer/index.mjs",
+        "main": "src/main/index.cjs",
+        "hotSwap": false,
+        "routes": [
+          {
+            "path": "/workbenches/fin-assistant",
+            "name": "FinAssistantWorkbench"
+          }
+        ],
+        "entries": {
+          "renderer": "src/renderer/index.mjs",
+          "main": "src/main/index.cjs",
+          "hostModules": "src/host-modules.json"
+        }
+      },
+      "dependsOn": [],
+      "data": {
+        "schemaVersion": 1,
+        "paths": [
+          "fin-assistant/"
+        ],
+        "localStorage": []
+      },
+      "capabilities": [],
+      "path": "solutions/workbench-fin-assistant",
+      "fileCount": 22,
+      "size": 153115,
+      "treeDigest": "a661e504dffeb9b3681f385c1ddad9786b1f2f7f17c1156de6898ac9548fafb8",
+      "largeAssets": [],
+      "changelog": "- 首版（依据《金融行业 AI 应用解决方案 2.0》，不含研发 Agent）：安全与审计、制度与合规问答、智能问数、授信材料预审、营销物料审查，后台运营直达已有工作台。\n- 数据分级路由：授信材料、问数明细按客户敏感数据处理，未确认内网模型即在调用前拦截。\n- 审计按条串联哈希；人工修改 AI 结果记录修改前后的值。\n- 顶部「一键载入演示数据」：一次填入示例制度、零售存款数据、一笔授信预审（示例材料、按示例财报取数、程序校验已跑完）、营销文案和各页签的示例问题，不调用模型。\n- 金融主题界面：藏青横幅 + 金色点缀，标题衬线体；页签、步骤与进度条吸顶。\n- 界面文字进词典（英 / 阿 / 越 / 马来）。\n- 内置示例：3 份制度、零售存款示例数据与 7 个指标口径、一套授信材料（含缺件、临期执照、关联方大额往来）、一份违规营销文案。",
+      "filesRef": "index/workbench-fin-assistant.json"
     },
     {
       "id": "workbench-hr-agent",

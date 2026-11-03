@@ -1,0 +1,17 @@
+{
+  "_comment": "智能问数口径库（方案 6.2：口径库是问数的唯一依据）。示例主题域：零售存款。表结构见 tables；由数据岗维护。",
+  "domain": "零售存款",
+  "tables": {
+    "retail_deposit_daily": { "label": "零售存款月末快照（示例表）", "fields": { "stat_date": "统计日期", "branch": "分行", "product": "产品（活期 / 定期 / 大额存单 / 结构性存款）", "customer_level": "客户等级（普通 / 金卡 / 私行）", "balance": "余额（元）", "new_amount": "当月新增（元）", "customers": "有余额客户数", "maturing_amount": "次月到期金额（元）" } }
+  },
+  "dims": ["branch", "product", "customer_level"],
+  "items": [
+    { "id": "deposit_balance", "name": "零售存款余额", "synonyms": ["存款余额", "存款规模", "存款总额"], "unit": "元", "table": "retail_deposit_daily", "timeField": "stat_date", "snapshot": true, "measure": { "agg": "sum", "field": "balance" }, "definition": "统计时点全部零售客户存款余额之和，含活期、定期、大额存单、结构性存款；不含对公与同业。取区间最后一个统计时点。" },
+    { "id": "demand_share", "name": "活期存款占比", "synonyms": ["活期占比", "活期率"], "unit": "%", "table": "retail_deposit_daily", "timeField": "stat_date", "snapshot": true, "numerator": { "agg": "sum", "field": "balance", "filter": { "product": "活期" } }, "denominator": { "agg": "sum", "field": "balance" }, "scale": 100, "definition": "活期存款余额 ÷ 零售存款余额 × 100%，取区间最后一个统计时点。" },
+    { "id": "new_deposit", "name": "新增存款", "synonyms": ["存款新增", "净新增", "新增规模"], "unit": "元", "table": "retail_deposit_daily", "timeField": "stat_date", "measure": { "agg": "sum", "field": "new_amount" }, "definition": "区间内各月新增金额之和（月末余额 − 上月末余额，由源系统按月计算）。" },
+    { "id": "deposit_customers", "name": "有余额客户数", "synonyms": ["存款客户数", "客户数"], "unit": "户", "table": "retail_deposit_daily", "timeField": "stat_date", "snapshot": true, "measure": { "agg": "sum", "field": "customers" }, "definition": "统计时点存款余额大于 0 的零售客户数（按产品分组时同一客户可能重复计入）。" },
+    { "id": "avg_balance", "name": "户均存款", "synonyms": ["户均余额", "人均存款"], "unit": "元", "table": "retail_deposit_daily", "timeField": "stat_date", "snapshot": true, "numerator": { "agg": "sum", "field": "balance" }, "denominator": { "agg": "sum", "field": "customers" }, "definition": "零售存款余额 ÷ 有余额客户数，取区间最后一个统计时点。" },
+    { "id": "maturing", "name": "次月到期规模", "synonyms": ["到期规模", "到期金额", "到期存款"], "unit": "元", "table": "retail_deposit_daily", "timeField": "stat_date", "snapshot": true, "measure": { "agg": "sum", "field": "maturing_amount" }, "filter": { "product": ["定期", "大额存单", "结构性存款"] }, "definition": "统计时点之后一个月内到期的定期、大额存单、结构性存款金额之和。" },
+    { "id": "private_bank_share", "name": "私行客户存款占比", "synonyms": ["私行占比", "高净值占比"], "unit": "%", "table": "retail_deposit_daily", "timeField": "stat_date", "snapshot": true, "numerator": { "agg": "sum", "field": "balance", "filter": { "customer_level": "私行" } }, "denominator": { "agg": "sum", "field": "balance" }, "scale": 100, "definition": "私行等级客户存款余额 ÷ 零售存款余额 × 100%，取区间最后一个统计时点。" }
+  ]
+}
