@@ -7,6 +7,8 @@
  *   GET  /api/state        快照
  *   GET  /api/screen-config 大屏配置（AutoCoder 演示视频地址）
  *   GET  /api/task?id=     一件事的结果（汇总 + 各部门交付的全文），公司事务里点「查看结果」用
+ *   GET  /api/task/report?id=       下载这件事的完整报告 Word
+ *   GET  /api/task/file?id=&s=&i=   下载第 s 个部门步骤交付的第 i 个文件（意见书 / 修订稿等）
  *   GET  /api/events       SSE：先推一次快照，之后每条事件推 ev、状态变化节流推 state；15 秒心跳
  *   POST /api/command      下令 {text, attachments?: [附件 id]}
  *   POST /api/upload       上传下令附件（原始字节，请求头 X-File-Name = encodeURIComponent(文件名)，≤20MB）→ {id, name, chars, warning?}
@@ -191,6 +193,21 @@ class ScreenServer {
     return !!this.token && safeEqual(t, this.token);
   }
 
+  /** 下载：附件形式（中文文件名用 RFC 5987） */
+  sendFile(res, name, buffer) {
+    const ext = String(name).toLowerCase().split('.').pop();
+    const type = { docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', pdf: 'application/pdf', xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', txt: 'text/plain; charset=utf-8', md: 'text/markdown; charset=utf-8' }[ext] || 'application/octet-stream';
+    const ascii = String(name).replace(/[^\x20-\x7e]/g, '_').replace(/["\\]/g, '_');
+    res.writeHead(200, {
+      'Content-Type': type,
+      'Content-Length': buffer.length,
+      'Content-Disposition': `attachment; filename="${ascii}"; filename*=UTF-8''${encodeURIComponent(name)}`,
+      'Cache-Control': 'no-store',
+      'X-Content-Type-Options': 'nosniff',
+    });
+    res.end(buffer);
+  }
+
   send(res, code, body, type = 'application/json; charset=utf-8') {
     const data = typeof body === 'string' ? body : JSON.stringify(body);
     res.writeHead(code, {
@@ -263,6 +280,14 @@ class ScreenServer {
       if (req.method === 'GET' && url.pathname === '/') return this.send(res, 200, this.pages().page, 'text/html; charset=utf-8');
       if (req.method === 'GET' && url.pathname === '/remote') return this.send(res, 200, this.pages().remote, 'text/html; charset=utf-8');
       if (req.method === 'GET' && url.pathname === '/api/state') return this.send(res, 200, this.getState());
+      if (req.method === 'GET' && url.pathname === '/api/task/report' && this.getTaskReport) {
+        const f = this.getTaskReport(String(url.searchParams.get('id') || ''));
+        return f ? this.sendFile(res, f.name, f.buffer) : this.send(res, 404, { error: '没有这件事的报告' });
+      }
+      if (req.method === 'GET' && url.pathname === '/api/task/file' && this.getTaskFile) {
+        const f = this.getTaskFile(String(url.searchParams.get('id') || ''), url.searchParams.get('s'), url.searchParams.get('i'));
+        return f ? this.sendFile(res, f.name, f.buffer) : this.send(res, 404, { error: '文件不存在' });
+      }
       if (req.method === 'GET' && url.pathname === '/api/task' && this.getTask) {
         const r = this.getTask(String(url.searchParams.get('id') || ''));
         return r ? this.send(res, 200, r) : this.send(res, 404, { error: '没有这件事' });

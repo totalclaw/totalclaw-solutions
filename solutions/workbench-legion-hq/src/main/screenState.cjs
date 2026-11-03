@@ -34,8 +34,9 @@ function legionShort(state, id) {
   return state.legions.find((L) => L.id === id)?.short || id;
 }
 
-function pushFeed(state, ev, who, text) {
-  state.feed.unshift({ ts: ev.ts, who, text, taskNo: ev.taskNo ?? null });
+function pushFeed(state, ev, who, text, extra) {
+  // extra：{ taskId, result, files } —— 办完 / 交付文件的动态在大屏上带「查看报告 / 下载」
+  state.feed.unshift({ ts: ev.ts, who, text, taskNo: ev.taskNo ?? null, ...(extra || {}) });
   if (state.feed.length > MAX_FEED) state.feed.length = MAX_FEED;
 }
 
@@ -140,7 +141,7 @@ function applyEvent(state, ev) {
       if (!step) return false;
       Object.assign(step, { status: 'done', endedAt: ev.ts, phase: '' });
       state.stats[step.legionId] = { done: (state.stats[step.legionId]?.done || 0) + 1 };
-      pushFeed(state, ev, step.legionId, `#${task.no} 完成：${short(step.goal, 22)}`);
+      pushFeed(state, ev, step.legionId, `#${task.no} 完成：${short(step.goal, 22)}`, Array.isArray(ev.files) && ev.files.length ? { taskId: task.id, stepId: ev.stepId, files: ev.files.slice(0, 5) } : undefined);
       return true;
     case 'node:failed':
       if (!step) return false;
@@ -180,7 +181,7 @@ function applyEvent(state, ev) {
       task.error = ev.ok ? null : short(ev.error, 60);
       for (const s of task.steps) if (s.status === 'running' || s.status === 'waiting') s.status = ev.ok ? 'done' : 'skipped';
       if (ev.ok && ACTIVE.has(was)) state.doneToday++;
-      pushFeed(state, ev, 'core', ev.cancelled ? `#${task.no} 已中止` : ev.ok ? `#${task.no} 办完了` : `#${task.no} 没办成：${short(ev.error, 24)}`);
+      pushFeed(state, ev, 'core', ev.cancelled ? `#${task.no} 已中止` : ev.ok ? `#${task.no} 办完了` : `#${task.no} 没办成：${short(ev.error, 24)}`, ev.ok && !ev.cancelled ? { taskId: task.id, result: true } : undefined);
       prune(state);
       return true;
     }

@@ -166,8 +166,10 @@ export default function createSolution(sdk) {
           for (const x of rec.value.review?.risks || []) {
             if (x.level === 'high' || x.priority === 'must') setRec(await sdk.invoke('review.accept', { id: rec.value.id, riskId: x.id, accepted: true, suggestion: x.suggestion }));
           }
-          await say(7, t('出审查意见，交回运营中心'));
-          await LF().complete(key, { ok: true, text: reportText(rec.value) });
+          await say(7, t('生成审查意见书与修订稿（Word），交回运营中心'));
+          // 意见书 / 修订稿直接落到本方案数据目录（不弹保存框），随结果交回：大屏实时动态里可下载
+          const files = await sdk.invoke('review.exportFiles', { id: rec.value.id }).catch(() => []);
+          await LF().complete(key, { ok: true, text: reportText(rec.value), files: Array.isArray(files) ? files : [] });
         } catch (e) {
           await LF().complete(key, { ok: false, error: (e && e.message) || String(e) }).catch(() => undefined);
           sdk.notify.warn(t('自动审查没做完：{p0}', { p0: (e && e.message) || String(e) }));

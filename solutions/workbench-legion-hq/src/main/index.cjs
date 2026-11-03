@@ -10,7 +10,7 @@
  *
  * 数据（账号目录下 legion-hq/）：settings.json、company-profile.json、tasks/*.json、records/*.jsonl、scripts.json
  */
-const { readFileSync, readdirSync, unlinkSync, existsSync, writeFileSync, mkdirSync } = require('node:fs');
+const { readFileSync, readdirSync, unlinkSync, existsSync, writeFileSync, mkdirSync, copyFileSync, rmSync } = require('node:fs');
 const { join } = require('node:path');
 const { listInstalledLegions, normalizeCustomLegion, CUSTOM_PREFIX, publicLegion } = require('./legions.cjs');
 const { parseJsonLoose } = require('./triage.cjs');
@@ -221,6 +221,21 @@ module.exports = {
       // 演示模式：不调模型、不派员工机，执行与汇总都是本机模拟
       simulate: () => demoOn(),
       legionKeys: (id) => ctx.readJson(LEGION_KEYS, {})[id] || null,
+      // 交付文件存到 tasks/<任务 id>.files/<步骤>-<文件名>：本机路径就复制，员工机回传的 base64 就写入
+      storeFiles: (t, s, files) => {
+        const dir = ctx.dataPath(`${D}/tasks/${t.id}.files`);
+        mkdirSync(dir, { recursive: true });
+        const out = [];
+        for (const f of files.slice(0, 5)) {
+          const name = String(f.name || 'file').replace(/[\\/:*?"<>|]/g, '_').slice(0, 120);
+          const path = join(dir, `${s.id}-${name}`);
+          if (f.path && existsSync(f.path)) copyFileSync(f.path, path);
+          else if (typeof f.base64 === 'string') writeFileSync(path, Buffer.from(f.base64, 'base64'));
+          else continue;
+          out.push({ name, path });
+        }
+        return out;
+      },
       // 真实运行时主控本机执行的步骤也在前台展示（宿主 legionForeground；旧宿主没有就照旧后台执行）
       foreground: (() => {
         try {
@@ -316,6 +331,21 @@ module.exports = {
       onCommand: (b) => runner.submit({ text: b?.text, source: ['boss', 'customer', 'mail'].includes(b?.source) ? b.source : 'boss', attachments: attachments.resolve(b?.attachments) }),
       onUpload: (name, buffer) => attachments.add({ name, buffer }),
       getConfig: () => ({ demoVideoUrl: settings().demoVideoUrl || DEFAULT_DEMO_VIDEO }),
+      // 大屏下载：一件事的完整报告 Word；某个部门交付的原件（按步骤序号 + 文件序号）
+      getTaskReport: (id) => {
+        const t = /^t-[0-9a-f]{8}$/.test(String(id || '')) ? loadTask(id) : null;
+        if (!t || !['done', 'awaiting', 'failed'].includes(t.status)) return null;
+        const { buf, fileName } = taskReport(t);
+        return { name: fileName, buffer: buf };
+      },
+      getTaskFile: (id, si, fi) => {
+        const t = /^t-[0-9a-f]{8}$/.test(String(id || '')) ? loadTask(id) : null;
+        // s 可以是步骤 id（实时动态里给的）或序号（结果窗口里给的）
+        const st = t?.plan?.steps?.find((x) => x.id === String(si)) || t?.plan?.steps?.[Number(si)];
+        const f = st && (t.outputs?.[st.id]?.files || [])[Number(fi)];
+        if (!f || !existsSync(f.path)) return null;
+        return { name: f.name, buffer: readFileSync(f.path) };
+      },
       // 大屏「查看结果」：汇总 + 各部门交付全文（同样要口令；只给办完 / 待确认 / 没办成的事）
       getTask: (id) => {
         if (!/^t-[0-9a-f]{8}$/.test(id)) return null;
@@ -327,6 +357,8 @@ module.exports = {
           goal: st.goal,
           text: String(rec.outputs?.[st.id]?.text || '').slice(0, 20000),
           error: rec.outputs?.[st.id]?.error || '',
+          // 交付文件只给名字（下载走 /api/task/file，按序号取，不暴露本机路径）
+          files: (rec.outputs?.[st.id]?.files || []).map((f) => f.name),
         }));
         return { id: rec.id, no: rec.no, title: rec.title, text: rec.text, status: rec.status, summary: String(rec.summary || '').slice(0, 20000), error: rec.error || '', steps, simulated: !!rec.simulated };
       },
@@ -934,9 +966,8 @@ module.exports = {
     h('cost.board', () => X.costBoard(allTasks(), legions, settings().cost || {}));
 
     // ── O3 产出导出：带公司抬头的 Word ──
-    h('tasks.export', async (p) => {
-      const t = runner.get(String(p?.taskId)) || ctx.readJson(`${D}/tasks/${String(p?.taskId).replace(/[^\w-]/g, '')}.json`, null);
-      if (!t) throw new Error('找不到这件事');
+    /** 一件事的完整报告 Word（汇总 + 各部门产出 + 交付文件清单）：App 导出与大屏下载共用 */
+    const taskReport = (t) => {
       const co = displayProfile(profile(), !!settings().demoMode);
       const name = (id) => legions.find((L) => L.id === id)?.name || id;
       const blocks = [
@@ -950,10 +981,38 @@ module.exports = {
         ...((t.plan?.steps || []).length > 1
           ? t.plan.steps.flatMap((s) => [{ text: `${name(s.legionId)}：${s.goal}`, style: 'h2' }, { text: t.outputs?.[s.id]?.error ? `（未完成：${t.outputs[s.id].error}）` : t.outputs?.[s.id]?.text || '' }])
           : []),
+        // 只有一个部门、又没有汇总时，正文就是这个部门的产出
+        !t.summary && (t.plan?.steps || []).length === 1 ? { text: t.outputs?.[t.plan.steps[0].id]?.text || '' } : null,
+        ...(() => {
+          const fs = (t.plan?.steps || []).flatMap((s) => (t.outputs?.[s.id]?.files || []).map((f) => `${name(s.legionId)}：${f.name}`));
+          return fs.length ? [{ text: '附：部门交付文件', style: 'h1' }, { text: fs.join('\n') }] : [];
+        })(),
         { text: `由「${co.short || co.name} · 运营中心」生成；涉及付款、签约、对外发布、录用的最终动作需老板确认。`, style: 'note' },
       ].filter(Boolean);
       const buf = buildDocx(blocks);
       const fileName = `${(co.short || co.name).replace(/[\\/:*?"<>|]/g, '')}-${t.title.replace(/[\\/:*?"<>|]/g, '_').slice(0, 30)}.docx`;
+      return { buf, fileName };
+    };
+    const loadTask = (id) => {
+      const tid = String(id || '').replace(/[^\w-]/g, '');
+      return (tid && (runner.get(tid) || ctx.readJson(`${D}/tasks/${tid}.json`, null))) || null;
+    };
+    // 打开 / 在文件夹中显示某个部门交付的文件（只认这件事记录在案的文件，不收任意路径）
+    h('tasks.openFile', async (p) => {
+      const t = loadTask(p?.taskId);
+      const st = t?.plan?.steps?.find((x) => x.id === String(p?.stepId));
+      const f = st && (t.outputs?.[st.id]?.files || [])[Number(p?.i)];
+      if (!f || !existsSync(f.path)) throw new Error('文件不存在或已清理');
+      const { shell } = require('electron');
+      if (p?.reveal) { shell.showItemInFolder(f.path); return { ok: true }; }
+      const err = await shell.openPath(f.path);
+      if (err) throw new Error(err);
+      return { ok: true };
+    });
+    h('tasks.export', async (p) => {
+      const t = loadTask(p?.taskId);
+      if (!t) throw new Error('找不到这件事');
+      const { buf, fileName } = taskReport(t);
       try {
         const { dialog, app, shell } = require('electron');
         const r = await dialog.showSaveDialog(deps?.getMainWindow?.() || undefined, { defaultPath: (mkdirSync(storage.exportsDir(), { recursive: true }), join(storage.exportsDir(), fileName)), filters: [{ name: 'Word', extensions: ['docx'] }] });
@@ -1052,6 +1111,8 @@ function pruneTaskFiles(ctx) {
   const withTime = files.map((f) => ({ f, t: ctx.readJson(`${D}/tasks/${f}`, {})?.createdAt || 0 })).sort((a, b) => a.t - b.t);
   for (const x of withTime.slice(0, files.length - MAX_TASK_FILES)) {
     try {
+      // 这件事的交付文件目录一起清（意见书 / 修订稿等）
+      rmSync(join(dir, x.f.replace(/\.json$/, '.files')), { recursive: true, force: true });
       unlinkSync(join(dir, x.f));
     } catch {
       /* */

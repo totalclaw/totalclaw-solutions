@@ -300,9 +300,15 @@ class TaskRunner {
       const ac = new AbortController();
       t.aborts.add(ac);
       try {
-        const text = await this.execute(t, s, machine, ac.signal);
-        t.outputs[s.id] = { text, machine: machine.name, ms: this.now() - started };
-        this.publish(t, 'node:done', { stepId: s.id, legionId: s.legionId, ms: this.now() - started, machineId: machine.id });
+        const out = await this.execute(t, s, machine, ac.signal);
+        const text = typeof out === 'string' ? out : String(out?.text || '');
+        // 交付文件（工作台出的意见书 / 修订稿）存进这件事的目录，记在这一步的成果里（大屏可下载）
+        let files = [];
+        if (out && typeof out === 'object' && Array.isArray(out.files) && out.files.length && typeof this.storeFiles === 'function') {
+          try { files = this.storeFiles(t, s, out.files) || []; } catch (e) { this.log.warn(`交付文件保存失败：${e && e.message ? e.message : e}`); }
+        }
+        t.outputs[s.id] = { text, machine: machine.name, ms: this.now() - started, ...(files.length ? { files } : {}) };
+        this.publish(t, 'node:done', { stepId: s.id, legionId: s.legionId, ms: this.now() - started, machineId: machine.id, ...(files.length ? { files: files.map((f) => f.name) } : {}) });
         return true;
       } catch (e) {
         if (t.cancelled) return false;
@@ -348,9 +354,11 @@ class TaskRunner {
         if (auto && fg && typeof fg.awaitWorkbench === 'function') {
           try {
             this.publish(t, 'node:progress', { stepId: s.id, phase: '在工作台里操作' });
-            const text = await fg.awaitWorkbench({ claimMs: 45_000, totalMs: STEP_TIMEOUT_MS - 30_000, signal });
-            fg.done(true, text);
-            return text;
+            const r = await fg.awaitWorkbench({ claimMs: 45_000, totalMs: STEP_TIMEOUT_MS - 30_000, signal });
+            // 新宿主交 { text, files }（意见书 / 修订稿等），旧宿主只交正文
+            const wr = typeof r === 'string' ? { text: r, files: [] } : { text: String(r?.text || ''), files: Array.isArray(r?.files) ? r.files : [] };
+            fg.done(true, wr.text);
+            return wr.files.length ? { text: wr.text, files: wr.files.map((f) => ({ name: f.name, path: f.path })) } : wr.text;
           } catch (e) {
             if (signal.aborted) throw e;
             this.log.warn(`工作台自动操作没做成，改为直接写：${e && e.message ? e.message : e}`);
@@ -413,7 +421,9 @@ class TaskRunner {
     this.publish(t, 'node:progress', { stepId: s.id, phase: '结果回传' });
     const text = String(res.output?.text || '');
     if (!text.trim()) throw new Error('员工机没有返回内容');
-    return text;
+    // 员工机工作台交付的文件随结果回传（base64）
+    const files = Array.isArray(res.output?.files) ? res.output.files.filter((f) => f && f.name && typeof f.base64 === 'string').slice(0, 5) : [];
+    return files.length ? { text, files: files.map((f) => ({ name: String(f.name), base64: f.base64 })) } : text;
   }
 
   async simulateStep(t, s, machine, signal) {

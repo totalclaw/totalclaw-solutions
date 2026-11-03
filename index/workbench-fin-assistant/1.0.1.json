@@ -1,0 +1,127 @@
+{
+  "id": "workbench-fin-assistant",
+  "version": "1.0.1",
+  "treeDigest": "b717416ff5bd25d0d31e68ad24bdc8f690bf3e6c1070662c493893c45538bbb2",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 1773,
+      "sha256": "249689634fe76fdcd06b88bbef2a6595c53e677ed809249030f8ad90a686752d"
+    },
+    {
+      "path": "README.md",
+      "size": 1827,
+      "sha256": "fcfd0565b7358fd0a8d54f9b744113c20dfcf6af4d3bad4f7c678621503b7809"
+    },
+    {
+      "path": "resources/credit-checklists.json",
+      "size": 1970,
+      "sha256": "9a0ae22c239e83264de45d2c316613c662fb6628cc07bf32be733cb5758aebb4"
+    },
+    {
+      "path": "resources/demo/credit/公司章程.txt",
+      "size": 317,
+      "sha256": "34f63dfcc31c1559fb220d8e87f85be9ea0c75c543b4bd75ddff560025bbe503"
+    },
+    {
+      "path": "resources/demo/credit/营业执照.txt",
+      "size": 342,
+      "sha256": "9a123429a11ea0b7449704a1a6bfd14615945fa7cefe2f38a08856ea48942c1a"
+    },
+    {
+      "path": "resources/demo/credit/财务报表-2025年度.txt",
+      "size": 585,
+      "sha256": "11a3d611f5246f019ce860d08ea8c13f3c712860a43aa6480ed0048677b74667"
+    },
+    {
+      "path": "resources/demo/credit/购销合同-苏州恒达.txt",
+      "size": 317,
+      "sha256": "ad9283cb45c8749ab347aa8baf7583c94fbcbab5fcbecb5ea049d100e67430b3"
+    },
+    {
+      "path": "resources/demo/credit/银行流水-近6个月.csv",
+      "size": 5835,
+      "sha256": "27a833122a7e21b4dfe5d755b590ef7c2ec50852f77bde72d4dc24e23bfdf024"
+    },
+    {
+      "path": "resources/demo/marketing-sample.txt",
+      "size": 303,
+      "sha256": "b521da9ea8c6854ea76fec96e8ffc256198b242e08bc208f6577b72ea9b616cb"
+    },
+    {
+      "path": "resources/demo/policies/个人存款业务管理办法.txt",
+      "size": 1340,
+      "sha256": "9cf1ad8029d3ac3ad625c5d1920cb81e3dd40691635d021b2ecd35260646aadf"
+    },
+    {
+      "path": "resources/demo/policies/员工费用报销管理办法.txt",
+      "size": 720,
+      "sha256": "744ed26bffca90249abe8149591a3dc2c5c1731b35424d7ee3c68d572b464db5"
+    },
+    {
+      "path": "resources/demo/policies/营销宣传合规管理规定.txt",
+      "size": 1160,
+      "sha256": "00d41f858e9e946a78bf240e4afa7618239d6db4dd58ef1775d97caacb50cc8c"
+    },
+    {
+      "path": "resources/forbidden-topics.json",
+      "size": 1271,
+      "sha256": "ee08fdb3fe146db25f4aa87f9a3ae61aea37027d0804adc6ca95a666f3378c7f"
+    },
+    {
+      "path": "resources/marketing-rules.json",
+      "size": 3150,
+      "sha256": "99120a83ceec50d78ef9b0fd63b749c3085fca7607a3428bfc7873b8d60c00be"
+    },
+    {
+      "path": "resources/metrics.json",
+      "size": 3696,
+      "sha256": "68f01a0f11ab6314f5f1f340125398c4729a28da79702e4db2b87b14d3724f52"
+    },
+    {
+      "path": "resources/mobile-qa.html",
+      "size": 6689,
+      "sha256": "0f84768fec12db4d5d8628b207bbbe4f762028ea77c5d471532af4fe0e65ac9e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2959,
+      "sha256": "68ba2c33def1b9c772d127c69217d9537989e2652b65b3d8bd53f952d22a7c6b"
+    },
+    {
+      "path": "src/host-modules.json",
+      "size": 306,
+      "sha256": "b5bf339f8b7698ebe13e9e24bb96b5d25a47e670eaa5d7a3421446dbe80bd918"
+    },
+    {
+      "path": "src/main/docText.cjs",
+      "size": 6027,
+      "sha256": "7a4997674c31ad11bc24288680cfbc75dd29fad1d49cb3bc85710b094db94973"
+    },
+    {
+      "path": "src/main/index.cjs",
+      "size": 45096,
+      "sha256": "e91823eb3d6f376aaf8c8932c76a6e0de6de64a775ea1dcbd5843236f0561af8"
+    },
+    {
+      "path": "src/main/lib.cjs",
+      "size": 21585,
+      "sha256": "c76d84a3f70cada4843da3d4eb2460782859901924a1f49c30924cd236ef48d4"
+    },
+    {
+      "path": "src/main/qr.cjs",
+      "size": 9978,
+      "sha256": "dc3d3926b678365a8e7435add0d951a579415bf604d1f09f1225c4d1483f8312"
+    },
+    {
+      "path": "src/main/zip.cjs",
+      "size": 4221,
+      "sha256": "9c092411e47b0914072db3c3925a89cef3d348675d0448203683b3b4d38e261d"
+    },
+    {
+      "path": "src/renderer/index.mjs",
+      "size": 58252,
+      "sha256": "b4d50bfd92d57cd9e3823ac7b8932703bea20f5b61a744e60c16c992c7217b65"
+    }
+  ]
+}

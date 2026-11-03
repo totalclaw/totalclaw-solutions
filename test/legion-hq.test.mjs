@@ -1463,3 +1463,64 @@ test('AI 数字员工操作界面：法务部 + 合同审查 + 附件 → 交给
   await until(() => ['done', 'awaiting', 'failed'].includes(runner.get(c.taskId).status));
   assert.equal(calls.filter((x) => x[0] === 'await').length, 0);
 });
+
+test('交付文件：工作台交回的意见书存进这一步、员工机回传的 base64 写成文件；实时动态带下载；大屏能下载报告与原件', async () => {
+  const legal = LEGIONS.find((L) => L.id === 'legion-legal');
+  if (!(legal?.workbenches || []).includes('workbench-legal-agent')) return;
+  const dir = mkdtempSync(join(tmpdir(), 'lhq-files-'));
+  const src = join(dir, '意见书.docx');
+  writeFileSync(src, 'DOCX-BYTES');
+  const stored = [];
+  const storeFiles = (t, s, files) => files.map((f) => {
+    const path = join(dir, `${t.id}-${s.id}-${f.name}`);
+    if (f.path) writeFileSync(path, readFileSync(f.path)); else writeFileSync(path, Buffer.from(f.base64, 'base64'));
+    stored.push(path);
+    return { name: f.name, path };
+  });
+  const { runner, state } = makeRunner({ placement: { local: LEGIONS.map((L) => L.id) } });
+  runner.storeFiles = storeFiles;
+  runner.foreground = () => ({ activity() {}, done() {}, awaitWorkbench: async () => ({ text: '审查意见', files: [{ name: '意见书.docx', path: src }] }) });
+  const a = runner.submit({ text: '审一下这份合同', forcedLegions: ['legion-legal'], attachments: [{ id: 'att-00000001', name: '合同.docx', text: 'x' }] });
+  await until(() => ['done', 'awaiting', 'failed'].includes(runner.get(a.taskId).status));
+  const rec = runner.get(a.taskId);
+  const st = rec.plan.steps.find((s) => s.legionId === 'legion-legal');
+  assert.equal(rec.outputs[st.id].files[0].name, '意见书.docx');
+  assert.equal(readFileSync(rec.outputs[st.id].files[0].path, 'utf8'), 'DOCX-BYTES');
+  const snap = snapshot(state);
+  assert.ok(snap.feed.some((f) => f.files && f.files[0] === '意见书.docx' && f.taskId === a.taskId && f.stepId === st.id), '部门完成的动态带交付文件');
+  if (rec.status === 'done') assert.ok(snap.feed.some((f) => f.result && f.taskId === a.taskId), '办完的动态带查看 / 下载');
+
+  // 员工机回传 base64
+  const cluster = fakeCluster({ nodes: [{ nodeId: 'A', host: '10.0.0.2' }] });
+  cluster.proc.dispatchTask = async (d) => (d.roleId === 'worker.run' ? { status: 'success', output: { text: '员工机意见', files: [{ name: '修订稿.docx', base64: Buffer.from('REV').toString('base64') }] } } : { status: 'success', output: {} });
+  const remote = makeRunner({ cluster });
+  remote.runner.storeFiles = storeFiles;
+  await remote.fleet.refresh().catch(() => {});
+  await remote.fleet.assign('legion-legal', 'A', true).catch(() => {});
+  const b = remote.runner.submit({ text: '审合同', forcedLegions: ['legion-legal'] });
+  await until(() => ['done', 'awaiting', 'failed'].includes(remote.runner.get(b.taskId).status));
+  const rb = remote.runner.get(b.taskId);
+  const sb = rb.plan.steps.find((s) => s.legionId === 'legion-legal');
+  if (rb.outputs[sb.id].machine && rb.outputs[sb.id].machine !== '主控（本机）') assert.equal(readFileSync(rb.outputs[sb.id].files[0].path, 'utf8'), 'REV');
+
+  // 大屏下载
+  const srv = new ScreenServer({
+    bus: new LegionBus(), getState: () => ({}), pages: () => ({ page: '', remote: '' }), onCommand() {}, onConfirm() {}, onCompany() {},
+    getTaskReport: (id) => (id === 't-00000001' ? { name: '泰途-审合同.docx', buffer: Buffer.from('REPORT') } : null),
+    getTaskFile: (id, s, i) => (id === 't-00000001' && String(s) === '0' && String(i) === '0' ? { name: '意见书.docx', buffer: Buffer.from('OP') } : null),
+  });
+  const ss = await srv.start({ port: 18253, host: '127.0.0.1' });
+  try {
+    const base = `http://127.0.0.1:${ss.port}`;
+    assert.equal((await fetch(`${base}/api/task/report?id=t-00000001`)).status, 401);
+    const r = await fetch(`${base}/api/task/report?id=t-00000001&t=${ss.token}`);
+    assert.equal(r.status, 200);
+    assert.match(r.headers.get('content-disposition'), /attachment;.*filename\*=UTF-8''/);
+    assert.equal(await r.text(), 'REPORT');
+    const f = await fetch(`${base}/api/task/file?id=t-00000001&s=0&i=0&t=${ss.token}`);
+    assert.equal(await f.text(), 'OP');
+    assert.equal((await fetch(`${base}/api/task/file?id=t-00000001&s=0&i=9&t=${ss.token}`)).status, 404);
+  } finally {
+    await srv.stop();
+  }
+});

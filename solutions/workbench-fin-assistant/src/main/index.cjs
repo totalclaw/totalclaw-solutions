@@ -219,8 +219,8 @@ module.exports = {
       const q = String(p?.q || '').trim().slice(0, 500);
       if (!q) throw new Error('请输入问题');
       const s = settings();
-      const rec = { id: newId('qa'), at: new Date().toISOString(), q, status: 'refused', reason: '', answer: '', citations: [], unverified: [], rating: 0 };
-      const save = () => { const list = ctx.readJson(`${D}/qa.json`, []); list.unshift(rec); ctx.writeJson(`${D}/qa.json`, list.slice(0, 500)); audit('qa.ask', { id: rec.id, status: rec.status, reason: rec.reason, citations: rec.citations.map((c) => `${c.policyId}@v${c.version}#${c.no}`) }); return rec; };
+      const rec = { id: newId('qa'), at: new Date().toISOString(), q, status: 'refused', reason: '', answer: '', citations: [], unverified: [], rating: 0, source: p?.source === 'mobile' ? 'mobile' : 'desktop' };
+      const save = () => { const list = ctx.readJson(`${D}/qa.json`, []); list.unshift(rec); ctx.writeJson(`${D}/qa.json`, list.slice(0, 500)); audit('qa.ask', { id: rec.id, source: rec.source, status: rec.status, reason: rec.reason, citations: rec.citations.map((c) => `${c.policyId}@v${c.version}#${c.no}`) }); return rec; };
       // ① 禁区话题：直接拒答，不进模型
       const hit = L.forbiddenHit(q, FORBIDDEN);
       if (hit) { rec.reason = `属于「${hit.name}」，不在制度问答范围内，请咨询${hit.dept}`; rec.dept = hit.dept; return save(); }
@@ -607,6 +607,66 @@ module.exports = {
         ask: '上个月末各分行的零售存款余额',
         mkt: { title: '稳盈 365 天宣传海报（示例）', text: handlers['mkt.demoText']() },
       };
+    });
+
+    // ── 手机端制度问答：局域网对话页（扫码打开），问题走上面 qa.ask 同一条判定链，审计记 source=mobile ──
+    const { toSvg } = require('./qr.cjs');
+    const lan = (() => {
+      try { return require('host:apps/desktop-shell/src/main/services/lanServer.ts'); } catch { return null; }
+    })();
+    let mobile = null;
+    let mobileToken = '';
+    const newToken = () => require('node:crypto').randomBytes(12).toString('hex');
+    const mobileStatus = () => {
+      const base = mobile && mobile.running ? mobile.url : '';
+      const url = base ? `${base}/?t=${mobileToken}` : '';
+      return { available: !!lan, running: !!base, url, qr: url ? toSvg(url) : '' };
+    };
+    const mobileRoutes = [
+      {
+        method: 'POST', path: '/api/ask', auth: 'bearer',
+        handler: async (c) => {
+          const b = await c.body();
+          try {
+            const r = await handlers['qa.ask']({ q: String(b?.q || '').slice(0, 500), source: 'mobile' });
+            c.json(200, {
+              status: r.status, answer: r.answer, reason: r.reason, unverified: r.unverified || [],
+              citations: (r.citations || []).map((x) => ({ n: x.n, title: x.title, no: x.no, effectiveFrom: x.effectiveFrom || '', version: x.version })),
+            });
+          } catch (e) {
+            c.json(200, { status: 'error', reason: String(e && e.message ? e.message : e).slice(0, 200) });
+          }
+        },
+      },
+      { method: 'GET', path: '/api/hello', auth: 'bearer', handler: (c) => c.json(200, { ok: true, title: '制度与合规问答', policies: policies().filter((x) => L.policyActive(x)).length }) },
+    ];
+    h('mobile.status', () => mobileStatus());
+    h('mobile.start', async () => {
+      if (!lan) throw new Error('当前 App 版本不支持手机端（缺少局域网服务），请升级 App');
+      if (!mobile) {
+        mobileToken = newToken();
+        mobile = new lan.LanServer({
+          name: 'fin-assistant-mobile',
+          pageHtml: readFileSync(ctx.packagePath('resources/mobile-qa.html'), 'utf8'),
+          routes: mobileRoutes,
+          auth: (tok) => (tok && tok === mobileToken ? { who: 'mobile' } : null),
+          defaultPort: 8260,
+        });
+      }
+      await mobile.start();
+      audit('mobile.start', { port: mobile.port });
+      return mobileStatus();
+    });
+    h('mobile.stop', async () => {
+      if (mobile) await mobile.stop();
+      mobile = null;
+      audit('mobile.stop', {});
+      return mobileStatus();
+    });
+    h('mobile.rotate', () => {
+      mobileToken = newToken();
+      audit('mobile.rotate', {});
+      return mobileStatus();
     });
   },
 };

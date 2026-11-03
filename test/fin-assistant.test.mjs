@@ -222,3 +222,21 @@ test('一键演示：各模块都有示例数据，授信已按示例财报取�
     assert.equal((await call('audit.list', {})).broken, -1);
   } finally { main.__setLlmForTests(null); }
 });
+
+test('手机端制度问答：没有宿主局域网服务时如实说不可用；问答记来源（手机 / 电脑）', async () => {
+  const { call } = fakeCtx();
+  const st = await call('mobile.status');
+  assert.equal(st.available, false);
+  assert.equal(st.running, false);
+  await assert.rejects(call('mobile.start'), /不支持手机端/);
+  main.__setLlmForTests(async () => ({ text: '依据不足', model: 'stub' }));
+  try {
+    await call('policy.demo');
+    const r = await call('qa.ask', { q: '客户张三该不该买这只基金？', source: 'mobile' });
+    assert.equal(r.source, 'mobile');
+    const r2 = await call('qa.ask', { q: '客户李四该不该买这只基金？' });
+    assert.equal(r2.source, 'desktop');
+    const au = await call('audit.list', {});
+    assert.ok(au.items.some((x) => x.action === 'qa.ask' && x.source === 'mobile'));
+  } finally { main.__setLlmForTests(null); }
+});

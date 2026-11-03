@@ -1,12 +1,12 @@
 {
   "id": "workbench-legion-hq",
-  "version": "1.0.7",
-  "treeDigest": "c87a1913cc8f1591ec32c3b5377d6a8cac6dc4d8d54185d7cdf0a53795253970",
+  "version": "1.0.8",
+  "treeDigest": "14f01fab3da9037ae774b8879f4ba201969af71e79e4151fbf17c697d74b65b6",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 7049,
-      "sha256": "3f11709604ced152a6d3f03fa811b4a73b2e7565434efefaed7371cf92cd694a"
+      "size": 7624,
+      "sha256": "5116a8f9abef460f8653e1b71fca5befde3c9821e0ae08760fb57f4aa393b7af"
     },
     {
       "path": "README.md",
@@ -50,8 +50,8 @@
     },
     {
       "path": "resources/screen/index.html",
-      "size": 83360,
-      "sha256": "0f59eb799b2da8ed26d6c93b7897114b9dd12845446ee262356b5393dc5c02db"
+      "size": 86094,
+      "sha256": "64a2560238eaca4b699de71ad465dd0388f4b4030bb9ed2239119e28038f2ca1"
     },
     {
       "path": "resources/screen/remote.html",
@@ -81,7 +81,7 @@
     {
       "path": "solution.json",
       "size": 3066,
-      "sha256": "e19c596e1d1605c61aa7e721f051c6951d498e0b0c1db6f9663e97335ff3c038"
+      "sha256": "49c479be54ff0900a1891e6c8c4183bd9982fb5e426d56261cdba53a9526a20b"
     },
     {
       "path": "src/host-modules.json",
@@ -145,8 +145,8 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 56247,
-      "sha256": "8cb9372ec8c6a8ce51726e34001db3f24e97644287f7becbb7baf6b24d5491df"
+      "size": 59835,
+      "sha256": "86ed44f078a199e8d242ad19a8040a458e204cd6c1919407aeabbbd8331b4fa6"
     },
     {
       "path": "src/main/legions.cjs",
@@ -170,18 +170,18 @@
     },
     {
       "path": "src/main/runner.cjs",
-      "size": 29168,
-      "sha256": "c4a12054e393715aebd6ed6182650f8b89ca016c502f30b6f11e90311f717eb2"
+      "size": 30477,
+      "sha256": "8f78389108ffb35589d58571e10a3faa6080e443bbf1dede7c0177fa5514589e"
     },
     {
       "path": "src/main/screenServer.cjs",
-      "size": 13856,
-      "sha256": "5492323252dd641cba4336b68cd2167ced7a29eb260b6c4883ee633232c5891f"
+      "size": 15551,
+      "sha256": "53049621fc9df25f0059377ae857bf21888120366c926bfcdce289a5564df533"
     },
     {
       "path": "src/main/screenState.cjs",
-      "size": 9616,
-      "sha256": "2e38606765f2ab22a0da5b6b28264436fc09c0ab2b9694914ad29462ebc32331"
+      "size": 9958,
+      "sha256": "a62d8351b38e095b405b1bd2cfe82621975e500f3530f2ffbc1292a0f2a7316e"
     },
     {
       "path": "src/main/storage.cjs",
@@ -200,11 +200,22 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 84504,
-      "sha256": "f4ebbbc324d60dec81377e5885a975400382b3a85ed8fbbe65aa64466b8c3dbe"
+      "size": 85409,
+      "sha256": "c396378f9372b80d8d349db7bdd5bce47d0b73e07238c175341e6792bf8f7d9c"
     }
   ],
   "versions": [
+    {
+      "version": "1.0.8",
+      "ref": "workbench-legion-hq@1.0.8",
+      "treeDigest": "14f01fab3da9037ae774b8879f4ba201969af71e79e4151fbf17c697d74b65b6",
+      "filesRef": "index/workbench-legion-hq/1.0.8.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-11-03"
+    },
     {
       "version": "1.0.7",
       "ref": "workbench-legion-hq@1.0.7",

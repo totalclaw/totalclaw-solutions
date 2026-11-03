@@ -41,28 +41,44 @@ export default function createSolution(sdk) {
 .fa-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}@media (max-width:1000px){.fa-cols{grid-template-columns:1fr}}
 `;
 
-  // 金融主题：藏青 + 金色，标题用衬线体；只作用于本工作台（.fa），深色模式下卡片仍跟随系统配色
+  // 中国金融风格（克制、稳重、合规、数据清晰）：藏青 / 深蓝为主，金色只做细线与点缀，红色代表增长（国内红涨绿跌）；
+  // 无衬线字体、规整网格、充足留白，动效只用轻微过渡。横幅背景是 K 线 + 上升箭头 + ¥ 水印（低透明度，不抢内容）。
   const THEME = `
-.fa{--fa-navy:#0f2a4a;--fa-navy-2:#1b4472;--fa-gold:#c9a24a;--fa-gold-2:#e7cf8f}
-.fa-banner{position:relative;overflow:hidden;border-radius:14px;padding:18px 22px;background:linear-gradient(120deg,var(--fa-navy) 0%,var(--fa-navy-2) 62%,#24548a 100%);color:#fff;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:0 6px 18px rgba(15,42,74,.18)}
-.fa-banner::after{content:'';position:absolute;right:-60px;top:-80px;width:280px;height:280px;border-radius:50%;border:1px solid rgba(231,207,143,.28);box-shadow:0 0 0 26px rgba(231,207,143,.06),0 0 0 60px rgba(231,207,143,.04)}
-.fa-banner h2{margin:0;font-size:22px;letter-spacing:.06em;font-family:'Songti SC','STSong','Noto Serif SC',serif;color:#fff}
+.fa{--fa-navy:#0b2447;--fa-navy-2:#19376d;--fa-blue:#2563a8;--fa-gold:#c8a24a;--fa-gold-2:#e7cf8f;--fa-red:#c8102e;--fa-line:#dbe2ec;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Helvetica Neue',sans-serif}
+.fa-banner{position:relative;overflow:hidden;border-radius:12px;padding:20px 24px;background:linear-gradient(115deg,var(--fa-navy) 0%,var(--fa-navy-2) 58%,#1f4a8a 100%);color:#fff;display:flex;align-items:center;gap:18px;flex-wrap:wrap;box-shadow:0 4px 14px rgba(11,36,71,.16);border-bottom:3px solid var(--fa-gold)}
+.fa-banner::before{content:'';position:absolute;right:150px;top:0;bottom:0;width:520px;max-width:60%;opacity:.22;pointer-events:none;background:no-repeat right center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 520 160'><g stroke-width='2'><line x1='40' y1='96' x2='40' y2='138' stroke='%23e0565b'/><rect x='33' y='104' width='14' height='26' fill='%23e0565b'/><line x1='80' y1='86' x2='80' y2='132' stroke='%2334b37a'/><rect x='73' y='94' width='14' height='22' fill='%2334b37a'/><line x1='120' y1='74' x2='120' y2='124' stroke='%23e0565b'/><rect x='113' y='82' width='14' height='30' fill='%23e0565b'/><line x1='160' y1='66' x2='160' y2='112' stroke='%23e0565b'/><rect x='153' y='72' width='14' height='28' fill='%23e0565b'/><line x1='200' y1='70' x2='200' y2='108' stroke='%2334b37a'/><rect x='193' y='76' width='14' height='18' fill='%2334b37a'/><line x1='240' y1='50' x2='240' y2='98' stroke='%23e0565b'/><rect x='233' y='56' width='14' height='32' fill='%23e0565b'/><line x1='280' y1='40' x2='280' y2='86' stroke='%23e0565b'/><rect x='273' y='46' width='14' height='28' fill='%23e0565b'/></g><polyline points='30,128 80,112 120,98 160,86 200,90 240,66 280,54 330,40 380,30' fill='none' stroke='%23e7cf8f' stroke-width='3'/><polygon points='392,24 370,26 384,42' fill='%23e7cf8f'/><text x='430' y='118' font-size='110' font-family='Arial' font-weight='700' fill='%23ffffff' fill-opacity='.5'>¥</text></svg>")}
+.fa-banner::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent 0 60%,rgba(255,255,255,.04) 60% 60.2%,transparent 60.2% 75%,rgba(255,255,255,.04) 75% 75.2%,transparent 75.2%),repeating-linear-gradient(0deg,transparent 0 31px,rgba(255,255,255,.035) 31px 32px)}
+.fa-banner > *{position:relative;z-index:1}
+.fa-banner h2{margin:0;font-size:22px;font-weight:600;letter-spacing:.04em;color:#fff}
 .fa-banner p{margin:4px 0 0;color:rgba(255,255,255,.78);font-size:13px}
-.fa-banner .fa-ico{background:rgba(201,162,74,.16);color:var(--fa-gold-2);border:1px solid rgba(231,207,143,.5);border-radius:50%;width:50px;height:50px;font-size:24px}
+.fa-banner .fa-ico{background:rgba(200,162,74,.14);color:var(--fa-gold-2);border:1px solid rgba(231,207,143,.55);border-radius:10px;width:50px;height:50px;font-size:24px}
 .fa-banner .fa-grow{flex:1;min-width:240px}
-.fa-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.fa-badges span{font-size:11.5px;padding:2px 9px;border-radius:10px;border:1px solid rgba(231,207,143,.55);color:var(--fa-gold-2);background:rgba(0,0,0,.12)}
-.fa-demo{position:relative;z-index:1;border:1px solid var(--fa-gold);background:linear-gradient(180deg,#d8b65d,var(--fa-gold));color:#1d1606;font-weight:700;border-radius:10px;padding:9px 16px;cursor:pointer;font:inherit;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.18)}
-.fa-demo:disabled{opacity:.6;cursor:default}
-.fa-tab.on{color:var(--fa-navy-2);border-bottom-color:var(--fa-gold)}
-.fa-steps button.cur{border-color:var(--fa-navy-2);color:var(--fa-navy-2);background:color-mix(in srgb,var(--fa-navy-2) 7%,var(--color-bg-card,#fff))}
-.fa-prog i{background:linear-gradient(90deg,var(--fa-gold),var(--fa-gold-2))}
-.fa-btn.pri{border-color:var(--fa-navy-2);background:var(--fa-navy-2);color:#fff}
-.fa-card{border-top:3px solid var(--fa-navy-2)}
-.fa-card h3{font-family:'Songti SC','STSong','Noto Serif SC',serif;letter-spacing:.03em}
-.fa-kpi b{color:var(--fa-navy-2);font-family:'DIN Alternate','Helvetica Neue',sans-serif}
-.fa-tbl th{background:color-mix(in srgb,var(--fa-navy-2) 6%,transparent)}
-@media (prefers-color-scheme: dark){.fa-tab.on,.fa-steps button.cur,.fa-kpi b{color:var(--fa-gold-2)}}
+.fa-up{display:inline-flex;align-items:center;gap:4px;margin-left:10px;padding:1px 8px;border-radius:4px;background:rgba(200,16,46,.18);color:#ffb3bd;font-size:12px;font-weight:600;vertical-align:3px}
+.fa-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.fa-badges span{font-size:11.5px;padding:2px 9px;border-radius:4px;border:1px solid rgba(231,207,143,.45);color:var(--fa-gold-2);background:rgba(0,0,0,.14)}
+.fa-demo{border:1px solid var(--fa-gold);background:var(--fa-gold);color:#1b1404;border-radius:8px;padding:9px 18px;cursor:pointer;font:inherit;font-weight:600;transition:filter .15s}
+.fa-demo:hover{filter:brightness(1.06)}.fa-demo:disabled{opacity:.6;cursor:default}
+.fa-tabs{border-bottom-color:var(--fa-line)}
+.fa-tab{font-weight:500}.fa-tab:hover{color:var(--fa-navy-2)}
+.fa-tab.on{color:var(--fa-navy);font-weight:600;border-bottom-color:var(--fa-navy-2)}
+.fa-tab:last-child{margin-left:auto}
+.fa-steps button{border-radius:6px}
+.fa-steps button.done{border-color:#c7d2e3;color:var(--fa-navy-2);background:#f3f6fb}
+.fa-steps button.cur{border-color:var(--fa-navy-2);color:#fff;background:var(--fa-navy-2)}
+.fa-prog{height:3px}.fa-prog i{background:linear-gradient(90deg,var(--fa-navy-2),var(--fa-gold))}
+.fa-btn{border-radius:6px}.fa-btn.pri{border-color:var(--fa-navy-2);background:var(--fa-navy-2);color:#fff}.fa-btn.pri:hover{background:var(--fa-navy)}
+.fa-card{border-radius:8px;border-color:var(--fa-line);border-top:2px solid var(--fa-navy-2);box-shadow:0 1px 2px rgba(11,36,71,.04)}
+.fa-card h3{font-weight:600;color:var(--fa-navy)}
+.fa-st.done{border-color:#c7d2e3;color:var(--fa-navy-2)}
+.fa-kpi{border-color:var(--fa-line);border-left:3px solid var(--fa-navy-2);border-radius:6px}
+.fa-kpi b{color:var(--fa-navy);font-family:'DIN Alternate','Helvetica Neue',Arial,sans-serif;font-variant-numeric:tabular-nums}
+.fa-tbl th{background:#f3f6fb;color:var(--fa-navy-2)}
+.fa-tbl td{font-variant-numeric:tabular-nums}
+.fa-src{font-size:11.5px;padding:0 6px;border-radius:4px;background:rgba(200,16,46,.08);color:var(--fa-red);white-space:nowrap}.fa-src.pc{background:#eef2f8;color:var(--fa-navy-2)}
+.fa-mobile{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-top:10px}
+.fa-qr{width:170px;height:170px;padding:8px;background:#fff;border:1px solid var(--fa-line);border-radius:8px;box-sizing:border-box}.fa-qr svg{width:100%;height:100%;display:block}
+.fa-mobile > div:last-child{flex:1;min-width:260px}
+@media (prefers-color-scheme: dark){.fa-tab.on,.fa-card h3,.fa-kpi b{color:var(--fa-gold-2)}.fa-tbl th,.fa-steps button.done{background:transparent}}
 `;
 
   const el = (tag, props, ...kids) => h(tag, props || null, kids.flat().filter((k) => k !== null && k !== undefined && k !== false));
@@ -72,19 +88,22 @@ export default function createSolution(sdk) {
   const LV = { high: '高风险', medium: '关注', pass: '通过' };
   const lv = (k) => t(LV[k] || k);
 
+  // 业务页签在前；「设置」（安全与审计：数据分级与模型路由、审计记录、明确不做的事）放最后
   const TABS = [
-    { key: 'overview', title: '安全与审计', icon: 'ri-shield-check-line' },
     { key: 'qa', title: '制度与合规问答', icon: 'ri-book-read-line' },
     { key: 'ask', title: '智能问数', icon: 'ri-database-2-line' },
     { key: 'credit', title: '授信材料预审', icon: 'ri-file-search-line' },
     { key: 'mkt', title: '营销物料审查', icon: 'ri-megaphone-line' },
     { key: 'ops', title: '后台与其他', icon: 'ri-apps-2-line' },
+    { key: 'overview', title: '设置', icon: 'ri-settings-3-line' },
   ];
 
   return defineComponent({
     name: 'FinAssistantWorkbench',
     setup() {
-      const tab = ref('overview');
+      const tab = ref('qa');
+      // 手机端制度问答（局域网对话页）：{ available, running, url, qr }
+      const mobile = ref({ available: true, running: false, url: '', qr: '' });
       const meta = ref(null);
       const busy = reactive({});
       const err = reactive({});
@@ -157,6 +176,7 @@ export default function createSolution(sdk) {
           { id: 'qa-1', title: '① 制度库', done: policies.value.some((p) => p.active) },
           { id: 'qa-2', title: '② 提问与作答', done: qaList.value.length > 0 },
           { id: 'qa-3', title: '③ 缺口反馈', done: !!gaps.value },
+          { id: 'qa-4', title: '④ 手机端提问', done: !!mobile.value.running },
         ];
         if (tab.value === 'ask') return [
           { id: 'ask-1', title: '① 数据与口径库', done: !!dataInfo.value?.rows },
@@ -186,12 +206,13 @@ export default function createSolution(sdk) {
       const select = async (k) => {
         tab.value = k;
         if (k === 'overview') await loadAudit();
-        if (k === 'qa') await loadQa();
+        if (k === 'qa') await Promise.all([loadQa(), loadMobile()]);
         if (k === 'ask') await loadAsk();
         if (k === 'credit') await loadCredits();
         if (k === 'mkt') await loadMkt();
       };
-      onMounted(async () => { await loadMeta(); await loadAudit(); });
+      const loadMobile = async () => { try { mobile.value = await sdk.invoke('mobile.status'); } catch (_) { /* 旧版本没有手机端 */ } };
+      onMounted(async () => { await loadMeta(); await Promise.all([loadQa(), loadAudit(), loadMobile()]); });
 
       const errNote = (k) => (err[k] ? el('p', { class: 'fa-note err' }, err[k]) : null);
       const card = (id, title, done, sub, ...body) => el('section', { class: 'fa-card', id },
@@ -266,10 +287,25 @@ export default function createSolution(sdk) {
                 (q.citations || []).map((c) => el('div', { class: 'fa-q' }, `[${c.n}]《${c.title}》${c.no} · v${c.version} · ${c.effectiveFrom ? `${c.effectiveFrom} 起施行` : '生效日未登记'}${c.dept ? ` · ${c.dept}` : ''}\n${c.text}`)),
                 el('div', { class: 'fa-row' }, t('这条回答：'), el('button', { class: 'fa-btn sm', onClick: () => call('qa', 'qa.rate', { id: q.id, rating: 1 }) }, t('有用')), el('button', { class: 'fa-btn sm', onClick: () => call('qa', 'qa.rate', { id: q.id, rating: -1 }) }, t('不满意（进缺口反馈）'))))) : null,
             qaList.value.length > 1 ? el('details', null, el('summary', null, t('历史问答（{n}）', { n: qaList.value.length })),
-              el('table', { class: 'fa-tbl' }, el('tbody', null, qaList.value.slice(0, 50).map((x) => el('tr', null, el('td', null, x.at.slice(0, 16).replace('T', ' ')), el('td', null, x.q), el('td', null, x.status === 'answered' ? t('已作答') : `${t('拒答')}：${x.reason}`)))))) : null),
+              el('table', { class: 'fa-tbl' }, el('tbody', null, qaList.value.slice(0, 50).map((x) => el('tr', null, el('td', null, x.at.slice(0, 16).replace('T', ' ')), el('td', null, x.source === 'mobile' ? el('span', { class: 'fa-src' }, t('手机')) : el('span', { class: 'fa-src pc' }, t('电脑'))), el('td', null, x.q), el('td', null, x.status === 'answered' ? t('已作答') : `${t('拒答')}：${x.reason}`)))))) : null),
           card('qa-3', t('③ 缺口反馈'), !!gaps.value, t('每周汇总拒答和员工评价不满意的问题，按归口部门交制度管理部门补充解释或修订制度。'),
             el('button', { class: 'fa-btn', onClick: async () => { gaps.value = await call('gaps', 'qa.gaps'); } }, t('生成近 7 天缺口清单')),
-            gaps.value ? (gaps.value.total ? Object.entries(gaps.value.byDept).map(([d, list]) => el('div', null, el('b', null, `${d}（${list.length}）`), el('ul', null, list.map((x) => el('li', null, `${x.q} — ${x.reason}`))))) : el('p', { class: 'fa-note ok' }, t('近 7 天没有拒答或差评问题'))) : null));
+            gaps.value ? (gaps.value.total ? Object.entries(gaps.value.byDept).map(([d, list]) => el('div', null, el('b', null, `${d}（${list.length}）`), el('ul', null, list.map((x) => el('li', null, `${x.q} — ${x.reason}`))))) : el('p', { class: 'fa-note ok' }, t('近 7 天没有拒答或差评问题'))) : null),
+          card('qa-4', t('④ 手机端提问'), !!mobile.value.running, t('员工用手机扫码就能像聊天一样问制度：问题走上面同一条判定链（禁区拒答、证据不足拒答、依据条款作答、数字回原文核对），每条回答标出处，问答同样留痕审计。只在本机局域网开放，地址带访问口令。'),
+            !mobile.value.available ? el('p', { class: 'fa-note warn' }, t('当前 App 版本不支持手机端，请升级 App')) : el('div', null,
+              el('div', { class: 'fa-row' },
+                mobile.value.running
+                  ? el('button', { class: 'fa-btn', disabled: busy.mobile, 'data-test': 'fa-mobile-stop', onClick: async () => { mobile.value = await call('mobile', 'mobile.stop'); } }, t('关闭手机端'))
+                  : el('button', { class: 'fa-btn pri', disabled: busy.mobile, 'data-test': 'fa-mobile-start', onClick: async () => { mobile.value = await call('mobile', 'mobile.start'); } }, busy.mobile ? t('开启中…') : t('开启手机端')),
+                mobile.value.running ? el('button', { class: 'fa-btn', onClick: async () => { mobile.value = await call('mobile', 'mobile.rotate'); sdk.notify.info(t('口令已更换：旧二维码失效，请让员工重新扫码')); } }, t('换口令')) : null,
+                mobile.value.running ? el('button', { class: 'fa-btn', onClick: async () => { try { await navigator.clipboard.writeText(mobile.value.url); sdk.notify.success(t('地址已复制')); } catch (_) { sdk.notify.warn(mobile.value.url); } } }, t('复制地址')) : null),
+              errNote('mobile'),
+              mobile.value.running ? el('div', { class: 'fa-mobile' },
+                el('div', { class: 'fa-qr', 'data-test': 'fa-mobile-qr', innerHTML: mobile.value.qr }),
+                el('div', null,
+                  el('p', { style: 'margin:0 0 6px;font-weight:600' }, t('用手机扫码，或在同一网络的浏览器打开：')),
+                  el('div', { class: 'fa-code', 'data-test': 'fa-mobile-url' }, mobile.value.url),
+                  el('p', { class: 'fa-sub', style: 'margin-top:8px' }, t('手机和这台电脑需在同一个局域网；问答记录在本页「历史问答」与「设置 → 审计记录」里都能看到（来源：手机）。')))) : null)));
       };
 
       const vAsk = () => {
@@ -421,7 +457,7 @@ export default function createSolution(sdk) {
         el('style', null, CSS + THEME),
         el('div', { style: 'padding-top:14px' },
           el('div', { class: 'fa-banner' }, el('span', { class: 'fa-ico' }, el('i', { class: 'ri-bank-line' })),
-            el('div', { class: 'fa-grow' }, el('h2', null, t('智能金融助手')), el('p', null, t('制度问答、智能问数、授信材料预审、营销物料审查；数据不出域、数字不出错、过程留痕、关键动作人签、老系统零改造。')),
+            el('div', { class: 'fa-grow' }, el('h2', null, t('智能金融助手'), el('span', { class: 'fa-up', title: t('合规提效：制度问答、问数、预审、营销审查') }, el('i', { class: 'ri-arrow-right-up-line' }), t('合规 · 提效'))), el('p', null, t('制度问答、智能问数、授信材料预审、营销物料审查；数据不出域、数字不出错、过程留痕、关键动作人签、老系统零改造。')),
               el('div', { class: 'fa-badges' }, [t('数据不能出域'), t('数字不能出错'), t('过程必须留痕'), t('关键动作必须有人签'), t('老系统不能大改')].map((b) => el('span', null, b)))),
             el('button', { class: 'fa-demo', disabled: busy.demo, 'data-test': 'fa-demo-all', title: t('一次填入全部演示数据：示例制度、零售存款数据、一笔授信预审（材料、取数与程序校验）、营销文案和各页签的示例问题；不调用模型、不产生费用'), onClick: demoAll }, busy.demo ? t('载入中…') : t('一键载入演示数据'))),
           errNote('demo')),

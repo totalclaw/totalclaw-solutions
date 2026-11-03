@@ -338,7 +338,7 @@
       "order": 50,
       "description": "一个老板 + 一家 AI 公司：8 个 AI 部门（研发、法务、财务、人事、运营、销售、客服、行政）以方案包装在任意机器上，AI 总经理按事情挑部门、派给承载它的机器并发执行，跨部门交接、汇总、钱 / 签约 / 对外发布 / 录用由老板拍板。主控点「启动 Web」即在内网开出指挥大屏，任意电脑、电视、手机用地址打开。",
       "descriptionEn": "One owner, one AI company: eight AI departments installed as solution packages on any machine. The AI GM triages each task, dispatches it to the machines hosting the right departments, hands results across departments and asks the boss to approve money, contracts, publishing and hiring. Start the web screen and open it from any device on the LAN.",
-      "version": "1.0.7",
+      "version": "1.0.8",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -393,10 +393,10 @@
       "capabilities": [],
       "path": "solutions/workbench-legion-hq",
       "fileCount": 40,
-      "size": 450175,
-      "treeDigest": "c87a1913cc8f1591ec32c3b5377d6a8cac6dc4d8d54185d7cdf0a53795253970",
+      "size": 461323,
+      "treeDigest": "14f01fab3da9037ae774b8879f4ba201969af71e79e4151fbf17c697d74b65b6",
       "largeAssets": [],
-      "changelog": "- 大屏「▶ AutoCoder」演示视频默认地址改为官网 https://taituai.com/assets/video/yanshi.mp4（「指挥大屏」里填了自定义地址的照旧用自定义地址）。",
+      "changelog": "- 办完的事在大屏「实时动态」里带「📄 查看报告」「⬇ 下载报告（Word）」；部门交付了文件（合同审查的审查意见书 / 修订稿）时，那条动态直接给原件下载。结果窗口顶部同样有下载，公司事务卡片加「下载」。新接口 GET /api/task/report、/api/task/file（要口令）。\n- 部门交付文件存进 tasks/<任务>.files/（随任务记录一起清理），员工机做出的文件随结果回传主控；App 任务详情里可「打开」「在文件夹中显示」。",
       "filesRef": "index/workbench-legion-hq.json"
     },
     {
@@ -1815,7 +1815,7 @@
       "order": 260,
       "description": "上传合同，按我方立场和审查模板逐条审查：风险分高中低，每条附原文位置、理由、法条依据、可直接放进合同的修改条文与退让方案；采纳后导出带修订痕迹的 Word 修订稿和审查意见书。",
       "descriptionEn": "Upload a contract and review it clause by clause from your side's position: high/medium/low risks with source location, reasons, legal basis, ready-to-insert redlines and fallbacks; export a tracked-changes Word draft and a review opinion.",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1859,10 +1859,10 @@
       "capabilities": [],
       "path": "solutions/workbench-legal-agent",
       "fileCount": 17,
-      "size": 117091,
-      "treeDigest": "3a41baa5924e6c088ae9e2632e92af8ce9e3ca5708c7956d587abd9c9efeaedd",
+      "size": 118784,
+      "treeDigest": "def1c3df582f7521bdbb331ea2912ea5dd8016402ea2d75aeb9dda01f2bb1a02",
       "largeAssets": [],
-      "changelog": "- 七步改成页签：一页一步，只渲染当前这一步；页面自带滚动容器（原来整页一长条，卡而且滚不动）。\n- AI 数字员工操作界面：运营中心派来的合同（带 ?lfjob= 打开），本页认领后自己一步步做——上传 → 预分析 → 立场（中立）→ 模板 → 条款抽取 → 逐条审查 → 采纳高风险与必争修订，每步切到对应页签、顶部横幅显示正在做什么，做完把审查意见交回运营中心。新动作 review.createFromPath。需要 App 同版宿主。",
+      "changelog": "- 运营中心自动操作做完时，审查意见书与（有采纳时）修订稿直接写进本方案数据目录、随结果交回运营中心（新动作 review.exportFiles，不弹保存框）；导出按钮与自动操作共用同一套生成逻辑。",
       "filesRef": "index/workbench-legal-agent.json"
     },
     {
@@ -1879,7 +1879,7 @@
       "order": 265,
       "description": "银行、消费金融、保险机构的业务 AI 工作台：制度与合规问答、智能问数、授信材料预审、营销物料审查。模型只做理解与起草，取数、计算、校验、拦截、审批和审计由程序确定性执行。",
       "descriptionEn": "An AI workbench for banks, consumer finance and insurers: policy & compliance Q&A, governed data queries, credit file pre-review and marketing material review. Models only interpret and draft; data access, calculation, checks, blocking, approval and audit are done by code.",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1922,11 +1922,11 @@
       },
       "capabilities": [],
       "path": "solutions/workbench-fin-assistant",
-      "fileCount": 22,
-      "size": 153115,
-      "treeDigest": "a661e504dffeb9b3681f385c1ddad9786b1f2f7f17c1156de6898ac9548fafb8",
+      "fileCount": 24,
+      "size": 179719,
+      "treeDigest": "b717416ff5bd25d0d31e68ad24bdc8f690bf3e6c1070662c493893c45538bbb2",
       "largeAssets": [],
-      "changelog": "- 首版（依据《金融行业 AI 应用解决方案 2.0》，不含研发 Agent）：安全与审计、制度与合规问答、智能问数、授信材料预审、营销物料审查，后台运营直达已有工作台。\n- 数据分级路由：授信材料、问数明细按客户敏感数据处理，未确认内网模型即在调用前拦截。\n- 审计按条串联哈希；人工修改 AI 结果记录修改前后的值。\n- 顶部「一键载入演示数据」：一次填入示例制度、零售存款数据、一笔授信预审（示例材料、按示例财报取数、程序校验已跑完）、营销文案和各页签的示例问题，不调用模型。\n- 金融主题界面：藏青横幅 + 金色点缀，标题衬线体；页签、步骤与进度条吸顶。\n- 界面文字进词典（英 / 阿 / 越 / 马来）。\n- 内置示例：3 份制度、零售存款示例数据与 7 个指标口径、一套授信材料（含缺件、临期执照、关联方大额往来）、一份违规营销文案。",
+      "changelog": "- 「安全与审计」挪到最后一个页签，改名「设置」（数据分级与模型路由、审计记录、明确不做的事都在里面）；打开默认进「制度与合规问答」。\n- 制度问答加第④步「手机端提问」：本机局域网开一个对话页（扫码打开，地址带口令，可换口令），问题走同一条判定链、回答带出处，审计记来源（手机 / 电脑）；历史问答标来源。需要 App 提供局域网服务（lanServer）。\n- 界面改中国金融风格：藏青 / 深蓝为主、金色细线点缀、红色表示增长，无衬线字体、规整克制；横幅背景加 K 线、上升箭头与 ¥ 水印。",
       "filesRef": "index/workbench-fin-assistant.json"
     },
     {

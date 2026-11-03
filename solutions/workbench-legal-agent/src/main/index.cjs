@@ -323,8 +323,8 @@ module.exports = {
     };
     const stem = (r) => (r.pre?.title || r.fileName.replace(/\.[^.]+$/, '')).replace(/[\\/:*?"<>|]/g, '_').slice(0, 40);
 
-    h('review.exportRevised', async (p) => {
-      const r = load(p?.id);
+    /** 修订稿（带修订痕迹与批注的 Word）：导出按钮与运营中心自动操作共用 */
+    const buildRevised = (r) => {
       const acc = (r.review?.risks || []).filter((x) => x.accepted);
       if (!acc.length) throw new Error('还没有采纳任何修订');
       const changes = acc.map((x) => ({
@@ -334,13 +334,17 @@ module.exports = {
         suggestion: x.suggestion,
         note: `【${{ high: '高', medium: '中', low: '低' }[x.level]}风险】${x.reason}${x.fallback ? `\n退让方案：${x.fallback}` : ''}`,
       }));
-      const out = buildRevisedDocx(r.paras, changes, { title: r.pre?.title || '' });
+      return buildRevisedDocx(r.paras, changes, { title: r.pre?.title || '' });
+    };
+    h('review.exportRevised', async (p) => {
+      const r = load(p?.id);
+      const out = buildRevised(r);
       const res = await saveFile(`${stem(r)}-修订稿.docx`, out.buffer);
       return { ...res, applied: out.applied, asComment: out.asComment };
     });
 
-    h('review.exportOpinion', async (p) => {
-      const r = load(p?.id);
+    /** 审查意见书 Word：导出按钮与运营中心自动操作共用 */
+    const buildOpinion = (r) => {
       if (!r.review) throw new Error('还没有审查结果');
       const name = (id) => clauseTypes.find((c) => c.id === id)?.zh || id;
       const lv = { high: '高', medium: '中', low: '低' };
@@ -366,7 +370,26 @@ module.exports = {
         { table: [['问题', '结论', '说明'], ...Object.entries(fw).map(([k, label]) => [label, ans[r.review.framework[k]?.answer] || '不明确', r.review.framework[k]?.note || ''])] },
         { text: `本意见书由 AI 法务生成，供内部参考，不构成正式法律意见；签约前请由执业律师复核。生成时间：${new Date().toLocaleString('zh-CN')}`, style: 'note' },
       ].filter(Boolean);
-      return saveFile(`${stem(r)}-审查意见书.docx`, buildDocx(blocks));
+      return buildDocx(blocks);
+    };
+    h('review.exportOpinion', async (p) => {
+      const r = load(p?.id);
+      return saveFile(`${stem(r)}-审查意见书.docx`, buildOpinion(r));
+    });
+
+    /**
+     * 运营中心自动操作用：意见书（+ 有采纳时的修订稿）直接写进本方案数据目录，不弹保存框，返回 [{ name, path }]，
+     * 随审查结果交回运营中心（大屏实时动态里可下载）。
+     */
+    h('review.exportFiles', (p) => {
+      const r = load(p?.id);
+      const dir = ctx.dataPath(`${D}/exports/${r.id}`);
+      mkdirSync(dir, { recursive: true });
+      const out = [];
+      const put = (name, buf) => { const path = join(dir, name); writeFileSync(path, buf); out.push({ name, path }); };
+      put(`${stem(r)}-审查意见书.docx`, buildOpinion(r));
+      if ((r.review?.risks || []).some((x) => x.accepted)) put(`${stem(r)}-修订稿.docx`, buildRevised(r).buffer);
+      return out;
     });
 
     /** LG8 两版对比：上传另一版本，按段落对比 */

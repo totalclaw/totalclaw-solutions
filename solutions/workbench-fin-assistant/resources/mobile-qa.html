@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>制度与合规问答</title>
+<style>
+:root{--navy:#0b2447;--navy2:#19376d;--gold:#c8a24a;--red:#c8102e;--bg:#f3f5f9;--card:#fff;--text:#1f2937;--sub:#6b7280;--line:#e5e7eb}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--text);font:15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+.app{display:flex;flex-direction:column;height:100%;max-width:720px;margin:0 auto}
+header{position:relative;overflow:hidden;background:linear-gradient(120deg,var(--navy),var(--navy2));color:#fff;padding:14px 16px 12px;padding-top:max(14px,env(safe-area-inset-top))}
+header::after{content:"";position:absolute;right:-6px;bottom:-4px;width:150px;height:70px;opacity:.16;background:no-repeat center/contain url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 150 70'><polyline points='4,62 34,46 58,52 88,28 112,34 142,8' fill='none' stroke='%23ffffff' stroke-width='4'/><polygon points='142,8 128,10 140,22' fill='%23ffffff'/></svg>")}
+header b{display:block;font-size:17px;letter-spacing:.02em}
+header small{display:block;margin-top:2px;font-size:12px;color:rgba(255,255,255,.72)}
+header .gold{display:inline-block;width:3px;height:14px;background:var(--gold);vertical-align:-2px;margin-right:6px;border-radius:2px}
+#list{flex:1;overflow-y:auto;padding:14px 12px 8px;-webkit-overflow-scrolling:touch}
+.msg{display:flex;margin:10px 0}
+.msg.me{justify-content:flex-end}
+.bub{max-width:86%;padding:10px 12px;border-radius:12px;white-space:pre-wrap;word-break:break-word}
+.me .bub{background:var(--navy2);color:#fff;border-bottom-right-radius:4px}
+.ai .bub{background:var(--card);border:1px solid var(--line);border-bottom-left-radius:4px}
+.ai .bub.refused{border-left:3px solid var(--gold)}
+.ai .bub.err{border-left:3px solid var(--red)}
+.cites{margin-top:8px;padding-top:6px;border-top:1px dashed var(--line);font-size:12.5px;color:var(--sub)}
+.cites div{margin-top:3px}
+.cites b{color:var(--navy2);font-weight:600}
+.warn{margin-top:6px;font-size:12px;color:#92400e}
+.tip{font-size:12.5px;color:var(--sub);text-align:center;margin:6px 0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0 2px}
+.chips button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font:inherit;font-size:13px;color:var(--navy2)}
+.typing{color:var(--sub);font-size:13px}
+form{display:flex;gap:8px;padding:10px 12px;padding-bottom:max(10px,env(safe-area-inset-bottom));background:#fff;border-top:1px solid var(--line)}
+input{flex:1;min-width:0;border:1px solid var(--line);border-radius:10px;padding:10px 12px;font:inherit;outline:none}
+input:focus{border-color:var(--navy2)}
+button.send{border:0;border-radius:10px;padding:0 16px;background:var(--navy);color:#fff;font:inherit;font-weight:600}
+button.send:disabled{opacity:.5}
+.foot{font-size:11px;color:var(--sub);text-align:center;padding:0 12px 6px;background:#fff}
+</style>
+</head>
+<body>
+<div class="app">
+  <header><b><span class="gold"></span>制度与合规问答</b><small>依据本行现行制度作答，每条结论标出处；不提供投资建议与个案定性</small></header>
+  <div id="list">
+    <p class="tip" id="hello">正在连接…</p>
+    <div class="chips" id="chips"></div>
+  </div>
+  <form id="f"><input id="q" maxlength="500" placeholder="输入你的问题，例如：大额存单起存金额是多少？" autocomplete="off"><button class="send" id="go" type="submit">发送</button></form>
+  <div class="foot">回答仅供内部参考，以制度原文为准；问答记录留痕审计</div>
+</div>
+<script>
+(function(){
+  var T=new URLSearchParams(location.search).get('t')||'';
+  var list=document.getElementById('list'),q=document.getElementById('q'),go=document.getElementById('go');
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function add(cls,html){var d=document.createElement('div');d.className='msg '+cls;d.innerHTML=html;list.appendChild(d);list.scrollTop=list.scrollHeight;return d;}
+  function api(path,body){return fetch(path,{method:body?'POST':'GET',headers:Object.assign({'Authorization':'Bearer '+T},body?{'Content-Type':'application/json'}:{}),body:body?JSON.stringify(body):undefined}).then(function(r){if(r.status===401)throw new Error('访问口令已失效：请重新扫描电脑上的二维码');return r.json();});}
+  function render(r){
+    if(r.status==='answered'){
+      var c=(r.citations||[]).map(function(x){return '<div><b>['+x.n+']</b> 《'+esc(x.title)+'》'+esc(x.no)+(x.effectiveFrom?' · '+esc(x.effectiveFrom)+' 起施行':'')+'</div>';}).join('');
+      var w=(r.unverified&&r.unverified.length)?'<div class="warn">以下数字在制度原文中没有找到，请人工核对：'+esc(r.unverified.join('、'))+'</div>':'';
+      return '<div class="bub">'+esc(r.answer)+(c?'<div class="cites">依据'+c+'</div>':'')+w+'</div>';
+    }
+    if(r.status==='refused')return '<div class="bub refused">'+esc(r.reason||'这个问题暂时答不了')+'</div>';
+    return '<div class="bub err">'+esc(r.reason||'没有答上来，请稍后再试')+'</div>';
+  }
+  function ask(text){
+    text=String(text||'').trim();if(!text)return;
+    add('me','<div class="bub">'+esc(text)+'</div>');
+    var wait=add('ai','<div class="bub typing">正在查制度条款…</div>');
+    go.disabled=true;
+    api('/api/ask',{q:text}).then(function(r){wait.innerHTML=render(r);}).catch(function(e){wait.innerHTML='<div class="bub err">'+esc(e.message||e)+'</div>';}).then(function(){go.disabled=false;list.scrollTop=list.scrollHeight;});
+  }
+  document.getElementById('f').addEventListener('submit',function(e){e.preventDefault();var v=q.value;q.value='';ask(v);});
+  api('/api/hello').then(function(r){
+    document.getElementById('hello').textContent=r.policies?('已接入 '+r.policies+' 份现行制度，直接提问即可'):'制度库还没有现行制度，请先在电脑上导入';
+    var ex=['大额存单起存金额是多少？','营销物料审查要几个工作日？','出差住宿每晚能报多少？'];
+    document.getElementById('chips').innerHTML=ex.map(function(x){return '<button type="button">'+esc(x)+'</button>';}).join('');
+    document.getElementById('chips').onclick=function(e){if(e.target.tagName==='BUTTON')ask(e.target.textContent);};
+  }).catch(function(e){document.getElementById('hello').textContent=e.message||String(e);go.disabled=true;});
+})();
+</script>
+</body>
+</html>

@@ -4,7 +4,7 @@
   "id": "workbench-fin-assistant",
   "name": "智能金融助手",
   "aliases": ["金融助手", "金融行业智能体", "fin-assistant"],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "kind": "workbench",
   "category": "金融",
   "icon": "icon-solutions",

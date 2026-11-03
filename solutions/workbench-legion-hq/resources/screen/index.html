@@ -29,6 +29,7 @@ html,body{margin:0;height:100%;background:#050B1C;font-family:"Microsoft YaHei",
 .task .res{display:flex;align-items:center;gap:8px;margin-top:6px;font-size:12px;color:#A7F3D0}
 .task .res span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .task .res.bad{color:#FCA5A5}
+.task .res a.dlk{background:none;border:1px solid #0E7490;color:#A5F3FC;border-radius:6px;padding:1px 8px;font-size:11.5px;text-decoration:none;white-space:nowrap}
 .task .res button{background:#0E7490;border:none;color:#fff;border-radius:6px;padding:2px 9px;font-size:11.5px;cursor:pointer;font-family:inherit;white-space:nowrap}
 .task.done{opacity:.8}
 .rbox{width:min(980px,92vw);max-height:86vh;display:flex;flex-direction:column;background:#0B1B3A;border:1px solid #22D3EE;border-radius:14px;box-shadow:0 0 50px #22D3EE44;overflow:hidden}
@@ -76,6 +77,15 @@ html,body{margin:0;height:100%;background:#050B1C;font-family:"Microsoft YaHei",
 #feed div{font-size:12.5px;line-height:1.5;padding:5px 0;border-bottom:1px dashed #1E3A6E;color:#CBD5E1}
 #feed .t{color:#64748B;margin-right:6px;font-family:Menlo,monospace}
 #feed div.new{animation:in .5s ease}
+#feed .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
+#feed .acts a,#feed .acts button{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;padding:2px 9px;border-radius:6px;border:1px solid #155E75;background:rgba(14,116,144,.25);color:#A5F3FC;text-decoration:none;cursor:pointer;font-family:inherit}
+#feed .acts a:hover,#feed .acts button:hover{border-color:#22D3EE;color:#fff}
+#feed .acts .doc{border-color:#4338CA;background:rgba(67,56,202,.25);color:#C7D2FE}
+.rbox .dl{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.rbox .dl a{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;padding:4px 11px;border-radius:7px;border:1px solid #22D3EE;color:#A5F3FC;text-decoration:none}
+.rbox .dl a.doc{border-color:#818CF8;color:#C7D2FE}
+.rbox .sec .fl{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 6px}
+.rbox .sec .fl a{font-size:12px;padding:1px 8px;border-radius:5px;border:1px solid #818CF8;color:#C7D2FE;text-decoration:none}
 @keyframes in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
 #route{position:absolute;left:12px;top:40px;width:250px;padding:10px 14px;border:1px solid #22D3EE;border-radius:10px;background:rgba(11,27,58,.94);box-shadow:0 0 30px #22D3EE44;font-size:13px;text-align:left;display:none}
 #route .q{color:#fff;font-size:14px;margin-bottom:6px}#route .a{line-height:1.9}
@@ -419,7 +429,7 @@ function renderPanels(){
   const lg=t.legions.length?t.legions.map(id=>{const L=LG[id]||{color:'#64748B',short:id};const st=t.steps.filter(s=>s.legionId===id);const on=st.some(s=>s.status==='running');const ok=st.length&&st.every(s=>s.status==='done');const bad=st.some(s=>s.status==='failed');
    return `<span class="${on?'on':bad?'bad':ok?'ok':''}" style="border-color:${L.color};${on?`background:${L.color}`:`color:${L.color}`}">${esc(LANG==='en'&&L.shortEn?L.shortEn:L.short)}${ok?' ✓':''}</span>`}).join(''):(t.status==='triaging'?'':`<span style="border-color:#22D3EE;color:#22D3EE;opacity:1">${tr('direct')}</span>`);
   const phase=t.steps.filter(s=>s.status==='running'&&s.phase).map(s=>`${(LG[s.legionId]||{}).short||''}·${s.phase}`).join('　')||(t.status==='failed'&&t.error?t.error:'');
-  return `<div class="task${focus===t.id?' focus':''}${ACTIVE.has(t.status)?'':' done'}" data-id="${esc(t.id)}"><div class="h"><span class="id">#${t.no}</span><span class="src" style="color:${src};border:1px solid ${src}">${tr('src.'+t.source)}</span><span class="ttl">${esc(t.title)}</span><span class="st" style="color:${sc};border:1px solid ${sc}">${tr('st.'+t.status)}</span></div><div class="lgs">${lg}</div>${phase?`<div class="ph2">${esc(phase)}</div>`:''}<div class="bar"><i style="width:${(p*100).toFixed(1)}%"></i></div>${(t.status==='done'||t.status==='awaiting')?`<div class="res"><span>${esc(t.result||'')}</span><button data-res="${esc(t.id)}">${LANG==='en'?'View result':'查看结果'}</button></div>`:t.status==='failed'?`<div class="res bad"><span>${esc(t.error||'')}</span><button data-res="${esc(t.id)}">${LANG==='en'?'Details':'查看'}</button></div>`:''}</div>`;}).join('');
+  return `<div class="task${focus===t.id?' focus':''}${ACTIVE.has(t.status)?'':' done'}" data-id="${esc(t.id)}"><div class="h"><span class="id">#${t.no}</span><span class="src" style="color:${src};border:1px solid ${src}">${tr('src.'+t.source)}</span><span class="ttl">${esc(t.title)}</span><span class="st" style="color:${sc};border:1px solid ${sc}">${tr('st.'+t.status)}</span></div><div class="lgs">${lg}</div>${phase?`<div class="ph2">${esc(phase)}</div>`:''}<div class="bar"><i style="width:${(p*100).toFixed(1)}%"></i></div>${(t.status==='done'||t.status==='awaiting')?`<div class="res"><span>${esc(t.result||'')}</span><button data-res="${esc(t.id)}">${LANG==='en'?'View result':'查看结果'}</button><a class="dlk" href="${api('/api/task/report?id='+encodeURIComponent(t.id))}" download onclick="event.stopPropagation()">${LANG==='en'?'Download':'下载'}</a></div>`:t.status==='failed'?`<div class="res bad"><span>${esc(t.error||'')}</span><button data-res="${esc(t.id)}">${LANG==='en'?'Details':'查看'}</button></div>`:''}</div>`;}).join('');
  if(html!==lastTaskHtml){$('tasks').innerHTML=html;lastTaskHtml=html;}
  // 老板待办
  const ib=(S.inbox||[]).length?S.inbox.map(x=>`<div class="it"><span class="tx">#${x.no} ${esc(x.title)}</span>${x.approval?`<span class="kind">${esc(x.approval.label||'')}</span>`:''}<button data-ok="${esc(x.taskId)}">${tr('approve')}</button><button class="rej" data-no="${esc(x.taskId)}">${tr('reject')}</button></div>`).join(''):`<div class="empty">${tr('empty')}</div>`;
@@ -428,7 +438,11 @@ function renderPanels(){
  const top=(S.feed||[]).slice(0,15);const key=top.map(f=>f.ts+f.text).join('|');
  if(key!==lastFeedTop){const first=lastFeedTop.split('|')[0];lastFeedTop=key;
   $('feed').innerHTML=top.map((f,i)=>{const L=LG[f.who];const c=f.who==='core'?'#22D3EE':f.who==='hand'?'#FDE047':f.who==='boss'?'#FBBF24':f.who==='wf'?'#A3E635':L?L.color:'#94A3B8';const n=f.who==='core'?(LANG==='en'?'GM':'总经理'):f.who==='hand'?(LANG==='en'?'Handoff':'交接'):f.who==='boss'?(LANG==='en'?'Boss':'老板'):f.who==='wf'?(LANG==='en'?'Workflow':'工作流'):L?L.short:'';
-   return `<div class="${i===0&&(f.ts+f.text)!==first?'new':''}"><span class="t">${new Date(f.ts).toTimeString().slice(0,8)}</span><b style="color:${c}">[${esc(n)}]</b> ${esc(f.text)}</div>`}).join('');}
+   const en=LANG==='en';
+   // 办完的事：查看报告 / 下载完整报告；部门交付了文件：直接下载原件（意见书 / 修订稿）
+   const acts=f.result&&f.taskId?`<div class="acts"><button data-res="${esc(f.taskId)}">📄 ${en?'View report':'查看报告'}</button><a href="${api('/api/task/report?id='+encodeURIComponent(f.taskId))}" download>⬇ ${en?'Download report (Word)':'下载报告（Word）'}</a></div>`
+     :(f.files&&f.files.length&&f.taskId)?`<div class="acts">${f.files.map((nm,j)=>`<a class="doc" href="${api('/api/task/file?id='+encodeURIComponent(f.taskId)+'&s='+encodeURIComponent(f.stepId||'')+'&i='+j)}" download>⬇ ${esc(nm)}</a>`).join('')}</div>`:'';
+   return `<div class="${i===0&&(f.ts+f.text)!==first?'new':''}"><span class="t">${new Date(f.ts).toTimeString().slice(0,8)}</span><b style="color:${c}">[${esc(n)}]</b> ${esc(f.text)}${acts}</div>`}).join('');}
  // 部门负载
  const lh=ORDER.map(id=>{const L=LG[id];const ld=(S.legionLoad||{})[id]||{active:0,done:0};return `<div class="lrow"><span style="color:${L.color};font-weight:700">${esc(LANG==='en'&&L.shortEn?L.shortEn:L.name)}<small class="hc">${L.staff||0}${LANG==='en'?'':' 人'}</small></span><div class="bar"><i style="width:${Math.min(100,ld.active*34)}%;background:${L.color}"></i></div><em>${L.placed?(ld.active?tr('busyN',{n:ld.active}):tr('idle')):tr('notPlaced')} · ${ld.done}</em></div>`}).join('');
  if(lh!==lastL){$('lload').innerHTML=lh;lastL=lh;}
@@ -515,6 +529,7 @@ $('inp').onkeydown=e=>{if(e.key==='Enter'&&!e.isComposing)$('go').onclick();};
 $('inp').placeholder=LANG==='en'?'e.g. Review this distribution contract':'例如：帮我审一下这份经销合同';
 $('presets').innerHTML=PRESETS.map(p=>`<button class="preset">${esc(p)}</button>`).join('');
 $('presets').onclick=e=>{if(e.target.classList.contains('preset'))command(e.target.textContent);};
+$('feed').onclick=e=>{const rb=e.target.closest('[data-res]');if(rb)openResult(rb.dataset.res);};
 $('tasks').onclick=e=>{const rb=e.target.closest('[data-res]');if(rb){openResult(rb.dataset.res);return;}const c=e.target.closest('.task');if(!c)return;focus=focus===c.dataset.id?null:c.dataset.id;lastTaskHtml='';renderPanels();};
 $('inbox').onclick=async e=>{const b=e.target.closest('button');if(!b)return;try{if(b.dataset.ok)await post('/api/confirm',{taskId:b.dataset.ok,approve:true});else openReject(b.dataset.no);}catch(err){toast(String(err.message||err));}};
 // 驳回意见（Electron 窗口里没有 window.prompt，用页内对话框）
@@ -533,8 +548,12 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('vmask').classLis
 function md(text){return esc(text).split('\n').map(l=>{const h=/^#{1,6}\s+(.*)$/.exec(l);if(h)return `<h4>${h[1].replace(/\*\*(.+?)\*\*/g,'$1')}</h4>`;if(/^-{3,}\s*$/.test(l))return '<hr>';return `<p>${l.replace(/\*\*(.+?)\*\*/g,'<b>$1</b>')||'&nbsp;'}</p>`;}).join('');}
 async function openResult(id){const en=LANG==='en';try{const r=await fetch(api('/api/task?id='+encodeURIComponent(id)));const j=await r.json();if(!r.ok)throw new Error(j.error||r.status);
  $('resTitle').textContent=`#${j.no} ${j.title}`;
- const secs=[];if(j.summary)secs.push(`<div class="sec"><h5>${en?'Summary':'汇总'}</h5><div class="md">${md(j.summary)}</div></div>`);
- for(const st of j.steps||[])secs.push(`<div class="sec"><h5>${esc(st.legion)}</h5><div class="g">${esc(st.goal||'')}</div>${st.error?`<div class="err">${esc(st.error)}</div>`:`<div class="md">${md(st.text||'')}</div>`}</div>`);
+ const secs=[];
+ const dl=[`<a href="${api('/api/task/report?id='+encodeURIComponent(j.id))}" download>⬇ ${en?'Download full report (Word)':'下载完整报告（Word）'}</a>`];
+ (j.steps||[]).forEach((st,si)=>(st.files||[]).forEach((nm,fi)=>dl.push(`<a class="doc" href="${api('/api/task/file?id='+encodeURIComponent(j.id)+'&s='+si+'&i='+fi)}" download>⬇ ${esc(nm)}</a>`)));
+ secs.push(`<div class="dl">${dl.join('')}</div>`);
+ if(j.summary)secs.push(`<div class="sec"><h5>${en?'Summary':'汇总'}</h5><div class="md">${md(j.summary)}</div></div>`);
+ for(const [si,st] of (j.steps||[]).entries())secs.push(`<div class="sec"><h5>${esc(st.legion)}</h5><div class="g">${esc(st.goal||'')}</div>${(st.files||[]).length?`<div class="fl">${st.files.map((nm,fi)=>`<a href="${api('/api/task/file?id='+encodeURIComponent(j.id)+'&s='+si+'&i='+fi)}" download>📄 ${esc(nm)}</a>`).join('')}</div>`:''}${st.error?`<div class="err">${esc(st.error)}</div>`:`<div class="md">${md(st.text||'')}</div>`}</div>`);
  if(j.error)secs.push(`<div class="sec err">${esc(j.error)}</div>`);
  $('resBody').innerHTML=secs.join('')||`<div class="g">${en?'No content':'没有内容'}</div>`;$('resBody').scrollTop=0;$('resMask').classList.add('on');}catch(e){toast(String(e.message||e));}}
 function closeResult(){$('resMask').classList.remove('on');}

@@ -843,6 +843,13 @@ export default function createSolution(sdk) {
             return h('div', { style: 'margin-top:10px' }, [
               h('div', [L[s.legionId] ? chip(L[s.legionId], false) : null, h('b', s.goal), o.machine ? h('span', { class: 'lhq-sub' }, ` · ${o.machine}${o.ms ? ` · ${Math.round(o.ms / 1000)}s` : ''}`) : null]),
               o.error ? h('div', { class: 'lhq-err' }, o.error) : o.text ? h('div', { class: 'lhq-out' }, o.text) : h('div', { class: 'lhq-empty' }, t('还没有产出')),
+              // 部门交付的文件（合同审查出的意见书 / 修订稿等）：直接打开或在文件夹里显示
+              (o.files || []).length
+                ? h('div', { class: 'lhq-row' }, o.files.map((f, i) => h('span', { style: 'display:inline-flex;gap:4px;align-items:center' }, [
+                    h('button', { class: 'lhq-btn', 'data-test': 'lhq-file-open', onClick: async () => { try { await sdk.invoke('tasks.openFile', { taskId: d.id, stepId: s.id, i }); } catch (e) { sdk.notify.warn(e.message); } } }, [h('i', { class: 'ri-file-word-2-line' }), ` ${f.name}`]),
+                    h('a', { style: 'cursor:pointer;font-size:12px', onClick: async () => { try { await sdk.invoke('tasks.openFile', { taskId: d.id, stepId: s.id, i, reveal: true }); } catch (e) { sdk.notify.warn(e.message); } } }, t('在文件夹中显示')),
+                  ])))
+                : null,
             ]);
           }),
           d.summary ? h('div', { style: 'margin-top:12px' }, [h('b', d.plan?.summary ? t('AI 总经理汇总') : t('结果')), h('div', { class: 'lhq-out' }, d.summary)]) : null,

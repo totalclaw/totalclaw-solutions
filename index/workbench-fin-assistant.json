@@ -1,12 +1,12 @@
 {
   "id": "workbench-fin-assistant",
-  "version": "1.0.0",
-  "treeDigest": "a661e504dffeb9b3681f385c1ddad9786b1f2f7f17c1156de6898ac9548fafb8",
+  "version": "1.0.1",
+  "treeDigest": "b717416ff5bd25d0d31e68ad24bdc8f690bf3e6c1070662c493893c45538bbb2",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 1068,
-      "sha256": "517dd328f535f16fca2098a1fd506e9f8aff3c578f56432bc913e6297b476eb4"
+      "size": 1773,
+      "sha256": "249689634fe76fdcd06b88bbef2a6595c53e677ed809249030f8ad90a686752d"
     },
     {
       "path": "README.md",
@@ -79,14 +79,19 @@
       "sha256": "68f01a0f11ab6314f5f1f340125398c4729a28da79702e4db2b87b14d3724f52"
     },
     {
+      "path": "resources/mobile-qa.html",
+      "size": 6689,
+      "sha256": "0f84768fec12db4d5d8628b207bbbe4f762028ea77c5d471532af4fe0e65ac9e"
+    },
+    {
       "path": "solution.json",
       "size": 2959,
-      "sha256": "36480eb36b6c32aaf53912ff75de4d650691d7a214c2b2d0beb94d155ca47886"
+      "sha256": "68ba2c33def1b9c772d127c69217d9537989e2652b65b3d8bd53f952d22a7c6b"
     },
     {
       "path": "src/host-modules.json",
-      "size": 249,
-      "sha256": "a563e097cca4966a4aa88ab8177d307da9ef9faaba50bd7a32bd95d6cf5952d0"
+      "size": 306,
+      "sha256": "b5bf339f8b7698ebe13e9e24bb96b5d25a47e670eaa5d7a3421446dbe80bd918"
     },
     {
       "path": "src/main/docText.cjs",
@@ -95,13 +100,18 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 42357,
-      "sha256": "62f2dc6042c432bcb42b67422051fdd90ee5e31628d66f5b1fbb9f7387f60541"
+      "size": 45096,
+      "sha256": "e91823eb3d6f376aaf8c8932c76a6e0de6de64a775ea1dcbd5843236f0561af8"
     },
     {
       "path": "src/main/lib.cjs",
       "size": 21585,
       "sha256": "c76d84a3f70cada4843da3d4eb2460782859901924a1f49c30924cd236ef48d4"
+    },
+    {
+      "path": "src/main/qr.cjs",
+      "size": 9978,
+      "sha256": "dc3d3926b678365a8e7435add0d951a579415bf604d1f09f1225c4d1483f8312"
     },
     {
       "path": "src/main/zip.cjs",
@@ -110,11 +120,22 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 51816,
-      "sha256": "c7eb64f439f8e9d14602faeabee5dd6461e989664f7525d04f001decb918ee35"
+      "size": 58252,
+      "sha256": "b4d50bfd92d57cd9e3823ac7b8932703bea20f5b61a744e60c16c992c7217b65"
     }
   ],
   "versions": [
+    {
+      "version": "1.0.1",
+      "ref": "workbench-fin-assistant@1.0.1",
+      "treeDigest": "b717416ff5bd25d0d31e68ad24bdc8f690bf3e6c1070662c493893c45538bbb2",
+      "filesRef": "index/workbench-fin-assistant/1.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-11-03"
+    },
     {
       "version": "1.0.0",
       "ref": "workbench-fin-assistant@1.0.0",
