@@ -1,0 +1,252 @@
+{
+  "id": "workbench-fin-assistant",
+  "version": "1.1.0",
+  "treeDigest": "f878f74ec6a5b7fa3197640a258c08c28a315bfc20de4d74fb9a89e31e762ec3",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 5999,
+      "sha256": "2ece3d3bb22d9c3bdd4cf956ade5fecae8cc89132c2ba5de1b847c07c666e59d"
+    },
+    {
+      "path": "README.md",
+      "size": 1827,
+      "sha256": "fcfd0565b7358fd0a8d54f9b744113c20dfcf6af4d3bad4f7c678621503b7809"
+    },
+    {
+      "path": "resources/credit-checklists.json",
+      "size": 1970,
+      "sha256": "9a0ae22c239e83264de45d2c316613c662fb6628cc07bf32be733cb5758aebb4"
+    },
+    {
+      "path": "resources/demo/credit/公司章程.txt",
+      "size": 317,
+      "sha256": "34f63dfcc31c1559fb220d8e87f85be9ea0c75c543b4bd75ddff560025bbe503"
+    },
+    {
+      "path": "resources/demo/credit/营业执照.txt",
+      "size": 342,
+      "sha256": "9a123429a11ea0b7449704a1a6bfd14615945fa7cefe2f38a08856ea48942c1a"
+    },
+    {
+      "path": "resources/demo/credit/财务报表-2025年度.txt",
+      "size": 585,
+      "sha256": "11a3d611f5246f019ce860d08ea8c13f3c712860a43aa6480ed0048677b74667"
+    },
+    {
+      "path": "resources/demo/credit/购销合同-苏州恒达.txt",
+      "size": 317,
+      "sha256": "ad9283cb45c8749ab347aa8baf7583c94fbcbab5fcbecb5ea049d100e67430b3"
+    },
+    {
+      "path": "resources/demo/credit/银行流水-近6个月.csv",
+      "size": 5835,
+      "sha256": "27a833122a7e21b4dfe5d755b590ef7c2ec50852f77bde72d4dc24e23bfdf024"
+    },
+    {
+      "path": "resources/demo/docs/客户回访录音（示例）.m4a",
+      "size": 106133,
+      "sha256": "844ecb2d4248b2e048e097c105fcf64eaed8d72128557e44ef6f0ac62d72d25f"
+    },
+    {
+      "path": "resources/demo/docs/对公账户银行流水（示例）.csv",
+      "size": 426,
+      "sha256": "d2d6290d7f1aa205a8d0460791f3ce1b8f5cfc88859e343f46e4419513150318"
+    },
+    {
+      "path": "resources/demo/docs/流动资金借款合同（示例）.wps",
+      "size": 19456,
+      "sha256": "3a4aaa03122c0800a393ca18ace76ed0be076b5b38e491ab207a6d509bb98f28"
+    },
+    {
+      "path": "resources/demo/docs/理财产品宣传视频（示例）.mp4",
+      "size": 99784,
+      "sha256": "22c612779312a0dfe9726edad2051b0b3e06ace78af76ec73ace30c782449c3c"
+    },
+    {
+      "path": "resources/demo/docs/采购发票（示例）.png",
+      "size": 99405,
+      "sha256": "aac568706f6c93685c1e79b03b1c3604c9890394849900e19747e3d965481e88"
+    },
+    {
+      "path": "resources/demo/docs/零售金融部周例会会议纪要（示例）.pdf",
+      "size": 27794,
+      "sha256": "7b4c5b9ea639f6f146b9d3c9c81cfbf8b2b714171975e73a15cc7101d9da2ac3"
+    },
+    {
+      "path": "resources/demo/knowledge/反洗钱客户身份识别操作指引（示例）.txt",
+      "size": 867,
+      "sha256": "6547d3a4ac881496deea13e87dc425456dfe8f340f9581812750b2c15ddb7d6b"
+    },
+    {
+      "path": "resources/demo/knowledge/稳盈365天理财产品说明书（示例）.txt",
+      "size": 923,
+      "sha256": "79261b4409e0ce4963106047b1870d7ba195a4b77a4cb8fbf73188dfc12dab75"
+    },
+    {
+      "path": "resources/demo/marketing-sample.txt",
+      "size": 303,
+      "sha256": "b521da9ea8c6854ea76fec96e8ffc256198b242e08bc208f6577b72ea9b616cb"
+    },
+    {
+      "path": "resources/demo/pm/gitlog.txt",
+      "size": 1148,
+      "sha256": "a330e71dd9c48391951de0f00887a6b1c07161b2b36396efd9dc72ab8cf2df2e"
+    },
+    {
+      "path": "resources/demo/pm/standup.txt",
+      "size": 533,
+      "sha256": "8b4584e86289731a5c5ebf3afef30fe9ffaaab3eb970735ccc10fdf245ef56d3"
+    },
+    {
+      "path": "resources/demo/pm/tasks-today.csv",
+      "size": 572,
+      "sha256": "86a280ee9a80e1fef7c0a4c1c0852b5cb1ba21f10d9f69593332b7e3eb66f890"
+    },
+    {
+      "path": "resources/demo/pm/tasks-yesterday.csv",
+      "size": 512,
+      "sha256": "d0c87c0d8b3ef1ca6e3fafd363d24e2e318f8c996a1aed5a7dff6fa264c15ee0"
+    },
+    {
+      "path": "resources/demo/policies/个人存款业务管理办法.txt",
+      "size": 1340,
+      "sha256": "9cf1ad8029d3ac3ad625c5d1920cb81e3dd40691635d021b2ecd35260646aadf"
+    },
+    {
+      "path": "resources/demo/policies/员工费用报销管理办法.txt",
+      "size": 720,
+      "sha256": "744ed26bffca90249abe8149591a3dc2c5c1731b35424d7ee3c68d572b464db5"
+    },
+    {
+      "path": "resources/demo/policies/营销宣传合规管理规定.txt",
+      "size": 1160,
+      "sha256": "00d41f858e9e946a78bf240e4afa7618239d6db4dd58ef1775d97caacb50cc8c"
+    },
+    {
+      "path": "resources/forbidden-topics.json",
+      "size": 1271,
+      "sha256": "ee08fdb3fe146db25f4aa87f9a3ae61aea37027d0804adc6ca95a666f3378c7f"
+    },
+    {
+      "path": "resources/marketing-rules.json",
+      "size": 3150,
+      "sha256": "99120a83ceec50d78ef9b0fd63b749c3085fca7607a3428bfc7873b8d60c00be"
+    },
+    {
+      "path": "resources/metrics.json",
+      "size": 3696,
+      "sha256": "68f01a0f11ab6314f5f1f340125398c4729a28da79702e4db2b87b14d3724f52"
+    },
+    {
+      "path": "resources/mobile-qa.html",
+      "size": 6803,
+      "sha256": "e1fc01c16d0aac83be0078671a52accfb8b2abfe407ecedd43d662fe5c97787f"
+    },
+    {
+      "path": "solution.json",
+      "size": 3326,
+      "sha256": "ec5053747c26fe2929acd3c6c4e0f71e2a1068e832fae695cd520dfb2f5622e2"
+    },
+    {
+      "path": "src/host-modules.json",
+      "size": 732,
+      "sha256": "de3ed999d7c91ad70883d8a2312b7819afeb28dd2fde82064532900bc915feda"
+    },
+    {
+      "path": "src/main/agents.cjs",
+      "size": 15886,
+      "sha256": "7dd8dc7ed65ee112199b35567a4bde23a2ca07ca77cddd5afef4355f7cc4a32b"
+    },
+    {
+      "path": "src/main/askx.cjs",
+      "size": 6860,
+      "sha256": "11a5e97898f7eb3ec226a3c262de1c873fb6f515e8d2aaf8dfc9dc72a02adcaf"
+    },
+    {
+      "path": "src/main/docText.cjs",
+      "size": 6027,
+      "sha256": "7a4997674c31ad11bc24288680cfbc75dd29fad1d49cb3bc85710b094db94973"
+    },
+    {
+      "path": "src/main/docs.cjs",
+      "size": 12063,
+      "sha256": "316c3454f25f178b33c2c842fc15bf6866e9f412a20ae0f3dda914097bb46098"
+    },
+    {
+      "path": "src/main/gateway.cjs",
+      "size": 12300,
+      "sha256": "07616810a2475edcf0bd54568788471129cec32f44a03d45592578cd59635e5c"
+    },
+    {
+      "path": "src/main/index.cjs",
+      "size": 125090,
+      "sha256": "4dc6325395e9a861d2a074f161fe521b3240f1d3827c862a7fd5ab32ce08c5ec"
+    },
+    {
+      "path": "src/main/knowledge.cjs",
+      "size": 7925,
+      "sha256": "a2aad5890fd987c3ef6e7f97146dc417108e8ecb90067619ef6f670f9b7d3b4b"
+    },
+    {
+      "path": "src/main/lib.cjs",
+      "size": 21585,
+      "sha256": "c76d84a3f70cada4843da3d4eb2460782859901924a1f49c30924cd236ef48d4"
+    },
+    {
+      "path": "src/main/pm.cjs",
+      "size": 15579,
+      "sha256": "889d102eae3d23f4cb1b43998ec92520cab2b0297b0f24882951e89410f22d87"
+    },
+    {
+      "path": "src/main/qr.cjs",
+      "size": 9978,
+      "sha256": "dc3d3926b678365a8e7435add0d951a579415bf604d1f09f1225c4d1483f8312"
+    },
+    {
+      "path": "src/main/retrieval.cjs",
+      "size": 3003,
+      "sha256": "59ecffe065f1e1a27f074173239fbfb0c6c69547e40699bee2c1fa03fece9f04"
+    },
+    {
+      "path": "src/main/zip.cjs",
+      "size": 4221,
+      "sha256": "9c092411e47b0914072db3c3925a89cef3d348675d0448203683b3b4d38e261d"
+    },
+    {
+      "path": "src/renderer/index.mjs",
+      "size": 75464,
+      "sha256": "663801f104cd3600c50e4b09225cb42ea3d93448def7901ee2ab20e058f18671"
+    },
+    {
+      "path": "src/renderer/tabs/agents.mjs",
+      "size": 23475,
+      "sha256": "18bb84396411a9f0bbd23e9129912ee1ceebe88b7f97fc6021992fabd5dfd72b"
+    },
+    {
+      "path": "src/renderer/tabs/askx.mjs",
+      "size": 13954,
+      "sha256": "3b86f7afc2b1689622b60cd167a0c5fb83fa05abe171757d72da6f9d9299f1be"
+    },
+    {
+      "path": "src/renderer/tabs/docs.mjs",
+      "size": 11941,
+      "sha256": "90c078553a2a11d1cb8b76f241f44b16060a1f99b97a905057ef8f65876c3574"
+    },
+    {
+      "path": "src/renderer/tabs/gateway.mjs",
+      "size": 16327,
+      "sha256": "141dacbc090432a0e8b6deb553ae4312bfef9a828849f5128396865dda6901e7"
+    },
+    {
+      "path": "src/renderer/tabs/kbx.mjs",
+      "size": 5702,
+      "sha256": "710b9907ad152d3a7bc211982f19bcdc497aac7a61eca7472722c0524446a3c1"
+    },
+    {
+      "path": "src/renderer/tabs/pm.mjs",
+      "size": 20813,
+      "sha256": "62b02b962919257e8784576599fb55ec1245a6e623c02626624f341909ad3555"
+    }
+  ]
+}

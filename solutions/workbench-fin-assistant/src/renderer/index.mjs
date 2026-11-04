@@ -115,6 +115,9 @@ export default function createSolution(sdk) {
     pm: () => import('./tabs/pm.mjs'),
     gateway: () => import('./tabs/gateway.mjs'),
   };
+  /** 挂在已有页签下面的懒加载子模块：页签 key → 子模块 key */
+  const SUB = { ask: 'askx', kb: 'kbx' };
+  const SUB_LOAD = { askx: () => import('./tabs/askx.mjs'), kbx: () => import('./tabs/kbx.mjs') };
 
   return defineComponent({
     name: 'FinAssistantWorkbench',
@@ -207,12 +210,17 @@ export default function createSolution(sdk) {
       const lazyErr = reactive({});
       const kit = () => ({ sdk, vue: sdk.vue, el, t, call, busy, err, errNote, card, readBase64, fmtVal, fmtMoney, go, navigate: (k) => select(k) });
       const ensureLazy = async (k) => {
-        if (!LAZY[k] || lazyMods[k]) return lazyMods[k];
-        try { const m = await LAZY[k](); lazyMods[k] = m.default(kit()); } catch (e) { lazyErr[k] = String(e?.message || e); }
+        const loader = LAZY[k] || SUB_LOAD[k];
+        if (!loader || lazyMods[k]) return lazyMods[k];
+        try { const m = await loader(); lazyMods[k] = m.default(kit()); } catch (e) { lazyErr[k] = String(e?.message || e); }
         return lazyMods[k];
       };
       const steps = computed(() => {
         if (lazyMods[tab.value]) return lazyMods[tab.value].steps() || [];
+        const subSteps = SUB[tab.value] && lazyMods[SUB[tab.value]] ? lazyMods[SUB[tab.value]].steps() || [] : [];
+        return [...baseSteps(), ...subSteps];
+      });
+      const baseSteps = () => {
         if (tab.value === 'qa') return [
           { id: 'qa-1', title: '① 制度库', done: policies.value.some((p) => p.active) },
           { id: 'qa-2', title: '② 提问与作答', done: qaList.value.length > 0 },
@@ -246,12 +254,13 @@ export default function createSolution(sdk) {
           { id: 'mk-3', title: '③ 导出预审意见', done: !!mkt.value?.exported },
         ];
         return [];
-      });
+      };
       const progress = computed(() => (steps.value.length ? Math.round((steps.value.filter((s) => s.done).length / steps.value.length) * 100) : 0));
       const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       const select = async (k) => {
         tab.value = k;
         if (LAZY[k]) { const m = await ensureLazy(k); if (m && tab.value === k) await m.load?.(); return; }
+        if (SUB[k]) ensureLazy(SUB[k]).then((m) => m?.load?.());
         if (k === 'overview') await loadAudit();
         if (k === 'qa') await Promise.all([loadQa(), loadMobile()]);
         if (k === 'kb') await loadKb();
@@ -263,6 +272,7 @@ export default function createSolution(sdk) {
       onMounted(async () => { await loadMeta(); await Promise.all([loadQa(), loadAudit(), loadMobile()]); });
 
       const errNote = (k) => (err[k] ? el('p', { class: 'fa-note err' }, err[k]) : null);
+      const subView = (k) => (lazyMods[k] ? lazyMods[k].view() : lazyErr[k] ? el('p', { class: 'fa-note err' }, t('模块加载失败：{p0}', { p0: lazyErr[k] })) : el('p', { class: 'fa-empty', style: 'margin-top:12px' }, t('正在加载更多功能…')));
       const card = (id, title, done, sub, ...body) => el('section', { class: 'fa-card', id },
         el('h3', null, title, el('span', { class: `fa-st${done ? ' done' : ''}` }, done ? t('已完成') : t('待执行'))),
         sub ? el('p', { class: 'fa-sub' }, sub) : null, ...body);
@@ -336,7 +346,9 @@ export default function createSolution(sdk) {
                   ? `[${c.n}] ${t('知识库')} · ${c.title}（${t('来源：{p0}', { p0: c.source || '' })}${c.ref && c.ref !== c.title ? ` · ${c.ref}` : ''}）\n${c.text}`
                   : `[${c.n}]《${c.title}》${c.no} · v${c.version} · ${c.effectiveFrom ? `${c.effectiveFrom} 起施行` : '生效日未登记'}${c.dept ? ` · ${c.dept}` : ''}\n${c.text}`)),
                 q.note ? el('p', { class: 'fa-note info' }, q.note) : null,
-                el('div', { class: 'fa-row' }, t('这条回答：'), el('button', { class: 'fa-btn sm', onClick: () => call('qa', 'qa.rate', { id: q.id, rating: 1 }) }, t('有用')), el('button', { class: 'fa-btn sm', onClick: () => call('qa', 'qa.rate', { id: q.id, rating: -1 }) }, t('不满意（进缺口反馈）'))))) : null,
+                q.fast ? el('p', { class: 'fa-note ok', 'data-test': 'fa-qa-fast' }, t('常见问题直答：{p0} 毫秒，未检索、未调用模型（相似度 {p1}）', { p0: q.fast.ms, p1: q.fast.score })) : null,
+                (q.steps || []).length ? el('p', { class: 'fa-note info', 'data-test': 'fa-qa-steps' }, t('复杂问题多步检索：拆成 {p0} 个子问题分别检索——{p1}', { p0: q.steps.length, p1: q.steps.map((x) => `「${x.q}」${x.policyHits + x.kbHits} 条`).join('；') })) : null,
+                el('div', { class: 'fa-row' }, t('这条回答：'), el('button', { class: 'fa-btn sm', onClick: () => call('qa', 'qa.rate', { id: q.id, rating: 1 }) }, t('有用')), !q.fast ? el('button', { class: 'fa-btn sm', onClick: async () => { if (await call('qa', 'kb.faq.fromQa', { id: q.id })) sdk.notify.success(t('已设为常见问题，下次同样的问法直接回答')); } }, t('设为常见问题')) : null, el('button', { class: 'fa-btn sm', onClick: () => call('qa', 'qa.rate', { id: q.id, rating: -1 }) }, t('不满意（进缺口反馈）'))))) : null,
             qaList.value.length > 1 ? el('details', null, el('summary', null, t('历史问答（{n}）', { n: qaList.value.length })),
               el('table', { class: 'fa-tbl' }, el('tbody', null, qaList.value.slice(0, 50).map((x) => el('tr', null, el('td', null, x.at.slice(0, 16).replace('T', ' ')), el('td', null, x.source === 'mobile' ? el('span', { class: 'fa-src' }, t('手机')) : el('span', { class: 'fa-src pc' }, t('电脑'))), el('td', null, x.q), el('td', null, x.status === 'answered' ? t('已作答') : `${t('拒答')}：${x.reason}`)))))) : null),
           card('qa-3', t('③ 缺口反馈'), !!gaps.value, t('每周汇总拒答和员工评价不满意的问题，按归口部门交制度管理部门补充解释或修订制度。'),
@@ -591,7 +603,7 @@ export default function createSolution(sdk) {
             el('div', { class: 'fa-steps' }, steps.value.map((s, i) => el('button', { class: `${s.done ? 'done' : ''}${!s.done && steps.value.findIndex((x) => !x.done) === i ? ' cur' : ''}`, onClick: () => go(s.id) }, `${s.done ? '✓ ' : ''}${s.title}`))),
             el('div', { class: 'fa-prog' }, el('i', { style: `width:${progress.value}%` }))) : null),
         LAZY[tab.value] ? (lazyMods[tab.value] ? lazyMods[tab.value].view() : el('section', { class: 'fa-card', 'data-test': 'fa-lazy-loading' }, lazyErr[tab.value] ? el('p', { class: 'fa-note err' }, t('模块加载失败：{p0}', { p0: lazyErr[tab.value] })) : el('p', { class: 'fa-empty' }, el('i', { class: 'ri-loader-4-line' }), ' ', t('正在加载模块…'))))
-          : tab.value === 'overview' ? vOverview() : tab.value === 'qa' ? vQa() : tab.value === 'kb' ? vKb() : tab.value === 'ask' ? vAsk() : tab.value === 'credit' ? vCredit() : tab.value === 'mkt' ? vMkt() : vOps());
+          : tab.value === 'overview' ? vOverview() : tab.value === 'qa' ? vQa() : tab.value === 'kb' ? [vKb(), subView('kbx')] : tab.value === 'ask' ? [vAsk(), subView('askx')] : tab.value === 'credit' ? vCredit() : tab.value === 'mkt' ? vMkt() : vOps());
     },
   });
 }

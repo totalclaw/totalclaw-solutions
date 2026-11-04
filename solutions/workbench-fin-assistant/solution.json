@@ -3,18 +3,33 @@
   "schemaVersion": 1,
   "id": "workbench-fin-assistant",
   "name": "智能金融助手",
-  "aliases": ["金融助手", "金融行业智能体", "fin-assistant"],
-  "version": "1.0.3",
+  "aliases": [
+    "金融助手",
+    "金融行业智能体",
+    "fin-assistant"
+  ],
+  "version": "1.1.0",
   "kind": "workbench",
   "category": "金融",
   "icon": "icon-solutions",
   "order": 265,
-  "description": "银行、消费金融、保险机构的业务 AI 工作台：制度与合规问答、智能问数、授信材料预审、营销物料审查。模型只做理解与起草，取数、计算、校验、拦截、审批和审计由程序确定性执行。",
+  "description": "银行、消费金融、保险机构的业务 AI 工作台：制度与合规问答、智能问数（对话 / 报表 / API / 任务，多数据源与零侵入接口捕获）、资料智能处理（WPS / 图片 / PDF / 音视频）、智能检索知识库、智能体编排（多租户、插件）、AI 项目管理、统一 AI 网关（多模型路由、脱敏与围栏、全量审计）、授信材料预审、营销物料审查。",
   "descriptionEn": "An AI workbench for banks, consumer finance and insurers: policy & compliance Q&A, governed data queries, credit file pre-review and marketing material review. Models only interpret and draft; data access, calculation, checks, blocking, approval and audit are done by code.",
   "detail": "依据《金融行业 AI 应用解决方案 2.0》，不含研发 Agent（编码助手、代码评审）。① 安全与审计：数据分级路由（客户敏感数据只走内网模型，未确认即在调用前拦截）、串联哈希的审计记录、明确不做的事；② 制度与合规问答：禁区话题与证据不足直接拒答、回答引用条款原文与生效日期、数字回原文核对、废止自动下线、缺口反馈；③ 智能问数：口径库是唯一依据，模型只映射指标，数字由程序计算，附口径、等价查询语句和取数时间；④ 授信材料预审：材料清单缺件、关键数据抽取并定位原文、资产负债平衡 / 流水与收入匹配 / 证照有效期 / 大额与关联交易程序校验、预审意见不下结论、审批人逐条确认并留痕；⑤ 营销物料审查：禁用表述与必备风险提示硬匹配 + 语义判断，逐条处理后导出预审意见；⑥ 后台运营直达对账、发票、流程时效、合同审查工作台。",
-  "highlights": ["数字由程序计算", "客户敏感数据只走内网模型", "审计串联哈希"],
-  "access": { "requiresSolutionGrant": true, "feature": null, "hidden": false },
-  "compat": { "minAppVersion": "2.0.5", "hostApi": 2 },
+  "highlights": [
+    "数字由程序计算",
+    "客户敏感数据只走内网模型",
+    "审计串联哈希"
+  ],
+  "access": {
+    "requiresSolutionGrant": true,
+    "feature": null,
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.5",
+    "hostApi": 2
+  },
   "runtime": {
     "mode": "dynamic",
     "runner": "workbench",
@@ -22,16 +37,39 @@
     "renderer": "src/renderer/index.mjs",
     "main": "src/main/index.cjs",
     "hotSwap": false,
-    "routes": [{ "path": "/workbenches/fin-assistant", "name": "FinAssistantWorkbench" }],
-    "entries": { "renderer": "src/renderer/index.mjs", "main": "src/main/index.cjs", "hostModules": "src/host-modules.json" }
+    "routes": [
+      {
+        "path": "/workbenches/fin-assistant",
+        "name": "FinAssistantWorkbench"
+      }
+    ],
+    "entries": {
+      "renderer": "src/renderer/index.mjs",
+      "main": "src/main/index.cjs",
+      "hostModules": "src/host-modules.json"
+    }
   },
   "dependsOn": [],
-  "data": { "schemaVersion": 1, "paths": ["fin-assistant/"], "localStorage": [] },
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "fin-assistant/"
+    ],
+    "localStorage": []
+  },
   "capabilities": [],
   "largeAssets": [],
   "distribution": {
     "channel": "stable",
     "path": "solutions/workbench-fin-assistant",
-    "files": ["solution.json", "README.md", "CHANGELOG.md", "src/main/", "src/renderer/", "src/host-modules.json", "resources/"]
+    "files": [
+      "solution.json",
+      "README.md",
+      "CHANGELOG.md",
+      "src/main/",
+      "src/renderer/",
+      "src/host-modules.json",
+      "resources/"
+    ]
   }
 }
