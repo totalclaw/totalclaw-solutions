@@ -3,7 +3,7 @@
  * 每个模块分步骤（每步独立状态），进度条吸顶。不 import 'vue'：用 sdk.vue。
  */
 export default function createSolution(sdk) {
-  const { defineComponent, h, ref, reactive, computed, onMounted } = sdk.vue;
+  const { defineComponent, h, ref, reactive, computed, onMounted, shallowReactive } = sdk.vue;
   const t = (s, p) => sdk.t(s, p);
 
   const CSS = `
@@ -95,11 +95,26 @@ export default function createSolution(sdk) {
     { key: 'qa', title: '制度与合规问答', icon: 'ri-book-read-line' },
     { key: 'kb', title: '金融知识库', icon: 'ri-stack-line' },
     { key: 'ask', title: '智能问数', icon: 'ri-database-2-line' },
+    { key: 'docs', title: '资料智能处理', icon: 'ri-file-list-3-line', lazy: true },
+    { key: 'agents', title: '智能体编排', icon: 'ri-flow-chart', lazy: true },
+    { key: 'pm', title: 'AI 项目管理', icon: 'ri-kanban-view', lazy: true },
     { key: 'credit', title: '授信材料预审', icon: 'ri-file-search-line' },
     { key: 'mkt', title: '营销物料审查', icon: 'ri-megaphone-line' },
+    { key: 'gateway', title: 'AI 网关', icon: 'ri-shield-keyhole-line', lazy: true },
     { key: 'ops', title: '后台与其他', icon: 'ri-apps-2-line' },
     { key: 'overview', title: '设置', icon: 'ri-settings-3-line' },
   ];
+
+  /**
+   * 新模块按页签懒加载：第一次点开才 import 对应文件（tabs/*.mjs），首屏只带当前页的代码，不会因为模块多而卡。
+   * 模块约定：default (kit) => ({ load(), steps(), view() })
+   */
+  const LAZY = {
+    docs: () => import('./tabs/docs.mjs'),
+    agents: () => import('./tabs/agents.mjs'),
+    pm: () => import('./tabs/pm.mjs'),
+    gateway: () => import('./tabs/gateway.mjs'),
+  };
 
   return defineComponent({
     name: 'FinAssistantWorkbench',
@@ -187,7 +202,17 @@ export default function createSolution(sdk) {
         sdk.notify.success(t('演示数据已载入：制度、问数数据、授信预审、营销文案都已准备好；需要调用模型的步骤请在各页签手动点'));
       };
 
+      // 懒加载的模块实例（key → { load, steps, view }）与加载状态
+      const lazyMods = shallowReactive({});
+      const lazyErr = reactive({});
+      const kit = () => ({ sdk, vue: sdk.vue, el, t, call, busy, err, errNote, card, readBase64, fmtVal, fmtMoney, go, navigate: (k) => select(k) });
+      const ensureLazy = async (k) => {
+        if (!LAZY[k] || lazyMods[k]) return lazyMods[k];
+        try { const m = await LAZY[k](); lazyMods[k] = m.default(kit()); } catch (e) { lazyErr[k] = String(e?.message || e); }
+        return lazyMods[k];
+      };
       const steps = computed(() => {
+        if (lazyMods[tab.value]) return lazyMods[tab.value].steps() || [];
         if (tab.value === 'qa') return [
           { id: 'qa-1', title: '① 制度库', done: policies.value.some((p) => p.active) },
           { id: 'qa-2', title: '② 提问与作答', done: qaList.value.length > 0 },
@@ -226,6 +251,7 @@ export default function createSolution(sdk) {
       const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       const select = async (k) => {
         tab.value = k;
+        if (LAZY[k]) { const m = await ensureLazy(k); if (m && tab.value === k) await m.load?.(); return; }
         if (k === 'overview') await loadAudit();
         if (k === 'qa') await Promise.all([loadQa(), loadMobile()]);
         if (k === 'kb') await loadKb();
@@ -564,7 +590,8 @@ export default function createSolution(sdk) {
           steps.value.length ? el('div', null,
             el('div', { class: 'fa-steps' }, steps.value.map((s, i) => el('button', { class: `${s.done ? 'done' : ''}${!s.done && steps.value.findIndex((x) => !x.done) === i ? ' cur' : ''}`, onClick: () => go(s.id) }, `${s.done ? '✓ ' : ''}${s.title}`))),
             el('div', { class: 'fa-prog' }, el('i', { style: `width:${progress.value}%` }))) : null),
-        tab.value === 'overview' ? vOverview() : tab.value === 'qa' ? vQa() : tab.value === 'kb' ? vKb() : tab.value === 'ask' ? vAsk() : tab.value === 'credit' ? vCredit() : tab.value === 'mkt' ? vMkt() : vOps());
+        LAZY[tab.value] ? (lazyMods[tab.value] ? lazyMods[tab.value].view() : el('section', { class: 'fa-card', 'data-test': 'fa-lazy-loading' }, lazyErr[tab.value] ? el('p', { class: 'fa-note err' }, t('模块加载失败：{p0}', { p0: lazyErr[tab.value] })) : el('p', { class: 'fa-empty' }, el('i', { class: 'ri-loader-4-line' }), ' ', t('正在加载模块…'))))
+          : tab.value === 'overview' ? vOverview() : tab.value === 'qa' ? vQa() : tab.value === 'kb' ? vKb() : tab.value === 'ask' ? vAsk() : tab.value === 'credit' ? vCredit() : tab.value === 'mkt' ? vMkt() : vOps());
     },
   });
 }
