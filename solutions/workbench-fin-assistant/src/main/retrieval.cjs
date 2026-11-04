@@ -23,7 +23,7 @@ function similarity(a, b) {
 }
 
 /** 在常见问题里找最像的一条；返回 { faq, score } 或 null */
-function faqMatch(q, faqs, { threshold = 0.82 } = {}) {
+function faqMatch(q, faqs, { threshold = 0.7 } = {}) {
   let best = null;
   for (const f of faqs || []) {
     if (f.disabled) continue;

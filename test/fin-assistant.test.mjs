@@ -402,14 +402,15 @@ test('资料·WPS 老格式取文字、关键词分类、字段逐字核对', ()
 
 test('资料·端到端：导入 → 取文字 → 关键词分类 → 模型抽字段 → 核对 → 入知识库 → 台账 CSV', async () => {
   const { call } = fakeCtx();
-  main.__setLlmForTests(async () => ({ text: JSON.stringify({ 户名: null, 账号: null, 起止日期: { value: '2026-10-01 至 2026-10-28', quote: '2026-10-01' }, 收入合计: { value: '770000.00', quote: '' }, 支出合计: null }), model: 'stub' }));
+  main.__setLlmForTests(async () => ({ text: JSON.stringify({ 户名: null, 账号: null, 起止日期: { value: '2026-10-01 至 2026-10-28', quote: '2026-10-01' }, 收入合计: { value: '770000.00', quote: '' }, 支出合计: { value: '999999.00', quote: '' } }), model: 'stub' }));
   const csv = readFileSync(join(DEMO_DOCS, '对公账户银行流水（示例）.csv')).toString('base64');
   const [d] = await call('docs.import', { files: [{ fileName: '流水.csv', base64: csv }], autoProcess: false });
   const r = await call('docs.process', { id: d.id });
   assert.equal(r.status, 'done', r.error);
   assert.equal(r.category, 'statement'); assert.equal(r.categoryBy, 'rule');
   assert.equal(r.fields.find((x) => x.field === '起止日期').verified, true);
-  assert.equal(r.fields.find((x) => x.field === '收入合计').verified, false, '原文里没有这个合计数，不能算已核实');
+  assert.equal(r.fields.find((x) => x.field === '收入合计').verified, true);
+  assert.equal(r.fields.find((x) => x.field === '支出合计').verified, false, '编出来的合计数原文里没有，不能算已核实');
   assert.equal((await call('docs.toKb', { ids: [d.id] })).added, 1);
   assert.ok(DOC.docsCsv(await call('docs.list')).includes('银行流水'));
   main.__setLlmForTests(null);
@@ -573,5 +574,24 @@ test('检索·常见问题亚秒直答（换版就不直答）、复杂问题多
   assert.ok(fast.fast, '点过赞的回答，同样的问法直接给');
   assert.equal(calls.length, n, '直答不调模型');
   assert.ok(fast.fast.ms < 1000);
+  main.__setLlmForTests(null);
+});
+
+test('一键演示：新增模块全部有演示数据（常见问题 / 报表 / 资料 / 项目日报 / 智能体运行 / 网关），不调用模型', async () => {
+  const { call } = fakeCtx();
+  let calls = 0;
+  main.__setLlmForTests(async () => { calls += 1; return { text: '{}', model: 'm' }; });
+  await call('demo.all');
+  assert.equal(calls, 0, '一键演示不调模型');
+  assert.ok((await call('kb.faq.list')).length >= 2);
+  assert.ok((await call('ask.report.list')).some((r) => r.demo && r.lastRun));
+  const docs = await call('docs.list');
+  assert.equal(docs.length, 6);
+  assert.ok(docs.filter((d) => d.status === 'done').length >= 5);
+  const prj = (await call('pm.list'))[0];
+  assert.ok((await call('pm.reports', { id: prj.id })).length === 1);
+  assert.ok((await call('agents.runs', {})).length >= 1);
+  const fast = await call('qa.ask', { q: '大额存单最低多少钱起存' });
+  assert.ok(fast.fast, '演示常见问题能直答');
   main.__setLlmForTests(null);
 });

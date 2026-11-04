@@ -975,7 +975,9 @@ module.exports = {
       saveCredit(r);
       audit('demo.extract', { id: r.id, note: '演示模式按示例财报格式取数，未调用模型' });
       const checked = handlers['credit.check']({ id: r.id, related: ['上海鑫源贸易有限公司'] });
-      audit('demo.all', { policies: policiesAdded, rows, credit: r.id });
+      // 新增模块的演示数据（知识库 / 常见问题 / 问数报表 / 资料处理 / 项目 / 智能体 / AI 网关）一起载入，不调用模型
+      const extras = handlers['demo.extras'] ? await handlers['demo.extras']().catch((e) => ({ error: String(e?.message || e) })) : {};
+      audit('demo.all', { policies: policiesAdded, rows, credit: r.id, extras: Object.keys(extras || {}) });
       return {
         creditId: checked.id,
         qa: '大额存单起存金额是多少？',
@@ -1264,7 +1266,15 @@ module.exports = {
       const t0 = Date.now();
       const r = await AG.runGraph(a.graph, inputs, {
         llm: (prompt, cls) => llm('agent', ['public', 'internal', 'sensitive'].includes(cls) ? cls : 'internal', prompt),
-        retrieve: async (q, topK) => ((await kbSearch(q, { limit: topK })).hits || []),
+        // 知识检索节点：生效中的制度条款 + 金融知识库（制度在前），智能体答制度类问题也有依据
+        retrieve: async (q, topK) => {
+          const docs = [];
+          for (const pol of policies().filter((x) => L.policyActive(x))) for (const c of pol.clauses) docs.push({ id: `${pol.id}#${c.no}`, title: pol.title, no: c.no, text: c.text });
+          const ph = docs.length ? L.bm25Search(docs, q, { limit: topK }).map((x) => ({ title: `《${x.doc.title}》${x.doc.no}`, text: x.doc.text, sourceName: '制度库' })) : [];
+          let kh = [];
+          try { kh = (await kbSearch(q, { limit: topK })).hits || []; } catch (_) { kh = []; }
+          return [...ph, ...kh].slice(0, topK + 2);
+        },
         plugin: (pid, pin) => runPlugin(tid, pid, pin),
       });
       const run = { id: newId('run'), agentId, at: new Date().toISOString(), source, inputs, ok: r.ok, answer: r.answer || '', error: r.error || '', ms: Date.now() - t0, trace: r.trace.map((x) => ({ ...x, output: typeof x.output === 'string' ? x.output.slice(0, 4000) : x.output })) };
@@ -1732,6 +1742,74 @@ module.exports = {
       if (r.canceled || !r.filePath) return { ok: false };
       writeFileSync(r.filePath, PM.breakdownCsv(p?.tasks || []));
       return { ok: true, path: r.filePath };
+    });
+
+    /** 新增模块的演示数据：全部虚构；资料处理 / 日报 / 智能体运行的结果来自一次真实运行留存的样例（不调用模型） */
+    h('demo.extras', async () => {
+      const FX = (f, fb) => { try { return JSON.parse(readFileSync(ctx.packagePath(`resources/demo/fixtures/${f}`), 'utf8')); } catch { return fb; } };
+      const out = {};
+      // 金融知识库示例文档
+      try { out.kbDocs = await handlers['kb.doc.demo'](); } catch (_) { /* 已有 */ }
+      // 常见问题：从示例制度里取条款原文当已确认答案
+      const pols = policies().filter((x) => L.policyActive(x));
+      const clauseOf = (kw) => { for (const pol of pols) for (const c of pol.clauses) if (kw.every((k) => c.text.includes(k))) return { pol, c }; return null; };
+      let faqN = 0;
+      for (const [q, kw, alts] of [['大额存单起存金额是多少？', ['大额存单', '起存'], ['大额存单最低多少钱起存', '大额存单多少起存']], ['营销物料审查要几个工作日？', ['工作日'], ['营销宣传材料审核多久']], ['出差住宿每晚能报多少？', ['住宿'], ['出差酒店报销标准']]]) {
+        const hit = clauseOf(kw);
+        if (!hit) continue;
+        faqUpsert({ q, alts, answer: `依据《${hit.pol.title}》${hit.c.no}：${hit.c.text}`, citations: [{ n: 1, kind: 'policy', policyId: hit.pol.id, title: hit.pol.title, no: hit.c.no, version: hit.pol.version, effectiveFrom: hit.pol.effectiveFrom, dept: hit.pol.dept, text: hit.c.text }], source: 'curated' });
+        faqN += 1;
+      }
+      out.faq = faqN;
+      // 智能问数：示例报表（按分行看余额），口径直接取口径库，不经模型
+      try {
+        const m = METRICS.items[0];
+        if (!askReports().some((x) => x.demo)) {
+          const v = L.validateIntent({ metricId: m.id, from: '', to: '', groupBy: 'branch', where: {} }, METRICS.items, METRICS.dims);
+          if (v.ok) { const rep = { id: newId('rep'), name: '分行零售存款余额日报（示例）', q: '各分行零售存款余额', metricId: m.id, query: v.query, unit: m.unit, createdAt: new Date().toISOString(), schedule: '08:30', refresh: false, push: false, demo: true }; ctx.writeJson(AREP, [rep, ...askReports()]); await runReport(rep.id, 'demo'); out.report = rep.id; }
+        }
+      } catch (e) { out.reportError = String(e?.message || e); }
+      // 资料智能处理：6 份示例资料；5 份带真实运行留存的识别结果，银行流水留着现场点「开始处理」
+      const fx = FX('docs.json', {});
+      const dir = ctx.packagePath('resources/demo/docs');
+      let docN = 0;
+      for (const f of existsSync(dir) ? readdirSync(dir).filter((x) => !x.startsWith('.')) : []) {
+        if (docsList().some((x) => x.name === f)) continue;
+        const target = ctx.dataPath(`${D}/docs-files/demo`);
+        mkdirSync(target, { recursive: true });
+        require('node:fs').copyFileSync(join(dir, f), join(target, f));
+        const d = addDocFile(f, join(target, f), 'internal');
+        if (fx[f]) { Object.assign(d, fx[f], { status: 'done', phase: '', processedAt: new Date().toISOString(), demo: true }); saveDoc(d); }
+        docN += 1;
+      }
+      out.docs = docN;
+      // AI 项目管理：示例项目 + 一份留存的日报
+      if (!pmProjects().some((x) => x.name.includes('示例'))) {
+        const prj = handlers['pm.demo']();
+        const rp = FX('pm-report.json', null);
+        if (rp?.text) {
+          const d0 = today();
+          const facts = PM.reportFacts({ project: pmGet(prj.id), commits: pmData(prj.id, 'commits.json', []), tasks: pmData(prj.id, 'tasks.json', []), prevTasks: pmData(prj.id, 'tasks-prev.json', []), minutes: pmData(prj.id, 'minutes.json', []), from: d0, to: d0, today: d0 });
+          pmPut(prj.id, 'reports.json', [{ id: newId('rpt'), projectId: prj.id, kind: 'daily', from: d0, to: d0, at: new Date().toISOString(), source: 'demo', facts, text: rp.text, unverified: L.unverifiedNumbers(rp.text, PM.factsText(facts)), error: '', pushed: null }]);
+        }
+        out.project = prj.id;
+      }
+      // 智能体编排：默认租户 + 两个示例智能体，附一次运行记录
+      const t0 = curTenant();
+      if (!ctx.readJson(tPath(t0.id, 'runs.json'), []).length) {
+        const runs = FX('agent-runs.json', []).map((r) => ({ id: newId('run'), at: new Date().toISOString(), source: 'demo', error: '', ...r }));
+        ctx.writeJson(tPath(t0.id, 'runs.json'), runs);
+      }
+      // AI 网关：没配置过就给一套演示配置（系统默认模型标内网；有其它可用模型就加一个外部模型和两条规则，演示脱敏与路由）
+      if (!settings().gateway?.models?.length) {
+        const host = llmHost && llmHost.options ? await llmHost.options().catch(() => ({ options: [] })) : { options: [] };
+        const ext = (host.options || []).find((m) => m.value && m.value !== host.defaultLabel);
+        const models = [{ value: '', label: '系统默认模型（内网私有部署）', internal: true }, ...(ext ? [{ value: ext.value, label: `${ext.label}（外部）`, internal: false }] : [])];
+        const rules = ext ? [{ name: '复杂问题用外部强模型', complexity: 'complex', models: [ext.value, ''] }, { name: '内部资料先走外部模型（自动脱敏）', cls: 'internal', models: [ext.value, ''] }] : [];
+        saveSettings({ gateway: { models: G.normalizeModels(models), rules: G.normalizeRules(rules) }, modelInternal: true });
+        out.gateway = models.length;
+      }
+      return out;
     });
   },
   deactivate() { try { agentApiOpen?.close(); } catch { /* 已关 */ } agentApiOpen = null; if (pmTimer) clearInterval(pmTimer); pmTimer = null; if (askTimer) clearInterval(askTimer); askTimer = null; },

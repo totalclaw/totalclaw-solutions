@@ -1,7 +1,7 @@
 {
   "id": "workbench-fin-assistant",
   "version": "1.1.0",
-  "treeDigest": "f878f74ec6a5b7fa3197640a258c08c28a315bfc20de4d74fb9a89e31e762ec3",
+  "treeDigest": "aaf5d5a373d38075d58d1ba77aa6680add09ae16bfac29a4517a74aea4e8f250",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -50,8 +50,8 @@
     },
     {
       "path": "resources/demo/docs/对公账户银行流水（示例）.csv",
-      "size": 426,
-      "sha256": "d2d6290d7f1aa205a8d0460791f3ce1b8f5cfc88859e343f46e4419513150318"
+      "size": 615,
+      "sha256": "1a353ec0f233f1e1f627b38333cafda46c27c532e4fcd8a864c38ee3e6326513"
     },
     {
       "path": "resources/demo/docs/流动资金借款合同（示例）.wps",
@@ -72,6 +72,21 @@
       "path": "resources/demo/docs/零售金融部周例会会议纪要（示例）.pdf",
       "size": 27794,
       "sha256": "7b4c5b9ea639f6f146b9d3c9c81cfbf8b2b714171975e73a15cc7101d9da2ac3"
+    },
+    {
+      "path": "resources/demo/fixtures/agent-runs.json",
+      "size": 982,
+      "sha256": "19d52fbdac2cefdf1bdc5fec4f59d400423219f954e5365a67930fe4f4c833ad"
+    },
+    {
+      "path": "resources/demo/fixtures/docs.json",
+      "size": 8886,
+      "sha256": "57df001e32d359824b793d222697b71901401d5b7484a0c401bcb54ac1673f46"
+    },
+    {
+      "path": "resources/demo/fixtures/pm-report.json",
+      "size": 1349,
+      "sha256": "c4dcd0046a4fbfa3e8aa6de9b78f60e3543f570aa101c4fc3ad50fb51c7c24c1"
     },
     {
       "path": "resources/demo/knowledge/反洗钱客户身份识别操作指引（示例）.txt",
@@ -180,8 +195,8 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 125090,
-      "sha256": "4dc6325395e9a861d2a074f161fe521b3240f1d3827c862a7fd5ab32ce08c5ec"
+      "size": 131671,
+      "sha256": "14a0a9d824f291c42a1fb787e14f21bf25de5dab3e4c96e587d94aba2720358d"
     },
     {
       "path": "src/main/knowledge.cjs",
@@ -205,8 +220,8 @@
     },
     {
       "path": "src/main/retrieval.cjs",
-      "size": 3003,
-      "sha256": "59ecffe065f1e1a27f074173239fbfb0c6c69547e40699bee2c1fa03fece9f04"
+      "size": 3002,
+      "sha256": "cf833e716888df9fd2fa1f9444089527a97b89db4d3353228f1c2da0e073631a"
     },
     {
       "path": "src/main/zip.cjs",
@@ -215,8 +230,8 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 75464,
-      "sha256": "663801f104cd3600c50e4b09225cb42ea3d93448def7901ee2ab20e058f18671"
+      "size": 75859,
+      "sha256": "40d37c195889f9b8341f6a548092a3f865b9d8c3b6e48113a843d9e54eff6b1f"
     },
     {
       "path": "src/renderer/tabs/agents.mjs",

@@ -1,0 +1,40 @@
+[
+ {
+  "agentId": "wealth-faq",
+  "inputs": {
+   "question": "这个理财能保本吗？"
+  },
+  "ok": true,
+  "answer": "理财产品不承诺保本保收益，过往业绩不代表未来表现。建议您结合自身风险承受能力选择，详情可咨询网点理财经理。",
+  "ms": 0,
+  "trace": [
+   {
+    "node": "start",
+    "type": "start",
+    "title": "开始",
+    "output": {
+     "question": "这个理财能保本吗？"
+    },
+    "ok": true,
+    "ms": 0
+   },
+   {
+    "node": "guard",
+    "type": "condition",
+    "title": "问保本保收益？",
+    "output": true,
+    "input": "这个理财能保本吗？ contains 保本",
+    "ok": true,
+    "ms": 0
+   },
+   {
+    "node": "refuse",
+    "type": "answer",
+    "title": "合规回复",
+    "output": "理财产品不承诺保本保收益，过往业绩不代表未来表现。建议您结合自身风险承受能力选择，详情可咨询网点理财经理。",
+    "ok": true,
+    "ms": 0
+   }
+  ]
+ }
+]

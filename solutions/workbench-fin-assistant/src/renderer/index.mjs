@@ -202,7 +202,9 @@ export default function createSolution(sdk) {
         mktForm.text = r.mkt.text;
         await Promise.all([loadMeta(), loadQa(), loadAsk(), loadCredits(), loadMkt(), loadAudit()]);
         await openCredit(r.creditId);
-        sdk.notify.success(t('演示数据已载入：制度、问数数据、授信预审、营销文案都已准备好；需要调用模型的步骤请在各页签手动点'));
+        // 已经打开过的新模块（懒加载）也刷新一下
+        await Promise.all(Object.values(lazyMods).map((m) => m?.load?.()));
+        sdk.notify.success(t('演示数据已载入：制度、知识库与常见问题、问数数据与报表、6 份多格式资料、示例项目与日报、示例智能体、AI 网关配置、授信预审、营销文案都已准备好'));
       };
 
       // 懒加载的模块实例（key → { load, steps, view }）与加载状态
@@ -592,9 +594,9 @@ export default function createSolution(sdk) {
         el('style', null, CSS + THEME),
         el('div', { style: 'padding-top:14px' },
           el('div', { class: 'fa-banner' }, el('span', { class: 'fa-ico' }, el('i', { class: 'ri-bank-line' })),
-            el('div', { class: 'fa-grow' }, el('h2', null, t('智能金融助手'), el('span', { class: 'fa-up', title: t('合规提效：制度问答、问数、预审、营销审查') }, el('i', { class: 'ri-arrow-right-up-line' }), t('合规 · 提效'))), el('p', null, t('制度问答、智能问数、授信材料预审、营销物料审查；数据不出域、数字不出错、过程留痕、关键动作人签、老系统零改造。')),
+            el('div', { class: 'fa-grow' }, el('h2', null, t('智能金融助手'), el('span', { class: 'fa-up', title: t('合规提效：制度问答、问数、预审、营销审查') }, el('i', { class: 'ri-arrow-right-up-line' }), t('合规 · 提效'))), el('p', null, t('制度问答 · 智能问数 · 资料智能处理 · 智能检索 · 智能体编排 · AI 项目管理 · 统一 AI 网关 · 授信预审 · 营销审查；数据不出域、数字不出错、过程留痕、关键动作人签、老系统零改造。')),
               el('div', { class: 'fa-badges' }, [t('数据不能出域'), t('数字不能出错'), t('过程必须留痕'), t('关键动作必须有人签'), t('老系统不能大改')].map((b) => el('span', null, b)))),
-            el('button', { class: 'fa-demo', disabled: busy.demo, 'data-test': 'fa-demo-all', title: t('一次填入全部演示数据：示例制度、零售存款数据、一笔授信预审（材料、取数与程序校验）、营销文案和各页签的示例问题；不调用模型、不产生费用'), onClick: demoAll }, busy.demo ? t('载入中…') : t('一键载入演示数据'))),
+            el('button', { class: 'fa-demo', disabled: busy.demo, 'data-test': 'fa-demo-all', title: t('一次填入全部演示数据：示例制度、知识库与常见问题、零售存款数据与示例报表、6 份多格式资料（含识别结果）、示例项目与日报、示例智能体与运行记录、AI 网关配置、一笔授信预审、营销文案；不调用模型、不产生费用'), onClick: demoAll }, busy.demo ? t('载入中…') : t('一键载入演示数据'))),
           errNote('demo')),
         // 页签 + 步骤 + 进度条吸顶（横幅不吸顶，免得占掉半屏）
         el('div', { class: 'fa-sticky' },
