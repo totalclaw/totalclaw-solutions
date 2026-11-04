@@ -1,12 +1,12 @@
 {
   "id": "workbench-legion-hq",
-  "version": "1.0.11",
-  "treeDigest": "5a3957fb7d47bcbd294386cab9b22ffcf753d54f40da6f355833504001f385ed",
+  "version": "1.0.12",
+  "treeDigest": "8d97a04aa1412fa2cc44aed5e10d59d4cd8019d73328556eb88dedf625facbf4",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 8814,
-      "sha256": "8b83b2c23c09a2c66ed9f90ef2c16d0cfdaf4dbe0d9a8d3118ad3222c9ea5317"
+      "size": 9073,
+      "sha256": "d0730e57e3970ab21dfc9e5c9871ce7025780b5d500553324f93f91436a8d3e3"
     },
     {
       "path": "README.md",
@@ -50,8 +50,8 @@
     },
     {
       "path": "resources/screen/index.html",
-      "size": 88956,
-      "sha256": "8a5a379a1ad49f02fd470ba455cd7a7a71ce16c470dce6eb74b20691f1941050"
+      "size": 89498,
+      "sha256": "796c1cc27f3112ebb6501f118e570b7a1480487ba85b7e3ed3d2ea7c5c805a7f"
     },
     {
       "path": "resources/screen/remote.html",
@@ -81,7 +81,7 @@
     {
       "path": "solution.json",
       "size": 3067,
-      "sha256": "58429be9a6a32d1ff00fdc02600bf512c604b8f01142c9eb031397a788c2035d"
+      "sha256": "b21ca45e849a879fd2782e2a18bb7a96c6645983278c99a70e4dba07e25eabb2"
     },
     {
       "path": "src/host-modules.json",
@@ -205,6 +205,17 @@
     }
   ],
   "versions": [
+    {
+      "version": "1.0.12",
+      "ref": "workbench-legion-hq@1.0.12",
+      "treeDigest": "8d97a04aa1412fa2cc44aed5e10d59d4cd8019d73328556eb88dedf625facbf4",
+      "filesRef": "index/workbench-legion-hq/1.0.12.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.5",
+      "hostApi": 2,
+      "publishedAt": "2026-11-04"
+    },
     {
       "version": "1.0.11",
       "ref": "workbench-legion-hq@1.0.11",

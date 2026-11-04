@@ -31,6 +31,9 @@ html,body{margin:0;height:100%;background:#050B1C;font-family:"Microsoft YaHei",
 .task .res.bad{color:#FCA5A5}
 .task .res a.dlk{background:none;border:1px solid #0E7490;color:#A5F3FC;border-radius:6px;padding:1px 8px;font-size:11.5px;text-decoration:none;white-space:nowrap}
 .task .res button{background:#0E7490;border:none;color:#fff;border-radius:6px;padding:2px 9px;font-size:11.5px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.task .res button.fresh{animation:resPulse 1.1s ease-in-out infinite}
+@keyframes resPulse{0%,100%{box-shadow:0 0 0 0 rgba(34,211,238,.7)}50%{box-shadow:0 0 0 6px rgba(34,211,238,0)}}
+@media (prefers-reduced-motion:reduce){.task .res button.fresh{animation:none;outline:2px solid #22D3EE}}
 .task.done{opacity:.8}
 .rbox{width:min(980px,92vw);max-height:86vh;display:flex;flex-direction:column;background:#0B1B3A;border:1px solid #22D3EE;border-radius:14px;box-shadow:0 0 50px #22D3EE44;overflow:hidden}
 .rbox .rt{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid #1E3A6E;color:#A5F3FC}
@@ -333,9 +336,11 @@ setInterval(()=>{if(Date.now()-lastMsg>40000){setConn(false);connect();lastMsg=D
 setInterval(()=>{const el=$('mload');if(!el||el.scrollHeight<=el.clientHeight+2)return;const row=(el.querySelector('.mach')||{}).offsetHeight||36;el.scrollTop=el.scrollTop+el.clientHeight>=el.scrollHeight-2?0:el.scrollTop+row;},3000);// 心跳 15 秒，40 秒没消息视为断开
 function setConn(ok){const c=$('conn');c.textContent=tr('lost');c.style.display=ok?'none':'block';}
 
+// 刚办完的任务 → 闪烁截止时刻（「查看结果」按钮提示几秒）
+var freshDone=new Map();
 function onEvent(ev){
- // 老板下令的事办完：结果直接弹出来（不用再去主控里找）
- if(ev.type==='task:done'&&ev.ok&&!ev.cancelled){const tk=(S.tasks||[]).find(x=>x.id===ev.taskId);if(tk&&tk.source==='boss')setTimeout(()=>openResult(ev.taskId),600);}
+ // 老板下令的事办完：不自动弹窗（会盖住大屏），任务卡上的「查看结果」闪几秒提示，点了才打开预览
+ if(ev.type==='task:done'&&ev.ok&&!ev.cancelled){freshDone.set(ev.taskId,Date.now()+8000);lastTaskHtml='';setTimeout(()=>{freshDone.delete(ev.taskId);lastTaskHtml='';renderPanels();},8100);}
  const t=nowS();
  if(ev.type==='task:received'||ev.type==='task:triaged')fx.push({kind:ev.type,at:t,taskId:ev.taskId});
  else if(ev.type==='node:handoff')fx.push({kind:'handoff',at:t,taskId:ev.taskId,from:ev.fromLegion,to:ev.toLegion,label:ev.label,no:ev.taskNo});
@@ -454,7 +459,7 @@ function renderPanels(){
   const lg=t.legions.length?t.legions.map(id=>{const L=LG[id]||{color:'#64748B',short:id};const st=t.steps.filter(s=>s.legionId===id);const on=st.some(s=>s.status==='running');const ok=st.length&&st.every(s=>s.status==='done');const bad=st.some(s=>s.status==='failed');
    return `<span class="${on?'on':bad?'bad':ok?'ok':''}" style="border-color:${L.color};${on?`background:${L.color}`:`color:${L.color}`}">${esc(LANG==='en'&&L.shortEn?L.shortEn:L.short)}${ok?' ✓':''}</span>`}).join(''):(t.status==='triaging'?'':`<span style="border-color:#22D3EE;color:#22D3EE;opacity:1">${tr('direct')}</span>`);
   const phase=t.steps.filter(s=>s.status==='running'&&s.phase).map(s=>`${(LG[s.legionId]||{}).short||''}·${s.phase}`).join('　')||(t.status==='failed'&&t.error?t.error:'');
-  return `<div class="task${focus===t.id?' focus':''}${ACTIVE.has(t.status)?'':' done'}" data-id="${esc(t.id)}"><div class="h"><span class="id">#${t.no}</span><span class="src" style="color:${src};border:1px solid ${src}">${tr('src.'+t.source)}</span><span class="ttl">${esc(t.title)}</span><span class="st" style="color:${sc};border:1px solid ${sc}">${tr('st.'+t.status)}</span></div><div class="lgs">${lg}</div>${phase?`<div class="ph2">${esc(phase)}</div>`:''}<div class="bar"><i style="width:${(p*100).toFixed(1)}%"></i></div>${(t.status==='done'||t.status==='awaiting')?`<div class="res"><span>${esc(t.result||'')}</span><button data-res="${esc(t.id)}">${LANG==='en'?'View result':'查看结果'}</button><a class="dlk" href="${api('/api/task/report?id='+encodeURIComponent(t.id))}" download onclick="event.stopPropagation()">${LANG==='en'?'Download':'下载'}</a></div>`:t.status==='failed'?`<div class="res bad"><span>${esc(t.error||'')}</span><button data-res="${esc(t.id)}">${LANG==='en'?'Details':'查看'}</button></div>`:''}</div>`;}).join('');
+  return `<div class="task${focus===t.id?' focus':''}${ACTIVE.has(t.status)?'':' done'}" data-id="${esc(t.id)}"><div class="h"><span class="id">#${t.no}</span><span class="src" style="color:${src};border:1px solid ${src}">${tr('src.'+t.source)}</span><span class="ttl">${esc(t.title)}</span><span class="st" style="color:${sc};border:1px solid ${sc}">${tr('st.'+t.status)}</span></div><div class="lgs">${lg}</div>${phase?`<div class="ph2">${esc(phase)}</div>`:''}<div class="bar"><i style="width:${(p*100).toFixed(1)}%"></i></div>${(t.status==='done'||t.status==='awaiting')?`<div class="res"><span>${esc(t.result||'')}</span><button data-res="${esc(t.id)}"${(freshDone.get(t.id)||0)>Date.now()?' class="fresh"':''}>${LANG==='en'?'View result':'查看结果'}</button><a class="dlk" href="${api('/api/task/report?id='+encodeURIComponent(t.id))}" download onclick="event.stopPropagation()">${LANG==='en'?'Download':'下载'}</a></div>`:t.status==='failed'?`<div class="res bad"><span>${esc(t.error||'')}</span><button data-res="${esc(t.id)}">${LANG==='en'?'Details':'查看'}</button></div>`:''}</div>`;}).join('');
  if(html!==lastTaskHtml){$('tasks').innerHTML=html;lastTaskHtml=html;}
  // 老板待办
  const ib=(S.inbox||[]).length?S.inbox.map(x=>`<div class="it"><span class="tx">#${x.no} ${esc(x.title)}</span>${x.approval?`<span class="kind">${esc(x.approval.label||'')}</span>`:''}<button data-ok="${esc(x.taskId)}">${tr('approve')}</button><button class="rej" data-no="${esc(x.taskId)}">${tr('reject')}</button></div>`).join(''):`<div class="empty">${tr('empty')}</div>`;
