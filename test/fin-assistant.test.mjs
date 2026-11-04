@@ -595,3 +595,211 @@ test('一键演示：新增模块全部有演示数据（常见问题 / 报表 /
   assert.ok(fast.fast, '演示常见问题能直答');
   main.__setLlmForTests(null);
 });
+
+// ── 2026-11 界面实测修复 ──
+
+test('资料·文本解码：UTF-8 去 BOM、GBK 导出的 CSV 自动按 GB18030 解；PDF 里的康熙部首换成常用汉字（全角标点不动）', () => {
+  assert.equal(DOC.decodeText(Buffer.from('﻿户名：甲\r\n日期,2026-10-01')), '户名：甲\n日期,2026-10-01');
+  const gbk = Buffer.from([0xbb, 0xa7, 0xc3, 0xfb, 0x2c, 0x32, 0x30, 0x32, 0x36]); // 「户名,2026」的 GBK 字节
+  assert.equal(DOC.decodeText(gbk), '户名,2026');
+  assert.equal(DOC.normalizeCjk('零售⾦融部（示例）：2026年10 ⽉ 30 ⽇'), '零售金融部（示例）：2026年10 月 30 日');
+});
+
+test('资料·CSV 不经表格解析：日期原样保留（原来被转成 9/30/26 还差一天）；处理中的资料不让删', async () => {
+  const { call } = fakeCtx();
+  main.__setLlmForTests(async () => ({ text: '{}', model: 'stub' }));
+  const csv = readFileSync(join(DEMO_DOCS, '对公账户银行流水（示例）.csv')).toString('base64');
+  const [d] = await call('docs.import', { files: [{ fileName: '流水.csv', base64: csv }], autoProcess: false });
+  await call('docs.process', { id: d.id });
+  const full = await call('docs.get', { id: d.id });
+  assert.ok(full.text.includes('2026-10-01,货款'), full.text.slice(0, 200));
+  assert.ok(!/Sheet1!/.test(full.text));
+  assert.equal(await call('docs.remove', { id: d.id }), true);
+  assert.equal((await call('docs.list')).length, 0);
+  main.__setLlmForTests(null);
+});
+
+test('日期：按本机时区取「今天」（不是 UTC 日期）', () => {
+  const d = new Date(2026, 10, 4, 0, 30); // 本地 11 月 4 日 00:30
+  assert.equal(L.localDate(d), '2026-11-04');
+  assert.equal(L.localDate(new Date(2026, 0, 9, 23, 59)), '2026-01-09');
+});
+
+test('需求评审：引文去掉 Markdown 记号、标题与正文连写、带一句注释也能定位；编的引文定位不到', () => {
+  const PMX = req('./pm.cjs');
+  const doc = '### FR-01 到期提醒推送\n\n**描述**：在客户持有的理财产品到期前 3 天，向客户发送到期提醒。\n| 角色 | 说明 |\n| 客户 | 手机银行用户 |';
+  assert.equal(PMX.quoteInDoc(doc, 'FR-01 到期提醒推送：在客户持有的理财产品到期前 3 天'), true);
+  assert.equal(PMX.quoteInDoc(doc, '描述：在客户持有的理财产品到期前3天，向客户发送到期提醒。（原文未说明时点）'), true);
+  assert.equal(PMX.quoteInDoc(doc, '系统应支持跨境汇款自动审批'), false);
+});
+
+test('问数·抓包自动对列：驼峰 / 下划线 / 大小写都能对上，同一列不重复用', () => {
+  const fields = { stat_date: '统计日期', branch: '分行', product: '产品', customer_level: '客户等级', balance: '余额', new_amount: '当月新增', customers: '客户数', maturing_amount: '次月到期金额' };
+  const m = AX.autoMapping(fields, ['statDate', 'orgName', 'prodType', 'CustLevel', 'balAmt', 'newAmt', 'custCnt', 'dueAmt']);
+  assert.deepEqual(m, { stat_date: 'statDate', branch: 'orgName', product: 'prodType', customer_level: 'CustLevel', balance: 'balAmt', new_amount: 'newAmt', customers: 'custCnt', maturing_amount: 'dueAmt' });
+  assert.equal(new Set(Object.values(AX.autoMapping(fields, ['amount', 'date']))).size, 2);
+});
+
+test('网关·审计：外部模型失败回落内网时，脱敏照样记上；统计跟着筛选走', async () => {
+  const { call } = fakeCtx();
+  main.__setLlmForTests(async (_p, _t, model) => { if (model === 'ext/m') throw new Error('余额不足'); return { text: 'ok', model: model || 'default' }; });
+  await call('gateway.save', { models: [{ value: 'ext/m', label: '外部', internal: false }, { value: '', label: '内网', internal: true }], rules: [], mask: { enabled: true, kinds: ['phone', 'idcard'], names: ['王小明'] } });
+  const t = await call('gateway.test', { text: '客户王小明手机 13800138000', scene: 'qa', cls: 'internal', run: true });
+  assert.ok(t.masked.text.includes('[') && !t.masked.text.includes('王小明'), t.masked.text);
+  const a = await call('gateway.audit', {});
+  const rec = a.items.find((r) => r.scene === 'qa');
+  assert.equal(rec.fallback, true);
+  assert.equal(rec.masked.phone, 1, '脱敏过的内容已经发往外部模型一次，要记');
+  assert.ok(a.stats.masked >= 2);
+  main.__setLlmForTests(async () => ({ text: '{}', model: 'm' }));
+  const other = await call('gateway.audit', { scene: 'doc' });
+  assert.equal(other.stats.total, other.total, '统计只算筛出来的');
+  assert.equal(other.stats.total, 0);
+  main.__setLlmForTests(null);
+});
+
+test('制度问答评价：同一条只记一次、改评覆盖；先赞后踩，点赞收录的常见问题一起撤下', async () => {
+  const { call } = fakeCtx();
+  main.__setLlmForTests(async () => ({ text: '大额存单起存金额为 20 万元 [1]。', model: 'stub' }));
+  await call('policy.demo');
+  const q = await call('qa.ask', { q: '大额存单起存金额是多少' });
+  assert.equal(q.status, 'answered', q.reason);
+  assert.deepEqual(await call('qa.rate', { id: q.id, rating: 1 }), { id: q.id, rating: 1 });
+  await call('qa.rate', { id: q.id, rating: 1 });
+  const audits = (await call('audit.list', { limit: 500 })).items.filter((x) => x.action === 'qa.rate');
+  assert.equal(audits.length, 1, '再点同一个不重复记');
+  const liked = (await call('kb.faq.list')).find((f) => f.fromQa === q.id);
+  assert.ok(liked && !liked.disabled);
+  await call('qa.rate', { id: q.id, rating: -1 });
+  assert.equal((await call('qa.list')).find((x) => x.id === q.id).rating, -1);
+  assert.equal((await call('kb.faq.list')).find((f) => f.fromQa === q.id).disabled, true, '改评不满意：点赞收录的常见问题撤下');
+  main.__setLlmForTests(null);
+});
+
+test('日报周报发邮件：收件人校验、没配 SMTP 报错、手动发送记在报告上、定时生成后自动发（测试里不真发）', async () => {
+  const { call } = fakeCtx();
+  const sent = [];
+  main.__setSecretsForTests(new Map());
+  main.__setMailForTests({ send: async (creds, input) => { sent.push({ creds, input }); return input.to.includes('reject@bank.com') ? { ok: false, message: '550 mailbox unavailable' } : { ok: true, messageId: 'x' }; } });
+  main.__setLlmForTests(async () => ({ text: '今日提交 6 次，合并请求 2 个。', model: 'stub' }));
+  const prj = await call('pm.demo');
+  const base = { id: prj.id, name: prj.name, method: prj.method, stage: prj.stage, members: prj.members, git: [], tool: { kind: 'csv' } };
+  await assert.rejects(async () => call('pm.save', { ...base, mailTo: 'pm@bank.com, 不是邮箱' }), /收件人地址不对/);
+  await assert.rejects(async () => call('pm.save', { ...base, mailTo: '', schedule: { daily: '18:00', weekly: '', push: false, mail: true } }), /收件人/);
+  await call('pm.save', { ...base, mailTo: 'pm@bank.com，leader@bank.com' });
+  const rep = await call('pm.report', { id: prj.id, kind: 'daily' });
+  await assert.rejects(async () => call('pm.mail', { id: prj.id, reportId: rep.id }), /还没配置发信邮箱/);
+  assert.equal((await call('mail.settings.get')).hasPassword, false);
+  await assert.rejects(async () => call('mail.settings.save', { address: 'bad', host: 'smtp.qq.com' }), /发件邮箱/);
+  const ms = await call('mail.settings.save', { address: 'report@bank.com', senderName: '项目室', host: 'smtp.exmail.qq.com', port: 465, password: 'auth-code' });
+  assert.equal(ms.hasPassword, true); assert.equal(ms.password, undefined, '授权码不回传界面');
+  const m = await call('pm.mail', { id: prj.id, reportId: rep.id });
+  assert.equal(m.ok, true);
+  assert.deepEqual(sent[0].input.to, ['pm@bank.com', 'leader@bank.com']);
+  assert.equal(sent[0].creds.EMAIL_PASSWORD, 'auth-code');
+  assert.match(sent[0].input.subject, /手机银行 7\.0 改版（示例） · 日报 \d{4}-\d{2}-\d{2}/);
+  assert.match(sent[0].input.body, /事实摘要：提交 \d+ 次/);
+  assert.equal((await call('pm.reports', { id: prj.id })).find((r) => r.id === rep.id).mailed.ok, true);
+  // SMTP 拒收：结果原样记下
+  await call('pm.save', { ...base, mailTo: 'reject@bank.com' });
+  const bad = await call('pm.mail', { id: prj.id, reportId: rep.id });
+  assert.equal(bad.ok, false); assert.equal(bad.message, '550 mailbox unavailable');
+  // 定时：到点生成日报并自动发邮件
+  await call('pm.save', { ...base, mailTo: 'pm@bank.com', schedule: { daily: '18:00', weekly: '', push: false, mail: true } });
+  const n0 = sent.length;
+  const ran = await call('pm.schedule.tick', { now: new Date(2026, 10, 4, 18, 0).toISOString() });
+  assert.equal(ran.length, 1);
+  assert.equal(sent.length, n0 + 1, '生成后自动发了一封');
+  assert.equal((await call('pm.reports', { id: prj.id }))[0].mailed.ok, true);
+  assert.equal((await call('pm.schedule.tick', { now: new Date(2026, 10, 4, 18, 0).toISOString() })).length, 0, '同一天只生成一次');
+  assert.ok((await call('audit.list', { limit: 500 })).items.some((x) => x.action === 'pm.mail' && x.ok));
+  const tm = await call('mail.test', { to: 'me@bank.com' });
+  assert.equal(tm.ok, true);
+  main.__setMailForTests(null); main.__setSecretsForTests(null); main.__setLlmForTests(null);
+});
+
+test('一键演示：示例客户名进脱敏名单（已配过网关也只追加）；被删的示例智能体补回来', async () => {
+  const { call } = fakeCtx();
+  main.__setLlmForTests(async () => ({ text: '{}', model: 'm' }));
+  await call('demo.all');
+  assert.ok((await call('gateway.get')).mask.names.includes('王小明'));
+  // 用户改过网关（自己的名单）后再载入：只追加，不覆盖
+  await call('gateway.save', { mask: { enabled: true, kinds: ['phone'], names: ['张三'] } });
+  const ov = await call('agents.overview', {});
+  const one = ov.agents[0].id;
+  await call('agents.remove', { id: one });
+  await call('demo.all');
+  const g = await call('gateway.get');
+  assert.deepEqual(g.mask.names, ['张三', '王小明']);
+  assert.deepEqual(g.mask.kinds, ['phone']);
+  assert.ok((await call('agents.overview', {})).agents.some((a) => a.id === one), '示例智能体补回');
+  main.__setLlmForTests(null);
+});
+
+test('网关·直连私有模型：OpenAI 兼容接口直连成功；401 / 超时报真实原因并自动换下一个模型；密钥不进 settings 和审计', async () => {
+  const http = await import('node:http');
+  const hits = [];
+  const srv = http.createServer((rq, rs) => {
+    let body = '';
+    rq.on('data', (c) => { body += c; });
+    rq.on('end', () => {
+      const j = JSON.parse(body || '{}');
+      hits.push({ url: rq.url, auth: rq.headers.authorization || '', model: j.model, content: j.messages?.[0]?.content });
+      if (j.model === 'slow') return; // 不回，等超时
+      if (rq.headers.authorization !== 'Bearer sk-good') { rs.writeHead(401, { 'content-type': 'application/json' }); rs.end(JSON.stringify({ error: { message: 'Invalid API key' } })); return; }
+      rs.writeHead(200, { 'content-type': 'application/json' });
+      rs.end(JSON.stringify({ model: j.model, choices: [{ message: { role: 'assistant', content: `私有模型收到：${String(j.messages[0].content).slice(0, 12)}` } }] }));
+    });
+  });
+  await new Promise((ok) => srv.listen(0, '127.0.0.1', ok));
+  const ep = `http://127.0.0.1:${srv.address().port}/v1`;
+  const { call, dataRoot } = fakeCtx();
+  const secrets = new Map();
+  main.__setSecretsForTests(secrets);
+  main.__setLlmForTests(async () => ({ text: '宿主模型兜底', model: 'host' }));
+  try {
+    // 地址必须 http(s)
+    assert.equal((await call('gateway.model.test', { model: { kind: 'direct', endpoint: 'ftp://x', model: 'm' } }).catch((e) => ({ err: e.message }))).err?.includes('http'), true);
+    // 测试连接：好密钥通、坏密钥报 401 原文
+    const ok = await call('gateway.model.test', { model: { kind: 'direct', endpoint: ep, model: 'qwen2.5-72b-instruct', timeout: 10 }, apiKey: 'sk-good' });
+    assert.equal(ok.ok, true, ok.error); assert.match(ok.text, /私有模型收到/);
+    const bad = await call('gateway.model.test', { model: { kind: 'direct', endpoint: ep, model: 'qwen2.5-72b-instruct' }, apiKey: 'sk-bad' });
+    assert.equal(bad.ok, false); assert.match(bad.error, /HTTP 401.*Invalid API key/);
+    // 保存：密钥进钥匙串，不进 settings.json
+    const c = await call('gateway.save', {
+      models: [
+        { kind: 'direct', id: 'qw', endpoint: `${ep}/`, model: 'qwen2.5-72b-instruct', timeout: 10, label: '行内 Qwen', internal: true },
+        { kind: 'direct', id: 'slow', endpoint: ep, model: 'slow', timeout: 5, label: '慢模型', internal: true },
+        { value: '', label: '系统默认', internal: true },
+      ],
+      modelKeys: { qw: 'sk-good', slow: 'sk-good' },
+      rules: [],
+    });
+    assert.equal(c.models[0].value, 'direct:qw'); assert.equal(c.models[0].endpoint, ep, '去掉结尾斜杠'); assert.equal(c.models[0].hasKey, true);
+    assert.equal(secrets.get('gw-model-qw'), 'sk-good');
+    assert.ok(!readFileSync(join(dataRoot, 'fin-assistant/settings.json'), 'utf8').includes('sk-good'));
+    // 直连成功：敏感数据也能走（内网私有部署）
+    const r1 = await call('gateway.test', { text: '客户问大额存单', scene: 'qa', cls: 'sensitive', run: true });
+    assert.match(r1.reply.text, /私有模型收到/);
+    assert.ok(hits.some((h) => h.url === '/v1/chat/completions' && h.auth === 'Bearer sk-good'));
+    // 密钥失效 → 401 → 自动换下一个；慢模型超时 → 再换宿主默认
+    secrets.set('gw-model-qw', 'sk-expired');
+    await call('gateway.save', { rules: [{ name: '先私有', models: ['direct:qw', 'direct:slow', ''] }] });
+    const r2 = await call('gateway.test', { text: '大额存单起存多少', scene: 'qa', cls: 'internal', run: true });
+    assert.equal(r2.reply.text, '宿主模型兜底'); assert.equal(r2.reply.fallback, true);
+    const a = await call('gateway.audit', {});
+    const rec = a.items.find((x) => x.tried?.length === 3);
+    assert.ok(rec, JSON.stringify(a.items[0]));
+    assert.match(rec.tried[0].error, /401/); assert.match(rec.tried[1].error, /超过 5 秒没有返回/);
+    const ok1 = a.items.find((x) => x.ok && /行内 Qwen（qwen2\.5-72b-instruct）/.test(x.model));
+    assert.ok(ok1, '审计里记显示名称 + 模型名');
+    const auditRaw = readFileSync(join(dataRoot, 'fin-assistant/audit.json'), 'utf8');
+    assert.ok(!auditRaw.includes('sk-good') && !auditRaw.includes('sk-expired'), '审计不含密钥');
+    // 删掉直连模型：密钥一起清
+    await call('gateway.save', { models: [{ value: '', label: '系统默认', internal: true }] });
+    assert.equal(secrets.has('gw-model-qw'), false);
+  } finally {
+    srv.closeAllConnections?.(); srv.close();
+    main.__setSecretsForTests(null); main.__setLlmForTests(null);
+  }
+});

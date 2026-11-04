@@ -158,6 +158,28 @@ function factsText(f) {
 
 // ── 需求管理 ──
 
+/**
+ * 评审意见引的「原文片段」能不能在需求文档里找到。模型引用时会去掉 Markdown 记号（** ### |）、把标题和正文连成一句、
+ * 全角半角混用，逐字 includes 几乎全判成「没找到」。这里先去掉记号和空白、统一全半角，再按标点切成小段：
+ * 长度 ≥ 4 的小段按字数算，七成以上能在原文里找到就算定位到（模型偶尔在引文后面加一句自己的注释，不该因此整条作废）。
+ */
+function quoteInDoc(doc, quote) {
+  const clean = (x) => String(x || '')
+    .replace(/[！-～]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xfee0))
+    .replace(/[*#>|`_~]/g, '')
+    .replace(/\s+/g, '')
+    .toLowerCase();
+  const src = clean(doc);
+  const q = clean(quote);
+  if (q.length < 2) return false;
+  if (src.includes(q)) return true;
+  const parts = q.split(/[,.;:!?()"'\[\]{}<>、。“”‘’「」『』【】…—-]+/).filter((x) => x.length >= 4);
+  const total = parts.reduce((a, x) => a + x.length, 0);
+  if (!total) return false;
+  const found = parts.filter((x) => src.includes(x)).reduce((a, x) => a + x.length, 0);
+  return found / total >= 0.7;
+}
+
 const VAGUE = ['尽快', '适当', '友好', '大概', '左右', '等等', '及时', '合理', '灵活', '尽可能', '必要时', '相关', '一定程度', '优化体验', '快速', '高效', '方便'];
 /** 程序先查（不靠模型）：含糊词、缺验收标准、缺角色 / 场景、缺非功能要求 */
 function lintRequirement(text) {
@@ -204,4 +226,4 @@ function imPayload(webhook, title, markdown) {
   return { title, text: markdown };
 }
 
-module.exports = { STAGES, METHODS, DONE_RE, TOOL_ADAPTERS, parseGitLog, mapTaskRows, taskTransitions, minutesItems, progressOf, risksOf, reportFacts, factsText, lintRequirement, normalizeBreakdown, breakdownCsv, imPayload, VAGUE };
+module.exports = { quoteInDoc, STAGES, METHODS, DONE_RE, TOOL_ADAPTERS, parseGitLog, mapTaskRows, taskTransitions, minutesItems, progressOf, risksOf, reportFacts, factsText, lintRequirement, normalizeBreakdown, breakdownCsv, imPayload, VAGUE };

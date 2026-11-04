@@ -3,7 +3,7 @@
  * 复杂问题的多步检索在制度问答里自动进行（问答结果里能看到拆出来的子问题）。
  */
 export default function kbxTab(kit) {
-  const { vue, el, t, call, busy, errNote, card, sdk } = kit;
+  const { vue, el, t, call, busy, errNote, card, sdk, confirm } = kit;
   const { ref, reactive } = vue;
 
   const faqs = ref([]);
@@ -17,7 +17,12 @@ export default function kbxTab(kit) {
     if (r) { Object.assign(form, { id: '', q: '', alts: '', answer: '' }); sdk.notify.success(t('已保存到常见问题')); await load(); }
   };
   const edit = (f) => Object.assign(form, { id: f.id, q: f.q, alts: (f.alts || []).join('\n'), answer: f.answer });
-  const remove = async (id) => { await call('kxSave', 'kb.faq.remove', { id }); await load(); };
+  const remove = async (f) => {
+    if (!(await confirm({ text: t('确定删除常见问题「{p0}」？删除后这类问法不再直答', { p0: f.q }), ok: t('删除') }))) return;
+    await call('kxSave', 'kb.faq.remove', { id: f.id });
+    if (form.id === f.id) Object.assign(form, { id: '', q: '', alts: '', answer: '' });
+    await load();
+  };
   const tryAsk = async () => { if (!test.value.trim()) return; const t0 = performance.now(); const r = await call('kxTest', 'qa.ask', { q: test.value }); if (r) testRes.value = { ...r, uiMs: Math.round(performance.now() - t0) }; await load(); };
   const SRC = { curated: '人工维护', liked: '点赞自动收录', promoted: '从问答设置' };
 
@@ -44,7 +49,7 @@ export default function kbxTab(kit) {
               el('td', null, el('b', null, f.q), (f.alts || []).length ? el('div', { class: 'fa-empty' }, t('另有 {p0} 种问法', { p0: f.alts.length })) : null, !f.fresh ? el('div', { class: 'fa-note warn', style: 'margin:4px 0 0' }, t('引用的制度已换版 / 下线，暂停直答')) : null, f.disabled ? el('div', { class: 'fa-empty' }, t('已停用：{p0}', { p0: f.disabledReason || '' })) : null),
               el('td', null, t(SRC[f.source] || f.source)),
               el('td', null, String(f.hits || 0)),
-              el('td', null, el('button', { class: 'fa-link', onClick: () => edit(f) }, t('编辑')), ' ', el('button', { class: 'fa-link', onClick: () => remove(f.id) }, t('删除')))))))
+              el('td', null, el('button', { class: 'fa-link', onClick: () => edit(f), 'data-test': `kx-edit-${f.id}` }, t('编辑')), ' ', el('button', { class: 'fa-link', onClick: () => remove(f), 'data-test': `kx-del-${f.id}` }, t('删除')))))))
             : el('p', { class: 'fa-empty' }, t('还没有常见问题：在制度问答里给好的回答点赞，或在左边手动添加')))),
       errNote('kxSave'), errNote('kxTest'), errNote('kxList')),
   };

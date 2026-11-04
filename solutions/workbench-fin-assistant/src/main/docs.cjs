@@ -172,4 +172,27 @@ function docsCsv(list) {
   return `﻿${[cols, ...rows].map((r) => r.map(esc).join(',')).join('\n')}\n`;
 }
 
-module.exports = { EXT_GROUP, FORMAT_LABEL, CATEGORIES, CATEGORY_BY_ID, detectFormat, oleTextRuns, scoreCategories, ruleCategory, normalizeCategory, verifyFields, regexFacts, docsCsv };
+// ── 文字清洗 ──
+
+/**
+ * 纯文本解码：先按 UTF-8（去 BOM），解出替换符（U+FFFD）再按 GB18030 重解——银行系统导出的 CSV / TXT 多是 GBK。
+ * 不走表格解析：表格解析会把「2026-10-01」当日期再按 UTC 转回来，零时区以西差一天、格式也变成 9/30/26。
+ */
+function decodeText(buf) {
+  const b = Buffer.isBuffer(buf) ? buf : Buffer.from(buf || '');
+  let s = b.toString('utf8');
+  if (s.includes('\uFFFD')) {
+    try { const g = new TextDecoder('gb18030').decode(b); if (!g.includes('\uFFFD')) s = g; } catch { /* 没有 gb18030 解码器就用 UTF-8 结果 */ }
+  }
+  return s.replace(/^\uFEFF/, '').replace(/\r\n?/g, '\n');
+}
+
+/**
+ * PDF 抽出来的字常是康熙部首 / 部首补充区的「⾦ ⽉ ⽇ ⼈」，看着一样、码位不同：关键词分类、检索、逐字核对都会对不上。
+ * 只把这两个区段的字按 NFKC 换成常用汉字，不整体 NFKC（那会把全角括号、冒号也换成半角，改掉原文）。
+ */
+function normalizeCjk(text) {
+  return String(text || '').replace(/[\u2E80-\u2EFF\u2F00-\u2FDF]/g, (c) => c.normalize('NFKC'));
+}
+
+module.exports = { decodeText, normalizeCjk, EXT_GROUP, FORMAT_LABEL, CATEGORIES, CATEGORY_BY_ID, detectFormat, oleTextRuns, scoreCategories, ruleCategory, normalizeCategory, verifyFields, regexFacts, docsCsv };

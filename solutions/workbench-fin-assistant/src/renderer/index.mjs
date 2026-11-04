@@ -80,12 +80,36 @@ export default function createSolution(sdk) {
 .fa-mobile{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-top:10px}
 .fa-qr{width:170px;height:170px;padding:8px;background:#fff;border:1px solid var(--fa-line);border-radius:8px;box-sizing:border-box}.fa-qr svg{width:100%;height:100%;display:block}
 .fa-mobile > div:last-child{flex:1;min-width:260px}
+.fa-dlg-mask{position:fixed;inset:0;z-index:50;background:rgba(15,23,42,.32);display:flex;align-items:center;justify-content:center;padding:16px}
+.fa-dlg{background:var(--color-bg-card,#fff);border-radius:10px;padding:18px 20px;width:380px;max-width:100%;box-sizing:border-box;box-shadow:0 10px 30px rgba(11,36,71,.25);border-top:3px solid var(--fa-navy-2)}
+.fa-dlg p{margin:0 0 16px;line-height:1.7}
+.fa-dlg .fa-row{justify-content:flex-end;margin:0}
+.fa-btn.danger{border-color:#dc2626;background:#dc2626;color:#fff}.fa-btn.danger:hover{background:#b91c1c}
+.fa-xbtn{border:none;background:none;color:#94a3b8;cursor:pointer;font:inherit;font-size:16px;line-height:1;padding:2px 6px;border-radius:4px}.fa-xbtn:hover,.fa-xbtn:focus-visible{color:#fff;background:#dc2626;outline:none}
 @media (prefers-color-scheme: dark){.fa-tab.on,.fa-card h3,.fa-kpi b{color:var(--fa-gold-2)}.fa-tbl th,.fa-steps button.done{background:transparent}}
 `;
 
   const el = (tag, props, ...kids) => h(tag, props || null, kids.flat().filter((k) => k !== null && k !== undefined && k !== false));
   const fmtMoney = (v) => (v == null ? '—' : Math.abs(v) >= 1e8 ? `${(v / 1e8).toFixed(2)} 亿元` : `${(v / 1e4).toFixed(2)} 万元`);
   const fmtVal = (v, unit) => (v == null ? '—' : unit === '元' ? fmtMoney(v) : unit === '%' ? `${Number(v).toFixed(2)}%` : `${Number(v).toLocaleString()} ${unit || ''}`);
+  // 时间按本机时区显示：记录里存的是 UTC 的 ISO 串，直接截字符串会差几个小时（国内早上 8 点前连日期都不对）
+  const fmtAt = (iso, { sec = false, date = true } = {}) => {
+    const d = new Date(iso);
+    if (!iso || Number.isNaN(d.getTime())) return String(iso || '—');
+    const p2 = (n) => String(n).padStart(2, '0');
+    const hm = `${p2(d.getHours())}:${p2(d.getMinutes())}${sec ? `:${p2(d.getSeconds())}` : ''}`;
+    return date ? `${d.getFullYear()}-${p2(d.getMonth() + 1)}-${p2(d.getDate())} ${hm}` : hm;
+  };
+  /**
+   * 模型写的报告 / 回复常带 Markdown（**加粗**、### 标题、- 列表）：原样显示满屏星号。
+   * 这里只做最轻的处理——标题和 **…** 显示成粗体，其余照原文（不解析 HTML，不引入渲染库）
+   */
+  const richText = (text) => String(text || '').split('\n').map((line, i) => {
+    const hd = /^\s{0,3}#{1,6}\s+(.*)$/.exec(line);
+    const body = hd ? hd[1] : line.replace(/^(\s*)[*+]\s+/, '$1· ').replace(/^\s*>\s?/, '');
+    const parts = body.split(/\*\*(.+?)\*\*/g).map((x, j) => (j % 2 ? h('b', { key: j }, x) : x.replace(/\*([^*\s][^*]*?)\*/g, '$1')));
+    return h('div', { key: i, style: hd ? 'font-weight:600;margin-top:6px' : line.trim() ? '' : 'height:.6em' }, hd ? [h('b', null, parts)] : parts);
+  });
   const readBase64 = (file) => new Promise((ok, no) => { const r = new FileReader(); r.onload = () => ok(String(r.result).split(',')[1] || ''); r.onerror = () => no(new Error(t('读取文件失败'))); r.readAsDataURL(file); });
   const LV = { high: '高风险', medium: '关注', pass: '通过' };
   const lv = (k) => t(LV[k] || k);
@@ -143,13 +167,30 @@ export default function createSolution(sdk) {
       const err = reactive({});
       const call = async (key, action, payload) => {
         busy[key] = true; err[key] = '';
-        try { return await sdk.invoke(action, payload); } catch (e) { err[key] = String(e?.message || e); return undefined; } finally { busy[key] = false; }
+        // 入参先拷成普通对象：页面里的 reactive / ref 是 Proxy，直接过进程边界会报「could not be cloned」（编排画布保存就踩过）
+        try { return await sdk.invoke(action, payload === undefined ? undefined : JSON.parse(JSON.stringify(payload))); } catch (e) { err[key] = String(e?.message || e); return undefined; } finally { busy[key] = false; }
       };
       const loadMeta = async () => { meta.value = (await call('meta', 'meta')) || meta.value; };
 
       // 安全与审计
       const auditView = ref(null);
       const loadAudit = async () => { auditView.value = await call('audit', 'audit.list', { limit: 200 }); };
+      // 邮件发送（SMTP）：日报周报发邮件用；授权码存系统钥匙串，界面只显示「已加密保存」
+      const mailCfg = ref(null);
+      const mailForm = reactive({ address: '', senderName: '', host: '', port: '465', password: '', testTo: '' });
+      const mailTest = ref(null);
+      const loadMail = async () => {
+        const m = await call('mail', 'mail.settings.get');
+        if (!m) return;
+        mailCfg.value = m;
+        Object.assign(mailForm, { address: m.address, senderName: m.senderName, host: m.host, port: String(m.port || 465), password: '' });
+        if (!mailForm.testTo) mailForm.testTo = m.address;
+      };
+      const saveMail = async () => {
+        const m = await call('mail', 'mail.settings.save', { address: mailForm.address, senderName: mailForm.senderName, host: mailForm.host, port: Number(mailForm.port) || 465, ...(mailForm.password ? { password: mailForm.password } : {}) });
+        if (m) { mailCfg.value = m; mailForm.password = ''; sdk.notify.success(t('邮件发送设置已保存')); }
+      };
+      const testMail = async () => { mailTest.value = null; mailTest.value = await call('mailTest', 'mail.test', { to: mailForm.testTo }); };
       const toggleInternal = async (on) => { await call('settings', 'settings.patch', { modelInternal: on }); await loadMeta(); await loadAudit(); };
 
       // 制度问答
@@ -166,13 +207,22 @@ export default function createSolution(sdk) {
       };
       const askQa = async () => { if (!qaInput.value.trim()) return; const r = await call('qa', 'qa.ask', { q: qaInput.value }); if (r) qaList.value = [r, ...qaList.value]; };
       const latestQa = computed(() => qaList.value[0] || null);
+      // 回答评价：点完立即把本地记录的 rating 改掉（界面马上变成「已评价」），失败就保持原样并提示
+      const rerate = ref('');
+      const rateQa = async (q, rating) => {
+        const r = await call('qaRate', 'qa.rate', { id: q.id, rating });
+        if (!r) return;
+        qaList.value = qaList.value.map((x) => (x.id === q.id ? { ...x, rating: r.rating } : x));
+        rerate.value = '';
+      };
 
       // 智能问数
       const dataInfo = ref(null);
       const asks = ref([]);
       const askInput = ref('');
       const loadAsk = async () => { dataInfo.value = await call('data', 'data.info'); asks.value = (await call('askList', 'ask.list')) || []; };
-      const runAsk = async () => { if (!askInput.value.trim()) return; const r = await call('ask', 'ask.run', { q: askInput.value }); if (r) asks.value = [r, ...asks.value]; };
+      // 问完也刷新下面 ⑤ 报表的问题下拉：原来只在进页签时取一次，新问出来的答案存不成报表
+      const runAsk = async () => { if (!askInput.value.trim()) return; const r = await call('ask', 'ask.run', { q: askInput.value }); if (r) { asks.value = [r, ...asks.value]; lazyMods.askx?.load?.(); } };
       const latestAsk = computed(() => asks.value[0] || null);
 
       // 授信预审
@@ -210,7 +260,7 @@ export default function createSolution(sdk) {
       // 懒加载的模块实例（key → { load, steps, view }）与加载状态
       const lazyMods = shallowReactive({});
       const lazyErr = reactive({});
-      const kit = () => ({ sdk, vue: sdk.vue, el, t, call, busy, err, errNote, card, readBase64, fmtVal, fmtMoney, go, navigate: (k) => select(k) });
+      const kit = () => ({ sdk, vue: sdk.vue, el, t, call, busy, err, errNote, card, readBase64, fmtVal, fmtMoney, fmtAt, richText, go, navigate: (k) => select(k), confirm: confirmBox });
       const ensureLazy = async (k) => {
         const loader = LAZY[k] || SUB_LOAD[k];
         if (!loader || lazyMods[k]) return lazyMods[k];
@@ -263,7 +313,7 @@ export default function createSolution(sdk) {
         tab.value = k;
         if (LAZY[k]) { const m = await ensureLazy(k); if (m && tab.value === k) await m.load?.(); return; }
         if (SUB[k]) ensureLazy(SUB[k]).then((m) => m?.load?.());
-        if (k === 'overview') await loadAudit();
+        if (k === 'overview') await Promise.all([loadAudit(), loadMail()]);
         if (k === 'qa') await Promise.all([loadQa(), loadMobile()]);
         if (k === 'kb') await loadKb();
         if (k === 'ask') await loadAsk();
@@ -272,6 +322,23 @@ export default function createSolution(sdk) {
       };
       const loadMobile = async () => { try { mobile.value = await sdk.invoke('mobile.status'); } catch (_) { /* 旧版本没有手机端 */ } };
       onMounted(async () => { await loadMeta(); await Promise.all([loadQa(), loadAudit(), loadMobile()]); });
+
+      /**
+       * 页面内确认弹层（删除等不可恢复的动作用）：不用 window.confirm —— 原生弹窗会卡住整个页面和自动化测试。
+       * confirmBox({ text, ok, danger }) → Promise<boolean>；点空白处 / 取消 = false
+       */
+      const dlg = ref(null);
+      const confirmBox = ({ text, ok = t('确定'), danger = true }) => new Promise((resolve) => {
+        if (dlg.value) dlg.value.resolve(false);
+        dlg.value = { text, ok, danger, resolve };
+      });
+      const closeDlg = (v) => { const d = dlg.value; dlg.value = null; d?.resolve(v); };
+      const vDialog = () => (dlg.value ? el('div', { class: 'fa-dlg-mask', 'data-test': 'fa-confirm', onClick: (e) => { if (e.target === e.currentTarget) closeDlg(false); } },
+        el('div', { class: 'fa-dlg', role: 'dialog', 'aria-modal': 'true' },
+          el('p', null, dlg.value.text),
+          el('div', { class: 'fa-row' },
+            el('button', { class: 'fa-btn', onClick: () => closeDlg(false), 'data-test': 'fa-confirm-cancel' }, t('取消')),
+            el('button', { class: `fa-btn ${dlg.value.danger ? 'danger' : 'pri'}`, onClick: () => closeDlg(true), 'data-test': 'fa-confirm-ok' }, dlg.value.ok)))) : null);
 
       const errNote = (k) => (err[k] ? el('p', { class: 'fa-note err' }, err[k]) : null);
       const subView = (k) => (lazyMods[k] ? lazyMods[k].view() : lazyErr[k] ? el('p', { class: 'fa-note err' }, t('模块加载失败：{p0}', { p0: lazyErr[k] })) : el('p', { class: 'fa-empty', style: 'margin-top:12px' }, t('正在加载更多功能…')));
@@ -304,15 +371,34 @@ export default function createSolution(sdk) {
               el('span', null, t('当前模型是内网私有部署（由管理员核实后勾选；未勾选时，授信预审与智能问数的模型调用会被拦截）'))) : null,
             m && !m.settings.modelInternal ? el('p', { class: 'fa-note warn' }, t('未确认内网模型：制度问答、营销物料审查可用（内部 / 公开信息）；授信材料预审与智能问数会在调用模型前被拦下。')) : null,
             errNote('settings')),
+          vMail(),
           el('section', { class: 'fa-card' },
             el('h3', null, t('审计记录'), a ? el('span', { class: `fa-st${a.broken < 0 ? ' done' : ''}` }, a.broken < 0 ? t('哈希链完好（{n} 条）', { n: a.total }) : t('第 {n} 条之后被改动过', { n: a.broken + 1 })) : null),
             el('p', { class: 'fa-sub' }, t('谁、何时、做了什么、用了哪个模型；模型调用只记场景、数据级别、耗时和字数，不存原文。人工修改 AI 结果记录修改前后的值。')),
             a && a.items.length ? el('table', { class: 'fa-tbl' },
               el('thead', null, el('tr', null, el('th', null, t('时间')), el('th', null, t('动作')), el('th', null, t('内容')))),
-              el('tbody', null, a.items.slice(0, 60).map((x) => el('tr', null, el('td', null, String(x.at).slice(0, 19).replace('T', ' ')), el('td', null, x.action), el('td', null, el('span', { class: 'fa-empty' }, JSON.stringify(Object.fromEntries(Object.entries(x).filter(([k]) => !['at', 'action', 'prev', 'hash'].includes(k)))).slice(0, 220))))))) : el('p', { class: 'fa-empty' }, t('还没有记录'))),
+              el('tbody', null, a.items.slice(0, 60).map((x) => el('tr', null, el('td', null, fmtAt(x.at, { sec: true })), el('td', null, x.action), el('td', null, el('span', { class: 'fa-empty' }, JSON.stringify(Object.fromEntries(Object.entries(x).filter(([k]) => !['at', 'action', 'prev', 'hash'].includes(k)))).slice(0, 220))))))) : el('p', { class: 'fa-empty' }, t('还没有记录'))),
           el('section', { class: 'fa-card' },
             el('h3', null, t('明确不做的事')),
             el('ul', null, [t('不让模型做授信审批、产品定价、反洗钱定性等决策，AI 只提供依据和异常提示'), t('不让模型直接向客户发送未经人工审核的内容'), t('不使用机构的客户数据训练或微调任何模型'), t('未经单独授权不写入业务系统，默认只读')].map((s) => el('li', null, s)))));
+      };
+
+      const vMail = () => {
+        const m = mailCfg.value;
+        const mi = (key, attrs = {}) => el('input', { class: 'fa-in', value: mailForm[key], onInput: (e) => { mailForm[key] = e.target.value; }, ...attrs });
+        const ready = !!(m?.address && m?.host && m?.hasPassword);
+        return el('section', { class: 'fa-card', 'data-test': 'fa-mail' },
+          el('h3', null, t('邮件发送（SMTP）'), el('span', { class: `fa-st${ready ? ' done' : ''}` }, ready ? t('已配置') : t('未配置'))),
+          el('p', { class: 'fa-sub' }, t('日报 / 周报等从这里配的发件邮箱发出（不经第三方代发）。授权码用系统钥匙串加密保存。常见邮箱：企业微信邮箱 smtp.exmail.qq.com:465、QQ 邮箱 smtp.qq.com:465、163 邮箱 smtp.163.com:465、阿里企业邮 smtp.qiye.aliyun.com:465；密码处填邮箱后台生成的授权码，不是登录密码。')),
+          m && !m.available ? el('p', { class: 'fa-note warn' }, t('当前应用版本没有邮件发送模块，请升级应用后再用')) : null,
+          el('div', { class: 'fa-row' }, el('span', { style: 'min-width:84px' }, t('发件邮箱')), mi('address', { style: 'width:240px', placeholder: 'report@bank.com', 'data-test': 'mail-address' }), el('span', null, t('发件人名称')), mi('senderName', { style: 'width:160px', placeholder: t('如：项目管理室') })),
+          el('div', { class: 'fa-row' }, el('span', { style: 'min-width:84px' }, t('SMTP 服务器')), mi('host', { style: 'width:240px', placeholder: 'smtp.exmail.qq.com', 'data-test': 'mail-host' }), el('span', null, t('端口')), mi('port', { style: 'width:80px', type: 'number', min: 1, max: 65535 })),
+          el('div', { class: 'fa-row' }, el('span', { style: 'min-width:84px' }, t('授权码')), mi('password', { style: 'width:240px', type: 'password', autocomplete: 'new-password', placeholder: m?.hasPassword ? t('已加密保存，留空不改') : t('邮箱后台生成的授权码'), 'data-test': 'mail-password' }),
+            el('button', { class: 'fa-btn pri', disabled: busy.mail, onClick: saveMail, 'data-test': 'mail-save' }, t('保存'))),
+          el('div', { class: 'fa-row' }, el('span', { style: 'min-width:84px' }, t('测试收件')), mi('testTo', { style: 'width:240px', placeholder: t('发一封测试邮件到这个地址'), 'data-test': 'mail-test-to' }),
+            el('button', { class: 'fa-btn', disabled: busy.mailTest || !mailForm.testTo.trim(), onClick: testMail, 'data-test': 'mail-test' }, busy.mailTest ? t('发送中…') : t('发送测试邮件'))),
+          mailTest.value ? el('p', { class: `fa-note ${mailTest.value.ok ? 'ok' : 'err'}` }, mailTest.value.ok ? t('测试邮件已发出：{p0}', { p0: mailTest.value.to.join('、') }) : t('发送失败：{p0}', { p0: mailTest.value.message })) : null,
+          errNote('mail'), errNote('mailTest'));
       };
 
       const vQa = () => {
@@ -341,7 +427,7 @@ export default function createSolution(sdk) {
             q ? el('div', { class: 'fa-card', style: 'margin-top:10px' },
               el('div', { class: 'fa-q' }, `${t('问')}：${q.q}`),
               q.status === 'refused' ? el('p', { class: 'fa-note warn', 'data-test': 'fa-qa-refused' }, `${t('拒答')}：${q.reason}`) : el('div', null,
-                el('div', { class: 'fa-ans', 'data-test': 'fa-qa-answer' }, q.answer),
+                el('div', { class: 'fa-ans', style: 'white-space:normal', 'data-test': 'fa-qa-answer' }, richText(q.answer)),
                 q.unverified?.length ? el('p', { class: 'fa-note warn' }, t('以下数字没能在制度原文中找到，请人工核对：{p0}', { p0: q.unverified.join('、') })) : null,
                 el('p', { class: 'fa-sub', style: 'margin-top:10px' }, t('依据')),
                 (q.citations || []).map((c) => el('div', { class: 'fa-q' }, c.kind === 'kb'
@@ -350,9 +436,16 @@ export default function createSolution(sdk) {
                 q.note ? el('p', { class: 'fa-note info' }, q.note) : null,
                 q.fast ? el('p', { class: 'fa-note ok', 'data-test': 'fa-qa-fast' }, t('常见问题直答：{p0} 毫秒，未检索、未调用模型（相似度 {p1}）', { p0: q.fast.ms, p1: q.fast.score })) : null,
                 (q.steps || []).length ? el('p', { class: 'fa-note info', 'data-test': 'fa-qa-steps' }, t('复杂问题多步检索：拆成 {p0} 个子问题分别检索——{p1}', { p0: q.steps.length, p1: q.steps.map((x) => `「${x.q}」${x.policyHits + x.kbHits} 条`).join('；') })) : null,
-                el('div', { class: 'fa-row' }, t('这条回答：'), el('button', { class: 'fa-btn sm', onClick: () => call('qa', 'qa.rate', { id: q.id, rating: 1 }) }, t('有用')), !q.fast ? el('button', { class: 'fa-btn sm', onClick: async () => { if (await call('qa', 'kb.faq.fromQa', { id: q.id })) sdk.notify.success(t('已设为常见问题，下次同样的问法直接回答')); } }, t('设为常见问题')) : null, el('button', { class: 'fa-btn sm', onClick: () => call('qa', 'qa.rate', { id: q.id, rating: -1 }) }, t('不满意（进缺口反馈）'))))) : null,
+                // 评价过（rating ≠ 0）就只显示结果和「改评」，点「改评」才重新出现两个按钮
+                el('div', { class: 'fa-row', 'data-test': 'fa-qa-rate' }, t('这条回答：'),
+                  q.rating && rerate.value !== q.id
+                    ? [el('span', { class: q.rating > 0 ? 'fa-src pc' : 'fa-src' }, q.rating > 0 ? t('已评价：有用') : t('已评价：不满意（已进缺口反馈）')), el('button', { class: 'fa-link', style: 'font-size:12.5px', onClick: () => { rerate.value = q.id; }, 'data-test': 'fa-qa-rerate' }, t('改评'))]
+                    : [el('button', { class: `fa-btn sm${q.rating > 0 ? ' pri' : ''}`, disabled: busy.qaRate, onClick: () => rateQa(q, 1), 'data-test': 'fa-qa-good' }, t('有用')),
+                      el('button', { class: 'fa-btn sm', disabled: busy.qaRate, onClick: () => rateQa(q, -1), 'data-test': 'fa-qa-bad' }, t('不满意（进缺口反馈）'))],
+                  !q.fast ? el('button', { class: 'fa-btn sm', style: 'margin-left:auto', onClick: async () => { if (await call('qa', 'kb.faq.fromQa', { id: q.id })) sdk.notify.success(t('已设为常见问题，下次同样的问法直接回答')); }, 'data-test': 'fa-qa-faq' }, t('设为常见问题')) : null),
+                errNote('qaRate'))) : null,
             qaList.value.length > 1 ? el('details', null, el('summary', null, t('历史问答（{n}）', { n: qaList.value.length })),
-              el('table', { class: 'fa-tbl' }, el('tbody', null, qaList.value.slice(0, 50).map((x) => el('tr', null, el('td', null, x.at.slice(0, 16).replace('T', ' ')), el('td', null, x.source === 'mobile' ? el('span', { class: 'fa-src' }, t('手机')) : el('span', { class: 'fa-src pc' }, t('电脑'))), el('td', null, x.q), el('td', null, x.status === 'answered' ? t('已作答') : `${t('拒答')}：${x.reason}`)))))) : null),
+              el('table', { class: 'fa-tbl' }, el('tbody', null, qaList.value.slice(0, 50).map((x) => el('tr', null, el('td', null, fmtAt(x.at)), el('td', null, x.source === 'mobile' ? el('span', { class: 'fa-src' }, t('手机')) : el('span', { class: 'fa-src pc' }, t('电脑'))), el('td', null, x.q), el('td', null, x.status === 'answered' ? t('已作答') : `${t('拒答')}：${x.reason}`)))))) : null),
           card('qa-3', t('③ 缺口反馈'), !!gaps.value, t('每周汇总拒答和员工评价不满意的问题，按归口部门交制度管理部门补充解释或修订制度。'),
             el('button', { class: 'fa-btn', onClick: async () => { gaps.value = await call('gaps', 'qa.gaps'); } }, t('生成近 7 天缺口清单')),
             gaps.value ? (gaps.value.total ? Object.entries(gaps.value.byDept).map(([d, list]) => el('div', null, el('b', null, `${d}（${list.length}）`), el('ul', null, list.map((x) => el('li', null, `${x.q} — ${x.reason}`))))) : el('p', { class: 'fa-note ok' }, t('近 7 天没有拒答或差评问题'))) : null),
@@ -404,11 +497,11 @@ export default function createSolution(sdk) {
                   el('p', null, el('b', null, t('口径：')), a.definition),
                   a.note ? el('p', null, el('b', null, t('模型的理解：')), a.note) : null,
                   el('div', { class: 'fa-code' }, a.sql),
-                  el('p', { class: 'fa-empty' }, t('参与计算 {n} 行 · 取数时间 {t} · 数据来源 {s}', { n: a.rowsUsed, t: a.fetchedAt.slice(0, 19).replace('T', ' '), s: a.dataSource })))))
+                  el('p', { class: 'fa-empty' }, t('参与计算 {n} 行 · 取数时间 {t} · 数据来源 {s}', { n: a.rowsUsed, t: fmtAt(a.fetchedAt, { sec: true }), s: a.dataSource })))))
               : null),
           card('ask-3', t('③ 复核与留痕'), asks.value.length > 0, t('每次取数记入数据访问审计（指标、查询指纹，不存查询结果），数据岗可按记录复核。'),
             asks.value.length ? el('table', { class: 'fa-tbl' }, el('thead', null, el('tr', null, el('th', null, t('时间')), el('th', null, t('问题')), el('th', null, t('指标')), el('th', null, t('结果')))),
-              el('tbody', null, asks.value.slice(0, 50).map((x) => el('tr', null, el('td', null, x.at.slice(0, 16).replace('T', ' ')), el('td', null, x.q), el('td', null, x.metricName || '—'), el('td', null, x.status === 'answered' ? (x.groups ? t('{n} 组', { n: x.groups.length }) : fmtVal(x.value, x.unit)) : x.reason))))) : el('p', { class: 'fa-empty' }, t('还没有取数记录'))));
+              el('tbody', null, asks.value.slice(0, 50).map((x) => el('tr', null, el('td', null, fmtAt(x.at)), el('td', null, x.q), el('td', null, x.metricName || '—'), el('td', null, x.status === 'answered' ? (x.groups ? t('{n} 组', { n: x.groups.length }) : fmtVal(x.value, x.unit)) : x.reason))))) : el('p', { class: 'fa-empty' }, t('还没有取数记录'))));
       };
 
       const vCredit = () => {
@@ -462,7 +555,7 @@ export default function createSolution(sdk) {
             issues.length ? el('table', { class: 'fa-tbl' }, el('tbody', null, issues.map((x) => { const d0 = c.decisions?.[x.id]; return el('tr', null, el('td', null, el('span', { class: `fa-lv ${x.level}` }, lv(x.level))), el('td', null, x.title, el('div', { class: 'fa-empty' }, x.detail)),
               el('td', null, ['confirm', 'modify', 'reject'].map((k) => el('button', { class: `fa-btn sm${d0?.decision === k ? ' pri' : ''}`, onClick: async () => setCredit(await call('credit', 'credit.decide', { id: c.id, checkId: x.id, decision: k, note: d0?.note || '' })) }, { confirm: t('确认'), modify: t('修改'), reject: t('驳回') }[k]))),
               el('td', null, el('input', { class: 'fa-in', placeholder: t('说明（可空）'), value: d0?.note || '', onChange: async (e) => setCredit(await call('credit', 'credit.decide', { id: c.id, checkId: x.id, decision: d0?.decision || 'confirm', note: e.target.value })) }))); }))) : el('p', { class: 'fa-empty' }, t('先运行程序校验')),
-            c.edits?.length ? el('details', null, el('summary', null, t('修改记录（{n}）', { n: c.edits.length })), el('table', { class: 'fa-tbl' }, el('tbody', null, c.edits.map((e) => el('tr', null, el('td', null, e.at.slice(0, 19).replace('T', ' ')), el('td', null, e.field), el('td', null, `${e.before ?? '—'} → ${e.after ?? '—'}`), el('td', null, e.by)))))) : null));
+            c.edits?.length ? el('details', null, el('summary', null, t('修改记录（{n}）', { n: c.edits.length })), el('table', { class: 'fa-tbl' }, el('tbody', null, c.edits.map((e) => el('tr', null, el('td', null, fmtAt(e.at, { sec: true })), el('td', null, e.field), el('td', null, `${e.before ?? '—'} → ${e.after ?? '—'}`), el('td', null, e.by)))))) : null));
       };
 
       const vMkt = () => {
@@ -484,7 +577,7 @@ export default function createSolution(sdk) {
             el('textarea', { class: 'fa-in fa-ta', placeholder: t('粘贴宣传文案、海报文字或短视频脚本'), value: mktForm.text, onInput: (e) => { mktForm.text = e.target.value; } }),
             el('div', { class: 'fa-row' }, el('button', { class: 'fa-btn pri', disabled: busy.mkt || !mktForm.text.trim(), 'data-test': 'fa-mkt-review', onClick: async () => { const r = await call('mkt', 'mkt.review', { ...mktForm }); if (r) { mkt.value = r; await loadMkt(); } } }, busy.mkt ? t('审查中…') : t('开始审查')), el('span', { class: 'fa-empty' }, meta.value ? t('规则库 {v} 版：禁用表述 {a} 类、必备提示 {b} 项', { v: meta.value.mktRules.version, a: meta.value.mktRules.banned, b: meta.value.mktRules.required }) : '')),
             errNote('mkt'),
-            mktList.value.length ? el('details', null, el('summary', null, t('审查记录（{n}）', { n: mktList.value.length })), el('table', { class: 'fa-tbl' }, el('tbody', null, mktList.value.map((r) => el('tr', null, el('td', null, r.at.slice(0, 16).replace('T', ' ')), el('td', null, r.title), el('td', null, t('{n} 个问题，{m} 个待处理', { n: r.issues, m: r.open })), el('td', null, el('button', { class: 'fa-link', onClick: async () => { mkt.value = await call('mkt', 'mkt.get', { id: r.id }); } }, t('打开')))))))) : null),
+            mktList.value.length ? el('details', null, el('summary', null, t('审查记录（{n}）', { n: mktList.value.length })), el('table', { class: 'fa-tbl' }, el('tbody', null, mktList.value.map((r) => el('tr', null, el('td', null, fmtAt(r.at)), el('td', null, r.title), el('td', null, t('{n} 个问题，{m} 个待处理', { n: r.issues, m: r.open })), el('td', null, el('button', { class: 'fa-link', onClick: async () => { mkt.value = await call('mkt', 'mkt.get', { id: r.id }); } }, t('打开')))))))) : null),
           card('mk-2', t('② 问题清单与处理'), !!x && x.issues.every((i) => i.decision), t('每条问题附依据和修改建议；合规岗逐条确认是否构成问题，终审仍由合规岗签字。'),
             x ? el('div', { class: 'fa-cols' },
               el('div', null, x.issues.length ? x.issues.map((i) => el('div', { class: 'fa-card', style: 'margin-top:8px;padding:10px 12px' },
@@ -592,6 +685,7 @@ export default function createSolution(sdk) {
 
       return () => el('div', { class: 'fa' },
         el('style', null, CSS + THEME),
+        vDialog(),
         el('div', { style: 'padding-top:14px' },
           el('div', { class: 'fa-banner' }, el('span', { class: 'fa-ico' }, el('i', { class: 'ri-bank-line' })),
             el('div', { class: 'fa-grow' }, el('h2', null, t('智能金融助手'), el('span', { class: 'fa-up', title: t('合规提效：制度问答、问数、预审、营销审查') }, el('i', { class: 'ri-arrow-right-up-line' }), t('合规 · 提效'))), el('p', null, t('制度问答 · 智能问数 · 资料智能处理 · 智能检索 · 智能体编排 · AI 项目管理 · 统一 AI 网关 · 授信预审 · 营销审查；数据不出域、数字不出错、过程留痕、关键动作人签、老系统零改造。')),

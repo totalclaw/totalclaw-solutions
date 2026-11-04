@@ -3,14 +3,14 @@
  * 日报周报的数字由程序从 git 提交、任务系统、会议纪要汇总，模型只负责写成文字（数字对不上会被打回重写）。
  */
 export default function pmTab(kit) {
-  const { vue, el, t, call, busy, errNote, card, readBase64, sdk } = kit;
+  const { vue, el, t, call, busy, err, errNote, card, readBase64, sdk, fmtAt, richText, navigate } = kit;
   const { ref, reactive } = vue;
 
   const projects = ref([]);
   const pid = ref('');
   const pg = ref(null);
   const reports = ref([]);
-  const form = reactive({ id: '', name: '', method: 'agile', stage: '立项', stageDue: '', startDate: '', endDate: '', members: '', git: '', toolKind: 'csv', baseUrl: '', project: '', email: '', team: '', query: '', token: '', webhook: '', daily: '', weekly: '', push: false });
+  const form = reactive({ id: '', name: '', method: 'agile', stage: '立项', stageDue: '', startDate: '', endDate: '', members: '', git: '', toolKind: 'csv', baseUrl: '', project: '', email: '', team: '', query: '', token: '', webhook: '', daily: '', weekly: '', push: false, mail: false, mailTo: '' });
   const minutesText = ref('');
   const syncRes = ref(null);
   const req = reactive({ text: '', method: 'agile', doc: '', lint: [], review: null, breakdown: null });
@@ -19,7 +19,7 @@ export default function pmTab(kit) {
   const STAGES = ['立项', '需求', '设计', '开发', '测试', '投产', '运维'];
 
   const fillForm = (x) => {
-    Object.assign(form, { id: x?.id || '', name: x?.name || '', method: x?.method || 'agile', stage: x?.stage || '立项', stageDue: x?.stageDue || '', startDate: x?.startDate || '', endDate: x?.endDate || '', members: (x?.members || []).join('、'), git: (x?.git || []).join('\n'), toolKind: x?.tool?.kind || 'csv', baseUrl: x?.tool?.baseUrl || '', project: x?.tool?.project || '', email: x?.tool?.email || '', team: x?.tool?.team || '', query: x?.tool?.query || '', token: '', webhook: '', daily: x?.schedule?.daily || '', weekly: x?.schedule?.weekly || '', push: !!x?.schedule?.push });
+    Object.assign(form, { id: x?.id || '', name: x?.name || '', method: x?.method || 'agile', stage: x?.stage || '立项', stageDue: x?.stageDue || '', startDate: x?.startDate || '', endDate: x?.endDate || '', members: (x?.members || []).join('、'), git: (x?.git || []).join('\n'), toolKind: x?.tool?.kind || 'csv', baseUrl: x?.tool?.baseUrl || '', project: x?.tool?.project || '', email: x?.tool?.email || '', team: x?.tool?.team || '', query: x?.tool?.query || '', token: '', webhook: '', daily: x?.schedule?.daily || '', weekly: x?.schedule?.weekly || '', push: !!x?.schedule?.push, mail: !!x?.schedule?.mail, mailTo: (x?.mailTo || []).join(', ') });
   };
   const loadProject = async (id) => {
     pid.value = id;
@@ -39,7 +39,8 @@ export default function pmTab(kit) {
       members: split(form.members), git: split(form.git, /\n+/),
       tool: { kind: form.toolKind, baseUrl: form.baseUrl, project: form.project, email: form.email, team: form.team, query: form.query, ...(form.token ? { token: form.token } : {}) },
       ...(form.webhook ? { webhook: form.webhook } : {}),
-      schedule: { daily: form.daily, weekly: form.weekly, push: form.push },
+      schedule: { daily: form.daily, weekly: form.weekly, push: form.push, mail: form.mail },
+      mailTo: form.mailTo,
     });
     if (r) { sdk.notify.success(t('项目已保存')); projects.value = (await call('pmList', 'pm.list')) || []; await loadProject(r.id); }
   };
@@ -50,6 +51,12 @@ export default function pmTab(kit) {
   const addMinutes = async () => { const r = await call('pmMin', 'pm.addMinutes', { id: pid.value, text: minutesText.value }); if (r) { minutesText.value = ''; sdk.notify.success(t('纪要已加入：决议 {p0} 条，待办 {p1} 条', { p0: r.items.decisions.length, p1: r.items.todos.length })); await loadProject(pid.value); } };
   const report = async (kind) => { const r = await call('pmReport', 'pm.report', { id: pid.value, kind }); if (r) reports.value = [r, ...reports.value]; };
   const push = async (r) => { const ok = await call('pmPush', 'pm.push', { id: pid.value, reportId: r.id }); if (ok) { sdk.notify.success(t('已推送到群')); reports.value = (await call('pmRep', 'pm.reports', { id: pid.value })) || []; } };
+  // 报告发邮件：结果记在报告上；SMTP 返回的失败原因原样显示（没配发信邮箱时给去「设置」的入口）
+  const mailRep = async (r) => {
+    const m = await call('pmMail', 'pm.mail', { id: pid.value, reportId: r.id });
+    if (m?.ok) sdk.notify.success(t('已发送到 {p0}', { p0: m.to.join('、') }));
+    reports.value = (await call('pmRep', 'pm.reports', { id: pid.value })) || reports.value;
+  };
   const lint = async () => { req.lint = (await call('pmLint', 'pm.req.lint', { text: req.doc || req.text }))?.issues || []; };
   const genDoc = async () => { const r = await call('pmGen', 'pm.req.generate', { text: req.text }); if (r) { req.doc = r.doc; req.lint = r.issues; } };
   const review = async () => { req.review = await call('pmRev', 'pm.req.review', { text: req.doc || req.text }); };
@@ -83,11 +90,14 @@ export default function pmTab(kit) {
             form.toolKind === 'jira' ? el('div', { class: 'fa-row' }, el('span', { style: 'min-width:70px' }, 'JQL'), inp('query', { style: 'flex:1', placeholder: 'project = MB AND sprint in openSprints()' })) : null),
         el('div', { class: 'fa-row' }, el('span', { style: 'min-width:70px' }, t('群机器人')), inp('webhook', { style: 'flex:1', type: 'password', placeholder: pg.value?.project?.hasWebhook ? t('已加密保存，留空不改') : t('企业微信 / 钉钉 / 飞书机器人地址') })),
         el('div', { class: 'fa-row' }, el('span', { style: 'min-width:70px' }, t('定时')), t('每天'), inp('daily', { type: 'time', style: 'width:110px' }), t('生成日报；每周'), el('select', { class: 'fa-in', value: (form.weekly || '').split(' ')[0] || '', onChange: (e) => { form.weekly = e.target.value ? `${e.target.value} ${(form.weekly || '').split(' ')[1] || '17:00'}` : ''; } }, [['', '不生成'], ['1', '周一'], ['2', '周二'], ['3', '周三'], ['4', '周四'], ['5', '周五']].map(([v, l]) => el('option', { value: v, selected: ((form.weekly || '').split(' ')[0] || '') === v }, t(l)))), form.weekly ? el('input', { class: 'fa-in', type: 'time', style: 'width:110px', value: form.weekly.split(' ')[1] || '17:00', onInput: (e) => { form.weekly = `${form.weekly.split(' ')[0]} ${e.target.value}`; } }) : null, t('生成周报')),
-        el('label', { class: 'fa-row' }, el('input', { type: 'checkbox', checked: form.push, onChange: (e) => { form.push = e.target.checked; } }), t('生成后自动推送到群')))),
+        el('div', { class: 'fa-row' }, el('span', { style: 'min-width:70px' }, t('报告邮件')), inp('mailTo', { style: 'flex:1', placeholder: t('收件人邮箱，多个用逗号分隔'), 'data-test': 'pm-mail-to' })),
+        el('div', { class: 'fa-row' },
+          el('label', null, el('input', { type: 'checkbox', checked: form.push, onChange: (e) => { form.push = e.target.checked; } }), ' ', t('生成后自动推送到群')),
+          el('label', null, el('input', { type: 'checkbox', checked: form.mail, 'data-test': 'pm-mail-auto', onChange: (e) => { form.mail = e.target.checked; } }), ' ', t('生成后自动发邮件'))))),
     el('div', { class: 'fa-row' },
       el('button', { class: 'fa-btn pri', disabled: busy.pmSave, onClick: saveProject, 'data-test': 'pm-save' }, t('保存项目')),
       pid.value ? el('button', { class: 'fa-btn', disabled: busy.pmSync, onClick: sync, 'data-test': 'pm-sync' }, busy.pmSync ? t('同步中…') : t('同步 git 与任务系统')) : null,
-      pg.value?.project?.lastSync ? el('span', { class: 'fa-empty' }, t('上次同步：{p0}（{p1}，{p2} 项任务）', { p0: pg.value.project.lastSync.at.replace('T', ' ').slice(0, 16), p1: pg.value.project.lastSync.source, p2: pg.value.project.lastSync.tasks })) : null),
+      pg.value?.project?.lastSync ? el('span', { class: 'fa-empty' }, t('上次同步：{p0}（{p1}，{p2} 项任务）', { p0: fmtAt(pg.value.project.lastSync.at), p1: pg.value.project.lastSync.source, p2: pg.value.project.lastSync.tasks })) : null),
     syncRes.value?.errors?.length ? el('div', { class: 'fa-note err' }, syncRes.value.errors.join('；')) : null,
     pid.value ? el('div', { style: 'margin-top:8px' }, el('b', null, t('会议纪要')), el('textarea', { class: 'fa-in fa-ta', style: 'min-height:70px', placeholder: t('粘贴站会 / 周会纪要；「决议：」「待办：」开头的行会被识别'), value: minutesText.value, onInput: (e) => { minutesText.value = e.target.value; } }), el('button', { class: 'fa-btn sm', onClick: addMinutes }, t('加入纪要'))) : null,
     errNote('pmSave'), errNote('pmSync'), errNote('pmImp'), errNote('pmDemo'), errNote('pmMin'));
@@ -117,10 +127,14 @@ export default function pmTab(kit) {
     reports.value.slice(0, 5).map((r, i) => el('div', { class: 'fa-kbform', key: r.id, 'data-test': i === 0 ? 'pm-report' : undefined },
       el('div', { class: 'fa-row' }, el('b', null, `${r.kind === 'weekly' ? t('周报') : t('日报')} ${r.from === r.to ? r.to : `${r.from} ~ ${r.to}`}`), el('span', { class: 'fa-empty' }, r.source === 'schedule' ? t('定时生成') : t('手动生成')),
         ['git 提交', '任务系统', '会议纪要'].map((s) => el('span', { class: 'fa-src pc' }, t(s))),
-        r.pushed ? el('span', { class: `fa-lv ${r.pushed.ok ? 'pass' : 'high'}` }, r.pushed.ok ? t('已推送') : t('推送失败')) : (r.text ? el('button', { class: 'fa-btn sm', disabled: busy.pmPush, onClick: () => push(r) }, t('推送到群')) : null)),
+        r.pushed ? el('span', { class: `fa-lv ${r.pushed.ok ? 'pass' : 'high'}` }, r.pushed.ok ? t('已推送') : t('推送失败')) : (r.text ? el('button', { class: 'fa-btn sm', disabled: busy.pmPush, onClick: () => push(r) }, t('推送到群')) : null),
+        r.text ? el('button', { class: 'fa-btn sm', disabled: busy.pmMail, onClick: () => mailRep(r), 'data-test': i === 0 ? 'pm-mail' : undefined }, busy.pmMail ? t('发送中…') : r.mailed?.ok ? t('再发一次邮件') : t('发送邮件')) : null,
+        r.mailed ? el('span', { class: `fa-lv ${r.mailed.ok ? 'pass' : 'high'}`, title: r.mailed.message || '' }, r.mailed.ok ? t('已发邮件 {p0}', { p0: fmtAt(r.mailed.at).slice(5) }) : t('邮件失败')) : null),
+      r.mailed && !r.mailed.ok && r.mailed.message ? el('p', { class: 'fa-note err' }, t('邮件没发出去：{p0}', { p0: r.mailed.message })) : null,
       el('p', { class: 'fa-empty' }, t('事实：提交 {a} 次（合并请求 {b} 个），任务完成 {c}/{d}，本期流转 {e} 项，逾期 {f} 项', { a: r.facts.commits, b: r.facts.merges, c: r.facts.taskDone, d: r.facts.taskTotal, e: r.facts.transitions, f: r.facts.overdue.length })),
-      r.error ? el('p', { class: 'fa-note err' }, r.error) : el('div', { class: 'fa-ans' }, r.text),
+      r.error ? el('p', { class: 'fa-note err' }, r.error) : el('div', { class: 'fa-ans', style: 'white-space:normal' }, richText(r.text)),
       r.unverified?.length ? el('p', { class: 'fa-note warn' }, t('这些数字在统计里找不到，请核对：{p0}', { p0: r.unverified.join('、') })) : null)),
+    err.pmMail ? el('p', { class: 'fa-note err' }, err.pmMail, /设置/.test(err.pmMail) ? [' ', el('button', { class: 'fa-link', onClick: () => navigate('overview') }, t('去设置'))] : null) : null,
     errNote('pmReport'), errNote('pmPush'));
 
   const vReq = () => card('pm-4', t('④ 需求管理 AI 化'), !!req.breakdown?.tasks?.length,

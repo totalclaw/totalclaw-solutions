@@ -1,7 +1,7 @@
 {
   "id": "workbench-fin-assistant",
   "version": "1.1.0",
-  "treeDigest": "a89c43f6fa4d832ac8db495ab81ca37e59a3e49f5406c307bce5071849a6e17e",
+  "treeDigest": "7ebd89edf7098920637da04b04cb66bc7c28db75013474a9e608124153a1f5d2",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -10,8 +10,8 @@
     },
     {
       "path": "README.md",
-      "size": 1827,
-      "sha256": "fcfd0565b7358fd0a8d54f9b744113c20dfcf6af4d3bad4f7c678621503b7809"
+      "size": 4880,
+      "sha256": "07a1231fd862b21de8aacc3c7aced3ffa0454b3cf9bb26cddf84e4343bbffce1"
     },
     {
       "path": "resources/credit-checklists.json",
@@ -81,7 +81,7 @@
     {
       "path": "resources/demo/fixtures/docs.json",
       "size": 8886,
-      "sha256": "57df001e32d359824b793d222697b71901401d5b7484a0c401bcb54ac1673f46"
+      "sha256": "d1da281925073cfbe8e4bfc6d3e79ffc37a7d77e7fc1a52229658178d0c3088f"
     },
     {
       "path": "resources/demo/fixtures/pm-report.json",
@@ -165,8 +165,8 @@
     },
     {
       "path": "src/host-modules.json",
-      "size": 732,
-      "sha256": "de3ed999d7c91ad70883d8a2312b7819afeb28dd2fde82064532900bc915feda"
+      "size": 794,
+      "sha256": "ce49681c60969f99e61fb91d35428aac89290aaa5006c29abfa3a67736cc8087"
     },
     {
       "path": "src/main/agents.cjs",
@@ -175,8 +175,8 @@
     },
     {
       "path": "src/main/askx.cjs",
-      "size": 6860,
-      "sha256": "11a5e97898f7eb3ec226a3c262de1c873fb6f515e8d2aaf8dfc9dc72a02adcaf"
+      "size": 7548,
+      "sha256": "b2644d13cdf17130ea6e37c0b539052b46aa4fc29879fd8f0a80e370b9a688f5"
     },
     {
       "path": "src/main/docText.cjs",
@@ -185,18 +185,18 @@
     },
     {
       "path": "src/main/docs.cjs",
-      "size": 12063,
-      "sha256": "316c3454f25f178b33c2c842fc15bf6866e9f412a20ae0f3dda914097bb46098"
+      "size": 13249,
+      "sha256": "60393d0806f9ec60b300cb3d7264c11dbed9121805fb071e0236802e07ae380c"
     },
     {
       "path": "src/main/gateway.cjs",
-      "size": 12300,
-      "sha256": "07616810a2475edcf0bd54568788471129cec32f44a03d45592578cd59635e5c"
+      "size": 15628,
+      "sha256": "5218fc8343c9dddb40249f05e80cbdbe5b1a6e8607619b251bcde6793c003c7a"
     },
     {
       "path": "src/main/index.cjs",
-      "size": 131671,
-      "sha256": "14a0a9d824f291c42a1fb787e14f21bf25de5dab3e4c96e587d94aba2720358d"
+      "size": 144927,
+      "sha256": "9b447b69080245de28d09cab83b09aacd90c784374272022e440d962e6bfde6e"
     },
     {
       "path": "src/main/knowledge.cjs",
@@ -205,13 +205,13 @@
     },
     {
       "path": "src/main/lib.cjs",
-      "size": 21585,
-      "sha256": "c76d84a3f70cada4843da3d4eb2460782859901924a1f49c30924cd236ef48d4"
+      "size": 21952,
+      "sha256": "6f7d25099f29911373374205265045ecadbc7f46883ba667276b8a85142b027e"
     },
     {
       "path": "src/main/pm.cjs",
-      "size": 15579,
-      "sha256": "889d102eae3d23f4cb1b43998ec92520cab2b0297b0f24882951e89410f22d87"
+      "size": 16774,
+      "sha256": "46af96fec6b9be57ce0c50ddb9f60cf7f1b08753b3632c9ba62836b694e83040"
     },
     {
       "path": "src/main/qr.cjs",
@@ -230,45 +230,45 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 75859,
-      "sha256": "40d37c195889f9b8341f6a548092a3f865b9d8c3b6e48113a843d9e54eff6b1f"
+      "size": 84934,
+      "sha256": "06d23f91259990b580fbbe1f2b4a315d80ad1f1915351b0413366b85313b5130"
     },
     {
       "path": "src/renderer/tabs/agents.mjs",
-      "size": 24302,
-      "sha256": "37b75bd0808bfd698f4a1e30e0d7a3a55bc1b065bc23bf3175aa6b1383c41ef4"
+      "size": 26446,
+      "sha256": "4b8d53ab659409e2bebfc949d9e50679c02f556c24db6960963b2820f862ab7d"
     },
     {
       "path": "src/renderer/tabs/askx.mjs",
-      "size": 13954,
-      "sha256": "3b86f7afc2b1689622b60cd167a0c5fb83fa05abe171757d72da6f9d9299f1be"
+      "size": 13946,
+      "sha256": "5c37c8b89690e4d1c1b24f5e6b636f830b51bc3b478cea56941043631d8cbded"
     },
     {
       "path": "src/renderer/tabs/docs.mjs",
-      "size": 11941,
-      "sha256": "90c078553a2a11d1cb8b76f241f44b16060a1f99b97a905057ef8f65876c3574"
+      "size": 13112,
+      "sha256": "46da9207d7ea178929931d2cdb85c910337c279ac6a6aec319e055e73fe513fa"
     },
     {
       "path": "src/renderer/tabs/gateway.mjs",
-      "size": 16327,
-      "sha256": "141dacbc090432a0e8b6deb553ae4312bfef9a828849f5128396865dda6901e7"
+      "size": 24462,
+      "sha256": "0eaf689e1b4e536d68271fb0abcaa6dbfcf44528541db2dd06bb58fa87fdd5a1"
     },
     {
       "path": "src/renderer/tabs/kbx.mjs",
-      "size": 5702,
-      "sha256": "710b9907ad152d3a7bc211982f19bcdc497aac7a61eca7472722c0524446a3c1"
+      "size": 6025,
+      "sha256": "9f73925636ce713c10d020e3bd2944635ee59e9842d849e5e6d9afe77f13ab1c"
     },
     {
       "path": "src/renderer/tabs/pm.mjs",
-      "size": 20813,
-      "sha256": "62b02b962919257e8784576599fb55ec1245a6e623c02626624f341909ad3555"
+      "size": 22711,
+      "sha256": "38ab83e61286016e21641af949f8303d4d696cf078125b8ef527a91838d32b97"
     }
   ],
   "versions": [
     {
       "version": "1.1.0",
       "ref": "workbench-fin-assistant@1.1.0",
-      "treeDigest": "a89c43f6fa4d832ac8db495ab81ca37e59a3e49f5406c307bce5071849a6e17e",
+      "treeDigest": "7ebd89edf7098920637da04b04cb66bc7c28db75013474a9e608124153a1f5d2",
       "filesRef": "index/workbench-fin-assistant/1.1.0.json",
       "channel": "stable",
       "rollout": 100,

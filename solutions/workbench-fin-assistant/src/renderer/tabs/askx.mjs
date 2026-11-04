@@ -3,7 +3,7 @@
  * 「对话」取数在页签上面的 ① ~ ③；这里是另外三种取数形态与多数据源。
  */
 export default function askxTab(kit) {
-  const { vue, el, t, call, busy, errNote, card, readBase64, sdk, fmtVal } = kit;
+  const { vue, el, t, call, busy, errNote, card, readBase64, sdk, fmtVal, fmtAt } = kit;
   const { ref, reactive } = vue;
 
   const src = ref({ sources: [], fields: {}, active: '' });
@@ -96,7 +96,7 @@ export default function askxTab(kit) {
         el('td', null, el('input', { class: 'fa-in', type: 'time', style: 'width:110px', value: r.schedule, onChange: (e) => update(r.id, { schedule: e.target.value }) }),
           el('label', { class: 'fa-row' }, el('input', { type: 'checkbox', checked: r.refresh, onChange: (e) => update(r.id, { refresh: e.target.checked }) }), t('先刷新数据源')),
           el('label', { class: 'fa-row' }, el('input', { type: 'checkbox', checked: r.push, onChange: (e) => update(r.id, { push: e.target.checked }) }), t('推送到群'))),
-        el('td', null, r.lastRun ? el('div', null, el('span', { class: 'fa-empty' }, `${r.lastRun.at.replace('T', ' ').slice(5, 16)} · ${t({ manual: '手动', schedule: '定时', api: 'API', export: '导出', push: '推送' }[r.lastRun.source] || r.lastRun.source)}`), el('div', null, r.lastRun.groups ? t('{p0} 组', { p0: r.lastRun.groups.length }) : fmtVal(r.lastRun.value, r.unit))) : '—'),
+        el('td', null, r.lastRun ? el('div', null, el('span', { class: 'fa-empty' }, `${fmtAt(r.lastRun.at).slice(5)} · ${t({ manual: '手动', schedule: '定时', api: 'API', export: '导出', push: '推送' }[r.lastRun.source] || r.lastRun.source)}`), el('div', null, r.lastRun.groups ? t('{p0} 组', { p0: r.lastRun.groups.length }) : fmtVal(r.lastRun.value, r.unit))) : '—'),
         el('td', null, el('div', { class: 'fa-row' }, el('button', { class: 'fa-btn sm', onClick: () => runReport(r.id) }, t('重算')), el('button', { class: 'fa-btn sm', onClick: () => exportRep(r.id) }, t('导出')), el('button', { class: 'fa-btn sm', onClick: () => pushRep(r.id) }, t('推送')), el('button', { class: 'fa-link', onClick: () => call('axUpd', 'ask.report.remove', { id: r.id }).then(load) }, t('删除')))))))) : null,
     repOut.value ? el('div', { class: 'fa-kbform', 'data-test': 'ax-report-out' },
       el('b', null, repOut.value.report.name), el('span', { class: 'fa-empty' }, ` · ${repOut.value.metric.name}（${repOut.value.out.period.from || '—'} 至 ${repOut.value.out.period.to || '—'}）· ${t('未调用模型')}`),

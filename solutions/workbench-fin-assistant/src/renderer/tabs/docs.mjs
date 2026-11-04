@@ -3,7 +3,7 @@
  * WPS / 图片 / PDF / 音频 / 视频都能进来：主进程按文件头认格式、取文字（OCR / 本机语音转写）、分类、抽字段并逐字核对。
  */
 export default function docsTab(kit) {
-  const { vue, el, t, call, busy, errNote, card, readBase64, sdk } = kit;
+  const { vue, el, t, call, busy, errNote, card, readBase64, sdk, confirm } = kit;
   const { ref, computed } = vue;
 
   const meta = ref(null);
@@ -49,6 +49,15 @@ export default function docsTab(kit) {
   const setField = async (field, value) => { const r = await call('docsField', 'docs.setField', { id: cur.value.id, field, value }); if (r) await open(cur.value.id); };
   const toKb = async () => { const r = await call('docsKb', 'docs.toKb', { ids: [...picked.value] }); if (r) { sdk.notify.success(t('已入金融知识库 {p0} 份，制度问答和智能体检索都能用到', { p0: r.added })); await refresh(); } };
   const exportCsv = async () => { const r = await call('docsExport', 'docs.export'); if (r?.ok) { exported.value = true; sdk.notify.success(t('已导出资料台账：{p0}', { p0: r.path })); } };
+  // 删除：页面内确认弹层（kit.confirm），彩排处理过的资料可以删掉重新导入；处理中的不让删（处理完会把记录写回来）
+  const removeDoc = async (d) => {
+    if (!(await confirm({ text: t('确定删除「{p0}」？会删掉这份资料和识别结果，不可恢复{p1}', { p0: d.name, p1: d.inKb ? t('；已放进金融知识库的内容不受影响') : '' }), ok: t('删除') }))) return;
+    const r = await call('docsRm', 'docs.remove', { id: d.id });
+    if (r === undefined) return;
+    if (cur.value?.id === d.id) cur.value = null;
+    const s2 = new Set(picked.value); s2.delete(d.id); picked.value = s2;
+    await refresh();
+  };
   const togglePick = (id) => { const s = new Set(picked.value); if (s.has(id)) s.delete(id); else s.add(id); picked.value = s; };
 
   const done = computed(() => list.value.filter((x) => x.status === 'done'));
@@ -89,9 +98,10 @@ export default function docsTab(kit) {
         el('td', null, d.status === 'done' ? el('select', { class: 'fa-in', value: d.category, onChange: (e) => setCat(d.id, e.target.value) }, (meta.value?.categories || []).map((c) => el('option', { value: c.id, selected: c.id === d.category }, t(c.name)))) : '—',
           d.categoryBy ? el('div', { class: 'fa-empty' }, t({ rule: '关键词判定', model: '模型判定', manual: '人工改过' }[d.categoryBy])) : null),
         el('td', null, el('span', { class: `fa-lv ${STATUS[d.status]?.[1] || ''}`, style: STATUS[d.status]?.[1] ? '' : 'background:#94a3b8' }, t(STATUS[d.status]?.[0] || d.status)), d.phase ? el('div', { class: 'fa-empty' }, t(d.phase)) : null, d.error ? el('div', { class: 'fa-note err', style: 'margin:4px 0 0' }, d.error) : null),
-        el('td', null, d.status === 'failed' || d.status === 'queued' ? el('button', { class: 'fa-btn sm', onClick: () => processDoc(d.id) }, d.status === 'failed' ? t('重试') : t('开始处理')) : null)))))
+        el('td', { style: 'white-space:nowrap;text-align:right' }, d.status === 'failed' || d.status === 'queued' ? el('button', { class: 'fa-btn sm', onClick: () => processDoc(d.id) }, d.status === 'failed' ? t('重试') : t('开始处理')) : null,
+          el('button', { class: 'fa-xbtn', title: d.status === 'processing' ? t('处理中，完成后才能删除') : t('删除这份资料'), 'aria-label': t('删除这份资料'), disabled: d.status === 'processing', style: d.status === 'processing' ? 'opacity:.35;cursor:default' : '', 'data-test': `docs-del-${d.id}`, onClick: () => removeDoc(d) }, '×'))))))
       : el('p', { class: 'fa-empty' }, t('还没有资料')),
-    errNote('docsCat'), errNote('docsProc'));
+    errNote('docsCat'), errNote('docsProc'), errNote('docsRm'));
 
   const vFields = () => {
     const d = cur.value;
@@ -104,9 +114,9 @@ export default function docsTab(kit) {
           (d.fields || []).length ? el('table', { class: 'fa-tbl', 'data-test': 'docs-fields' },
             el('thead', null, el('tr', null, [t('字段'), t('值'), t('核对')].map((x) => el('th', null, x)))),
             el('tbody', null, d.fields.map((f) => el('tr', { key: f.field },
-              el('td', null, t(f.field)),
+              el('td', { style: 'white-space:nowrap' }, t(f.field)),
               el('td', null, el('input', { class: 'fa-in', style: 'width:100%', value: f.value, placeholder: t('原文没有'), onChange: (e) => setField(f.field, e.target.value) }), f.quote ? el('div', { class: 'fa-empty' }, `「${f.quote}」`) : null),
-              el('td', null, f.missing ? el('span', { class: 'fa-empty' }, t('原文没有')) : f.manual ? el('span', { class: 'fa-src pc' }, t('人工确认')) : f.verified ? el('span', { class: 'fa-lv pass' }, t('已核实')) : el('span', { class: 'fa-lv medium' }, t('未核实')))))))
+              el('td', { style: 'white-space:nowrap' }, f.missing ? el('span', { class: 'fa-empty' }, t('原文没有')) : f.manual ? el('span', { class: 'fa-src pc' }, t('人工确认')) : f.verified ? el('span', { class: 'fa-lv pass' }, t('已核实')) : el('span', { class: 'fa-lv medium' }, t('未核实')))))))
             : el('p', { class: 'fa-empty' }, d.status === 'done' ? t('这一类没有要抽的字段') : t('处理完成后显示')),
           d.facts ? el('p', { class: 'fa-empty' }, [d.facts.dates?.length ? t('日期：{p0}', { p0: d.facts.dates.join('、') }) : '', d.facts.amounts?.length ? t('金额：{p0}', { p0: d.facts.amounts.join('、') }) : ''].filter(Boolean).join('　')) : null),
         el('div', null,

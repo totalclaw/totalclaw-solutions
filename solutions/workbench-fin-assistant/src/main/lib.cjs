@@ -107,8 +107,17 @@ function splitClauses(text) {
   return out;
 }
 
+/**
+ * 本机时区的日期 YYYY-MM-DD。不能用 toISOString().slice(0, 10)：那是 UTC 日期，
+ * 国内早上 8 点前会算成昨天（日报、制度生效、证照到期都会差一天）
+ */
+function localDate(d = new Date()) {
+  const x = d instanceof Date ? d : new Date(d);
+  return `${x.getFullYear()}-${String(x.getMonth() + 1).padStart(2, '0')}-${String(x.getDate()).padStart(2, '0')}`;
+}
+
 /** 生效判定：今天在生效日之后、废止日之前（日期留空 = 不限） */
-function policyActive(p, today = new Date().toISOString().slice(0, 10)) {
+function policyActive(p, today = localDate()) {
   if (p.retired) return false;
   if (p.effectiveFrom && p.effectiveFrom > today) return false;
   if (p.effectiveTo && p.effectiveTo < today) return false;
@@ -309,7 +318,7 @@ function parseAmount(v) {
  * 程序校验：资产负债平衡、流动比率、资产负债率、流水收入与报表收入匹配、证照有效期、大额 / 关联交易。
  * values: 抽取到的财报数（元）；flows: [{ date, amount(收入为正), counterparty }]；licenseExpiry: YYYY-MM-DD；related: [名称]
  */
-function creditChecks({ values = {}, flows = [], licenseExpiry = '', related = [], largeThreshold = 2_000_000, today = new Date().toISOString().slice(0, 10) }) {
+function creditChecks({ values = {}, flows = [], licenseExpiry = '', related = [], largeThreshold = 2_000_000, today = localDate() }) {
   const out = [];
   const v = (k) => (values[k] == null ? null : Number(values[k]));
   const fmt = (n) => (n == null ? '—' : `${(n / 1e4).toFixed(2)} 万元`);
@@ -410,7 +419,7 @@ function marketingHardCheck(text, rules) {
 }
 
 module.exports = {
-  tokenize, numbersIn, unverifiedNumbers, auditHash, chainAppend, chainVerify,
+  localDate, tokenize, numbersIn, unverifiedNumbers, auditHash, chainAppend, chainVerify,
   splitClauses, policyActive, bm25Search, coverage, forbiddenHit,
   rowMatches, aggregate, runMetric, metricSql, validateIntent,
   classifyMaterial, missingMaterials, locateQuote, parseAmount, creditChecks, stripVerdicts, VERDICT_RE, parseFlows,

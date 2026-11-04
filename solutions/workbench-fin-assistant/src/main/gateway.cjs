@@ -21,18 +21,72 @@ const sha = (s) => createHash('sha256').update(String(s || '')).digest('hex').sl
 
 // ── 多模型路由 ──
 
-/** 模型清单规整：value 是 provider/model（空串 = 宿主默认模型） */
+/**
+ * 模型清单规整。两种接入：
+ *   host   —— 应用里已配置的模型，value 是 provider/model（空串 = 宿主默认模型）
+ *   direct —— 直连内网私有部署的 OpenAI 兼容接口：endpoint（http/https）+ model + timeout 秒；value 固定为 direct:<id>。
+ *             API 密钥不在这里（不进 settings.json），只存系统钥匙串，键名 gw-model-<id>
+ */
 function normalizeModels(list) {
   const out = [];
   const seen = new Set();
   for (const m of Array.isArray(list) ? list : []) {
+    if (m?.kind === 'direct') {
+      const id = String(m.id || '').replace(/[^a-zA-Z0-9_-]/g, '').slice(0, 40);
+      const endpoint = String(m.endpoint || '').trim().replace(/\/+$/, '');
+      const model = String(m.model || '').trim().slice(0, 120);
+      if (!id || !/^https?:\/\/[^\s]+$/i.test(endpoint) || !model) continue;
+      const value = `direct:${id}`;
+      if (seen.has(value)) continue;
+      seen.add(value);
+      const timeout = Math.min(600, Math.max(5, Math.round(Number(m.timeout) || 60)));
+      out.push({ value, kind: 'direct', id, endpoint: endpoint.slice(0, 300), model, timeout, label: String(m.label || model).slice(0, 80), internal: !!m.internal, enabled: m.enabled !== false });
+      continue;
+    }
     const value = String(m?.value ?? '').trim();
-    if (seen.has(value)) continue;
+    if (value.startsWith('direct:') || seen.has(value)) continue;
     seen.add(value);
     out.push({ value, label: String(m?.label || value || '系统默认模型').slice(0, 80), internal: !!m?.internal, enabled: m?.enabled !== false });
   }
   if (!out.length) out.push({ value: '', label: '系统默认模型', internal: false, enabled: true });
   return out;
+}
+
+/** 接口地址只留协议 + 主机 + 端口（审计 / 报错里不带路径参数）；拼不出就给空 */
+function endpointHost(endpoint) {
+  try { const u = new URL(endpoint); return `${u.protocol}//${u.host}`; } catch { return ''; }
+}
+
+/**
+ * 直连 OpenAI 兼容接口：POST <endpoint>/chat/completions，取 choices[0].message.content。
+ * HTTP 非 2xx、返回体带 error、超时，都抛出真实原因（网关据此自动换下一个模型）。密钥只放请求头，不进任何报错文字
+ */
+async function directChat({ endpoint, model, apiKey = '', timeoutMs = 60_000, prompt, maxTokens }) {
+  const url = `${String(endpoint).replace(/\/+$/, '')}/chat/completions`;
+  const ac = new AbortController();
+  const timer = setTimeout(() => ac.abort(), Math.max(1000, timeoutMs));
+  let res;
+  let raw = '';
+  try {
+    res = await fetch(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', ...(apiKey ? { authorization: `Bearer ${apiKey}` } : {}) },
+      body: JSON.stringify({ model, messages: [{ role: 'user', content: String(prompt || '') }], stream: false, ...(maxTokens ? { max_tokens: maxTokens } : {}) }),
+      signal: ac.signal,
+    });
+    raw = await res.text();
+  } catch (e) {
+    if (ac.signal.aborted) throw new Error(`${endpointHost(endpoint)} 超过 ${Math.round(timeoutMs / 1000)} 秒没有返回`);
+    throw new Error(`连不上 ${endpointHost(endpoint) || endpoint}：${String(e?.cause?.code || e?.cause?.message || e?.message || e)}`);
+  } finally { clearTimeout(timer); }
+  let j = null;
+  try { j = JSON.parse(raw); } catch { /* 非 JSON 原样报 */ }
+  const errMsg = j?.error ? (typeof j.error === 'string' ? j.error : j.error.message || JSON.stringify(j.error)) : '';
+  if (!res.ok) throw new Error(`HTTP ${res.status}：${String(errMsg || raw || res.statusText).replace(/\s+/g, ' ').slice(0, 200)}`);
+  if (errMsg) throw new Error(`模型返回错误：${String(errMsg).slice(0, 200)}`);
+  const text = j?.choices?.[0]?.message?.content;
+  if (typeof text !== 'string') throw new Error(`返回内容不是 OpenAI 兼容格式：${String(raw).replace(/\s+/g, ' ').slice(0, 120)}`);
+  return { text, model: j?.model || model };
 }
 
 /** 路由规则：从上到下第一条命中的生效；models 按顺序尝试 */
@@ -254,6 +308,7 @@ function auditCsv(list) {
 }
 
 module.exports = {
+  directChat, endpointHost,
   CLASSES, SCENES, SCENE_LABEL, MASK_KINDS, DEFAULT_OUTPUT_BANNED,
   sha, normalizeModels, normalizeRules, complexityOf, pickRoute,
   isIdCard, luhn, maskText, unmaskText, guardInput, guardOutput,

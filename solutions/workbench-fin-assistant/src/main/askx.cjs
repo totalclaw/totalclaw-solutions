@@ -71,20 +71,25 @@ const NUMERIC = new Set(['balance', 'new_amount', 'customers', 'maturing_amount'
 /** 字段名自动对上：口径库字段 ← 源字段（同名 / 中文说明 / 常见别名） */
 function autoMapping(fields, sourceKeys) {
   const alias = {
-    stat_date: ['stat_date', 'date', 'dt', '统计日期', '日期', 'biz_date', 'data_date'],
-    branch: ['branch', 'branch_name', 'org_name', '分行', '机构', '机构名称'],
-    product: ['product', 'product_type', 'prod_type', '产品', '产品类型'],
-    customer_level: ['customer_level', 'cust_level', 'level', '客户等级', '等级'],
-    balance: ['balance', 'bal', 'amount', '余额'],
-    new_amount: ['new_amount', 'increase', '新增', '当月新增'],
-    customers: ['customers', 'cust_cnt', 'customer_count', '客户数', '有余额客户数'],
-    maturing_amount: ['maturing_amount', 'maturity', '到期金额', '次月到期金额'],
+    stat_date: ['stat_date', 'date', 'dt', '统计日期', '日期', 'biz_date', 'data_date', 'report_date', 'acct_date', 'etl_date'],
+    branch: ['branch', 'branch_name', 'org_name', 'org', 'dept_name', 'inst_name', '分行', '机构', '机构名称', '分支机构'],
+    product: ['product', 'product_type', 'prod_type', 'product_name', 'prod_name', '产品', '产品类型', '产品名称'],
+    customer_level: ['customer_level', 'cust_level', 'cust_grade', 'level', '客户等级', '等级', '客户层级'],
+    balance: ['balance', 'bal', 'amount', 'bal_amt', 'balance_amt', '余额', '存款余额'],
+    new_amount: ['new_amount', 'new_amt', 'increase', 'incr_amt', 'add_amt', '新增', '当月新增', '新增金额'],
+    customers: ['customers', 'cust_cnt', 'cust_num', 'customer_count', 'customer_num', '客户数', '有余额客户数'],
+    maturing_amount: ['maturing_amount', 'maturity', 'maturity_amt', 'due_amt', 'expire_amt', '到期金额', '次月到期金额'],
   };
-  const lower = new Map(sourceKeys.map((k) => [String(k).toLowerCase(), k]));
+  // 比对时去掉大小写、下划线、连字符和空格：业务系统接口多是驼峰（statDate / orgName / custCnt），
+  // 原来只认下划线写法，抓包接进来的接口几乎一个都对不上
+  const key = (x) => String(x || '').toLowerCase().replace(/[_\-\s]/g, '');
+  const byKey = new Map();
+  for (const k of sourceKeys) if (!byKey.has(key(k))) byKey.set(key(k), k);
   const out = {};
+  const used = new Set();
   for (const f of Object.keys(fields)) {
-    const hit = [f, ...(alias[f] || [])].map((a) => lower.get(String(a).toLowerCase())).find(Boolean);
-    if (hit) out[f] = hit;
+    const hit = [f, ...(alias[f] || [])].map((a) => byKey.get(key(a))).find((k) => k && !used.has(k));
+    if (hit) { out[f] = hit; used.add(hit); }
   }
   return out;
 }

@@ -3,7 +3,7 @@
  * 画布：拖动节点；点节点右侧的出口圆点再点另一个节点就连上（条件节点有「是 / 否」两个出口）；点连线删除。
  */
 export default function agentsTab(kit) {
-  const { vue, el, t, call, busy, errNote, card, sdk } = kit;
+  const { vue, el, t, call, busy, errNote, card, sdk, fmtAt, confirm, richText } = kit;
   const { ref, reactive, computed, h } = vue;
 
   const ov = ref(null);
@@ -44,15 +44,16 @@ export default function agentsTab(kit) {
     if (r) { agent.value = r; dirty.value = false; await load(); sdk.notify.success(t('已保存')); }
   };
   const create = async () => { const r = await call('agSave', 'agents.save', { name: t('新智能体') }); if (r) { await load(); await open(r.id); } };
-  const confirmDel = ref('');
-  const removeById = async (id) => {
-    if (confirmDel.value !== id) { confirmDel.value = id; setTimeout(() => { if (confirmDel.value === id) confirmDel.value = ''; }, 4000); return; }
-    confirmDel.value = '';
-    await call('agSave', 'agents.remove', { id });
-    if (agent.value?.id === id) agent.value = null;
+  // 删除确认走页面内弹层（kit.confirm）：原来「点一下变确认删除？、再点才删」会让文字变宽、把后面的 × 挤到鼠标下，连点两下就误删了下一个
+  const askRemove = async (a) => {
+    if (!a) return;
+    if (!(await confirm({ text: t('确定删除「{p0}」？删除后运行记录保留、不可恢复', { p0: a.name }), ok: t('删除') }))) return;
+    const r = await call('agSave', 'agents.remove', { id: a.id });
+    if (r === undefined) return;
+    if (agent.value?.id === a.id) agent.value = null;
     await load();
   };
-  const remove = () => removeById(agent.value.id);
+  const remove = () => askRemove(agent.value);
   const run = async () => {
     if (dirty.value) await save();
     runRes.value = await call('agRun', 'agents.run', { id: agent.value.id, inputs: { ...runInputs } });
@@ -76,8 +77,15 @@ export default function agentsTab(kit) {
     let i = g.nodes.length + 1;
     while (g.nodes.some((n) => n.id === `n${i}`)) i += 1;
     const base = { llm: { prompt: '请回答：{{inputs.question}}', cls: 'internal' }, retrieve: { query: '{{inputs.question}}', topK: 4 }, condition: { left: '{{inputs.question}}', op: 'contains', right: '' }, assign: { value: '' }, plugin: { plugin: '', inputs: {} }, answer: { text: '' }, start: { fields: [{ name: 'question', label: '问题', required: true }] } }[type] || {};
-    const last = g.nodes[g.nodes.length - 1];
-    g.nodes.push({ id: `n${i}`, type, title: t(NT()[type]?.label || type), x: (last?.x || 40) + 60, y: (last?.y || 80) + 90, config: base });
+    // 新节点放进画布当前可见区域里第一个空位：原来按「上一个节点右下方」斜着排，连加几个就跑出画布看不见了
+    const view = canvasEl?.getBoundingClientRect ? { x: canvasEl.scrollLeft, y: canvasEl.scrollTop, w: canvasEl.clientWidth, h: canvasEl.clientHeight } : { x: 0, y: 0, w: 900, h: 430 };
+    const free = (x, y) => !g.nodes.some((n) => Math.abs(n.x - x) < W + 16 && Math.abs(n.y - y) < H + 16);
+    let pos = null;
+    for (let y = view.y + 20; !pos && y + H <= view.y + Math.max(view.h, H + 40); y += H + 24) {
+      for (let x = view.x + 20; x + W <= view.x + Math.max(view.w, W + 40); x += W + 24) if (free(x, y)) { pos = { x, y }; break; }
+    }
+    if (!pos) { const last = g.nodes[g.nodes.length - 1]; pos = { x: (last?.x || 40) + 40, y: (last?.y || 40) + 40 }; }
+    g.nodes.push({ id: `n${i}`, type, title: t(NT()[type]?.label || type), x: Math.round(pos.x), y: Math.round(pos.y), config: base });
     sel.value = `n${i}`; touch();
   };
   const delNode = (id) => { const g = agent.value.graph; g.nodes = g.nodes.filter((n) => n.id !== id); g.edges = g.edges.filter((e) => e.from !== id && e.to !== id); sel.value = ''; touch(); };
@@ -95,6 +103,7 @@ export default function agentsTab(kit) {
   const onMove = (ev) => { if (!drag.id) return; const n = node(drag.id); if (!n) return; n.x = Math.max(0, Math.round(ev.clientX - drag.dx)); n.y = Math.max(0, Math.round(ev.clientY - drag.dy)); touch(); };
   const onUp = () => { drag.id = ''; };
   const W = 168; const H = 58;
+  let canvasEl = null;
   const port = (n, branch) => (n.type === 'condition' ? { x: n.x + W, y: n.y + (branch === 'false' ? H - 14 : 14) } : { x: n.x + W, y: n.y + H / 2 });
   const curve = (a, b) => `M${a.x},${a.y} C${a.x + 60},${a.y} ${b.x - 60},${b.y} ${b.x},${b.y}`;
   const svg = (tag, props, kids) => h(tag, props, kids);
@@ -103,15 +112,19 @@ export default function agentsTab(kit) {
     const ns = nodes();
     const width = Math.max(900, ...ns.map((n) => n.x + W + 60));
     const height = Math.max(380, ...ns.map((n) => n.y + H + 60));
-    return el('div', { style: 'position:relative;overflow:auto;border:1px solid var(--fa-line,#dbe2ec);border-radius:8px;background:repeating-linear-gradient(0deg,transparent 0 23px,#eef2f8 23px 24px),repeating-linear-gradient(90deg,transparent 0 23px,#eef2f8 23px 24px);height:430px', onPointermove: onMove, onPointerup: onUp, onPointerleave: onUp, 'data-test': 'ag-canvas' },
-      el('div', { style: `position:relative;width:${width}px;height:${height}px` },
+    return el('div', { ref: (x) => { canvasEl = x; }, style: 'position:relative;overflow:auto;border:1px solid var(--fa-line,#dbe2ec);border-radius:8px;background:repeating-linear-gradient(0deg,transparent 0 23px,#eef2f8 23px 24px),repeating-linear-gradient(90deg,transparent 0 23px,#eef2f8 23px 24px);height:430px', onPointermove: onMove, onPointerup: onUp, onPointerleave: onUp, 'data-test': 'ag-canvas' },
+      // 连线中点画布空白处取消（提示里就是这么写的；原来只认外层容器，点画布本身取消不了）
+      el('div', { style: `position:relative;width:${width}px;height:${height}px`, onClick: (e) => { if (e.target === e.currentTarget && linking.value) linking.value = null; } },
         svg('svg', { width, height, style: 'position:absolute;inset:0;pointer-events:none' }, edges().map((e, i) => {
           const a = node(e.from); const b = node(e.to);
           if (!a || !b) return null;
           const p1 = port(a, e.branch); const p2 = { x: b.x, y: b.y + H / 2 };
           const color = e.branch === 'true' ? '#15803d' : e.branch === 'false' ? '#c2410c' : '#64748b';
+          const del = () => { agent.value.graph.edges.splice(i, 1); touch(); };
           return svg('g', { key: `e${i}` }, [
-            svg('path', { d: curve(p1, p2), stroke: color, 'stroke-width': 2, fill: 'none', style: 'pointer-events:stroke;cursor:pointer', onClick: () => { agent.value.graph.edges.splice(i, 1); touch(); } }),
+            svg('path', { d: curve(p1, p2), stroke: color, 'stroke-width': 2, fill: 'none', style: 'pointer-events:none' }),
+            // 2px 的线很难点中：叠一条透明的宽线专门接点击，悬停时提示能删
+            svg('path', { d: curve(p1, p2), stroke: 'transparent', 'stroke-width': 12, fill: 'none', style: 'pointer-events:stroke;cursor:pointer', 'data-test': `ag-edge-${e.from}-${e.to}`, onClick: del }, [svg('title', null, t('点击删除这条连线'))]),
             e.branch ? svg('text', { x: p1.x + 10, y: p1.y - 4, 'font-size': 11, fill: color }, e.branch === 'true' ? t('是') : t('否')) : null,
           ]);
         })),
@@ -168,10 +181,10 @@ export default function agentsTab(kit) {
   const vEditor = () => card('ag-2', t('② 编排工作流'), !!agent.value && !dirty.value && !issues.value.length,
     t('从左上角加节点，拖动摆位置；点节点右边的圆点再点另一个节点就连上，点连线删除。大模型节点经 AI 网关调用（路由、脱敏、审计都生效）。'),
     el('div', { class: 'fa-row' },
-      (ov.value?.agents || []).map((a) => el('span', { key: a.id, style: 'display:inline-flex;align-items:center;gap:2px' },
+      (ov.value?.agents || []).map((a) => el('span', { key: a.id, class: 'fa-agchip' },
         el('button', { class: `fa-btn sm${agent.value?.id === a.id ? ' pri' : ''}`, onClick: () => open(a.id) }, a.name, a.published ? ' ●' : ''),
-        // 点错新建的可以直接删：点一下变「确认删除？」，再点才删
-        el('button', { class: 'fa-link', title: t('删除这个智能体'), 'data-test': `ag-del-${a.id}`, style: `padding:0 4px;color:${confirmDel.value === a.id ? '#b91c1c' : '#94a3b8'}`, onClick: () => removeById(a.id) }, confirmDel.value === a.id ? t('确认删除？') : '×'))),
+        // 删除做成按钮右上角的小圆角标，点了弹确认层（不改文字、不挪位置）
+        el('button', { class: 'fa-agchip-x', title: t('删除这个智能体'), 'aria-label': t('删除这个智能体'), 'data-test': `ag-del-${a.id}`, onClick: (e) => { e.stopPropagation(); askRemove(a); } }, '×'))),
       el('button', { class: 'fa-btn sm', onClick: create, 'data-test': 'ag-new' }, t('+ 新建智能体'))),
     agent.value ? el('div', null,
       el('div', { class: 'fa-row' },
@@ -184,7 +197,7 @@ export default function agentsTab(kit) {
       issues.value.length ? el('div', { class: 'fa-note warn' }, issues.value.map((x) => el('div', null, `· ${x}`))) : null,
       el('div', { class: 'fa-row' },
         el('button', { class: 'fa-btn pri', disabled: busy.agSave, onClick: save, 'data-test': 'ag-save' }, dirty.value ? t('保存（有改动）') : t('保存')),
-        el('button', { class: 'fa-link', style: 'color:#b91c1c', onClick: remove }, confirmDel.value === agent.value.id ? t('再点一次确认删除') : t('删除这个智能体')))) : el('p', { class: 'fa-empty' }, t('这个租户还没有智能体')),
+        el('button', { class: 'fa-link', style: 'color:#b91c1c', onClick: remove, 'data-test': 'ag-remove' }, t('删除这个智能体')))) : el('p', { class: 'fa-empty' }, t('这个租户还没有智能体')),
     errNote('agSave'), errNote('agGet'));
 
   const vRun = () => {
@@ -197,14 +210,14 @@ export default function agentsTab(kit) {
         fields.map((f) => el('div', { class: 'fa-row', key: f.name }, el('span', { style: 'min-width:80px' }, f.label || f.name), el('input', { class: 'fa-in', style: 'flex:1', value: runInputs[f.name] || '', 'data-test': `ag-in-${f.name}`, onInput: (e) => { runInputs[f.name] = e.target.value; } }))),
         el('button', { class: 'fa-btn pri', disabled: busy.agRun, onClick: run, 'data-test': 'ag-run' }, busy.agRun ? t('运行中…') : t('运行')),
         r ? el('div', null,
-          r.ok ? el('div', { class: 'fa-note ok', 'data-test': 'ag-answer' }, el('b', null, t('回复：')), el('div', { class: 'fa-ans' }, r.answer)) : el('div', { class: 'fa-note err' }, r.error),
+          r.ok ? el('div', { class: 'fa-note ok', 'data-test': 'ag-answer' }, el('b', null, t('回复：')), el('div', { class: 'fa-ans', style: 'white-space:normal' }, richText(r.answer))) : el('div', { class: 'fa-note err' }, r.error),
           el('table', { class: 'fa-tbl' }, el('thead', null, el('tr', null, [t('节点'), t('输入'), t('输出'), t('耗时')].map((x) => el('th', null, x)))),
             el('tbody', null, r.trace.map((s) => el('tr', { key: s.node },
               el('td', null, el('b', null, s.title), el('div', { class: 'fa-empty' }, t(NT()[s.type]?.label || s.type))),
               el('td', null, el('div', { class: 'fa-q', style: 'max-height:90px;overflow:auto;margin:0' }, typeof s.input === 'object' ? JSON.stringify(s.input) : String(s.input ?? ''))),
               el('td', null, s.ok ? el('div', { class: 'fa-q', style: 'max-height:90px;overflow:auto;margin:0' }, typeof s.output === 'object' ? JSON.stringify(s.output) : String(s.output ?? '')) : el('span', { class: 'fa-note err' }, s.error), s.hits ? el('div', { class: 'fa-empty' }, t('命中 {p0} 条', { p0: s.hits.length })) : null),
               el('td', null, `${s.ms} ms`)))))) : null,
-        runs.value.length ? el('p', { class: 'fa-empty' }, t('最近运行：{p0}', { p0: runs.value.slice(0, 6).map((x) => `${x.at.slice(11, 19)} ${x.source === 'api' ? 'API' : t('控制台')} ${x.ok ? '✓' : '✗'}`).join('　') })) : null) : null,
+        runs.value.length ? el('p', { class: 'fa-empty' }, t('最近运行：{p0}', { p0: runs.value.slice(0, 6).map((x) => `${fmtAt(x.at, { sec: true, date: false })} ${x.source === 'api' ? 'API' : t('控制台')} ${x.ok ? '✓' : '✗'}`).join('　') })) : null) : null,
       errNote('agRun'));
   };
 
@@ -225,7 +238,7 @@ export default function agentsTab(kit) {
           a && o.api.running ? el('div', { class: 'fa-code' }, `curl -X POST ${o.api.url}/agents/${a.id}/run \\\n  -H "Authorization: Bearer <密钥>" \\\n  -d '{"inputs":{"question":"大额存单起存多少"}}'`) : null,
           el('h4', { style: 'margin:10px 0 6px' }, t('API 密钥（只显示一次）')),
           newKey.value ? el('div', { class: 'fa-note warn' }, t('新密钥：'), el('code', null, newKey.value.key), t('（关掉后再也看不到，请立即保存）')) : null,
-          (o.keys || []).map((k) => el('div', { class: 'fa-row', key: k.id }, el('code', null, `${k.prefix}…`), el('span', { class: 'fa-empty' }, `${k.label} · ${k.createdAt.slice(0, 10)}`), el('button', { class: 'fa-link', onClick: () => revokeKey(k.id) }, t('吊销')))),
+          (o.keys || []).map((k) => el('div', { class: 'fa-row', key: k.id }, el('code', null, `${k.prefix}…`), el('span', { class: 'fa-empty' }, `${k.label} · ${fmtAt(k.createdAt).slice(0, 10)}`), el('button', { class: 'fa-link', onClick: () => revokeKey(k.id) }, t('吊销')))),
           el('button', { class: 'fa-btn sm', onClick: createKey, 'data-test': 'ag-key' }, t('+ 生成密钥')),
           errNote('agApi'), errNote('agKey')),
         el('div', null,
@@ -236,6 +249,12 @@ export default function agentsTab(kit) {
           errNote('agPl'))) : null);
   };
 
+  const AG_CSS = `
+.fa-agchip{position:relative;display:inline-flex;margin:4px 8px 0 0}
+.fa-agchip-x{position:absolute;top:-7px;right:-7px;width:17px;height:17px;border-radius:50%;border:1px solid #cbd5e1;background:#fff;color:#64748b;font-size:12px;line-height:14px;padding:0;text-align:center;cursor:pointer;box-shadow:0 1px 2px rgba(11,36,71,.12);transition:background .15s,color .15s,border-color .15s;z-index:1}
+.fa-agchip-x:hover,.fa-agchip-x:focus-visible{background:#dc2626;border-color:#dc2626;color:#fff;outline:none}
+`;
+
   return {
     load: () => load(),
     steps: () => [
@@ -244,6 +263,6 @@ export default function agentsTab(kit) {
       { id: 'ag-3', title: t('③ 调试运行'), done: !!runRes.value?.ok },
       { id: 'ag-4', title: t('④ 发布、插件与 API'), done: !!agent.value?.published && !!ov.value?.api.running },
     ],
-    view: () => el('div', { 'data-test': 'fa-agents', onClick: (e) => { if (linking.value && e.target === e.currentTarget) linking.value = null; } }, vTenant(), vEditor(), vRun(), vPublish()),
+    view: () => el('div', { 'data-test': 'fa-agents', onClick: (e) => { if (linking.value && e.target === e.currentTarget) linking.value = null; } }, el('style', null, AG_CSS), vTenant(), vEditor(), vRun(), vPublish()),
   };
 }
