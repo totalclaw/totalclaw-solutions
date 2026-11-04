@@ -803,3 +803,41 @@ test('网关·直连私有模型：OpenAI 兼容接口直连成功；401 / 超�
     main.__setSecretsForTests(null); main.__setLlmForTests(null);
   }
 });
+
+test('问数解读：写了「1 亿元 = 100,000,000 元」不算编造；自己做了减法的打回重写一次，重写对了就保留', async () => {
+  const { call } = fakeCtx();
+  let n = 0;
+  main.__setLlmForTests(async () => {
+    n += 1;
+    if (n === 1) return { text: '{"metricId":"deposit_balance","from":"","to":"","groupBy":"branch","where":{},"note":""}', model: 'stub' };
+    if (n === 2) return { text: '杭州分行比北京分行多 360.79 亿元（1 亿元 = 100,000,000 元）。', model: 'stub' };
+    return { text: '各分行中杭州分行余额最高（1 亿元 = 100,000,000 元）。', model: 'stub' };
+  });
+  try {
+    await call('data.demo');
+    await call('settings.patch', { modelInternal: true });
+    const r = await call('ask.run', { q: '各分行存款余额' });
+    assert.equal(n, 3, '有编出来的差值，重写了一次');
+    assert.deepEqual(r.unverified, []);
+    assert.match(r.interp, /杭州分行余额最高/);
+  } finally { main.__setLlmForTests(null); }
+});
+
+test('常见问题直答：换个说法（虚词不同）能直答，问的是别的事不直答', () => {
+  const faqs = [{ id: 'a', q: '大额存单起存金额是多少？', alts: [] }, { id: 'b', q: '营销宣传材料审核多久', alts: [] }];
+  assert.equal(RTX.faqMatch('大额存单起存金额要多少', faqs)?.faq.id, 'a');
+  assert.equal(RTX.faqMatch('营销材料审核要多久', faqs)?.faq.id, 'b');
+  assert.equal(RTX.faqMatch('大额存单利率是多少', faqs), null);
+  assert.equal(RTX.faqMatch('理财产品起购金额是多少', faqs), null);
+});
+
+test('制度问答证据覆盖率：问法带「的 / 是什么」不再被误拒；问的事制度里没有照样拒', async () => {
+  const { call } = fakeCtx();
+  main.__setLlmForTests(async () => ({ text: '其他员工每晚不超过 500 元 [1]。', model: 'stub' }));
+  await call('policy.demo');
+  const ok = await call('qa.ask', { q: '员工出差住宿的报销标准是什么？' });
+  assert.equal(ok.status, 'answered', ok.reason);
+  const no = await call('qa.ask', { q: '比特币怎么买' });
+  assert.equal(no.status, 'refused');
+  main.__setLlmForTests(null);
+});

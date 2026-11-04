@@ -3,7 +3,7 @@
  * 「对话」取数在页签上面的 ① ~ ③；这里是另外三种取数形态与多数据源。
  */
 export default function askxTab(kit) {
-  const { vue, el, t, call, busy, errNote, card, readBase64, sdk, fmtVal, fmtAt } = kit;
+  const { vue, el, t, call, busy, errNote, card, readBase64, sdk, fmtVal, fmtAt, confirm } = kit;
   const { ref, reactive } = vue;
 
   const src = ref({ sources: [], fields: {}, active: '' });
@@ -43,7 +43,8 @@ export default function askxTab(kit) {
     if (r) { const n = await call('axLoad', 'ask.src.load', { id: r.id }); if (n) sdk.notify.success(t('已接入「{p0}」并载入 {p1} 行，可以直接问数了', { p0: r.name, p1: n })); preview.value = null; har.value = null; await load(); }
   };
   const loadSrc = async (id) => { const n = await call('axLoad', 'ask.src.load', { id }); if (n) { sdk.notify.success(t('已载入 {p0} 行', { p0: n })); await load(); } };
-  const removeSrc = async (id) => { await call('axSave', 'ask.src.remove', { id }); await load(); };
+  const removeSrc = async (x) => { if (!(await confirm({ text: t('确定删除数据源「{p0}」？已载入的数据不受影响，之后不能再从它刷新', { p0: x.name }), ok: t('删除') }))) return; await call('axSave', 'ask.src.remove', { id: x.id }); await load(); };
+  const removeRep = async (r) => { if (!(await confirm({ text: t('确定删除报表「{p0}」？它的定时任务和本机 API 地址一起停用', { p0: r.name }), ok: t('删除') }))) return; await call('axUpd', 'ask.report.remove', { id: r.id }); await load(); };
   const saveReport = async (askId) => { const r = await call('axRepSave', 'ask.report.save', { askId, name: repName.value }); if (r) { repName.value = ''; await load(); await runReport(r.id); } };
   const runReport = async (id) => { repOut.value = await call('axRun', 'ask.report.run', { id }); await load(); };
   const update = async (id, patch) => { await call('axUpd', 'ask.report.update', { id, ...patch }); await load(); };
@@ -69,7 +70,7 @@ export default function askxTab(kit) {
       el('tbody', null, src.value.sources.map((x) => el('tr', { key: x.id }, el('td', null, el('b', null, x.name), src.value.active === x.id ? el('span', { class: 'fa-src pc', style: 'margin-left:6px' }, t('当前在用')) : null),
         el('td', null, t(KINDS.find((k) => k[0] === x.kind)?.[1] || x.kind)),
         el('td', null, el('button', { class: 'fa-btn sm', onClick: () => loadSrc(x.id) }, src.value.active === x.id ? t('刷新数据') : t('切换到它'))),
-        el('td', null, el('button', { class: 'fa-link', onClick: () => removeSrc(x.id) }, t('删除'))))))) : null,
+        el('td', null, el('button', { class: 'fa-link', onClick: () => removeSrc(x) }, t('删除'))))))) : null,
     el('div', { class: 'fa-row' }, el('span', null, t('新增数据源')), KINDS.map(([k, l]) => el('button', { class: `fa-btn sm${form.kind === k ? ' pri' : ''}`, onClick: () => { form.kind = k; preview.value = null; har.value = null; } }, t(l)))),
     form.kind === 'har' ? el('div', null,
       el('label', { class: 'fa-btn' }, t('导入 HAR 抓包文件'), el('input', { type: 'file', accept: '.har,.json', hidden: true, 'data-test': 'ax-har', onChange: (e) => { parseHar(e.target.files?.[0]); e.target.value = ''; } })),
@@ -97,7 +98,7 @@ export default function askxTab(kit) {
           el('label', { class: 'fa-row' }, el('input', { type: 'checkbox', checked: r.refresh, onChange: (e) => update(r.id, { refresh: e.target.checked }) }), t('先刷新数据源')),
           el('label', { class: 'fa-row' }, el('input', { type: 'checkbox', checked: r.push, onChange: (e) => update(r.id, { push: e.target.checked }) }), t('推送到群'))),
         el('td', null, r.lastRun ? el('div', null, el('span', { class: 'fa-empty' }, `${fmtAt(r.lastRun.at).slice(5)} · ${t({ manual: '手动', schedule: '定时', api: 'API', export: '导出', push: '推送' }[r.lastRun.source] || r.lastRun.source)}`), el('div', null, r.lastRun.groups ? t('{p0} 组', { p0: r.lastRun.groups.length }) : fmtVal(r.lastRun.value, r.unit))) : '—'),
-        el('td', null, el('div', { class: 'fa-row' }, el('button', { class: 'fa-btn sm', onClick: () => runReport(r.id) }, t('重算')), el('button', { class: 'fa-btn sm', onClick: () => exportRep(r.id) }, t('导出')), el('button', { class: 'fa-btn sm', onClick: () => pushRep(r.id) }, t('推送')), el('button', { class: 'fa-link', onClick: () => call('axUpd', 'ask.report.remove', { id: r.id }).then(load) }, t('删除')))))))) : null,
+        el('td', null, el('div', { class: 'fa-row' }, el('button', { class: 'fa-btn sm', onClick: () => runReport(r.id) }, t('重算')), el('button', { class: 'fa-btn sm', onClick: () => exportRep(r.id) }, t('导出')), el('button', { class: 'fa-btn sm', onClick: () => pushRep(r.id) }, t('推送')), el('button', { class: 'fa-link', onClick: () => removeRep(r) }, t('删除')))))))) : null,
     repOut.value ? el('div', { class: 'fa-kbform', 'data-test': 'ax-report-out' },
       el('b', null, repOut.value.report.name), el('span', { class: 'fa-empty' }, ` · ${repOut.value.metric.name}（${repOut.value.out.period.from || '—'} 至 ${repOut.value.out.period.to || '—'}）· ${t('未调用模型')}`),
       repOut.value.out.groups ? el('table', { class: 'fa-tbl' }, el('tbody', null, repOut.value.out.groups.map((g) => el('tr', { key: g.key }, el('td', null, g.key), el('td', null, fmtVal(g.value, repOut.value.metric.unit)))))) : el('p', null, fmtVal(repOut.value.out.value, repOut.value.metric.unit)),

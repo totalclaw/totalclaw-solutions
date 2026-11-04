@@ -193,7 +193,7 @@ export default function agentsTab(kit) {
       el('div', { class: 'fa-row' }, el('span', { class: 'fa-empty' }, t('加节点：')),
         Object.entries(NT()).filter(([k]) => k !== 'start').map(([k, v]) => el('button', { class: 'fa-btn sm', style: `border-left:3px solid ${v.color}`, onClick: () => addNode(k), 'data-test': `ag-add-${k}` }, el('i', { class: v.icon }), ' ', t(v.label))),
         linking.value ? el('span', { class: 'fa-src' }, t('连线中：点目标节点（点空白处取消）')) : null),
-      el('div', { style: 'display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:12px;align-items:start' }, vCanvas(), el('div', { class: 'fa-kbform', style: 'margin-top:0' }, vInspector())),
+      el('div', { class: 'fa-agedit' }, vCanvas(), el('div', { class: 'fa-kbform', style: 'margin-top:0' }, vInspector())),
       issues.value.length ? el('div', { class: 'fa-note warn' }, issues.value.map((x) => el('div', null, `· ${x}`))) : null,
       el('div', { class: 'fa-row' },
         el('button', { class: 'fa-btn pri', disabled: busy.agSave, onClick: save, 'data-test': 'ag-save' }, dirty.value ? t('保存（有改动）') : t('保存')),
@@ -214,7 +214,7 @@ export default function agentsTab(kit) {
           el('table', { class: 'fa-tbl' }, el('thead', null, el('tr', null, [t('节点'), t('输入'), t('输出'), t('耗时')].map((x) => el('th', null, x)))),
             el('tbody', null, r.trace.map((s) => el('tr', { key: s.node },
               el('td', null, el('b', null, s.title), el('div', { class: 'fa-empty' }, t(NT()[s.type]?.label || s.type))),
-              el('td', null, el('div', { class: 'fa-q', style: 'max-height:90px;overflow:auto;margin:0' }, typeof s.input === 'object' ? JSON.stringify(s.input) : String(s.input ?? ''))),
+              el('td', null, s.input === undefined || s.input === null || s.input === '' ? el('span', { class: 'fa-empty' }, '—') : el('div', { class: 'fa-q', style: 'max-height:90px;overflow:auto;margin:0' }, typeof s.input === 'object' ? JSON.stringify(s.input) : String(s.input))),
               el('td', null, s.ok ? el('div', { class: 'fa-q', style: 'max-height:90px;overflow:auto;margin:0' }, typeof s.output === 'object' ? JSON.stringify(s.output) : String(s.output ?? '')) : el('span', { class: 'fa-note err' }, s.error), s.hits ? el('div', { class: 'fa-empty' }, t('命中 {p0} 条', { p0: s.hits.length })) : null),
               el('td', null, `${s.ms} ms`)))))) : null,
         runs.value.length ? el('p', { class: 'fa-empty' }, t('最近运行：{p0}', { p0: runs.value.slice(0, 6).map((x) => `${fmtAt(x.at, { sec: true, date: false })} ${x.source === 'api' ? 'API' : t('控制台')} ${x.ok ? '✓' : '✗'}`).join('　') })) : null) : null,
@@ -250,6 +250,8 @@ export default function agentsTab(kit) {
   };
 
   const AG_CSS = `
+.fa-agedit{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:12px;align-items:start}
+@media (max-width:900px){.fa-agedit{grid-template-columns:minmax(0,1fr)}}
 .fa-agchip{position:relative;display:inline-flex;margin:4px 8px 0 0}
 .fa-agchip-x{position:absolute;top:-7px;right:-7px;width:17px;height:17px;border-radius:50%;border:1px solid #cbd5e1;background:#fff;color:#64748b;font-size:12px;line-height:14px;padding:0;text-align:center;cursor:pointer;box-shadow:0 1px 2px rgba(11,36,71,.12);transition:background .15s,color .15s,border-color .15s;z-index:1}
 .fa-agchip-x:hover,.fa-agchip-x:focus-visible{background:#dc2626;border-color:#dc2626;color:#fff;outline:none}

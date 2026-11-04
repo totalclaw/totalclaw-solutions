@@ -19,6 +19,8 @@ export default function createSolution(sdk) {
 .fa-steps button.done{border-color:#10b981;color:#047857}.fa-steps button.cur{border-color:var(--color-brand,#6366f1);color:var(--color-brand,#6366f1)}
 .fa-prog{height:4px;background:var(--color-border,#e5e7eb);border-radius:2px;margin-top:8px;overflow:hidden}.fa-prog i{display:block;height:100%;background:var(--color-brand,#6366f1);transition:width .3s}
 .fa-card{border:1px solid var(--color-border,#e5e7eb);border-radius:12px;padding:16px 18px;margin-top:16px;background:var(--color-bg-card,#fff);scroll-margin-top:170px}
+/* 宽表格（路由规则、审计记录）在窄窗口里只在卡片内横向滚动，不把整页撑出横向滚动条 */
+.fa-card{min-width:0;overflow-x:auto}
 .fa-card h3{margin:0 0 4px;font-size:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .fa-st{font-size:12px;font-weight:400;padding:1px 8px;border-radius:9px;border:1px solid var(--color-border,#e5e7eb);color:var(--color-text-secondary,#6b7280)}.fa-st.done{border-color:#10b981;color:#047857}
 .fa-sub{margin:0 0 12px;color:var(--color-text-secondary,#6b7280);font-size:13px;line-height:1.6}
@@ -83,7 +85,7 @@ export default function createSolution(sdk) {
 .fa-dlg-mask{position:fixed;inset:0;z-index:50;background:rgba(15,23,42,.32);display:flex;align-items:center;justify-content:center;padding:16px}
 .fa-dlg{background:var(--color-bg-card,#fff);border-radius:10px;padding:18px 20px;width:380px;max-width:100%;box-sizing:border-box;box-shadow:0 10px 30px rgba(11,36,71,.25);border-top:3px solid var(--fa-navy-2)}
 .fa-dlg p{margin:0 0 16px;line-height:1.7}
-.fa-dlg .fa-row{justify-content:flex-end;margin:0}
+.fa-dlg .fa-dlg-actions{justify-content:flex-end;margin:0}
 .fa-btn.danger{border-color:#dc2626;background:#dc2626;color:#fff}.fa-btn.danger:hover{background:#b91c1c}
 .fa-xbtn{border:none;background:none;color:#94a3b8;cursor:pointer;font:inherit;font-size:16px;line-height:1;padding:2px 6px;border-radius:4px}.fa-xbtn:hover,.fa-xbtn:focus-visible{color:#fff;background:#dc2626;outline:none}
 @media (prefers-color-scheme: dark){.fa-tab.on,.fa-card h3,.fa-kpi b{color:var(--fa-gold-2)}.fa-tbl th,.fa-steps button.done{background:transparent}}
@@ -187,6 +189,7 @@ export default function createSolution(sdk) {
         if (!mailForm.testTo) mailForm.testTo = m.address;
       };
       const saveMail = async () => {
+        err.mailTest = ''; mailTest.value = null;
         const m = await call('mail', 'mail.settings.save', { address: mailForm.address, senderName: mailForm.senderName, host: mailForm.host, port: Number(mailForm.port) || 465, ...(mailForm.password ? { password: mailForm.password } : {}) });
         if (m) { mailCfg.value = m; mailForm.password = ''; sdk.notify.success(t('邮件发送设置已保存')); }
       };
@@ -336,7 +339,7 @@ export default function createSolution(sdk) {
       const vDialog = () => (dlg.value ? el('div', { class: 'fa-dlg-mask', 'data-test': 'fa-confirm', onClick: (e) => { if (e.target === e.currentTarget) closeDlg(false); } },
         el('div', { class: 'fa-dlg', role: 'dialog', 'aria-modal': 'true' },
           el('p', null, dlg.value.text),
-          el('div', { class: 'fa-row' },
+          el('div', { class: 'fa-row fa-dlg-actions' },
             el('button', { class: 'fa-btn', onClick: () => closeDlg(false), 'data-test': 'fa-confirm-cancel' }, t('取消')),
             el('button', { class: `fa-btn ${dlg.value.danger ? 'danger' : 'pri'}`, onClick: () => closeDlg(true), 'data-test': 'fa-confirm-ok' }, dlg.value.ok)))) : null);
 

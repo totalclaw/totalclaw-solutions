@@ -154,9 +154,17 @@ function bm25Search(docs, query, { k1 = 1.4, b = 0.75, limit = 6 } = {}) {
 }
 
 /** 问题覆盖率：问题里的关键词有多少在证据里出现（证据不足时拒答，不让模型硬编） */
-function coverage(query, text) {
-  const q = [...new Set(tokenize(query).filter((w) => w.length >= 2 || /[a-z0-9]/.test(w)))];
+function coverage(query, text, corpus) {
+  let q = [...new Set(tokenize(query).filter((w) => w.length >= 2 || /[a-z0-9]/.test(w)))];
   if (!q.length) return 0;
+  // 给了整个制度库原文时，只看问题里「制度库里出现过的词」：相邻两字切出来的「工出」「宿的」「是什」这类跨词碎片
+  // 在制度里根本不存在，留着会把「员工出差住宿的报销标准是什么？」的覆盖率压到 0.31 被误拒；
+  // 问的事制度里完全没有时，这样算出来是 0，照样拒答。能用的词少于 2 个就退回按全部词算
+  if (corpus) {
+    const c = String(corpus).toLowerCase();
+    const inCorpus = q.filter((w) => c.includes(w));
+    if (inCorpus.length >= 2) q = inCorpus;
+  }
   const t = String(text || '').toLowerCase();
   return q.filter((w) => t.includes(w)).length / q.length;
 }

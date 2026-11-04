@@ -393,7 +393,8 @@ module.exports = {
         if (d.group === 'sheet' && table) { try { const t = table(file); return [t.headers.join('\t'), ...t.rows.slice(0, 2000).map((r) => t.headers.map((h) => r[h] ?? '').join('\t'))].join('\n'); } catch { /* 退回文本段 */ } }
         return DOC.oleTextRuns(readFileSync(file));
       }
-      if (!d.format && PLAIN_EXT.includes(extname(file).toLowerCase())) return DOC.decodeText(readFileSync(file));
+      // 没认出二进制格式（format=text）的 CSV / TXT / MD 直接解码；交宿主解析会把 CSV 当表格转日期
+      if ((!d.format || d.format === 'text') && PLAIN_EXT.includes(extname(file).toLowerCase())) return DOC.decodeText(readFileSync(file));
       // 新格式 WPS（实为 OOXML zip）按对应的 Office 格式解析
       let path = file;
       if (d.wps && d.format === 'zip') {
@@ -634,7 +635,7 @@ module.exports = {
       const policyText = hits.map((x) => x.doc.text).join('\n');
       const kbText = kb.hits.map((x) => x.text).join('\n');
       const evidence = [policyText, kbText].filter(Boolean).join('\n');
-      const policyOk = !!top && top.score >= s.minScore && L.coverage(q, policyText) >= s.minCoverage;
+      const policyOk = !!top && top.score >= s.minScore && L.coverage(q, policyText, docs.map((x) => x.text).join('\n')) >= s.minCoverage;
       const kbOk = kb.hits.length > 0 && L.coverage(q, kbText) >= s.minCoverage;
       if (!policyOk && !kbOk) {
         const dept = top?.doc.pol.dept || '合规部';
@@ -800,12 +801,18 @@ module.exports = {
       let interp = '';
       let unverified = [];
       try {
-        const r2 = await llm('ask', 'internal', ['用两三句话向业务人员解读下面的取数结果。只能引用结果里出现的数字（可以换算成「亿元」「万元」，但必须保留两位小数并注明单位换算），不要推测原因。', untrusted('取数结果', facts)].join('\n\n'));
-        interp = String(r2.text || '').trim();
-        // 换算成亿元 / 万元的数字也算有出处
-        const extra = [];
+        // 原提示词要求「注明单位换算」，模型就写「1 亿元 = 100,000,000 元」，这两个数又被当成编造的数字把整段解读丢掉；
+        // 改成直接写换算后的数，换算常数也算有出处；还有对不上的数字（模型自己做了加减）打回重写一次，仍对不上才丢
+        const ask0 = ['用两三句话向业务人员解读下面的取数结果。只能引用结果里出现的数字，可以换算成「亿元」「万元」（直接写换算后的数，保留两位小数，不用写换算过程）；不要自己做加减、求差、求和或算比例，不要推测原因。', untrusted('取数结果', facts)].join('\n\n');
+        const extra = ['1', '10000', '100000000'];
         for (const n of L.numbersIn(resultText)) extra.push((n.n / 1e8).toFixed(2), (n.n / 1e4).toFixed(2));
-        unverified = L.unverifiedNumbers(interp, `${facts}\n${extra.join(' ')}`);
+        const check = (txt) => L.unverifiedNumbers(txt, `${facts}\n${extra.join(' ')}`);
+        interp = String((await llm('ask', 'internal', ask0)).text || '').trim();
+        unverified = check(interp);
+        if (unverified.length) {
+          interp = String((await llm('ask', 'internal', `${ask0}\n\n上一版里这些数字在结果里找不到：${unverified.join('、')}。只用结果里的数字重写，不要计算。`)).text || '').trim();
+          unverified = check(interp);
+        }
         if (unverified.length) interp = '';
       } catch (e) { interp = ''; rec.interpError = String(e?.message || e); }
       Object.assign(rec, { status: 'answered', metricId: v.metric.id, metricName: v.metric.name, unit: v.metric.unit, definition: v.metric.definition, query: v.query, note: String(intent.note || '').slice(0, 200), value: out.value, groups: out.groups, period: out.period, sql: out.sql, rowsUsed: out.rowsUsed, fetchedAt: new Date().toISOString(), dataSource: d.source, interp, unverified });

@@ -1,7 +1,7 @@
 {
   "id": "workbench-fin-assistant",
   "version": "1.1.0",
-  "treeDigest": "7ebd89edf7098920637da04b04cb66bc7c28db75013474a9e608124153a1f5d2",
+  "treeDigest": "f69793cbbaf34e43a59159da455e619c590a703a09399777d469cfa92da17722",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -10,8 +10,8 @@
     },
     {
       "path": "README.md",
-      "size": 4880,
-      "sha256": "07a1231fd862b21de8aacc3c7aced3ffa0454b3cf9bb26cddf84e4343bbffce1"
+      "size": 5098,
+      "sha256": "c2c6341cd4f2e47a381be44c1c0c9523d1835fdcb9ea311abf8527d8768f8dfa"
     },
     {
       "path": "resources/credit-checklists.json",
@@ -195,8 +195,8 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 144927,
-      "sha256": "9b447b69080245de28d09cab83b09aacd90c784374272022e440d962e6bfde6e"
+      "size": 145838,
+      "sha256": "d8d1284e976110b4bca8ba90de199a4bcf2083b5dce1a392fed7ef64d769dead"
     },
     {
       "path": "src/main/knowledge.cjs",
@@ -205,8 +205,8 @@
     },
     {
       "path": "src/main/lib.cjs",
-      "size": 21952,
-      "sha256": "6f7d25099f29911373374205265045ecadbc7f46883ba667276b8a85142b027e"
+      "size": 22550,
+      "sha256": "f86ca659396e74c8fe96f6b59098fcc1f2f5ed6b105890f23c55b02c1607667e"
     },
     {
       "path": "src/main/pm.cjs",
@@ -220,8 +220,8 @@
     },
     {
       "path": "src/main/retrieval.cjs",
-      "size": 3002,
-      "sha256": "cf833e716888df9fd2fa1f9444089527a97b89db4d3353228f1c2da0e073631a"
+      "size": 3555,
+      "sha256": "996a4387bbbcb72967d9ebddf162b9b49f968cf791ad5376b5ca375914cb7bc3"
     },
     {
       "path": "src/main/zip.cjs",
@@ -230,18 +230,18 @@
     },
     {
       "path": "src/renderer/index.mjs",
-      "size": 84934,
-      "sha256": "06d23f91259990b580fbbe1f2b4a315d80ad1f1915351b0413366b85313b5130"
+      "size": 85172,
+      "sha256": "4ae68f1741d83350dfebe48d404b275511714900082e6783622d63eb02226b8b"
     },
     {
       "path": "src/renderer/tabs/agents.mjs",
-      "size": 26446,
-      "sha256": "4b8d53ab659409e2bebfc949d9e50679c02f556c24db6960963b2820f862ab7d"
+      "size": 26641,
+      "sha256": "0b596dcae5624257bb50466ff097e8b28f9dd4210a0b5ffdadaeee2fff907063"
     },
     {
       "path": "src/renderer/tabs/askx.mjs",
-      "size": 13946,
-      "sha256": "5c37c8b89690e4d1c1b24f5e6b636f830b51bc3b478cea56941043631d8cbded"
+      "size": 14353,
+      "sha256": "038e41c9d381259a5872b0ebbaac3aa9ccd7005d90870d35a67d329223da79b3"
     },
     {
       "path": "src/renderer/tabs/docs.mjs",
@@ -250,8 +250,8 @@
     },
     {
       "path": "src/renderer/tabs/gateway.mjs",
-      "size": 24462,
-      "sha256": "0eaf689e1b4e536d68271fb0abcaa6dbfcf44528541db2dd06bb58fa87fdd5a1"
+      "size": 24527,
+      "sha256": "9008bd666fbf4425a1f4105f5813b7a61a567e2e14baa0f742326fc94758ddef"
     },
     {
       "path": "src/renderer/tabs/kbx.mjs",

@@ -227,11 +227,11 @@ export default function gatewayTab(kit) {
             row(t('API 密钥'), inp('apiKey', { type: 'password', autocomplete: 'new-password', placeholder: d.hasKey ? t('已加密保存，留空不改') : t('可空；系统钥匙串加密保存'), 'data-test': 'gw-direct-key' })),
             row(t('超时（秒）'), inp('timeout', { type: 'number', min: 5, max: 600, style: 'width:120px' }))],
         row(t('显示名称'), inp('label', { placeholder: d.kind === 'direct' ? t('如：行内 Qwen 72B（数据中心）') : t('留空用模型名'), 'data-test': 'gw-model-label' })),
-        el('label', { class: 'fa-row' }, el('input', { type: 'checkbox', checked: d.internal, onChange: (e) => { d.internal = e.target.checked; }, 'data-test': 'gw-model-internal' }), t('内网私有部署（由管理员核实后勾选；客户敏感数据只交给这类模型，发往它的内容不再脱敏）')),
+        el('label', { class: 'fa-row', style: 'align-items:flex-start;flex-wrap:nowrap' }, el('input', { type: 'checkbox', style: 'margin-top:4px', checked: d.internal, onChange: (e) => { d.internal = e.target.checked; }, 'data-test': 'gw-model-internal' }), t('内网私有部署（由管理员核实后勾选；客户敏感数据只交给这类模型，发往它的内容不再脱敏）')),
         prob ? el('p', { class: 'fa-note warn', style: 'margin:6px 0' }, prob) : null,
         mdlTest.value ? el('p', { class: `fa-note ${mdlTest.value.ok ? 'ok' : 'err'}`, 'data-test': 'gw-model-test-res' }, mdlTest.value.ok ? t('连接正常 · {p0} 毫秒 · 返回：{p1}', { p0: mdlTest.value.ms, p1: mdlTest.value.text || '（空）' }) : t('连接失败（{p0} 毫秒）：{p1}', { p0: mdlTest.value.ms, p1: mdlTest.value.error })) : null,
         errNote('gwMTest'), errNote('gwSave'),
-        el('div', { class: 'fa-row', style: 'justify-content:flex-end;margin-top:10px' },
+        el('div', { class: 'fa-row fa-dlg-actions', style: 'margin-top:10px' },
           el('button', { class: 'fa-btn', disabled: !!prob || busy.gwMTest, onClick: testModel, 'data-test': 'gw-model-test' }, busy.gwMTest ? t('测试中…') : t('测试连接')),
           el('button', { class: 'fa-btn', onClick: () => { mdl.value = null; }, 'data-test': 'gw-model-cancel' }, t('取消')),
           el('button', { class: 'fa-btn pri', disabled: !!prob || busy.gwSave, onClick: saveModel, 'data-test': 'gw-model-save' }, t('保存')))));

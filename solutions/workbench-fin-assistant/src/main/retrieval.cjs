@@ -7,8 +7,14 @@
 
 const clean = (s) => String(s || '').toLowerCase().replace(/[\s，。！？、；：,.!?;:“”"'（）()【】\[\]《》<>·…—\-]+/g, '');
 
+/**
+ * 比相似度前去掉口语虚词（请问 / 吗 / 呢 / 的 / 是 / 要 / 能…）：同一个问题换个说法，差的多是这些字，
+ * 留着它们会把「大额存单起存金额要多少」和「…是多少？」的相似度压到 0.8 以下、「营销材料审核要多久」压到 0.6。
+ * 只用于相似度，不改 clean()（去重判等仍按原文）
+ */
+const FILLER = /请问|一下|麻烦|能不能|可不可以|是不是|我想|我要|想知道|吗|呢|啊|呀|吧|的|了|是|要|能|可以|得/g;
 function bigrams(s) {
-  const t = clean(s);
+  const t = clean(s).replace(FILLER, '');
   const out = new Set();
   for (let i = 0; i + 1 < t.length; i += 1) out.add(t.slice(i, i + 2));
   return out;
