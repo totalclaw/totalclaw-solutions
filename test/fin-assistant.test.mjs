@@ -512,3 +512,66 @@ test('项目·端到端：示例项目 → 进度与风险 → 日报（数字�
   assert.match(rep.text, /6 次/);
   main.__setLlmForTests(null);
 });
+
+// ── 智能问数扩展 / 智能检索 ──
+const AX = req('./askx.cjs');
+const RTX = req('./retrieval.cjs');
+
+test('问数·零侵入抓包：HAR 里找出列表接口 → 自动对列 → 转成口径库的表（金额转数字、日期规整）', () => {
+  const rows = [{ dt: '2026/10/31', org_name: '北京分行', prod_type: '定期', cust_level: '金卡', bal: '1,200,000', increase: '5000', cust_cnt: '12', maturity: '0' }];
+  const har = { log: { entries: [
+    { request: { method: 'GET', url: 'https://bi.bank.local/api/menu?x=1' }, response: { status: 200, content: { mimeType: 'application/json', text: JSON.stringify({ ok: 1 }) } } },
+    { request: { method: 'POST', url: 'https://bi.bank.local/api/report/deposit?token=secret' }, response: { status: 200, content: { mimeType: 'application/json', text: JSON.stringify({ data: { list: rows } }) } } },
+  ] } };
+  const es = AX.parseHar(har);
+  assert.equal(es.length, 1);
+  assert.equal(es[0].url, 'https://bi.bank.local/api/report/deposit', '查询串（可能带令牌）不显示');
+  assert.equal(es[0].candidates[0].path, 'data.list');
+  const fields = METRICS.tables.retail_deposit_daily.fields;
+  const map = AX.autoMapping(fields, es[0].candidates[0].keys);
+  assert.equal(map.branch, 'org_name'); assert.equal(map.balance, 'bal');
+  const out = AX.applyMapping(AX.harRows(har, es[0].index, 'data.list'), map, fields);
+  assert.deepEqual(out.missing, []);
+  assert.equal(out.rows[0].balance, 1200000); assert.equal(out.rows[0].stat_date, '2026-10-31');
+});
+
+test('问数·报表 / API：一次答出的问数存成报表，之后按口径重算不调模型；本机 API 带密钥取数', async () => {
+  const { call } = fakeCtx();
+  await call('settings.patch', { modelInternal: true });
+  let calls = 0;
+  main.__setLlmForTests(async (prompt) => { calls += 1; return { text: prompt.includes('指标口径库') ? JSON.stringify({ metricId: METRICS.items[0].id, from: '', to: '', groupBy: 'branch', where: {}, note: 'x' }) : '解读', model: 'm' }; });
+  call('data.demo');
+  const ask = await call('ask.run', { q: '各分行存款余额' });
+  assert.equal(ask.status, 'answered', ask.reason);
+  const rep = await call('ask.report.save', { askId: ask.id, name: '分行余额日报' });
+  const before = calls;
+  const r = await call('ask.report.run', { id: rep.id });
+  assert.equal(calls, before, '报表重算不调模型');
+  assert.ok(r.out.groups.length >= 6);
+  const k = await call('agents.key.create', { label: 'bi' });
+  const api = await call('agents.api.start', { port: 19000 + Math.floor(Math.random() * 900) });
+  const j = await (await fetch(`${api.url}/reports/${rep.id}`, { headers: { authorization: `Bearer ${k.key}` } })).json();
+  assert.equal(j.groups.length, r.out.groups.length);
+  await call('agents.api.stop');
+  main.__setLlmForTests(null);
+});
+
+test('检索·常见问题亚秒直答（换版就不直答）、复杂问题多步检索', async () => {
+  assert.ok(RTX.similarity('大额存单起存金额是多少', '大额存单的起存金额是多少？') > 0.82);
+  assert.equal(RTX.isComplexQuestion('大额存单起存金额是多少'), false);
+  assert.equal(RTX.isComplexQuestion('大额存单和定期存款的起存金额分别是多少？提前支取有什么区别？'), true);
+  const { call } = fakeCtx();
+  await call('policy.demo');
+  const calls = [];
+  main.__setLlmForTests(async (prompt) => { calls.push(prompt); if (prompt.includes('拆成')) return { text: JSON.stringify({ questions: ['大额存单起存金额', '提前支取规定'] }), model: 'm' }; return { text: '起存金额为 20 万元 [1]。', model: 'm' }; });
+  const a = await call('qa.ask', { q: '大额存单的起存金额是多少？提前支取又有什么规定？' });
+  assert.equal(a.status, 'answered', a.reason);
+  assert.equal(a.steps.length, 2, '拆成两个子问题分别检索');
+  await call('qa.rate', { id: a.id, rating: 1 });
+  const n = calls.length;
+  const fast = await call('qa.ask', { q: '大额存单的起存金额是多少？提前支取又有什么规定' });
+  assert.ok(fast.fast, '点过赞的回答，同样的问法直接给');
+  assert.equal(calls.length, n, '直答不调模型');
+  assert.ok(fast.fast.ms < 1000);
+  main.__setLlmForTests(null);
+});
