@@ -414,3 +414,51 @@ test('资料·端到端：导入 → 取文字 → 关键词分类 → 模型抽
   assert.ok(DOC.docsCsv(await call('docs.list')).includes('银行流水'));
   main.__setLlmForTests(null);
 });
+
+// ── 智能体编排 ──
+const AG = req('./agents.cjs');
+
+test('智能体·执行器：模板替换、条件分支、检索与模型节点、轨迹；环路有上限；发布前校验', async () => {
+  const graph = AG.sampleAgents()[0].graph;
+  assert.equal(AG.validateGraph(graph).ok, true);
+  const deps = { llm: async (p) => ({ text: p.includes('起存') ? '大额存单 20 万元起存' : '?', model: 'm' }), retrieve: async () => [{ title: '个人存款', text: '大额存单起存金额 20 万元' }], plugin: async () => '' };
+  const a = await AG.runGraph(graph, { question: '大额存单起存多少' }, deps);
+  assert.equal(a.ok, true); assert.equal(a.answer, '大额存单 20 万元起存');
+  assert.deepEqual(a.trace.map((x) => x.node), ['start', 'guard', 'kb', 'ans', 'out']);
+  const b = await AG.runGraph(graph, { question: '这个能保本吗' }, deps);
+  assert.match(b.answer, /不承诺保本/);
+  assert.equal((await AG.runGraph(graph, {}, deps)).ok, false, '必填输入缺失');
+  const loop = { nodes: [{ id: 's', type: 'start' }, { id: 'a', type: 'assign', config: { value: 'x' } }, { id: 'b', type: 'assign' }], edges: [{ from: 's', to: 'a' }, { from: 'a', to: 'b' }, { from: 'b', to: 'a' }] };
+  assert.match((await AG.runGraph(loop, {}, deps)).error, /超过/);
+  assert.ok(AG.validateGraph(loop).issues.some((x) => /回复/.test(x)));
+});
+
+test('智能体·插件：只收声明式清单（http 地址 / 内置能力白名单），请求按输入渲染', () => {
+  assert.throws(() => AG.normalizePlugin({ id: 'x', name: 'x', request: { url: 'file:///etc/passwd' } }), /http/);
+  assert.throws(() => AG.normalizePlugin({ id: 'x', name: 'x', kind: 'builtin', action: 'credit.decide' }), /内置插件只能/);
+  const pl = AG.normalizePlugin({ id: 'rate', name: '汇率', request: { method: 'GET', url: 'https://api.example.com/rate?ccy={{inputs.ccy}}' }, outputPath: 'data.rate', code: 'process.exit()' });
+  assert.equal(pl.code, undefined, '清单里的代码字段不会被收进来');
+  assert.equal(AG.buildPluginRequest(pl, { ccy: 'USD&x=1' }).url, 'https://api.example.com/rate?ccy=USD%26x%3D1');
+});
+
+test('智能体·多租户与本机 API：租户之间互相看不到；密钥只存哈希；只能调本租户已发布的智能体', async () => {
+  const { call } = fakeCtx();
+  main.__setLlmForTests(async () => ({ text: '答复', model: 'stub' }));
+  const ov = await call('agents.overview');
+  assert.equal(ov.agents.length, 2, '默认租户自带两个示例');
+  const t2 = await call('agents.tenant.save', { name: '信用卡中心' });
+  assert.equal((await call('agents.overview', { tenant: t2.id })).agents.length, 0, '新租户看不到总行的智能体');
+  const k = await call('agents.key.create', { label: '渠道' });
+  assert.ok(k.key.startsWith('fa_'));
+  const api = await call('agents.api.start', { port: 18000 + Math.floor(Math.random() * 900) });
+  const run = (id, key) => fetch(`${api.url}/agents/${id}/run`, { method: 'POST', headers: { authorization: `Bearer ${key}` }, body: JSON.stringify({ inputs: { question: '大额存单起存多少' } }) });
+  assert.equal((await run('wealth-faq', k.key)).status, 404, '没发布不能调');
+  await call('agents.publish', { id: 'wealth-faq', published: true });
+  const r = await (await run('wealth-faq', k.key)).json();
+  assert.equal(r.ok, true); assert.equal(r.answer, '答复');
+  assert.equal((await run('wealth-faq', 'fa_wrong')).status, 401);
+  const k2 = await call('agents.key.create', { tenant: t2.id, label: 'x' });
+  assert.equal((await run('wealth-faq', k2.key)).status, 404, '别的租户的密钥调不到');
+  await call('agents.api.stop');
+  main.__setLlmForTests(null);
+});
