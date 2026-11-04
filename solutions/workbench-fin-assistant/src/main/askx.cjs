@@ -52,6 +52,30 @@ function parseHar(har) {
   return out;
 }
 
+/**
+ * HAR 落盘前脱敏：只留每条的方法、地址（去掉查询串与片段）、状态和 JSON 类响应体；
+ * 请求头 / cookie / 请求体 / 查询参数 / 响应头一律丢掉（抓包里常有登录态和令牌）。条目顺序不变（数据源按条目下标取数）
+ */
+function sanitizeHar(har) {
+  const entries = Array.isArray(har?.log?.entries) ? har.log.entries : [];
+  return {
+    log: {
+      version: String(har?.log?.version || '1.2'),
+      creator: { name: 'fin-assistant-sanitized', version: '1' },
+      entries: entries.map((e) => {
+        let url = String(e?.request?.url || '');
+        try { const u = new URL(url); url = `${u.origin}${u.pathname}`; } catch { url = url.split(/[?#]/)[0]; }
+        const c = e?.response?.content || {};
+        const keep = typeof c.text === 'string' && (/json|javascript|text\/plain/i.test(String(c.mimeType || '')) || /^\s*[[{]/.test(c.encoding === 'base64' ? '' : c.text) || c.encoding === 'base64');
+        return {
+          request: { method: String(e?.request?.method || 'GET'), url },
+          response: { status: Number(e?.response?.status) || 0, content: keep ? { mimeType: String(c.mimeType || ''), text: c.text, ...(c.encoding ? { encoding: String(c.encoding) } : {}) } : { mimeType: String(c.mimeType || '') } },
+        };
+      }),
+    },
+  };
+}
+
 function pick(obj, path) {
   if (!path) return obj;
   return String(path).split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj);
@@ -134,4 +158,4 @@ function reportCsv(rep, out) {
   return `﻿${[['维度', `${rep.name}（${rep.unit || ''}）`], ...rows].map((r) => r.map(esc).join(',')).join('\n')}\n`;
 }
 
-module.exports = { arrayCandidates, parseHar, harRows, autoMapping, applyMapping, reportFromAsk, reportText, reportCsv, pick };
+module.exports = { arrayCandidates, parseHar, sanitizeHar, harRows, autoMapping, applyMapping, reportFromAsk, reportText, reportCsv, pick };

@@ -262,6 +262,10 @@ module.exports = {
       const cur = settings();
       const next = { ...cur };
       if (typeof p?.modelInternal === 'boolean') next.modelInternal = p.modelInternal;
+      // 网关里已经登记过模型：默认模型的内网标记跟着这个开关走（否则这里取消了内网，网关照样把敏感数据发给默认模型）
+      if (typeof p?.modelInternal === 'boolean' && Array.isArray(next.gateway?.models)) {
+        next.gateway = { ...next.gateway, models: next.gateway.models.map((m) => (m.value === '' && m.kind !== 'direct' ? { ...m, internal: p.modelInternal } : m)) };
+      }
       ctx.writeJson(`${D}/settings.json`, next);
       if (next.modelInternal !== cur.modelInternal) audit('settings.modelInternal', { before: cur.modelInternal, after: next.modelInternal });
       return next;
@@ -1367,11 +1371,21 @@ module.exports = {
         if (pl.action === 'ask.run') return r.status === 'answered' ? `${r.metricName}：${r.groups ? r.groups.map((g) => `${g.key} ${g.value}`).join('；') : r.value} ${r.unit || ''}${r.interp ? `\n${r.interp}` : ''}` : `（未取数）${r.reason || ''}`;
         return (r.hits || []).map((h) => h.text).join('\n---\n');
       }
-      const req = AG.buildPluginRequest(pl, inputs);
+      // 请求头的值（令牌、密钥）存在钥匙串里，清单文件只留头名
+      const secretHeaders = (pl.secretHeaders || []).length ? JSON.parse(secretGet(`agent-plugin-${tid}-${pl.id}`) || '{}') : {};
+      const withHeaders = { ...pl, request: { ...pl.request, headers: { ...(pl.request.headers || {}), ...secretHeaders } } };
+      // 不是内网系统的插件：输入按网关脱敏规则脱敏后再发出去
+      const cfg = gw();
+      const sendInputs = pl.internal || !cfg.mask.enabled ? inputs
+        : Object.fromEntries(Object.entries(inputs || {}).map(([k, v]) => [k, typeof v === 'string' ? G.maskText(v, { kinds: cfg.mask.kinds, names: cfg.mask.names }).text : v]));
+      const req = AG.buildPluginRequest(withHeaders, sendInputs);
+      AG.assertPluginTarget(req.url, pl.request.url);
       const ctl = new AbortController();
       const timer = setTimeout(() => ctl.abort(), 15_000);
       try {
-        const res = await fetch(req.url, { method: req.method, headers: req.headers, body: req.body, signal: ctl.signal });
+        // 不跟随跳转：跳转可以把请求带到清单之外的地址
+        const res = await fetch(req.url, { method: req.method, headers: req.headers, body: req.body, signal: ctl.signal, redirect: 'manual' });
+        if (res.status >= 300 && res.status < 400) throw new Error(`插件接口要求跳转（${res.status}），为安全不跟随`);
         const buf = Buffer.from(await res.arrayBuffer());
         if (buf.length > 1024 * 1024) throw new Error('插件返回超过 1MB');
         if (!res.ok) throw new Error(`插件接口返回 ${res.status}`);
@@ -1382,6 +1396,14 @@ module.exports = {
     const runAgent = async (tid, agentId, inputs, source) => {
       const a = tAgents(tid).find((x) => x.id === agentId);
       if (!a) throw new Error('智能体不存在');
+      // 网关输入围栏：控制台调试和本机 API 进来的输入都先过一遍（API 是别的系统调的，更要拦）
+      const blocked = inputGuard('agent', Object.values(inputs || {}).filter((v) => typeof v === 'string').join('\n'));
+      if (blocked) {
+        const run = { id: newId('run'), agentId, source, at: new Date().toISOString(), ok: false, answer: '', error: blocked, trace: [], ms: 0, blocked: true };
+        ctx.writeJson(tPath(tid, 'runs.json'), [run, ...ctx.readJson(tPath(tid, 'runs.json'), [])].slice(0, 200));
+        audit('agents.run', { tenant: tid, agent: agentId, source, ok: false, blocked: 'input_guard' });
+        return run;
+      }
       const t0 = Date.now();
       const r = await AG.runGraph(a.graph, inputs, {
         llm: (prompt, cls) => llm('agent', ['public', 'internal', 'sensitive'].includes(cls) ? cls : 'internal', prompt),
@@ -1467,11 +1489,20 @@ module.exports = {
       try { raw = typeof p?.manifest === 'string' ? JSON.parse(p.manifest) : p?.manifest; } catch { throw new Error('插件清单不是合法 JSON'); }
       const pl = AG.normalizePlugin(raw);
       if (AG.BUILTIN_PLUGINS.some((x) => x.id === pl.id)) throw new Error('和内置插件重名');
+      if (pl.request) {
+        AG.assertPluginTarget(pl.request.url, pl.request.url);
+        // 请求头的值进钥匙串，plugins.json 里只留头名
+        const hv = pl.request.headers || {};
+        pl.secretHeaders = Object.keys(hv);
+        if (pl.secretHeaders.length) secretPut(`agent-plugin-${t.id}-${pl.id}`, JSON.stringify(hv));
+        else secretDel(`agent-plugin-${t.id}-${pl.id}`);
+        pl.request = { ...pl.request, headers: {} };
+      }
       ctx.writeJson(tPath(t.id, 'plugins.json'), [...tPlugins(t.id).filter((x) => x.id !== pl.id), pl]);
       audit('agents.plugin', { tenant: t.id, id: pl.id, kind: pl.kind, url: pl.request?.url || pl.action });
       return pl;
     });
-    h('agents.plugin.remove', (p) => { const t = curTenant(p?.tenant); ctx.writeJson(tPath(t.id, 'plugins.json'), tPlugins(t.id).filter((x) => x.id !== p?.id)); audit('agents.plugin.remove', { tenant: t.id, id: p?.id }); return true; });
+    h('agents.plugin.remove', (p) => { const t = curTenant(p?.tenant); secretDel(`agent-plugin-${t.id}-${p?.id}`); ctx.writeJson(tPath(t.id, 'plugins.json'), tPlugins(t.id).filter((x) => x.id !== p?.id)); audit('agents.plugin.remove', { tenant: t.id, id: p?.id }); return true; });
     h('agents.key.create', (p) => {
       const t = curTenant(p?.tenant);
       const { key, rec } = AG.keyRecord(t.id, p?.label);
@@ -1492,7 +1523,13 @@ module.exports = {
           const url = new URL(req.url, 'http://127.0.0.1');
           if (req.method === 'GET' && url.pathname === '/v1/agents') return send(res, 200, { agents: tAgents(tid).filter((a) => a.published).map((a) => ({ id: a.id, name: a.name, description: a.description })) });
           const rm = /^\/v1\/reports\/([\w-]+)$/.exec(url.pathname);
-          if (req.method === 'GET' && rm && reportApiRef.fn) { const r = await reportApiRef.fn(rm[1]); return send(res, 200, { name: r.report.name, metric: r.metric.name, unit: r.metric.unit, period: r.out.period, value: r.out.value, groups: r.out.groups || null, rowsUsed: r.out.rowsUsed, at: r.report.lastRun.at }); }
+          if (req.method === 'GET' && rm && reportApiRef.fn) {
+            // 报表不属于哪个租户：默认只给第一个（本机构自己的）租户的密钥读，报表上另配了 apiTenants 的按它
+            const rep0 = askReports().find((x) => x.id === rm[1]);
+            const allowed = rep0 && Array.isArray(rep0.apiTenants) && rep0.apiTenants.length ? rep0.apiTenants : [tenants()[0]?.id];
+            if (!rep0 || !allowed.includes(tid)) return send(res, 404, { error: '这个租户下没有该报表' });
+            const r = await reportApiRef.fn(rm[1]); return send(res, 200, { name: r.report.name, metric: r.metric.name, unit: r.metric.unit, period: r.out.period, value: r.out.value, groups: r.out.groups || null, rowsUsed: r.out.rowsUsed, at: r.report.lastRun.at });
+          }
           const m = /^\/v1\/agents\/([\w-]+)\/run$/.exec(url.pathname);
           if (req.method !== 'POST' || !m) return send(res, 404, { error: 'not found' });
           const a = tAgents(tid).find((x) => x.id === m[1] && x.published);
@@ -1507,11 +1544,13 @@ module.exports = {
       });
       await new Promise((ok, no) => { apiServer.once('error', no); apiServer.listen(port, '127.0.0.1', ok); }).catch((e) => { apiServer = null; throw new Error(`端口 ${port} 开不了：${e.message}`); });
       agentApiOpen = apiServer;
-      saveSettings({ agentApiPort: port });
+      saveSettings({ agentApiPort: port, agentApiOn: true });
       audit('agents.api', { on: true, port });
       return apiStatus();
     });
-    h('agents.api.stop', async () => { if (apiServer) { await new Promise((ok) => apiServer.close(() => ok())); apiServer = null; audit('agents.api', { on: false }); } return apiStatus(); });
+    h('agents.api.stop', async () => { saveSettings({ agentApiOn: false }); if (apiServer) { await new Promise((ok) => apiServer.close(() => ok())); apiServer = null; agentApiOpen = null; audit('agents.api', { on: false }); } return apiStatus(); });
+    // 上次开着本机 API 的：方案重新激活（App 重启）后自动再开，别的系统不用等人进页面点
+    if (settings().agentApiOn) setTimeout(() => { handlers['agents.api.start']({}).catch((e) => audit('agents.api', { on: false, autostartError: String(e?.message || e).slice(0, 120) })); }, 0);
 
     // ── 智能问数扩展：多数据源（表格 / 数据库 / HTTP / 抓包 HAR）+ 报表 / API / 任务 ──
     const FIELDS = METRICS.tables.retail_deposit_daily.fields;
@@ -1548,6 +1587,9 @@ module.exports = {
     h('ask.har.parse', async (p) => {
       const { name, file } = await saveUpload(`${D}/ask-har`, p?.fileName || 'capture.har', p?.base64);
       let har; try { har = JSON.parse(readFileSync(file, 'utf8')); } catch { throw new Error('不是 HAR 文件（浏览器开发者工具 → 网络 → 右键「另存为 HAR」）'); }
+      // 抓包里有登录 cookie、令牌、请求参数：落盘前只留每条的方法、地址（不含查询串）、状态和 JSON 响应体
+      har = AX.sanitizeHar(har);
+      writeFileSync(file, JSON.stringify(har));
       const entries = AX.parseHar(har);
       if (!entries.length) throw new Error('这个抓包里没有返回列表数据的 JSON 接口：请在业务系统里打开那张报表页后再导出');
       return { harFile: file, name, entries };

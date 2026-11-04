@@ -1,12 +1,12 @@
 {
   "id": "workbench-fin-assistant",
   "version": "1.1.0",
-  "treeDigest": "f69793cbbaf34e43a59159da455e619c590a703a09399777d469cfa92da17722",
+  "treeDigest": "7f4f8a9657a44aa86ee536648151c871f4973615002c1f38409f0802103e6b11",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 5999,
-      "sha256": "2ece3d3bb22d9c3bdd4cf956ade5fecae8cc89132c2ba5de1b847c07c666e59d"
+      "size": 6775,
+      "sha256": "08cc7213d3298df8a4ed11790e78fc0d9f08771ecb60b66c03e79a5d7337da8c"
     },
     {
       "path": "README.md",
@@ -170,13 +170,13 @@
     },
     {
       "path": "src/main/agents.cjs",
-      "size": 15886,
-      "sha256": "7dd8dc7ed65ee112199b35567a4bde23a2ca07ca77cddd5afef4355f7cc4a32b"
+      "size": 17732,
+      "sha256": "2e3c3058bd8fe5c853949fa7d8ef28fe2e40b015ed171ce6f870e89f3e38cad1"
     },
     {
       "path": "src/main/askx.cjs",
-      "size": 7548,
-      "sha256": "b2644d13cdf17130ea6e37c0b539052b46aa4fc29879fd8f0a80e370b9a688f5"
+      "size": 8903,
+      "sha256": "3c7da7d1c8c45b4333a113b48a10a69c99ae1f405c257f352ecb07511ec0b7a7"
     },
     {
       "path": "src/main/docText.cjs",
@@ -195,8 +195,8 @@
     },
     {
       "path": "src/main/index.cjs",
-      "size": 145838,
-      "sha256": "d8d1284e976110b4bca8ba90de199a4bcf2083b5dce1a392fed7ef64d769dead"
+      "size": 149590,
+      "sha256": "f132b0724af517e1a16729677e1e3379761b8809256845e3f5627fb90e1a04cd"
     },
     {
       "path": "src/main/knowledge.cjs",
@@ -220,8 +220,8 @@
     },
     {
       "path": "src/main/retrieval.cjs",
-      "size": 3555,
-      "sha256": "996a4387bbbcb72967d9ebddf162b9b49f968cf791ad5376b5ca375914cb7bc3"
+      "size": 4143,
+      "sha256": "6ec3d1408b209286ddd590962788ef0b738e23a8d6249d4a766459e5c911c00e"
     },
     {
       "path": "src/main/zip.cjs",
@@ -268,7 +268,7 @@
     {
       "version": "1.1.0",
       "ref": "workbench-fin-assistant@1.1.0",
-      "treeDigest": "f69793cbbaf34e43a59159da455e619c590a703a09399777d469cfa92da17722",
+      "treeDigest": "7f4f8a9657a44aa86ee536648151c871f4973615002c1f38409f0802103e6b11",
       "filesRef": "index/workbench-fin-assistant/1.1.0.json",
       "channel": "stable",
       "rollout": 100,

@@ -123,8 +123,33 @@ function normalizePlugin(raw) {
       body: raw?.request?.body == null ? '' : (typeof raw.request.body === 'string' ? raw.request.body : JSON.stringify(raw.request.body)).slice(0, 4000),
     };
     p.outputPath = String(raw?.outputPath || '').slice(0, 100);
+    // 内网系统（不脱敏直接发）；默认不是，输入按网关脱敏规则脱敏后再发
+    p.internal = raw?.internal === true;
+    if (Array.isArray(raw?.secretHeaders)) p.secretHeaders = raw.secretHeaders.map(String).slice(0, 10);
   }
   return p;
+}
+
+/**
+ * http 插件的目标地址检查：
+ *   - 主机部分不能有占位符（{{inputs.x}} 只能出现在路径 / 查询串里，否则输入能把请求带到任意主机）
+ *   - 渲染后的地址必须和清单里的协议 + 主机 + 端口一致
+ *   - 不能是本机（localhost / 127.x / ::1 / 0.0.0.0）和链路本地地址（169.254.x，云主机元数据就在这里）：本机上有应用自己的接口
+ * 内网地址（10.x / 172.16-31.x / 192.168.x）允许：插件本来就是接行内系统用的
+ */
+function assertPluginTarget(url, template) {
+  const tpl = String(template || '');
+  const originPart = /^https?:\/\/[^/?#]*/i.exec(tpl)?.[0] || '';
+  if (/\{\{/.test(originPart)) throw new Error('插件地址的主机部分不能用占位符，只能在路径或查询参数里用');
+  let u; let t;
+  try { u = new URL(url); t = new URL(tpl.replace(/\{\{[^}]*\}\}/g, 'x')); } catch { throw new Error('插件地址不合法'); }
+  if (!/^https?:$/.test(u.protocol)) throw new Error('插件地址只能是 http / https');
+  if (u.origin !== t.origin) throw new Error('插件请求地址和清单里登记的主机不一致');
+  const host = u.hostname.replace(/^\[|\]$/g, '').toLowerCase();
+  if (host === 'localhost' || host.endsWith('.localhost') || /^127\./.test(host) || host === '::1' || host === '0.0.0.0' || /^0\./.test(host) || /^169\.254\./.test(host) || /^fe80:/i.test(host) || host === '::' || /^::ffff:(127\.|169\.254\.|0\.)/i.test(host)) {
+    throw new Error('插件不能访问本机或链路本地地址');
+  }
+  return true;
 }
 
 /** http 插件：按输入渲染请求（不发请求，发由调用方注入的 fetch 负责，便于超时与审计） */
@@ -268,4 +293,5 @@ const BUILTIN_PLUGINS = [
   { id: 'builtin-kb', name: '知识库检索', description: '检索金融知识库（多来源）', kind: 'builtin', action: 'kb.search', inputs: [{ name: 'q', label: '检索词', required: true }] },
 ];
 
-module.exports = { NODE_TYPES, MAX_STEPS, BUILTIN_PLUGINS, render, getPath, normalizeGraph, validateGraph, evalCondition, normalizePlugin, buildPluginRequest, runGraph, normalizeTenant, keyRecord, tenantOfKey, sampleAgents, sha };
+module.exports = {
+  assertPluginTarget, NODE_TYPES, MAX_STEPS, BUILTIN_PLUGINS, render, getPath, normalizeGraph, validateGraph, evalCondition, normalizePlugin, buildPluginRequest, runGraph, normalizeTenant, keyRecord, tenantOfKey, sampleAgents, sha };

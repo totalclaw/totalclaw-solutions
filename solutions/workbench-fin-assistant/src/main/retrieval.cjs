@@ -42,11 +42,21 @@ function faqMatch(q, faqs, { threshold = 0.7 } = {}) {
 }
 
 /** 常见问题引用的制度版本还有效吗（换版 / 下线 → 不能直答） */
-function faqFresh(faq, policies, policyActive) {
-  for (const c of faq.citations || []) {
-    if (c.kind !== 'policy') continue;
+/** 只依据知识库资料（没有制度条款）的常见问题多久后要重新确认：知识库资料没有版本号，换了内容也看不出来 */
+const KB_ONLY_FAQ_DAYS = 90;
+
+function faqFresh(faq, policies, policyActive, now = Date.now()) {
+  const cites = faq.citations || [];
+  for (const c of cites) {
+    if (c.kind && c.kind !== 'policy') continue;
+    if (!c.policyId) continue;
     const p = (policies || []).find((x) => x.id === c.policyId);
     if (!p || !policyActive(p) || (c.version && p.version !== c.version)) return false;
+  }
+  const hasPolicy = cites.some((c) => (!c.kind || c.kind === 'policy') && c.policyId);
+  if (!hasPolicy && cites.some((c) => c.kind === 'kb')) {
+    const at = Date.parse(faq.updatedAt || faq.createdAt || '');
+    if (!Number.isFinite(at) || now - at > KB_ONLY_FAQ_DAYS * 86400000) return false;
   }
   return true;
 }
@@ -67,4 +77,4 @@ function normalizeSubQuestions(raw, q) {
   return out.length ? out.slice(0, 4) : [String(q || '')];
 }
 
-module.exports = { clean, bigrams, similarity, faqMatch, faqFresh, isComplexQuestion, normalizeSubQuestions };
+module.exports = { KB_ONLY_FAQ_DAYS, clean, bigrams, similarity, faqMatch, faqFresh, isComplexQuestion, normalizeSubQuestions };
