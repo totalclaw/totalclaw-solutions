@@ -44,7 +44,15 @@ export default function agentsTab(kit) {
     if (r) { agent.value = r; dirty.value = false; await load(); sdk.notify.success(t('已保存')); }
   };
   const create = async () => { const r = await call('agSave', 'agents.save', { name: t('新智能体') }); if (r) { await load(); await open(r.id); } };
-  const remove = async () => { await call('agSave', 'agents.remove', { id: agent.value.id }); agent.value = null; await load(); };
+  const confirmDel = ref('');
+  const removeById = async (id) => {
+    if (confirmDel.value !== id) { confirmDel.value = id; setTimeout(() => { if (confirmDel.value === id) confirmDel.value = ''; }, 4000); return; }
+    confirmDel.value = '';
+    await call('agSave', 'agents.remove', { id });
+    if (agent.value?.id === id) agent.value = null;
+    await load();
+  };
+  const remove = () => removeById(agent.value.id);
   const run = async () => {
     if (dirty.value) await save();
     runRes.value = await call('agRun', 'agents.run', { id: agent.value.id, inputs: { ...runInputs } });
@@ -160,7 +168,10 @@ export default function agentsTab(kit) {
   const vEditor = () => card('ag-2', t('② 编排工作流'), !!agent.value && !dirty.value && !issues.value.length,
     t('从左上角加节点，拖动摆位置；点节点右边的圆点再点另一个节点就连上，点连线删除。大模型节点经 AI 网关调用（路由、脱敏、审计都生效）。'),
     el('div', { class: 'fa-row' },
-      (ov.value?.agents || []).map((a) => el('button', { class: `fa-btn sm${agent.value?.id === a.id ? ' pri' : ''}`, onClick: () => open(a.id) }, a.name, a.published ? ' ●' : '')),
+      (ov.value?.agents || []).map((a) => el('span', { key: a.id, style: 'display:inline-flex;align-items:center;gap:2px' },
+        el('button', { class: `fa-btn sm${agent.value?.id === a.id ? ' pri' : ''}`, onClick: () => open(a.id) }, a.name, a.published ? ' ●' : ''),
+        // 点错新建的可以直接删：点一下变「确认删除？」，再点才删
+        el('button', { class: 'fa-link', title: t('删除这个智能体'), 'data-test': `ag-del-${a.id}`, style: `padding:0 4px;color:${confirmDel.value === a.id ? '#b91c1c' : '#94a3b8'}`, onClick: () => removeById(a.id) }, confirmDel.value === a.id ? t('确认删除？') : '×'))),
       el('button', { class: 'fa-btn sm', onClick: create, 'data-test': 'ag-new' }, t('+ 新建智能体'))),
     agent.value ? el('div', null,
       el('div', { class: 'fa-row' },
@@ -173,7 +184,7 @@ export default function agentsTab(kit) {
       issues.value.length ? el('div', { class: 'fa-note warn' }, issues.value.map((x) => el('div', null, `· ${x}`))) : null,
       el('div', { class: 'fa-row' },
         el('button', { class: 'fa-btn pri', disabled: busy.agSave, onClick: save, 'data-test': 'ag-save' }, dirty.value ? t('保存（有改动）') : t('保存')),
-        el('button', { class: 'fa-link', style: 'color:#b91c1c', onClick: remove }, t('删除这个智能体')))) : el('p', { class: 'fa-empty' }, t('这个租户还没有智能体')),
+        el('button', { class: 'fa-link', style: 'color:#b91c1c', onClick: remove }, confirmDel.value === agent.value.id ? t('再点一次确认删除') : t('删除这个智能体')))) : el('p', { class: 'fa-empty' }, t('这个租户还没有智能体')),
     errNote('agSave'), errNote('agGet'));
 
   const vRun = () => {

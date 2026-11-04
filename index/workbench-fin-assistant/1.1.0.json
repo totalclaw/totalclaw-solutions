@@ -1,7 +1,7 @@
 {
   "id": "workbench-fin-assistant",
   "version": "1.1.0",
-  "treeDigest": "aaf5d5a373d38075d58d1ba77aa6680add09ae16bfac29a4517a74aea4e8f250",
+  "treeDigest": "a89c43f6fa4d832ac8db495ab81ca37e59a3e49f5406c307bce5071849a6e17e",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -235,8 +235,8 @@
     },
     {
       "path": "src/renderer/tabs/agents.mjs",
-      "size": 23475,
-      "sha256": "18bb84396411a9f0bbd23e9129912ee1ceebe88b7f97fc6021992fabd5dfd72b"
+      "size": 24302,
+      "sha256": "37b75bd0808bfd698f4a1e30e0d7a3a55bc1b065bc23bf3175aa6b1383c41ef4"
     },
     {
       "path": "src/renderer/tabs/askx.mjs",
