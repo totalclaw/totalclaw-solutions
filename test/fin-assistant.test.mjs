@@ -462,3 +462,53 @@ test('智能体·多租户与本机 API：租户之间互相看不到；密钥�
   await call('agents.api.stop');
   main.__setLlmForTests(null);
 });
+
+// ── AI 项目管理 ──
+const PMX = req('./pm.cjs');
+const PMDIR = join(PKG, 'resources/demo/pm');
+
+test('项目·事实层：git 日志解析（合并请求单独计）、任务流转、逾期 / 阻塞 / 无提交风险', () => {
+  const cs = PMX.parseGitLog(readFileSync(join(PMDIR, 'gitlog.txt'), 'utf8'));
+  assert.equal(cs.length, 10);
+  assert.equal(cs.filter((c) => c.merge).length, 2);
+  assert.equal(cs[0].add, 160);
+  const csv = (f) => { const [h, ...ls] = readFileSync(join(PMDIR, f), 'utf8').replace(/^﻿/, '').trim().split('\n'); const cols = h.split(','); return ls.map((l) => Object.fromEntries(l.split(',').map((v, i) => [cols[i], v]))); };
+  const y = PMX.mapTaskRows(csv('tasks-yesterday.csv'));
+  const t = PMX.mapTaskRows(csv('tasks-today.csv'));
+  const tr = PMX.taskTransitions(y, t);
+  assert.deepEqual(tr.filter((x) => x.kind === 'done').map((x) => x.id).sort(), ['MB-101', 'MB-102']);
+  assert.ok(tr.some((x) => x.kind === 'new' && x.id === 'MB-109'));
+  const project = { name: 'x', stage: '开发', members: ['张华', '李明', '王芳', '赵磊'], startDate: '2026-09-01', endDate: '2026-12-31' };
+  const risks = PMX.risksOf(project, t, cs, '2026-11-03');
+  assert.ok(risks.some((r) => /阻塞/.test(r.text) && /UAT/.test(r.text)));
+  assert.ok(risks.some((r) => /逾期/.test(r.text)));
+  const mi = PMX.minutesItems(readFileSync(join(PMDIR, 'standup.txt'), 'utf8'));
+  assert.equal(mi.decisions.length, 1); assert.equal(mi.todos.length, 1);
+  const f = PMX.reportFacts({ project, commits: cs, tasks: t, prevTasks: y, minutes: [{ date: '2026-11-03', text: readFileSync(join(PMDIR, 'standup.txt'), 'utf8') }], from: '2026-11-03', to: '2026-11-03', today: '2026-11-03' });
+  assert.equal(f.commits, 6); assert.equal(f.merges, 2); assert.equal(f.done.length, 2);
+});
+
+test('项目·需求：含糊词 / 缺验收标准由程序先查；拆解结果规整（类型按拆法、依赖只能指向前面）；群机器人按平台拼消息', () => {
+  const lint = PMX.lintRequirement('转账功能要尽快上线，页面友好一点');
+  assert.ok(lint.some((x) => x.kind === 'vague') && lint.some((x) => x.kind === 'acceptance'));
+  assert.equal(PMX.lintRequirement('作为客户经理，我要在手机银行工作台查询名下客户的理财与存款持仓，用于到期提醒和二次营销。验收标准：在客户号存在且客户归属本人时，查询应在 3 秒内返回持仓列表；客户不归属本人时提示无权限。权限与审计按行内规范，查询记录留痕。').filter((x) => x.level === 'high').length, 0);
+  const b = PMX.normalizeBreakdown({ tasks: [{ title: 'A', type: '用户故事', estimate: 3 }, { title: 'B', type: '乱写', estimate: -1, dependsOn: [1, 5] }] }, 'agile');
+  assert.equal(b[1].type, '用户故事'); assert.equal(b[1].estimate, 0); assert.deepEqual(b[1].dependsOn, [1]);
+  assert.equal(PMX.imPayload('https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=x', 't', 'm').msgtype, 'markdown');
+  assert.ok(PMX.imPayload('https://open.feishu.cn/open-apis/bot/v2/hook/x', 't', 'm').content.text.includes('m'));
+});
+
+test('项目·端到端：示例项目 → 进度与风险 → 日报（数字必须出自事实，编的会被打回重写）', async () => {
+  const { call } = fakeCtx();
+  let n = 0;
+  main.__setLlmForTests(async () => { n += 1; return { text: n === 1 ? '今日提交 99 次。' : '今日提交 6 次，合并请求 2 个；UAT 数据库配置阻塞。', model: 'stub' }; });
+  const prj = await call('pm.demo');
+  const pg = await call('pm.progress', { id: prj.id });
+  assert.equal(pg.progress.total, 9);
+  assert.ok(pg.risks.some((r) => /阻塞/.test(r.text)));
+  const rep = await call('pm.report', { id: prj.id, kind: 'daily' });
+  assert.equal(n, 2, '第一版有编出来的数字，重写了一次');
+  assert.deepEqual(rep.unverified, []);
+  assert.match(rep.text, /6 次/);
+  main.__setLlmForTests(null);
+});

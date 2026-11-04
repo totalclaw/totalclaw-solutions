@@ -1,0 +1,29 @@
+a1b2c3d4e5张华2026-11-03T09:12:00+08:00feat(transfer): 转账限额校验接入风控接口
+120	8	src/transfer/limit.ts
+40	2	src/transfer/limit.test.ts
+
+b2c3d4e5f6李明2026-11-03T10:30:00+08:00fix(login): 修复指纹登录在低版本系统闪退
+18	6	src/auth/biometric.ts
+
+c3d4e5f6a7王芳2026-11-03T11:05:00+08:00Merge pull request #212 from feature/wealth-list
+
+d4e5f6a7b8王芳2026-11-03T14:20:00+08:00feat(wealth): 理财列表增加风险等级标签
+86	12	src/wealth/list.vue
+
+e5f6a7b8c9张华2026-11-03T16:45:00+08:00test(transfer): 补充大额转账二次确认用例
+64	0	tests/transfer.e2e.ts
+
+f6a7b8c9d0赵磊2026-11-03T17:10:00+08:00Merge pull request #213 from fix/login-crash
+
+a7b8c9d0e1李明2026-11-02T15:00:00+08:00refactor(api): 统一网关错误码
+210	180	src/api/errors.ts
+
+b8c9d0e1f2张华2026-11-01T11:00:00+08:00feat(transfer): 收款人名册
+300	20	src/transfer/payee.ts
+
+c9d0e1f2a3王芳2026-10-31T09:40:00+08:00docs: 更新理财模块接口说明
+30	4	docs/wealth.md
+
+d0e1f2a3b4赵磊2026-10-29T18:00:00+08:00chore(ci): 流水线增加安全扫描
+25	3	.ci/pipeline.yml
+
