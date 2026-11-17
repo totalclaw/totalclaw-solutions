@@ -1,0 +1,486 @@
+{
+  "$comment": "来源追溯：从 qiye-app 迁入时的文件映射（pnpm solutions:pull / solutions:sync --push 按它同步）。宿主依赖由 solutions-build 解析进 dist/host-modules.json。",
+  "baseline": {
+    "repo": "totalclaw-qiye-app",
+    "branch": "master",
+    "commit": "e9d728a0374442590fa6e47970a725f7f53375c3"
+  },
+  "missingSeeds": [],
+  "imports": {},
+  "largeAssets": [],
+  "files": [
+    {
+      "path": "src/main/ipc/meetingMgmt.ipc.test.ts",
+      "from": "main/ipc/meetingMgmt.ipc.test.ts"
+    },
+    {
+      "path": "src/main/ipc/meetingMgmt.ipc.ts",
+      "from": "main/ipc/meetingMgmt.ipc.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/cloudAsr.test.ts",
+      "from": "main/services/meetingMgmt/cloudAsr.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/cloudAsr.ts",
+      "from": "main/services/meetingMgmt/cloudAsr.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/demo.test.ts",
+      "from": "main/services/meetingMgmt/demo.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/demo.ts",
+      "from": "main/services/meetingMgmt/demo.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/llm.test.ts",
+      "from": "main/services/meetingMgmt/llm.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/llm.ts",
+      "from": "main/services/meetingMgmt/llm.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/mobile/appScript.ts",
+      "from": "main/services/meetingMgmt/mobile/appScript.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/mobile/clientCommon.ts",
+      "from": "main/services/meetingMgmt/mobile/clientCommon.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/mobile/pages.test.ts",
+      "from": "main/services/meetingMgmt/mobile/pages.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/mobile/pages.ts",
+      "from": "main/services/meetingMgmt/mobile/pages.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/mobile/server.test.ts",
+      "from": "main/services/meetingMgmt/mobile/server.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/mobile/server.ts",
+      "from": "main/services/meetingMgmt/mobile/server.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/mobile/styles.ts",
+      "from": "main/services/meetingMgmt/mobile/styles.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/mobile/text.ts",
+      "from": "main/services/meetingMgmt/mobile/text.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/mobile/voiceScript.ts",
+      "from": "main/services/meetingMgmt/mobile/voiceScript.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/notifier.test.ts",
+      "from": "main/services/meetingMgmt/notifier.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/notifier.ts",
+      "from": "main/services/meetingMgmt/notifier.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/orgImport.test.ts",
+      "from": "main/services/meetingMgmt/orgImport.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/orgImport.ts",
+      "from": "main/services/meetingMgmt/orgImport.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/audio.test.ts",
+      "from": "main/services/meetingMgmt/pipeline/audio.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/audio.ts",
+      "from": "main/services/meetingMgmt/pipeline/audio.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/diarize.test.ts",
+      "from": "main/services/meetingMgmt/pipeline/diarize.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/diarize.ts",
+      "from": "main/services/meetingMgmt/pipeline/diarize.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/index.test.ts",
+      "from": "main/services/meetingMgmt/pipeline/index.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/index.ts",
+      "from": "main/services/meetingMgmt/pipeline/index.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/matchWords.ts",
+      "from": "main/services/meetingMgmt/pipeline/matchWords.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/organize.test.ts",
+      "from": "main/services/meetingMgmt/pipeline/organize.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/organize.ts",
+      "from": "main/services/meetingMgmt/pipeline/organize.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/plan.test.ts",
+      "from": "main/services/meetingMgmt/pipeline/plan.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/plan.ts",
+      "from": "main/services/meetingMgmt/pipeline/plan.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/prompts.ts",
+      "from": "main/services/meetingMgmt/pipeline/prompts.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/reports.test.ts",
+      "from": "main/services/meetingMgmt/pipeline/reports.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/reports.ts",
+      "from": "main/services/meetingMgmt/pipeline/reports.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/runtime.test.ts",
+      "from": "main/services/meetingMgmt/pipeline/runtime.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/runtime.ts",
+      "from": "main/services/meetingMgmt/pipeline/runtime.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/slice.test.ts",
+      "from": "main/services/meetingMgmt/pipeline/slice.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/slice.ts",
+      "from": "main/services/meetingMgmt/pipeline/slice.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/testHelpers.ts",
+      "from": "main/services/meetingMgmt/pipeline/testHelpers.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/transcriptParse.test.ts",
+      "from": "main/services/meetingMgmt/pipeline/transcriptParse.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/transcriptParse.ts",
+      "from": "main/services/meetingMgmt/pipeline/transcriptParse.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/types.ts",
+      "from": "main/services/meetingMgmt/pipeline/types.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/util.test.ts",
+      "from": "main/services/meetingMgmt/pipeline/util.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/util.ts",
+      "from": "main/services/meetingMgmt/pipeline/util.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/voiceprint.test.ts",
+      "from": "main/services/meetingMgmt/pipeline/voiceprint.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/voiceprint.ts",
+      "from": "main/services/meetingMgmt/pipeline/voiceprint.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/worker.py.ts",
+      "from": "main/services/meetingMgmt/pipeline/worker.py.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/workerPool.test.ts",
+      "from": "main/services/meetingMgmt/pipeline/workerPool.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/pipeline/workerPool.ts",
+      "from": "main/services/meetingMgmt/pipeline/workerPool.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/rules.test.ts",
+      "from": "main/services/meetingMgmt/rules.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/rules.ts",
+      "from": "main/services/meetingMgmt/rules.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/scheduler.test.ts",
+      "from": "main/services/meetingMgmt/scheduler.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/scheduler.ts",
+      "from": "main/services/meetingMgmt/scheduler.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/service.reminders.test.ts",
+      "from": "main/services/meetingMgmt/service.reminders.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/service.test.ts",
+      "from": "main/services/meetingMgmt/service.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/service.ts",
+      "from": "main/services/meetingMgmt/service.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/setupCheck.test.ts",
+      "from": "main/services/meetingMgmt/setupCheck.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/setupCheck.ts",
+      "from": "main/services/meetingMgmt/setupCheck.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/store.test.ts",
+      "from": "main/services/meetingMgmt/store.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/store.ts",
+      "from": "main/services/meetingMgmt/store.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/todos.test.ts",
+      "from": "main/services/meetingMgmt/todos.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/todos.ts",
+      "from": "main/services/meetingMgmt/todos.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/wecom.test.ts",
+      "from": "main/services/meetingMgmt/wecom.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/wecom.ts",
+      "from": "main/services/meetingMgmt/wecom.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/wecomAiBot.ts",
+      "from": "main/services/meetingMgmt/wecomAiBot.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/wecomWebhook.test.ts",
+      "from": "main/services/meetingMgmt/wecomWebhook.test.ts"
+    },
+    {
+      "path": "src/main/services/meetingMgmt/wecomWebhook.ts",
+      "from": "main/services/meetingMgmt/wecomWebhook.ts"
+    },
+    {
+      "path": "src/renderer/views/MeetingMgmtWorkbenchView.vue",
+      "from": "renderer/views/MeetingMgmtWorkbenchView.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/AsrModelPicker.vue",
+      "from": "renderer/workbenches/meeting-mgmt/AsrModelPicker.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/HomeAndMeetings.test.ts",
+      "from": "renderer/workbenches/meeting-mgmt/HomeAndMeetings.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/HomeTab.vue",
+      "from": "renderer/workbenches/meeting-mgmt/HomeTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/MeetingCreateDialog.vue",
+      "from": "renderer/workbenches/meeting-mgmt/MeetingCreateDialog.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/MeetingDetail.vue",
+      "from": "renderer/workbenches/meeting-mgmt/MeetingDetail.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/MeetingsTab.vue",
+      "from": "renderer/workbenches/meeting-mgmt/MeetingsTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/MinutesDraftSide.vue",
+      "from": "renderer/workbenches/meeting-mgmt/MinutesDraftSide.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/MinutesPanel.vue",
+      "from": "renderer/workbenches/meeting-mgmt/MinutesPanel.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/MobileAccessCard.vue",
+      "from": "renderer/workbenches/meeting-mgmt/MobileAccessCard.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/ObjectionPanel.vue",
+      "from": "renderer/workbenches/meeting-mgmt/ObjectionPanel.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/PersonChip.vue",
+      "from": "renderer/workbenches/meeting-mgmt/PersonChip.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/PersonPicker.vue",
+      "from": "renderer/workbenches/meeting-mgmt/PersonPicker.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/PersonSearchSelect.test.ts",
+      "from": "renderer/workbenches/meeting-mgmt/PersonSearchSelect.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/PersonSearchSelect.vue",
+      "from": "renderer/workbenches/meeting-mgmt/PersonSearchSelect.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/PlanPanel.vue",
+      "from": "renderer/workbenches/meeting-mgmt/PlanPanel.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/ProjectCreateDialog.vue",
+      "from": "renderer/workbenches/meeting-mgmt/ProjectCreateDialog.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/ProjectDetail.vue",
+      "from": "renderer/workbenches/meeting-mgmt/ProjectDetail.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/ProjectMembersDialog.vue",
+      "from": "renderer/workbenches/meeting-mgmt/ProjectMembersDialog.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/ProjectReports.vue",
+      "from": "renderer/workbenches/meeting-mgmt/ProjectReports.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/ProjectSummary.vue",
+      "from": "renderer/workbenches/meeting-mgmt/ProjectSummary.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/ProjectsTab.vue",
+      "from": "renderer/workbenches/meeting-mgmt/ProjectsTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/PushFailedList.vue",
+      "from": "renderer/workbenches/meeting-mgmt/PushFailedList.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/ReportView.vue",
+      "from": "renderer/workbenches/meeting-mgmt/ReportView.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/SegmentSpeakerPicker.vue",
+      "from": "renderer/workbenches/meeting-mgmt/SegmentSpeakerPicker.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/SettingsAi.vue",
+      "from": "renderer/workbenches/meeting-mgmt/SettingsAi.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/SettingsDemo.vue",
+      "from": "renderer/workbenches/meeting-mgmt/SettingsDemo.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/SettingsMobile.vue",
+      "from": "renderer/workbenches/meeting-mgmt/SettingsMobile.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/SettingsOrg.vue",
+      "from": "renderer/workbenches/meeting-mgmt/SettingsOrg.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/SettingsParams.vue",
+      "from": "renderer/workbenches/meeting-mgmt/SettingsParams.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/SettingsRoles.vue",
+      "from": "renderer/workbenches/meeting-mgmt/SettingsRoles.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/SettingsTab.vue",
+      "from": "renderer/workbenches/meeting-mgmt/SettingsTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/SettingsVoiceprint.vue",
+      "from": "renderer/workbenches/meeting-mgmt/SettingsVoiceprint.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/SettingsWecom.vue",
+      "from": "renderer/workbenches/meeting-mgmt/SettingsWecom.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/SetupWizard.test.ts",
+      "from": "renderer/workbenches/meeting-mgmt/SetupWizard.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/SetupWizard.vue",
+      "from": "renderer/workbenches/meeting-mgmt/SetupWizard.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/SpeakerAssignPanel.vue",
+      "from": "renderer/workbenches/meeting-mgmt/SpeakerAssignPanel.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/TaskDetailPanel.vue",
+      "from": "renderer/workbenches/meeting-mgmt/TaskDetailPanel.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/TaskTable.vue",
+      "from": "renderer/workbenches/meeting-mgmt/TaskTable.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/TasksTab.vue",
+      "from": "renderer/workbenches/meeting-mgmt/TasksTab.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/UploadPanel.vue",
+      "from": "renderer/workbenches/meeting-mgmt/UploadPanel.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/VoiceRecorder.vue",
+      "from": "renderer/workbenches/meeting-mgmt/VoiceRecorder.vue"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/WorkbenchShell.test.ts",
+      "from": "renderer/workbenches/meeting-mgmt/WorkbenchShell.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/meetingUi.test.ts",
+      "from": "renderer/workbenches/meeting-mgmt/meetingUi.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/meetingUi.ts",
+      "from": "renderer/workbenches/meeting-mgmt/meetingUi.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/pages.test.ts",
+      "from": "renderer/workbenches/meeting-mgmt/pages.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/pagesLogic.test.ts",
+      "from": "renderer/workbenches/meeting-mgmt/pagesLogic.test.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/pagesLogic.ts",
+      "from": "renderer/workbenches/meeting-mgmt/pagesLogic.ts"
+    },
+    {
+      "path": "src/renderer/workbenches/meeting-mgmt/shared.ts",
+      "from": "renderer/workbenches/meeting-mgmt/shared.ts"
+    },
+    {
+      "path": "src/shared/meetingMgmt/types.ts",
+      "from": "shared/meetingMgmt/types.ts"
+    }
+  ],
+  "sdkFiles": []
+}

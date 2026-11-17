@@ -1,0 +1,73 @@
+{
+  "manifestVersion": 2,
+  "schemaVersion": 1,
+  "id": "workbench-meeting-mgmt",
+  "name": "泰途会议智能管理",
+  "aliases": [
+    "meeting-mgmt",
+    "会议智能管理",
+    "泰途会议",
+    "智能会议管理",
+    "会议纪要"
+  ],
+  "version": "2.0.0",
+  "kind": "workbench",
+  "category": "项目管理",
+  "icon": "icon-solutions",
+  "order": 230,
+  "description": "以项目会议为源头：上传录音、录屏或文字记录，本机转写并按声纹识别发言人，发言人确认、主持人终审后生成正式纪要；AI 从决议拆出任务派给各部门负责人，跟进进度、处理异议与裁决，最后生成项目总结并归档。",
+  "detail": "会议 → 纪要 → 任务 → 跟进 → 归档全流程闭环：转写与声纹识别都在本机，按停顿切片、只和本场参会人比对，噪声大时认不准的交给主持人指认；发言人逐段确认（超时自动催办）、主持人终审定稿；AI 生成执行方案，任务负责人确认后按责任部门下发；部门负责人接收或提异议，复核、裁决全程留痕；每周进度汇总、到期与逾期提醒；结项检查通过后 AI 生成总结，审核后归档。第一次打开有配置引导（检测电脑配置并推荐转写模型、组织、通知、手机端、声纹、大模型）；通知支持企业微信自建应用卡片或群机器人（可按手机号 @ 人），手机页在企微里就能处理，含声纹采集。",
+  "access": {
+    "requiresSolutionGrant": false,
+    "feature": "qiye_api_advanced",
+    "hidden": false
+  },
+  "compat": {
+    "minAppVersion": "2.0.17",
+    "hostApi": 2
+  },
+  "runtime": {
+    "mode": "dynamic",
+    "runner": "workbench",
+    "route": "/workbenches/meeting-mgmt",
+    "renderer": "src/renderer/views/MeetingMgmtWorkbenchView.vue",
+    "main": "src/main/ipc/meetingMgmt.ipc.ts",
+    "hotSwap": false,
+    "routes": [
+      {
+        "path": "/workbenches/meeting-mgmt",
+        "name": "MeetingMgmtWorkbench"
+      }
+    ],
+    "entries": {
+      "renderer": "dist/renderer.mjs",
+      "style": "dist/style.css",
+      "main": "dist/main.cjs",
+      "hostModules": "dist/host-modules.json"
+    }
+  },
+  "dependsOn": [],
+  "data": {
+    "schemaVersion": 1,
+    "paths": [
+      "meeting-mgmt/"
+    ],
+    "localStorage": [
+      "totalclaw:meeting-mgmt-tab:v1",
+      "totalclaw:meeting-mgmt-operator:v1"
+    ]
+  },
+  "capabilities": [],
+  "largeAssets": [],
+  "distribution": {
+    "channel": "stable",
+    "path": "solutions/workbench-meeting-mgmt",
+    "files": [
+      "solution.json",
+      "README.md",
+      "CHANGELOG.md",
+      "dist/",
+      "migrations/"
+    ]
+  }
+}

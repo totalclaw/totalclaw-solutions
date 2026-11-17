@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { test } from 'node:test';
-import { LocalSource, SolutionManager, TarballSource } from '../packages/installer/src/index.mjs';
+import { LocalSource, SolutionManager, TarballSource, semver } from '../packages/installer/src/index.mjs';
 import { REPO_ROOT } from '../tools/lib/common.mjs';
 import { tmp } from './helpers.mjs';
 
@@ -30,7 +30,19 @@ test('catalog.json 兼容旧版 qiye-app（parseCatalog 必填字段）', () => 
 });
 
 test('全部方案可从本地仓库安装并通过校验', { timeout: 180_000 }, async () => {
-  const mgr = new SolutionManager({ root: tmp('tcsol-all-'), source: new LocalSource(REPO_ROOT), appVersion: '2.0.5', hostApi: 2 });
+  // 最老的宿主（2.0.5）：有兼容版本的方案退到兼容版本装上；只有新版本、需要更新客户端的新方案必须报 APP_TOO_OLD
+  const old = new SolutionManager({ root: tmp('tcsol-all-'), source: new LocalSource(REPO_ROOT), appVersion: '2.0.5', hostApi: 2 });
+  // 历史版本在 index/<id>.json（index.json 只放摘要）
+  const versionsOf = (it) => JSON.parse(readFileSync(join(REPO_ROOT, it.filesRef), 'utf8')).versions || [];
+  const tooNew = (it) => versionsOf(it).every((v) => v.minAppVersion && semver.gt(v.minAppVersion, '2.0.5'));
+  for (const it of index.items) {
+    if (tooNew(it)) await assert.rejects(old.install(it.id, { withDependencies: false }), { code: 'APP_TOO_OLD' }, it.id);
+    else await old.install(it.id);
+  }
+  assert.deepEqual(old.verify().filter((v) => !v.ok), []);
+  // 目录里要求最高的宿主：全部方案都装最新版并通过校验
+  const newest = index.items.map((it) => it.compat?.minAppVersion).filter(Boolean).reduce((a, v) => (semver.gt(v, a) ? v : a), '2.0.5');
+  const mgr = new SolutionManager({ root: tmp('tcsol-all-'), source: new LocalSource(REPO_ROOT), appVersion: newest, hostApi: 2 });
   for (const it of index.items) await mgr.install(it.id);
   assert.equal(mgr.list().length, index.items.length);
   const bad = mgr.verify().filter((v) => !v.ok);
