@@ -8,6 +8,7 @@
 import { spawn } from 'child_process';
 import { closeSync, createWriteStream, existsSync, openSync, readSync, statSync, writeSync } from 'fs';
 import { extname } from 'path';
+import { createChunkDecoder } from '@totalclaw/node-runtime';
 import { t as i18nT } from '@totalclaw/i18n';
 
 export const SAMPLE_RATE = 16000;
@@ -65,11 +66,15 @@ export function runProcess(bin: string, args: string[], opts: { signal?: AbortSi
       opts.signal?.removeEventListener('abort', onAbort);
       fn();
     };
+    const decodeOut = createChunkDecoder();
+    const decodeErr = createChunkDecoder();
     opts.signal?.addEventListener('abort', onAbort, { once: true });
-    child.stdout.on('data', (b: Buffer) => { if (stdout.length < 4_000_000) stdout += b.toString('utf8'); });
-    child.stderr.on('data', (b: Buffer) => { if (stderr.length < 200_000) stderr += b.toString('utf8'); });
+    child.stdout.on('data', (b: Buffer) => { if (stdout.length < 4_000_000) stdout += decodeOut(b); });
+    child.stderr.on('data', (b: Buffer) => { if (stderr.length < 200_000) stderr += decodeErr(b); });
     child.on('error', (e) => finish(() => reject(e)));
-    child.on('close', (code) => finish(() => resolve({ code, stdout, stderr })));
+    child.on('close', (code) => {
+      finish(() => resolve({ code, stdout, stderr }));
+    });
   });
 }
 

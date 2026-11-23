@@ -159,7 +159,10 @@ export class EduHubProc {
           const rating = String(body?.rating || '');
           if (rating !== 'unknown' && rating !== 'fuzzy' && rating !== 'known') { c.json(200, { error: 'BAD_RATING' }); return; }
           try { c.json(200, s.rateCard(c.principal!.id, String(body?.cardId || ''), rating)); }
-          catch { c.json(404, { error: 'NOT_FOUND' }); }
+          catch (e: any) {
+            const code = e?.message === 'FORBIDDEN' ? 403 : 404;
+            c.json(code, { error: code === 403 ? 'FORBIDDEN' : 'NOT_FOUND' });
+          }
         },
       },
 
@@ -182,7 +185,10 @@ export class EduHubProc {
           const body = await c.body();
           const answers = Array.isArray(body?.answers) ? body.answers.map((n: unknown) => Number(n)) : [];
           try { c.json(200, s.practiceQuiz(c.principal!.id, c.params[0], String(body?.mode || 'chapter'), answers)); }
-          catch { c.json(404, { error: 'NOT_FOUND' }); }
+          catch (e: any) {
+            const code = e?.message === 'NOT_SUBMITTED' ? 403 : 404;
+            c.json(code, { error: code === 403 ? 'NOT_SUBMITTED' : 'NOT_FOUND' });
+          }
         },
       },
 

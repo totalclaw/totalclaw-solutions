@@ -486,6 +486,7 @@ import AssetActions from '../workbenches/charity-content/AssetActions.vue';
 import CcVideoPhases from '../workbenches/charity-content/CcVideoPhases.vue';
 import CcPromptBox from '../workbenches/charity-content/CcPromptBox.vue';
 import { clipStyleFromPrompt, endSloganFromPrompt, mergeShotPrompt, needsCondense } from '../../shared/charityPrompts';
+import { classifyError } from '../../shared/errorKind';
 import {
   LANGS, LANG_LABEL, LANG_DIR, HD_VOICES, detectLang, type Lang, type StepKey, type StepMeta, type LineKey, type SpeechItems, type VideoItems,
   api, solutionApi, useSteps, stepMetas, lineMetas, scrollToStep, prefersReducedMotion, errorMessage, openPath, archiveReady, summaryTextOf, acceptStepResult, fmtDur, fmtSize, fmtRunTime, emptyTri, blankArchive, ltrIsolate,
@@ -603,8 +604,9 @@ const archiveLang = ref<Lang>(uiContentLang());
 const viewLang = ref<Lang>(uiContentLang());
 const descriptions = ref<CharityMediaDescription[]>([]);
 const analyzeWarning = ref('');
-const NEEDS_MODEL_RE = /默认模型|default model/i;
-function needsModel(err?: string): boolean { return !!err && NEEDS_MODEL_RE.test(err); }
+function needsModel(err?: string): boolean {
+  return !!err && (classifyError(err).kind === 'model' || /默认模型|default model/i.test(err));
+}
 function goModelSettings(): void { router.push({ path: '/settings', query: { section: 'ai-models' } }); }
 const report = ref<CharityReport | null>(null);
 const pdf = reactive(emptyTri());

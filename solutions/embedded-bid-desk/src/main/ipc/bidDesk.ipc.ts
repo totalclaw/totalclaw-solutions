@@ -90,14 +90,17 @@ function parseDocx(path: string): BidDeskParseDocumentResponse {
   const zip = new AdmZip(path);
   const xml = zip.getEntry('word/document.xml')?.getData().toString('utf-8');
   if (!xml) throw new Error(i18nT('Word 文件缺少 document.xml'));
-  const withBreaks = xml
-    .replace(/<\/w:p>/g, '\n')
-    .replace(/<\/w:tr>/g, '\n')
-    .replace(/<\/w:tc>/g, '\t');
-  const text = Array.from(withBreaks.matchAll(/<w:t(?:\s[^>]*)?>([\s\S]*?)<\/w:t>/g))
-    .map((match) => decodeXml(match[1]))
+  // 单遍按文档顺序提取文本与段落/表格换行、制表符，避免先替换再只匹配 <w:t> 丢失所有断行与分列
+  const parts: string[] = [];
+  for (const m of xml.matchAll(/<w:t(?:\s[^>]*)?>([\s\S]*?)<\/w:t>|(<\/w:tc>)|(<\/w:p>|<\/w:tr>|<w:br\b[^>]*\/>)/g)) {
+    if (m[1] !== undefined) parts.push(decodeXml(m[1]));
+    else if (m[2]) parts.push('\t');
+    else if (m[3]) parts.push('\n');
+  }
+  const text = parts
     .join('')
     .replace(/\t{2,}/g, '\t')
+    .replace(/[ \t]+\n/g, '\n')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
   return { text };

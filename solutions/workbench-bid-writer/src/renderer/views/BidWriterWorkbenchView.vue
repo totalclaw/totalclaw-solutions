@@ -736,15 +736,18 @@ const knowledgeHint = computed(() => {
   return i18nT('知识库里有 {n} 条事实，但没认出公司名称：到知识库把「公司名称」这条补上即可自动带出。', { n: k.factCount });
 });
 
+let disposed = false;
 onMounted(async () => {
   try {
     await bw.load();
+    if (disposed) return;
     noticeText.value = String(project.value?.notice?.text || '');
     noticeWarnings.value = project.value?.notice?.warnings || [];
     goalEdited.value = Boolean(String(project.value?.goal || '').trim());
   } catch (e) {
-    notify.error(errorMessage(e));
+    if (!disposed) notify.error(errorMessage(e));
   }
+  if (disposed) return;
   unbind = bindEvents((ev) => {
     bw.live.value = { message: ev.message, done: ev.done, total: ev.total };
     if (ev.done >= ev.total) window.setTimeout(() => { if (!bw.isRunning()) bw.live.value = null; }, 800);
@@ -752,9 +755,10 @@ onMounted(async () => {
 });
 
 onBeforeUnmount(() => {
+  disposed = true;
   if (goalTimer) { window.clearTimeout(goalTimer); goalTimer = null; }
   if (checkTimer) { window.clearTimeout(checkTimer); checkTimer = null; }
-  try { unbind?.(); } catch { /* 忽略 */ }
+  try { unbind?.(); unbind = null; } catch { /* 忽略 */ }
   void bw.saveNow().catch((e) => notify.error(errorMessage(e)));
 });
 

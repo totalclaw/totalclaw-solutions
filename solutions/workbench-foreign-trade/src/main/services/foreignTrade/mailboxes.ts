@@ -73,7 +73,6 @@ function imapOptions(mb: FtMailbox, password: string) {
     secure: mb.imapPort === 993,
     auth: { user: mb.address, pass: password },
     logger: false as const,
-    tls: { rejectUnauthorized: false },
     socketTimeout: 60_000,
   };
 }
@@ -192,7 +191,6 @@ export async function sendFromMailbox(mb: FtMailbox, password: string, input: Se
     port: mb.smtpPort,
     secure: mb.smtpPort === 465,
     auth: { user: mb.address, pass: password },
-    tls: { rejectUnauthorized: false },
   });
   const from = mb.senderName ? `"${mb.senderName.replace(/"/g, '')}" <${mb.address}>` : mb.address;
   const info: any = await transport.sendMail({
@@ -243,7 +241,7 @@ export async function testMailbox(mb: FtMailbox, password: string): Promise<FtMa
       const nodemailer = await import('nodemailer');
       const transport = nodemailer.createTransport({
         host: mb.smtpHost, port: mb.smtpPort, secure: mb.smtpPort === 465,
-        auth: { user: mb.address, pass: password }, tls: { rejectUnauthorized: false },
+        auth: { user: mb.address, pass: password },
       });
       await transport.verify();
       result.smtp = { ok: true, message: i18nT('连接成功') };

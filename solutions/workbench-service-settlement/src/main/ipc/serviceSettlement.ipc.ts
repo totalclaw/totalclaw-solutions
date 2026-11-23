@@ -224,7 +224,9 @@ export function registerServiceSettlementHandlers(deps: WorkbenchIpcDeps): () =>
       }
       if (patch.settlement && typeof patch.settlement === 'object') {
         const t = patch.settlement;
-        if (typeof t.period === 'string') s.settlement.period = t.period;
+        if (typeof t.period === 'string') {
+          s.settlement.period = t.period.trim() ? requirePeriod(t.period) : '';
+        }
         if (typeof t.invoiceNameTemplate === 'string' && t.invoiceNameTemplate.trim()) s.settlement.invoiceNameTemplate = t.invoiceNameTemplate.trim();
         if (typeof t.expenseSystemUrl === 'string') s.settlement.expenseSystemUrl = t.expenseSystemUrl.trim();
         if (typeof t.mailSubjectTemplate === 'string' && t.mailSubjectTemplate.trim()) s.settlement.mailSubjectTemplate = t.mailSubjectTemplate;
@@ -543,10 +545,11 @@ export function registerServiceSettlementHandlers(deps: WorkbenchIpcDeps): () =>
 
   ipcMain.handle(IPC_CHANNELS.WORKBENCH_SS_SETTLEMENT_REPORT, async (_e, req: { period?: string }) => {
     const s = store.get();
-    const records = req?.period ? s.settlement.records.filter((r) => r.period === req.period) : s.settlement.records;
+    const period = req?.period ? requirePeriod(req.period) : undefined;
+    const records = period ? s.settlement.records.filter((r) => r.period === period) : s.settlement.records;
     const dir = outDir(i18nT('结案汇总'));
     const stamp = todayIso();
-    const trackingPath = join(dir, `${i18nT('服务商付款跟踪表')}-${req?.period || i18nT('全部')}-${stamp}.xlsx`);
+    const trackingPath = join(dir, `${i18nT('服务商付款跟踪表')}-${period || i18nT('全部')}-${stamp}.xlsx`);
     writeWorkbook(trackingPath, [
       { name: i18nT('付款跟踪'), headers: TRACKING_HEADERS, rows: records.map((r) => trackingRow(r)) },
       { name: i18nT('未完成付款'), headers: TRACKING_HEADERS, rows: unpaidRows(records) },

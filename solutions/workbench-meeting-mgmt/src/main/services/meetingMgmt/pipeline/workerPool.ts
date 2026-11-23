@@ -72,6 +72,7 @@ export class MeetingWorker {
       });
       this.child = c;
       const decode = createChunkDecoder();
+      const decodeErr = createChunkDecoder();
       let settled = false;
       const timer = setTimeout(() => {
         if (settled) return;
@@ -103,7 +104,7 @@ export class MeetingWorker {
           if (typeof msg?.id === 'number') this.handlers.get(msg.id)?.(msg);
         }
       });
-      c.stderr.on('data', (b: Buffer) => { this.stderrTail = (this.stderrTail + b.toString('utf8')).slice(-4000); });
+      c.stderr.on('data', (b: Buffer) => { this.stderrTail = (this.stderrTail + decodeErr(b)).slice(-4000); });
       const onGone = (err?: Error) => {
         this.exited = true;
         if (!settled) {

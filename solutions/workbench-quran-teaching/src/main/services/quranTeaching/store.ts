@@ -583,7 +583,7 @@ export class QuranTeachingStore {
     const r = this.normalizeRange(opts.chapter, opts.from, opts.to);
     const parse = this.parse(opts.chapter, r.from, r.to);
     const verses = this.verses(opts.chapter, r.from, r.to);
-    const jobId = opts.jobId || `card-${this.now().toString(36)}`;
+    const jobId = (opts.jobId && /^[A-Za-z0-9_-]{1,40}$/.test(opts.jobId) ? opts.jobId : '') || `card-${this.now().toString(36)}`;
     let background: string | undefined;
     let bg: QuranMediaCard['background'] = 'template';
     if (opts.useFal && this.deps.falBackground && this.deps.falReady?.()) {
@@ -616,7 +616,7 @@ export class QuranTeachingStore {
     if (!script) throw new Error('SCRIPT_NOT_FOUND');
     if (!this.deps.renderImage) throw new Error('RENDER_UNAVAILABLE');
     if (!this.deps.ffmpeg) throw new Error('FFMPEG_UNAVAILABLE');
-    const id = jobId || `vid-${this.now().toString(36)}`;
+    const id = (jobId && /^[A-Za-z0-9_-]{1,40}$/.test(jobId) ? jobId : '') || `vid-${this.now().toString(36)}`;
     const work = join(this.dir(), 'media', id); mkdirSync(work, { recursive: true });
     const chapterName = this.chapterLabel(script.chapter, script.lang);
     const segs: string[] = [];

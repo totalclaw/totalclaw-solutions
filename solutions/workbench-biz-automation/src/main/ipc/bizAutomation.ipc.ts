@@ -25,6 +25,7 @@ import {
 import { t as i18nT } from '@totalclaw/i18n';
 import type { WorkbenchIpcDeps } from './workbenchApi';
 import { userFacingError } from '../utils/userFacingError';
+import { openPathGuarded } from '../utils/openPathGuarded';
 import { onAppWillQuit } from '../util/quitRegistry';
 import { createWorkbenchLlm } from '../services/workbenchLlm';
 import { BizAutomationStore, newId } from '../services/bizAutomation/store';
@@ -800,7 +801,7 @@ ${r.staleNote ? `<p class="warn">⚠ ${esc(r.staleNote)}</p>` : ''}
     'path.open': async (p: { path: string; reveal?: boolean }) => {
       if (!p?.path || !existsSync(p.path)) throw new Error(i18nT('文件不存在'));
       if (p.reveal) { shell.showItemInFolder(p.path); return true; }
-      const err = await shell.openPath(p.path);
+      const err = await openPathGuarded(p.path);
       if (err) throw new Error(err);
       return true;
     },
@@ -1138,8 +1139,10 @@ ${r.staleNote ? `<p class="warn">⚠ ${esc(r.staleNote)}</p>` : ''}
     },
     'finance.metrics': (p: { from: string; to: string }) => computeMetrics(store.data().sales, store.data().expenses, garments(), p.from, p.to),
     'finance.report': async (p: { kind: BaReport['kind']; from?: string; to?: string }) => {
-      const period = p.kind === 'custom' ? { from: String(p.from || ''), to: String(p.to || '') } : reportPeriod(p.kind);
-      if (!period.from || !period.to || period.from > period.to) throw new Error(i18nT('请选择正确的起止日期'));
+      const period = p.kind === 'custom' ? { from: String(p.from || '').trim(), to: String(p.to || '').trim() } : reportPeriod(p.kind);
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(period.from) || !/^\d{4}-\d{2}-\d{2}$/.test(period.to) || period.from > period.to) {
+        throw new Error(i18nT('请选择正确的起止日期'));
+      }
       return buildReport(p.kind, period.from, period.to);
     },
     'finance.reportText': (p: { id: string }) => reportText(requireFound(store.read().reports.find((r) => r.id === p.id), i18nT('报表'))),
@@ -1153,7 +1156,8 @@ ${r.staleNote ? `<p class="warn">⚠ ${esc(r.staleNote)}</p>` : ''}
     'finance.export': (p: { id: string }) => {
       const r = requireFound(store.read().reports.find((x) => x.id === p.id), i18nT('报表'));
       const m = r.metrics;
-      const file = join(outputDir(i18nT('经营报表')), `${i18nT('经营报表')}-${m.from}_${m.to}.xlsx`);
+      const safeTag = (v: string) => String(v || '').replace(/[^0-9A-Za-z_-]+/g, '_').slice(0, 32) || 'date';
+      const file = join(outputDir(i18nT('经营报表')), `${i18nT('经营报表')}-${safeTag(m.from)}_${safeTag(m.to)}.xlsx`);
       writeWorkbook(file, [
         { name: i18nT('汇总'), headers: [i18nT('指标'), i18nT('数值')], rows: [
           [i18nT('期间'), `${m.from} ~ ${m.to}`], [i18nT('营业额'), m.revenue], [i18nT('退货'), m.refunds], [i18nT('净营业额'), m.netRevenue],
@@ -1173,7 +1177,8 @@ ${r.staleNote ? `<p class="warn">⚠ ${esc(r.staleNote)}</p>` : ''}
     },
     'finance.exportPdf': async (p: { id: string }) => {
       const r = requireFound(store.read().reports.find((x) => x.id === p.id), i18nT('报表'));
-      const file = join(outputDir(i18nT('经营报表')), `${i18nT('经营报表')}-${r.metrics.from}_${r.metrics.to}.pdf`);
+      const safeTag = (v: string) => String(v || '').replace(/[^0-9A-Za-z_-]+/g, '_').slice(0, 32) || 'date';
+      const file = join(outputDir(i18nT('经营报表')), `${i18nT('经营报表')}-${safeTag(r.metrics.from)}_${safeTag(r.metrics.to)}.pdf`);
       await renderHtmlToPdf(reportHtml(r), file);
       store.update((s) => { const x = s.reports.find((y) => y.id === r.id); if (x) x.pdfPath = file; });
       pushState();
@@ -1201,7 +1206,8 @@ ${r.staleNote ? `<p class="warn">⚠ ${esc(r.staleNote)}</p>` : ''}
         const n2 = `${no}-${k++}`;
         rows.push([m.to, n2, `${memo} ${item}`, '6601', i18nT('销售费用'), Math.round(amt * 100) / 100, 0], [m.to, n2, `${memo} ${item}`, '1002', i18nT('银行存款'), 0, Math.round(amt * 100) / 100]);
       }
-      const file = join(outputDir(i18nT('经营报表')), `${i18nT('序时账')}-${m.from}_${m.to}.xlsx`);
+      const safeTag = (v: string) => String(v || '').replace(/[^0-9A-Za-z_-]+/g, '_').slice(0, 32) || 'date';
+      const file = join(outputDir(i18nT('经营报表')), `${i18nT('序时账')}-${safeTag(m.from)}_${safeTag(m.to)}.xlsx`);
       writeWorkbook(file, [{ name: i18nT('序时账'), headers: [i18nT('日期'), i18nT('凭证号'), i18nT('摘要'), i18nT('科目编码'), i18nT('科目名称'), i18nT('借方金额'), i18nT('贷方金额')], rows }]);
       return file;
     },

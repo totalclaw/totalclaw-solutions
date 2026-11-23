@@ -28,6 +28,7 @@ import {
 } from '@totalclaw/ipc-contracts';
 import { t as i18nT } from '@totalclaw/i18n';
 import type { WorkbenchIpcDeps } from './workbenchApi';
+import { openPathGuarded } from '../utils/openPathGuarded';
 import { userFacingError } from '../utils/userFacingError';
 import { createWorkbenchLlm } from '../services/workbenchLlm';
 import { onAppWillQuit } from '../util/quitRegistry';
@@ -492,7 +493,7 @@ export function registerForeignTradeHandlers(deps: WorkbenchIpcDeps): () => void
   async function fetchText(url: string): Promise<{ title: string; text: string; error?: string }> {
     const { fetchNoticePage } = await import('../services/bidWriter/noticeFetch');
     try {
-      const page = await fetchNoticePage(url);
+      const page = await fetchNoticePage(url, { ephemeral: true, blockPrivateIp: true });
       return { title: page.title, text: page.text.slice(0, 20_000), error: page.loginRequired ? i18nT('需要登录才能查看') : undefined };
     } catch (error) {
       return { title: '', text: '', error: (error as Error)?.message || String(error) };
@@ -568,7 +569,12 @@ export function registerForeignTradeHandlers(deps: WorkbenchIpcDeps): () => void
   // ─── 数据整理：定时日报 ───────────────────────────────────────────────
 
   async function buildReport(from: string, to: string): Promise<FtReport> {
-    const stats = buildReportStats(store.read(), from, to);
+    const cleanFrom = String(from || '').trim();
+    const cleanTo = String(to || '').trim();
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(cleanFrom) || !/^\d{4}-\d{2}-\d{2}$/.test(cleanTo) || cleanFrom > cleanTo) {
+      throw new Error(i18nT('请选择正确的起止日期（YYYY-MM-DD）'));
+    }
+    const stats = buildReportStats(store.read(), cleanFrom, cleanTo);
     const report: FtReport = { id: newId('rpt'), createdAt: new Date().toISOString(), stats };
     store.update((st) => { st.reports.unshift(report); st.reports.splice(60); });
     return report;
@@ -580,7 +586,8 @@ export function registerForeignTradeHandlers(deps: WorkbenchIpcDeps): () => void
     if (r.commentary) rows.push([], [i18nT('点评'), r.commentary]);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(rows), i18nT('业务报表'));
-    const path = join(outputDir(i18nT('报表')), `${i18nT('业务报表')}_${r.stats.from}_${r.stats.to}_${r.id.slice(-4)}.xlsx`);
+    const safeTag = (v: string) => String(v || '').replace(/[^0-9A-Za-z_-]+/g, '_').slice(0, 32) || 'date';
+    const path = join(outputDir(i18nT('报表')), `${i18nT('业务报表')}_${safeTag(r.stats.from)}_${safeTag(r.stats.to)}_${r.id.slice(-4)}.xlsx`);
     XLSX.writeFile(wb, path);
     return store.update((st) => { const t = st.reports.find((x) => x.id === id)!; t.filePath = path; return t; });
   }
@@ -851,7 +858,7 @@ export function registerForeignTradeHandlers(deps: WorkbenchIpcDeps): () => void
     },
     'path.open': async (p: { path: string }) => {
       if (!p?.path || !existsSync(p.path)) throw new Error(i18nT('文件不存在'));
-      const err = await shell.openPath(p.path);
+      const err = await openPathGuarded(p.path);
       if (err) throw new Error(err);
       return true;
     },

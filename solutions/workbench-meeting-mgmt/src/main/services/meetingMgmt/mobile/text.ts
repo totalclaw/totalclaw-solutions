@@ -11,8 +11,10 @@
  *   - 变量写成 `{name}`，页面里用 tx 的第二个参数替换。
  *   - 状态 / 类型标签与电脑端（renderer/workbenches/meeting-mgmt/shared.ts）保持同一套说法。
  */
+import { brandText } from '../../brand';
+
 export const MM_MOBILE_TEXT = {
-  appTitle: '泰途会议智能管理',
+  appTitle: brandText('泰途会议智能管理'),
   voiceTitle: '声纹采集',
 
   common: {
@@ -33,7 +35,7 @@ export const MM_MOBILE_TEXT = {
     saved: '已保存',
     later: '稍后再说',
     unknownPerson: '未知人员',
-    networkError: '网络连接失败：请确认手机和电脑连在同一个局域网（Wi-Fi），并且电脑上的 TotalClaw 没有关闭',
+    networkError: brandText('网络连接失败：请确认手机和电脑连在同一个局域网（Wi-Fi），并且电脑上的 TotalClaw 没有关闭'),
     serverError: '服务出错了，请稍后再试',
     tooMany: '尝试次数过多，请 1 分钟后再试',
     forbiddenAction: '手机端不支持这个操作，请在电脑上处理',
@@ -59,7 +61,7 @@ export const MM_MOBILE_TEXT = {
 
   /** 群里的链接（不带个人令牌）：本机记着令牌就直接进，没有就提示先打开一次专属链接 */
   group: {
-    title: '泰途会议智能管理',
+    title: brandText('泰途会议智能管理'),
     opening: '正在打开…',
     need: '这是发在群里的链接，需要先认出你是谁。',
     how: '请先打开一次你的个人专属链接（电脑端首页「手机端」扫码，或找管理员要），之后群里的链接点开就能直接进入。',
@@ -192,7 +194,7 @@ export const MM_MOBILE_TEXT = {
   },
 
   home: {
-    title: '泰途会议智能管理',
+    title: brandText('泰途会议智能管理'),
     greeting: '{hello}，{name}',
     summary: '今天有 {urgent} 件紧急、{today} 件需在今天完成的事项',
     summaryNone: '今天没有紧急事项',
@@ -539,7 +541,7 @@ export const MM_MOBILE_TEXT = {
     voiceWithdraw: '撤回声纹授权',
     voiceWithdrawAsk: '撤回后会删除你的声纹，会议录音里将不再自动识别你的发言。确定吗？',
     voiceWithdrawn: '已撤回声纹授权',
-    about: '这个页面由电脑上的 TotalClaw 通过局域网提供，手机需要和那台电脑连在同一个网络里。',
+    about: brandText('这个页面由电脑上的 TotalClaw 通过局域网提供，手机需要和那台电脑连在同一个网络里。'),
     noPerson: '系统里没有找到你的信息，请联系管理员同步通讯录',
   },
 
@@ -580,7 +582,7 @@ export const MM_MOBILE_TEXT = {
     consentTitle: '声纹采集授权',
     consentIntro: '{name}，你好！为了在会议录音里自动识别你的发言，需要采集一段你的声音。',
     purposeTitle: '采集用途',
-    purpose: '只用于泰途会议智能管理：在你参加的会议录音里识别哪些话是你说的，生成会议纪要后由你本人核对确认。你确认过的会议发言会用来补充你的声纹（最多保留最近 5 条），换了麦克风或会议室也能认出你；可以在声纹库里关掉。',
+    purpose: brandText('只用于泰途会议智能管理：在你参加的会议录音里识别哪些话是你说的，生成会议纪要后由你本人核对确认。你确认过的会议发言会用来补充你的声纹（最多保留最近 5 条），换了麦克风或会议室也能认出你；可以在声纹库里关掉。'),
     scopeTitle: '使用范围',
     scope: '声纹只和你参加的会议比对，不用于其他用途，不提供给第三方。数据保存在公司内部电脑上。',
     storeTitle: '保存方式',
@@ -623,7 +625,7 @@ export const MM_MOBILE_TEXT = {
     doneTitle: '采集成功',
     doneBody: '{name}，你的声纹已采集完成。之后在你参加的会议录音里，系统会自动识别你的发言。',
     doneSeconds: '有效语音 {s} 秒',
-    backHome: '返回泰途会议智能管理',
+    backHome: brandText('返回泰途会议智能管理'),
     noPerson: '系统里没有找到你的信息',
     noPersonHint: '请联系管理员同步通讯录后，再从企微里重新打开这个链接。',
   },

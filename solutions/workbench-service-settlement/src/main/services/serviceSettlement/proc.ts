@@ -547,7 +547,7 @@ export class ServiceSettlementProc extends EventEmitter {
     let client: any = null;
     try {
       const { ImapFlow } = await import('imapflow');
-      client = new ImapFlow({ host, port, secure: port === 993, auth: { user: address, pass: password }, logger: false, connectionTimeout: 15000, greetingTimeout: 15000, socketTimeout: 60000, tls: { rejectUnauthorized: false } });
+      client = new ImapFlow({ host, port, secure: port === 993, auth: { user: address, pass: password }, logger: false, connectionTimeout: 15000, greetingTimeout: 15000, socketTimeout: 60000 });
       await client.connect();
       const lock = await client.getMailboxLock('INBOX', { readOnly: true });
       try {

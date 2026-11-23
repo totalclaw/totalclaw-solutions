@@ -178,10 +178,12 @@ function refresh(): void {
 }
 defineExpose({ refresh });
 
+let disposed = false;
 onMounted(async () => {
   handleNav();
   lastReloadAt = Date.now();
   await reload();
+  if (disposed) return;
   // 列表加载完再判断一次（打开的任务不在当前视图里时切视图）
   handleNav();
   off = onMmEvent((ev) => {
@@ -190,7 +192,9 @@ onMounted(async () => {
   });
 });
 onBeforeUnmount(() => {
+  disposed = true;
   off?.();
+  off = null;
   if (timer) clearTimeout(timer);
   mmRole.value = '';
 });

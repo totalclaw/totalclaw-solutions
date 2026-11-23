@@ -281,10 +281,15 @@ export function registerQuranTeachingHandlers(deps: IpcDeps): () => void {
     return { reinforcement: r, records: s.records(r.retest.id) };
   });
 
+  const safeJobId = (raw: unknown): string | undefined => {
+    const s = typeof raw === 'string' ? raw.trim() : '';
+    return /^[A-Za-z0-9_-]{1,40}$/.test(s) ? s : undefined;
+  };
+
   ipcMain.handle(IPC_CHANNELS.WORKBENCH_QURAN_CARD, async (_e, payload: { kind: string; chapter: number; from?: number; to?: number; lang?: QuranLang; useFal?: boolean; focusRefs?: string[]; jobId?: string }) => {
     rateLimit('QURAN_CARD', 20);
     const kind = ['vocab', 'concept_map', 'timeline', 'review', 'structure'].includes(String(payload?.kind)) ? payload.kind as any : 'vocab';
-    const card = await ensure(deps).makeCard({ kind, chapter: Number(payload?.chapter), from: num(payload?.from), to: num(payload?.to), lang: lang(payload?.lang), useFal: !!payload?.useFal, focusRefs: Array.isArray(payload?.focusRefs) ? payload.focusRefs.map(String).slice(0, 6) : undefined, jobId: payload?.jobId ? String(payload.jobId).slice(0, 40) : undefined });
+    const card = await ensure(deps).makeCard({ kind, chapter: Number(payload?.chapter), from: num(payload?.from), to: num(payload?.to), lang: lang(payload?.lang), useFal: !!payload?.useFal, focusRefs: Array.isArray(payload?.focusRefs) ? payload.focusRefs.map(String).slice(0, 6) : undefined, jobId: safeJobId(payload?.jobId) });
     deps.logger.audit?.('quran-teaching', i18nT('生成教学视觉卡片'), { id: card.id, kind: card.kind, background: card.background });
     return card;
   });
@@ -298,7 +303,7 @@ export function registerQuranTeachingHandlers(deps: IpcDeps): () => void {
 
   ipcMain.handle(IPC_CHANNELS.WORKBENCH_QURAN_VIDEO_SAMPLE, async (_e, payload: { scriptId: string; jobId?: string }) => {
     rateLimit('QURAN_VIDEO', 6);
-    const v = await ensure(deps).makeVideoSample(String(payload?.scriptId || ''), payload?.jobId ? String(payload.jobId).slice(0, 40) : undefined);
+    const v = await ensure(deps).makeVideoSample(String(payload?.scriptId || ''), safeJobId(payload?.jobId));
     deps.logger.audit?.('quran-teaching', i18nT('合成视频样例'), { id: v.id, durationSec: v.durationSec, voiceEngine: v.voiceEngine });
     return v;
   });

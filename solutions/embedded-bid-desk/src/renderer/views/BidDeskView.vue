@@ -1102,17 +1102,22 @@ async function openWorkflowRun() {
 }
 
 let cleanupWorkflow: (() => void) | null = null;
+let disposed = false;
 onMounted(async () => {
   await store.hydrate();
+  if (disposed) return;
   syncDrafts();
   const api = (window as any).electronAPI;
   await ensureDemoSourceFiles(false);
+  if (disposed) return;
   workflowAvailable.value = Boolean(api?.saveWorkflow && api?.listWorkflows && api?.runWorkflow);
   if (api?.onWorkflowEvent) cleanupWorkflow = api.onWorkflowEvent((event: any) => store.applyWorkflowEvent(event));
   if (workflowAvailable.value) await syncAllBidWorkflows();
 });
 onUnmounted(() => {
+  disposed = true;
   cleanupWorkflow?.();
+  cleanupWorkflow = null;
   if (savedFindingTimer) window.clearTimeout(savedFindingTimer);
 });
 

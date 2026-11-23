@@ -216,17 +216,22 @@ function refresh(): void {
 }
 defineExpose({ refresh });
 
+let disposed = false;
 onMounted(async () => {
   lastReloadAt = Date.now();
   await loadList();
+  if (disposed) return;
   await handleNav();
+  if (disposed) return;
   off = onMmEvent((ev) => {
     if (ev.type !== 'changed' || !['all', 'project', 'task', 'meeting', 'org'].includes(ev.scope)) return;
     scheduleReload();
   });
 });
 onBeforeUnmount(() => {
+  disposed = true;
   off?.();
+  off = null;
   if (timer) clearTimeout(timer);
   mmRole.value = '';
 });

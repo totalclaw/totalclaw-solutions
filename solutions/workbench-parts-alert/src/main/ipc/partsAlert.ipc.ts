@@ -21,6 +21,7 @@ import {
 import { t as i18nT } from '@totalclaw/i18n';
 import type { WorkbenchIpcDeps } from './workbenchApi';
 import { userFacingError } from '../utils/userFacingError';
+import { openPathGuarded } from '../utils/openPathGuarded';
 import { onAppWillQuit } from '../util/quitRegistry';
 import { parseDay } from '../services/partsAlert/calc';
 import { inspectTable, parseDataset, periodRange, readDataTable, type DatasetRows } from '../services/partsAlert/ingest';
@@ -269,7 +270,7 @@ export function registerPartsAlertHandlers(deps: WorkbenchIpcDeps): () => void {
     'path.open': async (p: { path: string; reveal?: boolean }) => {
       if (!p?.path || !existsSync(p.path)) throw new Error(i18nT('文件不存在'));
       if (p.reveal) { shell.showItemInFolder(p.path); return true; }
-      const err = await shell.openPath(p.path);
+      const err = await openPathGuarded(p.path);
       if (err) throw new Error(err);
       return true;
     },
