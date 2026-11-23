@@ -309,6 +309,7 @@ describe('系统设置页签', () => {
       { person: { id: 'u4', name: '钱程', deptId: 'd1' }, deptName: '研发部', status: 'missing' },
     ],
     'voiceprint.enroll': () => ({}),
+    'voiceprint.enrollData': () => ({ ok: true, seconds: 12 }),
     'settings.save': ({ patch }) => ({ ...MM_DEFAULT_SETTINGS, adminIds: ['u9'], ...patch }),
   });
 
@@ -339,6 +340,24 @@ describe('系统设置页签', () => {
     await w.find('[data-test="mm-vp-import-submit"]').trigger('click');
     await flushPromises();
     expect(sent('voiceprint.enroll')[0]).toEqual({ personId: 'u4', path: '/Users/me/录音/林晓.m4a', consent: true });
+  });
+
+  it('声纹库：现场录音采集要录完并勾同意，走 voiceprint.enrollData 提交', async () => {
+    install(settingsHandlers());
+    const w = mountIt(SettingsTab);
+    await flushPromises();
+    await w.find('[data-test="mm-vp-rec-u4"]').trigger('click');
+    await flushPromises();
+    expect(w.find('[data-test="mm-rec-script"]').text()).toContain('钱程');
+    expect(w.find('[data-test="mm-vp-rec-submit"]').attributes('disabled')).toBeDefined();
+    w.findComponent({ name: 'VoiceRecorder' }).vm.$emit('recorded', { data: 'QUJD', ext: 'webm', seconds: 12 });
+    await flushPromises();
+    expect(w.find('[data-test="mm-vp-rec-submit"]').attributes('disabled')).toBeDefined();
+    await w.find('[data-test="mm-vp-rec-consent"]').setValue(true);
+    expect(w.find('[data-test="mm-vp-rec-submit"]').attributes('disabled')).toBeUndefined();
+    await w.find('[data-test="mm-vp-rec-submit"]').trigger('click');
+    await flushPromises();
+    expect(sent('voiceprint.enrollData')[0]).toEqual({ personId: 'u4', consent: true, data: 'QUJD', ext: 'webm' });
   });
 
   it('声纹库：会议补充只有本人能开关（先确认），别人的只显示状态；旧模型声纹提示重录', async () => {

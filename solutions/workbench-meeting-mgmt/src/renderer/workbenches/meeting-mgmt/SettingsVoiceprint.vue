@@ -34,6 +34,7 @@
       </nav>
       <span class="grow"></span>
       <label class="mm-search"><i class="ri-search-line" aria-hidden="true"></i><input v-model="q" type="search" :placeholder="$t('搜索员工')" :aria-label="$t('搜索员工')" @input="page = 1" /></label>
+      <button type="button" class="ss-btn sm" data-test="mm-vp-record" @click="openRecord(myId)"><i class="ri-mic-line"></i>{{ $t('现场录音') }}</button>
       <button type="button" class="ss-btn sm" data-test="mm-vp-import" @click="openImport('')"><i class="ri-upload-2-line"></i>{{ $t('导入录音代为采集') }}</button>
     </div>
 
@@ -69,9 +70,13 @@
                   <button type="button" class="ss-link" :disabled="busy" :data-test="`mm-vp-copy-${r.person.id}`" @click="copyOne(r)">{{ $t('复制重录链接') }}</button>
                   <span class="mm-sv__sep" aria-hidden="true">·</span>
                 </template>
+                <button type="button" class="ss-link" :disabled="busy" :data-test="`mm-vp-rec-${r.person.id}`" @click="openRecord(r.person.id)">{{ $t('现场重录') }}</button>
+                <span class="mm-sv__sep" aria-hidden="true">·</span>
                 <button type="button" class="ss-link danger" :disabled="busy" :data-test="`mm-vp-del-${r.person.id}`" @click="remove(r)">{{ $t('删除（撤回授权）') }}</button>
               </template>
               <template v-else>
+                <button type="button" class="ss-link" :disabled="busy" :data-test="`mm-vp-rec-${r.person.id}`" @click="openRecord(r.person.id)">{{ $t('现场录音') }}</button>
+                <span class="mm-sv__sep" aria-hidden="true">·</span>
                 <button type="button" class="ss-link" :disabled="busy" :data-test="`mm-vp-copy-${r.person.id}`" @click="copyOne(r)">{{ $t('复制链接') }}</button>
                 <span class="mm-sv__sep" aria-hidden="true">·</span>
                 <button type="button" class="ss-link" @click="openImport(r.person.id)">{{ $t('代为采集') }}</button>
@@ -115,6 +120,27 @@
         </button>
       </template>
     </TModal>
+
+    <TModal :open="recordOpen" :title="$t('现场录音采集声纹')" icon="ri-mic-line" size="md" :description="$t('直接用本机麦克风录 10～15 秒声音；请由被采集人本人朗读并授权同意。')" @close="recordOpen = false">
+      <div class="mm-sv__imp" data-test="mm-vp-record-dialog">
+        <div class="mm-sv__f">
+          <span>{{ $t('员工') }}</span>
+          <PersonPicker v-model="rec.personId" :people="people" :depts="depts" :multiple="false" :max-height="180" />
+        </div>
+        <VoiceRecorder v-if="recordOpen" :script="recordScript" :disabled="busy" @recorded="rec.recorded = $event" @reset="rec.recorded = null" />
+        <label class="mm-sv__consent">
+          <input v-model="rec.consent" type="checkbox" data-test="mm-vp-rec-consent" />
+          <span>{{ rec.personId === myId ? $t('我同意采集本人的声纹（声音特征），并在我确认会议发言后用其中我本人的发言补充声纹（最多保留最近 5 条），只用于在会议纪要里识别我的发言，保存在这台电脑上，可以随时在声纹库关闭补充或删除声纹。') : $t('我已取得该员工本人对采集、使用声纹（含确认会议发言后用其本人发言补充声纹）的单独同意（个人信息保护法）；授权人与授权时间会记录在案。') }}</span>
+        </label>
+        <p v-if="recError" class="ss-note danger"><i class="ri-error-warning-line"></i>{{ recError }}</p>
+      </div>
+      <template #footer>
+        <button type="button" class="ss-btn" @click="recordOpen = false">{{ $t('取消') }}</button>
+        <button type="button" class="ss-btn primary" :disabled="busy || !rec.personId || !rec.recorded || !rec.consent" data-test="mm-vp-rec-submit" @click="submitRecord">
+          <i :class="busy ? 'ri-loader-4-line spin' : 'ri-check-line'"></i>{{ $t('提交声纹') }}
+        </button>
+      </template>
+    </TModal>
   </div>
 </template>
 
@@ -128,6 +154,7 @@ import { useNotificationStore } from '../../stores/notification';
 import TModal from '../../components/TModal.vue';
 import PersonChip from './PersonChip.vue';
 import PersonPicker from './PersonPicker.vue';
+import VoiceRecorder from './VoiceRecorder.vue';
 import { errorMessage, mm, mmBoot } from './shared';
 import { copyText, filePath, fmtMs, matchPerson, paginate, pickUrl, ratioPct } from './pagesLogic';
 
@@ -161,6 +188,9 @@ const importOpen = ref(false);
 const imp = reactive({ personId: '', path: '', consent: false });
 const impError = ref('');
 const fileEl = ref<HTMLInputElement | null>(null);
+const recordOpen = ref(false);
+const rec = reactive<{ personId: string; consent: boolean; recorded: { data: string; ext: string; seconds: number } | null }>({ personId: '', consent: false, recorded: null });
+const recError = ref('');
 
 const wecomConnected = computed(() => !!mmBoot.value?.pushChannel || !!mmBoot.value?.wecomConnected);
 const myId = computed(() => mmBoot.value?.me.person?.id || '');
@@ -191,6 +221,14 @@ async function load(): Promise<void> {
 watch(() => props.refreshSeq, () => { void load(); }, { immediate: true });
 
 const personName = (id: string) => rows.value.find((r) => r.person.id === id)?.person.name || props.people.find((p) => p.id === id)?.name || id;
+const recordScript = computed(() => {
+  const row = rows.value.find((r) => r.person.id === rec.personId);
+  const p = row?.person || props.people.find((x) => x.id === rec.personId);
+  const dept = row?.deptName || props.depts.find((d) => d.id === p?.deptId)?.name || '';
+  return i18nT('大家好，我是{dept}的{name}。这是我的声纹采集录音，用于在会议纪要里自动识别我的发言。我会用平时开会说话的音量和语速，把这段话完整地读完。', {
+    dept, name: p?.name || '',
+  });
+});
 
 /** voiceprint.link → { url（本人）, links: 每人一条 }；拿一次缓存起来 */
 async function fetchLinks(): Promise<Record<string, string>> {
@@ -328,6 +366,29 @@ async function submitImport(): Promise<void> {
     await load();
   } catch (e) {
     impError.value = errorMessage(e);
+  } finally {
+    busy.value = false;
+  }
+}
+
+function openRecord(personId: string): void {
+  Object.assign(rec, { personId: personId || myId.value, consent: false, recorded: null });
+  recError.value = '';
+  recordOpen.value = true;
+}
+async function submitRecord(): Promise<void> {
+  if (!rec.recorded || !rec.personId) return;
+  busy.value = true;
+  recError.value = '';
+  try {
+    const r = await mm<{ ok: boolean; seconds?: number }>('voiceprint.enrollData', {
+      personId: rec.personId, consent: true, data: rec.recorded.data, ext: rec.recorded.ext,
+    });
+    recordOpen.value = false;
+    notif.success(r?.seconds ? i18nT('声纹已采集（{s} 秒）', { s: r.seconds }) : i18nT('声纹已采集'));
+    await load();
+  } catch (e) {
+    recError.value = errorMessage(e);
   } finally {
     busy.value = false;
   }

@@ -134,7 +134,7 @@
 import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
 import { t as i18nT } from '../../i18n';
 import { useNotificationStore } from '../../stores/notification';
-import { errorMessage, mm } from './shared';
+import { errorMessage, mm, openExternalUrl } from './shared';
 
 type Engine = 'firered' | 'sensevoice';
 type Provider = 'dashscope' | 'siliconflow' | 'openai' | 'custom';
@@ -283,9 +283,7 @@ async function toggleKey(): Promise<void> {
   showKey.value = true;
 }
 function openKeyUrl(): void {
-  const api = (window as any).electronAPI;
-  if (api?.shell?.openExternal) void api.shell.openExternal(keyUrl.value);
-  else window.open(keyUrl.value, '_blank', 'noopener');
+  openExternalUrl(keyUrl.value);
 }
 
 // ── 模型下载（复用应用的组件安装器：electronAPI.pyExt）──

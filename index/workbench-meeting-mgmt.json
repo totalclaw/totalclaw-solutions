@@ -1,7 +1,7 @@
 {
   "id": "workbench-meeting-mgmt",
   "version": "2.0.0",
-  "treeDigest": "a2fd32ec688776ded9aa0cf55b9929c90cd58853320556e43a2760ccd76c3cb6",
+  "treeDigest": "1657750be267ae373193cdee9c8e2f2d3434e2ff2cbedc2f010ebd0ccef4bc1e",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 658603,
-      "sha256": "74e7b7737f51085cb9e25a7f41a385e8810a66b79dd52550a0f69123be059eb7"
+      "size": 658841,
+      "sha256": "b92631081ff74996e28b0479d24fc38931aca14cb0842a0e4db35bf57b56f6b4"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 742847,
-      "sha256": "3e5c3a5136eeb2ad22a16cdec4cb853f777ec93719aa0bd2ebe8a8be68118840"
+      "size": 750727,
+      "sha256": "7140cba4be3cd340fae158c0d6c4b71958b7353ef904d42347f682d629168085"
     },
     {
       "path": "dist/style.css",
       "size": 139652,
-      "sha256": "c90c0155a555f80731ad39179bf9ebd166cb8ef6aeb3430102c0a5acf37a6a64"
+      "sha256": "70a9dacd593aa5518a4d0446a0ca4fff2d8b7328ea8d5d1132783bb67cf99de0"
     },
     {
       "path": "migrations/README.md",
@@ -41,20 +41,20 @@
     {
       "path": "solution.json",
       "size": 2678,
-      "sha256": "388bbb74960a0df2225a915129714970f87391830f69b60cf494939cb8f827dc"
+      "sha256": "eac7277cdef4a38a8df39047c133baf24b7b9291a5dc93061463d9024e8ea6c7"
     }
   ],
   "versions": [
     {
       "version": "2.0.0",
       "ref": "workbench-meeting-mgmt@2.0.0",
-      "treeDigest": "a2fd32ec688776ded9aa0cf55b9929c90cd58853320556e43a2760ccd76c3cb6",
+      "treeDigest": "1657750be267ae373193cdee9c8e2f2d3434e2ff2cbedc2f010ebd0ccef4bc1e",
       "filesRef": "index/workbench-meeting-mgmt/2.0.0.json",
       "channel": "stable",
       "rollout": 100,
-      "minAppVersion": "2.0.17",
+      "minAppVersion": "2.0.18",
       "hostApi": 2,
-      "publishedAt": "2026-11-17"
+      "publishedAt": "2026-11-23"
     }
   ]
 }

@@ -268,4 +268,36 @@ describe('配置引导', () => {
     expect(calls.find((c) => c[0] === 'asr.cloud.save')?.[1]).toEqual({ provider: 'siliconflow', baseUrl: 'https://api.siliconflow.cn/v1', model: 'TeleAI/TeleSpeechASR', apiKey: 'sk-ok' });
     expect(calls.find((c) => c[0] === 'asr.mode.save')?.[1]).toEqual({ mode: 'cloud', localModel: 'auto' });
   });
+
+  it('配置引导所有网页直达跳转都经 electronAPI.openExternal 打开系统浏览器', async () => {
+    const { w } = setup();
+    const openExternal = vi.fn(async () => ({ ok: true }));
+    (window as any).electronAPI.openExternal = openExternal;
+    await flushPromises();
+
+    // 第 1 步：在线语音识别 API Key 获取页
+    await w.find('[data-test="mm-asr-mode-cloud"]').trigger('click');
+    await w.find('.mm-asr__keylink').trigger('click');
+    expect(openExternal).toHaveBeenLastCalledWith('https://k');
+
+    // 第 2 步：企微后台 通讯录 / 我的企业 / 应用管理
+    await w.find('[data-test="mm-setup-step-org"]').trigger('click');
+    await w.find('[data-test="mm-setup-link-contacts"]').trigger('click');
+    expect(openExternal).toHaveBeenLastCalledWith('https://work.weixin.qq.com/wework_admin/frame#contacts');
+    await w.find('[data-test="mm-setup-link-profile"]').trigger('click');
+    expect(openExternal).toHaveBeenLastCalledWith('https://work.weixin.qq.com/wework_admin/frame#profile');
+    await w.find('[data-test="mm-setup-link-apps"]').trigger('click');
+    expect(openExternal).toHaveBeenLastCalledWith('https://work.weixin.qq.com/wework_admin/frame#apps');
+
+    // 第 3 步：企微群机器人官方配置说明
+    await w.find('[data-test="mm-setup-step-push"]').trigger('click');
+    await w.find('[data-test="mm-setup-link-webhook-doc"]').trigger('click');
+    expect(openExternal).toHaveBeenLastCalledWith('https://developer.work.weixin.qq.com/document/path/91770');
+
+    // 第 4 步：手机页在浏览器直接打开
+    await w.find('[data-test="mm-setup-step-mobile"]').trigger('click');
+    await flushPromises();
+    await w.find('[data-test="mm-mobile-open"]').trigger('click');
+    expect(openExternal).toHaveBeenLastCalledWith('http://192.168.1.5:8280/m?t=abc');
+  });
 });

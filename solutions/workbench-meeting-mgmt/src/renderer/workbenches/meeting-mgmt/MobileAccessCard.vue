@@ -23,7 +23,10 @@
       <div class="mm-mob__qr-text">
         <strong>{{ $t('用手机扫码打开') }}</strong>
         <small>{{ me ? $t('这是 {name} 的专属链接，扫开就是本人身份，不要转发给别人。', { name: me.name }) : $t('当前身份无效，无法生成专属链接') }}</small>
-        <button v-if="link" type="button" class="ss-link" data-test="mm-mobile-copy" @click="copyLink">{{ $t('复制链接') }}</button>
+        <div class="mm-mob__qr-acts">
+          <button v-if="link" type="button" class="ss-link" data-test="mm-mobile-copy" @click="copyLink">{{ $t('复制链接') }}</button>
+          <button v-if="link" type="button" class="ss-link" data-test="mm-mobile-open" @click="openExternalUrl(link)">{{ $t('在浏览器打开') }} <i class="ri-external-link-line"></i></button>
+        </div>
       </div>
     </div>
     <p v-if="status.running && status.lanOnly" class="ss-note warn mm-mob__lan" data-test="mm-mobile-lan">
@@ -47,7 +50,7 @@ import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import QRCode from 'qrcode';
 import { t as i18nT } from '../../i18n';
 import { useNotificationStore } from '../../stores/notification';
-import { errorMessage, mm, mmBoot, onMmEvent, type MmMobileStatus } from './shared';
+import { errorMessage, mm, mmBoot, onMmEvent, openExternalUrl, type MmMobileStatus } from './shared';
 import { copyText, pickUrl } from './pagesLogic';
 
 const notif = useNotificationStore();
@@ -138,6 +141,7 @@ onBeforeUnmount(() => off?.());
 .mm-mob__qr-text { display: grid; gap: 6px; justify-items: start; min-width: 0; }
 .mm-mob__qr-text strong { font-size: var(--font-size-md); }
 .mm-mob__qr-text small { color: var(--color-text-secondary); font-size: 12.5px; line-height: 1.55; }
+.mm-mob__qr-acts { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
 .mm-mob__lan { align-items: flex-start; }
 .mm-mob__note { margin: 0; color: var(--color-text-secondary); font-size: 12px; line-height: 1.55; }
 .spin { animation: mm-mob-spin 1s linear infinite; }

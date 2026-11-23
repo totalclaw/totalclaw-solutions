@@ -27,6 +27,23 @@ export function onMmEvent(cb: (ev: MmEvent) => void): () => void {
   return bridge?.onEvent ? bridge.onEvent(cb) : () => {};
 }
 
+/** 企微后台与官方文档直达链接（配置引导与系统设置共用） */
+export const WECOM_URLS = {
+  contacts: 'https://work.weixin.qq.com/wework_admin/frame#contacts',
+  apps: 'https://work.weixin.qq.com/wework_admin/frame#apps',
+  profile: 'https://work.weixin.qq.com/wework_admin/frame#profile',
+  webhookDoc: 'https://developer.work.weixin.qq.com/document/path/91770',
+} as const;
+
+/** 用系统默认浏览器打开外部网页（Electron preload 暴露在 electronAPI.openExternal） */
+export function openExternalUrl(url: string): void {
+  if (!url) return;
+  const api = (window as any).electronAPI;
+  if (typeof api?.openExternal === 'function') void api.openExternal(url);
+  else if (typeof api?.shell?.openExternal === 'function') void api.shell.openExternal(url);
+  else window.open(url, '_blank', 'noopener');
+}
+
 // ── 全局状态（boot 的结果）──────────────────────────────
 
 /** 手机页服务状态：lanOnly = 发出去的链接只有公司内网能打开；publicBase = 设置里填的外网地址 */

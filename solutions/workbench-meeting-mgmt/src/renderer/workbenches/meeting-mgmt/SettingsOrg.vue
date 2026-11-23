@@ -4,7 +4,7 @@
       <div>
         <h3>{{ $t('通讯录同步') }}</h3>
         <p>{{ $t('人员只来自企微通讯录：部门、部门负责人（任务下发给第一位）、成员、职务、直属上级。系统内不维护人员信息；离职人员保留历史数据，不能再被选。') }}</p>
-        <p>{{ $t('没有企微自建应用时，可以导入企微管理后台导出的通讯录表格（通讯录 → 批量导入/导出 → 导出成员）。群消息按手机号或企微账号提醒本人，表里没有的可以在下面逐个填。') }}</p>
+        <p>{{ $t('没有企微自建应用时，可以导入企微管理后台导出的通讯录表格（通讯录 → 批量导入/导出 → 导出成员）。群消息按手机号或企微账号提醒本人，表里没有的可以在下面逐个填。') }} <button type="button" class="ss-link" data-test="mm-org-link-contacts" @click="openExternalUrl(WECOM_URLS.contacts)">{{ $t('去企微后台导出') }} <i class="ri-external-link-line"></i></button></p>
       </div>
       <div class="ss-actions">
         <button type="button" class="ss-btn" :disabled="busy" data-test="mm-org-import" @click="importFile"><i class="ri-file-excel-2-line"></i>{{ $t('导入通讯录表格') }}</button>
@@ -82,7 +82,7 @@ import type { MmDept, MmOrgSyncResult, MmPerson } from '../../../shared/meetingM
 import { t as i18nT } from '../../i18n';
 import { useNotificationStore } from '../../stores/notification';
 import PersonChip from './PersonChip.vue';
-import { errorMessage, mm, mmBoot } from './shared';
+import { errorMessage, mm, mmBoot, openExternalUrl, WECOM_URLS } from './shared';
 import { fmtMs } from './pagesLogic';
 
 type DiffKey = 'added' | 'changed' | 'left';

@@ -33,11 +33,13 @@
       <div class="ss-actions">
         <button type="button" class="ss-btn primary" :disabled="busy || !canSave" data-test="mm-wecom-save" @click="save"><i :class="busy && acting === 'save' ? 'ri-loader-4-line spin' : 'ri-save-line'"></i>{{ $t('保存') }}</button>
         <button type="button" class="ss-btn" :disabled="busy || (!settings.wecom.hasSecret && !connected)" data-test="mm-wecom-test" @click="test"><i :class="busy && acting === 'test' ? 'ri-loader-4-line spin' : 'ri-plug-line'"></i>{{ $t('测试连接') }}</button>
+        <button type="button" class="ss-link" data-test="mm-wecom-link-profile" @click="openExternalUrl(WECOM_URLS.profile)">{{ $t('打开企微·我的企业') }} <i class="ri-external-link-line"></i></button>
+        <button type="button" class="ss-link" data-test="mm-wecom-link-apps" @click="openExternalUrl(WECOM_URLS.apps)">{{ $t('打开企微·应用管理') }} <i class="ri-external-link-line"></i></button>
       </div>
     </section>
 
     <section class="mm-sw__form" data-test="mm-webhook">
-      <h4 class="mm-sw__h">{{ $t('企微群机器人') }} <small>{{ $t('没有自建应用时用：通知发到一个企微群里，并点名提醒要处理的人') }}</small></h4>
+      <h4 class="mm-sw__h">{{ $t('企微群机器人') }} <small>{{ $t('没有自建应用时用：通知发到一个企微群里，并点名提醒要处理的人') }}</small> <button type="button" class="ss-link" data-test="mm-wecom-link-webhook-doc" @click="openExternalUrl(WECOM_URLS.webhookDoc)">{{ $t('查看企微官方说明') }} <i class="ri-external-link-line"></i></button></h4>
       <ol class="mm-sw__steps">
         <li>{{ $t('在企业微信里打开要接收通知的内部群，点右上角「…」') }}</li>
         <li>{{ $t('选「消息推送」（旧版叫「群机器人」）→「添加」→ 新建一个，名字可以叫「会议助手」') }}</li>
@@ -87,7 +89,7 @@ import type { MmSettings } from '../../../shared/meetingMgmt/types';
 import { t as i18nT } from '../../i18n';
 import { useDialog } from '../../composables/useDialog';
 import { useNotificationStore } from '../../stores/notification';
-import { errorMessage, mm, mmBoot, refreshBoot } from './shared';
+import { errorMessage, mm, mmBoot, openExternalUrl, refreshBoot, WECOM_URLS } from './shared';
 import PushFailedList from './PushFailedList.vue';
 
 const props = defineProps<{ settings: MmSettings }>();

@@ -89,11 +89,18 @@
                 <article>
                   <strong>{{ $t('导入通讯录表格（推荐）') }}</strong>
                   <small>{{ $t('企业微信管理后台 → 通讯录 → 批量导入/导出 → 导出成员，把导出的表格直接导进来。自己整理的表格也行：至少要有「姓名」「部门」，「手机」「账号」「是否部门负责人」「直属上级」有就更好。') }}</small>
-                  <button type="button" class="ss-btn primary sm" :disabled="busy" data-test="mm-setup-org-import" @click="importOrg"><i :class="acting === 'import' ? 'ri-loader-4-line spin' : 'ri-file-excel-2-line'"></i>{{ $t('选择表格导入') }}</button>
+                  <div class="mm-sw2__row">
+                    <button type="button" class="ss-btn primary sm" :disabled="busy" data-test="mm-setup-org-import" @click="importOrg"><i :class="acting === 'import' ? 'ri-loader-4-line spin' : 'ri-file-excel-2-line'"></i>{{ $t('选择表格导入') }}</button>
+                    <button type="button" class="ss-link" data-test="mm-setup-link-contacts" @click="openExternalUrl(WECOM_URLS.contacts)">{{ $t('去企微后台导出') }} <i class="ri-external-link-line"></i></button>
+                  </div>
                 </article>
                 <article>
                   <strong>{{ $t('企业微信自建应用') }}</strong>
                   <small>{{ $t('有自建应用（CorpID、AgentID、Secret，且本机出口 IP 在企业可信 IP 里）时，直接从企微同步通讯录，通知按人发卡片。') }}</small>
+                  <div class="mm-sw2__links">
+                    <button type="button" class="ss-link" data-test="mm-setup-link-profile" @click="openExternalUrl(WECOM_URLS.profile)">{{ $t('打开企微·我的企业（查 CorpID）') }} <i class="ri-external-link-line"></i></button>
+                    <button type="button" class="ss-link" data-test="mm-setup-link-apps" @click="openExternalUrl(WECOM_URLS.apps)">{{ $t('打开企微·应用管理') }} <i class="ri-external-link-line"></i></button>
+                  </div>
                   <div class="mm-sw2__form">
                     <input v-model="app.corpId" type="text" placeholder="CorpID" spellcheck="false" data-test="mm-setup-corp" />
                     <input v-model="app.agentId" type="text" placeholder="AgentID" spellcheck="false" data-test="mm-setup-agent" />
@@ -106,10 +113,10 @@
                   <details class="mm-sw2__guide" data-test="mm-setup-app-guide">
                     <summary>{{ $t('第一次接入：在企业微信管理后台做这几步') }}</summary>
                     <ol class="mm-sw2__ol">
-                      <li>{{ $t('应用管理 → 自建 → 创建应用；可见范围选全公司（应用只能读到可见范围里的部门和成员）') }}</li>
+                      <li>{{ $t('应用管理 → 自建 → 创建应用；可见范围选全公司（应用只能读到可见范围里的部门和成员）') }} <button type="button" class="ss-link" @click="openExternalUrl(WECOM_URLS.apps)">{{ $t('去打开') }} <i class="ri-external-link-line"></i></button></li>
                       <li>{{ $t('应用详情 → 开发者接口 → 网页授权及 JS-SDK → 设置可信域名：填公司备案的域名，下载 WW_verify 开头的验证文件，放到网站根目录后点验证') }}</li>
                       <li>{{ $t('同一页「企业可信 IP」：填这台电脑所在网络的公网出口 IP。不知道就先点上面的「保存并同步通讯录」，失败时这里会显示要填的 IP') }}</li>
-                      <li>{{ $t('「我的企业」页面底部复制企业 ID（CorpID），应用详情里复制 AgentId 和 Secret，填到上面，再点「保存并同步通讯录」') }}</li>
+                      <li>{{ $t('「我的企业」页面底部复制企业 ID（CorpID），应用详情里复制 AgentId 和 Secret，填到上面，再点「保存并同步通讯录」') }} <button type="button" class="ss-link" @click="openExternalUrl(WECOM_URLS.profile)">{{ $t('去打开') }} <i class="ri-external-link-line"></i></button></li>
                     </ol>
                   </details>
                 </article>
@@ -118,6 +125,7 @@
                 <i class="ri-global-line"></i>
                 <span>{{ $t('企业微信要求把这个 IP 加进应用的「企业可信 IP」：') }}<b class="mono">{{ egressIp }}</b></span>
                 <button type="button" class="ss-btn sm" @click="copyIp">{{ $t('复制') }}</button>
+                <button type="button" class="ss-link" data-test="mm-setup-ip-open" @click="openExternalUrl(WECOM_URLS.apps)">{{ $t('去应用管理填写') }} <i class="ri-external-link-line"></i></button>
               </p>
               <div v-if="importResult" class="ss-note" :class="importResult.warnings?.length ? 'warn' : 'ok'" data-test="mm-setup-import-result">
                 <i :class="importResult.warnings?.length ? 'ri-alert-line' : 'ri-checkbox-circle-line'"></i>
@@ -137,7 +145,10 @@
                 {{ st.push.channel === 'app' ? $t('已连接企业微信自建应用：通知按人发卡片') : st.push.channel === 'webhook' ? $t('已连接企微群机器人：通知发到群里') : $t('还没配置：通知只进消息中心') }}
               </p>
               <article class="mm-sw2__box">
-                <strong>{{ $t('企微群机器人（推荐，最省事）') }}</strong>
+                <div class="mm-sw2__boxhead">
+                  <strong>{{ $t('企微群机器人（推荐，最省事）') }}</strong>
+                  <button type="button" class="ss-link" data-test="mm-setup-link-webhook-doc" @click="openExternalUrl(WECOM_URLS.webhookDoc)">{{ $t('查看企微官方说明') }} <i class="ri-external-link-line"></i></button>
+                </div>
                 <ol class="mm-sw2__ol">
                   <li>{{ $t('在企业微信里打开要接收通知的内部群，点右上角「…」') }}</li>
                   <li>{{ $t('选「消息推送」（旧版叫「群机器人」）→「添加」→ 新建一个，名字可以叫「会议助手」') }}</li>
@@ -244,7 +255,7 @@
 import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue';
 import type { MmOrgSyncResult } from '../../../shared/meetingMgmt/types';
 import { t as i18nT } from '../../i18n';
-import { errorMessage, mm, refreshBoot, type MmMobileStatus } from './shared';
+import { errorMessage, mm, openExternalUrl, refreshBoot, WECOM_URLS, type MmMobileStatus } from './shared';
 import { clearPeopleCache } from './meetingUi';
 import MobileAccessCard from './MobileAccessCard.vue';
 import AsrModelPicker from './AsrModelPicker.vue';
@@ -609,6 +620,8 @@ onBeforeUnmount(() => { try { unsubProgress?.(); } catch { /* */ } });
 .mm-sw2__opts article, .mm-sw2__box { display: grid; gap: 8px; align-content: start; padding: 14px; border: 1px solid var(--color-border); border-radius: var(--radius-5, 10px); }
 .mm-sw2__opts small, .mm-sw2__box small { font-size: 12.5px; color: var(--color-text-secondary); line-height: 1.6; }
 .mm-sw2__opts article .ss-btn { justify-self: start; }
+.mm-sw2__links { display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 12.5px; }
+.mm-sw2__boxhead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 .mm-sw2__form { display: grid; gap: 6px; }
 .mm-sw2__form input, .mm-sw2__row input { padding: 7px 10px; border: 1px solid var(--color-border); border-radius: var(--radius-3, 6px); background: var(--color-bg); color: inherit; font: inherit; font-size: 13px; min-width: 0; }
 .mm-sw2__row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }

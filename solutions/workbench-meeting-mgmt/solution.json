@@ -23,7 +23,7 @@
     "hidden": false
   },
   "compat": {
-    "minAppVersion": "2.0.17",
+    "minAppVersion": "2.0.18",
     "hostApi": 2
   },
   "runtime": {
