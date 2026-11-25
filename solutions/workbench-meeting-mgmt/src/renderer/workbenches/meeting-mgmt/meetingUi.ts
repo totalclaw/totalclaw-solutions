@@ -19,6 +19,8 @@ export interface MmMeetingCard {
   status: MmMeetingStatus;
   needsMe: boolean;
   confirmText?: string;
+  canDelete?: boolean;
+  taskCount?: number;
 }
 
 export interface MmMeetingDetail {

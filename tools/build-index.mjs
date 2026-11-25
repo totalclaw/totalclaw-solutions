@@ -4,7 +4,8 @@
 // 用法：node tools/build-index.mjs [--check]
 //   --check  只比对，生成物与已提交内容不一致时退出码 1（CI 用）
 import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
-import { dirname, join } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { REPO_ROOT, SOLUTIONS_DIR, fileManifest, listSolutionDirs, parseArgs, readJson, treeDigest as treeDigestOf } from './lib/common.mjs';
 
@@ -159,7 +160,7 @@ export function splitIndex(index) {
   return { summary, perItem, perVersion };
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
   const index = buildIndex();
   const { summary, perItem, perVersion } = splitIndex(index);
   const outputs = {

@@ -1155,3 +1155,47 @@ describe('企微自建应用：同步换了通讯录后选身份、Secret 保留
     expect(await t.call<any>('linxiao', 'wecom.secret.reveal')).toEqual({ secret: 'app-secret-123' });
   });
 });
+
+describe('删除会议（meeting.delete）', () => {
+  it('权限与归档拦截：普通参会人不能删、已归档项目不能删；主持人/管理员删除同时清理任务、通知和文件', async () => {
+    const t = make('meeting-delete');
+    // 演示数据里 mt_df_kickoff 属于 pj_dfactory（负责人 linxiao，主持人 linxiao，已派发 3 项任务）
+    // zhaolei 只是参会人，既非主持人也非创建人/项目负责人/管理员
+    const listAsMember = await t.call<any[]>('zhaolei', 'meeting.list', { filter: 'all' });
+    expect(listAsMember.find((c) => c.id === 'mt_df_kickoff')?.canDelete).toBe(false);
+    await expect(t.call('zhaolei', 'meeting.delete', { id: 'mt_df_kickoff' })).rejects.toThrow('只有主持人、创建人、项目负责人或管理员可以删除会议');
+
+    // 给 mt_df_kickoff 建一个真实的会议文件目录，验证删除后磁盘也一并清理
+    const filesDir = t.store.filesDir('mt_df_kickoff');
+    writeFileSync(join(filesDir, 'rec.wav'), 'fake-audio');
+    expect(existsSync(filesDir)).toBe(true);
+
+    const listAsHost = await t.call<any[]>('linxiao', 'meeting.list', { filter: 'all' });
+    const targetCard = listAsHost.find((c) => c.id === 'mt_df_kickoff');
+    expect(targetCard?.canDelete).toBe(true);
+    expect(targetCard?.taskCount).toBeGreaterThan(0);
+
+    const beforeTaskIds = t.store.read().tasks.filter((x) => x.meetingId === 'mt_df_kickoff').map((x) => x.id);
+    expect(beforeTaskIds.length).toBeGreaterThan(0);
+
+    t.events.length = 0;
+    const res = await t.call<any>('linxiao', 'meeting.delete', { id: 'mt_df_kickoff' });
+    expect(res).toEqual({ ok: true, id: 'mt_df_kickoff', deletedTasks: beforeTaskIds.length });
+    const st = t.store.read();
+    expect(st.meetings.some((m) => m.id === 'mt_df_kickoff')).toBe(false);
+    expect(st.tasks.some((tk) => tk.meetingId === 'mt_df_kickoff')).toBe(false);
+    expect(st.notices.some((n) => (n.link.kind === 'meeting' || n.link.kind === 'meeting_plan') && n.link.id === 'mt_df_kickoff')).toBe(false);
+    expect(st.notices.some((n) => n.link.kind === 'task' && beforeTaskIds.includes(n.link.id))).toBe(false);
+    expect(existsSync(filesDir)).toBe(false);
+    expect(t.events.some((e) => e.type === 'changed' && e.scope === 'all')).toBe(true);
+
+    // 已归档项目的会议不能删，且卡片 canDelete=false
+    t.store.update((s) => {
+      const pj = s.projects.find((p) => p.id === 'pj_dfactory')!;
+      pj.status = 'archived';
+    });
+    const archivedList = await t.call<any[]>('linxiao', 'meeting.list', { filter: 'all' });
+    expect(archivedList.find((c) => c.id === 'mt_df_weekly')?.canDelete).toBe(false);
+    await expect(t.call('linxiao', 'meeting.delete', { id: 'mt_df_weekly' })).rejects.toThrow('已归档');
+  });
+});

@@ -2104,6 +2104,7 @@ var import_i18n10 = require("npm:@totalclaw/i18n");
 var import_child_process = require("child_process");
 var import_fs = require("fs");
 var import_path = require("path");
+var import_node_runtime = require("npm:@totalclaw/node-runtime");
 var import_i18n3 = require("npm:@totalclaw/i18n");
 var SAMPLE_RATE = 16e3;
 var AUDIO_EXTS = [
@@ -2207,15 +2208,19 @@ function runProcess(bin, args, opts = {}) {
       opts.signal?.removeEventListener("abort", onAbort);
       fn();
     };
+    const decodeOut = (0, import_node_runtime.createChunkDecoder)();
+    const decodeErr = (0, import_node_runtime.createChunkDecoder)();
     opts.signal?.addEventListener("abort", onAbort, { once: true });
     child.stdout.on("data", (b) => {
-      if (stdout.length < 4e6) stdout += b.toString("utf8");
+      if (stdout.length < 4e6) stdout += decodeOut(b);
     });
     child.stderr.on("data", (b) => {
-      if (stderr.length < 2e5) stderr += b.toString("utf8");
+      if (stderr.length < 2e5) stderr += decodeErr(b);
     });
     child.on("error", (e) => finish2(() => reject(e)));
-    child.on("close", (code) => finish2(() => resolve3({ code, stdout, stderr })));
+    child.on("close", (code) => {
+      finish2(() => resolve3({ code, stdout, stderr }));
+    });
   });
 }
 function abortError() {
@@ -2858,7 +2863,7 @@ init_runtime();
 
 // ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/workerPool.ts
 var import_child_process2 = require("child_process");
-var import_node_runtime = require("npm:@totalclaw/node-runtime");
+var import_node_runtime2 = require("npm:@totalclaw/node-runtime");
 var import_i18n5 = require("npm:@totalclaw/i18n");
 
 // ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/worker.py.ts
@@ -3332,7 +3337,8 @@ var MeetingWorker = class {
         windowsHide: true
       });
       this.child = c;
-      const decode = (0, import_node_runtime.createChunkDecoder)();
+      const decode = (0, import_node_runtime2.createChunkDecoder)();
+      const decodeErr = (0, import_node_runtime2.createChunkDecoder)();
       let settled = false;
       const timer = setTimeout(() => {
         if (settled) return;
@@ -3369,7 +3375,7 @@ var MeetingWorker = class {
         }
       });
       c.stderr.on("data", (b) => {
-        this.stderrTail = (this.stderrTail + b.toString("utf8")).slice(-4e3);
+        this.stderrTail = (this.stderrTail + decodeErr(b)).slice(-4e3);
       });
       const onGone = (err) => {
         this.exited = true;
@@ -6865,8 +6871,9 @@ var import_node_zlib = require("node:zlib");
 var import_lanServer = require("host:apps/desktop-shell/src/main/services/lanServer.ts");
 
 // ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/text.ts
+var import_brand = require("host:apps/desktop-shell/src/main/services/brand.ts");
 var MM_MOBILE_TEXT = {
-  appTitle: "\u6CF0\u9014\u4F1A\u8BAE\u667A\u80FD\u7BA1\u7406",
+  appTitle: (0, import_brand.brandText)("\u6CF0\u9014\u4F1A\u8BAE\u667A\u80FD\u7BA1\u7406"),
   voiceTitle: "\u58F0\u7EB9\u91C7\u96C6",
   common: {
     loading: "\u52A0\u8F7D\u4E2D\u2026",
@@ -6886,7 +6893,7 @@ var MM_MOBILE_TEXT = {
     saved: "\u5DF2\u4FDD\u5B58",
     later: "\u7A0D\u540E\u518D\u8BF4",
     unknownPerson: "\u672A\u77E5\u4EBA\u5458",
-    networkError: "\u7F51\u7EDC\u8FDE\u63A5\u5931\u8D25\uFF1A\u8BF7\u786E\u8BA4\u624B\u673A\u548C\u7535\u8111\u8FDE\u5728\u540C\u4E00\u4E2A\u5C40\u57DF\u7F51\uFF08Wi-Fi\uFF09\uFF0C\u5E76\u4E14\u7535\u8111\u4E0A\u7684 TotalClaw \u6CA1\u6709\u5173\u95ED",
+    networkError: (0, import_brand.brandText)("\u7F51\u7EDC\u8FDE\u63A5\u5931\u8D25\uFF1A\u8BF7\u786E\u8BA4\u624B\u673A\u548C\u7535\u8111\u8FDE\u5728\u540C\u4E00\u4E2A\u5C40\u57DF\u7F51\uFF08Wi-Fi\uFF09\uFF0C\u5E76\u4E14\u7535\u8111\u4E0A\u7684 TotalClaw \u6CA1\u6709\u5173\u95ED"),
     serverError: "\u670D\u52A1\u51FA\u9519\u4E86\uFF0C\u8BF7\u7A0D\u540E\u518D\u8BD5",
     tooMany: "\u5C1D\u8BD5\u6B21\u6570\u8FC7\u591A\uFF0C\u8BF7 1 \u5206\u949F\u540E\u518D\u8BD5",
     forbiddenAction: "\u624B\u673A\u7AEF\u4E0D\u652F\u6301\u8FD9\u4E2A\u64CD\u4F5C\uFF0C\u8BF7\u5728\u7535\u8111\u4E0A\u5904\u7406",
@@ -6910,7 +6917,7 @@ var MM_MOBILE_TEXT = {
   },
   /** 群里的链接（不带个人令牌）：本机记着令牌就直接进，没有就提示先打开一次专属链接 */
   group: {
-    title: "\u6CF0\u9014\u4F1A\u8BAE\u667A\u80FD\u7BA1\u7406",
+    title: (0, import_brand.brandText)("\u6CF0\u9014\u4F1A\u8BAE\u667A\u80FD\u7BA1\u7406"),
     opening: "\u6B63\u5728\u6253\u5F00\u2026",
     need: "\u8FD9\u662F\u53D1\u5728\u7FA4\u91CC\u7684\u94FE\u63A5\uFF0C\u9700\u8981\u5148\u8BA4\u51FA\u4F60\u662F\u8C01\u3002",
     how: "\u8BF7\u5148\u6253\u5F00\u4E00\u6B21\u4F60\u7684\u4E2A\u4EBA\u4E13\u5C5E\u94FE\u63A5\uFF08\u7535\u8111\u7AEF\u9996\u9875\u300C\u624B\u673A\u7AEF\u300D\u626B\u7801\uFF0C\u6216\u627E\u7BA1\u7406\u5458\u8981\uFF09\uFF0C\u4E4B\u540E\u7FA4\u91CC\u7684\u94FE\u63A5\u70B9\u5F00\u5C31\u80FD\u76F4\u63A5\u8FDB\u5165\u3002"
@@ -7039,7 +7046,7 @@ var MM_MOBILE_TEXT = {
     adjusted: "\u8C03\u6574\u4EFB\u52A1"
   },
   home: {
-    title: "\u6CF0\u9014\u4F1A\u8BAE\u667A\u80FD\u7BA1\u7406",
+    title: (0, import_brand.brandText)("\u6CF0\u9014\u4F1A\u8BAE\u667A\u80FD\u7BA1\u7406"),
     greeting: "{hello}\uFF0C{name}",
     summary: "\u4ECA\u5929\u6709 {urgent} \u4EF6\u7D27\u6025\u3001{today} \u4EF6\u9700\u5728\u4ECA\u5929\u5B8C\u6210\u7684\u4E8B\u9879",
     summaryNone: "\u4ECA\u5929\u6CA1\u6709\u7D27\u6025\u4E8B\u9879",
@@ -7375,7 +7382,7 @@ var MM_MOBILE_TEXT = {
     voiceWithdraw: "\u64A4\u56DE\u58F0\u7EB9\u6388\u6743",
     voiceWithdrawAsk: "\u64A4\u56DE\u540E\u4F1A\u5220\u9664\u4F60\u7684\u58F0\u7EB9\uFF0C\u4F1A\u8BAE\u5F55\u97F3\u91CC\u5C06\u4E0D\u518D\u81EA\u52A8\u8BC6\u522B\u4F60\u7684\u53D1\u8A00\u3002\u786E\u5B9A\u5417\uFF1F",
     voiceWithdrawn: "\u5DF2\u64A4\u56DE\u58F0\u7EB9\u6388\u6743",
-    about: "\u8FD9\u4E2A\u9875\u9762\u7531\u7535\u8111\u4E0A\u7684 TotalClaw \u901A\u8FC7\u5C40\u57DF\u7F51\u63D0\u4F9B\uFF0C\u624B\u673A\u9700\u8981\u548C\u90A3\u53F0\u7535\u8111\u8FDE\u5728\u540C\u4E00\u4E2A\u7F51\u7EDC\u91CC\u3002",
+    about: (0, import_brand.brandText)("\u8FD9\u4E2A\u9875\u9762\u7531\u7535\u8111\u4E0A\u7684 TotalClaw \u901A\u8FC7\u5C40\u57DF\u7F51\u63D0\u4F9B\uFF0C\u624B\u673A\u9700\u8981\u548C\u90A3\u53F0\u7535\u8111\u8FDE\u5728\u540C\u4E00\u4E2A\u7F51\u7EDC\u91CC\u3002"),
     noPerson: "\u7CFB\u7EDF\u91CC\u6CA1\u6709\u627E\u5230\u4F60\u7684\u4FE1\u606F\uFF0C\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458\u540C\u6B65\u901A\u8BAF\u5F55"
   },
   newMeeting: {
@@ -7412,7 +7419,7 @@ var MM_MOBILE_TEXT = {
     consentTitle: "\u58F0\u7EB9\u91C7\u96C6\u6388\u6743",
     consentIntro: "{name}\uFF0C\u4F60\u597D\uFF01\u4E3A\u4E86\u5728\u4F1A\u8BAE\u5F55\u97F3\u91CC\u81EA\u52A8\u8BC6\u522B\u4F60\u7684\u53D1\u8A00\uFF0C\u9700\u8981\u91C7\u96C6\u4E00\u6BB5\u4F60\u7684\u58F0\u97F3\u3002",
     purposeTitle: "\u91C7\u96C6\u7528\u9014",
-    purpose: "\u53EA\u7528\u4E8E\u6CF0\u9014\u4F1A\u8BAE\u667A\u80FD\u7BA1\u7406\uFF1A\u5728\u4F60\u53C2\u52A0\u7684\u4F1A\u8BAE\u5F55\u97F3\u91CC\u8BC6\u522B\u54EA\u4E9B\u8BDD\u662F\u4F60\u8BF4\u7684\uFF0C\u751F\u6210\u4F1A\u8BAE\u7EAA\u8981\u540E\u7531\u4F60\u672C\u4EBA\u6838\u5BF9\u786E\u8BA4\u3002\u4F60\u786E\u8BA4\u8FC7\u7684\u4F1A\u8BAE\u53D1\u8A00\u4F1A\u7528\u6765\u8865\u5145\u4F60\u7684\u58F0\u7EB9\uFF08\u6700\u591A\u4FDD\u7559\u6700\u8FD1 5 \u6761\uFF09\uFF0C\u6362\u4E86\u9EA6\u514B\u98CE\u6216\u4F1A\u8BAE\u5BA4\u4E5F\u80FD\u8BA4\u51FA\u4F60\uFF1B\u53EF\u4EE5\u5728\u58F0\u7EB9\u5E93\u91CC\u5173\u6389\u3002",
+    purpose: (0, import_brand.brandText)("\u53EA\u7528\u4E8E\u6CF0\u9014\u4F1A\u8BAE\u667A\u80FD\u7BA1\u7406\uFF1A\u5728\u4F60\u53C2\u52A0\u7684\u4F1A\u8BAE\u5F55\u97F3\u91CC\u8BC6\u522B\u54EA\u4E9B\u8BDD\u662F\u4F60\u8BF4\u7684\uFF0C\u751F\u6210\u4F1A\u8BAE\u7EAA\u8981\u540E\u7531\u4F60\u672C\u4EBA\u6838\u5BF9\u786E\u8BA4\u3002\u4F60\u786E\u8BA4\u8FC7\u7684\u4F1A\u8BAE\u53D1\u8A00\u4F1A\u7528\u6765\u8865\u5145\u4F60\u7684\u58F0\u7EB9\uFF08\u6700\u591A\u4FDD\u7559\u6700\u8FD1 5 \u6761\uFF09\uFF0C\u6362\u4E86\u9EA6\u514B\u98CE\u6216\u4F1A\u8BAE\u5BA4\u4E5F\u80FD\u8BA4\u51FA\u4F60\uFF1B\u53EF\u4EE5\u5728\u58F0\u7EB9\u5E93\u91CC\u5173\u6389\u3002"),
     scopeTitle: "\u4F7F\u7528\u8303\u56F4",
     scope: "\u58F0\u7EB9\u53EA\u548C\u4F60\u53C2\u52A0\u7684\u4F1A\u8BAE\u6BD4\u5BF9\uFF0C\u4E0D\u7528\u4E8E\u5176\u4ED6\u7528\u9014\uFF0C\u4E0D\u63D0\u4F9B\u7ED9\u7B2C\u4E09\u65B9\u3002\u6570\u636E\u4FDD\u5B58\u5728\u516C\u53F8\u5185\u90E8\u7535\u8111\u4E0A\u3002",
     storeTitle: "\u4FDD\u5B58\u65B9\u5F0F",
@@ -7455,7 +7462,7 @@ var MM_MOBILE_TEXT = {
     doneTitle: "\u91C7\u96C6\u6210\u529F",
     doneBody: "{name}\uFF0C\u4F60\u7684\u58F0\u7EB9\u5DF2\u91C7\u96C6\u5B8C\u6210\u3002\u4E4B\u540E\u5728\u4F60\u53C2\u52A0\u7684\u4F1A\u8BAE\u5F55\u97F3\u91CC\uFF0C\u7CFB\u7EDF\u4F1A\u81EA\u52A8\u8BC6\u522B\u4F60\u7684\u53D1\u8A00\u3002",
     doneSeconds: "\u6709\u6548\u8BED\u97F3 {s} \u79D2",
-    backHome: "\u8FD4\u56DE\u6CF0\u9014\u4F1A\u8BAE\u667A\u80FD\u7BA1\u7406",
+    backHome: (0, import_brand.brandText)("\u8FD4\u56DE\u6CF0\u9014\u4F1A\u8BAE\u667A\u80FD\u7BA1\u7406"),
     noPerson: "\u7CFB\u7EDF\u91CC\u6CA1\u6709\u627E\u5230\u4F60\u7684\u4FE1\u606F",
     noPersonHint: "\u8BF7\u8054\u7CFB\u7BA1\u7406\u5458\u540C\u6B65\u901A\u8BAF\u5F55\u540E\uFF0C\u518D\u4ECE\u4F01\u5FAE\u91CC\u91CD\u65B0\u6253\u5F00\u8FD9\u4E2A\u94FE\u63A5\u3002"
   }
@@ -10727,6 +10734,10 @@ var MeetingMgmtService = class {
   canSeeMeeting(pid, m, p) {
     return !!p && this.canSeeProject(pid, p) || m.hostId === pid || m.attendeeIds.includes(pid) || planOwners(m.plan).includes(pid) || m.confirmations.some((c) => c.personId === pid);
   }
+  canDeleteMeeting(pid, m, p) {
+    if (p?.status === "archived") return false;
+    return this.isAdmin(pid) || m.hostId === pid || m.createdBy === pid || p?.ownerId === pid;
+  }
   canSeeTask(pid, t, p) {
     return !!p && this.canSeeProject(pid, p) || t.assigneeId === pid || taskOwners(t).includes(pid);
   }
@@ -11025,21 +11036,25 @@ var MeetingMgmtService = class {
       meetingCount: this.s().meetings.filter((m) => m.projectId === p.id).length
     };
   }
-  meetingCard(m, needsMe) {
+  meetingCard(m, needsMe, actorId) {
     const s = this.s();
+    const project = s.projects.find((p) => p.id === m.projectId);
     const done = m.confirmations.filter((c) => c.status === "confirmed").length;
     const confirmText = m.status === "pending_confirm" ? (0, import_i18n15.t)("\u5DF2\u786E\u8BA4 {p0}/{p1}", { p0: done, p1: m.confirmations.length }) : m.status === "processing" ? stageText(m.process?.stage) : "";
+    const taskCount = s.tasks.filter((t) => t.meetingId === m.id).length;
     return {
       id: m.id,
       title: m.title,
       projectId: m.projectId,
-      projectName: s.projects.find((p) => p.id === m.projectId)?.name || "",
+      projectName: project?.name || "",
       time: m.time,
       status: m.status,
       source: m.source,
       hostId: m.hostId,
       hostName: this.nameOf(m.hostId),
       needsMe: needsMe.has(m.id),
+      canDelete: this.canDeleteMeeting(actorId, m, project),
+      ...taskCount ? { taskCount } : {},
       ...confirmText ? { confirmText } : {}
     };
   }
@@ -11272,7 +11287,7 @@ var MeetingMgmtService = class {
         project,
         ownerName: this.nameOf(project.ownerId),
         members: project.memberIds.map((id) => s.org.people.find((x) => x.id === id)).filter(Boolean),
-        meetings: meetings.map((m) => this.meetingCard(m, needsMe)),
+        meetings: meetings.map((m) => this.meetingCard(m, needsMe, me.id)),
         tasks: tasks.map((t) => this.taskView(t, c.now)),
         stats: {
           meetings: meetings.length,
@@ -11408,7 +11423,7 @@ var MeetingMgmtService = class {
       const needsMe = new Set(todos.filter((t) => t.group === "meeting").map((t) => t.link.id));
       const q = str2(p.q, 100).toLowerCase();
       const filter = String(p.filter || "all");
-      return s.meetings.filter((m) => this.canSeeMeeting(me.id, m, s.projects.find((x) => x.id === m.projectId))).filter((m) => !p.projectId || m.projectId === p.projectId).filter((m) => filter === "todo" ? needsMe.has(m.id) : filter === "processing" ? MEETING_FILTER_PROCESSING.includes(m.status) : filter === "final" ? MEETING_FILTER_FINAL.includes(m.status) : true).filter((m) => !q || this.meetingSearchText(m, s).includes(q)).sort((a, b) => b.time - a.time).map((m) => this.meetingCard(m, needsMe));
+      return s.meetings.filter((m) => this.canSeeMeeting(me.id, m, s.projects.find((x) => x.id === m.projectId))).filter((m) => !p.projectId || m.projectId === p.projectId).filter((m) => filter === "todo" ? needsMe.has(m.id) : filter === "processing" ? MEETING_FILTER_PROCESSING.includes(m.status) : filter === "final" ? MEETING_FILTER_FINAL.includes(m.status) : true).filter((m) => !q || this.meetingSearchText(m, s).includes(q)).sort((a, b) => b.time - a.time).map((m) => this.meetingCard(m, needsMe, me.id));
     },
     "meeting.get": (c, p) => {
       const me = this.me(c);
@@ -11498,6 +11513,43 @@ var MeetingMgmtService = class {
       this.changed("meeting", meeting.id);
       this.changed("project", project.id);
       return meeting;
+    },
+    "meeting.delete": (c, p) => {
+      const me = this.me(c);
+      const id = str2(p.id);
+      const deletedTasks = this.store.update((st) => {
+        const m = this.findMeeting(st, id);
+        const project = st.projects.find((x) => x.id === m.projectId);
+        if (project) assertProjectNotArchived(project);
+        if (!this.canDeleteMeeting(me.id, m, project)) {
+          throw new Error((0, import_i18n15.t)("\u53EA\u6709\u4E3B\u6301\u4EBA\u3001\u521B\u5EFA\u4EBA\u3001\u9879\u76EE\u8D1F\u8D23\u4EBA\u6216\u7BA1\u7406\u5458\u53EF\u4EE5\u5220\u9664\u4F1A\u8BAE"));
+        }
+        const linkedTaskIds = new Set(m.taskIds);
+        const removedTaskIds = /* @__PURE__ */ new Set();
+        st.tasks = st.tasks.filter((t) => {
+          const drop = t.meetingId === m.id || linkedTaskIds.has(t.id);
+          if (drop) removedTaskIds.add(t.id);
+          return !drop;
+        });
+        st.notices = st.notices.filter((n) => {
+          if ((n.link.kind === "meeting" || n.link.kind === "meeting_plan") && n.link.id === m.id) return false;
+          if (n.link.kind === "task" && removedTaskIds.has(n.link.id)) return false;
+          return true;
+        });
+        st.meetings = st.meetings.filter((x) => x.id !== m.id);
+        return removedTaskIds.size;
+      });
+      const job = this.jobs.get(id);
+      if (job) {
+        try {
+          job.abort();
+        } catch {
+        }
+        this.jobs.delete(id);
+      }
+      this.store.removeMeetingFiles(id);
+      this.changed("all");
+      return { ok: true, id, deletedTasks };
     },
     "meeting.upload": async (c, p) => this.upload(c, String(p.id || ""), p.paths),
     "meeting.retry": (c, p) => {

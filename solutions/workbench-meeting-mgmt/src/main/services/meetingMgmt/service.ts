@@ -383,6 +383,11 @@ export class MeetingMgmtService {
       || m.confirmations.some((c) => c.personId === pid);
   }
 
+  private canDeleteMeeting(pid: string, m: MmMeeting, p?: MmProject): boolean {
+    if (p?.status === 'archived') return false;
+    return this.isAdmin(pid) || m.hostId === pid || m.createdBy === pid || p?.ownerId === pid;
+  }
+
   private canSeeTask(pid: string, t: MmTask, p?: MmProject): boolean {
     return (!!p && this.canSeeProject(pid, p)) || t.assigneeId === pid || R.taskOwners(t).includes(pid);
   }
@@ -679,15 +684,19 @@ export class MeetingMgmtService {
     };
   }
 
-  private meetingCard(m: MmMeeting, needsMe: Set<string>): MmMeetingCard {
+  private meetingCard(m: MmMeeting, needsMe: Set<string>, actorId: string): MmMeetingCard {
     const s = this.s();
+    const project = s.projects.find((p) => p.id === m.projectId);
     const done = m.confirmations.filter((c) => c.status === 'confirmed').length;
     const confirmText = m.status === 'pending_confirm' ? i18nT('已确认 {p0}/{p1}', { p0: done, p1: m.confirmations.length })
       : m.status === 'processing' ? stageText(m.process?.stage) : '';
+    const taskCount = s.tasks.filter((t) => t.meetingId === m.id).length;
     return {
-      id: m.id, title: m.title, projectId: m.projectId, projectName: s.projects.find((p) => p.id === m.projectId)?.name || '',
+      id: m.id, title: m.title, projectId: m.projectId, projectName: project?.name || '',
       time: m.time, status: m.status, source: m.source, hostId: m.hostId, hostName: this.nameOf(m.hostId),
       needsMe: needsMe.has(m.id),
+      canDelete: this.canDeleteMeeting(actorId, m, project),
+      ...(taskCount ? { taskCount } : {}),
       ...(confirmText ? { confirmText } : {}),
     };
   }
@@ -914,7 +923,7 @@ export class MeetingMgmtService {
         project,
         ownerName: this.nameOf(project.ownerId),
         members: project.memberIds.map((id) => s.org.people.find((x) => x.id === id)).filter(Boolean) as MmPerson[],
-        meetings: meetings.map((m) => this.meetingCard(m, needsMe)),
+        meetings: meetings.map((m) => this.meetingCard(m, needsMe, me.id)),
         tasks: tasks.map((t) => this.taskView(t, c.now)),
         stats: {
           meetings: meetings.length,
@@ -1055,7 +1064,7 @@ export class MeetingMgmtService {
             : filter === 'final' ? MEETING_FILTER_FINAL.includes(m.status) : true)
         .filter((m) => !q || this.meetingSearchText(m, s).includes(q))
         .sort((a, b) => b.time - a.time)
-        .map((m) => this.meetingCard(m, needsMe));
+        .map((m) => this.meetingCard(m, needsMe, me.id));
     },
 
     'meeting.get': (c, p): MmMeetingDetail => {
@@ -1129,6 +1138,41 @@ export class MeetingMgmtService {
       this.changed('meeting', meeting.id);
       this.changed('project', project.id);
       return meeting;
+    },
+
+    'meeting.delete': (c, p) => {
+      const me = this.me(c);
+      const id = str(p.id);
+      const deletedTasks = this.store.update((st) => {
+        const m = this.findMeeting(st, id);
+        const project = st.projects.find((x) => x.id === m.projectId);
+        if (project) R.assertProjectNotArchived(project);
+        if (!this.canDeleteMeeting(me.id, m, project)) {
+          throw new Error(i18nT('只有主持人、创建人、项目负责人或管理员可以删除会议'));
+        }
+        const linkedTaskIds = new Set(m.taskIds);
+        const removedTaskIds = new Set<string>();
+        st.tasks = st.tasks.filter((t) => {
+          const drop = t.meetingId === m.id || linkedTaskIds.has(t.id);
+          if (drop) removedTaskIds.add(t.id);
+          return !drop;
+        });
+        st.notices = st.notices.filter((n) => {
+          if ((n.link.kind === 'meeting' || n.link.kind === 'meeting_plan') && n.link.id === m.id) return false;
+          if (n.link.kind === 'task' && removedTaskIds.has(n.link.id)) return false;
+          return true;
+        });
+        st.meetings = st.meetings.filter((x) => x.id !== m.id);
+        return removedTaskIds.size;
+      });
+      const job = this.jobs.get(id);
+      if (job) {
+        try { job.abort(); } catch { /* ignore */ }
+        this.jobs.delete(id);
+      }
+      this.store.removeMeetingFiles(id);
+      this.changed('all');
+      return { ok: true, id, deletedTasks };
     },
 
     'meeting.upload': async (c, p) => this.upload(c, String(p.id || ''), p.paths),

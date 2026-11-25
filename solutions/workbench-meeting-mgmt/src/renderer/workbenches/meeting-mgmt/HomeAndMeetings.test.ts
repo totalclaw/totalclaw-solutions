@@ -114,6 +114,26 @@ describe('首页 · 手机端卡片', () => {
     await vi.waitFor(() => expect(w2.find('[data-test="mm-mobile-qr"]').exists()).toBe(true));
     expect(w2.find('[data-test="mm-mobile-stop"]').exists()).toBe(false);
   });
+
+  it('首页横条模式（compact）：紧凑展示地址/操作按钮，点二维码可放大预览并支持关闭', async () => {
+    bootAs('u1', '林晓', true);
+    mmBoot.value!.mobile = { running: true, url: 'http://192.168.1.10:8280' };
+    setup({
+      'mobile.status': () => ({ running: true, url: 'http://192.168.1.10:8280', publicBase: 'https://example.com/mm' }),
+      'mobile.link': () => ({ url: 'http://192.168.1.10:8280/m?t=tok#/home' }),
+    });
+    const w = mountIt(MobileAccessCard, { compact: true });
+    await flushPromises();
+    await vi.waitFor(() => expect(w.find('[data-test="mm-mobile-qr"]').exists()).toBe(true));
+    expect(w.find('[data-test="mm-mobile"]').classes()).toContain('mm-mob--compact');
+    expect(w.find('[data-test="mm-mobile-url"]').text()).toBe('http://192.168.1.10:8280');
+    expect(w.find('[data-test="mm-mobile-public"]').text()).toContain('https://example.com/mm');
+    await w.find('.mm-mob__qr-btn').trigger('click');
+    expect(document.body.querySelector('.mm-mob-modal')).not.toBeNull();
+    (document.body.querySelector('.mm-mob-modal__close') as HTMLElement).click();
+    await flushPromises();
+    expect(document.body.querySelector('.mm-mob-modal')).toBeNull();
+  });
 });
 
 describe('企微推送失败', () => {
@@ -506,5 +526,35 @@ describe('会议列表', () => {
     await w.find('[data-test="mm-meeting-filter-processing"]').trigger('click');
     expect(w.find('[data-test="mm-meeting-m1"]').exists()).toBe(false);
     expect(w.find('[data-test="mm-meeting-m2"]').exists()).toBe(true);
+  });
+
+  it('列表删除按钮：无权限隐藏；取消不删；确认后调 meeting.delete 并切换到剩余会议', async () => {
+    bootAs('u1', '李娜', true);
+    let cards = [
+      { id: 'm1', title: '数字化工厂周例会', projectName: '数字化工厂一期', time: 0, status: 'dispatched', needsMe: true, canDelete: true, taskCount: 2 },
+      { id: 'm2', title: '华东扩产专题会', projectName: '华东', time: 0, status: 'processing', needsMe: false, canDelete: false },
+    ];
+    const h = setup({
+      'meeting.list': (p: any) => (p.filter === 'todo' ? cards.filter((c) => c.needsMe) : p.filter === 'processing' ? cards.filter((c) => c.status === 'processing') : p.filter === 'final' ? cards.filter((c) => c.status === 'dispatched') : cards),
+      'meeting.get': (p: any) => detailOf(meeting({ id: p.id, title: p.id === 'm2' ? '华东扩产专题会' : '数字化工厂周例会' }), { isHost: true }),
+      'meeting.delete': (p: any) => { cards = cards.filter((c) => c.id !== p.id); return { ok: true, id: p.id, deletedTasks: 2 }; },
+      'boot': () => mmBoot.value,
+    });
+    const confirmSpy = vi.spyOn(window, 'confirm').mockReturnValueOnce(false).mockReturnValueOnce(true);
+    const w = mountIt(MeetingsTab);
+    await flushPromises();
+    expect(w.find('[data-test="mm-meeting-delete-m1"]').exists()).toBe(true);
+    expect(w.find('[data-test="mm-meeting-delete-m2"]').exists()).toBe(false);
+    // 取消确认：不发请求
+    await w.find('[data-test="mm-meeting-delete-m1"]').trigger('click');
+    await flushPromises();
+    expect(confirmSpy).toHaveBeenCalledWith(expect.stringContaining('2 项任务'));
+    expect(h.names()).not.toContain('meeting.delete');
+    // 确认删除：调 meeting.delete，列表刷新且选中切到 m2
+    await w.find('[data-test="mm-meeting-delete-m1"]').trigger('click');
+    await flushPromises();
+    expect(h.calls.find((c) => c[0] === 'meeting.delete')?.[1]).toEqual({ id: 'm1' });
+    expect(w.find('[data-test="mm-meeting-m1"]').exists()).toBe(false);
+    expect(w.find('[data-test="mm-meeting-m2"]').classes()).toContain('on');
   });
 });

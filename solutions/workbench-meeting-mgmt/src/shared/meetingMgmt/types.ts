@@ -536,6 +536,10 @@ export interface MmMeetingCard {
   source?: MmMeetingSource;
   hostId?: string;
   hostName?: string;
+  /** 当前身份能否删除这场会议（项目未归档，且为主持人 / 创建人 / 项目负责人 / 管理员） */
+  canDelete?: boolean;
+  /** 已派发的关联任务数（删除确认提示用） */
+  taskCount?: number;
 }
 
 /** meeting.get 的返回 */

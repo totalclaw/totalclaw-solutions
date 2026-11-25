@@ -34,21 +34,37 @@
         <template v-else>
           <template v-for="g in grouped" :key="g.key">
             <div v-if="g.items.length" class="mm-mlist__group"><span>{{ g.title }}</span><i></i></div>
-            <button
+            <div
               v-for="c in g.items"
               :key="c.id"
-              type="button"
+              role="button"
+              tabindex="0"
               class="mm-mcard"
               :class="{ on: c.id === selectedId }"
               :data-test="`mm-meeting-${c.id}`"
               @click="select(c.id)"
+              @keydown.enter.self="select(c.id)"
+              @keydown.space.self.prevent="select(c.id)"
             >
-              <span class="mm-mcard__title">{{ c.title }}<i v-if="c.needsMe" class="mm-mcard__dot" :title="$t('需要我处理')"></i></span>
+              <span class="mm-mcard__title">
+                <span class="mm-mcard__name">{{ c.title }}</span>
+                <i v-if="c.needsMe" class="mm-mcard__dot" :title="$t('需要我处理')"></i>
+                <button
+                  v-if="c.canDelete !== false"
+                  type="button"
+                  class="mm-mcard__del"
+                  :disabled="deletingId === c.id"
+                  :title="$t('删除会议')"
+                  :aria-label="$t('删除会议')"
+                  :data-test="`mm-meeting-delete-${c.id}`"
+                  @click.stop="removeMeeting(c)"
+                ><i :class="deletingId === c.id ? 'ri-loader-4-line spin' : 'ri-delete-bin-line'" aria-hidden="true"></i></button>
+              </span>
               <span class="mm-mcard__meta">
                 <small>{{ c.projectName }} · {{ fmtMd(c.time) }}</small>
                 <span class="mm-tag" :class="MEETING_STATUS_TONE[c.status]">{{ c.confirmText || MEETING_STATUS_LABEL[c.status] }}</span>
               </span>
-            </button>
+            </div>
           </template>
         </template>
       </aside>
@@ -80,7 +96,8 @@
  */
 import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue';
 import { t as i18nT } from '../../i18n';
-import { MEETING_STATUS_LABEL, errorMessage, mm, mmNav } from './shared';
+import { useNotificationStore } from '../../stores/notification';
+import { MEETING_STATUS_LABEL, errorMessage, mm, mmNav, refreshBoot } from './shared';
 import { MEETING_STATUS_TONE, fmtMd, lastMeetingId, pendingCreateMeeting, type MmMeetingCard } from './meetingUi';
 import MeetingDetail from './MeetingDetail.vue';
 import MeetingCreateDialog from './MeetingCreateDialog.vue';
@@ -95,9 +112,11 @@ const FILTERS: Array<{ key: Filter; title: string }> = [
 
 const emit = defineEmits<{ (e: 'role', label: string): void }>();
 
+const notif = useNotificationStore();
 const filter = ref<Filter>('all');
 const q = ref('');
 const loading = ref(false);
+const deletingId = ref('');
 const error = ref('');
 const createOpen = ref(false);
 const selectedId = ref(lastMeetingId.value);
@@ -153,6 +172,31 @@ function onCreated(id: string): void {
   q.value = '';
   select(id);
   void refreshList();
+}
+
+async function removeMeeting(c: MmMeetingCard): Promise<void> {
+  if (deletingId.value) return;
+  const tip = c.taskCount
+    ? i18nT('确定删除会议「{title}」？该会议的文件、纪要以及关联的 {n} 项任务和通知都会一并删除，无法恢复。', { title: c.title, n: c.taskCount })
+    : i18nT('确定删除会议「{title}」？该会议的文件、纪要和相关通知都会一并删除，无法恢复。', { title: c.title });
+  if (!window.confirm(tip)) return;
+  deletingId.value = c.id;
+  try {
+    await mm('meeting.delete', { id: c.id });
+    if (selectedId.value === c.id) {
+      selectedId.value = '';
+      lastMeetingId.value = '';
+    }
+    if (navPinnedId === c.id) navPinnedId = '';
+    notif.success(i18nT('已删除会议'));
+    await Promise.all([refreshList(), refreshBoot().catch(() => {})]);
+  } catch (e) {
+    const msg = errorMessage(e);
+    error.value = msg;
+    notif.error(msg);
+  } finally {
+    deletingId.value = '';
+  }
 }
 
 /** 首页 / 通知点进来：选中会议，执行方案类直接落到方案页签 */
@@ -216,9 +260,15 @@ defineExpose({ refresh });
 
 .mm-mcard { display: grid; gap: 8px; padding: 14px 18px; border: 1px solid transparent; border-radius: var(--radius-5); background: transparent; color: var(--color-text-primary); font: inherit; text-align: start; cursor: pointer; transition: background .15s, border-color .15s; }
 .mm-mcard:hover { background: var(--color-bg-card); }
+.mm-mcard:focus-visible { outline: 2px solid var(--color-brand); outline-offset: 2px; }
 .mm-mcard.on { background: var(--color-bg-card); border-color: color-mix(in srgb, var(--color-brand) 45%, var(--color-border)); box-shadow: 0 2px 10px color-mix(in srgb, var(--color-brand) 10%, transparent); }
-.mm-mcard__title { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; }
-.mm-mcard__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-danger); margin-inline-start: auto; flex: 0 0 auto; }
+.mm-mcard__title { display: flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 700; min-width: 0; }
+.mm-mcard__name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mm-mcard__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-danger); flex: 0 0 auto; }
+.mm-mcard__del { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 0; border: none; border-radius: var(--radius-3); background: transparent; color: var(--color-text-secondary); font-size: 14px; cursor: pointer; flex: 0 0 auto; opacity: .45; transition: opacity .15s, color .15s, background .15s; }
+.mm-mcard:hover .mm-mcard__del, .mm-mcard.on .mm-mcard__del, .mm-mcard:focus-within .mm-mcard__del { opacity: .85; }
+.mm-mcard__del:hover, .mm-mcard__del:focus-visible { opacity: 1; color: var(--color-danger); background: color-mix(in srgb, var(--color-danger) 10%, transparent); outline: none; }
+.mm-mcard__del:disabled { opacity: .5; cursor: wait; }
 .mm-mcard__meta { display: flex; align-items: center; gap: 8px; }
 .mm-mcard__meta small { flex: 1; min-width: 0; color: var(--color-text-secondary); font-size: 12.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
