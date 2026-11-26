@@ -61,7 +61,7 @@ export function diagnoseWorkerStartFailure(info: WorkerStartFailureInfo): { mess
   const hex = u32 !== null ? `0x${u32.toString(16).toUpperCase().padStart(8, '0')}` : null;
   const signal = info.signal || null;
   const stderr = String(info.stderr || '').replace(/\r\n/g, '\n').trim();
-  const stderrTail = stderr.slice(-600);
+  const stderrTail = stderr.slice(-2000);
 
   const parts: string[] = [];
   if (errCode || info.err?.message) parts.push(`spawn=${[errCode, info.err?.message].filter(Boolean).join(' ')}`);
@@ -204,7 +204,8 @@ export class MeetingWorker {
       const scriptFile = ensureWorkerScriptFile();
       // -I（isolated）：不把脚本所在目录(%TEMP%)或 cwd 塞进 sys.path[0]，忽略宿主 PYTHONPATH / PYTHONHOME / user-site；
       // 因 -I 会同时忽略 PYTHONUTF8 / PYTHONDONTWRITEBYTECODE，显式加 -X utf8 -B 保持 UTF-8 且不写 .pyc。
-      const pyFlags = ['-I', '-X', 'utf8', '-B', '-u'];
+      // -X faulthandler：原生扩展（sherpa-onnx / onnxruntime）访问冲突 0xC0000005 崩溃时把 Python 调用栈写进 stderr，进处理日志。
+      const pyFlags = ['-I', '-X', 'utf8', '-X', 'faulthandler', '-B', '-u'];
       const args = scriptFile
         ? [...pyFlags, scriptFile, s.pluginsDir || '', s.model || '', s.modelsDir || '', s.campp || '', String(s.threads), s.campp2 || '']
         : [...pyFlags, '-c', MEETING_WORKER_PY, s.pluginsDir || '', s.model || '', s.modelsDir || '', s.campp || '', String(s.threads), s.campp2 || ''];

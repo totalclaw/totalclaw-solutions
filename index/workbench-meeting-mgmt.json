@@ -1,12 +1,12 @@
 {
   "id": "workbench-meeting-mgmt",
-  "version": "2.0.5",
-  "treeDigest": "bf172de299d5072ce71dedb5363ead56923961162f782670c4d1def62ea25d42",
+  "version": "2.0.6",
+  "treeDigest": "0e7da50d6db16e2154403d1905b19e4d2d179c140ee00b195e8a814219cc149e",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 6569,
-      "sha256": "7030147d718bf5ecc8b78fdaafd4111bae598b60d02c62961d6ef4fc330c1d31"
+      "size": 6929,
+      "sha256": "b3e83202a5deb5ba8f9aedacbde40cca747f300c0e4a3b556d2ab3658fb0455a"
     },
     {
       "path": "README.md",
@@ -20,8 +20,8 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 696427,
-      "sha256": "0e526f24313b58a743c3baa046d0e50b0026660cfbb95bbf059f5278323e3995"
+      "size": 696449,
+      "sha256": "1d607927f4c20d0db911004349f37e9c663b018b7720fbc13744d6ebc7f54003"
     },
     {
       "path": "dist/renderer.mjs",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2678,
-      "sha256": "7a7f867e758264a51c7b99b53c0e14206ee2c26a7fb7027bb92728943318d1a2"
+      "sha256": "5535f70dd5ad71df57c70be30ba805b144413a7047d269c31cd9ae2e0b379976"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.6",
+      "ref": "workbench-meeting-mgmt@2.0.6",
+      "treeDigest": "0e7da50d6db16e2154403d1905b19e4d2d179c140ee00b195e8a814219cc149e",
+      "filesRef": "index/workbench-meeting-mgmt/2.0.6.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.19",
+      "hostApi": 2,
+      "publishedAt": "2026-11-26"
+    },
     {
       "version": "2.0.5",
       "ref": "workbench-meeting-mgmt@2.0.5",

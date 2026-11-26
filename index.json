@@ -1493,7 +1493,7 @@
       "icon": "icon-solutions",
       "order": 230,
       "description": "以项目会议为源头：上传录音、录屏或文字记录，本机转写并按声纹识别发言人，发言人确认、主持人终审后生成正式纪要；AI 从决议拆出任务派给各部门负责人，跟进进度、处理异议与裁决，最后生成项目总结并归档。",
-      "version": "2.0.5",
+      "version": "2.0.6",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1541,10 +1541,10 @@
       "capabilities": [],
       "path": "solutions/workbench-meeting-mgmt",
       "fileCount": 8,
-      "size": 1655545,
-      "treeDigest": "bf172de299d5072ce71dedb5363ead56923961162f782670c4d1def62ea25d42",
+      "size": 1655927,
+      "treeDigest": "0e7da50d6db16e2154403d1905b19e4d2d179c140ee00b195e8a814219cc149e",
       "largeAssets": [],
-      "changelog": "- 重新发布 2.0.4 的修正版（2.0.4 首次推送的是「失败后同进程重试」写法，numpy 的 C 扩展同一进程不能加载两次，重试无效；已改为导入前收窄 `sys.path`）。已拿到 2.0.4 的电脑会自动更新到本版。",
+      "changelog": "- 会议转写 worker 以 `-X faulthandler` 启动：语音模型加载时原生扩展（sherpa-onnx / onnxruntime / kaldi-native-fbank）发生访问冲突（`0xC0000005`）等崩溃时，把崩在哪一行的 Python 调用栈写进处理日志 `detail`（stderr 摘要由 600 字放宽到 2000 字），不再只有一个退出码。",
       "filesRef": "index/workbench-meeting-mgmt.json"
     },
     {

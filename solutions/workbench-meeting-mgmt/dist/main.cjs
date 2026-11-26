@@ -3427,7 +3427,7 @@ function diagnoseWorkerStartFailure(info) {
   const hex = u32 !== null ? `0x${u32.toString(16).toUpperCase().padStart(8, "0")}` : null;
   const signal = info.signal || null;
   const stderr = String(info.stderr || "").replace(/\r\n/g, "\n").trim();
-  const stderrTail = stderr.slice(-600);
+  const stderrTail = stderr.slice(-2e3);
   const parts = [];
   if (errCode || info.err?.message) parts.push(`spawn=${[errCode, info.err?.message].filter(Boolean).join(" ")}`);
   if (code !== null) parts.push(`exit=${hex ? `${code}(${hex})` : code}`);
@@ -3517,7 +3517,7 @@ var MeetingWorker = class {
     return new Promise((resolve3, reject) => {
       const s = this.spec;
       const scriptFile = ensureWorkerScriptFile();
-      const pyFlags = ["-I", "-X", "utf8", "-B", "-u"];
+      const pyFlags = ["-I", "-X", "utf8", "-X", "faulthandler", "-B", "-u"];
       const args = scriptFile ? [...pyFlags, scriptFile, s.pluginsDir || "", s.model || "", s.modelsDir || "", s.campp || "", String(s.threads), s.campp2 || ""] : [...pyFlags, "-c", MEETING_WORKER_PY, s.pluginsDir || "", s.model || "", s.modelsDir || "", s.campp || "", String(s.threads), s.campp2 || ""];
       const cleanEnv = { ...s.env };
       delete cleanEnv.PYTHONPATH;

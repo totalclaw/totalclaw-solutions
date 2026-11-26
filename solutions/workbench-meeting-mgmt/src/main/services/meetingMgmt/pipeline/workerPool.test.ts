@@ -135,6 +135,22 @@ describe.skipIf(!existsSync(PY))('MeetingWorker（真 Python，不加载模型�
     expect(JSON.parse(line.slice('__TC_MM__'.length))).toMatchObject({ ready: true });
   }, 60_000);
 
+  it('原生扩展访问冲突崩溃时（-X faulthandler）把 Python 调用栈带进 detail', async () => {
+    const crashPy = join(dir, 'crash.py');
+    writeFileSync(crashPy, 'import ctypes\nctypes.string_at(0)\n', 'utf8');
+    const { spawn } = await import('child_process');
+    const stderr = await new Promise<string>((resolve) => {
+      const c = spawn(PY, ['-I', '-X', 'faulthandler', crashPy], { stdio: ['ignore', 'ignore', 'pipe'] });
+      let s = '';
+      c.stderr.on('data', (b) => { s += b; });
+      c.on('close', () => resolve(s));
+    });
+    const diag = diagnoseWorkerStartFailure({ code: 3221225477, stderr });
+    expect(diag.message).toContain('异常退出');
+    expect(diag.detail).toMatch(/Fatal Python error|Segmentation fault|access violation/i);
+    expect(diag.detail).toContain('crash.py');
+  }, 30_000);
+
   it('找不到 Python 解释器时给出明确诊断和 detail', async () => {
     const w = new MeetingWorker({ python: join(dir, 'no-such-python-bin'), pluginsDir: '', model: '', modelsDir: '', campp: '', threads: 1, env: {} });
     const err = await w.start(10_000).catch((e) => e);
