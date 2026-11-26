@@ -1,7 +1,7 @@
 {
   "id": "workbench-meeting-mgmt",
   "version": "2.0.4",
-  "treeDigest": "3d5171ccebad68c59023364ad20deb340362824a8bb9510d92917e8e65dfaa1a",
+  "treeDigest": "3d921d4496d005ac73720359da43ed19d74dce07329cb39b12b4bfadcfe3d290",
   "files": [
     {
       "path": "CHANGELOG.md",
@@ -20,8 +20,8 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 696298,
-      "sha256": "0a7b071c373676df61ba5e9dcfde506710614935214903a220f6ddb29baf102d"
+      "size": 696427,
+      "sha256": "0e526f24313b58a743c3baa046d0e50b0026660cfbb95bbf059f5278323e3995"
     },
     {
       "path": "dist/renderer.mjs",

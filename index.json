@@ -1541,8 +1541,8 @@
       "capabilities": [],
       "path": "solutions/workbench-meeting-mgmt",
       "fileCount": 8,
-      "size": 1655133,
-      "treeDigest": "3d5171ccebad68c59023364ad20deb340362824a8bb9510d92917e8e65dfaa1a",
+      "size": 1655262,
+      "treeDigest": "3d921d4496d005ac73720359da43ed19d74dce07329cb39b12b4bfadcfe3d290",
       "largeAssets": [],
       "changelog": "- 会议转写 worker 加载 numpy 增加第二道防线：导入 numpy 前先把 `sys.path` 收窄到解释器自身目录，剔除 `.pth` / 环境变量 / 当前目录等外部注入的路径（里面的同名 `numbers.py` / `numpy.py` 正是 `numpy has no attribute 'short'` 循环导入的来源），即使宿主进程没能带上 `-I` 也不受影响；仍失败时给出「运行时文件被改动 / 安装不完整」的明确提示，处理日志带具体文件路径与 traceback。",
       "filesRef": "index/workbench-meeting-mgmt.json"
