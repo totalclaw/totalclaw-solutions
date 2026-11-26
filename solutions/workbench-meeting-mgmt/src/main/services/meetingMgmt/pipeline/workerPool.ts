@@ -127,6 +127,23 @@ export function diagnoseWorkerStartFailure(info: WorkerStartFailureInfo): { mess
   };
 }
 
+/** 把 worker 主动报 ready:false 的 error 转成可读中文，同时保留「本地语音识别运行时不可用」前缀。 */
+function formatNotReadyError(raw: string): string {
+  const base = i18nT('本地语音识别运行时不可用');
+  const why = raw.trim();
+  if (!why) return base;
+  if (/No module named '(sherpa_onnx|faster_whisper|ctranslate2)'/.test(why)) {
+    return `${base}：${i18nT('语音识别组件没装好（模型文件在，但运行组件缺失）。请在「配置引导 → 电脑配置与语音模型」里重新下载推荐的转写模型。')}（${why.slice(0, 120)}）`;
+  }
+  if (/DLL load failed|vcruntime|msvcp|api-ms-win|0xc0000135|找不到指定的模块|无法定位程序输入点/i.test(why)) {
+    return `${base}（${i18nT('本地语音识别进程未能启动：系统缺少 VC++ 运行库（Visual C++ 2015–2022 Redistributable x64）或语音组件 DLL 被拦截；请安装微软 VC++ 运行库后重试，或到「系统设置 → AI 配置」临时改用在线语音识别')}）`;
+  }
+  if (/model file missing or empty|FileNotFoundError|InvalidProtobuf|failed to open|unable to open/i.test(why)) {
+    return `${base}：${i18nT('语音模型文件缺失或已损坏，请在「配置引导 → 电脑配置与语音模型」重新下载模型后重试。')}（${why.slice(0, 120)}）`;
+  }
+  return `${base}（${why.slice(0, 200)}）`;
+}
+
 export interface WorkerSpec {
   python: string;
   pluginsDir: string;
@@ -217,7 +234,8 @@ export class MeetingWorker {
               resolve(this.ready);
             } else {
               this.kill();
-              reject(Object.assign(new Error(i18nT('本地语音识别运行时不可用')), { detail: String(msg.error || '') }));
+              const detail = String(msg.error || '');
+              reject(Object.assign(new Error(formatNotReadyError(detail)), { detail }));
             }
             continue;
           }

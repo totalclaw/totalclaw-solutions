@@ -61,7 +61,12 @@
               <ul class="mm-sw2__items">
                 <li>
                   <div><strong>{{ $t('声纹模型 CAM++') }}</strong><small>{{ $t('用来按声音认出是谁在发言') }}</small></div>
-                  <span v-if="st.models.speaker" class="ss-chip ok" data-test="mm-setup-spk-ok">{{ $t('已下载') }}</span>
+                  <template v-if="st.models.speaker">
+                    <span class="ss-chip ok" data-test="mm-setup-spk-ok">{{ $t('已下载') }}</span>
+                    <button type="button" class="ss-btn sm" :disabled="!!installing" data-test="mm-setup-spk-reinstall" @click="install(st.recommend.speakerInstallId, true)">
+                      <i :class="installing === st.recommend.speakerInstallId ? 'ri-loader-4-line spin' : 'ri-refresh-line'"></i>{{ $t('重新下载') }}
+                    </button>
+                  </template>
                   <button v-else type="button" class="ss-btn primary sm" :disabled="!!installing" data-test="mm-setup-spk-install" @click="install(st.recommend.speakerInstallId)">
                     <i :class="installing === st.recommend.speakerInstallId ? 'ri-loader-4-line spin' : 'ri-download-2-line'"></i>{{ $t('下载') }}
                   </button>
@@ -470,12 +475,12 @@ function applySpeakerDownload(dl: MmModelDownloadState | undefined): void {
     else installLine.value = dl.line || i18nT('下载完成');
   }
 }
-async function install(id: string): Promise<void> {
+async function install(id: string, force = false): Promise<void> {
   installing.value = id;
   installLine.value = i18nT('开始下载…');
   error.value = '';
   try {
-    const dl = await mm<MmModelDownloadState>('model.download.start', { ids: [id] });
+    const dl = await mm<MmModelDownloadState>('model.download.start', { ids: [id], ...(force ? { force: true } : {}) });
     applySpeakerDownload(dl);
     return;
   } catch (e) {
@@ -489,6 +494,7 @@ async function install(id: string): Promise<void> {
   const a = pyExt();
   if (!a?.install) { installing.value = ''; error.value = i18nT('组件安装器不可用，请到应用的 设置 → 语音 里下载'); return; }
   try {
+    if (force && a.remove) await a.remove(id);
     const r = await a.install(id);
     if (!r?.ok) error.value = r?.error || i18nT('下载失败');
     else installLine.value = i18nT('下载完成');

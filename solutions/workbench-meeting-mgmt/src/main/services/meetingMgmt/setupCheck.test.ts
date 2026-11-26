@@ -84,6 +84,19 @@ describe('downloadMeetingModelFromCdn', () => {
       });
       expect(r2.ok).toBe(true);
       expect(ranges).toHaveLength(1);
+
+      // force: true：即使目标文件同字节数已存在且留有坏 .part，也必须清空 .part 从头重新下载覆盖
+      writeFileSync(join(dir, 'model.int8.onnx'), Buffer.from('XXXXXXXXXXXXXXXXXXXX'));
+      writeFileSync(join(dir, 'model.int8.onnx.part'), Buffer.from('stale'));
+      const r3 = await downloadMeetingModelFromCdn('asr-meeting-sensevoice', {
+        baseUrl: 'https://cdn2.taituai.com/meeting-models',
+        fetchImpl,
+        force: true,
+        targetOverride: { destDir: dir, label: 'SenseVoice', files: [{ file: 'model.int8.onnx', sha256: sha, bytes: payload.length }] },
+      });
+      expect(r3.ok).toBe(true);
+      expect(ranges).toEqual(['bytes=10-', null]);
+      expect(readFileSync(join(dir, 'model.int8.onnx')).equals(payload)).toBe(true);
     } finally {
       rmSync(dir, { recursive: true, force: true });
     }

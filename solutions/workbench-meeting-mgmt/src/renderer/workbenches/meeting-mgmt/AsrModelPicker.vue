@@ -27,11 +27,16 @@
           <li><i class="ri-shield-check-line"></i>{{ $t('全程在本机') }}</li>
         </ul>
         <p v-if="st.recommend.downgradeReason" class="ss-note warn mm-asr__why"><i class="ri-information-line"></i>{{ downgradeText }}</p>
-        <div v-if="!bestReady" class="mm-asr__act">
-          <button type="button" class="ss-btn primary" :disabled="!!installing" data-test="mm-asr-best-install" @click="installAll(st.recommend.installIds)">
-            <i :class="installing ? 'ri-loader-4-line spin' : 'ri-download-2-line'"></i>{{ $t('一键下载') }}
+        <div class="mm-asr__act">
+          <template v-if="!bestReady">
+            <button type="button" class="ss-btn primary" :disabled="!!installing" data-test="mm-asr-best-install" @click="installAll(st.recommend.installIds)">
+              <i :class="installing ? 'ri-loader-4-line spin' : 'ri-download-2-line'"></i>{{ $t('一键下载') }}
+            </button>
+            <small v-if="st.recommend.installIds.length > 1">{{ $t('会依次下载 SenseVoice（嘈杂片段的兜底）和 FireRedASR2') }}</small>
+          </template>
+          <button v-else type="button" class="ss-btn sm" :disabled="!!installing" data-test="mm-asr-best-reinstall" @click="installAll(st.recommend.installIds, true)">
+            <i :class="installing ? 'ri-loader-4-line spin' : 'ri-refresh-line'"></i>{{ $t('重新下载') }}
           </button>
-          <small v-if="st.recommend.installIds.length > 1">{{ $t('会依次下载 SenseVoice（嘈杂片段的兜底）和 FireRedASR2') }}</small>
         </div>
       </article>
 
@@ -59,7 +64,12 @@
                 <td class="num">{{ row.time }}</td>
                 <td class="num">{{ row.size }}</td>
                 <td class="mm-asr__cell-act">
-                  <span v-if="row.ready" class="ss-chip ok">{{ $t('已下载') }}</span>
+                  <template v-if="row.ready">
+                    <span class="ss-chip ok">{{ $t('已下载') }}</span>
+                    <button v-if="row.installId" type="button" class="ss-btn sm" :disabled="!!installing" :data-test="`mm-asr-reinstall-${row.key}`" @click="installAll([row.installId], true)">
+                      <i :class="installing === row.installId ? 'ri-loader-4-line spin' : 'ri-refresh-line'"></i>{{ $t('重新下载') }}
+                    </button>
+                  </template>
                   <button v-else-if="row.installId" type="button" class="ss-btn sm" :disabled="!!installing" :data-test="`mm-asr-install-${row.key}`" @click="installAll([row.installId])">
                     <i :class="installing === row.installId ? 'ri-loader-4-line spin' : 'ri-download-2-line'"></i>{{ $t('下载') }}
                   </button>
@@ -316,15 +326,17 @@ function openKeyUrl(): void {
 
 // ── 模型下载（走方案主进程后台队列 + CDN 直下，切换页面不重置；旧环境兜底 electronAPI.pyExt）──
 const pyExt = () => (window as any).electronAPI?.pyExt;
-async function installAll(ids: string[]): Promise<void> {
-  const todo = ids.filter((id) => !(id === 'asr-meeting-firered2' && st.value?.models.fireRed) && !(id === 'asr-meeting-sensevoice' && st.value?.models.senseVoice));
+async function installAll(ids: string[], force = false): Promise<void> {
+  const todo = force
+    ? [...ids]
+    : ids.filter((id) => !(id === 'asr-meeting-firered2' && st.value?.models.fireRed) && !(id === 'asr-meeting-sensevoice' && st.value?.models.senseVoice));
   if (!todo.length) { installLine.value = i18nT('下载完成'); emit('changed'); return; }
   error.value = '';
   installing.value = todo[0]!;
   installPct.value = 0;
   installLine.value = i18nT('开始下载…');
   try {
-    const dl = await mm<MmModelDownloadState>('model.download.start', { ids: todo });
+    const dl = await mm<MmModelDownloadState>('model.download.start', { ids: todo, ...(force ? { force: true } : {}) });
     applyDownload(dl);
     return;
   } catch (e) {
@@ -343,6 +355,7 @@ async function installAll(ids: string[]): Promise<void> {
     for (const id of todo) {
       installing.value = id;
       installLine.value = i18nT('开始下载…');
+      if (force && a.remove) await a.remove(id);
       const r = await a.install(id);
       if (!r?.ok) { error.value = r?.error || i18nT('下载失败'); break; }
       await load();
@@ -422,6 +435,7 @@ defineExpose({ reload: load });
 .mm-asr__table td strong { display: block; font-size: 13px; }
 .mm-asr__table td small { display: block; font-size: 11.5px; color: var(--color-text-secondary); }
 .mm-asr__cell-act { text-align: right; white-space: nowrap; }
+.mm-asr__cell-act .ss-btn { margin-inline-start: 6px; }
 .mm-asr__src { margin: 6px 0 0; font-size: 12px; }
 .mm-asr__pref { margin-top: 10px; max-width: 520px; }
 

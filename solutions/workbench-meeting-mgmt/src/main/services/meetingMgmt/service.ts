@@ -107,7 +107,7 @@ export interface MmExternals {
   /** 在线语音识别接口转写一段 wav（测试连接用；替身里不联网） */
   cloudTranscribe(cfg: CloudAsrConfig, wav: Buffer): Promise<CloudAsrResult>;
   /** 下载并安装本机会议语音模型（默认从 CDN 直下 + 校验；IPC 层再补装 Python 运行组件） */
-  installModel(id: string, onProgress: (p: { percent: number | null; line: string }) => void, signal: AbortSignal): Promise<{ ok: boolean; error?: string }>;
+  installModel(id: string, onProgress: (p: { percent: number | null; line: string }) => void, signal: AbortSignal, opts?: { force?: boolean }): Promise<{ ok: boolean; error?: string }>;
 }
 
 export interface RuntimeCheck {
@@ -149,8 +149,8 @@ function defaultExternals(): MmExternals {
     },
     detectHardware: (dir) => detectHardware(dir),
     cloudTranscribe: (cfg, wav) => cloudTranscribe(cfg, wav, { timeoutMs: 30_000 }),
-    installModel: async (id, onProgress, signal) => {
-      const r = await downloadMeetingModelFromCdn(id, { signal, onProgress: (p) => onProgress({ percent: p.percent, line: p.line }) });
+    installModel: async (id, onProgress, signal, opts) => {
+      const r = await downloadMeetingModelFromCdn(id, { signal, force: !!opts?.force, onProgress: (p) => onProgress({ percent: p.percent, line: p.line }) });
       return r.ok ? { ok: true } : { ok: false, error: r.error };
     },
     segmentAudio: (workDir, start, end) => {
@@ -235,6 +235,7 @@ export class MeetingMgmtService {
   private modelDownload: MmModelDownloadState = { activeId: null, queue: [], percent: null, line: '', error: '', updatedAt: 0 };
   private modelDownloadRunning = false;
   private modelDownloadAbort: AbortController | null = null;
+  private readonly modelDownloadForce = new Set<string>();
 
   constructor(o: MeetingMgmtServiceOptions) {
     this.store = o.store ?? new MeetingMgmtStore(undefined, (m) => o.logger?.warn?.('meeting-mgmt', m));
@@ -805,10 +806,10 @@ export class MeetingMgmtService {
 
     'model.download.start': (c, p) => {
       this.requireAdmin(c, i18nT('下载语音模型'));
-      const raw = Array.isArray(p?.ids) ? p.ids : p?.id ? [p.id] : [];
-      const ids = [...new Set(raw.map((x: unknown) => String(x || '').trim()).filter((x: string) => ALLOWED_MEETING_MODEL_IDS.has(x)))];
+      const raw: unknown[] = Array.isArray(p?.ids) ? p.ids : p?.id ? [p.id] : [];
+      const ids: string[] = [...new Set(raw.map((x) => String(x || '').trim()).filter((x) => ALLOWED_MEETING_MODEL_IDS.has(x)))];
       if (!ids.length) throw new Error(i18nT('没有可下载的模型'));
-      return this.enqueueModelDownloads(ids);
+      return this.enqueueModelDownloads(ids, { force: !!p?.force });
     },
 
     'setup.finish': (c) => {
@@ -2226,14 +2227,32 @@ export class MeetingMgmtService {
           });
         } catch { /* 进度写失败不影响处理 */ }
       };
+      const runOnce = () => this.ext.runMeetingPipeline({
+        meetingId, workDir: this.store.filesDir(meetingId), files: m.files, attendees, voiceprints,
+        threshold: s.settings.ai.voiceprintThreshold, asr: s.settings.ai.asr, asrModel: s.settings.ai.localAsrModel ?? 'auto',
+        ...(s.settings.ai.asr === 'cloud' ? { cloudAsr: this.cloudAsrConfig() ?? undefined } : {}),
+        organizePrompt: s.settings.ai.organizePrompt,
+        llm: this.llm, signal: ctrl.signal, onStage,
+      });
       try {
-        const r = await this.ext.runMeetingPipeline({
-          meetingId, workDir: this.store.filesDir(meetingId), files: m.files, attendees, voiceprints,
-          threshold: s.settings.ai.voiceprintThreshold, asr: s.settings.ai.asr, asrModel: s.settings.ai.localAsrModel ?? 'auto',
-          ...(s.settings.ai.asr === 'cloud' ? { cloudAsr: this.cloudAsrConfig() ?? undefined } : {}),
-          organizePrompt: s.settings.ai.organizePrompt,
-          llm: this.llm, signal: ctrl.signal, onStage,
-        });
+        let r: R.PipelineOutput;
+        try {
+          r = await runOnce();
+        } catch (firstErr) {
+          if (ctrl.signal.aborted || s.settings.ai.asr !== 'local' || this.modelDownloadRunning) throw firstErr;
+          const firstMsg = (firstErr as Error)?.message || '';
+          const firstDetail = typeof (firstErr as any)?.detail === 'string' ? (firstErr as any).detail.trim() : '';
+          const repairMode = classifyLocalAsrRepair(`${firstMsg}\n${firstDetail}`);
+          if (!repairMode) throw firstErr;
+          this.warn('local asr auto-repair triggered', { meetingId, mode: repairMode, error: firstMsg });
+          const repaired = await this.repairLocalAsr(repairMode, s.settings.ai.localAsrModel, onStage, ctrl.signal);
+          if (!repaired.ok) {
+            if (ctrl.signal.aborted) throw firstErr;
+            if (repaired.error) onStage('transcribe', 6, i18nT('自动修复失败：{p0}', { p0: repaired.error }));
+            throw firstErr;
+          }
+          r = await runOnce();
+        }
         if (ctrl.signal.aborted) return;
         const now = this.nowFn();
         const out = this.store.update((st) => {
@@ -2257,6 +2276,62 @@ export class MeetingMgmtService {
       }
     })();
     this.track(job);
+  }
+
+  /** 本地转写因运行组件缺失或模型文件损坏失败时自动修复一次（不处理缺 VC++ / 内存不足 / 杀软拦截）。 */
+  private async repairLocalAsr(
+    mode: 'runtime' | 'redownload',
+    pref: MmSettings['ai']['localAsrModel'] | undefined,
+    onStage: (stage: MmProcessStage, progress: number, text?: string) => void,
+    signal: AbortSignal,
+  ): Promise<{ ok: true } | { ok: false; error: string }> {
+    if (pref === 'whisper') return { ok: false, error: '' };
+    let rt: RuntimeCheck | null = null;
+    try { rt = await this.ext.checkRuntime(); } catch { /* ignore */ }
+    const hw = this.ext.detectHardware(rt?.modelsDir || undefined);
+    let ids: string[];
+    if (mode === 'runtime') {
+      ids = rt?.senseVoice ? [MEETING_ASR_IDS.sensevoice]
+        : rt?.fireRed ? [MEETING_ASR_IDS.firered]
+          : recommendAsr(hw).installIds;
+    } else if (pref === 'sensevoice') {
+      ids = [MEETING_ASR_IDS.sensevoice];
+    } else if (pref === 'firered') {
+      ids = [MEETING_ASR_IDS.sensevoice, MEETING_ASR_IDS.firered];
+    } else {
+      ids = rt?.senseVoice && !rt?.fireRed ? [MEETING_ASR_IDS.sensevoice] : recommendAsr(hw).installIds;
+    }
+    const force = mode === 'redownload';
+    this.modelDownloadRunning = true;
+    try {
+      onStage('transcribe', 6, force
+        ? i18nT('检测到本地语音模型缺失或损坏，正在自动重新下载修复…')
+        : i18nT('检测到本地语音运行组件缺失，正在自动补装修复…'));
+      for (const id of ids) {
+        if (signal.aborted) return { ok: false, error: i18nT('处理已取消') };
+        let lastBucket = -1;
+        let lastText = '';
+        const res = await this.ext.installModel(id, (p) => {
+          if (signal.aborted) return;
+          const bucket = typeof p.percent === 'number' ? Math.floor(p.percent / 25) : -1;
+          const text = p.line ? String(p.line).slice(0, 200) : '';
+          if (text && (bucket !== lastBucket || (bucket < 0 && text !== lastText))) {
+            lastBucket = bucket;
+            lastText = text;
+            onStage('transcribe', 6, text);
+          }
+        }, signal, { force });
+        if (!res?.ok) return { ok: false, error: res?.error || i18nT('自动修复模型失败') };
+      }
+      this.changed('settings');
+      onStage('transcribe', 7, i18nT('本地语音模型已修复，正在重新转写…'));
+      return { ok: true };
+    } catch (e: any) {
+      return { ok: false, error: String(e?.message || e || i18nT('自动修复模型失败')) };
+    } finally {
+      this.modelDownloadRunning = false;
+      if (this.modelDownload.queue.length && !this.stopped) void this.track(this.runModelDownloadQueue());
+    }
   }
 
   /** 发言人识别 / 指认之后：通知新进入未确认的人；没有发言人要确认就直接通知主持人终审 */
@@ -2442,8 +2517,9 @@ export class MeetingMgmtService {
     this.emit({ type: 'model_download', status: this.modelDownloadSnapshot() });
   }
 
-  private enqueueModelDownloads(ids: string[]): MmModelDownloadState {
+  private enqueueModelDownloads(ids: string[], opts?: { force?: boolean }): MmModelDownloadState {
     for (const id of ids) {
+      if (opts?.force && this.modelDownload.activeId !== id) this.modelDownloadForce.add(id);
       if (this.modelDownload.activeId === id || this.modelDownload.queue.includes(id)) continue;
       this.modelDownload.queue.push(id);
     }
@@ -2468,6 +2544,7 @@ export class MeetingMgmtService {
     try {
       while (!this.stopped && !ctrl.signal.aborted && this.modelDownload.queue.length) {
         const id = this.modelDownload.queue.shift()!;
+        const force = this.modelDownloadForce.delete(id);
         this.modelDownload.activeId = id;
         this.modelDownload.percent = 0;
         this.modelDownload.line = i18nT('开始下载…');
@@ -2479,16 +2556,18 @@ export class MeetingMgmtService {
             if (typeof p.percent === 'number') this.modelDownload.percent = p.percent;
             if (p.line) this.modelDownload.line = p.line;
             this.emitModelDownload();
-          }, ctrl.signal);
+          }, ctrl.signal, { force });
           if (!r?.ok) {
             this.modelDownload.error = r?.error || i18nT('下载失败');
             this.modelDownload.queue = [];
+            this.modelDownloadForce.clear();
             break;
           }
           this.changed('settings');
         } catch (e: any) {
           this.modelDownload.error = String(e?.message || e || i18nT('下载失败'));
           this.modelDownload.queue = [];
+          this.modelDownloadForce.clear();
           break;
         }
       }
@@ -2520,6 +2599,18 @@ export class MeetingMgmtService {
     if (!this.store.isInsideRoot(f.path) || !existsSync(f.path)) throw new Error(i18nT('文件不存在或已被移走'));
     return f.path;
   }
+}
+
+/** 不可通过重新下载模型修复的底层错误（缺 VC++、缺 numpy、内存/指令集、权限/杀软拦截） */
+const NON_REPAIRABLE_ASR_RE = /DLL load failed|vcruntime|msvcp|api-ms-win|0xc0000135|0xc0000139|0xc000007b|找不到指定的模块|无法定位程序输入点|numpy unavailable|out of memory|bad_alloc|MemoryError|Cannot allocate memory|paging file is too small|页面文件太小|SIGKILL|SIGILL|0xc000001d|EACCES|EPERM|ENOENT/i;
+const MISSING_RUNTIME_RE = /No module named '(sherpa_onnx|faster_whisper|ctranslate2)'/;
+const BROKEN_MODEL_RE = /model file missing or empty|FileNotFoundError|InvalidProtobuf|failed to open|unable to open|本地语音识别模型未下载/i;
+
+function classifyLocalAsrRepair(errText: string): 'runtime' | 'redownload' | null {
+  if (!errText || NON_REPAIRABLE_ASR_RE.test(errText)) return null;
+  if (MISSING_RUNTIME_RE.test(errText)) return 'runtime';
+  if (BROKEN_MODEL_RE.test(errText)) return 'redownload';
+  return null;
 }
 
 /** 处理阶段的显示文字（会议卡片「转写中」） */

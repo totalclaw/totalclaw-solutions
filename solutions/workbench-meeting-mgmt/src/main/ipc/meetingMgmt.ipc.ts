@@ -48,15 +48,26 @@ export function registerMeetingMgmtHandlers(deps: WorkbenchIpcDeps): () => void 
     emit,
     logger,
     ext: {
-      installModel: async (id, onProgress, signal) => {
+      installModel: async (id, onProgress, signal, opts) => {
+        const installer = deps.pyPluginInstaller;
+        if (opts?.force && installer) {
+          onProgress({ percent: 0, line: i18nT('正在清理旧的模型文件…') });
+          const { unloadLocalAsrModel } = await import('../services/localAsr');
+          const rm = await installer.remove(id, unloadLocalAsrModel);
+          if (!rm.ok) {
+            logger?.warn?.('meeting-mgmt', 'force reinstall remove failed, continuing download', { id, error: rm.error });
+          }
+          if (signal.aborted) return { ok: false, error: i18nT('下载已取消') };
+        }
         const cdn = await downloadMeetingModelFromCdn(id, {
           signal,
+          force: !!opts?.force,
           onProgress: (p) => onProgress({ percent: p.percent, line: p.line }),
         });
+        if (signal.aborted) return { ok: false, error: !cdn.ok ? cdn.error : i18nT('下载已取消') };
         if (!cdn.ok) {
           logger?.warn?.('meeting-mgmt', 'cdn model download failed, falling back to pyPluginInstaller', { id, error: cdn.error });
         }
-        const installer = deps.pyPluginInstaller;
         if (installer) {
           onProgress({
             percent: cdn.ok ? 99 : null,

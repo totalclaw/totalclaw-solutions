@@ -120,6 +120,41 @@ describe('配置引导', () => {
     expect(w.find('[data-test="mm-asr-log"]').text()).toContain('80%');
   });
 
+  it('已下载的模型提供「重新下载」，点击带 force: true 重新入队下载', async () => {
+    const started: Array<any> = [];
+    const idle = { activeId: null, queue: [], percent: null, line: '', error: '', updatedAt: 0 };
+    const st: any = status({
+      models: { python: true, ffmpeg: true, asrModel: 'small', senseVoice: true, fireRed: true, speaker: true, asrReady: true },
+    });
+    const invoke = vi.fn(async (action: string, payload?: any) => {
+      if (action === 'setup.status') return st;
+      if (action === 'model.download.start') {
+        started.push(payload);
+        return idle;
+      }
+      return {};
+    });
+    (window as any).electronAPI = {
+      workbenches: { meetingMgmt: { invoke, onEvent: () => () => {} } },
+      pyExt: { install: vi.fn(), onInstallProgress: () => () => {} },
+    };
+    mmBoot.value = { me: { person: { id: 'linxiao', name: '林晓', deptId: 'd_ops' }, isAdmin: true, canCreateProject: true }, org: { source: 'demo', deptCount: 6, peopleCount: 20 }, settings: { adminIds: ['linxiao'] }, wecomConnected: false, mobile: { running: false }, badges: { home: 0, meetings: 0, tasks: 0 } } as any;
+    const w = mount(SetupWizard, { global: { plugins: [createPinia()], mocks: { $t } }, attachTo: document.body });
+    wrappers.push(w);
+    await flushPromises();
+    await w.find('[data-test="mm-asr-best-reinstall"]').trigger('click');
+    await flushPromises();
+    await w.find('[data-test="mm-asr-reinstall-sensevoice"]').trigger('click');
+    await flushPromises();
+    await w.find('[data-test="mm-setup-spk-reinstall"]').trigger('click');
+    await flushPromises();
+    expect(started).toEqual([
+      { ids: ['asr-meeting-sensevoice', 'asr-meeting-firered2'], force: true },
+      { ids: ['asr-meeting-sensevoice'], force: true },
+      { ids: ['speaker-campplus'], force: true },
+    ]);
+  });
+
   it('组织 → 推送 → 手机端 → 声纹 → 大模型 → 完成：每步状态独立，完成时调 setup.finish', async () => {
     const { w, names, calls } = setup();
     await flushPromises();

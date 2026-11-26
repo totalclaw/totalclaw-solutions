@@ -96,6 +96,7 @@ describe.skipIf(!existsSync(PY))('MeetingWorker（真 Python，不加载模型�
     const err = await w.start(60_000).catch((e) => e);
     expect(err).toBeInstanceOf(Error);
     expect(String(err.message)).toContain('本地语音识别运行时不可用');
+    expect(String(err.message)).toMatch(/重新下载/);
     expect(String(err.detail || '')).toMatch(/missing or empty|No module named 'sherpa_onnx'/);
   }, 60_000);
 

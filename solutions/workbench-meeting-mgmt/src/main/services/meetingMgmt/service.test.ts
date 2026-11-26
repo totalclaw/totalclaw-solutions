@@ -93,6 +93,7 @@ function make(dirName: string, over: Partial<MmExternals> = {}) {
     checkRuntime: vi.fn(async () => ({ python: true, ffmpeg: true, asrModel: 'small', speaker: true, modelsDir: tmp })),
     detectHardware: vi.fn(() => ({ cpu: 'Apple M5 Pro', cores: 18, memGb: 24, arch: 'arm64', platform: 'darwin', appleSilicon: true, freeDiskGb: 120 })),
     cloudTranscribe: vi.fn(async () => ({ ok: true, text: '' })),
+    installModel: vi.fn(async () => ({ ok: true })),
     segmentAudio: vi.fn((_dir: string, start: number, end: number) => Buffer.from(`wav:${start.toFixed(1)}-${end.toFixed(1)}`).toString('base64')),
     diffOrg,
     noticeCard: (n, ctx) => ({ title: n.title, description: n.summary + (ctx.footnote ? `|${ctx.footnote}` : ''), url: ctx.linkFor(n.to, n.link), btntxt: '查看' }),
@@ -1197,5 +1198,65 @@ describe('删除会议（meeting.delete）', () => {
     const archivedList = await t.call<any[]>('linxiao', 'meeting.list', { filter: 'all' });
     expect(archivedList.find((c) => c.id === 'mt_df_weekly')?.canDelete).toBe(false);
     await expect(t.call('linxiao', 'meeting.delete', { id: 'mt_df_weekly' })).rejects.toThrow('已归档');
+  });
+
+  it('model.download.start 支持 force: true 透传给 installModel 强制重新下载', async () => {
+    const calls: Array<{ id: string; force: boolean }> = [];
+    const t = make('force-redownload', {
+      installModel: vi.fn(async (id, _onProgress, _signal, opts) => {
+        calls.push({ id, force: !!opts?.force });
+        return { ok: true };
+      }),
+    });
+    await t.call('linxiao', 'model.download.start', { ids: ['asr-meeting-sensevoice', 'speaker-campplus'], force: true });
+    await vi.waitFor(() => expect(calls).toEqual([
+      { id: 'asr-meeting-sensevoice', force: true },
+      { id: 'speaker-campplus', force: true },
+    ]));
+    await t.call('linxiao', 'model.download.start', { ids: ['asr-meeting-sensevoice'] });
+    await vi.waitFor(() => expect(calls).toHaveLength(3));
+    expect(calls[2]).toEqual({ id: 'asr-meeting-sensevoice', force: false });
+  });
+
+  it('转写因缺运行组件或模型损坏失败时自动修复并重试一次；缺 VC++ DLL 不盲目重下', async () => {
+    const installed: Array<{ id: string; force: boolean }> = [];
+    const pipe = vi.fn(fakePipeline());
+    // 1) 缺 sherpa_onnx：自动补装运行组件（force: false）后重跑成功
+    pipe.mockImplementationOnce(async () => {
+      throw Object.assign(new Error('本地语音识别运行时不可用'), { detail: "sherpa model unavailable: No module named 'sherpa_onnx'" });
+    });
+    const t = make('auto-repair', {
+      runMeetingPipeline: pipe,
+      checkRuntime: vi.fn(async () => ({ python: true, ffmpeg: true, asrModel: 'small', senseVoice: true, fireRed: false, speaker: true, modelsDir: tmp })),
+      installModel: vi.fn(async (id, onProgress, _signal, opts) => {
+        installed.push({ id, force: !!opts?.force });
+        onProgress({ percent: 50, line: '正在修复' });
+        return { ok: true };
+      }),
+    });
+    const f = join(tmp, 'repair.m4a');
+    writeFileSync(f, 'audio');
+    await t.call('chenlifeng', 'meeting.upload', { id: 'mt_a2_weekly', paths: [f] });
+    await vi.waitFor(() => expect(t.store.read().meetings.find((x) => x.id === 'mt_a2_weekly')?.status).toBe('pending_confirm'));
+    expect(installed).toEqual([{ id: 'asr-meeting-sensevoice', force: false }]);
+    expect(pipe).toHaveBeenCalledTimes(2);
+
+    // 2) 模型文件损坏：自动带 force: true 强制重下后重跑成功
+    installed.length = 0;
+    pipe.mockImplementationOnce(async () => {
+      throw Object.assign(new Error('本地语音识别运行时不可用'), { detail: 'model file missing or empty: model.int8.onnx' });
+    });
+    await t.call('chenlifeng', 'meeting.reprocess', { id: 'mt_a2_weekly' });
+    await vi.waitFor(() => expect(installed).toEqual([{ id: 'asr-meeting-sensevoice', force: true }]));
+    await vi.waitFor(() => expect(t.store.read().meetings.find((x) => x.id === 'mt_a2_weekly')?.status).toBe('pending_confirm'));
+
+    // 3) 缺 VC++ DLL：不可通过重下模型修复，直接失败不触发 installModel
+    installed.length = 0;
+    pipe.mockImplementationOnce(async () => {
+      throw Object.assign(new Error('本地语音识别运行时不可用'), { detail: 'ImportError: DLL load failed while importing _sherpa_onnx' });
+    });
+    await t.call('chenlifeng', 'meeting.reprocess', { id: 'mt_a2_weekly' });
+    await vi.waitFor(() => expect(t.store.read().meetings.find((x) => x.id === 'mt_a2_weekly')?.status).toBe('failed'));
+    expect(installed).toEqual([]);
   });
 });

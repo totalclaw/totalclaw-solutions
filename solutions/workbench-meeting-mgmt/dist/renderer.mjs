@@ -20,9 +20,9 @@ e.default;
 const t = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/i18n.ts"];
 if (!t) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/i18n.ts");
 t.default;
-const ie = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
-if (!ie) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/stores/notification.ts");
-ie.default;
+const ce = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
+if (!ce) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/stores/notification.ts");
+ce.default;
 const St = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/PageBackButton.vue"];
 if (!St) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/PageBackButton.vue");
 const Xt = St.default, dt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/ipcPlain.ts"];
@@ -36,12 +36,12 @@ async function J(l, v) {
   if (!n?.invoke) throw new Error(t.t("泰途会议智能管理接口不可用，请重启应用"));
   return n.invoke(l, dt.toPlain(v ?? {}));
 }
-function be(l) {
+function _e(l) {
   const v = window.electronAPI?.workbenches?.meetingMgmt;
   return v?.onEvent ? v.onEvent(l) : () => {
   };
 }
-const Ne = {
+const Ve = {
   contacts: "https://work.weixin.qq.com/wework_admin/frame#contacts",
   apps: "https://work.weixin.qq.com/wework_admin/frame#apps",
   profile: "https://work.weixin.qq.com/wework_admin/frame#profile",
@@ -53,13 +53,13 @@ function pe(l) {
   typeof v?.openExternal == "function" ? v.openExternal(l) : typeof v?.shell?.openExternal == "function" ? v.shell.openExternal(l) : window.open(l, "_blank", "noopener");
 }
 const oe = e.ref(null), gt = e.ref(!1);
-async function ce() {
+async function de() {
   const l = await J("boot");
   return oe.value = l, l;
 }
-const We = e.ref(""), fe = e.ref({ tab: "home", seq: 0 });
+const We = e.ref(""), Ne = e.ref({ tab: "home", seq: 0 });
 function ve(l) {
-  fe.value = { tab: l, seq: fe.value.seq + 1 };
+  Ne.value = { tab: l, seq: Ne.value.seq + 1 };
 }
 const nt = e.ref("");
 function xt(l) {
@@ -67,7 +67,7 @@ function xt(l) {
 }
 function me(l) {
   const v = l.kind === "task" ? "tasks" : l.kind === "meeting" || l.kind === "meeting_plan" ? "meetings" : "projects";
-  fe.value = { tab: v, link: l, seq: fe.value.seq + 1 };
+  Ne.value = { tab: v, link: l, seq: Ne.value.seq + 1 };
 }
 const Xe = {
   pending_upload: t.t("待上传"),
@@ -224,24 +224,24 @@ function Ct(l, v = "", n) {
   const c = y.filter((i) => !o.has(i.deptId));
   return c.length && s.push({ id: "", name: t.t("其他"), people: c }), s;
 }
-const ge = (l) => String(l).padStart(2, "0");
-function $e(l) {
+const fe = (l) => String(l).padStart(2, "0");
+function he(l) {
   if (!l) return "-";
   const v = new Date(l);
-  return `${v.getFullYear()}-${ge(v.getMonth() + 1)}-${ge(v.getDate())} ${ge(v.getHours())}:${ge(v.getMinutes())}`;
+  return `${v.getFullYear()}-${fe(v.getMonth() + 1)}-${fe(v.getDate())} ${fe(v.getHours())}:${fe(v.getMinutes())}`;
 }
 function Tt(l) {
   if (!l) return "-";
   const v = new Date(l);
-  return `${ge(v.getMonth() + 1)}-${ge(v.getDate())}`;
+  return `${fe(v.getMonth() + 1)}-${fe(v.getDate())}`;
 }
 function Ye(l) {
   const v = new Date(l);
-  return `${v.getFullYear()}-${ge(v.getMonth() + 1)}-${ge(v.getDate())}`;
+  return `${v.getFullYear()}-${fe(v.getMonth() + 1)}-${fe(v.getDate())}`;
 }
 function rl(l) {
   const v = new Date(l);
-  return `${Ye(l)}T${ge(v.getHours())}:${ge(v.getMinutes())}`;
+  return `${Ye(l)}T${fe(v.getHours())}:${fe(v.getMinutes())}`;
 }
 function il(l) {
   const v = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(l || "");
@@ -255,13 +255,13 @@ function dl(l) {
   const v = Math.round(Number(l) || 0);
   if (!v) return "";
   const n = Math.max(1, Math.round(v / 60));
-  return n < 60 ? t.t("{n} 分钟", { n }) : t.t("{h} 小时 {m} 分", { h: Math.floor(n / 60), m: ge(n % 60) });
+  return n < 60 ? t.t("{n} 分钟", { n }) : t.t("{h} 小时 {m} 分", { h: Math.floor(n / 60), m: fe(n % 60) });
 }
 function ml(l) {
   const v = Math.max(0, Math.floor(l / 1e3));
   if (v < 60) return t.t("{n} 秒", { n: v });
   const n = Math.floor(v / 60);
-  return n < 60 ? t.t("{m} 分 {s} 秒", { m: n, s: v % 60 }) : t.t("{h} 小时 {m} 分", { h: Math.floor(n / 60), m: ge(n % 60) });
+  return n < 60 ? t.t("{m} 分 {s} 秒", { m: n, s: v % 60 }) : t.t("{h} 小时 {m} 分", { h: Math.floor(n / 60), m: fe(n % 60) });
 }
 function ul(l) {
   return l >= 5 && l < 11 ? t.t("早上好") : l >= 11 && l < 13 ? t.t("中午好") : l >= 13 && l < 18 ? t.t("下午好") : t.t("晚上好");
@@ -426,15 +426,15 @@ function _l(l, v) {
   const n = v.trim().toLowerCase();
   return n ? l.filter((u) => [u.title, u.meetingTitle, u.deptName, u.assigneeName, u.ownerName, u.projectName, u.standard].some((y) => String(y || "").toLowerCase().includes(n))) : l;
 }
-function Ve(l) {
+function Ee(l) {
   const v = Number(l);
   return Number.isFinite(v) ? Math.max(0, Math.min(100, Math.round(v))) : 0;
 }
 function vt(l, v) {
-  return v > 0 ? Ve(l / v * 100) : 0;
+  return v > 0 ? Ee(l / v * 100) : 0;
 }
 const ke = (l) => String(l).padStart(2, "0");
-function Ee(l, v = !1) {
+function $e(l, v = !1) {
   if (!l) return "—";
   const n = new Date(l), u = `${n.getFullYear()}-${ke(n.getMonth() + 1)}-${ke(n.getDate())} ${ke(n.getHours())}:${ke(n.getMinutes())}`;
   return v ? `${u}:${ke(n.getSeconds())}` : u;
@@ -661,7 +661,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
     compact: { type: Boolean }
   },
   setup(l) {
-    const v = ie.useNotificationStore(), n = e.ref({ ...oe.value?.mobile ?? {}, running: !!oe.value?.mobile.running }), u = e.ref(!1), y = e.ref(""), s = e.ref(""), o = e.ref(""), c = e.ref(!1), i = e.computed(() => oe.value?.me?.person ?? null), k = e.computed(() => !!oe.value?.me?.isAdmin);
+    const v = ce.useNotificationStore(), n = e.ref({ ...oe.value?.mobile ?? {}, running: !!oe.value?.mobile.running }), u = e.ref(!1), y = e.ref(""), s = e.ref(""), o = e.ref(""), c = e.ref(!1), i = e.computed(() => oe.value?.me?.person ?? null), k = e.computed(() => !!oe.value?.me?.isAdmin);
     async function E() {
       if (s.value = "", o.value = "", c.value = !1, !(!n.value.running || !i.value))
         try {
@@ -691,7 +691,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
         u.value = !1;
       }
     }
-    async function f() {
+    async function N() {
       s.value && await Qe(s.value) && v.success(t.t("已复制专属链接"));
     }
     function w(g) {
@@ -702,7 +702,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
     });
     let a = null;
     return e.onMounted(() => {
-      m().then(E), a = be((g) => {
+      m().then(E), a = _e((g) => {
         g.type === "mobile" && (n.value = { ...n.value, running: g.running, url: g.url }, oe.value && (oe.value.mobile = { ...oe.value.mobile, running: g.running, url: g.url }), m());
       }), document.addEventListener("keydown", w);
     }), e.onBeforeUnmount(() => {
@@ -877,7 +877,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                       type: "button",
                       class: "ss-btn sm",
                       "data-test": "mm-mobile-copy",
-                      onClick: f
+                      onClick: N
                     }, [
                       D[14] || (D[14] = e.createElementVNode(
                         "i",
@@ -1175,7 +1175,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                       type: "button",
                       class: "ss-link",
                       "data-test": "mm-mobile-copy",
-                      onClick: f
+                      onClick: N
                     },
                     e.toDisplayString(g.$t("复制链接")),
                     1
@@ -1404,7 +1404,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
       { key: "urgent", title: t.t("紧急") },
       { key: "today", title: t.t("今天") },
       { key: "week", title: t.t("本周") }
-    ], o = e.ref(null), c = e.ref(""), i = e.ref(!1), k = e.ref("all"), E = e.ref(!1), m = e.ref(!1), r = e.ref([]), f = e.computed(() => oe.value?.me ?? o.value?.me ?? null), w = e.computed(() => oe.value?.me?.isAdmin && oe.value?.pushFailed || 0), a = e.computed(() => ul((/* @__PURE__ */ new Date()).getHours())), g = e.computed(() => Et(o.value?.todos ?? [], "all")), D = e.computed(() => Et(o.value?.todos ?? [], k.value)), P = e.computed(() => g.value.today.length), L = e.computed(() => {
+    ], o = e.ref(null), c = e.ref(""), i = e.ref(!1), k = e.ref("all"), E = e.ref(!1), m = e.ref(!1), r = e.ref([]), N = e.computed(() => oe.value?.me ?? o.value?.me ?? null), w = e.computed(() => oe.value?.me?.isAdmin && oe.value?.pushFailed || 0), a = e.computed(() => ul((/* @__PURE__ */ new Date()).getHours())), g = e.computed(() => Et(o.value?.todos ?? [], "all")), D = e.computed(() => Et(o.value?.todos ?? [], k.value)), P = e.computed(() => g.value.today.length), j = e.computed(() => {
       const V = g.value.urgent.length, d = P.value;
       let p;
       V && d ? p = t.t("今天有 {urgent}、{n} 件需在今天完成的事项", { urgent: Ke, n: d }) : V ? p = t.t("今天有 {urgent}的事项", { urgent: Ke }) : d ? p = t.t("今天有 {n} 件需在今天完成的事项", { n: d }) : p = t.t("今天没有紧急或需要今天完成的事项");
@@ -1414,7 +1414,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
     function q(V) {
       return V.type === "update_progress" && V.urgency === "urgent" ? t.t("任务逾期") : tl[V.type] || V.type;
     }
-    const _ = (V) => Math.max(0, Math.min(100, Math.round(Number(V) || 0)));
+    const B = (V) => Math.max(0, Math.min(100, Math.round(Number(V) || 0)));
     async function S() {
       try {
         o.value = await J("home.get"), c.value = "", m.value && (r.value = await J("notice.list", {}));
@@ -1537,25 +1537,25 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
               e.createElementVNode(
                 "h2",
                 null,
-                e.toDisplayString(V.$t("{greet}，{name}", { greet: a.value, name: o.value.greetingName || f.value?.person?.name || "" })),
+                e.toDisplayString(V.$t("{greet}，{name}", { greet: a.value, name: o.value.greetingName || N.value?.person?.name || "" })),
                 1
                 /* TEXT */
               ),
               e.createElementVNode("p", Mn, [
                 e.createTextVNode(
-                  e.toDisplayString(L.value.before),
+                  e.toDisplayString(j.value.before),
                   1
                   /* TEXT */
                 ),
-                L.value.red ? (e.openBlock(), e.createElementBlock(
+                j.value.red ? (e.openBlock(), e.createElementBlock(
                   "b",
                   An,
-                  e.toDisplayString(L.value.red),
+                  e.toDisplayString(j.value.red),
                   1
                   /* TEXT */
                 )) : e.createCommentVNode("v-if", !0),
                 e.createTextVNode(
-                  e.toDisplayString(L.value.after),
+                  e.toDisplayString(j.value.after),
                   1
                   /* TEXT */
                 )
@@ -1799,7 +1799,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                           key: z.id,
                           class: e.normalizeClass(["mm-todo", { urgent: z.urgency === "urgent" }]),
                           "data-test": `mm-todo-${z.id}`,
-                          onClick: (Q) => e.unref(me)(z.link)
+                          onClick: (X) => e.unref(me)(z.link)
                         }, [
                           e.createElementVNode(
                             "span",
@@ -1837,7 +1837,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                           e.createElementVNode("button", {
                             type: "button",
                             class: e.normalizeClass(["mm-btn", z.urgency === "urgent" ? "primary" : "soft"]),
-                            onClick: e.withModifiers((Q) => e.unref(me)(z.link), ["stop"])
+                            onClick: e.withModifiers((X) => e.unref(me)(z.link), ["stop"])
                           }, e.toDisplayString(e.unref(ll)[z.type]), 11, Jn)
                         ], 10, Hn))),
                         128
@@ -2104,7 +2104,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                             "i",
                             {
                               class: e.normalizeClass({ bad: p.overdue }),
-                              style: e.normalizeStyle({ width: `${_(p.percent)}%` })
+                              style: e.normalizeStyle({ width: `${B(p.percent)}%` })
                             },
                             null,
                             6
@@ -2114,7 +2114,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                         e.createElementVNode(
                           "span",
                           yo,
-                          e.toDisplayString(_(p.percent)) + "%",
+                          e.toDisplayString(B(p.percent)) + "%",
                           1
                           /* TEXT */
                         ),
@@ -2444,22 +2444,22 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
   },
   emits: ["changed", "log", "wait"],
   setup(l, { emit: v }) {
-    const n = l, u = v, y = ie.useNotificationStore(), s = e.ref(!1), o = e.ref(""), c = e.computed(() => n.detail.meeting), i = e.computed(() => n.detail.names[c.value.hostId]?.name || ""), k = e.computed(() => {
-      const L = c.value.process;
-      return n.live ? { stage: n.live.stage, progress: n.live.progress, text: n.live.text } : { stage: L?.stage || "extract", progress: L?.progress || 0, text: L?.log?.length ? L.log[L.log.length - 1].text : "" };
+    const n = l, u = v, y = ce.useNotificationStore(), s = e.ref(!1), o = e.ref(""), c = e.computed(() => n.detail.meeting), i = e.computed(() => n.detail.names[c.value.hostId]?.name || ""), k = e.computed(() => {
+      const j = c.value.process;
+      return n.live ? { stage: n.live.stage, progress: n.live.progress, text: n.live.text } : { stage: j?.stage || "extract", progress: j?.progress || 0, text: j?.log?.length ? j.log[j.log.length - 1].text : "" };
     }), E = e.computed(() => Math.max(0, Math.min(100, Math.round(k.value.progress || 0)))), m = e.computed(() => {
-      const L = c.value.files || [];
-      if (L.length && L.every((I) => I.kind === "transcript")) return ["parse", "organize"];
-      const C = L.some((I) => I.kind === "video") ? ["extract", "transcribe", "diarize", "organize"] : ["transcribe", "diarize", "organize"];
+      const j = c.value.files || [];
+      if (j.length && j.every((I) => I.kind === "transcript")) return ["parse", "organize"];
+      const C = j.some((I) => I.kind === "video") ? ["extract", "transcribe", "diarize", "organize"] : ["transcribe", "diarize", "organize"];
       return C.includes(k.value.stage) ? C : ["extract", "transcribe", "diarize", "parse", "organize"];
-    }), r = e.computed(() => Math.max(0, m.value.indexOf(k.value.stage))), f = e.computed(() => c.value.process?.startedAt || 0), w = e.computed(() => Math.max(Nl(c.value.process, n.live?.at) || 0, n.waitFrom || 0)), a = e.computed(() => !!w.value && n.now - w.value > Vl), g = e.computed(() => Math.floor((n.now - w.value) / 6e4));
+    }), r = e.computed(() => Math.max(0, m.value.indexOf(k.value.stage))), N = e.computed(() => c.value.process?.startedAt || 0), w = e.computed(() => Math.max(Nl(c.value.process, n.live?.at) || 0, n.waitFrom || 0)), a = e.computed(() => !!w.value && n.now - w.value > Vl), g = e.computed(() => Math.floor((n.now - w.value) / 6e4));
     async function D() {
       if (!s.value) {
         s.value = !0, o.value = "";
         try {
           await J("meeting.pickFiles", { id: c.value.id }) && y.success(t.t("文件已上传，开始处理")), u("changed");
-        } catch (L) {
-          o.value = x.errorMessage(L);
+        } catch (j) {
+          o.value = x.errorMessage(j);
         } finally {
           s.value = !1;
         }
@@ -2470,14 +2470,14 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
         s.value = !0, o.value = "";
         try {
           await J("meeting.retry", { id: c.value.id }), u("changed");
-        } catch (L) {
-          o.value = x.errorMessage(L);
+        } catch (j) {
+          o.value = x.errorMessage(j);
         } finally {
           s.value = !1;
         }
       }
     }
-    return (L, C) => (e.openBlock(), e.createElementBlock("section", Ao, [
+    return (j, C) => (e.openBlock(), e.createElementBlock("section", Ao, [
       e.createCommentVNode(" 待上传 "),
       c.value.status === "pending_upload" ? (e.openBlock(), e.createElementBlock(
         e.Fragment,
@@ -2497,14 +2497,14 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
             e.createElementVNode(
               "strong",
               null,
-              e.toDisplayString(L.$t("上传会议录音、录屏或文字记录")),
+              e.toDisplayString(j.$t("上传会议录音、录屏或文字记录")),
               1
               /* TEXT */
             ),
             e.createElementVNode(
               "p",
               null,
-              e.toDisplayString(L.$t("优先上传录音或录屏：系统按停顿切段转写，再和本场参会人的声纹比对，自动认出谁在说话。只有文字记录时，没有发言人标注的段落要你手动分配。")),
+              e.toDisplayString(j.$t("优先上传录音或录屏：系统按停顿切段转写，再和本场参会人的声纹比对，自动认出谁在说话。只有文字记录时，没有发言人标注的段落要你手动分配。")),
               1
               /* TEXT */
             ),
@@ -2525,7 +2525,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                 /* CLASS */
               ),
               e.createTextVNode(
-                e.toDisplayString(s.value ? L.$t("正在拷入文件…") : L.$t("选择文件")),
+                e.toDisplayString(s.value ? j.$t("正在拷入文件…") : j.$t("选择文件")),
                 1
                 /* TEXT */
               )
@@ -2535,12 +2535,12 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                 e.createElementVNode(
                   "b",
                   null,
-                  e.toDisplayString(L.$t("录音")),
+                  e.toDisplayString(j.$t("录音")),
                   1
                   /* TEXT */
                 ),
                 e.createTextVNode(
-                  e.toDisplayString(L.$t("mp3、m4a、wav、aac、amr、flac、ogg、opus、wma 等")),
+                  e.toDisplayString(j.$t("mp3、m4a、wav、aac、amr、flac、ogg、opus、wma 等")),
                   1
                   /* TEXT */
                 )
@@ -2549,12 +2549,12 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                 e.createElementVNode(
                   "b",
                   null,
-                  e.toDisplayString(L.$t("录屏")),
+                  e.toDisplayString(j.$t("录屏")),
                   1
                   /* TEXT */
                 ),
                 e.createTextVNode(
-                  e.toDisplayString(L.$t("mp4、mov、mkv、avi、flv、wmv、webm 等，自动提取音轨")),
+                  e.toDisplayString(j.$t("mp4、mov、mkv、avi、flv、wmv、webm 等，自动提取音轨")),
                   1
                   /* TEXT */
                 )
@@ -2563,12 +2563,12 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                 e.createElementVNode(
                   "b",
                   null,
-                  e.toDisplayString(L.$t("文字记录")),
+                  e.toDisplayString(j.$t("文字记录")),
                   1
                   /* TEXT */
                 ),
                 e.createTextVNode(
-                  e.toDisplayString(L.$t("txt、md、docx、srt、vtt、json，跳过转写，按参会昵称匹配员工")),
+                  e.toDisplayString(j.$t("txt、md、docx、srt、vtt、json，跳过转写，按参会昵称匹配员工")),
                   1
                   /* TEXT */
                 )
@@ -2577,7 +2577,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
             e.createElementVNode(
               "small",
               Fo,
-              e.toDisplayString(L.$t("扩展名不认识的文件会先探测，有音轨就当录音处理；可以一次选多个文件。")),
+              e.toDisplayString(j.$t("扩展名不认识的文件会先探测，有音轨就当录音处理；可以一次选多个文件。")),
               1
               /* TEXT */
             )
@@ -2590,7 +2590,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(L.$t("等待主持人 {name} 上传会议文件", { name: i.value })),
+              e.toDisplayString(j.$t("等待主持人 {name} 上传会议文件", { name: i.value })),
               1
               /* TEXT */
             )
@@ -2670,10 +2670,10 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                 -1
                 /* CACHED */
               )),
-              f.value ? (e.openBlock(), e.createElementBlock(
+              N.value ? (e.openBlock(), e.createElementBlock(
                 "span",
                 Ho,
-                e.toDisplayString(L.$t("已用时 {t}", { t: e.unref(ml)(l.now - f.value) })),
+                e.toDisplayString(j.$t("已用时 {t}", { t: e.unref(ml)(l.now - N.value) })),
                 1
                 /* TEXT */
               )) : e.createCommentVNode("v-if", !0)
@@ -2689,7 +2689,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
               e.createElementVNode(
                 "span",
                 null,
-                e.toDisplayString(L.$t("已经 {m} 分钟没有新进度。长录音转写较慢，可以继续等待；也可以看看处理日志。", { m: g.value })),
+                e.toDisplayString(j.$t("已经 {m} 分钟没有新进度。长录音转写较慢，可以继续等待；也可以看看处理日志。", { m: g.value })),
                 1
                 /* TEXT */
               ),
@@ -2700,7 +2700,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                   class: "ss-link",
                   onClick: C[0] || (C[0] = (I) => u("wait"))
                 },
-                e.toDisplayString(L.$t("继续等待")),
+                e.toDisplayString(j.$t("继续等待")),
                 1
                 /* TEXT */
               ),
@@ -2711,14 +2711,14 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                   class: "ss-link",
                   onClick: C[1] || (C[1] = (I) => u("log"))
                 },
-                e.toDisplayString(L.$t("查看日志")),
+                e.toDisplayString(j.$t("查看日志")),
                 1
                 /* TEXT */
               )
             ])) : (e.openBlock(), e.createElementBlock(
               "small",
               Go,
-              e.toDisplayString(L.$t("处理在后台进行，可以先去做别的事；完成后发言人会收到确认通知。")),
+              e.toDisplayString(j.$t("处理在后台进行，可以先去做别的事；完成后发言人会收到确认通知。")),
               1
               /* TEXT */
             ))
@@ -2742,7 +2742,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
             e.createElementVNode(
               "span",
               null,
-              e.toDisplayString(L.$t("处理失败（{stage}）：{error}", { stage: e.unref(je)[c.value.process?.stage || "extract"], error: c.value.process?.error || L.$t("未知原因") })),
+              e.toDisplayString(j.$t("处理失败（{stage}）：{error}", { stage: e.unref(je)[c.value.process?.stage || "extract"], error: c.value.process?.error || j.$t("未知原因") })),
               1
               /* TEXT */
             )
@@ -2766,7 +2766,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                 /* CLASS */
               ),
               e.createTextVNode(
-                e.toDisplayString(L.$t("重试")),
+                e.toDisplayString(j.$t("重试")),
                 1
                 /* TEXT */
               )
@@ -2786,7 +2786,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(L.$t("换文件重新上传")),
+                e.toDisplayString(j.$t("换文件重新上传")),
                 1
                 /* TEXT */
               )
@@ -2804,7 +2804,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(L.$t("查看处理日志")),
+                e.toDisplayString(j.$t("查看处理日志")),
                 1
                 /* TEXT */
               )
@@ -2812,7 +2812,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
             l.detail.my.isHost ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
               "span",
               Xo,
-              e.toDisplayString(L.$t("等待主持人 {name} 重试", { name: i.value })),
+              e.toDisplayString(j.$t("等待主持人 {name} 重试", { name: i.value })),
               1
               /* TEXT */
             ))
@@ -2872,126 +2872,126 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
   },
   emits: ["update:modelValue", "change", "update:values"],
   setup(l, { emit: v }) {
-    const n = l, u = v, y = e.ref(null), s = e.ref(null), o = e.ref(null), c = e.ref(!1), i = e.ref(""), k = e.ref(0), E = e.ref(null), m = e.ref(!1), r = e.ref({}), f = `mm-pss-${Math.random().toString(36).slice(2, 9)}`, w = `${f}-list`, a = e.computed(() => n.placeholder || t.t("搜索姓名、拼音或部门")), g = e.computed(() => n.people ?? E.value ?? { depts: [], people: [] }), D = (N) => g.value.depts.find((j) => j.id === N)?.name || "";
+    const n = l, u = v, y = e.ref(null), s = e.ref(null), o = e.ref(null), c = e.ref(!1), i = e.ref(""), k = e.ref(0), E = e.ref(null), m = e.ref(!1), r = e.ref({}), N = `mm-pss-${Math.random().toString(36).slice(2, 9)}`, w = `${N}-list`, a = e.computed(() => n.placeholder || t.t("搜索姓名、拼音或部门")), g = e.computed(() => n.people ?? E.value ?? { depts: [], people: [] }), D = (f) => g.value.depts.find((L) => L.id === f)?.name || "";
     let P = null;
-    const L = e.ref(!1);
+    const j = e.ref(!1);
     function C() {
-      P || L.value || Promise.resolve().then(() => T$).then((N) => {
-        P = N.pinyin, L.value = !0;
+      P || j.value || Promise.resolve().then(() => A$).then((f) => {
+        P = f.pinyin, j.value = !0;
       }).catch(() => {
       });
     }
     const I = /* @__PURE__ */ new Map();
-    function U(N) {
-      if (!P || !/[㐀-鿿]/.test(N)) return "";
-      const j = I.get(N);
-      if (j !== void 0) return j;
-      let Z = "";
+    function U(f) {
+      if (!P || !/[㐀-鿿]/.test(f)) return "";
+      const L = I.get(f);
+      if (L !== void 0) return L;
+      let Q = "";
       try {
-        const X = P(N, { toneType: "none", type: "array" }).map((se) => String(se).toLowerCase());
-        Z = `${X.join("")} ${X.map((se) => se[0] || "").join("")}`;
+        const Z = P(f, { toneType: "none", type: "array" }).map((se) => String(se).toLowerCase());
+        Q = `${Z.join("")} ${Z.map((se) => se[0] || "").join("")}`;
       } catch {
-        Z = "";
+        Q = "";
       }
-      return I.set(N, Z), Z;
+      return I.set(f, Q), Q;
     }
-    function q(N, j, Z, X, se = "") {
-      const ye = D(Z) || se, _e = re(j), Te = n.hint?.(N) || "";
-      return L.value, {
-        value: N,
-        label: j,
-        sub: [ye, X].filter(Boolean).join(" · "),
+    function q(f, L, Q, Z, se = "") {
+      const ye = D(Q) || se, be = re(L), Te = n.hint?.(f) || "";
+      return j.value, {
+        value: f,
+        label: L,
+        sub: [ye, Z].filter(Boolean).join(" · "),
         hint: Te,
-        initial: _e.text,
-        color: _e.color,
-        deptId: Z,
-        search: `${j} ${ye} ${X || ""} ${U(j)}`.toLowerCase()
+        initial: be.text,
+        color: be.color,
+        deptId: Q,
+        search: `${L} ${ye} ${Z || ""} ${U(L)}`.toLowerCase()
       };
     }
-    const _ = e.computed(() => {
-      const N = n.only ? new Set(n.only) : null, j = new Set(n.exclude ?? []);
-      return g.value.people.filter((Z) => !Z.left && (!N || N.has(Z.id)) && !j.has(Z.id)).map((Z) => q(Z.id, Z.name, Z.deptId, Z.title));
-    }), S = e.computed(() => (n.extras ?? []).map((N) => {
-      const j = re(N.label);
-      return { value: N.value, label: N.label, sub: N.sub || "", hint: "", initial: j.text, color: j.color, deptId: "", search: `${N.label} ${N.sub || ""} ${U(N.label)}`.toLowerCase() };
+    const B = e.computed(() => {
+      const f = n.only ? new Set(n.only) : null, L = new Set(n.exclude ?? []);
+      return g.value.people.filter((Q) => !Q.left && (!f || f.has(Q.id)) && !L.has(Q.id)).map((Q) => q(Q.id, Q.name, Q.deptId, Q.title));
+    }), S = e.computed(() => (n.extras ?? []).map((f) => {
+      const L = re(f.label);
+      return { value: f.value, label: f.label, sub: f.sub || "", hint: "", initial: L.text, color: L.color, deptId: "", search: `${f.label} ${f.sub || ""} ${U(f.label)}`.toLowerCase() };
     })), b = e.computed(() => {
-      const N = new Set(n.exclude ?? []);
-      return (n.pinned ?? []).filter((j) => !N.has(j)).map((j) => {
-        const Z = g.value.people.find((se) => se.id === j);
-        if (Z) return q(Z.id, Z.name, Z.deptId, Z.title);
-        const X = n.names?.[j];
-        return q(j, X?.name || j, "", void 0, X?.deptName || "");
+      const f = new Set(n.exclude ?? []);
+      return (n.pinned ?? []).filter((L) => !f.has(L)).map((L) => {
+        const Q = g.value.people.find((se) => se.id === L);
+        if (Q) return q(Q.id, Q.name, Q.deptId, Q.title);
+        const Z = n.names?.[L];
+        return q(L, Z?.name || L, "", void 0, Z?.deptName || "");
       });
     });
-    function M(N, j) {
-      return j ? j.split(/\s+/).filter(Boolean).every((Z) => N.search.includes(Z)) : !0;
+    function M(f, L) {
+      return L ? L.split(/\s+/).filter(Boolean).every((Q) => f.search.includes(Q)) : !0;
     }
     const T = e.computed(() => {
-      const N = i.value.trim().toLowerCase(), j = [], Z = S.value.filter((ue) => M(ue, N));
-      Z.length && j.push({ key: "__extras", label: n.extrasLabel || t.t("本场发言人"), options: Z });
-      const X = b.value.filter((ue) => M(ue, N));
-      X.length && j.push({ key: "__pinned", label: n.pinnedLabel || t.t("本场参会人"), options: X });
-      const se = new Set(n.pinned ?? []), ye = _.value.filter((ue) => !se.has(ue.value) && M(ue, N)), _e = /* @__PURE__ */ new Set();
+      const f = i.value.trim().toLowerCase(), L = [], Q = S.value.filter((ue) => M(ue, f));
+      Q.length && L.push({ key: "__extras", label: n.extrasLabel || t.t("本场发言人"), options: Q });
+      const Z = b.value.filter((ue) => M(ue, f));
+      Z.length && L.push({ key: "__pinned", label: n.pinnedLabel || t.t("本场参会人"), options: Z });
+      const se = new Set(n.pinned ?? []), ye = B.value.filter((ue) => !se.has(ue.value) && M(ue, f)), be = /* @__PURE__ */ new Set();
       for (const ue of g.value.depts) {
-        _e.add(ue.id);
+        be.add(ue.id);
         const Re = ye.filter((tt) => tt.deptId === ue.id);
-        Re.length && j.push({ key: ue.id, label: ue.name, options: Re });
+        Re.length && L.push({ key: ue.id, label: ue.name, options: Re });
       }
-      const Te = ye.filter((ue) => !_e.has(ue.deptId));
-      return Te.length && j.push({ key: "__other", label: t.t("其他"), options: Te }), j;
-    }), G = e.computed(() => T.value.flatMap((N) => N.options)), V = e.computed(() => n.multiple ? n.values.filter(Boolean) : n.modelValue ? [n.modelValue] : []), d = (N) => V.value.includes(N), p = e.computed(() => n.multiple ? null : Q(n.modelValue)), z = e.computed(() => V.value.map(Q).filter((N) => !!N));
-    function Q(N) {
-      return N ? S.value.find((j) => j.value === N) ?? b.value.find((j) => j.value === N) ?? _.value.find((j) => j.value === N) ?? (() => {
-        const j = g.value.people.find((X) => X.id === N), Z = n.names?.[N];
-        return j || Z ? q(N, j?.name || Z.name, j?.deptId || "", j?.title, Z?.deptName || "") : null;
+      const Te = ye.filter((ue) => !be.has(ue.deptId));
+      return Te.length && L.push({ key: "__other", label: t.t("其他"), options: Te }), L;
+    }), G = e.computed(() => T.value.flatMap((f) => f.options)), V = e.computed(() => n.multiple ? n.values.filter(Boolean) : n.modelValue ? [n.modelValue] : []), d = (f) => V.value.includes(f), p = e.computed(() => n.multiple ? null : X(n.modelValue)), z = e.computed(() => V.value.map(X).filter((f) => !!f));
+    function X(f) {
+      return f ? S.value.find((L) => L.value === f) ?? b.value.find((L) => L.value === f) ?? B.value.find((L) => L.value === f) ?? (() => {
+        const L = g.value.people.find((Z) => Z.id === f), Q = n.names?.[f];
+        return L || Q ? q(f, L?.name || Q.name, L?.deptId || "", L?.title, Q?.deptName || "") : null;
       })() : null;
     }
-    const le = (N) => `${f}-${N.value.replace(/[^A-Za-z0-9_-]/g, "_")}`;
-    function H() {
-      const N = y.value;
-      if (!N) return;
-      const j = N.getBoundingClientRect(), Z = window.innerHeight || 800, X = Z - j.bottom - 12, se = j.top - 12, ye = X < 220 && se > X, _e = Math.max(160, Math.min(340, ye ? se : X));
+    const le = (f) => `${N}-${f.value.replace(/[^A-Za-z0-9_-]/g, "_")}`;
+    function W() {
+      const f = y.value;
+      if (!f) return;
+      const L = f.getBoundingClientRect(), Q = window.innerHeight || 800, Z = Q - L.bottom - 12, se = L.top - 12, ye = Z < 220 && se > Z, be = Math.max(160, Math.min(340, ye ? se : Z));
       r.value = {
         position: "fixed",
-        left: `${Math.round(j.left)}px`,
-        width: `${Math.round(Math.max(j.width, 260))}px`,
-        maxHeight: `${Math.round(_e)}px`,
-        ...ye ? { bottom: `${Math.round(Z - j.top + 4)}px` } : { top: `${Math.round(j.bottom + 4)}px` }
+        left: `${Math.round(L.left)}px`,
+        width: `${Math.round(Math.max(L.width, 260))}px`,
+        maxHeight: `${Math.round(be)}px`,
+        ...ye ? { bottom: `${Math.round(Q - L.top + 4)}px` } : { top: `${Math.round(L.bottom + 4)}px` }
       };
     }
     function Y() {
-      c.value && H();
+      c.value && W();
     }
-    function te() {
+    function ee() {
       if (n.disabled || c.value) return;
-      C(), !n.people && !E.value && !m.value && (m.value = !0, De().then((j) => {
-        E.value = j;
+      C(), !n.people && !E.value && !m.value && (m.value = !0, De().then((L) => {
+        E.value = L;
       }).catch(() => {
       }).finally(() => {
         m.value = !1;
       })), i.value = "", c.value = !0;
-      const N = G.value.findIndex((j) => d(j.value));
-      k.value = N >= 0 ? N : 0, H(), window.addEventListener("scroll", Y, !0), window.addEventListener("resize", Y), e.nextTick(B);
+      const f = G.value.findIndex((L) => d(L.value));
+      k.value = f >= 0 ? f : 0, W(), window.addEventListener("scroll", Y, !0), window.addEventListener("resize", Y), e.nextTick(_);
     }
     function ne() {
       c.value && (c.value = !1, i.value = "", window.removeEventListener("scroll", Y, !0), window.removeEventListener("resize", Y));
     }
-    function $(N) {
+    function $(f) {
       if (!n.disabled) {
-        if (N.target !== s.value && N.preventDefault(), c.value && N.target !== s.value) {
+        if (f.target !== s.value && f.preventDefault(), c.value && f.target !== s.value) {
           ne();
           return;
         }
-        s.value?.focus(), te();
+        s.value?.focus(), ee();
       }
     }
     function O() {
       ne();
     }
-    function R(N) {
-      if (!N) return;
-      const j = V.value;
-      j.includes(N) ? u("update:values", j.filter((Z) => Z !== N)) : (!n.max || j.length < n.max) && u("update:values", [...j, N]), i.value = "";
+    function R(f) {
+      if (!f) return;
+      const L = V.value;
+      L.includes(f) ? u("update:values", L.filter((Q) => Q !== f)) : (!n.max || L.length < n.max) && u("update:values", [...L, f]), i.value = "";
     }
     function F() {
       if (n.multiple) {
@@ -3000,51 +3000,51 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
       }
       K("");
     }
-    function K(N) {
+    function K(f) {
       if (n.multiple) {
-        R(N);
+        R(f);
         return;
       }
-      N !== n.modelValue && (u("update:modelValue", N), u("change", N)), ne(), s.value?.blur();
+      f !== n.modelValue && (u("update:modelValue", f), u("change", f)), ne(), s.value?.blur();
     }
-    function B() {
-      const N = G.value[k.value];
-      if (!N || !o.value) return;
-      o.value.querySelector(`#${CSS.escape(le(N))}`)?.scrollIntoView?.({ block: "nearest" });
+    function _() {
+      const f = G.value[k.value];
+      if (!f || !o.value) return;
+      o.value.querySelector(`#${CSS.escape(le(f))}`)?.scrollIntoView?.({ block: "nearest" });
     }
-    function h(N) {
-      if (n.multiple && N.key === "Backspace" && !i.value && V.value.length) {
+    function h(f) {
+      if (n.multiple && f.key === "Backspace" && !i.value && V.value.length) {
         R(V.value[V.value.length - 1]);
         return;
       }
-      if (!c.value && (N.key === "ArrowDown" || N.key === "Enter")) {
-        N.preventDefault(), te();
+      if (!c.value && (f.key === "ArrowDown" || f.key === "Enter")) {
+        f.preventDefault(), ee();
         return;
       }
       if (!c.value) return;
-      const j = G.value.length;
-      if (N.key === "ArrowDown")
-        N.preventDefault(), j && (k.value = (k.value + 1) % j), e.nextTick(B);
-      else if (N.key === "ArrowUp")
-        N.preventDefault(), j && (k.value = (k.value - 1 + j) % j), e.nextTick(B);
-      else if (N.key === "Enter") {
-        N.preventDefault();
-        const Z = G.value[k.value];
-        Z && K(Z.value);
-      } else N.key === "Escape" ? (N.preventDefault(), N.stopPropagation(), ne()) : N.key === "Tab" && ne();
+      const L = G.value.length;
+      if (f.key === "ArrowDown")
+        f.preventDefault(), L && (k.value = (k.value + 1) % L), e.nextTick(_);
+      else if (f.key === "ArrowUp")
+        f.preventDefault(), L && (k.value = (k.value - 1 + L) % L), e.nextTick(_);
+      else if (f.key === "Enter") {
+        f.preventDefault();
+        const Q = G.value[k.value];
+        Q && K(Q.value);
+      } else f.key === "Escape" ? (f.preventDefault(), f.stopPropagation(), ne()) : f.key === "Tab" && ne();
     }
-    return e.watch(() => G.value.length, (N) => {
-      k.value >= N && (k.value = Math.max(0, N - 1));
-    }), e.watch(() => n.disabled, (N) => {
-      N && ne();
+    return e.watch(() => G.value.length, (f) => {
+      k.value >= f && (k.value = Math.max(0, f - 1));
+    }), e.watch(() => n.disabled, (f) => {
+      f && ne();
     }), e.onMounted(() => {
-      !n.people && V.value.length && (m.value = !0, De().then((N) => {
-        E.value = N;
+      !n.people && V.value.length && (m.value = !0, De().then((f) => {
+        E.value = f;
       }).catch(() => {
       }).finally(() => {
         m.value = !1;
       }));
-    }), e.onBeforeUnmount(ne), (N, j) => (e.openBlock(), e.createElementBlock(
+    }), e.onBeforeUnmount(ne), (f, L) => (e.openBlock(), e.createElementBlock(
       "div",
       {
         ref_key: "root",
@@ -3053,7 +3053,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
         onMousedown: $
       },
       [
-        j[7] || (j[7] = e.createElementVNode(
+        L[7] || (L[7] = e.createElementVNode(
           "i",
           {
             class: "ri-search-line mm-pss__icon",
@@ -3067,23 +3067,23 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
         l.multiple ? (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           { key: 0 },
-          e.renderList(z.value, (Z) => (e.openBlock(), e.createElementBlock("span", {
-            key: Z.value,
+          e.renderList(z.value, (Q) => (e.openBlock(), e.createElementBlock("span", {
+            key: Q.value,
             class: "mm-pss__chip",
-            "data-test": l.dataTest ? `${l.dataTest}-chip-${Z.value}` : void 0
+            "data-test": l.dataTest ? `${l.dataTest}-chip-${Q.value}` : void 0
           }, [
             e.createElementVNode(
               "span",
               {
                 class: "mm-pss__av",
-                style: e.normalizeStyle({ background: Z.color })
+                style: e.normalizeStyle({ background: Q.color })
               },
-              e.toDisplayString(Z.initial),
+              e.toDisplayString(Q.initial),
               5
               /* TEXT, STYLE */
             ),
             e.createTextVNode(
-              e.toDisplayString(Z.label) + " ",
+              e.toDisplayString(Q.label) + " ",
               1
               /* TEXT */
             ),
@@ -3091,12 +3091,12 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
               key: 0,
               type: "button",
               class: "mm-pss__chip-x",
-              "aria-label": N.$t("移除 {name}", { name: Z.label }),
-              "data-test": l.dataTest ? `${l.dataTest}-chip-x-${Z.value}` : void 0,
-              onMousedown: j[0] || (j[0] = e.withModifiers(() => {
+              "aria-label": f.$t("移除 {name}", { name: Q.label }),
+              "data-test": l.dataTest ? `${l.dataTest}-chip-x-${Q.value}` : void 0,
+              onMousedown: L[0] || (L[0] = e.withModifiers(() => {
               }, ["prevent", "stop"])),
-              onClick: (X) => R(Z.value)
-            }, [...j[5] || (j[5] = [
+              onClick: (Z) => R(Q.value)
+            }, [...L[5] || (L[5] = [
               e.createElementVNode(
                 "i",
                 { class: "ri-close-line" },
@@ -3142,7 +3142,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
         e.withDirectives(e.createElementVNode("input", {
           ref_key: "inputEl",
           ref: s,
-          "onUpdate:modelValue": j[1] || (j[1] = (Z) => i.value = Z),
+          "onUpdate:modelValue": L[1] || (L[1] = (Q) => i.value = Q),
           class: e.normalizeClass(["mm-pss__input", { ghost: !l.multiple && !c.value && !!p.value }]),
           type: "text",
           role: "combobox",
@@ -3156,8 +3156,8 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
           placeholder: l.multiple ? V.value.length ? "" : a.value : !c.value && p.value ? "" : a.value,
           disabled: l.disabled,
           "data-test": l.dataTest,
-          onFocus: te,
-          onInput: j[2] || (j[2] = (Z) => k.value = 0),
+          onFocus: ee,
+          onInput: L[2] || (L[2] = (Q) => k.value = 0),
           onKeydown: h,
           onBlur: O
         }, null, 42, ra), [
@@ -3167,12 +3167,12 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
           key: 2,
           type: "button",
           class: "mm-pss__clear",
-          "aria-label": N.$t("清除"),
+          "aria-label": f.$t("清除"),
           "data-test": l.dataTest ? `${l.dataTest}-clear` : void 0,
-          onMousedown: j[3] || (j[3] = e.withModifiers(() => {
+          onMousedown: L[3] || (L[3] = e.withModifiers(() => {
           }, ["prevent", "stop"])),
           onClick: F
-        }, [...j[6] || (j[6] = [
+        }, [...L[6] || (L[6] = [
           e.createElementVNode(
             "i",
             { class: "ri-close-circle-fill" },
@@ -3192,70 +3192,70 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
             "aria-multiselectable": l.multiple || void 0,
             style: e.normalizeStyle(r.value),
             "data-test": l.dataTest ? `${l.dataTest}-list` : void 0,
-            onMousedown: j[4] || (j[4] = e.withModifiers(() => {
+            onMousedown: L[4] || (L[4] = e.withModifiers(() => {
             }, ["prevent"]))
           }, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(T.value, (Z) => (e.openBlock(), e.createElementBlock(
+              e.renderList(T.value, (Q) => (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 {
-                  key: Z.key
+                  key: Q.key
                 },
                 [
                   e.createElementVNode(
                     "div",
                     ma,
-                    e.toDisplayString(Z.label),
+                    e.toDisplayString(Q.label),
                     1
                     /* TEXT */
                   ),
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(Z.options, (X) => (e.openBlock(), e.createElementBlock("div", {
-                      id: le(X),
-                      key: X.value,
+                    e.renderList(Q.options, (Z) => (e.openBlock(), e.createElementBlock("div", {
+                      id: le(Z),
+                      key: Z.value,
                       role: "option",
-                      "aria-selected": d(X.value),
-                      class: e.normalizeClass(["mm-pss-pop__opt", { active: G.value[k.value]?.value === X.value, sel: d(X.value) }]),
-                      "data-test": l.dataTest ? `${l.dataTest}-opt-${X.value}` : void 0,
-                      onMouseenter: (se) => k.value = G.value.indexOf(X),
-                      onClick: (se) => K(X.value)
+                      "aria-selected": d(Z.value),
+                      class: e.normalizeClass(["mm-pss-pop__opt", { active: G.value[k.value]?.value === Z.value, sel: d(Z.value) }]),
+                      "data-test": l.dataTest ? `${l.dataTest}-opt-${Z.value}` : void 0,
+                      onMouseenter: (se) => k.value = G.value.indexOf(Z),
+                      onClick: (se) => K(Z.value)
                     }, [
                       e.createElementVNode(
                         "span",
                         {
                           class: "mm-pss__av",
-                          style: e.normalizeStyle({ background: X.color })
+                          style: e.normalizeStyle({ background: Z.color })
                         },
-                        e.toDisplayString(X.initial),
+                        e.toDisplayString(Z.initial),
                         5
                         /* TEXT, STYLE */
                       ),
                       e.createElementVNode(
                         "span",
                         pa,
-                        e.toDisplayString(X.label),
+                        e.toDisplayString(Z.label),
                         1
                         /* TEXT */
                       ),
-                      X.sub ? (e.openBlock(), e.createElementBlock(
+                      Z.sub ? (e.openBlock(), e.createElementBlock(
                         "small",
                         va,
-                        e.toDisplayString(X.sub),
+                        e.toDisplayString(Z.sub),
                         1
                         /* TEXT */
                       )) : e.createCommentVNode("v-if", !0),
-                      X.hint ? (e.openBlock(), e.createElementBlock(
+                      Z.hint ? (e.openBlock(), e.createElementBlock(
                         "em",
                         ka,
-                        e.toDisplayString(X.hint),
+                        e.toDisplayString(Z.hint),
                         1
                         /* TEXT */
                       )) : e.createCommentVNode("v-if", !0),
-                      d(X.value) ? (e.openBlock(), e.createElementBlock("i", ya)) : e.createCommentVNode("v-if", !0)
+                      d(Z.value) ? (e.openBlock(), e.createElementBlock("i", ya)) : e.createCommentVNode("v-if", !0)
                     ], 42, ua))),
                     128
                     /* KEYED_FRAGMENT */
@@ -3270,7 +3270,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
             G.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
               "div",
               ga,
-              e.toDisplayString(m.value ? N.$t("正在加载人员…") : i.value.trim() ? N.$t("没有找到「{q}」", { q: i.value.trim() }) : N.$t("没有可选的人员")),
+              e.toDisplayString(m.value ? f.$t("正在加载人员…") : i.value.trim() ? f.$t("没有找到「{q}」", { q: i.value.trim() }) : f.$t("没有可选的人员")),
               1
               /* TEXT */
             ))
@@ -3297,7 +3297,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
   },
   emits: ["changed"],
   setup(l, { emit: v }) {
-    const n = l, u = v, y = e.reactive({}), s = e.reactive({}), o = e.ref(""), c = e.ref(""), i = e.ref(""), k = e.ref(""), E = e.computed(() => n.detail.meeting), m = e.computed(() => E.value.status !== "pending_assign"), r = e.ref(!m.value), f = e.computed(() => ["pending_assign", "pending_confirm", "pending_review"].includes(E.value.status)), w = e.ref({ depts: [], people: [] });
+    const n = l, u = v, y = e.reactive({}), s = e.reactive({}), o = e.ref(""), c = e.ref(""), i = e.ref(""), k = e.ref(""), E = e.computed(() => n.detail.meeting), m = e.computed(() => E.value.status !== "pending_assign"), r = e.ref(!m.value), N = e.computed(() => ["pending_assign", "pending_confirm", "pending_review"].includes(E.value.status)), w = e.ref({ depts: [], people: [] });
     e.onMounted(async () => {
       try {
         w.value = await De();
@@ -3305,43 +3305,43 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
       }
     });
     const a = e.computed(() => n.detail.names[E.value.hostId]?.name || ""), g = (q) => n.detail.names[q]?.name || q, D = e.computed(() => {
-      const q = E.value.speakers.map((_) => {
-        const S = E.value.segments.filter((T) => T.speakerLabel === _.label).sort((T, G) => T.start - G.start), b = S.filter((T) => T.text.trim()).slice(0, 2).map((T) => T.text.length > 60 ? `${T.text.slice(0, 60)}…` : T.text), M = S.reduce((T, G) => T + Math.max(0, G.end - G.start), 0);
-        return { ..._, count: S.length, seconds: M, samples: b };
+      const q = E.value.speakers.map((B) => {
+        const S = E.value.segments.filter((T) => T.speakerLabel === B.label).sort((T, G) => T.start - G.start), b = S.filter((T) => T.text.trim()).slice(0, 2).map((T) => T.text.length > 60 ? `${T.text.slice(0, 60)}…` : T.text), M = S.reduce((T, G) => T + Math.max(0, G.end - G.start), 0);
+        return { ...B, count: S.length, seconds: M, samples: b };
       });
-      return [...q.filter((_) => !_.personId), ...q.filter((_) => _.personId)];
+      return [...q.filter((B) => !B.personId), ...q.filter((B) => B.personId)];
     }), P = e.computed(() => D.value.filter((q) => !q.personId));
-    function L(q, _) {
-      return E.value.speakers.find((S) => S.personId === q && S.label !== _)?.label || "";
+    function j(q, B) {
+      return E.value.speakers.find((S) => S.personId === q && S.label !== B)?.label || "";
     }
-    function C(q, _) {
-      i.value = q, s[q] = _ || "";
+    function C(q, B) {
+      i.value = q, s[q] = B || "";
     }
     async function I(q) {
       if (y[q]) {
-        const _ = y[q];
+        const B = y[q];
         y[q] = "", setTimeout(() => {
-          y[q] = _;
+          y[q] = B;
         }, 0);
         return;
       }
       o.value = q, k.value = "";
       try {
-        const _ = await J("meeting.speaker.clip", { id: E.value.id, label: q });
-        if (!_?.dataUrl) throw new Error(t.t("这位发言人没有可试听的片段"));
-        y[q] = _.dataUrl;
-      } catch (_) {
-        k.value = x.errorMessage(_);
+        const B = await J("meeting.speaker.clip", { id: E.value.id, label: q });
+        if (!B?.dataUrl) throw new Error(t.t("这位发言人没有可试听的片段"));
+        y[q] = B.dataUrl;
+      } catch (B) {
+        k.value = x.errorMessage(B);
       } finally {
         o.value = "";
       }
     }
     async function U(q) {
-      const _ = s[q];
-      if (_) {
+      const B = s[q];
+      if (B) {
         c.value = q, k.value = "";
         try {
-          await J("meeting.speaker.assign", { id: E.value.id, label: q, personId: _ }), i.value = "", u("changed");
+          await J("meeting.speaker.assign", { id: E.value.id, label: q, personId: B }), i.value = "", u("changed");
         } catch (S) {
           k.value = x.errorMessage(S);
         } finally {
@@ -3349,7 +3349,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
         }
       }
     }
-    return (q, _) => (e.openBlock(), e.createElementBlock(
+    return (q, B) => (e.openBlock(), e.createElementBlock(
       "section",
       {
         class: e.normalizeClass(["mm-sa", { quiet: m.value }]),
@@ -3371,7 +3371,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
             1
             /* TEXT */
           ),
-          _[2] || (_[2] = e.createElementVNode(
+          B[2] || (B[2] = e.createElementVNode(
             "span",
             { class: "mm-grow" },
             null,
@@ -3384,7 +3384,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
             class: "ss-link",
             "aria-expanded": r.value,
             "data-test": "mm-speaker-toggle",
-            onClick: _[0] || (_[0] = (S) => r.value = !r.value)
+            onClick: B[0] || (B[0] = (S) => r.value = !r.value)
           }, [
             e.createTextVNode(
               e.toDisplayString(r.value ? q.$t("收起") : q.$t("展开")),
@@ -3403,7 +3403,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
           ], 8, Ea)) : e.createCommentVNode("v-if", !0)
         ]),
         !l.detail.my.isHost && !m.value ? (e.openBlock(), e.createElementBlock("p", $a, [
-          _[3] || (_[3] = e.createElementVNode(
+          B[3] || (B[3] = e.createElementVNode(
             "i",
             { class: "ri-time-line" },
             null,
@@ -3526,7 +3526,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                           /* STABLE_FRAGMENT */
                         )) : e.createCommentVNode("v-if", !0)
                       ]),
-                      l.detail.my.isHost && f.value ? (e.openBlock(), e.createElementBlock("button", {
+                      l.detail.my.isHost && N.value ? (e.openBlock(), e.createElementBlock("button", {
                         key: 0,
                         type: "button",
                         class: "ss-link",
@@ -3535,7 +3535,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                     ],
                     64
                     /* STABLE_FRAGMENT */
-                  )) : l.detail.my.isHost && f.value ? (e.openBlock(), e.createElementBlock(
+                  )) : l.detail.my.isHost && N.value ? (e.openBlock(), e.createElementBlock(
                     e.Fragment,
                     { key: 1 },
                     [
@@ -3547,7 +3547,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                         pinned: E.value.attendeeIds,
                         "pinned-label": q.$t("本场参会人"),
                         names: l.detail.names,
-                        hint: (b) => L(b, S.label) ? q.$t("（已指认给 {l}）", { l: L(b, S.label) }) : "",
+                        hint: (b) => j(b, S.label) ? q.$t("（已指认给 {l}）", { l: j(b, S.label) }) : "",
                         "aria-label": q.$t("选择发言人…"),
                         "data-test": `mm-speaker-pick-${S.label}`
                       }, null, 8, ["model-value", "onUpdate:modelValue", "people", "pinned", "pinned-label", "names", "hint", "aria-label", "data-test"]),
@@ -3579,7 +3579,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                           key: 0,
                           type: "button",
                           class: "ss-link",
-                          onClick: _[1] || (_[1] = (b) => i.value = "")
+                          onClick: B[1] || (B[1] = (b) => i.value = "")
                         },
                         e.toDisplayString(q.$t("取消")),
                         1
@@ -3601,7 +3601,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
               /* KEYED_FRAGMENT */
             )),
             k.value ? (e.openBlock(), e.createElementBlock("p", Aa, [
-              _[4] || (_[4] = e.createElementVNode(
+              B[4] || (B[4] = e.createElementVNode(
                 "i",
                 { class: "ri-error-warning-line" },
                 null,
@@ -3667,20 +3667,20 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
   setup(l, { emit: v }) {
     const n = l, u = v, y = e.computed(() => n.detail.meeting), s = e.computed(() => !["finalized", "ended", "pending_owner", "plan_confirm", "dispatched"].includes(y.value.status)), o = e.computed(() => n.detail.my.isHost && ["pending_assign", "pending_confirm", "pending_review"].includes(y.value.status)), c = e.computed(() => n.detail.my.isHost && !s.value && n.detail.projectStatus !== "archived"), i = e.ref(!1), k = e.ref(""), E = e.ref(""), m = e.ref("");
     let r = 0;
-    const f = e.reactive({ decisions: [], summary: ["", "", ""] });
+    const N = e.reactive({ decisions: [], summary: ["", "", ""] });
     function w() {
-      f.decisions = y.value.decisions.map((P) => ({ key: ++r, id: P.id, text: P.text })), f.summary = [0, 1, 2].map((P) => y.value.summaryLines[P] || ""), E.value = "", m.value = "", i.value = !0;
+      N.decisions = y.value.decisions.map((P) => ({ key: ++r, id: P.id, text: P.text })), N.summary = [0, 1, 2].map((P) => y.value.summaryLines[P] || ""), E.value = "", m.value = "", i.value = !0;
     }
     function a() {
-      f.decisions.push({ key: ++r, text: "" });
+      N.decisions.push({ key: ++r, text: "" });
     }
     async function g() {
       k.value = "save", E.value = "";
       try {
         await J("meeting.minutes.save", {
           id: y.value.id,
-          decisions: f.decisions.map((P) => ({ ...P.id ? { id: P.id } : {}, text: P.text })),
-          summaryLines: f.summary.map((P) => P.trim()).filter(Boolean)
+          decisions: N.decisions.map((P) => ({ ...P.id ? { id: P.id } : {}, text: P.text })),
+          summaryLines: N.summary.map((P) => P.trim()).filter(Boolean)
         }), i.value = !1, u("changed");
       } catch (P) {
         E.value = x.errorMessage(P);
@@ -3701,7 +3701,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
         }
       }
     }
-    return (P, L) => (e.openBlock(), e.createElementBlock("section", Fa, [
+    return (P, j) => (e.openBlock(), e.createElementBlock("section", Fa, [
       e.createElementVNode("h5", null, [
         e.createTextVNode(
           e.toDisplayString(P.$t("AI 识别的决议事项")) + " ",
@@ -3715,7 +3715,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
           1
           /* TEXT */
         ),
-        L[2] || (L[2] = e.createElementVNode(
+        j[2] || (j[2] = e.createElementVNode(
           "span",
           { class: "mm-grow" },
           null,
@@ -3733,7 +3733,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
               "data-test": "mm-minutes-edit",
               onClick: w
             }, [
-              L[1] || (L[1] = e.createElementVNode(
+              j[1] || (j[1] = e.createElementVNode(
                 "i",
                 { class: "ri-pencil-line" },
                 null,
@@ -3778,7 +3778,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(f.decisions, (C, I) => (e.openBlock(), e.createElementBlock("div", {
+          e.renderList(N.decisions, (C, I) => (e.openBlock(), e.createElementBlock("div", {
             key: C.key,
             class: "mm-mde__row"
           }, [
@@ -3801,8 +3801,8 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
               type: "button",
               class: "mm-mde__del",
               "aria-label": P.$t("删除这条决议"),
-              onClick: (U) => f.decisions.splice(I, 1)
-            }, [...L[3] || (L[3] = [
+              onClick: (U) => N.decisions.splice(I, 1)
+            }, [...j[3] || (j[3] = [
               e.createElementVNode(
                 "i",
                 { class: "ri-close-line" },
@@ -3821,7 +3821,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
           "data-test": "mm-decision-add",
           onClick: a
         }, [
-          L[4] || (L[4] = e.createElementVNode(
+          j[4] || (j[4] = e.createElementVNode(
             "i",
             { class: "ri-add-line" },
             null,
@@ -3844,15 +3844,15 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
           null,
-          e.renderList(f.summary, (C, I) => e.withDirectives((e.openBlock(), e.createElementBlock("input", {
+          e.renderList(N.summary, (C, I) => e.withDirectives((e.openBlock(), e.createElementBlock("input", {
             key: I,
-            "onUpdate:modelValue": (U) => f.summary[I] = U,
+            "onUpdate:modelValue": (U) => N.summary[I] = U,
             type: "text",
             maxlength: "200",
             "aria-label": P.$t("摘要第 {n} 行", { n: I + 1 }),
             "data-test": `mm-summary-input-${I}`
           }, null, 8, Za)), [
-            [e.vModelText, f.summary[I]]
+            [e.vModelText, N.summary[I]]
           ])),
           128
           /* KEYED_FRAGMENT */
@@ -3884,7 +3884,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
             type: "button",
             class: "ss-link",
             disabled: !!k.value,
-            onClick: L[0] || (L[0] = (C) => i.value = !1)
+            onClick: j[0] || (j[0] = (C) => i.value = !1)
           }, e.toDisplayString(P.$t("取消")), 9, es)
         ])
       ])) : (e.openBlock(), e.createElementBlock(
@@ -3975,7 +3975,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
         /* STABLE_FRAGMENT */
       )),
       m.value ? (e.openBlock(), e.createElementBlock("p", ts, [
-        L[5] || (L[5] = e.createElementVNode(
+        j[5] || (j[5] = e.createElementVNode(
           "i",
           { class: "ri-information-line" },
           null,
@@ -3989,7 +3989,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
         )
       ])) : e.createCommentVNode("v-if", !0),
       E.value ? (e.openBlock(), e.createElementBlock("p", ls, [
-        L[6] || (L[6] = e.createElementVNode(
+        j[6] || (j[6] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
           null,
@@ -4024,9 +4024,9 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
       set: (a) => {
         o.value = a ? a.startsWith("label:") ? a : `person:${a}` : "";
       }
-    }), f = e.computed(() => o.value && o.value !== `label:${s.value}`);
+    }), N = e.computed(() => o.value && o.value !== `label:${s.value}`);
     async function w() {
-      if (!f.value || c.value) return;
+      if (!N.value || c.value) return;
       const [a, g] = [o.value.slice(0, o.value.indexOf(":")), o.value.slice(o.value.indexOf(":") + 1)];
       c.value = !0, i.value = "";
       try {
@@ -4061,7 +4061,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
       e.createElementVNode("button", {
         type: "button",
         class: "ss-btn sm primary",
-        disabled: c.value || !f.value,
+        disabled: c.value || !N.value,
         "data-test": `mm-seg-speaker-save-${l.segmentId}`,
         onClick: w
       }, [
@@ -4155,9 +4155,9 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
   },
   emits: ["changed"],
   setup(l, { emit: v }) {
-    const n = l, u = v, y = e.ref("topic"), s = e.ref(/* @__PURE__ */ new Set()), o = e.ref(""), c = e.ref(""), i = e.ref(""), k = e.ref(""), E = e.ref(""), m = e.ref(!1), r = e.ref(""), f = e.computed(() => n.detail.meeting), w = e.computed(() => oe.value?.me?.person?.id), a = e.computed(() => new Map(f.value.segments.map((h) => [h.id, h]))), g = e.computed(() => fl(n.detail)), D = e.computed(() => [...f.value.segments].sort((h, N) => h.start - N.start)), P = e.computed(() => f.value.confirmations.find((h) => h.personId === w.value)), L = e.computed(() => f.value.status === "pending_review" && n.detail.my.isHost), C = e.computed(() => n.detail.my.isHost && ["pending_assign", "pending_confirm", "pending_review"].includes(f.value.status)), I = ["finalized", "ended", "pending_owner", "plan_confirm", "dispatched"], U = e.computed(() => I.includes(f.value.status)), q = e.computed(() => U.value && n.detail.my.isHost && n.detail.projectStatus !== "archived"), _ = e.computed(() => f.value.files.some((h) => h.kind === "audio" || h.kind === "video")), S = e.computed(() => {
-      const h = (f.value.topics || []).length, N = h ? t.t("AI 整理 · {n} 个议题", { n: h }) : t.t("AI 整理");
-      return L.value ? `${N} · ${t.t("悬停段落可修改、退回或改发言人")}` : f.value.status === "pending_confirm" && n.detail.my.isHost ? `${N} · ${t.t("悬停段落可补全文字或改发言人")}` : f.value.status === "pending_confirm" && P.value ? `${N} · ${t.t("悬停本人发言可补全或修改")}` : C.value ? `${N} · ${t.t("发言人认错了：悬停段落可改发言人")}` : q.value ? `${N} · ${t.t("纪要已定稿；发现错字可悬停段落修改")}` : U.value ? `${N} · ${t.t("纪要已定稿")}` : N;
+    const n = l, u = v, y = e.ref("topic"), s = e.ref(/* @__PURE__ */ new Set()), o = e.ref(""), c = e.ref(""), i = e.ref(""), k = e.ref(""), E = e.ref(""), m = e.ref(!1), r = e.ref(""), N = e.computed(() => n.detail.meeting), w = e.computed(() => oe.value?.me?.person?.id), a = e.computed(() => new Map(N.value.segments.map((h) => [h.id, h]))), g = e.computed(() => fl(n.detail)), D = e.computed(() => [...N.value.segments].sort((h, f) => h.start - f.start)), P = e.computed(() => N.value.confirmations.find((h) => h.personId === w.value)), j = e.computed(() => N.value.status === "pending_review" && n.detail.my.isHost), C = e.computed(() => n.detail.my.isHost && ["pending_assign", "pending_confirm", "pending_review"].includes(N.value.status)), I = ["finalized", "ended", "pending_owner", "plan_confirm", "dispatched"], U = e.computed(() => I.includes(N.value.status)), q = e.computed(() => U.value && n.detail.my.isHost && n.detail.projectStatus !== "archived"), B = e.computed(() => N.value.files.some((h) => h.kind === "audio" || h.kind === "video")), S = e.computed(() => {
+      const h = (N.value.topics || []).length, f = h ? t.t("AI 整理 · {n} 个议题", { n: h }) : t.t("AI 整理");
+      return j.value ? `${f} · ${t.t("悬停段落可修改、退回或改发言人")}` : N.value.status === "pending_confirm" && n.detail.my.isHost ? `${f} · ${t.t("悬停段落可补全文字或改发言人")}` : N.value.status === "pending_confirm" && P.value ? `${f} · ${t.t("悬停本人发言可补全或修改")}` : C.value ? `${f} · ${t.t("发言人认错了：悬停段落可改发言人")}` : q.value ? `${f} · ${t.t("纪要已定稿；发现错字可悬停段落修改")}` : U.value ? `${f} · ${t.t("纪要已定稿")}` : f;
     });
     function b(h) {
       return a.value.get(h)?.speakerLabel || "";
@@ -4169,12 +4169,12 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
       return gl(n.detail, b(h), w.value);
     }
     function G(h) {
-      return L.value || q.value ? !0 : f.value.status !== "pending_confirm" || n.detail.projectStatus === "archived" ? !1 : n.detail.my.isHost || T(h);
+      return j.value || q.value ? !0 : N.value.status !== "pending_confirm" || n.detail.projectStatus === "archived" ? !1 : n.detail.my.isHost || T(h);
     }
     function V(h) {
-      if (!L.value) return !1;
-      const N = Le(f.value, b(h));
-      return !!N && f.value.confirmations.some((j) => j.personId === N);
+      if (!j.value) return !1;
+      const f = Le(N.value, b(h));
+      return !!f && N.value.confirmations.some((L) => L.personId === f);
     }
     function d(h) {
       return {
@@ -4187,42 +4187,42 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
       return s.value.has(h);
     }
     function z(h) {
-      const N = new Set(s.value);
-      N.has(h) ? N.delete(h) : N.add(h), s.value = N;
+      const f = new Set(s.value);
+      f.has(h) ? f.delete(h) : f.add(h), s.value = f;
     }
     e.watch(() => g.value.map((h) => h.id).join("|"), () => {
-      const h = g.value[0]?.id, N = new Set([...s.value].filter((j) => g.value.some((Z) => Z.id === j)));
-      !N.size && h && N.add(h), s.value = N;
+      const h = g.value[0]?.id, f = new Set([...s.value].filter((L) => g.value.some((Q) => Q.id === L)));
+      !f.size && h && f.add(h), s.value = f;
     }, { immediate: !0 }), e.watch(() => [n.anchor, n.anchorSeq], async () => {
       const h = n.anchor;
       if (!h || !a.value.has(h)) return;
-      const N = g.value.find((X) => X.segmentIds.includes(h));
-      N && !s.value.has(N.id) && (s.value = /* @__PURE__ */ new Set([...s.value, N.id])), await e.nextTick();
-      const j = typeof CSS < "u" && typeof CSS.escape == "function" ? CSS.escape(h) : h.replace(/["\\]/g, "\\$&");
-      document.querySelector(`[data-seg="${j}"]`)?.scrollIntoView?.({ block: "center", behavior: "smooth" });
+      const f = g.value.find((Z) => Z.segmentIds.includes(h));
+      f && !s.value.has(f.id) && (s.value = /* @__PURE__ */ new Set([...s.value, f.id])), await e.nextTick();
+      const L = typeof CSS < "u" && typeof CSS.escape == "function" ? CSS.escape(h) : h.replace(/["\\]/g, "\\$&");
+      document.querySelector(`[data-seg="${L}"]`)?.scrollIntoView?.({ block: "center", behavior: "smooth" });
     }, { immediate: !0 });
-    const Q = e.ref(""), le = e.ref(""), H = /* @__PURE__ */ new Map();
+    const X = e.ref(""), le = e.ref(""), W = /* @__PURE__ */ new Map();
     let Y = null;
-    function te(h) {
-      return le.value === h ? "ri-loader-4-line spin" : Q.value === h ? "ri-pause-fill" : "ri-play-fill";
+    function ee(h) {
+      return le.value === h ? "ri-loader-4-line spin" : X.value === h ? "ri-pause-fill" : "ri-play-fill";
     }
     async function ne(h) {
-      if (Q.value === h && Y) {
-        Y.pause(), Q.value = "";
+      if (X.value === h && Y) {
+        Y.pause(), X.value = "";
         return;
       }
-      Y?.pause(), Q.value = "", le.value = h, r.value = "";
+      Y?.pause(), X.value = "", le.value = h, r.value = "";
       try {
-        let N = H.get(h);
-        if (!N) {
-          if (N = (await J("meeting.segment.audio", { id: f.value.id, segmentId: h }))?.dataUrl || "", !N) throw new Error(t.t("这段没有可播放的原声"));
-          H.size >= 30 && H.delete(H.keys().next().value), H.set(h, N);
+        let f = W.get(h);
+        if (!f) {
+          if (f = (await J("meeting.segment.audio", { id: N.value.id, segmentId: h }))?.dataUrl || "", !f) throw new Error(t.t("这段没有可播放的原声"));
+          W.size >= 30 && W.delete(W.keys().next().value), W.set(h, f);
         }
         Y || (Y = new Audio(), Y.onended = () => {
-          Q.value = "";
-        }), Y.src = N, await Y.play(), Q.value = h;
-      } catch (N) {
-        r.value = x.errorMessage(N);
+          X.value = "";
+        }), Y.src = f, await Y.play(), X.value = h;
+      } catch (f) {
+        r.value = x.errorMessage(f);
       } finally {
         le.value = "";
       }
@@ -4243,34 +4243,34 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
       o.value = "", E.value = "", i.value = h, k.value = "";
     }
     async function K(h) {
-      const N = c.value.trim();
-      if (!(!N || m.value)) {
+      const f = c.value.trim();
+      if (!(!f || m.value)) {
         m.value = !0, r.value = "";
         try {
-          await J("meeting.segment.edit", { id: f.value.id, segmentId: h, text: N }), o.value = "", u("changed");
-        } catch (j) {
-          r.value = x.errorMessage(j);
+          await J("meeting.segment.edit", { id: N.value.id, segmentId: h, text: f }), o.value = "", u("changed");
+        } catch (L) {
+          r.value = x.errorMessage(L);
         } finally {
           m.value = !1;
         }
       }
     }
-    async function B(h) {
-      const N = Le(f.value, b(h));
-      if (!N || m.value) return;
-      const j = n.detail.names[N]?.name || "";
-      if (window.confirm(t.t("把这段退回给 {name} 重新确认？只有 {name} 需要重新确认。", { name: j }))) {
+    async function _(h) {
+      const f = Le(N.value, b(h));
+      if (!f || m.value) return;
+      const L = n.detail.names[f]?.name || "";
+      if (window.confirm(t.t("把这段退回给 {name} 重新确认？只有 {name} 需要重新确认。", { name: L }))) {
         m.value = !0, r.value = "";
         try {
-          await J("meeting.review.return", { id: f.value.id, personId: N, note: k.value.trim() }), i.value = "", u("changed");
-        } catch (Z) {
-          r.value = x.errorMessage(Z);
+          await J("meeting.review.return", { id: N.value.id, personId: f, note: k.value.trim() }), i.value = "", u("changed");
+        } catch (Q) {
+          r.value = x.errorMessage(Q);
         } finally {
           m.value = !1;
         }
       }
     }
-    return (h, N) => (e.openBlock(), e.createElementBlock("section", cs, [
+    return (h, f) => (e.openBlock(), e.createElementBlock("section", cs, [
       e.createElementVNode("div", ds, [
         e.createElementVNode("div", ms, [
           e.createElementVNode("button", {
@@ -4279,7 +4279,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
             class: e.normalizeClass({ on: y.value === "topic" }),
             "aria-selected": y.value === "topic",
             "data-test": "mm-minutes-topic",
-            onClick: N[0] || (N[0] = (j) => y.value = "topic")
+            onClick: f[0] || (f[0] = (L) => y.value = "topic")
           }, e.toDisplayString(h.$t("按议题")), 11, us),
           e.createElementVNode("button", {
             type: "button",
@@ -4287,7 +4287,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
             class: e.normalizeClass({ on: y.value === "timeline" }),
             "aria-selected": y.value === "timeline",
             "data-test": "mm-minutes-timeline",
-            onClick: N[1] || (N[1] = (j) => y.value = "timeline")
+            onClick: f[1] || (f[1] = (L) => y.value = "timeline")
           }, e.toDisplayString(h.$t("按时间线")), 11, ps)
         ]),
         e.createElementVNode(
@@ -4298,7 +4298,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
           /* TEXT */
         )
       ]),
-      f.value.segments.length ? y.value === "topic" ? (e.openBlock(), e.createElementBlock(
+      N.value.segments.length ? y.value === "topic" ? (e.openBlock(), e.createElementBlock(
         e.Fragment,
         { key: 1 },
         [
@@ -4306,21 +4306,21 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(g.value, (j, Z) => (e.openBlock(), e.createElementBlock("div", {
-              key: j.id,
-              class: e.normalizeClass(["mm-topic", { open: p(j.id) }]),
-              "data-test": `mm-topic-${j.id}`
+            e.renderList(g.value, (L, Q) => (e.openBlock(), e.createElementBlock("div", {
+              key: L.id,
+              class: e.normalizeClass(["mm-topic", { open: p(L.id) }]),
+              "data-test": `mm-topic-${L.id}`
             }, [
               e.createElementVNode("button", {
                 type: "button",
                 class: "mm-topic__head",
-                "aria-expanded": p(j.id),
-                onClick: (X) => z(j.id)
+                "aria-expanded": p(L.id),
+                onClick: (Z) => z(L.id)
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(p(j.id) ? "ri-arrow-down-s-line" : "ri-arrow-right-s-line")
+                    class: e.normalizeClass(p(L.id) ? "ri-arrow-down-s-line" : "ri-arrow-right-s-line")
                   },
                   null,
                   2
@@ -4329,22 +4329,22 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                 e.createElementVNode(
                   "strong",
                   null,
-                  e.toDisplayString(j.id === "__rest" ? j.title : h.$t("议题{n} · {title}", { n: e.unref(vl)(Z), title: j.title })),
+                  e.toDisplayString(L.id === "__rest" ? L.title : h.$t("议题{n} · {title}", { n: e.unref(vl)(Q), title: L.title })),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode("small", null, [
                   e.createTextVNode(
-                    e.toDisplayString(h.$t("{n} 段", { n: j.segmentIds.length })),
+                    e.toDisplayString(h.$t("{n} 段", { n: L.segmentIds.length })),
                     1
                     /* TEXT */
                   ),
-                  !p(j.id) && j.speakers.length ? (e.openBlock(), e.createElementBlock(
+                  !p(L.id) && L.speakers.length ? (e.openBlock(), e.createElementBlock(
                     e.Fragment,
                     { key: 0 },
                     [
                       e.createTextVNode(
-                        " · " + e.toDisplayString(j.speakers.join(e.unref(t.listSeparator)())),
+                        " · " + e.toDisplayString(L.speakers.join(e.unref(t.listSeparator)())),
                         1
                         /* TEXT */
                       )
@@ -4354,28 +4354,28 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                   )) : e.createCommentVNode("v-if", !0)
                 ])
               ], 8, gs),
-              p(j.id) ? (e.openBlock(), e.createElementBlock("div", fs, [
+              p(L.id) ? (e.openBlock(), e.createElementBlock("div", fs, [
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(j.segmentIds, (X) => (e.openBlock(), e.createElementBlock(
+                  e.renderList(L.segmentIds, (Z) => (e.openBlock(), e.createElementBlock(
                     e.Fragment,
-                    { key: X },
+                    { key: Z },
                     [
-                      a.value.get(X) ? (e.openBlock(), e.createElementBlock(
+                      a.value.get(Z) ? (e.openBlock(), e.createElementBlock(
                         "div",
                         e.mergeProps({
                           key: 0,
                           ref_for: !0
-                        }, d(X)),
+                        }, d(Z)),
                         [
                           e.createElementVNode(
                             "span",
                             {
                               class: "mm-av",
-                              style: e.normalizeStyle({ background: e.unref(re)(M(X)).color })
+                              style: e.normalizeStyle({ background: e.unref(re)(M(Z)).color })
                             },
-                            e.toDisplayString(e.unref(re)(M(X)).text),
+                            e.toDisplayString(e.unref(re)(M(Z)).text),
                             5
                             /* TEXT, STYLE */
                           ),
@@ -4384,22 +4384,22 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                               e.createElementVNode(
                                 "span",
                                 Es,
-                                e.toDisplayString(M(X)),
+                                e.toDisplayString(M(Z)),
                                 1
                                 /* TEXT */
                               ),
-                              _.value ? (e.openBlock(), e.createElementBlock("button", {
+                              B.value ? (e.openBlock(), e.createElementBlock("button", {
                                 key: 0,
                                 type: "button",
-                                class: e.normalizeClass(["mm-play", { on: Q.value === X }]),
-                                title: Q.value === X ? h.$t("暂停") : h.$t("播放这段原声"),
-                                "data-test": `mm-seg-play-${X}`,
-                                onClick: (se) => ne(X)
+                                class: e.normalizeClass(["mm-play", { on: X.value === Z }]),
+                                title: X.value === Z ? h.$t("暂停") : h.$t("播放这段原声"),
+                                "data-test": `mm-seg-play-${Z}`,
+                                onClick: (se) => ne(Z)
                               }, [
                                 e.createElementVNode(
                                   "i",
                                   {
-                                    class: e.normalizeClass(te(X))
+                                    class: e.normalizeClass(ee(Z))
                                   },
                                   null,
                                   2
@@ -4408,50 +4408,50 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                                 e.createElementVNode(
                                   "time",
                                   null,
-                                  e.toDisplayString(e.unref(Ae)(a.value.get(X).start)),
+                                  e.toDisplayString(e.unref(Ae)(a.value.get(Z).start)),
                                   1
                                   /* TEXT */
                                 )
                               ], 10, $s)) : (e.openBlock(), e.createElementBlock(
                                 "time",
                                 bs,
-                                e.toDisplayString(e.unref(Ae)(a.value.get(X).start)),
+                                e.toDisplayString(e.unref(Ae)(a.value.get(Z).start)),
                                 1
                                 /* TEXT */
                               )),
-                              T(X) ? (e.openBlock(), e.createElementBlock(
+                              T(Z) ? (e.openBlock(), e.createElementBlock(
                                 "span",
                                 hs,
                                 e.toDisplayString(h.$t("本人")),
                                 1
                                 /* TEXT */
                               )) : e.createCommentVNode("v-if", !0),
-                              a.value.get(X).originalText !== void 0 ? (e.openBlock(), e.createElementBlock("span", {
+                              a.value.get(Z).originalText !== void 0 ? (e.openBlock(), e.createElementBlock("span", {
                                 key: 3,
                                 class: "mm-mini",
-                                title: h.$t("原文：{t}", { t: a.value.get(X).originalText || "" })
+                                title: h.$t("原文：{t}", { t: a.value.get(Z).originalText || "" })
                               }, e.toDisplayString(h.$t("已修改")), 9, _s)) : e.createCommentVNode("v-if", !0),
-                              a.value.get(X).originalSpeakerLabel !== void 0 ? (e.openBlock(), e.createElementBlock("span", {
+                              a.value.get(Z).originalSpeakerLabel !== void 0 ? (e.openBlock(), e.createElementBlock("span", {
                                 key: 4,
                                 class: "mm-mini",
-                                title: h.$t("识别时是 {l}", { l: a.value.get(X).originalSpeakerLabel })
+                                title: h.$t("识别时是 {l}", { l: a.value.get(Z).originalSpeakerLabel })
                               }, e.toDisplayString(h.$t("已改发言人")), 9, Bs)) : e.createCommentVNode("v-if", !0)
                             ]),
-                            E.value === X ? (e.openBlock(), e.createBlock(ht, {
+                            E.value === Z ? (e.openBlock(), e.createBlock(ht, {
                               key: 0,
                               detail: l.detail,
-                              "segment-id": X,
+                              "segment-id": Z,
                               onDone: O
                             }, null, 8, ["detail", "segment-id"])) : e.createCommentVNode("v-if", !0),
-                            o.value === X ? (e.openBlock(), e.createElementBlock(
+                            o.value === Z ? (e.openBlock(), e.createElementBlock(
                               e.Fragment,
                               { key: 1 },
                               [
                                 e.withDirectives(e.createElementVNode("textarea", {
-                                  "onUpdate:modelValue": N[2] || (N[2] = (se) => c.value = se),
+                                  "onUpdate:modelValue": f[2] || (f[2] = (se) => c.value = se),
                                   class: "mm-seg__edit",
                                   rows: "3",
-                                  "data-test": `mm-seg-edit-${X}`
+                                  "data-test": `mm-seg-edit-${Z}`
                                 }, null, 8, Ss), [
                                   [e.vModelText, c.value]
                                 ]),
@@ -4460,8 +4460,8 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                                     type: "button",
                                     class: "ss-btn sm primary",
                                     disabled: m.value || !c.value.trim(),
-                                    "data-test": `mm-seg-save-${X}`,
-                                    onClick: (se) => K(X)
+                                    "data-test": `mm-seg-save-${Z}`,
+                                    onClick: (se) => K(Z)
                                   }, [
                                     e.createElementVNode(
                                       "i",
@@ -4483,7 +4483,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                                     {
                                       type: "button",
                                       class: "ss-link",
-                                      onClick: N[3] || (N[3] = (se) => o.value = "")
+                                      onClick: f[3] || (f[3] = (se) => o.value = "")
                                     },
                                     e.toDisplayString(h.$t("取消")),
                                     1
@@ -4496,16 +4496,16 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                             )) : (e.openBlock(), e.createElementBlock(
                               "p",
                               Cs,
-                              e.toDisplayString(a.value.get(X).text),
+                              e.toDisplayString(a.value.get(Z).text),
                               1
                               /* TEXT */
                             )),
-                            i.value === X ? (e.openBlock(), e.createElementBlock("div", Ts, [
+                            i.value === Z ? (e.openBlock(), e.createElementBlock("div", Ts, [
                               e.withDirectives(e.createElementVNode("input", {
-                                "onUpdate:modelValue": N[4] || (N[4] = (se) => k.value = se),
+                                "onUpdate:modelValue": f[4] || (f[4] = (se) => k.value = se),
                                 type: "text",
                                 placeholder: h.$t("退回原因（发言人会看到），例如：这段数字需要核实"),
-                                "data-test": `mm-seg-return-note-${X}`
+                                "data-test": `mm-seg-return-note-${Z}`
                               }, null, 8, Is), [
                                 [e.vModelText, k.value]
                               ]),
@@ -4513,15 +4513,15 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                                 type: "button",
                                 class: "ss-btn sm danger",
                                 disabled: m.value,
-                                "data-test": `mm-seg-return-ok-${X}`,
-                                onClick: (se) => B(X)
+                                "data-test": `mm-seg-return-ok-${Z}`,
+                                onClick: (se) => _(Z)
                               }, e.toDisplayString(h.$t("确认退回")), 9, Ms),
                               e.createElementVNode(
                                 "button",
                                 {
                                   type: "button",
                                   class: "ss-link",
-                                  onClick: N[5] || (N[5] = (se) => i.value = "")
+                                  onClick: f[5] || (f[5] = (se) => i.value = "")
                                 },
                                 e.toDisplayString(h.$t("取消")),
                                 1
@@ -4529,15 +4529,15 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                               )
                             ])) : e.createCommentVNode("v-if", !0)
                           ]),
-                          o.value !== X && i.value !== X && E.value !== X && (G(X) || V(X) || C.value) ? (e.openBlock(), e.createElementBlock("div", As, [
+                          o.value !== Z && i.value !== Z && E.value !== Z && (G(Z) || V(Z) || C.value) ? (e.openBlock(), e.createElementBlock("div", As, [
                             C.value ? (e.openBlock(), e.createElementBlock("button", {
                               key: 0,
                               type: "button",
                               class: "mm-op",
-                              "data-test": `mm-seg-move-${X}`,
-                              onClick: (se) => $(X)
+                              "data-test": `mm-seg-move-${Z}`,
+                              onClick: (se) => $(Z)
                             }, [
-                              N[10] || (N[10] = e.createElementVNode(
+                              f[10] || (f[10] = e.createElementVNode(
                                 "i",
                                 { class: "ri-user-shared-line" },
                                 null,
@@ -4550,14 +4550,14 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                                 /* TEXT */
                               )
                             ], 8, js)) : e.createCommentVNode("v-if", !0),
-                            G(X) ? (e.openBlock(), e.createElementBlock("button", {
+                            G(Z) ? (e.openBlock(), e.createElementBlock("button", {
                               key: 1,
                               type: "button",
                               class: "mm-op",
-                              "data-test": `mm-seg-modify-${X}`,
-                              onClick: (se) => R(X)
+                              "data-test": `mm-seg-modify-${Z}`,
+                              onClick: (se) => R(Z)
                             }, [
-                              N[11] || (N[11] = e.createElementVNode(
+                              f[11] || (f[11] = e.createElementVNode(
                                 "i",
                                 { class: "ri-pencil-line" },
                                 null,
@@ -4570,12 +4570,12 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                                 /* TEXT */
                               )
                             ], 8, Ls)) : e.createCommentVNode("v-if", !0),
-                            V(X) ? (e.openBlock(), e.createElementBlock("button", {
+                            V(Z) ? (e.openBlock(), e.createElementBlock("button", {
                               key: 2,
                               type: "button",
                               class: "mm-op danger",
-                              "data-test": `mm-seg-return-${X}`,
-                              onClick: (se) => F(X)
+                              "data-test": `mm-seg-return-${Z}`,
+                              onClick: (se) => F(Z)
                             }, e.toDisplayString(h.$t("退回给发言人")), 9, zs)) : e.createCommentVNode("v-if", !0)
                           ])) : e.createCommentVNode("v-if", !0)
                         ],
@@ -4606,19 +4606,19 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(D.value, (j) => (e.openBlock(), e.createElementBlock(
+              e.renderList(D.value, (L) => (e.openBlock(), e.createElementBlock(
                 "div",
                 e.mergeProps({
-                  key: j.id
-                }, { ref_for: !0 }, d(j.id)),
+                  key: L.id
+                }, { ref_for: !0 }, d(L.id)),
                 [
                   e.createElementVNode(
                     "span",
                     {
                       class: "mm-av",
-                      style: e.normalizeStyle({ background: e.unref(re)(M(j.id)).color })
+                      style: e.normalizeStyle({ background: e.unref(re)(M(L.id)).color })
                     },
-                    e.toDisplayString(e.unref(re)(M(j.id)).text),
+                    e.toDisplayString(e.unref(re)(M(L.id)).text),
                     5
                     /* TEXT, STYLE */
                   ),
@@ -4627,22 +4627,22 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                       e.createElementVNode(
                         "span",
                         Os,
-                        e.toDisplayString(M(j.id)),
+                        e.toDisplayString(M(L.id)),
                         1
                         /* TEXT */
                       ),
-                      _.value ? (e.openBlock(), e.createElementBlock("button", {
+                      B.value ? (e.openBlock(), e.createElementBlock("button", {
                         key: 0,
                         type: "button",
-                        class: e.normalizeClass(["mm-play", { on: Q.value === j.id }]),
-                        title: Q.value === j.id ? h.$t("暂停") : h.$t("播放这段原声"),
-                        "data-test": `mm-seg-play-${j.id}`,
-                        onClick: (Z) => ne(j.id)
+                        class: e.normalizeClass(["mm-play", { on: X.value === L.id }]),
+                        title: X.value === L.id ? h.$t("暂停") : h.$t("播放这段原声"),
+                        "data-test": `mm-seg-play-${L.id}`,
+                        onClick: (Q) => ne(L.id)
                       }, [
                         e.createElementVNode(
                           "i",
                           {
-                            class: e.normalizeClass(te(j.id))
+                            class: e.normalizeClass(ee(L.id))
                           },
                           null,
                           2
@@ -4651,49 +4651,49 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                         e.createElementVNode(
                           "time",
                           null,
-                          e.toDisplayString(e.unref(Ae)(j.start)),
+                          e.toDisplayString(e.unref(Ae)(L.start)),
                           1
                           /* TEXT */
                         )
                       ], 10, Rs)) : (e.openBlock(), e.createElementBlock(
                         "time",
                         qs,
-                        e.toDisplayString(e.unref(Ae)(j.start)),
+                        e.toDisplayString(e.unref(Ae)(L.start)),
                         1
                         /* TEXT */
                       )),
-                      T(j.id) ? (e.openBlock(), e.createElementBlock(
+                      T(L.id) ? (e.openBlock(), e.createElementBlock(
                         "span",
                         Ks,
                         e.toDisplayString(h.$t("本人")),
                         1
                         /* TEXT */
                       )) : e.createCommentVNode("v-if", !0),
-                      j.originalText !== void 0 ? (e.openBlock(), e.createElementBlock("span", {
+                      L.originalText !== void 0 ? (e.openBlock(), e.createElementBlock("span", {
                         key: 3,
                         class: "mm-mini",
-                        title: h.$t("原文：{t}", { t: j.originalText || "" })
+                        title: h.$t("原文：{t}", { t: L.originalText || "" })
                       }, e.toDisplayString(h.$t("已修改")), 9, Hs)) : e.createCommentVNode("v-if", !0),
-                      j.originalSpeakerLabel !== void 0 ? (e.openBlock(), e.createElementBlock("span", {
+                      L.originalSpeakerLabel !== void 0 ? (e.openBlock(), e.createElementBlock("span", {
                         key: 4,
                         class: "mm-mini",
-                        title: h.$t("识别时是 {l}", { l: j.originalSpeakerLabel })
+                        title: h.$t("识别时是 {l}", { l: L.originalSpeakerLabel })
                       }, e.toDisplayString(h.$t("已改发言人")), 9, Ws)) : e.createCommentVNode("v-if", !0)
                     ]),
-                    E.value === j.id ? (e.openBlock(), e.createBlock(ht, {
+                    E.value === L.id ? (e.openBlock(), e.createBlock(ht, {
                       key: 0,
                       detail: l.detail,
-                      "segment-id": j.id,
+                      "segment-id": L.id,
                       onDone: O
                     }, null, 8, ["detail", "segment-id"])) : e.createCommentVNode("v-if", !0),
-                    o.value === j.id ? (e.openBlock(), e.createElementBlock(
+                    o.value === L.id ? (e.openBlock(), e.createElementBlock(
                       e.Fragment,
                       { key: 1 },
                       [
                         e.withDirectives(e.createElementVNode(
                           "textarea",
                           {
-                            "onUpdate:modelValue": N[6] || (N[6] = (Z) => c.value = Z),
+                            "onUpdate:modelValue": f[6] || (f[6] = (Q) => c.value = Q),
                             class: "mm-seg__edit",
                             rows: "3"
                           },
@@ -4708,7 +4708,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                             type: "button",
                             class: "ss-btn sm primary",
                             disabled: m.value || !c.value.trim(),
-                            onClick: (Z) => K(j.id)
+                            onClick: (Q) => K(L.id)
                           }, [
                             e.createElementVNode(
                               "i",
@@ -4730,7 +4730,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                             {
                               type: "button",
                               class: "ss-link",
-                              onClick: N[7] || (N[7] = (Z) => o.value = "")
+                              onClick: f[7] || (f[7] = (Q) => o.value = "")
                             },
                             e.toDisplayString(h.$t("取消")),
                             1
@@ -4743,13 +4743,13 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                     )) : (e.openBlock(), e.createElementBlock(
                       "p",
                       Js,
-                      e.toDisplayString(j.text),
+                      e.toDisplayString(L.text),
                       1
                       /* TEXT */
                     )),
-                    i.value === j.id ? (e.openBlock(), e.createElementBlock("div", Qs, [
+                    i.value === L.id ? (e.openBlock(), e.createElementBlock("div", Qs, [
                       e.withDirectives(e.createElementVNode("input", {
-                        "onUpdate:modelValue": N[8] || (N[8] = (Z) => k.value = Z),
+                        "onUpdate:modelValue": f[8] || (f[8] = (Q) => k.value = Q),
                         type: "text",
                         placeholder: h.$t("退回原因（发言人会看到），例如：这段数字需要核实")
                       }, null, 8, Zs), [
@@ -4759,14 +4759,14 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                         type: "button",
                         class: "ss-btn sm danger",
                         disabled: m.value,
-                        onClick: (Z) => B(j.id)
+                        onClick: (Q) => _(L.id)
                       }, e.toDisplayString(h.$t("确认退回")), 9, Xs),
                       e.createElementVNode(
                         "button",
                         {
                           type: "button",
                           class: "ss-link",
-                          onClick: N[9] || (N[9] = (Z) => i.value = "")
+                          onClick: f[9] || (f[9] = (Q) => i.value = "")
                         },
                         e.toDisplayString(h.$t("取消")),
                         1
@@ -4774,15 +4774,15 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                       )
                     ])) : e.createCommentVNode("v-if", !0)
                   ]),
-                  o.value !== j.id && i.value !== j.id && E.value !== j.id && (G(j.id) || V(j.id) || C.value) ? (e.openBlock(), e.createElementBlock("div", xs, [
+                  o.value !== L.id && i.value !== L.id && E.value !== L.id && (G(L.id) || V(L.id) || C.value) ? (e.openBlock(), e.createElementBlock("div", xs, [
                     C.value ? (e.openBlock(), e.createElementBlock("button", {
                       key: 0,
                       type: "button",
                       class: "mm-op",
-                      "data-test": `mm-seg-move-${j.id}`,
-                      onClick: (Z) => $(j.id)
+                      "data-test": `mm-seg-move-${L.id}`,
+                      onClick: (Q) => $(L.id)
                     }, [
-                      N[12] || (N[12] = e.createElementVNode(
+                      f[12] || (f[12] = e.createElementVNode(
                         "i",
                         { class: "ri-user-shared-line" },
                         null,
@@ -4795,13 +4795,13 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                         /* TEXT */
                       )
                     ], 8, er)) : e.createCommentVNode("v-if", !0),
-                    G(j.id) ? (e.openBlock(), e.createElementBlock("button", {
+                    G(L.id) ? (e.openBlock(), e.createElementBlock("button", {
                       key: 1,
                       type: "button",
                       class: "mm-op",
-                      onClick: (Z) => R(j.id)
+                      onClick: (Q) => R(L.id)
                     }, [
-                      N[13] || (N[13] = e.createElementVNode(
+                      f[13] || (f[13] = e.createElementVNode(
                         "i",
                         { class: "ri-pencil-line" },
                         null,
@@ -4814,11 +4814,11 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
                         /* TEXT */
                       )
                     ], 8, tr)) : e.createCommentVNode("v-if", !0),
-                    V(j.id) ? (e.openBlock(), e.createElementBlock("button", {
+                    V(L.id) ? (e.openBlock(), e.createElementBlock("button", {
                       key: 2,
                       type: "button",
                       class: "mm-op danger",
-                      onClick: (Z) => F(j.id)
+                      onClick: (Q) => F(L.id)
                     }, e.toDisplayString(h.$t("退回给发言人")), 9, lr)) : e.createCommentVNode("v-if", !0)
                   ])) : e.createCommentVNode("v-if", !0)
                 ],
@@ -4840,7 +4840,7 @@ const Ul = { class: "mm-mob__bar" }, Ol = { class: "mm-mob__visual" }, Rl = ["ti
         /* TEXT */
       )),
       r.value ? (e.openBlock(), e.createElementBlock("p", nr, [
-        N[14] || (N[14] = e.createElementVNode(
+        f[14] || (f[14] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
           null,
@@ -4908,91 +4908,91 @@ const sr = {
   },
   emits: ["changed"],
   setup(l, { emit: v }) {
-    const n = l, u = v, y = ie.useNotificationStore(), s = e.ref({ depts: [], people: [] }), o = e.ref([]), c = e.ref(""), i = e.ref(!1), k = e.ref(!1), E = e.ref(!1), m = e.ref([]), r = e.ref(""), f = e.ref(""), w = Ye(Date.now()), a = e.computed(() => n.detail.meeting), g = e.computed(() => a.value.plan), D = e.computed(() => a.value.status === "plan_confirm" && n.detail.my.isPlanOwner), P = e.computed(() => n.detail.my.isHost && (a.value.status === "pending_owner" || a.value.status === "plan_confirm"));
-    function L(H) {
-      return n.detail.names[H]?.name || s.value.people.find((Y) => Y.id === H)?.name || H;
+    const n = l, u = v, y = ce.useNotificationStore(), s = e.ref({ depts: [], people: [] }), o = e.ref([]), c = e.ref(""), i = e.ref(!1), k = e.ref(!1), E = e.ref(!1), m = e.ref([]), r = e.ref(""), N = e.ref(""), w = Ye(Date.now()), a = e.computed(() => n.detail.meeting), g = e.computed(() => a.value.plan), D = e.computed(() => a.value.status === "plan_confirm" && n.detail.my.isPlanOwner), P = e.computed(() => n.detail.my.isHost && (a.value.status === "pending_owner" || a.value.status === "plan_confirm"));
+    function j(W) {
+      return n.detail.names[W]?.name || s.value.people.find((Y) => Y.id === W)?.name || W;
     }
-    function C(H) {
-      return s.value.depts.find((Y) => Y.id === H)?.name || H || "-";
+    function C(W) {
+      return s.value.depts.find((Y) => Y.id === W)?.name || W || "-";
     }
-    function I(H) {
-      const Y = s.value.depts.find((ne) => ne.id === H)?.leaderIds?.[0], te = Y ? s.value.people.find((ne) => ne.id === Y) : void 0;
-      return te && !te.left ? te.name : "";
+    function I(W) {
+      const Y = s.value.depts.find((ne) => ne.id === W)?.leaderIds?.[0], ee = Y ? s.value.people.find((ne) => ne.id === Y) : void 0;
+      return ee && !ee.left ? ee.name : "";
     }
-    function U(H) {
-      return H ? s.value.people.filter((Y) => Y.deptId === H && !Y.left).map((Y) => Y.id) : [];
+    function U(W) {
+      return W ? s.value.people.filter((Y) => Y.deptId === W && !Y.left).map((Y) => Y.id) : [];
     }
-    function q(H) {
-      return H.assigneeId ? L(H.assigneeId) : I(H.deptId);
+    function q(W) {
+      return W.assigneeId ? j(W.assigneeId) : I(W.deptId);
     }
-    function _(H, Y) {
-      Y ? H.assigneeId = Y : delete H.assigneeId, i.value = !0;
+    function B(W, Y) {
+      Y ? W.assigneeId = Y : delete W.assigneeId, i.value = !0;
     }
-    function S(H) {
-      return H ? a.value.decisions.findIndex((Y) => Y.id === H) + 1 : 0;
+    function S(W) {
+      return W ? a.value.decisions.findIndex((Y) => Y.id === W) + 1 : 0;
     }
     function b() {
-      o.value = (g.value?.items || []).map((H) => ({ ...H })), c.value = g.value?.summary || "", i.value = !1, k.value = !1, E.value = !1;
+      o.value = (g.value?.items || []).map((W) => ({ ...W })), c.value = g.value?.summary || "", i.value = !1, k.value = !1, E.value = !1;
     }
     e.watch(g, () => {
       i.value || b();
     }, { immediate: !0, deep: !0 });
     const M = e.computed(() => {
-      const H = g.value;
-      return H ? H.ownerIds?.length ? H.ownerIds : H.ownerId ? [H.ownerId] : [] : [];
-    }), T = e.computed(() => M.value.map((H) => L(H)).filter(Boolean).join(t.t("、"))), G = e.computed(() => m.value.length === M.value.length && m.value.every((H) => M.value.includes(H)));
-    e.watch(M, (H) => {
-      m.value = [...H];
+      const W = g.value;
+      return W ? W.ownerIds?.length ? W.ownerIds : W.ownerId ? [W.ownerId] : [] : [];
+    }), T = e.computed(() => M.value.map((W) => j(W)).filter(Boolean).join(t.t("、"))), G = e.computed(() => m.value.length === M.value.length && m.value.every((W) => M.value.includes(W)));
+    e.watch(M, (W) => {
+      m.value = [...W];
     }, { immediate: !0 });
     const V = e.computed(() => {
-      const H = [];
-      return o.value.length || H.push(t.t("至少保留一项任务")), o.value.forEach((Y, te) => {
-        const ne = te + 1;
-        Y.deptId || H.push(t.t("第 {n} 项没有选责任部门", { n: ne })), Y.title.trim() || H.push(t.t("第 {n} 项没有填执行事项", { n: ne })), /^\d{4}-\d{2}-\d{2}$/.test(Y.due || "") || H.push(t.t("第 {n} 项没有设完成时间", { n: ne })), Y.deptId && !Y.assigneeId && s.value.depts.length && !I(Y.deptId) && H.push(t.t("第 {n} 项的部门没有负责人，请在「下发给」里选人", { n: ne }));
-      }), H;
+      const W = [];
+      return o.value.length || W.push(t.t("至少保留一项任务")), o.value.forEach((Y, ee) => {
+        const ne = ee + 1;
+        Y.deptId || W.push(t.t("第 {n} 项没有选责任部门", { n: ne })), Y.title.trim() || W.push(t.t("第 {n} 项没有填执行事项", { n: ne })), /^\d{4}-\d{2}-\d{2}$/.test(Y.due || "") || W.push(t.t("第 {n} 项没有设完成时间", { n: ne })), Y.deptId && !Y.assigneeId && s.value.depts.length && !I(Y.deptId) && W.push(t.t("第 {n} 项的部门没有负责人，请在「下发给」里选人", { n: ne }));
+      }), W;
     });
     function d() {
       o.value.push({ id: `new-${Date.now().toString(36)}-${o.value.length}`, deptId: "", title: "", standard: "", due: "" }), i.value = !0;
     }
-    function p(H) {
-      o.value.splice(H, 1), i.value = !0;
+    function p(W) {
+      o.value.splice(W, 1), i.value = !0;
     }
     async function z() {
       if (!(!m.value.length || r.value)) {
-        r.value = "owner", f.value = "";
+        r.value = "owner", N.value = "";
         try {
-          const H = [...m.value];
-          await J("meeting.plan.owner", { id: a.value.id, ownerIds: H }), y.success(t.t("已指定 {name} 为任务负责人，已通知确认方案", { name: H.map((Y) => L(Y)).join(t.t("、")) })), u("changed");
-        } catch (H) {
-          f.value = x.errorMessage(H);
+          const W = [...m.value];
+          await J("meeting.plan.owner", { id: a.value.id, ownerIds: W }), y.success(t.t("已指定 {name} 为任务负责人，已通知确认方案", { name: W.map((Y) => j(Y)).join(t.t("、")) })), u("changed");
+        } catch (W) {
+          N.value = x.errorMessage(W);
         } finally {
           r.value = "";
         }
       }
     }
-    async function Q(H = !1) {
+    async function X(W = !1) {
       if (E.value = !0, V.value.length)
-        return f.value = t.t("还有没填完的任务，先补齐再保存"), !1;
-      r.value = "save", f.value = "";
+        return N.value = t.t("还有没填完的任务，先补齐再保存"), !1;
+      r.value = "save", N.value = "";
       try {
-        return await J("meeting.plan.save", { id: a.value.id, items: o.value.map((Y) => ({ ...Y, title: Y.title.trim(), standard: Y.standard.trim() })), summary: c.value }), i.value = !1, k.value = !1, H || y.success(t.t("方案已保存")), u("changed"), !0;
+        return await J("meeting.plan.save", { id: a.value.id, items: o.value.map((Y) => ({ ...Y, title: Y.title.trim(), standard: Y.standard.trim() })), summary: c.value }), i.value = !1, k.value = !1, W || y.success(t.t("方案已保存")), u("changed"), !0;
       } catch (Y) {
-        return f.value = x.errorMessage(Y), !1;
+        return N.value = x.errorMessage(Y), !1;
       } finally {
         r.value = "";
       }
     }
     async function le() {
       if (E.value = !0, V.value.length) {
-        f.value = t.t("还有没填完的任务，先补齐再确认");
+        N.value = t.t("还有没填完的任务，先补齐再确认");
         return;
       }
-      if (window.confirm(t.t("确认后将生成 {n} 项任务，按「下发给」一栏下发，方案不能再改。确定？", { n: o.value.length })) && !(i.value && !await Q(!0))) {
-        r.value = "confirm", f.value = "";
+      if (window.confirm(t.t("确认后将生成 {n} 项任务，按「下发给」一栏下发，方案不能再改。确定？", { n: o.value.length })) && !(i.value && !await X(!0))) {
+        r.value = "confirm", N.value = "";
         try {
           await J("meeting.plan.confirm", { id: a.value.id }), y.success(t.t("方案已确认，任务已下发")), u("changed");
-        } catch (H) {
-          f.value = x.errorMessage(H);
+        } catch (W) {
+          N.value = x.errorMessage(W);
         } finally {
           r.value = "";
         }
@@ -5001,10 +5001,10 @@ const sr = {
     return e.onMounted(async () => {
       try {
         s.value = await De();
-      } catch (H) {
-        f.value = x.errorMessage(H);
+      } catch (W) {
+        N.value = x.errorMessage(W);
       }
-    }), (H, Y) => (e.openBlock(), e.createElementBlock("section", sr, [
+    }), (W, Y) => (e.openBlock(), e.createElementBlock("section", sr, [
       g.value ? (e.openBlock(), e.createElementBlock(
         e.Fragment,
         { key: 1 },
@@ -5013,14 +5013,14 @@ const sr = {
             e.createElementVNode(
               "h4",
               null,
-              e.toDisplayString(H.$t("AI 执行方案")),
+              e.toDisplayString(W.$t("AI 执行方案")),
               1
               /* TEXT */
             ),
             e.createElementVNode(
               "span",
               cr,
-              e.toDisplayString(H.$t("生成于 {t}", { t: e.unref($e)(g.value.generatedAt) })),
+              e.toDisplayString(W.$t("生成于 {t}", { t: e.unref(he)(g.value.generatedAt) })),
               1
               /* TEXT */
             ),
@@ -5037,14 +5037,14 @@ const sr = {
                 class: e.normalizeClass(["ss-chip", M.value.length ? "brand" : "warn"]),
                 "data-test": "mm-plan-owner-chip"
               },
-              e.toDisplayString(M.value.length ? H.$t("任务负责人：{name}", { name: T.value }) : H.$t("还没有指定任务负责人")),
+              e.toDisplayString(M.value.length ? W.$t("任务负责人：{name}", { name: T.value }) : W.$t("还没有指定任务负责人")),
               3
               /* TEXT, CLASS */
             ),
             g.value.confirmedAt ? (e.openBlock(), e.createElementBlock(
               "span",
               dr,
-              e.toDisplayString(H.$t("{t} 已确认", { t: e.unref($e)(g.value.confirmedAt) })),
+              e.toDisplayString(W.$t("{t} 已确认", { t: e.unref(he)(g.value.confirmedAt) })),
               1
               /* TEXT */
             )) : e.createCommentVNode("v-if", !0)
@@ -5064,18 +5064,18 @@ const sr = {
             e.createElementVNode(
               "span",
               null,
-              e.toDisplayString(a.value.status === "pending_owner" ? H.$t("指定任务负责人（可多选）：其中任何一位都能确认方案，确认后按部门下发给各部门负责人") : H.$t("更换任务负责人（可多选）")),
+              e.toDisplayString(a.value.status === "pending_owner" ? W.$t("指定任务负责人（可多选）：其中任何一位都能确认方案，确认后按部门下发给各部门负责人") : W.$t("更换任务负责人（可多选）")),
               1
               /* TEXT */
             ),
             e.createVNode(Oe, {
               values: m.value,
-              "onUpdate:values": Y[0] || (Y[0] = (te) => m.value = te),
+              "onUpdate:values": Y[0] || (Y[0] = (ee) => m.value = ee),
               multiple: "",
               max: 10,
               class: "mm-plan__owner-pick",
               people: s.value,
-              "aria-label": H.$t("任务负责人"),
+              "aria-label": W.$t("任务负责人"),
               "data-test": "mm-plan-owner-select"
             }, null, 8, ["values", "people", "aria-label"]),
             e.createElementVNode("button", {
@@ -5095,7 +5095,7 @@ const sr = {
                 /* CLASS */
               ),
               e.createTextVNode(
-                e.toDisplayString(H.$t("指定")),
+                e.toDisplayString(W.$t("指定")),
                 1
                 /* TEXT */
               )
@@ -5109,7 +5109,7 @@ const sr = {
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(H.$t("等待主持人 {name} 指定任务负责人", { name: L(a.value.hostId) })),
+              e.toDisplayString(W.$t("等待主持人 {name} 指定任务负责人", { name: j(a.value.hostId) })),
               1
               /* TEXT */
             )
@@ -5122,7 +5122,7 @@ const sr = {
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(H.$t("等待任务负责人 {name} 确认方案", { name: T.value })),
+              e.toDisplayString(W.$t("等待任务负责人 {name} 确认方案", { name: T.value })),
               1
               /* TEXT */
             )
@@ -5133,7 +5133,7 @@ const sr = {
               e.createElementVNode(
                 "b",
                 null,
-                e.toDisplayString(H.$t("方案概述")),
+                e.toDisplayString(W.$t("方案概述")),
                 1
                 /* TEXT */
               ),
@@ -5143,9 +5143,9 @@ const sr = {
                   key: 0,
                   type: "button",
                   class: "ss-link",
-                  onClick: Y[1] || (Y[1] = (te) => k.value = !0)
+                  onClick: Y[1] || (Y[1] = (ee) => k.value = !0)
                 },
-                e.toDisplayString(H.$t("编辑")),
+                e.toDisplayString(W.$t("编辑")),
                 1
                 /* TEXT */
               )) : e.createCommentVNode("v-if", !0)
@@ -5154,10 +5154,10 @@ const sr = {
               "textarea",
               {
                 key: 0,
-                "onUpdate:modelValue": Y[2] || (Y[2] = (te) => c.value = te),
+                "onUpdate:modelValue": Y[2] || (Y[2] = (ee) => c.value = ee),
                 rows: "6",
                 class: "mm-plan__textarea",
-                onInput: Y[3] || (Y[3] = (te) => i.value = !0)
+                onInput: Y[3] || (Y[3] = (ee) => i.value = !0)
               },
               null,
               544
@@ -5179,7 +5179,7 @@ const sr = {
             )) : (e.openBlock(), e.createElementBlock(
               "p",
               fr,
-              e.toDisplayString(H.$t("（没有概述）")),
+              e.toDisplayString(W.$t("（没有概述）")),
               1
               /* TEXT */
             ))
@@ -5189,14 +5189,14 @@ const sr = {
             e.createElementVNode(
               "b",
               null,
-              e.toDisplayString(H.$t("任务清单 · {n} 项", { n: o.value.length })),
+              e.toDisplayString(W.$t("任务清单 · {n} 项", { n: o.value.length })),
               1
               /* TEXT */
             ),
             e.createElementVNode(
               "span",
               Vr,
-              e.toDisplayString(H.$t("每项一个责任部门；「下发给」默认是该部门在通讯录里的第一位负责人，可以改成任何人")),
+              e.toDisplayString(W.$t("每项一个责任部门；「下发给」默认是该部门在通讯录里的第一位负责人，可以改成任何人")),
               1
               /* TEXT */
             )
@@ -5265,35 +5265,35 @@ const sr = {
                     e.createElementVNode(
                       "th",
                       null,
-                      e.toDisplayString(H.$t("责任部门")),
+                      e.toDisplayString(W.$t("责任部门")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
                       null,
-                      e.toDisplayString(H.$t("执行事项")),
+                      e.toDisplayString(W.$t("执行事项")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
                       null,
-                      e.toDisplayString(H.$t("交付标准")),
+                      e.toDisplayString(W.$t("交付标准")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
                       null,
-                      e.toDisplayString(H.$t("完成时间")),
+                      e.toDisplayString(W.$t("完成时间")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
                       null,
-                      e.toDisplayString(H.$t("下发给")),
+                      e.toDisplayString(W.$t("下发给")),
                       1
                       /* TEXT */
                     ),
@@ -5304,8 +5304,8 @@ const sr = {
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(o.value, (te, ne) => (e.openBlock(), e.createElementBlock("tr", {
-                      key: te.id,
+                    e.renderList(o.value, (ee, ne) => (e.openBlock(), e.createElementBlock("tr", {
+                      key: ee.id,
                       "data-test": `mm-plan-item-${ne}`
                     }, [
                       e.createElementVNode(
@@ -5318,13 +5318,13 @@ const sr = {
                       e.createElementVNode("td", null, [
                         D.value ? e.withDirectives((e.openBlock(), e.createElementBlock("select", {
                           key: 0,
-                          "onUpdate:modelValue": ($) => te.deptId = $,
+                          "onUpdate:modelValue": ($) => ee.deptId = $,
                           onChange: Y[4] || (Y[4] = ($) => i.value = !0)
                         }, [
                           e.createElementVNode(
                             "option",
                             Sr,
-                            e.toDisplayString(H.$t("选择部门")),
+                            e.toDisplayString(W.$t("选择部门")),
                             1
                             /* TEXT */
                           ),
@@ -5339,11 +5339,11 @@ const sr = {
                             /* KEYED_FRAGMENT */
                           ))
                         ], 40, Br)), [
-                          [e.vModelSelect, te.deptId]
+                          [e.vModelSelect, ee.deptId]
                         ]) : (e.openBlock(), e.createElementBlock(
                           "span",
                           wr,
-                          e.toDisplayString(C(te.deptId)),
+                          e.toDisplayString(C(ee.deptId)),
                           1
                           /* TEXT */
                         ))
@@ -5351,24 +5351,24 @@ const sr = {
                       e.createElementVNode("td", Cr, [
                         D.value ? e.withDirectives((e.openBlock(), e.createElementBlock("input", {
                           key: 0,
-                          "onUpdate:modelValue": ($) => te.title = $,
+                          "onUpdate:modelValue": ($) => ee.title = $,
                           type: "text",
                           class: "wide",
-                          placeholder: H.$t("执行事项"),
+                          placeholder: W.$t("执行事项"),
                           onInput: Y[5] || (Y[5] = ($) => i.value = !0)
                         }, null, 40, Tr)), [
-                          [e.vModelText, te.title]
+                          [e.vModelText, ee.title]
                         ]) : (e.openBlock(), e.createElementBlock(
                           "span",
                           Ir,
-                          e.toDisplayString(te.title),
+                          e.toDisplayString(ee.title),
                           1
                           /* TEXT */
                         )),
-                        S(te.decisionId) ? (e.openBlock(), e.createElementBlock(
+                        S(ee.decisionId) ? (e.openBlock(), e.createElementBlock(
                           "small",
                           Mr,
-                          e.toDisplayString(H.$t("来自决议 {n}", { n: S(te.decisionId) })),
+                          e.toDisplayString(W.$t("来自决议 {n}", { n: S(ee.decisionId) })),
                           1
                           /* TEXT */
                         )) : e.createCommentVNode("v-if", !0)
@@ -5376,17 +5376,17 @@ const sr = {
                       e.createElementVNode("td", Ar, [
                         D.value ? e.withDirectives((e.openBlock(), e.createElementBlock("input", {
                           key: 0,
-                          "onUpdate:modelValue": ($) => te.standard = $,
+                          "onUpdate:modelValue": ($) => ee.standard = $,
                           type: "text",
                           class: "wide",
-                          placeholder: H.$t("交付标准"),
+                          placeholder: W.$t("交付标准"),
                           onInput: Y[6] || (Y[6] = ($) => i.value = !0)
                         }, null, 40, jr)), [
-                          [e.vModelText, te.standard]
+                          [e.vModelText, ee.standard]
                         ]) : (e.openBlock(), e.createElementBlock(
                           "span",
                           Lr,
-                          e.toDisplayString(te.standard || "-"),
+                          e.toDisplayString(ee.standard || "-"),
                           1
                           /* TEXT */
                         ))
@@ -5394,23 +5394,23 @@ const sr = {
                       e.createElementVNode("td", null, [
                         D.value ? e.withDirectives((e.openBlock(), e.createElementBlock("input", {
                           key: 0,
-                          "onUpdate:modelValue": ($) => te.due = $,
+                          "onUpdate:modelValue": ($) => ee.due = $,
                           type: "date",
                           "data-test": `mm-plan-due-${ne}`,
                           onChange: Y[7] || (Y[7] = ($) => i.value = !0)
                         }, null, 40, zr)), [
-                          [e.vModelText, te.due]
+                          [e.vModelText, ee.due]
                         ]) : (e.openBlock(), e.createElementBlock(
                           "span",
                           Fr,
-                          e.toDisplayString(te.due || "-"),
+                          e.toDisplayString(ee.due || "-"),
                           1
                           /* TEXT */
                         )),
-                        te.due && te.due < e.unref(w) ? (e.openBlock(), e.createElementBlock(
+                        ee.due && ee.due < e.unref(w) ? (e.openBlock(), e.createElementBlock(
                           "small",
                           Pr,
-                          e.toDisplayString(H.$t("早于今天")),
+                          e.toDisplayString(W.$t("早于今天")),
                           1
                           /* TEXT */
                         )) : e.createCommentVNode("v-if", !0)
@@ -5422,20 +5422,20 @@ const sr = {
                           [
                             e.createCommentVNode(" 不选 = 部门第一负责人（显示在占位里）；部门没设负责人或要交给别人时直接选人 "),
                             e.createVNode(Oe, {
-                              "model-value": te.assigneeId || "",
+                              "model-value": ee.assigneeId || "",
                               people: s.value,
-                              pinned: U(te.deptId),
-                              "pinned-label": H.$t("本部门"),
-                              placeholder: I(te.deptId) ? H.$t("默认：{name}", { name: I(te.deptId) }) : H.$t("选择下发给谁"),
-                              "aria-label": H.$t("下发给"),
+                              pinned: U(ee.deptId),
+                              "pinned-label": W.$t("本部门"),
+                              placeholder: I(ee.deptId) ? W.$t("默认：{name}", { name: I(ee.deptId) }) : W.$t("选择下发给谁"),
+                              "aria-label": W.$t("下发给"),
                               clearable: "",
                               "data-test": `mm-plan-to-${ne}`,
-                              "onUpdate:modelValue": ($) => _(te, $)
+                              "onUpdate:modelValue": ($) => B(ee, $)
                             }, null, 8, ["model-value", "people", "pinned", "pinned-label", "placeholder", "aria-label", "data-test", "onUpdate:modelValue"]),
-                            te.deptId && !te.assigneeId && !I(te.deptId) && s.value.depts.length ? (e.openBlock(), e.createElementBlock(
+                            ee.deptId && !ee.assigneeId && !I(ee.deptId) && s.value.depts.length ? (e.openBlock(), e.createElementBlock(
                               "small",
                               Or,
-                              e.toDisplayString(H.$t("部门没有负责人，请选人")),
+                              e.toDisplayString(W.$t("部门没有负责人，请选人")),
                               1
                               /* TEXT */
                             )) : e.createCommentVNode("v-if", !0)
@@ -5446,17 +5446,17 @@ const sr = {
                           e.Fragment,
                           { key: 1 },
                           [
-                            q(te) ? (e.openBlock(), e.createElementBlock(
+                            q(ee) ? (e.openBlock(), e.createElementBlock(
                               "span",
                               Rr,
-                              e.toDisplayString(q(te)),
+                              e.toDisplayString(q(ee)),
                               1
                               /* TEXT */
-                            )) : te.deptId ? (e.openBlock(), e.createElementBlock("span", {
+                            )) : ee.deptId ? (e.openBlock(), e.createElementBlock("span", {
                               key: 1,
                               class: "mm-plan__warn",
-                              title: H.$t("企微通讯录里这个部门没有设置负责人，确认后无法下发")
-                            }, e.toDisplayString(H.$t("部门没有负责人")), 9, qr)) : (e.openBlock(), e.createElementBlock("span", Kr, "-"))
+                              title: W.$t("企微通讯录里这个部门没有设置负责人，确认后无法下发")
+                            }, e.toDisplayString(W.$t("部门没有负责人")), 9, qr)) : (e.openBlock(), e.createElementBlock("span", Kr, "-"))
                           ],
                           64
                           /* STABLE_FRAGMENT */
@@ -5466,7 +5466,7 @@ const sr = {
                         e.createElementVNode("button", {
                           type: "button",
                           class: "ss-link mm-plan__del",
-                          title: H.$t("删除这项任务"),
+                          title: W.$t("删除这项任务"),
                           onClick: ($) => p(ne)
                         }, [...Y[20] || (Y[20] = [
                           e.createElementVNode(
@@ -5486,7 +5486,7 @@ const sr = {
                     e.createElementVNode("td", {
                       colspan: D.value ? 7 : 6,
                       class: "mm-plan__none"
-                    }, e.toDisplayString(H.$t("AI 没有从决议里拆出任务")), 9, Yr)
+                    }, e.toDisplayString(W.$t("AI 没有从决议里拆出任务")), 9, Yr)
                   ]))
                 ])
               ],
@@ -5498,10 +5498,10 @@ const sr = {
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(V.value, (te) => (e.openBlock(), e.createElementBlock(
+              e.renderList(V.value, (ee) => (e.openBlock(), e.createElementBlock(
                 "li",
-                { key: te },
-                e.toDisplayString(te),
+                { key: ee },
+                e.toDisplayString(ee),
                 1
                 /* TEXT */
               ))),
@@ -5524,7 +5524,7 @@ const sr = {
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(H.$t("添加任务")),
+                e.toDisplayString(W.$t("添加任务")),
                 1
                 /* TEXT */
               )
@@ -5542,7 +5542,7 @@ const sr = {
               class: "ss-btn sm",
               disabled: !!r.value,
               "data-test": "mm-plan-save",
-              onClick: Y[8] || (Y[8] = (te) => Q())
+              onClick: Y[8] || (Y[8] = (ee) => X())
             }, [
               e.createElementVNode(
                 "i",
@@ -5554,7 +5554,7 @@ const sr = {
                 /* CLASS */
               ),
               e.createTextVNode(
-                e.toDisplayString(H.$t("保存修改")),
+                e.toDisplayString(W.$t("保存修改")),
                 1
                 /* TEXT */
               )
@@ -5565,7 +5565,7 @@ const sr = {
               class: "ss-link",
               disabled: !!r.value,
               onClick: b
-            }, e.toDisplayString(H.$t("放弃修改")), 9, Xr)) : e.createCommentVNode("v-if", !0),
+            }, e.toDisplayString(W.$t("放弃修改")), 9, Xr)) : e.createCommentVNode("v-if", !0),
             e.createElementVNode("button", {
               type: "button",
               class: "ss-btn primary",
@@ -5583,7 +5583,7 @@ const sr = {
                 /* CLASS */
               ),
               e.createTextVNode(
-                e.toDisplayString(H.$t("确认方案并下发")),
+                e.toDisplayString(W.$t("确认方案并下发")),
                 1
                 /* TEXT */
               )
@@ -5595,11 +5595,11 @@ const sr = {
       )) : (e.openBlock(), e.createElementBlock(
         "p",
         rr,
-        e.toDisplayString(H.$t("纪要定稿后，主持人选择「生成任务」，AI 会在这里按决议事项生成执行方案和任务清单。")),
+        e.toDisplayString(W.$t("纪要定稿后，主持人选择「生成任务」，AI 会在这里按决议事项生成执行方案和任务清单。")),
         1
         /* TEXT */
       )),
-      f.value ? (e.openBlock(), e.createElementBlock("p", ei, [
+      N.value ? (e.openBlock(), e.createElementBlock("p", ei, [
         Y[23] || (Y[23] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -5608,7 +5608,7 @@ const sr = {
           /* CACHED */
         )),
         e.createTextVNode(
-          e.toDisplayString(f.value),
+          e.toDisplayString(N.value),
           1
           /* TEXT */
         )
@@ -5709,10 +5709,10 @@ const sr = {
   },
   emits: ["changed", "role"],
   setup(l, { expose: v, emit: n }) {
-    const u = l, y = n, s = ie.useNotificationStore(), o = e.ref(null), c = e.ref(""), i = e.ref(""), k = e.ref("minutes"), E = e.ref(""), m = e.ref(0), r = e.ref(null), f = e.ref(Date.now()), w = e.ref(0), a = e.computed(() => o.value?.meeting), g = e.computed(() => oe.value?.me?.person?.id), D = e.computed(() => oe.value?.settings?.confirmTimeoutHours ?? 24), P = e.computed(() => el(a.value.status)), L = e.computed(() => pt[a.value.status] || "muted"), C = e.computed(() => {
+    const u = l, y = n, s = ce.useNotificationStore(), o = e.ref(null), c = e.ref(""), i = e.ref(""), k = e.ref("minutes"), E = e.ref(""), m = e.ref(0), r = e.ref(null), N = e.ref(Date.now()), w = e.ref(0), a = e.computed(() => o.value?.meeting), g = e.computed(() => oe.value?.me?.person?.id), D = e.computed(() => oe.value?.settings?.confirmTimeoutHours ?? 24), P = e.computed(() => el(a.value.status)), j = e.computed(() => pt[a.value.status] || "muted"), C = e.computed(() => {
       const $ = a.value.status;
       return $ === "pending_confirm" && o.value?.confirm.total ? t.t("待确认 {a}/{b}", { a: o.value.confirm.done, b: o.value.confirm.total }) : Xe[$];
-    }), I = e.computed(() => r.value?.stage || a.value.process?.stage || "extract"), U = e.computed(() => Math.max(0, Math.min(100, Math.round(r.value?.progress ?? a.value.process?.progress ?? 0)))), q = e.computed(() => [...a.value.segments].sort(($, O) => $.start - O.start)), _ = e.computed(() => a.value.confirmations.find(($) => $.personId === g.value)), S = e.computed(() => !!o.value?.my.isHost && o.value.projectStatus === "active" && ["pending_assign", "pending_confirm", "pending_review", "failed"].includes(a.value.status) && a.value.files.some(($) => $.kind === "audio" || $.kind === "video")), b = ($) => $ && o.value?.names[$]?.name || "", M = e.computed(() => {
+    }), I = e.computed(() => r.value?.stage || a.value.process?.stage || "extract"), U = e.computed(() => Math.max(0, Math.min(100, Math.round(r.value?.progress ?? a.value.process?.progress ?? 0)))), q = e.computed(() => [...a.value.segments].sort(($, O) => $.start - O.start)), B = e.computed(() => a.value.confirmations.find(($) => $.personId === g.value)), S = e.computed(() => !!o.value?.my.isHost && o.value.projectStatus === "active" && ["pending_assign", "pending_confirm", "pending_review", "failed"].includes(a.value.status) && a.value.files.some(($) => $.kind === "audio" || $.kind === "video")), b = ($) => $ && o.value?.names[$]?.name || "", M = e.computed(() => {
       const $ = [...new Set(a.value.files.map((O) => O.kind))].map((O) => Vt[O]).join(" / ");
       return $ ? `${ot[a.value.source]} ${$}` : ot[a.value.source];
     }), T = e.computed(() => {
@@ -5741,28 +5741,28 @@ const sr = {
     const p = e.computed(() => {
       const $ = o.value;
       if (!$) return null;
-      const O = $.meeting, R = $.my, F = b(O.hostId), K = $.projectStatus === "archived", B = (N, j, Z = "primary") => K ? [] : [{ key: N, label: j, kind: Z }], h = (N, j) => ({ tone: "muted", icon: "ri-time-line", title: N, desc: j, actions: [] });
+      const O = $.meeting, R = $.my, F = b(O.hostId), K = $.projectStatus === "archived", _ = (f, L, Q = "primary") => K ? [] : [{ key: f, label: L, kind: Q }], h = (f, L) => ({ tone: "muted", icon: "ri-time-line", title: f, desc: L, actions: [] });
       switch (O.status) {
         case "pending_upload":
-          return R.isHost ? { tone: "warn", icon: "ri-upload-cloud-2-line", title: t.t("上传会议文件，开始转写和整理"), desc: t.t("录音、录屏、文字记录都支持；优先上传录音或录屏，能按声纹自动认出发言人"), actions: B("pick", t.t("选择文件")) } : h(t.t("等待主持人 {name} 上传会议文件", { name: F }));
+          return R.isHost ? { tone: "warn", icon: "ri-upload-cloud-2-line", title: t.t("上传会议文件，开始转写和整理"), desc: t.t("录音、录屏、文字记录都支持；优先上传录音或录屏，能按声纹自动认出发言人"), actions: _("pick", t.t("选择文件")) } : h(t.t("等待主持人 {name} 上传会议文件", { name: F }));
         case "processing":
           return { tone: "brand", icon: "ri-loader-4-line spin", title: t.t("正在处理：{stage}", { stage: je[I.value] }), desc: t.t("完成后自动通知每位发言人确认本人发言"), actions: [] };
         case "failed":
-          return R.isHost ? { tone: "bad", icon: "ri-error-warning-line", title: t.t("处理失败"), desc: O.process?.error || "", actions: B("retry", t.t("重试")) } : { tone: "bad", icon: "ri-error-warning-line", title: t.t("处理失败，等待主持人 {name} 重试", { name: F }), desc: O.process?.error || "", actions: [] };
+          return R.isHost ? { tone: "bad", icon: "ri-error-warning-line", title: t.t("处理失败"), desc: O.process?.error || "", actions: _("retry", t.t("重试")) } : { tone: "bad", icon: "ri-error-warning-line", title: t.t("处理失败，等待主持人 {name} 重试", { name: F }), desc: O.process?.error || "", actions: [] };
         case "pending_assign": {
-          const N = O.speakers.filter((j) => !j.personId).length;
-          return R.isHost ? { tone: "warn", icon: "ri-user-search-line", title: t.t("有 {n} 位发言人没认出来，请先指认", { n: N }), desc: t.t("试听片段后从参会人里选人；全部指认完自动进入发言确认"), actions: k.value === "minutes" ? [] : B("goMinutes", t.t("去指认")) } : h(t.t("等待主持人 {name} 指认发言人", { name: F }));
+          const f = O.speakers.filter((L) => !L.personId).length;
+          return R.isHost ? { tone: "warn", icon: "ri-user-search-line", title: t.t("有 {n} 位发言人没认出来，请先指认", { n: f }), desc: t.t("试听片段后从参会人里选人；全部指认完自动进入发言确认"), actions: k.value === "minutes" ? [] : _("goMinutes", t.t("去指认")) } : h(t.t("等待主持人 {name} 指认发言人", { name: F }));
         }
         case "pending_confirm": {
-          const N = $.confirm;
-          if (_.value?.status === "pending") {
-            const j = O.segments.filter((X) => R.myLabels.includes(X.speakerLabel) || Le(O, X.speakerLabel) === g.value).length, Z = _.value.returnedAt ? t.t("主持人退回了你的发言：{note}。改完后重新确认。", { note: _.value.returnNote || t.t("（没有写原因）") }) : "";
-            return { tone: Z ? "warn" : "brand", icon: "ri-chat-check-line", title: t.t("请核对你的 {n} 段发言", { n: j }), desc: Z || t.t("有误的直接在纪要里修改；没问题就点「确认我的发言」"), actions: B("confirm", t.t("确认我的发言")) };
+          const f = $.confirm;
+          if (B.value?.status === "pending") {
+            const L = O.segments.filter((Z) => R.myLabels.includes(Z.speakerLabel) || Le(O, Z.speakerLabel) === g.value).length, Q = B.value.returnedAt ? t.t("主持人退回了你的发言：{note}。改完后重新确认。", { note: B.value.returnNote || t.t("（没有写原因）") }) : "";
+            return { tone: Q ? "warn" : "brand", icon: "ri-chat-check-line", title: t.t("请核对你的 {n} 段发言", { n: L }), desc: Q || t.t("有误的直接在纪要里修改；没问题就点「确认我的发言」"), actions: _("confirm", t.t("确认我的发言")) };
           }
-          return _.value?.status === "confirmed" ? { tone: "ok", icon: "ri-check-double-line", title: t.t("你已确认本人发言"), desc: t.t("其他发言人确认中（{a}/{b}），全部确认后进入主持人终审", { a: N.done, b: N.total }), actions: [] } : { tone: "brand", icon: "ri-chat-check-line", title: t.t("发言人确认中 {a}/{b}", { a: N.done, b: N.total }), desc: R.isHost ? t.t("全部确认后自动进入你的终审；超时未确认的系统自动催办") : t.t("全部确认后进入主持人终审"), actions: k.value === "confirm" ? [] : [{ key: "goConfirm", label: t.t("查看确认进度"), kind: "soft" }] };
+          return B.value?.status === "confirmed" ? { tone: "ok", icon: "ri-check-double-line", title: t.t("你已确认本人发言"), desc: t.t("其他发言人确认中（{a}/{b}），全部确认后进入主持人终审", { a: f.done, b: f.total }), actions: [] } : { tone: "brand", icon: "ri-chat-check-line", title: t.t("发言人确认中 {a}/{b}", { a: f.done, b: f.total }), desc: R.isHost ? t.t("全部确认后自动进入你的终审；超时未确认的系统自动催办") : t.t("全部确认后进入主持人终审"), actions: k.value === "confirm" ? [] : [{ key: "goConfirm", label: t.t("查看确认进度"), kind: "soft" }] };
         }
         case "pending_review":
-          return R.isHost ? { tone: "brand", icon: "ri-check-line", title: t.t("{n} 位发言人已全部确认，等你终审", { n: $.confirm.total }), desc: t.t("可直接修改任意段落，或把某段退回给指定发言人（只有被退回的人需要重新确认）"), actions: B("approve", t.t("审核通过")) } : h(t.t("发言人已全部确认，等待主持人 {name} 终审", { name: F }));
+          return R.isHost ? { tone: "brand", icon: "ri-check-line", title: t.t("{n} 位发言人已全部确认，等你终审", { n: $.confirm.total }), desc: t.t("可直接修改任意段落，或把某段退回给指定发言人（只有被退回的人需要重新确认）"), actions: _("approve", t.t("审核通过")) } : h(t.t("发言人已全部确认，等待主持人 {name} 终审", { name: F }));
         case "finalized":
           return R.isHost ? {
             tone: "ok",
@@ -5772,11 +5772,11 @@ const sr = {
             actions: K ? [] : [{ key: "generate", label: t.t("生成任务"), kind: "primary" }, { key: "none", label: t.t("无需生成任务"), kind: "plain" }]
           } : h(t.t("纪要已定稿，等待主持人 {name} 选择是否生成任务", { name: F }));
         case "ended":
-          return { tone: "muted", icon: "ri-flag-line", title: t.t("会议已结束（无需生成任务）"), desc: O.finalizedAt ? t.t("纪要于 {t} 定稿", { t: $e(O.finalizedAt) }) : "", actions: [] };
+          return { tone: "muted", icon: "ri-flag-line", title: t.t("会议已结束（无需生成任务）"), desc: O.finalizedAt ? t.t("纪要于 {t} 定稿", { t: he(O.finalizedAt) }) : "", actions: [] };
         case "pending_owner":
-          return R.isHost ? { tone: "brand", icon: "ri-user-star-line", title: t.t("执行方案已生成，请指定任务负责人"), desc: t.t("任务负责人负责确认方案；确认后自动下发给各部门负责人"), actions: k.value === "plan" ? [] : B("goPlan", t.t("去指定")) } : h(t.t("执行方案已生成，等待主持人 {name} 指定任务负责人", { name: F }));
+          return R.isHost ? { tone: "brand", icon: "ri-user-star-line", title: t.t("执行方案已生成，请指定任务负责人"), desc: t.t("任务负责人负责确认方案；确认后自动下发给各部门负责人"), actions: k.value === "plan" ? [] : _("goPlan", t.t("去指定")) } : h(t.t("执行方案已生成，等待主持人 {name} 指定任务负责人", { name: F }));
         case "plan_confirm":
-          return R.isPlanOwner ? { tone: "brand", icon: "ri-file-list-3-line", title: t.t("请确认执行方案"), desc: t.t("可以编辑任务、增删、设完成时间；确认后按部门下发给第一负责人"), actions: k.value === "plan" ? [] : B("goPlan", t.t("去确认方案")) } : h(t.t("等待任务负责人 {name} 确认方案", { name: (O.plan?.ownerIds?.length ? O.plan.ownerIds : O.plan?.ownerId ? [O.plan.ownerId] : []).map((N) => b(N)).filter(Boolean).join(t.t("、")) }));
+          return R.isPlanOwner ? { tone: "brand", icon: "ri-file-list-3-line", title: t.t("请确认执行方案"), desc: t.t("可以编辑任务、增删、设完成时间；确认后按部门下发给第一负责人"), actions: k.value === "plan" ? [] : _("goPlan", t.t("去确认方案")) } : h(t.t("等待任务负责人 {name} 确认方案", { name: (O.plan?.ownerIds?.length ? O.plan.ownerIds : O.plan?.ownerId ? [O.plan.ownerId] : []).map((f) => b(f)).filter(Boolean).join(t.t("、")) }));
         case "dispatched":
           return { tone: "ok", icon: "ri-send-plane-line", title: t.t("已派发 {n} 项任务", { n: $.tasks.length || O.taskIds.length }), desc: t.t("各部门负责人接收后开始执行，进度在「任务」里跟进"), actions: k.value === "tasks" ? [] : [{ key: "goTasks", label: t.t("查看关联任务"), kind: "soft" }] };
         default:
@@ -5793,11 +5793,11 @@ const sr = {
         c.value = x.errorMessage(O);
       }
     }
-    function Q() {
+    function X() {
       z(), y("changed");
     }
     let le = null;
-    function H() {
+    function W() {
       le && clearTimeout(le), le = setTimeout(() => {
         le = null, z();
       }, 300);
@@ -5840,23 +5840,23 @@ const sr = {
     }, { immediate: !0 }), e.watch(() => yl(o.value, g.value), ($) => {
       $ && y("role", $);
     }, { immediate: !0 });
-    let te = null;
+    let ee = null;
     e.watch(() => o.value?.meeting.status === "processing", ($) => {
-      $ && !te && (te = setInterval(() => {
-        f.value = Date.now();
-      }, 1e3)), !$ && te && (clearInterval(te), te = null);
+      $ && !ee && (ee = setInterval(() => {
+        N.value = Date.now();
+      }, 1e3)), !$ && ee && (clearInterval(ee), ee = null);
     }, { immediate: !0 });
     let ne = null;
     return e.onMounted(() => {
-      z(), ne = be(($) => {
+      z(), ne = _e(($) => {
         if ($?.type === "changed") {
-          ($.scope === "all" || $.scope === "meeting" && (!$.id || $.id === u.meetingId)) && H();
+          ($.scope === "all" || $.scope === "meeting" && (!$.id || $.id === u.meetingId)) && W();
           return;
         }
-        $?.type !== "process" || $.meetingId !== u.meetingId || (r.value = { stage: $.stage, progress: $.progress, text: $.text, at: Date.now() }, f.value = Date.now(), ($.stage === "done" || o.value && o.value.meeting.status !== "processing") && z());
+        $?.type !== "process" || $.meetingId !== u.meetingId || (r.value = { stage: $.stage, progress: $.progress, text: $.text, at: Date.now() }, N.value = Date.now(), ($.stage === "done" || o.value && o.value.meeting.status !== "processing") && z());
       });
     }), e.onBeforeUnmount(() => {
-      ne?.(), le && clearTimeout(le), te && clearInterval(te);
+      ne?.(), le && clearTimeout(le), ee && clearInterval(ee);
     }), v({ refresh: z }), ($, O) => (e.openBlock(), e.createElementBlock("section", ni, [
       c.value && !o.value ? (e.openBlock(), e.createElementBlock("p", oi, [
         O[5] || (O[5] = e.createElementVNode(
@@ -5915,7 +5915,7 @@ const sr = {
               e.createElementVNode(
                 "span",
                 {
-                  class: e.normalizeClass(["ss-chip", L.value]),
+                  class: e.normalizeClass(["ss-chip", j.value]),
                   "data-test": "mm-meeting-status"
                 },
                 e.toDisplayString(C.value),
@@ -5988,7 +5988,7 @@ const sr = {
             e.createElementVNode(
               "span",
               null,
-              e.toDisplayString(e.unref($e)(a.value.time)),
+              e.toDisplayString(e.unref(he)(a.value.time)),
               1
               /* TEXT */
             ),
@@ -6147,23 +6147,23 @@ const sr = {
                     key: 0,
                     detail: o.value,
                     live: r.value,
-                    now: f.value,
+                    now: N.value,
                     "wait-from": w.value,
-                    onChanged: Q,
+                    onChanged: X,
                     onLog: O[0] || (O[0] = (R) => k.value = "files"),
                     onWait: O[1] || (O[1] = (R) => w.value = Date.now())
                   }, null, 8, ["detail", "live", "now", "wait-from"])) : e.createCommentVNode("v-if", !0),
                   a.value.status === "pending_assign" || o.value.my.isHost && (a.value.status === "pending_confirm" || a.value.status === "pending_review") ? (e.openBlock(), e.createBlock(za, {
                     key: `sa-${a.value.status}`,
                     detail: o.value,
-                    onChanged: Q
+                    onChanged: X
                   }, null, 8, ["detail"])) : e.createCommentVNode("v-if", !0),
                   a.value.segments.length || !["pending_upload", "processing", "failed"].includes(a.value.status) ? (e.openBlock(), e.createBlock(ar, {
                     key: 2,
                     detail: o.value,
                     anchor: E.value,
                     "anchor-seq": m.value,
-                    onChanged: Q
+                    onChanged: X
                   }, null, 8, ["detail", "anchor", "anchor-seq"])) : e.createCommentVNode("v-if", !0)
                 ],
                 64
@@ -6291,14 +6291,14 @@ const sr = {
                             e.createElementVNode(
                               "td",
                               null,
-                              e.toDisplayString(R.confirmedAt ? e.unref($e)(R.confirmedAt) : "-"),
+                              e.toDisplayString(R.confirmedAt ? e.unref(he)(R.confirmedAt) : "-"),
                               1
                               /* TEXT */
                             ),
                             e.createElementVNode(
                               "td",
                               null,
-                              e.toDisplayString(R.remindedAt ? $.$t("已催办 {t}", { t: e.unref($e)(R.remindedAt) }) : "-"),
+                              e.toDisplayString(R.remindedAt ? $.$t("已催办 {t}", { t: e.unref(he)(R.remindedAt) }) : "-"),
                               1
                               /* TEXT */
                             )
@@ -6504,7 +6504,7 @@ const sr = {
                             e.createElementVNode(
                               "td",
                               null,
-                              e.toDisplayString(e.unref($e)(R.uploadedAt)),
+                              e.toDisplayString(e.unref(he)(R.uploadedAt)),
                               1
                               /* TEXT */
                             )
@@ -6540,7 +6540,7 @@ const sr = {
                         { key: 0 },
                         [
                           e.createTextVNode(
-                            " · " + e.toDisplayString($.$t("完成于 {t}", { t: e.unref($e)(a.value.process.finishedAt) })),
+                            " · " + e.toDisplayString($.$t("完成于 {t}", { t: e.unref(he)(a.value.process.finishedAt) })),
                             1
                             /* TEXT */
                           )
@@ -6602,7 +6602,7 @@ const sr = {
                         e.createElementVNode(
                           "time",
                           null,
-                          e.toDisplayString(e.unref($e)(R.at)),
+                          e.toDisplayString(e.unref(he)(R.at)),
                           1
                           /* TEXT */
                         ),
@@ -6634,7 +6634,7 @@ const sr = {
                   e.createCommentVNode(" 执行方案 "),
                   e.createVNode(li, {
                     detail: o.value,
-                    onChanged: Q
+                    onChanged: X
                   }, null, 8, ["detail"])
                 ],
                 2112
@@ -6733,7 +6733,7 @@ const sr = {
             e.createElementVNode("aside", ic, [
               e.createVNode(os, {
                 detail: o.value,
-                onChanged: Q
+                onChanged: X
               }, null, 8, ["detail"]),
               e.createElementVNode("section", cc, [
                 e.createElementVNode("h5", null, [
@@ -6805,10 +6805,10 @@ const sr = {
   },
   emits: ["close", "created"],
   setup(l, { emit: v }) {
-    const n = l, u = v, y = ["offline", "tencent", "zoom"], s = ie.useNotificationStore(), o = e.ref([]), c = e.ref({ depts: [], people: [] }), i = e.ref(!1), k = e.ref(""), E = e.ref(""), m = e.ref(!1), r = e.ref(""), f = e.ref(/* @__PURE__ */ new Set());
+    const n = l, u = v, y = ["offline", "tencent", "zoom"], s = ce.useNotificationStore(), o = e.ref([]), c = e.ref({ depts: [], people: [] }), i = e.ref(!1), k = e.ref(""), E = e.ref(""), m = e.ref(!1), r = e.ref(""), N = e.ref(/* @__PURE__ */ new Set());
     function w() {
-      const _ = /* @__PURE__ */ new Date();
-      return _.setMinutes(0, 0, 0), _.setHours(_.getHours() + 1), _.getTime();
+      const B = /* @__PURE__ */ new Date();
+      return B.setMinutes(0, 0, 0), B.setHours(B.getHours() + 1), B.getTime();
     }
     const a = e.reactive({
       projectId: n.projectId || "",
@@ -6817,30 +6817,30 @@ const sr = {
       source: "offline",
       hostId: oe.value?.me?.person?.id || ""
     }), g = e.computed(() => Ct(c.value, r.value)), D = e.computed(() => {
-      const _ = new Set(f.value);
-      return a.hostId && _.add(a.hostId), c.value.people.filter((S) => _.has(S.id));
+      const B = new Set(N.value);
+      return a.hostId && B.add(a.hostId), c.value.people.filter((S) => B.has(S.id));
     }), P = e.computed(() => D.value.length);
-    function L(_) {
-      if (_ === a.hostId) return;
-      const S = new Set(f.value);
-      S.has(_) ? S.delete(_) : S.add(_), f.value = S;
+    function j(B) {
+      if (B === a.hostId) return;
+      const S = new Set(N.value);
+      S.has(B) ? S.delete(B) : S.add(B), N.value = S;
     }
-    function C(_) {
-      const S = new Set(f.value), b = _.every((M) => S.has(M.id));
-      for (const M of _)
+    function C(B) {
+      const S = new Set(N.value), b = B.every((M) => S.has(M.id));
+      for (const M of B)
         M.id !== a.hostId && (b ? S.delete(M.id) : S.add(M.id));
-      f.value = S;
+      N.value = S;
     }
     function I() {
       m.value || u("close");
     }
-    function U(_) {
-      _.key === "Escape" && I();
+    function U(B) {
+      B.key === "Escape" && I();
     }
     async function q() {
       if (m.value) return;
       E.value = "";
-      const _ = il(a.time);
+      const B = il(a.time);
       if (!a.projectId) {
         E.value = t.t("请选择所属项目");
         return;
@@ -6849,7 +6849,7 @@ const sr = {
         E.value = t.t("请填写会议主题");
         return;
       }
-      if (!Number.isFinite(_)) {
+      if (!Number.isFinite(B)) {
         E.value = t.t("请填写会议时间");
         return;
       }
@@ -6857,7 +6857,7 @@ const sr = {
         E.value = t.t("请选择主持人");
         return;
       }
-      const S = [.../* @__PURE__ */ new Set([a.hostId, ...f.value])];
+      const S = [.../* @__PURE__ */ new Set([a.hostId, ...N.value])];
       if (S.length < 2) {
         E.value = t.t("请至少再选一位参会人");
         return;
@@ -6867,7 +6867,7 @@ const sr = {
         const b = await J("meeting.create", {
           projectId: a.projectId,
           title: a.title.trim(),
-          time: _,
+          time: B,
           source: a.source,
           hostId: a.hostId,
           attendeeIds: S
@@ -6882,22 +6882,22 @@ const sr = {
     return e.onMounted(async () => {
       document.addEventListener("keydown", U);
       try {
-        const [_, S] = await Promise.all([
+        const [B, S] = await Promise.all([
           J("project.list", { status: "active" }),
           De()
         ]);
-        o.value = (Array.isArray(_) ? _ : []).filter((b) => !b.status || b.status === "active"), c.value = S, !a.projectId && o.value.length === 1 && (a.projectId = o.value[0].id);
-      } catch (_) {
-        k.value = x.errorMessage(_);
+        o.value = (Array.isArray(B) ? B : []).filter((b) => !b.status || b.status === "active"), c.value = S, !a.projectId && o.value.length === 1 && (a.projectId = o.value[0].id);
+      } catch (B) {
+        k.value = x.errorMessage(B);
       } finally {
         i.value = !0;
       }
-    }), e.onBeforeUnmount(() => document.removeEventListener("keydown", U)), (_, S) => (e.openBlock(), e.createBlock(e.Teleport, { to: "body" }, [
+    }), e.onBeforeUnmount(() => document.removeEventListener("keydown", U)), (B, S) => (e.openBlock(), e.createBlock(e.Teleport, { to: "body" }, [
       e.createElementVNode("div", {
         class: "mm-dialog-overlay",
         role: "dialog",
         "aria-modal": "true",
-        "aria-label": _.$t("创建会议"),
+        "aria-label": B.$t("创建会议"),
         "data-test": "mm-create-dialog",
         onClick: e.withModifiers(I, ["self"])
       }, [
@@ -6906,14 +6906,14 @@ const sr = {
             e.createElementVNode(
               "h3",
               null,
-              e.toDisplayString(_.$t("创建会议")),
+              e.toDisplayString(B.$t("创建会议")),
               1
               /* TEXT */
             ),
             e.createElementVNode("button", {
               type: "button",
               class: "mm-cd__x",
-              title: _.$t("关闭"),
+              title: B.$t("关闭"),
               onClick: I
             }, [...S[5] || (S[5] = [
               e.createElementVNode(
@@ -6948,7 +6948,7 @@ const sr = {
                 /* CACHED */
               )),
               e.createTextVNode(
-                e.toDisplayString(_.$t("没有进行中的项目：先在「项目」里新建项目（结项中、已归档的项目不能新建会议）。")),
+                e.toDisplayString(B.$t("没有进行中的项目：先在「项目」里新建项目（结项中、已归档的项目不能新建会议）。")),
                 1
                 /* TEXT */
               )
@@ -6956,7 +6956,7 @@ const sr = {
             e.createElementVNode("label", $c, [
               e.createElementVNode("span", null, [
                 e.createTextVNode(
-                  e.toDisplayString(_.$t("所属项目")) + " ",
+                  e.toDisplayString(B.$t("所属项目")) + " ",
                   1
                   /* TEXT */
                 ),
@@ -6978,7 +6978,7 @@ const sr = {
                   e.createElementVNode(
                     "option",
                     bc,
-                    e.toDisplayString(_.$t("选择项目")),
+                    e.toDisplayString(B.$t("选择项目")),
                     1
                     /* TEXT */
                   ),
@@ -7002,7 +7002,7 @@ const sr = {
             e.createElementVNode("label", _c, [
               e.createElementVNode("span", null, [
                 e.createTextVNode(
-                  e.toDisplayString(_.$t("会议主题")) + " ",
+                  e.toDisplayString(B.$t("会议主题")) + " ",
                   1
                   /* TEXT */
                 ),
@@ -7018,7 +7018,7 @@ const sr = {
                 "onUpdate:modelValue": S[1] || (S[1] = (b) => a.title = b),
                 type: "text",
                 maxlength: "80",
-                placeholder: _.$t("例如：A2 量产导入第 5 次周例会"),
+                placeholder: B.$t("例如：A2 量产导入第 5 次周例会"),
                 "data-test": "mm-create-title"
               }, null, 8, Bc), [
                 [e.vModelText, a.title]
@@ -7028,7 +7028,7 @@ const sr = {
               e.createElementVNode("label", Dc, [
                 e.createElementVNode("span", null, [
                   e.createTextVNode(
-                    e.toDisplayString(_.$t("会议时间")) + " ",
+                    e.toDisplayString(B.$t("会议时间")) + " ",
                     1
                     /* TEXT */
                   ),
@@ -7058,7 +7058,7 @@ const sr = {
                 e.createElementVNode(
                   "span",
                   null,
-                  e.toDisplayString(_.$t("来源")),
+                  e.toDisplayString(B.$t("来源")),
                   1
                   /* TEXT */
                 ),
@@ -7084,14 +7084,14 @@ const sr = {
             e.createElementVNode("div", Ic, [
               e.createElementVNode("span", null, [
                 e.createTextVNode(
-                  e.toDisplayString(_.$t("主持人")),
+                  e.toDisplayString(B.$t("主持人")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "small",
                   Mc,
-                  e.toDisplayString(_.$t("（默认是你，可以改；主持人负责上传、指认、终审）")),
+                  e.toDisplayString(B.$t("（默认是你，可以改；主持人负责上传、指认、终审）")),
                   1
                   /* TEXT */
                 )
@@ -7100,14 +7100,14 @@ const sr = {
                 modelValue: a.hostId,
                 "onUpdate:modelValue": S[3] || (S[3] = (b) => a.hostId = b),
                 people: c.value,
-                "aria-label": _.$t("主持人"),
+                "aria-label": B.$t("主持人"),
                 "data-test": "mm-create-host"
               }, null, 8, ["modelValue", "people", "aria-label"])
             ]),
             e.createElementVNode("div", Ac, [
               e.createElementVNode("span", null, [
                 e.createTextVNode(
-                  e.toDisplayString(_.$t("参会人")) + " ",
+                  e.toDisplayString(B.$t("参会人")) + " ",
                   1
                   /* TEXT */
                 ),
@@ -7121,7 +7121,7 @@ const sr = {
                 e.createElementVNode(
                   "small",
                   jc,
-                  e.toDisplayString(_.$t("已选 {n} 人（主持人自动参会）", { n: P.value })),
+                  e.toDisplayString(B.$t("已选 {n} 人（主持人自动参会）", { n: P.value })),
                   1
                   /* TEXT */
                 )
@@ -7142,8 +7142,8 @@ const sr = {
                     b.id !== a.hostId ? (e.openBlock(), e.createElementBlock("button", {
                       key: 0,
                       type: "button",
-                      title: _.$t("移除"),
-                      onClick: (M) => L(b.id)
+                      title: B.$t("移除"),
+                      onClick: (M) => j(b.id)
                     }, [...S[12] || (S[12] = [
                       e.createElementVNode(
                         "i",
@@ -7173,7 +7173,7 @@ const sr = {
                   e.withDirectives(e.createElementVNode("input", {
                     "onUpdate:modelValue": S[4] || (S[4] = (b) => r.value = b),
                     type: "search",
-                    placeholder: _.$t("搜索姓名、职务"),
+                    placeholder: B.$t("搜索姓名、职务"),
                     "data-test": "mm-create-search"
                   }, null, 8, Uc), [
                     [e.vModelText, r.value]
@@ -7213,7 +7213,7 @@ const sr = {
                           type: "button",
                           class: "ss-link",
                           onClick: (M) => C(b.people)
-                        }, e.toDisplayString(b.people.every((M) => f.value.has(M.id)) ? _.$t("取消全选") : _.$t("全选")), 9, qc)
+                        }, e.toDisplayString(b.people.every((M) => N.value.has(M.id)) ? B.$t("取消全选") : B.$t("全选")), 9, qc)
                       ]),
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
@@ -7225,9 +7225,9 @@ const sr = {
                         }, [
                           e.createElementVNode("input", {
                             type: "checkbox",
-                            checked: f.value.has(M.id) || M.id === a.hostId,
+                            checked: N.value.has(M.id) || M.id === a.hostId,
                             disabled: M.id === a.hostId,
-                            onChange: (T) => L(M.id)
+                            onChange: (T) => j(M.id)
                           }, null, 40, Hc),
                           e.createElementVNode(
                             "span",
@@ -7264,7 +7264,7 @@ const sr = {
                   i.value && !g.value.length ? (e.openBlock(), e.createElementBlock(
                     "p",
                     Wc,
-                    e.toDisplayString(r.value.trim() ? _.$t("没有找到这个人") : _.$t("组织里还没有人员")),
+                    e.toDisplayString(r.value.trim() ? B.$t("没有找到这个人") : B.$t("组织里还没有人员")),
                     1
                     /* TEXT */
                   )) : e.createCommentVNode("v-if", !0)
@@ -7279,7 +7279,7 @@ const sr = {
                   /* CACHED */
                 )),
                 e.createTextVNode(
-                  " " + e.toDisplayString(_.$t("找不到人员请联系管理员同步通讯录")),
+                  " " + e.toDisplayString(B.$t("找不到人员请联系管理员同步通讯录")),
                   1
                   /* TEXT */
                 )
@@ -7304,7 +7304,7 @@ const sr = {
             e.createElementVNode(
               "span",
               Qc,
-              e.toDisplayString(_.$t("创建后在会议详情里上传录音、录屏或文字记录")),
+              e.toDisplayString(B.$t("创建后在会议详情里上传录音、录屏或文字记录")),
               1
               /* TEXT */
             ),
@@ -7322,7 +7322,7 @@ const sr = {
                 class: "ss-btn",
                 onClick: I
               },
-              e.toDisplayString(_.$t("取消")),
+              e.toDisplayString(B.$t("取消")),
               1
               /* TEXT */
             ),
@@ -7343,7 +7343,7 @@ const sr = {
                 /* CLASS */
               ),
               e.createTextVNode(
-                e.toDisplayString(_.$t("创建会议")),
+                e.toDisplayString(B.$t("创建会议")),
                 1
                 /* TEXT */
               )
@@ -7380,17 +7380,17 @@ const sr = {
       { key: "todo", title: t.t("待我处理") },
       { key: "processing", title: t.t("处理中") },
       { key: "final", title: t.t("已定稿") }
-    ], y = n, s = ie.useNotificationStore(), o = e.ref("all"), c = e.ref(""), i = e.ref(!1), k = e.ref(""), E = e.ref(""), m = e.ref(!1), r = e.ref(lt.value), f = e.ref(null), w = e.ref(null), a = e.reactive({ all: [], todo: [], processing: [], final: [] }), g = e.computed(() => ({ all: a.all.length, todo: a.todo.length, processing: a.processing.length, final: a.final.length })), D = e.computed(() => a[o.value]), P = e.computed(() => [
+    ], y = n, s = ce.useNotificationStore(), o = e.ref("all"), c = e.ref(""), i = e.ref(!1), k = e.ref(""), E = e.ref(""), m = e.ref(!1), r = e.ref(lt.value), N = e.ref(null), w = e.ref(null), a = e.reactive({ all: [], todo: [], processing: [], final: [] }), g = e.computed(() => ({ all: a.all.length, todo: a.todo.length, processing: a.processing.length, final: a.final.length })), D = e.computed(() => a[o.value]), P = e.computed(() => [
       { key: "mine", title: t.t("需要我处理"), items: D.value.filter((T) => T.needsMe) },
       { key: "other", title: t.t("其他"), items: D.value.filter((T) => !T.needsMe) }
     ]);
-    let L = 0, C = "";
+    let j = 0, C = "";
     async function I() {
-      const T = ++L;
+      const T = ++j;
       i.value = !0;
       try {
         const G = c.value.trim(), V = await Promise.all(u.map((p) => J("meeting.list", { filter: p.key, ...G ? { q: G } : {} })));
-        if (T !== L) return;
+        if (T !== j) return;
         u.forEach((p, z) => {
           a[p.key] = Array.isArray(V[z]) ? V[z] : [];
         }), E.value = "";
@@ -7400,18 +7400,18 @@ const sr = {
           p ? q(p.id) : r.value = "";
         }
       } catch (G) {
-        T === L && (E.value = x.errorMessage(G));
+        T === j && (E.value = x.errorMessage(G));
       } finally {
-        T === L && (i.value = !1);
+        T === j && (i.value = !1);
       }
     }
     async function U() {
       await Promise.all([I(), w.value?.refresh?.()]);
     }
     function q(T) {
-      T !== r.value && (f.value = null), r.value = T, lt.value = T;
+      T !== r.value && (N.value = null), r.value = T, lt.value = T;
     }
-    function _(T) {
+    function B(T) {
       m.value = !1, o.value = "all", c.value = "", q(T), I();
     }
     async function S(T) {
@@ -7420,7 +7420,7 @@ const sr = {
       if (window.confirm(G)) {
         k.value = T.id;
         try {
-          await J("meeting.delete", { id: T.id }), r.value === T.id && (r.value = "", lt.value = ""), C === T.id && (C = ""), s.success(t.t("已删除会议")), await Promise.all([I(), ce().catch(() => {
+          await J("meeting.delete", { id: T.id }), r.value === T.id && (r.value = "", lt.value = ""), C === T.id && (C = ""), s.success(t.t("已删除会议")), await Promise.all([I(), de().catch(() => {
           })]);
         } catch (V) {
           const d = x.errorMessage(V);
@@ -7431,10 +7431,10 @@ const sr = {
       }
     }
     function b() {
-      const T = fe.value;
-      T.tab !== "meetings" || !T.link || T.link.kind !== "meeting" && T.link.kind !== "meeting_plan" || (a.all.some((G) => G.id === T.link.id) || (o.value = "all", c.value = ""), C = T.link.id, q(T.link.id), f.value = { tab: T.link.kind === "meeting_plan" ? "plan" : void 0, anchor: T.link.anchor, seq: T.seq });
+      const T = Ne.value;
+      T.tab !== "meetings" || !T.link || T.link.kind !== "meeting" && T.link.kind !== "meeting_plan" || (a.all.some((G) => G.id === T.link.id) || (o.value = "all", c.value = ""), C = T.link.id, q(T.link.id), N.value = { tab: T.link.kind === "meeting_plan" ? "plan" : void 0, anchor: T.link.anchor, seq: T.seq });
     }
-    e.watch(() => fe.value.seq, b);
+    e.watch(() => Ne.value.seq, b);
     let M = null;
     return e.watch(c, () => {
       M && clearTimeout(M), M = setTimeout(() => {
@@ -7707,7 +7707,7 @@ const sr = {
           ref_key: "detailRef",
           ref: w,
           "meeting-id": r.value,
-          focus: f.value,
+          focus: N.value,
           onChanged: I,
           onRole: G[3] || (G[3] = (V) => y("role", V))
         }, null, 8, ["meeting-id", "focus"])) : (e.openBlock(), e.createElementBlock("section", gd, [
@@ -7733,7 +7733,7 @@ const sr = {
       m.value ? (e.openBlock(), e.createBlock(Ft, {
         key: 1,
         onClose: G[4] || (G[4] = (V) => m.value = !1),
-        onCreated: _
+        onCreated: B
       })) : e.createCommentVNode("v-if", !0)
     ]));
   }
@@ -7966,7 +7966,7 @@ const sr = {
                       e.createElementVNode(
                         "b",
                         {
-                          style: e.normalizeStyle({ width: `${e.unref(Ve)(m.percent)}%` })
+                          style: e.normalizeStyle({ width: `${e.unref(Ee)(m.percent)}%` })
                         },
                         null,
                         4
@@ -7979,7 +7979,7 @@ const sr = {
                   e.createElementVNode(
                     "em",
                     null,
-                    e.toDisplayString(e.unref(Ve)(m.percent)) + "%",
+                    e.toDisplayString(e.unref(Ee)(m.percent)) + "%",
                     1
                     /* TEXT */
                   )
@@ -8008,9 +8008,9 @@ const sr = {
       ))
     ]));
   }
-}), Pt = /* @__PURE__ */ ae(Md, [["__scopeId", "data-v-f1ba1ed1"]]), he = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useDialog.ts"];
-if (!he) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useDialog.ts");
-he.default;
+}), Pt = /* @__PURE__ */ ae(Md, [["__scopeId", "data-v-f1ba1ed1"]]), Be = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useDialog.ts"];
+if (!Be) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useDialog.ts");
+Be.default;
 const Ad = {
   class: "mm-ob",
   "data-test": "mm-objection-panel"
@@ -8078,23 +8078,23 @@ const Ad = {
       review_reject: t.t("驳回并说明"),
       arb_keep: t.t("维持原方案"),
       arb_adjust: t.t("按异议调整")
-    }, s = he.useDialog(), o = ie.useNotificationStore(), c = e.ref(!1), i = e.ref(""), k = e.ref(""), E = e.ref(""), m = e.reactive({ title: "", standard: "", due: "" }), r = e.computed(() => Ce(n.task) ? n.task.objection : null), f = e.computed(() => ct(n.names, r.value?.raisedBy, n.task.assigneeName)), w = e.computed(() => {
-      const _ = r.value?.review;
-      return _ ? _.decision === "adopt" ? t.t("已采纳") : t.t("已驳回") : t.t("待复核");
+    }, s = Be.useDialog(), o = ce.useNotificationStore(), c = e.ref(!1), i = e.ref(""), k = e.ref(""), E = e.ref(""), m = e.reactive({ title: "", standard: "", due: "" }), r = e.computed(() => Ce(n.task) ? n.task.objection : null), N = e.computed(() => ct(n.names, r.value?.raisedBy, n.task.assigneeName)), w = e.computed(() => {
+      const B = r.value?.review;
+      return B ? B.decision === "adopt" ? t.t("已采纳") : t.t("已驳回") : t.t("待复核");
     }), a = e.computed(() => !!(n.can.review || n.can.reply || n.can.escalate || n.can.arbitrate)), g = e.computed(() => {
-      const _ = r.value?.stage;
-      return _ === "review" ? t.t("等待任务负责人 {name} 复核", { name: n.task.ownerName }) : _ === "dept_reply" ? t.t("任务负责人已驳回，等待部门负责人 {name} 接受驳回或提交裁决", { name: f.value }) : _ === "arbitration" ? t.t("已提交裁决，等待项目负责人裁决") : "";
-    }), D = e.computed(() => [...n.task.objectionHistory ?? []].sort((_, S) => (S.resolvedAt || S.raisedAt) - (_.resolvedAt || _.raisedAt))), P = e.computed(() => wl(n.task.events));
+      const B = r.value?.stage;
+      return B === "review" ? t.t("等待任务负责人 {name} 复核", { name: n.task.ownerName }) : B === "dept_reply" ? t.t("任务负责人已驳回，等待部门负责人 {name} 接受驳回或提交裁决", { name: N.value }) : B === "arbitration" ? t.t("已提交裁决，等待项目负责人裁决") : "";
+    }), D = e.computed(() => [...n.task.objectionHistory ?? []].sort((B, S) => (S.resolvedAt || S.raisedAt) - (B.resolvedAt || B.raisedAt))), P = e.computed(() => wl(n.task.events));
     e.watch(() => [n.task.id, r.value?.stage], () => {
       k.value = "", i.value = "";
     });
-    function L(_) {
-      Object.assign(m, Il(n.task)), E.value = "", k.value = _;
+    function j(B) {
+      Object.assign(m, Il(n.task)), E.value = "", k.value = B;
     }
-    async function C(_, S, b) {
+    async function C(B, S, b) {
       c.value = !0, i.value = "";
       try {
-        return await J(_, S), o.success(b), k.value = "", u("changed"), !0;
+        return await J(B, S), o.success(b), k.value = "", u("changed"), !0;
       } catch (M) {
         return i.value = x.errorMessage(M), !1;
       } finally {
@@ -8102,26 +8102,26 @@ const Ad = {
       }
     }
     async function I() {
-      const _ = n.task.id, S = E.value.trim(), b = Tl(m, n.task);
+      const B = n.task.id, S = E.value.trim(), b = Tl(m, n.task);
       switch (k.value) {
         case "review_adopt":
-          await C("task.objection.review", { id: _, decision: "adopt", note: S, changes: b }, t.t("已采纳，任务回到待接收，等待部门负责人重新确认"));
+          await C("task.objection.review", { id: B, decision: "adopt", note: S, changes: b }, t.t("已采纳，任务回到待接收，等待部门负责人重新确认"));
           break;
         case "review_reject":
-          await C("task.objection.review", { id: _, decision: "reject", note: S }, t.t("已驳回，等待部门负责人回应"));
+          await C("task.objection.review", { id: B, decision: "reject", note: S }, t.t("已驳回，等待部门负责人回应"));
           break;
         case "arb_keep":
-          await C("task.objection.arbitrate", { id: _, decision: "keep", note: S }, t.t("已裁决：维持原方案"));
+          await C("task.objection.arbitrate", { id: B, decision: "keep", note: S }, t.t("已裁决：维持原方案"));
           break;
         case "arb_adjust":
-          await C("task.objection.arbitrate", { id: _, decision: "adjust", note: S, changes: b }, t.t("已裁决：按异议调整"));
+          await C("task.objection.arbitrate", { id: B, decision: "adjust", note: S, changes: b }, t.t("已裁决：按异议调整"));
           break;
       }
     }
-    async function U(_) {
-      await s.confirm(_ === "accept" ? { title: t.t("接受驳回"), message: t.t("接受后异议结束，任务回到发起前的状态，按原方案执行。") } : { title: t.t("提交裁决"), message: t.t("提交后由项目负责人裁决，裁决结果为最终结果。") }) && await C("task.objection.reply", { id: n.task.id, decision: _ }, _ === "accept" ? t.t("已接受驳回") : t.t("已提交项目负责人裁决"));
+    async function U(B) {
+      await s.confirm(B === "accept" ? { title: t.t("接受驳回"), message: t.t("接受后异议结束，任务回到发起前的状态，按原方案执行。") } : { title: t.t("提交裁决"), message: t.t("提交后由项目负责人裁决，裁决结果为最终结果。") }) && await C("task.objection.reply", { id: n.task.id, decision: B }, B === "accept" ? t.t("已接受驳回") : t.t("已提交项目负责人裁决"));
     }
-    async function q(_) {
+    async function q(B) {
       const S = await s.prompt({
         title: t.t("删除该任务"),
         message: t.t("删除后任务变为「已取消」（终态，结项时视同完成），并通知相关负责人。请写明原因："),
@@ -8130,9 +8130,9 @@ const Ad = {
       });
       if (S === null) return;
       const b = S.trim() || t.t("删除该任务");
-      _ === "review" ? await C("task.objection.review", { id: n.task.id, decision: "adopt", note: b, changes: { cancel: !0 } }, t.t("任务已删除")) : await C("task.objection.arbitrate", { id: n.task.id, decision: "adjust", note: b, changes: { cancel: !0 } }, t.t("任务已删除"));
+      B === "review" ? await C("task.objection.review", { id: n.task.id, decision: "adopt", note: b, changes: { cancel: !0 } }, t.t("任务已删除")) : await C("task.objection.arbitrate", { id: n.task.id, decision: "adjust", note: b, changes: { cancel: !0 } }, t.t("任务已删除"));
     }
-    return (_, S) => (e.openBlock(), e.createElementBlock("div", Ad, [
+    return (B, S) => (e.openBlock(), e.createElementBlock("div", Ad, [
       i.value ? (e.openBlock(), e.createElementBlock("p", jd, [
         S[13] || (S[13] = e.createElementVNode(
           "i",
@@ -8153,14 +8153,14 @@ const Ad = {
         [
           e.createElementVNode("h4", Ld, [
             e.createTextVNode(
-              e.toDisplayString(_.$t("当前分歧：{t}", { t: e.unref(at)[r.value.target] })) + " ",
+              e.toDisplayString(B.$t("当前分歧：{t}", { t: e.unref(at)[r.value.target] })) + " ",
               1
               /* TEXT */
             ),
             e.createElementVNode(
               "span",
               zd,
-              e.toDisplayString(r.value.kind === "change" ? _.$t("执行中申请变更") : _.$t("接收时提出异议")),
+              e.toDisplayString(r.value.kind === "change" ? B.$t("执行中申请变更") : B.$t("接收时提出异议")),
               1
               /* TEXT */
             )
@@ -8172,24 +8172,24 @@ const Ad = {
                   "i",
                   {
                     class: "av",
-                    style: e.normalizeStyle({ background: e.unref(re)(f.value).color }),
+                    style: e.normalizeStyle({ background: e.unref(re)(N.value).color }),
                     "aria-hidden": "true"
                   },
-                  e.toDisplayString(e.unref(re)(f.value).text),
+                  e.toDisplayString(e.unref(re)(N.value).text),
                   5
                   /* TEXT, STYLE */
                 ),
                 e.createElementVNode(
                   "b",
                   null,
-                  e.toDisplayString(f.value),
+                  e.toDisplayString(N.value),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "small",
                   null,
-                  e.toDisplayString(_.$t("部门负责人")),
+                  e.toDisplayString(B.$t("部门负责人")),
                   1
                   /* TEXT */
                 )
@@ -8212,7 +8212,7 @@ const Ad = {
                   { key: 0 },
                   [
                     e.createTextVNode(
-                      e.toDisplayString(r.value.suggestion ? _.$t("，") : "") + e.toDisplayString(_.$t("建议截止调整为 {d}", { d: e.unref(ut)(r.value.suggestedDue) })),
+                      e.toDisplayString(r.value.suggestion ? B.$t("，") : "") + e.toDisplayString(B.$t("建议截止调整为 {d}", { d: e.unref(ut)(r.value.suggestedDue) })),
                       1
                       /* TEXT */
                     )
@@ -8266,7 +8266,7 @@ const Ad = {
               )) : (e.openBlock(), e.createElementBlock(
                 "p",
                 qd,
-                e.toDisplayString(_.$t("还没有复核意见")),
+                e.toDisplayString(B.$t("还没有复核意见")),
                 1
                 /* TEXT */
               )),
@@ -8284,14 +8284,14 @@ const Ad = {
             e.createElementVNode(
               "h5",
               null,
-              e.toDisplayString(_.$t("你的复核")),
+              e.toDisplayString(B.$t("你的复核")),
               1
               /* TEXT */
             ),
             e.createElementVNode(
               "p",
               Wd,
-              e.toDisplayString(_.$t("采纳后任务回到待接收，由部门负责人重新确认；驳回后由部门负责人决定接受驳回还是提交裁决")),
+              e.toDisplayString(B.$t("采纳后任务回到待接收，由部门负责人重新确认；驳回后由部门负责人决定接受驳回还是提交裁决")),
               1
               /* TEXT */
             ),
@@ -8301,15 +8301,15 @@ const Ad = {
                 class: "ss-btn",
                 disabled: c.value,
                 "data-test": "mm-ob-reject",
-                onClick: S[0] || (S[0] = (b) => L("review_reject"))
-              }, e.toDisplayString(_.$t("驳回并说明")), 9, Yd),
+                onClick: S[0] || (S[0] = (b) => j("review_reject"))
+              }, e.toDisplayString(B.$t("驳回并说明")), 9, Yd),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
                 disabled: c.value,
                 "data-test": "mm-ob-adopt",
-                onClick: S[1] || (S[1] = (b) => L("review_adopt"))
-              }, e.toDisplayString(_.$t("采纳并调整")), 9, Jd)
+                onClick: S[1] || (S[1] = (b) => j("review_adopt"))
+              }, e.toDisplayString(B.$t("采纳并调整")), 9, Jd)
             ]),
             e.createElementVNode("button", {
               type: "button",
@@ -8319,7 +8319,7 @@ const Ad = {
               onClick: S[2] || (S[2] = (b) => q("review"))
             }, [
               e.createTextVNode(
-                e.toDisplayString(_.$t("更多：删除该任务")) + " ",
+                e.toDisplayString(B.$t("更多：删除该任务")) + " ",
                 1
                 /* TEXT */
               ),
@@ -8337,14 +8337,14 @@ const Ad = {
             e.createElementVNode(
               "h5",
               null,
-              e.toDisplayString(_.$t("任务负责人驳回了你的异议")),
+              e.toDisplayString(B.$t("任务负责人驳回了你的异议")),
               1
               /* TEXT */
             ),
             e.createElementVNode(
               "p",
               Xd,
-              e.toDisplayString(_.$t("接受驳回则回到发起前的状态按原方案执行；不接受可以提交项目负责人裁决")),
+              e.toDisplayString(B.$t("接受驳回则回到发起前的状态按原方案执行；不接受可以提交项目负责人裁决")),
               1
               /* TEXT */
             ),
@@ -8356,7 +8356,7 @@ const Ad = {
                 disabled: c.value,
                 "data-test": "mm-ob-accept-reject",
                 onClick: S[3] || (S[3] = (b) => U("accept"))
-              }, e.toDisplayString(_.$t("接受驳回")), 9, em)) : e.createCommentVNode("v-if", !0),
+              }, e.toDisplayString(B.$t("接受驳回")), 9, em)) : e.createCommentVNode("v-if", !0),
               l.can.escalate ? (e.openBlock(), e.createElementBlock("button", {
                 key: 1,
                 type: "button",
@@ -8364,7 +8364,7 @@ const Ad = {
                 disabled: c.value,
                 "data-test": "mm-ob-escalate",
                 onClick: S[4] || (S[4] = (b) => U("escalate"))
-              }, e.toDisplayString(_.$t("提交裁决")), 9, tm)) : e.createCommentVNode("v-if", !0)
+              }, e.toDisplayString(B.$t("提交裁决")), 9, tm)) : e.createCommentVNode("v-if", !0)
             ])
           ])) : e.createCommentVNode("v-if", !0),
           e.createCommentVNode(" 项目负责人裁决 "),
@@ -8372,14 +8372,14 @@ const Ad = {
             e.createElementVNode(
               "h5",
               null,
-              e.toDisplayString(_.$t("你的裁决（最终结果）")),
+              e.toDisplayString(B.$t("你的裁决（最终结果）")),
               1
               /* TEXT */
             ),
             e.createElementVNode(
               "p",
               nm,
-              e.toDisplayString(_.$t("裁决后通知任务负责人和部门负责人，记入总结报告")),
+              e.toDisplayString(B.$t("裁决后通知任务负责人和部门负责人，记入总结报告")),
               1
               /* TEXT */
             ),
@@ -8389,15 +8389,15 @@ const Ad = {
                 class: "ss-btn",
                 disabled: c.value,
                 "data-test": "mm-ob-keep",
-                onClick: S[5] || (S[5] = (b) => L("arb_keep"))
-              }, e.toDisplayString(_.$t("维持原方案")), 9, am),
+                onClick: S[5] || (S[5] = (b) => j("arb_keep"))
+              }, e.toDisplayString(B.$t("维持原方案")), 9, am),
               e.createElementVNode("button", {
                 type: "button",
                 class: "ss-btn primary",
                 disabled: c.value,
                 "data-test": "mm-ob-adjust",
-                onClick: S[6] || (S[6] = (b) => L("arb_adjust"))
-              }, e.toDisplayString(_.$t("按异议调整")), 9, sm)
+                onClick: S[6] || (S[6] = (b) => j("arb_adjust"))
+              }, e.toDisplayString(B.$t("按异议调整")), 9, sm)
             ]),
             e.createElementVNode("button", {
               type: "button",
@@ -8407,7 +8407,7 @@ const Ad = {
               onClick: S[7] || (S[7] = (b) => q("arbitrate"))
             }, [
               e.createTextVNode(
-                e.toDisplayString(_.$t("更多：删除该任务")) + " ",
+                e.toDisplayString(B.$t("更多：删除该任务")) + " ",
                 1
                 /* TEXT */
               ),
@@ -8450,7 +8450,7 @@ const Ad = {
                 e.createElementVNode(
                   "p",
                   dm,
-                  e.toDisplayString(_.$t("按异议改好任务内容；没改的项保持原样。")),
+                  e.toDisplayString(B.$t("按异议改好任务内容；没改的项保持原样。")),
                   1
                   /* TEXT */
                 ),
@@ -8458,7 +8458,7 @@ const Ad = {
                   e.createElementVNode(
                     "span",
                     null,
-                    e.toDisplayString(_.$t("任务标题")),
+                    e.toDisplayString(B.$t("任务标题")),
                     1
                     /* TEXT */
                   ),
@@ -8480,7 +8480,7 @@ const Ad = {
                   e.createElementVNode(
                     "span",
                     null,
-                    e.toDisplayString(_.$t("交付标准")),
+                    e.toDisplayString(B.$t("交付标准")),
                     1
                     /* TEXT */
                   ),
@@ -8501,7 +8501,7 @@ const Ad = {
                   e.createElementVNode(
                     "span",
                     null,
-                    e.toDisplayString(_.$t("截止日期")),
+                    e.toDisplayString(B.$t("截止日期")),
                     1
                     /* TEXT */
                   ),
@@ -8527,14 +8527,14 @@ const Ad = {
               e.createElementVNode(
                 "span",
                 null,
-                e.toDisplayString(k.value === "review_reject" ? _.$t("驳回理由") : _.$t("说明（可选）")),
+                e.toDisplayString(k.value === "review_reject" ? B.$t("驳回理由") : B.$t("说明（可选）")),
                 1
                 /* TEXT */
               ),
               e.withDirectives(e.createElementVNode("textarea", {
                 "onUpdate:modelValue": S[11] || (S[11] = (b) => E.value = b),
                 rows: "3",
-                placeholder: k.value === "review_reject" ? _.$t("写明为什么维持原方案，部门负责人会看到") : "",
+                placeholder: k.value === "review_reject" ? B.$t("写明为什么维持原方案，部门负责人会看到") : "",
                 "data-test": "mm-ob-note"
               }, null, 8, km), [
                 [e.vModelText, E.value]
@@ -8558,7 +8558,7 @@ const Ad = {
                   /* CLASS */
                 ),
                 e.createTextVNode(
-                  e.toDisplayString(_.$t("确认")),
+                  e.toDisplayString(B.$t("确认")),
                   1
                   /* TEXT */
                 )
@@ -8570,7 +8570,7 @@ const Ad = {
                   class: "ss-link",
                   onClick: S[12] || (S[12] = (b) => k.value = "")
                 },
-                e.toDisplayString(_.$t("取消")),
+                e.toDisplayString(B.$t("取消")),
                 1
                 /* TEXT */
               )
@@ -8582,7 +8582,7 @@ const Ad = {
       )) : (e.openBlock(), e.createElementBlock(
         "p",
         fm,
-        e.toDisplayString(_.$t("当前没有处理中的异议")),
+        e.toDisplayString(B.$t("当前没有处理中的异议")),
         1
         /* TEXT */
       )),
@@ -8590,7 +8590,7 @@ const Ad = {
         e.createElementVNode(
           "h4",
           null,
-          e.toDisplayString(_.$t("以往的异议")),
+          e.toDisplayString(B.$t("以往的异议")),
           1
           /* TEXT */
         ),
@@ -8604,7 +8604,7 @@ const Ad = {
               e.createElementVNode(
                 "span",
                 Vm,
-                e.toDisplayString(b.kind === "change" ? _.$t("变更申请") : _.$t("异议")) + " · " + e.toDisplayString(e.unref(at)[b.target]),
+                e.toDisplayString(b.kind === "change" ? B.$t("变更申请") : B.$t("异议")) + " · " + e.toDisplayString(e.unref(at)[b.target]),
                 1
                 /* TEXT */
               ),
@@ -8641,7 +8641,7 @@ const Ad = {
         e.createElementVNode(
           "h4",
           null,
-          e.toDisplayString(_.$t("变更记录")),
+          e.toDisplayString(B.$t("变更记录")),
           1
           /* TEXT */
         ),
@@ -8679,7 +8679,7 @@ const Ad = {
                     { key: 0 },
                     [
                       e.createTextVNode(
-                        e.toDisplayString(_.$t("：")) + e.toDisplayString(b.note),
+                        e.toDisplayString(B.$t("：")) + e.toDisplayString(b.note),
                         1
                         /* TEXT */
                       )
@@ -8703,7 +8703,7 @@ const Ad = {
         ])) : (e.openBlock(), e.createElementBlock(
           "p",
           $m,
-          e.toDisplayString(_.$t("没有变更记录")),
+          e.toDisplayString(B.$t("没有变更记录")),
           1
           /* TEXT */
         ))
@@ -8761,7 +8761,7 @@ const Ad = {
       { key: "detail", title: t.t("详情") },
       { key: "progress", title: t.t("进度记录") },
       { key: "objection", title: t.t("异议与变更") }
-    ], s = ie.useNotificationStore(), o = e.ref(null), c = e.ref(!1), i = e.ref(!1), k = e.ref(""), E = e.ref("detail"), m = e.ref(""), r = e.reactive({ percent: 0, note: "" }), f = e.ref(""), w = e.reactive({ target: "time", reason: "", suggestion: "", suggestedDue: "" }), a = e.computed(() => o.value?.task ?? null), g = e.computed(() => o.value?.can ?? {}), D = e.computed(() => !!a.value && Ce(a.value)), P = e.computed(() => !!(g.value.accept || g.value.object || g.value.progress || g.value.complete || g.value.change)), L = e.computed(() => [...a.value?.progressLog ?? []].sort((V, d) => d.at - V.at)), C = e.computed(() => g.value.object ? t.t("提出异议") : t.t("申请变更")), I = (V) => V === "done" ? "ok" : V === "in_progress" ? "brand" : V === "to_accept" ? "warn" : "";
+    ], s = ce.useNotificationStore(), o = e.ref(null), c = e.ref(!1), i = e.ref(!1), k = e.ref(""), E = e.ref("detail"), m = e.ref(""), r = e.reactive({ percent: 0, note: "" }), N = e.ref(""), w = e.reactive({ target: "time", reason: "", suggestion: "", suggestedDue: "" }), a = e.computed(() => o.value?.task ?? null), g = e.computed(() => o.value?.can ?? {}), D = e.computed(() => !!a.value && Ce(a.value)), P = e.computed(() => !!(g.value.accept || g.value.object || g.value.progress || g.value.complete || g.value.change)), j = e.computed(() => [...a.value?.progressLog ?? []].sort((V, d) => d.at - V.at)), C = e.computed(() => g.value.object ? t.t("提出异议") : t.t("申请变更")), I = (V) => V === "done" ? "ok" : V === "in_progress" ? "brand" : V === "to_accept" ? "warn" : "";
     async function U(V) {
       if (n.taskId) {
         c.value = !0, k.value = "";
@@ -8782,9 +8782,9 @@ const Ad = {
     });
     function q(V) {
       const d = a.value;
-      d && (V === "progress" && Object.assign(r, { percent: Ve(d.percent), note: "" }), V === "complete" && (f.value = ""), V === "raise" && Object.assign(w, { target: "time", reason: "", suggestion: "", suggestedDue: "" }), m.value = V);
+      d && (V === "progress" && Object.assign(r, { percent: Ee(d.percent), note: "" }), V === "complete" && (N.value = ""), V === "raise" && Object.assign(w, { target: "time", reason: "", suggestion: "", suggestedDue: "" }), m.value = V);
     }
-    async function _(V, d, p) {
+    async function B(V, d, p) {
       i.value = !0, k.value = "";
       try {
         await J(V, d), s.success(p), m.value = "", await S();
@@ -8798,14 +8798,14 @@ const Ad = {
       await U(!1), u("changed");
     }
     function b() {
-      return _("task.accept", { id: n.taskId }, t.t("已接收任务"));
+      return B("task.accept", { id: n.taskId }, t.t("已接收任务"));
     }
     function M() {
       const V = Math.max(0, Math.min(100, Math.round(Number(r.percent) || 0)));
-      return _("task.progress", { id: n.taskId, percent: V, note: r.note.trim(), status: "in_progress" }, t.t("进度已更新"));
+      return B("task.progress", { id: n.taskId, percent: V, note: r.note.trim(), status: "in_progress" }, t.t("进度已更新"));
     }
     function T() {
-      return _("task.complete", { id: n.taskId, note: f.value.trim() || void 0 }, t.t("已标记完成，已通知任务负责人"));
+      return B("task.complete", { id: n.taskId, note: N.value.trim() || void 0 }, t.t("已标记完成，已通知任务负责人"));
     }
     function G() {
       const V = {
@@ -8814,7 +8814,7 @@ const Ad = {
         reason: w.reason.trim(),
         suggestion: w.suggestion.trim()
       };
-      return w.target === "time" && w.suggestedDue && (V.suggestedDue = w.suggestedDue), _("task.objection.raise", V, t.t("已提交，等待任务负责人复核")).then(() => {
+      return w.target === "time" && w.suggestedDue && (V.suggestedDue = w.suggestedDue), B("task.objection.raise", V, t.t("已提交，等待任务负责人复核")).then(() => {
         k.value || (E.value = "objection");
       });
     }
@@ -9136,7 +9136,7 @@ const Ad = {
                     e.createElementVNode(
                       "b",
                       {
-                        style: e.normalizeStyle({ width: `${e.unref(Ve)(a.value.percent)}%` })
+                        style: e.normalizeStyle({ width: `${e.unref(Ee)(a.value.percent)}%` })
                       },
                       null,
                       4
@@ -9149,7 +9149,7 @@ const Ad = {
                 e.createElementVNode(
                   "em",
                   null,
-                  e.toDisplayString(e.unref(Ve)(a.value.percent)) + "%",
+                  e.toDisplayString(e.unref(Ee)(a.value.percent)) + "%",
                   1
                   /* TEXT */
                 )
@@ -9164,7 +9164,7 @@ const Ad = {
               e.createElementVNode(
                 "dd",
                 null,
-                e.toDisplayString(e.unref(Ee)(a.value.createdAt)),
+                e.toDisplayString(e.unref($e)(a.value.createdAt)),
                 1
                 /* TEXT */
               ),
@@ -9182,7 +9182,7 @@ const Ad = {
                   e.createElementVNode(
                     "dd",
                     null,
-                    e.toDisplayString(e.unref(Ee)(a.value.acceptedAt)),
+                    e.toDisplayString(e.unref($e)(a.value.acceptedAt)),
                     1
                     /* TEXT */
                   )
@@ -9204,7 +9204,7 @@ const Ad = {
                   e.createElementVNode(
                     "dd",
                     null,
-                    e.toDisplayString(e.unref(Ee)(a.value.doneAt)),
+                    e.toDisplayString(e.unref($e)(a.value.doneAt)),
                     1
                     /* TEXT */
                   )
@@ -9218,11 +9218,11 @@ const Ad = {
               [
                 e.createCommentVNode(" 进度记录 "),
                 e.createElementVNode("div", Um, [
-                  L.value.length ? (e.openBlock(), e.createElementBlock("ol", Rm, [
+                  j.value.length ? (e.openBlock(), e.createElementBlock("ol", Rm, [
                     (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       null,
-                      e.renderList(L.value, (p, z) => (e.openBlock(), e.createElementBlock("li", { key: z }, [
+                      e.renderList(j.value, (p, z) => (e.openBlock(), e.createElementBlock("li", { key: z }, [
                         d[23] || (d[23] = e.createElementVNode(
                           "i",
                           {
@@ -9243,7 +9243,7 @@ const Ad = {
                               /* TEXT */
                             ),
                             e.createTextVNode(
-                              " " + e.toDisplayString(V.$t("更新进度到 {n}%", { n: e.unref(Ve)(p.percent) })) + " · ",
+                              " " + e.toDisplayString(V.$t("更新进度到 {n}%", { n: e.unref(Ee)(p.percent) })) + " · ",
                               1
                               /* TEXT */
                             ),
@@ -9468,11 +9468,11 @@ const Ad = {
                   /* TEXT */
                 ),
                 e.withDirectives(e.createElementVNode("textarea", {
-                  "onUpdate:modelValue": d[7] || (d[7] = (p) => f.value = p),
+                  "onUpdate:modelValue": d[7] || (d[7] = (p) => N.value = p),
                   rows: "3",
                   placeholder: V.$t("交付物放在哪里、和交付标准的对照")
                 }, null, 8, tu), [
-                  [e.vModelText, f.value]
+                  [e.vModelText, N.value]
                 ])
               ]),
               e.createElementVNode("div", lu, [
@@ -9542,7 +9542,7 @@ const Ad = {
                     },
                     [
                       e.withDirectives(e.createElementVNode("input", {
-                        "onUpdate:modelValue": d[9] || (d[9] = (Q) => w.target = Q),
+                        "onUpdate:modelValue": d[9] || (d[9] = (X) => w.target = X),
                         type: "radio",
                         value: z
                       }, null, 8, ru), [
@@ -9784,24 +9784,24 @@ const Ad = {
       received: t.t("没有下发给你的任务"),
       all: t.t("你参与的项目里还没有任务"),
       assigned: t.t("你还没有下发过任务")
-    }, s = e.ref("all"), o = e.ref("status"), c = e.ref(""), i = e.ref(""), k = e.ref([]), E = e.ref([]), m = e.ref([]), r = e.ref(""), f = e.ref(0), w = e.ref(!1), a = e.ref(""), g = n, D = e.computed(() => _l(k.value, i.value)), P = e.computed(() => {
+    }, s = e.ref("all"), o = e.ref("status"), c = e.ref(""), i = e.ref(""), k = e.ref([]), E = e.ref([]), m = e.ref([]), r = e.ref(""), N = e.ref(0), w = e.ref(!1), a = e.ref(""), g = n, D = e.computed(() => _l(k.value, i.value)), P = e.computed(() => {
       const d = m.value[0];
       if (!d) return "";
       const p = [d.title, d.subtitle].filter(Boolean).join(" · ");
       return m.value.length > 1 ? t.t("{line} 等 {n} 份", { line: p, n: m.value.length }) : p;
     });
-    let L = 0;
+    let j = 0;
     async function C() {
-      const d = ++L;
+      const d = ++j;
       w.value = !0;
       try {
         const p = await J("task.list", { view: s.value, projectId: c.value || void 0 });
-        if (d !== L) return;
+        if (d !== j) return;
         k.value = Array.isArray(p) ? p : [], a.value = "";
       } catch (p) {
-        d === L && (a.value = x.errorMessage(p));
+        d === j && (a.value = x.errorMessage(p));
       } finally {
-        d === L && (w.value = !1);
+        d === j && (w.value = !1);
       }
     }
     async function I() {
@@ -9812,7 +9812,7 @@ const Ad = {
       d.status === "fulfilled" && Array.isArray(d.value) && (E.value = d.value.map((z) => ({ id: z.id, name: z.name }))), p.status === "fulfilled" && (m.value = (p.value?.todos ?? []).filter((z) => z.type === "confirm_plan"));
     }
     async function U() {
-      f.value += 1, await Promise.all([C(), I()]);
+      N.value += 1, await Promise.all([C(), I()]);
     }
     e.watch([s, c], () => {
       C();
@@ -9823,13 +9823,13 @@ const Ad = {
     e.watch(r, (d) => {
       d || q("");
     });
-    function _() {
-      const d = fe.value;
+    function B() {
+      const d = Ne.value;
       if (d.tab !== "tasks" || d.link?.kind !== "task") return;
       const p = d.link.id;
       r.value = p, i.value = "", !k.value.some((z) => z.id === p) && (s.value !== "all" || c.value) && (s.value = "all", c.value = "");
     }
-    e.watch(() => fe.value.seq, _);
+    e.watch(() => Ne.value.seq, B);
     let S = null, b = null, M = 0;
     function T() {
       S && clearTimeout(S), S = setTimeout(() => {
@@ -9842,7 +9842,7 @@ const Ad = {
     v({ refresh: G });
     let V = !1;
     return e.onMounted(async () => {
-      _(), M = Date.now(), await U(), !V && (_(), b = be((d) => {
+      B(), M = Date.now(), await U(), !V && (B(), b = _e((d) => {
         d.type !== "changed" || !["all", "task", "meeting", "project", "org"].includes(d.scope) || T();
       }));
     }), e.onBeforeUnmount(() => {
@@ -9967,7 +9967,7 @@ const Ad = {
                     class: e.normalizeClass({ on: s.value === z.key }),
                     title: z.hint,
                     "data-test": `mm-tasks-view-${z.key}`,
-                    onClick: (Q) => s.value = z.key
+                    onClick: (X) => s.value = z.key
                   }, e.toDisplayString(z.title), 11, ju)),
                   64
                   /* STABLE_FRAGMENT */
@@ -10112,7 +10112,7 @@ const Ad = {
           r.value ? (e.openBlock(), e.createBlock(bu, {
             key: r.value,
             "task-id": r.value,
-            "refresh-seq": f.value,
+            "refresh-seq": N.value,
             onClose: p[5] || (p[5] = (z) => r.value = ""),
             onChanged: U,
             onRole: q
@@ -10157,21 +10157,21 @@ const Ad = {
           e.createElementVNode(
             "span",
             null,
-            e.toDisplayString(y.$t("生成于 {t}", { t: e.unref(Ee)(l.report.generatedAt) })),
+            e.toDisplayString(y.$t("生成于 {t}", { t: e.unref($e)(l.report.generatedAt) })),
             1
             /* TEXT */
           ),
           l.report.editedAt ? (e.openBlock(), e.createElementBlock(
             "span",
             Qu,
-            e.toDisplayString(y.$t("修改于 {t}", { t: e.unref(Ee)(l.report.editedAt) })),
+            e.toDisplayString(y.$t("修改于 {t}", { t: e.unref($e)(l.report.editedAt) })),
             1
             /* TEXT */
           )) : e.createCommentVNode("v-if", !0),
           l.report.approvedAt ? (e.openBlock(), e.createElementBlock(
             "span",
             Zu,
-            e.toDisplayString(y.$t("{who} 于 {t} 审核通过", { who: l.approverName || "—", t: e.unref(Ee)(l.report.approvedAt) })),
+            e.toDisplayString(y.$t("{who} 于 {t} 审核通过", { who: l.approverName || "—", t: e.unref($e)(l.report.approvedAt) })),
             1
             /* TEXT */
           )) : e.createCommentVNode("v-if", !0)
@@ -10200,7 +10200,7 @@ const Ad = {
             e.createElementVNode(
               "b",
               null,
-              e.toDisplayString(e.unref(Ve)(n.value.completionRate)) + "%",
+              e.toDisplayString(e.unref(Ee)(n.value.completionRate)) + "%",
               1
               /* TEXT */
             ),
@@ -10342,12 +10342,12 @@ const Ad = {
   },
   emits: ["changed"],
   setup(l, { emit: v }) {
-    const n = l, u = v, y = ie.useNotificationStore(), s = e.ref(!1), o = e.ref(""), c = e.ref(0), i = e.ref(""), k = e.ref(null);
+    const n = l, u = v, y = ce.useNotificationStore(), s = e.ref(!1), o = e.ref(""), c = e.ref(0), i = e.ref(""), k = e.ref(null);
     let E = null;
     const m = e.computed(() => {
       const a = [...n.project.weeklyReports ?? []];
       return k.value && !a.some((g) => g.id === k.value.id) && a.push(k.value), a.sort((g, D) => D.generatedAt - g.generatedAt);
-    }), r = e.computed(() => m.value.find((a) => a.id === i.value) ?? m.value[0] ?? null), f = e.computed(() => oe.value?.settings.reportCycleDays ?? 7);
+    }), r = e.computed(() => m.value.find((a) => a.id === i.value) ?? m.value[0] ?? null), N = e.computed(() => oe.value?.settings.reportCycleDays ?? 7);
     e.watch(() => [n.project.id, n.focusReportId], () => {
       i.value = n.focusReportId && m.value.some((a) => a.id === n.focusReportId) ? n.focusReportId : "";
     }, { immediate: !0 }), e.watch(() => n.project.id, () => {
@@ -10375,7 +10375,7 @@ const Ad = {
         e.createElementVNode(
           "p",
           ap,
-          e.toDisplayString(l.canGenerate ? a.$t("每 {n} 天自动生成一份进度汇总报告，发给任务负责人和项目负责人；项目负责人也可以现在手动生成一份。", { n: f.value }) : a.$t("每 {n} 天自动生成一份进度汇总报告，发给任务负责人和项目负责人。", { n: f.value })),
+          e.toDisplayString(l.canGenerate ? a.$t("每 {n} 天自动生成一份进度汇总报告，发给任务负责人和项目负责人；项目负责人也可以现在手动生成一份。", { n: N.value }) : a.$t("每 {n} 天自动生成一份进度汇总报告，发给任务负责人和项目负责人。", { n: N.value })),
           1
           /* TEXT */
         ),
@@ -10461,14 +10461,14 @@ const Ad = {
                 e.createElementVNode(
                   "strong",
                   null,
-                  e.toDisplayString(D.periodFrom && D.periodTo ? `${e.unref(it)(D.periodFrom)} ~ ${e.unref(it)(D.periodTo)}` : e.unref(Ee)(D.generatedAt)),
+                  e.toDisplayString(D.periodFrom && D.periodTo ? `${e.unref(it)(D.periodFrom)} ~ ${e.unref(it)(D.periodTo)}` : e.unref($e)(D.generatedAt)),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "small",
                   null,
-                  e.toDisplayString(a.$t("完成率 {p}% · 逾期 {n}", { p: e.unref(Ve)(D.stats?.completionRate), n: D.stats?.overdue ?? 0 })),
+                  e.toDisplayString(a.$t("完成率 {p}% · 逾期 {n}", { p: e.unref(Ee)(D.stats?.completionRate), n: D.stats?.overdue ?? 0 })),
                   1
                   /* TEXT */
                 )
@@ -10531,9 +10531,9 @@ const Ad = {
   },
   emits: ["changed"],
   setup(l, { emit: v }) {
-    const n = l, u = v, y = he.useDialog(), s = ie.useNotificationStore(), o = e.ref(!1), c = e.ref(""), i = e.ref(""), k = e.ref(!1), E = e.ref(""), m = e.ref(Date.now());
+    const n = l, u = v, y = Be.useDialog(), s = ce.useNotificationStore(), o = e.ref(!1), c = e.ref(""), i = e.ref(""), k = e.ref(!1), E = e.ref(""), m = e.ref(Date.now());
     let r = null;
-    const f = e.computed(() => n.project.summary ?? null), w = e.computed(() => n.members?.find((I) => I.id === f.value?.approvedBy)?.name || ""), a = e.computed(() => {
+    const N = e.computed(() => n.project.summary ?? null), w = e.computed(() => n.members?.find((I) => I.id === N.value?.approvedBy)?.name || ""), a = e.computed(() => {
       const I = n.project.closeCheck?.at, U = I ? Math.max(0, Math.floor((m.value - I) / 1e3)) : 0;
       return I ? U > 300 ? t.t("已经 {m} 分钟了，比平时慢；可以点「重新生成」再试一次", { m: Math.floor(U / 60) }) : t.t("已用时 {s} 秒；生成完会自动显示在这里", { s: U }) : t.t("生成完会自动显示在这里");
     });
@@ -10546,10 +10546,10 @@ const Ad = {
     }), e.onBeforeUnmount(() => {
       r && clearInterval(r);
     });
-    async function g(I, U, q, _) {
+    async function g(I, U, q, B) {
       o.value = !0, c.value = I, i.value = "";
       try {
-        return await J(U, q), s.success(_), u("changed"), !0;
+        return await J(U, q), s.success(B), u("changed"), !0;
       } catch (S) {
         return i.value = x.errorMessage(S), !1;
       } finally {
@@ -10557,16 +10557,16 @@ const Ad = {
       }
     }
     function D() {
-      E.value = f.value?.markdown ?? "", k.value = !0;
+      E.value = N.value?.markdown ?? "", k.value = !0;
     }
     async function P() {
       await g("save", "project.summary.save", { id: n.project.id, markdown: E.value }, t.t("总结报告已保存")) && (k.value = !1);
     }
-    async function L(I) {
+    async function j(I) {
       I && !await y.confirm({
         title: t.t("重新生成总结报告"),
-        message: f.value?.editedAt ? t.t("重新生成会覆盖你在线修改过的内容，确定吗？") : t.t("按当前项目数据重新生成一份总结报告？"),
-        danger: !!f.value?.editedAt
+        message: N.value?.editedAt ? t.t("重新生成会覆盖你在线修改过的内容，确定吗？") : t.t("按当前项目数据重新生成一份总结报告？"),
+        danger: !!N.value?.editedAt
       }) || await g("regen", "project.summary.regenerate", { id: n.project.id }, t.t("总结报告已重新生成"));
     }
     async function C() {
@@ -10597,7 +10597,7 @@ const Ad = {
         e.toDisplayString(I.$t("项目还在进行中。项目负责人「发起结项」且检查通过后，AI 会在这里生成项目总结报告（概况、关键决策、任务按期 / 延期完成情况、变更与裁决记录），审核通过后归档。")),
         1
         /* TEXT */
-      )) : f.value ? (e.openBlock(), e.createElementBlock(
+      )) : N.value ? (e.openBlock(), e.createElementBlock(
         e.Fragment,
         { key: 3 },
         [
@@ -10708,7 +10708,7 @@ const Ad = {
                   class: "ss-btn sm",
                   disabled: o.value || l.generating,
                   "data-test": "mm-summary-regen",
-                  onClick: U[1] || (U[1] = (q) => L(!0))
+                  onClick: U[1] || (U[1] = (q) => j(!0))
                 }, [
                   e.createElementVNode(
                     "i",
@@ -10789,7 +10789,7 @@ const Ad = {
             [e.vModelText, E.value]
           ]) : (e.openBlock(), e.createBlock(Ut, {
             key: 5,
-            report: f.value,
+            report: N.value,
             "approver-name": w.value
           }, null, 8, ["report", "approver-name"]))
         ],
@@ -10859,7 +10859,7 @@ const Ad = {
               class: "ss-btn sm primary",
               disabled: o.value,
               "data-test": "mm-summary-regen-empty",
-              onClick: U[0] || (U[0] = (q) => L(!1))
+              onClick: U[0] || (U[0] = (q) => j(!1))
             }, [
               U[6] || (U[6] = e.createElementVNode(
                 "i",
@@ -10909,18 +10909,18 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
     const n = l, u = v, y = e.ref(""), s = e.computed(() => {
       const r = n.modelValue;
       return Array.isArray(r) ? r : r ? [r] : [];
-    }), o = (r) => s.value.includes(r), c = (r) => n.depts.find((f) => f.id === r)?.name || "", i = e.computed(() => n.people.filter((r) => !r.left)), k = e.computed(() => s.value.map((r) => n.people.find((f) => f.id === r)).filter((r) => !!r)), E = e.computed(() => {
-      const r = [], f = /* @__PURE__ */ new Map();
+    }), o = (r) => s.value.includes(r), c = (r) => n.depts.find((N) => N.id === r)?.name || "", i = e.computed(() => n.people.filter((r) => !r.left)), k = e.computed(() => s.value.map((r) => n.people.find((N) => N.id === r)).filter((r) => !!r)), E = e.computed(() => {
+      const r = [], N = /* @__PURE__ */ new Map();
       for (const w of i.value) {
         if (!kt(w, c(w.deptId), y.value)) continue;
-        const a = f.get(w.deptId) ?? [];
-        a.push(w), f.set(w.deptId, a);
+        const a = N.get(w.deptId) ?? [];
+        a.push(w), N.set(w.deptId, a);
       }
       for (const w of n.depts) {
-        const a = f.get(w.id);
-        a?.length && r.push({ id: w.id, name: w.name, people: a }), f.delete(w.id);
+        const a = N.get(w.id);
+        a?.length && r.push({ id: w.id, name: w.name, people: a }), N.delete(w.id);
       }
-      for (const [w, a] of f) r.push({ id: w, name: c(w) || "—", people: a });
+      for (const [w, a] of N) r.push({ id: w, name: c(w) || "—", people: a });
       return r;
     });
     function m(r) {
@@ -10930,11 +10930,11 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       }
       if (o(r)) {
         if (n.locked?.includes(r)) return;
-        u("update:modelValue", s.value.filter((f) => f !== r));
+        u("update:modelValue", s.value.filter((N) => N !== r));
       } else
         u("update:modelValue", [...s.value, r]);
     }
-    return (r, f) => (e.openBlock(), e.createElementBlock("div", jp, [
+    return (r, N) => (e.openBlock(), e.createElementBlock("div", jp, [
       l.multiple && k.value.length ? (e.openBlock(), e.createElementBlock("div", Lp, [
         (e.openBlock(!0), e.createElementBlock(
           e.Fragment,
@@ -10969,7 +10969,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               type: "button",
               "aria-label": r.$t("移除 {name}", { name: w.name }),
               onClick: (a) => m(w.id)
-            }, [...f[1] || (f[1] = [
+            }, [...N[1] || (N[1] = [
               e.createElementVNode(
                 "i",
                 { class: "ri-close-line" },
@@ -10984,7 +10984,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         ))
       ])) : e.createCommentVNode("v-if", !0),
       e.createElementVNode("div", Pp, [
-        f[2] || (f[2] = e.createElementVNode(
+        N[2] || (N[2] = e.createElementVNode(
           "i",
           {
             class: "ri-search-line",
@@ -10995,7 +10995,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           /* CACHED */
         )),
         e.withDirectives(e.createElementVNode("input", {
-          "onUpdate:modelValue": f[0] || (f[0] = (w) => y.value = w),
+          "onUpdate:modelValue": N[0] || (N[0] = (w) => y.value = w),
           type: "search",
           placeholder: r.$t("搜索姓名、部门")
         }, null, 8, Up), [
@@ -11098,35 +11098,35 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
   },
   emits: ["close", "saved"],
   setup(l, { emit: v }) {
-    const n = l, u = v, y = e.ref([]), s = e.ref([]), o = e.ref([]), c = e.ref(!1), i = e.ref(""), k = e.computed(() => o.value.length !== n.memberIds.length || o.value.some((r) => !n.memberIds.includes(r))), E = e.computed(() => n.memberIds.filter((r) => !o.value.includes(r)).map((r) => y.value.find((f) => f.id === r)?.name || n.members?.find((f) => f.id === r)?.name || r));
+    const n = l, u = v, y = e.ref([]), s = e.ref([]), o = e.ref([]), c = e.ref(!1), i = e.ref(""), k = e.computed(() => o.value.length !== n.memberIds.length || o.value.some((r) => !n.memberIds.includes(r))), E = e.computed(() => n.memberIds.filter((r) => !o.value.includes(r)).map((r) => y.value.find((N) => N.id === r)?.name || n.members?.find((N) => N.id === r)?.name || r));
     e.watch(() => n.open, async (r) => {
       if (r) {
         o.value = [...n.memberIds], i.value = "";
         try {
-          const f = await J("people.list"), w = (n.members ?? []).filter((a) => !(f?.people ?? []).some((g) => g.id === a.id)).map((a) => ({ ...a, left: !1 }));
-          y.value = [...f?.people ?? [], ...w], s.value = f?.depts ?? [];
-        } catch (f) {
-          i.value = x.errorMessage(f);
+          const N = await J("people.list"), w = (n.members ?? []).filter((a) => !(N?.people ?? []).some((g) => g.id === a.id)).map((a) => ({ ...a, left: !1 }));
+          y.value = [...N?.people ?? [], ...w], s.value = N?.depts ?? [];
+        } catch (N) {
+          i.value = x.errorMessage(N);
         }
       }
     }, { immediate: !0 });
     async function m() {
       c.value = !0, i.value = "";
       try {
-        const r = [.../* @__PURE__ */ new Set([n.ownerId, ...o.value])], f = await J("project.members", { id: n.projectId, memberIds: r });
-        u("saved", f);
+        const r = [.../* @__PURE__ */ new Set([n.ownerId, ...o.value])], N = await J("project.members", { id: n.projectId, memberIds: r });
+        u("saved", N);
       } catch (r) {
         i.value = x.errorMessage(r);
       } finally {
         c.value = !1;
       }
     }
-    return (r, f) => (e.openBlock(), e.createBlock(Ze, {
+    return (r, N) => (e.openBlock(), e.createBlock(Ze, {
       open: l.open,
       title: r.$t("编辑成员"),
       icon: "ri-team-line",
       size: "md",
-      onClose: f[2] || (f[2] = (w) => u("close"))
+      onClose: N[2] || (N[2] = (w) => u("close"))
     }, {
       footer: e.withCtx(() => [
         e.createElementVNode(
@@ -11134,7 +11134,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           {
             type: "button",
             class: "ss-btn",
-            onClick: f[1] || (f[1] = (w) => u("close"))
+            onClick: N[1] || (N[1] = (w) => u("close"))
           },
           e.toDisplayString(r.$t("取消")),
           1
@@ -11174,7 +11174,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           ),
           e.createVNode(we, {
             modelValue: o.value,
-            "onUpdate:modelValue": f[0] || (f[0] = (w) => o.value = w),
+            "onUpdate:modelValue": N[0] || (N[0] = (w) => o.value = w),
             people: y.value,
             depts: s.value,
             locked: [l.ownerId],
@@ -11189,7 +11189,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             /* TEXT */
           )) : e.createCommentVNode("v-if", !0),
           i.value ? (e.openBlock(), e.createElementBlock("p", Zp, [
-            f[3] || (f[3] = e.createElementVNode(
+            N[3] || (N[3] = e.createElementVNode(
               "i",
               { class: "ri-error-warning-line" },
               null,
@@ -11268,7 +11268,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
   },
   emits: ["changed", "role"],
   setup(l, { emit: v }) {
-    const n = l, u = v, y = he.useDialog(), s = ie.useNotificationStore(), o = e.ref(null), c = e.ref(!1), i = e.ref(!1), k = e.ref(""), E = e.ref("overview"), m = e.ref(""), r = e.ref(null), f = e.ref(!1), w = e.ref(!1), a = e.ref(!1), g = e.ref(null), D = e.computed(() => o.value?.project ?? null), P = e.computed(() => D.value ? Ll(D.value.status) : 0), L = e.computed(() => bt(o.value?.closeBlockers)), C = e.computed(() => !!D.value && D.value.ownerId === oe.value?.me.person?.id), I = e.computed(() => [
+    const n = l, u = v, y = Be.useDialog(), s = ce.useNotificationStore(), o = e.ref(null), c = e.ref(!1), i = e.ref(!1), k = e.ref(""), E = e.ref("overview"), m = e.ref(""), r = e.ref(null), N = e.ref(!1), w = e.ref(!1), a = e.ref(!1), g = e.ref(null), D = e.computed(() => o.value?.project ?? null), P = e.computed(() => D.value ? Ll(D.value.status) : 0), j = e.computed(() => bt(o.value?.closeBlockers)), C = e.computed(() => !!D.value && D.value.ownerId === oe.value?.me.person?.id), I = e.computed(() => [
       { key: "overview", title: t.t("概览"), count: void 0 },
       { key: "meetings", title: t.t("会议"), count: o.value?.meetings.length ?? 0 },
       { key: "tasks", title: t.t("任务"), count: o.value?.tasks.length ?? 0 },
@@ -11279,7 +11279,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       return V === "failed" ? "bad" : V === "dispatched" || V === "ended" ? "ok" : V === "processing" ? "brand" : "warn";
     }
     let q = 0;
-    async function _() {
+    async function B() {
       if (!n.projectId) return;
       const V = ++q;
       c.value = !0;
@@ -11294,9 +11294,9 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       }
     }
     e.watch(() => n.projectId, () => {
-      o.value = null, r.value = null, f.value = !1, E.value = "overview", _();
+      o.value = null, r.value = null, N.value = !1, E.value = "overview", B();
     }, { immediate: !0 }), e.watch(() => n.refreshSeq, () => {
-      _();
+      B();
     }), e.watch(() => n.focus?.seq, () => {
       n.focus && (E.value = n.focus.tab, m.value = n.focus.reportId || "");
     }, { immediate: !0 });
@@ -11309,7 +11309,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         i.value = !0, k.value = "";
         try {
           const d = await J("project.close", { id: D.value.id });
-          d?.ok ? (r.value = null, s.success(t.t("结项检查通过，项目进入结项中，AI 正在生成总结报告")), E.value = "summary") : r.value = bt(d?.items), await _(), u("changed");
+          d?.ok ? (r.value = null, s.success(t.t("结项检查通过，项目进入结项中，AI 正在生成总结报告")), E.value = "summary") : r.value = bt(d?.items), await B(), u("changed");
         } catch (d) {
           k.value = x.errorMessage(d);
         } finally {
@@ -11318,16 +11318,16 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       }
     }
     async function b() {
-      await _(), u("changed");
+      await B(), u("changed");
     }
     async function M() {
-      w.value = !1, s.success(t.t("成员已更新")), await _(), u("changed");
+      w.value = !1, s.success(t.t("成员已更新")), await B(), u("changed");
     }
     function T(V) {
       a.value = !1, u("changed"), V && me({ kind: "meeting", id: V });
     }
     function G(V) {
-      f.value && g.value && !g.value.contains(V.target) && (f.value = !1);
+      N.value && g.value && !g.value.contains(V.target) && (N.value = !1);
     }
     return e.onMounted(() => document.addEventListener("click", G)), e.onBeforeUnmount(() => document.removeEventListener("click", G)), (V, d) => (e.openBlock(), e.createElementBlock("section", tv, [
       c.value && !o.value ? (e.openBlock(), e.createElementBlock("p", lv, [
@@ -11448,9 +11448,9 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                     type: "button",
                     class: "mm-more__btn",
                     "aria-label": V.$t("更多"),
-                    "aria-expanded": f.value,
+                    "aria-expanded": N.value,
                     "data-test": "mm-project-more",
-                    onClick: d[0] || (d[0] = e.withModifiers((p) => f.value = !f.value, ["stop"]))
+                    onClick: d[0] || (d[0] = e.withModifiers((p) => N.value = !N.value, ["stop"]))
                   }, [...d[11] || (d[11] = [
                     e.createElementVNode(
                       "i",
@@ -11460,14 +11460,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                       /* CACHED */
                     )
                   ])], 8, iv),
-                  f.value ? (e.openBlock(), e.createElementBlock("div", cv, [
+                  N.value ? (e.openBlock(), e.createElementBlock("div", cv, [
                     e.createElementVNode("button", {
                       type: "button",
                       role: "menuitem",
                       disabled: !o.value.can.editMembers,
                       "data-test": "mm-project-edit-members",
                       onClick: d[1] || (d[1] = (p) => {
-                        f.value = !1, w.value = !0;
+                        N.value = !1, w.value = !0;
                       })
                     }, [
                       d[12] || (d[12] = e.createElementVNode(
@@ -11487,7 +11487,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                       type: "button",
                       role: "menuitem",
                       onClick: d[2] || (d[2] = (p) => {
-                        f.value = !1, _();
+                        N.value = !1, B();
                       })
                     }, [
                       d[13] || (d[13] = e.createElementVNode(
@@ -11719,7 +11719,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               e.createElementVNode(
                 "b",
                 null,
-                e.toDisplayString(e.unref(Ve)(o.value.stats.weekRate)) + "%",
+                e.toDisplayString(e.unref(Ee)(o.value.stats.weekRate)) + "%",
                 1
                 /* TEXT */
               ),
@@ -11765,11 +11765,11 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           e.createCommentVNode(" 概览 "),
           E.value === "overview" ? (e.openBlock(), e.createElementBlock("div", _v, [
             e.createElementVNode("div", Bv, [
-              D.value.status === "active" && L.value.length ? (e.openBlock(), e.createElementBlock("section", Sv, [
+              D.value.status === "active" && j.value.length ? (e.openBlock(), e.createElementBlock("section", Sv, [
                 e.createElementVNode(
                   "h4",
                   null,
-                  e.toDisplayString(V.$t("结项前需处理 · {n} 项", { n: L.value.length })),
+                  e.toDisplayString(V.$t("结项前需处理 · {n} 项", { n: j.value.length })),
                   1
                   /* TEXT */
                 ),
@@ -11777,7 +11777,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(L.value, (p) => (e.openBlock(), e.createElementBlock("li", {
+                    e.renderList(j.value, (p) => (e.openBlock(), e.createElementBlock("li", {
                       key: `${p.kind}-${p.id}`
                     }, [
                       e.createElementVNode(
@@ -11955,7 +11955,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                 key: 0,
                                 type: "button",
                                 class: "mm-linkish",
-                                onClick: (Q) => e.unref(me)({ kind: "meeting", id: p.meetingId })
+                                onClick: (X) => e.unref(me)({ kind: "meeting", id: p.meetingId })
                               }, e.toDisplayString(p.meetingTitle), 9, qv)) : (e.openBlock(), e.createElementBlock(
                                 e.Fragment,
                                 { key: 1 },
@@ -12087,7 +12087,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                       ),
                       e.createElementVNode("small", null, [
                         e.createTextVNode(
-                          e.toDisplayString(e.unref(Ee)(p.time)),
+                          e.toDisplayString(e.unref($e)(p.time)),
                           1
                           /* TEXT */
                         ),
@@ -12212,10 +12212,10 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       const r = oe.value?.me.person?.id || "";
       Object.assign(i, { name: "", desc: "", ownerId: r, memberIds: r ? [r] : [] }), c.value = "";
       try {
-        const f = await J("people.list");
-        y.value = f?.people ?? [], s.value = f?.depts ?? [];
-      } catch (f) {
-        c.value = x.errorMessage(f);
+        const N = await J("people.list");
+        y.value = N?.people ?? [], s.value = N?.depts ?? [];
+      } catch (N) {
+        c.value = x.errorMessage(N);
       }
     }, { immediate: !0 }), e.watch(() => i.ownerId, (m) => {
       m && !i.memberIds.includes(m) && (i.memberIds = [m, ...i.memberIds]);
@@ -12236,7 +12236,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       title: m.$t("新建项目"),
       icon: "ri-folder-add-line",
       size: "lg",
-      onClose: r[5] || (r[5] = (f) => u("close"))
+      onClose: r[5] || (r[5] = (N) => u("close"))
     }, {
       footer: e.withCtx(() => [
         e.createElementVNode(
@@ -12244,7 +12244,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           {
             type: "button",
             class: "ss-btn",
-            onClick: r[4] || (r[4] = (f) => u("close"))
+            onClick: r[4] || (r[4] = (N) => u("close"))
           },
           e.toDisplayString(m.$t("取消")),
           1
@@ -12284,7 +12284,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               /* TEXT */
             ),
             e.withDirectives(e.createElementVNode("input", {
-              "onUpdate:modelValue": r[0] || (r[0] = (f) => i.name = f),
+              "onUpdate:modelValue": r[0] || (r[0] = (N) => i.name = N),
               type: "text",
               maxlength: "60",
               placeholder: m.$t("如：A2 量产导入项目"),
@@ -12302,7 +12302,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               /* TEXT */
             ),
             e.withDirectives(e.createElementVNode("textarea", {
-              "onUpdate:modelValue": r[1] || (r[1] = (f) => i.desc = f),
+              "onUpdate:modelValue": r[1] || (r[1] = (N) => i.desc = N),
               rows: "3",
               placeholder: m.$t("项目目标、范围、关键节点"),
               "data-test": "mm-pc-desc"
@@ -12321,7 +12321,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               ),
               e.createVNode(we, {
                 modelValue: i.ownerId,
-                "onUpdate:modelValue": r[2] || (r[2] = (f) => i.ownerId = f),
+                "onUpdate:modelValue": r[2] || (r[2] = (N) => i.ownerId = N),
                 people: y.value,
                 depts: s.value,
                 multiple: !1,
@@ -12338,7 +12338,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               ),
               e.createVNode(we, {
                 modelValue: i.memberIds,
-                "onUpdate:modelValue": r[3] || (r[3] = (f) => i.memberIds = f),
+                "onUpdate:modelValue": r[3] || (r[3] = (N) => i.memberIds = N),
                 people: y.value,
                 depts: s.value,
                 locked: i.ownerId ? [i.ownerId] : [],
@@ -12400,39 +12400,39 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       active: t.t("没有进行中的项目"),
       closing: t.t("没有结项中的项目"),
       archived: t.t("没有已归档的项目")
-    }, s = ie.useNotificationStore(), o = e.ref([]), c = e.ref("active"), i = e.ref(""), k = e.ref(""), E = e.ref(0), m = e.ref(null), r = e.ref(!1), f = e.ref(!1), w = e.ref(""), a = n;
+    }, s = ce.useNotificationStore(), o = e.ref([]), c = e.ref("active"), i = e.ref(""), k = e.ref(""), E = e.ref(0), m = e.ref(null), r = e.ref(!1), N = e.ref(!1), w = e.ref(""), a = n;
     function g(z) {
       We.value = z, a("role", z);
     }
     e.watch(k, (z) => {
       z || g("");
     });
-    const D = e.computed(() => Object.fromEntries(u.map((z) => [z, o.value.filter((Q) => Q.status === z).length]))), P = e.computed(() => {
+    const D = e.computed(() => Object.fromEntries(u.map((z) => [z, o.value.filter((X) => X.status === z).length]))), P = e.computed(() => {
       const z = i.value.trim().toLowerCase();
-      return o.value.filter((Q) => Q.status === c.value && (!z || `${Q.name} ${Q.ownerName}`.toLowerCase().includes(z)));
-    }), L = (z) => typeof z.rate == "number" && Number.isFinite(z.rate) ? Ve(z.rate) : vt(z.done, z.total);
+      return o.value.filter((X) => X.status === c.value && (!z || `${X.name} ${X.ownerName}`.toLowerCase().includes(z)));
+    }), j = (z) => typeof z.rate == "number" && Number.isFinite(z.rate) ? Ee(z.rate) : vt(z.done, z.total);
     async function C() {
-      f.value = !0;
+      N.value = !0;
       try {
         const z = await J("project.list", {});
         o.value = Array.isArray(z) ? z : [], w.value = "", U();
       } catch (z) {
         w.value = x.errorMessage(z);
       } finally {
-        f.value = !1;
+        N.value = !1;
       }
     }
     let I = !0;
     function U() {
-      const z = o.value.find((Q) => Q.id === k.value);
+      const z = o.value.find((X) => X.id === k.value);
       if (z) {
         z.status !== c.value && (c.value = z.status);
         return;
       }
       if (!(k.value && m.value)) {
         if (I && !D.value[c.value]) {
-          const Q = u.find((le) => D.value[le] > 0);
-          Q && (c.value = Q);
+          const X = u.find((le) => D.value[le] > 0);
+          X && (c.value = X);
         }
         I = !1, k.value = P.value[0]?.id ?? "";
       }
@@ -12443,30 +12443,30 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
     function q(z) {
       k.value = z, m.value = null;
     }
-    async function _(z) {
-      if (o.value.some((Q) => Q.id === z)) return z;
-      for (const Q of o.value)
+    async function B(z) {
+      if (o.value.some((X) => X.id === z)) return z;
+      for (const X of o.value)
         try {
-          const le = await J("project.get", { id: Q.id });
-          if (le?.project?.weeklyReports?.some((H) => H.id === z) || le?.project?.summary?.id === z) return Q.id;
+          const le = await J("project.get", { id: X.id });
+          if (le?.project?.weeklyReports?.some((W) => W.id === z) || le?.project?.summary?.id === z) return X.id;
         } catch {
         }
       return "";
     }
     async function S() {
-      const z = fe.value;
+      const z = Ne.value;
       if (z.tab !== "projects") return;
-      const Q = Fl(z.link);
-      if (!Q) return;
-      let le = Q.projectId || "", H = Q.reportId;
-      if (z.link?.kind === "report" && !z.link.anchor && (le = await _(z.link.id), le === z.link.id && (H = void 0)), !le) {
+      const X = Fl(z.link);
+      if (!X) return;
+      let le = X.projectId || "", W = X.reportId;
+      if (z.link?.kind === "report" && !z.link.anchor && (le = await B(z.link.id), le === z.link.id && (W = void 0)), !le) {
         s.warn(t.t("没找到要打开的项目或报告"));
         return;
       }
-      const Y = o.value.find((te) => te.id === le);
-      Y && (c.value = Y.status), i.value = "", k.value = le, m.value = { tab: Q.tab, reportId: H, seq: z.seq };
+      const Y = o.value.find((ee) => ee.id === le);
+      Y && (c.value = Y.status), i.value = "", k.value = le, m.value = { tab: X.tab, reportId: W, seq: z.seq };
     }
-    e.watch(() => fe.value.seq, () => {
+    e.watch(() => Ne.value.seq, () => {
       S();
     });
     async function b(z) {
@@ -12484,12 +12484,12 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
     v({ refresh: d });
     let p = !1;
     return e.onMounted(async () => {
-      G = Date.now(), await C(), !p && (await S(), !p && (T = be((z) => {
+      G = Date.now(), await C(), !p && (await S(), !p && (T = _e((z) => {
         z.type !== "changed" || !["all", "project", "task", "meeting", "org"].includes(z.scope) || V();
       })));
     }), e.onBeforeUnmount(() => {
       p = !0, T?.(), T = null, M && clearTimeout(M), We.value = "";
-    }), (z, Q) => (e.openBlock(), e.createElementBlock("div", yk, [
+    }), (z, X) => (e.openBlock(), e.createElementBlock("div", yk, [
       e.createElementVNode("header", gk, [
         e.createElementVNode(
           "h2",
@@ -12505,7 +12505,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           1
           /* TEXT */
         ),
-        Q[5] || (Q[5] = e.createElementVNode(
+        X[5] || (X[5] = e.createElementVNode(
           "span",
           { class: "grow" },
           null,
@@ -12517,9 +12517,9 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           type: "button",
           class: "ss-btn",
           "data-test": "mm-project-new",
-          onClick: Q[0] || (Q[0] = (le) => r.value = !0)
+          onClick: X[0] || (X[0] = (le) => r.value = !0)
         }, [
-          Q[4] || (Q[4] = e.createElementVNode(
+          X[4] || (X[4] = e.createElementVNode(
             "i",
             { class: "ri-add-line" },
             null,
@@ -12534,7 +12534,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         ])) : e.createCommentVNode("v-if", !0)
       ]),
       w.value ? (e.openBlock(), e.createElementBlock("p", fk, [
-        Q[6] || (Q[6] = e.createElementVNode(
+        X[6] || (X[6] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
           null,
@@ -12550,7 +12550,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       e.createElementVNode("div", Nk, [
         e.createElementVNode("aside", Vk, [
           e.createElementVNode("label", Ek, [
-            Q[7] || (Q[7] = e.createElementVNode(
+            X[7] || (X[7] = e.createElementVNode(
               "i",
               {
                 class: "ri-search-line",
@@ -12561,7 +12561,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               /* CACHED */
             )),
             e.withDirectives(e.createElementVNode("input", {
-              "onUpdate:modelValue": Q[1] || (Q[1] = (le) => i.value = le),
+              "onUpdate:modelValue": X[1] || (X[1] = (le) => i.value = le),
               type: "search",
               placeholder: z.$t("搜索项目"),
               "aria-label": z.$t("搜索项目"),
@@ -12585,7 +12585,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                 "aria-selected": c.value === le,
                 class: e.normalizeClass({ on: c.value === le }),
                 "data-test": `mm-projects-filter-${le}`,
-                onClick: (H) => c.value = le
+                onClick: (W) => c.value = le
               }, [
                 e.createTextVNode(
                   e.toDisplayString(e.unref(Ge)[le]) + " ",
@@ -12604,7 +12604,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               /* STABLE_FRAGMENT */
             ))
           ], 8, bk),
-          f.value && !o.value.length ? (e.openBlock(), e.createElementBlock(
+          N.value && !o.value.length ? (e.openBlock(), e.createElementBlock(
             "p",
             _k,
             e.toDisplayString(z.$t("加载中…")),
@@ -12625,7 +12625,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               type: "button",
               class: e.normalizeClass(["mm-pcard", { on: le.id === k.value }]),
               "data-test": `mm-project-card-${le.id}`,
-              onClick: (H) => q(le.id)
+              onClick: (W) => q(le.id)
             }, [
               e.createElementVNode("span", Dk, [
                 e.createElementVNode(
@@ -12648,7 +12648,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                   e.createElementVNode(
                     "b",
                     {
-                      style: e.normalizeStyle({ width: `${L(le)}%` })
+                      style: e.normalizeStyle({ width: `${j(le)}%` })
                     },
                     null,
                     4
@@ -12658,7 +12658,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                 e.createElementVNode(
                   "em",
                   null,
-                  e.toDisplayString(L(le)) + "%",
+                  e.toDisplayString(j(le)) + "%",
                   1
                   /* TEXT */
                 ),
@@ -12691,7 +12691,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             onChanged: C,
             onRole: g
           }, null, 8, ["project-id", "refresh-seq", "focus"])) : (e.openBlock(), e.createElementBlock("div", jk, [
-            Q[9] || (Q[9] = e.createElementVNode(
+            X[9] || (X[9] = e.createElementVNode(
               "i",
               {
                 class: "ri-folder-open-line",
@@ -12712,9 +12712,9 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               key: 0,
               type: "button",
               class: "ss-btn primary",
-              onClick: Q[2] || (Q[2] = (le) => r.value = !0)
+              onClick: X[2] || (X[2] = (le) => r.value = !0)
             }, [
-              Q[8] || (Q[8] = e.createElementVNode(
+              X[8] || (X[8] = e.createElementVNode(
                 "i",
                 { class: "ri-add-line" },
                 null,
@@ -12732,7 +12732,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       ]),
       e.createVNode(kk, {
         open: r.value,
-        onClose: Q[3] || (Q[3] = (le) => r.value = !1),
+        onClose: X[3] || (X[3] = (le) => r.value = !1),
         onCreated: b
       }, null, 8, ["open"])
     ]));
@@ -12762,7 +12762,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
   emits: ["recorded", "reset"],
   setup(l, { emit: v }) {
     const n = v, u = e.ref("idle"), y = e.ref(0), s = e.ref(0), o = e.ref(""), c = e.ref("");
-    let i = null, k = null, E = [], m = null, r = 0, f = null, w = 0;
+    let i = null, k = null, E = [], m = null, r = 0, N = null, w = 0;
     function a() {
       m && (clearInterval(m), m = null), r && (cancelAnimationFrame(r), r = 0);
       try {
@@ -12771,10 +12771,10 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       }
       i = null;
       try {
-        f?.close();
+        N?.close();
       } catch {
       }
-      f = null, s.value = 0;
+      N = null, s.value = 0;
     }
     function g() {
       for (const C of ["audio/webm;codecs=opus", "audio/webm", "audio/ogg;codecs=opus", "audio/mp4"])
@@ -12801,16 +12801,16 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       }
       E = [], k.ondataavailable = (I) => {
         I.data && I.data.size && E.push(I.data);
-      }, k.onstop = () => void L(k?.mimeType || C);
+      }, k.onstop = () => void j(k?.mimeType || C);
       try {
-        f = new AudioContext();
-        const I = f.createAnalyser();
-        I.fftSize = 1024, f.createMediaStreamSource(i).connect(I);
+        N = new AudioContext();
+        const I = N.createAnalyser();
+        I.fftSize = 1024, N.createMediaStreamSource(i).connect(I);
         const U = new Uint8Array(I.fftSize), q = () => {
           I.getByteTimeDomainData(U);
-          let _ = 0;
-          for (const S of U) _ = Math.max(_, Math.abs(S - 128));
-          s.value = Math.min(100, Math.round(_ / 128 * 140)), r = requestAnimationFrame(q);
+          let B = 0;
+          for (const S of U) B = Math.max(B, Math.abs(S - 128));
+          s.value = Math.min(100, Math.round(B / 128 * 140)), r = requestAnimationFrame(q);
         };
         q();
       } catch {
@@ -12822,7 +12822,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
     function P() {
       k && k.state !== "inactive" && k.stop(), m && (clearInterval(m), m = null);
     }
-    async function L(C) {
+    async function j(C) {
       const I = Math.round((Date.now() - w) / 100) / 10;
       a(), u.value = "done", y.value = Math.round(I);
       const U = new Blob(E, { type: C || "audio/webm" });
@@ -12832,10 +12832,10 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       }
       c.value = URL.createObjectURL(U);
       const q = new Uint8Array(await U.arrayBuffer());
-      let _ = "";
-      for (let b = 0; b < q.length; b += 32768) _ += String.fromCharCode(...q.subarray(b, b + 32768));
+      let B = "";
+      for (let b = 0; b < q.length; b += 32768) B += String.fromCharCode(...q.subarray(b, b + 32768));
       const S = /ogg/.test(C) ? "ogg" : /mp4/.test(C) ? "m4a" : "webm";
-      n("recorded", { data: btoa(_), ext: S, seconds: I });
+      n("recorded", { data: btoa(B), ext: S, seconds: I });
     }
     return e.onBeforeUnmount(() => {
       try {
@@ -13009,7 +13009,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       { key: "all", title: t.t("全部人员") },
       { key: "missing", title: t.t("未采集") },
       { key: "collected", title: t.t("已采集") }
-    ], n = l, u = he.useDialog(), y = ie.useNotificationStore(), s = e.ref([]), o = e.ref(!1), c = e.ref(!1), i = e.ref(""), k = e.ref({}), E = e.ref(null), m = e.ref("all"), r = e.ref(""), f = e.ref(1), w = e.ref(!1), a = e.reactive({ personId: "", path: "", consent: !1 }), g = e.ref(""), D = e.ref(null), P = e.ref(!1), L = e.reactive({ personId: "", consent: !1, recorded: null }), C = e.ref(""), I = e.computed(() => !!oe.value?.pushChannel || !!oe.value?.wecomConnected), U = e.computed(() => oe.value?.me.person?.id || ""), q = e.computed(() => oe.value?.pushChannel === "webhook"), _ = e.computed(() => s.value.filter((F) => F.status === "collected").length), S = e.computed(() => vt(_.value, s.value.length)), b = (F) => F === "all" ? s.value.length : s.value.filter((K) => K.status === F).length, M = e.computed(() => s.value.filter((F) => m.value === "all" || F.status === m.value).filter((F) => kt(F.person, F.deptName, r.value)).sort((F, K) => F.status === K.status ? (K.enrolledAt || 0) - (F.enrolledAt || 0) : F.status === "missing" ? -1 : 1)), T = e.computed(() => Lt(M.value, f.value, Jy));
+    ], n = l, u = Be.useDialog(), y = ce.useNotificationStore(), s = e.ref([]), o = e.ref(!1), c = e.ref(!1), i = e.ref(""), k = e.ref({}), E = e.ref(null), m = e.ref("all"), r = e.ref(""), N = e.ref(1), w = e.ref(!1), a = e.reactive({ personId: "", path: "", consent: !1 }), g = e.ref(""), D = e.ref(null), P = e.ref(!1), j = e.reactive({ personId: "", consent: !1, recorded: null }), C = e.ref(""), I = e.computed(() => !!oe.value?.pushChannel || !!oe.value?.wecomConnected), U = e.computed(() => oe.value?.me.person?.id || ""), q = e.computed(() => oe.value?.pushChannel === "webhook"), B = e.computed(() => s.value.filter((F) => F.status === "collected").length), S = e.computed(() => vt(B.value, s.value.length)), b = (F) => F === "all" ? s.value.length : s.value.filter((K) => K.status === F).length, M = e.computed(() => s.value.filter((F) => m.value === "all" || F.status === m.value).filter((F) => kt(F.person, F.deptName, r.value)).sort((F, K) => F.status === K.status ? (K.enrolledAt || 0) - (F.enrolledAt || 0) : F.status === "missing" ? -1 : 1)), T = e.computed(() => Lt(M.value, N.value, Jy));
     async function G() {
       o.value = !0;
       try {
@@ -13025,38 +13025,38 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       G();
     }, { immediate: !0 });
     const V = (F) => s.value.find((K) => K.person.id === F)?.person.name || n.people.find((K) => K.id === F)?.name || F, d = e.computed(() => {
-      const F = s.value.find((h) => h.person.id === L.personId), K = F?.person || n.people.find((h) => h.id === L.personId), B = F?.deptName || n.depts.find((h) => h.id === K?.deptId)?.name || "";
+      const F = s.value.find((h) => h.person.id === j.personId), K = F?.person || n.people.find((h) => h.id === j.personId), _ = F?.deptName || n.depts.find((h) => h.id === K?.deptId)?.name || "";
       return t.t("大家好，我是{dept}的{name}。这是我的声纹采集录音，用于在会议纪要里自动识别我的发言。我会用平时开会说话的音量和语速，把这段话完整地读完。", {
-        dept: B,
+        dept: _,
         name: K?.name || ""
       });
     });
     async function p() {
       const F = await J("voiceprint.link"), K = {};
       if (F && typeof F == "object" && Array.isArray(F.links))
-        for (const N of F.links) N?.personId && N.url && (K[N.personId] = N.url);
-      const B = oe.value?.me.person?.id, h = Je(F);
-      if (B && h && !K[B] && (K[B] = h), !Object.keys(K).length) throw new Error(t.t("没拿到采集链接，请先在「手机端」开启手机页服务"));
+        for (const f of F.links) f?.personId && f.url && (K[f.personId] = f.url);
+      const _ = oe.value?.me.person?.id, h = Je(F);
+      if (_ && h && !K[_] && (K[_] = h), !Object.keys(K).length) throw new Error(t.t("没拿到采集链接，请先在「手机端」开启手机页服务"));
       return k.value = K, K;
     }
     async function z() {
       c.value = !0, i.value = "";
       try {
-        const F = await p(), K = s.value.filter((N) => N.status === "missing" && F[N.person.id]), B = K.length ? K : s.value.filter((N) => F[N.person.id]), h = B.map((N) => `${N.person.name}${N.deptName ? ` · ${N.deptName}` : ""}${t.t("：")}${F[N.person.id]}`).join(`
+        const F = await p(), K = s.value.filter((f) => f.status === "missing" && F[f.person.id]), _ = K.length ? K : s.value.filter((f) => F[f.person.id]), h = _.map((f) => `${f.person.name}${f.deptName ? ` · ${f.deptName}` : ""}${t.t("：")}${F[f.person.id]}`).join(`
 `);
-        await Qe(h) ? y.success(K.length ? t.t("已复制 {n} 位未采集员工的采集链接（每人一条，请分别发给本人）", { n: B.length }) : t.t("已复制 {n} 人的采集链接", { n: B.length })) : i.value = t.t("复制失败，请重试");
+        await Qe(h) ? y.success(K.length ? t.t("已复制 {n} 位未采集员工的采集链接（每人一条，请分别发给本人）", { n: _.length }) : t.t("已复制 {n} 人的采集链接", { n: _.length })) : i.value = t.t("复制失败，请重试");
       } catch (F) {
         i.value = x.errorMessage(F);
       } finally {
         c.value = !1;
       }
     }
-    async function Q(F) {
+    async function X(F) {
       c.value = !0, i.value = "";
       try {
-        const B = (k.value[F.person.id] ? k.value : await p())[F.person.id];
-        if (!B) throw new Error(t.t("没拿到 {name} 的采集链接", { name: F.person.name }));
-        await Qe(B) && y.success(t.t("已复制 {name} 的采集链接", { name: F.person.name }));
+        const _ = (k.value[F.person.id] ? k.value : await p())[F.person.id];
+        if (!_) throw new Error(t.t("没拿到 {name} 的采集链接", { name: F.person.name }));
+        await Qe(_) && y.success(t.t("已复制 {name} 的采集链接", { name: F.person.name }));
       } catch (K) {
         i.value = x.errorMessage(K);
       } finally {
@@ -13079,7 +13079,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         }
       }
     }
-    async function H(F) {
+    async function W(F) {
       if (await u.confirm({
         title: t.t("删除声纹（撤回授权）"),
         message: t.t("删除 {name} 的声纹样本和授权记录？之后的会议里不再能自动识别 TA，需要重新授权采集。", { name: F.person.name }),
@@ -13089,8 +13089,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         c.value = !0, i.value = "";
         try {
           await J("voiceprint.delete", { personId: F.person.id }), y.success(t.t("已删除并撤回授权")), await G();
-        } catch (B) {
-          i.value = x.errorMessage(B);
+        } catch (_) {
+          i.value = x.errorMessage(_);
         } finally {
           c.value = !1;
         }
@@ -13107,14 +13107,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         c.value = !0, i.value = "";
         try {
           await J("voiceprint.autoLearn.set", { enabled: K }), y.success(K ? t.t("已开启：之后确认会议发言时会自动补充声纹") : t.t("已关闭并删除会议补充样本")), await G();
-        } catch (B) {
-          i.value = x.errorMessage(B);
+        } catch (_) {
+          i.value = x.errorMessage(_);
         } finally {
           c.value = !1;
         }
       }
     }
-    function te(F) {
+    function ee(F) {
       Object.assign(a, { personId: F, path: "", consent: !1 }), g.value = "", D.value && (D.value.value = ""), w.value = !0;
     }
     function ne(F) {
@@ -13132,17 +13132,17 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       }
     }
     function O(F) {
-      Object.assign(L, { personId: F || U.value, consent: !1, recorded: null }), C.value = "", P.value = !0;
+      Object.assign(j, { personId: F || U.value, consent: !1, recorded: null }), C.value = "", P.value = !0;
     }
     async function R() {
-      if (!(!L.recorded || !L.personId)) {
+      if (!(!j.recorded || !j.personId)) {
         c.value = !0, C.value = "";
         try {
           const F = await J("voiceprint.enrollData", {
-            personId: L.personId,
+            personId: j.personId,
             consent: !0,
-            data: L.recorded.data,
-            ext: L.recorded.ext
+            data: j.recorded.data,
+            ext: j.recorded.ext
           });
           P.value = !1, y.success(F?.seconds ? t.t("声纹已采集（{s} 秒）", { s: F.seconds }) : t.t("声纹已采集")), await G();
         } catch (F) {
@@ -13262,7 +13262,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             { key: 0 },
             [
               e.createTextVNode(
-                e.toDisplayString(F.$t("，{b} 人失败：{names}", { b: E.value.failed.length, names: E.value.failed.slice(0, 6).map((B) => F.$t("{p0}（{p1}）", { p0: V(B.personId), p1: B.error })).join(F.$t("；")) })),
+                e.toDisplayString(F.$t("，{b} 人失败：{names}", { b: E.value.failed.length, names: E.value.failed.slice(0, 6).map((_) => F.$t("{p0}（{p1}）", { p0: V(_.personId), p1: _.error })).join(F.$t("；")) })),
                 1
                 /* TEXT */
               )
@@ -13293,7 +13293,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           e.createElementVNode(
             "b",
             null,
-            e.toDisplayString(_.value),
+            e.toDisplayString(B.value),
             1
             /* TEXT */
           ),
@@ -13327,7 +13327,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           e.createElementVNode(
             "small",
             null,
-            e.toDisplayString(F.$t("覆盖率 {p}% · 还有 {n} 人未采集", { p: S.value, n: s.value.length - _.value })),
+            e.toDisplayString(F.$t("覆盖率 {p}% · 还有 {n} 人未采集", { p: S.value, n: s.value.length - B.value })),
             1
             /* TEXT */
           )
@@ -13338,26 +13338,26 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           (e.openBlock(), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(v, (B) => e.createElementVNode("button", {
-              key: B.key,
+            e.renderList(v, (_) => e.createElementVNode("button", {
+              key: _.key,
               type: "button",
               role: "tab",
-              "aria-selected": m.value === B.key,
-              class: e.normalizeClass({ on: m.value === B.key }),
-              "data-test": `mm-vp-filter-${B.key}`,
+              "aria-selected": m.value === _.key,
+              class: e.normalizeClass({ on: m.value === _.key }),
+              "data-test": `mm-vp-filter-${_.key}`,
               onClick: (h) => {
-                m.value = B.key, f.value = 1;
+                m.value = _.key, N.value = 1;
               }
             }, [
               e.createTextVNode(
-                e.toDisplayString(B.title) + " ",
+                e.toDisplayString(_.title) + " ",
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "em",
                 null,
-                e.toDisplayString(b(B.key)),
+                e.toDisplayString(b(_.key)),
                 1
                 /* TEXT */
               )
@@ -13385,11 +13385,11 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             /* CACHED */
           )),
           e.withDirectives(e.createElementVNode("input", {
-            "onUpdate:modelValue": K[0] || (K[0] = (B) => r.value = B),
+            "onUpdate:modelValue": K[0] || (K[0] = (_) => r.value = _),
             type: "search",
             placeholder: F.$t("搜索员工"),
             "aria-label": F.$t("搜索员工"),
-            onInput: K[1] || (K[1] = (B) => f.value = 1)
+            onInput: K[1] || (K[1] = (_) => N.value = 1)
           }, null, 40, uy), [
             [e.vModelText, r.value]
           ])
@@ -13398,7 +13398,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           type: "button",
           class: "ss-btn sm",
           "data-test": "mm-vp-record",
-          onClick: K[2] || (K[2] = (B) => O(U.value))
+          onClick: K[2] || (K[2] = (_) => O(U.value))
         }, [
           K[21] || (K[21] = e.createElementVNode(
             "i",
@@ -13417,7 +13417,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           type: "button",
           class: "ss-btn sm",
           "data-test": "mm-vp-import",
-          onClick: K[3] || (K[3] = (B) => te(""))
+          onClick: K[3] || (K[3] = (_) => ee(""))
         }, [
           K[22] || (K[22] = e.createElementVNode(
             "i",
@@ -13494,19 +13494,19 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(T.value.rows, (B) => (e.openBlock(), e.createElementBlock("tr", {
-                key: B.person.id,
-                "data-test": `mm-vp-row-${B.person.id}`
+              e.renderList(T.value.rows, (_) => (e.openBlock(), e.createElementBlock("tr", {
+                key: _.person.id,
+                "data-test": `mm-vp-row-${_.person.id}`
               }, [
                 e.createElementVNode("td", null, [
                   e.createVNode(ze, {
-                    name: B.person.name
+                    name: _.person.name
                   }, null, 8, ["name"])
                 ]),
                 e.createElementVNode(
                   "td",
                   null,
-                  e.toDisplayString(B.deptName || "—"),
+                  e.toDisplayString(_.deptName || "—"),
                   1
                   /* TEXT */
                 ),
@@ -13515,23 +13515,23 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                     e.createElementVNode(
                       "span",
                       {
-                        class: e.normalizeClass(["ss-chip", B.status === "collected" ? "ok" : "warn"])
+                        class: e.normalizeClass(["ss-chip", _.status === "collected" ? "ok" : "warn"])
                       },
-                      e.toDisplayString(B.status === "collected" ? F.$t("已采集") : F.$t("未采集")),
+                      e.toDisplayString(_.status === "collected" ? F.$t("已采集") : F.$t("未采集")),
                       3
                       /* TEXT, CLASS */
                     ),
-                    B.needsUpdate ? (e.openBlock(), e.createElementBlock("span", {
+                    _.needsUpdate ? (e.openBlock(), e.createElementBlock("span", {
                       key: 0,
                       class: "ss-chip warn",
                       title: F.$t("这份声纹是旧模型采的。本机已装更准的声纹模型，请本人用采集链接重录一次（只要有一位参会人还是旧声纹，整场就只能用旧模型认人）"),
-                      "data-test": `mm-vp-old-${B.person.id}`
+                      "data-test": `mm-vp-old-${_.person.id}`
                     }, e.toDisplayString(F.$t("建议重录")), 9, Vy)) : e.createCommentVNode("v-if", !0),
-                    B.autoLearn ? (e.openBlock(), e.createElementBlock("span", {
+                    _.autoLearn ? (e.openBlock(), e.createElementBlock("span", {
                       key: 1,
                       class: "mm-sv__learn",
                       title: F.$t("确认会议发言后，用本人的发言自动补充声纹"),
-                      "data-test": `mm-vp-learn-${B.person.id}`
+                      "data-test": `mm-vp-learn-${_.person.id}`
                     }, [
                       K[24] || (K[24] = e.createElementVNode(
                         "i",
@@ -13541,7 +13541,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                         /* CACHED */
                       )),
                       e.createTextVNode(
-                        e.toDisplayString(B.extraCount ? F.$t("会议补充 {n} 条", { n: B.extraCount }) : F.$t("会议补充已开")),
+                        e.toDisplayString(_.extraCount ? F.$t("会议补充 {n} 条", { n: _.extraCount }) : F.$t("会议补充已开")),
                         1
                         /* TEXT */
                       )
@@ -13551,23 +13551,23 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                 e.createElementVNode(
                   "td",
                   $y,
-                  e.toDisplayString(B.consentAt ? e.unref(Ee)(B.consentAt, !0) : "—"),
+                  e.toDisplayString(_.consentAt ? e.unref($e)(_.consentAt, !0) : "—"),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "td",
                   by,
-                  e.toDisplayString(B.enrolledAt ? e.unref(Ee)(B.enrolledAt) : "—"),
+                  e.toDisplayString(_.enrolledAt ? e.unref($e)(_.enrolledAt) : "—"),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode("td", hy, [
-                  B.status === "collected" ? (e.openBlock(), e.createElementBlock(
+                  _.status === "collected" ? (e.openBlock(), e.createElementBlock(
                     e.Fragment,
                     { key: 0 },
                     [
-                      B.person.id === U.value ? (e.openBlock(), e.createElementBlock(
+                      _.person.id === U.value ? (e.openBlock(), e.createElementBlock(
                         e.Fragment,
                         { key: 0 },
                         [
@@ -13576,8 +13576,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                             class: "ss-link",
                             disabled: c.value,
                             "data-test": "mm-vp-learn-toggle",
-                            onClick: (h) => Y(B)
-                          }, e.toDisplayString(B.autoLearn ? F.$t("关闭会议补充") : F.$t("开启会议补充")), 9, _y),
+                            onClick: (h) => Y(_)
+                          }, e.toDisplayString(_.autoLearn ? F.$t("关闭会议补充") : F.$t("开启会议补充")), 9, _y),
                           K[25] || (K[25] = e.createElementVNode(
                             "span",
                             {
@@ -13592,7 +13592,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                         64
                         /* STABLE_FRAGMENT */
                       )) : e.createCommentVNode("v-if", !0),
-                      B.needsUpdate ? (e.openBlock(), e.createElementBlock(
+                      _.needsUpdate ? (e.openBlock(), e.createElementBlock(
                         e.Fragment,
                         { key: 1 },
                         [
@@ -13600,8 +13600,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                             type: "button",
                             class: "ss-link",
                             disabled: c.value,
-                            "data-test": `mm-vp-copy-${B.person.id}`,
-                            onClick: (h) => Q(B)
+                            "data-test": `mm-vp-copy-${_.person.id}`,
+                            onClick: (h) => X(_)
                           }, e.toDisplayString(F.$t("复制重录链接")), 9, By),
                           K[26] || (K[26] = e.createElementVNode(
                             "span",
@@ -13621,8 +13621,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                         type: "button",
                         class: "ss-link",
                         disabled: c.value,
-                        "data-test": `mm-vp-rec-${B.person.id}`,
-                        onClick: (h) => O(B.person.id)
+                        "data-test": `mm-vp-rec-${_.person.id}`,
+                        onClick: (h) => O(_.person.id)
                       }, e.toDisplayString(F.$t("现场重录")), 9, Sy),
                       K[27] || (K[27] = e.createElementVNode(
                         "span",
@@ -13638,8 +13638,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                         type: "button",
                         class: "ss-link danger",
                         disabled: c.value,
-                        "data-test": `mm-vp-del-${B.person.id}`,
-                        onClick: (h) => H(B)
+                        "data-test": `mm-vp-del-${_.person.id}`,
+                        onClick: (h) => W(_)
                       }, e.toDisplayString(F.$t("删除（撤回授权）")), 9, Dy)
                     ],
                     64
@@ -13652,8 +13652,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                         type: "button",
                         class: "ss-link",
                         disabled: c.value,
-                        "data-test": `mm-vp-rec-${B.person.id}`,
-                        onClick: (h) => O(B.person.id)
+                        "data-test": `mm-vp-rec-${_.person.id}`,
+                        onClick: (h) => O(_.person.id)
                       }, e.toDisplayString(F.$t("现场录音")), 9, wy),
                       K[28] || (K[28] = e.createElementVNode(
                         "span",
@@ -13669,8 +13669,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                         type: "button",
                         class: "ss-link",
                         disabled: c.value,
-                        "data-test": `mm-vp-copy-${B.person.id}`,
-                        onClick: (h) => Q(B)
+                        "data-test": `mm-vp-copy-${_.person.id}`,
+                        onClick: (h) => X(_)
                       }, e.toDisplayString(F.$t("复制链接")), 9, Cy),
                       K[29] || (K[29] = e.createElementVNode(
                         "span",
@@ -13685,7 +13685,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                       e.createElementVNode("button", {
                         type: "button",
                         class: "ss-link",
-                        onClick: (h) => te(B.person.id)
+                        onClick: (h) => ee(_.person.id)
                       }, e.toDisplayString(F.$t("代为采集")), 9, Ty)
                     ],
                     64
@@ -13723,7 +13723,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             type: "button",
             disabled: T.value.page <= 1,
             "aria-label": F.$t("上一页"),
-            onClick: K[4] || (K[4] = (B) => f.value = T.value.page - 1)
+            onClick: K[4] || (K[4] = (_) => N.value = T.value.page - 1)
           }, [...K[30] || (K[30] = [
             e.createElementVNode(
               "i",
@@ -13736,13 +13736,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(T.value.pages, (B) => (e.openBlock(), e.createElementBlock("button", {
-              key: B,
+            e.renderList(T.value.pages, (_) => (e.openBlock(), e.createElementBlock("button", {
+              key: _,
               type: "button",
-              class: e.normalizeClass({ on: B === T.value.page }),
-              "aria-current": B === T.value.page ? "page" : void 0,
-              onClick: (h) => f.value = B
-            }, e.toDisplayString(B), 11, jy))),
+              class: e.normalizeClass({ on: _ === T.value.page }),
+              "aria-current": _ === T.value.page ? "page" : void 0,
+              onClick: (h) => N.value = _
+            }, e.toDisplayString(_), 11, jy))),
             128
             /* KEYED_FRAGMENT */
           )),
@@ -13750,7 +13750,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             type: "button",
             disabled: T.value.page >= T.value.pages,
             "aria-label": F.$t("下一页"),
-            onClick: K[5] || (K[5] = (B) => f.value = T.value.page + 1)
+            onClick: K[5] || (K[5] = (_) => N.value = T.value.page + 1)
           }, [...K[31] || (K[31] = [
             e.createElementVNode(
               "i",
@@ -13768,7 +13768,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         icon: "ri-mic-line",
         size: "md",
         description: F.$t("管理员代员工导入一段 10～15 秒、只有本人说话的清晰录音。必须先取得本人对采集声纹的单独同意。"),
-        onClose: K[9] || (K[9] = (B) => w.value = !1)
+        onClose: K[9] || (K[9] = (_) => w.value = !1)
       }, {
         footer: e.withCtx(() => [
           e.createElementVNode(
@@ -13776,7 +13776,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             {
               type: "button",
               class: "ss-btn",
-              onClick: K[8] || (K[8] = (B) => w.value = !1)
+              onClick: K[8] || (K[8] = (_) => w.value = !1)
             },
             e.toDisplayString(F.$t("取消")),
             1
@@ -13817,7 +13817,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               ),
               e.createVNode(we, {
                 modelValue: a.personId,
-                "onUpdate:modelValue": K[6] || (K[6] = (B) => a.personId = B),
+                "onUpdate:modelValue": K[6] || (K[6] = (_) => a.personId = _),
                 people: l.people,
                 depts: l.depts,
                 multiple: !1,
@@ -13858,7 +13858,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": K[7] || (K[7] = (B) => a.consent = B),
+                  "onUpdate:modelValue": K[7] || (K[7] = (_) => a.consent = _),
                   type: "checkbox",
                   "data-test": "mm-vp-consent"
                 },
@@ -13901,7 +13901,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         icon: "ri-mic-line",
         size: "md",
         description: F.$t("直接用本机麦克风录 10～15 秒声音；请由被采集人本人朗读并授权同意。"),
-        onClose: K[15] || (K[15] = (B) => P.value = !1)
+        onClose: K[15] || (K[15] = (_) => P.value = !1)
       }, {
         footer: e.withCtx(() => [
           e.createElementVNode(
@@ -13909,7 +13909,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             {
               type: "button",
               class: "ss-btn",
-              onClick: K[14] || (K[14] = (B) => P.value = !1)
+              onClick: K[14] || (K[14] = (_) => P.value = !1)
             },
             e.toDisplayString(F.$t("取消")),
             1
@@ -13918,7 +13918,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn primary",
-            disabled: c.value || !L.personId || !L.recorded || !L.consent,
+            disabled: c.value || !j.personId || !j.recorded || !j.consent,
             "data-test": "mm-vp-rec-submit",
             onClick: R
           }, [
@@ -13949,8 +13949,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                 /* TEXT */
               ),
               e.createVNode(we, {
-                modelValue: L.personId,
-                "onUpdate:modelValue": K[10] || (K[10] = (B) => L.personId = B),
+                modelValue: j.personId,
+                "onUpdate:modelValue": K[10] || (K[10] = (_) => j.personId = _),
                 people: l.people,
                 depts: l.depts,
                 multiple: !1,
@@ -13961,14 +13961,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               key: 0,
               script: d.value,
               disabled: c.value,
-              onRecorded: K[11] || (K[11] = (B) => L.recorded = B),
-              onReset: K[12] || (K[12] = (B) => L.recorded = null)
+              onRecorded: K[11] || (K[11] = (_) => j.recorded = _),
+              onReset: K[12] || (K[12] = (_) => j.recorded = null)
             }, null, 8, ["script", "disabled"])) : e.createCommentVNode("v-if", !0),
             e.createElementVNode("label", Wy, [
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": K[13] || (K[13] = (B) => L.consent = B),
+                  "onUpdate:modelValue": K[13] || (K[13] = (_) => j.consent = _),
                   type: "checkbox",
                   "data-test": "mm-vp-rec-consent"
                 },
@@ -13976,12 +13976,12 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                 512
                 /* NEED_PATCH */
               ), [
-                [e.vModelCheckbox, L.consent]
+                [e.vModelCheckbox, j.consent]
               ]),
               e.createElementVNode(
                 "span",
                 null,
-                e.toDisplayString(L.personId === U.value ? F.$t("我同意采集本人的声纹（声音特征），并在我确认会议发言后用其中我本人的发言补充声纹（最多保留最近 5 条），只用于在会议纪要里识别我的发言，保存在这台电脑上，可以随时在声纹库关闭补充或删除声纹。") : F.$t("我已取得该员工本人对采集、使用声纹（含确认会议发言后用其本人发言补充声纹）的单独同意（个人信息保护法）；授权人与授权时间会记录在案。")),
+                e.toDisplayString(j.personId === U.value ? F.$t("我同意采集本人的声纹（声音特征），并在我确认会议发言后用其中我本人的发言补充声纹（最多保留最近 5 条），只用于在会议纪要里识别我的发言，保存在这台电脑上，可以随时在声纹库关闭补充或删除声纹。") : F.$t("我已取得该员工本人对采集、使用声纹（含确认会议发言后用其本人发言补充声纹）的单独同意（个人信息保护法）；授权人与授权时间会记录在案。")),
                 1
                 /* TEXT */
               )
@@ -14054,7 +14054,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       { key: "added", title: t.t("新增") },
       { key: "changed", title: t.t("变更") },
       { key: "left", title: t.t("离职") }
-    ], u = l, y = v, s = ie.useNotificationStore(), o = e.ref(!1), c = e.ref(""), i = e.ref(null), k = e.ref(""), E = e.ref(""), m = e.computed(() => !!oe.value?.wecomConnected), r = (b) => oe.value?.org.source !== "demo" || !!b.wecomIdManual, f = (b) => b.mobile || b.wecomUserId && r(b) ? t.t("群消息能提醒到本人") : t.t("没有手机号和企微账号：群消息里只写姓名"), w = e.ref(""), a = e.reactive({ mobile: "", wecomUserId: "" });
+    ], u = l, y = v, s = ce.useNotificationStore(), o = e.ref(!1), c = e.ref(""), i = e.ref(null), k = e.ref(""), E = e.ref(""), m = e.computed(() => !!oe.value?.wecomConnected), r = (b) => oe.value?.org.source !== "demo" || !!b.wecomIdManual, N = (b) => b.mobile || b.wecomUserId && r(b) ? t.t("群消息能提醒到本人") : t.t("没有手机号和企微账号：群消息里只写姓名"), w = e.ref(""), a = e.reactive({ mobile: "", wecomUserId: "" });
     function g(b) {
       w.value = b.id, a.mobile = b.mobile || "", a.wecomUserId = b.wecomUserId && r(b) ? b.wecomUserId : "";
     }
@@ -14081,7 +14081,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         o.value = !1;
       }
     }
-    const L = e.computed(() => i.value ?? oe.value?.org.lastSync ?? null), C = e.computed(() => u.people.filter((b) => b.deptId === E.value && !b.left)), I = (b) => u.people.find((M) => M.id === b)?.name || b, U = (b) => u.people.filter((M) => M.deptId === b && !M.left).length, q = (b) => b.leaderIds.map(I).join(t.t("、")), _ = (b) => {
+    const j = e.computed(() => i.value ?? oe.value?.org.lastSync ?? null), C = e.computed(() => u.people.filter((b) => b.deptId === E.value && !b.left)), I = (b) => u.people.find((M) => M.id === b)?.name || b, U = (b) => u.people.filter((M) => M.deptId === b && !M.left).length, q = (b) => b.leaderIds.map(I).join(t.t("、")), B = (b) => {
       const M = u.depts.find((T) => T.id === E.value);
       return M ? M.leaderIds.indexOf(b) + 1 : 0;
     };
@@ -14126,7 +14126,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               type: "button",
               class: "ss-link",
               "data-test": "mm-org-link-contacts",
-              onClick: M[0] || (M[0] = (T) => e.unref(pe)(e.unref(Ne).contacts))
+              onClick: M[0] || (M[0] = (T) => e.unref(pe)(e.unref(Ve).contacts))
             }, [
               e.createTextVNode(
                 e.toDisplayString(b.$t("去企微后台导出")) + " ",
@@ -14202,7 +14202,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           /* TEXT */
         )
       ])),
-      L.value?.warnings?.length ? (e.openBlock(), e.createElementBlock("div", og, [
+      j.value?.warnings?.length ? (e.openBlock(), e.createElementBlock("div", og, [
         M[7] || (M[7] = e.createElementVNode(
           "i",
           { class: "ri-alert-line" },
@@ -14214,7 +14214,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
-            e.renderList(L.value.warnings, (T, G) => (e.openBlock(), e.createElementBlock(
+            e.renderList(j.value.warnings, (T, G) => (e.openBlock(), e.createElementBlock(
               "p",
               { key: G },
               e.toDisplayString(T),
@@ -14240,7 +14240,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           /* TEXT */
         )
       ])) : e.createCommentVNode("v-if", !0),
-      L.value ? (e.openBlock(), e.createElementBlock("section", sg, [
+      j.value ? (e.openBlock(), e.createElementBlock("section", sg, [
         e.createElementVNode("div", rg, [
           e.createElementVNode(
             "strong",
@@ -14252,27 +14252,27 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           e.createElementVNode(
             "span",
             null,
-            e.toDisplayString(e.unref(Ee)(L.value.at)),
+            e.toDisplayString(e.unref($e)(j.value.at)),
             1
             /* TEXT */
           ),
           e.createElementVNode(
             "span",
             null,
-            e.toDisplayString(b.$t("操作人 {name}", { name: I(L.value.by) })),
+            e.toDisplayString(b.$t("操作人 {name}", { name: I(j.value.by) })),
             1
             /* TEXT */
           ),
           e.createElementVNode(
             "span",
             {
-              class: e.normalizeClass(["ss-chip", L.value.source === "demo" ? "brand" : "ok"])
+              class: e.normalizeClass(["ss-chip", j.value.source === "demo" ? "brand" : "ok"])
             },
-            e.toDisplayString(L.value.source === "wecom" ? b.$t("企微通讯录") : L.value.source === "import" ? b.$t("导入的通讯录") : b.$t("演示组织")),
+            e.toDisplayString(j.value.source === "wecom" ? b.$t("企微通讯录") : j.value.source === "import" ? b.$t("导入的通讯录") : b.$t("演示组织")),
             3
             /* TEXT, CLASS */
           ),
-          L.value.error ? (e.openBlock(), e.createElementBlock(
+          j.value.error ? (e.openBlock(), e.createElementBlock(
             "span",
             ig,
             e.toDisplayString(b.$t("同步出错")),
@@ -14280,10 +14280,10 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             /* TEXT */
           )) : e.createCommentVNode("v-if", !0)
         ]),
-        L.value.error ? (e.openBlock(), e.createElementBlock(
+        j.value.error ? (e.openBlock(), e.createElementBlock(
           "p",
           cg,
-          e.toDisplayString(L.value.error),
+          e.toDisplayString(j.value.error),
           1
           /* TEXT */
         )) : e.createCommentVNode("v-if", !0),
@@ -14300,14 +14300,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               [
                 e.createElementVNode("button", {
                   type: "button",
-                  disabled: !L.value[T.key].length,
+                  disabled: !j.value[T.key].length,
                   "aria-expanded": k.value === T.key,
                   onClick: (G) => k.value = k.value === T.key ? "" : T.key
                 }, [
                   e.createElementVNode(
                     "b",
                     null,
-                    e.toDisplayString(L.value[T.key].length),
+                    e.toDisplayString(j.value[T.key].length),
                     1
                     /* TEXT */
                   ),
@@ -14327,10 +14327,10 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             /* STABLE_FRAGMENT */
           ))
         ]),
-        k.value && L.value[k.value].length ? (e.openBlock(), e.createElementBlock(
+        k.value && j.value[k.value].length ? (e.openBlock(), e.createElementBlock(
           "p",
           ug,
-          e.toDisplayString(L.value[k.value].map(I).join(b.$t("、"))),
+          e.toDisplayString(j.value[k.value].map(I).join(b.$t("、"))),
           1
           /* TEXT */
         )) : e.createCommentVNode("v-if", !0)
@@ -14481,13 +14481,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                     /* TEXT */
                   ),
                   e.createElementVNode("td", null, [
-                    _(T.id) > 0 ? (e.openBlock(), e.createElementBlock(
+                    B(T.id) > 0 ? (e.openBlock(), e.createElementBlock(
                       "span",
                       {
                         key: 0,
-                        class: e.normalizeClass(["ss-chip", _(T.id) === 1 ? "brand" : ""])
+                        class: e.normalizeClass(["ss-chip", B(T.id) === 1 ? "brand" : ""])
                       },
-                      e.toDisplayString(_(T.id) === 1 ? b.$t("第一负责人") : b.$t("负责人 {n}", { n: _(T.id) })),
+                      e.toDisplayString(B(T.id) === 1 ? b.$t("第一负责人") : b.$t("负责人 {n}", { n: B(T.id) })),
                       3
                       /* TEXT, CLASS */
                     )) : e.createCommentVNode("v-if", !0)
@@ -14547,7 +14547,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                     [
                       e.createElementVNode("td", {
                         class: "mono",
-                        title: f(T)
+                        title: N(T)
                       }, e.toDisplayString(T.wecomUserId && r(T) ? T.wecomUserId : "—"), 9, Dg),
                       e.createElementVNode(
                         "td",
@@ -14596,11 +14596,11 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
   },
   emits: ["saved"],
   setup(l, { emit: v }) {
-    const n = l, u = v, y = he.useDialog(), s = ie.useNotificationStore(), o = e.ref(!1), c = e.ref(""), i = e.reactive({ adminIds: [], projectCreatorIds: [] }), k = (a, g) => a.length === g.length && a.every((D) => g.includes(D)), E = e.computed(() => !k(i.adminIds, n.settings.adminIds) || !k(i.projectCreatorIds, n.settings.projectCreatorIds)), m = e.computed(() => oe.value?.me.person?.id || ""), r = e.computed(() => !!m.value && n.settings.adminIds.includes(m.value) && !i.adminIds.includes(m.value));
-    function f() {
+    const n = l, u = v, y = Be.useDialog(), s = ce.useNotificationStore(), o = e.ref(!1), c = e.ref(""), i = e.reactive({ adminIds: [], projectCreatorIds: [] }), k = (a, g) => a.length === g.length && a.every((D) => g.includes(D)), E = e.computed(() => !k(i.adminIds, n.settings.adminIds) || !k(i.projectCreatorIds, n.settings.projectCreatorIds)), m = e.computed(() => oe.value?.me.person?.id || ""), r = e.computed(() => !!m.value && n.settings.adminIds.includes(m.value) && !i.adminIds.includes(m.value));
+    function N() {
       i.adminIds = [...n.settings.adminIds], i.projectCreatorIds = [...n.settings.projectCreatorIds];
     }
-    e.watch(() => n.settings, f, { immediate: !0 });
+    e.watch(() => n.settings, N, { immediate: !0 });
     async function w() {
       if (!(r.value && !await y.confirm({ title: t.t("去掉自己的管理员"), message: t.t("保存后你将无法再进入系统设置，确定吗？"), danger: !0 }))) {
         o.value = !0, c.value = "";
@@ -14738,7 +14738,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             key: 0,
             type: "button",
             class: "ss-link",
-            onClick: f
+            onClick: N
           },
           e.toDisplayString(a.$t("撤销修改")),
           1
@@ -14760,89 +14760,83 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
 }, ef = { class: "mm-asr__facts" }, tf = {
   key: 0,
   class: "ss-note warn mm-asr__why"
-}, lf = {
-  key: 1,
-  class: "mm-asr__act"
-}, nf = ["disabled"], of = { key: 0 }, af = {
+}, lf = { class: "mm-asr__act" }, nf = ["disabled"], of = { key: 0 }, af = ["disabled"], sf = {
   class: "mm-asr__more",
   "data-test": "mm-asr-more"
-}, sf = { class: "ss-table-wrap" }, rf = { class: "ss-table mm-asr__table" }, cf = { class: "num" }, df = { class: "num" }, mf = { class: "num" }, uf = { class: "num" }, pf = { class: "num" }, vf = ["data-test"], kf = { class: "num" }, yf = { class: "num" }, gf = { class: "num" }, ff = { class: "num" }, Nf = { class: "num" }, Vf = { class: "mm-asr__cell-act" }, Ef = {
-  key: 0,
-  class: "ss-chip ok"
-}, $f = ["disabled", "data-test", "onClick"], bf = {
+}, rf = { class: "ss-table-wrap" }, cf = { class: "ss-table mm-asr__table" }, df = { class: "num" }, mf = { class: "num" }, uf = { class: "num" }, pf = { class: "num" }, vf = { class: "num" }, kf = ["data-test"], yf = { class: "num" }, gf = { class: "num" }, ff = { class: "num" }, Nf = { class: "num" }, Vf = { class: "num" }, Ef = { class: "mm-asr__cell-act" }, $f = { class: "ss-chip ok" }, bf = ["disabled", "data-test", "onClick"], hf = ["disabled", "data-test", "onClick"], _f = {
   key: 2,
   class: "ss-muted"
-}, hf = { class: "ss-muted mm-asr__src" }, _f = { class: "ss-field mm-asr__pref" }, Bf = { value: "auto" }, Sf = {
+}, Bf = { class: "ss-muted mm-asr__src" }, Sf = { class: "ss-field mm-asr__pref" }, Df = { value: "auto" }, wf = {
   key: 2,
   class: "mm-asr__cloud",
   "data-test": "mm-asr-cloud"
-}, Df = { class: "ss-field" }, wf = { value: "dashscope" }, Cf = { value: "siliconflow" }, Tf = { value: "custom" }, If = { class: "ss-field" }, Mf = { class: "ss-field" }, Af = { id: "mm-asr-models" }, jf = ["value"], Lf = { class: "ss-field" }, zf = {
+}, Cf = { class: "ss-field" }, Tf = { value: "dashscope" }, If = { value: "siliconflow" }, Mf = { value: "custom" }, Af = { class: "ss-field" }, jf = { class: "ss-field" }, Lf = { id: "mm-asr-models" }, zf = ["value"], Ff = { class: "ss-field" }, Pf = {
   key: 0,
   class: "mm-asr__set"
-}, Ff = { class: "mm-asr__secret" }, Pf = ["type", "placeholder"], Uf = ["title"], Of = { class: "ss-note info" }, Rf = { class: "mm-asr__act" }, qf = ["disabled"], Kf = ["disabled"], Hf = ["disabled"], Wf = {
+}, Uf = { class: "mm-asr__secret" }, Of = ["type", "placeholder"], Rf = ["title"], qf = { class: "ss-note info" }, Kf = { class: "mm-asr__act" }, Hf = ["disabled"], Wf = ["disabled"], Gf = ["disabled"], Yf = {
   key: 3,
   class: "mm-asr__bar",
   "data-test": "mm-asr-bar"
-}, Gf = {
+}, Jf = {
   key: 4,
   class: "ss-muted mono mm-asr__log",
   "data-test": "mm-asr-log"
-}, Yf = {
+}, Qf = {
   key: 5,
   class: "ss-note danger",
   "data-test": "mm-asr-error"
-}, Jf = /* @__PURE__ */ e.defineComponent({
+}, Zf = /* @__PURE__ */ e.defineComponent({
   __name: "AsrModelPicker",
   emits: ["changed"],
   setup(l, { expose: v, emit: n }) {
-    const u = n, y = ie.useNotificationStore(), s = e.ref(null), o = e.ref(!1), c = e.ref(!1), i = e.ref(""), k = e.ref(""), E = e.ref(""), m = e.ref(""), r = e.ref(null), f = /* @__PURE__ */ new Set(["asr-meeting-sensevoice", "asr-meeting-firered2"]), w = e.ref("local"), a = e.ref("auto"), g = e.reactive({ provider: "dashscope", baseUrl: "", model: "", apiKey: "" }), D = e.ref(!1), P = e.ref(""), L = e.ref(!1), C = e.computed(() => s.value?.asr.presets ?? []), I = e.computed(() => C.value.find((B) => B.id === g.provider)), U = e.computed(() => I.value?.models ?? []), q = e.computed(() => I.value?.keyUrl || ""), _ = e.computed(() => !!s.value?.models.asrReady), S = e.computed(() => s.value?.recommend.engine === "firered" ? { title: t.t("FireRedASR2（最准）+ SenseVoice 兜底"), desc: t.t("实测最准的本机模型：普通话、各地口音、吴语 / 上海话 / 闽南语 / 粤语和专业名词都明显好于以前的 Whisper。嘈杂片段自动换 SenseVoice 的结果，不会出乱码。") } : { title: t.t("SenseVoice（快速）"), desc: t.t("又快又小：普通话、口音和粤语都认，带标点，比以前的 Whisper 准一倍，1 小时录音一两分钟转完。") }), b = e.computed(() => {
-      const B = s.value?.recommend, h = s.value?.hardware;
-      if (!B?.downgradeReason || !h) return "";
-      const N = B.downgradeReason === "memory" ? t.t("内存 {n} GB", { n: h.memGb }) : B.downgradeReason === "cores" ? t.t("处理器 {n} 核", { n: h.cores }) : t.t("磁盘只剩 {n} GB", { n: h.freeDiskGb ?? 0 });
-      return t.t("最准的 FireRedASR2 需要 16 GB 以上内存、8 核以上处理器和约 1.5 GB 磁盘，这台电脑{why}，所以推荐 SenseVoice。", { why: N });
+    const u = n, y = ce.useNotificationStore(), s = e.ref(null), o = e.ref(!1), c = e.ref(!1), i = e.ref(""), k = e.ref(""), E = e.ref(""), m = e.ref(""), r = e.ref(null), N = /* @__PURE__ */ new Set(["asr-meeting-sensevoice", "asr-meeting-firered2"]), w = e.ref("local"), a = e.ref("auto"), g = e.reactive({ provider: "dashscope", baseUrl: "", model: "", apiKey: "" }), D = e.ref(!1), P = e.ref(""), j = e.ref(!1), C = e.computed(() => s.value?.asr.presets ?? []), I = e.computed(() => C.value.find((_) => _.id === g.provider)), U = e.computed(() => I.value?.models ?? []), q = e.computed(() => I.value?.keyUrl || ""), B = e.computed(() => !!s.value?.models.asrReady), S = e.computed(() => s.value?.recommend.engine === "firered" ? { title: t.t("FireRedASR2（最准）+ SenseVoice 兜底"), desc: t.t("实测最准的本机模型：普通话、各地口音、吴语 / 上海话 / 闽南语 / 粤语和专业名词都明显好于以前的 Whisper。嘈杂片段自动换 SenseVoice 的结果，不会出乱码。") } : { title: t.t("SenseVoice（快速）"), desc: t.t("又快又小：普通话、口音和粤语都认，带标点，比以前的 Whisper 准一倍，1 小时录音一两分钟转完。") }), b = e.computed(() => {
+      const _ = s.value?.recommend, h = s.value?.hardware;
+      if (!_?.downgradeReason || !h) return "";
+      const f = _.downgradeReason === "memory" ? t.t("内存 {n} GB", { n: h.memGb }) : _.downgradeReason === "cores" ? t.t("处理器 {n} 核", { n: h.cores }) : t.t("磁盘只剩 {n} GB", { n: h.freeDiskGb ?? 0 });
+      return t.t("最准的 FireRedASR2 需要 16 GB 以上内存、8 核以上处理器和约 1.5 GB 磁盘，这台电脑{why}，所以推荐 SenseVoice。", { why: f });
     }), M = e.computed(() => {
-      const B = s.value;
-      if (!B) return [];
-      const h = B.estimates;
+      const _ = s.value;
+      if (!_) return [];
+      const h = _.estimates;
       return [
-        { key: "firered", name: "FireRedASR2", note: t.t("最准，含方言"), room: "12.5%", phone: "10.6%", wu: "18.5%", time: h ? t.t("约 {n} 分钟", { n: h.firered }) : "—", size: "1.2 GB", ready: !!B.models.fireRed, installId: "asr-meeting-firered2" },
-        { key: "sensevoice", name: "SenseVoice", note: t.t("快、小，也做兜底"), room: "14.3%", phone: "20.3%", wu: "34.5%", time: h ? t.t("约 {n} 分钟", { n: h.sensevoice }) : "—", size: "228 MB", ready: !!B.models.senseVoice, installId: "asr-meeting-sensevoice" },
-        { key: "whisper", name: "Whisper large-v3", note: t.t("只在阿拉伯语等其他语种时用"), room: "31.7%", phone: "34.5%", wu: "77.7%", time: t.t("约 16 分钟"), size: "2.9 GB", ready: B.models.asrModel === "large-v3", installId: "" }
+        { key: "firered", name: "FireRedASR2", note: t.t("最准，含方言"), room: "12.5%", phone: "10.6%", wu: "18.5%", time: h ? t.t("约 {n} 分钟", { n: h.firered }) : "—", size: "1.2 GB", ready: !!_.models.fireRed, installId: "asr-meeting-firered2" },
+        { key: "sensevoice", name: "SenseVoice", note: t.t("快、小，也做兜底"), room: "14.3%", phone: "20.3%", wu: "34.5%", time: h ? t.t("约 {n} 分钟", { n: h.sensevoice }) : "—", size: "228 MB", ready: !!_.models.senseVoice, installId: "asr-meeting-sensevoice" },
+        { key: "whisper", name: "Whisper large-v3", note: t.t("只在阿拉伯语等其他语种时用"), room: "31.7%", phone: "34.5%", wu: "77.7%", time: t.t("约 16 分钟"), size: "2.9 GB", ready: _.models.asrModel === "large-v3", installId: "" }
       ];
     });
-    function T(B) {
-      w.value = B.asr.mode, a.value = B.asr.localModel;
-      const h = B.asr.cloud, N = h?.provider ?? "dashscope", j = B.asr.presets.find((Z) => Z.id === N);
-      Object.assign(g, { provider: N, baseUrl: h?.baseUrl ?? j?.baseUrl ?? "", model: h?.model ?? j?.models[0] ?? "", apiKey: "" });
+    function T(_) {
+      w.value = _.asr.mode, a.value = _.asr.localModel;
+      const h = _.asr.cloud, f = h?.provider ?? "dashscope", L = _.asr.presets.find((Q) => Q.id === f);
+      Object.assign(g, { provider: f, baseUrl: h?.baseUrl ?? L?.baseUrl ?? "", model: h?.model ?? L?.models[0] ?? "", apiKey: "" });
     }
-    function G(B) {
-      if (!B) return;
-      const h = B.activeId && f.has(B.activeId) ? B.activeId : (B.queue || []).find((j) => f.has(j)) || "", N = !!E.value;
-      E.value = h, h ? (m.value = B.line || t.t("正在下载…"), r.value = typeof B.percent == "number" ? B.percent : null, k.value = "") : (r.value = null, B.error ? (k.value = B.error, m.value = "") : N && (m.value = B.line || t.t("下载完成")));
+    function G(_) {
+      if (!_) return;
+      const h = _.activeId && N.has(_.activeId) ? _.activeId : (_.queue || []).find((L) => N.has(L)) || "", f = !!E.value;
+      E.value = h, h ? (m.value = _.line || t.t("正在下载…"), r.value = typeof _.percent == "number" ? _.percent : null, k.value = "") : (r.value = null, _.error ? (k.value = _.error, m.value = "") : f && (m.value = _.line || t.t("下载完成")));
     }
     async function V() {
       o.value = !0;
       try {
-        const B = await J("setup.status");
-        s.value = B, B && (T(B), G(B.modelDownload)), B?.modelDownload?.error || (k.value = "");
-      } catch (B) {
-        k.value = x.errorMessage(B);
+        const _ = await J("setup.status");
+        s.value = _, _ && (T(_), G(_.modelDownload)), _?.modelDownload?.error || (k.value = "");
+      } catch (_) {
+        k.value = x.errorMessage(_);
       } finally {
         o.value = !1;
       }
     }
-    async function d(B, h) {
-      c.value = !0, i.value = B, k.value = "";
+    async function d(_, h) {
+      c.value = !0, i.value = _, k.value = "";
       try {
         await h();
-      } catch (N) {
-        k.value = x.errorMessage(N);
+      } catch (f) {
+        k.value = x.errorMessage(f);
       } finally {
         c.value = !1, i.value = "";
       }
     }
-    function p(B) {
-      if (P.value = "", B === "cloud") {
+    function p(_) {
+      if (P.value = "", _ === "cloud") {
         w.value = "cloud";
         return;
       }
@@ -14850,34 +14844,34 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
     }
     function z() {
       return d("mode", async () => {
-        const B = await J("asr.mode.save", { mode: w.value === "cloud" ? "cloud" : "local", localModel: a.value });
-        s.value && B && (s.value.asr = B), u("changed");
+        const _ = await J("asr.mode.save", { mode: w.value === "cloud" ? "cloud" : "local", localModel: a.value });
+        s.value && _ && (s.value.asr = _), u("changed");
       });
     }
-    function Q() {
-      const B = I.value;
-      g.baseUrl = B?.baseUrl ?? "", g.model = B?.models[0] ?? "", P.value = "";
+    function X() {
+      const _ = I.value;
+      g.baseUrl = _?.baseUrl ?? "", g.model = _?.models[0] ?? "", P.value = "";
     }
     function le() {
       return { provider: g.provider, baseUrl: g.baseUrl.trim(), model: g.model.trim(), apiKey: g.apiKey.trim() };
     }
-    function H() {
+    function W() {
       return P.value = "", d("test", async () => {
-        const B = await J("asr.cloud.test", le());
-        L.value = !!B?.ok, P.value = B?.ok ? t.t("连接正常（{n} 毫秒），地址、模型和 API Key 都对", { n: B.ms ?? 0 }) : B?.error || t.t("连接失败");
+        const _ = await J("asr.cloud.test", le());
+        j.value = !!_?.ok, P.value = _?.ok ? t.t("连接正常（{n} 毫秒），地址、模型和 API Key 都对", { n: _.ms ?? 0 }) : _?.error || t.t("连接失败");
       });
     }
     function Y() {
       return d("save", async () => {
         await J("asr.cloud.save", le());
-        const B = await J("asr.mode.save", { mode: "cloud", localModel: a.value });
-        s.value && B && (s.value.asr = B), g.apiKey = "", D.value = !1, y.success(t.t("已改为在线接口转写")), u("changed");
+        const _ = await J("asr.mode.save", { mode: "cloud", localModel: a.value });
+        s.value && _ && (s.value.asr = _), g.apiKey = "", D.value = !1, y.success(t.t("已改为在线接口转写")), u("changed");
       });
     }
-    function te() {
+    function ee() {
       return window.confirm(t.t("清除在线接口和保存的 API Key？会议转写会改回本机模型。")) ? d("clear", async () => {
-        const B = await J("asr.cloud.save", { clear: !0 });
-        s.value && B && (s.value.asr = B, T(s.value)), u("changed");
+        const _ = await J("asr.cloud.save", { clear: !0 });
+        s.value && _ && (s.value.asr = _, T(s.value)), u("changed");
       }) : Promise.resolve();
     }
     async function ne() {
@@ -14888,8 +14882,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       if (!g.apiKey && s.value?.asr.cloud?.hasKey)
         try {
           g.apiKey = (await J("asr.cloud.reveal"))?.apiKey || "";
-        } catch (B) {
-          k.value = x.errorMessage(B);
+        } catch (_) {
+          k.value = x.errorMessage(_);
           return;
         }
       D.value = !0;
@@ -14898,33 +14892,33 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       pe(q.value);
     }
     const O = () => window.electronAPI?.pyExt;
-    async function R(B) {
-      const h = B.filter((j) => !(j === "asr-meeting-firered2" && s.value?.models.fireRed) && !(j === "asr-meeting-sensevoice" && s.value?.models.senseVoice));
-      if (!h.length) {
+    async function R(_, h = !1) {
+      const f = h ? [..._] : _.filter((Q) => !(Q === "asr-meeting-firered2" && s.value?.models.fireRed) && !(Q === "asr-meeting-sensevoice" && s.value?.models.senseVoice));
+      if (!f.length) {
         m.value = t.t("下载完成"), u("changed");
         return;
       }
-      k.value = "", E.value = h[0], r.value = 0, m.value = t.t("开始下载…");
+      k.value = "", E.value = f[0], r.value = 0, m.value = t.t("开始下载…");
       try {
-        const j = await J("model.download.start", { ids: h });
-        G(j);
+        const Q = await J("model.download.start", { ids: f, ...h ? { force: !0 } : {} });
+        G(Q);
         return;
-      } catch (j) {
-        const Z = x.errorMessage(j);
+      } catch (Q) {
+        const Z = x.errorMessage(Q);
         if (!/未知操作|unexpected action/i.test(Z)) {
           E.value = "", r.value = null, k.value = Z;
           return;
         }
       }
-      const N = O();
-      if (!N?.install) {
+      const L = O();
+      if (!L?.install) {
         E.value = "", r.value = null, k.value = t.t("组件安装器不可用，请到应用的 设置 → 语音 里下载");
         return;
       }
       try {
-        for (const j of h) {
-          E.value = j, m.value = t.t("开始下载…");
-          const Z = await N.install(j);
+        for (const Q of f) {
+          E.value = Q, m.value = t.t("开始下载…"), h && L.remove && await L.remove(Q);
+          const Z = await L.install(Q);
           if (!Z?.ok) {
             k.value = Z?.error || t.t("下载失败");
             break;
@@ -14932,21 +14926,21 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           await V();
         }
         k.value || (m.value = t.t("下载完成")), u("changed");
-      } catch (j) {
-        k.value = x.errorMessage(j);
+      } catch (Q) {
+        k.value = x.errorMessage(Q);
       } finally {
         E.value = "", r.value = null;
       }
     }
     let F = null, K = null;
     return e.onMounted(() => {
-      V(), K = be((h) => {
+      V(), K = _e((h) => {
         if (h.type !== "model_download") return;
-        const N = E.value;
-        G(h.status), N && !E.value && V().then(() => u("changed"));
+        const f = E.value;
+        G(h.status), f && !E.value && V().then(() => u("changed"));
       });
-      const B = O();
-      B?.onInstallProgress && (F = B.onInstallProgress((h) => {
+      const _ = O();
+      _?.onInstallProgress && (F = _.onInstallProgress((h) => {
         h?.id && h.id === E.value && h.line && (m.value = String(h.line).slice(0, 200));
       }));
     }), e.onBeforeUnmount(() => {
@@ -14958,11 +14952,11 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         K?.();
       } catch {
       }
-    }), v({ reload: V }), (B, h) => (e.openBlock(), e.createElementBlock("section", Gg, [
+    }), v({ reload: V }), (_, h) => (e.openBlock(), e.createElementBlock("section", Gg, [
       e.createElementVNode("div", {
         class: "mm-asr__modes",
         role: "radiogroup",
-        "aria-label": B.$t("转写方式")
+        "aria-label": _.$t("转写方式")
       }, [
         e.createElementVNode("button", {
           type: "button",
@@ -14970,9 +14964,9 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           "aria-checked": w.value !== "cloud",
           class: e.normalizeClass({ on: w.value !== "cloud" }),
           "data-test": "mm-asr-mode-local",
-          onClick: h[0] || (h[0] = (N) => p("local"))
+          onClick: h[0] || (h[0] = (f) => p("local"))
         }, [
-          h[9] || (h[9] = e.createElementVNode(
+          h[10] || (h[10] = e.createElementVNode(
             "i",
             { class: "ri-computer-line" },
             null,
@@ -14983,14 +14977,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             e.createElementVNode(
               "strong",
               null,
-              e.toDisplayString(B.$t("本机模型")),
+              e.toDisplayString(_.$t("本机模型")),
               1
               /* TEXT */
             ),
             e.createElementVNode(
               "small",
               null,
-              e.toDisplayString(B.$t("推荐 · 录音不出这台电脑")),
+              e.toDisplayString(_.$t("推荐 · 录音不出这台电脑")),
               1
               /* TEXT */
             )
@@ -15002,9 +14996,9 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           "aria-checked": w.value === "cloud",
           class: e.normalizeClass({ on: w.value === "cloud" }),
           "data-test": "mm-asr-mode-cloud",
-          onClick: h[1] || (h[1] = (N) => p("cloud"))
+          onClick: h[1] || (h[1] = (f) => p("cloud"))
         }, [
-          h[10] || (h[10] = e.createElementVNode(
+          h[11] || (h[11] = e.createElementVNode(
             "i",
             { class: "ri-cloud-line" },
             null,
@@ -15015,14 +15009,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             e.createElementVNode(
               "strong",
               null,
-              e.toDisplayString(B.$t("在线接口")),
+              e.toDisplayString(_.$t("在线接口")),
               1
               /* TEXT */
             ),
             e.createElementVNode(
               "small",
               null,
-              e.toDisplayString(B.$t("填自己的语音识别 API")),
+              e.toDisplayString(_.$t("填自己的语音识别 API")),
               1
               /* TEXT */
             )
@@ -15030,7 +15024,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         ], 10, Qg)
       ], 8, Yg),
       o.value && !s.value ? (e.openBlock(), e.createElementBlock("p", Zg, [
-        h[11] || (h[11] = e.createElementVNode(
+        h[12] || (h[12] = e.createElementVNode(
           "i",
           { class: "ri-loader-4-line spin" },
           null,
@@ -15038,7 +15032,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           /* CACHED */
         )),
         e.createTextVNode(
-          " " + e.toDisplayString(B.$t("正在检测这台电脑…")),
+          " " + e.toDisplayString(_.$t("正在检测这台电脑…")),
           1
           /* TEXT */
         )
@@ -15049,13 +15043,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           e.createElementVNode(
             "article",
             {
-              class: e.normalizeClass(["mm-asr__best", { ready: _.value }]),
+              class: e.normalizeClass(["mm-asr__best", { ready: B.value }]),
               "data-test": "mm-asr-best"
             },
             [
               e.createElementVNode("header", null, [
                 e.createElementVNode("span", Xg, [
-                  h[12] || (h[12] = e.createElementVNode(
+                  h[13] || (h[13] = e.createElementVNode(
                     "i",
                     { class: "ri-medal-line" },
                     null,
@@ -15063,15 +15057,15 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                     /* CACHED */
                   )),
                   e.createTextVNode(
-                    e.toDisplayString(B.$t("为这台电脑推荐")),
+                    e.toDisplayString(_.$t("为这台电脑推荐")),
                     1
                     /* TEXT */
                   )
                 ]),
-                _.value ? (e.openBlock(), e.createElementBlock(
+                B.value ? (e.openBlock(), e.createElementBlock(
                   "span",
                   xg,
-                  e.toDisplayString(B.$t("已就绪")),
+                  e.toDisplayString(_.$t("已就绪")),
                   1
                   /* TEXT */
                 )) : e.createCommentVNode("v-if", !0)
@@ -15092,7 +15086,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               ),
               e.createElementVNode("ul", ef, [
                 e.createElementVNode("li", null, [
-                  h[13] || (h[13] = e.createElementVNode(
+                  h[14] || (h[14] = e.createElementVNode(
                     "i",
                     { class: "ri-hard-drive-2-line" },
                     null,
@@ -15100,21 +15094,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                     /* CACHED */
                   )),
                   e.createTextVNode(
-                    e.toDisplayString(B.$t("约 {n} MB", { n: s.value.recommend.sizeMb })),
-                    1
-                    /* TEXT */
-                  )
-                ]),
-                e.createElementVNode("li", null, [
-                  h[14] || (h[14] = e.createElementVNode(
-                    "i",
-                    { class: "ri-timer-line" },
-                    null,
-                    -1
-                    /* CACHED */
-                  )),
-                  e.createTextVNode(
-                    e.toDisplayString(B.$t("1 小时录音约 {n} 分钟", { n: s.value.recommend.estMinPerHour })),
+                    e.toDisplayString(_.$t("约 {n} MB", { n: s.value.recommend.sizeMb })),
                     1
                     /* TEXT */
                   )
@@ -15122,20 +15102,34 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                 e.createElementVNode("li", null, [
                   h[15] || (h[15] = e.createElementVNode(
                     "i",
+                    { class: "ri-timer-line" },
+                    null,
+                    -1
+                    /* CACHED */
+                  )),
+                  e.createTextVNode(
+                    e.toDisplayString(_.$t("1 小时录音约 {n} 分钟", { n: s.value.recommend.estMinPerHour })),
+                    1
+                    /* TEXT */
+                  )
+                ]),
+                e.createElementVNode("li", null, [
+                  h[16] || (h[16] = e.createElementVNode(
+                    "i",
                     { class: "ri-shield-check-line" },
                     null,
                     -1
                     /* CACHED */
                   )),
                   e.createTextVNode(
-                    e.toDisplayString(B.$t("全程在本机")),
+                    e.toDisplayString(_.$t("全程在本机")),
                     1
                     /* TEXT */
                   )
                 ])
               ]),
               s.value.recommend.downgradeReason ? (e.openBlock(), e.createElementBlock("p", tf, [
-                h[16] || (h[16] = e.createElementVNode(
+                h[17] || (h[17] = e.createElementVNode(
                   "i",
                   { class: "ri-information-line" },
                   null,
@@ -15148,96 +15142,126 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                   /* TEXT */
                 )
               ])) : e.createCommentVNode("v-if", !0),
-              _.value ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("div", lf, [
-                e.createElementVNode("button", {
+              e.createElementVNode("div", lf, [
+                B.value ? (e.openBlock(), e.createElementBlock("button", {
+                  key: 1,
                   type: "button",
-                  class: "ss-btn primary",
+                  class: "ss-btn sm",
                   disabled: !!E.value,
-                  "data-test": "mm-asr-best-install",
-                  onClick: h[2] || (h[2] = (N) => R(s.value.recommend.installIds))
+                  "data-test": "mm-asr-best-reinstall",
+                  onClick: h[3] || (h[3] = (f) => R(s.value.recommend.installIds, !0))
                 }, [
                   e.createElementVNode(
                     "i",
                     {
-                      class: e.normalizeClass(E.value ? "ri-loader-4-line spin" : "ri-download-2-line")
+                      class: e.normalizeClass(E.value ? "ri-loader-4-line spin" : "ri-refresh-line")
                     },
                     null,
                     2
                     /* CLASS */
                   ),
                   e.createTextVNode(
-                    e.toDisplayString(B.$t("一键下载")),
+                    e.toDisplayString(_.$t("重新下载")),
                     1
                     /* TEXT */
                   )
-                ], 8, nf),
-                s.value.recommend.installIds.length > 1 ? (e.openBlock(), e.createElementBlock(
-                  "small",
-                  of,
-                  e.toDisplayString(B.$t("会依次下载 SenseVoice（嘈杂片段的兜底）和 FireRedASR2")),
-                  1
-                  /* TEXT */
-                )) : e.createCommentVNode("v-if", !0)
-              ]))
+                ], 8, af)) : (e.openBlock(), e.createElementBlock(
+                  e.Fragment,
+                  { key: 0 },
+                  [
+                    e.createElementVNode("button", {
+                      type: "button",
+                      class: "ss-btn primary",
+                      disabled: !!E.value,
+                      "data-test": "mm-asr-best-install",
+                      onClick: h[2] || (h[2] = (f) => R(s.value.recommend.installIds))
+                    }, [
+                      e.createElementVNode(
+                        "i",
+                        {
+                          class: e.normalizeClass(E.value ? "ri-loader-4-line spin" : "ri-download-2-line")
+                        },
+                        null,
+                        2
+                        /* CLASS */
+                      ),
+                      e.createTextVNode(
+                        e.toDisplayString(_.$t("一键下载")),
+                        1
+                        /* TEXT */
+                      )
+                    ], 8, nf),
+                    s.value.recommend.installIds.length > 1 ? (e.openBlock(), e.createElementBlock(
+                      "small",
+                      of,
+                      e.toDisplayString(_.$t("会依次下载 SenseVoice（嘈杂片段的兜底）和 FireRedASR2")),
+                      1
+                      /* TEXT */
+                    )) : e.createCommentVNode("v-if", !0)
+                  ],
+                  64
+                  /* STABLE_FRAGMENT */
+                ))
+              ])
             ],
             2
             /* CLASS */
           ),
-          e.createElementVNode("details", af, [
+          e.createElementVNode("details", sf, [
             e.createElementVNode(
               "summary",
               null,
-              e.toDisplayString(B.$t("全部本机模型与实测对比")),
+              e.toDisplayString(_.$t("全部本机模型与实测对比")),
               1
               /* TEXT */
             ),
-            e.createElementVNode("div", sf, [
-              e.createElementVNode("table", rf, [
+            e.createElementVNode("div", rf, [
+              e.createElementVNode("table", cf, [
                 e.createElementVNode("thead", null, [
                   e.createElementVNode("tr", null, [
                     e.createElementVNode(
                       "th",
                       null,
-                      e.toDisplayString(B.$t("模型")),
-                      1
-                      /* TEXT */
-                    ),
-                    e.createElementVNode(
-                      "th",
-                      cf,
-                      e.toDisplayString(B.$t("会议室录音")),
+                      e.toDisplayString(_.$t("模型")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
                       df,
-                      e.toDisplayString(B.$t("电话音质")),
+                      e.toDisplayString(_.$t("会议室录音")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
                       mf,
-                      e.toDisplayString(B.$t("吴语方言")),
+                      e.toDisplayString(_.$t("电话音质")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
                       uf,
-                      e.toDisplayString(B.$t("1 小时耗时")),
+                      e.toDisplayString(_.$t("吴语方言")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "th",
                       pf,
-                      e.toDisplayString(B.$t("体积")),
+                      e.toDisplayString(_.$t("1 小时耗时")),
                       1
                       /* TEXT */
                     ),
-                    h[17] || (h[17] = e.createElementVNode(
+                    e.createElementVNode(
+                      "th",
+                      vf,
+                      e.toDisplayString(_.$t("体积")),
+                      1
+                      /* TEXT */
+                    ),
+                    h[18] || (h[18] = e.createElementVNode(
                       "th",
                       null,
                       null,
@@ -15250,99 +15274,130 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(M.value, (N) => (e.openBlock(), e.createElementBlock("tr", {
-                      key: N.key,
-                      "data-test": `mm-asr-row-${N.key}`
+                    e.renderList(M.value, (f) => (e.openBlock(), e.createElementBlock("tr", {
+                      key: f.key,
+                      "data-test": `mm-asr-row-${f.key}`
                     }, [
                       e.createElementVNode("td", null, [
                         e.createElementVNode(
                           "strong",
                           null,
-                          e.toDisplayString(N.name),
+                          e.toDisplayString(f.name),
                           1
                           /* TEXT */
                         ),
                         e.createElementVNode(
                           "small",
                           null,
-                          e.toDisplayString(N.note),
+                          e.toDisplayString(f.note),
                           1
                           /* TEXT */
                         )
                       ]),
                       e.createElementVNode(
                         "td",
-                        kf,
-                        e.toDisplayString(N.room),
-                        1
-                        /* TEXT */
-                      ),
-                      e.createElementVNode(
-                        "td",
                         yf,
-                        e.toDisplayString(N.phone),
+                        e.toDisplayString(f.room),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
                         gf,
-                        e.toDisplayString(N.wu),
+                        e.toDisplayString(f.phone),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
                         ff,
-                        e.toDisplayString(N.time),
+                        e.toDisplayString(f.wu),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "td",
                         Nf,
-                        e.toDisplayString(N.size),
+                        e.toDisplayString(f.time),
                         1
                         /* TEXT */
                       ),
-                      e.createElementVNode("td", Vf, [
-                        N.ready ? (e.openBlock(), e.createElementBlock(
-                          "span",
-                          Ef,
-                          e.toDisplayString(B.$t("已下载")),
-                          1
-                          /* TEXT */
-                        )) : N.installId ? (e.openBlock(), e.createElementBlock("button", {
+                      e.createElementVNode(
+                        "td",
+                        Vf,
+                        e.toDisplayString(f.size),
+                        1
+                        /* TEXT */
+                      ),
+                      e.createElementVNode("td", Ef, [
+                        f.ready ? (e.openBlock(), e.createElementBlock(
+                          e.Fragment,
+                          { key: 0 },
+                          [
+                            e.createElementVNode(
+                              "span",
+                              $f,
+                              e.toDisplayString(_.$t("已下载")),
+                              1
+                              /* TEXT */
+                            ),
+                            f.installId ? (e.openBlock(), e.createElementBlock("button", {
+                              key: 0,
+                              type: "button",
+                              class: "ss-btn sm",
+                              disabled: !!E.value,
+                              "data-test": `mm-asr-reinstall-${f.key}`,
+                              onClick: (L) => R([f.installId], !0)
+                            }, [
+                              e.createElementVNode(
+                                "i",
+                                {
+                                  class: e.normalizeClass(E.value === f.installId ? "ri-loader-4-line spin" : "ri-refresh-line")
+                                },
+                                null,
+                                2
+                                /* CLASS */
+                              ),
+                              e.createTextVNode(
+                                e.toDisplayString(_.$t("重新下载")),
+                                1
+                                /* TEXT */
+                              )
+                            ], 8, bf)) : e.createCommentVNode("v-if", !0)
+                          ],
+                          64
+                          /* STABLE_FRAGMENT */
+                        )) : f.installId ? (e.openBlock(), e.createElementBlock("button", {
                           key: 1,
                           type: "button",
                           class: "ss-btn sm",
                           disabled: !!E.value,
-                          "data-test": `mm-asr-install-${N.key}`,
-                          onClick: (j) => R([N.installId])
+                          "data-test": `mm-asr-install-${f.key}`,
+                          onClick: (L) => R([f.installId])
                         }, [
                           e.createElementVNode(
                             "i",
                             {
-                              class: e.normalizeClass(E.value === N.installId ? "ri-loader-4-line spin" : "ri-download-2-line")
+                              class: e.normalizeClass(E.value === f.installId ? "ri-loader-4-line spin" : "ri-download-2-line")
                             },
                             null,
                             2
                             /* CLASS */
                           ),
                           e.createTextVNode(
-                            e.toDisplayString(B.$t("下载")),
+                            e.toDisplayString(_.$t("下载")),
                             1
                             /* TEXT */
                           )
-                        ], 8, $f)) : (e.openBlock(), e.createElementBlock(
+                        ], 8, hf)) : (e.openBlock(), e.createElementBlock(
                           "small",
-                          bf,
-                          e.toDisplayString(B.$t("在 设置 → 语音 下载")),
+                          _f,
+                          e.toDisplayString(_.$t("在 设置 → 语音 下载")),
                           1
                           /* TEXT */
                         ))
                       ])
-                    ], 8, vf))),
+                    ], 8, kf))),
                     128
                     /* KEYED_FRAGMENT */
                   ))
@@ -15351,49 +15406,49 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             ]),
             e.createElementVNode(
               "p",
-              hf,
-              e.toDisplayString(B.$t("表中是字错率（越低越准），用同一批带标准答案的录音在本机实测；耗时按这台电脑的配置估算。")),
+              Bf,
+              e.toDisplayString(_.$t("表中是字错率（越低越准），用同一批带标准答案的录音在本机实测；耗时按这台电脑的配置估算。")),
               1
               /* TEXT */
             ),
-            e.createElementVNode("label", _f, [
+            e.createElementVNode("label", Sf, [
               e.createElementVNode(
                 "span",
                 null,
-                e.toDisplayString(B.$t("转写时用")),
+                e.toDisplayString(_.$t("转写时用")),
                 1
                 /* TEXT */
               ),
               e.withDirectives(e.createElementVNode(
                 "select",
                 {
-                  "onUpdate:modelValue": h[3] || (h[3] = (N) => a.value = N),
+                  "onUpdate:modelValue": h[4] || (h[4] = (f) => a.value = f),
                   "data-test": "mm-asr-pref",
-                  onChange: h[4] || (h[4] = (N) => z())
+                  onChange: h[5] || (h[5] = (f) => z())
                 },
                 [
                   e.createElementVNode(
                     "option",
-                    Bf,
-                    e.toDisplayString(B.$t("自动（推荐）：装了 FireRedASR2 用它，否则 SenseVoice")),
+                    Df,
+                    e.toDisplayString(_.$t("自动（推荐）：装了 FireRedASR2 用它，否则 SenseVoice")),
                     1
                     /* TEXT */
                   ),
-                  h[18] || (h[18] = e.createElementVNode(
+                  h[19] || (h[19] = e.createElementVNode(
                     "option",
                     { value: "firered" },
                     "FireRedASR2",
                     -1
                     /* CACHED */
                   )),
-                  h[19] || (h[19] = e.createElementVNode(
+                  h[20] || (h[20] = e.createElementVNode(
                     "option",
                     { value: "sensevoice" },
                     "SenseVoice",
                     -1
                     /* CACHED */
                   )),
-                  h[20] || (h[20] = e.createElementVNode(
+                  h[21] || (h[21] = e.createElementVNode(
                     "option",
                     { value: "whisper" },
                     "Whisper large-v3",
@@ -15411,38 +15466,38 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         ],
         64
         /* STABLE_FRAGMENT */
-      )) : s.value && w.value === "cloud" ? (e.openBlock(), e.createElementBlock("div", Sf, [
-        e.createElementVNode("label", Df, [
+      )) : s.value && w.value === "cloud" ? (e.openBlock(), e.createElementBlock("div", wf, [
+        e.createElementVNode("label", Cf, [
           e.createElementVNode(
             "span",
             null,
-            e.toDisplayString(B.$t("服务商")),
+            e.toDisplayString(_.$t("服务商")),
             1
             /* TEXT */
           ),
           e.withDirectives(e.createElementVNode(
             "select",
             {
-              "onUpdate:modelValue": h[5] || (h[5] = (N) => g.provider = N),
+              "onUpdate:modelValue": h[6] || (h[6] = (f) => g.provider = f),
               "data-test": "mm-asr-cloud-provider",
-              onChange: Q
+              onChange: X
             },
             [
               e.createElementVNode(
                 "option",
-                wf,
-                e.toDisplayString(B.$t("阿里云百炼 · Qwen3-ASR-Flash（方言好）")),
+                Tf,
+                e.toDisplayString(_.$t("阿里云百炼 · Qwen3-ASR-Flash（方言好）")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "option",
-                Cf,
-                e.toDisplayString(B.$t("硅基流动 · SenseVoice / TeleSpeech 方言")),
+                If,
+                e.toDisplayString(_.$t("硅基流动 · SenseVoice / TeleSpeech 方言")),
                 1
                 /* TEXT */
               ),
-              h[21] || (h[21] = e.createElementVNode(
+              h[22] || (h[22] = e.createElementVNode(
                 "option",
                 { value: "openai" },
                 "OpenAI",
@@ -15451,8 +15506,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               )),
               e.createElementVNode(
                 "option",
-                Tf,
-                e.toDisplayString(B.$t("其他（OpenAI 兼容接口）")),
+                Mf,
+                e.toDisplayString(_.$t("其他（OpenAI 兼容接口）")),
                 1
                 /* TEXT */
               )
@@ -15463,18 +15518,18 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             [e.vModelSelect, g.provider]
           ])
         ]),
-        e.createElementVNode("label", If, [
+        e.createElementVNode("label", Af, [
           e.createElementVNode(
             "span",
             null,
-            e.toDisplayString(B.$t("接口地址")),
+            e.toDisplayString(_.$t("接口地址")),
             1
             /* TEXT */
           ),
           e.withDirectives(e.createElementVNode(
             "input",
             {
-              "onUpdate:modelValue": h[6] || (h[6] = (N) => g.baseUrl = N),
+              "onUpdate:modelValue": h[7] || (h[7] = (f) => g.baseUrl = f),
               type: "url",
               spellcheck: "false",
               placeholder: "https://…/v1",
@@ -15487,18 +15542,18 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             [e.vModelText, g.baseUrl]
           ])
         ]),
-        e.createElementVNode("label", Mf, [
+        e.createElementVNode("label", jf, [
           e.createElementVNode(
             "span",
             null,
-            e.toDisplayString(B.$t("模型")),
+            e.toDisplayString(_.$t("模型")),
             1
             /* TEXT */
           ),
           e.withDirectives(e.createElementVNode(
             "input",
             {
-              "onUpdate:modelValue": h[7] || (h[7] = (N) => g.model = N),
+              "onUpdate:modelValue": h[8] || (h[8] = (f) => g.model = f),
               type: "text",
               spellcheck: "false",
               list: "mm-asr-models",
@@ -15510,49 +15565,49 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           ), [
             [e.vModelText, g.model]
           ]),
-          e.createElementVNode("datalist", Af, [
+          e.createElementVNode("datalist", Lf, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(U.value, (N) => (e.openBlock(), e.createElementBlock("option", {
-                key: N,
-                value: N
-              }, null, 8, jf))),
+              e.renderList(U.value, (f) => (e.openBlock(), e.createElementBlock("option", {
+                key: f,
+                value: f
+              }, null, 8, zf))),
               128
               /* KEYED_FRAGMENT */
             ))
           ])
         ]),
-        e.createElementVNode("label", Lf, [
+        e.createElementVNode("label", Ff, [
           e.createElementVNode("span", null, [
-            h[22] || (h[22] = e.createTextVNode(
+            h[23] || (h[23] = e.createTextVNode(
               "API Key ",
               -1
               /* CACHED */
             )),
             s.value.asr.cloud?.hasKey ? (e.openBlock(), e.createElementBlock(
               "em",
-              zf,
-              e.toDisplayString(B.$t("已保存")),
+              Pf,
+              e.toDisplayString(_.$t("已保存")),
               1
               /* TEXT */
             )) : e.createCommentVNode("v-if", !0)
           ]),
-          e.createElementVNode("span", Ff, [
+          e.createElementVNode("span", Uf, [
             e.withDirectives(e.createElementVNode("input", {
-              "onUpdate:modelValue": h[8] || (h[8] = (N) => g.apiKey = N),
+              "onUpdate:modelValue": h[9] || (h[9] = (f) => g.apiKey = f),
               type: D.value ? "text" : "password",
               autocomplete: "new-password",
               spellcheck: "false",
-              placeholder: s.value.asr.cloud?.hasKey ? B.$t("已保存，点右边的眼睛查看") : B.$t("粘贴 API Key"),
+              placeholder: s.value.asr.cloud?.hasKey ? _.$t("已保存，点右边的眼睛查看") : _.$t("粘贴 API Key"),
               "data-test": "mm-asr-cloud-key"
-            }, null, 8, Pf), [
+            }, null, 8, Of), [
               [e.vModelDynamic, g.apiKey]
             ]),
             e.createElementVNode("button", {
               type: "button",
               class: "mm-asr__eye",
-              title: D.value ? B.$t("隐藏") : B.$t("查看"),
+              title: D.value ? _.$t("隐藏") : _.$t("查看"),
               "data-test": "mm-asr-cloud-eye",
               onClick: ne
             }, [
@@ -15565,7 +15620,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                 2
                 /* CLASS */
               )
-            ], 8, Uf)
+            ], 8, Rf)
           ]),
           q.value ? (e.openBlock(), e.createElementBlock(
             "a",
@@ -15575,13 +15630,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               href: "#",
               onClick: e.withModifiers($, ["prevent"])
             },
-            e.toDisplayString(B.$t("去哪拿 API Key")),
+            e.toDisplayString(_.$t("去哪拿 API Key")),
             1
             /* TEXT */
           )) : e.createCommentVNode("v-if", !0)
         ]),
-        e.createElementVNode("p", Of, [
-          h[23] || (h[23] = e.createElementVNode(
+        e.createElementVNode("p", qf, [
+          h[24] || (h[24] = e.createElementVNode(
             "i",
             { class: "ri-information-line" },
             null,
@@ -15589,7 +15644,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             /* CACHED */
           )),
           e.createTextVNode(
-            e.toDisplayString(B.$t("选在线接口后，会议录音会按片段（每段不超过 20 秒）上传到这个服务转写，按服务商的价格计费；认人（声纹）仍在本机。API Key 只加密保存在这台电脑。")),
+            e.toDisplayString(_.$t("选在线接口后，会议录音会按片段（每段不超过 20 秒）上传到这个服务转写，按服务商的价格计费；认人（声纹）仍在本机。API Key 只加密保存在这台电脑。")),
             1
             /* TEXT */
           )
@@ -15598,14 +15653,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           "p",
           {
             key: 0,
-            class: e.normalizeClass(["ss-note", L.value ? "ok" : "danger"]),
+            class: e.normalizeClass(["ss-note", j.value ? "ok" : "danger"]),
             "data-test": "mm-asr-cloud-test-msg"
           },
           [
             e.createElementVNode(
               "i",
               {
-                class: e.normalizeClass(L.value ? "ri-checkbox-circle-line" : "ri-error-warning-line")
+                class: e.normalizeClass(j.value ? "ri-checkbox-circle-line" : "ri-error-warning-line")
               },
               null,
               2
@@ -15620,13 +15675,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           2
           /* CLASS */
         )) : e.createCommentVNode("v-if", !0),
-        e.createElementVNode("div", Rf, [
+        e.createElementVNode("div", Kf, [
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn",
             disabled: c.value,
             "data-test": "mm-asr-cloud-test",
-            onClick: H
+            onClick: W
           }, [
             e.createElementVNode(
               "i",
@@ -15638,11 +15693,11 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               /* CLASS */
             ),
             e.createTextVNode(
-              e.toDisplayString(B.$t("测试连接")),
+              e.toDisplayString(_.$t("测试连接")),
               1
               /* TEXT */
             )
-          ], 8, qf),
+          ], 8, Hf),
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn primary",
@@ -15660,22 +15715,22 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               /* CLASS */
             ),
             e.createTextVNode(
-              e.toDisplayString(B.$t("保存并使用")),
+              e.toDisplayString(_.$t("保存并使用")),
               1
               /* TEXT */
             )
-          ], 8, Kf),
+          ], 8, Wf),
           s.value.asr.cloud ? (e.openBlock(), e.createElementBlock("button", {
             key: 0,
             type: "button",
             class: "ss-link",
             disabled: c.value,
             "data-test": "mm-asr-cloud-clear",
-            onClick: te
-          }, e.toDisplayString(B.$t("清除在线接口")), 9, Hf)) : e.createCommentVNode("v-if", !0)
+            onClick: ee
+          }, e.toDisplayString(_.$t("清除在线接口")), 9, Gf)) : e.createCommentVNode("v-if", !0)
         ])
       ])) : e.createCommentVNode("v-if", !0),
-      E.value && r.value !== null ? (e.openBlock(), e.createElementBlock("div", Wf, [
+      E.value && r.value !== null ? (e.openBlock(), e.createElementBlock("div", Yf, [
         e.createElementVNode(
           "i",
           {
@@ -15688,13 +15743,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       ])) : e.createCommentVNode("v-if", !0),
       m.value ? (e.openBlock(), e.createElementBlock(
         "p",
-        Gf,
+        Jf,
         e.toDisplayString(m.value),
         1
         /* TEXT */
       )) : e.createCommentVNode("v-if", !0),
-      k.value ? (e.openBlock(), e.createElementBlock("p", Yf, [
-        h[24] || (h[24] = e.createElementVNode(
+      k.value ? (e.openBlock(), e.createElementBlock("p", Qf, [
+        h[25] || (h[25] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
           null,
@@ -15709,27 +15764,27 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       ])) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), qt = /* @__PURE__ */ ae(Jf, [["__scopeId", "data-v-6ce7dc82"]]), Qf = {
+}), qt = /* @__PURE__ */ ae(Zf, [["__scopeId", "data-v-aa00b6e5"]]), Xf = {
   class: "mm-sa",
   "data-test": "mm-ai"
-}, Zf = { class: "mm-sp__head" }, Xf = {
+}, xf = { class: "mm-sp__head" }, e1 = {
   key: 0,
   class: "ss-note danger"
-}, xf = { class: "mm-sa__block" }, e1 = { class: "ss-muted" }, t1 = { class: "mm-sa__block" }, l1 = { class: "mm-sa__range" }, n1 = { class: "ss-muted" }, o1 = { class: "mm-sa__block" }, a1 = { class: "ss-field" }, s1 = ["placeholder"], r1 = { class: "ss-field" }, i1 = ["placeholder"], c1 = { class: "ss-field" }, d1 = ["placeholder"], m1 = { class: "ss-actions" }, u1 = ["disabled"], p1 = /* @__PURE__ */ e.defineComponent({
+}, t1 = { class: "mm-sa__block" }, l1 = { class: "ss-muted" }, n1 = { class: "mm-sa__block" }, o1 = { class: "mm-sa__range" }, a1 = { class: "ss-muted" }, s1 = { class: "mm-sa__block" }, r1 = { class: "ss-field" }, i1 = ["placeholder"], c1 = { class: "ss-field" }, d1 = ["placeholder"], m1 = { class: "ss-field" }, u1 = ["placeholder"], p1 = { class: "ss-actions" }, v1 = ["disabled"], k1 = /* @__PURE__ */ e.defineComponent({
   __name: "SettingsAi",
   props: {
     settings: {}
   },
   emits: ["saved"],
   setup(l, { emit: v }) {
-    const n = l, u = v, y = ie.useNotificationStore(), s = e.ref(!1), o = e.ref(""), c = e.reactive({ voiceprintThreshold: 0.55, planPrompt: "", summaryPrompt: "", organizePrompt: "" });
+    const n = l, u = v, y = ce.useNotificationStore(), s = e.ref(!1), o = e.ref(""), c = e.reactive({ voiceprintThreshold: 0.55, planPrompt: "", summaryPrompt: "", organizePrompt: "" });
     function i(r) {
-      const f = r.ai ?? { voiceprintThreshold: 0.55 };
+      const N = r.ai ?? { voiceprintThreshold: 0.55 };
       return {
-        voiceprintThreshold: Number.isFinite(f.voiceprintThreshold) ? f.voiceprintThreshold : 0.55,
-        planPrompt: f.planPrompt ?? "",
-        summaryPrompt: f.summaryPrompt ?? "",
-        organizePrompt: f.organizePrompt ?? ""
+        voiceprintThreshold: Number.isFinite(N.voiceprintThreshold) ? N.voiceprintThreshold : 0.55,
+        planPrompt: N.planPrompt ?? "",
+        summaryPrompt: N.summaryPrompt ?? "",
+        organizePrompt: N.organizePrompt ?? ""
       };
     }
     const k = e.computed(() => JSON.stringify(i(n.settings)) !== JSON.stringify({ ...c, voiceprintThreshold: Number(c.voiceprintThreshold) }));
@@ -15740,13 +15795,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
     async function m() {
       s.value = !0, o.value = "";
       try {
-        const r = Math.max(0, Math.min(1, Number(c.voiceprintThreshold) || 0.55)), f = {
+        const r = Math.max(0, Math.min(1, Number(c.voiceprintThreshold) || 0.55)), N = {
           voiceprintThreshold: Math.round(r * 100) / 100,
           // 空串 = 用内置（不用 undefined：JSON 往返会丢字段，主进程深合并时清不掉旧提示词）
           planPrompt: c.planPrompt.trim(),
           summaryPrompt: c.summaryPrompt.trim(),
           organizePrompt: c.organizePrompt.trim()
-        }, w = await J("settings.save", { patch: { ai: f } });
+        }, w = await J("settings.save", { patch: { ai: N } });
         y.success(t.t("AI 能力配置已保存")), u("saved", w);
       } catch (r) {
         o.value = x.errorMessage(r);
@@ -15754,8 +15809,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         s.value = !1;
       }
     }
-    return (r, f) => (e.openBlock(), e.createElementBlock("div", Qf, [
-      e.createElementVNode("header", Zf, [
+    return (r, N) => (e.openBlock(), e.createElementBlock("div", Xf, [
+      e.createElementVNode("header", xf, [
         e.createElementVNode("div", null, [
           e.createElementVNode(
             "h3",
@@ -15773,8 +15828,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           )
         ])
       ]),
-      o.value ? (e.openBlock(), e.createElementBlock("p", Xf, [
-        f[4] || (f[4] = e.createElementVNode(
+      o.value ? (e.openBlock(), e.createElementBlock("p", e1, [
+        N[4] || (N[4] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
           null,
@@ -15787,7 +15842,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           /* TEXT */
         )
       ])) : e.createCommentVNode("v-if", !0),
-      e.createElementVNode("section", xf, [
+      e.createElementVNode("section", t1, [
         e.createElementVNode(
           "h4",
           null,
@@ -15798,13 +15853,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         e.createVNode(qt),
         e.createElementVNode(
           "p",
-          e1,
+          l1,
           e.toDisplayString(r.$t("录音和录屏都按停顿切片后逐段转写；文字记录（txt / docx / srt / vtt 等）跳过转写。")),
           1
           /* TEXT */
         )
       ]),
-      e.createElementVNode("section", t1, [
+      e.createElementVNode("section", n1, [
         e.createElementVNode(
           "h4",
           null,
@@ -15812,7 +15867,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           1
           /* TEXT */
         ),
-        e.createElementVNode("label", l1, [
+        e.createElementVNode("label", o1, [
           e.createElementVNode(
             "span",
             null,
@@ -15823,7 +15878,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           e.withDirectives(e.createElementVNode(
             "input",
             {
-              "onUpdate:modelValue": f[0] || (f[0] = (w) => c.voiceprintThreshold = w),
+              "onUpdate:modelValue": N[0] || (N[0] = (w) => c.voiceprintThreshold = w),
               type: "range",
               min: "0.3",
               max: "0.9",
@@ -15851,13 +15906,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         ]),
         e.createElementVNode(
           "p",
-          n1,
+          a1,
           e.toDisplayString(r.$t("只和本场参会人的声纹比对；低于下限的发言人留给主持人试听后指认。调高更严（指认更多），调低更松（可能认错）。默认 0.55。")),
           1
           /* TEXT */
         )
       ]),
-      e.createElementVNode("section", o1, [
+      e.createElementVNode("section", s1, [
         e.createElementVNode("h4", null, [
           e.createTextVNode(
             e.toDisplayString(r.$t("提示词")) + " ",
@@ -15872,7 +15927,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             /* TEXT */
           )
         ]),
-        e.createElementVNode("label", a1, [
+        e.createElementVNode("label", r1, [
           e.createElementVNode(
             "span",
             null,
@@ -15881,14 +15936,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             /* TEXT */
           ),
           e.withDirectives(e.createElementVNode("textarea", {
-            "onUpdate:modelValue": f[1] || (f[1] = (w) => c.organizePrompt = w),
+            "onUpdate:modelValue": N[1] || (N[1] = (w) => c.organizePrompt = w),
             rows: "4",
             placeholder: r.$t("留空使用内置")
-          }, null, 8, s1), [
+          }, null, 8, i1), [
             [e.vModelText, c.organizePrompt]
           ])
         ]),
-        e.createElementVNode("label", r1, [
+        e.createElementVNode("label", c1, [
           e.createElementVNode(
             "span",
             null,
@@ -15897,14 +15952,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             /* TEXT */
           ),
           e.withDirectives(e.createElementVNode("textarea", {
-            "onUpdate:modelValue": f[2] || (f[2] = (w) => c.planPrompt = w),
+            "onUpdate:modelValue": N[2] || (N[2] = (w) => c.planPrompt = w),
             rows: "4",
             placeholder: r.$t("留空使用内置")
-          }, null, 8, i1), [
+          }, null, 8, d1), [
             [e.vModelText, c.planPrompt]
           ])
         ]),
-        e.createElementVNode("label", c1, [
+        e.createElementVNode("label", m1, [
           e.createElementVNode(
             "span",
             null,
@@ -15913,15 +15968,15 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             /* TEXT */
           ),
           e.withDirectives(e.createElementVNode("textarea", {
-            "onUpdate:modelValue": f[3] || (f[3] = (w) => c.summaryPrompt = w),
+            "onUpdate:modelValue": N[3] || (N[3] = (w) => c.summaryPrompt = w),
             rows: "4",
             placeholder: r.$t("留空使用内置")
-          }, null, 8, d1), [
+          }, null, 8, u1), [
             [e.vModelText, c.summaryPrompt]
           ])
         ])
       ]),
-      e.createElementVNode("div", m1, [
+      e.createElementVNode("div", p1, [
         e.createElementVNode("button", {
           type: "button",
           class: "ss-btn primary",
@@ -15943,7 +15998,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             1
             /* TEXT */
           )
-        ], 8, u1),
+        ], 8, v1),
         k.value ? (e.openBlock(), e.createElementBlock(
           "button",
           {
@@ -15959,22 +16014,22 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       ])
     ]));
   }
-}), v1 = /* @__PURE__ */ ae(p1, [["__scopeId", "data-v-4bd27b96"]]), k1 = {
+}), y1 = /* @__PURE__ */ ae(k1, [["__scopeId", "data-v-4bd27b96"]]), g1 = {
   class: "mm-pf",
   "data-test": "mm-push-failed"
-}, y1 = { class: "mm-pf__head" }, g1 = ["disabled", "title"], f1 = { class: "ss-muted" }, N1 = {
+}, f1 = { class: "mm-pf__head" }, N1 = ["disabled", "title"], V1 = { class: "ss-muted" }, E1 = {
   key: 1,
   class: "ss-note danger"
-}, V1 = {
+}, $1 = {
   key: 2,
   class: "mm-pf__empty"
-}, E1 = {
+}, b1 = {
   key: 3,
   class: "ss-table-wrap"
-}, $1 = { class: "ss-table" }, b1 = { class: "num" }, h1 = ["data-test"], _1 = { class: "nowrap" }, B1 = { class: "nowrap" }, S1 = { class: "mm-pf__err" }, D1 = { class: "num" }, w1 = ["disabled", "data-test", "onClick"], C1 = {
+}, h1 = { class: "ss-table" }, _1 = { class: "num" }, B1 = ["data-test"], S1 = { class: "nowrap" }, D1 = { class: "nowrap" }, w1 = { class: "mm-pf__err" }, C1 = { class: "num" }, T1 = ["disabled", "data-test", "onClick"], I1 = {
   key: 4,
   class: "ss-muted"
-}, T1 = /* @__PURE__ */ e.defineComponent({
+}, M1 = /* @__PURE__ */ e.defineComponent({
   __name: "PushFailedList",
   setup(l) {
     const v = e.ref([]), n = e.ref(0), u = e.ref(!1), y = e.ref(""), s = e.ref(""), o = e.ref(null), c = e.computed(() => !!oe.value?.pushChannel || !!oe.value?.wecomConnected);
@@ -15991,7 +16046,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
     async function k(m) {
       y.value = m || "all", s.value = "", o.value = null;
       try {
-        o.value = await J("notice.push.retry", m ? { ids: [m] } : { all: !0 }), await Promise.all([i(), ce().catch(() => null)]);
+        o.value = await J("notice.push.retry", m ? { ids: [m] } : { all: !0 }), await Promise.all([i(), de().catch(() => null)]);
       } catch (r) {
         s.value = x.errorMessage(r);
       } finally {
@@ -16000,11 +16055,11 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
     }
     let E = null;
     return e.onMounted(() => {
-      i(), E = be((m) => {
+      i(), E = _e((m) => {
         m.type === "changed" && m.scope === "notice" && !y.value && i();
       });
-    }), e.onBeforeUnmount(() => E?.()), (m, r) => (e.openBlock(), e.createElementBlock("section", k1, [
-      e.createElementVNode("div", y1, [
+    }), e.onBeforeUnmount(() => E?.()), (m, r) => (e.openBlock(), e.createElementBlock("section", g1, [
+      e.createElementVNode("div", f1, [
         e.createElementVNode("h4", null, [
           e.createTextVNode(
             e.toDisplayString(m.$t("推送失败记录")) + " ",
@@ -16033,7 +16088,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           disabled: !!y.value || !c.value,
           title: c.value ? "" : m.$t("先配置并连接企业微信"),
           "data-test": "mm-push-retry-all",
-          onClick: r[0] || (r[0] = (f) => k())
+          onClick: r[0] || (r[0] = (N) => k())
         }, [
           e.createElementVNode(
             "i",
@@ -16049,11 +16104,11 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             1
             /* TEXT */
           )
-        ], 8, g1)) : e.createCommentVNode("v-if", !0)
+        ], 8, N1)) : e.createCommentVNode("v-if", !0)
       ]),
       e.createElementVNode(
         "p",
-        f1,
+        V1,
         e.toDisplayString(m.$t("企微卡片没发出去的通知（系统内消息中心照常有）。常见原因：手机页服务没开、接收人不在企微应用可见范围。处理好原因后再重发。")),
         1
         /* TEXT */
@@ -16084,7 +16139,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         2
         /* CLASS */
       )) : e.createCommentVNode("v-if", !0),
-      s.value ? (e.openBlock(), e.createElementBlock("p", N1, [
+      s.value ? (e.openBlock(), e.createElementBlock("p", E1, [
         r[2] || (r[2] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -16100,12 +16155,12 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       ])) : e.createCommentVNode("v-if", !0),
       !v.value.length && u.value ? (e.openBlock(), e.createElementBlock(
         "p",
-        V1,
+        $1,
         e.toDisplayString(m.$t("没有发送失败的通知")),
         1
         /* TEXT */
-      )) : v.value.length ? (e.openBlock(), e.createElementBlock("div", E1, [
-        e.createElementVNode("table", $1, [
+      )) : v.value.length ? (e.openBlock(), e.createElementBlock("div", b1, [
+        e.createElementVNode("table", h1, [
           e.createElementVNode("thead", null, [
             e.createElementVNode("tr", null, [
               e.createElementVNode(
@@ -16138,7 +16193,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               ),
               e.createElementVNode(
                 "th",
-                b1,
+                _1,
                 e.toDisplayString(m.$t("操作")),
                 1
                 /* TEXT */
@@ -16149,48 +16204,48 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(v.value, (f) => (e.openBlock(), e.createElementBlock("tr", {
-                key: f.id,
-                "data-test": `mm-push-row-${f.id}`
+              e.renderList(v.value, (N) => (e.openBlock(), e.createElementBlock("tr", {
+                key: N.id,
+                "data-test": `mm-push-row-${N.id}`
               }, [
                 e.createElementVNode(
                   "td",
-                  _1,
-                  e.toDisplayString(e.unref($e)(f.at)),
+                  S1,
+                  e.toDisplayString(e.unref(he)(N.at)),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "td",
-                  B1,
-                  e.toDisplayString(f.toName),
+                  D1,
+                  e.toDisplayString(N.toName),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "td",
                   null,
-                  e.toDisplayString(f.title),
+                  e.toDisplayString(N.title),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "td",
-                  S1,
-                  e.toDisplayString(f.error),
+                  w1,
+                  e.toDisplayString(N.error),
                   1
                   /* TEXT */
                 ),
-                e.createElementVNode("td", D1, [
+                e.createElementVNode("td", C1, [
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-link",
                     disabled: !!y.value || !c.value,
-                    "data-test": `mm-push-retry-${f.id}`,
-                    onClick: (w) => k(f.id)
-                  }, e.toDisplayString(y.value === f.id ? m.$t("发送中…") : m.$t("重发")), 9, w1)
+                    "data-test": `mm-push-retry-${N.id}`,
+                    onClick: (w) => k(N.id)
+                  }, e.toDisplayString(y.value === N.id ? m.$t("发送中…") : m.$t("重发")), 9, T1)
                 ])
-              ], 8, h1))),
+              ], 8, B1))),
               128
               /* KEYED_FRAGMENT */
             ))
@@ -16199,30 +16254,30 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       ])) : e.createCommentVNode("v-if", !0),
       n.value > v.value.length ? (e.openBlock(), e.createElementBlock(
         "small",
-        C1,
+        I1,
         e.toDisplayString(m.$t("只列出最近 {n} 条", { n: v.value.length })),
         1
         /* TEXT */
       )) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), I1 = /* @__PURE__ */ ae(T1, [["__scopeId", "data-v-f0a4a0e3"]]), M1 = {
+}), A1 = /* @__PURE__ */ ae(M1, [["__scopeId", "data-v-f0a4a0e3"]]), j1 = {
   class: "mm-sw",
   "data-test": "mm-wecom"
-}, A1 = { class: "mm-sp__head" }, j1 = {
+}, L1 = { class: "mm-sp__head" }, z1 = {
   key: 0,
   class: "ss-note danger"
-}, L1 = { class: "mm-sw__form" }, z1 = { class: "ss-grid" }, F1 = { class: "ss-field" }, P1 = { class: "ss-field" }, U1 = { class: "ss-field" }, O1 = {
+}, F1 = { class: "mm-sw__form" }, P1 = { class: "ss-grid" }, U1 = { class: "ss-field" }, O1 = { class: "ss-field" }, R1 = { class: "ss-field" }, q1 = {
   key: 0,
   class: "mm-sw__set"
-}, R1 = { class: "mm-sw__secret" }, q1 = ["type", "placeholder"], K1 = ["title", "disabled"], H1 = { class: "ss-field" }, W1 = ["placeholder"], G1 = { class: "ss-muted" }, Y1 = { class: "ss-actions" }, J1 = ["disabled"], Q1 = ["disabled"], Z1 = {
+}, K1 = { class: "mm-sw__secret" }, H1 = ["type", "placeholder"], W1 = ["title", "disabled"], G1 = { class: "ss-field" }, Y1 = ["placeholder"], J1 = { class: "ss-muted" }, Q1 = { class: "ss-actions" }, Z1 = ["disabled"], X1 = ["disabled"], x1 = {
   class: "mm-sw__form",
   "data-test": "mm-webhook"
-}, X1 = { class: "mm-sw__h" }, x1 = { class: "mm-sw__steps" }, eN = { class: "ss-field" }, tN = {
+}, eN = { class: "mm-sw__h" }, tN = { class: "mm-sw__steps" }, lN = { class: "ss-field" }, nN = {
   key: 0,
   class: "mm-sw__set",
   "data-test": "mm-webhook-set"
-}, lN = ["placeholder"], nN = { class: "ss-muted" }, oN = { class: "ss-actions" }, aN = ["disabled"], sN = ["disabled"], rN = ["disabled"], iN = { class: "mm-sw__events" }, cN = { class: "ss-table-wrap" }, dN = { class: "ss-table" }, mN = { class: "num" }, uN = { class: "wrap" }, pN = { class: "wrap" }, vN = { class: "ss-muted" }, kN = /* @__PURE__ */ e.defineComponent({
+}, oN = ["placeholder"], aN = { class: "ss-muted" }, sN = { class: "ss-actions" }, rN = ["disabled"], iN = ["disabled"], cN = ["disabled"], dN = { class: "mm-sw__events" }, mN = { class: "ss-table-wrap" }, uN = { class: "ss-table" }, pN = { class: "num" }, vN = { class: "wrap" }, kN = { class: "wrap" }, yN = { class: "ss-muted" }, gN = /* @__PURE__ */ e.defineComponent({
   __name: "SettingsWecom",
   props: {
     settings: {}
@@ -16244,7 +16299,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       { event: t.t("进度汇总报告"), to: t.t("任务负责人、项目负责人"), card: t.t("完成率 + 逾期数") },
       { event: t.t("总结报告待审核"), to: t.t("项目负责人"), card: y },
       { event: t.t("项目已归档"), to: t.t("项目成员"), card: t.t("项目已归档") }
-    ], o = he.useDialog(), c = ie.useNotificationStore(), i = e.ref(!1), k = e.ref(""), E = e.ref(""), m = e.ref(null), r = e.reactive({ corpId: "", agentId: "", secret: "", cardBaseUrl: "" }), f = e.computed(() => !!oe.value?.wecomConnected), w = e.computed(() => oe.value?.pushChannel ?? (f.value ? "app" : null)), a = e.ref(""), g = e.ref(!1);
+    ], o = Be.useDialog(), c = ce.useNotificationStore(), i = e.ref(!1), k = e.ref(""), E = e.ref(""), m = e.ref(null), r = e.reactive({ corpId: "", agentId: "", secret: "", cardBaseUrl: "" }), N = e.computed(() => !!oe.value?.wecomConnected), w = e.computed(() => oe.value?.pushChannel ?? (N.value ? "app" : null)), a = e.ref(""), g = e.ref(!1);
     async function D() {
       if (!g.value && !r.secret && n.settings.wecom.hasSecret)
         try {
@@ -16256,12 +16311,12 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         }
       g.value = !g.value;
     }
-    const P = e.ref(null), L = e.computed(() => !r.corpId.trim() && !r.agentId.trim()), C = e.computed(() => L.value ? !!(n.settings.wecom.corpId || n.settings.wecom.agentId || n.settings.wecom.hasSecret) : !!r.corpId.trim() && !!r.agentId.trim() && (n.settings.wecom.hasSecret || !!r.secret));
+    const P = e.ref(null), j = e.computed(() => !r.corpId.trim() && !r.agentId.trim()), C = e.computed(() => j.value ? !!(n.settings.wecom.corpId || n.settings.wecom.agentId || n.settings.wecom.hasSecret) : !!r.corpId.trim() && !!r.agentId.trim() && (n.settings.wecom.hasSecret || !!r.secret));
     e.watch(() => n.settings.wecom, (M) => {
       Object.assign(r, { corpId: M?.corpId ?? "", agentId: M?.agentId ?? "", secret: r.secret, cardBaseUrl: M?.cardBaseUrl ?? "" });
     }, { immediate: !0 });
     async function I() {
-      if (!(L.value && !await o.confirm({
+      if (!(j.value && !await o.confirm({
         title: t.t("断开企微"),
         message: t.t("清空企微配置后，通讯录不再从企微同步，通知只进系统内消息中心。确定吗？"),
         danger: !0
@@ -16269,7 +16324,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         i.value = !0, k.value = "save", E.value = "", m.value = null;
         try {
           const M = { corpId: r.corpId.trim(), agentId: r.agentId.trim(), cardBaseUrl: r.cardBaseUrl.trim() };
-          r.secret && (M.secret = r.secret), await J("wecom.save", M), L.value && (r.secret = "", g.value = !1), c.success(L.value ? t.t("已断开企微") : t.t("企微配置已保存")), u("saved"), await ce().catch(() => null);
+          r.secret && (M.secret = r.secret), await J("wecom.save", M), j.value && (r.secret = "", g.value = !1), c.success(j.value ? t.t("已断开企微") : t.t("企微配置已保存")), u("saved"), await de().catch(() => null);
         } catch (M) {
           E.value = x.errorMessage(M);
         } finally {
@@ -16289,10 +16344,10 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
     }
     function q() {
       return U("hook", async () => {
-        await J("wecom.webhook.save", { url: a.value.trim() }), a.value = "", c.success(t.t("群机器人已保存")), u("saved"), await ce().catch(() => null);
+        await J("wecom.webhook.save", { url: a.value.trim() }), a.value = "", c.success(t.t("群机器人已保存")), u("saved"), await de().catch(() => null);
       });
     }
-    function _() {
+    function B() {
       return U("hookTest", async () => {
         const M = await J("wecom.webhook.test");
         P.value = { ok: !!M?.ok, error: M?.error };
@@ -16300,22 +16355,22 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
     }
     async function S() {
       await o.confirm({ title: t.t("移除群机器人"), message: t.t("移除后通知不再发到企微群（自建应用照常）。确定吗？"), danger: !0 }) && await U("hook", async () => {
-        await J("wecom.webhook.save", { url: "" }), c.success(t.t("已移除群机器人")), u("saved"), await ce().catch(() => null);
+        await J("wecom.webhook.save", { url: "" }), c.success(t.t("已移除群机器人")), u("saved"), await de().catch(() => null);
       });
     }
     async function b() {
       i.value = !0, k.value = "test", E.value = "", m.value = null;
       try {
         const M = await J("wecom.test");
-        m.value = { ok: !!M?.ok, error: M?.error }, await ce().catch(() => null);
+        m.value = { ok: !!M?.ok, error: M?.error }, await de().catch(() => null);
       } catch (M) {
         m.value = { ok: !1, error: x.errorMessage(M) };
       } finally {
         i.value = !1, k.value = "";
       }
     }
-    return (M, T) => (e.openBlock(), e.createElementBlock("div", M1, [
-      e.createElementVNode("header", A1, [
+    return (M, T) => (e.openBlock(), e.createElementBlock("div", j1, [
+      e.createElementVNode("header", L1, [
         e.createElementVNode("div", null, [
           e.createElementVNode(
             "h3",
@@ -16350,7 +16405,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           /* TEXT, CLASS */
         )
       ]),
-      E.value ? (e.openBlock(), e.createElementBlock("p", j1, [
+      E.value ? (e.openBlock(), e.createElementBlock("p", z1, [
         T[8] || (T[8] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -16390,9 +16445,9 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         2
         /* CLASS */
       )) : e.createCommentVNode("v-if", !0),
-      e.createElementVNode("section", L1, [
-        e.createElementVNode("div", z1, [
-          e.createElementVNode("label", F1, [
+      e.createElementVNode("section", F1, [
+        e.createElementVNode("div", P1, [
+          e.createElementVNode("label", U1, [
             T[9] || (T[9] = e.createElementVNode(
               "span",
               null,
@@ -16416,7 +16471,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               [e.vModelText, r.corpId]
             ])
           ]),
-          e.createElementVNode("label", P1, [
+          e.createElementVNode("label", O1, [
             T[10] || (T[10] = e.createElementVNode(
               "span",
               null,
@@ -16440,7 +16495,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               [e.vModelText, r.agentId]
             ])
           ]),
-          e.createElementVNode("label", U1, [
+          e.createElementVNode("label", R1, [
             e.createElementVNode("span", null, [
               T[11] || (T[11] = e.createTextVNode(
                 "Secret ",
@@ -16449,13 +16504,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               )),
               l.settings.wecom.hasSecret ? (e.openBlock(), e.createElementBlock(
                 "em",
-                O1,
+                q1,
                 e.toDisplayString(M.$t("已配置")),
                 1
                 /* TEXT */
               )) : e.createCommentVNode("v-if", !0)
             ]),
-            e.createElementVNode("span", R1, [
+            e.createElementVNode("span", K1, [
               e.withDirectives(e.createElementVNode("input", {
                 "onUpdate:modelValue": T[2] || (T[2] = (G) => r.secret = G),
                 type: g.value ? "text" : "password",
@@ -16463,7 +16518,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                 spellcheck: "false",
                 placeholder: l.settings.wecom.hasSecret ? M.$t("已保存，点右边的眼睛查看") : M.$t("应用的 Secret"),
                 "data-test": "mm-wecom-secret"
-              }, null, 8, q1), [
+              }, null, 8, H1), [
                 [e.vModelDynamic, r.secret]
               ]),
               e.createElementVNode("button", {
@@ -16483,11 +16538,11 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                   2
                   /* CLASS */
                 )
-              ], 8, K1)
+              ], 8, W1)
             ])
           ])
         ]),
-        e.createElementVNode("label", H1, [
+        e.createElementVNode("label", G1, [
           e.createElementVNode(
             "span",
             null,
@@ -16501,18 +16556,18 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             placeholder: M.$t("留空 = 用手机页服务的局域网地址，如 http://192.168.1.10:8260"),
             spellcheck: "false",
             "data-test": "mm-wecom-base"
-          }, null, 8, W1), [
+          }, null, 8, Y1), [
             [e.vModelText, r.cardBaseUrl]
           ])
         ]),
         e.createElementVNode(
           "p",
-          G1,
+          J1,
           e.toDisplayString(M.$t("Secret 只保存在本机（系统加密存储），不会显示出来。卡片按钮会跳到「前缀 + 每人专属链接」，员工手机要能访问这个地址（同一局域网或可信域名）。CorpID 和 AgentID 都清空后保存 = 断开企微。")),
           1
           /* TEXT */
         ),
-        e.createElementVNode("div", Y1, [
+        e.createElementVNode("div", Q1, [
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn primary",
@@ -16534,11 +16589,11 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               1
               /* TEXT */
             )
-          ], 8, J1),
+          ], 8, Z1),
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn",
-            disabled: i.value || !l.settings.wecom.hasSecret && !f.value,
+            disabled: i.value || !l.settings.wecom.hasSecret && !N.value,
             "data-test": "mm-wecom-test",
             onClick: b
           }, [
@@ -16556,12 +16611,12 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               1
               /* TEXT */
             )
-          ], 8, Q1),
+          ], 8, X1),
           e.createElementVNode("button", {
             type: "button",
             class: "ss-link",
             "data-test": "mm-wecom-link-profile",
-            onClick: T[4] || (T[4] = (G) => e.unref(pe)(e.unref(Ne).profile))
+            onClick: T[4] || (T[4] = (G) => e.unref(pe)(e.unref(Ve).profile))
           }, [
             e.createTextVNode(
               e.toDisplayString(M.$t("打开企微·我的企业")) + " ",
@@ -16580,7 +16635,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             type: "button",
             class: "ss-link",
             "data-test": "mm-wecom-link-apps",
-            onClick: T[5] || (T[5] = (G) => e.unref(pe)(e.unref(Ne).apps))
+            onClick: T[5] || (T[5] = (G) => e.unref(pe)(e.unref(Ve).apps))
           }, [
             e.createTextVNode(
               e.toDisplayString(M.$t("打开企微·应用管理")) + " ",
@@ -16597,8 +16652,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           ])
         ])
       ]),
-      e.createElementVNode("section", Z1, [
-        e.createElementVNode("h4", X1, [
+      e.createElementVNode("section", x1, [
+        e.createElementVNode("h4", eN, [
           e.createTextVNode(
             e.toDisplayString(M.$t("企微群机器人")) + " ",
             1
@@ -16616,7 +16671,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             type: "button",
             class: "ss-link",
             "data-test": "mm-wecom-link-webhook-doc",
-            onClick: T[6] || (T[6] = (G) => e.unref(pe)(e.unref(Ne).webhookDoc))
+            onClick: T[6] || (T[6] = (G) => e.unref(pe)(e.unref(Ve).webhookDoc))
           }, [
             e.createTextVNode(
               e.toDisplayString(M.$t("查看企微官方说明")) + " ",
@@ -16632,7 +16687,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             ))
           ])
         ]),
-        e.createElementVNode("ol", x1, [
+        e.createElementVNode("ol", tN, [
           e.createElementVNode(
             "li",
             null,
@@ -16655,7 +16710,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             /* TEXT */
           )
         ]),
-        e.createElementVNode("label", eN, [
+        e.createElementVNode("label", lN, [
           e.createElementVNode("span", null, [
             e.createTextVNode(
               e.toDisplayString(M.$t("Webhook 地址")) + " ",
@@ -16664,7 +16719,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             ),
             l.settings.wecom.hasWebhook ? (e.openBlock(), e.createElementBlock(
               "em",
-              tN,
+              nN,
               e.toDisplayString(M.$t("已配置")) + " " + e.toDisplayString(l.settings.wecom.webhookMasked),
               1
               /* TEXT */
@@ -16677,13 +16732,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             spellcheck: "false",
             placeholder: l.settings.wecom.hasWebhook ? M.$t("已配置，要换地址再粘贴") : "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=…",
             "data-test": "mm-webhook-url"
-          }, null, 8, lN), [
+          }, null, 8, oN), [
             [e.vModelText, a.value]
           ])
         ]),
         e.createElementVNode(
           "p",
-          nN,
+          aN,
           e.toDisplayString(M.$t("地址里的 key 等于发消息的凭据，只保存在本机（系统加密存储），不会显示出来。配了自建应用时通知发给个人，群机器人不再发。群消息里的按钮不带个人令牌：手机上打开过自己专属链接的人点了能直接进入。每个机器人每分钟最多发 20 条，同一事件的几个人合成一条。")),
           1
           /* TEXT */
@@ -16714,7 +16769,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           2
           /* CLASS */
         )) : e.createCommentVNode("v-if", !0),
-        e.createElementVNode("div", oN, [
+        e.createElementVNode("div", sN, [
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn primary",
@@ -16736,13 +16791,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               1
               /* TEXT */
             )
-          ], 8, aN),
+          ], 8, rN),
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn",
             disabled: i.value || !l.settings.wecom.hasWebhook,
             "data-test": "mm-webhook-test",
-            onClick: _
+            onClick: B
           }, [
             e.createElementVNode(
               "i",
@@ -16758,7 +16813,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               1
               /* TEXT */
             )
-          ], 8, sN),
+          ], 8, iN),
           l.settings.wecom.hasWebhook ? (e.openBlock(), e.createElementBlock("button", {
             key: 0,
             type: "button",
@@ -16779,11 +16834,11 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               1
               /* TEXT */
             )
-          ], 8, rN)) : e.createCommentVNode("v-if", !0)
+          ], 8, cN)) : e.createCommentVNode("v-if", !0)
         ])
       ]),
-      e.createVNode(I1),
-      e.createElementVNode("section", iN, [
+      e.createVNode(A1),
+      e.createElementVNode("section", dN, [
         e.createElementVNode("h4", null, [
           e.createTextVNode(
             e.toDisplayString(M.$t("14 类通知")) + " ",
@@ -16798,8 +16853,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             /* TEXT */
           )
         ]),
-        e.createElementVNode("div", cN, [
-          e.createElementVNode("table", dN, [
+        e.createElementVNode("div", mN, [
+          e.createElementVNode("table", uN, [
             e.createElementVNode("thead", null, [
               e.createElementVNode("tr", null, [
                 T[17] || (T[17] = e.createElementVNode(
@@ -16839,7 +16894,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                 e.renderList(s, (G, V) => e.createElementVNode("tr", { key: V }, [
                   e.createElementVNode(
                     "td",
-                    mN,
+                    pN,
                     e.toDisplayString(V + 1),
                     1
                     /* TEXT */
@@ -16853,14 +16908,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                   ),
                   e.createElementVNode(
                     "td",
-                    uN,
+                    vN,
                     e.toDisplayString(G.to),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "td",
-                    pN,
+                    kN,
                     e.toDisplayString(G.card),
                     1
                     /* TEXT */
@@ -16874,7 +16929,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         ]),
         e.createElementVNode(
           "p",
-          vN,
+          yN,
           e.toDisplayString(M.$t("提醒周期（发言确认超时、到期提前、进度跟踪、周报）在「参数设置」里改。")),
           1
           /* TEXT */
@@ -16882,7 +16937,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       ])
     ]));
   }
-}), yN = /* @__PURE__ */ ae(kN, [["__scopeId", "data-v-c940056b"]]), gN = {
+}), fN = /* @__PURE__ */ ae(gN, [["__scopeId", "data-v-c940056b"]]), NN = {
   adminIds: [],
   projectCreatorIds: [],
   confirmTimeoutHours: 24,
@@ -16892,16 +16947,16 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
   wecom: { corpId: "", agentId: "", hasSecret: !1 },
   // 声纹认人门槛：2026-11-16 用真实 67 分钟会议录音实测，同一会议室不同人之间余弦最高 0.53、本人 0.67~0.77，取 0.55
   ai: { asr: "local", voiceprintThreshold: 0.55 }
-}, fN = {
+}, VN = {
   class: "mm-spa",
   "data-test": "mm-params"
-}, NN = { class: "mm-sp__head" }, VN = {
+}, EN = { class: "mm-sp__head" }, $N = {
   key: 0,
   class: "ss-note danger"
-}, EN = { class: "mm-spa__list" }, $N = { class: "mm-spa__num" }, bN = ["onUpdate:modelValue", "min", "max", "aria-label", "data-test"], hN = {
+}, bN = { class: "mm-spa__list" }, hN = { class: "mm-spa__num" }, _N = ["onUpdate:modelValue", "min", "max", "aria-label", "data-test"], BN = {
   key: 1,
   class: "ss-note warn"
-}, _N = { class: "ss-actions" }, BN = ["disabled"], SN = /* @__PURE__ */ e.defineComponent({
+}, SN = { class: "ss-actions" }, DN = ["disabled"], wN = /* @__PURE__ */ e.defineComponent({
   __name: "SettingsParams",
   props: {
     settings: {}
@@ -16913,7 +16968,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       { key: "dueRemindDays", title: t.t("到期提前提醒"), hint: t.t("任务截止前几天提醒部门负责人"), unit: t.t("天"), min: 0, max: 30 },
       { key: "trackCycleDays", title: t.t("进度跟踪周期"), hint: t.t("多久提醒部门负责人更新一次进度"), unit: t.t("天"), min: 1, max: 90 },
       { key: "reportCycleDays", title: t.t("周报周期"), hint: t.t("多久给任务负责人和项目负责人发一份进度汇总报告"), unit: t.t("天"), min: 1, max: 90 }
-    ], u = l, y = v, s = ie.useNotificationStore(), o = e.ref(!1), c = e.ref(""), i = e.reactive({ confirmTimeoutHours: 24, dueRemindDays: 1, trackCycleDays: 7, reportCycleDays: 7 }), k = e.computed(() => n.some((w) => Number(i[w.key]) !== u.settings[w.key])), E = e.computed(() => {
+    ], u = l, y = v, s = ce.useNotificationStore(), o = e.ref(!1), c = e.ref(""), i = e.reactive({ confirmTimeoutHours: 24, dueRemindDays: 1, trackCycleDays: 7, reportCycleDays: 7 }), k = e.computed(() => n.some((w) => Number(i[w.key]) !== u.settings[w.key])), E = e.computed(() => {
       for (const w of n) {
         const a = Number(i[w.key]);
         if (!Number.isInteger(a) || a < w.min || a > w.max) return t.t("「{t}」要填 {a}～{b} 之间的整数", { t: w.title, a: w.min, b: w.max });
@@ -16924,10 +16979,10 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       for (const w of n) i[w.key] = u.settings[w.key];
     }
     function r() {
-      for (const w of n) i[w.key] = gN[w.key];
+      for (const w of n) i[w.key] = NN[w.key];
     }
     e.watch(() => u.settings, m, { immediate: !0 });
-    async function f() {
+    async function N() {
       o.value = !0, c.value = "";
       try {
         const w = Object.fromEntries(n.map((g) => [g.key, Number(i[g.key])])), a = await J("settings.save", { patch: w });
@@ -16938,8 +16993,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         o.value = !1;
       }
     }
-    return (w, a) => (e.openBlock(), e.createElementBlock("div", fN, [
-      e.createElementVNode("header", NN, [
+    return (w, a) => (e.openBlock(), e.createElementBlock("div", VN, [
+      e.createElementVNode("header", EN, [
         e.createElementVNode("div", null, [
           e.createElementVNode(
             "h3",
@@ -16957,7 +17012,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           )
         ])
       ]),
-      c.value ? (e.openBlock(), e.createElementBlock("p", VN, [
+      c.value ? (e.openBlock(), e.createElementBlock("p", $N, [
         a[0] || (a[0] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -16971,7 +17026,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           /* TEXT */
         )
       ])) : e.createCommentVNode("v-if", !0),
-      e.createElementVNode("ul", EN, [
+      e.createElementVNode("ul", bN, [
         (e.openBlock(), e.createElementBlock(
           e.Fragment,
           null,
@@ -16994,7 +17049,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("label", $N, [
+            e.createElementVNode("label", hN, [
               e.withDirectives(e.createElementVNode("input", {
                 "onUpdate:modelValue": (D) => i[g.key] = D,
                 type: "number",
@@ -17003,7 +17058,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                 step: "1",
                 "aria-label": g.title,
                 "data-test": `mm-param-${g.key}`
-              }, null, 8, bN), [
+              }, null, 8, _N), [
                 [
                   e.vModelText,
                   i[g.key],
@@ -17024,7 +17079,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           /* STABLE_FRAGMENT */
         ))
       ]),
-      E.value ? (e.openBlock(), e.createElementBlock("p", hN, [
+      E.value ? (e.openBlock(), e.createElementBlock("p", BN, [
         a[1] || (a[1] = e.createElementVNode(
           "i",
           { class: "ri-alert-line" },
@@ -17038,13 +17093,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           /* TEXT */
         )
       ])) : e.createCommentVNode("v-if", !0),
-      e.createElementVNode("div", _N, [
+      e.createElementVNode("div", SN, [
         e.createElementVNode("button", {
           type: "button",
           class: "ss-btn primary",
           disabled: o.value || !k.value || !!E.value,
           "data-test": "mm-params-save",
-          onClick: f
+          onClick: N
         }, [
           e.createElementVNode(
             "i",
@@ -17060,7 +17115,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             1
             /* TEXT */
           )
-        ], 8, BN),
+        ], 8, DN),
         k.value ? (e.openBlock(), e.createElementBlock(
           "button",
           {
@@ -17087,32 +17142,32 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       ])
     ]));
   }
-}), DN = /* @__PURE__ */ ae(SN, [["__scopeId", "data-v-ae3507ae"]]), wN = {
+}), CN = /* @__PURE__ */ ae(wN, [["__scopeId", "data-v-ae3507ae"]]), TN = {
   class: "mm-sm",
   "data-test": "mm-mobile-settings"
-}, CN = { class: "mm-sp__head" }, TN = {
+}, IN = { class: "mm-sp__head" }, MN = {
   key: 0,
   class: "ss-note danger"
-}, IN = { class: "mm-sm__svc" }, MN = { class: "mm-sm__addr" }, AN = {
+}, AN = { class: "mm-sm__svc" }, jN = { class: "mm-sm__addr" }, LN = {
   key: 0,
   class: "mono"
-}, jN = {
+}, zN = {
   key: 1,
   class: "muted"
-}, LN = { class: "ss-muted" }, zN = { class: "mm-sm__tools" }, FN = { class: "mm-sm__qr" }, PN = { class: "mm-search" }, UN = ["placeholder", "aria-label"], ON = { class: "ss-table-wrap" }, RN = { class: "ss-table" }, qN = { class: "num" }, KN = { key: 0 }, HN = {
+}, FN = { class: "ss-muted" }, PN = { class: "mm-sm__tools" }, UN = { class: "mm-sm__qr" }, ON = { class: "mm-search" }, RN = ["placeholder", "aria-label"], qN = { class: "ss-table-wrap" }, KN = { class: "ss-table" }, HN = { class: "num" }, WN = { key: 0 }, GN = {
   colspan: "4",
   class: "mm-sm__empty"
-}, WN = { class: "mm-sm__link" }, GN = { class: "mono" }, YN = ["src", "alt"], JN = {
+}, YN = { class: "mm-sm__link" }, JN = { class: "mono" }, QN = ["src", "alt"], ZN = {
   key: 1,
   class: "ss-muted"
-}, QN = { class: "num" }, ZN = ["disabled", "title", "data-test", "onClick"], XN = ["disabled", "data-test", "onClick"], xN = { class: "mm-sm__foot" }, eV = ["aria-label"], tV = ["disabled", "aria-label"], lV = ["onClick"], nV = ["disabled", "aria-label"], oV = /* @__PURE__ */ e.defineComponent({
+}, XN = { class: "num" }, xN = ["disabled", "title", "data-test", "onClick"], eV = ["disabled", "data-test", "onClick"], tV = { class: "mm-sm__foot" }, lV = ["aria-label"], nV = ["disabled", "aria-label"], oV = ["onClick"], aV = ["disabled", "aria-label"], sV = /* @__PURE__ */ e.defineComponent({
   __name: "SettingsMobile",
   props: {
     people: {},
     depts: {}
   },
   setup(l) {
-    const v = l, n = he.useDialog(), u = ie.useNotificationStore(), y = e.ref({ running: !!oe.value?.mobile.running, url: oe.value?.mobile.url }), s = e.ref(""), o = e.ref(""), c = e.ref(""), i = e.ref(1), k = e.ref(!1), E = e.reactive({}), m = e.reactive({}), r = (C) => v.depts.find((I) => I.id === C)?.name || "", f = e.computed(() => v.people.filter((C) => !C.left && kt(C, r(C.deptId), c.value))), w = e.computed(() => Lt(f.value, i.value, 10));
+    const v = l, n = Be.useDialog(), u = ce.useNotificationStore(), y = e.ref({ running: !!oe.value?.mobile.running, url: oe.value?.mobile.url }), s = e.ref(""), o = e.ref(""), c = e.ref(""), i = e.ref(1), k = e.ref(!1), E = e.reactive({}), m = e.reactive({}), r = (C) => v.depts.find((I) => I.id === C)?.name || "", N = e.computed(() => v.people.filter((C) => !C.left && kt(C, r(C.deptId), c.value))), w = e.computed(() => Lt(N.value, i.value, 10));
     e.watch(c, () => {
       i.value = 1;
     });
@@ -17166,13 +17221,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         g(I);
       });
     });
-    let L = null;
+    let j = null;
     return e.onMounted(() => {
-      a(), L = be((C) => {
+      a(), j = _e((C) => {
         C.type === "mobile" && (y.value = { running: C.running, url: C.url }, C.running || (Object.keys(E).forEach((I) => delete E[I]), Object.keys(m).forEach((I) => delete m[I])));
       });
-    }), e.onBeforeUnmount(() => L?.()), (C, I) => (e.openBlock(), e.createElementBlock("div", wN, [
-      e.createElementVNode("header", CN, [
+    }), e.onBeforeUnmount(() => j?.()), (C, I) => (e.openBlock(), e.createElementBlock("div", TN, [
+      e.createElementVNode("header", IN, [
         e.createElementVNode("div", null, [
           e.createElementVNode(
             "h3",
@@ -17200,7 +17255,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           /* TEXT, CLASS */
         )
       ]),
-      o.value ? (e.openBlock(), e.createElementBlock("p", TN, [
+      o.value ? (e.openBlock(), e.createElementBlock("p", MN, [
         I[5] || (I[5] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -17214,8 +17269,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           /* TEXT */
         )
       ])) : e.createCommentVNode("v-if", !0),
-      e.createElementVNode("section", IN, [
-        e.createElementVNode("div", MN, [
+      e.createElementVNode("section", AN, [
+        e.createElementVNode("div", jN, [
           e.createElementVNode(
             "small",
             null,
@@ -17225,13 +17280,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           ),
           y.value.running && y.value.url ? (e.openBlock(), e.createElementBlock(
             "b",
-            AN,
+            LN,
             e.toDisplayString(y.value.url),
             1
             /* TEXT */
           )) : (e.openBlock(), e.createElementBlock(
             "b",
-            jN,
+            zN,
             e.toDisplayString(C.$t("服务未开启")),
             1
             /* TEXT */
@@ -17259,12 +17314,12 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       ]),
       e.createElementVNode(
         "p",
-        LN,
+        FN,
         e.toDisplayString(C.$t("专属链接只发给本人，泄露了可以让管理员重置。")),
         1
         /* TEXT */
       ),
-      e.createElementVNode("div", zN, [
+      e.createElementVNode("div", PN, [
         e.createElementVNode(
           "h4",
           null,
@@ -17279,7 +17334,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           -1
           /* CACHED */
         )),
-        e.createElementVNode("label", FN, [
+        e.createElementVNode("label", UN, [
           e.withDirectives(e.createElementVNode(
             "input",
             {
@@ -17299,7 +17354,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             /* TEXT */
           )
         ]),
-        e.createElementVNode("label", PN, [
+        e.createElementVNode("label", ON, [
           I[7] || (I[7] = e.createElementVNode(
             "i",
             {
@@ -17315,13 +17370,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             type: "search",
             placeholder: C.$t("搜索员工"),
             "aria-label": C.$t("搜索员工")
-          }, null, 8, UN), [
+          }, null, 8, RN), [
             [e.vModelText, c.value]
           ])
         ])
       ]),
-      e.createElementVNode("div", ON, [
-        e.createElementVNode("table", RN, [
+      e.createElementVNode("div", qN, [
+        e.createElementVNode("table", KN, [
           e.createElementVNode("thead", null, [
             e.createElementVNode("tr", null, [
               e.createElementVNode(
@@ -17347,7 +17402,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               ),
               e.createElementVNode(
                 "th",
-                qN,
+                HN,
                 e.toDisplayString(C.$t("操作")),
                 1
                 /* TEXT */
@@ -17355,10 +17410,10 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             ])
           ]),
           e.createElementVNode("tbody", null, [
-            w.value.rows.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("tr", KN, [
+            w.value.rows.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("tr", WN, [
               e.createElementVNode(
                 "td",
-                HN,
+                GN,
                 e.toDisplayString(C.$t("没有符合条件的员工")),
                 1
                 /* TEXT */
@@ -17382,14 +17437,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                   1
                   /* TEXT */
                 ),
-                e.createElementVNode("td", WN, [
+                e.createElementVNode("td", YN, [
                   E[U.id] ? (e.openBlock(), e.createElementBlock(
                     e.Fragment,
                     { key: 0 },
                     [
                       e.createElementVNode(
                         "span",
-                        GN,
+                        JN,
                         e.toDisplayString(E[U.id]),
                         1
                         /* TEXT */
@@ -17400,13 +17455,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                         alt: C.$t("{name} 的专属链接二维码", { name: U.name }),
                         width: "120",
                         height: "120"
-                      }, null, 8, YN)) : e.createCommentVNode("v-if", !0)
+                      }, null, 8, QN)) : e.createCommentVNode("v-if", !0)
                     ],
                     64
                     /* STABLE_FRAGMENT */
-                  )) : (e.openBlock(), e.createElementBlock("span", JN, "—"))
+                  )) : (e.openBlock(), e.createElementBlock("span", ZN, "—"))
                 ]),
-                e.createElementVNode("td", QN, [
+                e.createElementVNode("td", XN, [
                   e.createElementVNode("button", {
                     type: "button",
                     class: "ss-link",
@@ -17414,7 +17469,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                     title: y.value.running ? "" : C.$t("先开启手机页服务"),
                     "data-test": `mm-mobile-link-${U.id}`,
                     onClick: (q) => D(U)
-                  }, e.toDisplayString(E[U.id] ? C.$t("复制链接") : C.$t("生成并复制")), 9, ZN),
+                  }, e.toDisplayString(E[U.id] ? C.$t("复制链接") : C.$t("生成并复制")), 9, xN),
                   E[U.id] ? (e.openBlock(), e.createElementBlock(
                     e.Fragment,
                     { key: 0 },
@@ -17435,7 +17490,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                         disabled: s.value === U.id,
                         "data-test": `mm-mobile-reset-${U.id}`,
                         onClick: (q) => P(U)
-                      }, e.toDisplayString(C.$t("重置")), 9, XN)
+                      }, e.toDisplayString(C.$t("重置")), 9, eV)
                     ],
                     64
                     /* STABLE_FRAGMENT */
@@ -17448,11 +17503,11 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           ])
         ])
       ]),
-      e.createElementVNode("footer", xN, [
+      e.createElementVNode("footer", tV, [
         e.createElementVNode(
           "span",
           null,
-          e.toDisplayString(C.$t("共 {n} 人", { n: f.value.length })),
+          e.toDisplayString(C.$t("共 {n} 人", { n: N.value.length })),
           1
           /* TEXT */
         ),
@@ -17481,7 +17536,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               -1
               /* CACHED */
             )
-          ])], 8, tV),
+          ])], 8, nV),
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
@@ -17490,7 +17545,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               type: "button",
               class: e.normalizeClass({ on: U === w.value.page }),
               onClick: (q) => i.value = U
-            }, e.toDisplayString(U), 11, lV))),
+            }, e.toDisplayString(U), 11, oV))),
             128
             /* KEYED_FRAGMENT */
           )),
@@ -17507,28 +17562,28 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               -1
               /* CACHED */
             )
-          ])], 8, nV)
-        ], 8, eV)) : e.createCommentVNode("v-if", !0)
+          ])], 8, aV)
+        ], 8, lV)) : e.createCommentVNode("v-if", !0)
       ])
     ]));
   }
-}), aV = /* @__PURE__ */ ae(oV, [["__scopeId", "data-v-d5d7ac31"]]), sV = {
+}), rV = /* @__PURE__ */ ae(sV, [["__scopeId", "data-v-d5d7ac31"]]), iV = {
   class: "mm-sd",
   "data-test": "mm-demo"
-}, rV = { class: "mm-sp__head" }, iV = {
+}, cV = { class: "mm-sp__head" }, dV = {
   key: 0,
   class: "ss-note danger"
-}, cV = { class: "ss-note warn" }, dV = { class: "mm-sd__cards" }, mV = { class: "mm-sd__card" }, uV = ["disabled"], pV = { class: "mm-sd__card" }, vV = ["disabled"], kV = /* @__PURE__ */ e.defineComponent({
+}, mV = { class: "ss-note warn" }, uV = { class: "mm-sd__cards" }, pV = { class: "mm-sd__card" }, vV = ["disabled"], kV = { class: "mm-sd__card" }, yV = ["disabled"], gV = /* @__PURE__ */ e.defineComponent({
   __name: "SettingsDemo",
   emits: ["changed"],
   setup(l, { emit: v }) {
-    const n = v, u = he.useDialog(), y = ie.useNotificationStore(), s = e.ref(!1), o = e.ref(""), c = e.ref("");
+    const n = v, u = Be.useDialog(), y = ce.useNotificationStore(), s = e.ref(!1), o = e.ref(""), c = e.ref("");
     async function i(m, r) {
       s.value = !0, o.value = m, c.value = "";
       try {
-        await J(m === "load" ? "demo.load" : "demo.clear"), await ce().catch(() => null), y.success(r), n("changed");
-      } catch (f) {
-        c.value = x.errorMessage(f);
+        await J(m === "load" ? "demo.load" : "demo.clear"), await de().catch(() => null), y.success(r), n("changed");
+      } catch (N) {
+        c.value = x.errorMessage(N);
       } finally {
         s.value = !1, o.value = "";
       }
@@ -17548,8 +17603,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         danger: !0
       }) && await i("clear", t.t("数据已清空"));
     }
-    return (m, r) => (e.openBlock(), e.createElementBlock("div", sV, [
-      e.createElementVNode("header", rV, [
+    return (m, r) => (e.openBlock(), e.createElementBlock("div", iV, [
+      e.createElementVNode("header", cV, [
         e.createElementVNode("div", null, [
           e.createElementVNode(
             "h3",
@@ -17567,7 +17622,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           )
         ])
       ]),
-      c.value ? (e.openBlock(), e.createElementBlock("p", iV, [
+      c.value ? (e.openBlock(), e.createElementBlock("p", dV, [
         r[0] || (r[0] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -17581,7 +17636,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           /* TEXT */
         )
       ])) : e.createCommentVNode("v-if", !0),
-      e.createElementVNode("p", cV, [
+      e.createElementVNode("p", mV, [
         r[1] || (r[1] = e.createElementVNode(
           "i",
           { class: "ri-alert-line" },
@@ -17595,8 +17650,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           /* TEXT */
         )
       ]),
-      e.createElementVNode("div", dV, [
-        e.createElementVNode("section", mV, [
+      e.createElementVNode("div", uV, [
+        e.createElementVNode("section", pV, [
           r[2] || (r[2] = e.createElementVNode(
             "i",
             {
@@ -17644,9 +17699,9 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               1
               /* TEXT */
             )
-          ], 8, uV)
+          ], 8, vV)
         ]),
-        e.createElementVNode("section", pV, [
+        e.createElementVNode("section", kV, [
           r[3] || (r[3] = e.createElementVNode(
             "i",
             {
@@ -17694,28 +17749,28 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               1
               /* TEXT */
             )
-          ], 8, vV)
+          ], 8, yV)
         ])
       ])
     ]));
   }
-}), yV = /* @__PURE__ */ ae(kV, [["__scopeId", "data-v-2c906f2d"]]), gV = {
+}), fV = /* @__PURE__ */ ae(gV, [["__scopeId", "data-v-2c906f2d"]]), NV = {
   class: "mm-settings",
   "data-test": "mm-settings-tab"
-}, fV = { class: "mm-pagehead" }, NV = {
+}, VV = { class: "mm-pagehead" }, EV = {
   key: 0,
   class: "ss-empty",
   "data-test": "mm-settings-denied"
-}, VV = {
+}, $V = {
   key: 1,
   class: "mm-settings__grid"
-}, EV = ["aria-label"], $V = ["aria-current", "data-test", "onClick"], bV = { class: "mm-settings__panel" }, hV = {
+}, bV = ["aria-label"], hV = ["aria-current", "data-test", "onClick"], _V = { class: "mm-settings__panel" }, BV = {
   key: 0,
   class: "ss-note danger"
-}, _V = {
+}, SV = {
   key: 1,
   class: "ss-muted"
-}, BV = /* @__PURE__ */ e.defineComponent({
+}, DV = /* @__PURE__ */ e.defineComponent({
   __name: "SettingsTab",
   setup(l, { expose: v }) {
     const n = [
@@ -17729,7 +17784,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       { key: "demo", title: t.t("演示数据"), sub: t.t("载入或清空演示组织与项目") }
     ], u = e.ref("voiceprint");
     e.watch(nt, (P) => {
-      P && n.some((L) => L.key === P) && (u.value = P), P && (nt.value = "");
+      P && n.some((j) => j.key === P) && (u.value = P), P && (nt.value = "");
     }, { immediate: !0 });
     const y = e.ref(null), s = e.ref([]), o = e.ref([]), c = e.ref(0), i = e.ref(""), k = e.computed(() => !!oe.value?.me.isAdmin);
     async function E() {
@@ -17748,31 +17803,31 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       }
     }
     let r = 0;
-    async function f() {
-      r = Date.now(), c.value += 1, await Promise.all([E(), m(), ce().catch(() => null)]);
+    async function N() {
+      r = Date.now(), c.value += 1, await Promise.all([E(), m(), de().catch(() => null)]);
     }
     async function w(P) {
-      P && typeof P == "object" && "adminIds" in P ? y.value = P : await E(), await ce().catch(() => null);
+      P && typeof P == "object" && "adminIds" in P ? y.value = P : await E(), await de().catch(() => null);
     }
     let a = null, g = null;
     e.onMounted(() => {
-      k.value && f(), g = be((P) => {
+      k.value && N(), g = _e((P) => {
         P.type !== "changed" || !["all", "org", "settings"].includes(P.scope) || (a && clearTimeout(a), a = setTimeout(() => {
-          a = null, k.value && f();
+          a = null, k.value && N();
         }, 300));
       });
     }), e.watch(k, (P) => {
-      P && !y.value && f();
+      P && !y.value && N();
     });
     function D() {
       a || !k.value || Date.now() - r < 800 || (a = setTimeout(() => {
-        a = null, f();
+        a = null, N();
       }, 300));
     }
     return v({ refresh: D }), e.onBeforeUnmount(() => {
       g?.(), a && clearTimeout(a);
-    }), (P, L) => (e.openBlock(), e.createElementBlock("div", gV, [
-      e.createElementVNode("header", fV, [
+    }), (P, j) => (e.openBlock(), e.createElementBlock("div", NV, [
+      e.createElementVNode("header", VV, [
         e.createElementVNode(
           "h2",
           null,
@@ -17788,7 +17843,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           /* TEXT */
         )
       ]),
-      k.value ? (e.openBlock(), e.createElementBlock("div", VV, [
+      k.value ? (e.openBlock(), e.createElementBlock("div", $V, [
         e.createElementVNode("nav", {
           class: "mm-smenu",
           "aria-label": P.$t("设置项")
@@ -17818,14 +17873,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                 1
                 /* TEXT */
               )
-            ], 10, $V)),
+            ], 10, hV)),
             64
             /* STABLE_FRAGMENT */
           ))
-        ], 8, EV),
-        e.createElementVNode("section", bV, [
-          i.value ? (e.openBlock(), e.createElementBlock("p", hV, [
-            L[0] || (L[0] = e.createElementVNode(
+        ], 8, bV),
+        e.createElementVNode("section", _V, [
+          i.value ? (e.openBlock(), e.createElementBlock("p", BV, [
+            j[0] || (j[0] = e.createElementVNode(
               "i",
               { class: "ri-error-warning-line" },
               null,
@@ -17840,7 +17895,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           ])) : e.createCommentVNode("v-if", !0),
           !y.value && !i.value ? (e.openBlock(), e.createElementBlock(
             "p",
-            _V,
+            SV,
             e.toDisplayString(P.$t("加载中…")),
             1
             /* TEXT */
@@ -17857,32 +17912,32 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                 key: 1,
                 people: s.value,
                 depts: o.value,
-                onChanged: f
+                onChanged: N
               }, null, 8, ["people", "depts"])) : u.value === "roles" ? (e.openBlock(), e.createBlock(Wg, {
                 key: 2,
                 settings: y.value,
                 people: s.value,
                 depts: o.value,
                 onSaved: w
-              }, null, 8, ["settings", "people", "depts"])) : u.value === "ai" ? (e.openBlock(), e.createBlock(v1, {
+              }, null, 8, ["settings", "people", "depts"])) : u.value === "ai" ? (e.openBlock(), e.createBlock(y1, {
                 key: 3,
                 settings: y.value,
                 onSaved: w
-              }, null, 8, ["settings"])) : u.value === "wecom" ? (e.openBlock(), e.createBlock(yN, {
+              }, null, 8, ["settings"])) : u.value === "wecom" ? (e.openBlock(), e.createBlock(fN, {
                 key: 4,
                 settings: y.value,
                 onSaved: w
-              }, null, 8, ["settings"])) : u.value === "params" ? (e.openBlock(), e.createBlock(DN, {
+              }, null, 8, ["settings"])) : u.value === "params" ? (e.openBlock(), e.createBlock(CN, {
                 key: 5,
                 settings: y.value,
                 onSaved: w
-              }, null, 8, ["settings"])) : u.value === "mobile" ? (e.openBlock(), e.createBlock(aV, {
+              }, null, 8, ["settings"])) : u.value === "mobile" ? (e.openBlock(), e.createBlock(rV, {
                 key: 6,
                 people: s.value,
                 depts: o.value
-              }, null, 8, ["people", "depts"])) : (e.openBlock(), e.createBlock(yV, {
+              }, null, 8, ["people", "depts"])) : (e.openBlock(), e.createBlock(fV, {
                 key: 7,
-                onChanged: f
+                onChanged: N
               }))
             ],
             64
@@ -17891,92 +17946,91 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         ])
       ])) : (e.openBlock(), e.createElementBlock(
         "p",
-        NV,
+        EV,
         e.toDisplayString(P.$t("只有管理员可以查看和修改系统设置。如需调整，请联系管理员。")),
         1
         /* TEXT */
       ))
     ]));
   }
-}), SV = /* @__PURE__ */ ae(BV, [["__scopeId", "data-v-0fcda9a3"]]), DV = ["aria-label"], wV = { class: "mm-sw2" }, CV = { class: "mm-sw2__head" }, TV = { class: "mm-sw2__title" }, IV = {
+}), wV = /* @__PURE__ */ ae(DV, [["__scopeId", "data-v-0fcda9a3"]]), CV = ["aria-label"], TV = { class: "mm-sw2" }, IV = { class: "mm-sw2__head" }, MV = { class: "mm-sw2__title" }, AV = {
   class: "mm-sw2__progress",
   "data-test": "mm-setup-progress"
-}, MV = { class: "mm-bar" }, AV = { class: "mm-sw2__body" }, jV = ["aria-label"], LV = ["data-test", "onClick"], zV = { class: "mm-sw2__num" }, FV = {
+}, jV = { class: "mm-bar" }, LV = { class: "mm-sw2__body" }, zV = ["aria-label"], FV = ["data-test", "onClick"], PV = { class: "mm-sw2__num" }, UV = {
   key: 0,
   class: "ri-check-line"
-}, PV = { class: "mm-sw2__stxt" }, UV = { class: "mm-sw2__panel" }, OV = {
+}, OV = { class: "mm-sw2__stxt" }, RV = { class: "mm-sw2__panel" }, qV = {
   key: 0,
   class: "mm-sw2__step",
   "data-test": "mm-setup-identity"
-}, RV = { class: "ss-muted" }, qV = ["placeholder"], KV = { class: "mm-sw2__people" }, HV = ["disabled", "data-test", "onClick"], WV = {
+}, KV = { class: "ss-muted" }, HV = ["placeholder"], WV = { class: "mm-sw2__people" }, GV = ["disabled", "data-test", "onClick"], YV = {
   key: 0,
   class: "ss-muted"
-}, GV = {
-  key: 0,
-  class: "ss-note danger"
-}, YV = {
-  key: 0,
-  class: "ss-note danger"
 }, JV = {
+  key: 0,
+  class: "ss-note danger"
+}, QV = {
+  key: 0,
+  class: "ss-note danger"
+}, ZV = {
   key: 1,
   class: "ss-note"
-}, QV = {
+}, XV = {
   key: 0,
   class: "mm-sw2__step",
   "data-test": "mm-setup-models"
-}, ZV = { class: "ss-muted" }, XV = {
+}, xV = { class: "ss-muted" }, eE = {
   class: "mm-sw2__hw",
   "data-test": "mm-setup-hw"
-}, xV = { class: "mm-sw2__items" }, eE = {
-  key: 0,
+}, tE = { class: "mm-sw2__items" }, lE = {
   class: "ss-chip ok",
   "data-test": "mm-setup-spk-ok"
-}, tE = ["disabled"], lE = {
+}, nE = ["disabled"], oE = ["disabled"], aE = {
   key: 0,
   class: "ss-muted mono mm-sw2__log",
   "data-test": "mm-setup-install-log"
-}, nE = {
+}, sE = {
   key: 1,
   class: "ss-note danger"
-}, oE = {
+}, rE = {
   class: "mm-sw2__step",
   "data-test": "mm-setup-org"
-}, aE = { class: "ss-muted" }, sE = {
+}, iE = { class: "ss-muted" }, cE = {
   class: "ss-note info",
   "data-test": "mm-setup-org-now"
-}, rE = { class: "mm-sw2__opts" }, iE = ["disabled"], cE = { class: "mm-sw2__row" }, dE = ["disabled"], mE = { class: "mm-sw2__links" }, uE = { class: "mm-sw2__form" }, pE = { class: "mm-sw2__secret" }, vE = ["type", "placeholder"], kE = ["title", "disabled"], yE = ["disabled"], gE = {
+}, dE = { class: "mm-sw2__opts" }, mE = ["disabled"], uE = { class: "mm-sw2__row" }, pE = ["disabled"], vE = { class: "mm-sw2__links" }, kE = { class: "mm-sw2__form" }, yE = { class: "mm-sw2__secret" }, gE = ["type", "placeholder"], fE = ["title", "disabled"], NE = ["disabled"], VE = {
   class: "mm-sw2__guide",
   "data-test": "mm-setup-app-guide"
-}, fE = { class: "mm-sw2__ol" }, NE = {
+}, EE = { class: "mm-sw2__ol" }, $E = {
   key: 0,
   class: "ss-note warn mm-sw2__ip",
   "data-test": "mm-setup-egress-ip"
-}, VE = { class: "mono" }, EE = {
+}, bE = { class: "mono" }, hE = {
   class: "mm-sw2__step",
   "data-test": "mm-setup-push"
-}, $E = { class: "ss-muted" }, bE = { class: "mm-sw2__box" }, hE = { class: "mm-sw2__boxhead" }, _E = { class: "mm-sw2__ol" }, BE = { class: "mm-sw2__row" }, SE = ["placeholder"], DE = ["disabled"], wE = ["disabled"], CE = { class: "mm-sw2__box" }, TE = {
+}, _E = { class: "ss-muted" }, BE = { class: "mm-sw2__box" }, SE = { class: "mm-sw2__boxhead" }, DE = { class: "mm-sw2__ol" }, wE = { class: "mm-sw2__row" }, CE = ["placeholder"], TE = ["disabled"], IE = ["disabled"], ME = { class: "mm-sw2__box" }, AE = {
   class: "ss-muted",
   "data-test": "mm-setup-mentionable"
-}, IE = { class: "mm-sw2__row" }, ME = { class: "mm-sw2__who" }, AE = ["placeholder"], jE = ["disabled"], LE = { class: "ss-muted" }, zE = {
+}, jE = { class: "mm-sw2__row" }, LE = { class: "mm-sw2__who" }, zE = ["placeholder"], FE = ["disabled"], PE = { class: "ss-muted" }, UE = {
   class: "mm-sw2__step",
   "data-test": "mm-setup-mobile-step"
-}, FE = { class: "ss-muted" }, PE = {
+}, OE = { class: "ss-muted" }, RE = {
   class: "mm-sw2__step",
   "data-test": "mm-setup-voice"
-}, UE = { class: "ss-muted" }, OE = {
+}, qE = { class: "ss-muted" }, KE = {
   key: 0,
   class: "ss-note warn"
-}, RE = { class: "mm-sw2__consent" }, qE = { class: "mm-sw2__row" }, KE = ["disabled"], HE = ["disabled"], WE = {
+}, HE = { class: "mm-sw2__consent" }, WE = { class: "mm-sw2__row" }, GE = ["disabled"], YE = ["disabled"], JE = {
   class: "mm-sw2__step",
   "data-test": "mm-setup-ai"
-}, GE = { class: "ss-muted" }, YE = ["disabled"], JE = {
+}, QE = { class: "ss-muted" }, ZE = ["disabled"], XE = {
   class: "mm-sw2__step",
   "data-test": "mm-setup-finish"
-}, QE = { class: "mm-sw2__sum" }, ZE = ["onClick"], XE = { class: "ss-muted" }, xE = {
+}, xE = { class: "mm-sw2__sum" }, e$ = ["onClick"], t$ = { class: "ss-muted" }, l$ = {
   key: 7,
   class: "ss-note danger",
   "data-test": "mm-setup-error"
-}, e$ = { class: "mm-sw2__foot" }, t$ = ["disabled"], l$ = ["disabled"], n$ = /* @__PURE__ */ e.defineComponent({
+}, n$ = { class: "mm-sw2__foot" }, o$ = ["disabled"], a$ = ["disabled"], s$ = /* @__PURE__ */ e.defineComponent({
   __name: "SetupWizard",
   emits: ["close", "done"],
   setup(l, { emit: v }) {
@@ -17987,14 +18041,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       { key: "mobile", title: t.t("手机端") },
       { key: "voice", title: t.t("采集你的声纹") },
       { key: "ai", title: t.t("大模型") }
-    ], u = [...n.map((A) => A.key), "finish"], y = v, s = e.ref(null), o = e.ref("models"), c = e.computed(() => u.indexOf(o.value)), i = e.reactive(/* @__PURE__ */ new Set()), k = e.ref(""), E = e.ref(""), m = e.ref(!1), r = e.ref(""), f = e.ref(""), w = e.ref(""), a = e.ref(null), g = e.reactive({ corpId: "", agentId: "", secret: "" }), D = e.ref(""), P = e.ref(null), L = e.ref(""), C = e.ref(!1), I = e.ref(null), U = e.ref(null), q = e.ref(null), _ = e.ref(!1), S = e.ref(!1), b = e.ref(!1), M = e.ref([]), T = e.ref([]), G = e.ref(""), V = e.computed(() => {
-      const A = G.value.trim(), W = A ? M.value.filter((Be) => Be.name.includes(A)) : M.value, ee = [];
-      for (const Be of T.value) {
-        const qe = W.filter((Qt) => Qt.deptId === Be.id);
-        qe.length && ee.push({ id: Be.id, name: Be.name, people: qe });
+    ], u = [...n.map((A) => A.key), "finish"], y = v, s = e.ref(null), o = e.ref("models"), c = e.computed(() => u.indexOf(o.value)), i = e.reactive(/* @__PURE__ */ new Set()), k = e.ref(""), E = e.ref(""), m = e.ref(!1), r = e.ref(""), N = e.ref(""), w = e.ref(""), a = e.ref(null), g = e.reactive({ corpId: "", agentId: "", secret: "" }), D = e.ref(""), P = e.ref(null), j = e.ref(""), C = e.ref(!1), I = e.ref(null), U = e.ref(null), q = e.ref(null), B = e.ref(!1), S = e.ref(!1), b = e.ref(!1), M = e.ref([]), T = e.ref([]), G = e.ref(""), V = e.computed(() => {
+      const A = G.value.trim(), H = A ? M.value.filter((ge) => ge.name.includes(A)) : M.value, te = [];
+      for (const ge of T.value) {
+        const qe = H.filter((Qt) => Qt.deptId === ge.id);
+        qe.length && te.push({ id: ge.id, name: ge.name, people: qe });
       }
-      const de = W.filter((Be) => !T.value.some((qe) => qe.id === Be.deptId));
-      return de.length && ee.push({ id: "_", name: t.t("其他"), people: de }), ee;
+      const ie = H.filter((ge) => !T.value.some((qe) => qe.id === ge.deptId));
+      return ie.length && te.push({ id: "_", name: t.t("其他"), people: ie }), te;
     }), d = e.computed(() => /60020|可信 IP|trusted IP/i.test(E.value) ? /(\d{1,3}(?:\.\d{1,3}){3})/.exec(E.value)?.[1] ?? "" : "");
     async function p() {
       try {
@@ -18003,12 +18057,12 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       }
     }
     const z = /当前身份无效|请先选择身份|identity is invalid|select an identity/i;
-    async function Q() {
+    async function X() {
       try {
-        s.value = await J("setup.status"), k.value = "", b.value = !1, L.value = s.value.me.mobile || "", !g.corpId && s.value.wecom?.corpId && (g.corpId = s.value.wecom.corpId), !g.agentId && s.value.wecom?.agentId && (g.agentId = s.value.wecom.agentId), ye(s.value.modelDownload);
+        s.value = await J("setup.status"), k.value = "", b.value = !1, j.value = s.value.me.mobile || "", !g.corpId && s.value.wecom?.corpId && (g.corpId = s.value.wecom.corpId), !g.agentId && s.value.wecom?.agentId && (g.agentId = s.value.wecom.agentId), ye(s.value.modelDownload);
       } catch (A) {
-        const W = x.errorMessage(A);
-        z.test(W) ? await le() : k.value = W;
+        const H = x.errorMessage(A);
+        z.test(H) ? await le() : k.value = H;
       }
     }
     async function le() {
@@ -18019,9 +18073,9 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       }
       G.value = "", b.value = !0;
     }
-    function H(A) {
+    function W(A) {
       return h("identity", async () => {
-        await J("identity.set", { personId: A }), He(), await ce().catch(() => null), b.value = !1, await Q();
+        await J("identity.set", { personId: A }), He(), await de().catch(() => null), b.value = !1, await X();
       });
     }
     async function Y() {
@@ -18035,44 +18089,44 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         }
       S.value = !S.value;
     }
-    function te(A) {
-      const W = s.value;
-      if (!W) return !1;
+    function ee(A) {
+      const H = s.value;
+      if (!H) return !1;
       switch (A) {
         case "models":
-          return (W.models.asrReady || W.asr?.mode === "cloud" && !!W.asr.cloud?.hasKey) && W.models.speaker && W.models.python && W.models.ffmpeg;
+          return (H.models.asrReady || H.asr?.mode === "cloud" && !!H.asr.cloud?.hasKey) && H.models.speaker && H.models.python && H.models.ffmpeg;
         case "org":
-          return W.org.people > 0 && (W.org.source !== "demo" || _.value);
+          return H.org.people > 0 && (H.org.source !== "demo" || B.value);
         case "push":
-          return !!W.push.channel;
+          return !!H.push.channel;
         case "mobile":
-          return W.mobile.running;
+          return H.mobile.running;
         case "voice":
-          return W.me.voiceprint;
+          return H.me.voiceprint;
         case "ai":
           return !!q.value?.ok;
       }
     }
     function ne(A) {
-      return A === "finish" ? "todo" : te(A) ? "done" : i.has(A) ? "skipped" : "todo";
+      return A === "finish" ? "todo" : ee(A) ? "done" : i.has(A) ? "skipped" : "todo";
     }
-    const $ = e.computed(() => n.filter((A) => te(A.key)).length);
+    const $ = e.computed(() => n.filter((A) => ee(A.key)).length);
     function O(A) {
-      const W = s.value;
-      if (!W) return "";
+      const H = s.value;
+      if (!H) return "";
       switch (A) {
         case "models": {
-          const ee = W.asr?.mode === "cloud" ? t.t("在线接口") : W.recommend.engine === "firered" ? "FireRedASR2" : "SenseVoice";
-          return te(A) ? t.t("{m} 和声纹模型已就绪", { m: ee }) : t.t("推荐 {m}", { m: ee });
+          const te = H.asr?.mode === "cloud" ? t.t("在线接口") : H.recommend.engine === "firered" ? "FireRedASR2" : "SenseVoice";
+          return ee(A) ? t.t("{m} 和声纹模型已就绪", { m: te }) : t.t("推荐 {m}", { m: te });
         }
         case "org":
-          return t.t("{src} · {n} 人", { src: R.value, n: W.org.people });
+          return t.t("{src} · {n} 人", { src: R.value, n: H.org.people });
         case "push":
-          return W.push.channel === "app" ? t.t("企微自建应用") : W.push.channel === "webhook" ? t.t("企微群机器人") : t.t("只进消息中心");
+          return H.push.channel === "app" ? t.t("企微自建应用") : H.push.channel === "webhook" ? t.t("企微群机器人") : t.t("只进消息中心");
         case "mobile":
-          return W.mobile.running ? t.t("运行中") : t.t("未开启");
+          return H.mobile.running ? t.t("运行中") : t.t("未开启");
         case "voice":
-          return W.me.voiceprint ? t.t("已采集") : t.t("未采集");
+          return H.me.voiceprint ? t.t("已采集") : t.t("未采集");
         case "ai":
           return q.value ? q.value.ok ? t.t("可用") : t.t("没连上") : t.t("未测试");
       }
@@ -18080,89 +18134,90 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
     const R = e.computed(() => {
       const A = s.value?.org.source;
       return A === "wecom" ? t.t("企微通讯录") : A === "import" ? t.t("导入的通讯录") : A === "demo" ? t.t("演示组织") : t.t("还没有组织");
-    }), F = e.computed(() => ({ good: t.t("配置很好"), ok: t.t("够用"), weak: t.t("偏弱") })[s.value?.recommend.tier || "ok"]), K = e.computed(() => ({ good: "ok", ok: "brand", weak: "warn" })[s.value?.recommend.tier || "ok"]), B = e.computed(() => t.t("大家好，我是{dept}的{name}。这是我的声纹采集录音，用于在会议纪要里自动识别我的发言。我会用平时开会说话的音量和语速，把这段话完整地读完。", {
+    }), F = e.computed(() => ({ good: t.t("配置很好"), ok: t.t("够用"), weak: t.t("偏弱") })[s.value?.recommend.tier || "ok"]), K = e.computed(() => ({ good: "ok", ok: "brand", weak: "warn" })[s.value?.recommend.tier || "ok"]), _ = e.computed(() => t.t("大家好，我是{dept}的{name}。这是我的声纹采集录音，用于在会议纪要里自动识别我的发言。我会用平时开会说话的音量和语速，把这段话完整地读完。", {
       dept: s.value?.me.deptName || "",
       name: s.value?.me.name || ""
     }));
-    async function h(A, W) {
+    async function h(A, H) {
       m.value = !0, r.value = A, E.value = "";
       try {
-        await W();
-      } catch (ee) {
-        E.value = x.errorMessage(ee);
+        await H();
+      } catch (te) {
+        E.value = x.errorMessage(te);
       } finally {
         m.value = !1, r.value = "";
       }
     }
-    function N(A) {
+    function f(A) {
       A && (o.value = A, E.value = "");
     }
-    function j() {
-      o.value !== "finish" && i.add(o.value), N(u[c.value + 1]);
+    function L() {
+      o.value !== "finish" && i.add(o.value), f(u[c.value + 1]);
     }
     e.watch(o, (A) => {
       A === "mobile" && s.value && !s.value.mobile.running && h("mobile", async () => {
-        await J("mobile.start"), await Q(), await ce().catch(() => null);
+        await J("mobile.start"), await X(), await de().catch(() => null);
       });
     });
-    const Z = () => window.electronAPI?.pyExt;
-    let X = null, se = null;
+    const Q = () => window.electronAPI?.pyExt;
+    let Z = null, se = null;
     function ye(A) {
       if (!A) return;
-      const W = s.value?.recommend.speakerInstallId || "speaker-campplus", ee = A.activeId === W || (A.queue || []).includes(W) ? W : "", de = !!f.value;
-      f.value = ee, ee ? (w.value = A.activeId === W ? A.line || t.t("正在下载…") : t.t("已排队，等待前一个模型完成…"), E.value = "") : de && (A.error ? (E.value = A.error, w.value = "") : w.value = A.line || t.t("下载完成"));
+      const H = s.value?.recommend.speakerInstallId || "speaker-campplus", te = A.activeId === H || (A.queue || []).includes(H) ? H : "", ie = !!N.value;
+      N.value = te, te ? (w.value = A.activeId === H ? A.line || t.t("正在下载…") : t.t("已排队，等待前一个模型完成…"), E.value = "") : ie && (A.error ? (E.value = A.error, w.value = "") : w.value = A.line || t.t("下载完成"));
     }
-    async function _e(A) {
-      f.value = A, w.value = t.t("开始下载…"), E.value = "";
+    async function be(A, H = !1) {
+      N.value = A, w.value = t.t("开始下载…"), E.value = "";
       try {
-        const ee = await J("model.download.start", { ids: [A] });
-        ye(ee);
+        const ie = await J("model.download.start", { ids: [A], ...H ? { force: !0 } : {} });
+        ye(ie);
         return;
-      } catch (ee) {
-        const de = x.errorMessage(ee);
-        if (!/未知操作|unexpected action/i.test(de)) {
-          f.value = "", E.value = de;
+      } catch (ie) {
+        const ge = x.errorMessage(ie);
+        if (!/未知操作|unexpected action/i.test(ge)) {
+          N.value = "", E.value = ge;
           return;
         }
       }
-      const W = Z();
-      if (!W?.install) {
-        f.value = "", E.value = t.t("组件安装器不可用，请到应用的 设置 → 语音 里下载");
+      const te = Q();
+      if (!te?.install) {
+        N.value = "", E.value = t.t("组件安装器不可用，请到应用的 设置 → 语音 里下载");
         return;
       }
       try {
-        const ee = await W.install(A);
-        ee?.ok ? w.value = t.t("下载完成") : E.value = ee?.error || t.t("下载失败"), await Q();
-      } catch (ee) {
-        E.value = x.errorMessage(ee);
+        H && te.remove && await te.remove(A);
+        const ie = await te.install(A);
+        ie?.ok ? w.value = t.t("下载完成") : E.value = ie?.error || t.t("下载失败"), await X();
+      } catch (ie) {
+        E.value = x.errorMessage(ie);
       } finally {
-        f.value = "";
+        N.value = "";
       }
     }
     function Te() {
       return h("demo", async () => {
         const A = s.value?.org.source !== "demo" ? await J("org.sync") : null;
-        _.value = !0, await ce().catch(() => null), A?.needIdentity ? await le() : await Q();
+        B.value = !0, await de().catch(() => null), A?.needIdentity ? await le() : await X();
       });
     }
     function ue() {
       return h("import", async () => {
         const A = await J("org.importFile");
-        A && (a.value = A, await ce().catch(() => null), A.needIdentity ? await le() : await Q());
+        A && (a.value = A, await de().catch(() => null), A.needIdentity ? await le() : await X());
       });
     }
     function Re() {
       return h("app", async () => {
         const A = { corpId: g.corpId.trim(), agentId: g.agentId.trim() };
         g.secret && (A.secret = g.secret), await J("wecom.save", A);
-        const W = await J("org.sync");
-        if (W?.error) throw new Error(W.error);
-        await ce().catch(() => null), W?.needIdentity ? await le() : await Q();
+        const H = await J("org.sync");
+        if (H?.error) throw new Error(H.error);
+        await de().catch(() => null), H?.needIdentity ? await le() : await X();
       });
     }
     function tt() {
       return h("hook", async () => {
-        P.value = null, await J("wecom.webhook.save", { url: D.value.trim() }), D.value = "", await Q(), await ce().catch(() => null);
+        P.value = null, await J("wecom.webhook.save", { url: D.value.trim() }), D.value = "", await X(), await de().catch(() => null);
       });
     }
     function Kt() {
@@ -18173,7 +18228,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
     }
     function Ht() {
       return h("mobileNo", async () => {
-        s.value && (await J("org.person.contact", { personId: s.value.me.id, mobile: L.value.trim() }), await Q());
+        s.value && (await J("org.person.contact", { personId: s.value.me.id, mobile: j.value.trim() }), await X());
       });
     }
     function Wt() {
@@ -18186,7 +18241,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           } catch (A) {
             U.value = { ok: !1, error: x.errorMessage(A) };
           }
-          await Q();
+          await X();
         }
       });
     }
@@ -18200,7 +18255,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           } catch (A) {
             U.value = { ok: !1, error: x.errorMessage(A) };
           }
-          await Q();
+          await X();
         }
       });
     }
@@ -18211,38 +18266,38 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
     }
     function Jt() {
       return h("finish", async () => {
-        await J("setup.finish"), await ce().catch(() => null), y("done");
+        await J("setup.finish"), await de().catch(() => null), y("done");
       });
     }
     return e.onMounted(() => {
-      Q(), se = be((W) => {
-        if (W.type !== "model_download") return;
-        const ee = f.value;
-        ye(W.status), ee && !f.value && Q();
+      X(), se = _e((H) => {
+        if (H.type !== "model_download") return;
+        const te = N.value;
+        ye(H.status), te && !N.value && X();
       });
-      const A = Z();
-      A?.onInstallProgress && (X = A.onInstallProgress((W) => {
-        W?.id && W.id === f.value && W.line && (w.value = String(W.line).slice(0, 200));
+      const A = Q();
+      A?.onInstallProgress && (Z = A.onInstallProgress((H) => {
+        H?.id && H.id === N.value && H.line && (w.value = String(H.line).slice(0, 200));
       }));
     }), e.onBeforeUnmount(() => {
       try {
-        X?.();
+        Z?.();
       } catch {
       }
       try {
         se?.();
       } catch {
       }
-    }), (A, W) => (e.openBlock(), e.createElementBlock("div", {
+    }), (A, H) => (e.openBlock(), e.createElementBlock("div", {
       class: "mm-setup-overlay",
       role: "dialog",
       "aria-modal": "true",
       "aria-label": A.$t("配置引导"),
       "data-test": "mm-setup"
     }, [
-      e.createElementVNode("div", wV, [
-        e.createElementVNode("header", CV, [
-          e.createElementVNode("div", TV, [
+      e.createElementVNode("div", TV, [
+        e.createElementVNode("header", IV, [
+          e.createElementVNode("div", MV, [
             e.createElementVNode(
               "h2",
               null,
@@ -18264,7 +18319,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               type: "button",
               class: "ss-btn",
               "data-test": "mm-setup-later",
-              onClick: W[0] || (W[0] = (ee) => y("close"))
+              onClick: H[0] || (H[0] = (te) => y("close"))
             },
             e.toDisplayString(A.$t("稍后再说")),
             1
@@ -18272,8 +18327,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           )
         ]),
         e.createCommentVNode(" 进度条固定在顶部，内容区自己滚 "),
-        e.createElementVNode("div", IV, [
-          e.createElementVNode("i", MV, [
+        e.createElementVNode("div", AV, [
+          e.createElementVNode("i", jV, [
             e.createElementVNode(
               "b",
               {
@@ -18292,7 +18347,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             /* TEXT */
           )
         ]),
-        e.createElementVNode("div", AV, [
+        e.createElementVNode("div", LV, [
           e.createElementVNode("nav", {
             class: "mm-sw2__steps",
             "aria-label": A.$t("步骤")
@@ -18300,20 +18355,20 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             (e.openBlock(), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(n, (ee, de) => e.createElementVNode("button", {
-                key: ee.key,
+              e.renderList(n, (te, ie) => e.createElementVNode("button", {
+                key: te.key,
                 type: "button",
-                class: e.normalizeClass({ on: o.value === ee.key, ok: ne(ee.key) === "done", skip: ne(ee.key) === "skipped" }),
-                "data-test": `mm-setup-step-${ee.key}`,
-                onClick: (Be) => N(ee.key)
+                class: e.normalizeClass({ on: o.value === te.key, ok: ne(te.key) === "done", skip: ne(te.key) === "skipped" }),
+                "data-test": `mm-setup-step-${te.key}`,
+                onClick: (ge) => f(te.key)
               }, [
-                e.createElementVNode("span", zV, [
-                  ne(ee.key) === "done" ? (e.openBlock(), e.createElementBlock("i", FV)) : (e.openBlock(), e.createElementBlock(
+                e.createElementVNode("span", PV, [
+                  ne(te.key) === "done" ? (e.openBlock(), e.createElementBlock("i", UV)) : (e.openBlock(), e.createElementBlock(
                     e.Fragment,
                     { key: 1 },
                     [
                       e.createTextVNode(
-                        e.toDisplayString(de + 1),
+                        e.toDisplayString(ie + 1),
                         1
                         /* TEXT */
                       )
@@ -18322,30 +18377,30 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                     /* STABLE_FRAGMENT */
                   ))
                 ]),
-                e.createElementVNode("span", PV, [
+                e.createElementVNode("span", OV, [
                   e.createElementVNode(
                     "strong",
                     null,
-                    e.toDisplayString(ee.title),
+                    e.toDisplayString(te.title),
                     1
                     /* TEXT */
                   ),
                   e.createElementVNode(
                     "small",
                     null,
-                    e.toDisplayString(O(ee.key)),
+                    e.toDisplayString(O(te.key)),
                     1
                     /* TEXT */
                   )
                 ])
-              ], 10, LV)),
+              ], 10, FV)),
               64
               /* STABLE_FRAGMENT */
             ))
-          ], 8, jV),
-          e.createElementVNode("section", UV, [
+          ], 8, zV),
+          e.createElementVNode("section", RV, [
             e.createCommentVNode(" 通讯录换成新的（企微同步 / 导入）后，原来的身份不在里面了：直接在这里选「你是谁」，选中的人成为管理员 "),
-            b.value ? (e.openBlock(), e.createElementBlock("div", OV, [
+            b.value ? (e.openBlock(), e.createElementBlock("div", qV, [
               e.createElementVNode(
                 "h3",
                 null,
@@ -18355,63 +18410,63 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               ),
               e.createElementVNode(
                 "p",
-                RV,
+                KV,
                 e.toDisplayString(A.$t("组织已经换成新的通讯录（{n} 人），原来的演示身份不在里面了。选你自己，之后按你的身份继续配置；你会成为泰途会议智能管理的管理员。", { n: M.value.length })),
                 1
                 /* TEXT */
               ),
               e.withDirectives(e.createElementVNode("input", {
-                "onUpdate:modelValue": W[1] || (W[1] = (ee) => G.value = ee),
+                "onUpdate:modelValue": H[1] || (H[1] = (te) => G.value = te),
                 class: "mm-sw2__search",
                 type: "search",
                 placeholder: A.$t("搜索姓名"),
                 "data-test": "mm-setup-identity-search"
-              }, null, 8, qV), [
+              }, null, 8, HV), [
                 [e.vModelText, G.value]
               ]),
-              e.createElementVNode("div", KV, [
+              e.createElementVNode("div", WV, [
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(V.value, (ee) => (e.openBlock(), e.createElementBlock(
+                  e.renderList(V.value, (te) => (e.openBlock(), e.createElementBlock(
                     e.Fragment,
                     {
-                      key: ee.id
+                      key: te.id
                     },
                     [
                       e.createElementVNode(
                         "h5",
                         null,
-                        e.toDisplayString(ee.name),
+                        e.toDisplayString(te.name),
                         1
                         /* TEXT */
                       ),
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(ee.people, (de) => (e.openBlock(), e.createElementBlock("button", {
-                          key: de.id,
+                        e.renderList(te.people, (ie) => (e.openBlock(), e.createElementBlock("button", {
+                          key: ie.id,
                           type: "button",
                           class: "mm-sw2__person",
                           disabled: m.value,
-                          "data-test": `mm-setup-me-${de.id}`,
-                          onClick: (Be) => H(de.id)
+                          "data-test": `mm-setup-me-${ie.id}`,
+                          onClick: (ge) => W(ie.id)
                         }, [
                           e.createElementVNode(
                             "strong",
                             null,
-                            e.toDisplayString(de.name),
+                            e.toDisplayString(ie.name),
                             1
                             /* TEXT */
                           ),
                           e.createElementVNode(
                             "small",
                             null,
-                            e.toDisplayString(de.title || ""),
+                            e.toDisplayString(ie.title || ""),
                             1
                             /* TEXT */
                           )
-                        ], 8, HV))),
+                        ], 8, GV))),
                         128
                         /* KEYED_FRAGMENT */
                       ))
@@ -18424,14 +18479,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                 )),
                 V.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
                   "p",
-                  WV,
+                  YV,
                   e.toDisplayString(A.$t("没有找到这个人")),
                   1
                   /* TEXT */
                 ))
               ]),
-              E.value ? (e.openBlock(), e.createElementBlock("p", GV, [
-                W[20] || (W[20] = e.createElementVNode(
+              E.value ? (e.openBlock(), e.createElementBlock("p", JV, [
+                H[21] || (H[21] = e.createElementVNode(
                   "i",
                   { class: "ri-error-warning-line" },
                   null,
@@ -18448,8 +18503,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               e.Fragment,
               { key: 1 },
               [
-                k.value ? (e.openBlock(), e.createElementBlock("p", YV, [
-                  W[21] || (W[21] = e.createElementVNode(
+                k.value ? (e.openBlock(), e.createElementBlock("p", QV, [
+                  H[22] || (H[22] = e.createElementVNode(
                     "i",
                     { class: "ri-error-warning-line" },
                     null,
@@ -18462,8 +18517,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                     /* TEXT */
                   )
                 ])) : e.createCommentVNode("v-if", !0),
-                !s.value && !k.value ? (e.openBlock(), e.createElementBlock("p", JV, [
-                  W[22] || (W[22] = e.createElementVNode(
+                !s.value && !k.value ? (e.openBlock(), e.createElementBlock("p", ZV, [
+                  H[23] || (H[23] = e.createElementVNode(
                     "i",
                     { class: "ri-loader-4-line spin" },
                     null,
@@ -18481,7 +18536,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                   { key: 2 },
                   [
                     e.createCommentVNode(" 1 电脑配置与语音模型 "),
-                    o.value === "models" ? (e.openBlock(), e.createElementBlock("div", QV, [
+                    o.value === "models" ? (e.openBlock(), e.createElementBlock("div", XV, [
                       e.createElementVNode(
                         "h3",
                         null,
@@ -18491,12 +18546,12 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                       ),
                       e.createElementVNode(
                         "p",
-                        ZV,
+                        xV,
                         e.toDisplayString(A.$t("按这台电脑的配置推荐跑得动的最准的转写模型（录音不出电脑）；也可以改填自己的在线语音识别接口。认人（声纹）始终在本机。")),
                         1
                         /* TEXT */
                       ),
-                      e.createElementVNode("div", XV, [
+                      e.createElementVNode("div", eE, [
                         e.createElementVNode("div", null, [
                           e.createElementVNode(
                             "small",
@@ -18575,9 +18630,9 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                       ]),
                       e.createVNode(qt, {
                         "data-test": "mm-setup-asr",
-                        onChanged: Q
+                        onChanged: X
                       }),
-                      e.createElementVNode("ul", xV, [
+                      e.createElementVNode("ul", tE, [
                         e.createElementVNode("li", null, [
                           e.createElementVNode("div", null, [
                             e.createElementVNode(
@@ -18596,23 +18651,53 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                             )
                           ]),
                           s.value.models.speaker ? (e.openBlock(), e.createElementBlock(
-                            "span",
-                            eE,
-                            e.toDisplayString(A.$t("已下载")),
-                            1
-                            /* TEXT */
+                            e.Fragment,
+                            { key: 0 },
+                            [
+                              e.createElementVNode(
+                                "span",
+                                lE,
+                                e.toDisplayString(A.$t("已下载")),
+                                1
+                                /* TEXT */
+                              ),
+                              e.createElementVNode("button", {
+                                type: "button",
+                                class: "ss-btn sm",
+                                disabled: !!N.value,
+                                "data-test": "mm-setup-spk-reinstall",
+                                onClick: H[2] || (H[2] = (te) => be(s.value.recommend.speakerInstallId, !0))
+                              }, [
+                                e.createElementVNode(
+                                  "i",
+                                  {
+                                    class: e.normalizeClass(N.value === s.value.recommend.speakerInstallId ? "ri-loader-4-line spin" : "ri-refresh-line")
+                                  },
+                                  null,
+                                  2
+                                  /* CLASS */
+                                ),
+                                e.createTextVNode(
+                                  e.toDisplayString(A.$t("重新下载")),
+                                  1
+                                  /* TEXT */
+                                )
+                              ], 8, nE)
+                            ],
+                            64
+                            /* STABLE_FRAGMENT */
                           )) : (e.openBlock(), e.createElementBlock("button", {
                             key: 1,
                             type: "button",
                             class: "ss-btn primary sm",
-                            disabled: !!f.value,
+                            disabled: !!N.value,
                             "data-test": "mm-setup-spk-install",
-                            onClick: W[2] || (W[2] = (ee) => _e(s.value.recommend.speakerInstallId))
+                            onClick: H[3] || (H[3] = (te) => be(s.value.recommend.speakerInstallId))
                           }, [
                             e.createElementVNode(
                               "i",
                               {
-                                class: e.normalizeClass(f.value === s.value.recommend.speakerInstallId ? "ri-loader-4-line spin" : "ri-download-2-line")
+                                class: e.normalizeClass(N.value === s.value.recommend.speakerInstallId ? "ri-loader-4-line spin" : "ri-download-2-line")
                               },
                               null,
                               2
@@ -18623,7 +18708,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                               1
                               /* TEXT */
                             )
-                          ], 8, tE))
+                          ], 8, oE))
                         ]),
                         e.createElementVNode("li", null, [
                           e.createElementVNode("div", null, [
@@ -18655,13 +18740,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                       ]),
                       w.value ? (e.openBlock(), e.createElementBlock(
                         "p",
-                        lE,
+                        aE,
                         e.toDisplayString(w.value),
                         1
                         /* TEXT */
                       )) : e.createCommentVNode("v-if", !0),
-                      s.value.models.python && s.value.models.ffmpeg ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", nE, [
-                        W[23] || (W[23] = e.createElementVNode(
+                      s.value.models.python && s.value.models.ffmpeg ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", sE, [
+                        H[24] || (H[24] = e.createElementVNode(
                           "i",
                           { class: "ri-error-warning-line" },
                           null,
@@ -18679,7 +18764,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                       { key: 1 },
                       [
                         e.createCommentVNode(" 2 组织架构 "),
-                        e.createElementVNode("div", oE, [
+                        e.createElementVNode("div", rE, [
                           e.createElementVNode(
                             "h3",
                             null,
@@ -18689,13 +18774,13 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                           ),
                           e.createElementVNode(
                             "p",
-                            aE,
+                            iE,
                             e.toDisplayString(A.$t("任务按部门派给部门负责人，发言人只在本场参会人里认，都要先有组织架构。")),
                             1
                             /* TEXT */
                           ),
-                          e.createElementVNode("p", sE, [
-                            W[24] || (W[24] = e.createElementVNode(
+                          e.createElementVNode("p", cE, [
+                            H[25] || (H[25] = e.createElementVNode(
                               "i",
                               { class: "ri-team-line" },
                               null,
@@ -18708,7 +18793,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                               /* TEXT */
                             )
                           ]),
-                          e.createElementVNode("div", rE, [
+                          e.createElementVNode("div", dE, [
                             e.createElementVNode("article", null, [
                               e.createElementVNode(
                                 "strong",
@@ -18730,7 +18815,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                 disabled: m.value,
                                 "data-test": "mm-setup-org-demo",
                                 onClick: Te
-                              }, e.toDisplayString(s.value.org.source === "demo" ? A.$t("就用演示组织") : A.$t("换回演示组织")), 9, iE)
+                              }, e.toDisplayString(s.value.org.source === "demo" ? A.$t("就用演示组织") : A.$t("换回演示组织")), 9, mE)
                             ]),
                             e.createElementVNode("article", null, [
                               e.createElementVNode(
@@ -18747,7 +18832,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                 1
                                 /* TEXT */
                               ),
-                              e.createElementVNode("div", cE, [
+                              e.createElementVNode("div", uE, [
                                 e.createElementVNode("button", {
                                   type: "button",
                                   class: "ss-btn primary sm",
@@ -18769,19 +18854,19 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                     1
                                     /* TEXT */
                                   )
-                                ], 8, dE),
+                                ], 8, pE),
                                 e.createElementVNode("button", {
                                   type: "button",
                                   class: "ss-link",
                                   "data-test": "mm-setup-link-contacts",
-                                  onClick: W[3] || (W[3] = (ee) => e.unref(pe)(e.unref(Ne).contacts))
+                                  onClick: H[4] || (H[4] = (te) => e.unref(pe)(e.unref(Ve).contacts))
                                 }, [
                                   e.createTextVNode(
                                     e.toDisplayString(A.$t("去企微后台导出")) + " ",
                                     1
                                     /* TEXT */
                                   ),
-                                  W[25] || (W[25] = e.createElementVNode(
+                                  H[26] || (H[26] = e.createElementVNode(
                                     "i",
                                     { class: "ri-external-link-line" },
                                     null,
@@ -18806,19 +18891,19 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                 1
                                 /* TEXT */
                               ),
-                              e.createElementVNode("div", mE, [
+                              e.createElementVNode("div", vE, [
                                 e.createElementVNode("button", {
                                   type: "button",
                                   class: "ss-link",
                                   "data-test": "mm-setup-link-profile",
-                                  onClick: W[4] || (W[4] = (ee) => e.unref(pe)(e.unref(Ne).profile))
+                                  onClick: H[5] || (H[5] = (te) => e.unref(pe)(e.unref(Ve).profile))
                                 }, [
                                   e.createTextVNode(
                                     e.toDisplayString(A.$t("打开企微·我的企业（查 CorpID）")) + " ",
                                     1
                                     /* TEXT */
                                   ),
-                                  W[26] || (W[26] = e.createElementVNode(
+                                  H[27] || (H[27] = e.createElementVNode(
                                     "i",
                                     { class: "ri-external-link-line" },
                                     null,
@@ -18830,14 +18915,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                   type: "button",
                                   class: "ss-link",
                                   "data-test": "mm-setup-link-apps",
-                                  onClick: W[5] || (W[5] = (ee) => e.unref(pe)(e.unref(Ne).apps))
+                                  onClick: H[6] || (H[6] = (te) => e.unref(pe)(e.unref(Ve).apps))
                                 }, [
                                   e.createTextVNode(
                                     e.toDisplayString(A.$t("打开企微·应用管理")) + " ",
                                     1
                                     /* TEXT */
                                   ),
-                                  W[27] || (W[27] = e.createElementVNode(
+                                  H[28] || (H[28] = e.createElementVNode(
                                     "i",
                                     { class: "ri-external-link-line" },
                                     null,
@@ -18846,11 +18931,11 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                   ))
                                 ])
                               ]),
-                              e.createElementVNode("div", uE, [
+                              e.createElementVNode("div", kE, [
                                 e.withDirectives(e.createElementVNode(
                                   "input",
                                   {
-                                    "onUpdate:modelValue": W[6] || (W[6] = (ee) => g.corpId = ee),
+                                    "onUpdate:modelValue": H[7] || (H[7] = (te) => g.corpId = te),
                                     type: "text",
                                     placeholder: "CorpID",
                                     spellcheck: "false",
@@ -18865,7 +18950,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                 e.withDirectives(e.createElementVNode(
                                   "input",
                                   {
-                                    "onUpdate:modelValue": W[7] || (W[7] = (ee) => g.agentId = ee),
+                                    "onUpdate:modelValue": H[8] || (H[8] = (te) => g.agentId = te),
                                     type: "text",
                                     placeholder: "AgentID",
                                     spellcheck: "false",
@@ -18877,15 +18962,15 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                 ), [
                                   [e.vModelText, g.agentId]
                                 ]),
-                                e.createElementVNode("span", pE, [
+                                e.createElementVNode("span", yE, [
                                   e.withDirectives(e.createElementVNode("input", {
-                                    "onUpdate:modelValue": W[8] || (W[8] = (ee) => g.secret = ee),
+                                    "onUpdate:modelValue": H[9] || (H[9] = (te) => g.secret = te),
                                     type: S.value ? "text" : "password",
                                     placeholder: s.value.wecom?.hasSecret ? A.$t("已保存，点右边的眼睛查看") : "Secret",
                                     autocomplete: "new-password",
                                     spellcheck: "false",
                                     "data-test": "mm-setup-secret"
-                                  }, null, 8, vE), [
+                                  }, null, 8, gE), [
                                     [e.vModelDynamic, g.secret]
                                   ]),
                                   e.createElementVNode("button", {
@@ -18905,7 +18990,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                       2
                                       /* CLASS */
                                     )
-                                  ], 8, kE)
+                                  ], 8, fE)
                                 ])
                               ]),
                               e.createElementVNode("button", {
@@ -18929,8 +19014,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                   1
                                   /* TEXT */
                                 )
-                              ], 8, yE),
-                              e.createElementVNode("details", gE, [
+                              ], 8, NE),
+                              e.createElementVNode("details", VE, [
                                 e.createElementVNode(
                                   "summary",
                                   null,
@@ -18938,7 +19023,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                   1
                                   /* TEXT */
                                 ),
-                                e.createElementVNode("ol", fE, [
+                                e.createElementVNode("ol", EE, [
                                   e.createElementVNode("li", null, [
                                     e.createTextVNode(
                                       e.toDisplayString(A.$t("应用管理 → 自建 → 创建应用；可见范围选全公司（应用只能读到可见范围里的部门和成员）")) + " ",
@@ -18948,14 +19033,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                     e.createElementVNode("button", {
                                       type: "button",
                                       class: "ss-link",
-                                      onClick: W[9] || (W[9] = (ee) => e.unref(pe)(e.unref(Ne).apps))
+                                      onClick: H[10] || (H[10] = (te) => e.unref(pe)(e.unref(Ve).apps))
                                     }, [
                                       e.createTextVNode(
                                         e.toDisplayString(A.$t("去打开")) + " ",
                                         1
                                         /* TEXT */
                                       ),
-                                      W[28] || (W[28] = e.createElementVNode(
+                                      H[29] || (H[29] = e.createElementVNode(
                                         "i",
                                         { class: "ri-external-link-line" },
                                         null,
@@ -18987,14 +19072,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                     e.createElementVNode("button", {
                                       type: "button",
                                       class: "ss-link",
-                                      onClick: W[10] || (W[10] = (ee) => e.unref(pe)(e.unref(Ne).profile))
+                                      onClick: H[11] || (H[11] = (te) => e.unref(pe)(e.unref(Ve).profile))
                                     }, [
                                       e.createTextVNode(
                                         e.toDisplayString(A.$t("去打开")) + " ",
                                         1
                                         /* TEXT */
                                       ),
-                                      W[29] || (W[29] = e.createElementVNode(
+                                      H[30] || (H[30] = e.createElementVNode(
                                         "i",
                                         { class: "ri-external-link-line" },
                                         null,
@@ -19007,8 +19092,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                               ])
                             ])
                           ]),
-                          d.value ? (e.openBlock(), e.createElementBlock("p", NE, [
-                            W[31] || (W[31] = e.createElementVNode(
+                          d.value ? (e.openBlock(), e.createElementBlock("p", $E, [
+                            H[32] || (H[32] = e.createElementVNode(
                               "i",
                               { class: "ri-global-line" },
                               null,
@@ -19023,7 +19108,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                               ),
                               e.createElementVNode(
                                 "b",
-                                VE,
+                                bE,
                                 e.toDisplayString(d.value),
                                 1
                                 /* TEXT */
@@ -19044,14 +19129,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                               type: "button",
                               class: "ss-link",
                               "data-test": "mm-setup-ip-open",
-                              onClick: W[11] || (W[11] = (ee) => e.unref(pe)(e.unref(Ne).apps))
+                              onClick: H[12] || (H[12] = (te) => e.unref(pe)(e.unref(Ve).apps))
                             }, [
                               e.createTextVNode(
                                 e.toDisplayString(A.$t("去应用管理填写")) + " ",
                                 1
                                 /* TEXT */
                               ),
-                              W[30] || (W[30] = e.createElementVNode(
+                              H[31] || (H[31] = e.createElementVNode(
                                 "i",
                                 { class: "ri-external-link-line" },
                                 null,
@@ -19088,10 +19173,10 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                 (e.openBlock(!0), e.createElementBlock(
                                   e.Fragment,
                                   null,
-                                  e.renderList(a.value.warnings || [], (ee, de) => (e.openBlock(), e.createElementBlock(
+                                  e.renderList(a.value.warnings || [], (te, ie) => (e.openBlock(), e.createElementBlock(
                                     "p",
-                                    { key: de },
-                                    e.toDisplayString(ee),
+                                    { key: ie },
+                                    e.toDisplayString(te),
                                     1
                                     /* TEXT */
                                   ))),
@@ -19112,7 +19197,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                       { key: 2 },
                       [
                         e.createCommentVNode(" 3 通知推送 "),
-                        e.createElementVNode("div", EE, [
+                        e.createElementVNode("div", hE, [
                           e.createElementVNode(
                             "h3",
                             null,
@@ -19122,7 +19207,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                           ),
                           e.createElementVNode(
                             "p",
-                            $E,
+                            _E,
                             e.toDisplayString(A.$t("发言待确认、新任务、到期提醒这些通知发到哪里。不配也能用，通知只进系统内的消息中心。")),
                             1
                             /* TEXT */
@@ -19152,8 +19237,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                             2
                             /* CLASS */
                           ),
-                          e.createElementVNode("article", bE, [
-                            e.createElementVNode("div", hE, [
+                          e.createElementVNode("article", BE, [
+                            e.createElementVNode("div", SE, [
                               e.createElementVNode(
                                 "strong",
                                 null,
@@ -19165,14 +19250,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                 type: "button",
                                 class: "ss-link",
                                 "data-test": "mm-setup-link-webhook-doc",
-                                onClick: W[12] || (W[12] = (ee) => e.unref(pe)(e.unref(Ne).webhookDoc))
+                                onClick: H[13] || (H[13] = (te) => e.unref(pe)(e.unref(Ve).webhookDoc))
                               }, [
                                 e.createTextVNode(
                                   e.toDisplayString(A.$t("查看企微官方说明")) + " ",
                                   1
                                   /* TEXT */
                                 ),
-                                W[32] || (W[32] = e.createElementVNode(
+                                H[33] || (H[33] = e.createElementVNode(
                                   "i",
                                   { class: "ri-external-link-line" },
                                   null,
@@ -19181,7 +19266,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                 ))
                               ])
                             ]),
-                            e.createElementVNode("ol", _E, [
+                            e.createElementVNode("ol", DE, [
                               e.createElementVNode(
                                 "li",
                                 null,
@@ -19204,15 +19289,15 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                 /* TEXT */
                               )
                             ]),
-                            e.createElementVNode("div", BE, [
+                            e.createElementVNode("div", wE, [
                               e.withDirectives(e.createElementVNode("input", {
-                                "onUpdate:modelValue": W[13] || (W[13] = (ee) => D.value = ee),
+                                "onUpdate:modelValue": H[14] || (H[14] = (te) => D.value = te),
                                 type: "password",
                                 spellcheck: "false",
                                 autocomplete: "off",
                                 placeholder: s.value.push.hasWebhook ? A.$t("已配置 {m}，要换地址再粘贴", { m: s.value.push.webhookMasked }) : "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=…",
                                 "data-test": "mm-setup-hook"
-                              }, null, 8, SE), [
+                              }, null, 8, CE), [
                                 [e.vModelText, D.value]
                               ]),
                               e.createElementVNode("button", {
@@ -19236,7 +19321,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                   1
                                   /* TEXT */
                                 )
-                              ], 8, DE),
+                              ], 8, TE),
                               e.createElementVNode("button", {
                                 type: "button",
                                 class: "ss-btn sm",
@@ -19258,7 +19343,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                   1
                                   /* TEXT */
                                 )
-                              ], 8, wE)
+                              ], 8, IE)
                             ]),
                             P.value ? (e.openBlock(), e.createElementBlock(
                               "p",
@@ -19272,7 +19357,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                               /* TEXT, CLASS */
                             )) : e.createCommentVNode("v-if", !0)
                           ]),
-                          e.createElementVNode("article", CE, [
+                          e.createElementVNode("article", ME, [
                             e.createElementVNode(
                               "strong",
                               null,
@@ -19289,38 +19374,38 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                             ),
                             e.createElementVNode(
                               "p",
-                              TE,
+                              AE,
                               e.toDisplayString(A.$t("现在能提醒到本人的：{a} / {b} 人", { a: s.value.org.mentionable, b: s.value.org.people })),
                               1
                               /* TEXT */
                             ),
-                            e.createElementVNode("div", IE, [
+                            e.createElementVNode("div", jE, [
                               e.createElementVNode(
                                 "span",
-                                ME,
+                                LE,
                                 e.toDisplayString(s.value.me.name),
                                 1
                                 /* TEXT */
                               ),
                               e.withDirectives(e.createElementVNode("input", {
-                                "onUpdate:modelValue": W[14] || (W[14] = (ee) => L.value = ee),
+                                "onUpdate:modelValue": H[15] || (H[15] = (te) => j.value = te),
                                 type: "tel",
                                 placeholder: A.$t("你的手机号"),
                                 "data-test": "mm-setup-mobile"
-                              }, null, 8, AE), [
-                                [e.vModelText, L.value]
+                              }, null, 8, zE), [
+                                [e.vModelText, j.value]
                               ]),
                               e.createElementVNode("button", {
                                 type: "button",
                                 class: "ss-btn sm",
-                                disabled: m.value || L.value.trim() === (s.value.me.mobile || ""),
+                                disabled: m.value || j.value.trim() === (s.value.me.mobile || ""),
                                 "data-test": "mm-setup-mobile-save",
                                 onClick: Ht
-                              }, e.toDisplayString(A.$t("保存")), 9, jE)
+                              }, e.toDisplayString(A.$t("保存")), 9, FE)
                             ]),
                             e.createElementVNode(
                               "p",
-                              LE,
+                              PE,
                               e.toDisplayString(A.$t("其他人的手机号、企微账号在「系统设置 → 通讯录」里逐个填。")),
                               1
                               /* TEXT */
@@ -19335,7 +19420,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                       { key: 3 },
                       [
                         e.createCommentVNode(" 4 手机端 "),
-                        e.createElementVNode("div", zE, [
+                        e.createElementVNode("div", UE, [
                           e.createElementVNode(
                             "h3",
                             null,
@@ -19345,7 +19430,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                           ),
                           e.createElementVNode(
                             "p",
-                            FE,
+                            OE,
                             e.toDisplayString(A.$t("同事用手机确认发言、接任务、录声纹，企微消息里的按钮也跳到这里。手机要和这台电脑在同一个网络。")),
                             1
                             /* TEXT */
@@ -19360,7 +19445,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                       { key: 4 },
                       [
                         e.createCommentVNode(" 5 声纹 "),
-                        e.createElementVNode("div", PE, [
+                        e.createElementVNode("div", RE, [
                           e.createElementVNode(
                             "h3",
                             null,
@@ -19370,7 +19455,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                           ),
                           e.createElementVNode(
                             "p",
-                            UE,
+                            qE,
                             e.toDisplayString(A.$t("采集过声纹的人，上传会议录音后会被自动认出来。先录你自己的；其他同事可以扫码在手机上自己录，或管理员在「系统设置 → 声纹库」代为导入。")),
                             1
                             /* TEXT */
@@ -19400,8 +19485,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                             2
                             /* CLASS */
                           ),
-                          s.value.models.speaker ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", OE, [
-                            W[33] || (W[33] = e.createElementVNode(
+                          s.value.models.speaker ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", KE, [
+                            H[34] || (H[34] = e.createElementVNode(
                               "i",
                               { class: "ri-alert-line" },
                               null,
@@ -19414,11 +19499,11 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                               /* TEXT */
                             )
                           ])),
-                          e.createElementVNode("label", RE, [
+                          e.createElementVNode("label", HE, [
                             e.withDirectives(e.createElementVNode(
                               "input",
                               {
-                                "onUpdate:modelValue": W[15] || (W[15] = (ee) => C.value = ee),
+                                "onUpdate:modelValue": H[16] || (H[16] = (te) => C.value = te),
                                 type: "checkbox",
                                 "data-test": "mm-setup-consent"
                               },
@@ -19437,12 +19522,12 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                             )
                           ]),
                           e.createVNode(Rt, {
-                            script: B.value,
+                            script: _.value,
                             disabled: m.value || !s.value.models.speaker,
-                            onRecorded: W[16] || (W[16] = (ee) => I.value = ee),
-                            onReset: W[17] || (W[17] = (ee) => I.value = null)
+                            onRecorded: H[17] || (H[17] = (te) => I.value = te),
+                            onReset: H[18] || (H[18] = (te) => I.value = null)
                           }, null, 8, ["script", "disabled"]),
-                          e.createElementVNode("div", qE, [
+                          e.createElementVNode("div", WE, [
                             e.createElementVNode("button", {
                               type: "button",
                               class: "ss-btn primary",
@@ -19464,14 +19549,14 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                 1
                                 /* TEXT */
                               )
-                            ], 8, KE),
+                            ], 8, GE),
                             e.createElementVNode("button", {
                               type: "button",
                               class: "ss-link",
                               disabled: m.value || !C.value || !s.value.models.speaker,
                               "data-test": "mm-setup-voice-import",
                               onClick: Gt
-                            }, e.toDisplayString(A.$t("改用已有的录音文件")), 9, HE)
+                            }, e.toDisplayString(A.$t("改用已有的录音文件")), 9, YE)
                           ]),
                           U.value ? (e.openBlock(), e.createElementBlock(
                             "p",
@@ -19493,7 +19578,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                       { key: 5 },
                       [
                         e.createCommentVNode(" 6 大模型 "),
-                        e.createElementVNode("div", WE, [
+                        e.createElementVNode("div", JE, [
                           e.createElementVNode(
                             "h3",
                             null,
@@ -19503,7 +19588,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                           ),
                           e.createElementVNode(
                             "p",
-                            GE,
+                            QE,
                             e.toDisplayString(A.$t("整理议题和决议、生成执行方案、写周报和项目总结，用的是应用里当前选的大模型（会议转写和声纹不用它，只在本机）。")),
                             1
                             /* TEXT */
@@ -19529,7 +19614,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                               1
                               /* TEXT */
                             )
-                          ], 8, YE),
+                          ], 8, ZE),
                           q.value ? (e.openBlock(), e.createElementBlock(
                             "p",
                             {
@@ -19565,7 +19650,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                       { key: 6 },
                       [
                         e.createCommentVNode(" 完成 "),
-                        e.createElementVNode("div", JE, [
+                        e.createElementVNode("div", XE, [
                           e.createElementVNode(
                             "h3",
                             null,
@@ -19573,21 +19658,21 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                             1
                             /* TEXT */
                           ),
-                          e.createElementVNode("ul", QE, [
+                          e.createElementVNode("ul", xE, [
                             (e.openBlock(), e.createElementBlock(
                               e.Fragment,
                               null,
-                              e.renderList(n, (ee) => e.createElementVNode(
+                              e.renderList(n, (te) => e.createElementVNode(
                                 "li",
                                 {
-                                  key: ee.key,
-                                  class: e.normalizeClass(ne(ee.key))
+                                  key: te.key,
+                                  class: e.normalizeClass(ne(te.key))
                                 },
                                 [
                                   e.createElementVNode(
                                     "i",
                                     {
-                                      class: e.normalizeClass(ne(ee.key) === "done" ? "ri-checkbox-circle-fill" : "ri-error-warning-line")
+                                      class: e.normalizeClass(ne(te.key) === "done" ? "ri-checkbox-circle-fill" : "ri-error-warning-line")
                                     },
                                     null,
                                     2
@@ -19596,23 +19681,23 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                                   e.createElementVNode(
                                     "strong",
                                     null,
-                                    e.toDisplayString(ee.title),
+                                    e.toDisplayString(te.title),
                                     1
                                     /* TEXT */
                                   ),
                                   e.createElementVNode(
                                     "span",
                                     null,
-                                    e.toDisplayString(O(ee.key)),
+                                    e.toDisplayString(O(te.key)),
                                     1
                                     /* TEXT */
                                   ),
-                                  ne(ee.key) !== "done" ? (e.openBlock(), e.createElementBlock("button", {
+                                  ne(te.key) !== "done" ? (e.openBlock(), e.createElementBlock("button", {
                                     key: 0,
                                     type: "button",
                                     class: "ss-link",
-                                    onClick: (de) => N(ee.key)
-                                  }, e.toDisplayString(A.$t("去配置")), 9, ZE)) : e.createCommentVNode("v-if", !0)
+                                    onClick: (ie) => f(te.key)
+                                  }, e.toDisplayString(A.$t("去配置")), 9, e$)) : e.createCommentVNode("v-if", !0)
                                 ],
                                 2
                                 /* CLASS */
@@ -19623,7 +19708,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                           ]),
                           e.createElementVNode(
                             "p",
-                            XE,
+                            t$,
                             e.toDisplayString(A.$t("没配好的也可以先用，之后点右上角「配置引导」继续。")),
                             1
                             /* TEXT */
@@ -19633,8 +19718,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                       2112
                       /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
                     )) : e.createCommentVNode("v-if", !0),
-                    E.value ? (e.openBlock(), e.createElementBlock("p", xE, [
-                      W[34] || (W[34] = e.createElementVNode(
+                    E.value ? (e.openBlock(), e.createElementBlock("p", l$, [
+                      H[35] || (H[35] = e.createElementVNode(
                         "i",
                         { class: "ri-error-warning-line" },
                         null,
@@ -19657,15 +19742,15 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             ))
           ])
         ]),
-        e.createElementVNode("footer", e$, [
+        e.createElementVNode("footer", n$, [
           e.createElementVNode("button", {
             type: "button",
             class: "ss-btn",
             disabled: c.value <= 0,
             "data-test": "mm-setup-prev",
-            onClick: W[18] || (W[18] = (ee) => N(u[c.value - 1]))
-          }, e.toDisplayString(A.$t("上一步")), 9, t$),
-          W[35] || (W[35] = e.createElementVNode(
+            onClick: H[19] || (H[19] = (te) => f(u[c.value - 1]))
+          }, e.toDisplayString(A.$t("上一步")), 9, o$),
+          H[36] || (H[36] = e.createElementVNode(
             "span",
             { class: "mm-grow" },
             null,
@@ -19679,7 +19764,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               type: "button",
               class: "ss-link",
               "data-test": "mm-setup-skip",
-              onClick: j
+              onClick: L
             },
             e.toDisplayString(A.$t("先跳过")),
             1
@@ -19692,7 +19777,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               type: "button",
               class: "ss-btn primary",
               "data-test": "mm-setup-next",
-              onClick: W[19] || (W[19] = (ee) => N(u[c.value + 1]))
+              onClick: H[20] || (H[20] = (te) => f(u[c.value + 1]))
             },
             e.toDisplayString(A.$t("下一步")),
             1
@@ -19704,56 +19789,56 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             disabled: m.value,
             "data-test": "mm-setup-done",
             onClick: Jt
-          }, e.toDisplayString(A.$t("完成")), 9, l$))
+          }, e.toDisplayString(A.$t("完成")), 9, a$))
         ])
       ])
-    ], 8, DV));
+    ], 8, CV));
   }
-}), o$ = /* @__PURE__ */ ae(n$, [["__scopeId", "data-v-15a19f82"]]), a$ = {
+}), r$ = /* @__PURE__ */ ae(s$, [["__scopeId", "data-v-bdaaa9cf"]]), i$ = {
   class: "mm-wb",
   "data-test": "mm-workbench"
-}, s$ = { class: "mm-head" }, r$ = { class: "mm-head__top" }, i$ = { class: "mm-head__sub" }, c$ = ["title"], d$ = ["disabled", "title"], m$ = {
+}, c$ = { class: "mm-head" }, d$ = { class: "mm-head__top" }, m$ = { class: "mm-head__sub" }, u$ = ["title"], p$ = ["disabled", "title"], v$ = {
   key: 2,
   class: "ri-arrow-down-s-line"
-}, u$ = {
+}, k$ = {
   key: 0,
   class: "mm-id__panel",
   "data-test": "mm-identity-panel"
-}, p$ = { class: "mm-id__tip" }, v$ = ["placeholder"], k$ = {
+}, y$ = { class: "mm-id__tip" }, g$ = ["placeholder"], f$ = {
   key: 1,
   class: "mm-id__state"
-}, y$ = {
+}, N$ = {
   key: 2,
   class: "mm-id__state danger"
-}, g$ = {
+}, V$ = {
   key: 3,
   class: "mm-id__list"
-}, f$ = ["disabled", "data-test", "onClick"], N$ = { class: "mm-id__name" }, V$ = {
+}, E$ = ["disabled", "data-test", "onClick"], $$ = { class: "mm-id__name" }, b$ = {
   key: 0,
   class: "mm-id__tag"
-}, E$ = {
+}, h$ = {
   key: 0,
   class: "mm-id__state"
-}, $$ = {
+}, _$ = {
   class: "mm-tabs",
   role: "tablist"
-}, b$ = ["aria-selected", "data-test", "onClick"], h$ = {
+}, B$ = ["aria-selected", "data-test", "onClick"], S$ = {
   key: 0,
   class: "mm-badge"
-}, _$ = {
+}, D$ = {
   key: 0,
   class: "ss-note danger"
-}, B$ = {
+}, w$ = {
   key: 1,
   class: "ss-note"
-}, S$ = {
+}, C$ = {
   key: 0,
   class: "ss-note info mm-setup",
   "data-test": "mm-no-org"
-}, D$ = ["disabled"], w$ = {
+}, T$ = ["disabled"], I$ = {
   key: 1,
   class: "ss-note warn"
-}, Bt = "totalclaw:meeting-mgmt-tab:v1", C$ = /* @__PURE__ */ e.defineComponent({
+}, Bt = "totalclaw:meeting-mgmt-tab:v1", M$ = /* @__PURE__ */ e.defineComponent({
   __name: "MeetingMgmtWorkbenchView",
   setup(l) {
     const v = [
@@ -19762,7 +19847,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       { key: "tasks", title: t.t("任务") },
       { key: "projects", title: t.t("项目") },
       { key: "settings", title: t.t("系统设置") }
-    ], n = ie.useNotificationStore(), u = oe, y = e.computed(() => u.value?.me ?? null), s = e.computed(() => fe.value.tab), o = e.ref(""), c = e.ref(!1), i = e.ref(0), k = e.ref(null), E = e.reactive({}), m = e.ref(!1), r = e.computed(() => !!y.value?.isAdmin || (u.value?.settings.adminIds.length ?? 0) === 0), f = e.computed(() => !!u.value && (r.value || !!Ie.value)), w = e.computed(() => v.filter(($) => $.key !== "settings" || !!y.value?.isAdmin)), a = e.computed(() => `${y.value?.person?.id || "none"}:${i.value}`);
+    ], n = ce.useNotificationStore(), u = oe, y = e.computed(() => u.value?.me ?? null), s = e.computed(() => Ne.value.tab), o = e.ref(""), c = e.ref(!1), i = e.ref(0), k = e.ref(null), E = e.reactive({}), m = e.ref(!1), r = e.computed(() => !!y.value?.isAdmin || (u.value?.settings.adminIds.length ?? 0) === 0), N = e.computed(() => !!u.value && (r.value || !!Ie.value)), w = e.computed(() => v.filter(($) => $.key !== "settings" || !!y.value?.isAdmin)), a = e.computed(() => `${y.value?.person?.id || "none"}:${i.value}`);
     function g($) {
       const O = u.value?.badges;
       return O ? $ === "home" ? O.home : $ === "meetings" ? O.meetings : $ === "tasks" ? O.tasks : 0 : 0;
@@ -19774,9 +19859,9 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       if (s.value === "settings") return t.t("管理员");
       const $ = E[s.value];
       return $ || (y.value?.isAdmin ? t.t("管理员") : t.t("项目成员"));
-    }), L = e.ref(null), C = e.ref(!1), I = e.ref(""), U = e.ref(!1), q = e.ref(""), _ = e.ref(!1), S = e.ref({ depts: [], people: [] }), b = e.computed(() => Ct(S.value, I.value)), M = e.computed(() => S.value.people.find(($) => $.id === Ie.value)?.name || ""), T = ($) => (u.value?.settings.adminIds || []).includes($);
+    }), j = e.ref(null), C = e.ref(!1), I = e.ref(""), U = e.ref(!1), q = e.ref(""), B = e.ref(!1), S = e.ref({ depts: [], people: [] }), b = e.computed(() => Ct(S.value, I.value)), M = e.computed(() => S.value.people.find(($) => $.id === Ie.value)?.name || ""), T = ($) => (u.value?.settings.adminIds || []).includes($);
     async function G() {
-      if (f.value) {
+      if (N.value) {
         C.value = !0, I.value = "", U.value = !0, q.value = "";
         try {
           S.value = await De();
@@ -19795,41 +19880,41 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       G();
     }
     async function d($) {
-      if (!_.value) {
+      if (!B.value) {
         if ($ === y.value?.person?.id) {
           C.value = !1;
           return;
         }
-        _.value = !0;
+        B.value = !0;
         try {
-          await J("identity.set", { personId: $ }), await ce(), C.value = !1;
+          await J("identity.set", { personId: $ }), await de(), C.value = !1;
           const O = y.value?.person?.name || "";
           n.success(t.t("当前身份已切换为 {name}", { name: O }));
         } catch (O) {
           q.value = x.errorMessage(O), n.error(x.errorMessage(O));
         } finally {
-          _.value = !1;
+          B.value = !1;
         }
       }
     }
     function p($) {
       if (!C.value) return;
-      const O = L.value;
+      const O = j.value;
       O && $.target instanceof Node && O.contains($.target) || (C.value = !1);
     }
     async function z() {
       o.value = "";
       try {
-        await ce();
+        await de();
       } catch ($) {
         o.value = x.errorMessage($);
       }
     }
-    async function Q() {
+    async function X() {
       if (!c.value) {
         c.value = !0;
         try {
-          await J("demo.load"), He(), await ce(), i.value += 1, n.success(t.t("演示数据已载入"));
+          await J("demo.load"), He(), await de(), i.value += 1, n.success(t.t("演示数据已载入"));
         } catch ($) {
           n.error(x.errorMessage($));
         } finally {
@@ -19838,9 +19923,9 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       }
     }
     let le = null;
-    function H() {
+    function W() {
       le || (le = setTimeout(() => {
-        le = null, ce().catch(() => {
+        le = null, de().catch(() => {
         });
         try {
           k.value?.refresh?.();
@@ -19854,7 +19939,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
     }, { immediate: !0 }), e.watch(Y, ($) => {
       $ && (m.value = !0);
     }, { immediate: !0 });
-    function te() {
+    function ee() {
       m.value = !1, He(), i.value += 1, n.success(t.t("配置已保存，可以开始使用了"));
     }
     e.watch(() => y.value, ($) => {
@@ -19871,20 +19956,20 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
     });
     let ne = null;
     return e.onMounted(() => {
-      if (fe.value.seq === 0)
+      if (Ne.value.seq === 0)
         try {
           const $ = localStorage.getItem(Bt);
           $ && v.some((O) => O.key === $) && $ !== "home" && ve($);
         } catch {
         }
-      z(), ne = be(($) => {
-        $ && ($.type === "changed" ? (($.scope === "org" || $.scope === "all") && He(), H()) : $.type === "mobile" && u.value && (u.value = { ...u.value, mobile: { running: $.running, url: $.url } }));
+      z(), ne = _e(($) => {
+        $ && ($.type === "changed" ? (($.scope === "org" || $.scope === "all") && He(), W()) : $.type === "mobile" && u.value && (u.value = { ...u.value, mobile: { running: $.running, url: $.url } }));
       }), document.addEventListener("mousedown", p);
     }), e.onBeforeUnmount(() => {
       ne?.(), le && clearTimeout(le), document.removeEventListener("mousedown", p);
-    }), ($, O) => (e.openBlock(), e.createElementBlock("div", a$, [
-      e.createElementVNode("section", s$, [
-        e.createElementVNode("div", r$, [
+    }), ($, O) => (e.openBlock(), e.createElementBlock("div", i$, [
+      e.createElementVNode("section", c$, [
+        e.createElementVNode("div", d$, [
           e.createVNode(Xt),
           O[11] || (O[11] = e.createElementVNode(
             "span",
@@ -19905,7 +19990,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           ),
           e.createElementVNode(
             "p",
-            i$,
+            m$,
             e.toDisplayString($.$t("会议 → 纪要 → 任务 → 跟进 → 归档，全流程闭环")),
             1
             /* TEXT */
@@ -19922,7 +20007,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             class: e.normalizeClass(["mm-wecom", { on: e.unref(u).wecomConnected || e.unref(u).pushChannel === "webhook" }]),
             title: e.unref(u).wecomConnected ? $.$t("通讯录与消息卡片走企业微信") : e.unref(u).pushChannel === "webhook" ? $.$t("通知发到企微群（群机器人）") : $.$t("没有配置企业微信：通知只进系统内消息中心"),
             "data-test": "mm-wecom"
-          }, e.toDisplayString(e.unref(u).wecomConnected ? $.$t("企微已连接") : e.unref(u).pushChannel === "webhook" ? $.$t("群机器人已连接") : $.$t("未连接企微")), 11, c$)) : e.createCommentVNode("v-if", !0),
+          }, e.toDisplayString(e.unref(u).wecomConnected ? $.$t("企微已连接") : e.unref(u).pushChannel === "webhook" ? $.$t("群机器人已连接") : $.$t("未连接企微")), 11, u$)) : e.createCommentVNode("v-if", !0),
           e.unref(u) && (y.value?.isAdmin || Y.value) ? (e.openBlock(), e.createElementBlock("button", {
             key: 1,
             type: "button",
@@ -19947,15 +20032,15 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             "div",
             {
               ref_key: "idRoot",
-              ref: L,
+              ref: j,
               class: "mm-id"
             },
             [
               e.createElementVNode("button", {
                 type: "button",
-                class: e.normalizeClass(["mm-id__pill", { switchable: f.value }]),
+                class: e.normalizeClass(["mm-id__pill", { switchable: N.value }]),
                 disabled: !e.unref(u),
-                title: f.value ? $.$t("切换当前身份") : $.$t("只有管理员可以切换身份"),
+                title: N.value ? $.$t("切换当前身份") : $.$t("只有管理员可以切换身份"),
                 "data-test": "mm-identity",
                 onClick: V
               }, [
@@ -19984,12 +20069,12 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                   64
                   /* STABLE_FRAGMENT */
                 )),
-                f.value ? (e.openBlock(), e.createElementBlock("i", m$)) : e.createCommentVNode("v-if", !0)
-              ], 10, d$),
-              C.value ? (e.openBlock(), e.createElementBlock("div", u$, [
+                N.value ? (e.openBlock(), e.createElementBlock("i", v$)) : e.createCommentVNode("v-if", !0)
+              ], 10, p$),
+              C.value ? (e.openBlock(), e.createElementBlock("div", k$, [
                 e.createElementVNode(
                   "p",
-                  p$,
+                  y$,
                   e.toDisplayString($.$t("切换后按这个人的角色显示按钮（管理员代办、演示用）")),
                   1
                   /* TEXT */
@@ -20018,10 +20103,10 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                   class: "mm-id__search",
                   type: "search",
                   placeholder: $.$t("搜索姓名")
-                }, null, 8, v$), [
+                }, null, 8, g$), [
                   [e.vModelText, I.value]
                 ]),
-                U.value ? (e.openBlock(), e.createElementBlock("p", k$, [
+                U.value ? (e.openBlock(), e.createElementBlock("p", f$, [
                   O[10] || (O[10] = e.createElementVNode(
                     "i",
                     { class: "ri-loader-4-line spin" },
@@ -20036,11 +20121,11 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                   )
                 ])) : q.value ? (e.openBlock(), e.createElementBlock(
                   "p",
-                  y$,
+                  N$,
                   e.toDisplayString(q.value),
                   1
                   /* TEXT */
-                )) : (e.openBlock(), e.createElementBlock("div", g$, [
+                )) : (e.openBlock(), e.createElementBlock("div", V$, [
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
@@ -20064,7 +20149,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                             key: F.id,
                             type: "button",
                             class: e.normalizeClass(["mm-id__row", { on: F.id === y.value?.person?.id }]),
-                            disabled: _.value,
+                            disabled: B.value,
                             "data-test": `mm-identity-${F.id}`,
                             onClick: (K) => d(F.id)
                           }, [
@@ -20080,7 +20165,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                             ),
                             e.createElementVNode(
                               "span",
-                              N$,
+                              $$,
                               e.toDisplayString(F.name),
                               1
                               /* TEXT */
@@ -20094,12 +20179,12 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                             ),
                             T(F.id) ? (e.openBlock(), e.createElementBlock(
                               "span",
-                              V$,
+                              b$,
                               e.toDisplayString($.$t("管理员")),
                               1
                               /* TEXT */
                             )) : e.createCommentVNode("v-if", !0)
-                          ], 10, f$))),
+                          ], 10, E$))),
                           128
                           /* KEYED_FRAGMENT */
                         ))
@@ -20112,7 +20197,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                   )),
                   b.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
                     "p",
-                    E$,
+                    h$,
                     e.toDisplayString($.$t("找不到人员请联系管理员同步通讯录")),
                     1
                     /* TEXT */
@@ -20124,7 +20209,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             /* NEED_PATCH */
           )
         ]),
-        e.createElementVNode("nav", $$, [
+        e.createElementVNode("nav", _$, [
           (e.openBlock(!0), e.createElementBlock(
             e.Fragment,
             null,
@@ -20146,18 +20231,18 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               ),
               g(R.key) ? (e.openBlock(), e.createElementBlock(
                 "em",
-                h$,
+                S$,
                 e.toDisplayString(g(R.key)),
                 1
                 /* TEXT */
               )) : e.createCommentVNode("v-if", !0)
-            ], 10, b$))),
+            ], 10, B$))),
             128
             /* KEYED_FRAGMENT */
           ))
         ])
       ]),
-      o.value && !e.unref(u) ? (e.openBlock(), e.createElementBlock("p", _$, [
+      o.value && !e.unref(u) ? (e.openBlock(), e.createElementBlock("p", D$, [
         O[13] || (O[13] = e.createElementVNode(
           "i",
           { class: "ri-error-warning-line" },
@@ -20187,7 +20272,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         e.Fragment,
         { key: 2 },
         [
-          e.unref(u).org.peopleCount === 0 ? (e.openBlock(), e.createElementBlock("p", S$, [
+          e.unref(u).org.peopleCount === 0 ? (e.openBlock(), e.createElementBlock("p", C$, [
             O[15] || (O[15] = e.createElementVNode(
               "i",
               { class: "ri-team-line" },
@@ -20208,7 +20293,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               class: "ss-btn sm primary",
               disabled: c.value,
               "data-test": "mm-demo-load",
-              onClick: Q
+              onClick: X
             }, [
               e.createElementVNode(
                 "i",
@@ -20224,8 +20309,8 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
                 1
                 /* TEXT */
               )
-            ], 8, D$)) : e.createCommentVNode("v-if", !0)
-          ])) : y.value?.person ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", w$, [
+            ], 8, T$)) : e.createCommentVNode("v-if", !0)
+          ])) : y.value?.person ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", I$, [
             O[16] || (O[16] = e.createElementVNode(
               "i",
               { class: "ri-user-search-line" },
@@ -20240,7 +20325,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               1
               /* TEXT */
             ),
-            f.value ? (e.openBlock(), e.createElementBlock(
+            N.value ? (e.openBlock(), e.createElementBlock(
               "button",
               {
                 key: 0,
@@ -20302,7 +20387,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
               512
               /* NEED_PATCH */
             )) : s.value === "settings" ? (e.openBlock(), e.createBlock(
-              SV,
+              wV,
               {
                 key: 4,
                 ref_key: "tabRef",
@@ -20316,7 +20401,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
         ],
         64
         /* STABLE_FRAGMENT */
-      )) : (e.openBlock(), e.createElementBlock("p", B$, [
+      )) : (e.openBlock(), e.createElementBlock("p", w$, [
         O[14] || (O[14] = e.createElementVNode(
           "i",
           { class: "ri-loader-4-line spin" },
@@ -20330,19 +20415,19 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
           /* TEXT */
         )
       ])),
-      m.value ? (e.openBlock(), e.createBlock(o$, {
+      m.value ? (e.openBlock(), e.createBlock(r$, {
         key: 3,
         onClose: O[7] || (O[7] = (R) => m.value = !1),
-        onDone: te
+        onDone: ee
       })) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), I$ = /* @__PURE__ */ ae(C$, [["__scopeId", "data-v-dba3778c"]]), yt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:pinyin-pro"];
+}), j$ = /* @__PURE__ */ ae(M$, [["__scopeId", "data-v-dba3778c"]]), yt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:pinyin-pro"];
 if (!yt) throw new Error("宿主模块未就绪：npm:pinyin-pro");
 yt.default;
-const T$ = /* @__PURE__ */ Zt({
+const A$ = /* @__PURE__ */ Zt({
   __proto__: null
 }, [yt]);
 export {
-  I$ as default
+  j$ as default
 };

@@ -1493,7 +1493,7 @@
       "icon": "icon-solutions",
       "order": 230,
       "description": "以项目会议为源头：上传录音、录屏或文字记录，本机转写并按声纹识别发言人，发言人确认、主持人终审后生成正式纪要；AI 从决议拆出任务派给各部门负责人，跟进进度、处理异议与裁决，最后生成项目总结并归档。",
-      "version": "2.0.1",
+      "version": "2.0.2",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1541,10 +1541,10 @@
       "capabilities": [],
       "path": "solutions/workbench-meeting-mgmt",
       "fileCount": 8,
-      "size": 1637493,
-      "treeDigest": "639c863df87211f2fc43d1928b7b1eb81199594728495767c100a355960f634a",
+      "size": 1650732,
+      "treeDigest": "5407ada3bf1e8788f95f30a3b11b871d3f301b5017521cbf825880cfc639336c",
       "largeAssets": [],
-      "changelog": "- 会议语音模型（SenseVoice / FireRedASR2 / CAM++ 声纹）改为优先从自建 CDN（`https://cdn2.taituai.com/meeting-models/`）直下，支持 HTTP Range 断点续传与逐文件 SHA-256 校验，权重落盘后自动核对运行组件（失败时兜底宿主通道）；无需更新客户端。\n- 模型下载队列与实时进度改由方案主进程持久维护，切换页面 / 关闭再打开配置引导不再重置下载状态，并展示实时进度条。\n- 修复本地语音转写/声纹 worker 在 Windows 下的启动隐患：\n  - `workerPool` 改为将 Python worker 脚本写入临时 `.py` 文件执行（避免 Windows 下 `-c <18KB 多行脚本>` 的命令行转义与安全软件误拦），开启 Windows stderr GBK 兼容解码。\n  - `sherpa-onnx` 与 `onnxruntime` 加载模型前校验文件完整并 `chdir` 到模型目录用纯 ASCII 相对文件名加载，避免 Windows 中文用户名路径导致底层 C++ 直接异常退出。\n- 增强报错确认与诊断提示：\n  - 按 `spawn` 错误码、Windows NTSTATUS 退出码（缺 VC++ 运行库 `0xC0000135`、指令集不支持 `0xC000001D`、崩溃 `0xC0000005`/`0xC0000409` 等）、信号和 `stderr` 给出明确中文原因与排查/兜底建议（如安装 VC++ 运行库、换 SenseVoice 或切换在线语音识别）。\n  - 流水线失败时将 `detail`（退出码、Python 路径、`stderr` 摘要）一并写入主进程日志和会议「处理记录」，声纹采集失败同步透传明确中文原因。",
+      "changelog": "- 配置引导（推荐转写模型、全部本机模型对比表、声纹模型 CAM++）及系统设置 → AI 能力配置中，已下载模型均增加「重新下载」按钮；支持 `force: true` 清理旧的 HF 缓存与残余 `.part` 文件后从 CDN 重新下载校验 SHA-256，并重新核对/补装 Python 语音运行组件。\n- 会议录音转写若因语音运行组件缺失（如 `sherpa_onnx` 未装/跨账号缺失）或模型文件缺失/损坏而失败，自动触发一次补装/强制重新下载修复并无缝重跑转写（对缺 VC++ 运行库、杀软拦截 DLL、内存不足等不可通过重下修复的错误则直接给出明确提示，不盲目重下）。\n- 未下载声纹模型 CAM++ 时，若本地语音识别 worker 返回 `ready: false`，失败横幅直接透出具体原因（缺运行组件 / 缺 VC++ 运行库 / 模型损坏等），不再只显示笼统的「本地语音识别运行时不可用」。",
       "filesRef": "index/workbench-meeting-mgmt.json"
     },
     {

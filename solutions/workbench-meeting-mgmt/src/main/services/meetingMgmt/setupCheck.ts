@@ -115,6 +115,8 @@ export interface CdnDownloadOptions {
   targetOverride?: { destDir: string; label: string; files: CdnModelFileSpec[]; refsMain?: { file: string; rev: string } };
   chunkTimeoutMs?: number;
   maxRetries?: number;
+  /** 重新下载：不跳过已存在的目标文件，清掉旧 .part 从头下并校验 SHA-256 */
+  force?: boolean;
 }
 
 function modelLabel(id: string): string {
@@ -302,7 +304,9 @@ export async function downloadMeetingModelFromCdn(
     report(0, true);
     for (const f of target.files) {
       const dest = join(target.destDir, f.file);
-      if (existsSync(dest)) {
+      if (opts.force) {
+        try { if (existsSync(`${dest}.part`)) unlinkSync(`${dest}.part`); } catch { /* ignore */ }
+      } else if (existsSync(dest)) {
         try {
           if (statSync(dest).size === f.bytes) {
             completed += f.bytes;
@@ -321,7 +325,7 @@ export async function downloadMeetingModelFromCdn(
       completed += f.bytes;
       report(0, true);
     }
-    if (target.refsMain && !existsSync(target.refsMain.file)) {
+    if (target.refsMain && (opts.force || !existsSync(target.refsMain.file))) {
       try {
         mkdirSync(dirname(target.refsMain.file), { recursive: true });
         writeFileSync(target.refsMain.file, target.refsMain.rev, 'utf8');

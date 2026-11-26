@@ -3450,6 +3450,21 @@ function diagnoseWorkerStartFailure(info) {
     detail
   };
 }
+function formatNotReadyError(raw) {
+  const base = (0, import_i18n5.t)("\u672C\u5730\u8BED\u97F3\u8BC6\u522B\u8FD0\u884C\u65F6\u4E0D\u53EF\u7528");
+  const why = raw.trim();
+  if (!why) return base;
+  if (/No module named '(sherpa_onnx|faster_whisper|ctranslate2)'/.test(why)) {
+    return `${base}\uFF1A${(0, import_i18n5.t)("\u8BED\u97F3\u8BC6\u522B\u7EC4\u4EF6\u6CA1\u88C5\u597D\uFF08\u6A21\u578B\u6587\u4EF6\u5728\uFF0C\u4F46\u8FD0\u884C\u7EC4\u4EF6\u7F3A\u5931\uFF09\u3002\u8BF7\u5728\u300C\u914D\u7F6E\u5F15\u5BFC \u2192 \u7535\u8111\u914D\u7F6E\u4E0E\u8BED\u97F3\u6A21\u578B\u300D\u91CC\u91CD\u65B0\u4E0B\u8F7D\u63A8\u8350\u7684\u8F6C\u5199\u6A21\u578B\u3002")}\uFF08${why.slice(0, 120)}\uFF09`;
+  }
+  if (/DLL load failed|vcruntime|msvcp|api-ms-win|0xc0000135|找不到指定的模块|无法定位程序输入点/i.test(why)) {
+    return `${base}\uFF08${(0, import_i18n5.t)("\u672C\u5730\u8BED\u97F3\u8BC6\u522B\u8FDB\u7A0B\u672A\u80FD\u542F\u52A8\uFF1A\u7CFB\u7EDF\u7F3A\u5C11 VC++ \u8FD0\u884C\u5E93\uFF08Visual C++ 2015\u20132022 Redistributable x64\uFF09\u6216\u8BED\u97F3\u7EC4\u4EF6 DLL \u88AB\u62E6\u622A\uFF1B\u8BF7\u5B89\u88C5\u5FAE\u8F6F VC++ \u8FD0\u884C\u5E93\u540E\u91CD\u8BD5\uFF0C\u6216\u5230\u300C\u7CFB\u7EDF\u8BBE\u7F6E \u2192 AI \u914D\u7F6E\u300D\u4E34\u65F6\u6539\u7528\u5728\u7EBF\u8BED\u97F3\u8BC6\u522B")}\uFF09`;
+  }
+  if (/model file missing or empty|FileNotFoundError|InvalidProtobuf|failed to open|unable to open/i.test(why)) {
+    return `${base}\uFF1A${(0, import_i18n5.t)("\u8BED\u97F3\u6A21\u578B\u6587\u4EF6\u7F3A\u5931\u6216\u5DF2\u635F\u574F\uFF0C\u8BF7\u5728\u300C\u914D\u7F6E\u5F15\u5BFC \u2192 \u7535\u8111\u914D\u7F6E\u4E0E\u8BED\u97F3\u6A21\u578B\u300D\u91CD\u65B0\u4E0B\u8F7D\u6A21\u578B\u540E\u91CD\u8BD5\u3002")}\uFF08${why.slice(0, 120)}\uFF09`;
+  }
+  return `${base}\uFF08${why.slice(0, 200)}\uFF09`;
+}
 var MeetingWorker = class {
   constructor(spec) {
     this.spec = spec;
@@ -3502,7 +3517,8 @@ var MeetingWorker = class {
               resolve3(this.ready);
             } else {
               this.kill();
-              reject(Object.assign(new Error((0, import_i18n5.t)("\u672C\u5730\u8BED\u97F3\u8BC6\u522B\u8FD0\u884C\u65F6\u4E0D\u53EF\u7528")), { detail: String(msg.error || "") }));
+              const detail = String(msg.error || "");
+              reject(Object.assign(new Error(formatNotReadyError(detail)), { detail }));
             }
             continue;
           }
@@ -7042,7 +7058,12 @@ async function downloadMeetingModelFromCdn(id, opts = {}) {
     report(0, true);
     for (const f of target.files) {
       const dest = (0, import_node_path2.join)(target.destDir, f.file);
-      if ((0, import_node_fs2.existsSync)(dest)) {
+      if (opts.force) {
+        try {
+          if ((0, import_node_fs2.existsSync)(`${dest}.part`)) (0, import_node_fs2.unlinkSync)(`${dest}.part`);
+        } catch {
+        }
+      } else if ((0, import_node_fs2.existsSync)(dest)) {
         try {
           if ((0, import_node_fs2.statSync)(dest).size === f.bytes) {
             completed += f.bytes;
@@ -7062,7 +7083,7 @@ async function downloadMeetingModelFromCdn(id, opts = {}) {
       completed += f.bytes;
       report(0, true);
     }
-    if (target.refsMain && !(0, import_node_fs2.existsSync)(target.refsMain.file)) {
+    if (target.refsMain && (opts.force || !(0, import_node_fs2.existsSync)(target.refsMain.file))) {
       try {
         (0, import_node_fs2.mkdirSync)((0, import_node_path2.dirname)(target.refsMain.file), { recursive: true });
         (0, import_node_fs2.writeFileSync)(target.refsMain.file, target.refsMain.rev, "utf8");
@@ -10876,8 +10897,8 @@ function defaultExternals() {
     },
     detectHardware: (dir) => detectHardware(dir),
     cloudTranscribe: (cfg, wav) => cloudTranscribe(cfg, wav, { timeoutMs: 3e4 }),
-    installModel: async (id, onProgress, signal) => {
-      const r = await downloadMeetingModelFromCdn(id, { signal, onProgress: (p) => onProgress({ percent: p.percent, line: p.line }) });
+    installModel: async (id, onProgress, signal, opts) => {
+      const r = await downloadMeetingModelFromCdn(id, { signal, force: !!opts?.force, onProgress: (p) => onProgress({ percent: p.percent, line: p.line }) });
       return r.ok ? { ok: true } : { ok: false, error: r.error };
     },
     segmentAudio: (workDir, start, end) => {
@@ -10959,6 +10980,7 @@ var MeetingMgmtService = class {
   modelDownload = { activeId: null, queue: [], percent: null, line: "", error: "", updatedAt: 0 };
   modelDownloadRunning = false;
   modelDownloadAbort = null;
+  modelDownloadForce = /* @__PURE__ */ new Set();
   constructor(o) {
     this.store = o.store ?? new MeetingMgmtStore(void 0, (m) => o.logger?.warn?.("meeting-mgmt", m));
     this.llm = o.llm;
@@ -11542,7 +11564,7 @@ var MeetingMgmtService = class {
       const raw = Array.isArray(p?.ids) ? p.ids : p?.id ? [p.id] : [];
       const ids = [...new Set(raw.map((x) => String(x || "").trim()).filter((x) => ALLOWED_MEETING_MODEL_IDS.has(x)))];
       if (!ids.length) throw new Error((0, import_i18n16.t)("\u6CA1\u6709\u53EF\u4E0B\u8F7D\u7684\u6A21\u578B"));
-      return this.enqueueModelDownloads(ids);
+      return this.enqueueModelDownloads(ids, { force: !!p?.force });
     },
     "setup.finish": (c) => {
       this.requireAdmin(c, (0, import_i18n16.t)("\u5B8C\u6210\u914D\u7F6E\u5F15\u5BFC"));
@@ -13054,22 +13076,41 @@ var MeetingMgmtService = class {
         } catch {
         }
       };
+      const runOnce = () => this.ext.runMeetingPipeline({
+        meetingId,
+        workDir: this.store.filesDir(meetingId),
+        files: m.files,
+        attendees,
+        voiceprints,
+        threshold: s.settings.ai.voiceprintThreshold,
+        asr: s.settings.ai.asr,
+        asrModel: s.settings.ai.localAsrModel ?? "auto",
+        ...s.settings.ai.asr === "cloud" ? { cloudAsr: this.cloudAsrConfig() ?? void 0 } : {},
+        organizePrompt: s.settings.ai.organizePrompt,
+        llm: this.llm,
+        signal: ctrl.signal,
+        onStage
+      });
       try {
-        const r = await this.ext.runMeetingPipeline({
-          meetingId,
-          workDir: this.store.filesDir(meetingId),
-          files: m.files,
-          attendees,
-          voiceprints,
-          threshold: s.settings.ai.voiceprintThreshold,
-          asr: s.settings.ai.asr,
-          asrModel: s.settings.ai.localAsrModel ?? "auto",
-          ...s.settings.ai.asr === "cloud" ? { cloudAsr: this.cloudAsrConfig() ?? void 0 } : {},
-          organizePrompt: s.settings.ai.organizePrompt,
-          llm: this.llm,
-          signal: ctrl.signal,
-          onStage
-        });
+        let r;
+        try {
+          r = await runOnce();
+        } catch (firstErr) {
+          if (ctrl.signal.aborted || s.settings.ai.asr !== "local" || this.modelDownloadRunning) throw firstErr;
+          const firstMsg = firstErr?.message || "";
+          const firstDetail = typeof firstErr?.detail === "string" ? firstErr.detail.trim() : "";
+          const repairMode = classifyLocalAsrRepair(`${firstMsg}
+${firstDetail}`);
+          if (!repairMode) throw firstErr;
+          this.warn("local asr auto-repair triggered", { meetingId, mode: repairMode, error: firstMsg });
+          const repaired = await this.repairLocalAsr(repairMode, s.settings.ai.localAsrModel, onStage, ctrl.signal);
+          if (!repaired.ok) {
+            if (ctrl.signal.aborted) throw firstErr;
+            if (repaired.error) onStage("transcribe", 6, (0, import_i18n16.t)("\u81EA\u52A8\u4FEE\u590D\u5931\u8D25\uFF1A{p0}", { p0: repaired.error }));
+            throw firstErr;
+          }
+          r = await runOnce();
+        }
         if (ctrl.signal.aborted) return;
         const now = this.nowFn();
         const out = this.store.update((st) => {
@@ -13099,6 +13140,55 @@ var MeetingMgmtService = class {
       }
     })();
     this.track(job);
+  }
+  /** 本地转写因运行组件缺失或模型文件损坏失败时自动修复一次（不处理缺 VC++ / 内存不足 / 杀软拦截）。 */
+  async repairLocalAsr(mode, pref, onStage, signal) {
+    if (pref === "whisper") return { ok: false, error: "" };
+    let rt = null;
+    try {
+      rt = await this.ext.checkRuntime();
+    } catch {
+    }
+    const hw = this.ext.detectHardware(rt?.modelsDir || void 0);
+    let ids;
+    if (mode === "runtime") {
+      ids = rt?.senseVoice ? [MEETING_ASR_IDS.sensevoice] : rt?.fireRed ? [MEETING_ASR_IDS.firered] : recommendAsr(hw).installIds;
+    } else if (pref === "sensevoice") {
+      ids = [MEETING_ASR_IDS.sensevoice];
+    } else if (pref === "firered") {
+      ids = [MEETING_ASR_IDS.sensevoice, MEETING_ASR_IDS.firered];
+    } else {
+      ids = rt?.senseVoice && !rt?.fireRed ? [MEETING_ASR_IDS.sensevoice] : recommendAsr(hw).installIds;
+    }
+    const force = mode === "redownload";
+    this.modelDownloadRunning = true;
+    try {
+      onStage("transcribe", 6, force ? (0, import_i18n16.t)("\u68C0\u6D4B\u5230\u672C\u5730\u8BED\u97F3\u6A21\u578B\u7F3A\u5931\u6216\u635F\u574F\uFF0C\u6B63\u5728\u81EA\u52A8\u91CD\u65B0\u4E0B\u8F7D\u4FEE\u590D\u2026") : (0, import_i18n16.t)("\u68C0\u6D4B\u5230\u672C\u5730\u8BED\u97F3\u8FD0\u884C\u7EC4\u4EF6\u7F3A\u5931\uFF0C\u6B63\u5728\u81EA\u52A8\u8865\u88C5\u4FEE\u590D\u2026"));
+      for (const id of ids) {
+        if (signal.aborted) return { ok: false, error: (0, import_i18n16.t)("\u5904\u7406\u5DF2\u53D6\u6D88") };
+        let lastBucket = -1;
+        let lastText = "";
+        const res = await this.ext.installModel(id, (p) => {
+          if (signal.aborted) return;
+          const bucket = typeof p.percent === "number" ? Math.floor(p.percent / 25) : -1;
+          const text = p.line ? String(p.line).slice(0, 200) : "";
+          if (text && (bucket !== lastBucket || bucket < 0 && text !== lastText)) {
+            lastBucket = bucket;
+            lastText = text;
+            onStage("transcribe", 6, text);
+          }
+        }, signal, { force });
+        if (!res?.ok) return { ok: false, error: res?.error || (0, import_i18n16.t)("\u81EA\u52A8\u4FEE\u590D\u6A21\u578B\u5931\u8D25") };
+      }
+      this.changed("settings");
+      onStage("transcribe", 7, (0, import_i18n16.t)("\u672C\u5730\u8BED\u97F3\u6A21\u578B\u5DF2\u4FEE\u590D\uFF0C\u6B63\u5728\u91CD\u65B0\u8F6C\u5199\u2026"));
+      return { ok: true };
+    } catch (e) {
+      return { ok: false, error: String(e?.message || e || (0, import_i18n16.t)("\u81EA\u52A8\u4FEE\u590D\u6A21\u578B\u5931\u8D25")) };
+    } finally {
+      this.modelDownloadRunning = false;
+      if (this.modelDownload.queue.length && !this.stopped) void this.track(this.runModelDownloadQueue());
+    }
   }
   /** 发言人识别 / 指认之后：通知新进入未确认的人；没有发言人要确认就直接通知主持人终审 */
   afterSpeakersSettled(m, pending, projectName, now) {
@@ -13313,8 +13403,9 @@ var MeetingMgmtService = class {
     this.modelDownload.updatedAt = this.nowFn();
     this.emit({ type: "model_download", status: this.modelDownloadSnapshot() });
   }
-  enqueueModelDownloads(ids) {
+  enqueueModelDownloads(ids, opts) {
     for (const id of ids) {
+      if (opts?.force && this.modelDownload.activeId !== id) this.modelDownloadForce.add(id);
       if (this.modelDownload.activeId === id || this.modelDownload.queue.includes(id)) continue;
       this.modelDownload.queue.push(id);
     }
@@ -13338,6 +13429,7 @@ var MeetingMgmtService = class {
     try {
       while (!this.stopped && !ctrl.signal.aborted && this.modelDownload.queue.length) {
         const id = this.modelDownload.queue.shift();
+        const force = this.modelDownloadForce.delete(id);
         this.modelDownload.activeId = id;
         this.modelDownload.percent = 0;
         this.modelDownload.line = (0, import_i18n16.t)("\u5F00\u59CB\u4E0B\u8F7D\u2026");
@@ -13349,16 +13441,18 @@ var MeetingMgmtService = class {
             if (typeof p.percent === "number") this.modelDownload.percent = p.percent;
             if (p.line) this.modelDownload.line = p.line;
             this.emitModelDownload();
-          }, ctrl.signal);
+          }, ctrl.signal, { force });
           if (!r?.ok) {
             this.modelDownload.error = r?.error || (0, import_i18n16.t)("\u4E0B\u8F7D\u5931\u8D25");
             this.modelDownload.queue = [];
+            this.modelDownloadForce.clear();
             break;
           }
           this.changed("settings");
         } catch (e) {
           this.modelDownload.error = String(e?.message || e || (0, import_i18n16.t)("\u4E0B\u8F7D\u5931\u8D25"));
           this.modelDownload.queue = [];
+          this.modelDownloadForce.clear();
           break;
         }
       }
@@ -13389,6 +13483,15 @@ var MeetingMgmtService = class {
     return f.path;
   }
 };
+var NON_REPAIRABLE_ASR_RE = /DLL load failed|vcruntime|msvcp|api-ms-win|0xc0000135|0xc0000139|0xc000007b|找不到指定的模块|无法定位程序输入点|numpy unavailable|out of memory|bad_alloc|MemoryError|Cannot allocate memory|paging file is too small|页面文件太小|SIGKILL|SIGILL|0xc000001d|EACCES|EPERM|ENOENT/i;
+var MISSING_RUNTIME_RE = /No module named '(sherpa_onnx|faster_whisper|ctranslate2)'/;
+var BROKEN_MODEL_RE = /model file missing or empty|FileNotFoundError|InvalidProtobuf|failed to open|unable to open|本地语音识别模型未下载/i;
+function classifyLocalAsrRepair(errText) {
+  if (!errText || NON_REPAIRABLE_ASR_RE.test(errText)) return null;
+  if (MISSING_RUNTIME_RE.test(errText)) return "runtime";
+  if (BROKEN_MODEL_RE.test(errText)) return "redownload";
+  return null;
+}
 function stageText(stage) {
   switch (stage) {
     case "extract":
@@ -13525,15 +13628,26 @@ function registerMeetingMgmtHandlers(deps) {
     emit,
     logger,
     ext: {
-      installModel: async (id, onProgress, signal) => {
+      installModel: async (id, onProgress, signal, opts) => {
+        const installer = deps.pyPluginInstaller;
+        if (opts?.force && installer) {
+          onProgress({ percent: 0, line: (0, import_i18n17.t)("\u6B63\u5728\u6E05\u7406\u65E7\u7684\u6A21\u578B\u6587\u4EF6\u2026") });
+          const { unloadLocalAsrModel } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/localAsr.ts"), 1));
+          const rm = await installer.remove(id, unloadLocalAsrModel);
+          if (!rm.ok) {
+            logger?.warn?.("meeting-mgmt", "force reinstall remove failed, continuing download", { id, error: rm.error });
+          }
+          if (signal.aborted) return { ok: false, error: (0, import_i18n17.t)("\u4E0B\u8F7D\u5DF2\u53D6\u6D88") };
+        }
         const cdn = await downloadMeetingModelFromCdn(id, {
           signal,
+          force: !!opts?.force,
           onProgress: (p) => onProgress({ percent: p.percent, line: p.line })
         });
+        if (signal.aborted) return { ok: false, error: !cdn.ok ? cdn.error : (0, import_i18n17.t)("\u4E0B\u8F7D\u5DF2\u53D6\u6D88") };
         if (!cdn.ok) {
           logger?.warn?.("meeting-mgmt", "cdn model download failed, falling back to pyPluginInstaller", { id, error: cdn.error });
         }
-        const installer = deps.pyPluginInstaller;
         if (installer) {
           onProgress({
             percent: cdn.ok ? 99 : null,
