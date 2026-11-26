@@ -173,16 +173,16 @@ module.exports = __toCommonJS(entry_main_exports);
 // ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/ipc/meetingMgmt.ipc.ts
 var import_electron = require("electron");
 var import_ipc_contracts = require("npm:@totalclaw/ipc-contracts");
-var import_i18n16 = require("npm:@totalclaw/i18n");
+var import_i18n17 = require("npm:@totalclaw/i18n");
 var import_openPathGuarded = require("host:apps/desktop-shell/src/main/utils/openPathGuarded.ts");
 var import_userFacingError = require("host:apps/desktop-shell/src/main/utils/userFacingError.ts");
 var import_quitRegistry = require("host:apps/desktop-shell/src/main/util/quitRegistry.ts");
 
 // ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/service.ts
 var import_node_fs4 = require("node:fs");
-var import_node_path3 = require("node:path");
-var import_node_crypto5 = require("node:crypto");
-var import_i18n15 = require("npm:@totalclaw/i18n");
+var import_node_path4 = require("node:path");
+var import_node_crypto6 = require("node:crypto");
+var import_i18n16 = require("npm:@totalclaw/i18n");
 
 // ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/shared/meetingMgmt/types.ts
 var MM_DEFAULT_SETTINGS = {
@@ -688,11 +688,16 @@ function startProcessing(m, actor, now, opts = {}) {
   m.summaryLines = [];
   m.confirmations = [];
 }
-function failProcessing(m, error, now) {
+function failProcessing(m, error, now, detail) {
   if (m.status !== "processing") return;
   m.status = "failed";
   const p = m.process || { stage: "extract", progress: 0, log: [] };
-  m.process = { ...p, error, finishedAt: now, log: [...p.log || [], { at: now, text: error }].slice(-200) };
+  const entries = [{ at: now, text: error }];
+  const extra = typeof detail === "string" ? detail.trim() : "";
+  if (extra && extra !== error.trim()) {
+    entries.push({ at: now, text: (0, import_i18n.t)("\u8BCA\u65AD\u8BE6\u60C5\uFF1A{p0}", { p0: extra.slice(0, 800) }) });
+  }
+  m.process = { ...p, error, finishedAt: now, log: [...p.log || [], ...entries].slice(-200) };
 }
 function speakerPersonIds(m) {
   const out = [];
@@ -2095,8 +2100,8 @@ var DEMO_TRANSCRIPT = `\u6797\u6653 00:00:05
 `;
 
 // ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/index.ts
-var import_fs4 = require("fs");
-var import_path4 = require("path");
+var import_fs5 = require("fs");
+var import_path5 = require("path");
 var import_t2cn = require("npm:opencc-js/t2cn");
 var import_i18n10 = require("npm:@totalclaw/i18n");
 
@@ -2863,13 +2868,37 @@ init_runtime();
 
 // ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/workerPool.ts
 var import_child_process2 = require("child_process");
+var import_crypto = require("crypto");
+var import_fs2 = require("fs");
+var import_os2 = require("os");
+var import_path2 = require("path");
 var import_node_runtime2 = require("npm:@totalclaw/node-runtime");
 var import_i18n5 = require("npm:@totalclaw/i18n");
 
 // ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/worker.py.ts
 var MEETING_WORKER_PY = `
 import sys, json, os, re, struct, time, warnings
+from contextlib import contextmanager
 warnings.filterwarnings("ignore")
+
+@contextmanager
+def _in_dir(d):
+    prev = os.getcwd()
+    try:
+        if d:
+            os.chdir(d)
+        yield
+    finally:
+        try:
+            os.chdir(prev)
+        except Exception:
+            pass
+
+def _require_files(d, names):
+    for fn in names:
+        p = os.path.join(d, fn) if d else fn
+        if not os.path.isfile(p) or os.path.getsize(p) <= 0:
+            raise FileNotFoundError("model file missing or empty: %s" % p)
 
 plugins = sys.argv[1] if len(sys.argv) > 1 else ""
 if plugins:
@@ -2903,19 +2932,25 @@ if model_name.startswith("sherpa:"):
         d = cfg.get("dir") or ""
         import sherpa_onnx
         if sherpa_kind == "sense_voice":
-            sherpa = sherpa_onnx.OfflineRecognizer.from_sense_voice(
-                model=os.path.join(d, "model.int8.onnx"), tokens=os.path.join(d, "tokens.txt"),
-                num_threads=threads, use_itn=True, language="auto")
+            _require_files(d, ("model.int8.onnx", "tokens.txt"))
+            with _in_dir(d):
+                sherpa = sherpa_onnx.OfflineRecognizer.from_sense_voice(
+                    model="model.int8.onnx", tokens="tokens.txt",
+                    num_threads=threads, use_itn=True, language="auto")
         elif sherpa_kind == "fire_red_aed":
-            sherpa = sherpa_onnx.OfflineRecognizer.from_fire_red_asr(
-                encoder=os.path.join(d, "encoder.int8.onnx"), decoder=os.path.join(d, "decoder.int8.onnx"),
-                tokens=os.path.join(d, "tokens.txt"), num_threads=threads)
+            _require_files(d, ("encoder.int8.onnx", "decoder.int8.onnx", "tokens.txt"))
+            with _in_dir(d):
+                sherpa = sherpa_onnx.OfflineRecognizer.from_fire_red_asr(
+                    encoder="encoder.int8.onnx", decoder="decoder.int8.onnx",
+                    tokens="tokens.txt", num_threads=threads)
             sv_dir = cfg.get("svDir") or ""
             if sv_dir:
                 try:
-                    sherpa_sv = sherpa_onnx.OfflineRecognizer.from_sense_voice(
-                        model=os.path.join(sv_dir, "model.int8.onnx"), tokens=os.path.join(sv_dir, "tokens.txt"),
-                        num_threads=max(2, threads // 2), use_itn=True, language="auto")
+                    _require_files(sv_dir, ("model.int8.onnx", "tokens.txt"))
+                    with _in_dir(sv_dir):
+                        sherpa_sv = sherpa_onnx.OfflineRecognizer.from_sense_voice(
+                            model="model.int8.onnx", tokens="tokens.txt",
+                            num_threads=max(2, threads // 2), use_itn=True, language="auto")
                 except Exception:
                     sherpa_sv = None
         else:
@@ -2958,10 +2993,16 @@ if campp_path or campp2_path:
         so.intra_op_num_threads = 2
         so.inter_op_num_threads = 1
         if campp_path:
-            emb_model = ort.InferenceSession(campp_path, sess_options=so, providers=["CPUExecutionProvider"])
+            cdir, cbase = os.path.dirname(campp_path), os.path.basename(campp_path)
+            _require_files(cdir, (cbase,))
+            with _in_dir(cdir):
+                emb_model = ort.InferenceSession(cbase, sess_options=so, providers=["CPUExecutionProvider"])
         if campp2_path:
             try:
-                emb_model2 = ort.InferenceSession(campp2_path, sess_options=so, providers=["CPUExecutionProvider"])
+                c2dir, c2base = os.path.dirname(campp2_path), os.path.basename(campp2_path)
+                _require_files(c2dir, (c2base,))
+                with _in_dir(c2dir):
+                    emb_model2 = ort.InferenceSession(c2base, sess_options=so, providers=["CPUExecutionProvider"])
             except Exception as e2:
                 emb_err = "speaker model 2 unavailable: %s" % e2
         try:
@@ -3317,6 +3358,98 @@ for line in sys.stdin:
 `;
 
 // ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/workerPool.ts
+var cachedWorkerScript = null;
+function ensureWorkerScriptFile() {
+  try {
+    const expected = Buffer.byteLength(MEETING_WORKER_PY, "utf8");
+    if (cachedWorkerScript && (0, import_fs2.existsSync)(cachedWorkerScript) && (0, import_fs2.statSync)(cachedWorkerScript).size === expected) {
+      return cachedWorkerScript;
+    }
+    const hash = (0, import_crypto.createHash)("sha256").update(MEETING_WORKER_PY).digest("hex").slice(0, 12);
+    const file = (0, import_path2.join)((0, import_os2.tmpdir)(), `tc-mm-worker-${hash}.py`);
+    if (!(0, import_fs2.existsSync)(file) || (0, import_fs2.statSync)(file).size !== expected) {
+      const tmp = `${file}.${process.pid}.${Math.random().toString(36).slice(2, 8)}.tmp`;
+      (0, import_fs2.writeFileSync)(tmp, MEETING_WORKER_PY, "utf8");
+      try {
+        (0, import_fs2.renameSync)(tmp, file);
+      } catch {
+        try {
+          (0, import_fs2.unlinkSync)(tmp);
+        } catch {
+        }
+        if (!(0, import_fs2.existsSync)(file) || (0, import_fs2.statSync)(file).size !== expected) (0, import_fs2.writeFileSync)(file, MEETING_WORKER_PY, "utf8");
+      }
+    }
+    cachedWorkerScript = file;
+    return file;
+  } catch {
+    return null;
+  }
+}
+function diagnoseWorkerStartFailure(info) {
+  const errCode = info.err?.code;
+  const code = typeof info.code === "number" ? info.code : null;
+  const u32 = code !== null && (code < 0 || code >= 2147483648) ? code >>> 0 : null;
+  const hex = u32 !== null ? `0x${u32.toString(16).toUpperCase().padStart(8, "0")}` : null;
+  const signal = info.signal || null;
+  const stderr = String(info.stderr || "").replace(/\r\n/g, "\n").trim();
+  const stderrTail = stderr.slice(-600);
+  const parts = [];
+  if (errCode || info.err?.message) parts.push(`spawn=${[errCode, info.err?.message].filter(Boolean).join(" ")}`);
+  if (code !== null) parts.push(`exit=${hex ? `${code}(${hex})` : code}`);
+  if (signal) parts.push(`signal=${signal}`);
+  if (info.python) parts.push(`python=${info.python}`);
+  if (stderrTail) parts.push(`stderr=${stderrTail}`);
+  const detail = parts.join(" | ");
+  if (errCode === "ENOENT") {
+    return {
+      message: (0, import_i18n5.t)("\u672C\u5730\u8BED\u97F3\u8BC6\u522B\u8FDB\u7A0B\u672A\u80FD\u542F\u52A8\uFF1A\u627E\u4E0D\u5230\u5185\u7F6E\u8BED\u97F3\u8FD0\u884C\u65F6\uFF08\u53EF\u80FD\u88AB\u6740\u6BD2\u8F6F\u4EF6\u9694\u79BB\u6216\u5B89\u88C5\u4E0D\u5B8C\u6574\uFF09\uFF0C\u8BF7\u68C0\u67E5\u5B89\u5168\u8F6F\u4EF6\u62E6\u622A\u8BB0\u5F55\u6216\u91CD\u88C5\u5E94\u7528"),
+      detail
+    };
+  }
+  if (errCode === "EACCES" || errCode === "EPERM") {
+    return {
+      message: (0, import_i18n5.t)("\u672C\u5730\u8BED\u97F3\u8BC6\u522B\u8FDB\u7A0B\u672A\u80FD\u542F\u52A8\uFF1A\u8FD0\u884C\u6743\u9650\u88AB\u62D2\u7EDD\uFF08\u53EF\u80FD\u88AB\u5B89\u5168\u8F6F\u4EF6\u62E6\u622A\uFF09\uFF0C\u8BF7\u5C06\u5E94\u7528\u76EE\u5F55\u52A0\u5165\u6740\u6BD2\u8F6F\u4EF6\u767D\u540D\u5355\u540E\u91CD\u8BD5"),
+      detail
+    };
+  }
+  const isDllMissing = u32 === 3221225781 || u32 === 3221225785 || u32 === 3221225595 || /DLL load failed|vcruntime|msvcp|api-ms-win|0xc0000135|找不到指定的模块|无法定位程序输入点/i.test(stderr);
+  if (isDllMissing) {
+    return {
+      message: (0, import_i18n5.t)("\u672C\u5730\u8BED\u97F3\u8BC6\u522B\u8FDB\u7A0B\u672A\u80FD\u542F\u52A8\uFF1A\u7CFB\u7EDF\u7F3A\u5C11 VC++ \u8FD0\u884C\u5E93\uFF08Visual C++ 2015\u20132022 Redistributable x64\uFF09\u6216\u8BED\u97F3\u7EC4\u4EF6 DLL \u88AB\u62E6\u622A\uFF1B\u8BF7\u5B89\u88C5\u5FAE\u8F6F VC++ \u8FD0\u884C\u5E93\u540E\u91CD\u8BD5\uFF0C\u6216\u5230\u300C\u7CFB\u7EDF\u8BBE\u7F6E \u2192 AI \u914D\u7F6E\u300D\u4E34\u65F6\u6539\u7528\u5728\u7EBF\u8BED\u97F3\u8BC6\u522B"),
+      detail
+    };
+  }
+  if (u32 === 3221225501 || signal === "SIGILL") {
+    return {
+      message: (0, import_i18n5.t)("\u672C\u5730\u8BED\u97F3\u8BC6\u522B\u8FDB\u7A0B\u672A\u80FD\u542F\u52A8\uFF1A\u5F53\u524D\u7535\u8111\u5904\u7406\u5668\u4E0D\u652F\u6301\u672C\u5730\u8BED\u97F3\u6A21\u578B\u6240\u9700\u6307\u4EE4\u96C6\uFF0C\u8BF7\u5230\u300C\u7CFB\u7EDF\u8BBE\u7F6E \u2192 AI \u914D\u7F6E\u300D\u6539\u7528\u5728\u7EBF\u8BED\u97F3\u8BC6\u522B\u63A5\u53E3"),
+      detail
+    };
+  }
+  if (signal === "SIGKILL" || /out of memory|bad_alloc|MemoryError|Cannot allocate memory|paging file is too small|页面文件太小/i.test(stderr)) {
+    return {
+      message: (0, import_i18n5.t)("\u672C\u5730\u8BED\u97F3\u8BC6\u522B\u8FDB\u7A0B\u672A\u80FD\u542F\u52A8\uFF1A\u53EF\u7528\u5185\u5B58\u4E0D\u8DB3\uFF08\u6A21\u578B\u52A0\u8F7D\u88AB\u7CFB\u7EDF\u7EC8\u6B62\uFF09\uFF0C\u8BF7\u5173\u95ED\u5176\u4ED6\u7A0B\u5E8F\u3001\u5728\u8BBE\u7F6E\u91CC\u6539\u7528\u66F4\u8F7B\u91CF\u7684 SenseVoice \u6A21\u578B\uFF0C\u6216\u6539\u7528\u5728\u7EBF\u8BED\u97F3\u8BC6\u522B"),
+      detail
+    };
+  }
+  if (/does not exist|no such file|failed to open|unable to open|ReadFile|InvalidProtobuf|model file missing or empty|model\.int8\.onnx|encoder\.int8\.onnx|tokens\.txt/i.test(stderr)) {
+    return {
+      message: (0, import_i18n5.t)("\u672C\u5730\u8BED\u97F3\u8BC6\u522B\u8FDB\u7A0B\u672A\u80FD\u542F\u52A8\uFF1A\u8BED\u97F3\u6A21\u578B\u6587\u4EF6\u7F3A\u5931\u3001\u635F\u574F\u6216\u65E0\u6CD5\u8BFB\u53D6\uFF0C\u8BF7\u5230\u300C\u914D\u7F6E\u5F15\u5BFC \u2192 \u7535\u8111\u914D\u7F6E\u4E0E\u8BED\u97F3\u6A21\u578B\u300D\u91CD\u65B0\u4E0B\u8F7D\u6A21\u578B\u540E\u91CD\u8BD5"),
+      detail
+    };
+  }
+  if (u32 === 3221225477 || u32 === 3221226505 || u32 === 3221225725 || signal === "SIGABRT" || signal === "SIGSEGV") {
+    return {
+      message: (0, import_i18n5.t)("\u672C\u5730\u8BED\u97F3\u8BC6\u522B\u8FDB\u7A0B\u672A\u80FD\u542F\u52A8\uFF1A\u8BED\u97F3\u6A21\u578B\u52A0\u8F7D\u5F02\u5E38\u9000\u51FA\uFF08\u53EF\u80FD\u662F\u6A21\u578B\u635F\u574F\u3001\u5185\u5B58\u4E0D\u8DB3\u6216\u5B89\u5168\u8F6F\u4EF6\u62E6\u622A\uFF09\uFF0C\u8BF7\u70B9\u300C\u67E5\u770B\u5904\u7406\u65E5\u5FD7\u300D\u6838\u5BF9\u8BE6\u60C5\uFF0C\u4E5F\u53EF\u5728\u8BBE\u7F6E\u91CC\u6362\u7528 SenseVoice \u6216\u5728\u7EBF\u8BED\u97F3\u8BC6\u522B"),
+      detail
+    };
+  }
+  const tag = hex ? (0, import_i18n5.t)("\u9000\u51FA\u7801 {p0}", { p0: hex }) : code !== null ? (0, import_i18n5.t)("\u9000\u51FA\u7801 {p0}", { p0: String(code) }) : signal ? (0, import_i18n5.t)("\u4FE1\u53F7 {p0}", { p0: signal }) : "";
+  return {
+    message: tag ? (0, import_i18n5.t)("\u672C\u5730\u8BED\u97F3\u8BC6\u522B\u8FDB\u7A0B\u672A\u80FD\u542F\u52A8\uFF08{p0}\uFF09\uFF1A\u8BF7\u70B9\u300C\u67E5\u770B\u5904\u7406\u65E5\u5FD7\u300D\u67E5\u770B\u539F\u56E0\uFF0C\u4E5F\u53EF\u5230\u300C\u7CFB\u7EDF\u8BBE\u7F6E \u2192 AI \u914D\u7F6E\u300D\u4E34\u65F6\u6539\u7528\u5728\u7EBF\u8BED\u97F3\u8BC6\u522B", { p0: tag }) : (0, import_i18n5.t)("\u672C\u5730\u8BED\u97F3\u8BC6\u522B\u8FDB\u7A0B\u672A\u80FD\u542F\u52A8\uFF1A\u8BF7\u70B9\u300C\u67E5\u770B\u5904\u7406\u65E5\u5FD7\u300D\u67E5\u770B\u539F\u56E0\uFF0C\u4E5F\u53EF\u5230\u300C\u7CFB\u7EDF\u8BBE\u7F6E \u2192 AI \u914D\u7F6E\u300D\u4E34\u65F6\u6539\u7528\u5728\u7EBF\u8BED\u97F3\u8BC6\u522B"),
+    detail
+  };
+}
 var MeetingWorker = class {
   constructor(spec) {
     this.spec = spec;
@@ -3331,20 +3464,22 @@ var MeetingWorker = class {
   start(timeoutMs = 18e4) {
     return new Promise((resolve3, reject) => {
       const s = this.spec;
-      const c = (0, import_child_process2.spawn)(s.python, ["-u", "-c", MEETING_WORKER_PY, s.pluginsDir || "", s.model || "", s.modelsDir || "", s.campp || "", String(s.threads), s.campp2 || ""], {
+      const scriptFile = ensureWorkerScriptFile();
+      const args = scriptFile ? ["-u", scriptFile, s.pluginsDir || "", s.model || "", s.modelsDir || "", s.campp || "", String(s.threads), s.campp2 || ""] : ["-u", "-c", MEETING_WORKER_PY, s.pluginsDir || "", s.model || "", s.modelsDir || "", s.campp || "", String(s.threads), s.campp2 || ""];
+      const c = (0, import_child_process2.spawn)(s.python, args, {
         env: s.env,
         stdio: ["pipe", "pipe", "pipe"],
         windowsHide: true
       });
       this.child = c;
       const decode = (0, import_node_runtime2.createChunkDecoder)();
-      const decodeErr = (0, import_node_runtime2.createChunkDecoder)();
+      const decodeErr = (0, import_node_runtime2.createChunkDecoder)(true);
       let settled = false;
       const timer = setTimeout(() => {
         if (settled) return;
         settled = true;
         this.kill();
-        reject(new Error((0, import_i18n5.t)("\u672C\u5730\u8BED\u97F3\u6A21\u578B\u52A0\u8F7D\u8D85\u65F6")));
+        reject(Object.assign(new Error((0, import_i18n5.t)("\u672C\u5730\u8BED\u97F3\u6A21\u578B\u52A0\u8F7D\u8D85\u65F6")), { detail: this.stderrTail.slice(-600) }));
       }, timeoutMs);
       c.stdout.on("data", (b) => {
         this.buf += decode(b);
@@ -3377,18 +3512,19 @@ var MeetingWorker = class {
       c.stderr.on("data", (b) => {
         this.stderrTail = (this.stderrTail + decodeErr(b)).slice(-4e3);
       });
-      const onGone = (err) => {
+      const onGone = (err, code, signal) => {
         this.exited = true;
         if (!settled) {
           settled = true;
           clearTimeout(timer);
-          reject(Object.assign(new Error((0, import_i18n5.t)("\u672C\u5730\u8BED\u97F3\u8BC6\u522B\u8FDB\u7A0B\u672A\u80FD\u542F\u52A8")), { detail: String(err?.message || this.stderrTail.slice(-600)) }));
+          const diag = diagnoseWorkerStartFailure({ err, code, signal, stderr: this.stderrTail, python: s.python });
+          reject(Object.assign(new Error(diag.message), { detail: diag.detail }));
         }
         for (const [, h] of this.handlers) h({ done: true, error: "worker exited" });
         this.handlers.clear();
       };
       c.on("error", (e) => onGone(e));
-      c.on("close", () => onGone());
+      c.on("close", (code, signal) => onGone(void 0, code, signal));
     });
   }
   get alive() {
@@ -3475,9 +3611,18 @@ async function runSlices(spec, wavPath, slices, o) {
       w.kill();
       const why = String(ready.asrError || "");
       if (/No module named '(sherpa_onnx|faster_whisper|ctranslate2)'/.test(why)) {
-        throw new Error((0, import_i18n5.t)("\u8BED\u97F3\u8BC6\u522B\u7EC4\u4EF6\u6CA1\u88C5\u597D\uFF08\u6A21\u578B\u6587\u4EF6\u5728\uFF0C\u4F46\u8FD0\u884C\u7EC4\u4EF6\u7F3A\u5931\uFF09\u3002\u8BF7\u5728\u300C\u914D\u7F6E\u5F15\u5BFC \u2192 \u7535\u8111\u914D\u7F6E\u4E0E\u8BED\u97F3\u6A21\u578B\u300D\u91CC\u91CD\u65B0\u4E0B\u8F7D\u63A8\u8350\u7684\u8F6C\u5199\u6A21\u578B\u3002") + `\uFF08${why.slice(0, 120)}\uFF09`);
+        throw Object.assign(
+          new Error((0, import_i18n5.t)("\u8BED\u97F3\u8BC6\u522B\u7EC4\u4EF6\u6CA1\u88C5\u597D\uFF08\u6A21\u578B\u6587\u4EF6\u5728\uFF0C\u4F46\u8FD0\u884C\u7EC4\u4EF6\u7F3A\u5931\uFF09\u3002\u8BF7\u5728\u300C\u914D\u7F6E\u5F15\u5BFC \u2192 \u7535\u8111\u914D\u7F6E\u4E0E\u8BED\u97F3\u6A21\u578B\u300D\u91CC\u91CD\u65B0\u4E0B\u8F7D\u63A8\u8350\u7684\u8F6C\u5199\u6A21\u578B\u3002") + `\uFF08${why.slice(0, 120)}\uFF09`),
+          { detail: why }
+        );
       }
-      throw new Error((0, import_i18n5.t)("\u8BED\u97F3\u8BC6\u522B\u6A21\u578B\u6CA1\u80FD\u52A0\u8F7D\uFF1A{p0}", { p0: (why || (0, import_i18n5.t)("\u539F\u56E0\u672A\u77E5")).slice(0, 300) }));
+      if (/model file missing or empty|FileNotFoundError/i.test(why)) {
+        throw Object.assign(
+          new Error((0, import_i18n5.t)("\u8BED\u97F3\u6A21\u578B\u6587\u4EF6\u7F3A\u5931\u6216\u5DF2\u635F\u574F\uFF0C\u8BF7\u5728\u300C\u914D\u7F6E\u5F15\u5BFC \u2192 \u7535\u8111\u914D\u7F6E\u4E0E\u8BED\u97F3\u6A21\u578B\u300D\u91CD\u65B0\u4E0B\u8F7D\u6A21\u578B\u540E\u91CD\u8BD5\u3002") + `\uFF08${why.slice(0, 120)}\uFF09`),
+          { detail: why }
+        );
+      }
+      throw Object.assign(new Error((0, import_i18n5.t)("\u8BED\u97F3\u8BC6\u522B\u6A21\u578B\u6CA1\u80FD\u52A0\u8F7D\uFF1A{p0}", { p0: (why || (0, import_i18n5.t)("\u539F\u56E0\u672A\u77E5")).slice(0, 300) })), { detail: why });
     }
     o.onReady?.(ready, idx);
     return w;
@@ -4473,8 +4618,8 @@ async function organizeMinutes(i) {
 }
 
 // ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/transcriptParse.ts
-var import_fs2 = require("fs");
-var import_path2 = require("path");
+var import_fs3 = require("fs");
+var import_path3 = require("path");
 function parseClock(s) {
   const m = /^\s*(?:(\d{1,3}):)?(\d{1,2}):(\d{2})(?:[.,](\d{1,3}))?\s*$/.exec(s);
   if (!m) return null;
@@ -4748,14 +4893,14 @@ function joinTexts(parts) {
   return out;
 }
 async function parseTranscriptFile(path, name, o) {
-  const ext = (0, import_path2.extname)(name || path).toLowerCase();
+  const ext = (0, import_path3.extname)(name || path).toLowerCase();
   let text;
   if (ext === ".docx" || ext === ".doc") {
     const { extractDocument } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/documentExtractor.ts")));
     const doc = await extractDocument(path, name);
     text = doc.text || "";
   } else {
-    text = decodeText((0, import_fs2.readFileSync)(path));
+    text = decodeText((0, import_fs3.readFileSync)(path));
   }
   return parseTranscriptText(text, ext, o);
 }
@@ -4787,9 +4932,9 @@ function decodeText(buf) {
 }
 
 // ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/voiceprint.ts
-var import_fs3 = require("fs");
-var import_os2 = require("os");
-var import_path3 = require("path");
+var import_fs4 = require("fs");
+var import_os3 = require("os");
+var import_path4 = require("path");
 var import_i18n7 = require("npm:@totalclaw/i18n");
 init_runtime();
 var AUDIO_FILE = "audio16k.wav";
@@ -4818,7 +4963,7 @@ function percentile(values, p) {
   return a[Math.min(a.length - 1, Math.max(0, Math.round((a.length - 1) * p)))];
 }
 async function enrollVoiceprint(audioPath) {
-  if (!audioPath || !(0, import_fs3.existsSync)(audioPath)) return { ok: false, reason: (0, import_i18n7.t)("\u5F55\u97F3\u6587\u4EF6\u4E0D\u5B58\u5728\uFF0C\u8BF7\u91CD\u65B0\u5F55\u5236") };
+  if (!audioPath || !(0, import_fs4.existsSync)(audioPath)) return { ok: false, reason: (0, import_i18n7.t)("\u5F55\u97F3\u6587\u4EF6\u4E0D\u5B58\u5728\uFF0C\u8BF7\u91CD\u65B0\u5F55\u5236") };
   let rt;
   try {
     rt = await resolveMeetingRuntime();
@@ -4828,9 +4973,9 @@ async function enrollVoiceprint(audioPath) {
   if (!rt.campp && !rt.campp2) return { ok: false, reason: (0, import_i18n7.t)("\u8BF7\u5148\u4E0B\u8F7D\u58F0\u7EB9\u8BC6\u522B\u6A21\u578B\uFF08\u8BBE\u7F6E \u2192 \u8BED\u97F3\uFF09\uFF0C\u518D\u91C7\u96C6\u58F0\u7EB9") };
   if (!rt.ffmpeg) return { ok: false, reason: (0, import_i18n7.t)("\u627E\u4E0D\u5230 ffmpeg\uFF0C\u65E0\u6CD5\u5904\u7406\u5F55\u97F3") };
   if (!rt.python) return { ok: false, reason: (0, import_i18n7.t)("\u627E\u4E0D\u5230\u672C\u5730\u8BED\u97F3\u8BC6\u522B\u8FD0\u884C\u65F6") };
-  const dir = (0, import_fs3.mkdtempSync)((0, import_path3.join)((0, import_os2.tmpdir)(), "tc-mm-enroll-"));
+  const dir = (0, import_fs4.mkdtempSync)((0, import_path4.join)((0, import_os3.tmpdir)(), "tc-mm-enroll-"));
   try {
-    const wav = (0, import_path3.join)(dir, "in.wav");
+    const wav = (0, import_path4.join)(dir, "in.wav");
     try {
       await convertToWav16k(rt.ffmpeg, audioPath, wav, (0, import_i18n7.t)("\u5F55\u97F3"));
     } catch (e) {
@@ -4859,7 +5004,7 @@ async function enrollVoiceprint(audioPath) {
     const parts = [];
     for (let i = 0; i < mask.length; i++) if (mask[i]) for (let k = 0; k < hop; k++) parts.push(pcm[i * hop + k] ?? 0);
     const speechPcm = Int16Array.from(parts);
-    const speechWav = (0, import_path3.join)(dir, "speech.wav");
+    const speechWav = (0, import_path4.join)(dir, "speech.wav");
     writeWav16k(speechWav, speechPcm);
     const dur = speechPcm.length / SAMPLE_RATE;
     const half = dur / 2;
@@ -4867,8 +5012,9 @@ async function enrollVoiceprint(audioPath) {
     let outs;
     try {
       outs = await runSlices(workerSpecFor(rt, { asr: false, threads: 2 }), speechWav, ranges, { workers: 1, asr: false, emb: true, createWorker: pipelineConfig().createWorker });
-    } catch {
-      return { ok: false, reason: (0, import_i18n7.t)("\u58F0\u7EB9\u63D0\u53D6\u5931\u8D25\uFF0C\u8BF7\u91CD\u8BD5") };
+    } catch (e) {
+      const m = String(e?.message || "").trim();
+      return { ok: false, reason: m && /[一-鿿]/.test(m) ? m : (0, import_i18n7.t)("\u58F0\u7EB9\u63D0\u53D6\u5931\u8D25\uFF0C\u8BF7\u91CD\u8BD5") };
     }
     const vec = outs[0]?.emb;
     const vec2 = outs[0]?.emb2;
@@ -4886,7 +5032,7 @@ async function enrollVoiceprint(audioPath) {
     return { ok: true, vector: okLen(vec) ? unitOf(vec) : [], ...okLen(vec2) ? { vector2: unitOf(vec2) } : {}, seconds };
   } finally {
     try {
-      (0, import_fs3.rmSync)(dir, { recursive: true, force: true });
+      (0, import_fs4.rmSync)(dir, { recursive: true, force: true });
     } catch {
     }
   }
@@ -4946,45 +5092,45 @@ function safeLabel(label) {
   return label.replace(/[^\p{L}\p{N}_-]+/gu, "_").slice(0, 40) || "speaker";
 }
 function clipPathFor(workDir, label) {
-  return (0, import_path3.join)(workDir, CLIP_DIR, `${safeLabel(label)}.wav`);
+  return (0, import_path4.join)(workDir, CLIP_DIR, `${safeLabel(label)}.wav`);
 }
 async function rebuildAudio(meeting, workDir) {
   const rt = await resolveMeetingRuntime();
   if (!rt.ffmpeg) return null;
   const media = [];
   for (const f of meeting.files || []) {
-    if (!(0, import_fs3.existsSync)(f.path)) continue;
+    if (!(0, import_fs4.existsSync)(f.path)) continue;
     const c = f.kind === "transcript" ? null : await classifyMeetingFile(f.path, f.name, rt.ffprobe);
     if (c && c.kind !== "transcript") media.push({ path: f.path, name: f.name });
   }
   if (!media.length) return null;
-  const tmp = (0, import_path3.join)(workDir, "_audio");
-  (0, import_fs3.mkdirSync)(tmp, { recursive: true });
+  const tmp = (0, import_path4.join)(workDir, "_audio");
+  (0, import_fs4.mkdirSync)(tmp, { recursive: true });
   const parts = [];
   for (let k = 0; k < media.length; k++) {
-    const p = (0, import_path3.join)(tmp, `part-${k}.wav`);
+    const p = (0, import_path4.join)(tmp, `part-${k}.wav`);
     await convertToWav16k(rt.ffmpeg, media[k].path, p, media[k].name);
     parts.push(p);
   }
-  const out = (0, import_path3.join)(workDir, AUDIO_FILE);
+  const out = (0, import_path4.join)(workDir, AUDIO_FILE);
   await concatWav16k(parts, out);
-  (0, import_fs3.rmSync)(tmp, { recursive: true, force: true });
+  (0, import_fs4.rmSync)(tmp, { recursive: true, force: true });
   return out;
 }
 async function exportSpeakerClip(i) {
   const { meeting, label, workDir } = i;
   const slot = (meeting.speakers || []).find((s) => s.label === label);
-  if (slot?.clipPath && (0, import_fs3.existsSync)(slot.clipPath)) return slot.clipPath;
+  if (slot?.clipPath && (0, import_fs4.existsSync)(slot.clipPath)) return slot.clipPath;
   const ranges = (meeting.segments || []).filter((s) => s.speakerLabel === label).map((s) => ({ start: s.start, end: s.end }));
   if (!ranges.length) return null;
-  let wav = (0, import_path3.join)(workDir, AUDIO_FILE);
+  let wav = (0, import_path4.join)(workDir, AUDIO_FILE);
   try {
-    if (!(0, import_fs3.existsSync)(wav)) {
+    if (!(0, import_fs4.existsSync)(wav)) {
       const rebuilt = await rebuildAudio(meeting, workDir);
       if (!rebuilt) return null;
       wav = rebuilt;
     }
-    (0, import_fs3.mkdirSync)((0, import_path3.join)(workDir, CLIP_DIR), { recursive: true });
+    (0, import_fs4.mkdirSync)((0, import_path4.join)(workDir, CLIP_DIR), { recursive: true });
     const out = clipPathFor(workDir, label);
     return cutClip(wav, ranges, out) ? out : null;
   } catch {
@@ -4992,8 +5138,8 @@ async function exportSpeakerClip(i) {
   }
 }
 async function meetingVoiceSample(workDir, ranges) {
-  const wav = (0, import_path3.join)(workDir, AUDIO_FILE);
-  if (!(0, import_fs3.existsSync)(wav)) return null;
+  const wav = (0, import_path4.join)(workDir, AUDIO_FILE);
+  if (!(0, import_fs4.existsSync)(wav)) return null;
   let rt;
   try {
     rt = await resolveMeetingRuntime();
@@ -5549,7 +5695,7 @@ async function classifyAll(files, rt, signal) {
   const out = [];
   for (const f of files) {
     checkAbort(signal);
-    if (!f.path || !(0, import_fs4.existsSync)(f.path)) throw new Error((0, import_i18n10.t)("\u6587\u4EF6\u300C{p0}\u300D\u5DF2\u4E0D\u5728\u672C\u673A\uFF0C\u8BF7\u91CD\u65B0\u4E0A\u4F20", { p0: f.name }));
+    if (!f.path || !(0, import_fs5.existsSync)(f.path)) throw new Error((0, import_i18n10.t)("\u6587\u4EF6\u300C{p0}\u300D\u5DF2\u4E0D\u5728\u672C\u673A\uFF0C\u8BF7\u91CD\u65B0\u4E0A\u4F20", { p0: f.name }));
     const c = await classifyMeetingFile(f.path, f.name, (await rt()).ffprobe, signal);
     if (!c) throw new Error((0, import_i18n10.t)("\u6587\u4EF6\u300C{p0}\u300D\u7684\u683C\u5F0F\u4E0D\u652F\u6301\uFF08\u6CA1\u6709\u97F3\u8F68\uFF0C\u4E5F\u4E0D\u662F\u6587\u5B57\u8BB0\u5F55\uFF09", { p0: f.name }));
     out.push({ file: f, kind: c.kind });
@@ -5560,7 +5706,7 @@ async function runMeetingPipeline(input) {
   const report = makeReporter(input.onStage);
   const { signal } = input;
   if (!input.files?.length) throw new Error((0, import_i18n10.t)("\u8FD8\u6CA1\u6709\u4E0A\u4F20\u4F1A\u8BAE\u6587\u4EF6"));
-  (0, import_fs4.mkdirSync)(input.workDir, { recursive: true });
+  (0, import_fs5.mkdirSync)(input.workDir, { recursive: true });
   let rtCache = null;
   const rt = () => rtCache ||= resolveMeetingRuntime();
   try {
@@ -5623,21 +5769,21 @@ async function runAudio(input, files, rt, report) {
   const { signal, workDir } = input;
   const cfg = pipelineConfig();
   if (!rt.ffmpeg) throw new Error((0, import_i18n10.t)("\u627E\u4E0D\u5230 ffmpeg\uFF0C\u65E0\u6CD5\u5904\u7406\u5F55\u97F3"));
-  const tmp = (0, import_path4.join)(workDir, "_audio");
-  (0, import_fs4.rmSync)(tmp, { recursive: true, force: true });
-  (0, import_fs4.mkdirSync)(tmp, { recursive: true });
+  const tmp = (0, import_path5.join)(workDir, "_audio");
+  (0, import_fs5.rmSync)(tmp, { recursive: true, force: true });
+  (0, import_fs5.mkdirSync)(tmp, { recursive: true });
   const parts = [];
   for (let k = 0; k < files.length; k++) {
     checkAbort(signal);
     report("extract", 1 + Math.round(k / files.length * 4), (0, import_i18n10.t)("\u6B63\u5728\u63D0\u53D6\u97F3\u8F68\uFF08{p0}/{p1}\uFF09", { p0: k + 1, p1: files.length }));
-    const p = (0, import_path4.join)(tmp, `part-${k}.wav`);
+    const p = (0, import_path5.join)(tmp, `part-${k}.wav`);
     await convertToWav16k(rt.ffmpeg, files[k].path, p, files[k].name, signal);
     parts.push(p);
   }
-  const wav = (0, import_path4.join)(workDir, AUDIO_FILE);
-  if (parts.length === 1) (0, import_fs4.renameSync)(parts[0], wav);
+  const wav = (0, import_path5.join)(workDir, AUDIO_FILE);
+  if (parts.length === 1) (0, import_fs5.renameSync)(parts[0], wav);
   else await concatWav16k(parts, wav);
-  (0, import_fs4.rmSync)(tmp, { recursive: true, force: true });
+  (0, import_fs5.rmSync)(tmp, { recursive: true, force: true });
   const info = readWavInfo(wav);
   const durationSec = Math.round(info.duration);
   if (info.duration < 0.5) throw new Error((0, import_i18n10.t)("\u5F55\u97F3\u592A\u77ED\uFF0C\u6CA1\u6709\u53EF\u8F6C\u5199\u7684\u5185\u5BB9"));
@@ -5767,7 +5913,7 @@ async function runAudio(input, files, rt, report) {
   for (const s of rawSegments) if (!order.includes(s.speakerLabel)) order.push(s.speakerLabel);
   const relabel = new Map(order.map((l, k) => [l, `S${k + 1}`]));
   const segments = rawSegments.map((s) => ({ ...s, speakerLabel: relabel.get(s.speakerLabel) }));
-  (0, import_fs4.mkdirSync)((0, import_path4.join)(workDir, CLIP_DIR), { recursive: true });
+  (0, import_fs5.mkdirSync)((0, import_path5.join)(workDir, CLIP_DIR), { recursive: true });
   const speakers = [];
   for (const old of order) {
     const sp = d.speakers.find((x) => x.label === old);
@@ -6654,8 +6800,11 @@ function parseOrgTable(rows) {
 var import_spreadsheetRead = require("host:apps/desktop-shell/src/main/services/spreadsheetRead.ts");
 
 // ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/setupCheck.ts
-var import_node_os = require("node:os");
+var import_node_crypto4 = require("node:crypto");
 var import_node_fs2 = require("node:fs");
+var import_node_os = require("node:os");
+var import_node_path2 = require("node:path");
+var import_i18n15 = require("npm:@totalclaw/i18n");
 init_runtime();
 var SPEAKER_INSTALL_ID = "speaker-campplus";
 var MEETING_ASR_IDS = { firered: "asr-meeting-firered2", sensevoice: "asr-meeting-sensevoice" };
@@ -6707,6 +6856,223 @@ function recommendAsr(hw) {
     tier,
     ...downgradeReason ? { downgradeReason } : {}
   };
+}
+var MEETING_MODELS_CDN_BASE = "https://cdn2.taituai.com/meeting-models";
+var ALLOWED_MEETING_MODEL_IDS = /* @__PURE__ */ new Set([MEETING_ASR_IDS.sensevoice, MEETING_ASR_IDS.firered, SPEAKER_INSTALL_ID]);
+function modelLabel(id) {
+  if (id === MEETING_ASR_IDS.firered) return "FireRedASR2";
+  if (id === MEETING_ASR_IDS.sensevoice) return "SenseVoice";
+  if (id === SPEAKER_INSTALL_ID) return (0, import_i18n15.t)("\u58F0\u7EB9\u6A21\u578B CAM++");
+  return id;
+}
+async function resolveCdnTarget(id) {
+  if (id === MEETING_ASR_IDS.sensevoice || id === MEETING_ASR_IDS.firered) {
+    const sam = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/streamingAsrModel.ts")));
+    const spec = sam.streamingAsrSpec(id);
+    if (!spec) return null;
+    return { destDir: sam.streamingArchiveDir(spec), label: modelLabel(id), files: spec.files };
+  }
+  if (id === SPEAKER_INSTALL_ID) {
+    const [{ SPEAKER_MODEL }, { whisperModelsDir }] = await Promise.all([Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/speakerModel.ts"))), Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/whisperModels.ts")))]);
+    const repoRoot = (0, import_node_path2.join)(whisperModelsDir(), `models--${SPEAKER_MODEL.repoId.replace("/", "--")}`);
+    return {
+      destDir: (0, import_node_path2.join)(repoRoot, "snapshots", SPEAKER_MODEL.revision),
+      label: modelLabel(id),
+      files: [{ file: SPEAKER_MODEL.file, sha256: SPEAKER_MODEL.sha256, bytes: SPEAKER_MODEL.bytes }],
+      refsMain: { file: (0, import_node_path2.join)(repoRoot, "refs", "main"), rev: SPEAKER_MODEL.revision }
+    };
+  }
+  return null;
+}
+function sha256File(filePath) {
+  return new Promise((resolve3, reject) => {
+    const h = (0, import_node_crypto4.createHash)("sha256");
+    const s = (0, import_node_fs2.createReadStream)(filePath, { highWaterMark: 1024 * 1024 });
+    s.on("data", (chunk) => h.update(chunk));
+    s.on("error", reject);
+    s.on("end", () => resolve3(h.digest("hex")));
+  });
+}
+function safeReplaceFile(from, to) {
+  try {
+    (0, import_node_fs2.renameSync)(from, to);
+  } catch {
+    try {
+      if ((0, import_node_fs2.existsSync)(to)) (0, import_node_fs2.unlinkSync)(to);
+    } catch {
+    }
+    (0, import_node_fs2.renameSync)(from, to);
+  }
+}
+async function downloadOneFile(url, dest, spec, opts) {
+  const part = `${dest}.part`;
+  (0, import_node_fs2.mkdirSync)((0, import_node_path2.dirname)(dest), { recursive: true });
+  let lastErr = "";
+  for (let attempt = 1; attempt <= opts.maxRetries; attempt++) {
+    if (opts.signal?.aborted) throw new Error((0, import_i18n15.t)("\u4E0B\u8F7D\u5DF2\u53D6\u6D88"));
+    let offset = 0;
+    try {
+      if ((0, import_node_fs2.existsSync)(part)) {
+        const sz = (0, import_node_fs2.statSync)(part).size;
+        if (sz > spec.bytes) (0, import_node_fs2.unlinkSync)(part);
+        else offset = sz;
+      }
+    } catch {
+      offset = 0;
+    }
+    if (offset < spec.bytes) {
+      const ctrl = new AbortController();
+      const onOuterAbort = () => ctrl.abort();
+      opts.signal?.addEventListener("abort", onOuterAbort, { once: true });
+      let timer = null;
+      const bump = () => {
+        if (timer) clearTimeout(timer);
+        timer = setTimeout(() => ctrl.abort(), opts.chunkTimeoutMs);
+      };
+      let ws = null;
+      try {
+        bump();
+        const headers = offset > 0 ? { Range: `bytes=${offset}-` } : {};
+        const resp = await opts.fetchImpl(url, { headers, signal: ctrl.signal });
+        if (resp.status === 416) {
+          try {
+            (0, import_node_fs2.unlinkSync)(part);
+          } catch {
+          }
+          continue;
+        }
+        if (!resp.ok && resp.status !== 206) throw new Error(`HTTP ${resp.status}`);
+        const append = resp.status === 206 && offset > 0;
+        let cur = append ? offset : 0;
+        ws = (0, import_node_fs2.createWriteStream)(part, { flags: append ? "a" : "w" });
+        const body = resp.body;
+        if (!body) throw new Error("empty response body");
+        const reader = body.getReader();
+        opts.onBytes(cur);
+        while (true) {
+          bump();
+          const { done, value } = await reader.read();
+          if (done) break;
+          if (!value?.byteLength) continue;
+          cur += value.byteLength;
+          if (!ws.write(Buffer.from(value.buffer, value.byteOffset, value.byteLength))) {
+            await new Promise((res, rej) => {
+              ws.once("drain", res);
+              ws.once("error", rej);
+            });
+          }
+          opts.onBytes(cur);
+        }
+        await new Promise((res, rej) => {
+          ws.end(() => res());
+          ws.once("error", rej);
+        });
+        ws = null;
+      } catch (e) {
+        try {
+          ws?.destroy();
+        } catch {
+        }
+        if (opts.signal?.aborted) throw new Error((0, import_i18n15.t)("\u4E0B\u8F7D\u5DF2\u53D6\u6D88"));
+        lastErr = ctrl.signal.aborted ? (0, import_i18n15.t)("\u4E0B\u8F7D\u8FDE\u63A5\u8D85\u65F6") : String(e?.message || e);
+        if (attempt < opts.maxRetries) continue;
+        throw new Error(lastErr);
+      } finally {
+        if (timer) clearTimeout(timer);
+        opts.signal?.removeEventListener("abort", onOuterAbort);
+      }
+    }
+    const actualSize = (0, import_node_fs2.existsSync)(part) ? (0, import_node_fs2.statSync)(part).size : 0;
+    if (actualSize !== spec.bytes) {
+      lastErr = (0, import_i18n15.t)("\u6587\u4EF6\u4E0B\u8F7D\u4E0D\u5B8C\u6574\uFF08{p0}/{p1}\uFF09", { p0: String(actualSize), p1: String(spec.bytes) });
+      if (actualSize > spec.bytes) try {
+        (0, import_node_fs2.unlinkSync)(part);
+      } catch {
+      }
+      if (attempt < opts.maxRetries) continue;
+      throw new Error(lastErr);
+    }
+    const digest = await sha256File(part);
+    if (spec.sha256 && digest.toLowerCase() !== spec.sha256.toLowerCase()) {
+      try {
+        (0, import_node_fs2.unlinkSync)(part);
+      } catch {
+      }
+      lastErr = (0, import_i18n15.t)("\u6587\u4EF6\u6821\u9A8C\u4E0D\u901A\u8FC7\uFF1A{p0}", { p0: spec.file });
+      if (attempt < opts.maxRetries) continue;
+      throw new Error(lastErr);
+    }
+    safeReplaceFile(part, dest);
+    opts.onBytes(spec.bytes);
+    return;
+  }
+  throw new Error(lastErr || (0, import_i18n15.t)("\u4E0B\u8F7D\u5931\u8D25"));
+}
+async function downloadMeetingModelFromCdn(id, opts = {}) {
+  const target = opts.targetOverride ?? await resolveCdnTarget(id);
+  if (!target) return { ok: false, error: (0, import_i18n15.t)("\u4E0D\u652F\u6301\u7684\u6A21\u578B\uFF1A{p0}", { p0: id }) };
+  const base = (opts.baseUrl || process.env.TOTALCLAW_MEETING_MODELS_CDN || MEETING_MODELS_CDN_BASE).replace(/\/+$/, "");
+  const fetchImpl = opts.fetchImpl ?? globalThis.fetch;
+  const totalBytes = target.files.reduce((s, f) => s + f.bytes, 0) || 1;
+  const chunkTimeoutMs = opts.chunkTimeoutMs ?? 3e4;
+  const maxRetries = opts.maxRetries ?? 3;
+  let completed = 0;
+  let lastEmit = 0;
+  const report = (curFileBytes, force = false) => {
+    const now = Date.now();
+    if (!force && now - lastEmit < 350) return;
+    lastEmit = now;
+    const got = Math.min(totalBytes, completed + curFileBytes);
+    const percent = Math.min(99, Math.floor(got / totalBytes * 100));
+    opts.onProgress?.({
+      id,
+      percent,
+      bytes: got,
+      totalBytes,
+      line: (0, import_i18n15.t)("\u6B63\u5728\u4E0B\u8F7D {p0}\uFF1A{p1} MB / {p2} MB\uFF08{p3}%\uFF09", {
+        p0: target.label,
+        p1: Math.floor(got / 1048576),
+        p2: Math.max(1, Math.ceil(totalBytes / 1048576)),
+        p3: percent
+      })
+    });
+  };
+  try {
+    (0, import_node_fs2.mkdirSync)(target.destDir, { recursive: true });
+    report(0, true);
+    for (const f of target.files) {
+      const dest = (0, import_node_path2.join)(target.destDir, f.file);
+      if ((0, import_node_fs2.existsSync)(dest)) {
+        try {
+          if ((0, import_node_fs2.statSync)(dest).size === f.bytes) {
+            completed += f.bytes;
+            report(0, true);
+            continue;
+          }
+        } catch {
+        }
+      }
+      await downloadOneFile(`${base}/${id}/${f.file}`, dest, f, {
+        fetchImpl,
+        signal: opts.signal,
+        chunkTimeoutMs,
+        maxRetries,
+        onBytes: (n) => report(n)
+      });
+      completed += f.bytes;
+      report(0, true);
+    }
+    if (target.refsMain && !(0, import_node_fs2.existsSync)(target.refsMain.file)) {
+      try {
+        (0, import_node_fs2.mkdirSync)((0, import_node_path2.dirname)(target.refsMain.file), { recursive: true });
+        (0, import_node_fs2.writeFileSync)(target.refsMain.file, target.refsMain.rev, "utf8");
+      } catch {
+      }
+    }
+    return { ok: true, destDir: target.destDir };
+  } catch (e) {
+    return { ok: false, error: String(e?.message || e) };
+  }
 }
 
 // ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/scheduler.ts
@@ -6864,9 +7230,9 @@ function startMeetingScheduler(tick, intervalMs = MEETING_SCHEDULER_INTERVAL_MS)
 }
 
 // ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/server.ts
-var import_node_crypto4 = require("node:crypto");
+var import_node_crypto5 = require("node:crypto");
 var import_node_fs3 = require("node:fs");
-var import_node_path2 = require("node:path");
+var import_node_path3 = require("node:path");
 var import_node_zlib = require("node:zlib");
 var import_lanServer = require("host:apps/desktop-shell/src/main/services/lanServer.ts");
 
@@ -9985,24 +10351,24 @@ function buildVoiceprintUrl(baseUrl, token) {
   return `${baseUrl.replace(/\/+$/, "")}/v?t=${encodeURIComponent(token)}`;
 }
 function isInside(root, p) {
-  const rel = (0, import_node_path2.relative)((0, import_node_path2.resolve)(root), (0, import_node_path2.resolve)(p));
-  return !!rel && !rel.startsWith("..") && !(0, import_node_path2.isAbsolute)(rel);
+  const rel = (0, import_node_path3.relative)((0, import_node_path3.resolve)(root), (0, import_node_path3.resolve)(p));
+  return !!rel && !rel.startsWith("..") && !(0, import_node_path3.isAbsolute)(rel);
 }
 function safeUploadName(raw) {
-  let n = (0, import_node_path2.basename)(String(raw || "").replace(/\\/g, "/"));
+  let n = (0, import_node_path3.basename)(String(raw || "").replace(/\\/g, "/"));
   n = Array.from(n).map((ch) => {
     const code = ch.charCodeAt(0);
     return code < 32 || code === 127 || '<>:"/\\|?*'.includes(ch) ? "_" : ch;
   }).join("").replace(/\s+/g, " ").trim().replace(/^\.+/, "");
   if (!n) n = "upload.bin";
   if (n.length > 80) {
-    const ext = (0, import_node_path2.extname)(n).slice(0, 12);
+    const ext = (0, import_node_path3.extname)(n).slice(0, 12);
     n = n.slice(0, 80 - ext.length) + ext;
   }
   return n;
 }
 function personKey(personId) {
-  return `p-${(0, import_node_crypto4.createHash)("sha1").update(String(personId)).digest("hex").slice(0, 12)}`;
+  return `p-${(0, import_node_crypto5.createHash)("sha1").update(String(personId)).digest("hex").slice(0, 12)}`;
 }
 function stamp(d) {
   const p = (n) => String(n).padStart(2, "0");
@@ -10024,7 +10390,7 @@ function sweepUploads(root, now = Date.now(), ttlMs = UPLOAD_TTL_MS) {
   }
   for (const d of dirs) {
     if (!UPLOAD_DIR_RE.test(d)) continue;
-    const dir = (0, import_node_path2.join)(root, d);
+    const dir = (0, import_node_path3.join)(root, d);
     let files = [];
     try {
       files = (0, import_node_fs3.readdirSync)(dir);
@@ -10033,7 +10399,7 @@ function sweepUploads(root, now = Date.now(), ttlMs = UPLOAD_TTL_MS) {
     }
     for (const f of files) {
       if (!UPLOAD_FILE_RE.test(f)) continue;
-      const p = (0, import_node_path2.join)(dir, f);
+      const p = (0, import_node_path3.join)(dir, f);
       try {
         const st = (0, import_node_fs3.statSync)(p);
         if (st.isFile() && now - st.mtimeMs > ttlMs) {
@@ -10113,7 +10479,7 @@ var CSP = [
   "frame-ancestors 'none'"
 ].join("; ");
 function prepare(html) {
-  return { html, gz: (0, import_node_zlib.gzipSync)(Buffer.from(html, "utf-8")), etag: `"${(0, import_node_crypto4.createHash)("sha1").update(html).digest("hex").slice(0, 16)}"` };
+  return { html, gz: (0, import_node_zlib.gzipSync)(Buffer.from(html, "utf-8")), etag: `"${(0, import_node_crypto5.createHash)("sha1").update(html).digest("hex").slice(0, 16)}"` };
 }
 function sendPage(req, res, page, status = 200) {
   const headers = {
@@ -10196,8 +10562,8 @@ var AUDIO_MIME = {
 };
 async function startMeetingMobileServer(o) {
   const maxUpload = o.maxUploadBytes && o.maxUploadBytes > 0 ? o.maxUploadBytes : MM_MOBILE_MAX_UPLOAD_BYTES;
-  const uploadRoot = (0, import_node_path2.resolve)(o.uploadDir);
-  const dataRoot = (0, import_node_path2.resolve)(o.dataDir);
+  const uploadRoot = (0, import_node_path3.resolve)(o.uploadDir);
+  const dataRoot = (0, import_node_path3.resolve)(o.dataDir);
   const badTokens = new import_lanServer.RateBucket(30, 6e4);
   const appPage = prepare(MEETING_MOBILE_APP_HTML);
   const voicePage = prepare(MEETING_VOICE_PAGE_HTML);
@@ -10211,11 +10577,11 @@ async function startMeetingMobileServer(o) {
     } catch {
     }
   };
-  const personDir = (personId) => (0, import_node_path2.join)(uploadRoot, personKey(personId));
+  const personDir = (personId) => (0, import_node_path3.join)(uploadRoot, personKey(personId));
   const ownsUpload = (personId, p) => {
     if (typeof p !== "string" || !p) return false;
-    const abs = (0, import_node_path2.resolve)(p);
-    if (!isInside(personDir(personId), abs) || !UPLOAD_FILE_RE.test((0, import_node_path2.basename)(abs))) return false;
+    const abs = (0, import_node_path3.resolve)(p);
+    if (!isInside(personDir(personId), abs) || !UPLOAD_FILE_RE.test((0, import_node_path3.basename)(abs))) return false;
     try {
       return (0, import_node_fs3.statSync)(abs).isFile();
     } catch {
@@ -10286,13 +10652,13 @@ async function startMeetingMobileServer(o) {
         sendJson(c.res, 400, { ok: false, error: "BAD_PATH" });
         return;
       }
-      payload = { ...payload, paths: paths.map((p) => (0, import_node_path2.resolve)(p)) };
+      payload = { ...payload, paths: paths.map((p) => (0, import_node_path3.resolve)(p)) };
     } else if (action === "voiceprint.enroll") {
       if (!ownsUpload(personId, payload.path)) {
         sendJson(c.res, 400, { ok: false, error: "BAD_PATH" });
         return;
       }
-      cleanup2 = (0, import_node_path2.resolve)(payload.path);
+      cleanup2 = (0, import_node_path3.resolve)(payload.path);
       payload = { ...payload, personId, path: cleanup2 };
     } else if (action === "voiceprint.delete") {
       payload = { ...payload, personId };
@@ -10337,7 +10703,7 @@ async function startMeetingMobileServer(o) {
       closeSoon(c.req, c.res);
       return;
     }
-    const file = (0, import_node_path2.join)(dir, `${stamp(/* @__PURE__ */ new Date())}-${(0, import_node_crypto4.randomBytes)(3).toString("hex")}-${name}`);
+    const file = (0, import_node_path3.join)(dir, `${stamp(/* @__PURE__ */ new Date())}-${(0, import_node_crypto5.randomBytes)(3).toString("hex")}-${name}`);
     await new Promise((done) => {
       const ws = (0, import_node_fs3.createWriteStream)(file, { flags: "wx" });
       let size = 0;
@@ -10411,8 +10777,8 @@ ${label}`;
       return;
     }
     if (clip.path) {
-      const abs = (0, import_node_path2.resolve)(clip.path);
-      c.serveFile(isInside(dataRoot, abs) && (0, import_node_fs3.existsSync)(abs) ? abs : null, AUDIO_MIME[(0, import_node_path2.extname)(abs).toLowerCase()] || "application/octet-stream");
+      const abs = (0, import_node_path3.resolve)(clip.path);
+      c.serveFile(isInside(dataRoot, abs) && (0, import_node_fs3.existsSync)(abs) ? abs : null, AUDIO_MIME[(0, import_node_path3.extname)(abs).toLowerCase()] || "application/octet-stream");
       return;
     }
     const buf = clip.buf;
@@ -10510,8 +10876,12 @@ function defaultExternals() {
     },
     detectHardware: (dir) => detectHardware(dir),
     cloudTranscribe: (cfg, wav) => cloudTranscribe(cfg, wav, { timeoutMs: 3e4 }),
+    installModel: async (id, onProgress, signal) => {
+      const r = await downloadMeetingModelFromCdn(id, { signal, onProgress: (p) => onProgress({ percent: p.percent, line: p.line }) });
+      return r.ok ? { ok: true } : { ok: false, error: r.error };
+    },
     segmentAudio: (workDir, start, end) => {
-      const f = (0, import_node_path3.join)(workDir, AUDIO_FILE);
+      const f = (0, import_node_path4.join)(workDir, AUDIO_FILE);
       return (0, import_node_fs4.existsSync)(f) ? sliceWavBase64(f, { start, end }) : null;
     }
   };
@@ -10520,7 +10890,7 @@ var AUDIO_EXT = /* @__PURE__ */ new Set(["mp3", "m4a", "wav", "aac", "amr", "fla
 var VIDEO_EXT = /* @__PURE__ */ new Set(["mp4", "mov", "mkv", "avi", "flv", "wmv", "webm", "m4v", "3gp", "3g2", "mpeg", "mpg", "ts", "mts", "m2ts", "vob", "rmvb", "rm", "asf", "ogv"]);
 var TRANSCRIPT_EXT = /* @__PURE__ */ new Set(["txt", "md", "docx", "srt", "vtt", "json"]);
 function fileKindOf(name) {
-  const ext = (0, import_node_path3.extname)(name).slice(1).toLowerCase();
+  const ext = (0, import_node_path4.extname)(name).slice(1).toLowerCase();
   if (TRANSCRIPT_EXT.has(ext)) return "transcript";
   if (VIDEO_EXT.has(ext)) return "video";
   return "audio";
@@ -10556,7 +10926,9 @@ var MOBILE_BLOCKED = /* @__PURE__ */ new Set([
   "asr.mode.save",
   "asr.cloud.save",
   "asr.cloud.test",
-  "asr.cloud.reveal"
+  "asr.cloud.reveal",
+  "model.download.status",
+  "model.download.start"
 ]);
 var PC_ONLY_IPC = /* @__PURE__ */ new Set(["meeting.pickFiles", "file.open", "voiceprint.import", "org.importFile"]);
 var MEETING_FILTER_PROCESSING = ["pending_upload", "processing", "failed", "pending_assign", "pending_confirm", "pending_review"];
@@ -10584,6 +10956,9 @@ var MeetingMgmtService = class {
   stopScheduler = null;
   mobile = null;
   stopped = false;
+  modelDownload = { activeId: null, queue: [], percent: null, line: "", error: "", updatedAt: 0 };
+  modelDownloadRunning = false;
+  modelDownloadAbort = null;
   constructor(o) {
     this.store = o.store ?? new MeetingMgmtStore(void 0, (m) => o.logger?.warn?.("meeting-mgmt", m));
     this.llm = o.llm;
@@ -10615,6 +10990,11 @@ var MeetingMgmtService = class {
       } catch {
       }
     }
+    try {
+      this.modelDownloadAbort?.abort();
+    } catch {
+    }
+    this.modelDownloadAbort = null;
     const m = this.mobile;
     this.mobile = null;
     if (m) {
@@ -10658,10 +11038,10 @@ var MeetingMgmtService = class {
   async dispatch(actorId, action, payload, origin = "pc") {
     this.ensureInit();
     const name = String(action || "");
-    if (origin === "mobile" && MOBILE_BLOCKED.has(name)) throw new Error((0, import_i18n15.t)("\u624B\u673A\u9875\u4E0D\u80FD\u6267\u884C\u8FD9\u4E2A\u64CD\u4F5C\uFF0C\u8BF7\u5728\u7535\u8111\u7AEF\u64CD\u4F5C"));
-    if (PC_ONLY_IPC.has(name)) throw new Error((0, import_i18n15.t)("\u8FD9\u4E2A\u64CD\u4F5C\u53EA\u80FD\u5728\u7535\u8111\u7AEF\u4F7F\u7528"));
+    if (origin === "mobile" && MOBILE_BLOCKED.has(name)) throw new Error((0, import_i18n16.t)("\u624B\u673A\u9875\u4E0D\u80FD\u6267\u884C\u8FD9\u4E2A\u64CD\u4F5C\uFF0C\u8BF7\u5728\u7535\u8111\u7AEF\u64CD\u4F5C"));
+    if (PC_ONLY_IPC.has(name)) throw new Error((0, import_i18n16.t)("\u8FD9\u4E2A\u64CD\u4F5C\u53EA\u80FD\u5728\u7535\u8111\u7AEF\u4F7F\u7528"));
     const fn = this.actions[name];
-    if (!fn) throw new Error((0, import_i18n15.t)("\u672A\u77E5\u64CD\u4F5C\uFF1A{p0}", { p0: name }));
+    if (!fn) throw new Error((0, import_i18n16.t)("\u672A\u77E5\u64CD\u4F5C\uFF1A{p0}", { p0: name }));
     const p = payload && typeof payload === "object" && !Array.isArray(payload) ? payload : {};
     return fn({ actorId: actorId || null, origin, now: this.nowFn() }, p);
   }
@@ -10682,7 +11062,7 @@ var MeetingMgmtService = class {
     if (!interrupted.length && !stuckPlans.length && !meBad) return;
     this.store.update((st) => {
       for (const m of st.meetings) {
-        if (interrupted.some((x) => x.id === m.id)) failProcessing(m, (0, import_i18n15.t)("\u5904\u7406\u88AB\u4E2D\u65AD\uFF08\u5E94\u7528\u9000\u51FA\u6216\u91CD\u542F\uFF09\uFF0C\u8BF7\u91CD\u8BD5"), now);
+        if (interrupted.some((x) => x.id === m.id)) failProcessing(m, (0, import_i18n16.t)("\u5904\u7406\u88AB\u4E2D\u65AD\uFF08\u5E94\u7528\u9000\u51FA\u6216\u91CD\u542F\uFF09\uFF0C\u8BF7\u91CD\u8BD5"), now);
         if (stuckPlans.some((x) => x.id === m.id)) m.taskDecision = void 0;
       }
       if (!activePerson(st.org, st.meId)) st.meId = st.settings.adminIds.find((id) => activePerson(st.org, id)) ?? null;
@@ -10702,12 +11082,12 @@ var MeetingMgmtService = class {
   }
   me(c) {
     const p = activePerson(this.s().org, c.actorId);
-    if (!p) throw new Error((0, import_i18n15.t)("\u5F53\u524D\u8EAB\u4EFD\u65E0\u6548\uFF0C\u8BF7\u5148\u9009\u62E9\u8EAB\u4EFD"));
+    if (!p) throw new Error((0, import_i18n16.t)("\u5F53\u524D\u8EAB\u4EFD\u65E0\u6548\uFF0C\u8BF7\u5148\u9009\u62E9\u8EAB\u4EFD"));
     return p;
   }
   requireAdmin(c, what) {
     const p = this.me(c);
-    if (!this.isAdmin(p.id)) throw new Error((0, import_i18n15.t)("\u53EA\u6709\u7BA1\u7406\u5458\u53EF\u4EE5{p0}", { p0: what }));
+    if (!this.isAdmin(p.id)) throw new Error((0, import_i18n16.t)("\u53EA\u6709\u7BA1\u7406\u5458\u53EF\u4EE5{p0}", { p0: what }));
     return p;
   }
   meView(id) {
@@ -10743,17 +11123,17 @@ var MeetingMgmtService = class {
   }
   findProject(s, id) {
     const p = s.projects.find((x) => x.id === id);
-    if (!p) throw new Error((0, import_i18n15.t)("\u9879\u76EE\u4E0D\u5B58\u5728\u6216\u5DF2\u5220\u9664"));
+    if (!p) throw new Error((0, import_i18n16.t)("\u9879\u76EE\u4E0D\u5B58\u5728\u6216\u5DF2\u5220\u9664"));
     return p;
   }
   findMeeting(s, id) {
     const m = s.meetings.find((x) => x.id === id);
-    if (!m) throw new Error((0, import_i18n15.t)("\u4F1A\u8BAE\u4E0D\u5B58\u5728\u6216\u5DF2\u5220\u9664"));
+    if (!m) throw new Error((0, import_i18n16.t)("\u4F1A\u8BAE\u4E0D\u5B58\u5728\u6216\u5DF2\u5220\u9664"));
     return m;
   }
   findTask(s, id) {
     const t = s.tasks.find((x) => x.id === id);
-    if (!t) throw new Error((0, import_i18n15.t)("\u4EFB\u52A1\u4E0D\u5B58\u5728\u6216\u5DF2\u5220\u9664"));
+    if (!t) throw new Error((0, import_i18n16.t)("\u4EFB\u52A1\u4E0D\u5B58\u5728\u6216\u5DF2\u5220\u9664"));
     return t;
   }
   visibleMeeting(c, id) {
@@ -10761,7 +11141,7 @@ var MeetingMgmtService = class {
     const s = this.s();
     const m = this.findMeeting(s, id);
     const p = this.findProject(s, m.projectId);
-    if (!this.canSeeMeeting(me.id, m, p)) throw new Error((0, import_i18n15.t)("\u4F60\u6CA1\u6709\u53C2\u4E0E\u8FD9\u573A\u4F1A\u8BAE"));
+    if (!this.canSeeMeeting(me.id, m, p)) throw new Error((0, import_i18n16.t)("\u4F60\u6CA1\u6709\u53C2\u4E0E\u8FD9\u573A\u4F1A\u8BAE"));
     return { m, p };
   }
   visibleTask(c, id) {
@@ -10769,12 +11149,12 @@ var MeetingMgmtService = class {
     const s = this.s();
     const t = this.findTask(s, id);
     const p = this.findProject(s, t.projectId);
-    if (!this.canSeeTask(me.id, t, p)) throw new Error((0, import_i18n15.t)("\u4F60\u6CA1\u6709\u53C2\u4E0E\u8FD9\u4E2A\u4EFB\u52A1"));
+    if (!this.canSeeTask(me.id, t, p)) throw new Error((0, import_i18n16.t)("\u4F60\u6CA1\u6709\u53C2\u4E0E\u8FD9\u4E2A\u4EFB\u52A1"));
     return { t, p };
   }
   nameOf = (id) => personName(this.s().org, id);
   /** 多个人名用顿号连起来（任务负责人可以多位） */
-  namesOf = (ids) => ids.map((id) => this.nameOf(id)).filter(Boolean).join((0, import_i18n15.t)("\u3001"));
+  namesOf = (ids) => ids.map((id) => this.nameOf(id)).filter(Boolean).join((0, import_i18n16.t)("\u3001"));
   // ─── 令牌与链接 ─────────────────────────────────────────────────────
   /**
    * 手机页服务调用：令牌 → 人员 id；令牌不对返回 null。
@@ -10790,7 +11170,7 @@ var MeetingMgmtService = class {
   ensureToken(personId, reset = false) {
     const cur = this.s().tokens[personId];
     if (cur && !reset) return cur;
-    const token = (0, import_node_crypto5.randomBytes)(18).toString("base64url");
+    const token = (0, import_node_crypto6.randomBytes)(18).toString("base64url");
     this.store.update((s) => {
       s.tokens[personId] = token;
     });
@@ -10883,22 +11263,22 @@ var MeetingMgmtService = class {
       let r;
       const person = this.s().org.people.find((p) => p.id === n.to);
       if (!base) {
-        r = { ok: false, error: (0, import_i18n15.t)("\u6CA1\u6709\u53EF\u7528\u7684\u5361\u7247\u8DF3\u8F6C\u5730\u5740\uFF1A\u8BF7\u5F00\u542F\u624B\u673A\u9875\u670D\u52A1\uFF0C\u6216\u5728\u8BBE\u7F6E\u91CC\u586B\u5199\u5361\u7247\u5730\u5740") };
+        r = { ok: false, error: (0, import_i18n16.t)("\u6CA1\u6709\u53EF\u7528\u7684\u5361\u7247\u8DF3\u8F6C\u5730\u5740\uFF1A\u8BF7\u5F00\u542F\u624B\u673A\u9875\u670D\u52A1\uFF0C\u6216\u5728\u8BBE\u7F6E\u91CC\u586B\u5199\u5361\u7247\u5730\u5740") };
       } else {
         try {
           const card = this.ext.noticeCard(n, { linkFor: (pid, link) => this.personUrl(pid, { link }), footnote: this.lanOnly() ? lanLinkNote() : void 0 });
           const uid = person?.wecomUserId || n.to;
           const sent = await client.sendCard([uid], card);
-          r = sent.ok && sent.invalidUsers?.includes(uid) ? { ok: false, error: (0, import_i18n15.t)("\u63A5\u6536\u4EBA\u4E0D\u5728\u4F01\u5FAE\u5E94\u7528\u53EF\u89C1\u8303\u56F4\u5185\u6216\u5DF2\u79BB\u804C\uFF0C\u6536\u4E0D\u5230\u5361\u7247") } : sent;
+          r = sent.ok && sent.invalidUsers?.includes(uid) ? { ok: false, error: (0, import_i18n16.t)("\u63A5\u6536\u4EBA\u4E0D\u5728\u4F01\u5FAE\u5E94\u7528\u53EF\u89C1\u8303\u56F4\u5185\u6216\u5DF2\u79BB\u804C\uFF0C\u6536\u4E0D\u5230\u5361\u7247") } : sent;
         } catch (e) {
-          r = { ok: false, error: e?.message || (0, import_i18n15.t)("\u53D1\u9001\u5931\u8D25") };
+          r = { ok: false, error: e?.message || (0, import_i18n16.t)("\u53D1\u9001\u5931\u8D25") };
         }
       }
       const at = this.nowFn();
       try {
         this.store.update((s) => {
           const x = s.notices.find((y) => y.id === n.id);
-          if (x) x.wecom = r.ok ? { sentAt: at } : { error: r.error || (0, import_i18n15.t)("\u53D1\u9001\u5931\u8D25") };
+          if (x) x.wecom = r.ok ? { sentAt: at } : { error: r.error || (0, import_i18n16.t)("\u53D1\u9001\u5931\u8D25") };
         });
       } catch {
       }
@@ -10971,13 +11351,13 @@ var MeetingMgmtService = class {
           lanOnly: !!base && isLanOnlyUrl(base)
         }));
       } catch (e) {
-        r = { ok: false, error: e?.message || (0, import_i18n15.t)("\u53D1\u9001\u5931\u8D25") };
+        r = { ok: false, error: e?.message || (0, import_i18n16.t)("\u53D1\u9001\u5931\u8D25") };
       }
       const at = this.nowFn();
       const ids = new Set(g.map((n) => n.id));
       try {
         this.store.update((s) => {
-          for (const x of s.notices) if (ids.has(x.id)) x.wecom = r.ok ? { sentAt: at } : { error: r.error || (0, import_i18n15.t)("\u53D1\u9001\u5931\u8D25") };
+          for (const x of s.notices) if (ids.has(x.id)) x.wecom = r.ok ? { sentAt: at } : { error: r.error || (0, import_i18n16.t)("\u53D1\u9001\u5931\u8D25") };
         });
       } catch {
       }
@@ -11040,7 +11420,7 @@ var MeetingMgmtService = class {
     const s = this.s();
     const project = s.projects.find((p) => p.id === m.projectId);
     const done = m.confirmations.filter((c) => c.status === "confirmed").length;
-    const confirmText = m.status === "pending_confirm" ? (0, import_i18n15.t)("\u5DF2\u786E\u8BA4 {p0}/{p1}", { p0: done, p1: m.confirmations.length }) : m.status === "processing" ? stageText(m.process?.stage) : "";
+    const confirmText = m.status === "pending_confirm" ? (0, import_i18n16.t)("\u5DF2\u786E\u8BA4 {p0}/{p1}", { p0: done, p1: m.confirmations.length }) : m.status === "processing" ? stageText(m.process?.stage) : "";
     const taskCount = s.tasks.filter((t) => t.meetingId === m.id).length;
     return {
       id: m.id,
@@ -11064,7 +11444,7 @@ var MeetingMgmtService = class {
     for (const id of ids) {
       if (!id || out[id]) continue;
       const p = org.people.find((x) => x.id === id);
-      out[id] = { name: p?.name || (0, import_i18n15.t)("\u672A\u77E5\u4EBA\u5458"), deptName: p ? deptName(org, p.deptId) : "" };
+      out[id] = { name: p?.name || (0, import_i18n16.t)("\u672A\u77E5\u4EBA\u5458"), deptName: p ? deptName(org, p.deptId) : "" };
     }
     return out;
   }
@@ -11105,7 +11485,7 @@ var MeetingMgmtService = class {
     },
     // ── 配置引导（管理员）：组织、通知推送、手机端、语音模型、声纹、大模型一步步配 ──
     "setup.status": async (c) => {
-      const me = this.requireAdmin(c, (0, import_i18n15.t)("\u67E5\u770B\u914D\u7F6E\u5F15\u5BFC"));
+      const me = this.requireAdmin(c, (0, import_i18n16.t)("\u67E5\u770B\u914D\u7F6E\u5F15\u5BFC"));
       const s = this.s();
       const active = s.org.people.filter((p) => !p.left);
       let rt = null;
@@ -11149,11 +11529,23 @@ var MeetingMgmtService = class {
         recommend: { ...rec, speakerInstallId: SPEAKER_INSTALL_ID },
         /** 两个本机模型在这台电脑上处理 1 小时录音各要几分钟（粗估） */
         estimates: { firered: estimateMinPerHour("firered", hardware).minutes, sensevoice: estimateMinPerHour("sensevoice", hardware).minutes },
-        asr: this.asrSettingsView()
+        asr: this.asrSettingsView(),
+        modelDownload: this.modelDownloadSnapshot()
       };
     },
+    "model.download.status": (c) => {
+      this.requireAdmin(c, (0, import_i18n16.t)("\u67E5\u770B\u6A21\u578B\u4E0B\u8F7D\u72B6\u6001"));
+      return this.modelDownloadSnapshot();
+    },
+    "model.download.start": (c, p) => {
+      this.requireAdmin(c, (0, import_i18n16.t)("\u4E0B\u8F7D\u8BED\u97F3\u6A21\u578B"));
+      const raw = Array.isArray(p?.ids) ? p.ids : p?.id ? [p.id] : [];
+      const ids = [...new Set(raw.map((x) => String(x || "").trim()).filter((x) => ALLOWED_MEETING_MODEL_IDS.has(x)))];
+      if (!ids.length) throw new Error((0, import_i18n16.t)("\u6CA1\u6709\u53EF\u4E0B\u8F7D\u7684\u6A21\u578B"));
+      return this.enqueueModelDownloads(ids);
+    },
     "setup.finish": (c) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u5B8C\u6210\u914D\u7F6E\u5F15\u5BFC"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u5B8C\u6210\u914D\u7F6E\u5F15\u5BFC"));
       const at = this.nowFn();
       this.store.update((st) => {
         st.setupDoneAt = at;
@@ -11162,11 +11554,11 @@ var MeetingMgmtService = class {
     },
     /** 试一下 App 里选的大模型能不能用（纪要整理、拆任务、写报告都靠它；不能用时按规则兜底，效果差很多） */
     "setup.llmTest": async (c) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u6D4B\u8BD5\u5927\u6A21\u578B"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u6D4B\u8BD5\u5927\u6A21\u578B"));
       const t0 = this.nowFn();
       let reply = null;
       try {
-        reply = await this.llm((0, import_i18n15.t)("\u8FD9\u662F\u8FDE\u63A5\u6D4B\u8BD5\uFF0C\u8BF7\u53EA\u56DE\u590D\u4E24\u4E2A\u5B57\uFF1A\u6536\u5230"), { timeoutMs: 45e3 });
+        reply = await this.llm((0, import_i18n16.t)("\u8FD9\u662F\u8FDE\u63A5\u6D4B\u8BD5\uFF0C\u8BF7\u53EA\u56DE\u590D\u4E24\u4E2A\u5B57\uFF1A\u6536\u5230"), { timeoutMs: 45e3 });
       } catch {
         reply = null;
       }
@@ -11174,9 +11566,9 @@ var MeetingMgmtService = class {
       return text ? { ok: true, reply: text.slice(0, 60), ms: this.nowFn() - t0 } : { ok: false };
     },
     "identity.set": (c, p) => {
-      if (!this.canSwitch(c)) throw new Error((0, import_i18n15.t)("\u53EA\u6709\u7BA1\u7406\u5458\u53EF\u4EE5\u5207\u6362\u8EAB\u4EFD"));
+      if (!this.canSwitch(c)) throw new Error((0, import_i18n16.t)("\u53EA\u6709\u7BA1\u7406\u5458\u53EF\u4EE5\u5207\u6362\u8EAB\u4EFD"));
       const s = this.s();
-      const target = requireActivePerson(s.org, str2(p.personId), (0, import_i18n15.t)("\u8981\u5207\u6362\u7684\u4EBA\u5458"));
+      const target = requireActivePerson(s.org, str2(p.personId), (0, import_i18n16.t)("\u8981\u5207\u6362\u7684\u4EBA\u5458"));
       const noAdmin = !this.hasActiveAdmin();
       const actorIsAdmin = this.isAdmin(c.actorId);
       this.store.update((st) => {
@@ -11221,7 +11613,7 @@ var MeetingMgmtService = class {
     },
     /** 企微推送失败记录（管理员）：最近 200 条 */
     "notice.push.failed": (c) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u67E5\u770B\u63A8\u9001\u5931\u8D25\u8BB0\u5F55"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u67E5\u770B\u63A8\u9001\u5931\u8D25\u8BB0\u5F55"));
       const s = this.s();
       const failed = s.notices.filter((n) => n.wecom?.error);
       return {
@@ -11239,10 +11631,10 @@ var MeetingMgmtService = class {
     },
     /** 重发失败的企微卡片（管理员）：p.ids 指定几条，或 p.all = true 全部重发；等发完返回结果 */
     "notice.push.retry": async (c, p) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u91CD\u53D1\u4F01\u5FAE\u901A\u77E5"));
-      if (!this.pushChannel()) throw new Error((0, import_i18n15.t)("\u8FD8\u6CA1\u6709\u914D\u7F6E\u4F01\u4E1A\u5FAE\u4FE1\uFF08\u81EA\u5EFA\u5E94\u7528\u6216\u7FA4\u673A\u5668\u4EBA\uFF09"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u91CD\u53D1\u4F01\u5FAE\u901A\u77E5"));
+      if (!this.pushChannel()) throw new Error((0, import_i18n16.t)("\u8FD8\u6CA1\u6709\u914D\u7F6E\u4F01\u4E1A\u5FAE\u4FE1\uFF08\u81EA\u5EFA\u5E94\u7528\u6216\u7FA4\u673A\u5668\u4EBA\uFF09"));
       const ids = Array.isArray(p.ids) ? new Set(p.ids.map(String)) : null;
-      if (!ids && p.all !== true) throw new Error((0, import_i18n15.t)("\u8BF7\u9009\u62E9\u8981\u91CD\u53D1\u7684\u901A\u77E5"));
+      if (!ids && p.all !== true) throw new Error((0, import_i18n16.t)("\u8BF7\u9009\u62E9\u8981\u91CD\u53D1\u7684\u901A\u77E5"));
       const list = this.store.update((st) => {
         const pick = st.notices.filter((n) => n.wecom?.error && (!ids || ids.has(n.id)) && activePerson(st.org, n.to));
         for (const n of pick) n.wecom = void 0;
@@ -11273,7 +11665,7 @@ var MeetingMgmtService = class {
       const me = this.me(c);
       const s = this.s();
       const project = this.findProject(s, p.id);
-      if (!this.canSeeProject(me.id, project)) throw new Error((0, import_i18n15.t)("\u4F60\u4E0D\u662F\u8FD9\u4E2A\u9879\u76EE\u7684\u6210\u5458"));
+      if (!this.canSeeProject(me.id, project)) throw new Error((0, import_i18n16.t)("\u4F60\u4E0D\u662F\u8FD9\u4E2A\u9879\u76EE\u7684\u6210\u5458"));
       const meetings = s.meetings.filter((m) => m.projectId === project.id).sort((a, b) => b.time - a.time);
       const tasks = s.tasks.filter((t) => t.projectId === project.id);
       const live = tasks.filter((t) => t.status !== "cancelled");
@@ -11316,11 +11708,11 @@ var MeetingMgmtService = class {
     "project.create": (c, p) => {
       const me = this.me(c);
       const s = this.s();
-      if (!this.meView(me.id).canCreateProject) throw new Error((0, import_i18n15.t)("\u53EA\u6709\u7BA1\u7406\u5458\u6216\u88AB\u6388\u6743\u7684\u4EBA\u53EF\u4EE5\u65B0\u5EFA\u9879\u76EE"));
+      if (!this.meView(me.id).canCreateProject) throw new Error((0, import_i18n16.t)("\u53EA\u6709\u7BA1\u7406\u5458\u6216\u88AB\u6388\u6743\u7684\u4EBA\u53EF\u4EE5\u65B0\u5EFA\u9879\u76EE"));
       const name = str2(p.name, 100);
-      if (!name) throw new Error((0, import_i18n15.t)("\u8BF7\u586B\u5199\u9879\u76EE\u540D\u79F0"));
-      const owner = requireActivePerson(s.org, str2(p.ownerId), (0, import_i18n15.t)("\u9879\u76EE\u8D1F\u8D23\u4EBA"));
-      const members = strArr(p.memberIds).map((id) => requireActivePerson(s.org, id, (0, import_i18n15.t)("\u9879\u76EE\u6210\u5458")).id);
+      if (!name) throw new Error((0, import_i18n16.t)("\u8BF7\u586B\u5199\u9879\u76EE\u540D\u79F0"));
+      const owner = requireActivePerson(s.org, str2(p.ownerId), (0, import_i18n16.t)("\u9879\u76EE\u8D1F\u8D23\u4EBA"));
+      const members = strArr(p.memberIds).map((id) => requireActivePerson(s.org, id, (0, import_i18n16.t)("\u9879\u76EE\u6210\u5458")).id);
       const project = {
         id: newId("pj"),
         name,
@@ -11344,12 +11736,12 @@ var MeetingMgmtService = class {
       const ids = strArr(p.memberIds);
       for (const id of ids) {
         const person = s.org.people.find((x) => x.id === id);
-        if (!person) throw new Error((0, import_i18n15.t)("\u6709\u6210\u5458\u4E0D\u5728\u7EC4\u7EC7\u91CC"));
+        if (!person) throw new Error((0, import_i18n16.t)("\u6709\u6210\u5458\u4E0D\u5728\u7EC4\u7EC7\u91CC"));
       }
       const project = this.store.update((st) => {
         const pj = this.findProject(st, p.id);
         const fresh = ids.filter((id) => !pj.memberIds.includes(id));
-        for (const id of fresh) requireActivePerson(st.org, id, (0, import_i18n15.t)("\u9879\u76EE\u6210\u5458"));
+        for (const id of fresh) requireActivePerson(st.org, id, (0, import_i18n16.t)("\u9879\u76EE\u6210\u5458"));
         applyMembers(pj, me.id, ids, st.meetings, st.tasks, this.nameOf);
         return pj;
       });
@@ -11378,11 +11770,11 @@ var MeetingMgmtService = class {
     "project.summary.save": (c, p) => {
       const me = this.me(c);
       const markdown = String(p.markdown ?? "");
-      if (!markdown.trim()) throw new Error((0, import_i18n15.t)("\u603B\u7ED3\u62A5\u544A\u4E0D\u80FD\u4E3A\u7A7A"));
+      if (!markdown.trim()) throw new Error((0, import_i18n16.t)("\u603B\u7ED3\u62A5\u544A\u4E0D\u80FD\u4E3A\u7A7A"));
       const summary = this.store.update((st) => {
         const pj = this.findProject(st, p.id);
         assertSummaryEditable(pj, me.id);
-        if (!pj.summary) throw new Error((0, import_i18n15.t)("\u603B\u7ED3\u62A5\u544A\u8FD8\u6CA1\u6709\u751F\u6210\u597D"));
+        if (!pj.summary) throw new Error((0, import_i18n16.t)("\u603B\u7ED3\u62A5\u544A\u8FD8\u6CA1\u6709\u751F\u6210\u597D"));
         pj.summary.markdown = markdown.slice(0, 2e5);
         pj.summary.editedAt = c.now;
         return pj.summary;
@@ -11392,7 +11784,7 @@ var MeetingMgmtService = class {
     },
     "project.summary.approve": (c, p) => {
       const me = this.me(c);
-      if (this.summaryJobs.has(String(p.id))) throw new Error((0, import_i18n15.t)("\u603B\u7ED3\u62A5\u544A\u6B63\u5728\u751F\u6210\uFF0C\u8BF7\u7A0D\u5019"));
+      if (this.summaryJobs.has(String(p.id))) throw new Error((0, import_i18n16.t)("\u603B\u7ED3\u62A5\u544A\u6B63\u5728\u751F\u6210\uFF0C\u8BF7\u7A0D\u5019"));
       const pj = this.store.update((st) => {
         const x = this.findProject(st, p.id);
         approveSummary(x, me.id, c.now);
@@ -11401,8 +11793,8 @@ var MeetingMgmtService = class {
       this.notify(pj.memberIds.map((to) => ({
         to,
         type: "project_archived",
-        title: (0, import_i18n15.t)("\u9879\u76EE\u5DF2\u5F52\u6863\uFF1A{p0}", { p0: pj.name }),
-        summary: (0, import_i18n15.t)("\u9879\u76EE\u5DF2\u5F52\u6863\uFF0C\u9879\u76EE\u5185\u5BB9\u8F6C\u4E3A\u53EA\u8BFB\uFF0C\u603B\u7ED3\u62A5\u544A\u53EF\u5728\u7CFB\u7EDF\u5185\u67E5\u770B"),
+        title: (0, import_i18n16.t)("\u9879\u76EE\u5DF2\u5F52\u6863\uFF1A{p0}", { p0: pj.name }),
+        summary: (0, import_i18n16.t)("\u9879\u76EE\u5DF2\u5F52\u6863\uFF0C\u9879\u76EE\u5185\u5BB9\u8F6C\u4E3A\u53EA\u8BFB\uFF0C\u603B\u7ED3\u62A5\u544A\u53EF\u5728\u7CFB\u7EDF\u5185\u67E5\u770B"),
         link: { kind: "project_summary", id: pj.id }
       })), c.now);
       this.changed("project", pj.id);
@@ -11412,7 +11804,7 @@ var MeetingMgmtService = class {
       const me = this.me(c);
       const pj = this.findProject(this.s(), p.id);
       assertProjectNotArchived(pj);
-      if (pj.ownerId !== me.id && !this.isAdmin(me.id)) throw new Error((0, import_i18n15.t)("\u53EA\u6709\u9879\u76EE\u8D1F\u8D23\u4EBA\u53EF\u4EE5\u751F\u6210\u8FDB\u5EA6\u6C47\u603B\u62A5\u544A"));
+      if (pj.ownerId !== me.id && !this.isAdmin(me.id)) throw new Error((0, import_i18n16.t)("\u53EA\u6709\u9879\u76EE\u8D1F\u8D23\u4EBA\u53EF\u4EE5\u751F\u6210\u8FDB\u5EA6\u6C47\u603B\u62A5\u544A"));
       return this.track(this.runWeeklyReport(pj.id, c.now));
     },
     // ── 会议 ──
@@ -11476,14 +11868,14 @@ var MeetingMgmtService = class {
       const me = this.me(c);
       const s = this.s();
       const project = this.findProject(s, p.projectId);
-      if (!(project.ownerId === me.id || project.memberIds.includes(me.id) || this.isAdmin(me.id))) throw new Error((0, import_i18n15.t)("\u4F60\u4E0D\u662F\u8FD9\u4E2A\u9879\u76EE\u7684\u6210\u5458"));
+      if (!(project.ownerId === me.id || project.memberIds.includes(me.id) || this.isAdmin(me.id))) throw new Error((0, import_i18n16.t)("\u4F60\u4E0D\u662F\u8FD9\u4E2A\u9879\u76EE\u7684\u6210\u5458"));
       assertProjectActive(project);
       const title = str2(p.title, 200);
-      if (!title) throw new Error((0, import_i18n15.t)("\u8BF7\u586B\u5199\u4F1A\u8BAE\u4E3B\u9898"));
+      if (!title) throw new Error((0, import_i18n16.t)("\u8BF7\u586B\u5199\u4F1A\u8BAE\u4E3B\u9898"));
       const time = Number(p.time) > 0 ? Number(p.time) : c.now;
       const source = ["offline", "tencent", "zoom"].includes(p.source) ? p.source : "offline";
-      const host = requireActivePerson(s.org, str2(p.hostId) || me.id, (0, import_i18n15.t)("\u4E3B\u6301\u4EBA"));
-      const attendees = strArr(p.attendeeIds).map((id) => requireActivePerson(s.org, id, (0, import_i18n15.t)("\u53C2\u4F1A\u4EBA")).id);
+      const host = requireActivePerson(s.org, str2(p.hostId) || me.id, (0, import_i18n16.t)("\u4E3B\u6301\u4EBA"));
+      const attendees = strArr(p.attendeeIds).map((id) => requireActivePerson(s.org, id, (0, import_i18n16.t)("\u53C2\u4F1A\u4EBA")).id);
       const meeting = {
         id: newId("mt"),
         projectId: project.id,
@@ -11522,7 +11914,7 @@ var MeetingMgmtService = class {
         const project = st.projects.find((x) => x.id === m.projectId);
         if (project) assertProjectNotArchived(project);
         if (!this.canDeleteMeeting(me.id, m, project)) {
-          throw new Error((0, import_i18n15.t)("\u53EA\u6709\u4E3B\u6301\u4EBA\u3001\u521B\u5EFA\u4EBA\u3001\u9879\u76EE\u8D1F\u8D23\u4EBA\u6216\u7BA1\u7406\u5458\u53EF\u4EE5\u5220\u9664\u4F1A\u8BAE"));
+          throw new Error((0, import_i18n16.t)("\u53EA\u6709\u4E3B\u6301\u4EBA\u3001\u521B\u5EFA\u4EBA\u3001\u9879\u76EE\u8D1F\u8D23\u4EBA\u6216\u7BA1\u7406\u5458\u53EF\u4EE5\u5220\u9664\u4F1A\u8BAE"));
         }
         const linkedTaskIds = new Set(m.taskIds);
         const removedTaskIds = /* @__PURE__ */ new Set();
@@ -11580,7 +11972,7 @@ var MeetingMgmtService = class {
     "meeting.speaker.assign": (c, p) => {
       const me = this.me(c);
       const s = this.s();
-      const person = requireActivePerson(s.org, str2(p.personId), (0, import_i18n15.t)("\u53D1\u8A00\u4EBA"));
+      const person = requireActivePerson(s.org, str2(p.personId), (0, import_i18n16.t)("\u53D1\u8A00\u4EBA"));
       const r = this.store.update((st) => {
         const m = this.findMeeting(st, p.id);
         const pj = this.findProject(st, m.projectId);
@@ -11600,7 +11992,7 @@ var MeetingMgmtService = class {
       const me = this.me(c);
       const s = this.s();
       const label = str2(p.label);
-      const personId = label ? "" : requireActivePerson(s.org, str2(p.personId), (0, import_i18n15.t)("\u53D1\u8A00\u4EBA")).id;
+      const personId = label ? "" : requireActivePerson(s.org, str2(p.personId), (0, import_i18n16.t)("\u53D1\u8A00\u4EBA")).id;
       const r = this.store.update((st) => {
         const m = this.findMeeting(st, p.id);
         const pj = this.findProject(st, m.projectId);
@@ -11619,7 +12011,7 @@ var MeetingMgmtService = class {
     "meeting.segment.audio": (c, p) => {
       const { m } = this.visibleMeeting(c, p.id);
       const seg = m.segments.find((x) => x.id === String(p.segmentId ?? ""));
-      if (!seg) throw new Error((0, import_i18n15.t)("\u6CA1\u6709\u627E\u5230\u8FD9\u6BB5\u53D1\u8A00"));
+      if (!seg) throw new Error((0, import_i18n16.t)("\u6CA1\u6709\u627E\u5230\u8FD9\u6BB5\u53D1\u8A00"));
       const start = Math.max(0, seg.start - 0.3);
       const end = Math.min(seg.end + 0.3, start + SEGMENT_AUDIO_MAX_SEC);
       let b64 = null;
@@ -11628,16 +12020,16 @@ var MeetingMgmtService = class {
       } catch (e) {
         this.warn("segment audio failed", { error: e?.message });
       }
-      if (!b64) throw new Error((0, import_i18n15.t)("\u8FD9\u573A\u4F1A\u8BAE\u6CA1\u6709\u53EF\u64AD\u653E\u7684\u5F55\u97F3\uFF08\u6587\u5B57\u8BB0\u5F55\u5BFC\u5165\u7684\u4F1A\u8BAE\u6CA1\u6709\u539F\u58F0\uFF09"));
+      if (!b64) throw new Error((0, import_i18n16.t)("\u8FD9\u573A\u4F1A\u8BAE\u6CA1\u6709\u53EF\u64AD\u653E\u7684\u5F55\u97F3\uFF08\u6587\u5B57\u8BB0\u5F55\u5BFC\u5165\u7684\u4F1A\u8BAE\u6CA1\u6709\u539F\u58F0\uFF09"));
       return { dataUrl: `data:audio/wav;base64,${b64}`, start, end, clipped: seg.end + 0.3 > end };
     },
     "meeting.speaker.clip": async (c, p) => {
       const me = this.me(c);
       const { m } = this.visibleMeeting(c, p.id);
-      assertHost(m, me.id, (0, import_i18n15.t)("\u8BD5\u542C\u53D1\u8A00\u7247\u6BB5"));
+      assertHost(m, me.id, (0, import_i18n16.t)("\u8BD5\u542C\u53D1\u8A00\u7247\u6BB5"));
       const label = String(p.label ?? "");
       const slot = m.speakers.find((x) => x.label === label);
-      if (!slot) throw new Error((0, import_i18n15.t)("\u6CA1\u6709\u627E\u5230\u53D1\u8A00\u4EBA\u300C{p0}\u300D", { p0: label }));
+      if (!slot) throw new Error((0, import_i18n16.t)("\u6CA1\u6709\u627E\u5230\u53D1\u8A00\u4EBA\u300C{p0}\u300D", { p0: label }));
       let path = slot.clipPath && (0, import_node_fs4.existsSync)(slot.clipPath) && this.store.isInsideRoot(slot.clipPath) ? slot.clipPath : "";
       if (!path) {
         const out = await this.ext.exportSpeakerClip({ meeting: m, label, workDir: this.store.filesDir(m.id) });
@@ -11649,9 +12041,9 @@ var MeetingMgmtService = class {
           });
         }
       }
-      if (!path) throw new Error((0, import_i18n15.t)("\u8FD9\u4F4D\u53D1\u8A00\u4EBA\u6CA1\u6709\u53EF\u8BD5\u542C\u7684\u5F55\u97F3\u7247\u6BB5"));
+      if (!path) throw new Error((0, import_i18n16.t)("\u8FD9\u4F4D\u53D1\u8A00\u4EBA\u6CA1\u6709\u53EF\u8BD5\u542C\u7684\u5F55\u97F3\u7247\u6BB5"));
       const size = (0, import_node_fs4.statSync)(path).size;
-      if (size > MAX_CLIP_BYTES) throw new Error((0, import_i18n15.t)("\u8BD5\u542C\u7247\u6BB5\u592A\u5927"));
+      if (size > MAX_CLIP_BYTES) throw new Error((0, import_i18n16.t)("\u8BD5\u542C\u7247\u6BB5\u592A\u5927"));
       return { dataUrl: `data:audio/wav;base64,${(0, import_node_fs4.readFileSync)(path).toString("base64")}` };
     },
     /** 主持人定稿前改决议事项和 3 行摘要：p.decisions = [{ id?, text }]，p.summaryLines = [..] */
@@ -11672,13 +12064,13 @@ var MeetingMgmtService = class {
     /** 按当前的发言人、改过的文字让模型重新整理议题 / 决议 / 摘要（覆盖初稿，包括手改的） */
     "meeting.minutes.reorganize": async (c, p) => {
       const me = this.me(c);
-      const what = (0, import_i18n15.t)("\u91CD\u65B0\u6574\u7406\u7EAA\u8981");
+      const what = (0, import_i18n16.t)("\u91CD\u65B0\u6574\u7406\u7EAA\u8981");
       const s0 = this.s();
       const m0 = this.findMeeting(s0, p.id);
       assertProjectNotArchived(this.findProject(s0, m0.projectId));
       assertMinutesDraftEditable(m0, me.id, what);
-      if (!m0.segments.length) throw new Error((0, import_i18n15.t)("\u8FD8\u6CA1\u6709\u53D1\u8A00\u5185\u5BB9\u53EF\u4EE5\u6574\u7406"));
-      if (this.reorganizing.has(m0.id)) throw new Error((0, import_i18n15.t)("\u6B63\u5728\u91CD\u65B0\u6574\u7406\uFF0C\u8BF7\u7A0D\u5019"));
+      if (!m0.segments.length) throw new Error((0, import_i18n16.t)("\u8FD8\u6CA1\u6709\u53D1\u8A00\u5185\u5BB9\u53EF\u4EE5\u6574\u7406"));
+      if (this.reorganizing.has(m0.id)) throw new Error((0, import_i18n16.t)("\u6B63\u5728\u91CD\u65B0\u6574\u7406\uFF0C\u8BF7\u7A0D\u5019"));
       this.reorganizing.add(m0.id);
       try {
         const nameOf = (id) => id ? activePerson(s0.org, id)?.name : void 0;
@@ -11739,7 +12131,7 @@ var MeetingMgmtService = class {
       const me = this.me(c);
       const on = p.enabled === true;
       const v = this.s().voiceprints.find((x) => x.personId === me.id);
-      if (!v) throw new Error((0, import_i18n15.t)("\u8FD8\u6CA1\u6709\u91C7\u96C6\u4F60\u7684\u58F0\u7EB9\uFF0C\u8BF7\u5148\u91C7\u96C6"));
+      if (!v) throw new Error((0, import_i18n16.t)("\u8FD8\u6CA1\u6709\u91C7\u96C6\u4F60\u7684\u58F0\u7EB9\uFF0C\u8BF7\u5148\u91C7\u96C6"));
       const now = this.nowFn();
       this.store.update((st) => {
         const x = st.voiceprints.find((y) => y.personId === me.id);
@@ -11769,8 +12161,8 @@ var MeetingMgmtService = class {
       this.notify([{
         to: personId,
         type: "speech_confirm",
-        title: (0, import_i18n15.t)("\u53D1\u8A00\u88AB\u9000\u56DE\uFF1A{p0}", { p0: m.title }),
-        summary: note || (0, import_i18n15.t)("\u4E3B\u6301\u4EBA\u9000\u56DE\u4E86\u4F60\u7684\u53D1\u8A00\uFF0C\u8BF7\u91CD\u65B0\u6838\u5BF9\u540E\u786E\u8BA4"),
+        title: (0, import_i18n16.t)("\u53D1\u8A00\u88AB\u9000\u56DE\uFF1A{p0}", { p0: m.title }),
+        summary: note || (0, import_i18n16.t)("\u4E3B\u6301\u4EBA\u9000\u56DE\u4E86\u4F60\u7684\u53D1\u8A00\uFF0C\u8BF7\u91CD\u65B0\u6838\u5BF9\u540E\u786E\u8BA4"),
         link: { kind: "meeting", id: m.id }
       }], c.now);
       this.changed("meeting", m.id);
@@ -11787,7 +12179,7 @@ var MeetingMgmtService = class {
       this.notify(m.attendeeIds.map((to) => ({
         to,
         type: "minutes_final",
-        title: (0, import_i18n15.t)("\u6B63\u5F0F\u7EAA\u8981\uFF1A{p0}", { p0: m.title }),
+        title: (0, import_i18n16.t)("\u6B63\u5F0F\u7EAA\u8981\uFF1A{p0}", { p0: m.title }),
         summary: cardSummary.minutes(m.summaryLines) || m.title,
         link: { kind: "meeting", id: m.id }
       })), c.now);
@@ -11797,7 +12189,7 @@ var MeetingMgmtService = class {
     "meeting.decide": async (c, p) => {
       const me = this.me(c);
       const id = String(p.id || "");
-      if (this.planJobs.has(id)) throw new Error((0, import_i18n15.t)("\u6267\u884C\u65B9\u6848\u6B63\u5728\u751F\u6210\uFF0C\u8BF7\u7A0D\u5019"));
+      if (this.planJobs.has(id)) throw new Error((0, import_i18n16.t)("\u6267\u884C\u65B9\u6848\u6B63\u5728\u751F\u6210\uFF0C\u8BF7\u7A0D\u5019"));
       const decision = p.decision === "generate" ? "generate" : p.decision === "none" ? "none" : p.decision;
       const m = this.store.update((st) => {
         const mm = this.findMeeting(st, id);
@@ -11849,8 +12241,8 @@ var MeetingMgmtService = class {
       const s = this.s();
       const raw = Array.isArray(p.ownerIds) ? p.ownerIds : [p.ownerId];
       const ids = [...new Set(raw.map((x) => str2(x)).filter(Boolean))];
-      if (!ids.length) throw new Error((0, import_i18n15.t)("\u8BF7\u81F3\u5C11\u9009\u4E00\u4F4D\u4EFB\u52A1\u8D1F\u8D23\u4EBA"));
-      const owners = ids.map((id) => requireActivePerson(s.org, id, (0, import_i18n15.t)("\u4EFB\u52A1\u8D1F\u8D23\u4EBA")).id);
+      if (!ids.length) throw new Error((0, import_i18n16.t)("\u8BF7\u81F3\u5C11\u9009\u4E00\u4F4D\u4EFB\u52A1\u8D1F\u8D23\u4EBA"));
+      const owners = ids.map((id) => requireActivePerson(s.org, id, (0, import_i18n16.t)("\u4EFB\u52A1\u8D1F\u8D23\u4EBA")).id);
       let before = [];
       const m = this.store.update((st) => {
         const mm = this.findMeeting(st, p.id);
@@ -11865,7 +12257,7 @@ var MeetingMgmtService = class {
       this.notify(added.map((to) => ({
         to,
         type: "plan_confirm",
-        title: (0, import_i18n15.t)("\u6267\u884C\u65B9\u6848\u5F85\u786E\u8BA4\uFF1A{p0}", { p0: m.title }),
+        title: (0, import_i18n16.t)("\u6267\u884C\u65B9\u6848\u5F85\u786E\u8BA4\uFF1A{p0}", { p0: m.title }),
         summary: cardSummary.plan(m.plan?.items || []),
         link: { kind: "meeting_plan", id: m.id }
       })), c.now);
@@ -11898,7 +12290,7 @@ var MeetingMgmtService = class {
       this.notify(r.tasks.map((t) => ({
         to: t.assigneeId,
         type: "task_new",
-        title: (0, import_i18n15.t)("\u65B0\u4EFB\u52A1\u5F85\u63A5\u6536\uFF1A{p0}", { p0: t.title }),
+        title: (0, import_i18n16.t)("\u65B0\u4EFB\u52A1\u5F85\u63A5\u6536\uFF1A{p0}", { p0: t.title }),
         summary: cardSummary.task(t),
         link: { kind: "task", id: t.id }
       })), c.now);
@@ -11974,11 +12366,11 @@ var MeetingMgmtService = class {
       });
       const actor = this.me(c).id;
       const note = String(p.note ?? "").trim();
-      const summary = note ? (0, import_i18n15.t)("{p0}\u66F4\u65B0\u5230 {p1}%\uFF1A{p2}", { p0: this.nameOf(actor), p1: t.percent, p2: note }) : (0, import_i18n15.t)("{p0}\u66F4\u65B0\u5230 {p1}%", { p0: this.nameOf(actor), p1: t.percent });
+      const summary = note ? (0, import_i18n16.t)("{p0}\u66F4\u65B0\u5230 {p1}%\uFF1A{p2}", { p0: this.nameOf(actor), p1: t.percent, p2: note }) : (0, import_i18n16.t)("{p0}\u66F4\u65B0\u5230 {p1}%", { p0: this.nameOf(actor), p1: t.percent });
       this.notify(taskOwners(t).filter((to) => to !== actor).map((to) => ({
         to,
         type: "task_progress",
-        title: (0, import_i18n15.t)("\u4EFB\u52A1\u8FDB\u5EA6\u66F4\u65B0\uFF1A{p0}", { p0: t.title }),
+        title: (0, import_i18n16.t)("\u4EFB\u52A1\u8FDB\u5EA6\u66F4\u65B0\uFF1A{p0}", { p0: t.title }),
         summary,
         link: { kind: "task", id: t.id }
       })), c.now);
@@ -11991,8 +12383,8 @@ var MeetingMgmtService = class {
       this.notify(taskOwners(t).map((to) => ({
         to,
         type: "task_done",
-        title: (0, import_i18n15.t)("\u4EFB\u52A1\u5DF2\u5B8C\u6210\uFF1A{p0}", { p0: t.title }),
-        summary: (0, import_i18n15.t)("{p0}\u5DF2\u6807\u8BB0\u5B8C\u6210", { p0: this.nameOf(t.assigneeId) }),
+        title: (0, import_i18n16.t)("\u4EFB\u52A1\u5DF2\u5B8C\u6210\uFF1A{p0}", { p0: t.title }),
+        summary: (0, import_i18n16.t)("{p0}\u5DF2\u6807\u8BB0\u5B8C\u6210", { p0: this.nameOf(t.assigneeId) }),
         link: { kind: "task", id: t.id }
       })), c.now);
       return t;
@@ -12005,8 +12397,8 @@ var MeetingMgmtService = class {
       this.notify(taskOwners(t).map((to) => ({
         to,
         type: "objection_review",
-        title: o.kind === "change" ? (0, import_i18n15.t)("\u53D8\u66F4\u7533\u8BF7\u5F85\u590D\u6838\uFF1A{p0}", { p0: t.title }) : (0, import_i18n15.t)("\u5F02\u8BAE\u5F85\u590D\u6838\uFF1A{p0}", { p0: t.title }),
-        summary: (0, import_i18n15.t)("{p0}\uFF1A{p1}", { p0: this.nameOf(o.raisedBy), p1: o.reason }),
+        title: o.kind === "change" ? (0, import_i18n16.t)("\u53D8\u66F4\u7533\u8BF7\u5F85\u590D\u6838\uFF1A{p0}", { p0: t.title }) : (0, import_i18n16.t)("\u5F02\u8BAE\u5F85\u590D\u6838\uFF1A{p0}", { p0: t.title }),
+        summary: (0, import_i18n16.t)("{p0}\uFF1A{p1}", { p0: this.nameOf(o.raisedBy), p1: o.reason }),
         link: { kind: "task", id: t.id }
       })), c.now);
       return t;
@@ -12018,9 +12410,9 @@ var MeetingMgmtService = class {
         result = reviewObjection(x, me, decision, String(p.note ?? ""), p.changes, c.now);
       });
       if (result === "adopted") {
-        this.notify([{ to: t.assigneeId, type: "plan_adjusted", title: (0, import_i18n15.t)("\u8C03\u6574\u540E\u65B9\u6848\u5F85\u786E\u8BA4\uFF1A{p0}", { p0: t.title }), summary: cardSummary.task(t), link: { kind: "task", id: t.id } }], c.now);
+        this.notify([{ to: t.assigneeId, type: "plan_adjusted", title: (0, import_i18n16.t)("\u8C03\u6574\u540E\u65B9\u6848\u5F85\u786E\u8BA4\uFF1A{p0}", { p0: t.title }), summary: cardSummary.task(t), link: { kind: "task", id: t.id } }], c.now);
       } else if (result === "cancelled") {
-        this.notify([{ to: t.assigneeId, type: "arbitration_result", title: (0, import_i18n15.t)("\u4EFB\u52A1\u5DF2\u53D6\u6D88\uFF1A{p0}", { p0: t.title }), summary: str2(p.note, 200) || (0, import_i18n15.t)("\u4EFB\u52A1\u8D1F\u8D23\u4EBA\u91C7\u7EB3\u4E86\u5F02\u8BAE\u5E76\u5220\u9664\u4E86\u8BE5\u4EFB\u52A1"), link: { kind: "task", id: t.id } }], c.now);
+        this.notify([{ to: t.assigneeId, type: "arbitration_result", title: (0, import_i18n16.t)("\u4EFB\u52A1\u5DF2\u53D6\u6D88\uFF1A{p0}", { p0: t.title }), summary: str2(p.note, 200) || (0, import_i18n16.t)("\u4EFB\u52A1\u8D1F\u8D23\u4EBA\u91C7\u7EB3\u4E86\u5F02\u8BAE\u5E76\u5220\u9664\u4E86\u8BE5\u4EFB\u52A1"), link: { kind: "task", id: t.id } }], c.now);
       }
       return t;
     },
@@ -12035,8 +12427,8 @@ var MeetingMgmtService = class {
         this.notify([{
           to: project.ownerId,
           type: "arbitration",
-          title: (0, import_i18n15.t)("\u5F02\u8BAE\u5F85\u88C1\u51B3\uFF1A{p0}", { p0: t.title }),
-          summary: t.objection?.suggestedDue ? (0, import_i18n15.t)("{p0}\u4E0E{p1}\u5BF9\u622A\u6B62\u65E5\u6709\u5206\u6B67\uFF08{p2} / {p3}\uFF09", { p0: this.nameOf(t.assigneeId), p1: this.namesOf(taskOwners(t)), p2: t.due, p3: t.objection.suggestedDue }) : (0, import_i18n15.t)("{p0}\u4E0E{p1}\u5BF9\u4EFB\u52A1\u6709\u5206\u6B67\uFF0C\u8BF7\u88C1\u51B3", { p0: this.nameOf(t.assigneeId), p1: this.namesOf(taskOwners(t)) }),
+          title: (0, import_i18n16.t)("\u5F02\u8BAE\u5F85\u88C1\u51B3\uFF1A{p0}", { p0: t.title }),
+          summary: t.objection?.suggestedDue ? (0, import_i18n16.t)("{p0}\u4E0E{p1}\u5BF9\u622A\u6B62\u65E5\u6709\u5206\u6B67\uFF08{p2} / {p3}\uFF09", { p0: this.nameOf(t.assigneeId), p1: this.namesOf(taskOwners(t)), p2: t.due, p3: t.objection.suggestedDue }) : (0, import_i18n16.t)("{p0}\u4E0E{p1}\u5BF9\u4EFB\u52A1\u6709\u5206\u6B67\uFF0C\u8BF7\u88C1\u51B3", { p0: this.nameOf(t.assigneeId), p1: this.namesOf(taskOwners(t)) }),
           link: { kind: "task", id: t.id }
         }], c.now);
       }
@@ -12048,11 +12440,11 @@ var MeetingMgmtService = class {
       const t = this.taskAction(c, p.id, (x, me, pj) => {
         result = arbitrateObjection(x, me, pj.ownerId, decision, String(p.note ?? ""), p.changes, c.now);
       });
-      const summary = result === "cancelled" ? (0, import_i18n15.t)("\u88C1\u51B3\uFF1A\u5220\u9664\u8BE5\u4EFB\u52A1") : result === "adjusted" ? (0, import_i18n15.t)("\u88C1\u51B3\uFF1A\u6309\u5F02\u8BAE\u8C03\u6574\uFF08\u622A\u6B62 {p0}\uFF09", { p0: t.due }) : (0, import_i18n15.t)("\u88C1\u51B3\uFF1A\u7EF4\u6301\u539F\u65B9\u6848\uFF08\u622A\u6B62 {p0}\uFF09", { p0: t.due });
+      const summary = result === "cancelled" ? (0, import_i18n16.t)("\u88C1\u51B3\uFF1A\u5220\u9664\u8BE5\u4EFB\u52A1") : result === "adjusted" ? (0, import_i18n16.t)("\u88C1\u51B3\uFF1A\u6309\u5F02\u8BAE\u8C03\u6574\uFF08\u622A\u6B62 {p0}\uFF09", { p0: t.due }) : (0, import_i18n16.t)("\u88C1\u51B3\uFF1A\u7EF4\u6301\u539F\u65B9\u6848\uFF08\u622A\u6B62 {p0}\uFF09", { p0: t.due });
       this.notify([.../* @__PURE__ */ new Set([...taskOwners(t), t.assigneeId])].map((to) => ({
         to,
         type: "arbitration_result",
-        title: (0, import_i18n15.t)("\u88C1\u51B3\u7ED3\u679C\uFF1A{p0}", { p0: t.title }),
+        title: (0, import_i18n16.t)("\u88C1\u51B3\u7ED3\u679C\uFF1A{p0}", { p0: t.title }),
         summary,
         link: { kind: "task", id: t.id }
       })), c.now);
@@ -12060,7 +12452,7 @@ var MeetingMgmtService = class {
     },
     // ── 组织与设置 ──
     "org.sync": async (c) => {
-      const me = this.requireAdmin(c, (0, import_i18n15.t)("\u540C\u6B65\u901A\u8BAF\u5F55"));
+      const me = this.requireAdmin(c, (0, import_i18n16.t)("\u540C\u6B65\u901A\u8BAF\u5F55"));
       const prev = this.s().org;
       const client = this.wecomClient();
       let next;
@@ -12070,7 +12462,7 @@ var MeetingMgmtService = class {
         try {
           next = await client.fetchOrg();
         } catch (e) {
-          const result2 = { at: this.nowFn(), by: me.id, source, added: [], changed: [], left: [], error: e?.message || (0, import_i18n15.t)("\u540C\u6B65\u5931\u8D25") };
+          const result2 = { at: this.nowFn(), by: me.id, source, added: [], changed: [], left: [], error: e?.message || (0, import_i18n16.t)("\u540C\u6B65\u5931\u8D25") };
           this.store.update((st) => {
             st.org.lastSync = result2;
           });
@@ -12087,12 +12479,12 @@ var MeetingMgmtService = class {
     },
     /** 导入通讯录表格（企微后台「通讯录 → 导出成员」，或自己整理的）：没有自建应用、读不了通讯录接口时用 */
     "org.import": (c, p) => {
-      const me = this.requireAdmin(c, (0, import_i18n15.t)("\u5BFC\u5165\u901A\u8BAF\u5F55"));
+      const me = this.requireAdmin(c, (0, import_i18n16.t)("\u5BFC\u5165\u901A\u8BAF\u5F55"));
       const path = String(p.path ?? "");
-      if (!path || !(0, import_node_fs4.existsSync)(path) || !(0, import_node_fs4.statSync)(path).isFile()) throw new Error((0, import_i18n15.t)("\u6587\u4EF6\u4E0D\u5B58\u5728"));
+      if (!path || !(0, import_node_fs4.existsSync)(path) || !(0, import_node_fs4.statSync)(path).isFile()) throw new Error((0, import_i18n16.t)("\u6587\u4EF6\u4E0D\u5B58\u5728"));
       const wb = (0, import_spreadsheetRead.openSpreadsheetFile)(path);
       const ws = wb.Sheets[wb.SheetNames[0] || ""];
-      if (!ws) throw new Error((0, import_i18n15.t)("\u8868\u683C\u662F\u7A7A\u7684"));
+      if (!ws) throw new Error((0, import_i18n16.t)("\u8868\u683C\u662F\u7A7A\u7684"));
       const parsed = parseOrgTable((0, import_spreadsheetRead.readWorksheetData)(ws, { raw: false, defval: "" }).rows);
       const diff = this.ext.diffOrg(this.s().org, parsed);
       const result = { at: this.nowFn(), by: me.id, source: "import", ...diff, ...parsed.warnings.length ? { warnings: parsed.warnings } : {} };
@@ -12101,15 +12493,15 @@ var MeetingMgmtService = class {
     },
     /** 给某人填群里 @ 用的手机号 / 企微账号（管理员）；空串 = 清掉 */
     "org.person.contact": (c, p) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u4FEE\u6539\u4EBA\u5458\u7684\u624B\u673A\u53F7\u548C\u4F01\u5FAE\u8D26\u53F7"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u4FEE\u6539\u4EBA\u5458\u7684\u624B\u673A\u53F7\u548C\u4F01\u5FAE\u8D26\u53F7"));
       const personId = str2(p.personId);
-      requireActivePerson(this.s().org, personId, (0, import_i18n15.t)("\u4EBA\u5458"));
+      requireActivePerson(this.s().org, personId, (0, import_i18n16.t)("\u4EBA\u5458"));
       const mobileRaw = String(p.mobile ?? "").trim();
       const uidRaw = String(p.wecomUserId ?? "").trim();
       const mobile = normalizeMobile(mobileRaw);
       const uid = normalizeWecomUserId(uidRaw);
-      if (mobileRaw && !mobile) throw new Error((0, import_i18n15.t)("\u624B\u673A\u53F7\u683C\u5F0F\u4E0D\u5BF9"));
-      if (uidRaw && !uid) throw new Error((0, import_i18n15.t)("\u4F01\u5FAE\u8D26\u53F7\u683C\u5F0F\u4E0D\u5BF9\uFF1A\u53EA\u80FD\u6709\u5B57\u6BCD\u3001\u6570\u5B57\u548C\u4E0B\u5212\u7EBF\u3001\u70B9\u3001\u77ED\u6A2A\u7EBF"));
+      if (mobileRaw && !mobile) throw new Error((0, import_i18n16.t)("\u624B\u673A\u53F7\u683C\u5F0F\u4E0D\u5BF9"));
+      if (uidRaw && !uid) throw new Error((0, import_i18n16.t)("\u4F01\u5FAE\u8D26\u53F7\u683C\u5F0F\u4E0D\u5BF9\uFF1A\u53EA\u80FD\u6709\u5B57\u6BCD\u3001\u6570\u5B57\u548C\u4E0B\u5212\u7EBF\u3001\u70B9\u3001\u77ED\u6A2A\u7EBF"));
       const person = this.store.update((st) => {
         const x = st.org.people.find((y) => y.id === personId);
         if (mobile) x.mobile = mobile;
@@ -12130,7 +12522,7 @@ var MeetingMgmtService = class {
     },
     "settings.get": () => this.s().settings,
     "settings.save": (c, p) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u4FEE\u6539\u7CFB\u7EDF\u8BBE\u7F6E"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u4FEE\u6539\u7CFB\u7EDF\u8BBE\u7F6E"));
       const patch = p.patch && typeof p.patch === "object" ? p.patch : {};
       const settings = this.store.update((st) => {
         applySettingsPatch(st, patch);
@@ -12140,14 +12532,14 @@ var MeetingMgmtService = class {
       return settings;
     },
     "wecom.save": (c, p) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u914D\u7F6E\u4F01\u4E1A\u5FAE\u4FE1"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u914D\u7F6E\u4F01\u4E1A\u5FAE\u4FE1"));
       const corpId = str2(p.corpId, 100);
       const agentId = str2(p.agentId, 50);
       const secret = String(p.secret ?? "").trim();
       const cardBaseUrl = str2(p.cardBaseUrl, 500);
-      if (cardBaseUrl && !/^https?:\/\/[^\s]+$/i.test(cardBaseUrl)) throw new Error((0, import_i18n15.t)("\u5361\u7247\u5730\u5740\u8BF7\u586B\u5199 http:// \u6216 https:// \u5F00\u5934\u7684\u7F51\u5740"));
+      if (cardBaseUrl && !/^https?:\/\/[^\s]+$/i.test(cardBaseUrl)) throw new Error((0, import_i18n16.t)("\u5361\u7247\u5730\u5740\u8BF7\u586B\u5199 http:// \u6216 https:// \u5F00\u5934\u7684\u7F51\u5740"));
       if (secret) {
-        if (!this.ext.seal.can()) throw new Error((0, import_i18n15.t)("\u672C\u673A\u65E0\u6CD5\u5B89\u5168\u4FDD\u5B58\u4F01\u5FAE Secret\uFF08\u7CFB\u7EDF\u94A5\u5319\u4E32\u4E0D\u53EF\u7528\uFF09"));
+        if (!this.ext.seal.can()) throw new Error((0, import_i18n16.t)("\u672C\u673A\u65E0\u6CD5\u5B89\u5168\u4FDD\u5B58\u4F01\u5FAE Secret\uFF08\u7CFB\u7EDF\u94A5\u5319\u4E32\u4E0D\u53EF\u7528\uFF09"));
         this.store.writeSecret(this.ext.seal.seal(secret));
       }
       const clear = !corpId && !agentId;
@@ -12168,7 +12560,7 @@ var MeetingMgmtService = class {
     },
     /** 群机器人：p.url 为空 = 移除；只认 qyapi.weixin.qq.com 的 webhook 地址（或只贴 key） */
     "wecom.webhook.save": (c, p) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u914D\u7F6E\u4F01\u5FAE\u7FA4\u673A\u5668\u4EBA"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u914D\u7F6E\u4F01\u5FAE\u7FA4\u673A\u5668\u4EBA"));
       const raw = String(p.url ?? "").trim();
       if (!raw) {
         this.store.writeWebhook(null);
@@ -12181,8 +12573,8 @@ var MeetingMgmtService = class {
         return wecom2;
       }
       const url = normalizeWebhookUrl(raw);
-      if (!url) throw new Error((0, import_i18n15.t)("\u4E0D\u662F\u4F01\u4E1A\u5FAE\u4FE1\u7FA4\u673A\u5668\u4EBA\u7684\u5730\u5740\uFF1A\u5E94\u5F62\u5982 https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=\u2026"));
-      if (!this.ext.seal.can()) throw new Error((0, import_i18n15.t)("\u672C\u673A\u65E0\u6CD5\u5B89\u5168\u4FDD\u5B58\u7FA4\u673A\u5668\u4EBA\u5730\u5740\uFF08\u7CFB\u7EDF\u94A5\u5319\u4E32\u4E0D\u53EF\u7528\uFF09"));
+      if (!url) throw new Error((0, import_i18n16.t)("\u4E0D\u662F\u4F01\u4E1A\u5FAE\u4FE1\u7FA4\u673A\u5668\u4EBA\u7684\u5730\u5740\uFF1A\u5E94\u5F62\u5982 https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=\u2026"));
+      if (!this.ext.seal.can()) throw new Error((0, import_i18n16.t)("\u672C\u673A\u65E0\u6CD5\u5B89\u5168\u4FDD\u5B58\u7FA4\u673A\u5668\u4EBA\u5730\u5740\uFF08\u7CFB\u7EDF\u94A5\u5319\u4E32\u4E0D\u53EF\u7528\uFF09"));
       this.store.writeWebhook(this.ext.seal.seal(url));
       const wecom = this.store.update((st) => {
         st.settings.wecom.hasWebhook = true;
@@ -12193,16 +12585,16 @@ var MeetingMgmtService = class {
       return wecom;
     },
     "wecom.webhook.test": async (c) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u6D4B\u8BD5\u4F01\u5FAE\u7FA4\u673A\u5668\u4EBA"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u6D4B\u8BD5\u4F01\u5FAE\u7FA4\u673A\u5668\u4EBA"));
       const url = this.webhookUrl();
-      if (!url) throw new Error((0, import_i18n15.t)("\u8BF7\u5148\u586B\u5199\u7FA4\u673A\u5668\u4EBA\u7684 Webhook \u5730\u5740"));
+      if (!url) throw new Error((0, import_i18n16.t)("\u8BF7\u5148\u586B\u5199\u7FA4\u673A\u5668\u4EBA\u7684 Webhook \u5730\u5740"));
       return this.ext.createWebhook(url).test();
     },
     // ── 会议转写方式：本机模型（推荐，录音不出电脑）/ App 的 AI 服务 / 自己填的在线语音识别接口 ──
     "asr.mode.save": (c, p) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u4FEE\u6539\u4F1A\u8BAE\u8F6C\u5199\u65B9\u5F0F"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u4FEE\u6539\u4F1A\u8BAE\u8F6C\u5199\u65B9\u5F0F"));
       const mode = p.mode === "cloud" ? "cloud" : p.mode === "agent" ? "agent" : "local";
-      if (mode === "cloud" && !this.cloudAsrConfig()) throw new Error((0, import_i18n15.t)("\u5728\u7EBF\u63A5\u53E3\u8FD8\u6CA1\u586B\u5B8C\u6574\uFF08\u5730\u5740\u3001\u6A21\u578B\u3001API Key\uFF09\uFF0C\u8BF7\u5148\u4FDD\u5B58\u5728\u7EBF\u63A5\u53E3"));
+      if (mode === "cloud" && !this.cloudAsrConfig()) throw new Error((0, import_i18n16.t)("\u5728\u7EBF\u63A5\u53E3\u8FD8\u6CA1\u586B\u5B8C\u6574\uFF08\u5730\u5740\u3001\u6A21\u578B\u3001API Key\uFF09\uFF0C\u8BF7\u5148\u4FDD\u5B58\u5728\u7EBF\u63A5\u53E3"));
       const localModel = ["firered", "sensevoice", "whisper"].includes(p.localModel) ? p.localModel : "auto";
       this.store.update((st) => {
         st.settings.ai.asr = mode;
@@ -12212,7 +12604,7 @@ var MeetingMgmtService = class {
       return this.asrSettingsView();
     },
     "asr.cloud.save": (c, p) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u914D\u7F6E\u5728\u7EBF\u8BED\u97F3\u8BC6\u522B\u63A5\u53E3"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u914D\u7F6E\u5728\u7EBF\u8BED\u97F3\u8BC6\u522B\u63A5\u53E3"));
       if (p.clear === true) {
         this.store.writeCloudAsrKey(null);
         this.store.update((st) => {
@@ -12224,16 +12616,16 @@ var MeetingMgmtService = class {
       }
       const provider = cloudAsrPreset(str2(p.provider)).id;
       const baseUrl = normalizeBaseUrl(str2(p.baseUrl, 500) || cloudAsrPreset(provider).baseUrl);
-      if (!baseUrl) throw new Error((0, import_i18n15.t)("\u5728\u7EBF\u63A5\u53E3\u5730\u5740\u4E0D\u5BF9\uFF0C\u8BF7\u586B http:// \u6216 https:// \u5F00\u5934\u7684\u5730\u5740"));
+      if (!baseUrl) throw new Error((0, import_i18n16.t)("\u5728\u7EBF\u63A5\u53E3\u5730\u5740\u4E0D\u5BF9\uFF0C\u8BF7\u586B http:// \u6216 https:// \u5F00\u5934\u7684\u5730\u5740"));
       const model = str2(p.model, 200);
-      if (!model) throw new Error((0, import_i18n15.t)("\u8BF7\u586B\u5199\u5728\u7EBF\u63A5\u53E3\u7684\u6A21\u578B\u540D"));
+      if (!model) throw new Error((0, import_i18n16.t)("\u8BF7\u586B\u5199\u5728\u7EBF\u63A5\u53E3\u7684\u6A21\u578B\u540D"));
       const apiKey = str2(p.apiKey, 500);
       if (apiKey) {
-        if (!this.ext.seal.can()) throw new Error((0, import_i18n15.t)("\u8FD9\u53F0\u7535\u8111\u7684\u7CFB\u7EDF\u52A0\u5BC6\u5B58\u50A8\u4E0D\u53EF\u7528\uFF0CAPI Key \u6CA1\u6CD5\u5B89\u5168\u4FDD\u5B58"));
+        if (!this.ext.seal.can()) throw new Error((0, import_i18n16.t)("\u8FD9\u53F0\u7535\u8111\u7684\u7CFB\u7EDF\u52A0\u5BC6\u5B58\u50A8\u4E0D\u53EF\u7528\uFF0CAPI Key \u6CA1\u6CD5\u5B89\u5168\u4FDD\u5B58"));
         this.store.writeCloudAsrKey(this.ext.seal.seal(apiKey));
       }
       const hasKey = !!this.store.readCloudAsrKey();
-      if (!hasKey) throw new Error((0, import_i18n15.t)("\u8BF7\u586B\u5199\u5728\u7EBF\u63A5\u53E3\u7684 API Key"));
+      if (!hasKey) throw new Error((0, import_i18n16.t)("\u8BF7\u586B\u5199\u5728\u7EBF\u63A5\u53E3\u7684 API Key"));
       this.store.update((st) => {
         st.settings.ai.cloudAsr = { provider, baseUrl, model, hasKey };
       });
@@ -12242,7 +12634,7 @@ var MeetingMgmtService = class {
     },
     /** 用 1 秒静音试一下地址 / Key / 模型对不对（没填的项用已保存的） */
     "asr.cloud.test": async (c, p) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u6D4B\u8BD5\u5728\u7EBF\u8BED\u97F3\u8BC6\u522B\u63A5\u53E3"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u6D4B\u8BD5\u5728\u7EBF\u8BED\u97F3\u8BC6\u522B\u63A5\u53E3"));
       const saved = this.cloudAsrConfig();
       const provider = cloudAsrPreset(str2(p.provider) || saved?.provider).id;
       const cfg = {
@@ -12253,33 +12645,33 @@ var MeetingMgmtService = class {
       };
       const t0 = Date.now();
       const r = await this.ext.cloudTranscribe(cfg, silenceWav(1.2));
-      return r.ok ? { ok: true, ms: Date.now() - t0 } : { ok: false, error: r.error || (0, import_i18n15.t)("\u8FDE\u63A5\u5931\u8D25") };
+      return r.ok ? { ok: true, ms: Date.now() - t0 } : { ok: false, error: r.error || (0, import_i18n16.t)("\u8FDE\u63A5\u5931\u8D25") };
     },
     "asr.cloud.reveal": (c) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u67E5\u770B\u5728\u7EBF\u63A5\u53E3 API Key"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u67E5\u770B\u5728\u7EBF\u63A5\u53E3 API Key"));
       const sealed = this.store.readCloudAsrKey();
       if (!sealed) return { apiKey: "" };
       try {
         return { apiKey: this.ext.seal.unseal(sealed) || "" };
       } catch {
-        throw new Error((0, import_i18n15.t)("\u672C\u673A\u8BFB\u4E0D\u51FA\u5DF2\u4FDD\u5B58\u7684 API Key\uFF08\u7CFB\u7EDF\u94A5\u5319\u4E32\u4E0D\u53EF\u7528\uFF09\uFF0C\u8BF7\u91CD\u65B0\u586B\u5199"));
+        throw new Error((0, import_i18n16.t)("\u672C\u673A\u8BFB\u4E0D\u51FA\u5DF2\u4FDD\u5B58\u7684 API Key\uFF08\u7CFB\u7EDF\u94A5\u5319\u4E32\u4E0D\u53EF\u7528\uFF09\uFF0C\u8BF7\u91CD\u65B0\u586B\u5199"));
       }
     },
     /** 管理员在本机查看已保存的企微 Secret（只在电脑端；手机页调不了） */
     "wecom.secret.reveal": (c) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u67E5\u770B\u4F01\u5FAE Secret"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u67E5\u770B\u4F01\u5FAE Secret"));
       const sealed = this.store.readSecret();
       if (!sealed) return { secret: "" };
       try {
         return { secret: this.ext.seal.unseal(sealed) || "" };
       } catch {
-        throw new Error((0, import_i18n15.t)("\u672C\u673A\u8BFB\u4E0D\u51FA\u5DF2\u4FDD\u5B58\u7684 Secret\uFF08\u7CFB\u7EDF\u94A5\u5319\u4E32\u4E0D\u53EF\u7528\uFF09\uFF0C\u8BF7\u91CD\u65B0\u586B\u5199"));
+        throw new Error((0, import_i18n16.t)("\u672C\u673A\u8BFB\u4E0D\u51FA\u5DF2\u4FDD\u5B58\u7684 Secret\uFF08\u7CFB\u7EDF\u94A5\u5319\u4E32\u4E0D\u53EF\u7528\uFF09\uFF0C\u8BF7\u91CD\u65B0\u586B\u5199"));
       }
     },
     "wecom.test": async (c) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u6D4B\u8BD5\u4F01\u4E1A\u5FAE\u4FE1\u8FDE\u63A5"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u6D4B\u8BD5\u4F01\u4E1A\u5FAE\u4FE1\u8FDE\u63A5"));
       const client = this.wecomClient();
-      if (!client) throw new Error((0, import_i18n15.t)("\u8BF7\u5148\u586B\u5199\u4F01\u4E1A\u5FAE\u4FE1\u7684 CorpID\u3001AgentID \u548C Secret"));
+      if (!client) throw new Error((0, import_i18n16.t)("\u8BF7\u5148\u586B\u5199\u4F01\u4E1A\u5FAE\u4FE1\u7684 CorpID\u3001AgentID \u548C Secret"));
       return client.test();
     },
     // ── 声纹 ──
@@ -12315,16 +12707,16 @@ var MeetingMgmtService = class {
     "voiceprint.enroll": async (c, p) => {
       const me = this.me(c);
       const personId = str2(p.personId) || me.id;
-      if (personId !== me.id && !this.isAdmin(me.id)) throw new Error((0, import_i18n15.t)("\u53EA\u80FD\u91C7\u96C6\u672C\u4EBA\u7684\u58F0\u7EB9"));
-      requireActivePerson(this.s().org, personId, (0, import_i18n15.t)("\u4EBA\u5458"));
-      if (p.consent !== true) throw new Error((0, import_i18n15.t)("\u91C7\u96C6\u58F0\u7EB9\u9700\u8981\u672C\u4EBA\u6388\u6743\u540C\u610F"));
+      if (personId !== me.id && !this.isAdmin(me.id)) throw new Error((0, import_i18n16.t)("\u53EA\u80FD\u91C7\u96C6\u672C\u4EBA\u7684\u58F0\u7EB9"));
+      requireActivePerson(this.s().org, personId, (0, import_i18n16.t)("\u4EBA\u5458"));
+      if (p.consent !== true) throw new Error((0, import_i18n16.t)("\u91C7\u96C6\u58F0\u7EB9\u9700\u8981\u672C\u4EBA\u6388\u6743\u540C\u610F"));
       const path = String(p.path ?? "");
-      if (!path || !(0, import_node_fs4.existsSync)(path) || !(0, import_node_fs4.statSync)(path).isFile()) throw new Error((0, import_i18n15.t)("\u5F55\u97F3\u6587\u4EF6\u4E0D\u5B58\u5728"));
+      if (!path || !(0, import_node_fs4.existsSync)(path) || !(0, import_node_fs4.statSync)(path).isFile()) throw new Error((0, import_i18n16.t)("\u5F55\u97F3\u6587\u4EF6\u4E0D\u5B58\u5728"));
       const fromUpload = MeetingMgmtStore.isInside(this.store.uploadsDir(), path);
-      if (c.origin === "mobile" && !fromUpload) throw new Error((0, import_i18n15.t)("\u5F55\u97F3\u6587\u4EF6\u4E0D\u5728\u4E0A\u4F20\u76EE\u5F55\u91CC"));
+      if (c.origin === "mobile" && !fromUpload) throw new Error((0, import_i18n16.t)("\u5F55\u97F3\u6587\u4EF6\u4E0D\u5728\u4E0A\u4F20\u76EE\u5F55\u91CC"));
       try {
         const r = await this.ext.enrollVoiceprint(path);
-        if (!r.ok) throw new Error(r.reason || (0, import_i18n15.t)("\u5F55\u97F3\u8D28\u91CF\u4E0D\u5408\u683C\uFF0C\u8BF7\u91CD\u5F55"));
+        if (!r.ok) throw new Error(r.reason || (0, import_i18n16.t)("\u5F55\u97F3\u8D28\u91CF\u4E0D\u5408\u683C\uFF0C\u8BF7\u91CD\u5F55"));
         const now = this.nowFn();
         this.store.update((st) => {
           const prev = st.voiceprints.find((v) => v.personId === personId);
@@ -12355,16 +12747,16 @@ var MeetingMgmtService = class {
     /** 电脑上现场录的声纹（配置引导 / 声纹库里「现场录音」）：录音数据落到上传目录，提完声纹即删 */
     "voiceprint.enrollData": async (c, p) => {
       const data = String(p.data ?? "");
-      if (!data || data.length > 8 * 1024 * 1024) throw new Error((0, import_i18n15.t)("\u5F55\u97F3\u6570\u636E\u65E0\u6548\uFF0C\u8BF7\u91CD\u5F55"));
+      if (!data || data.length > 8 * 1024 * 1024) throw new Error((0, import_i18n16.t)("\u5F55\u97F3\u6570\u636E\u65E0\u6548\uFF0C\u8BF7\u91CD\u5F55"));
       const ext = /^(webm|ogg|wav|m4a|mp4)$/.test(String(p.ext ?? "")) ? String(p.ext) : "webm";
-      const path = (0, import_node_path3.join)(this.store.uploadsDir(), `pc-voice-${(0, import_node_crypto5.randomBytes)(6).toString("hex")}.${ext}`);
+      const path = (0, import_node_path4.join)(this.store.uploadsDir(), `pc-voice-${(0, import_node_crypto6.randomBytes)(6).toString("hex")}.${ext}`);
       (0, import_node_fs4.writeFileSync)(path, Buffer.from(data, "base64"));
       return this.actions["voiceprint.enroll"](c, { personId: p.personId, consent: p.consent, path, ...typeof p.autoLearn === "boolean" ? { autoLearn: p.autoLearn } : {} });
     },
     "voiceprint.delete": (c, p) => {
       const me = this.me(c);
       const personId = str2(p.personId) || me.id;
-      if (personId !== me.id && !this.isAdmin(me.id)) throw new Error((0, import_i18n15.t)("\u53EA\u80FD\u64A4\u56DE\u672C\u4EBA\u7684\u58F0\u7EB9\u6388\u6743"));
+      if (personId !== me.id && !this.isAdmin(me.id)) throw new Error((0, import_i18n16.t)("\u53EA\u80FD\u64A4\u56DE\u672C\u4EBA\u7684\u58F0\u7EB9\u6388\u6743"));
       this.store.update((st) => {
         st.voiceprints = st.voiceprints.filter((v) => v.personId !== personId);
       });
@@ -12373,7 +12765,7 @@ var MeetingMgmtService = class {
     },
     "voiceprint.link": (c) => {
       const me = this.me(c);
-      if (!this.linkBase()) throw new Error((0, import_i18n15.t)("\u8BF7\u5148\u5F00\u542F\u624B\u673A\u9875\u670D\u52A1\uFF08\u6216\u5728\u8BBE\u7F6E\u91CC\u586B\u5199\u5361\u7247\u5730\u5740\uFF09"));
+      if (!this.linkBase()) throw new Error((0, import_i18n16.t)("\u8BF7\u5148\u5F00\u542F\u624B\u673A\u9875\u670D\u52A1\uFF08\u6216\u5728\u8BBE\u7F6E\u91CC\u586B\u5199\u5361\u7247\u5730\u5740\uFF09"));
       const s = this.s();
       const people = this.isAdmin(me.id) ? s.org.people.filter((x) => !x.left) : [me];
       return {
@@ -12382,44 +12774,44 @@ var MeetingMgmtService = class {
       };
     },
     "voiceprint.send": async (c) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u63A8\u9001\u58F0\u7EB9\u91C7\u96C6"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u63A8\u9001\u58F0\u7EB9\u91C7\u96C6"));
       const ch = this.pushChannel();
-      if (!ch) throw new Error((0, import_i18n15.t)("\u672A\u8FDE\u63A5\u4F01\u4E1A\u5FAE\u4FE1\uFF0C\u8BF7\u5148\u5728\u8BBE\u7F6E\u91CC\u914D\u7F6E\u4F01\u5FAE\u81EA\u5EFA\u5E94\u7528\u6216\u7FA4\u673A\u5668\u4EBA"));
-      if (!this.linkBase()) throw new Error((0, import_i18n15.t)("\u8BF7\u5148\u5F00\u542F\u624B\u673A\u9875\u670D\u52A1\uFF08\u6216\u5728\u8BBE\u7F6E\u91CC\u586B\u5199\u5361\u7247\u5730\u5740\uFF09"));
+      if (!ch) throw new Error((0, import_i18n16.t)("\u672A\u8FDE\u63A5\u4F01\u4E1A\u5FAE\u4FE1\uFF0C\u8BF7\u5148\u5728\u8BBE\u7F6E\u91CC\u914D\u7F6E\u4F01\u5FAE\u81EA\u5EFA\u5E94\u7528\u6216\u7FA4\u673A\u5668\u4EBA"));
+      if (!this.linkBase()) throw new Error((0, import_i18n16.t)("\u8BF7\u5148\u5F00\u542F\u624B\u673A\u9875\u670D\u52A1\uFF08\u6216\u5728\u8BBE\u7F6E\u91CC\u586B\u5199\u5361\u7247\u5730\u5740\uFF09"));
       const s = this.s();
       const todo = s.org.people.filter((x) => !x.left && !s.voiceprints.some((v) => v.personId === x.id));
       if (!todo.length) return { sent: 0, failed: [], skipped: s.org.people.filter((x) => !x.left).length };
       if (ch === "webhook") {
         const r = await this.ext.createWebhook(this.webhookUrl()).send(buildGroupMessage({
-          label: (0, import_i18n15.t)("\u58F0\u7EB9\u91C7\u96C6\u9080\u8BF7"),
-          title: (0, import_i18n15.t)("\u8BF7\u8FD8\u6CA1\u91C7\u96C6\u58F0\u7EB9\u7684\u540C\u4E8B\u5F55\u4E00\u6BB5 10~15 \u79D2\u7684\u58F0\u97F3"),
-          summary: (0, import_i18n15.t)("\u7528\u4E8E\u5728\u4F1A\u8BAE\u7EAA\u8981\u91CC\u81EA\u52A8\u8BC6\u522B\u4F60\u7684\u53D1\u8A00\uFF0C\u9700\u8981\u672C\u4EBA\u6388\u6743\u540C\u610F\u3002\u6CA1\u6253\u5F00\u8FC7\u4E2A\u4EBA\u4E13\u5C5E\u94FE\u63A5\u7684\u540C\u4E8B\uFF0C\u8BF7\u5148\u627E\u7BA1\u7406\u5458\u8981\u4E00\u6B21\u94FE\u63A5\u3002"),
+          label: (0, import_i18n16.t)("\u58F0\u7EB9\u91C7\u96C6\u9080\u8BF7"),
+          title: (0, import_i18n16.t)("\u8BF7\u8FD8\u6CA1\u91C7\u96C6\u58F0\u7EB9\u7684\u540C\u4E8B\u5F55\u4E00\u6BB5 10~15 \u79D2\u7684\u58F0\u97F3"),
+          summary: (0, import_i18n16.t)("\u7528\u4E8E\u5728\u4F1A\u8BAE\u7EAA\u8981\u91CC\u81EA\u52A8\u8BC6\u522B\u4F60\u7684\u53D1\u8A00\uFF0C\u9700\u8981\u672C\u4EBA\u6388\u6743\u540C\u610F\u3002\u6CA1\u6253\u5F00\u8FC7\u4E2A\u4EBA\u4E13\u5C5E\u94FE\u63A5\u7684\u540C\u4E8B\uFF0C\u8BF7\u5148\u627E\u7BA1\u7406\u5458\u8981\u4E00\u6B21\u94FE\u63A5\u3002"),
           mentions: todo.map((x) => this.mentionOf(x, x.name)),
           url: buildGroupUrl(this.linkBase(), null, "voiceprint"),
-          buttonText: (0, import_i18n15.t)("\u53BB\u91C7\u96C6"),
+          buttonText: (0, import_i18n16.t)("\u53BB\u91C7\u96C6"),
           lanOnly: this.lanOnly()
         })).catch((e) => ({ ok: false, error: e?.message }));
-        return r.ok ? { sent: todo.length, failed: [], group: true } : { sent: 0, failed: todo.map((x) => ({ personId: x.id, error: r.error || (0, import_i18n15.t)("\u53D1\u9001\u5931\u8D25") })), group: true };
+        return r.ok ? { sent: todo.length, failed: [], group: true } : { sent: 0, failed: todo.map((x) => ({ personId: x.id, error: r.error || (0, import_i18n16.t)("\u53D1\u9001\u5931\u8D25") })), group: true };
       }
       const client = this.wecomClient();
-      if (!client) throw new Error((0, import_i18n15.t)("\u672A\u8FDE\u63A5\u4F01\u4E1A\u5FAE\u4FE1\uFF0C\u8BF7\u5148\u5728\u8BBE\u7F6E\u91CC\u914D\u7F6E\u4F01\u5FAE"));
+      if (!client) throw new Error((0, import_i18n16.t)("\u672A\u8FDE\u63A5\u4F01\u4E1A\u5FAE\u4FE1\uFF0C\u8BF7\u5148\u5728\u8BBE\u7F6E\u91CC\u914D\u7F6E\u4F01\u5FAE"));
       let sent = 0;
       const failed = [];
       for (const person of todo) {
         const r = await client.sendCard([person.wecomUserId || person.id], {
-          title: (0, import_i18n15.t)("\u58F0\u7EB9\u91C7\u96C6\u9080\u8BF7"),
-          description: (0, import_i18n15.t)("\u4E3A\u4E86\u5728\u4F1A\u8BAE\u7EAA\u8981\u91CC\u81EA\u52A8\u8BC6\u522B\u4F60\u7684\u53D1\u8A00\uFF0C\u8BF7\u5F55 10~15 \u79D2\u58F0\u97F3\u5B8C\u6210\u58F0\u7EB9\u91C7\u96C6\uFF08\u9700\u672C\u4EBA\u6388\u6743\u540C\u610F\uFF09\u3002") + (this.lanOnly() ? `<div class="gray">${lanLinkNote()}</div>` : ""),
+          title: (0, import_i18n16.t)("\u58F0\u7EB9\u91C7\u96C6\u9080\u8BF7"),
+          description: (0, import_i18n16.t)("\u4E3A\u4E86\u5728\u4F1A\u8BAE\u7EAA\u8981\u91CC\u81EA\u52A8\u8BC6\u522B\u4F60\u7684\u53D1\u8A00\uFF0C\u8BF7\u5F55 10~15 \u79D2\u58F0\u97F3\u5B8C\u6210\u58F0\u7EB9\u91C7\u96C6\uFF08\u9700\u672C\u4EBA\u6388\u6743\u540C\u610F\uFF09\u3002") + (this.lanOnly() ? `<div class="gray">${lanLinkNote()}</div>` : ""),
           url: this.personUrl(person.id, { page: "voiceprint" }),
-          btntxt: (0, import_i18n15.t)("\u53BB\u91C7\u96C6")
+          btntxt: (0, import_i18n16.t)("\u53BB\u91C7\u96C6")
         }).catch((e) => ({ ok: false, error: e?.message }));
         if (r.ok) sent += 1;
-        else failed.push({ personId: person.id, error: r.error || (0, import_i18n15.t)("\u53D1\u9001\u5931\u8D25") });
+        else failed.push({ personId: person.id, error: r.error || (0, import_i18n16.t)("\u53D1\u9001\u5931\u8D25") });
       }
       return { sent, failed };
     },
     // ── 手机页 ──
     "mobile.start": async (c, p) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u5F00\u542F\u624B\u673A\u9875\u670D\u52A1"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u5F00\u542F\u624B\u673A\u9875\u670D\u52A1"));
       await this.startMobile(Number(p.port) > 0 ? Number(p.port) : void 0);
       this.store.update((st) => {
         st.mobileOn = true;
@@ -12427,7 +12819,7 @@ var MeetingMgmtService = class {
       return this.mobileStatus();
     },
     "mobile.stop": async (c) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u5173\u95ED\u624B\u673A\u9875\u670D\u52A1"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u5173\u95ED\u624B\u673A\u9875\u670D\u52A1"));
       this.store.update((st) => {
         st.mobileOn = false;
       });
@@ -12442,21 +12834,21 @@ var MeetingMgmtService = class {
     "mobile.link": (c, p) => {
       const me = this.me(c);
       const personId = str2(p.personId) || me.id;
-      if (personId !== me.id && !this.isAdmin(me.id)) throw new Error((0, import_i18n15.t)("\u53EA\u80FD\u67E5\u770B\u672C\u4EBA\u7684\u4E13\u5C5E\u94FE\u63A5"));
-      requireActivePerson(this.s().org, personId, (0, import_i18n15.t)("\u4EBA\u5458"));
-      if (!this.linkBase()) throw new Error((0, import_i18n15.t)("\u8BF7\u5148\u5F00\u542F\u624B\u673A\u9875\u670D\u52A1\uFF08\u6216\u5728\u8BBE\u7F6E\u91CC\u586B\u5199\u5361\u7247\u5730\u5740\uFF09"));
+      if (personId !== me.id && !this.isAdmin(me.id)) throw new Error((0, import_i18n16.t)("\u53EA\u80FD\u67E5\u770B\u672C\u4EBA\u7684\u4E13\u5C5E\u94FE\u63A5"));
+      requireActivePerson(this.s().org, personId, (0, import_i18n16.t)("\u4EBA\u5458"));
+      if (!this.linkBase()) throw new Error((0, import_i18n16.t)("\u8BF7\u5148\u5F00\u542F\u624B\u673A\u9875\u670D\u52A1\uFF08\u6216\u5728\u8BBE\u7F6E\u91CC\u586B\u5199\u5361\u7247\u5730\u5740\uFF09"));
       return { url: this.personUrl(personId, void 0, p.reset === true) };
     },
     // ── 演示数据 ──
     "demo.load": (c) => {
-      if (this.hasActiveAdmin()) this.requireAdmin(c, (0, import_i18n15.t)("\u8F7D\u5165\u6F14\u793A\u6570\u636E"));
+      if (this.hasActiveAdmin()) this.requireAdmin(c, (0, import_i18n16.t)("\u8F7D\u5165\u6F14\u793A\u6570\u636E"));
       for (const j of this.jobs.values()) j.abort();
       this.loadDemo(c.now, c.actorId);
       this.changed("all");
       return { ok: true };
     },
     "demo.clear": (c) => {
-      this.requireAdmin(c, (0, import_i18n15.t)("\u6E05\u7A7A\u6F14\u793A\u6570\u636E"));
+      this.requireAdmin(c, (0, import_i18n16.t)("\u6E05\u7A7A\u6F14\u793A\u6570\u636E"));
       for (const j of this.jobs.values()) j.abort();
       const ids = this.s().meetings.map((m) => m.id);
       this.store.update((st) => {
@@ -12473,7 +12865,7 @@ var MeetingMgmtService = class {
     /** 写出演示用文字记录；给了 meetingId 就直接上传到这场会议（不靠音频走通闭环） */
     "demo.transcript": async (c, p) => {
       this.me(c);
-      const path = (0, import_node_path3.join)(this.store.demoDir(), DEMO_TRANSCRIPT_NAME);
+      const path = (0, import_node_path4.join)(this.store.demoDir(), DEMO_TRANSCRIPT_NAME);
       (0, import_node_fs4.writeFileSync)(path, DEMO_TRANSCRIPT, "utf-8");
       if (!p.meetingId) return { path };
       const meeting = await this.upload(c, String(p.meetingId), [path]);
@@ -12533,7 +12925,7 @@ var MeetingMgmtService = class {
       if (this.stopped) {
         await handle.stop().catch(() => {
         });
-        throw new Error((0, import_i18n15.t)("\u5DE5\u4F5C\u53F0\u5DF2\u505C\u6B62"));
+        throw new Error((0, import_i18n16.t)("\u5DE5\u4F5C\u53F0\u5DF2\u505C\u6B62"));
       }
       this.mobile = handle;
       this.emit({ type: "mobile", running: true, url: handle.url });
@@ -12573,25 +12965,25 @@ var MeetingMgmtService = class {
     const m = this.findMeeting(s, id);
     const pj = this.findProject(s, m.projectId);
     assertProjectActive(pj);
-    assertHost(m, me.id, (0, import_i18n15.t)("\u4E0A\u4F20\u4F1A\u8BAE\u6587\u4EF6"));
+    assertHost(m, me.id, (0, import_i18n16.t)("\u4E0A\u4F20\u4F1A\u8BAE\u6587\u4EF6"));
     if (m.status !== "pending_upload" && m.status !== "failed") {
-      throw new Error((0, import_i18n15.t)("\u4F1A\u8BAE\u5F53\u524D\u72B6\u6001\u662F\u300C{p0}\u300D\uFF0C\u4E0D\u80FD{p1}", { p0: meetingStatusLabel(m.status), p1: (0, import_i18n15.t)("\u4E0A\u4F20\u4F1A\u8BAE\u6587\u4EF6") }));
+      throw new Error((0, import_i18n16.t)("\u4F1A\u8BAE\u5F53\u524D\u72B6\u6001\u662F\u300C{p0}\u300D\uFF0C\u4E0D\u80FD{p1}", { p0: meetingStatusLabel(m.status), p1: (0, import_i18n16.t)("\u4E0A\u4F20\u4F1A\u8BAE\u6587\u4EF6") }));
     }
-    if (this.jobs.has(id)) throw new Error((0, import_i18n15.t)("\u4F1A\u8BAE\u6B63\u5728\u5904\u7406\u4E2D"));
+    if (this.jobs.has(id)) throw new Error((0, import_i18n16.t)("\u4F1A\u8BAE\u6B63\u5728\u5904\u7406\u4E2D"));
     const paths = strArr(rawPaths);
-    if (!paths.length) throw new Error((0, import_i18n15.t)("\u8BF7\u9009\u62E9\u8981\u4E0A\u4F20\u7684\u4F1A\u8BAE\u6587\u4EF6"));
-    if (paths.length > 20) throw new Error((0, import_i18n15.t)("\u4E00\u6B21\u6700\u591A\u4E0A\u4F20 20 \u4E2A\u6587\u4EF6"));
+    if (!paths.length) throw new Error((0, import_i18n16.t)("\u8BF7\u9009\u62E9\u8981\u4E0A\u4F20\u7684\u4F1A\u8BAE\u6587\u4EF6"));
+    if (paths.length > 20) throw new Error((0, import_i18n16.t)("\u4E00\u6B21\u6700\u591A\u4E0A\u4F20 20 \u4E2A\u6587\u4EF6"));
     const uploads = this.store.uploadsDir();
     for (const src of paths) {
-      if (!(0, import_node_fs4.existsSync)(src) || !(0, import_node_fs4.statSync)(src).isFile()) throw new Error((0, import_i18n15.t)("\u6587\u4EF6\u4E0D\u5B58\u5728\uFF1A{p0}", { p0: (0, import_node_path3.basename)(src) }));
-      if (c.origin === "mobile" && !MeetingMgmtStore.isInside(uploads, src)) throw new Error((0, import_i18n15.t)("\u6587\u4EF6\u4E0D\u5728\u4E0A\u4F20\u76EE\u5F55\u91CC"));
+      if (!(0, import_node_fs4.existsSync)(src) || !(0, import_node_fs4.statSync)(src).isFile()) throw new Error((0, import_i18n16.t)("\u6587\u4EF6\u4E0D\u5B58\u5728\uFF1A{p0}", { p0: (0, import_node_path4.basename)(src) }));
+      if (c.origin === "mobile" && !MeetingMgmtStore.isInside(uploads, src)) throw new Error((0, import_i18n16.t)("\u6587\u4EF6\u4E0D\u5728\u4E0A\u4F20\u76EE\u5F55\u91CC"));
     }
     const dir = this.store.filesDir(id);
     const files = [];
     for (const src of paths) {
       const fileId = newId("mf");
-      const name = (0, import_node_path3.basename)(src);
-      const dest = (0, import_node_path3.join)(dir, `${fileId}${(0, import_node_path3.extname)(name).toLowerCase().replace(/[^.a-z0-9]/g, "")}`);
+      const name = (0, import_node_path4.basename)(src);
+      const dest = (0, import_node_path4.join)(dir, `${fileId}${(0, import_node_path4.extname)(name).toLowerCase().replace(/[^.a-z0-9]/g, "")}`);
       if (c.origin === "mobile") {
         try {
           await import_node_fs4.promises.rename(src, dest);
@@ -12691,12 +13083,13 @@ var MeetingMgmtService = class {
         this.afterSpeakersSettled(out.m, out.pending, out.projectName, now);
       } catch (e) {
         if (ctrl.signal.aborted) return;
-        const msg = e?.message || (0, import_i18n15.t)("\u5904\u7406\u5931\u8D25");
-        this.warn("pipeline failed", { meetingId, error: msg });
+        const msg = e?.message || (0, import_i18n16.t)("\u5904\u7406\u5931\u8D25");
+        const detail = typeof e?.detail === "string" ? e.detail.trim() : "";
+        this.warn("pipeline failed", { meetingId, error: msg, ...detail ? { detail } : {} });
         try {
           this.store.update((st) => {
             const mm = st.meetings.find((x) => x.id === meetingId);
-            if (mm) failProcessing(mm, msg, this.nowFn());
+            if (mm) failProcessing(mm, msg, this.nowFn(), detail || void 0);
           });
         } catch {
         }
@@ -12713,8 +13106,8 @@ var MeetingMgmtService = class {
       this.notify(pending.map((to) => ({
         to,
         type: "speech_confirm",
-        title: (0, import_i18n15.t)("\u53D1\u8A00\u5F85\u786E\u8BA4\uFF1A{p0}", { p0: m.title }),
-        summary: (0, import_i18n15.t)("\u8BF7\u6838\u5BF9\u5E76\u786E\u8BA4\u4F60\u5728\u4F1A\u4E0A\u7684\u53D1\u8A00\uFF08{p0}\uFF09", { p0: projectName }),
+        title: (0, import_i18n16.t)("\u53D1\u8A00\u5F85\u786E\u8BA4\uFF1A{p0}", { p0: m.title }),
+        summary: (0, import_i18n16.t)("\u8BF7\u6838\u5BF9\u5E76\u786E\u8BA4\u4F60\u5728\u4F1A\u4E0A\u7684\u53D1\u8A00\uFF08{p0}\uFF09", { p0: projectName }),
         link: { kind: "meeting", id: m.id }
       })), now);
     } else if (m.status === "pending_review") {
@@ -12725,15 +13118,15 @@ var MeetingMgmtService = class {
     this.notify([{
       to: m.hostId,
       type: "minutes_review",
-      title: (0, import_i18n15.t)("\u7EAA\u8981\u5F85\u7EC8\u5BA1\uFF1A{p0}", { p0: m.title }),
-      summary: (0, import_i18n15.t)("\u53D1\u8A00\u4EBA\u5DF2\u5168\u90E8\u786E\u8BA4\uFF0C\u8BF7\u7EC8\u5BA1\uFF08{p0}\uFF09", { p0: projectName }),
+      title: (0, import_i18n16.t)("\u7EAA\u8981\u5F85\u7EC8\u5BA1\uFF1A{p0}", { p0: m.title }),
+      summary: (0, import_i18n16.t)("\u53D1\u8A00\u4EBA\u5DF2\u5168\u90E8\u786E\u8BA4\uFF0C\u8BF7\u7EC8\u5BA1\uFF08{p0}\uFF09", { p0: projectName }),
       link: { kind: "meeting", id: m.id }
     }], now);
   }
   /** 生成项目总结（结项通过 / 重新生成）；生成好通知项目负责人审核 */
   async runSummary(projectId, rethrow = false) {
     if (this.summaryJobs.has(projectId)) {
-      if (rethrow) throw new Error((0, import_i18n15.t)("\u603B\u7ED3\u62A5\u544A\u6B63\u5728\u751F\u6210\uFF0C\u8BF7\u7A0D\u5019"));
+      if (rethrow) throw new Error((0, import_i18n16.t)("\u603B\u7ED3\u62A5\u544A\u6B63\u5728\u751F\u6210\uFF0C\u8BF7\u7A0D\u5019"));
       return null;
     }
     this.summaryJobs.add(projectId);
@@ -12751,15 +13144,15 @@ var MeetingMgmtService = class {
       });
       const pj = this.store.update((st) => {
         const x = this.findProject(st, projectId);
-        if (x.status !== "closing") throw new Error((0, import_i18n15.t)("\u9879\u76EE\u72B6\u6001\u5DF2\u53D8\u5316"));
+        if (x.status !== "closing") throw new Error((0, import_i18n16.t)("\u9879\u76EE\u72B6\u6001\u5DF2\u53D8\u5316"));
         x.summary = { ...report, kind: "summary", id: report.id || newId("rp"), generatedAt: report.generatedAt || this.nowFn() };
         return x;
       });
       this.notify([{
         to: pj.ownerId,
         type: "summary_review",
-        title: (0, import_i18n15.t)("\u603B\u7ED3\u62A5\u544A\u5F85\u5BA1\u6838\uFF1A{p0}", { p0: pj.name }),
-        summary: (0, import_i18n15.t)("AI \u5DF2\u751F\u6210\u9879\u76EE\u603B\u7ED3\u62A5\u544A\uFF0C\u8BF7\u5BA1\u6838\u540E\u5F52\u6863"),
+        title: (0, import_i18n16.t)("\u603B\u7ED3\u62A5\u544A\u5F85\u5BA1\u6838\uFF1A{p0}", { p0: pj.name }),
+        summary: (0, import_i18n16.t)("AI \u5DF2\u751F\u6210\u9879\u76EE\u603B\u7ED3\u62A5\u544A\uFF0C\u8BF7\u5BA1\u6838\u540E\u5F52\u6863"),
         link: { kind: "project_summary", id: pj.id }
       }], this.nowFn());
       return pj.summary;
@@ -12837,7 +13230,7 @@ var MeetingMgmtService = class {
     this.notify([...new Set(to)].map((id) => ({
       to: id,
       type: "progress_report",
-      title: (0, import_i18n15.t)("\u8FDB\u5EA6\u6C47\u603B\u62A5\u544A\uFF1A{p0}", { p0: project.name }),
+      title: (0, import_i18n16.t)("\u8FDB\u5EA6\u6C47\u603B\u62A5\u544A\uFF1A{p0}", { p0: project.name }),
       summary: cardSummary.report(saved.stats),
       link: { kind: "report", id: projectId, anchor: saved.id }
     })), this.nowFn());
@@ -12871,8 +13264,8 @@ var MeetingMgmtService = class {
           drafts.push({
             to: a.personId,
             type: "speech_remind",
-            title: (0, import_i18n15.t)("\u53D1\u8A00\u786E\u8BA4\u50AC\u529E\uFF1A{p0}", { p0: m.title }),
-            summary: (0, import_i18n15.t)("\u4F1A\u8BAE\u7EAA\u8981\u8FD8\u5728\u7B49\u4F60\u786E\u8BA4\u53D1\u8A00\uFF0C\u5DF2\u7B49\u5F85 {n} \u5C0F\u65F6", { n: Math.max(1, hours) }),
+            title: (0, import_i18n16.t)("\u53D1\u8A00\u786E\u8BA4\u50AC\u529E\uFF1A{p0}", { p0: m.title }),
+            summary: (0, import_i18n16.t)("\u4F1A\u8BAE\u7EAA\u8981\u8FD8\u5728\u7B49\u4F60\u786E\u8BA4\u53D1\u8A00\uFF0C\u5DF2\u7B49\u5F85 {n} \u5C0F\u65F6", { n: Math.max(1, hours) }),
             link: { kind: "meeting", id: m.id }
           });
           continue;
@@ -12883,18 +13276,18 @@ var MeetingMgmtService = class {
         if (a.kind === "task_progress_remind") {
           t.reminders.weeklyAt = now;
           for (const to of a.notify?.length ? a.notify : [t.assigneeId]) {
-            drafts.push({ to, type: "task_progress_remind", title: (0, import_i18n15.t)("\u8BF7\u66F4\u65B0\u8FDB\u5EA6\uFF1A{p0}", { p0: t.title }), summary: (0, import_i18n15.t)("{p0} \xB7 \u5F53\u524D\u8FDB\u5EA6 {n}%", { p0: cardSummary.task(t), n: t.percent }), link });
+            drafts.push({ to, type: "task_progress_remind", title: (0, import_i18n16.t)("\u8BF7\u66F4\u65B0\u8FDB\u5EA6\uFF1A{p0}", { p0: t.title }), summary: (0, import_i18n16.t)("{p0} \xB7 \u5F53\u524D\u8FDB\u5EA6 {n}%", { p0: cardSummary.task(t), n: t.percent }), link });
           }
         } else if (a.kind === "task_due_remind") {
           t.reminders.dueAt = now;
           const left = a.daysLeft ?? Math.max(0, daysBetweenYmd(ymd(now), t.due));
-          const summary = left <= 0 ? (0, import_i18n15.t)("\u4ECA\u5929\u5230\u671F\uFF08\u622A\u6B62 {p0}\uFF09", { p0: t.due }) : (0, import_i18n15.t)("\u8FD8\u5269 {n} \u5929\u5230\u671F\uFF08\u622A\u6B62 {p0}\uFF09", { n: left, p0: t.due });
-          for (const to of a.notify?.length ? a.notify : [t.assigneeId]) drafts.push({ to, type: "task_due_remind", title: (0, import_i18n15.t)("\u5230\u671F\u63D0\u9192\uFF1A{p0}", { p0: t.title }), summary, link });
+          const summary = left <= 0 ? (0, import_i18n16.t)("\u4ECA\u5929\u5230\u671F\uFF08\u622A\u6B62 {p0}\uFF09", { p0: t.due }) : (0, import_i18n16.t)("\u8FD8\u5269 {n} \u5929\u5230\u671F\uFF08\u622A\u6B62 {p0}\uFF09", { n: left, p0: t.due });
+          for (const to of a.notify?.length ? a.notify : [t.assigneeId]) drafts.push({ to, type: "task_due_remind", title: (0, import_i18n16.t)("\u5230\u671F\u63D0\u9192\uFF1A{p0}", { p0: t.title }), summary, link });
         } else if (a.kind === "task_overdue") {
           t.reminders.overdueAt = now;
           const days = a.overdueDays ?? taskOverdueDays(t, now);
-          const summary = (0, import_i18n15.t)("\u622A\u6B62 {p0}\uFF0C\u5DF2\u903E\u671F {n} \u5929", { p0: t.due, n: Math.max(1, days) });
-          for (const to of a.notify?.length ? a.notify : [.../* @__PURE__ */ new Set([t.assigneeId, ...taskOwners(t)])]) drafts.push({ to, type: "task_overdue", title: (0, import_i18n15.t)("\u903E\u671F\u63D0\u9192\uFF1A{p0}", { p0: t.title }), summary, link });
+          const summary = (0, import_i18n16.t)("\u622A\u6B62 {p0}\uFF0C\u5DF2\u903E\u671F {n} \u5929", { p0: t.due, n: Math.max(1, days) });
+          for (const to of a.notify?.length ? a.notify : [.../* @__PURE__ */ new Set([t.assigneeId, ...taskOwners(t)])]) drafts.push({ to, type: "task_overdue", title: (0, import_i18n16.t)("\u903E\u671F\u63D0\u9192\uFF1A{p0}", { p0: t.title }), summary, link });
         }
       }
     });
@@ -12912,6 +13305,77 @@ var MeetingMgmtService = class {
       }
     }
   }
+  // ─── 本机语音模型后台下载队列（主进程持久维护，切页不重置） ───────────────
+  modelDownloadSnapshot() {
+    return { ...this.modelDownload, queue: [...this.modelDownload.queue] };
+  }
+  emitModelDownload() {
+    this.modelDownload.updatedAt = this.nowFn();
+    this.emit({ type: "model_download", status: this.modelDownloadSnapshot() });
+  }
+  enqueueModelDownloads(ids) {
+    for (const id of ids) {
+      if (this.modelDownload.activeId === id || this.modelDownload.queue.includes(id)) continue;
+      this.modelDownload.queue.push(id);
+    }
+    this.modelDownload.error = "";
+    if (!this.modelDownloadRunning && this.modelDownload.queue.length) {
+      this.modelDownload.activeId = this.modelDownload.queue[0];
+      if (!this.modelDownload.line) this.modelDownload.line = (0, import_i18n16.t)("\u5F00\u59CB\u4E0B\u8F7D\u2026");
+      if (this.modelDownload.percent === null) this.modelDownload.percent = 0;
+      this.emitModelDownload();
+      void this.track(this.runModelDownloadQueue());
+    } else {
+      this.emitModelDownload();
+    }
+    return this.modelDownloadSnapshot();
+  }
+  async runModelDownloadQueue() {
+    if (this.modelDownloadRunning) return;
+    this.modelDownloadRunning = true;
+    const ctrl = new AbortController();
+    this.modelDownloadAbort = ctrl;
+    try {
+      while (!this.stopped && !ctrl.signal.aborted && this.modelDownload.queue.length) {
+        const id = this.modelDownload.queue.shift();
+        this.modelDownload.activeId = id;
+        this.modelDownload.percent = 0;
+        this.modelDownload.line = (0, import_i18n16.t)("\u5F00\u59CB\u4E0B\u8F7D\u2026");
+        this.modelDownload.error = "";
+        this.emitModelDownload();
+        try {
+          const r = await this.ext.installModel(id, (p) => {
+            if (this.modelDownload.activeId !== id) return;
+            if (typeof p.percent === "number") this.modelDownload.percent = p.percent;
+            if (p.line) this.modelDownload.line = p.line;
+            this.emitModelDownload();
+          }, ctrl.signal);
+          if (!r?.ok) {
+            this.modelDownload.error = r?.error || (0, import_i18n16.t)("\u4E0B\u8F7D\u5931\u8D25");
+            this.modelDownload.queue = [];
+            break;
+          }
+          this.changed("settings");
+        } catch (e) {
+          this.modelDownload.error = String(e?.message || e || (0, import_i18n16.t)("\u4E0B\u8F7D\u5931\u8D25"));
+          this.modelDownload.queue = [];
+          break;
+        }
+      }
+      this.modelDownload.activeId = null;
+      if (!this.modelDownload.error && !ctrl.signal.aborted) {
+        this.modelDownload.percent = 100;
+        this.modelDownload.line = (0, import_i18n16.t)("\u4E0B\u8F7D\u5B8C\u6210");
+      } else {
+        this.modelDownload.percent = null;
+      }
+      this.emitModelDownload();
+      this.changed("settings");
+    } finally {
+      if (this.modelDownloadAbort === ctrl) this.modelDownloadAbort = null;
+      this.modelDownloadRunning = false;
+    }
+  }
   // ─── 给 ipc 层用 ────────────────────────────────────────────────────
   /** file.open：会议文件的本机路径（要能看到这场会议；路径必须在工作台数据目录里） */
   resolveMeetingFile(actorId, payload) {
@@ -12920,27 +13384,27 @@ var MeetingMgmtService = class {
     const c = { actorId, origin: "pc", now: this.nowFn() };
     const { m } = this.visibleMeeting(c, p.meetingId ?? p.id);
     const f = m.files.find((x) => x.id === p.fileId);
-    if (!f || !f.path) throw new Error((0, import_i18n15.t)("\u6587\u4EF6\u4E0D\u5B58\u5728"));
-    if (!this.store.isInsideRoot(f.path) || !(0, import_node_fs4.existsSync)(f.path)) throw new Error((0, import_i18n15.t)("\u6587\u4EF6\u4E0D\u5B58\u5728\u6216\u5DF2\u88AB\u79FB\u8D70"));
+    if (!f || !f.path) throw new Error((0, import_i18n16.t)("\u6587\u4EF6\u4E0D\u5B58\u5728"));
+    if (!this.store.isInsideRoot(f.path) || !(0, import_node_fs4.existsSync)(f.path)) throw new Error((0, import_i18n16.t)("\u6587\u4EF6\u4E0D\u5B58\u5728\u6216\u5DF2\u88AB\u79FB\u8D70"));
     return f.path;
   }
 };
 function stageText(stage) {
   switch (stage) {
     case "extract":
-      return (0, import_i18n15.t)("\u63D0\u53D6\u97F3\u8F68");
+      return (0, import_i18n16.t)("\u63D0\u53D6\u97F3\u8F68");
     case "transcribe":
-      return (0, import_i18n15.t)("\u8F6C\u5199\u4E2D");
+      return (0, import_i18n16.t)("\u8F6C\u5199\u4E2D");
     case "diarize":
-      return (0, import_i18n15.t)("\u8BC6\u522B\u53D1\u8A00\u4EBA");
+      return (0, import_i18n16.t)("\u8BC6\u522B\u53D1\u8A00\u4EBA");
     case "parse":
-      return (0, import_i18n15.t)("\u89E3\u6790\u6587\u5B57\u8BB0\u5F55");
+      return (0, import_i18n16.t)("\u89E3\u6790\u6587\u5B57\u8BB0\u5F55");
     case "organize":
-      return (0, import_i18n15.t)("\u6574\u7406\u4E2D");
+      return (0, import_i18n16.t)("\u6574\u7406\u4E2D");
     case "done":
-      return (0, import_i18n15.t)("\u5904\u7406\u5B8C\u6210");
+      return (0, import_i18n16.t)("\u5904\u7406\u5B8C\u6210");
     default:
-      return (0, import_i18n15.t)("\u5904\u7406\u4E2D");
+      return (0, import_i18n16.t)("\u5904\u7406\u4E2D");
   }
 }
 var clampNum = (v, min, max, cur) => {
@@ -12953,7 +13417,7 @@ function applySettingsPatch(st, patch) {
   const active = (id) => !!activePerson(st.org, id);
   if (patch.adminIds !== void 0) {
     const ids = strArr(patch.adminIds).filter(active);
-    if (!ids.length) throw new Error((0, import_i18n15.t)("\u81F3\u5C11\u4FDD\u7559\u4E00\u4F4D\u7BA1\u7406\u5458"));
+    if (!ids.length) throw new Error((0, import_i18n16.t)("\u81F3\u5C11\u4FDD\u7559\u4E00\u4F4D\u7BA1\u7406\u5458"));
     s.adminIds = ids;
   }
   if (patch.projectCreatorIds !== void 0) s.projectCreatorIds = strArr(patch.projectCreatorIds).filter(active);
@@ -12963,7 +13427,7 @@ function applySettingsPatch(st, patch) {
   if (patch.reportCycleDays !== void 0) s.reportCycleDays = Math.round(clampNum(patch.reportCycleDays, 1, 90, s.reportCycleDays));
   if (patch.wecom && typeof patch.wecom === "object" && patch.wecom.cardBaseUrl !== void 0) {
     const url = str2(patch.wecom.cardBaseUrl, 500);
-    if (url && !/^https?:\/\/[^\s]+$/i.test(url)) throw new Error((0, import_i18n15.t)("\u5361\u7247\u5730\u5740\u8BF7\u586B\u5199 http:// \u6216 https:// \u5F00\u5934\u7684\u7F51\u5740"));
+    if (url && !/^https?:\/\/[^\s]+$/i.test(url)) throw new Error((0, import_i18n16.t)("\u5361\u7247\u5730\u5740\u8BF7\u586B\u5199 http:// \u6216 https:// \u5F00\u5934\u7684\u7F51\u5740"));
     s.wecom = { ...s.wecom, cardBaseUrl: url || void 0 };
   }
   if (patch.ai && typeof patch.ai === "object") {
@@ -13056,7 +13520,35 @@ function registerMeetingMgmtHandlers(deps) {
       return transcribeWavViaAgent(wavBase64, client);
     }
   });
-  const service = new MeetingMgmtService({ llm: createMeetingLlm(deps), emit, logger });
+  const service = new MeetingMgmtService({
+    llm: createMeetingLlm(deps),
+    emit,
+    logger,
+    ext: {
+      installModel: async (id, onProgress, signal) => {
+        const cdn = await downloadMeetingModelFromCdn(id, {
+          signal,
+          onProgress: (p) => onProgress({ percent: p.percent, line: p.line })
+        });
+        if (!cdn.ok) {
+          logger?.warn?.("meeting-mgmt", "cdn model download failed, falling back to pyPluginInstaller", { id, error: cdn.error });
+        }
+        const installer = deps.pyPluginInstaller;
+        if (installer) {
+          onProgress({
+            percent: cdn.ok ? 99 : null,
+            line: cdn.ok ? (0, import_i18n17.t)("\u6A21\u578B\u5DF2\u4E0B\u8F7D\uFF0C\u6B63\u5728\u6838\u5BF9\u8FD0\u884C\u7EC4\u4EF6\u2026") : (0, import_i18n17.t)("\u6B63\u5728\u5207\u6362\u5907\u7528\u901A\u9053\u4E0B\u8F7D\u2026")
+          });
+          const r = await installer.install(id, (p) => {
+            if (p?.line) onProgress({ percent: typeof p.percent === "number" ? p.percent : null, line: String(p.line).slice(0, 200) });
+          });
+          if (!r?.ok) return { ok: false, error: r?.error || (cdn.ok ? (0, import_i18n17.t)("\u8FD0\u884C\u7EC4\u4EF6\u5B89\u88C5\u5931\u8D25") : cdn.error) };
+          return { ok: true };
+        }
+        return cdn.ok ? { ok: true } : { ok: false, error: cdn.error };
+      }
+    }
+  });
   service.startBackground();
   const pick = async (opts) => {
     const w = win();
@@ -13066,27 +13558,27 @@ function registerMeetingMgmtHandlers(deps) {
   const handlers = {
     "meeting.pickFiles": async (p) => {
       const paths = await pick({
-        title: (0, import_i18n16.t)("\u9009\u62E9\u4F1A\u8BAE\u5F55\u97F3\u3001\u5F55\u5C4F\u6216\u6587\u5B57\u8BB0\u5F55"),
+        title: (0, import_i18n17.t)("\u9009\u62E9\u4F1A\u8BAE\u5F55\u97F3\u3001\u5F55\u5C4F\u6216\u6587\u5B57\u8BB0\u5F55"),
         properties: ["openFile", "multiSelections"],
-        filters: [{ name: (0, import_i18n16.t)("\u4F1A\u8BAE\u6587\u4EF6"), extensions: MM_PICK_EXTENSIONS }, { name: (0, import_i18n16.t)("\u6240\u6709\u6587\u4EF6"), extensions: ["*"] }]
+        filters: [{ name: (0, import_i18n17.t)("\u4F1A\u8BAE\u6587\u4EF6"), extensions: MM_PICK_EXTENSIONS }, { name: (0, import_i18n17.t)("\u6240\u6709\u6587\u4EF6"), extensions: ["*"] }]
       });
       if (!paths.length) return null;
       return service.dispatchPc("meeting.upload", { id: p?.id, paths });
     },
     "voiceprint.import": async (p) => {
       const paths = await pick({
-        title: (0, import_i18n16.t)("\u9009\u62E9\u4E00\u6BB5 10~15 \u79D2\u7684\u672C\u4EBA\u5F55\u97F3"),
+        title: (0, import_i18n17.t)("\u9009\u62E9\u4E00\u6BB5 10~15 \u79D2\u7684\u672C\u4EBA\u5F55\u97F3"),
         properties: ["openFile"],
-        filters: [{ name: (0, import_i18n16.t)("\u5F55\u97F3"), extensions: VOICE_EXTENSIONS }, { name: (0, import_i18n16.t)("\u6240\u6709\u6587\u4EF6"), extensions: ["*"] }]
+        filters: [{ name: (0, import_i18n17.t)("\u5F55\u97F3"), extensions: VOICE_EXTENSIONS }, { name: (0, import_i18n17.t)("\u6240\u6709\u6587\u4EF6"), extensions: ["*"] }]
       });
       if (!paths.length) return null;
       return service.dispatchPc("voiceprint.enroll", { personId: p?.personId, path: paths[0], consent: p?.consent === true, ...typeof p?.autoLearn === "boolean" ? { autoLearn: p.autoLearn } : {} });
     },
     "org.importFile": async () => {
       const paths = await pick({
-        title: (0, import_i18n16.t)("\u9009\u62E9\u901A\u8BAF\u5F55\u8868\u683C\uFF08\u4F01\u5FAE\u540E\u53F0\u300C\u901A\u8BAF\u5F55 \u2192 \u5BFC\u51FA\u6210\u5458\u300D\u5BFC\u51FA\u7684\u6587\u4EF6\uFF09"),
+        title: (0, import_i18n17.t)("\u9009\u62E9\u901A\u8BAF\u5F55\u8868\u683C\uFF08\u4F01\u5FAE\u540E\u53F0\u300C\u901A\u8BAF\u5F55 \u2192 \u5BFC\u51FA\u6210\u5458\u300D\u5BFC\u51FA\u7684\u6587\u4EF6\uFF09"),
         properties: ["openFile"],
-        filters: [{ name: (0, import_i18n16.t)("\u8868\u683C"), extensions: ["xlsx", "xls", "csv"] }, { name: (0, import_i18n16.t)("\u6240\u6709\u6587\u4EF6"), extensions: ["*"] }]
+        filters: [{ name: (0, import_i18n17.t)("\u8868\u683C"), extensions: ["xlsx", "xls", "csv"] }, { name: (0, import_i18n17.t)("\u6240\u6709\u6587\u4EF6"), extensions: ["*"] }]
       });
       if (!paths.length) return null;
       return service.dispatchPc("org.import", { path: paths[0] });
@@ -13094,7 +13586,7 @@ function registerMeetingMgmtHandlers(deps) {
     "file.open": async (p) => {
       const path = service.resolveMeetingFile(service.pcActorId(), p);
       const err = await (0, import_openPathGuarded.openPathGuarded)(path);
-      if (err) throw new Error((0, import_i18n16.t)("\u6253\u5F00\u6587\u4EF6\u5931\u8D25\uFF1A{p0}", { p0: err }));
+      if (err) throw new Error((0, import_i18n17.t)("\u6253\u5F00\u6587\u4EF6\u5931\u8D25\uFF1A{p0}", { p0: err }));
       return true;
     }
   };

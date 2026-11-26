@@ -1,12 +1,12 @@
 {
   "id": "workbench-meeting-mgmt",
-  "version": "2.0.0",
-  "treeDigest": "356c24f7b15910939923bea653f2be915561b4cd42182823bc743fa8eec2cfce",
+  "version": "2.0.1",
+  "treeDigest": "639c863df87211f2fc43d1928b7b1eb81199594728495767c100a355960f634a",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 2455,
-      "sha256": "112a6f02ea2c31a07f8c481b4a1f11d76edd0254f4fcd5e3bcafd9742dda6536"
+      "size": 3991,
+      "sha256": "d0c3262f3e50dcdb4870ffc8eaad8c3343e82a24b33c203f1cec2e3561893173"
     },
     {
       "path": "README.md",
@@ -20,18 +20,18 @@
     },
     {
       "path": "dist/main.cjs",
-      "size": 661132,
-      "sha256": "4418e3a431c42cf90c510afeb38ddc061458a21682953e90e25db27c9dbb3c97"
+      "size": 685416,
+      "sha256": "d799d183e72be974235bb587dee3c6cf3e10e91a3560ec4c0d8de9ad73336cb3"
     },
     {
       "path": "dist/renderer.mjs",
-      "size": 787698,
-      "sha256": "33d04c82d8616cd91cc16ea09574dcd79291420c20035170465a531a9cb65a6c"
+      "size": 790443,
+      "sha256": "d0d12721a621e90093e1187c01beab0ac7e7c925f2badfcc7ccd2bc5b8667db6"
     },
     {
       "path": "dist/style.css",
-      "size": 150563,
-      "sha256": "928c5777d842dd028a704c2b10e47427117f668d821855049689459e9278055b"
+      "size": 150841,
+      "sha256": "d8a264011fb9b5335e87418ce7b2dabb473c35b744f836b8a5d6f1723309501c"
     },
     {
       "path": "migrations/README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2678,
-      "sha256": "b502ba4dc705ab2190aec40528ed22a65269ced9fbaea4c9a8f42a3c374d3c1f"
+      "sha256": "4559d0f9628d2a93ed8da7b59eb38b27fb3d48fff1c8a2ff059535d40e062084"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.1",
+      "ref": "workbench-meeting-mgmt@2.0.1",
+      "treeDigest": "639c863df87211f2fc43d1928b7b1eb81199594728495767c100a355960f634a",
+      "filesRef": "index/workbench-meeting-mgmt/2.0.1.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.19",
+      "hostApi": 2,
+      "publishedAt": "2026-11-26"
+    },
     {
       "version": "2.0.0",
       "ref": "workbench-meeting-mgmt@2.0.0",

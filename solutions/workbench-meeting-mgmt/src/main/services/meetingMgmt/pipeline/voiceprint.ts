@@ -96,8 +96,9 @@ export async function enrollVoiceprint(audioPath: string): Promise<{ ok: true; v
     let outs;
     try {
       outs = await runSlices(workerSpecFor(rt, { asr: false, threads: 2 }), speechWav, ranges, { workers: 1, asr: false, emb: true, createWorker: pipelineConfig().createWorker });
-    } catch {
-      return { ok: false, reason: i18nT('声纹提取失败，请重试') };
+    } catch (e: any) {
+      const m = String(e?.message || '').trim();
+      return { ok: false, reason: m && /[一-鿿]/.test(m) ? m : i18nT('声纹提取失败，请重试') };
     }
     const vec = outs[0]?.emb;
     const vec2 = outs[0]?.emb2;

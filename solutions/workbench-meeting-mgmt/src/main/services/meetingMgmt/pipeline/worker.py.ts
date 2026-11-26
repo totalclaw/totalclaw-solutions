@@ -16,7 +16,27 @@
  */
 export const MEETING_WORKER_PY = `
 import sys, json, os, re, struct, time, warnings
+from contextlib import contextmanager
 warnings.filterwarnings("ignore")
+
+@contextmanager
+def _in_dir(d):
+    prev = os.getcwd()
+    try:
+        if d:
+            os.chdir(d)
+        yield
+    finally:
+        try:
+            os.chdir(prev)
+        except Exception:
+            pass
+
+def _require_files(d, names):
+    for fn in names:
+        p = os.path.join(d, fn) if d else fn
+        if not os.path.isfile(p) or os.path.getsize(p) <= 0:
+            raise FileNotFoundError("model file missing or empty: %s" % p)
 
 plugins = sys.argv[1] if len(sys.argv) > 1 else ""
 if plugins:
@@ -50,19 +70,25 @@ if model_name.startswith("sherpa:"):
         d = cfg.get("dir") or ""
         import sherpa_onnx
         if sherpa_kind == "sense_voice":
-            sherpa = sherpa_onnx.OfflineRecognizer.from_sense_voice(
-                model=os.path.join(d, "model.int8.onnx"), tokens=os.path.join(d, "tokens.txt"),
-                num_threads=threads, use_itn=True, language="auto")
+            _require_files(d, ("model.int8.onnx", "tokens.txt"))
+            with _in_dir(d):
+                sherpa = sherpa_onnx.OfflineRecognizer.from_sense_voice(
+                    model="model.int8.onnx", tokens="tokens.txt",
+                    num_threads=threads, use_itn=True, language="auto")
         elif sherpa_kind == "fire_red_aed":
-            sherpa = sherpa_onnx.OfflineRecognizer.from_fire_red_asr(
-                encoder=os.path.join(d, "encoder.int8.onnx"), decoder=os.path.join(d, "decoder.int8.onnx"),
-                tokens=os.path.join(d, "tokens.txt"), num_threads=threads)
+            _require_files(d, ("encoder.int8.onnx", "decoder.int8.onnx", "tokens.txt"))
+            with _in_dir(d):
+                sherpa = sherpa_onnx.OfflineRecognizer.from_fire_red_asr(
+                    encoder="encoder.int8.onnx", decoder="decoder.int8.onnx",
+                    tokens="tokens.txt", num_threads=threads)
             sv_dir = cfg.get("svDir") or ""
             if sv_dir:
                 try:
-                    sherpa_sv = sherpa_onnx.OfflineRecognizer.from_sense_voice(
-                        model=os.path.join(sv_dir, "model.int8.onnx"), tokens=os.path.join(sv_dir, "tokens.txt"),
-                        num_threads=max(2, threads // 2), use_itn=True, language="auto")
+                    _require_files(sv_dir, ("model.int8.onnx", "tokens.txt"))
+                    with _in_dir(sv_dir):
+                        sherpa_sv = sherpa_onnx.OfflineRecognizer.from_sense_voice(
+                            model="model.int8.onnx", tokens="tokens.txt",
+                            num_threads=max(2, threads // 2), use_itn=True, language="auto")
                 except Exception:
                     sherpa_sv = None
         else:
@@ -105,10 +131,16 @@ if campp_path or campp2_path:
         so.intra_op_num_threads = 2
         so.inter_op_num_threads = 1
         if campp_path:
-            emb_model = ort.InferenceSession(campp_path, sess_options=so, providers=["CPUExecutionProvider"])
+            cdir, cbase = os.path.dirname(campp_path), os.path.basename(campp_path)
+            _require_files(cdir, (cbase,))
+            with _in_dir(cdir):
+                emb_model = ort.InferenceSession(cbase, sess_options=so, providers=["CPUExecutionProvider"])
         if campp2_path:
             try:
-                emb_model2 = ort.InferenceSession(campp2_path, sess_options=so, providers=["CPUExecutionProvider"])
+                c2dir, c2base = os.path.dirname(campp2_path), os.path.basename(campp2_path)
+                _require_files(c2dir, (c2base,))
+                with _in_dir(c2dir):
+                    emb_model2 = ort.InferenceSession(c2base, sess_options=so, providers=["CPUExecutionProvider"])
             except Exception as e2:
                 emb_err = "speaker model 2 unavailable: %s" % e2
         try:

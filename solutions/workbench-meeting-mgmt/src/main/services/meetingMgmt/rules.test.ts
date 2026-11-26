@@ -77,12 +77,13 @@ describe('纪要状态机', () => {
     expect(() => R.startProcessing(m, 'linxiao', NOW, { files: m.files })).toThrow('不能上传');
   });
 
-  it('处理失败 → 重试回到处理中', () => {
+  it('处理失败 → 重试回到处理中；带诊断详情时写入处理日志', () => {
     const m = meeting();
     R.startProcessing(m, 'linxiao', NOW, { files: [{ id: 'f', name: 'a.mp3', kind: 'audio', size: 1, path: 'p', uploadedAt: NOW }] });
-    R.failProcessing(m, '转写失败', NOW);
+    R.failProcessing(m, '转写失败', NOW, 'exit=3221225781(0xC0000135)');
     expect(m.status).toBe('failed');
     expect(m.process?.error).toBe('转写失败');
+    expect(m.process?.log.some((l) => l.text.includes('诊断详情：exit=3221225781(0xC0000135)'))).toBe(true);
     expect(() => R.startProcessing(m, 'zhaolei', NOW, { retry: true })).toThrow('只有主持人');
     R.startProcessing(m, 'linxiao', NOW, { retry: true });
     expect(m.status).toBe('processing');

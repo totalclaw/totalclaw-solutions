@@ -554,6 +554,7 @@ defineExpose({ refresh });
 .mm-raw b { white-space: nowrap; }
 .mm-log { font-size: 12.5px; }
 .mm-log li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 10px; }
+.mm-log li span { overflow-wrap: anywhere; }
 
 .mm-tasks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .mm-tasks li { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid var(--color-border); border-radius: var(--radius-4); cursor: pointer; flex-wrap: wrap; }

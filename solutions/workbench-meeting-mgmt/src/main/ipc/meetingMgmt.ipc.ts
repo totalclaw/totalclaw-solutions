@@ -23,6 +23,7 @@ import { onAppWillQuit } from '../util/quitRegistry';
 import { MM_PICK_EXTENSIONS, MeetingMgmtService } from '../services/meetingMgmt/service';
 import { createMeetingLlm } from '../services/meetingMgmt/llm';
 import { configureMeetingPipeline } from '../services/meetingMgmt/pipeline/runtime';
+import { downloadMeetingModelFromCdn } from '../services/meetingMgmt/setupCheck';
 
 const VOICE_EXTENSIONS = ['wav', 'mp3', 'm4a', 'aac', 'amr', 'flac', 'ogg', 'opus', 'webm', 'caf', 'aiff', 'wma'];
 
@@ -42,7 +43,35 @@ export function registerMeetingMgmtHandlers(deps: WorkbenchIpcDeps): () => void 
       return transcribeWavViaAgent(wavBase64, client);
     },
   });
-  const service = new MeetingMgmtService({ llm: createMeetingLlm(deps), emit, logger });
+  const service = new MeetingMgmtService({
+    llm: createMeetingLlm(deps),
+    emit,
+    logger,
+    ext: {
+      installModel: async (id, onProgress, signal) => {
+        const cdn = await downloadMeetingModelFromCdn(id, {
+          signal,
+          onProgress: (p) => onProgress({ percent: p.percent, line: p.line }),
+        });
+        if (!cdn.ok) {
+          logger?.warn?.('meeting-mgmt', 'cdn model download failed, falling back to pyPluginInstaller', { id, error: cdn.error });
+        }
+        const installer = deps.pyPluginInstaller;
+        if (installer) {
+          onProgress({
+            percent: cdn.ok ? 99 : null,
+            line: cdn.ok ? i18nT('模型已下载，正在核对运行组件…') : i18nT('正在切换备用通道下载…'),
+          });
+          const r = await installer.install(id, (p) => {
+            if (p?.line) onProgress({ percent: typeof p.percent === 'number' ? p.percent : null, line: String(p.line).slice(0, 200) });
+          });
+          if (!r?.ok) return { ok: false, error: r?.error || (cdn.ok ? i18nT('运行组件安装失败') : cdn.error) };
+          return { ok: true };
+        }
+        return cdn.ok ? { ok: true } : { ok: false, error: cdn.error };
+      },
+    },
+  });
   service.startBackground();
 
   const pick = async (opts: OpenDialogOptions): Promise<string[]> => {

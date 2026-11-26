@@ -121,6 +121,7 @@
       </div>
     </template>
 
+    <div v-if="installing && installPct !== null" class="mm-asr__bar" data-test="mm-asr-bar"><i :style="{ width: `${installPct}%` }"></i></div>
     <p v-if="installLine" class="ss-muted mono mm-asr__log" data-test="mm-asr-log">{{ installLine }}</p>
     <p v-if="error" class="ss-note danger" data-test="mm-asr-error"><i class="ri-error-warning-line"></i>{{ error }}</p>
   </section>
@@ -132,9 +133,10 @@
  * 配置引导第 1 步和 系统设置 → AI 能力 共用。数据来自 setup.status（管理员）。
  */
 import { computed, onBeforeUnmount, onMounted, reactive, ref } from 'vue';
+import type { MmModelDownloadState } from '../../../shared/meetingMgmt/types';
 import { t as i18nT } from '../../i18n';
 import { useNotificationStore } from '../../stores/notification';
-import { errorMessage, mm, openExternalUrl } from './shared';
+import { errorMessage, mm, onMmEvent, openExternalUrl } from './shared';
 
 type Engine = 'firered' | 'sensevoice';
 type Provider = 'dashscope' | 'siliconflow' | 'openai' | 'custom';
@@ -146,6 +148,7 @@ export interface AsrStatus {
   recommend: { engine: Engine; installIds: string[]; sizeMb: number; estMinPerHour: number; downgradeReason?: 'memory' | 'cores' | 'disk' };
   estimates?: { firered: number; sensevoice: number };
   asr: AsrView;
+  modelDownload?: MmModelDownloadState;
 }
 
 const emit = defineEmits<{ (e: 'changed'): void }>();
@@ -158,6 +161,8 @@ const acting = ref('');
 const error = ref('');
 const installing = ref('');
 const installLine = ref('');
+const installPct = ref<number | null>(null);
+const ASR_IDS = new Set(['asr-meeting-sensevoice', 'asr-meeting-firered2']);
 const mode = ref<'local' | 'agent' | 'cloud'>('local');
 const localModel = ref<AsrView['localModel']>('auto');
 const cloud = reactive({ provider: 'dashscope' as Provider, baseUrl: '', model: '', apiKey: '' });
@@ -203,13 +208,36 @@ function fillFrom(s: AsrStatus): void {
   Object.assign(cloud, { provider: pid, baseUrl: c?.baseUrl ?? p?.baseUrl ?? '', model: c?.model ?? p?.models[0] ?? '', apiKey: '' });
 }
 
+function applyDownload(dl: MmModelDownloadState | undefined): void {
+  if (!dl) return;
+  const active = dl.activeId && ASR_IDS.has(dl.activeId) ? dl.activeId : (dl.queue || []).find((x) => ASR_IDS.has(x)) || '';
+  const wasActive = !!installing.value;
+  installing.value = active;
+  if (active) {
+    installLine.value = dl.line || i18nT('正在下载…');
+    installPct.value = typeof dl.percent === 'number' ? dl.percent : null;
+    error.value = '';
+  } else {
+    installPct.value = null;
+    if (dl.error) {
+      error.value = dl.error;
+      installLine.value = '';
+    } else if (wasActive) {
+      installLine.value = dl.line || i18nT('下载完成');
+    }
+  }
+}
+
 async function load(): Promise<void> {
   loading.value = true;
   try {
     const s = await mm<AsrStatus>('setup.status');
     st.value = s;
-    if (s) fillFrom(s);
-    error.value = '';
+    if (s) {
+      fillFrom(s);
+      applyDownload(s.modelDownload);
+    }
+    if (!s?.modelDownload?.error) error.value = '';
   } catch (e) {
     error.value = errorMessage(e);
   } finally {
@@ -286,16 +314,33 @@ function openKeyUrl(): void {
   openExternalUrl(keyUrl.value);
 }
 
-// ── 模型下载（复用应用的组件安装器：electronAPI.pyExt）──
+// ── 模型下载（走方案主进程后台队列 + CDN 直下，切换页面不重置；旧环境兜底 electronAPI.pyExt）──
 const pyExt = () => (window as any).electronAPI?.pyExt;
 async function installAll(ids: string[]): Promise<void> {
-  const a = pyExt();
-  if (!a?.install) { error.value = i18nT('组件安装器不可用，请到应用的 设置 → 语音 里下载'); return; }
+  const todo = ids.filter((id) => !(id === 'asr-meeting-firered2' && st.value?.models.fireRed) && !(id === 'asr-meeting-sensevoice' && st.value?.models.senseVoice));
+  if (!todo.length) { installLine.value = i18nT('下载完成'); emit('changed'); return; }
   error.value = '';
+  installing.value = todo[0]!;
+  installPct.value = 0;
+  installLine.value = i18nT('开始下载…');
   try {
-    for (const id of ids) {
-      if (id === 'asr-meeting-firered2' && st.value?.models.fireRed) continue;
-      if (id === 'asr-meeting-sensevoice' && st.value?.models.senseVoice) continue;
+    const dl = await mm<MmModelDownloadState>('model.download.start', { ids: todo });
+    applyDownload(dl);
+    return;
+  } catch (e) {
+    const msg = errorMessage(e);
+    // 兼容未接 model.download.start 的旧单测 / 宿主
+    if (!/未知操作|unexpected action/i.test(msg)) {
+      installing.value = '';
+      installPct.value = null;
+      error.value = msg;
+      return;
+    }
+  }
+  const a = pyExt();
+  if (!a?.install) { installing.value = ''; installPct.value = null; error.value = i18nT('组件安装器不可用，请到应用的 设置 → 语音 里下载'); return; }
+  try {
+    for (const id of todo) {
       installing.value = id;
       installLine.value = i18nT('开始下载…');
       const r = await a.install(id);
@@ -308,12 +353,22 @@ async function installAll(ids: string[]): Promise<void> {
     error.value = errorMessage(e);
   } finally {
     installing.value = '';
+    installPct.value = null;
   }
 }
 
 let unsub: (() => void) | null = null;
+let unsubMm: (() => void) | null = null;
 onMounted(() => {
   void load();
+  unsubMm = onMmEvent((ev) => {
+    if (ev.type !== 'model_download') return;
+    const prev = installing.value;
+    applyDownload(ev.status);
+    if (prev && !installing.value) {
+      void load().then(() => emit('changed'));
+    }
+  });
   const a = pyExt();
   if (a?.onInstallProgress) {
     unsub = a.onInstallProgress((p: { id?: string; line?: string }) => {
@@ -321,7 +376,10 @@ onMounted(() => {
     });
   }
 });
-onBeforeUnmount(() => { try { unsub?.(); } catch { /* */ } });
+onBeforeUnmount(() => {
+  try { unsub?.(); } catch { /* */ }
+  try { unsubMm?.(); } catch { /* */ }
+});
 
 defineExpose({ reload: load });
 </script>
@@ -373,6 +431,8 @@ defineExpose({ reload: load });
 .mm-asr__eye { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); border: 0; background: none; cursor: pointer; color: var(--color-text-secondary); font-size: 16px; }
 .mm-asr__set { font-style: normal; font-size: 11.5px; color: var(--color-success, #16a34a); margin-left: 6px; }
 .mm-asr__keylink { font-size: 12px; justify-self: start; }
+.mm-asr__bar { height: 6px; border-radius: 3px; background: var(--color-border-subtle); overflow: hidden; }
+.mm-asr__bar i { display: block; height: 100%; background: var(--color-brand); transition: width 200ms; }
 .mm-asr__log { margin: 0; font-size: 12px; word-break: break-all; }
 .spin { animation: mm-asr-spin 1s linear infinite; display: inline-block; }
 @keyframes mm-asr-spin { to { transform: rotate(360deg); } }

@@ -253,9 +253,9 @@
  * 每步状态独立；进度条固定在顶部（docs/solution-workbench-ux-guidelines.md）。
  */
 import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue';
-import type { MmOrgSyncResult } from '../../../shared/meetingMgmt/types';
+import type { MmModelDownloadState, MmOrgSyncResult } from '../../../shared/meetingMgmt/types';
 import { t as i18nT } from '../../i18n';
-import { errorMessage, mm, openExternalUrl, refreshBoot, WECOM_URLS, type MmMobileStatus } from './shared';
+import { errorMessage, mm, onMmEvent, openExternalUrl, refreshBoot, WECOM_URLS, type MmMobileStatus } from './shared';
 import { clearPeopleCache } from './meetingUi';
 import MobileAccessCard from './MobileAccessCard.vue';
 import AsrModelPicker from './AsrModelPicker.vue';
@@ -284,6 +284,7 @@ interface SetupStatus {
   models: { python: boolean; ffmpeg: boolean; asrModel: string | null; senseVoice?: boolean; fireRed?: boolean; speaker: boolean; asrReady: boolean };
   recommend: { engine: 'firered' | 'sensevoice'; installIds: string[]; sizeMb: number; estMinPerHour: number; workers: number; downgradeReason?: 'memory' | 'cores' | 'disk'; tier: 'good' | 'ok' | 'weak'; speakerInstallId: string };
   asr?: { mode: 'local' | 'agent' | 'cloud'; cloud: { hasKey: boolean } | null };
+  modelDownload?: MmModelDownloadState;
 }
 
 const emit = defineEmits<{ (e: 'close'): void; (e: 'done'): void }>();
@@ -342,6 +343,7 @@ async function load(): Promise<void> {
     // 已填过的自建应用原样带出（不让人以为被删了）
     if (!app.corpId && st.value.wecom?.corpId) app.corpId = st.value.wecom.corpId;
     if (!app.agentId && st.value.wecom?.agentId) app.agentId = st.value.wecom.agentId;
+    applySpeakerDownload(st.value.modelDownload);
   } catch (e) {
     const msg = errorMessage(e);
     if (IDENTITY_GONE.test(msg)) await askIdentity();
@@ -450,15 +452,42 @@ watch(cur, (k) => {
   if (k === 'mobile' && st.value && !st.value.mobile.running) void run('mobile', async () => { await mm('mobile.start'); await load(); await refreshBoot().catch(() => null); });
 });
 
-// ── 模型下载（复用应用的组件安装器：electronAPI.pyExt）──
+// ── 模型下载（走方案主进程后台队列 + CDN 直下，切换页面不重置；旧环境兜底 electronAPI.pyExt）──
 const pyExt = () => (window as any).electronAPI?.pyExt;
 let unsubProgress: (() => void) | null = null;
+let unsubMm: (() => void) | null = null;
+function applySpeakerDownload(dl: MmModelDownloadState | undefined): void {
+  if (!dl) return;
+  const spkId = st.value?.recommend.speakerInstallId || 'speaker-campplus';
+  const active = dl.activeId === spkId || (dl.queue || []).includes(spkId) ? spkId : '';
+  const wasActive = !!installing.value;
+  installing.value = active;
+  if (active) {
+    installLine.value = dl.activeId === spkId ? (dl.line || i18nT('正在下载…')) : i18nT('已排队，等待前一个模型完成…');
+    error.value = '';
+  } else if (wasActive) {
+    if (dl.error) { error.value = dl.error; installLine.value = ''; }
+    else installLine.value = dl.line || i18nT('下载完成');
+  }
+}
 async function install(id: string): Promise<void> {
-  const a = pyExt();
-  if (!a?.install) { error.value = i18nT('组件安装器不可用，请到应用的 设置 → 语音 里下载'); return; }
   installing.value = id;
   installLine.value = i18nT('开始下载…');
   error.value = '';
+  try {
+    const dl = await mm<MmModelDownloadState>('model.download.start', { ids: [id] });
+    applySpeakerDownload(dl);
+    return;
+  } catch (e) {
+    const msg = errorMessage(e);
+    if (!/未知操作|unexpected action/i.test(msg)) {
+      installing.value = '';
+      error.value = msg;
+      return;
+    }
+  }
+  const a = pyExt();
+  if (!a?.install) { installing.value = ''; error.value = i18nT('组件安装器不可用，请到应用的 设置 → 语音 里下载'); return; }
   try {
     const r = await a.install(id);
     if (!r?.ok) error.value = r?.error || i18nT('下载失败');
@@ -572,6 +601,12 @@ function finish(): Promise<void> {
 
 onMounted(() => {
   void load();
+  unsubMm = onMmEvent((ev) => {
+    if (ev.type !== 'model_download') return;
+    const prev = installing.value;
+    applySpeakerDownload(ev.status);
+    if (prev && !installing.value) void load();
+  });
   const a = pyExt();
   if (a?.onInstallProgress) {
     unsubProgress = a.onInstallProgress((p: { id?: string; phase?: string; line?: string }) => {
@@ -579,7 +614,10 @@ onMounted(() => {
     });
   }
 });
-onBeforeUnmount(() => { try { unsubProgress?.(); } catch { /* */ } });
+onBeforeUnmount(() => {
+  try { unsubProgress?.(); } catch { /* */ }
+  try { unsubMm?.(); } catch { /* */ }
+});
 </script>
 
 <style scoped>

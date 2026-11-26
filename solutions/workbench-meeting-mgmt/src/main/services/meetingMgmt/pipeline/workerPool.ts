@@ -6,10 +6,126 @@
  * - 取消：杀掉全部进程，抛「处理已取消」。
  */
 import { spawn, type ChildProcessWithoutNullStreams } from 'child_process';
+import { createHash } from 'crypto';
+import { existsSync, renameSync, statSync, unlinkSync, writeFileSync } from 'fs';
+import { tmpdir } from 'os';
+import { join } from 'path';
 import { createChunkDecoder } from '@totalclaw/node-runtime';
 import { t as i18nT } from '@totalclaw/i18n';
 import { MEETING_WORKER_PY } from './worker.py';
 import { abortError } from './audio';
+
+let cachedWorkerScript: string | null = null;
+/**
+ * 把 worker 脚本落到临时 .py 文件再传给 Python：避免在 Windows 上通过 `-c <18KB 多行脚本>` 触发命令行转义 / 长度 / 安全软件拦截问题。
+ * 写临时目录失败时返回 null，回落 `-c`。
+ */
+function ensureWorkerScriptFile(): string | null {
+  try {
+    const expected = Buffer.byteLength(MEETING_WORKER_PY, 'utf8');
+    if (cachedWorkerScript && existsSync(cachedWorkerScript) && statSync(cachedWorkerScript).size === expected) {
+      return cachedWorkerScript;
+    }
+    const hash = createHash('sha256').update(MEETING_WORKER_PY).digest('hex').slice(0, 12);
+    const file = join(tmpdir(), `tc-mm-worker-${hash}.py`);
+    if (!existsSync(file) || statSync(file).size !== expected) {
+      const tmp = `${file}.${process.pid}.${Math.random().toString(36).slice(2, 8)}.tmp`;
+      writeFileSync(tmp, MEETING_WORKER_PY, 'utf8');
+      try {
+        renameSync(tmp, file);
+      } catch {
+        try { unlinkSync(tmp); } catch { /* ignore */ }
+        if (!existsSync(file) || statSync(file).size !== expected) writeFileSync(file, MEETING_WORKER_PY, 'utf8');
+      }
+    }
+    cachedWorkerScript = file;
+    return file;
+  } catch {
+    return null;
+  }
+}
+
+export interface WorkerStartFailureInfo {
+  err?: NodeJS.ErrnoException;
+  code?: number | null;
+  signal?: NodeJS.Signals | null;
+  stderr?: string;
+  python?: string;
+}
+
+/** 把 Python worker 启动阶段退出 / spawn 失败转成可操作的中文提示 + 完整诊断细节（进处理日志和主进程日志）。 */
+export function diagnoseWorkerStartFailure(info: WorkerStartFailureInfo): { message: string; detail: string } {
+  const errCode = info.err?.code;
+  const code = typeof info.code === 'number' ? info.code : null;
+  const u32 = code !== null && (code < 0 || code >= 0x80000000) ? (code >>> 0) : null;
+  const hex = u32 !== null ? `0x${u32.toString(16).toUpperCase().padStart(8, '0')}` : null;
+  const signal = info.signal || null;
+  const stderr = String(info.stderr || '').replace(/\r\n/g, '\n').trim();
+  const stderrTail = stderr.slice(-600);
+
+  const parts: string[] = [];
+  if (errCode || info.err?.message) parts.push(`spawn=${[errCode, info.err?.message].filter(Boolean).join(' ')}`);
+  if (code !== null) parts.push(`exit=${hex ? `${code}(${hex})` : code}`);
+  if (signal) parts.push(`signal=${signal}`);
+  if (info.python) parts.push(`python=${info.python}`);
+  if (stderrTail) parts.push(`stderr=${stderrTail}`);
+  const detail = parts.join(' | ');
+
+  if (errCode === 'ENOENT') {
+    return {
+      message: i18nT('本地语音识别进程未能启动：找不到内置语音运行时（可能被杀毒软件隔离或安装不完整），请检查安全软件拦截记录或重装应用'),
+      detail,
+    };
+  }
+  if (errCode === 'EACCES' || errCode === 'EPERM') {
+    return {
+      message: i18nT('本地语音识别进程未能启动：运行权限被拒绝（可能被安全软件拦截），请将应用目录加入杀毒软件白名单后重试'),
+      detail,
+    };
+  }
+  const isDllMissing = u32 === 0xC0000135 || u32 === 0xC0000139 || u32 === 0xC000007B
+    || /DLL load failed|vcruntime|msvcp|api-ms-win|0xc0000135|找不到指定的模块|无法定位程序输入点/i.test(stderr);
+  if (isDllMissing) {
+    return {
+      message: i18nT('本地语音识别进程未能启动：系统缺少 VC++ 运行库（Visual C++ 2015–2022 Redistributable x64）或语音组件 DLL 被拦截；请安装微软 VC++ 运行库后重试，或到「系统设置 → AI 配置」临时改用在线语音识别'),
+      detail,
+    };
+  }
+  if (u32 === 0xC000001D || signal === 'SIGILL') {
+    return {
+      message: i18nT('本地语音识别进程未能启动：当前电脑处理器不支持本地语音模型所需指令集，请到「系统设置 → AI 配置」改用在线语音识别接口'),
+      detail,
+    };
+  }
+  if (signal === 'SIGKILL' || /out of memory|bad_alloc|MemoryError|Cannot allocate memory|paging file is too small|页面文件太小/i.test(stderr)) {
+    return {
+      message: i18nT('本地语音识别进程未能启动：可用内存不足（模型加载被系统终止），请关闭其他程序、在设置里改用更轻量的 SenseVoice 模型，或改用在线语音识别'),
+      detail,
+    };
+  }
+  if (/does not exist|no such file|failed to open|unable to open|ReadFile|InvalidProtobuf|model file missing or empty|model\.int8\.onnx|encoder\.int8\.onnx|tokens\.txt/i.test(stderr)) {
+    return {
+      message: i18nT('本地语音识别进程未能启动：语音模型文件缺失、损坏或无法读取，请到「配置引导 → 电脑配置与语音模型」重新下载模型后重试'),
+      detail,
+    };
+  }
+  if (u32 === 0xC0000005 || u32 === 0xC0000409 || u32 === 0xC00000FD || signal === 'SIGABRT' || signal === 'SIGSEGV') {
+    return {
+      message: i18nT('本地语音识别进程未能启动：语音模型加载异常退出（可能是模型损坏、内存不足或安全软件拦截），请点「查看处理日志」核对详情，也可在设置里换用 SenseVoice 或在线语音识别'),
+      detail,
+    };
+  }
+  const tag = hex ? i18nT('退出码 {p0}', { p0: hex })
+    : code !== null ? i18nT('退出码 {p0}', { p0: String(code) })
+    : signal ? i18nT('信号 {p0}', { p0: signal })
+    : '';
+  return {
+    message: tag
+      ? i18nT('本地语音识别进程未能启动（{p0}）：请点「查看处理日志」查看原因，也可到「系统设置 → AI 配置」临时改用在线语音识别', { p0: tag })
+      : i18nT('本地语音识别进程未能启动：请点「查看处理日志」查看原因，也可到「系统设置 → AI 配置」临时改用在线语音识别'),
+    detail,
+  };
+}
 
 export interface WorkerSpec {
   python: string;
@@ -65,20 +181,24 @@ export class MeetingWorker {
   start(timeoutMs = 180_000): Promise<WorkerReady> {
     return new Promise((resolve, reject) => {
       const s = this.spec;
-      const c = spawn(s.python, ['-u', '-c', MEETING_WORKER_PY, s.pluginsDir || '', s.model || '', s.modelsDir || '', s.campp || '', String(s.threads), s.campp2 || ''], {
+      const scriptFile = ensureWorkerScriptFile();
+      const args = scriptFile
+        ? ['-u', scriptFile, s.pluginsDir || '', s.model || '', s.modelsDir || '', s.campp || '', String(s.threads), s.campp2 || '']
+        : ['-u', '-c', MEETING_WORKER_PY, s.pluginsDir || '', s.model || '', s.modelsDir || '', s.campp || '', String(s.threads), s.campp2 || ''];
+      const c = spawn(s.python, args, {
         env: s.env,
         stdio: ['pipe', 'pipe', 'pipe'],
         windowsHide: true,
       });
       this.child = c;
       const decode = createChunkDecoder();
-      const decodeErr = createChunkDecoder();
+      const decodeErr = createChunkDecoder(true);
       let settled = false;
       const timer = setTimeout(() => {
         if (settled) return;
         settled = true;
         this.kill();
-        reject(new Error(i18nT('本地语音模型加载超时')));
+        reject(Object.assign(new Error(i18nT('本地语音模型加载超时')), { detail: this.stderrTail.slice(-600) }));
       }, timeoutMs);
       c.stdout.on('data', (b: Buffer) => {
         this.buf += decode(b);
@@ -105,18 +225,19 @@ export class MeetingWorker {
         }
       });
       c.stderr.on('data', (b: Buffer) => { this.stderrTail = (this.stderrTail + decodeErr(b)).slice(-4000); });
-      const onGone = (err?: Error) => {
+      const onGone = (err?: NodeJS.ErrnoException, code?: number | null, signal?: NodeJS.Signals | null) => {
         this.exited = true;
         if (!settled) {
           settled = true;
           clearTimeout(timer);
-          reject(Object.assign(new Error(i18nT('本地语音识别进程未能启动')), { detail: String(err?.message || this.stderrTail.slice(-600)) }));
+          const diag = diagnoseWorkerStartFailure({ err, code, signal, stderr: this.stderrTail, python: s.python });
+          reject(Object.assign(new Error(diag.message), { detail: diag.detail }));
         }
         for (const [, h] of this.handlers) h({ done: true, error: 'worker exited' });
         this.handlers.clear();
       };
-      c.on('error', (e) => onGone(e));
-      c.on('close', () => onGone());
+      c.on('error', (e) => onGone(e as NodeJS.ErrnoException));
+      c.on('close', (code, signal) => onGone(undefined, code, signal));
     });
   }
 
@@ -222,9 +343,18 @@ export async function runSlices(spec: WorkerSpec, wavPath: string, slices: Slice
       const why = String(ready.asrError || '');
       // 组件没装上（模型文件在、Python 包不在）：告诉用户怎么修，而不是只给一句 Python 报错
       if (/No module named '(sherpa_onnx|faster_whisper|ctranslate2)'/.test(why)) {
-        throw new Error(i18nT('语音识别组件没装好（模型文件在，但运行组件缺失）。请在「配置引导 → 电脑配置与语音模型」里重新下载推荐的转写模型。') + `（${why.slice(0, 120)}）`);
+        throw Object.assign(
+          new Error(i18nT('语音识别组件没装好（模型文件在，但运行组件缺失）。请在「配置引导 → 电脑配置与语音模型」里重新下载推荐的转写模型。') + `（${why.slice(0, 120)}）`),
+          { detail: why },
+        );
       }
-      throw new Error(i18nT('语音识别模型没能加载：{p0}', { p0: (why || i18nT('原因未知')).slice(0, 300) }));
+      if (/model file missing or empty|FileNotFoundError/i.test(why)) {
+        throw Object.assign(
+          new Error(i18nT('语音模型文件缺失或已损坏，请在「配置引导 → 电脑配置与语音模型」重新下载模型后重试。') + `（${why.slice(0, 120)}）`),
+          { detail: why },
+        );
+      }
+      throw Object.assign(new Error(i18nT('语音识别模型没能加载：{p0}', { p0: (why || i18nT('原因未知')).slice(0, 300) })), { detail: why });
     }
     o.onReady?.(ready, idx);
     return w;

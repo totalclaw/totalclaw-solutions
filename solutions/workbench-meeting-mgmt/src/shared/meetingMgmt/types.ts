@@ -576,11 +576,22 @@ export interface MmHomeView {
   notices: MmNotice[];
 }
 
-/** 工作台事件（WORKBENCH_MM_EVENT）：数据变了让界面刷新；处理进度；手机页服务状态 */
+/** 本机语音模型后台下载状态（由主进程持久维护，切换页面不重置） */
+export interface MmModelDownloadState {
+  activeId: string | null;
+  queue: string[];
+  percent: number | null;
+  line: string;
+  error: string;
+  updatedAt: number;
+}
+
+/** 工作台事件（WORKBENCH_MM_EVENT）：数据变了让界面刷新；处理进度；手机页服务状态；模型后台下载进度 */
 export type MmEvent =
   | { type: 'changed'; scope: 'all' | 'org' | 'settings' | 'project' | 'meeting' | 'task' | 'notice'; id?: string }
   | { type: 'process'; meetingId: string; stage: MmProcessStage; progress: number; text?: string }
-  | { type: 'mobile'; running: boolean; url?: string };
+  | { type: 'mobile'; running: boolean; url?: string }
+  | { type: 'model_download'; status: MmModelDownloadState };
 
 /** 统一动作通道：invoke(action, payload) → 结果 / 抛中文错误 */
 export interface MmInvokeRequest {

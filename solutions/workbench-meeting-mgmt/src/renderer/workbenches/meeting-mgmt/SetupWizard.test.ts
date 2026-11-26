@@ -95,6 +95,31 @@ describe('配置引导', () => {
     expect(w.find('[data-test="mm-setup-progress"]').text()).toContain('已完成 1 / 6');
   });
 
+  it('模型下载中切换页面再切回来：从主进程 modelDownload 恢复实时进度，不重置下载状态', async () => {
+    const listeners: Array<(ev: any) => void> = [];
+    const dl = { activeId: 'asr-meeting-sensevoice', queue: ['asr-meeting-firered2'], percent: 55, line: '正在下载 SenseVoice：125 MB / 228 MB（55%）', error: '', updatedAt: 1 };
+    let st: any = status({ modelDownload: dl });
+    const invoke = vi.fn(async (action: string) => {
+      if (action === 'setup.status') return st;
+      if (action === 'model.download.start') return dl;
+      return {};
+    });
+    (window as any).electronAPI = {
+      workbenches: { meetingMgmt: { invoke, onEvent: (cb: any) => { listeners.push(cb); return () => {}; } } },
+      pyExt: { install: vi.fn(), onInstallProgress: () => () => {} },
+    };
+    mmBoot.value = { me: { person: { id: 'linxiao', name: '林晓', deptId: 'd_ops' }, isAdmin: true, canCreateProject: true }, org: { source: 'demo', deptCount: 6, peopleCount: 20 }, settings: { adminIds: ['linxiao'] }, wecomConnected: false, mobile: { running: false }, badges: { home: 0, meetings: 0, tasks: 0 } } as any;
+    const w = mount(SetupWizard, { global: { plugins: [createPinia()], mocks: { $t } }, attachTo: document.body });
+    wrappers.push(w);
+    await flushPromises();
+    expect(w.find('[data-test="mm-asr-log"]').text()).toContain('55%');
+    expect((w.find('[data-test="mm-asr-best-install"]').element as HTMLButtonElement).disabled).toBe(true);
+    // 推送新进度
+    listeners.forEach((cb) => cb({ type: 'model_download', status: { ...dl, percent: 80, line: '正在下载 SenseVoice：182 MB / 228 MB（80%）' } }));
+    await flushPromises();
+    expect(w.find('[data-test="mm-asr-log"]').text()).toContain('80%');
+  });
+
   it('组织 → 推送 → 手机端 → 声纹 → 大模型 → 完成：每步状态独立，完成时调 setup.finish', async () => {
     const { w, names, calls } = setup();
     await flushPromises();

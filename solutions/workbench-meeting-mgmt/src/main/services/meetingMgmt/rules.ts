@@ -306,11 +306,16 @@ export function startProcessing(m: MmMeeting, actor: string, now: number, opts: 
   m.confirmations = [];
 }
 
-export function failProcessing(m: MmMeeting, error: string, now: number): void {
+export function failProcessing(m: MmMeeting, error: string, now: number, detail?: string): void {
   if (m.status !== 'processing') return;
   m.status = 'failed';
   const p = m.process || { stage: 'extract', progress: 0, log: [] };
-  m.process = { ...p, error, finishedAt: now, log: [...(p.log || []), { at: now, text: error }].slice(-200) };
+  const entries = [{ at: now, text: error }];
+  const extra = typeof detail === 'string' ? detail.trim() : '';
+  if (extra && extra !== error.trim()) {
+    entries.push({ at: now, text: i18nT('诊断详情：{p0}', { p0: extra.slice(0, 800) }) });
+  }
+  m.process = { ...p, error, finishedAt: now, log: [...(p.log || []), ...entries].slice(-200) };
 }
 
 export interface PipelineOutput {

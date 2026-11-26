@@ -1,5 +1,16 @@
 # 泰途会议智能管理 更新日志
 
+## 2.0.1 (2026-11-26)
+
+- 会议语音模型（SenseVoice / FireRedASR2 / CAM++ 声纹）改为优先从自建 CDN（`https://cdn2.taituai.com/meeting-models/`）直下，支持 HTTP Range 断点续传与逐文件 SHA-256 校验，权重落盘后自动核对运行组件（失败时兜底宿主通道）；无需更新客户端。
+- 模型下载队列与实时进度改由方案主进程持久维护，切换页面 / 关闭再打开配置引导不再重置下载状态，并展示实时进度条。
+- 修复本地语音转写/声纹 worker 在 Windows 下的启动隐患：
+  - `workerPool` 改为将 Python worker 脚本写入临时 `.py` 文件执行（避免 Windows 下 `-c <18KB 多行脚本>` 的命令行转义与安全软件误拦），开启 Windows stderr GBK 兼容解码。
+  - `sherpa-onnx` 与 `onnxruntime` 加载模型前校验文件完整并 `chdir` 到模型目录用纯 ASCII 相对文件名加载，避免 Windows 中文用户名路径导致底层 C++ 直接异常退出。
+- 增强报错确认与诊断提示：
+  - 按 `spawn` 错误码、Windows NTSTATUS 退出码（缺 VC++ 运行库 `0xC0000135`、指令集不支持 `0xC000001D`、崩溃 `0xC0000005`/`0xC0000409` 等）、信号和 `stderr` 给出明确中文原因与排查/兜底建议（如安装 VC++ 运行库、换 SenseVoice 或切换在线语音识别）。
+  - 流水线失败时将 `detail`（退出码、Python 路径、`stderr` 摘要）一并写入主进程日志和会议「处理记录」，声纹采集失败同步透传明确中文原因。
+
 ## 2.0.0 (2026-11-17)
 
 需要 TotalClaw 2.0.17 及以上（用到 App 2.0.17 才有的会议转写模型安装与声纹模型管理）。

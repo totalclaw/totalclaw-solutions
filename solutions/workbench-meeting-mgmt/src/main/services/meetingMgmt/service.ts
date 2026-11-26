@@ -15,7 +15,7 @@ import { basename, extname, join } from 'node:path';
 import { randomBytes } from 'node:crypto';
 import { t as i18nT } from '@totalclaw/i18n';
 import type {
-  MmEvent, MmLink, MmMe, MmMeeting, MmMeetingFile, MmMeetingSource, MmNotice, MmNoticeType, MmOrg, MmOrgSyncResult, MmPerson,
+  MmEvent, MmLink, MmMe, MmMeeting, MmMeetingFile, MmMeetingSource, MmModelDownloadState, MmNotice, MmNoticeType, MmOrg, MmOrgSyncResult, MmPerson,
   MmPlan, MmProcessStage, MmProject, MmProjectStatus, MmReport, MmSettings, MmTask, MmTaskStatus, MmTaskView, MmVoiceprint,
   MmDept, MmFileKind, MmHomeView, MmMeetingCard, MmMeetingDetail, MmPeople,
 } from '../../../shared/meetingMgmt/types';
@@ -33,7 +33,7 @@ import { cardSummary, noticeButtonText, noticeCard, noticeTypeLabel } from './no
 import { WecomWebhook, buildGroupMessage, lanLinkNote, maskWebhookUrl, normalizeWebhookUrl, type GroupMessage } from './wecomWebhook';
 import { normalizeMobile, normalizeWecomUserId, parseOrgTable } from './orgImport';
 import { openSpreadsheetFile, readWorksheetData } from '../spreadsheetRead';
-import { MEETING_ASR_IDS, SPEAKER_INSTALL_ID, detectHardware, estimateMinPerHour, recommendAsr, type HardwareInfo } from './setupCheck';
+import { ALLOWED_MEETING_MODEL_IDS, MEETING_ASR_IDS, SPEAKER_INSTALL_ID, detectHardware, downloadMeetingModelFromCdn, estimateMinPerHour, recommendAsr, type HardwareInfo } from './setupCheck';
 import { CLOUD_ASR_PRESETS, cloudAsrPreset, cloudTranscribe, normalizeBaseUrl, silenceWav, type CloudAsrConfig, type CloudAsrResult } from './cloudAsr';
 import { dueReminders, startMeetingScheduler, type ReminderAction } from './scheduler';
 import { buildGroupUrl, buildMobileUrl, buildVoiceprintUrl, isLanOnlyUrl, startMeetingMobileServer } from './mobile/server';
@@ -106,6 +106,8 @@ export interface MmExternals {
   segmentAudio(workDir: string, start: number, end: number): string | null;
   /** 在线语音识别接口转写一段 wav（测试连接用；替身里不联网） */
   cloudTranscribe(cfg: CloudAsrConfig, wav: Buffer): Promise<CloudAsrResult>;
+  /** 下载并安装本机会议语音模型（默认从 CDN 直下 + 校验；IPC 层再补装 Python 运行组件） */
+  installModel(id: string, onProgress: (p: { percent: number | null; line: string }) => void, signal: AbortSignal): Promise<{ ok: boolean; error?: string }>;
 }
 
 export interface RuntimeCheck {
@@ -147,6 +149,10 @@ function defaultExternals(): MmExternals {
     },
     detectHardware: (dir) => detectHardware(dir),
     cloudTranscribe: (cfg, wav) => cloudTranscribe(cfg, wav, { timeoutMs: 30_000 }),
+    installModel: async (id, onProgress, signal) => {
+      const r = await downloadMeetingModelFromCdn(id, { signal, onProgress: (p) => onProgress({ percent: p.percent, line: p.line }) });
+      return r.ok ? { ok: true } : { ok: false, error: r.error };
+    },
     segmentAudio: (workDir, start, end) => {
       const f = join(workDir, AUDIO_FILE);
       return existsSync(f) ? pipeline.sliceWavBase64(f, { start, end }) : null;
@@ -176,7 +182,7 @@ const MOBILE_BLOCKED = new Set([
   'identity.set', 'meeting.pickFiles', 'file.open', 'mobile.start', 'mobile.stop', 'mobile.status', 'mobile.link', 'demo.load', 'demo.clear', 'demo.transcript',
   'wecom.save', 'wecom.test', 'wecom.webhook.save', 'wecom.webhook.test', 'org.sync', 'org.import', 'org.person.contact',
   'setup.status', 'setup.finish', 'setup.llmTest', 'voiceprint.enrollData', 'wecom.secret.reveal', 'settings.save', 'voiceprint.link', 'voiceprint.send', 'voiceprint.import',
-  'asr.mode.save', 'asr.cloud.save', 'asr.cloud.test', 'asr.cloud.reveal',
+  'asr.mode.save', 'asr.cloud.save', 'asr.cloud.test', 'asr.cloud.reveal', 'model.download.status', 'model.download.start',
 ]);
 /** 只在 ipc 层处理的动作 */
 const PC_ONLY_IPC = new Set(['meeting.pickFiles', 'file.open', 'voiceprint.import', 'org.importFile']);
@@ -226,6 +232,9 @@ export class MeetingMgmtService {
   private stopScheduler: (() => void) | null = null;
   private mobile: MobileServerHandle | null = null;
   private stopped = false;
+  private modelDownload: MmModelDownloadState = { activeId: null, queue: [], percent: null, line: '', error: '', updatedAt: 0 };
+  private modelDownloadRunning = false;
+  private modelDownloadAbort: AbortController | null = null;
 
   constructor(o: MeetingMgmtServiceOptions) {
     this.store = o.store ?? new MeetingMgmtStore(undefined, (m) => o.logger?.warn?.('meeting-mgmt', m));
@@ -252,6 +261,8 @@ export class MeetingMgmtService {
     try { this.stopScheduler?.(); } catch { /* ignore */ }
     this.stopScheduler = null;
     for (const c of this.jobs.values()) { try { c.abort(); } catch { /* ignore */ } }
+    try { this.modelDownloadAbort?.abort(); } catch { /* ignore */ }
+    this.modelDownloadAbort = null;
     const m = this.mobile;
     this.mobile = null;
     if (m) { try { await m.stop(); } catch { /* ignore */ } }
@@ -783,7 +794,21 @@ export class MeetingMgmtService {
         /** 两个本机模型在这台电脑上处理 1 小时录音各要几分钟（粗估） */
         estimates: { firered: estimateMinPerHour('firered', hardware).minutes, sensevoice: estimateMinPerHour('sensevoice', hardware).minutes },
         asr: this.asrSettingsView(),
+        modelDownload: this.modelDownloadSnapshot(),
       };
+    },
+
+    'model.download.status': (c) => {
+      this.requireAdmin(c, i18nT('查看模型下载状态'));
+      return this.modelDownloadSnapshot();
+    },
+
+    'model.download.start': (c, p) => {
+      this.requireAdmin(c, i18nT('下载语音模型'));
+      const raw = Array.isArray(p?.ids) ? p.ids : p?.id ? [p.id] : [];
+      const ids = [...new Set(raw.map((x: unknown) => String(x || '').trim()).filter((x: string) => ALLOWED_MEETING_MODEL_IDS.has(x)))];
+      if (!ids.length) throw new Error(i18nT('没有可下载的模型'));
+      return this.enqueueModelDownloads(ids);
     },
 
     'setup.finish': (c) => {
@@ -2223,8 +2248,9 @@ export class MeetingMgmtService {
       } catch (e) {
         if (ctrl.signal.aborted) return;
         const msg = (e as Error)?.message || i18nT('处理失败');
-        this.warn('pipeline failed', { meetingId, error: msg });
-        try { this.store.update((st) => { const mm = st.meetings.find((x) => x.id === meetingId); if (mm) R.failProcessing(mm, msg, this.nowFn()); }); } catch { /* ignore */ }
+        const detail = typeof (e as any)?.detail === 'string' ? (e as any).detail.trim() : '';
+        this.warn('pipeline failed', { meetingId, error: msg, ...(detail ? { detail } : {}) });
+        try { this.store.update((st) => { const mm = st.meetings.find((x) => x.id === meetingId); if (mm) R.failProcessing(mm, msg, this.nowFn(), detail || undefined); }); } catch { /* ignore */ }
       } finally {
         if (this.jobs.get(meetingId) === ctrl) this.jobs.delete(meetingId);
         this.changed('meeting', meetingId);
@@ -2402,6 +2428,82 @@ export class MeetingMgmtService {
     for (const a of weekly) {
       if (this.stopped) return;
       try { await this.track(this.runWeeklyReport(a.projectId, a.periodTo ?? now, a.notify, a.periodFrom)); } catch (e) { this.warn('weekly report failed', { projectId: a.projectId, error: (e as Error)?.message }); }
+    }
+  }
+
+  // ─── 本机语音模型后台下载队列（主进程持久维护，切页不重置） ───────────────
+
+  private modelDownloadSnapshot(): MmModelDownloadState {
+    return { ...this.modelDownload, queue: [...this.modelDownload.queue] };
+  }
+
+  private emitModelDownload(): void {
+    this.modelDownload.updatedAt = this.nowFn();
+    this.emit({ type: 'model_download', status: this.modelDownloadSnapshot() });
+  }
+
+  private enqueueModelDownloads(ids: string[]): MmModelDownloadState {
+    for (const id of ids) {
+      if (this.modelDownload.activeId === id || this.modelDownload.queue.includes(id)) continue;
+      this.modelDownload.queue.push(id);
+    }
+    this.modelDownload.error = '';
+    if (!this.modelDownloadRunning && this.modelDownload.queue.length) {
+      this.modelDownload.activeId = this.modelDownload.queue[0]!;
+      if (!this.modelDownload.line) this.modelDownload.line = i18nT('开始下载…');
+      if (this.modelDownload.percent === null) this.modelDownload.percent = 0;
+      this.emitModelDownload();
+      void this.track(this.runModelDownloadQueue());
+    } else {
+      this.emitModelDownload();
+    }
+    return this.modelDownloadSnapshot();
+  }
+
+  private async runModelDownloadQueue(): Promise<void> {
+    if (this.modelDownloadRunning) return;
+    this.modelDownloadRunning = true;
+    const ctrl = new AbortController();
+    this.modelDownloadAbort = ctrl;
+    try {
+      while (!this.stopped && !ctrl.signal.aborted && this.modelDownload.queue.length) {
+        const id = this.modelDownload.queue.shift()!;
+        this.modelDownload.activeId = id;
+        this.modelDownload.percent = 0;
+        this.modelDownload.line = i18nT('开始下载…');
+        this.modelDownload.error = '';
+        this.emitModelDownload();
+        try {
+          const r = await this.ext.installModel(id, (p) => {
+            if (this.modelDownload.activeId !== id) return;
+            if (typeof p.percent === 'number') this.modelDownload.percent = p.percent;
+            if (p.line) this.modelDownload.line = p.line;
+            this.emitModelDownload();
+          }, ctrl.signal);
+          if (!r?.ok) {
+            this.modelDownload.error = r?.error || i18nT('下载失败');
+            this.modelDownload.queue = [];
+            break;
+          }
+          this.changed('settings');
+        } catch (e: any) {
+          this.modelDownload.error = String(e?.message || e || i18nT('下载失败'));
+          this.modelDownload.queue = [];
+          break;
+        }
+      }
+      this.modelDownload.activeId = null;
+      if (!this.modelDownload.error && !ctrl.signal.aborted) {
+        this.modelDownload.percent = 100;
+        this.modelDownload.line = i18nT('下载完成');
+      } else {
+        this.modelDownload.percent = null;
+      }
+      this.emitModelDownload();
+      this.changed('settings');
+    } finally {
+      if (this.modelDownloadAbort === ctrl) this.modelDownloadAbort = null;
+      this.modelDownloadRunning = false;
     }
   }
 
