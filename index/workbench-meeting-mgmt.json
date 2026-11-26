@@ -1,12 +1,12 @@
 {
   "id": "workbench-meeting-mgmt",
-  "version": "2.0.4",
-  "treeDigest": "3d921d4496d005ac73720359da43ed19d74dce07329cb39b12b4bfadcfe3d290",
+  "version": "2.0.5",
+  "treeDigest": "bf172de299d5072ce71dedb5363ead56923961162f782670c4d1def62ea25d42",
   "files": [
     {
       "path": "CHANGELOG.md",
-      "size": 6286,
-      "sha256": "8b55b13d194e2ad6656057f7487d5d73d7773fd5332de0da991393a369b0fcb9"
+      "size": 6569,
+      "sha256": "7030147d718bf5ecc8b78fdaafd4111bae598b60d02c62961d6ef4fc330c1d31"
     },
     {
       "path": "README.md",
@@ -41,10 +41,21 @@
     {
       "path": "solution.json",
       "size": 2678,
-      "sha256": "b74eb0d000eb0f144fbc6d95bd72e4c4bea42848b54b55c8cc7c18004869c36c"
+      "sha256": "7a7f867e758264a51c7b99b53c0e14206ee2c26a7fb7027bb92728943318d1a2"
     }
   ],
   "versions": [
+    {
+      "version": "2.0.5",
+      "ref": "workbench-meeting-mgmt@2.0.5",
+      "treeDigest": "bf172de299d5072ce71dedb5363ead56923961162f782670c4d1def62ea25d42",
+      "filesRef": "index/workbench-meeting-mgmt/2.0.5.json",
+      "channel": "stable",
+      "rollout": 100,
+      "minAppVersion": "2.0.19",
+      "hostApi": 2,
+      "publishedAt": "2026-11-26"
+    },
     {
       "version": "2.0.4",
       "ref": "workbench-meeting-mgmt@2.0.4",
