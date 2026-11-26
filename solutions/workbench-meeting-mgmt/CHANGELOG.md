@@ -1,5 +1,11 @@
 # 泰途会议智能管理 更新日志
 
+## 2.0.3 (2026-11-26)
+
+- 修复部分 Windows 电脑本地语音转写报 `numpy unavailable: partially initialized module 'numpy' has no attribute 'short' (most likely due to a circular import)`：
+  - `workerPool` 改用 Python 隔离模式 `-I -X utf8 -B -u` 启动，并清理继承的 `PYTHONPATH` / `PYTHONHOME` / `PYTHONSTARTUP`，彻底隔绝 `%TEMP%`（脚本所在临时目录）、当前工作目录、宿主机全局 Python 环境变量与 user-site 对内置 `numpy` / 标准库的同名遮蔽。
+  - `worker.py` 改为先导入内置 `numpy`，再通过 `sys.path.append(pluginsDir)` 追加插件目录（不再 `insert(0)` 抢占标准库与内置包），并在 `numpy` 导入失败时将完整 traceback、`sys.executable`、`numpy.__file__`、`sys.path` 写入处理日志 `detail`。
+
 ## 2.0.2 (2026-11-26)
 
 - 配置引导（推荐转写模型、全部本机模型对比表、声纹模型 CAM++）及系统设置 → AI 能力配置中，已下载模型均增加「重新下载」按钮；支持 `force: true` 清理旧的 HF 缓存与残余 `.part` 文件后从 CDN 重新下载校验 SHA-256，并重新核对/补装 Python 语音运行组件。

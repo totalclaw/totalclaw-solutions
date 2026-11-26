@@ -1,5 +1,5 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
-import { existsSync, mkdirSync, mkdtempSync, rmSync } from 'fs';
+import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'fs';
 import { tmpdir } from 'os';
 import { join } from 'path';
 import { diagnoseWorkerStartFailure, makeBatches, MeetingWorker, runSlices, type WorkerSpec } from './workerPool';
@@ -98,6 +98,28 @@ describe.skipIf(!existsSync(PY))('MeetingWorker（真 Python，不加载模型�
     expect(String(err.message)).toContain('本地语音识别运行时不可用');
     expect(String(err.message)).toMatch(/重新下载/);
     expect(String(err.detail || '')).toMatch(/missing or empty|No module named 'sherpa_onnx'/);
+  }, 60_000);
+
+  it('PYTHONPATH 和 pluginsDir 里存在同名 numpy.py / numbers.py 时不被劫持（-I 隔离 + append 顺序）', async () => {
+    const poison = join(dir, 'poison');
+    mkdirSync(poison, { recursive: true });
+    writeFileSync(join(poison, 'numpy.py'), 'raise RuntimeError("shadowed numpy")\n', 'utf8');
+    writeFileSync(join(poison, 'numbers.py'), 'import numpy\n_ = numpy.short\n', 'utf8');
+    const w = new MeetingWorker({
+      python: PY,
+      pluginsDir: poison,
+      model: '',
+      modelsDir: '',
+      campp: '',
+      threads: 1,
+      env: { ...process.env, PYTHONPATH: poison, PYTHONUTF8: '1' },
+    });
+    try {
+      const ready = await w.start(60_000);
+      expect(ready).toMatchObject({ asr: false, emb: false });
+    } finally {
+      w.kill();
+    }
   }, 60_000);
 
   it('找不到 Python 解释器时给出明确诊断和 detail', async () => {

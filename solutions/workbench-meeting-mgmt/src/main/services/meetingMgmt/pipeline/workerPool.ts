@@ -199,11 +199,20 @@ export class MeetingWorker {
     return new Promise((resolve, reject) => {
       const s = this.spec;
       const scriptFile = ensureWorkerScriptFile();
+      // -I（isolated）：不把脚本所在目录(%TEMP%)或 cwd 塞进 sys.path[0]，忽略宿主 PYTHONPATH / PYTHONHOME / user-site；
+      // 因 -I 会同时忽略 PYTHONUTF8 / PYTHONDONTWRITEBYTECODE，显式加 -X utf8 -B 保持 UTF-8 且不写 .pyc。
+      const pyFlags = ['-I', '-X', 'utf8', '-B', '-u'];
       const args = scriptFile
-        ? ['-u', scriptFile, s.pluginsDir || '', s.model || '', s.modelsDir || '', s.campp || '', String(s.threads), s.campp2 || '']
-        : ['-u', '-c', MEETING_WORKER_PY, s.pluginsDir || '', s.model || '', s.modelsDir || '', s.campp || '', String(s.threads), s.campp2 || ''];
+        ? [...pyFlags, scriptFile, s.pluginsDir || '', s.model || '', s.modelsDir || '', s.campp || '', String(s.threads), s.campp2 || '']
+        : [...pyFlags, '-c', MEETING_WORKER_PY, s.pluginsDir || '', s.model || '', s.modelsDir || '', s.campp || '', String(s.threads), s.campp2 || ''];
+      const cleanEnv: NodeJS.ProcessEnv = { ...s.env };
+      delete cleanEnv.PYTHONPATH;
+      delete cleanEnv.PYTHONHOME;
+      delete cleanEnv.PYTHONSTARTUP;
+      delete cleanEnv.PYTHONCASEOK;
+      delete cleanEnv.PYTHONINSPECT;
       const c = spawn(s.python, args, {
-        env: s.env,
+        env: cleanEnv,
         stdio: ['pipe', 'pipe', 'pipe'],
         windowsHide: true,
       });
@@ -234,8 +243,9 @@ export class MeetingWorker {
               resolve(this.ready);
             } else {
               this.kill();
-              const detail = String(msg.error || '');
-              reject(Object.assign(new Error(formatNotReadyError(detail)), { detail }));
+              const errText = String(msg.error || '');
+              const detail = String(msg.detail || errText);
+              reject(Object.assign(new Error(formatNotReadyError(errText)), { detail }));
             }
             continue;
           }

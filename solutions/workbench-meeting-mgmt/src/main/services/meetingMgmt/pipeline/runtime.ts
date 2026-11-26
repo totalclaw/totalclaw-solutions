@@ -152,7 +152,13 @@ async function defaultRuntime(): Promise<MeetingRuntime> {
     campp2: typeof speakerModelV2Path === 'function' ? speakerModelV2Path() : null,
     senseVoiceDir: sam.meetingAsrModelDir(sam.MEETING_ASR_SENSEVOICE_ID),
     fireRedDir: sam.meetingAsrModelDir(sam.MEETING_ASR_FIRERED_ID),
-    env: buildPythonEnv({ ...process.env }),
+    env: (() => {
+      const e = buildPythonEnv({ ...process.env });
+      delete e.PYTHONPATH;
+      delete e.PYTHONHOME;
+      delete e.PYTHONSTARTUP;
+      return e;
+    })(),
   };
 }
 

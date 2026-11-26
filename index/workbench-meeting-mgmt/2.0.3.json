@@ -1,0 +1,47 @@
+{
+  "id": "workbench-meeting-mgmt",
+  "version": "2.0.3",
+  "treeDigest": "8381f0555e2f3259d13691adaab6280ce23ae4e942b4b9c4dfd3f8ad289ae6ac",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "size": 5769,
+      "sha256": "b28eb60dc9e01962eeaf586b6a393f87c7f47f55a936a465b1341400bf6f46ab"
+    },
+    {
+      "path": "README.md",
+      "size": 1906,
+      "sha256": "37b98abec781ed7a3128a257e95181671e0391da6bdeb0f5573bedd364e49a1c"
+    },
+    {
+      "path": "dist/host-modules.json",
+      "size": 1922,
+      "sha256": "866347d3a7f2116f97a5519a7e35cd65b8b1f041c2ee00439676f00b57497841"
+    },
+    {
+      "path": "dist/main.cjs",
+      "size": 694620,
+      "sha256": "471eaf477753ac0d551662c14df62ccc9d0cfdde607b8b04b3d7b9715a9d100c"
+    },
+    {
+      "path": "dist/renderer.mjs",
+      "size": 794839,
+      "sha256": "f01802f3e6e6102372f386b9de084543d5319ef904a6c44630dc68e451b30a2d"
+    },
+    {
+      "path": "dist/style.css",
+      "size": 150908,
+      "sha256": "0b186864af855f444ee55c034ad4332d133cde77bb70b2e820c67e80b1d360cf"
+    },
+    {
+      "path": "migrations/README.md",
+      "size": 296,
+      "sha256": "6c3df3a98c2e1edd97d979407b0361a4361842982960b8e6cab3dccd620c9f1e"
+    },
+    {
+      "path": "solution.json",
+      "size": 2678,
+      "sha256": "c903b9014b4f3ed62acce8978e5f0a8c87a835f4b4b061f548ca19f51083da8d"
+    }
+  ]
+}

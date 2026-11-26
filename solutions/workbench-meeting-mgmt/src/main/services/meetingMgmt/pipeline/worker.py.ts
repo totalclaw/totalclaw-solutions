@@ -15,9 +15,15 @@
  * 这里的字符串只给开发日志看（界面文案在 TS 侧按错误码给中文），所以全用英文。
  */
 export const MEETING_WORKER_PY = `
-import sys, json, os, re, struct, time, warnings
+import sys, json, os, re, struct, time, traceback, warnings
 from contextlib import contextmanager
 warnings.filterwarnings("ignore")
+for _s in (sys.stdin, sys.stdout, sys.stderr):
+    try:
+        if hasattr(_s, "reconfigure"):
+            _s.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 
 @contextmanager
 def _in_dir(d):
@@ -39,8 +45,6 @@ def _require_files(d, names):
             raise FileNotFoundError("model file missing or empty: %s" % p)
 
 plugins = sys.argv[1] if len(sys.argv) > 1 else ""
-if plugins:
-    sys.path.insert(0, plugins)
 model_name = sys.argv[2] if len(sys.argv) > 2 else ""
 models_dir = sys.argv[3] if len(sys.argv) > 3 else ""
 campp_path = sys.argv[4] if len(sys.argv) > 4 else ""
@@ -52,11 +56,21 @@ def emit(obj):
     sys.stdout.write("__TC_MM__" + json.dumps(obj, ensure_ascii=False) + "\\n")
     sys.stdout.flush()
 
+# 先加载内置 numpy，再把 py-plugins 追加到 sys.path 末尾：py-plugins 只供 sherpa_onnx /
+# kaldi_native_fbank 这类内置包里没有的可选扩展，绝不能抢在标准库与内置 numpy 前面造成同名遮蔽或循环导入。
 try:
     import numpy as np
 except Exception as e:
-    emit({"ready": False, "error": "numpy unavailable: %s" % e})
+    np_file = getattr(sys.modules.get("numpy"), "__file__", None)
+    tb = traceback.format_exc()[-1500:]
+    detail = "exe=%s | py=%s | np_file=%s | sys.path=%s | tb=%s" % (
+        sys.executable, sys.version.split()[0], np_file, sys.path[:8], tb,
+    )
+    emit({"ready": False, "error": "numpy unavailable: %s" % e, "detail": detail})
     sys.exit(0)
+
+if plugins and plugins not in sys.path:
+    sys.path.append(plugins)
 
 asr = None
 asr_err = None
