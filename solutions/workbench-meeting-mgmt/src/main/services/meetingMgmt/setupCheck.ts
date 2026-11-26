@@ -225,11 +225,20 @@ async function downloadOneFile(
           if (!value?.byteLength) continue;
           cur += value.byteLength;
           if (!ws.write(Buffer.from(value.buffer, value.byteOffset, value.byteLength))) {
-            await new Promise<void>((res, rej) => { ws!.once('drain', res); ws!.once('error', rej); });
+            await new Promise<void>((res, rej) => {
+              const onDrain = () => { ws!.off('error', onErr); res(); };
+              const onErr = (err: Error) => { ws!.off('drain', onDrain); rej(err); };
+              ws!.once('drain', onDrain);
+              ws!.once('error', onErr);
+            });
           }
           opts.onBytes(cur);
         }
-        await new Promise<void>((res, rej) => { ws!.end(() => res()); ws!.once('error', rej); });
+        await new Promise<void>((res, rej) => {
+          const onErr = (err: Error) => rej(err);
+          ws!.once('error', onErr);
+          ws!.end(() => { ws!.off('error', onErr); res(); });
+        });
         ws = null;
       } catch (e: any) {
         try { ws?.destroy(); } catch { /* ignore */ }
@@ -335,4 +344,26 @@ export async function downloadMeetingModelFromCdn(
   } catch (e: any) {
     return { ok: false, error: String(e?.message || e) };
   }
+}
+
+/** 核对本机已下载模型文件的字节数与 SHA-256；全部匹配返回 true，任一缺失或损坏返回 false。 */
+export async function verifyMeetingModelIntegrity(
+  id: string,
+  opts: { targetOverride?: CdnDownloadOptions['targetOverride'] } = {},
+): Promise<boolean> {
+  const target = opts.targetOverride ?? (await resolveCdnTarget(id));
+  if (!target) return false;
+  for (const f of target.files) {
+    const dest = join(target.destDir, f.file);
+    try {
+      if (!existsSync(dest) || statSync(dest).size !== f.bytes) return false;
+      if (f.sha256) {
+        const digest = await sha256File(dest);
+        if (digest.toLowerCase() !== f.sha256.toLowerCase()) return false;
+      }
+    } catch {
+      return false;
+    }
+  }
+  return true;
 }

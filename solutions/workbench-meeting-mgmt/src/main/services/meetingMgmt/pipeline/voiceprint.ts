@@ -24,14 +24,15 @@ const ENROLL_MIN_LEVEL_DB = -45;
 /** 前后两半像不像同一个人：低于这个多半混进了别人或很大的噪声 */
 const ENROLL_MIN_HALF_SIM = 0.3;
 
-export function workerSpecFor(rt: MeetingRuntime, opts: { asr: boolean; threads?: number; model?: string | null }): WorkerSpec {
+export function workerSpecFor(rt: MeetingRuntime, opts: { asr: boolean; emb?: boolean; threads?: number; model?: string | null }): WorkerSpec {
+  const wantEmb = opts.emb !== false;
   return {
     python: rt.python || '',
     pluginsDir: rt.pluginsDir,
     model: opts.asr ? (opts.model ?? rt.whisperModel ?? '') : '',
     modelsDir: rt.whisperModelsDir,
-    campp: rt.campp || '',
-    campp2: rt.campp2 || '',
+    campp: wantEmb ? (rt.campp || '') : '',
+    campp2: wantEmb ? (rt.campp2 || '') : '',
     threads: opts.threads ?? autoParallelism(opts.asr ? rt.whisperModel : null).threads,
     env: rt.env,
   };

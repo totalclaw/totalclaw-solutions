@@ -286,15 +286,17 @@ async function runAudio(input: PipelineInput, files: MmMeetingFile[], rt: Meetin
   if (!hasSpeakerModel) report('transcribe', 6, i18nT('未下载声纹识别模型，不区分发言人（全部归为 S1，请主持人分配）'));
   const names = input.attendees.map(p => p.name).filter(Boolean);
 
-  // 判语种：有 Whisper 用 Whisper（small 够准），没有就用 SenseVoice 自带的语种判断
+  // 判语种：优先用 SenseVoice（已下载且未指定 Whisper 时更快且不依赖 ctranslate2），否则用 Whisper
   let lang: string | null = 'zh';
   if (!useAgent) {
     report('transcribe', 6, i18nT('识别语种'));
     const sample = slices.slice().sort((a, b) => (b.end - b.start) - (a.end - a.start)).slice(0, 3);
-    const detectArg = rt.detectModel || rt.whisperModel || (rt.senseVoiceDir ? asrModelArg('sensevoice', rt) : '');
+    const detectArg = (input.asrModel !== 'whisper' && rt.senseVoiceDir)
+      ? asrModelArg('sensevoice', rt)
+      : (rt.detectModel || rt.whisperModel || (rt.senseVoiceDir ? asrModelArg('sensevoice', rt) : ''));
     if (detectArg) {
       try {
-        const d = await detectLanguage(workerSpecFor(rt, { asr: true, threads: 4, model: detectArg }), wav, sample, cfg.createWorker);
+        const d = await detectLanguage(workerSpecFor(rt, { asr: true, emb: false, threads: 4, model: detectArg }), wav, sample, cfg.createWorker);
         if (d.lang && d.prob >= 0.5) lang = d.lang;
       } catch { /* 判不出就按中文 */ }
     }
@@ -334,7 +336,7 @@ async function runAudio(input: PipelineInput, files: MmMeetingFile[], rt: Meetin
     const fn = useCloud && cloud
       ? (b64: string) => cloudTranscribe(cloud, Buffer.from(b64, 'base64'), { signal })
       : cfg.agentTranscribe!;
-    outs = await agentTranscribeAll(wav, slices, rt, par, signal, onProgress, fn, useCloud ? 3 : 2);
+    outs = await agentTranscribeAll(wav, slices, rt, par, signal, onProgress, report, fn, useCloud ? 3 : 2);
   } else {
     outs = await runSlices(workerSpecFor(rt, { asr: true, threads: par.threads, model: asrArg }), wav, slices, {
       workers: par.workers, asr: true, emb: hasSpeakerModel, lang, prompt,
@@ -352,7 +354,7 @@ async function runAudio(input: PipelineInput, files: MmMeetingFile[], rt: Meetin
     report('transcribe', 82, i18nT('有 {p0} 段只识别出了提示语，正在不带提示重新转写', { p0: retry.length }));
     let rescued = 0;
     try {
-      const again = await runSlices(workerSpecFor(rt, { asr: true, threads: par.threads, model: asrArg }), wav, retry.map(i => slices[i]!), {
+      const again = await runSlices(workerSpecFor(rt, { asr: true, emb: false, threads: par.threads, model: asrArg }), wav, retry.map(i => slices[i]!), {
         workers: par.workers, asr: true, emb: false, lang, prompt: '',
         beam, batchCount: par.batch,
         signal, createWorker: cfg.createWorker,
@@ -421,16 +423,23 @@ async function runAudio(input: PipelineInput, files: MmMeetingFile[], rt: Meetin
   return finish(input, segments, speakers, durationSec, report, 92);
 }
 
-/** agent 转写：逐片发 wav（并发 2），声纹仍在本机提 */
+/** agent 转写：逐片发 wav（并发 2），声纹仍在本机提（声纹异常时降级跳过，不阻断在线转写兜底） */
 async function agentTranscribeAll(
   wav: string, slices: PlannedSlice[], rt: MeetingRuntime, par: { workers: number; threads: number }, signal: AbortSignal | undefined,
   onProgress: (d: number, t: number) => void,
+  report: Report,
   transcribe: (wavBase64: string) => Promise<AgentAsrResult>, concurrency = 2,
 ): Promise<SliceOutput[]> {
   const cfg = pipelineConfig();
-  const embs: SliceOutput[] = (rt.campp || rt.campp2)
-    ? await runSlices(workerSpecFor(rt, { asr: false, threads: par.threads }), wav, slices, { workers: Math.min(2, par.workers), asr: false, emb: true, signal, createWorker: cfg.createWorker })
-    : slices.map((_, i) => ({ i }));
+  let embs: SliceOutput[] = slices.map((_, i) => ({ i }));
+  if (rt.campp || rt.campp2) {
+    try {
+      embs = await runSlices(workerSpecFor(rt, { asr: false, threads: par.threads }), wav, slices, { workers: Math.min(2, par.workers), asr: false, emb: true, signal, createWorker: cfg.createWorker });
+    } catch (e: any) {
+      if (e?.aborted || signal?.aborted) throw abortError();
+      report('transcribe', 8, i18nT('本机声纹识别暂不可用，本次跳过发言人区分（全部归为 S1，可由主持人分配）'));
+    }
+  }
   const out: SliceOutput[] = slices.map((_, i) => ({ ...embs[i], i }));
   let next = 0;
   let done = 0;

@@ -1,5 +1,13 @@
 # 泰途会议智能管理 更新日志
 
+## 2.0.8 (2026-11-26)
+
+- 修复部分 Windows 10 电脑本地转写 / 声纹识别必报 `0xC0000005`（语音模型加载异常退出）：内置通用 Python 运行时目录缺少 `msvcp140*.dll`，导致 MSVC 14.44 编译的 `onnxruntime` / `ctranslate2` 回落到旧版 `System32\msvcp140.dll` 触发 `std::mutex` 访问冲突；worker 在 Windows 启动加载原生扩展前改为优先预载同运行时 `_internal` / `native\bin` 随包的 `msvcp140*.dll`，并预载 `sherpa_onnx` 自带的 `onnxruntime.dll` 防 `System32\onnxruntime.dll` 抢占。
+- 修复 v2.0.7 遇到 `0xC0000005` 时盲目删除并重下全部 ~1.4 GB 模型的问题：改为先核对本地模型文件 SHA-256，仅重下确实损坏的模型（全部校验通过则跳过重下并在处理日志说明）；强制重下时改为先停占句柄的 worker、待 `.part` 校验通过后再原子覆盖，避免取消或断网误删完好模型。
+- 修复切换「在线语音识别」仍受本机声纹 worker 崩溃阻断的问题：在线转写阶段本机声纹提取失败时降级跳过发言人区分（全部归 S1，交主持人分配）。
+- 优化语种识别：不加载冗余的声纹模型，已下载 SenseVoice 时优先直接用 SenseVoice 判语种。
+- 修复模型 CDN 下载 `WriteStream` 的 `error` 监听器泄漏（消除 `MaxListenersExceededWarning`）、`concatWav16k` 大音频写入背压处理，以及未选择当前身份时挂载首页导致 `home.get` 报错的问题。
+
 ## 2.0.7 (2026-11-26)
 
 - 本地转写在模型加载阶段原生崩溃（`0xC0000005` 访问冲突 / `0xC0000409` / `0xC00000FD`）时也触发一次自动修复：加载时只核对文件大小，同样大小但内容被磁盘或杀软改坏的 onnx 会让 onnxruntime 直接崩溃；现在会从 CDN 强制重下（逐文件 SHA-256 校验）后自动重跑。

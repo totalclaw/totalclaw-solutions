@@ -121,9 +121,12 @@ describe('会议智能管理外壳', () => {
     await flushPromises();
     expect(w.find('[data-test="mm-setup"]').exists()).toBe(true);
     expect(w.find('[data-test="mm-setup-identity"]').text()).toContain('你是哪一位');
+    // 未选身份前不挂载 HomeTab，不触发 home.get 报错
+    expect(calls.some(([a]) => a === 'home.get')).toBe(false);
     await w.find('[data-test="mm-setup-me-ZhangSan"]').trigger('click');
     await flushPromises();
     expect(calls.some(([a, p]) => a === 'identity.set' && p.personId === 'ZhangSan')).toBe(true);
+    expect(calls.some(([a]) => a === 'home.get')).toBe(true);
     expect(w.find('[data-test="mm-setup-identity"]').exists()).toBe(false);
   });
 

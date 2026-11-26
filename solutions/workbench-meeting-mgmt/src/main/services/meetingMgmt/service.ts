@@ -33,7 +33,7 @@ import { cardSummary, noticeButtonText, noticeCard, noticeTypeLabel } from './no
 import { WecomWebhook, buildGroupMessage, lanLinkNote, maskWebhookUrl, normalizeWebhookUrl, type GroupMessage } from './wecomWebhook';
 import { normalizeMobile, normalizeWecomUserId, parseOrgTable } from './orgImport';
 import { openSpreadsheetFile, readWorksheetData } from '../spreadsheetRead';
-import { ALLOWED_MEETING_MODEL_IDS, MEETING_ASR_IDS, SPEAKER_INSTALL_ID, detectHardware, downloadMeetingModelFromCdn, estimateMinPerHour, recommendAsr, type HardwareInfo } from './setupCheck';
+import { ALLOWED_MEETING_MODEL_IDS, MEETING_ASR_IDS, SPEAKER_INSTALL_ID, detectHardware, downloadMeetingModelFromCdn, estimateMinPerHour, recommendAsr, verifyMeetingModelIntegrity, type HardwareInfo } from './setupCheck';
 import { CLOUD_ASR_PRESETS, cloudAsrPreset, cloudTranscribe, normalizeBaseUrl, silenceWav, type CloudAsrConfig, type CloudAsrResult } from './cloudAsr';
 import { dueReminders, startMeetingScheduler, type ReminderAction } from './scheduler';
 import { buildGroupUrl, buildMobileUrl, buildVoiceprintUrl, isLanOnlyUrl, startMeetingMobileServer } from './mobile/server';
@@ -108,6 +108,8 @@ export interface MmExternals {
   cloudTranscribe(cfg: CloudAsrConfig, wav: Buffer): Promise<CloudAsrResult>;
   /** 下载并安装本机会议语音模型（默认从 CDN 直下 + 校验；IPC 层再补装 Python 运行组件） */
   installModel(id: string, onProgress: (p: { percent: number | null; line: string }) => void, signal: AbortSignal, opts?: { force?: boolean }): Promise<{ ok: boolean; error?: string }>;
+  /** 核对已下载模型文件的字节数与 SHA-256（原生崩溃时先验再决定是否重下） */
+  verifyModel?(id: string): Promise<boolean>;
 }
 
 export interface RuntimeCheck {
@@ -153,6 +155,7 @@ function defaultExternals(): MmExternals {
       const r = await downloadMeetingModelFromCdn(id, { signal, force: !!opts?.force, onProgress: (p) => onProgress({ percent: p.percent, line: p.line }) });
       return r.ok ? { ok: true } : { ok: false, error: r.error };
     },
+    verifyModel: (id) => verifyMeetingModelIntegrity(id),
     segmentAudio: (workDir, start, end) => {
       const f = join(workDir, AUDIO_FILE);
       return existsSync(f) ? pipeline.sliceWavBase64(f, { start, end }) : null;
@@ -2248,7 +2251,7 @@ export class MeetingMgmtService {
           const repaired = await this.repairLocalAsr(repairMode, s.settings.ai.localAsrModel, onStage, ctrl.signal);
           if (!repaired.ok) {
             if (ctrl.signal.aborted) throw firstErr;
-            if (repaired.error) onStage('transcribe', 6, i18nT('自动修复失败：{p0}', { p0: repaired.error }));
+            if (repaired.error) onStage('transcribe', 6, repaired.skipped ? repaired.error : i18nT('自动修复失败：{p0}', { p0: repaired.error }));
             throw firstErr;
           }
           r = await runOnce();
@@ -2278,13 +2281,13 @@ export class MeetingMgmtService {
     this.track(job);
   }
 
-  /** 本地转写因运行组件缺失或模型文件损坏失败时自动修复一次（不处理缺 VC++ / 内存不足 / 杀软拦截）。 */
+  /** 本地转写因运行组件缺失或模型文件损坏失败时自动修复一次（原生崩溃先验 SHA-256，完整则不盲目重下）。 */
   private async repairLocalAsr(
-    mode: 'runtime' | 'redownload',
+    mode: 'runtime' | 'redownload' | 'verify_redownload',
     pref: MmSettings['ai']['localAsrModel'] | undefined,
     onStage: (stage: MmProcessStage, progress: number, text?: string) => void,
     signal: AbortSignal,
-  ): Promise<{ ok: true } | { ok: false; error: string }> {
+  ): Promise<{ ok: true } | { ok: false; error: string; skipped?: boolean }> {
     if (pref === 'whisper') return { ok: false, error: '' };
     let rt: RuntimeCheck | null = null;
     try { rt = await this.ext.checkRuntime(); } catch { /* ignore */ }
@@ -2301,9 +2304,24 @@ export class MeetingMgmtService {
     } else {
       ids = rt?.senseVoice && !rt?.fireRed ? [MEETING_ASR_IDS.sensevoice] : recommendAsr(hw).installIds;
     }
-    // 重下时声纹模型一起：它和转写模型在同一个进程里加载，坏的是哪一个从崩溃退出码分不出来
-    if (mode === 'redownload' && rt?.speaker && !ids.includes(SPEAKER_INSTALL_ID)) ids = [...ids, SPEAKER_INSTALL_ID];
-    const force = mode === 'redownload';
+    // 重下 / 完整性核对时把声纹模型也纳入候选：两者在同一进程里加载
+    if (mode !== 'runtime' && rt?.speaker && !ids.includes(SPEAKER_INSTALL_ID)) ids = [...ids, SPEAKER_INSTALL_ID];
+    if (mode === 'verify_redownload') {
+      if (!this.ext.verifyModel) {
+        return { ok: false, skipped: true, error: i18nT('语音模型加载异常退出，未检测到模型损坏（跳过重新下载）') };
+      }
+      onStage('transcribe', 6, i18nT('检测到模型加载异常退出，正在核对本机模型文件完整性…'));
+      const broken: string[] = [];
+      for (const id of ids) {
+        if (signal.aborted) return { ok: false, error: i18nT('处理已取消') };
+        if (!(await this.ext.verifyModel(id))) broken.push(id);
+      }
+      if (!broken.length) {
+        return { ok: false, skipped: true, error: i18nT('本机语音模型文件 SHA-256 校验均正常，非模型损坏（跳过重新下载）') };
+      }
+      ids = broken;
+    }
+    const force = mode !== 'runtime';
     this.modelDownloadRunning = true;
     try {
       onStage('transcribe', 6, force
@@ -2608,15 +2626,16 @@ const NON_REPAIRABLE_ASR_RE = /DLL load failed|vcruntime|msvcp|api-ms-win|0xc000
 const MISSING_RUNTIME_RE = /No module named '(sherpa_onnx|faster_whisper|ctranslate2)'/;
 const BROKEN_MODEL_RE = /model file missing or empty|FileNotFoundError|InvalidProtobuf|failed to open|unable to open|本地语音识别模型未下载/i;
 /**
- * 模型加载阶段原生崩溃（访问冲突 / 栈溢出 / 安全检查失败）：加载时只核对了文件大小，同样大小但内容坏了的
- * onnx（磁盘 / 杀软改动）会让 onnxruntime 直接崩、不给 Python 报错。从 CDN 强制重下（逐文件 SHA-256 校验）修一次。
+ * 模型加载阶段原生崩溃（访问冲突 / 栈溢出 / 安全检查失败）：可能是 DLL/内存/杀软问题，也可能是同大小但内容坏了的 onnx；
+ * 走 verify_redownload 先核对本地文件 SHA-256，只重下确实损坏的模型，避免每次重试白下 1.4GB。
  */
 const NATIVE_CRASH_RE = /0xC0000005|0xC0000409|0xC00000FD|语音模型加载异常退出/i;
 
-function classifyLocalAsrRepair(errText: string): 'runtime' | 'redownload' | null {
+function classifyLocalAsrRepair(errText: string): 'runtime' | 'redownload' | 'verify_redownload' | null {
   if (!errText || NON_REPAIRABLE_ASR_RE.test(errText)) return null;
   if (MISSING_RUNTIME_RE.test(errText)) return 'runtime';
-  if (BROKEN_MODEL_RE.test(errText) || NATIVE_CRASH_RE.test(errText)) return 'redownload';
+  if (BROKEN_MODEL_RE.test(errText)) return 'redownload';
+  if (NATIVE_CRASH_RE.test(errText)) return 'verify_redownload';
   return null;
 }
 

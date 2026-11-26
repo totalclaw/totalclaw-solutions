@@ -29,7 +29,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/runtime.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/runtime.ts
 var runtime_exports = {};
 __export(runtime_exports, {
   FIRERED_LANGS: () => FIRERED_LANGS,
@@ -156,7 +156,7 @@ function autoParallelism(model, override, hw) {
 }
 var import_os, SENSEVOICE_LANGS, FIRERED_LANGS, FIRERED_MIN_MEM_GB, config, MEETING_ASR_MODEL;
 var init_runtime = __esm({
-  "../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/runtime.ts"() {
+  "../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/runtime.ts"() {
     import_os = require("os");
     SENSEVOICE_LANGS = ["zh", "yue", "en", "ja", "ko"];
     FIRERED_LANGS = ["zh", "yue", "en"];
@@ -166,7 +166,7 @@ var init_runtime = __esm({
   }
 });
 
-// apps/desktop-shell/node_modules/.cache/solutions-build/workbench-meeting-mgmt/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-meeting-mgmt/entry.main.ts
 var entry_main_exports = {};
 __export(entry_main_exports, {
   activate: () => activate,
@@ -176,7 +176,7 @@ __export(entry_main_exports, {
 });
 module.exports = __toCommonJS(entry_main_exports);
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/ipc/meetingMgmt.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/ipc/meetingMgmt.ipc.ts
 var import_electron = require("electron");
 var import_ipc_contracts = require("npm:@totalclaw/ipc-contracts");
 var import_i18n17 = require("npm:@totalclaw/i18n");
@@ -184,13 +184,13 @@ var import_openPathGuarded = require("host:apps/desktop-shell/src/main/utils/ope
 var import_userFacingError = require("host:apps/desktop-shell/src/main/utils/userFacingError.ts");
 var import_quitRegistry = require("host:apps/desktop-shell/src/main/util/quitRegistry.ts");
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/service.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/service.ts
 var import_node_fs4 = require("node:fs");
 var import_node_path4 = require("node:path");
 var import_node_crypto6 = require("node:crypto");
 var import_i18n16 = require("npm:@totalclaw/i18n");
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/shared/meetingMgmt/types.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/shared/meetingMgmt/types.ts
 var MM_DEFAULT_SETTINGS = {
   adminIds: [],
   projectCreatorIds: [],
@@ -204,7 +204,7 @@ var MM_DEFAULT_SETTINGS = {
 };
 var MM_VOICEPRINT_MAX_EXTRA = 5;
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/store.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/store.ts
 var import_node_fs = require("node:fs");
 var import_node_path = require("node:path");
 var import_node_crypto = require("node:crypto");
@@ -451,7 +451,7 @@ var MeetingMgmtStore = class _MeetingMgmtStore {
   }
 };
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/rules.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/rules.ts
 var import_i18n = require("npm:@totalclaw/i18n");
 var DAY_MS = 864e5;
 var HOUR_MS = 36e5;
@@ -1222,7 +1222,7 @@ function arbitrateObjection(t, actor, projectOwnerId, decision, note, changes, n
   fail((0, import_i18n.t)("\u8BF7\u9009\u62E9\u300C\u7EF4\u6301\u539F\u65B9\u6848\u300D\u6216\u300C\u6309\u5F02\u8BAE\u8C03\u6574\u300D"));
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/todos.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/todos.ts
 var import_i18n2 = require("npm:@totalclaw/i18n");
 var ownerNames = (org, ids) => ids.map((id) => personName(org, id)).filter(Boolean).join((0, import_i18n2.t)("\u3001"));
 function waitedHint(since, now) {
@@ -1527,7 +1527,7 @@ function homeCounts(todos, s, personId, unread, now) {
   };
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/demo.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/demo.ts
 var DAY = 864e5;
 var HOUR = 36e5;
 var DEMO_ADMIN_ID = "linxiao";
@@ -2105,13 +2105,13 @@ var DEMO_TRANSCRIPT = `\u6797\u6653 00:00:05
 \u8C03\u8BD5\u53C2\u6570\u521D\u7248\u51FA\u6765\u540E\uFF0C\u6211\u7EA6\u751F\u4EA7\u4E00\u8D77\u8FC7\u4E00\u904D\u3002
 `;
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/index.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/index.ts
 var import_fs5 = require("fs");
 var import_path5 = require("path");
 var import_t2cn = require("npm:opencc-js/t2cn");
 var import_i18n10 = require("npm:@totalclaw/i18n");
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/audio.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/audio.ts
 var import_child_process = require("child_process");
 var import_fs = require("fs");
 var import_path = require("path");
@@ -2411,10 +2411,21 @@ async function concatWav16k(inputs, output) {
   infos.forEach(assertMono16k);
   const total = infos.reduce((s, i) => s + i.dataBytes - i.dataBytes % 2, 0);
   const offsets = [];
-  await new Promise((resolve3, reject) => {
-    const out = (0, import_fs.createWriteStream)(output);
-    out.on("error", reject);
-    out.write(wavHeader(total));
+  const out = (0, import_fs.createWriteStream)(output);
+  const writeChunk = (buf) => out.write(buf) ? Promise.resolve() : new Promise((res, rej) => {
+    const onDrain = () => {
+      out.off("error", onErr);
+      res();
+    };
+    const onErr = (err) => {
+      out.off("drain", onDrain);
+      rej(err);
+    };
+    out.once("drain", onDrain);
+    out.once("error", onErr);
+  });
+  try {
+    await writeChunk(wavHeader(total));
     let acc = 0;
     const step = 4 * 1024 * 1024;
     for (let k = 0; k < inputs.length; k++) {
@@ -2427,15 +2438,25 @@ async function concatWav16k(inputs, output) {
           const len = Math.min(step, bytes - off);
           const buf = Buffer.alloc(len);
           (0, import_fs.readSync)(fd, buf, 0, len, info.dataOffset + off);
-          out.write(buf);
+          await writeChunk(buf);
         }
       } finally {
         (0, import_fs.closeSync)(fd);
       }
       acc += bytes;
     }
-    out.end(() => resolve3());
-  });
+    await new Promise((res, rej) => {
+      const onErr = (err) => rej(err);
+      out.once("error", onErr);
+      out.end(() => {
+        out.off("error", onErr);
+        res();
+      });
+    });
+  } catch (err) {
+    out.destroy();
+    throw err;
+  }
   return offsets;
 }
 function frameEnergiesDb(path, info, hopMs = 10, opts = {}) {
@@ -2494,7 +2515,7 @@ function pcmFrameDb(pcm, hopMs = 10) {
   return out;
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/slice.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/slice.ts
 var DEFAULT_SLICE_OPTIONS = {
   hopSec: 0.01,
   minPauseSec: 0.15,
@@ -2750,7 +2771,7 @@ function round3(x) {
   return Math.round(x * 1e3) / 1e3;
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/cloudAsr.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/cloudAsr.ts
 var import_i18n4 = require("npm:@totalclaw/i18n");
 var CLOUD_ASR_PRESETS = [
   // 百炼新开的工作空间也可能给形如 https://{WorkspaceId}.cn-beijing.maas.aliyuncs.com/compatible-mode/v1 的地址，界面上可以改
@@ -2869,10 +2890,10 @@ function silenceWav(seconds = 1) {
   return buf;
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/index.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/index.ts
 init_runtime();
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/workerPool.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/workerPool.ts
 var import_child_process2 = require("child_process");
 var import_crypto = require("crypto");
 var import_fs2 = require("fs");
@@ -2881,7 +2902,7 @@ var import_path2 = require("path");
 var import_node_runtime2 = require("npm:@totalclaw/node-runtime");
 var import_i18n5 = require("npm:@totalclaw/i18n");
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/worker.py.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/worker.py.ts
 var MEETING_WORKER_PY = `
 import sys, json, os, re, struct, time, traceback, warnings
 from contextlib import contextmanager
@@ -2953,6 +2974,35 @@ if np is None:
 
 if plugins and plugins not in sys.path:
     sys.path.append(plugins)
+
+# Windows\uFF1Apython-build-standalone \u53EA\u5E26 vcruntime140.dll\uFF0C\u4E0D\u542B msvcp140*.dll\uFF1B
+# \u82E5\u7CFB\u7EDF System32msvcp140.dll < 14.40\uFF0CMSVC 14.44 \u7F16\u8BD1\u7684 onnxruntime / ctranslate2 \u4F1A\u5728\u9996\u4E2A
+# std::mutex::lock() \u89E6\u53D1 0xC0000005\uFF08\u65E0 stderr\uFF09\u3002\u4F18\u5148\u9884\u8F7D\u540C\u8FD0\u884C\u65F6 _internal / native\bin \u968F\u5305
+# \u7684 msvcp140*.dll\uFF0C\u5E76\u9884\u8F7D sherpa_onnx \u81EA\u5E26 onnxruntime.dll \u9632 System32onnxruntime.dll \u62A2\u5360\u3002
+if os.name == "nt":
+    try:
+        import ctypes
+        _py_dir = os.path.dirname(os.path.abspath(sys.executable))
+        _dist_dir = os.path.dirname(_py_dir)
+        for _d in (_py_dir, os.path.join(_dist_dir, "_internal"), os.path.join(_dist_dir, "native", "bin")):
+            if os.path.isfile(os.path.join(_d, "msvcp140.dll")):
+                for _dll in ("msvcp140.dll", "msvcp140_1.dll", "msvcp140_2.dll", "msvcp140_atomic_wait.dll", "concrt140.dll"):
+                    _p = os.path.join(_d, _dll)
+                    if os.path.isfile(_p):
+                        try:
+                            ctypes.WinDLL(_p)
+                        except OSError:
+                            pass
+                break
+        if plugins and model_name.startswith("sherpa:"):
+            _sh_ort = os.path.join(plugins, "sherpa_onnx", "lib", "onnxruntime.dll")
+            if os.path.isfile(_sh_ort):
+                try:
+                    ctypes.WinDLL(_sh_ort)
+                except OSError:
+                    pass
+    except Exception:
+        pass
 
 asr = None
 asr_err = None
@@ -3391,7 +3441,7 @@ for line in sys.stdin:
         emit({"id": rid, "done": True, "error": str(e)[:300]})
 `;
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/workerPool.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/workerPool.ts
 var cachedWorkerScript = null;
 function ensureWorkerScriptFile() {
   try {
@@ -3763,7 +3813,7 @@ async function detectLanguage(spec, wavPath, sample, createWorker) {
   }
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/diarize.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/diarize.ts
 var DEFAULT_DIARIZE_OPTIONS = {
   reliableSec: 1.5,
   clusterSim: 0.58,
@@ -4109,10 +4159,10 @@ function diarize(input) {
   return { labels: Array.from(groupOf, (gi) => labelOf.get(gi) || "S1"), speakers, model: { cluster: clusterModel, match: matchModel } };
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/organize.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/organize.ts
 var import_i18n6 = require("npm:@totalclaw/i18n");
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/matchWords.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/matchWords.ts
 var DECISION_WORDS = [
   // 用户给的六个词，加上意思同样明确的几个；「安排 / 推进 / 下周」这类太泛，议程介绍里也到处是，不收
   "\u51B3\u5B9A",
@@ -4220,7 +4270,7 @@ function cnNumberWithUnitRe(units) {
   return new RegExp(`(^|[^\u7B2C])([\u96F6\u3007\u4E00\u4E8C\u4E24\u4E09\u56DB\u4E94\u516D\u4E03\u516B\u4E5D\u5341\u767E\u5343\u4E07]+)(?=[${units}])`, "g");
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/prompts.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/prompts.ts
 function asrInitialPrompt(lang, names) {
   if (lang && !lang.startsWith("zh")) return names.filter((n) => /[A-Za-z]/.test(n)).slice(0, 20).join(", ");
   const list = names.filter(Boolean).slice(0, 30).join("\u3001");
@@ -4303,7 +4353,7 @@ function summaryNarrativePrompt(facts, custom) {
   ].join("\n");
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/util.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/util.ts
 function parseLlmJson(raw) {
   if (!raw) return null;
   let s = String(raw).replace(/<think>[\s\S]*?<\/think>/gi, "").trim();
@@ -4457,7 +4507,7 @@ function randomId(prefix) {
   return `${prefix}_${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`;
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/organize.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/organize.ts
 function transcriptForLlm(segments, names, budget = 6e4) {
   const lines = segments.map((s, k) => ({ head: `#${k + 1} [${fmtClock(s.start)}] ${names[s.speakerLabel] || s.speakerLabel}: `, text: s.text.replace(/\s+/g, " ") }));
   const total = lines.reduce((a, l) => a + l.head.length + l.text.length + 1, 0);
@@ -4678,7 +4728,7 @@ async function organizeMinutes(i) {
   };
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/transcriptParse.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/transcriptParse.ts
 var import_fs3 = require("fs");
 var import_path3 = require("path");
 function parseClock(s) {
@@ -4992,7 +5042,7 @@ function decodeText(buf) {
   return utf8.replace(/^﻿/, "");
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/voiceprint.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/voiceprint.ts
 var import_fs4 = require("fs");
 var import_os3 = require("os");
 var import_path4 = require("path");
@@ -5007,13 +5057,14 @@ var ENROLL_MIN_SNR_DB = 12;
 var ENROLL_MIN_LEVEL_DB = -45;
 var ENROLL_MIN_HALF_SIM = 0.3;
 function workerSpecFor(rt, opts) {
+  const wantEmb = opts.emb !== false;
   return {
     python: rt.python || "",
     pluginsDir: rt.pluginsDir,
     model: opts.asr ? opts.model ?? rt.whisperModel ?? "" : "",
     modelsDir: rt.whisperModelsDir,
-    campp: rt.campp || "",
-    campp2: rt.campp2 || "",
+    campp: wantEmb ? rt.campp || "" : "",
+    campp2: wantEmb ? rt.campp2 || "" : "",
     threads: opts.threads ?? autoParallelism(opts.asr ? rt.whisperModel : null).threads,
     env: rt.env
   };
@@ -5238,7 +5289,7 @@ async function meetingVoiceSample(workDir, ranges) {
   return { ...vector ? { vector } : {}, ...vector2 ? { vector2 } : {}, seconds: Math.round(total * 10) / 10 };
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/plan.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/plan.ts
 var import_i18n8 = require("npm:@totalclaw/i18n");
 var DEPT_SUFFIX = /(部门|事业部|中心|部|组|室|处|科|办公室|办|团队|小组)$/;
 function deptAliases(d) {
@@ -5410,7 +5461,7 @@ async function generatePlan(i) {
   return { generatedAt: Date.now(), summary, items };
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/reports.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/reports.ts
 var import_i18n9 = require("npm:@totalclaw/i18n");
 function isTaskOverdue2(t, now) {
   return (t.status === "not_started" || t.status === "in_progress") && isDateStr(t.due) && now > endOfDayMs(t.due);
@@ -5655,7 +5706,7 @@ async function generateProjectSummary(i) {
   return { id: randomId("rpt"), kind: "summary", generatedAt: now, markdown: md.join("\n"), stats };
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/index.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/pipeline/index.ts
 init_runtime();
 var MERGE_MAX_SEC = 120;
 var MERGE_MAX_CHARS = 600;
@@ -5865,10 +5916,10 @@ async function runAudio(input, files, rt, report) {
   if (!useAgent) {
     report("transcribe", 6, (0, import_i18n10.t)("\u8BC6\u522B\u8BED\u79CD"));
     const sample = slices.slice().sort((a, b) => b.end - b.start - (a.end - a.start)).slice(0, 3);
-    const detectArg = rt.detectModel || rt.whisperModel || (rt.senseVoiceDir ? asrModelArg("sensevoice", rt) : "");
+    const detectArg = input.asrModel !== "whisper" && rt.senseVoiceDir ? asrModelArg("sensevoice", rt) : rt.detectModel || rt.whisperModel || (rt.senseVoiceDir ? asrModelArg("sensevoice", rt) : "");
     if (detectArg) {
       try {
-        const d2 = await detectLanguage(workerSpecFor(rt, { asr: true, threads: 4, model: detectArg }), wav, sample, cfg.createWorker);
+        const d2 = await detectLanguage(workerSpecFor(rt, { asr: true, emb: false, threads: 4, model: detectArg }), wav, sample, cfg.createWorker);
         if (d2.lang && d2.prob >= 0.5) lang = d2.lang;
       } catch {
       }
@@ -5902,7 +5953,7 @@ async function runAudio(input, files, rt, report) {
   if (useAgent) {
     const cloud = input.cloudAsr;
     const fn = useCloud && cloud ? (b64) => cloudTranscribe(cloud, Buffer.from(b64, "base64"), { signal }) : cfg.agentTranscribe;
-    outs = await agentTranscribeAll(wav, slices, rt, par, signal, onProgress, fn, useCloud ? 3 : 2);
+    outs = await agentTranscribeAll(wav, slices, rt, par, signal, onProgress, report, fn, useCloud ? 3 : 2);
   } else {
     outs = await runSlices(workerSpecFor(rt, { asr: true, threads: par.threads, model: asrArg }), wav, slices, {
       workers: par.workers,
@@ -5924,7 +5975,7 @@ async function runAudio(input, files, rt, report) {
     report("transcribe", 82, (0, import_i18n10.t)("\u6709 {p0} \u6BB5\u53EA\u8BC6\u522B\u51FA\u4E86\u63D0\u793A\u8BED\uFF0C\u6B63\u5728\u4E0D\u5E26\u63D0\u793A\u91CD\u65B0\u8F6C\u5199", { p0: retry.length }));
     let rescued = 0;
     try {
-      const again = await runSlices(workerSpecFor(rt, { asr: true, threads: par.threads, model: asrArg }), wav, retry.map((i) => slices[i]), {
+      const again = await runSlices(workerSpecFor(rt, { asr: true, emb: false, threads: par.threads, model: asrArg }), wav, retry.map((i) => slices[i]), {
         workers: par.workers,
         asr: true,
         emb: false,
@@ -5998,9 +6049,17 @@ async function runAudio(input, files, rt, report) {
   report("diarize", 92, (0, import_i18n10.t)("\u8BC6\u522B\u51FA {p0} \u4F4D\u53D1\u8A00\u4EBA\uFF0C\u5176\u4E2D {p1} \u4F4D\u5DF2\u6309\u58F0\u7EB9\u8BA4\u51FA", { p0: speakers.length, p1: matched }));
   return finish(input, segments, speakers, durationSec, report, 92);
 }
-async function agentTranscribeAll(wav, slices, rt, par, signal, onProgress, transcribe, concurrency = 2) {
+async function agentTranscribeAll(wav, slices, rt, par, signal, onProgress, report, transcribe, concurrency = 2) {
   const cfg = pipelineConfig();
-  const embs = rt.campp || rt.campp2 ? await runSlices(workerSpecFor(rt, { asr: false, threads: par.threads }), wav, slices, { workers: Math.min(2, par.workers), asr: false, emb: true, signal, createWorker: cfg.createWorker }) : slices.map((_, i) => ({ i }));
+  let embs = slices.map((_, i) => ({ i }));
+  if (rt.campp || rt.campp2) {
+    try {
+      embs = await runSlices(workerSpecFor(rt, { asr: false, threads: par.threads }), wav, slices, { workers: Math.min(2, par.workers), asr: false, emb: true, signal, createWorker: cfg.createWorker });
+    } catch (e) {
+      if (e?.aborted || signal?.aborted) throw abortError();
+      report("transcribe", 8, (0, import_i18n10.t)("\u672C\u673A\u58F0\u7EB9\u8BC6\u522B\u6682\u4E0D\u53EF\u7528\uFF0C\u672C\u6B21\u8DF3\u8FC7\u53D1\u8A00\u4EBA\u533A\u5206\uFF08\u5168\u90E8\u5F52\u4E3A S1\uFF0C\u53EF\u7531\u4E3B\u6301\u4EBA\u5206\u914D\uFF09"));
+    }
+  }
   const out = slices.map((_, i) => ({ ...embs[i], i }));
   let next = 0;
   let done = 0;
@@ -6034,7 +6093,7 @@ async function agentTranscribeAll(wav, slices, rt, par, signal, onProgress, tran
   return out;
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/wecom.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/wecom.ts
 var import_node_crypto2 = require("node:crypto");
 var import_i18n11 = require("npm:@totalclaw/i18n");
 var WECOM_API_BASE = "https://qyapi.weixin.qq.com/cgi-bin";
@@ -6427,7 +6486,7 @@ function diffOrg(prev, next) {
   return { added, changed, left };
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/notifier.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/notifier.ts
 var import_i18n12 = require("npm:@totalclaw/i18n");
 var LINE_MAX = 60;
 var PLAN_LINES = 3;
@@ -6580,7 +6639,7 @@ var cardSummary = {
   }
 };
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/wecomWebhook.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/wecomWebhook.ts
 var import_i18n13 = require("npm:@totalclaw/i18n");
 var WEBHOOK_SEND_URL = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send";
 var REQUEST_TIMEOUT_MS2 = 15e3;
@@ -6749,7 +6808,7 @@ ${(0, import_i18n13.t)("\u7FA4\u673A\u5668\u4EBA\u5DF2\u8FDE\u63A5\uFF1A\u4F1A\u
   }
 };
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/orgImport.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/orgImport.ts
 var import_node_crypto3 = require("node:crypto");
 var import_i18n14 = require("npm:@totalclaw/i18n");
 var COLS = {
@@ -6857,10 +6916,10 @@ function parseOrgTable(rows) {
   return { depts, people, warnings };
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/service.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/service.ts
 var import_spreadsheetRead = require("host:apps/desktop-shell/src/main/services/spreadsheetRead.ts");
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/setupCheck.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/setupCheck.ts
 var import_node_crypto4 = require("node:crypto");
 var import_node_fs2 = require("node:fs");
 var import_node_os = require("node:os");
@@ -7018,15 +7077,27 @@ async function downloadOneFile(url, dest, spec, opts) {
           cur += value.byteLength;
           if (!ws.write(Buffer.from(value.buffer, value.byteOffset, value.byteLength))) {
             await new Promise((res, rej) => {
-              ws.once("drain", res);
-              ws.once("error", rej);
+              const onDrain = () => {
+                ws.off("error", onErr);
+                res();
+              };
+              const onErr = (err) => {
+                ws.off("drain", onDrain);
+                rej(err);
+              };
+              ws.once("drain", onDrain);
+              ws.once("error", onErr);
             });
           }
           opts.onBytes(cur);
         }
         await new Promise((res, rej) => {
-          ws.end(() => res());
-          ws.once("error", rej);
+          const onErr = (err) => rej(err);
+          ws.once("error", onErr);
+          ws.end(() => {
+            ws.off("error", onErr);
+            res();
+          });
         });
         ws = null;
       } catch (e) {
@@ -7140,8 +7211,25 @@ async function downloadMeetingModelFromCdn(id, opts = {}) {
     return { ok: false, error: String(e?.message || e) };
   }
 }
+async function verifyMeetingModelIntegrity(id, opts = {}) {
+  const target = opts.targetOverride ?? await resolveCdnTarget(id);
+  if (!target) return false;
+  for (const f of target.files) {
+    const dest = (0, import_node_path2.join)(target.destDir, f.file);
+    try {
+      if (!(0, import_node_fs2.existsSync)(dest) || (0, import_node_fs2.statSync)(dest).size !== f.bytes) return false;
+      if (f.sha256) {
+        const digest = await sha256File(dest);
+        if (digest.toLowerCase() !== f.sha256.toLowerCase()) return false;
+      }
+    } catch {
+      return false;
+    }
+  }
+  return true;
+}
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/scheduler.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/scheduler.ts
 var ownersOf = (t) => Array.isArray(t.ownerIds) && t.ownerIds.length ? t.ownerIds : t.ownerId ? [t.ownerId] : [];
 var MEETING_SCHEDULER_INTERVAL_MS = 10 * 60 * 1e3;
 var MEETING_SCHEDULER_FIRST_TICK_MS = 30 * 1e3;
@@ -7295,14 +7383,14 @@ function startMeetingScheduler(tick, intervalMs = MEETING_SCHEDULER_INTERVAL_MS)
   };
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/server.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/server.ts
 var import_node_crypto5 = require("node:crypto");
 var import_node_fs3 = require("node:fs");
 var import_node_path3 = require("node:path");
 var import_node_zlib = require("node:zlib");
 var import_lanServer = require("host:apps/desktop-shell/src/main/services/lanServer.ts");
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/text.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/text.ts
 var import_brand = require("host:apps/desktop-shell/src/main/services/brand.ts");
 var MM_MOBILE_TEXT = {
   appTitle: (0, import_brand.brandText)("\u6CF0\u9014\u4F1A\u8BAE\u667A\u80FD\u7BA1\u7406"),
@@ -7906,7 +7994,7 @@ function mmText(path, vars) {
   return vars ? v.replace(/\{(\w+)\}/g, (_m, k) => vars[k] == null ? "" : String(vars[k])) : v;
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/styles.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/styles.ts
 var MM_MOBILE_CSS = String.raw`
 :root{--pri:#5b5bf0;--pri2:#7c4dff;--priSoft:#eef0ff;--priLine:#d9dcff;--ink:#1f2329;--ink2:#4e5561;--ink3:#8f959e;
 --bg:#f5f6fa;--card:#fff;--line:#eceef3;--bad:#e5484d;--badSoft:#fdeeee;--warn:#d97706;--warnSoft:#fdf3e2;
@@ -8091,7 +8179,7 @@ input[type=range]{width:100%;accent-color:var(--pri)}
 audio{width:100%;margin:8px 0}
 `;
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/clientCommon.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/clientCommon.ts
 var MM_CLIENT_COMMON_JS = String.raw`
 var TOKEN = '';
 try { TOKEN = new URLSearchParams(location.search).get('t') || ''; } catch (e) { TOKEN = ''; }
@@ -8420,7 +8508,7 @@ function splitBlocks(src) {
 function joinBlocks(blocks) { return blocks.map(function (b) { return String(b).trim(); }).filter(Boolean).join('\n\n') + '\n'; }
 `;
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/appScript.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/appScript.ts
 var MM_APP_JS = String.raw`
 var APP = document.getElementById('app');
 var BOOT = null;
@@ -10023,7 +10111,7 @@ async function start() {
 window.__mmApp = { route: route, linkHash: linkHash, parseHash: parseHash, md: md, splitBlocks: splitBlocks, joinBlocks: joinBlocks, ready: start() };
 `;
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/voiceScript.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/voiceScript.ts
 var MM_VOICE_JS = String.raw`
 var ROOT = document.getElementById('app');
 var V = { step: 'loading', me: null, deptName: '', agreed: false, file: null, url: '', dur: 0, recSecs: 0, err: '', result: null, existing: null, rec: null, micFailed: false, progress: 0, checking: false };
@@ -10284,7 +10372,7 @@ async function startVoice() {
 window.__mmVoice = { state: V, ready: startVoice() };
 `;
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/pages.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/pages.ts
 var LS = String.fromCharCode(8232);
 var PS = String.fromCharCode(8233);
 function scriptSafeJson(v) {
@@ -10312,7 +10400,7 @@ var MEETING_MOBILE_EXPIRED_HTML = `${head(mmText("expired.title"))}${expiredBody
 var MEETING_MOBILE_EXPIRED_CLEAR_HTML = `${head(mmText("expired.title"))}${expiredBody}<script>try{localStorage.removeItem(${JSON.stringify(MM_TOKEN_STORAGE_KEY)})}catch(e){}</script></body></html>`;
 var MEETING_GROUP_ENTRY_HTML = `${head(mmText("group.title"))}<body><div id="app"><div class="expired"><p id="g-open">${escHtml(mmText("group.opening"))}</p><div id="g-need" style="display:none"><div class="ic">i</div><h1>${escHtml(mmText("group.need"))}</h1><p class="muted">${escHtml(mmText("group.how"))}</p></div></div></div><script>(function(){var t='';try{t=localStorage.getItem(${JSON.stringify(MM_TOKEN_STORAGE_KEY)})||''}catch(e){}var p='m';try{if(new URLSearchParams(location.search).get('p')==='v')p='v'}catch(e){}if(t){location.replace(p+'?t='+encodeURIComponent(t)+location.hash);return}document.getElementById('g-open').style.display='none';document.getElementById('g-need').style.display='block'})();</script></body></html>`;
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/server.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/mobile/server.ts
 var MM_MOBILE_DEFAULT_PORT = 8280;
 var MM_MOBILE_MAX_UPLOAD_BYTES = 2 * 1024 * 1024 * 1024;
 var JSON_BODY_LIMIT = 2 * 1024 * 1024;
@@ -10915,7 +11003,7 @@ ${label}`;
   };
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/service.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/service.ts
 var import_sealedSecret = require("host:apps/desktop-shell/src/main/services/sealedSecret.ts");
 function defaultExternals() {
   return {
@@ -10946,6 +11034,7 @@ function defaultExternals() {
       const r = await downloadMeetingModelFromCdn(id, { signal, force: !!opts?.force, onProgress: (p) => onProgress({ percent: p.percent, line: p.line }) });
       return r.ok ? { ok: true } : { ok: false, error: r.error };
     },
+    verifyModel: (id) => verifyMeetingModelIntegrity(id),
     segmentAudio: (workDir, start, end) => {
       const f = (0, import_node_path4.join)(workDir, AUDIO_FILE);
       return (0, import_node_fs4.existsSync)(f) ? sliceWavBase64(f, { start, end }) : null;
@@ -13151,7 +13240,7 @@ ${firstDetail}`);
           const repaired = await this.repairLocalAsr(repairMode, s.settings.ai.localAsrModel, onStage, ctrl.signal);
           if (!repaired.ok) {
             if (ctrl.signal.aborted) throw firstErr;
-            if (repaired.error) onStage("transcribe", 6, (0, import_i18n16.t)("\u81EA\u52A8\u4FEE\u590D\u5931\u8D25\uFF1A{p0}", { p0: repaired.error }));
+            if (repaired.error) onStage("transcribe", 6, repaired.skipped ? repaired.error : (0, import_i18n16.t)("\u81EA\u52A8\u4FEE\u590D\u5931\u8D25\uFF1A{p0}", { p0: repaired.error }));
             throw firstErr;
           }
           r = await runOnce();
@@ -13186,7 +13275,7 @@ ${firstDetail}`);
     })();
     this.track(job);
   }
-  /** 本地转写因运行组件缺失或模型文件损坏失败时自动修复一次（不处理缺 VC++ / 内存不足 / 杀软拦截）。 */
+  /** 本地转写因运行组件缺失或模型文件损坏失败时自动修复一次（原生崩溃先验 SHA-256，完整则不盲目重下）。 */
   async repairLocalAsr(mode, pref, onStage, signal) {
     if (pref === "whisper") return { ok: false, error: "" };
     let rt = null;
@@ -13205,8 +13294,23 @@ ${firstDetail}`);
     } else {
       ids = rt?.senseVoice && !rt?.fireRed ? [MEETING_ASR_IDS.sensevoice] : recommendAsr(hw).installIds;
     }
-    if (mode === "redownload" && rt?.speaker && !ids.includes(SPEAKER_INSTALL_ID)) ids = [...ids, SPEAKER_INSTALL_ID];
-    const force = mode === "redownload";
+    if (mode !== "runtime" && rt?.speaker && !ids.includes(SPEAKER_INSTALL_ID)) ids = [...ids, SPEAKER_INSTALL_ID];
+    if (mode === "verify_redownload") {
+      if (!this.ext.verifyModel) {
+        return { ok: false, skipped: true, error: (0, import_i18n16.t)("\u8BED\u97F3\u6A21\u578B\u52A0\u8F7D\u5F02\u5E38\u9000\u51FA\uFF0C\u672A\u68C0\u6D4B\u5230\u6A21\u578B\u635F\u574F\uFF08\u8DF3\u8FC7\u91CD\u65B0\u4E0B\u8F7D\uFF09") };
+      }
+      onStage("transcribe", 6, (0, import_i18n16.t)("\u68C0\u6D4B\u5230\u6A21\u578B\u52A0\u8F7D\u5F02\u5E38\u9000\u51FA\uFF0C\u6B63\u5728\u6838\u5BF9\u672C\u673A\u6A21\u578B\u6587\u4EF6\u5B8C\u6574\u6027\u2026"));
+      const broken = [];
+      for (const id of ids) {
+        if (signal.aborted) return { ok: false, error: (0, import_i18n16.t)("\u5904\u7406\u5DF2\u53D6\u6D88") };
+        if (!await this.ext.verifyModel(id)) broken.push(id);
+      }
+      if (!broken.length) {
+        return { ok: false, skipped: true, error: (0, import_i18n16.t)("\u672C\u673A\u8BED\u97F3\u6A21\u578B\u6587\u4EF6 SHA-256 \u6821\u9A8C\u5747\u6B63\u5E38\uFF0C\u975E\u6A21\u578B\u635F\u574F\uFF08\u8DF3\u8FC7\u91CD\u65B0\u4E0B\u8F7D\uFF09") };
+      }
+      ids = broken;
+    }
+    const force = mode !== "runtime";
     this.modelDownloadRunning = true;
     try {
       onStage("transcribe", 6, force ? (0, import_i18n16.t)("\u68C0\u6D4B\u5230\u672C\u5730\u8BED\u97F3\u6A21\u578B\u7F3A\u5931\u6216\u635F\u574F\uFF0C\u6B63\u5728\u81EA\u52A8\u91CD\u65B0\u4E0B\u8F7D\u4FEE\u590D\u2026") : (0, import_i18n16.t)("\u68C0\u6D4B\u5230\u672C\u5730\u8BED\u97F3\u8FD0\u884C\u7EC4\u4EF6\u7F3A\u5931\uFF0C\u6B63\u5728\u81EA\u52A8\u8865\u88C5\u4FEE\u590D\u2026"));
@@ -13536,7 +13640,8 @@ var NATIVE_CRASH_RE = /0xC0000005|0xC0000409|0xC00000FD|语音模型加载异常
 function classifyLocalAsrRepair(errText) {
   if (!errText || NON_REPAIRABLE_ASR_RE.test(errText)) return null;
   if (MISSING_RUNTIME_RE.test(errText)) return "runtime";
-  if (BROKEN_MODEL_RE.test(errText) || NATIVE_CRASH_RE.test(errText)) return "redownload";
+  if (BROKEN_MODEL_RE.test(errText)) return "redownload";
+  if (NATIVE_CRASH_RE.test(errText)) return "verify_redownload";
   return null;
 }
 function stageText(stage) {
@@ -13595,7 +13700,7 @@ function applySettingsPatch(st, patch) {
   }
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/llm.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/services/meetingMgmt/llm.ts
 var import_councilChatRouter = require("host:apps/desktop-shell/src/main/services/councilChatRouter.ts");
 var import_llmReply = require("host:apps/desktop-shell/src/main/services/bidWriter/llmReply.ts");
 var MM_LLM_DEFAULT_TIMEOUT_MS = 12e4;
@@ -13650,7 +13755,7 @@ function createMeetingLlm(deps, opts = {}) {
   };
 }
 
-// ../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/ipc/meetingMgmt.ipc.ts
+// ../../../totalclaw-solutions/solutions/workbench-meeting-mgmt/src/main/ipc/meetingMgmt.ipc.ts
 init_runtime();
 var VOICE_EXTENSIONS = ["wav", "mp3", "m4a", "aac", "amr", "flac", "ogg", "opus", "webm", "caf", "aiff", "wma"];
 function registerMeetingMgmtHandlers(deps) {
@@ -13677,12 +13782,11 @@ function registerMeetingMgmtHandlers(deps) {
     ext: {
       installModel: async (id, onProgress, signal, opts) => {
         const installer = deps.pyPluginInstaller;
-        if (opts?.force && installer) {
-          onProgress({ percent: 0, line: (0, import_i18n17.t)("\u6B63\u5728\u6E05\u7406\u65E7\u7684\u6A21\u578B\u6587\u4EF6\u2026") });
-          const { unloadLocalAsrModel } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/localAsr.ts"), 1));
-          const rm = await installer.remove(id, unloadLocalAsrModel);
-          if (!rm.ok) {
-            logger?.warn?.("meeting-mgmt", "force reinstall remove failed, continuing download", { id, error: rm.error });
+        if (opts?.force) {
+          try {
+            const { unloadLocalAsrModel } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/localAsr.ts"), 1));
+            await unloadLocalAsrModel(id);
+          } catch {
           }
           if (signal.aborted) return { ok: false, error: (0, import_i18n17.t)("\u4E0B\u8F7D\u5DF2\u53D6\u6D88") };
         }
@@ -13694,6 +13798,15 @@ function registerMeetingMgmtHandlers(deps) {
         if (signal.aborted) return { ok: false, error: !cdn.ok ? cdn.error : (0, import_i18n17.t)("\u4E0B\u8F7D\u5DF2\u53D6\u6D88") };
         if (!cdn.ok) {
           logger?.warn?.("meeting-mgmt", "cdn model download failed, falling back to pyPluginInstaller", { id, error: cdn.error });
+          if (opts?.force && installer) {
+            onProgress({ percent: 0, line: (0, import_i18n17.t)("\u6B63\u5728\u6E05\u7406\u65E7\u7684\u6A21\u578B\u6587\u4EF6\u2026") });
+            const { unloadLocalAsrModel } = await Promise.resolve().then(() => __toESM(require("host:apps/desktop-shell/src/main/services/localAsr.ts"), 1));
+            const rm = await installer.remove(id, unloadLocalAsrModel);
+            if (!rm.ok) {
+              logger?.warn?.("meeting-mgmt", "force reinstall remove failed, continuing fallback", { id, error: rm.error });
+            }
+            if (signal.aborted) return { ok: false, error: (0, import_i18n17.t)("\u4E0B\u8F7D\u5DF2\u53D6\u6D88") };
+          }
         }
         if (installer) {
           onProgress({
@@ -13775,7 +13888,7 @@ function registerMeetingMgmtHandlers(deps) {
   };
 }
 
-// apps/desktop-shell/node_modules/.cache/solutions-build/workbench-meeting-mgmt/entry.main.ts
+// node_modules/.cache/solutions-build/workbench-meeting-mgmt/entry.main.ts
 var hostApi = 2;
 var registerFunction = "registerMeetingMgmtHandlers";
 var cleanup;

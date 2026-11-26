@@ -50,13 +50,12 @@ export function registerMeetingMgmtHandlers(deps: WorkbenchIpcDeps): () => void 
     ext: {
       installModel: async (id, onProgress, signal, opts) => {
         const installer = deps.pyPluginInstaller;
-        if (opts?.force && installer) {
-          onProgress({ percent: 0, line: i18nT('正在清理旧的模型文件…') });
-          const { unloadLocalAsrModel } = await import('../services/localAsr');
-          const rm = await installer.remove(id, unloadLocalAsrModel);
-          if (!rm.ok) {
-            logger?.warn?.('meeting-mgmt', 'force reinstall remove failed, continuing download', { id, error: rm.error });
-          }
+        if (opts?.force) {
+          // 强制重下时先停掉可能占着权重句柄的宿主 worker，但不先删旧文件：CDN 下载到 .part 并校验 SHA-256 通过后再原子覆盖，避免取消/断网把好模型删空
+          try {
+            const { unloadLocalAsrModel } = await import('../services/localAsr');
+            await unloadLocalAsrModel(id);
+          } catch { /* ignore */ }
           if (signal.aborted) return { ok: false, error: i18nT('下载已取消') };
         }
         const cdn = await downloadMeetingModelFromCdn(id, {
@@ -67,6 +66,15 @@ export function registerMeetingMgmtHandlers(deps: WorkbenchIpcDeps): () => void 
         if (signal.aborted) return { ok: false, error: !cdn.ok ? cdn.error : i18nT('下载已取消') };
         if (!cdn.ok) {
           logger?.warn?.('meeting-mgmt', 'cdn model download failed, falling back to pyPluginInstaller', { id, error: cdn.error });
+          if (opts?.force && installer) {
+            onProgress({ percent: 0, line: i18nT('正在清理旧的模型文件…') });
+            const { unloadLocalAsrModel } = await import('../services/localAsr');
+            const rm = await installer.remove(id, unloadLocalAsrModel);
+            if (!rm.ok) {
+              logger?.warn?.('meeting-mgmt', 'force reinstall remove failed, continuing fallback', { id, error: rm.error });
+            }
+            if (signal.aborted) return { ok: false, error: i18nT('下载已取消') };
+          }
         }
         if (installer) {
           onProgress({

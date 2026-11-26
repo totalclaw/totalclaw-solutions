@@ -86,6 +86,35 @@ if np is None:
 if plugins and plugins not in sys.path:
     sys.path.append(plugins)
 
+# Windows：python-build-standalone 只带 vcruntime140.dll，不含 msvcp140*.dll；
+# 若系统 System32\msvcp140.dll < 14.40，MSVC 14.44 编译的 onnxruntime / ctranslate2 会在首个
+# std::mutex::lock() 触发 0xC0000005（无 stderr）。优先预载同运行时 _internal / native\bin 随包
+# 的 msvcp140*.dll，并预载 sherpa_onnx 自带 onnxruntime.dll 防 System32\onnxruntime.dll 抢占。
+if os.name == "nt":
+    try:
+        import ctypes
+        _py_dir = os.path.dirname(os.path.abspath(sys.executable))
+        _dist_dir = os.path.dirname(_py_dir)
+        for _d in (_py_dir, os.path.join(_dist_dir, "_internal"), os.path.join(_dist_dir, "native", "bin")):
+            if os.path.isfile(os.path.join(_d, "msvcp140.dll")):
+                for _dll in ("msvcp140.dll", "msvcp140_1.dll", "msvcp140_2.dll", "msvcp140_atomic_wait.dll", "concrt140.dll"):
+                    _p = os.path.join(_d, _dll)
+                    if os.path.isfile(_p):
+                        try:
+                            ctypes.WinDLL(_p)
+                        except OSError:
+                            pass
+                break
+        if plugins and model_name.startswith("sherpa:"):
+            _sh_ort = os.path.join(plugins, "sherpa_onnx", "lib", "onnxruntime.dll")
+            if os.path.isfile(_sh_ort):
+                try:
+                    ctypes.WinDLL(_sh_ort)
+                except OSError:
+                    pass
+    except Exception:
+        pass
+
 asr = None
 asr_err = None
 sherpa = None

@@ -195,6 +195,35 @@ describe.skipIf(!FFMPEG || !FFPROBE || !hasEncoder('aac'))('runMeetingPipeline',
     expect(new Set(r.segments.map(s => s.speakerLabel)).size).toBe(2);
   });
 
+  it('agent 在线转写：本机声纹进程启动崩溃时降级为 S1，不阻断在线转写兜底', async () => {
+    useRuntime({}, fakeWorkerFactory({ failStartFor: [1, 2, 3, 4, 5, 6] }));
+    configureMeetingPipeline({ agentTranscribe: async () => ({ ok: true, text: '在线转写成功。' }) });
+    const notes: string[] = [];
+    const r = await runMeetingPipeline({
+      meetingId: 'm3-fallback', workDir: join(dir, 'w3f'), files: [file(m4a, 'a.m4a')], attendees, voiceprints: [], threshold: 0.5, asr: 'agent', llm: async () => null,
+      onStage: (_s, _p, t) => { if (t) notes.push(t); },
+    });
+    expect(r.segments.length).toBeGreaterThan(0);
+    expect(r.segments.every(s => s.speakerLabel === 'S1')).toBe(true);
+    expect(notes.some(t => /跳过发言人区分/.test(t))).toBe(true);
+  });
+
+  it('语种识别：不加载声纹模型，且已下载 SenseVoice 时优先用 SenseVoice 判语种', async () => {
+    const specs: any[] = [];
+    const base = fakeWorkerFactory({ text: fakeText, emb: (s, e, k) => voice(who(s, e) === 'A' ? 1 : 2, k) });
+    useRuntime({ senseVoiceDir: '/fake/sv' }, (spec) => {
+      specs.push(spec);
+      return base(spec);
+    });
+    await runMeetingPipeline({
+      meetingId: 'm-detect', workDir: join(dir, 'w-detect'), files: [file(m4a, 'a.m4a')], attendees, voiceprints: [], threshold: 0.5, asr: 'local', llm: async () => null, onStage: () => {},
+    });
+    // 第一个启动的 worker 是 detectLanguage：必须走 sense_voice 且 campp/campp2 为空
+    expect(specs[0].model).toContain('"sense_voice"');
+    expect(specs[0].campp).toBe('');
+    expect(specs[0].campp2).toBe('');
+  });
+
   it('没有声纹模型：不区分发言人，全部归 S1', async () => {
     useRuntime({ campp: null });
     const texts: string[] = [];

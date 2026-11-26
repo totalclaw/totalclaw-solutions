@@ -271,10 +271,17 @@ export async function concatWav16k(inputs: string[], output: string): Promise<nu
   infos.forEach(assertMono16k);
   const total = infos.reduce((s, i) => s + i.dataBytes - (i.dataBytes % 2), 0);
   const offsets: number[] = [];
-  await new Promise<void>((resolve, reject) => {
-    const out = createWriteStream(output);
-    out.on('error', reject);
-    out.write(wavHeader(total));
+  const out = createWriteStream(output);
+  const writeChunk = (buf: Buffer): Promise<void> => (out.write(buf)
+    ? Promise.resolve()
+    : new Promise<void>((res, rej) => {
+      const onDrain = () => { out.off('error', onErr); res(); };
+      const onErr = (err: Error) => { out.off('drain', onDrain); rej(err); };
+      out.once('drain', onDrain);
+      out.once('error', onErr);
+    }));
+  try {
+    await writeChunk(wavHeader(total));
     let acc = 0;
     const step = 4 * 1024 * 1024;
     for (let k = 0; k < inputs.length; k++) {
@@ -287,15 +294,22 @@ export async function concatWav16k(inputs: string[], output: string): Promise<nu
           const len = Math.min(step, bytes - off);
           const buf = Buffer.alloc(len);
           readSync(fd, buf, 0, len, info.dataOffset + off);
-          out.write(buf);
+          await writeChunk(buf);
         }
       } finally {
         closeSync(fd);
       }
       acc += bytes;
     }
-    out.end(() => resolve());
-  });
+    await new Promise<void>((res, rej) => {
+      const onErr = (err: Error) => rej(err);
+      out.once('error', onErr);
+      out.end(() => { out.off('error', onErr); res(); });
+    });
+  } catch (err) {
+    out.destroy();
+    throw err;
+  }
   return offsets;
 }
 

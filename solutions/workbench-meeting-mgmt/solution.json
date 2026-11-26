@@ -10,7 +10,7 @@
     "智能会议管理",
     "会议纪要"
   ],
-  "version": "2.0.7",
+  "version": "2.0.8",
   "kind": "workbench",
   "category": "项目管理",
   "icon": "icon-solutions",
@@ -23,7 +23,7 @@
     "hidden": false
   },
   "compat": {
-    "minAppVersion": "2.0.19",
+    "minAppVersion": "2.0.21",
     "hostApi": 2
   },
   "runtime": {

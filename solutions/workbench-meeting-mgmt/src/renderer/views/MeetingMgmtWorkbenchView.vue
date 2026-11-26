@@ -99,11 +99,13 @@
         <button v-if="canSwitch" type="button" class="ss-btn sm" @click="openSwitcher">{{ $t('选择身份') }}</button>
       </p>
       <div :key="identityKey" class="mm-body">
-        <HomeTab v-if="active === 'home'" ref="tabRef" @role="setRole('home', $event)" />
-        <MeetingsTab v-else-if="active === 'meetings'" ref="tabRef" @role="setRole('meetings', $event)" />
-        <TasksTab v-else-if="active === 'tasks'" ref="tabRef" @role="setRole('tasks', $event)" />
-        <ProjectsTab v-else-if="active === 'projects'" ref="tabRef" @role="setRole('projects', $event)" />
-        <SettingsTab v-else-if="active === 'settings'" ref="tabRef" />
+        <template v-if="me?.person">
+          <HomeTab v-if="active === 'home'" ref="tabRef" @role="setRole('home', $event)" />
+          <MeetingsTab v-else-if="active === 'meetings'" ref="tabRef" @role="setRole('meetings', $event)" />
+          <TasksTab v-else-if="active === 'tasks'" ref="tabRef" @role="setRole('tasks', $event)" />
+          <ProjectsTab v-else-if="active === 'projects'" ref="tabRef" @role="setRole('projects', $event)" />
+        </template>
+        <SettingsTab v-if="active === 'settings'" ref="tabRef" />
       </div>
     </template>
     <SetupWizard v-if="setupOpen" @close="setupOpen = false" @done="onSetupDone" />

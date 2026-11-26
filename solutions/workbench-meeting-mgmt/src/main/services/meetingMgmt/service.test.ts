@@ -1220,6 +1220,7 @@ describe('删除会议（meeting.delete）', () => {
 
   it('转写因缺运行组件或模型损坏失败时自动修复并重试一次；缺 VC++ DLL 不盲目重下', async () => {
     const installed: Array<{ id: string; force: boolean }> = [];
+    const verifyModel = vi.fn(async (id: string) => id !== 'speaker-campplus');
     const pipe = vi.fn(fakePipeline());
     // 1) 缺 sherpa_onnx：自动补装运行组件（force: false）后重跑成功
     pipe.mockImplementationOnce(async () => {
@@ -1233,6 +1234,7 @@ describe('删除会议（meeting.delete）', () => {
         onProgress({ percent: 50, line: '正在修复' });
         return { ok: true };
       }),
+      verifyModel,
     });
     const f = join(tmp, 'repair.m4a');
     writeFileSync(f, 'audio');
@@ -1250,14 +1252,29 @@ describe('删除会议（meeting.delete）', () => {
     await vi.waitFor(() => expect(installed).toEqual([{ id: 'asr-meeting-sensevoice', force: true }, { id: 'speaker-campplus', force: true }]));
     await vi.waitFor(() => expect(t.store.read().meetings.find((x) => x.id === 'mt_a2_weekly')?.status).toBe('pending_confirm'));
 
-    // 3) 模型加载时原生访问冲突（同样大小但内容坏了的 onnx）：转写 + 声纹模型都从 CDN 强制重下后重跑成功
+    // 3a) 原生访问冲突（0xC0000005）：先验本机 SHA-256，仅重下确实损坏的那个模型后重跑成功
     installed.length = 0;
+    verifyModel.mockClear();
     pipe.mockImplementationOnce(async () => {
       throw Object.assign(new Error('本地语音识别进程未能启动：语音模型加载异常退出（可能是模型损坏、内存不足或安全软件拦截）'), { detail: 'exit=3221225477(0xC0000005) | python=C:\\py\\python.exe' });
     });
     await t.call('chenlifeng', 'meeting.reprocess', { id: 'mt_a2_weekly' });
-    await vi.waitFor(() => expect(installed).toEqual([{ id: 'asr-meeting-sensevoice', force: true }, { id: 'speaker-campplus', force: true }]));
+    await vi.waitFor(() => expect(installed).toEqual([{ id: 'speaker-campplus', force: true }]));
     await vi.waitFor(() => expect(t.store.read().meetings.find((x) => x.id === 'mt_a2_weekly')?.status).toBe('pending_confirm'));
+    expect(verifyModel).toHaveBeenCalledWith('asr-meeting-sensevoice');
+    expect(verifyModel).toHaveBeenCalledWith('speaker-campplus');
+
+    // 3b) 原生访问冲突但本机全部模型 SHA-256 校验正常（如 DLL 冲突 / 内存 / 杀软）：跳过重下，不浪费流量
+    installed.length = 0;
+    verifyModel.mockResolvedValue(true);
+    pipe.mockImplementationOnce(async () => {
+      throw Object.assign(new Error('本地语音识别进程未能启动：语音模型加载异常退出（可能是模型损坏、内存不足或安全软件拦截）'), { detail: 'exit=3221225477(0xC0000005) | python=C:\\py\\python.exe' });
+    });
+    await t.call('chenlifeng', 'meeting.reprocess', { id: 'mt_a2_weekly' });
+    await vi.waitFor(() => expect(t.store.read().meetings.find((x) => x.id === 'mt_a2_weekly')?.status).toBe('failed'));
+    expect(installed).toEqual([]);
+    const crashLog = t.store.read().meetings.find((x) => x.id === 'mt_a2_weekly')?.process?.log.map((x) => x.text).join('\n') || '';
+    expect(crashLog).toContain('SHA-256 校验均正常');
 
     // 4) 缺 VC++ DLL：不可通过重下模型修复，直接失败不触发 installModel
     installed.length = 0;

@@ -6,7 +6,7 @@ import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'no
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { detectHardware, downloadMeetingModelFromCdn, estimateMinPerHour, recommendAsr, type HardwareInfo } from './setupCheck';
+import { detectHardware, downloadMeetingModelFromCdn, estimateMinPerHour, recommendAsr, verifyMeetingModelIntegrity, type HardwareInfo } from './setupCheck';
 
 const hw = (o: Partial<HardwareInfo>): HardwareInfo => ({ cpu: 'x', cores: 18, memGb: 24, arch: 'arm64', platform: 'darwin', appleSilicon: true, freeDiskGb: 200, ...o });
 
@@ -117,6 +117,54 @@ describe('downloadMeetingModelFromCdn', () => {
       if (!r.ok) expect(r.error).toContain('校验不通过');
       expect(existsSync(join(dir, 'tokens.txt'))).toBe(false);
     } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('verifyMeetingModelIntegrity 校验文件大小与 SHA-256，区分完好模型与同字节损坏文件', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'mm-verify-'));
+    try {
+      const good = Buffer.from('valid-onnx-bytes-0123456789');
+      const sha = createHash('sha256').update(good).digest('hex');
+      const targetOverride = { destDir: dir, label: 'CAM++', files: [{ file: 'campp.onnx', sha256: sha, bytes: good.length }] };
+      expect(await verifyMeetingModelIntegrity('speaker-campplus', { targetOverride })).toBe(false);
+      writeFileSync(join(dir, 'campp.onnx'), good);
+      expect(await verifyMeetingModelIntegrity('speaker-campplus', { targetOverride })).toBe(true);
+      // 同字节数但内容被改坏
+      writeFileSync(join(dir, 'campp.onnx'), Buffer.from('X'.repeat(good.length)));
+      expect(await verifyMeetingModelIntegrity('speaker-campplus', { targetOverride })).toBe(false);
+    } finally {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  it('分块写入触发多次背压时不泄漏 WriteStream error 监听器（不报 MaxListenersExceededWarning）', async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'mm-cdn-bp-'));
+    const warnings: string[] = [];
+    const onWarning = (w: Error) => warnings.push(`${w.name}: ${w.message}`);
+    process.on('warning', onWarning);
+    try {
+      // 30 块 × 64KB = ~1.9MB，远超默认 16KB highWaterMark，必然触发十余次 drain
+      const chunk = Buffer.alloc(64 * 1024, 0x41);
+      const chunks = Array.from({ length: 30 }, () => chunk);
+      const total = Buffer.concat(chunks);
+      const sha = createHash('sha256').update(total).digest('hex');
+      const fetchImpl: typeof fetch = async () => new Response(new ReadableStream<Uint8Array>({
+        start(ctrl) {
+          for (const c of chunks) ctrl.enqueue(new Uint8Array(c));
+          ctrl.close();
+        },
+      }), { status: 200 });
+      const r = await downloadMeetingModelFromCdn('asr-meeting-sensevoice', {
+        baseUrl: 'https://cdn2.taituai.com/meeting-models',
+        fetchImpl,
+        targetOverride: { destDir: dir, label: 'SenseVoice', files: [{ file: 'big.onnx', sha256: sha, bytes: total.length }] },
+      });
+      expect(r.ok).toBe(true);
+      await new Promise((res) => setTimeout(res, 20));
+      expect(warnings.filter((w) => /MaxListenersExceededWarning/.test(w))).toEqual([]);
+    } finally {
+      process.off('warning', onWarning);
       rmSync(dir, { recursive: true, force: true });
     }
   });

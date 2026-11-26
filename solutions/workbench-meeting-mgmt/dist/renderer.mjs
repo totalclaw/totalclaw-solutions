@@ -20342,54 +20342,63 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
             key: a.value,
             class: "mm-body"
           }, [
-            s.value === "home" ? (e.openBlock(), e.createBlock(
-              Mo,
-              {
-                key: 0,
-                ref_key: "tabRef",
-                ref: k,
-                onRole: O[3] || (O[3] = (R) => D("home", R))
-              },
-              null,
-              512
-              /* NEED_PATCH */
-            )) : s.value === "meetings" ? (e.openBlock(), e.createBlock(
-              Nd,
-              {
-                key: 1,
-                ref_key: "tabRef",
-                ref: k,
-                onRole: O[4] || (O[4] = (R) => D("meetings", R))
-              },
-              null,
-              512
-              /* NEED_PATCH */
-            )) : s.value === "tasks" ? (e.openBlock(), e.createBlock(
-              Hu,
-              {
-                key: 2,
-                ref_key: "tabRef",
-                ref: k,
-                onRole: O[5] || (O[5] = (R) => D("tasks", R))
-              },
-              null,
-              512
-              /* NEED_PATCH */
-            )) : s.value === "projects" ? (e.openBlock(), e.createBlock(
-              zk,
-              {
-                key: 3,
-                ref_key: "tabRef",
-                ref: k,
-                onRole: O[6] || (O[6] = (R) => D("projects", R))
-              },
-              null,
-              512
-              /* NEED_PATCH */
-            )) : s.value === "settings" ? (e.openBlock(), e.createBlock(
+            y.value?.person ? (e.openBlock(), e.createElementBlock(
+              e.Fragment,
+              { key: 0 },
+              [
+                s.value === "home" ? (e.openBlock(), e.createBlock(
+                  Mo,
+                  {
+                    key: 0,
+                    ref_key: "tabRef",
+                    ref: k,
+                    onRole: O[3] || (O[3] = (R) => D("home", R))
+                  },
+                  null,
+                  512
+                  /* NEED_PATCH */
+                )) : s.value === "meetings" ? (e.openBlock(), e.createBlock(
+                  Nd,
+                  {
+                    key: 1,
+                    ref_key: "tabRef",
+                    ref: k,
+                    onRole: O[4] || (O[4] = (R) => D("meetings", R))
+                  },
+                  null,
+                  512
+                  /* NEED_PATCH */
+                )) : s.value === "tasks" ? (e.openBlock(), e.createBlock(
+                  Hu,
+                  {
+                    key: 2,
+                    ref_key: "tabRef",
+                    ref: k,
+                    onRole: O[5] || (O[5] = (R) => D("tasks", R))
+                  },
+                  null,
+                  512
+                  /* NEED_PATCH */
+                )) : s.value === "projects" ? (e.openBlock(), e.createBlock(
+                  zk,
+                  {
+                    key: 3,
+                    ref_key: "tabRef",
+                    ref: k,
+                    onRole: O[6] || (O[6] = (R) => D("projects", R))
+                  },
+                  null,
+                  512
+                  /* NEED_PATCH */
+                )) : e.createCommentVNode("v-if", !0)
+              ],
+              64
+              /* STABLE_FRAGMENT */
+            )) : e.createCommentVNode("v-if", !0),
+            s.value === "settings" ? (e.openBlock(), e.createBlock(
               wV,
               {
-                key: 4,
+                key: 1,
                 ref_key: "tabRef",
                 ref: k
               },
@@ -20422,7 +20431,7 @@ const Ze = Ot.default, jp = { class: "mm-pp" }, Lp = {
       })) : e.createCommentVNode("v-if", !0)
     ]));
   }
-}), j$ = /* @__PURE__ */ ae(M$, [["__scopeId", "data-v-dba3778c"]]), yt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:pinyin-pro"];
+}), j$ = /* @__PURE__ */ ae(M$, [["__scopeId", "data-v-84c35969"]]), yt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:pinyin-pro"];
 if (!yt) throw new Error("宿主模块未就绪：npm:pinyin-pro");
 yt.default;
 const A$ = /* @__PURE__ */ Zt({
