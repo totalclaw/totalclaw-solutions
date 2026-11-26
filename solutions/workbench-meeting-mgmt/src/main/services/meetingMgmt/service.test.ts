@@ -1247,10 +1247,19 @@ describe('删除会议（meeting.delete）', () => {
       throw Object.assign(new Error('本地语音识别运行时不可用'), { detail: 'model file missing or empty: model.int8.onnx' });
     });
     await t.call('chenlifeng', 'meeting.reprocess', { id: 'mt_a2_weekly' });
-    await vi.waitFor(() => expect(installed).toEqual([{ id: 'asr-meeting-sensevoice', force: true }]));
+    await vi.waitFor(() => expect(installed).toEqual([{ id: 'asr-meeting-sensevoice', force: true }, { id: 'speaker-campplus', force: true }]));
     await vi.waitFor(() => expect(t.store.read().meetings.find((x) => x.id === 'mt_a2_weekly')?.status).toBe('pending_confirm'));
 
-    // 3) 缺 VC++ DLL：不可通过重下模型修复，直接失败不触发 installModel
+    // 3) 模型加载时原生访问冲突（同样大小但内容坏了的 onnx）：转写 + 声纹模型都从 CDN 强制重下后重跑成功
+    installed.length = 0;
+    pipe.mockImplementationOnce(async () => {
+      throw Object.assign(new Error('本地语音识别进程未能启动：语音模型加载异常退出（可能是模型损坏、内存不足或安全软件拦截）'), { detail: 'exit=3221225477(0xC0000005) | python=C:\\py\\python.exe' });
+    });
+    await t.call('chenlifeng', 'meeting.reprocess', { id: 'mt_a2_weekly' });
+    await vi.waitFor(() => expect(installed).toEqual([{ id: 'asr-meeting-sensevoice', force: true }, { id: 'speaker-campplus', force: true }]));
+    await vi.waitFor(() => expect(t.store.read().meetings.find((x) => x.id === 'mt_a2_weekly')?.status).toBe('pending_confirm'));
+
+    // 4) 缺 VC++ DLL：不可通过重下模型修复，直接失败不触发 installModel
     installed.length = 0;
     pipe.mockImplementationOnce(async () => {
       throw Object.assign(new Error('本地语音识别运行时不可用'), { detail: 'ImportError: DLL load failed while importing _sherpa_onnx' });

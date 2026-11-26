@@ -13205,6 +13205,7 @@ ${firstDetail}`);
     } else {
       ids = rt?.senseVoice && !rt?.fireRed ? [MEETING_ASR_IDS.sensevoice] : recommendAsr(hw).installIds;
     }
+    if (mode === "redownload" && rt?.speaker && !ids.includes(SPEAKER_INSTALL_ID)) ids = [...ids, SPEAKER_INSTALL_ID];
     const force = mode === "redownload";
     this.modelDownloadRunning = true;
     try {
@@ -13531,10 +13532,11 @@ ${firstDetail}`);
 var NON_REPAIRABLE_ASR_RE = /DLL load failed|vcruntime|msvcp|api-ms-win|0xc0000135|0xc0000139|0xc000007b|找不到指定的模块|无法定位程序输入点|numpy unavailable|out of memory|bad_alloc|MemoryError|Cannot allocate memory|paging file is too small|页面文件太小|SIGKILL|SIGILL|0xc000001d|EACCES|EPERM|ENOENT/i;
 var MISSING_RUNTIME_RE = /No module named '(sherpa_onnx|faster_whisper|ctranslate2)'/;
 var BROKEN_MODEL_RE = /model file missing or empty|FileNotFoundError|InvalidProtobuf|failed to open|unable to open|本地语音识别模型未下载/i;
+var NATIVE_CRASH_RE = /0xC0000005|0xC0000409|0xC00000FD|语音模型加载异常退出/i;
 function classifyLocalAsrRepair(errText) {
   if (!errText || NON_REPAIRABLE_ASR_RE.test(errText)) return null;
   if (MISSING_RUNTIME_RE.test(errText)) return "runtime";
-  if (BROKEN_MODEL_RE.test(errText)) return "redownload";
+  if (BROKEN_MODEL_RE.test(errText) || NATIVE_CRASH_RE.test(errText)) return "redownload";
   return null;
 }
 function stageText(stage) {

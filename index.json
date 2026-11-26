@@ -1493,7 +1493,7 @@
       "icon": "icon-solutions",
       "order": 230,
       "description": "以项目会议为源头：上传录音、录屏或文字记录，本机转写并按声纹识别发言人，发言人确认、主持人终审后生成正式纪要；AI 从决议拆出任务派给各部门负责人，跟进进度、处理异议与裁决，最后生成项目总结并归档。",
-      "version": "2.0.6",
+      "version": "2.0.7",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1541,10 +1541,10 @@
       "capabilities": [],
       "path": "solutions/workbench-meeting-mgmt",
       "fileCount": 8,
-      "size": 1655927,
-      "treeDigest": "0e7da50d6db16e2154403d1905b19e4d2d179c140ee00b195e8a814219cc149e",
+      "size": 1656711,
+      "treeDigest": "0c9c092f540cd468ff18f0dac5a41c24f8ff48cd0d3fa481bf8745eca6de6f54",
       "largeAssets": [],
-      "changelog": "- 会议转写 worker 以 `-X faulthandler` 启动：语音模型加载时原生扩展（sherpa-onnx / onnxruntime / kaldi-native-fbank）发生访问冲突（`0xC0000005`）等崩溃时，把崩在哪一行的 Python 调用栈写进处理日志 `detail`（stderr 摘要由 600 字放宽到 2000 字），不再只有一个退出码。",
+      "changelog": "- 本地转写在模型加载阶段原生崩溃（`0xC0000005` 访问冲突 / `0xC0000409` / `0xC00000FD`）时也触发一次自动修复：加载时只核对文件大小，同样大小但内容被磁盘或杀软改坏的 onnx 会让 onnxruntime 直接崩溃；现在会从 CDN 强制重下（逐文件 SHA-256 校验）后自动重跑。\n- 自动「强制重下」修复时，声纹模型 CAM++ 与转写模型一起重下（两者在同一个进程里加载，单看崩溃退出码分不出坏的是哪一个）。",
       "filesRef": "index/workbench-meeting-mgmt.json"
     },
     {
