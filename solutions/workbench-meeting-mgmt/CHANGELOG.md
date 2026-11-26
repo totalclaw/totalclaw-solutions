@@ -1,5 +1,9 @@
 # 泰途会议智能管理 更新日志
 
+## 2.0.9 (2026-11-26)
+
+- 恢复 `compat.minAppVersion` 为 `2.0.19`（2.0.8 无新增宿主接口依赖，此前构建脚本自动写成了 `2.0.21` 导致 2.0.19 / 2.0.20 客户端无法升级到 2.0.8）。
+
 ## 2.0.8 (2026-11-26)
 
 - 修复部分 Windows 10 电脑本地转写 / 声纹识别必报 `0xC0000005`（语音模型加载异常退出）：内置通用 Python 运行时目录缺少 `msvcp140*.dll`，导致 MSVC 14.44 编译的 `onnxruntime` / `ctranslate2` 回落到旧版 `System32\msvcp140.dll` 触发 `std::mutex` 访问冲突；worker 在 Windows 启动加载原生扩展前改为优先预载同运行时 `_internal` / `native\bin` 随包的 `msvcp140*.dll`，并预载 `sherpa_onnx` 自带的 `onnxruntime.dll` 防 `System32\onnxruntime.dll` 抢占。
