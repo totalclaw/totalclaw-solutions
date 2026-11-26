@@ -58,15 +58,29 @@ def emit(obj):
 
 # 先加载内置 numpy，再把 py-plugins 追加到 sys.path 末尾：py-plugins 只供 sherpa_onnx /
 # kaldi_native_fbank 这类内置包里没有的可选扩展，绝不能抢在标准库与内置 numpy 前面造成同名遮蔽或循环导入。
-try:
-    import numpy as np
-except Exception as e:
+def _load_numpy():
+    # 导入 numpy 之前先把 sys.path 收窄到解释器自身目录（prefix / base_prefix 之下）：
+    # 剔除 .pth / 环境变量 / 当前目录等外部注入的路径，避免里面的同名 numbers.py / numpy.py 遮蔽导致循环导入。
+    # 必须事前做：numpy 的 C 扩展失败后同一进程里不能再加载第二次，事后重试无效。
+    roots = tuple(set(os.path.normcase(os.path.abspath(r)) + os.sep for r in (sys.prefix, sys.base_prefix, sys.exec_prefix, sys.base_exec_prefix) if r))
+    inside = lambda p: bool(p) and (os.path.normcase(os.path.abspath(p)) + os.sep).startswith(roots)
+    sys.path[:] = [p for p in sys.path if inside(p)]
+    nb = sys.modules.get("numbers")
+    if nb is not None and not inside(getattr(nb, "__file__", "") or ""):
+        sys.modules.pop("numbers", None)
+    try:
+        import numpy as m
+        return m, None, None
+    except Exception as e:
+        return None, e, traceback.format_exc()[-1500:]
+
+np, _np_err, _np_tb = _load_numpy()
+if np is None:
     np_file = getattr(sys.modules.get("numpy"), "__file__", None)
-    tb = traceback.format_exc()[-1500:]
     detail = "exe=%s | py=%s | np_file=%s | sys.path=%s | tb=%s" % (
-        sys.executable, sys.version.split()[0], np_file, sys.path[:8], tb,
+        sys.executable, sys.version.split()[0], np_file, sys.path[:8], _np_tb,
     )
-    emit({"ready": False, "error": "numpy unavailable: %s" % e, "detail": detail})
+    emit({"ready": False, "error": "numpy unavailable: %s" % _np_err, "detail": detail})
     sys.exit(0)
 
 if plugins and plugins not in sys.path:

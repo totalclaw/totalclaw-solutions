@@ -2926,15 +2926,29 @@ def emit(obj):
 
 # \u5148\u52A0\u8F7D\u5185\u7F6E numpy\uFF0C\u518D\u628A py-plugins \u8FFD\u52A0\u5230 sys.path \u672B\u5C3E\uFF1Apy-plugins \u53EA\u4F9B sherpa_onnx /
 # kaldi_native_fbank \u8FD9\u7C7B\u5185\u7F6E\u5305\u91CC\u6CA1\u6709\u7684\u53EF\u9009\u6269\u5C55\uFF0C\u7EDD\u4E0D\u80FD\u62A2\u5728\u6807\u51C6\u5E93\u4E0E\u5185\u7F6E numpy \u524D\u9762\u9020\u6210\u540C\u540D\u906E\u853D\u6216\u5FAA\u73AF\u5BFC\u5165\u3002
-try:
-    import numpy as np
-except Exception as e:
+def _load_numpy():
+    # \u5BFC\u5165 numpy \u4E4B\u524D\u5148\u628A sys.path \u6536\u7A84\u5230\u89E3\u91CA\u5668\u81EA\u8EAB\u76EE\u5F55\uFF08prefix / base_prefix \u4E4B\u4E0B\uFF09\uFF1A
+    # \u5254\u9664 .pth / \u73AF\u5883\u53D8\u91CF / \u5F53\u524D\u76EE\u5F55\u7B49\u5916\u90E8\u6CE8\u5165\u7684\u8DEF\u5F84\uFF0C\u907F\u514D\u91CC\u9762\u7684\u540C\u540D numbers.py / numpy.py \u906E\u853D\u5BFC\u81F4\u5FAA\u73AF\u5BFC\u5165\u3002
+    # \u5FC5\u987B\u4E8B\u524D\u505A\uFF1Anumpy \u7684 C \u6269\u5C55\u5931\u8D25\u540E\u540C\u4E00\u8FDB\u7A0B\u91CC\u4E0D\u80FD\u518D\u52A0\u8F7D\u7B2C\u4E8C\u6B21\uFF0C\u4E8B\u540E\u91CD\u8BD5\u65E0\u6548\u3002
+    roots = tuple(set(os.path.normcase(os.path.abspath(r)) + os.sep for r in (sys.prefix, sys.base_prefix, sys.exec_prefix, sys.base_exec_prefix) if r))
+    inside = lambda p: bool(p) and (os.path.normcase(os.path.abspath(p)) + os.sep).startswith(roots)
+    sys.path[:] = [p for p in sys.path if inside(p)]
+    nb = sys.modules.get("numbers")
+    if nb is not None and not inside(getattr(nb, "__file__", "") or ""):
+        sys.modules.pop("numbers", None)
+    try:
+        import numpy as m
+        return m, None, None
+    except Exception as e:
+        return None, e, traceback.format_exc()[-1500:]
+
+np, _np_err, _np_tb = _load_numpy()
+if np is None:
     np_file = getattr(sys.modules.get("numpy"), "__file__", None)
-    tb = traceback.format_exc()[-1500:]
     detail = "exe=%s | py=%s | np_file=%s | sys.path=%s | tb=%s" % (
-        sys.executable, sys.version.split()[0], np_file, sys.path[:8], tb,
+        sys.executable, sys.version.split()[0], np_file, sys.path[:8], _np_tb,
     )
-    emit({"ready": False, "error": "numpy unavailable: %s" % e, "detail": detail})
+    emit({"ready": False, "error": "numpy unavailable: %s" % _np_err, "detail": detail})
     sys.exit(0)
 
 if plugins and plugins not in sys.path:
@@ -3482,6 +3496,9 @@ function formatNotReadyError(raw) {
   }
   if (/model file missing or empty|FileNotFoundError|InvalidProtobuf|failed to open|unable to open/i.test(why)) {
     return `${base}\uFF1A${(0, import_i18n5.t)("\u8BED\u97F3\u6A21\u578B\u6587\u4EF6\u7F3A\u5931\u6216\u5DF2\u635F\u574F\uFF0C\u8BF7\u5728\u300C\u914D\u7F6E\u5F15\u5BFC \u2192 \u7535\u8111\u914D\u7F6E\u4E0E\u8BED\u97F3\u6A21\u578B\u300D\u91CD\u65B0\u4E0B\u8F7D\u6A21\u578B\u540E\u91CD\u8BD5\u3002")}\uFF08${why.slice(0, 120)}\uFF09`;
+  }
+  if (/numpy unavailable/.test(why)) {
+    return `${base}\uFF1A${(0, import_i18n5.t)("\u5185\u7F6E Python \u8FD0\u884C\u65F6\u7684 numpy \u52A0\u8F7D\u5931\u8D25\uFF08\u5DF2\u6392\u9664\u5916\u90E8 Python \u73AF\u5883\u5E72\u6270\uFF0C\u591A\u4E3A\u8FD0\u884C\u65F6\u6587\u4EF6\u88AB\u6740\u6BD2\u8F6F\u4EF6\u6539\u52A8\u6216\u5B89\u88C5\u4E0D\u5B8C\u6574\uFF09\uFF0C\u8BF7\u91CD\u88C5\u5E94\u7528\u8FD0\u884C\u65F6\uFF1B\u70B9\u300C\u67E5\u770B\u5904\u7406\u65E5\u5FD7\u300D\u53EF\u770B\u5230\u5177\u4F53\u6587\u4EF6\u8DEF\u5F84\u3002")}\uFF08${why.slice(0, 160)}\uFF09`;
   }
   return `${base}\uFF08${why.slice(0, 200)}\uFF09`;
 }

@@ -1493,7 +1493,7 @@
       "icon": "icon-solutions",
       "order": 230,
       "description": "以项目会议为源头：上传录音、录屏或文字记录，本机转写并按声纹识别发言人，发言人确认、主持人终审后生成正式纪要；AI 从决议拆出任务派给各部门负责人，跟进进度、处理异议与裁决，最后生成项目总结并归档。",
-      "version": "2.0.3",
+      "version": "2.0.4",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -1541,10 +1541,10 @@
       "capabilities": [],
       "path": "solutions/workbench-meeting-mgmt",
       "fileCount": 8,
-      "size": 1652938,
-      "treeDigest": "8381f0555e2f3259d13691adaab6280ce23ae4e942b4b9c4dfd3f8ad289ae6ac",
+      "size": 1655133,
+      "treeDigest": "3d5171ccebad68c59023364ad20deb340362824a8bb9510d92917e8e65dfaa1a",
       "largeAssets": [],
-      "changelog": "- 修复部分 Windows 电脑本地语音转写报 `numpy unavailable: partially initialized module 'numpy' has no attribute 'short' (most likely due to a circular import)`：\n  - `workerPool` 改用 Python 隔离模式 `-I -X utf8 -B -u` 启动，并清理继承的 `PYTHONPATH` / `PYTHONHOME` / `PYTHONSTARTUP`，彻底隔绝 `%TEMP%`（脚本所在临时目录）、当前工作目录、宿主机全局 Python 环境变量与 user-site 对内置 `numpy` / 标准库的同名遮蔽。\n  - `worker.py` 改为先导入内置 `numpy`，再通过 `sys.path.append(pluginsDir)` 追加插件目录（不再 `insert(0)` 抢占标准库与内置包），并在 `numpy` 导入失败时将完整 traceback、`sys.executable`、`numpy.__file__`、`sys.path` 写入处理日志 `detail`。",
+      "changelog": "- 会议转写 worker 加载 numpy 增加第二道防线：导入 numpy 前先把 `sys.path` 收窄到解释器自身目录，剔除 `.pth` / 环境变量 / 当前目录等外部注入的路径（里面的同名 `numbers.py` / `numpy.py` 正是 `numpy has no attribute 'short'` 循环导入的来源），即使宿主进程没能带上 `-I` 也不受影响；仍失败时给出「运行时文件被改动 / 安装不完整」的明确提示，处理日志带具体文件路径与 traceback。",
       "filesRef": "index/workbench-meeting-mgmt.json"
     },
     {

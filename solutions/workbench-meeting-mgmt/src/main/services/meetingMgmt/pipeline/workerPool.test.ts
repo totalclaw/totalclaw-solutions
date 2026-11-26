@@ -122,6 +122,19 @@ describe.skipIf(!existsSync(PY))('MeetingWorker（真 Python，不加载模型�
     }
   }, 60_000);
 
+  it('即使不带 -I（宿主 PYTHONPATH 里有同名 numbers.py 会触发 numpy.short 循环导入），worker 先收窄 sys.path 也能加载内置 numpy', async () => {
+    const { spawnSync } = await import('child_process');
+    const { MEETING_WORKER_PY } = await import('./worker.py');
+    const poison = join(dir, 'poison2');
+    mkdirSync(poison, { recursive: true });
+    writeFileSync(join(poison, 'numbers.py'), 'import numpy\n_ = numpy.short\n', 'utf8');
+    const r = spawnSync(PY, ['-u', '-c', MEETING_WORKER_PY, '', '', '', '', '1', ''], {
+      env: { ...process.env, PYTHONPATH: poison, PYTHONUTF8: '1' }, input: '', encoding: 'utf8', timeout: 60_000,
+    });
+    const line = String(r.stdout).split('\n').find(l => l.startsWith('__TC_MM__')) || '';
+    expect(JSON.parse(line.slice('__TC_MM__'.length))).toMatchObject({ ready: true });
+  }, 60_000);
+
   it('找不到 Python 解释器时给出明确诊断和 detail', async () => {
     const w = new MeetingWorker({ python: join(dir, 'no-such-python-bin'), pluginsDir: '', model: '', modelsDir: '', campp: '', threads: 1, env: {} });
     const err = await w.start(10_000).catch((e) => e);

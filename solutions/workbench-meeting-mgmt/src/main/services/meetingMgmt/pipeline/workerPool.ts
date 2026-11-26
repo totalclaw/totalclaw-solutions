@@ -141,6 +141,9 @@ function formatNotReadyError(raw: string): string {
   if (/model file missing or empty|FileNotFoundError|InvalidProtobuf|failed to open|unable to open/i.test(why)) {
     return `${base}：${i18nT('语音模型文件缺失或已损坏，请在「配置引导 → 电脑配置与语音模型」重新下载模型后重试。')}（${why.slice(0, 120)}）`;
   }
+  if (/numpy unavailable/.test(why)) {
+    return `${base}：${i18nT('内置 Python 运行时的 numpy 加载失败（已排除外部 Python 环境干扰，多为运行时文件被杀毒软件改动或安装不完整），请重装应用运行时；点「查看处理日志」可看到具体文件路径。')}（${why.slice(0, 160)}）`;
+  }
   return `${base}（${why.slice(0, 200)}）`;
 }
 

@@ -1,5 +1,9 @@
 # 泰途会议智能管理 更新日志
 
+## 2.0.4 (2026-11-26)
+
+- 会议转写 worker 加载 numpy 增加第二道防线：导入 numpy 前先把 `sys.path` 收窄到解释器自身目录，剔除 `.pth` / 环境变量 / 当前目录等外部注入的路径（里面的同名 `numbers.py` / `numpy.py` 正是 `numpy has no attribute 'short'` 循环导入的来源），即使宿主进程没能带上 `-I` 也不受影响；仍失败时给出「运行时文件被改动 / 安装不完整」的明确提示，处理日志带具体文件路径与 traceback。
+
 ## 2.0.3 (2026-11-26)
 
 - 修复部分 Windows 电脑本地语音转写报 `numpy unavailable: partially initialized module 'numpy' has no attribute 'short' (most likely due to a circular import)`：
