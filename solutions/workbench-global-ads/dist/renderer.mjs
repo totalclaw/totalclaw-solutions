@@ -1,35 +1,35 @@
 const e = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue"];
 if (!e) throw new Error("宿主模块未就绪：npm:vue");
 e.default;
-const Wl = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
-if (!Wl) throw new Error("宿主模块未就绪：npm:vue-router");
+const Ol = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-router"];
+if (!Ol) throw new Error("宿主模块未就绪：npm:vue-router");
+Ol.default;
+const oo = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/PageBackButton.vue"];
+if (!oo) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/PageBackButton.vue");
+const Ba = oo.default, ao = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/WorkbenchStepBar.vue"];
+if (!ao) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/WorkbenchStepBar.vue");
+const Ta = ao.default, ro = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/StepRunAlert.vue"];
+if (!ro) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/StepRunAlert.vue");
+const La = ro.default, Wl = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts"];
+if (!Wl) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts");
 Wl.default;
-const no = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/PageBackButton.vue"];
-if (!no) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/PageBackButton.vue");
-const Ca = no.default, oo = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/WorkbenchStepBar.vue"];
-if (!oo) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/WorkbenchStepBar.vue");
-const Ba = oo.default, ao = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/StepRunAlert.vue"];
-if (!ao) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/StepRunAlert.vue");
-const Ta = ao.default, Fl = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts"];
-if (!Fl) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useStepWatchdog.ts");
+const io = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-echarts"];
+if (!io) throw new Error("宿主模块未就绪：npm:vue-echarts");
+const Pa = io.default, Fl = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:echarts/core"];
+if (!Fl) throw new Error("宿主模块未就绪：npm:echarts/core");
 Fl.default;
-const ro = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:vue-echarts"];
-if (!ro) throw new Error("宿主模块未就绪：npm:vue-echarts");
-const La = ro.default, Rl = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:echarts/core"];
-if (!Rl) throw new Error("宿主模块未就绪：npm:echarts/core");
+const Rl = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:echarts/renderers"];
+if (!Rl) throw new Error("宿主模块未就绪：npm:echarts/renderers");
 Rl.default;
-const Ul = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:echarts/renderers"];
-if (!Ul) throw new Error("宿主模块未就绪：npm:echarts/renderers");
-Ul.default;
 const ll = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:echarts/charts"];
 if (!ll) throw new Error("宿主模块未就绪：npm:echarts/charts");
 ll.default;
 const Pt = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:echarts/components"];
 if (!Pt) throw new Error("宿主模块未就绪：npm:echarts/components");
 Pt.default;
-function Pa(O) {
+function Ia(O) {
   if (!O || O.success === !1 || O.ok === !1) return [];
-  const je = Array.isArray(O.metrics) ? O.metrics : [], H = /* @__PURE__ */ new Map(), N = (g) => {
+  const je = Array.isArray(O.metrics) ? O.metrics : [], H = /* @__PURE__ */ new Map(), b = (g) => {
     if (typeof g != "number" && typeof g != "string" || String(g).trim() === "") return null;
     const j = Number(g);
     return Number.isFinite(j) ? j : null;
@@ -38,13 +38,13 @@ function Pa(O) {
     if (!g || typeof g != "object") continue;
     const j = g["segments.date"] ?? g.segments?.date ?? g.date;
     if (typeof j != "string" || !/^\d{4}-\d{2}-\d{2}$/.test(j)) continue;
-    const le = H.get(j) ?? { date: j, clicks: null, conversions: null, spend: null }, st = {
-      clicks: N(g.clicks ?? g["metrics.clicks"] ?? g.metrics?.clicks),
-      conversions: N(g.conversions ?? g["metrics.conversions"] ?? g.metrics?.conversions),
-      spend: N(g.spend)
+    const le = H.get(j) ?? { date: j, clicks: null, conversions: null, spend: null }, ct = {
+      clicks: b(g.clicks ?? g["metrics.clicks"] ?? g.metrics?.clicks),
+      conversions: b(g.conversions ?? g["metrics.conversions"] ?? g.metrics?.conversions),
+      spend: b(g.spend)
     };
     for (const ne of ["clicks", "conversions", "spend"])
-      st[ne] !== null && (le[ne] = (le[ne] ?? 0) + st[ne]);
+      ct[ne] !== null && (le[ne] = (le[ne] ?? 0) + ct[ne]);
     (le.clicks !== null || le.conversions !== null || le.spend !== null) && H.set(j, le);
   }
   return [...H.values()].sort((g, j) => g.date.localeCompare(j.date));
@@ -52,37 +52,37 @@ function Pa(O) {
 const o = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/i18n.ts"];
 if (!o) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/i18n.ts");
 o.default;
-const zl = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/humanize.ts"];
-if (!zl) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/humanize.ts");
+const Ul = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/utils/humanize.ts"];
+if (!Ul) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/utils/humanize.ts");
+Ul.default;
+const zl = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
+if (!zl) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/stores/notification.ts");
 zl.default;
-const Kl = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/stores/notification.ts"];
-if (!Kl) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/stores/notification.ts");
+const Kl = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useNativeBrowserModalLock.ts"];
+if (!Kl) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useNativeBrowserModalLock.ts");
 Kl.default;
-const jl = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/useNativeBrowserModalLock.ts"];
-if (!jl) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/useNativeBrowserModalLock.ts");
-jl.default;
-const io = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/AutomationOpsConsole.vue"];
-if (!io) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/AutomationOpsConsole.vue");
-const Ia = io.default;
-function so() {
+const so = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/components/AutomationOpsConsole.vue"];
+if (!so) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/components/AutomationOpsConsole.vue");
+const Ma = so.default;
+function co() {
   return window.electronAPI?.globalAdsRun || null;
 }
-const $ = e.ref(""), _ = e.ref([]), S = e.ref(!1), b = e.ref([]), L = e.ref(""), pe = e.ref(""), It = e.ref(0), rt = e.ref(!1), Mt = e.ref(0), nl = e.ref(0);
-function Ma() {
-  b.value = b.value.map((O) => O.state === "running" ? { ...O, state: "failed" } : O);
+const $ = e.ref(""), V = e.ref([]), N = e.ref(!1), k = e.ref([]), T = e.ref(""), pe = e.ref(""), It = e.ref(0), it = e.ref(!1), Mt = e.ref(0), nl = e.ref(0);
+function Oa() {
+  k.value = k.value.map((O) => O.state === "running" ? { ...O, state: "failed" } : O);
 }
 function x() {
-  const O = so();
+  const O = co();
   if (O?.save)
     try {
       O.save({
         startedAt: It.value,
-        busy: !!$.value || S.value,
+        busy: !!$.value || N.value,
         // JSON 化一层，剥掉 Vue 的响应式 Proxy —— 直接把 ref 的 .value 交给 IPC，
         // 结构化克隆遇到 Proxy 会抛「An object could not be cloned.」
-        runs: JSON.parse(JSON.stringify(_.value)),
-        genNodes: JSON.parse(JSON.stringify(b.value)),
-        genMessage: L.value,
+        runs: JSON.parse(JSON.stringify(V.value)),
+        genNodes: JSON.parse(JSON.stringify(k.value)),
+        genMessage: T.value,
         genPreviewPath: pe.value,
         genProgressAt: Mt.value,
         savedAt: Date.now()
@@ -91,13 +91,13 @@ function x() {
     } catch {
     }
 }
-async function Oa() {
-  const O = !!$.value || S.value;
-  if ((_.value.length > 0 || b.value.length > 0) && !O)
-    if (!(_.value.some((g) => g.state === "failed" || g.state === "running" || g.state === "pending") || b.value.some((g) => g.state === "failed" || g.state === "running"))) co();
+async function Wa() {
+  const O = !!$.value || N.value;
+  if ((V.value.length > 0 || k.value.length > 0) && !O)
+    if (!(V.value.some((g) => g.state === "failed" || g.state === "running" || g.state === "pending") || k.value.some((g) => g.state === "failed" || g.state === "running"))) uo();
     else return;
-  if (_.value.length || b.value.length) return;
-  const H = so();
+  if (V.value.length || k.value.length) return;
+  const H = co();
   if (H?.load)
     try {
       const g = (await H.load())?.state;
@@ -111,7 +111,7 @@ async function Oa() {
         }
         return;
       }
-      It.value = Number(g.startedAt) || 0, L.value = String(g.genMessage || ""), pe.value = String(g.genPreviewPath || ""), Mt.value = Number(g.genProgressAt) || 0, nl.value = 0;
+      It.value = Number(g.startedAt) || 0, T.value = String(g.genMessage || ""), pe.value = String(g.genPreviewPath || ""), Mt.value = Number(g.genProgressAt) || 0, nl.value = 0;
       const ne = (m) => m && typeof m.key == "string" ? { key: String(m.key), label: String(m.label || m.key), state: m.state || "pending" } : null, v = (m) => m && typeof m.platformId == "string" ? {
         // 落库数据清洗后仍只是「大致是个字符串」，不是编译期能保证的 OverseasPlatformId 字面量；
         // 真正的合法性校验交给消费方按 platformId 查平台定义时做（查不到就当无效平台处理）。
@@ -127,234 +127,234 @@ async function Oa() {
         status: String(m.status || ""),
         detail: String(m.detail || "")
       } : null;
-      b.value = (Array.isArray(g.genNodes) ? g.genNodes : []).filter((m) => m && typeof m.id == "string").map((m) => ({
+      k.value = (Array.isArray(g.genNodes) ? g.genNodes : []).filter((m) => m && typeof m.id == "string").map((m) => ({
         id: String(m.id),
         name: String(m.name || m.id),
         state: ["pending", "running", "done", "failed", "cancelled"].includes(m.state) ? m.state : "pending",
         etaSec: Number(m.etaSec) > 0 ? Number(m.etaSec) : void 0,
         startedAt: Number(m.startedAt) > 0 ? Number(m.startedAt) : void 0,
         kind: typeof m.kind == "string" ? m.kind : void 0
-      })), _.value = (Array.isArray(g.runs) ? g.runs : []).map(v).filter(Boolean), g.busy && (rt.value = !0, S.value = !1, b.value = b.value.map((m) => m.state === "running" || m.state === "pending" ? { ...m, state: "failed" } : m), _.value = _.value.map((m) => m.state === "running" || m.state === "pending" ? {
+      })), V.value = (Array.isArray(g.runs) ? g.runs : []).map(v).filter(Boolean), g.busy && (it.value = !0, N.value = !1, k.value = k.value.map((m) => m.state === "running" || m.state === "pending" ? { ...m, state: "failed" } : m), V.value = V.value.map((m) => m.state === "running" || m.state === "pending" ? {
         ...m,
         state: "failed",
         status: m.status === "running" || !m.status ? "interrupted" : m.status,
         detail: m.detail || o.t("应用退出导致本次执行中断，未能确认平台状态；请到平台核对后重跑。"),
-        steps: m.steps.map((P) => P.state === "running" || P.state === "pending" ? { ...P, state: "failed" } : P)
+        steps: m.steps.map((L) => L.state === "running" || L.state === "pending" ? { ...L, state: "failed" } : L)
       } : m));
     } catch {
     }
 }
-function co() {
-  rt.value = !1, It.value = Date.now(), _.value = [], b.value = [], L.value = "", pe.value = "", Mt.value = 0, nl.value = 0;
+function uo() {
+  it.value = !1, It.value = Date.now(), V.value = [], k.value = [], T.value = "", pe.value = "", Mt.value = 0, nl.value = 0;
 }
 const ze = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["npm:@totalclaw/core-domain"];
 if (!ze) throw new Error("宿主模块未就绪：npm:@totalclaw/core-domain");
 ze.default;
-const it = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/workflowResult.ts"];
-if (!it) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/workflowResult.ts");
-it.default;
+const st = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/workbenches/workflowResult.ts"];
+if (!st) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/workbenches/workflowResult.ts");
+st.default;
 const Ke = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/workflowAutoRun.ts"];
 if (!Ke) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/workflowAutoRun.ts");
 Ke.default;
 const Y = globalThis.__TOTALCLAW_SDK__ && globalThis.__TOTALCLAW_SDK__.modules && globalThis.__TOTALCLAW_SDK__.modules["apps/desktop-shell/src/renderer/composables/overseasPublish.ts"];
 if (!Y) throw new Error("宿主模块未就绪：apps/desktop-shell/src/renderer/composables/overseasPublish.ts");
 Y.default;
-const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { class: "eyebrow" }, za = { class: "hero-tags" }, Ka = ["aria-label"], ja = ["title"], Ga = {
+const Fa = ["dir"], Ra = { class: "hero" }, Ua = { class: "hero-copy" }, za = { class: "eyebrow" }, Ka = { class: "hero-tags" }, ja = ["aria-label"], Ga = ["title"], Ha = {
   key: 0,
   "aria-hidden": "true"
-}, Ha = { class: "hero-actions" }, Ja = ["disabled"], qa = ["aria-label"], Ya = ["aria-selected", "onClick"], Xa = { class: "ads-tab-intro" }, Za = {
+}, Ja = { class: "hero-actions" }, qa = ["disabled"], Ya = ["aria-label"], Za = ["aria-selected", "onClick"], Xa = { class: "ads-tab-intro" }, Qa = {
   key: 0,
   class: "campaign-guide"
-}, Qa = { class: "step-no" }, xa = {
+}, xa = { class: "step-no" }, er = {
   key: 0,
   class: "ri-check-line"
-}, er = { class: "step-body" }, tr = { class: "media-engine-grid" }, lr = { key: 0 }, nr = {
+}, tr = { class: "step-body" }, lr = { class: "media-engine-grid" }, nr = { key: 0 }, or = {
   key: 0,
   class: "media-engine-warning"
-}, or = { class: "production-settings" }, ar = { class: "ps-block" }, rr = { class: "ps-label" }, ir = { class: "ps-modes" }, sr = ["onClick"], cr = { class: "ps-block" }, dr = { class: "ps-label" }, ur = { class: "ps-aspects" }, mr = ["checked", "onChange"], pr = { class: "ps-hint" }, vr = { class: "ps-block ps-audio-row" }, gr = { class: "ps-switch-text" }, fr = { class: "ps-field" }, yr = ["value"], hr = { class: "ps-field" }, kr = ["value"], br = { class: "ps-field-hint" }, Er = { class: "step-no" }, Nr = {
+}, ar = { class: "production-settings" }, rr = { class: "ps-block" }, ir = { class: "ps-label" }, sr = { class: "ps-modes" }, cr = ["onClick"], dr = { class: "ps-block" }, ur = { class: "ps-label" }, mr = { class: "ps-aspects" }, pr = ["checked", "onChange"], vr = { class: "ps-hint" }, gr = { class: "ps-block ps-audio-row" }, fr = { class: "ps-switch-text" }, yr = { class: "ps-field" }, hr = ["value"], kr = { class: "ps-field" }, br = ["value"], Er = { class: "ps-field-hint" }, Nr = { class: "step-no" }, Vr = {
   key: 0,
   class: "ri-check-line"
-}, Vr = { class: "step-body" }, wr = { class: "guide-platform-strip" }, Sr = ["checked", "onChange"], _r = ["title"], Dr = { class: "guide-id-note" }, Ar = ["onClick"], $r = { class: "step-no" }, Cr = {
+}, Sr = { class: "step-body" }, wr = { class: "guide-platform-strip" }, _r = ["checked", "onChange"], Dr = ["title"], Ar = { class: "guide-id-note" }, $r = ["onClick"], Cr = { class: "step-no" }, Br = {
   key: 0,
   class: "ri-check-line"
-}, Br = { class: "step-body" }, Tr = { class: "creative-source-actions" }, Lr = ["disabled"], Pr = ["disabled"], Ir = {
+}, Tr = { class: "step-body" }, Lr = { class: "creative-source-actions" }, Pr = ["disabled"], Ir = ["disabled"], Mr = {
   key: 0,
   class: "ri-checkbox-circle-fill chosen-mark"
-}, Mr = {
+}, Or = {
   key: 0,
   class: "prompt-inline"
-}, Or = { class: "prompt-brief" }, Wr = { class: "prompt-scenes" }, Fr = ["title"], Rr = ["onUpdate:modelValue"], Ur = ["onUpdate:modelValue"], zr = ["onUpdate:modelValue"], Kr = { class: "creative-preview" }, jr = ["src"], Gr = {
+}, Wr = { class: "prompt-brief" }, Fr = { class: "prompt-scenes" }, Rr = ["onUpdate:modelValue", "title"], Ur = { value: "" }, zr = ["value"], Kr = ["onUpdate:modelValue"], jr = ["onUpdate:modelValue"], Gr = ["onUpdate:modelValue"], Hr = { class: "creative-preview" }, Jr = ["src"], qr = {
   key: 1,
   class: "ri-image-line"
-}, Hr = {
+}, Yr = {
   key: 2,
   class: "ri-video-line"
-}, Jr = { class: "creative-meta" }, qr = { class: "creative-meta" }, Yr = ["aria-label"], Xr = ["title", "onClick"], Zr = {
+}, Zr = { class: "creative-meta" }, Xr = { class: "creative-meta" }, Qr = ["aria-label"], xr = ["title", "onClick"], ei = {
   key: 2,
   class: "creative-error"
-}, Qr = { class: "step-no" }, xr = {
+}, ti = { class: "step-no" }, li = {
   key: 0,
   class: "ri-check-line"
-}, ei = { class: "step-body" }, ti = { class: "creative-fields" }, li = ["placeholder"], ni = { class: "span-wide" }, oi = ["placeholder"], ai = ["aria-label"], ri = { class: "platform-topics-head" }, ii = ["onUpdate:modelValue", "placeholder"], si = {
+}, ni = { class: "step-body" }, oi = { class: "creative-fields" }, ai = ["placeholder"], ri = { class: "span-wide" }, ii = ["placeholder"], si = ["aria-label"], ci = { class: "platform-topics-head" }, di = ["onUpdate:modelValue", "placeholder"], ui = {
   key: 0,
   class: "platform-topics-empty"
-}, ci = { class: "step-body run-body" }, di = ["disabled"], ui = { class: "run-live-head" }, mi = ["disabled"], pi = { class: "publish-progress-bar" }, vi = { class: "run-live-nodes" }, gi = { class: "node-eta" }, fi = {
+}, mi = { class: "step-body run-body" }, pi = ["disabled"], vi = { class: "run-live-head" }, gi = ["disabled"], fi = { class: "publish-progress-bar" }, yi = { class: "run-live-nodes" }, hi = { class: "node-eta" }, ki = {
   key: 0,
   class: "run-gen-msg"
-}, yi = { class: "run-live-head" }, hi = { class: "publish-progress-bar" }, ki = { class: "run-live-nodes" }, bi = ["title", "onClick"], Ei = {
+}, bi = { class: "run-live-head" }, Ei = { class: "publish-progress-bar" }, Ni = { class: "run-live-nodes" }, Vi = ["title", "onClick"], Si = {
   key: 2,
   class: "run-blocked"
-}, Ni = { class: "run-blocked" }, Vi = { class: "run-ok" }, wi = { class: "guide-side" }, Si = { class: "side-head" }, _i = ["disabled"], Di = { class: "side-note" }, Ai = { class: "ps-toggle auto-publish-toggle" }, $i = {
+}, wi = { class: "run-blocked" }, _i = { class: "run-ok" }, Di = { class: "guide-side" }, Ai = { class: "side-head" }, $i = ["disabled"], Ci = { class: "side-note" }, Bi = { class: "ps-toggle auto-publish-toggle" }, Ti = {
   key: 0,
   class: "section-state"
-}, Ci = {
+}, Li = {
   key: 1,
   class: "ads-video-history"
-}, Bi = { class: "ads-video-icon" }, Ti = { class: "ads-video-meta" }, Li = {
+}, Pi = { class: "ads-video-icon" }, Ii = { class: "ads-video-meta" }, Mi = {
   key: 0,
   class: "ads-video-aspect"
-}, Pi = {
+}, Oi = {
   key: 0,
   class: "ads-video-fit"
-}, Ii = { class: "fit-ok" }, Mi = {
+}, Wi = { class: "fit-ok" }, Fi = {
   key: 0,
   class: "fit-miss"
-}, Oi = { class: "ads-video-actions" }, Wi = ["disabled", "title", "onClick"], Fi = ["disabled", "onClick"], Ri = ["disabled", "onClick"], Ui = ["onClick"], zi = { class: "ads-video-pager" }, Ki = ["disabled"], ji = ["disabled"], Gi = ["aria-label"], Hi = { class: "publish-runs-head" }, Ji = { class: "publish-progress-bar" }, qi = { class: "run-aspect" }, Yi = ["title"], Xi = { class: "run-steps" }, Zi = {
+}, Ri = { class: "ads-video-actions" }, Ui = ["disabled", "title", "onClick"], zi = ["disabled", "onClick"], Ki = ["disabled", "onClick"], ji = ["onClick"], Gi = { class: "ads-video-pager" }, Hi = ["disabled"], Ji = ["disabled"], qi = ["aria-label"], Yi = { class: "publish-runs-head" }, Zi = { class: "publish-progress-bar" }, Xi = { class: "run-aspect" }, Qi = ["title"], xi = { class: "run-steps" }, es = {
   key: 0,
   class: "run-detail"
-}, Qi = {
+}, ts = {
   key: 1,
   class: "growth-entry-grid solo"
-}, xi = {
+}, ls = {
   key: 0,
   class: "platform-entry-card"
-}, es = { class: "entry-heading" }, ts = { class: "section-kicker" }, ls = { class: "platform-login-grid" }, ns = { class: "access-tile-heading" }, os = { class: "platform-logo" }, as = ["title"], rs = ["checked", "onChange"], is = ["aria-label"], ss = ["aria-checked", "onClick"], cs = ["aria-checked", "onClick"], ds = {
+}, ns = { class: "entry-heading" }, os = { class: "section-kicker" }, as = { class: "platform-login-grid" }, rs = { class: "access-tile-heading" }, is = { class: "platform-logo" }, ss = ["title"], cs = ["checked", "onChange"], ds = ["aria-label"], us = ["aria-checked", "onClick"], ms = ["aria-checked", "onClick"], ps = {
   key: 0,
   class: "access-google-note"
-}, us = ["disabled", "onClick"], ms = {
+}, vs = ["disabled", "onClick"], gs = {
   key: 0,
   class: "quick-login-note"
-}, ps = {
+}, fs = {
   key: 2,
   class: "generated-ad-preview"
-}, vs = { class: "ad-preview-copy" }, gs = { class: "section-kicker" }, fs = ["aria-label"], ys = ["aria-selected", "onClick"], hs = { class: "ad-preview-avatar" }, ks = { class: "ad-preview-visual" }, bs = ["src", "alt"], Es = {
+}, ys = { class: "ad-preview-copy" }, hs = { class: "section-kicker" }, ks = ["aria-label"], bs = ["aria-selected", "onClick"], Es = { class: "ad-preview-avatar" }, Ns = { class: "ad-preview-visual" }, Vs = ["src", "alt"], Ss = {
   key: 1,
   class: "ad-preview-video"
-}, Ns = {
+}, ws = {
   class: "ad-preview-body",
   dir: "rtl"
-}, Vs = { class: "gate-icon" }, ws = {
+}, _s = { class: "gate-icon" }, Ds = {
   key: 0,
   class: "ri-loader-4-line spin"
-}, Ss = {
+}, As = {
   key: 1,
   class: "ri-cloud-off-line"
-}, _s = {
+}, $s = {
   key: 2,
   class: "ri-shield-check-line"
-}, Ds = {
+}, Cs = {
   key: 3,
   class: "ri-forbid-2-line"
-}, As = { key: 0 }, $s = { key: 1 }, Cs = { key: 2 }, Bs = { key: 3 }, Ts = { key: 4 }, Ls = { key: 5 }, Ps = { key: 6 }, Is = {
+}, Bs = { key: 0 }, Ts = { key: 1 }, Ls = { key: 2 }, Ps = { key: 3 }, Is = { key: 4 }, Ms = { key: 5 }, Os = { key: 6 }, Ws = {
   key: 0,
   class: "gate-state"
-}, Ms = ["aria-label"], Os = {
+}, Fs = ["aria-label"], Rs = {
   key: 6,
   class: "panel"
-}, Ws = { class: "section-head" }, Fs = { class: "section-kicker" }, Rs = { class: "section-note" }, Us = { class: "muted" }, zs = {
+}, Us = { class: "section-head" }, zs = { class: "section-kicker" }, Ks = { class: "section-note" }, js = { class: "muted" }, Gs = {
   key: 0,
   class: "section-state"
-}, Ks = {
+}, Hs = {
   key: 1,
   class: "platform-grid"
-}, js = { class: "platform-title" }, Gs = { class: "platform-mark" }, Hs = { key: 0 }, Js = { key: 1 }, qs = {
+}, Js = { class: "platform-title" }, qs = { class: "platform-mark" }, Ys = { key: 0 }, Zs = { key: 1 }, Xs = {
   key: 0,
   class: "platform-warning"
-}, Ys = {
+}, Qs = {
   key: 1,
   class: "platform-warning"
-}, Xs = {
+}, xs = {
   key: 2,
   class: "capabilities"
-}, Zs = { key: 0 }, Qs = { class: "platform-actions" }, xs = ["disabled", "onClick"], ec = ["disabled", "onClick"], tc = ["disabled", "onClick"], lc = {
+}, ec = { key: 0 }, tc = { class: "platform-actions" }, lc = ["disabled", "onClick"], nc = ["disabled", "onClick"], oc = ["disabled", "onClick"], ac = {
   key: 4,
   class: "web-session"
-}, nc = { class: "web-session-actions" }, oc = ["disabled", "onClick"], ac = ["disabled", "onClick"], rc = {
+}, rc = { class: "web-session-actions" }, ic = ["disabled", "onClick"], sc = ["disabled", "onClick"], cc = {
   key: 2,
   class: "inline-error"
-}, ic = {
+}, dc = {
   key: 7,
   class: "panel"
-}, sc = { class: "section-head" }, cc = { class: "section-kicker" }, dc = { class: "muted" }, uc = { class: "review-controls" }, mc = { class: "field" }, pc = { class: "field" }, vc = { class: "field" }, gc = ["value"], fc = { class: "field" }, yc = { class: "review-platforms" }, hc = ["value"], kc = { class: "review-actions" }, bc = ["disabled"], Ec = ["disabled"], Nc = { class: "ads-chart-card" }, Vc = { class: "ads-chart-head" }, wc = {
+}, uc = { class: "section-head" }, mc = { class: "section-kicker" }, pc = { class: "muted" }, vc = { class: "review-controls" }, gc = { class: "field" }, fc = { class: "field" }, yc = { class: "field" }, hc = ["value"], kc = { class: "field" }, bc = { class: "review-platforms" }, Ec = ["value"], Nc = { class: "review-actions" }, Vc = ["disabled"], Sc = ["disabled"], wc = { class: "ads-chart-card" }, _c = { class: "ads-chart-head" }, Dc = {
   key: 1,
   class: "ads-chart sd-hint"
-}, Sc = {
+}, Ac = {
   key: 0,
   class: "result-block wide"
-}, _c = { class: "result-title" }, Dc = {
+}, $c = { class: "result-title" }, Cc = {
   key: 1,
   class: "report"
-}, Ac = { class: "metric-grid" }, $c = { class: "ads-chart-card" }, Cc = { class: "ads-chart-head" }, Bc = { class: "ads-chart sd-hint" }, Tc = {
+}, Bc = { class: "metric-grid" }, Tc = { class: "ads-chart-card" }, Lc = { class: "ads-chart-head" }, Pc = { class: "ads-chart sd-hint" }, Ic = {
   key: 0,
   class: "report-platform-grid"
-}, Lc = {
+}, Mc = {
   key: 1,
   class: "findings"
-}, Pc = { key: 0 }, Ic = {
+}, Oc = { key: 0 }, Wc = {
   key: 2,
   class: "report-notes"
-}, Mc = { class: "result-block wide" }, Oc = { class: "result-title" }, Wc = {
+}, Fc = { class: "result-block wide" }, Rc = { class: "result-title" }, Uc = {
   key: 8,
   class: "panel"
-}, Fc = { class: "section-head" }, Rc = { class: "section-kicker" }, Uc = ["disabled"], zc = { class: "audit-filters" }, Kc = { class: "field" }, jc = { value: "" }, Gc = ["value"], Hc = { class: "field" }, Jc = ["placeholder"], qc = ["disabled"], Yc = {
+}, zc = { class: "section-head" }, Kc = { class: "section-kicker" }, jc = ["disabled"], Gc = { class: "audit-filters" }, Hc = { class: "field" }, Jc = { value: "" }, qc = ["value"], Yc = { class: "field" }, Zc = ["placeholder"], Xc = ["disabled"], Qc = {
   key: 0,
   class: "section-state"
-}, Xc = {
+}, xc = {
   key: 1,
   class: "inline-error"
-}, Zc = {
+}, ed = {
   key: 2,
   class: "section-state"
-}, Qc = {
+}, td = {
   key: 3,
   class: "audit-table-wrap"
-}, xc = { class: "audit-table" }, ed = ["aria-label"], td = ["disabled"], ld = ["aria-current", "onClick"], nd = ["disabled"], od = {
+}, ld = { class: "audit-table" }, nd = ["aria-label"], od = ["disabled"], ad = ["aria-current", "onClick"], rd = ["disabled"], id = {
   key: 9,
   class: "panel automation-panel"
-}, ad = { class: "section-head" }, rd = { class: "section-kicker" }, id = ["disabled"], sd = { class: "tab-section-note" }, cd = { class: "cron-list" }, dd = { class: "cron-toggle" }, ud = ["onUpdate:modelValue", "disabled"], md = { class: "cron-plan" }, pd = ["onUpdate:modelValue"], vd = { value: "daily" }, gd = { value: "weekly" }, fd = { value: "hours" }, yd = { key: 0 }, hd = ["onUpdate:modelValue"], kd = ["value"], bd = { key: 1 }, Ed = ["onUpdate:modelValue"], Nd = ["value"], Vd = { key: 2 }, wd = { class: "cron-time" }, Sd = ["onUpdate:modelValue"], _d = ["value"], Dd = ["onUpdate:modelValue"], Ad = ["value"], $d = { class: "cron-hint" }, Cd = {
+}, sd = { class: "section-head" }, cd = { class: "section-kicker" }, dd = ["disabled"], ud = { class: "tab-section-note" }, md = { class: "cron-list" }, pd = { class: "cron-toggle" }, vd = ["onUpdate:modelValue", "disabled"], gd = { class: "cron-plan" }, fd = ["onUpdate:modelValue"], yd = { value: "daily" }, hd = { value: "weekly" }, kd = { value: "hours" }, bd = { key: 0 }, Ed = ["onUpdate:modelValue"], Nd = ["value"], Vd = { key: 1 }, Sd = ["onUpdate:modelValue"], wd = ["value"], _d = { key: 2 }, Dd = { class: "cron-time" }, Ad = ["onUpdate:modelValue"], $d = ["value"], Cd = ["onUpdate:modelValue"], Bd = ["value"], Td = { class: "cron-hint" }, Ld = {
   key: 0,
   class: "cron-video-dir"
-}, Bd = { class: "credential-input with-action" }, Td = ["placeholder"], Ld = {
+}, Pd = { class: "credential-input with-action" }, Id = ["placeholder"], Md = {
   key: 0,
   class: "operation-state"
-}, Pd = ["aria-label"], Id = { class: "section-kicker" }, Md = ["aria-label"], Od = { class: "credential-fields" }, Wd = ["value"], Fd = { key: 0 }, Rd = { key: 1 }, Ud = { key: 3 }, zd = ["onUpdate:modelValue", "type", "placeholder"], Kd = ["aria-label", "onClick"], jd = { class: "credential-input" }, Gd = ["placeholder"], Hd = {
+}, Od = ["aria-label"], Wd = { class: "section-kicker" }, Fd = ["aria-label"], Rd = { class: "credential-fields" }, Ud = ["value"], zd = { key: 0 }, Kd = { key: 1 }, jd = { key: 3 }, Gd = ["onUpdate:modelValue", "type", "placeholder"], Hd = ["aria-label", "onClick"], Jd = { class: "credential-input" }, qd = ["placeholder"], Yd = {
   key: 0,
   class: "credential-error"
-}, Jd = ["disabled"], qd = ["disabled"], Yd = ["aria-label"], Xd = { class: "section-kicker" }, Zd = ["aria-label"], Qd = { class: "credential-fields" }, xd = { class: "credential-input with-action" }, eu = ["placeholder"], tu = { class: "span-wide" }, lu = { class: "prompt-actions" }, nu = ["disabled"], ou = { key: 0 }, au = {
+}, Zd = ["disabled"], Xd = ["disabled"], Qd = ["aria-label"], xd = { class: "section-kicker" }, eu = ["aria-label"], tu = { class: "credential-fields" }, lu = { class: "credential-input with-action" }, nu = ["placeholder"], ou = { class: "span-wide" }, au = { class: "prompt-actions" }, ru = ["disabled"], iu = { key: 0 }, su = {
   key: 0,
   class: "prompt-scenes"
-}, ru = ["title"], iu = ["onUpdate:modelValue"], su = ["onUpdate:modelValue"], cu = ["onUpdate:modelValue"], du = {
+}, cu = ["onUpdate:modelValue", "title"], du = { value: "" }, uu = ["value"], mu = ["onUpdate:modelValue"], pu = ["onUpdate:modelValue"], vu = ["onUpdate:modelValue"], gu = {
   key: 1,
   class: "credential-hint"
-}, uu = {
+}, fu = {
   key: 2,
   class: "credential-error"
-}, mu = ["disabled"], pu = ["aria-label"], vu = { class: "section-kicker" }, gu = { class: "preview-path" }, fu = ["aria-label"], yu = { class: "video-preview-body" }, hu = {
+}, yu = ["disabled"], hu = ["aria-label"], ku = { class: "section-kicker" }, bu = { class: "preview-path" }, Eu = ["aria-label"], Nu = { class: "video-preview-body" }, Vu = {
   key: 0,
   class: "ri-loader-4-line spin"
-}, ku = ["src"], bu = { key: 2 }, Eu = ["aria-label"], Nu = { class: "section-kicker" }, Vu = ["aria-label"], wu = {
+}, Su = ["src"], wu = { key: 2 }, _u = ["aria-label"], Du = { class: "section-kicker" }, Au = ["aria-label"], $u = {
   key: 0,
   class: "credential-info"
-}, Su = {
+}, Cu = {
   key: 1,
   class: "credential-info"
-}, _u = { class: "credential-fields" }, Du = { key: 0 }, Au = { key: 1 }, $u = ["onUpdate:modelValue", "type", "placeholder"], Cu = ["aria-label", "onClick"], Bu = { key: 0 }, Tu = {
+}, Bu = { class: "credential-fields" }, Tu = { key: 0 }, Lu = { key: 1 }, Pu = ["onUpdate:modelValue", "type", "placeholder"], Iu = ["aria-label", "onClick"], Mu = { key: 0 }, Ou = {
   key: 0,
   class: "credential-error"
-}, Lu = ["disabled"], Pu = ["disabled"], at = 10, Yn = "totalclaw:global-ads-material-fallback:v1", Xn = "totalclaw:global-ads-auto-publish:v1", Zn = "totalclaw:global-ads-video-history:v1", Ol = 5, Qn = "totalclaw:global-ads-prompt-scenes:v1", xn = "totalclaw:global-ads-prompt-chosen:v1", eo = "totalclaw:global-ads-material-dir:v1", to = "totalclaw:global-ads-cron-video-dir:v1", lo = "totalclaw:global-ads-publish-log:v1", Iu = /* @__PURE__ */ e.defineComponent({
+}, Wu = ["disabled"], Fu = ["disabled"], rt = 10, Zn = "totalclaw:global-ads-material-fallback:v1", Xn = "totalclaw:global-ads-auto-publish:v1", Qn = "totalclaw:global-ads-video-history:v1", Ml = 5, xn = "totalclaw:global-ads-prompt-scenes:v1", eo = "totalclaw:global-ads-prompt-chosen:v1", to = "totalclaw:global-ads-material-dir:v1", lo = "totalclaw:global-ads-cron-video-dir:v1", no = "totalclaw:global-ads-publish-log:v1", Ru = /* @__PURE__ */ e.defineComponent({
   __name: "GlobalAdsWorkbenchView",
   setup(O) {
-    Rl.use([Ul.CanvasRenderer, ll.BarChart, ll.LineChart, Pt.GridComponent, Pt.LegendComponent, Pt.TooltipComponent]);
+    Fl.use([Rl.CanvasRenderer, ll.BarChart, ll.LineChart, Pt.GridComponent, Pt.LegendComponent, Pt.TooltipComponent]);
     const je = [
       {
         id: "facebook",
@@ -388,12 +388,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         icon: "ri-youtube-fill",
         color: "#ff0033"
       }
-    ], H = /* @__PURE__ */ new Set(["google_ads"]), N = je.filter((t) => !H.has(t.id)), g = {
+    ], H = /* @__PURE__ */ new Set(["google_ads"]), b = je.filter((t) => !H.has(t.id)), g = {
       facebook: o.t("FB 广告账户 act_…"),
       instagram: o.t("IG 商业账号 ID"),
       youtube: o.t("YouTube 频道 ID"),
       google_ads: "Google Ads Customer ID"
-    }, j = H.has("google_ads") ? ["web-login"] : [], le = N.map((t) => t.label).join(o.t("、")), st = N.map((t) => o.t(g[t.id])).join(o.t("、")), ne = {
+    }, j = H.has("google_ads") ? ["web-login"] : [], le = b.map((t) => t.label).join(o.t("、")), ct = b.map((t) => o.t(g[t.id])).join(o.t("、")), ne = {
       facebook: [
         { key: "system_user_token", label: "Meta System User Token", placeholder: "EAAG…", secret: !0, required: !0 },
         { key: "app_secret", label: "Meta App Secret", placeholder: "App Secret", secret: !0 },
@@ -445,28 +445,28 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         { key: "oauth_client_id", label: "OAuth Client ID", placeholder: "8888-yyyy.apps.googleusercontent.com" },
         { key: "paid_delegate_to", label: o.t("付费广告委派平台"), placeholder: "google_ads", defaultValue: "google_ads" }
       ]
-    }, v = Kl.useNotificationStore(), m = Wl.useRouter(), P = e.ref(null), ct = e.ref(!1), De = e.ref(""), ol = e.ref([]), al = e.ref(!1), dt = e.ref(""), ut = e.ref(!1), K = e.reactive({}), ve = e.reactive({}), I = e.reactive({}), ee = e.reactive({
+    }, v = zl.useNotificationStore(), m = Ol.useRouter(), L = e.ref(null), dt = e.ref(!1), De = e.ref(""), ol = e.ref([]), al = e.ref(!1), ut = e.ref(""), mt = e.ref(!1), K = e.reactive({}), ve = e.reactive({}), P = e.reactive({}), ee = e.reactive({
       facebook: "web",
       instagram: "web",
       google_ads: "web",
       youtube: "web"
-    }), mt = e.ref(!1), Gl = jl.createNativeBrowserModalLock(), Ge = e.ref("facebook"), ge = e.reactive({}), Ae = e.reactive({}), $e = e.ref(!1), He = e.ref(""), rl = e.ref(null), Hl = e.ref(null), D = e.ref([]), pt = e.ref(!1), oe = e.ref(""), h = e.reactive({
+    }), pt = e.ref(!1), jl = Kl.createNativeBrowserModalLock(), Ge = e.ref("facebook"), ge = e.reactive({}), Ae = e.reactive({}), $e = e.ref(!1), He = e.ref(""), rl = e.ref(null), Gl = e.ref(null), w = e.ref([]), vt = e.ref(!1), oe = e.ref(""), _ = e.reactive({
       brandName: "UAE Growth Campaign",
       arabicHeadline: "اكتشف علامتنا في الإمارات"
     }), Ot = e.ref("facebook"), Ce = e.ref(""), ae = e.ref(""), A = e.reactive({
       mode: "api",
       tenantId: "tenant-uae-demo"
-    }), Jl = e.ref(null), Be = e.ref([]), k = e.reactive({
-      since: Gn(6),
-      until: Gn(0),
+    }), Hl = e.ref(null), Be = e.ref([]), h = e.reactive({
+      since: qn(6),
+      until: qn(0),
       insightsPlatform: "facebook",
       insightsMode: "api",
-      platforms: N.map((t) => t.id),
+      platforms: b.map((t) => t.id),
       comparePrevious: !0
-    }), Wt = e.ref(!1), fe = e.ref(null), Ft = e.ref(!1), ye = e.ref(null), Je = e.ref(!1), Rt = e.ref(""), he = e.ref([]), qe = e.reactive({ platform: "", tenantId: "" }), X = e.ref(1), il = e.computed(() => Math.max(1, Math.ceil(he.value.length / at))), uo = e.computed(() => {
-      const t = (X.value - 1) * at;
-      return he.value.slice(t, t + at);
-    }), mo = e.computed(() => Array.from({ length: il.value }, (t, n) => n + 1)), po = e.computed(() => he.value.length ? (X.value - 1) * at + 1 : 0), vo = e.computed(() => Math.min(X.value * at, he.value.length)), sl = [
+    }), Wt = e.ref(!1), fe = e.ref(null), Ft = e.ref(!1), ye = e.ref(null), Je = e.ref(!1), Rt = e.ref(""), he = e.ref([]), qe = e.reactive({ platform: "", tenantId: "" }), Z = e.ref(1), il = e.computed(() => Math.max(1, Math.ceil(he.value.length / rt))), mo = e.computed(() => {
+      const t = (Z.value - 1) * rt;
+      return he.value.slice(t, t + rt);
+    }), po = e.computed(() => Array.from({ length: il.value }, (t, n) => n + 1)), vo = e.computed(() => he.value.length ? (Z.value - 1) * rt + 1 : 0), go = e.computed(() => Math.min(Z.value * rt, he.value.length)), sl = [
       {
         id: "campaign",
         icon: "ri-advertisement-line",
@@ -503,14 +503,14 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         label: o.t("定时自动化"),
         desc: o.t("把跨平台复盘、平台巡检等环节配置成真实定时任务，让投放链路按节奏自动运转；预算变更始终保留人工确认。")
       }
-    ], z = e.ref("campaign"), go = e.computed(() => sl.find((t) => t.id === z.value) || sl[0]), cl = e.reactive({ platforms: !1, info: !1 }), vt = e.computed(() => Z.value.length > 0), Ut = e.computed(() => J.value === "dynamic" && Ne.value && F.value.length > 0 && !!G.value.trim()), Ye = e.computed(() => !!ce.value || !!T.value || Ut.value), gt = e.computed(() => cl.info && !!A.tenantId.trim()), ql = [
+    ], z = e.ref("campaign"), fo = e.computed(() => sl.find((t) => t.id === z.value) || sl[0]), cl = e.reactive({ platforms: !1, info: !1 }), gt = e.computed(() => X.value.length > 0), Ut = e.computed(() => J.value === "dynamic" && Ne.value && I.value.length > 0 && !!G.value.trim()), Ye = e.computed(() => !!ce.value || !!B.value || Ut.value), ft = e.computed(() => cl.info && !!A.tenantId.trim()), Jl = [
       { icon: "ri-briefcase-4-line", label: o.t("客户需求"), detail: o.t("品牌、市场、预算、KPI、受众") },
       { icon: "ri-focus-3-line", label: o.t("市场策略"), detail: o.t("阿英双语 · 本地化 · 渠道组合") },
       { icon: "ri-palette-line", label: o.t("素材适配"), detail: o.t("客户上传素材 · 阿语文案") },
       { icon: "ri-advertisement-line", label: o.t("跨平台投放"), detail: "Facebook · Instagram · Ads · YouTube" },
       { icon: "ri-line-chart-line", label: o.t("数据复盘"), detail: o.t("花费 · 触达 · 点击 · 转化") },
       { icon: "ri-settings-4-line", label: o.t("账户优化"), detail: o.t("预算 · 受众 · 素材 · 落地页") }
-    ], dl = e.ref([]), Yl = e.ref(!1);
+    ], dl = e.ref([]), ql = e.ref(!1);
     let ul = null;
     e.onUnmounted(() => {
       try {
@@ -520,7 +520,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       ul = null;
     });
     async function Te(t = 0) {
-      Yl.value = !0;
+      ql.value = !0;
       try {
         const n = await window.electronAPI?.mediaModel?.get?.(), a = Array.isArray(n?.kinds) ? n.kinds : [];
         a.length ? dl.value = a : !dl.value.length && t < 5 && window.setTimeout(() => {
@@ -531,31 +531,31 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
           Te(t + 1);
         }, 2e3 * (t + 1));
       } finally {
-        Yl.value = !1;
+        ql.value = !1;
       }
     }
-    function Xe(t) {
+    function Ze(t) {
       return dl.value.find((n) => n.kind === t) || null;
     }
     const ke = e.computed(() => {
-      const t = Xe("video"), n = t?.providers.find((a) => a.id === t.activeProvider);
+      const t = Ze("video"), n = t?.providers.find((a) => a.id === t.activeProvider);
       return n?.configured ? String(t?.activeModel || "").trim() || n.defaultModel || n.label : "";
-    }), ft = e.computed(() => {
-      const t = Xe("video");
+    }), yt = e.computed(() => {
+      const t = Ze("video");
       if (!t) return { tone: "missing", detail: o.t("登录后可读取视频生成模型配置") };
       if (t.providers.find((l) => l.id === t.activeProvider)?.configured)
         return { tone: "ready", detail: "" };
       const a = t.providers.find((l) => l.configured);
       return a ? { tone: "partial", detail: o.t("{p0} 已接入，还未设为默认视频生成引擎", { p0: a.label }) } : { tone: "missing", detail: o.t("未配置 —— 请选择接入引擎并填入密钥") };
     }), ml = e.computed(() => {
-      const t = Xe("tts");
+      const t = Ze("tts");
       if (!t) return { tone: "missing", detail: o.t("登录后可读取当前 TTS 配置") };
       const n = t.providers.find((l) => l.id === t.activeProvider);
       if (n?.configured)
         return { tone: "ready", detail: o.t("当前默认：{p0}", { p0: n.label }) };
       const a = t.providers.find((l) => l.configured);
       return a ? { tone: "partial", detail: o.t("已接入 {p0}，建议设为默认", { p0: a.label }) } : { tone: "missing", detail: o.t("配置一个配音引擎后旁白才可用") };
-    }), pl = e.computed(() => ft.value.tone === "ready"), fo = e.computed(() => [
+    }), pl = e.computed(() => yt.value.tone === "ready"), yo = e.computed(() => [
       { id: "slideshow", icon: "ri-slideshow-3-line", label: o.t("图片成片"), desc: o.t("素材图片一键成片（oneclick_from_folder 脚本，快、稳定）") },
       {
         id: "dynamic",
@@ -563,18 +563,18 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         label: o.t("动态视频生成"),
         desc: ke.value ? o.t("由 {p0} 用参考图生成运镜与动态镜头", { p0: ke.value }) : o.t("用参考图生成运镜与动态镜头（需先在上方配置视频生成模型）")
       }
-    ]), J = e.ref("slideshow"), yo = [
+    ]), J = e.ref("slideshow"), ho = [
       { value: "9:16", label: "9:16", hint: o.t("竖屏 / Reels / Shorts") },
       { value: "4:5", label: "4:5", hint: o.t("竖版信息流帖子") },
       { value: "16:9", label: "16:9", hint: o.t("横屏 / 常规视频") },
       { value: "1:1", label: "1:1", hint: o.t("方形") }
-    ], Le = e.ref(["9:16"]), Xl = e.ref(!1);
-    function ho(t) {
-      Xl.value = !0;
+    ], Le = e.ref(["9:16"]), Yl = e.ref(!1);
+    function ko(t) {
+      Yl.value = !0;
       const n = new Set(Le.value);
       n.has(t) ? n.delete(t) : n.add(t), Le.value = n.size ? [...n] : [t];
     }
-    const yt = {
+    const ht = {
       instagram: { recommended: "9:16", accepts: ["9:16", "4:5", "1:1", "16:9"], note: o.t("Reels 收 9:16；普通帖只接受 4:5 ~ 16:9") },
       // ⚠️ accepts 里**不能**有 9:16：Business Suite 的帖子编辑器发布目标是 IG 账号，
       // 实测直接拒 9:16（"doesn't fit within Instagram's accepted aspect ratio range of 4:5 to 16:9"），
@@ -583,31 +583,31 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       youtube: { recommended: "16:9", accepts: ["16:9", "9:16"], note: o.t("常规视频 16:9；≤60 秒 9:16 自动识别为 Shorts") },
       google_ads: { recommended: "16:9", accepts: ["16:9", "1:1", "4:5"], note: o.t("视频广告由 YouTube 承载，以 16:9 为主") }
     }, zt = e.computed(() => Le.value.length ? Le.value : ["9:16"]);
-    function ko(t) {
-      const n = Z.value.filter((l) => yt[l.id]?.recommended === t).map((l) => l.label);
+    function bo(t) {
+      const n = X.value.filter((l) => ht[l.id]?.recommended === t).map((l) => l.label);
       if (n.length) return o.t("{p0} 推荐", { p0: n.join(" / ") });
-      const a = Z.value.filter((l) => (yt[l.id]?.accepts || []).includes(t)).map((l) => l.label);
+      const a = X.value.filter((l) => (ht[l.id]?.accepts || []).includes(t)).map((l) => l.label);
       return a.length ? o.t("{p0} 可用", { p0: a.join(" / ") }) : "";
     }
     function vl(t) {
       const n = t.path.replace(/-(9x16|4x5|16x9|1x1)\.mp4$/i, ""), a = W.value.filter((i) => i.path === t.path || i.path.startsWith(n) && C[i.path]), l = [], r = [];
-      for (const i of Z.value)
+      for (const i of X.value)
         a.some((d) => Zl(i.id, d.path)) ? l.push(i.label) : r.push(i.label);
       return { ok: l, miss: r };
     }
-    function bo(t) {
+    function Eo(t) {
       const n = String(t.projectName || "").replace(/[（(]\s*\d+\s*[:：]\s*\d+\s*[）)]\s*$/, "").trim() || o.t("广告成片");
       return C[t.path] ? n : `${n}（${o.t("生成中")}）`;
     }
-    function Ze(t) {
+    function Xe(t) {
       const n = String(t || "").match(/-(9x16|4x5|16x9|1x1)\./i);
       return n ? n[1].replace("x", ":") : "";
     }
     function Zl(t, n) {
-      const a = Ze(n);
-      return a ? (yt[t]?.accepts || []).includes(a) : !0;
+      const a = Xe(n);
+      return a ? (ht[t]?.accepts || []).includes(a) : !0;
     }
-    const Pe = e.ref(!0), Eo = [
+    const Pe = e.ref(!0), No = [
       { id: "upbeat", label: o.t("轻快活力") },
       { id: "energetic", label: o.t("热烈有冲击力") },
       { id: "chill", label: o.t("松弛治愈") },
@@ -616,40 +616,40 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       { id: "corporate", label: o.t("商务专业") },
       { id: "lofi", label: o.t("Lo-Fi 慵懒") }
     ], Kt = e.ref("dramatic"), Ie = e.ref(
-      localStorage.getItem(Yn) || ze.DEFAULT_MATERIAL_FALLBACK
+      localStorage.getItem(Zn) || ze.DEFAULT_MATERIAL_FALLBACK
     );
     ze.isMaterialFallbackStrategy(Ie.value) || (Ie.value = ze.DEFAULT_MATERIAL_FALLBACK), e.watch(Ie, (t) => {
       try {
-        localStorage.setItem(Yn, t);
+        localStorage.setItem(Zn, t);
       } catch {
       }
     });
-    const No = e.computed(
+    const Vo = e.computed(
       () => ze.MATERIAL_FALLBACK_OPTIONS.find((t) => t.id === Ie.value)?.hint ?? ""
-    ), ht = e.ref(localStorage.getItem(Xn) !== "false");
-    e.watch(ht, (t) => {
+    ), kt = e.ref(localStorage.getItem(Xn) !== "false");
+    e.watch(kt, (t) => {
       try {
         localStorage.setItem(Xn, t ? "true" : "false");
       } catch {
       }
     });
-    const be = e.computed(() => J.value === "slideshow" || pl.value), Ql = e.ref(null), xl = e.ref(1), Vo = e.computed(() => [
+    const be = e.computed(() => J.value === "slideshow" || pl.value), Xl = e.ref(null), Ql = e.ref(1), So = e.computed(() => [
       { id: 1, label: o.t("配置制作引擎"), done: be.value },
-      { id: 2, label: o.t("选择投放平台"), done: vt.value },
+      { id: 2, label: o.t("选择投放平台"), done: gt.value },
       { id: 3, label: o.t("准备素材"), done: Ye.value },
-      { id: 4, label: o.t("填写投放信息"), done: gt.value },
+      { id: 4, label: o.t("填写投放信息"), done: ft.value },
       { id: 5, label: o.t("一键执行投放"), done: !1 }
     ]);
     function wo(t) {
-      xl.value = t;
-      const n = Ql.value?.querySelectorAll(".guide-step")[t - 1];
+      Ql.value = t;
+      const n = Xl.value?.querySelectorAll(".guide-step")[t - 1];
       n && typeof n.scrollIntoView == "function" && n.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-    const jt = e.ref(!1), re = e.ref("video"), Ee = e.ref(""), Me = e.reactive({}), Oe = e.reactive({}), kt = e.ref(""), We = e.ref(!1), Qe = e.ref(""), en = e.computed(() => Xe(re.value)?.providers || []), tn = e.computed(() => en.value.find((t) => t.id === Ee.value) || null), gl = e.computed(() => tn.value?.keys || []), So = e.computed(() => re.value === "tts" ? o.t("留空使用引擎默认声线") : tn.value?.defaultModel || o.t("留空使用引擎默认模型"));
+    const jt = e.ref(!1), re = e.ref("video"), Ee = e.ref(""), Me = e.reactive({}), Oe = e.reactive({}), bt = e.ref(""), We = e.ref(!1), Qe = e.ref(""), xl = e.computed(() => Ze(re.value)?.providers || []), en = e.computed(() => xl.value.find((t) => t.id === Ee.value) || null), gl = e.computed(() => en.value?.keys || []), _o = e.computed(() => re.value === "tts" ? o.t("留空使用引擎默认声线") : en.value?.defaultModel || o.t("留空使用引擎默认模型"));
     e.watch(Ee, () => {
       for (const n of Object.keys(Me)) delete Me[n];
-      const t = Xe(re.value);
-      kt.value = t?.activeProvider === Ee.value ? String(t?.activeModel || "") : "";
+      const t = Ze(re.value);
+      bt.value = t?.activeProvider === Ee.value ? String(t?.activeModel || "") : "";
     });
     function fl(t) {
       re.value = t, Qe.value = "";
@@ -663,14 +663,14 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       } catch {
       }
       Te().then(() => {
-        const n = Xe(t), a = t === "video" ? n?.providers.find((l) => l.id === "seedance")?.id || n?.activeProvider || n?.providers[0]?.id || "" : n?.activeProvider || n?.providers.find((l) => l.configured)?.id || n?.providers[0]?.id || "";
+        const n = Ze(t), a = t === "video" ? n?.providers.find((l) => l.id === "seedance")?.id || n?.activeProvider || n?.providers[0]?.id || "" : n?.activeProvider || n?.providers.find((l) => l.configured)?.id || n?.providers[0]?.id || "";
         Ee.value = a;
       });
     }
     function yl() {
       We.value || (jt.value = !1, Qe.value = "");
     }
-    async function _o() {
+    async function Do() {
       const t = Ee.value;
       if (t) {
         We.value = !0, Qe.value = "";
@@ -690,54 +690,59 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             provider: t,
             env: n,
             setDefault: !0,
-            ...kt.value.trim() ? { model: kt.value.trim() } : {}
+            ...bt.value.trim() ? { model: bt.value.trim() } : {}
           }), await Te(), window.dispatchEvent(new CustomEvent("totalclaw:media-model-changed", {
             detail: { kind: re.value, provider: t }
           })), v.success(re.value === "video" ? o.t("视频生成模型已保存并设为默认") : o.t("TTS 配音引擎已保存并设为默认")), jt.value = !1;
         } catch (n) {
-          Qe.value = U(n);
+          Qe.value = R(n);
         } finally {
           We.value = !1;
         }
       }
     }
-    function Do() {
+    function Ao() {
       try {
-        const t = localStorage.getItem(Zn), n = t ? JSON.parse(t) : [];
+        const t = localStorage.getItem(Qn), n = t ? JSON.parse(t) : [];
         return Array.isArray(n) ? n.filter((a) => !!a && typeof a.path == "string" && !!a.path) : [];
       } catch {
         return [];
       }
     }
-    const W = e.ref(Do()), C = e.reactive({}), te = e.ref(1), ln = e.computed(() => [...W.value].sort((t, n) => (n.createdAt || 0) - (t.createdAt || 0))), xe = e.computed(() => Math.max(1, Math.ceil(ln.value.length / Ol))), Ao = e.computed(() => ln.value.slice((te.value - 1) * Ol, te.value * Ol));
+    const W = e.ref(Ao()), C = e.reactive({}), te = e.ref(1), tn = e.computed(() => [...W.value].sort((t, n) => (n.createdAt || 0) - (t.createdAt || 0))), xe = e.computed(() => Math.max(1, Math.ceil(tn.value.length / Ml))), $o = e.computed(() => tn.value.slice((te.value - 1) * Ml, te.value * Ml));
     e.watch(xe, (t) => {
       te.value > t && (te.value = t);
     });
-    const bt = e.ref(!1), T = e.ref(""), F = e.ref((() => {
+    const Et = e.ref(!1), B = e.ref(""), I = e.ref((() => {
       try {
-        const t = JSON.parse(localStorage.getItem(Qn) || "[]");
+        const t = JSON.parse(localStorage.getItem(xn) || "[]");
         return Array.isArray(t) ? t.filter((n) => n && typeof n.prompt == "string") : [];
       } catch {
         return [];
       }
-    })()), Ne = e.ref((() => {
-      const t = localStorage.getItem(xn);
-      return t === null ? F.value.length > 0 : t === "1";
+    })()), ln = e.computed(() => {
+      const t = /* @__PURE__ */ new Set();
+      for (const n of w.value) n.kind === "image" && n.absolutePath && t.add(String(n.absolutePath));
+      for (const n of I.value) n.referenceImage && t.add(n.referenceImage);
+      return [...t];
+    }), Ne = e.ref((() => {
+      const t = localStorage.getItem(eo);
+      return t === null ? I.value.length > 0 : t === "1";
     })());
     e.watch(Ne, (t) => {
       try {
-        localStorage.setItem(xn, t ? "1" : "0");
+        localStorage.setItem(eo, t ? "1" : "0");
       } catch {
       }
     });
     const se = e.ref(!1), Ve = e.ref("");
-    function Et() {
+    function et() {
       try {
-        localStorage.setItem(Qn, JSON.stringify(F.value));
+        localStorage.setItem(xn, JSON.stringify(I.value));
       } catch {
       }
     }
-    async function $o() {
+    async function Co() {
       if (se.value) return;
       const t = window.electronAPI?.solution?.listMediaDir, n = G.value.trim();
       if (!n || typeof t != "function") {
@@ -751,22 +756,20 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
           Ve.value = o.t("这个文件夹里没有图片素材，视频模型需要参考图作为首帧。");
           return;
         }
-        const r = h.brandName.trim() || "UAE Growth Campaign";
+        const r = _.brandName.trim() || "UAE Growth Campaign";
         let i = [];
         try {
           const d = await Y.askLlmOnce("marketing-content-creator", [
             o.t("为品牌「{p0}」写一条面向阿联酋市场的 15–30 秒广告分镜，3 个场景。", { p0: r }),
-            h.arabicHeadline.trim() ? o.t("阿语广告标题：{p0}", { p0: h.arabicHeadline.trim() }) : "",
-            we.value.trim(),
+            Se.value.trim(),
             o.t("可用的首帧参考图（按顺序分配，一个场景一张）：") + `
 ` + l.map((s, p) => `${p + 1}. ${s}`).join(`
 `),
             // 运镜 prompt 必须是英文（视频模型只吃英文），但字幕是给人看/给 TTS 念的，跟随界面语言。
-            // 原来写死「中英/阿语」，界面切成别的语言时字幕和旁白都对不上。
-            // 这是阿联酋市场的投放物料：主讲与主字幕跟随界面语言，阿语作为副字幕固定保留。
+            // 2026-11-27 用户要求：本工作台生成的视频一律中文（运镜提示、字幕、旁白），不再带阿语副字幕。
             // 运镜 prompt 必须英文（视频模型只吃英文）。
-            o.t('每个场景给三样：① 运镜与画面变化的英文 prompt（要有明确的镜头运动，不要只"轻微动"）；② 一句{p0}主字幕（会同时用于配音朗读）；③ 同一句话的阿拉伯语副字幕。', { p0: Pl().label }),
-            o.t("只输出 JSON，不要解释、不要代码块。格式：") + ' {"scenes":[{"reference_image":"上面列出的绝对路径","duration":5,"prompt":"camera move…","caption":"主字幕","caption_ar":"阿语副字幕"}]}',
+            Gn(),
+            o.t("只输出 JSON，不要解释、不要代码块。格式：") + ' {"scenes":[{"reference_image":"上面列出的绝对路径","duration":5,"prompt":"中文运镜提示…","caption":"中文字幕"}]}',
             o.t("严禁编造价格、优惠、功效或上下文里没有的事实。")
           ].filter(Boolean).join(`
 `), 4e4), c = Y.extractJsonObject(d);
@@ -776,72 +779,67 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             duration: Number(s?.duration) > 0 ? Math.min(10, Number(s.duration)) : 5,
             prompt: String(s?.prompt || "").trim(),
             caption: String(s?.caption || "").trim(),
-            captionAr: String(s?.caption_ar || "").trim()
+            // 成片统一中文（2026-11-27 用户要求）：不再要阿语副字幕
+            captionAr: ""
           })).filter((s) => s.prompt), Ve.value = i.length ? o.t("已按素材生成分镜提示词，可逐条修改。") : "";
         } catch (d) {
-          Ve.value = o.t("模型未按时返回，已按参考图顺序生成基础提示词，可自行修改：{p0}", { p0: U(d) });
+          Ve.value = o.t("模型未按时返回，已按参考图顺序生成基础提示词，可自行修改：{p0}", { p0: R(d) });
         }
         if (!i.length) {
-          const d = [
-            "slow push in, cinematic lighting, subtle parallax",
-            "slow pan right, shallow depth of field, natural light",
-            "gentle pull back revealing the scene, cinematic grade",
-            "slow tilt up, soft highlights, premium look"
-          ], c = h.arabicHeadline.trim() || r;
+          const d = Hn(), c = r;
           i = l.slice(0, 3).map((s, p) => ({
             id: `0${p + 1}`,
             referenceImage: s,
             duration: 5,
             prompt: d[p % d.length],
             caption: p === 0 ? c : "",
-            // 兜底只用用户填过的内容，没有可用的阿语副字幕就留空（不编）
-            captionAr: p === 0 ? h.arabicHeadline.trim() : ""
+            captionAr: ""
           }));
         }
-        F.value = i, Et();
+        I.value = i, et();
       } catch (a) {
-        Ve.value = U(a);
+        Ve.value = R(a);
       } finally {
         se.value = !1;
       }
     }
-    async function Co() {
-      F.value = F.value.map((a) => ({ ...a, prompt: a.prompt.trim(), caption: a.caption.trim(), captionAr: (a.captionAr || "").trim() })).filter((a) => a.prompt), Et(), Ne.value = F.value.length > 0;
+    async function Bo() {
+      I.value = I.value.map((a) => ({ ...a, prompt: a.prompt.trim(), caption: a.caption.trim(), captionAr: (a.captionAr || "").trim() })).filter((a) => a.prompt), et(), Ne.value = I.value.length > 0;
       const t = G.value.trim(), n = window.electronAPI?.solution?.listMediaDir;
-      if (t && typeof n == "function" && !D.value.length)
+      if (t && typeof n == "function" && !w.value.length)
         try {
           const a = await n(t);
           a?.ok && Array.isArray(a.files) && a.files.length && cn(a);
         } catch (a) {
           console.warn("[ads-assets] 保存提示词时载入素材失败（不影响提示词已保存）", a);
         }
-      et.value = !1, v.success(o.t("已保存 {p0} 个分镜提示词；第 5 步将按它出片", { p0: F.value.length }));
+      tt.value = !1, v.success(o.t("已保存 {p0} 个分镜提示词；第 5 步将按它出片", { p0: I.value.length }));
     }
-    const et = e.ref(!1);
+    const tt = e.ref(!1);
     e.ref(!1);
-    const G = e.ref(localStorage.getItem(eo) || "");
+    const G = e.ref(localStorage.getItem(to) || "");
     e.watch(G, (t) => {
       try {
-        localStorage.setItem(eo, t || "");
+        localStorage.setItem(to, t || "");
       } catch {
       }
     });
     function nn() {
-      const t = zt.value.join(" / "), n = J.value === "slideshow" ? o.t("图片成片") : ke.value || o.t("动态视频生成"), a = Pe.value ? o.t("阿英双语字幕 + TTS 旁白") : o.t("阿英双语字幕（不加 AI 旁白，保留素材原声）");
-      return o.t("制作一条 15–30 秒 UAE 广告视频（画幅：{p0}；成片方式：{p1}）：阿语 RTL 标题 + {p2}；突出品牌核心卖点与明确的行动引导；只使用素材内可核验的事实。", {
+      const t = zt.value.join(" / "), n = J.value === "slideshow" ? o.t("图片成片") : ke.value || o.t("动态视频生成"), a = Pe.value ? o.t("中文字幕 + 中文 TTS 旁白") : o.t("中文字幕（不加 AI 旁白，保留素材原声）");
+      return o.t("制作一条 15–30 秒广告视频（画幅：{p0}；成片方式：{p1}）：{p2}，画面内文字一律用简体中文；突出品牌核心卖点与明确的行动引导；只使用素材内可核验的事实。", {
         p0: t,
         p1: n,
         p2: a
       });
     }
-    const we = e.ref(""), on = e.ref(!1);
-    e.watch(we, (t) => {
+    const Se = e.ref(""), on = e.ref(!1);
+    e.watch(Se, (t) => {
       t && t !== nn() && (on.value = !0);
     });
     const Gt = e.ref(!1), hl = e.ref(!1), Nt = e.ref(""), kl = e.ref("");
     function Ht() {
       try {
-        localStorage.setItem(Zn, JSON.stringify(W.value));
+        localStorage.setItem(Qn, JSON.stringify(W.value));
       } catch {
       }
     }
@@ -849,7 +847,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       const n = new Date(t), a = (l) => String(l).padStart(2, "0");
       return `${n.getFullYear()}-${a(n.getMonth() + 1)}-${a(n.getDate())} ${a(n.getHours())}:${a(n.getMinutes())}`;
     }
-    async function Bo() {
+    async function To() {
       const t = G.value.trim(), n = window.electronAPI?.solution?.listMediaDir;
       if (!t || typeof n != "function") return;
       const a = t.includes("\\") ? "\\" : "/", l = `${t.replace(/[\\/]+$/, "")}${a}${o.t("广告成片")}`;
@@ -858,7 +856,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         if (!r?.ok || !Array.isArray(r.files)) return;
         const i = new Set(W.value.map((c) => c.path)), d = r.files.filter((c) => c?.kind === "video" && !i.has(String(c.path))).map((c, s) => ({
           id: `disk-${Number(c.mtimeMs) || Date.now()}-${s}`,
-          projectName: h.brandName.trim() || String(c.name).replace(/\.[^.]+$/, ""),
+          projectName: _.brandName.trim() || String(c.name).replace(/\.[^.]+$/, ""),
           path: String(c.path),
           createdAt: Number(c.mtimeMs) || Date.now()
         }));
@@ -869,10 +867,10 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       }
     }
     async function rn() {
-      if (!bt.value) {
-        bt.value = !0;
+      if (!Et.value) {
+        Et.value = !0;
         try {
-          await Bo();
+          await To();
           for (const t of W.value)
             try {
               const n = await window.electronAPI?.solution?.inspectMedia?.(t.path);
@@ -880,9 +878,9 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             } catch {
               C[t.path] = !1;
             }
-          T.value && !C[T.value] && (T.value = "");
+          B.value && !C[B.value] && (B.value = "");
         } finally {
-          bt.value = !1;
+          Et.value = !1;
         }
       }
     }
@@ -891,29 +889,29 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         v.warn(o.t("请先配置视频生成模型，再生成广告视频")), fl("video");
         return;
       }
-      on.value || (we.value = nn()), et.value = !0;
+      on.value || (Se.value = nn()), tt.value = !0;
     }
-    const tt = e.ref(!1), Jt = e.ref(8);
-    function To(t) {
-      const n = t.absolutePath || t.relativePath || t.name, a = D.value.filter((l) => (l.absolutePath || l.relativePath || l.name) !== n);
+    const lt = e.ref(!1), Jt = e.ref(8);
+    function Lo(t) {
+      const n = t.absolutePath || t.relativePath || t.name, a = w.value.filter((l) => (l.absolutePath || l.relativePath || l.name) !== n);
       if (t.previewUrl && t.previewUrl.startsWith("blob:"))
         try {
           URL.revokeObjectURL(t.previewUrl);
         } catch {
         }
-      D.value = a, a.length || (oe.value = "");
+      w.value = a, a.length || (oe.value = "");
     }
-    async function Lo() {
-      if (Ne.value = !1, tt.value) return;
+    async function Po() {
+      if (Ne.value = !1, lt.value) return;
       const t = window.electronAPI?.solution;
       if (typeof t?.pickFolder != "function" || typeof t?.listMediaDir != "function") {
-        Hl.value?.click();
+        Gl.value?.click();
         return;
       }
       try {
         const n = await t.pickFolder({ title: o.t("选择素材文件夹") });
         if (console.info("[ads-assets] 选择素材文件夹", { dir: n }), !n) return;
-        tt.value = !0;
+        lt.value = !0;
         const a = await t.listMediaDir(String(n));
         if (console.info("[ads-assets] 扫描结果", { ok: a?.ok, count: a?.files?.length, error: a?.error }), !a?.ok) {
           oe.value = a?.error || o.t("读取素材文件夹失败");
@@ -923,18 +921,18 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
           oe.value = o.t("这个文件夹里没有找到可用的图片或视频素材。");
           return;
         }
-        cn(a), G.value = String(a.dir || n), oe.value = "", console.info("[ads-assets] 已载入素材", { count: D.value.length, dir: G.value }), v.success(o.t("已载入 {p0} 个素材", { p0: D.value.length }));
+        cn(a), G.value = String(a.dir || n), oe.value = "", console.info("[ads-assets] 已载入素材", { count: w.value.length, dir: G.value }), v.success(o.t("已载入 {p0} 个素材", { p0: w.value.length }));
       } catch (n) {
-        console.error("[ads-assets] 读取素材文件夹失败", n), oe.value = U(n), v.fromException(o.t("读取素材文件夹失败"), n);
+        console.error("[ads-assets] 读取素材文件夹失败", n), oe.value = R(n), v.fromException(o.t("读取素材文件夹失败"), n);
       } finally {
-        tt.value = !1;
+        lt.value = !1;
       }
     }
     function cn(t) {
       _l();
       const n = String(t.thumbDataUrl || "");
       let a = !1;
-      D.value = t.files.map((l) => {
+      w.value = t.files.map((l) => {
         const r = l.kind !== "video", i = r && !a && !!n;
         return i && (a = !0), {
           name: String(l.name),
@@ -957,8 +955,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         v.fromException(o.t("选择素材文件夹失败"), t);
       }
     }
-    function Po(t) {
-      T.value = T.value === t.path ? "" : t.path;
+    function Io(t) {
+      B.value = B.value === t.path ? "" : t.path;
     }
     function un(t) {
       return [
@@ -967,28 +965,28 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       ];
     }
     function bl(t, n, a, l) {
-      Y.finishOverseasPublishRun(t, n, a, l), _.value = [..._.value];
+      Y.finishOverseasPublishRun(t, n, a, l), V.value = [...V.value];
     }
-    function Io(t) {
+    function Mo(t) {
       const n = (l) => l >= 60 ? o.t("{p0} 分 {p1} 秒", { p0: Math.floor(l / 60), p1: l % 60 }) : o.t("{p0} 秒", { p0: l }), a = Number(t.etaSec) > 0 ? n(Number(t.etaSec)) : "";
       if (t.state === "running" && t.startedAt) {
-        const l = Math.max(0, Math.round((Se.now.value - t.startedAt) / 1e3));
-        if (Se.suspect.value) return o.t("已用 {p0} · 可能已超时", { p0: n(l) });
+        const l = Math.max(0, Math.round((we.now.value - t.startedAt) / 1e3));
+        if (we.suspect.value) return o.t("已用 {p0} · 可能已超时", { p0: n(l) });
         if (!a) return o.t("已用 {p0}", { p0: n(l) });
         const r = l - Number(t.etaSec);
         if (r > 5) {
-          const i = Se.sinceHeartbeatSec.value;
+          const i = we.sinceHeartbeatSec.value;
           return i != null && i < 120 ? o.t("已用 {p0} · 已超预计 {p1} · 仍在生成（{p2} 前有进度）", { p0: n(l), p1: n(r), p2: n(i) }) : o.t("已用 {p0} · 已超预计 {p1}", { p0: n(l), p1: n(r) });
         }
         return o.t("已用 {p0} · 预计 {p1}", { p0: n(l), p1: a });
       }
       return t.state === "done" ? "" : a ? o.t("预计 {p0}", { p0: a }) : "";
     }
-    const qt = e.ref(null), lt = e.computed(() => b.value.find((t) => t.state === "running") || null), Se = Fl.useStepWatchdog({
-      running: () => S.value && !!lt.value,
-      startedAt: () => lt.value?.startedAt,
-      estimateMs: () => Number(lt.value?.etaSec) > 0 ? Number(lt.value.etaSec) * 1e3 : null,
-      kind: () => lt.value?.kind || "generic",
+    const qt = e.ref(null), nt = e.computed(() => k.value.find((t) => t.state === "running") || null), we = Wl.useStepWatchdog({
+      running: () => N.value && !!nt.value,
+      startedAt: () => nt.value?.startedAt,
+      estimateMs: () => Number(nt.value?.etaSec) > 0 ? Number(nt.value.etaSec) * 1e3 : null,
+      kind: () => nt.value?.kind || "generic",
       lastProgressAt: () => Mt.value || null,
       waitExtendedAt: () => nl.value || null,
       onHeartbeat: (t) => {
@@ -999,13 +997,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       }
     });
     function mn() {
-      Se.heartbeat();
+      we.heartbeat();
     }
-    const Vt = e.ref(""), wt = e.ref(!1), St = e.computed(() => S.value ? Se.suspect.value ? { state: "suspect", message: "" } : null : b.value.some((n) => n.state === "failed") ? rt.value && !_.value.length ? { state: "interrupted", message: L.value } : { state: "failed", message: L.value || o.t("成片生成失败") } : null);
+    const Vt = e.ref(""), St = e.ref(!1), wt = e.computed(() => N.value ? we.suspect.value ? { state: "suspect", message: "" } : null : k.value.some((n) => n.state === "failed") ? it.value && !V.value.length ? { state: "interrupted", message: T.value } : { state: "failed", message: T.value || o.t("成片生成失败") } : null);
     e.onBeforeUnmount(() => {
-      window.removeEventListener("totalclaw:media-model-changed", Hn);
+      window.removeEventListener("totalclaw:media-model-changed", Yn);
     });
-    function Mo(t, n) {
+    function Oo(t, n) {
       return new Promise((a) => {
         const l = Date.now(), r = window.setInterval(() => {
           if (t()) {
@@ -1016,17 +1014,17 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         }, 200);
       });
     }
-    async function Oo() {
-      if (!(wt.value || $.value)) {
-        wt.value = !0;
+    async function Wo() {
+      if (!(St.value || $.value)) {
+        St.value = !0;
         try {
-          if (S.value && (await _n(), !await Mo(() => !S.value, 2e4))) {
+          if (N.value && (await _n(), !await Oo(() => !N.value, 2e4))) {
             v.warn(o.t("旧任务还没有退出，暂时无法重新生成；请稍后再试或重启应用。"));
             return;
           }
-          await Sn();
+          await wn();
         } finally {
-          wt.value = !1;
+          St.value = !1;
         }
       }
     }
@@ -1035,33 +1033,33 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         super(...arguments), this.preflight = !0;
       }
     }
-    async function Wo(t) {
+    async function Fo(t) {
       const n = window.electronAPI?.solution?.listMediaDir;
       if (typeof n != "function") return;
       if (J.value === "dynamic") {
-        const r = Ne.value && F.value.some((d) => d.prompt.trim() && d.referenceImage), i = D.value.some((d) => d.kind === "image" && d.absolutePath);
+        const r = Ne.value && I.value.some((d) => d.prompt.trim()), i = w.value.some((d) => d.kind === "image" && d.absolutePath);
         if (r || i) return;
       }
       let a = null;
       try {
         a = await n(t);
       } catch (r) {
-        throw new El(o.t("素材文件夹读取失败：{p0}", { p0: U(r) }));
+        throw new El(o.t("素材文件夹读取失败：{p0}", { p0: R(r) }));
       }
       if (!a?.ok)
         throw new El(a?.error ? o.t("素材文件夹读取失败：{p0}", { p0: String(a.error) }) : o.t("素材文件夹读不到（可能已被移动或删除）：{p0}", { p0: t }));
       if (!(Array.isArray(a.files) ? a.files : []).filter((r) => r?.kind === "image").length)
         throw new El(J.value === "slideshow" ? o.t("素材文件夹里没有图片（jpg/png/webp/heic…），图片成片无法开始：{p0}。请在第 3 步换一个含图片的文件夹。", { p0: t }) : o.t("素材文件夹里没有图片，动态视频生成需要图片作为首帧参考图：{p0}。请在第 3 步换一个含图片的文件夹，或先生成分镜提示词。", { p0: t }));
     }
-    function Fo(t) {
+    function Ro(t) {
       if (t.state === "running") {
         const n = (Array.isArray(t.steps) ? t.steps : []).find((a) => a.state === "running");
         return n ? o.t(n.label) : o.t("执行中…");
       }
       return t.state === "done" ? t.status || o.t("已完成") : t.state === "failed" ? t.status || o.t("未完成") : o.t("待执行");
     }
-    const pn = e.computed(() => _.value.filter((t) => t.state === "failed").length), nt = e.computed(() => {
-      const t = _.value, n = (r) => Array.isArray(r?.steps) ? r.steps : [], a = t.reduce((r, i) => r + n(i).length, 0), l = t.reduce(
+    const pn = e.computed(() => V.value.filter((t) => t.state === "failed").length), ot = e.computed(() => {
+      const t = V.value, n = (r) => Array.isArray(r?.steps) ? r.steps : [], a = t.reduce((r, i) => r + n(i).length, 0), l = t.reduce(
         (r, i) => r + n(i).filter((d) => d.state === "done" || d.state === "failed" || d.state === "skipped").length,
         0
       );
@@ -1084,21 +1082,21 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         v.warn(o.t("当前版本未开放广告内容发布"));
         return;
       }
-      T.value = t.path;
+      B.value = t.path;
       const a = t.path.replace(/-(9x16|4x5|16x9|1x1)\.mp4$/i, ""), l = W.value.filter((c) => c.path === t.path || c.path.startsWith(a) && C[c.path]), r = (c) => {
-        const s = yt[c], p = l.find((y) => Ze(y.path) === s?.recommended);
+        const s = ht[c], p = l.find((y) => Xe(y.path) === s?.recommended);
         return p || l.find((y) => Zl(c, y.path)) || null;
       }, i = [], d = [];
-      for (const c of Z.value) {
+      for (const c of X.value) {
         const s = r(c.id);
         s ? i.push({ platform: c, video: s }) : d.push(c.label);
       }
       if (d.length) {
         const c = new Set(de.value);
-        for (const s of Z.value)
+        for (const s of X.value)
           d.includes(s.label) && c.add(s.id);
         de.value = c, v.warn(o.t("这批成片的画幅（{p0}）不适用于 {p1}，已在第 2 步取消勾选。需要投这些平台请在「成片比例」里补勾对应画幅后重新生成。", {
-          p0: [...new Set(l.map((s) => Ze(s.path)).filter(Boolean))].join(" / ") || o.t("未知"),
+          p0: [...new Set(l.map((s) => Xe(s.path)).filter(Boolean))].join(" / ") || o.t("未知"),
           p1: d.join(" / ")
         }));
       }
@@ -1106,7 +1104,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         v.warn(o.t("没有平台能接受这批成片的画幅，未执行发布。"));
         return;
       }
-      $.value = t.id, _.value = i.map(({ platform: c, video: s }) => ({
+      $.value = t.id, V.value = i.map(({ platform: c, video: s }) => ({
         platformId: c.id,
         platform: c.label,
         icon: c.icon,
@@ -1114,7 +1112,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         file: s.path.split(/[\\/]/).pop() || s.path,
         // 重试要按这条绝对路径重新发，只留文件名是不够的
         filePath: s.path,
-        aspect: Ze(s.path) || o.t("未标注"),
+        aspect: Xe(s.path) || o.t("未标注"),
         steps: un(c.id),
         state: "pending",
         status: "pending",
@@ -1122,7 +1120,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       }));
       try {
         for (let c = 0; c < i.length; c += 1) {
-          const { platform: s, video: p } = i[c], y = _.value[c];
+          const { platform: s, video: p } = i[c], y = V.value[c];
           await gn(y, s, p);
         }
       } finally {
@@ -1135,8 +1133,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         bl(t, !1, "blocked", o.t("当前版本未开放广告内容发布"));
         return;
       }
-      const r = String(ue.youtube || "").trim(), i = h.arabicHeadline.trim(), d = [
-        o.t("品牌 / 产品：{p0}", { p0: h.brandName.trim() || a.projectName }),
+      const r = String(ue.youtube || "").trim(), i = _.arabicHeadline.trim(), d = [
+        o.t("品牌 / 产品：{p0}", { p0: _.brandName.trim() || a.projectName }),
         i ? o.t("阿语广告标题：{p0}", { p0: i }) : "",
         r ? o.t("话题：{p0}", { p0: r }) : "",
         o.t("目标市场：阿联酋（UAE），受众为一般成年消费者。"),
@@ -1147,24 +1145,24 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         platform: n.id,
         videoPath: a.path,
         title: a.projectName,
-        caption: [h.arabicHeadline, ue[n.id] || ""].filter(Boolean).join(`
+        caption: [_.arabicHeadline, ue[n.id] || ""].filter(Boolean).join(`
 `),
         hashtags: String(ue[n.id] || "").split(/[\s,，]+/).filter(Boolean),
         tenantId: A.tenantId.trim() || "tenant-uae-demo",
-        autoPublish: ht.value,
+        autoPublish: kt.value,
         contextBrief: d
       }, () => {
-        _.value = [..._.value], x();
+        V.value = [...V.value], x();
       });
     }
     async function fn(t) {
-      if ($.value || S.value) return;
-      const n = _.value.filter((a) => a.state === "failed" && (!t || a.platformId === t));
+      if ($.value || N.value) return;
+      const n = V.value.filter((a) => a.state === "failed" && (!t || a.platformId === t));
       if (n.length) {
-        rt.value = !1, $.value = `retry-${Date.now()}`;
+        it.value = !1, $.value = `retry-${Date.now()}`;
         try {
           for (const a of n) {
-            const l = N.find((d) => d.id === a.platformId), r = String(a.filePath || "");
+            const l = b.find((d) => d.id === a.platformId), r = String(a.filePath || "");
             if (!l || !r) {
               bl(a, !1, "blocked", o.t("这条运行记录缺少成片路径，无法重试；请重新选择成片后执行。"));
               continue;
@@ -1178,9 +1176,9 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               );
               continue;
             }
-            C[r] = !0, a.steps = un(l.id), a.state = "pending", a.status = "pending", a.detail = "", _.value = [..._.value], await gn(a, l, {
+            C[r] = !0, a.steps = un(l.id), a.state = "pending", a.status = "pending", a.detail = "", V.value = [...V.value], await gn(a, l, {
               id: `retry-${l.id}`,
-              projectName: h.brandName.trim() || l.label,
+              projectName: _.brandName.trim() || l.label,
               path: r,
               createdAt: Date.now()
             });
@@ -1190,9 +1188,9 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         }
       }
     }
-    function Ro(t) {
+    function Uo(t) {
       const n = W.value.find((a) => a.id === t);
-      W.value = W.value.filter((a) => a.id !== t), Ht(), n && T.value === n.path && (T.value = "");
+      W.value = W.value.filter((a) => a.id !== t), Ht(), n && B.value === n.path && (B.value = "");
     }
     async function yn(t) {
       Gt.value = !0, hl.value = !0, Nt.value = "", kl.value = t.path;
@@ -1233,17 +1231,17 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         name: o.t("阿联酋广告·定时视频投放"),
         desc: o.t("按计划从素材库真实生成 UAE 广告视频并自动发布到已登录平台（需先选择素材库）"),
         cron: "30 10 * * *",
-        prompt: o.t("用「阿联酋广告投放」能力执行一轮定时视频投放：从素材库 {materialDir} 读取素材，真实生成一条 15–30 秒 9:16 的 UAE 广告视频（阿语 RTL 标题 + 阿英双语字幕 + TTS 旁白），随后对已登录的平台执行真实发布（YouTube 经外部 Chrome 上传，Meta 经 Business Suite），发布结果与回执写入审计；未登录的平台如实标记跳过，不得伪造成功。")
+        prompt: o.t("用「阿联酋广告投放」能力执行一轮定时视频投放：从素材库 {materialDir} 读取素材，真实生成一条 15–30 秒 9:16 的广告视频（中文字幕 + 中文 TTS 旁白，画面内文字一律用简体中文），随后对已登录的平台执行真实发布（YouTube 经外部 Chrome 上传，Meta 经 Business Suite），发布结果与回执写入审计；未登录的平台如实标记跳过，不得伪造成功。")
       }
-    ], _t = e.reactive({ review: !0, patrol: !0, weekly: !0, video: !1 }), Dt = e.ref(!1), At = e.ref(""), Fe = e.ref(localStorage.getItem(to) || "");
+    ], _t = e.reactive({ review: !0, patrol: !0, weekly: !0, video: !1 }), Dt = e.ref(!1), At = e.ref(""), Fe = e.ref(localStorage.getItem(lo) || "");
     e.watch(Fe, (t) => {
       try {
-        localStorage.setItem(to, t || "");
+        localStorage.setItem(lo, t || "");
       } catch {
       }
       t.trim() || (_t.video = !1);
     });
-    async function Uo() {
+    async function zo() {
       try {
         const t = await window.electronAPI?.solution?.pickFolder?.();
         t && (Fe.value = t);
@@ -1251,12 +1249,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         v.fromException(o.t("选择素材文件夹失败"), t);
       }
     }
-    const R = e.reactive({
+    const F = e.reactive({
       review: { freq: "daily", hour: 9, minute: 0, weekday: 1, everyHours: 6 },
       patrol: { freq: "hours", hour: 9, minute: 0, weekday: 1, everyHours: 6 },
       weekly: { freq: "weekly", hour: 10, minute: 0, weekday: 1, everyHours: 6 },
       video: { freq: "daily", hour: 10, minute: 30, weekday: 1, everyHours: 6 }
-    }), zo = Array.from({ length: 24 }, (t, n) => n), Ko = [0, 15, 30, 45], jo = [1, 2, 3, 4, 6, 8, 12], Go = [
+    }), Ko = Array.from({ length: 24 }, (t, n) => n), jo = [0, 15, 30, 45], Go = [1, 2, 3, 4, 6, 8, 12], Ho = [
       { value: 1, label: o.t("周一") },
       { value: 2, label: o.t("周二") },
       { value: 3, label: o.t("周三") },
@@ -1268,30 +1266,30 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
     function hn(t) {
       return t.freq === "hours" ? `0 */${t.everyHours} * * *` : t.freq === "weekly" ? `${t.minute} ${t.hour} * * ${t.weekday}` : `${t.minute} ${t.hour} * * *`;
     }
-    function Ho(t, n) {
+    function Jo(t, n) {
       const a = String(t || "").trim().split(/\s+/);
       if (a.length !== 5) return { ...n };
       const [l, r, , , i] = a;
       return r.startsWith("*/") ? { ...n, freq: "hours", everyHours: Number(r.slice(2)) || n.everyHours } : /^\d+$/.test(l) && /^\d+$/.test(r) ? /^\d+$/.test(i) ? { ...n, freq: "weekly", minute: Number(l), hour: Number(r), weekday: Number(i) } : { ...n, freq: "daily", minute: Number(l), hour: Number(r) } : { ...n };
     }
     const kn = (t) => String(t).padStart(2, "0");
-    function Jo(t) {
+    function qo(t) {
       const n = String(t || "").trim().split(/\s+/);
       if (n.length !== 5) return o.t("5 段 cron 表达式：分 时 日 月 周");
       const [a, l, , , r] = n;
       return /^\d+$/.test(a) && /^\d+$/.test(l) && r === "*" ? o.t("每天 {p0}:{p1} 执行", { p0: l.padStart(2, "0"), p1: a.padStart(2, "0") }) : /^\d+$/.test(a) && l.startsWith("*/") ? o.t("每 {p0} 小时执行一次", { p0: l.slice(2) }) : /^\d+$/.test(a) && /^\d+$/.test(l) && /^\d+$/.test(r) ? o.t("每周第 {p0} 天 {p1}:{p2} 执行", { p0: r, p1: l.padStart(2, "0"), p2: a.padStart(2, "0") }) : o.t("按 cron 表达式执行");
     }
-    async function qo() {
+    async function Yo() {
       try {
         const t = await window.electronAPI?.listOpenclawCronJobs?.(), n = Array.isArray(t) ? t : t?.jobs || [];
         for (const a of Yt) {
           const l = n.find((r) => String(r?.name || "") === o.t(a.name));
-          l && (_t[a.key] = l.enabled !== !1, l.cron && (R[a.key] = Ho(String(l.cron), R[a.key])));
+          l && (_t[a.key] = l.enabled !== !1, l.cron && (F[a.key] = Jo(String(l.cron), F[a.key])));
         }
       } catch {
       }
     }
-    async function Yo() {
+    async function Zo() {
       if (!Dt.value) {
         Dt.value = !0, At.value = "";
         try {
@@ -1299,7 +1297,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
           if (!t?.saveOpenclawCronJobs) throw new Error(o.t("当前版本未开放定时任务"));
           const n = await t.listOpenclawCronJobs?.(), a = Array.isArray(n) ? n : n?.jobs || [], l = Yt.map((c) => o.t(c.name)), r = Yt.filter((c) => _t[c.key] ? c.key === "video" && !Fe.value.trim() ? (v.warn(o.t("「定时视频投放」需要先选择素材库，本次未写入该任务")), !1) : !0 : !1).map((c) => ({
             name: o.t(c.name),
-            cron: hn(R[c.key]),
+            cron: hn(F[c.key]),
             prompt: c.key === "video" ? o.t(c.prompt, { materialDir: Fe.value.trim() }) : o.t(c.prompt),
             deliver: "local",
             enabled: !0
@@ -1316,14 +1314,14 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
     }
     const Xo = e.computed(
       () => o.i18n.global.locale.value === "ar" || document.documentElement.getAttribute("dir") === "rtl"
-    ), $t = e.computed(() => !!P.value && !ct.value), _e = e.computed(() => (P.value?.regionAllowed ?? P.value?.region_allowed) !== !1), Xt = e.computed(
-      () => !!k.since && !!k.until && k.since <= k.until
-    ), bn = e.computed(() => ne[Ge.value]), Zo = e.computed(() => ie(Ge.value)), En = e.computed(
+    ), $t = e.computed(() => !!L.value && !dt.value), _e = e.computed(() => (L.value?.regionAllowed ?? L.value?.region_allowed) !== !1), Zt = e.computed(
+      () => !!h.since && !!h.until && h.since <= h.until
+    ), bn = e.computed(() => ne[Ge.value]), Qo = e.computed(() => ie(Ge.value)), En = e.computed(
       () => bn.value.some((t) => String(ge[t.key] || "").trim())
     );
     e.watch(
-      mt,
-      (t) => Gl.set(t),
+      pt,
+      (t) => jl.set(t),
       { flush: "post" }
     );
     const Ct = e.computed(() => {
@@ -1332,7 +1330,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         const a = String(n?.platform || n?.id || "").toLowerCase();
         a && t.set(a, n);
       }
-      return N.map((n) => {
+      return b.map((n) => {
         const a = t.get(n.id), l = ee[n.id];
         if (!a)
           return {
@@ -1346,33 +1344,33 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             missingSecrets: [],
             capabilities: [],
             webLogin: null,
-            error: dt.value || o.t("平台未返回状态"),
+            error: ut.value || o.t("平台未返回状态"),
             tone: "muted",
             statusLabel: o.t("未知"),
             isSandbox: !1
           };
-        const r = a.configured === !0, i = a.enabled !== !1, d = l || (a.mode === "web" ? "web" : "api"), c = (a.demoSandbox === !0 || a.demo_sandbox === !0) && d === "api", s = Ml(a.missingSecrets ?? a.missing_secrets), p = String(a.errorMessage || a.error_message || a.error || ""), y = Q(a.webLogin ?? a.web_login) ? a.webLogin ?? a.web_login : null, M = String(y?.state || "");
-        let B = "ready", f = o.t("就绪");
-        return c ? (B = "ready", f = o.t("Mock 沙箱")) : i ? d === "web" && M !== "ready" ? (B = "warning", f = o.t("待登录")) : d === "api" && (!r || s.length) ? (B = "warning", f = r ? o.t("待补凭据") : o.t("未配置")) : p && (B = "error", f = o.t("异常")) : (B = "muted", f = o.t("未启用")), {
+        const r = a.configured === !0, i = a.enabled !== !1, d = l || (a.mode === "web" ? "web" : "api"), c = (a.demoSandbox === !0 || a.demo_sandbox === !0) && d === "api", s = Il(a.missingSecrets ?? a.missing_secrets), p = String(a.errorMessage || a.error_message || a.error || ""), y = Q(a.webLogin ?? a.web_login) ? a.webLogin ?? a.web_login : null, U = String(y?.state || "");
+        let M = "ready", f = o.t("就绪");
+        return c ? (M = "ready", f = o.t("Mock 沙箱")) : i ? d === "web" && U !== "ready" ? (M = "warning", f = o.t("待登录")) : d === "api" && (!r || s.length) ? (M = "warning", f = r ? o.t("待补凭据") : o.t("未配置")) : p && (M = "error", f = o.t("异常")) : (M = "muted", f = o.t("未启用")), {
           id: n.id,
           label: String(a.label || n.label),
           enabled: i,
           configured: r,
           mode: d,
           driverFamily: String(a.driverFamily || a.driver_family || ""),
-          accountKeys: Ml(a.accountKeys ?? a.account_keys).filter(Boolean),
+          accountKeys: Il(a.accountKeys ?? a.account_keys).filter(Boolean),
           missingSecrets: s,
-          capabilities: Ml(a.capabilities),
+          capabilities: Il(a.capabilities),
           webLogin: y,
           error: p,
-          tone: B,
+          tone: M,
           statusLabel: f,
           isSandbox: c
         };
       });
-    }), Re = e.computed(() => Ct.value.some((t) => t.isSandbox && t.tone === "ready")), Qo = e.computed(
+    }), Re = e.computed(() => Ct.value.some((t) => t.isSandbox && t.tone === "ready")), xo = e.computed(
       () => Ct.value.filter((t) => t.configured && t.enabled).length
-    ), ce = e.computed(() => D.value.find((t) => t.kind === "image") ?? D.value[0] ?? null), Zt = e.computed(() => ce.value), Nn = e.computed(() => N.find((t) => t.id === Ot.value) || N[0]), Bt = e.computed(() => D.value.filter((t) => t.kind === "image").length), Tt = e.computed(() => D.value.filter((t) => t.kind === "video").length), Nl = e.computed(() => D.value.reduce((t, n) => t + n.size, 0)), xo = e.computed(() => {
+    ), ce = e.computed(() => w.value.find((t) => t.kind === "image") ?? w.value[0] ?? null), Xt = e.computed(() => ce.value), Nn = e.computed(() => b.find((t) => t.id === Ot.value) || b[0]), Bt = e.computed(() => w.value.filter((t) => t.kind === "image").length), Tt = e.computed(() => w.value.filter((t) => t.kind === "video").length), Nl = e.computed(() => w.value.reduce((t, n) => t + n.size, 0)), ea = e.computed(() => {
       const t = [];
       return Bt.value && t.push(o.t("{count} 张图片", { count: Bt.value })), Tt.value && t.push(o.t("{count} 个视频", { count: Tt.value })), t.join(" · ");
     }), de = e.ref(/* @__PURE__ */ new Set()), ue = e.reactive({
@@ -1380,24 +1378,24 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       instagram: "",
       google_ads: "",
       youtube: ""
-    }), Z = e.computed(() => N.filter((t) => !de.value.has(t.id)));
-    function ea() {
+    }), X = e.computed(() => b.filter((t) => !de.value.has(t.id)));
+    function ta() {
       return JSON.stringify(Object.fromEntries(
-        Z.value.map((t) => [t.id, String(ue[t.id] || "").trim()]).filter(([, t]) => t.length > 0)
+        X.value.map((t) => [t.id, String(ue[t.id] || "").trim()]).filter(([, t]) => t.length > 0)
       ));
     }
     e.watch(
-      [() => h.brandName, () => h.arabicHeadline, () => A.tenantId, ue],
+      [() => _.brandName, () => _.arabicHeadline, () => A.tenantId, ue],
       () => {
         cl.info = !0;
       },
       { deep: !0 }
     ), e.watch(
-      Z,
+      X,
       (t) => {
-        if (Xl.value) return;
+        if (Yl.value) return;
         const n = /* @__PURE__ */ new Set();
-        for (const a of t) n.add(yt[a.id]?.recommended || "9:16");
+        for (const a of t) n.add(ht[a.id]?.recommended || "9:16");
         n.size && (Le.value = [...n]);
       },
       { immediate: !0 }
@@ -1410,31 +1408,31 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
     function Qt(t) {
       return t !== "campaign-launch" ? !0 : be.value && Ye.value && !!A.tenantId.trim() && Vl.value.length > 0;
     }
-    function wn(t) {
+    function Sn(t) {
       return t !== "campaign-launch" ? "" : be.value ? Ye.value ? A.tenantId.trim() ? Vl.value.length ? "" : o.t("请至少启用一个 Web 目标平台，或为一个 API 平台配齐凭据；Web 登录会在工作流中完成。") : o.t("请填写客户标识，用于账户隔离与审计。") : o.t("请先在上方上传客户广告素材，或在「广告视频」历史列表中选择一条已生成的成片。") : o.t("请先配置视频生成模型：在「投放工作区 → 制作引擎配置」点开弹层完成接入后，才能执行后续投放流程。");
     }
-    async function Sn() {
-      if ($.value || S.value) return;
-      Vt.value = "", co();
+    async function wn() {
+      if ($.value || N.value) return;
+      Vt.value = "", uo();
       let t = null;
       try {
-        const n = await oa();
+        const n = await aa();
         t = W.value.find((a) => a.path === n) || null;
       } catch (n) {
-        if (S.value = !1, ta(n)) {
-          b.value = b.value.map((a) => a.state === "running" || a.state === "pending" ? { ...a, state: "cancelled" } : a), L.value = o.t("已取消本次成片");
+        if (N.value = !1, la(n)) {
+          k.value = k.value.map((a) => a.state === "running" || a.state === "pending" ? { ...a, state: "cancelled" } : a), T.value = o.t("已取消本次成片");
           try {
             x();
           } catch {
           }
-          wt.value || v.info(o.t("已取消本次成片"));
+          St.value || v.info(o.t("已取消本次成片"));
           return;
         }
         if (n?.preflight) {
-          Vt.value = U(n), v.warn(Vt.value);
+          Vt.value = R(n), v.warn(Vt.value);
           return;
         }
-        Ma(), L.value = U(n);
+        Oa(), T.value = R(n);
         try {
           x();
         } catch {
@@ -1457,24 +1455,24 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         v.warn(o.t("这条成片的文件当前读不到（可能已被移动或删除）：{p0}", { p0: t.path }));
         return;
       }
-      await vn(t), ia(t);
+      await vn(t), sa(t);
     }
-    const wl = e.computed(() => {
-      const t = b.value.length || 1, n = b.value.filter((a) => a.state === "done" || a.state === "failed").length;
+    const Sl = e.computed(() => {
+      const t = k.value.length || 1, n = k.value.filter((a) => a.state === "done" || a.state === "failed").length;
       return { done: n, total: t, percent: Math.round(n / t * 100) };
-    }), ot = e.ref(!1);
-    e.watch(S, (t) => {
-      t || (ot.value = !1);
+    }), at = e.ref(!1);
+    e.watch(N, (t) => {
+      t || (at.value = !1);
     });
     async function _n() {
-      if (!(!S.value || ot.value)) {
-        ot.value = !0, L.value = o.t("正在停止本次成片…");
+      if (!(!N.value || at.value)) {
+        at.value = !0, T.value = o.t("正在停止本次成片…");
         try {
           const t = window.electronAPI?.globalAdsRun;
           if (typeof t?.cancelSlideshow != "function") throw new Error(o.t("当前版本不支持取消成片"));
           await t.cancelSlideshow();
         } catch (t) {
-          ot.value = !1, v.fromException(o.t("取消成片失败"), t);
+          at.value = !1, v.fromException(o.t("取消成片失败"), t);
         }
       }
     }
@@ -1482,10 +1480,10 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       const t = new Error(o.t("已取消本次成片"));
       return t.cancelled = !0, t;
     }
-    function ta(t) {
+    function la(t) {
       return !!t?.cancelled;
     }
-    function la(t) {
+    function na(t) {
       const n = Array.isArray(t?.skippedFiles) ? t.skippedFiles : [];
       if (!n.length) return;
       const a = n.slice(0, 5).map((l) => `${String(l.name)}（${String(l.reason)}）`).join(o.t("、"));
@@ -1494,19 +1492,19 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         p1: a + (n.length > 5 ? "…" : "")
       }));
     }
-    async function na(t, n, a) {
+    async function oa(t, n, a) {
       const l = window.electronAPI?.globalAdsRun;
       if (typeof l?.slideshow != "function")
-        throw S.value = !1, new Error(o.t("当前版本未开放图片成片快路"));
+        throw N.value = !1, new Error(o.t("当前版本未开放图片成片快路"));
       const r = Math.max(1, n.length);
-      b.value = [
+      k.value = [
         { id: "script", name: o.t("① 生成旁白与字幕文案"), state: "pending", etaSec: 25, kind: "llm" },
         { id: "render", name: o.t("② 图片拼接成片"), state: "pending", etaSec: 45 * r, kind: "image" },
         { id: "mix", name: o.t("③ 混入旁白与配乐"), state: "pending", etaSec: 20 * r, kind: "tts" },
         { id: "subtitle", name: o.t("④ 烧录字幕"), state: "pending", etaSec: 30 * r, kind: "image" }
       ];
-      const i = (f, V) => {
-        b.value = b.value.map((u) => u.id === f ? { ...u, state: V, startedAt: V === "running" ? Date.now() : u.startedAt } : u);
+      const i = (f, S) => {
+        k.value = k.value.map((u) => u.id === f ? { ...u, state: S, startedAt: S === "running" ? Date.now() : u.startedAt } : u);
         try {
           x();
         } catch (u) {
@@ -1514,66 +1512,60 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         }
       };
       let d = [], c = [];
-      const s = Pl(), p = () => {
-        const f = a.trim(), V = h.arabicHeadline.trim(), u = String(ue.instagram || ue.facebook || "").trim(), E = [];
-        return f ? E.push({ en: f, ar: V }) : V && E.push({ en: "", ar: V }), u && E.push({ en: u, ar: "" }), E.filter((w) => w.en || w.ar);
+      const s = jn(), p = () => {
+        const f = a.trim(), S = String(ue.instagram || ue.facebook || "").trim(), u = [];
+        return f && u.push({ en: f, ar: "" }), S && u.push({ en: S, ar: "" }), u.filter((E) => E.en || E.ar);
       };
       if (Pe.value) {
-        i("script", "running"), L.value = o.t("正在撰写旁白与字幕文案…");
+        i("script", "running"), T.value = o.t("正在撰写旁白与字幕文案…");
         try {
           const f = await Y.askLlmOnce("marketing-content-creator", [
-            o.t("为品牌「{p0}」写一条面向阿联酋市场的短视频广告旁白，3 句，每句 6–12 个词，口语、可直接朗读。", { p0: a }),
+            o.t("为品牌「{p0}」写一条短视频广告旁白，3 句，每句 12–24 个字，口语、可直接朗读。", { p0: a }),
             // 旁白语言跟随界面语言（原来写死英文），否则中文用户会听到中文音色念英文
             o.t("旁白（primary 字段）必须用{p0}撰写。", { p0: s.label }),
-            h.arabicHeadline.trim() ? o.t("阿语广告标题：{p0}", { p0: h.arabicHeadline.trim() }) : "",
-            o.t("只输出 JSON，不要解释、不要代码块。格式：") + ` {"lines":[{"primary":"${s.label}旁白","ar":"阿语字幕"}]}`,
+            o.t("只输出 JSON，不要解释、不要代码块。格式：") + ` {"lines":[{"primary":"${s.label}旁白"}]}`,
             o.t("严禁编造价格、优惠、功效或上下文里没有的事实。")
           ].filter(Boolean).join(`
-`), 25e3), V = Y.extractJsonObject(f), u = Array.isArray(V?.lines) && V.lines.length ? V.lines.slice(0, 3) : p(), E = (w) => String(w?.primary || w?.[s.code] || w?.en || "").trim();
-          d = u.map((w, Ue) => ({
+`), 25e3), S = Y.extractJsonObject(f), u = Array.isArray(S?.lines) && S.lines.length ? S.lines.slice(0, 3) : p(), E = (D) => String(D?.primary || D?.[s.code] || D?.en || "").trim();
+          d = u.map((D, Ue) => ({
             id: `s${Ue + 1}`,
-            text: E(w)
-          })).filter((w) => w.text), c = u.map((w, Ue) => {
-            const Jn = E(w), qn = String(w?.ar || "").trim(), $a = s.code === "ar" ? [Jn || qn] : [Jn, qn];
-            return {
-              start: 1 + Ue * 7,
-              end: 6.5 + Ue * 7,
-              text: $a.filter(Boolean).join(`
-`)
-            };
-          }).filter((w) => w.text);
+            text: E(D)
+          })).filter((D) => D.text), c = u.map((D, Ue) => ({
+            start: 1 + Ue * 7,
+            end: 6.5 + Ue * 7,
+            text: E(D)
+          })).filter((D) => D.text);
         } catch (f) {
-          const V = p();
-          d = V.map((u, E) => ({ id: `s${E + 1}`, text: String(u.en || u.ar || "").trim() })).filter((u) => u.text), c = V.map((u, E) => ({
+          const S = p();
+          d = S.map((u, E) => ({ id: `s${E + 1}`, text: String(u.en || u.ar || "").trim() })).filter((u) => u.text), c = S.map((u, E) => ({
             start: 1 + E * 7,
             end: 6.5 + E * 7,
-            // 兜底文案只含用户自己填过的品牌/阿语标题/话题，本来就没有语言可选，原样呈现
-            text: [u.en, u.ar].filter(Boolean).join(`
-`)
-          })).filter((u) => u.text), L.value = d.length ? o.t("模型未在 25 秒内返回，已改用你填写的品牌与标题作为文案：{p0}", { p0: U(f) }) : o.t("旁白文案生成失败，本次成片不带旁白与字幕：{p0}", { p0: U(f) });
+            // 兜底文案只含用户自己填过的品牌 / 话题，原样呈现
+            text: String(u.en || "").trim()
+          })).filter((u) => u.text), T.value = d.length ? o.t("模型未在 25 秒内返回，已改用你填写的品牌与标题作为文案：{p0}", { p0: R(f) }) : o.t("旁白文案生成失败，本次成片不带旁白与字幕：{p0}", { p0: R(f) });
         }
         i("script", d.length ? "done" : "failed");
       } else
         i("script", "done");
-      const y = ["script", "render", "mix", "subtitle"], M = (f) => {
-        const V = y.indexOf(f);
-        if (!(V < 0)) {
-          b.value = b.value.map((u) => {
+      const y = ["script", "render", "mix", "subtitle"], U = (f) => {
+        const S = y.indexOf(f);
+        if (!(S < 0)) {
+          k.value = k.value.map((u) => {
             const E = y.indexOf(u.id);
-            return E < V ? u.state === "failed" ? u : { ...u, state: "done" } : E > V ? { ...u, state: "pending", startedAt: void 0 } : u.state === "running" ? u : { ...u, state: "running", startedAt: Date.now() };
+            return E < S ? u.state === "failed" ? u : { ...u, state: "done" } : E > S ? { ...u, state: "pending", startedAt: void 0 } : u.state === "running" ? u : { ...u, state: "running", startedAt: Date.now() };
           });
           try {
             x();
           } catch {
           }
         }
-      }, B = window.electronAPI?.globalAdsRun?.onSlideshowProgress?.((f) => {
-        mn(), f?.msg && (L.value = String(f.msg));
-        const V = Number(f?.total) || 0;
-        qt.value = V > 1 ? { done: Number(f?.done) || 0, total: V } : null, typeof f?.stage == "string" && M(String(f.stage));
+      }, M = window.electronAPI?.globalAdsRun?.onSlideshowProgress?.((f) => {
+        mn(), f?.msg && (T.value = String(f.msg));
+        const S = Number(f?.total) || 0;
+        qt.value = S > 1 ? { done: Number(f?.done) || 0, total: S } : null, typeof f?.stage == "string" && U(String(f.stage));
       });
       try {
-        M("render");
+        U("render");
         const f = await l.slideshow({
           materialDir: t,
           outputs: n,
@@ -1586,37 +1578,37 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         if (f?.cancelled) throw Dn();
         if (!f?.ok) throw new Error(f?.error || o.t("图片成片失败"));
         for (const E of ["render", "mix", "subtitle"]) i(E, "done");
-        la(f);
-        const V = (f.produced || []).map((E) => String(E.path)), u = [];
-        for (const E of V)
+        na(f);
+        const S = (f.produced || []).map((E) => String(E.path)), u = [];
+        for (const E of S)
           (await window.electronAPI?.solution?.inspectMedia?.(E))?.ok === !0 && (C[E] = !0, u.push(E));
         if (!u.length) throw new Error(o.t("脚本已结束但没有产出可用成片"));
         return W.value = [
-          ...u.map((E, w) => ({
-            id: `adv-${Date.now()}-${w}`,
+          ...u.map((E, D) => ({
+            id: `adv-${Date.now()}-${D}`,
             projectName: a,
             path: E,
             createdAt: Date.now()
           })),
           ...W.value
-        ].slice(0, 200), Ht(), te.value = 1, T.value = u[0], pe.value = u[0], L.value = o.t("成片已生成，可预览；即将进入发布。"), x(), u[0];
+        ].slice(0, 200), Ht(), te.value = 1, B.value = u[0], pe.value = u[0], T.value = o.t("成片已生成，可预览；即将进入发布。"), x(), u[0];
       } finally {
-        typeof B == "function" && B(), S.value = !1;
+        typeof M == "function" && M(), N.value = !1;
       }
     }
-    async function oa() {
-      G.value.trim() || (L.value = o.t("请选择素材所在的文件夹（生成脚本需要绝对路径）"), await dn());
+    async function aa() {
+      G.value.trim() || (T.value = o.t("请选择素材所在的文件夹（生成脚本需要绝对路径）"), await dn());
       const t = G.value.trim();
       if (!t) throw new Error(o.t("没有选择素材文件夹，无法生成成片。"));
-      await Wo(t);
+      await Fo(t);
       const n = t.includes("\\") ? "\\" : "/", a = /* @__PURE__ */ new Date(), l = (p) => String(p).padStart(2, "0"), r = `${a.getFullYear()}${l(a.getMonth() + 1)}${l(a.getDate())}-${l(a.getHours())}${l(a.getMinutes())}${l(a.getSeconds())}`, i = `${t.replace(/[\\/]+$/, "")}${n}${o.t("广告成片")}`, c = zt.value.map((p) => ({
         aspect: p,
         path: `${i}${n}uae-ad-${r}-${p.replace(":", "x")}.mp4`
       })), s = {
-        brand: h.brandName.trim() || "UAE Growth Campaign",
-        headlineAr: h.arabicHeadline.trim(),
+        brand: _.brandName.trim() || "UAE Growth Campaign",
+        headlineAr: _.arabicHeadline.trim(),
         outputPath: c[0].path,
-        brief: we.value.trim(),
+        brief: Se.value.trim(),
         mode: J.value,
         videoModel: ke.value,
         aspectRatio: c[0].aspect,
@@ -1626,9 +1618,9 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         // 素材不足时怎么办由用户显式选（P3-6），不让链路自己决定要不要花钱生图
         materialFallback: Ie.value
       };
-      return S.value = !0, pe.value = "", J.value === "slideshow" ? na(t, c, s.brand) : ra(c, s.brand);
+      return N.value = !0, pe.value = "", J.value === "slideshow" ? oa(t, c, s.brand) : ia(c, s.brand);
     }
-    function aa(t) {
+    function ra(t) {
       let n = 0;
       const a = [];
       for (const [l, r] of t.entries()) {
@@ -1637,68 +1629,61 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       }
       return a;
     }
-    async function ra(t, n) {
+    async function ia(t, n) {
       const a = window.electronAPI?.globalAdsRun;
       if (typeof a?.slideshow != "function") throw new Error(o.t("当前版本未开放视频生成快路"));
-      Math.max(1, t.length), b.value = [
+      Math.max(1, t.length), k.value = [
         { id: "script", name: o.t("① 生成分镜与运镜提示"), state: "pending", etaSec: 40, kind: "llm" },
         // 镜头只生成一次、多画幅共用（主进程侧重排版），不再按画幅乘倍数
         { id: "render", name: o.t("② 视频模型出片并拼接"), state: "pending", etaSec: 180, kind: "video" }
       ];
       const l = (s, p) => {
-        b.value = b.value.map((y) => y.id === s ? { ...y, state: p, startedAt: p === "running" ? Date.now() : y.startedAt } : y), x();
-      }, r = (Ne.value ? F.value : []).filter((s) => s.prompt.trim() && s.referenceImage).map((s, p) => ({
+        k.value = k.value.map((y) => y.id === s ? { ...y, state: p, startedAt: p === "running" ? Date.now() : y.startedAt } : y), x();
+      }, r = (Ne.value ? I.value : []).filter((s) => s.prompt.trim()).map((s, p) => ({
         id: s.id || `0${p + 1}`,
-        reference_image: s.referenceImage,
+        reference_image: s.referenceImage || "",
         duration: Number(s.duration) > 0 ? Math.min(10, Number(s.duration)) : 5,
         prompt: s.prompt.trim(),
-        // 烧进画面的是「主字幕 + 阿语副字幕」两行；朗读走 narrationFromScenes，只取主字幕
-        caption: [s.caption.trim(), (s.captionAr || "").trim()].filter(Boolean).filter((y, M, B) => B.indexOf(y) === M).join(`
-`)
+        // 成片统一中文：只烧中文字幕（旧数据里存着的阿语副字幕不再带进画面）
+        caption: s.caption.trim()
       }));
       if (r.length)
-        return b.value = b.value.map((s) => s.id === "script" ? { ...s, state: "done", etaSec: 1 } : s), L.value = o.t("使用第 3 步保存的 {p0} 个分镜提示词", { p0: r.length }), x(), An(r, t, n, a);
-      const i = D.value.filter((s) => s.kind === "image" && s.absolutePath).map((s) => String(s.absolutePath)).slice(0, 6);
+        return k.value = k.value.map((s) => s.id === "script" ? { ...s, state: "done", etaSec: 1 } : s), T.value = o.t("使用第 3 步保存的 {p0} 个分镜提示词", { p0: r.length }), x(), An(r, t, n, a);
+      const i = w.value.filter((s) => s.kind === "image" && s.absolutePath).map((s) => String(s.absolutePath)).slice(0, 6);
       if (!i.length)
         throw l("script", "failed"), new Error(o.t("动态视频生成需要图片素材作为首帧参考图；请在第 3 步先「生成广告视频提示词」，或用「选择素材文件夹」载入素材。"));
       const d = (s) => {
-        const p = [
-          "slow push in, cinematic lighting, subtle parallax",
-          "slow pan right, shallow depth of field, natural light",
-          "gentle pull back revealing the scene, cinematic grade",
-          "slow tilt up, soft highlights, premium look"
-        ], y = h.arabicHeadline.trim() || n.trim();
-        return s.slice(0, 4).map((M, B) => ({
-          id: `0${B + 1}`,
-          reference_image: M,
+        const p = Hn(), y = n.trim();
+        return s.slice(0, 4).map((U, M) => ({
+          id: `0${M + 1}`,
+          reference_image: U,
           duration: 5,
-          prompt: p[B % p.length],
-          caption: B === 0 ? y : ""
+          prompt: p[M % p.length],
+          caption: M === 0 ? y : ""
         }));
       };
-      l("script", "running"), L.value = o.t("正在生成分镜与运镜提示…");
+      l("script", "running"), T.value = o.t("正在生成分镜与运镜提示…");
       let c = [];
       try {
         const s = await Y.askLlmOnce("marketing-content-creator", [
           o.t("为品牌「{p0}」写一条面向阿联酋市场的 15–30 秒广告分镜，3 个场景。", { p0: n }),
-          h.arabicHeadline.trim() ? o.t("阿语广告标题：{p0}", { p0: h.arabicHeadline.trim() }) : "",
           o.t("可用的首帧参考图（按顺序分配，一个场景一张）：") + `
-` + i.map((y, M) => `${M + 1}. ${y}`).join(`
+` + i.map((y, U) => `${U + 1}. ${y}`).join(`
 `),
-          o.t('每个场景给：运镜与画面变化的英文 prompt（要有明确的镜头运动，不要只"轻微动"），以及一句中英/阿语字幕。'),
-          o.t("只输出 JSON，不要解释、不要代码块。格式：") + ' {"scenes":[{"reference_image":"上面列出的绝对路径","duration":5,"prompt":"camera move…","caption":"字幕"}]}',
+          Gn(),
+          o.t("只输出 JSON，不要解释、不要代码块。格式：") + ' {"scenes":[{"reference_image":"上面列出的绝对路径","duration":5,"prompt":"中文运镜提示…","caption":"中文字幕"}]}',
           o.t("严禁编造价格、优惠、功效或上下文里没有的事实。")
         ].filter(Boolean).join(`
 `), 4e4), p = Y.extractJsonObject(s);
-        c = (Array.isArray(p?.scenes) ? p.scenes : []).slice(0, 4).map((y, M) => ({
-          id: `0${M + 1}`,
-          reference_image: i.includes(String(y?.reference_image)) ? String(y.reference_image) : i[M % i.length],
+        c = (Array.isArray(p?.scenes) ? p.scenes : []).slice(0, 4).map((y, U) => ({
+          id: `0${U + 1}`,
+          reference_image: i.includes(String(y?.reference_image)) ? String(y.reference_image) : i[U % i.length],
           duration: Number(y?.duration) > 0 ? Math.min(10, Number(y.duration)) : 5,
           prompt: String(y?.prompt || "").trim(),
           caption: String(y?.caption || "").trim()
         })).filter((y) => y.prompt);
       } catch (s) {
-        c = d(i), L.value = c.length ? o.t("模型未按时返回分镜，已改用参考图顺序与你填写的标题生成分镜：{p0}", { p0: U(s) }) : o.t("分镜生成失败：{p0}", { p0: U(s) });
+        c = d(i), T.value = c.length ? o.t("模型未按时返回分镜，已改用参考图顺序与你填写的标题生成分镜：{p0}", { p0: R(s) }) : o.t("分镜生成失败：{p0}", { p0: R(s) });
       }
       if (!c.length)
         throw l("script", "failed"), new Error(o.t("模型没有返回可用的分镜，未开始出片。"));
@@ -1706,13 +1691,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
     }
     async function An(t, n, a, l) {
       const r = (d, c) => {
-        b.value = b.value.map((s) => s.id === d ? { ...s, state: c, startedAt: c === "running" ? Date.now() : s.startedAt } : s);
+        k.value = k.value.map((s) => s.id === d ? { ...s, state: c, startedAt: c === "running" ? Date.now() : s.startedAt } : s);
         try {
           x();
         } catch {
         }
       }, i = l.onSlideshowProgress?.((d) => {
-        mn(), d?.msg && (L.value = String(d.msg)), (d?.stage === "render" || d?.stage === "mix") && r("render", "running");
+        mn(), d?.msg && (T.value = String(d.msg)), (d?.stage === "render" || d?.stage === "mix") && r("render", "running");
       });
       try {
         r("render", "running");
@@ -1729,9 +1714,9 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
            * 不再单独多问一次模型 —— 那会再压上一次 agent 冷启动的等待。
            * 起始秒按各镜头累计时长推，和画面对齐。
            */
-          narration: Pe.value ? aa(t) : [],
+          narration: Pe.value ? ra(t) : [],
           // 与图片成片同理：音色跟随文案语言，否则中文音色念外文
-          narrationVoice: Pl().voice
+          narrationVoice: jn().voice
         });
         if (d?.cancelled) throw Dn();
         if (!d?.ok) throw new Error(d?.error || o.t("动态视频生成失败"));
@@ -1750,20 +1735,20 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             createdAt: Date.now()
           })),
           ...W.value
-        ].slice(0, 200), Ht(), te.value = 1, T.value = c[0], pe.value = c[0], L.value = o.t("成片已生成，可预览；即将进入发布。"), x(), c[0];
+        ].slice(0, 200), Ht(), te.value = 1, B.value = c[0], pe.value = c[0], T.value = o.t("成片已生成，可预览；即将进入发布。"), x(), c[0];
       } finally {
-        typeof i == "function" && i(), S.value = !1;
+        typeof i == "function" && i(), N.value = !1;
       }
     }
-    function ia(t) {
-      if (_.value.length)
+    function sa(t) {
+      if (V.value.length)
         try {
-          const n = JSON.parse(localStorage.getItem(lo) || "[]"), l = [{
+          const n = JSON.parse(localStorage.getItem(no) || "[]"), l = [{
             at: Date.now(),
             tenantId: A.tenantId.trim(),
-            brand: h.brandName.trim(),
+            brand: _.brandName.trim(),
             source: t.path,
-            runs: _.value.map((r) => ({
+            runs: V.value.map((r) => ({
               platform: r.platformId,
               file: r.file,
               aspect: r.aspect,
@@ -1772,13 +1757,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               detail: r.detail
             }))
           }, ...Array.isArray(n) ? n : []].slice(0, 100);
-          localStorage.setItem(lo, JSON.stringify(l));
+          localStorage.setItem(no, JSON.stringify(l));
         } catch {
         }
     }
-    async function sa(t) {
+    async function ca(t) {
       if (t !== "campaign-launch") return !1;
-      const n = Vl.value, a = D.value.map((r) => ({
+      const n = Vl.value, a = w.value.map((r) => ({
         name: r.name,
         kind: r.kind,
         type: r.type,
@@ -1786,26 +1771,26 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         relativePath: r.relativePath,
         previewDataUrl: r.previewDataUrl
       }));
-      if (T.value) {
-        const r = T.value.split(/[\\/]/).pop() || "ad-video.mp4";
+      if (B.value) {
+        const r = B.value.split(/[\\/]/).pop() || "ad-video.mp4";
         a.push({
           name: r,
           kind: "video",
           type: "video/mp4",
           size: 0,
-          relativePath: T.value,
-          absolutePath: T.value,
+          relativePath: B.value,
+          absolutePath: B.value,
           source: "generated",
           previewDataUrl: ""
         });
       }
       const l = {
         tenantId: A.tenantId.trim(),
-        brand: h.brandName.trim(),
+        brand: _.brandName.trim(),
         platforms: JSON.stringify(n),
         assets: JSON.stringify(a),
-        headlineAr: h.arabicHeadline.trim(),
-        topics: ea(),
+        headlineAr: _.arabicHeadline.trim(),
+        topics: ta(),
         workflowSource: "global-ads",
         returnPath: "/workbenches/global-ads",
         returnLabel: o.t("返回广告投放工作台")
@@ -1819,25 +1804,25 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         return v.fromException(o.t("无法进入广告投放工作流"), r), !0;
       }
     }
-    function Sl(t) {
+    function wl(t) {
       return t < 1024 ? `${t} B` : t < 1024 * 1024 ? `${(t / 1024).toFixed(1)} KB` : `${(t / 1024 / 1024).toFixed(1)} MB`;
     }
-    function ca(t) {
+    function da(t) {
       if (t.type.startsWith("image/")) return "image";
       if (t.type.startsWith("video/")) return "video";
       const n = t.name.split(".").pop()?.toLowerCase() || "";
       return ["jpg", "jpeg", "png", "webp", "gif"].includes(n) ? "image" : ["mp4", "mov", "webm"].includes(n) ? "video" : "";
     }
     function _l() {
-      for (const t of D.value)
+      for (const t of w.value)
         t.previewUrl && URL.revokeObjectURL(t.previewUrl);
     }
     async function $n(t) {
-      if (Ne.value = !1, pt.value = !1, oe.value = "", !t.length) return;
+      if (Ne.value = !1, vt.value = !1, oe.value = "", !t.length) return;
       const n = [], a = [];
       let l = !1;
       for (const r of t) {
-        const i = ca(r);
+        const i = da(r);
         if (!i) {
           a.push(o.t("{p0}（不支持的格式）", { p0: r.name }));
           continue;
@@ -1849,7 +1834,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
           type: r.type,
           kind: i,
           previewUrl: s,
-          previewDataUrl: s ? await da(s) : "",
+          previewDataUrl: s ? await ua(s) : "",
           relativePath: d
         });
       }
@@ -1857,7 +1842,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         oe.value = a.length ? o.t("没有可用素材：{details}", { details: a.slice(0, 3).join(o.t("；")) }) : o.t("请选择图片或视频文件。");
         return;
       }
-      _l(), D.value = n, a.length && (oe.value = o.t("已载入 {count} 个素材，跳过 {rejected} 个：{details}", {
+      _l(), w.value = n, a.length && (oe.value = o.t("已载入 {count} 个素材，跳过 {rejected} 个：{details}", {
         count: n.length,
         rejected: a.length,
         details: a.slice(0, 3).join(o.t("；"))
@@ -1865,7 +1850,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         count: n.length
       });
     }
-    async function da(t) {
+    async function ua(t) {
       return new Promise((n) => {
         const a = new Image();
         a.onload = () => {
@@ -1881,7 +1866,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       const n = t.target;
       $n(Array.from(n.files || [])), n.value = "";
     }
-    function ua(t) {
+    function ma(t) {
       $n(Array.from(t.dataTransfer?.files || []));
     }
     const me = e.computed(
@@ -1890,7 +1875,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       () => Array.isArray(me.value.byPlatform) ? me.value.byPlatform : Array.isArray(me.value.by_platform) ? me.value.by_platform : []
     ), Tn = e.computed(
       () => Array.isArray(me.value.findings) ? me.value.findings : []
-    ), Ln = e.computed(() => String(me.value.notes || "")), ma = e.computed(() => {
+    ), Ln = e.computed(() => String(me.value.notes || "")), pa = e.computed(() => {
       const t = Q(me.value.totals) ? me.value.totals : {};
       return [
         ["spend", o.t("花费")],
@@ -1915,7 +1900,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         throw new Error(o.t("内置浏览器自动操作接口不可用"));
       return t;
     }
-    function pa(t) {
+    function va(t) {
       if (t?.success === !1) throw new Error(String(t?.error || o.t("浏览器操作失败")));
       const n = t?.data?.result;
       if (typeof n != "string") return n ?? t?.data ?? t;
@@ -1934,12 +1919,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         command: t,
         args: n
       });
-      return pa(l);
+      return va(l);
     }
     const Mn = e.computed(() => {
-      const t = Pa(fe.value);
+      const t = Ia(fe.value);
       if (!t.length) return null;
-      const n = N.find((a) => a.id === fe.value?.platform);
+      const n = b.find((a) => a.id === fe.value?.platform);
       return {
         tooltip: { trigger: "axis" },
         legend: { top: 0, textStyle: { fontSize: 11 } },
@@ -1960,7 +1945,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       return t === "google_ads" || t === "youtube";
     }
     async function On(t) {
-      const n = N.find((l) => l.id === t);
+      const n = b.find((l) => l.id === t);
       if (!n) return !1;
       Ce.value = t, ae.value = "";
       const a = `ads-publish-${t}`;
@@ -1978,7 +1963,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       } catch (l) {
         return ae.value = o.t("无法打开 {platform}：{message}", {
           platform: n.label,
-          message: U(l)
+          message: R(l)
         }), !1;
       } finally {
         Ce.value = "";
@@ -1993,12 +1978,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       for (const n of Object.keys(Ae)) delete Ae[n];
       for (const n of ne[t])
         ge[n.key] = n.defaultValue || "";
-      mt.value = !0;
+      pt.value = !0;
     }
     function Bl() {
-      $e.value || (mt.value = !1, He.value = "");
+      $e.value || (pt.value = !1, He.value = "");
     }
-    async function va(t) {
+    async function ga(t) {
       if (ee[t] === "api") {
         Cl(t);
         return;
@@ -2014,7 +1999,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       }
       Ce.value = "", await On(t);
     }
-    async function ga() {
+    async function fa() {
       if (!En.value) return;
       const t = Ge.value;
       $e.value = !0, He.value = "";
@@ -2041,9 +2026,9 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         }
         await n.platformConfigure(l), ve[t] = null, ae.value = o.t("{p0} 凭据/账号 ID 已保存。", {
           p0: ie(t)
-        }), mt.value = !1, v.success(o.t("{p0} API 凭据已保存", { p0: ie(t) })), await xt();
+        }), pt.value = !1, v.success(o.t("{p0} API 凭据已保存", { p0: ie(t) })), await xt();
       } catch (n) {
-        He.value = U(n);
+        He.value = R(n);
       } finally {
         $e.value = !1;
       }
@@ -2059,11 +2044,11 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         n.addEventListener("abort", i, { once: !0 });
       })) : new Promise((a) => window.setTimeout(a, t));
     }
-    async function fa(t, n, a, l) {
+    async function ya(t, n, a, l) {
       if (Pn = l, l?.throwIfCancelled(), t === "campaign-launch" && n === "prepare") {
         const r = ce.value;
         if (!r) throw new Error(o.t("请先上传客户广告素材"));
-        const i = D.value.map((u) => ({
+        const i = w.value.map((u) => ({
           name: u.name,
           kind: u.kind,
           type: u.type,
@@ -2074,7 +2059,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
           throw new Error(o.t("没有通过真实验证的投放平台，已阻止创建广告系列"));
         const c = {
           tenantId: A.tenantId.trim(),
-          brand: h.brandName,
+          brand: _.brandName,
           asset: { name: r.name, kind: r.kind, size: r.size },
           assets: i,
           assetSummary: {
@@ -2095,7 +2080,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
           actorId: "client-strategy",
           actorType: "agent",
           tool: o.t("客户 Brief / 批量素材库"),
-          evidence: `${Bt.value} images · ${Tt.value} videos · ${Sl(Nl.value)}`,
+          evidence: `${Bt.value} images · ${Tt.value} videos · ${wl(Nl.value)}`,
           output: i.map((u) => u.relativePath || u.name).slice(0, 20).join(`
 `)
         });
@@ -2103,33 +2088,33 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         if (typeof s.runWorkflow != "function") throw new Error(o.t("广告多 Agent 工作流接口不可用"));
         const p = l?.runId || `ads-${Date.now()}`, y = l?.registerCancellation(async () => {
           await s.cancelWorkflow?.({ runId: p });
-        }), M = await s.runWorkflow({
+        }), U = await s.runWorkflow({
           runId: p,
           taskType: "campaign",
           brief: c
         }).finally(() => y?.());
         l?.throwIfCancelled();
-        const B = it.workflowOutput(M, ["reviewed_package"]), f = it.workflowRunId(M) || l?.runId || "";
+        const M = st.workflowOutput(U, ["reviewed_package"]), f = st.workflowRunId(U) || l?.runId || "";
         if (a?.(1, o.t("广告动态工作流已完成策略拆解、渠道分工和预算边界"), {
           actor: o.t("广告多 Agent 工作流"),
           actorId: "client-strategy",
           actorType: "agent",
           tool: "/v1/workflows/dynamic/run",
           evidence: f,
-          output: B.slice(0, 320)
+          output: M.slice(0, 320)
         }), a?.(2, o.t("工作流中的素材本地化、媒体计划和合规复核 Agent 已并行完成"), {
           actor: o.t("素材本地化 Agent"),
           actorId: "creative-localizer",
           actorType: "agent",
           tool: "Dynamic AST · parallel + reduce",
           evidence: f,
-          output: B.slice(0, 320)
+          output: M.slice(0, 320)
         }), typeof s.campaignCreate != "function") throw new Error(o.t("真实广告创建接口不可用"));
         Be.value = [];
         for (const u of d) {
           l?.throwIfCancelled();
           const E = {
-            name: `${h.brandName} · UAE · ${(/* @__PURE__ */ new Date()).toISOString().slice(0, 10)}`,
+            name: `${_.brandName} · UAE · ${(/* @__PURE__ */ new Date()).toISOString().slice(0, 10)}`,
             campaign_key: `uae-${A.tenantId.trim()}`,
             objective: "traffic",
             daily_budget_usd: 25,
@@ -2148,11 +2133,11 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               asset_batch: i,
               image_count: Bt.value,
               video_count: Tt.value,
-              headline_ar: h.arabicHeadline,
-              localized_copy: B
+              headline_ar: _.arabicHeadline,
+              localized_copy: M
             },
             demo_sandbox: u.isSandbox
-          }, w = await s.campaignCreate({
+          }, D = await s.campaignCreate({
             platform: u.id,
             mode: u.mode,
             tenantId: A.tenantId.trim(),
@@ -2162,9 +2147,9 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             dry_run: !0,
             spec: E
           });
-          tl(w, o.t("{p0} 广告计划校验失败", { p0: u.label }));
+          tl(D, o.t("{p0} 广告计划校验失败", { p0: u.label }));
           const Ue = String(
-            w?.confirmToken || w?.confirm_token || w?.raw?.confirmToken || w?.raw?.confirm_token || ""
+            D?.confirmToken || D?.confirm_token || D?.raw?.confirmToken || D?.raw?.confirm_token || ""
           );
           if (!Ue)
             throw new Error(o.t("{p0} 未返回人工确认令牌，已阻止真实花费动作", { p0: u.label }));
@@ -2173,7 +2158,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             mode: u.mode,
             spec: E,
             confirmToken: Ue,
-            validation: w
+            validation: D
           });
         }
         a?.(3, o.t("媒体投放 Agent 已通过平台驱动校验 {count} 个 Mock 广告系列计划", {
@@ -2191,10 +2176,10 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
           tool: "Platform Drivers",
           evidence: o.t("{count} 个已校验发布计划", { count: Be.value.length })
         });
-        const V = [];
+        const S = [];
         for (const u of Be.value) {
           l?.throwIfCancelled();
-          const E = JSON.parse(JSON.stringify(u.spec)), w = await s.campaignCreate({
+          const E = JSON.parse(JSON.stringify(u.spec)), D = await s.campaignCreate({
             platform: u.platform,
             mode: u.mode,
             tenantId: A.tenantId.trim(),
@@ -2206,22 +2191,22 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             confirm_token: u.confirmToken,
             spec: E
           });
-          tl(w, o.t("{p0} 广告系列创建失败", { p0: ie(u.platform) })), V.push({ platform: u.platform, result: w });
+          tl(D, o.t("{p0} 广告系列创建失败", { p0: ie(u.platform) })), S.push({ platform: u.platform, result: D });
         }
-        return Jl.value = {
+        return Hl.value = {
           status: "created",
           execution: "global-ads-platform-drivers",
-          results: V,
+          results: S,
           runId: l?.runId
         }, a?.(5, o.t("Mock 平台驱动已返回 {count} 个发布结果，审计记录正在刷新", {
-          count: V.length
+          count: S.length
         }), {
           actor: o.t("媒体投放 Agent"),
           actorId: "media-buyer",
           actorType: "agent",
           tool: "/v1/global_ads/campaign/create",
-          evidence: V.map((u) => `${u.platform}:success`).join(" · "),
-          output: JSON.stringify(V).slice(0, 360)
+          evidence: S.map((u) => `${u.platform}:success`).join(" · "),
+          output: JSON.stringify(S).slice(0, 360)
         }), Be.value = [], await el(), {
           note: o.t("Mock 广告平台发布已完成，系列回执与执行证据已进入审计。"),
           progressManaged: !0
@@ -2241,9 +2226,9 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         const r = q();
         if (typeof r.reviewReport != "function") throw new Error(o.t("跨平台复盘接口不可用"));
         const i = await r.reviewReport({
-          since: k.since,
-          until: k.until,
-          platforms: N.map((f) => f.id),
+          since: h.since,
+          until: h.until,
+          platforms: b.map((f) => f.id),
           compare: "previous_period",
           tenantId: A.tenantId.trim() || "tenant-ae-demo",
           tenant_id: A.tenantId.trim() || "tenant-ae-demo",
@@ -2261,8 +2246,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
           tool: "Metric Normalizer",
           evidence: o.t("{count} 个数据源 · {since}—{until}", {
             count: c.length || 1,
-            since: k.since,
-            until: k.until
+            since: h.since,
+            until: h.until
           })
         }), typeof r.runWorkflow != "function") throw new Error(o.t("广告复盘工作流接口不可用"));
         const s = l?.runId || `ads-review-${Date.now()}`, p = l?.registerCancellation(async () => {
@@ -2270,24 +2255,24 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         }), y = await r.runWorkflow({
           runId: s,
           taskType: "review",
-          brief: { report: i, since: k.since, until: k.until }
+          brief: { report: i, since: h.since, until: h.until }
         }).finally(() => p?.());
         l?.throwIfCancelled();
-        const M = it.workflowOutput(y, ["reviewed_package"]), B = it.workflowRunId(y) || l?.runId || "";
+        const U = st.workflowOutput(y, ["reviewed_package"]), M = st.workflowRunId(y) || l?.runId || "";
         return a?.(2, o.t("增长、创意和账户审计 Agent 已在动态工作流中并行复核真实指标"), {
           actor: o.t("广告复盘工作流"),
           actorId: "growth-analyst",
           actorType: "agent",
           tool: "/v1/workflows/dynamic/run",
-          evidence: B,
-          output: M.slice(0, 320)
+          evidence: M,
+          output: U.slice(0, 320)
         }), a?.(3, o.t("阿英双语复盘已生成，并保留平台数据覆盖说明"), {
           actor: o.t("增长分析 Agent"),
           actorId: "growth-analyst",
           actorType: "agent",
           tool: "Report Builder",
           evidence: l?.runId,
-          output: M.slice(0, 320)
+          output: U.slice(0, 320)
         }), a?.(4, o.t("优化待办已生成，预算调整等待客户确认"), {
           actor: o.t("账户优化 Agent"),
           actorId: "account-optimizer",
@@ -2311,7 +2296,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
           actorType: "agent",
           tool: o.t("系统 Chrome · Google Ads")
         }), !await On("google_ads")) throw new Error(ae.value || o.t("Google Ads 官方登录页打开失败"));
-        return I.google_ads = {
+        return P.google_ads = {
           state: "awaiting_customer",
           platform: "google_ads",
           loginUrl: "https://ads.google.com/"
@@ -2347,8 +2332,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
           actorType: "agent",
           tool: "Web Session Registry",
           evidence: d
-        }), I.google_ads = {
-          ...I.google_ads || {},
+        }), P.google_ads = {
+          ...P.google_ads || {},
           state: "ready",
           currentUrl: d
         }, {
@@ -2364,21 +2349,21 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       return t;
     }
     async function Fn() {
-      ct.value = !0, De.value = "";
+      dt.value = !0, De.value = "";
       try {
         const t = q();
         if (typeof t.status != "function") throw new Error(o.t("状态接口不可用"));
         const n = await t.status();
         if (!Q(n)) throw new Error(o.t("状态接口返回格式无效"));
-        P.value = n;
+        L.value = n;
       } catch (t) {
-        P.value = null, De.value = U(t);
+        L.value = null, De.value = R(t);
       } finally {
-        ct.value = !1;
+        dt.value = !1;
       }
     }
     async function xt() {
-      al.value = !0, dt.value = "";
+      al.value = !0, ut.value = "";
       try {
         const t = q();
         if (typeof t.platforms != "function") throw new Error(o.t("平台状态接口不可用"));
@@ -2387,20 +2372,20 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         ol.value = a;
         for (const r of a) {
           const i = String(r?.platform || r?.id || ""), d = String(r?.mode || ""), c = r?.demoSandbox === !0 || r?.demo_sandbox === !0;
-          N.some((s) => s.id === i) && (d === "api" || d === "web") && !c && r?.configured === !0 && (ee[i] = d);
+          b.some((s) => s.id === i) && (d === "api" || d === "web") && !c && r?.configured === !0 && (ee[i] = d);
         }
         const l = n?.defaultMode ?? n?.default_mode;
         (l === "api" || l === "web") && (A.mode = l);
       } catch (t) {
-        ol.value = [], dt.value = U(t);
+        ol.value = [], ut.value = R(t);
       } finally {
         al.value = !1;
       }
     }
     async function Rn() {
-      ut.value = !0, await Promise.allSettled([Fn(), xt(), el()]), ut.value = !1;
+      mt.value = !0, await Promise.allSettled([Fn(), xt(), el()]), mt.value = !1;
     }
-    async function ya(t) {
+    async function ha(t) {
       K[t.id] = "verify";
       try {
         const n = q();
@@ -2414,13 +2399,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       } catch (n) {
         ve[t.id] = {
           verified: !1,
-          error_message: U(n)
+          error_message: R(n)
         }, v.fromException(o.t("{p0} 访问验证失败", { p0: t.label }), n);
       } finally {
         K[t.id] = "";
       }
     }
-    async function ha(t) {
+    async function ka(t) {
       if (!$t.value || !_e.value) {
         v.warn(o.t("当前区域不允许启动 Web 登录会话"));
         return;
@@ -2435,16 +2420,16 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         });
         if (!Q(l) || !String(l.sessionId || l.session_id || "").trim())
           throw new Error(o.t("Web 登录接口没有返回有效会话"));
-        I[t.id] = l, l.state === "ready" ? v.success(o.t("{p0} Web 登录已验证就绪", { p0: t.label })) : l.state === "failed" || l.state === "timeout" ? v.warn(String(l.errorMessage || l.error_message || o.t("Web 登录会话未就绪"))) : v.info(o.t("请在已打开的浏览器窗口中由本人完成登录，再点击“探测一次”"));
+        P[t.id] = l, l.state === "ready" ? v.success(o.t("{p0} Web 登录已验证就绪", { p0: t.label })) : l.state === "failed" || l.state === "timeout" ? v.warn(String(l.errorMessage || l.error_message || o.t("Web 登录会话未就绪"))) : v.info(o.t("请在已打开的浏览器窗口中由本人完成登录，再点击“探测一次”"));
       } catch (n) {
         v.fromException(o.t("启动 Web 登录失败"), n);
       } finally {
         K[t.id] = "";
       }
     }
-    async function ka(t) {
+    async function ba(t) {
       const n = String(
-        I[t]?.sessionId || I[t]?.session_id || ""
+        P[t]?.sessionId || P[t]?.session_id || ""
       ).trim();
       if (n) {
         K[t] = "poll";
@@ -2453,7 +2438,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
           if (typeof a.webLoginStatus != "function") throw new Error(o.t("Web 登录状态接口不可用"));
           const l = await a.webLoginStatus({ sessionId: n });
           if (!Q(l)) throw new Error(o.t("Web 登录状态返回格式无效"));
-          I[t] = l, l.state === "ready" ? (v.success(o.t("{p0} Web 登录已验证就绪", { p0: ie(t) })), await xt()) : (l.state === "failed" || l.state === "timeout") && v.warn(String(l.errorMessage || l.error_message || o.t("Web 登录会话未就绪")));
+          P[t] = l, l.state === "ready" ? (v.success(o.t("{p0} Web 登录已验证就绪", { p0: ie(t) })), await xt()) : (l.state === "failed" || l.state === "timeout") && v.warn(String(l.errorMessage || l.error_message || o.t("Web 登录会话未就绪")));
         } catch (a) {
           v.fromException(o.t("探测 Web 登录失败"), a);
         } finally {
@@ -2461,9 +2446,9 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         }
       }
     }
-    async function ba(t) {
+    async function Ea(t) {
       const n = String(
-        I[t]?.sessionId || I[t]?.session_id || ""
+        P[t]?.sessionId || P[t]?.session_id || ""
       ).trim();
       if (n) {
         K[t] = "cancel";
@@ -2475,7 +2460,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             reason: o.t("用户在广告工作台主动取消")
           });
           if (!Q(l)) throw new Error(o.t("Web 登录取消接口返回格式无效"));
-          I[t] = l, v.info(o.t("Web 登录会话已取消")), await Fn();
+          P[t] = l, v.info(o.t("Web 登录会话已取消")), await Fn();
         } catch (a) {
           v.fromException(o.t("取消 Web 登录失败"), a);
         } finally {
@@ -2483,8 +2468,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         }
       }
     }
-    async function Ea() {
-      if (!Xt.value) {
+    async function Na() {
+      if (!Zt.value) {
         v.warn(o.t("复盘日期无效"));
         return;
       }
@@ -2493,11 +2478,11 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         const t = q();
         if (typeof t.insights != "function") throw new Error(o.t("广告指标接口不可用"));
         const n = await t.insights({
-          platform: k.insightsPlatform,
-          mode: k.insightsMode,
+          platform: h.insightsPlatform,
+          mode: h.insightsMode,
           level: "campaign",
-          since: k.since,
-          until: k.until,
+          since: h.since,
+          until: h.until,
           demoSandbox: Re.value,
           demo_sandbox: Re.value
         });
@@ -2508,8 +2493,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         Wt.value = !1;
       }
     }
-    async function Na() {
-      if (!Xt.value || !k.platforms.length) {
+    async function Va() {
+      if (!Zt.value || !h.platforms.length) {
         v.warn(o.t("请选择有效日期和至少一个复盘平台"));
         return;
       }
@@ -2518,10 +2503,10 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         const t = q();
         if (typeof t.reviewReport != "function") throw new Error(o.t("广告复盘接口不可用"));
         const n = await t.reviewReport({
-          since: k.since,
-          until: k.until,
-          platforms: [...k.platforms],
-          compare: k.comparePrevious ? "previous_period" : "",
+          since: h.since,
+          until: h.until,
+          platforms: [...h.platforms],
+          compare: h.comparePrevious ? "previous_period" : "",
           tenant_id: A.tenantId.trim(),
           tenantId: A.tenantId.trim(),
           demoSandbox: Re.value,
@@ -2538,7 +2523,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
       }
     }
     async function el() {
-      Je.value = !0, Rt.value = "", X.value = 1;
+      Je.value = !0, Rt.value = "", Z.value = 1;
       try {
         const t = q();
         if (typeof t.audit != "function") throw new Error(o.t("广告审计接口不可用"));
@@ -2550,13 +2535,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
         if (!Array.isArray(a)) throw new Error(o.t("审计接口返回格式无效"));
         he.value = a;
       } catch (t) {
-        he.value = [], Rt.value = U(t);
+        he.value = [], Rt.value = R(t);
       } finally {
         Je.value = !1;
       }
     }
     function Ll(t) {
-      X.value = Math.min(il.value, Math.max(1, t));
+      Z.value = Math.min(il.value, Math.max(1, t));
     }
     function tl(t, n) {
       if (!Q(t)) throw new Error(n);
@@ -2565,7 +2550,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
           t.error_message || t.errorMessage || t.error || t.remediation || t.status || n
         ));
     }
-    function Va(t) {
+    function Sa(t) {
       if (t?.success !== !0 || t?.ok === !1) return "result-bad";
       const n = String(t?.status || "").toLowerCase();
       return n === "needs_human" || t?.handbackId || t?.handback_id ? "result-warn" : n === "pending_review" ? "result-pending" : "result-ok";
@@ -2573,7 +2558,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
     function wa(t) {
       return t?.success === !0 && t?.ok !== !1 ? String(t.status || o.t("成功")) : String(t?.status || t?.errorCode || t?.error_code || o.t("未成功"));
     }
-    function Sa(t) {
+    function _a(t) {
       return t ? t.loggedIn === !0 || t.logged_in === !0 ? o.t("已登录") : t.configured === !0 || t.profileExists === !0 || t.profile_exists === !0 ? o.t("已准备，待验证") : String(t.status || t.state || "") || o.t("未登录") : o.t("未报告");
     }
     function Un(t) {
@@ -2584,79 +2569,90 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
     function zn(t) {
       return ["ready", "failed", "cancelled", "timeout"].includes(String(t?.state || ""));
     }
-    function _a(t) {
+    function Da(t) {
       return t === "api" ? "API" : t === "web" ? "Web" : t || "—";
     }
-    function Da(t) {
+    function Aa(t) {
       return { facebook: "f", instagram: "◎", google_ads: "G", youtube: "▶" }[t];
     }
     function ie(t) {
-      return N.find((n) => n.id === t)?.label || t || "—";
+      return b.find((n) => n.id === t)?.label || t || "—";
     }
-    function Aa(t) {
+    function $a(t) {
       if (t.iso) {
         const n = new Date(t.iso);
-        return Number.isNaN(n.getTime()) ? String(t.iso) : n.toLocaleString(Il());
+        return Number.isNaN(n.getTime()) ? String(t.iso) : n.toLocaleString(Pl());
       }
-      return t.ts ? new Date(Number(t.ts) * 1e3).toLocaleString(Il()) : "—";
+      return t.ts ? new Date(Number(t.ts) * 1e3).toLocaleString(Pl()) : "—";
     }
     function Lt(t) {
       const n = Number(t);
-      return Number.isFinite(n) ? new Intl.NumberFormat(Il(), { maximumFractionDigits: 4 }).format(n) : String(t ?? "—");
+      return Number.isFinite(n) ? new Intl.NumberFormat(Pl(), { maximumFractionDigits: 4 }).format(n) : String(t ?? "—");
     }
     function Kn(t) {
       return Number.isFinite(Number(t)) ? String(Number(t)) : "—";
     }
-    function Pl() {
-      const t = String(o.i18n.global.locale.value || "zh-CN");
-      return t === "ar" ? { code: "ar", label: o.t("阿拉伯语"), voice: "ar-AE-FatimaNeural" } : t.startsWith("en") ? { code: "en", label: o.t("英语"), voice: "en-US-AriaNeural" } : { code: "zh", label: o.t("简体中文"), voice: "zh-CN-XiaoxiaoNeural" };
+    function jn() {
+      return { code: "zh", label: o.t("简体中文"), voice: "zh-CN-XiaoxiaoNeural" };
     }
-    function Il() {
+    function Gn() {
+      return o.t('每个场景给两样：① 运镜与画面的中文提示词（交给视频模型，写清镜头运动、主体、光线与质感，要有明确的镜头运动，不要只"轻微动"，画面里不要出现可读文字）；② 一句简体中文字幕（会同时用于配音朗读）。全部用简体中文，不要阿拉伯语或英文字幕。');
+    }
+    const Ca = [
+      "缓慢推镜，电影感布光，轻微视差",
+      "缓慢向右横移，浅景深，自然光",
+      "缓慢拉远展现全景，电影级调色",
+      "缓慢上摇，柔和高光，高级质感"
+    ];
+    function Hn() {
+      return [...Ca];
+    }
+    function Pl() {
       return o.i18n.global.locale.value === "ar" ? "ar-AE" : o.i18n.global.locale.value;
     }
-    function jn(t) {
+    function Jn(t) {
       try {
         return JSON.stringify(t, null, 2);
       } catch {
         return String(t);
       }
     }
-    function U(t) {
-      return zl.humanizeErrorMessage(t, o.t("未知错误"));
+    function R(t) {
+      return Ul.humanizeErrorMessage(t, o.t("未知错误"));
     }
     function Q(t) {
       return !!t && typeof t == "object" && !Array.isArray(t);
     }
-    function Ml(t) {
+    function Il(t) {
       return Array.isArray(t) ? t.map((n) => String(n)) : [];
     }
-    function Gn(t) {
+    function qn(t) {
       const n = /* @__PURE__ */ new Date();
       return n.setHours(12, 0, 0, 0), n.setDate(n.getDate() - t), n.toISOString().slice(0, 10);
     }
-    function Hn() {
+    function Yn() {
       Te();
     }
     return e.onMounted(() => {
-      Oa(), window.addEventListener("totalclaw:media-model-changed", Hn);
+      Wa(), window.addEventListener("totalclaw:media-model-changed", Yn);
       try {
         const t = JSON.parse(localStorage.getItem("totalclaw:publish-workflow-result:global-ads") || "null");
-        t?.kind === "run:completed" && (Jl.value = JSON.parse(String(t?.finalVariables?.node_receipt_result || "{}")));
+        t?.kind === "run:completed" && (Hl.value = JSON.parse(String(t?.finalVariables?.node_receipt_result || "{}")));
       } catch {
       }
-      Rn(), Te(), rn(), qo();
+      Rn(), Te(), rn(), Yo();
     }), e.onBeforeUnmount(() => {
-      Gl.release(), _l();
+      jl.release(), _l();
     }), (t, n) => {
       const a = e.resolveDirective("kb-fill");
       return e.openBlock(), e.createElementBlock("div", {
         class: "ads-workbench",
         dir: Xo.value ? "rtl" : "ltr"
       }, [
-        e.createElementVNode("header", Fa, [
-          e.createVNode(Ca),
-          e.createElementVNode("div", Ra, [
-            e.createElementVNode("span", Ua, [
+        e.createElementVNode("header", Ra, [
+          e.createVNode(Ba),
+          e.createElementVNode("div", Ua, [
+            e.createElementVNode("span", za, [
               n[46] || (n[46] = e.createElementVNode(
                 "i",
                 { class: "ri-map-pin-2-line" },
@@ -2684,7 +2680,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               1
               /* TEXT */
             ),
-            e.createElementVNode("div", za, [
+            e.createElementVNode("div", Ka, [
               e.createElementVNode("span", null, [
                 n[47] || (n[47] = e.createElementVNode(
                   "i",
@@ -2736,7 +2732,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               (e.openBlock(), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(ql, (l, r) => e.createElementVNode("span", {
+                e.renderList(Jl, (l, r) => e.createElementVNode("span", {
                   key: l.label,
                   class: "hero-chain-step",
                   title: t.$t(l.detail)
@@ -2755,34 +2751,34 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     1
                     /* TEXT */
                   ),
-                  r < ql.length - 1 ? (e.openBlock(), e.createElementBlock("em", Ga, "›")) : e.createCommentVNode("v-if", !0)
-                ], 8, ja)),
+                  r < Jl.length - 1 ? (e.openBlock(), e.createElementBlock("em", Ha, "›")) : e.createCommentVNode("v-if", !0)
+                ], 8, Ga)),
                 64
                 /* STABLE_FRAGMENT */
               ))
-            ], 8, Ka)
+            ], 8, ja)
           ]),
-          e.createElementVNode("div", Ha, [
+          e.createElementVNode("div", Ja, [
             e.createElementVNode("button", {
               class: "button ghost",
-              disabled: ut.value,
+              disabled: mt.value,
               onClick: Rn
             }, [
               e.createElementVNode(
                 "i",
                 {
-                  class: e.normalizeClass(ut.value ? "ri-loader-4-line spin" : "ri-refresh-line")
+                  class: e.normalizeClass(mt.value ? "ri-loader-4-line spin" : "ri-refresh-line")
                 },
                 null,
                 2
                 /* CLASS */
               ),
               e.createTextVNode(
-                " " + e.toDisplayString(ut.value ? t.$t("刷新中…") : t.$t("刷新状态")),
+                " " + e.toDisplayString(mt.value ? t.$t("刷新中…") : t.$t("刷新状态")),
                 1
                 /* TEXT */
               )
-            ], 8, Ja)
+            ], 8, qa)
           ])
         ]),
         e.createCommentVNode(" ══ 多 Tab 导航：投放工作区 / 平台连接 / 指标与复盘 / 操作审计 / 定时自动化 ══ "),
@@ -2816,11 +2812,11 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 1
                 /* TEXT */
               )
-            ], 10, Ya)),
+            ], 10, Za)),
             64
             /* STABLE_FRAGMENT */
           ))
-        ], 8, qa),
+        ], 8, Ya),
         e.createElementVNode("p", Xa, [
           n[50] || (n[50] = e.createElementVNode(
             "i",
@@ -2830,25 +2826,25 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             /* CACHED */
           )),
           e.createTextVNode(
-            e.toDisplayString(t.$t(go.value.desc)),
+            e.toDisplayString(t.$t(fo.value.desc)),
             1
             /* TEXT */
           )
         ]),
         e.createCommentVNode(" ══ 投放工作区 Tab：引导式分步（左）+ 历史视频（右）══ "),
-        z.value === "campaign" ? (e.openBlock(), e.createElementBlock("section", Za, [
+        z.value === "campaign" ? (e.openBlock(), e.createElementBlock("section", Qa, [
           e.createElementVNode(
             "div",
             {
               ref_key: "guideMainEl",
-              ref: Ql,
+              ref: Xl,
               class: "guide-main"
             },
             [
               e.createCommentVNode(" 解决方案工作台硬规则：共享步骤条粘顶常驻视口；点选滚到对应步骤卡片 "),
-              e.createVNode(Ba, {
-                steps: Vo.value,
-                "model-value": xl.value,
+              e.createVNode(Ta, {
+                steps: So.value,
+                "model-value": Ql.value,
                 "onUpdate:modelValue": wo
               }, null, 8, ["steps", "model-value"]),
               e.createCommentVNode(" 第 1 步：制作引擎 "),
@@ -2859,8 +2855,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 },
                 [
                   e.createElementVNode("header", null, [
-                    e.createElementVNode("span", Qa, [
-                      be.value ? (e.openBlock(), e.createElementBlock("i", xa)) : (e.openBlock(), e.createElementBlock(
+                    e.createElementVNode("span", xa, [
+                      be.value ? (e.openBlock(), e.createElementBlock("i", er)) : (e.openBlock(), e.createElementBlock(
                         e.Fragment,
                         { key: 1 },
                         [
@@ -2896,13 +2892,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       /* TEXT, CLASS */
                     )
                   ]),
-                  e.createElementVNode("div", er, [
-                    e.createElementVNode("div", tr, [
+                  e.createElementVNode("div", tr, [
+                    e.createElementVNode("div", lr, [
                       e.createElementVNode(
                         "button",
                         {
                           type: "button",
-                          class: e.normalizeClass(["media-engine-chip", `tone-${ft.value.tone}`]),
+                          class: e.normalizeClass(["media-engine-chip", `tone-${yt.value.tone}`]),
                           onClick: n[0] || (n[0] = (l) => fl("video"))
                         },
                         [
@@ -2934,10 +2930,10 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                                 /* STABLE_FRAGMENT */
                               )) : e.createCommentVNode("v-if", !0)
                             ]),
-                            ft.value.detail ? (e.openBlock(), e.createElementBlock(
+                            yt.value.detail ? (e.openBlock(), e.createElementBlock(
                               "small",
-                              lr,
-                              e.toDisplayString(ft.value.detail),
+                              nr,
+                              e.toDisplayString(yt.value.detail),
                               1
                               /* TEXT */
                             )) : e.createCommentVNode("v-if", !0)
@@ -2945,7 +2941,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           e.createElementVNode(
                             "em",
                             null,
-                            e.toDisplayString(ft.value.tone === "ready" ? t.$t("已就绪") : t.$t("去配置")),
+                            e.toDisplayString(yt.value.tone === "ready" ? t.$t("已就绪") : t.$t("去配置")),
                             1
                             /* TEXT */
                           )
@@ -2996,7 +2992,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         /* CLASS */
                       )
                     ]),
-                    J.value === "dynamic" && !pl.value ? (e.openBlock(), e.createElementBlock("p", nr, [
+                    J.value === "dynamic" && !pl.value ? (e.openBlock(), e.createElementBlock("p", or, [
                       n[53] || (n[53] = e.createElementVNode(
                         "i",
                         { class: "ri-error-warning-line" },
@@ -3011,20 +3007,20 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       )
                     ])) : e.createCommentVNode("v-if", !0),
                     e.createCommentVNode(" #17 成片设置：成片方式 / 成片比例 / 配音与配乐 "),
-                    e.createElementVNode("div", or, [
-                      e.createElementVNode("div", ar, [
+                    e.createElementVNode("div", ar, [
+                      e.createElementVNode("div", rr, [
                         e.createElementVNode(
                           "span",
-                          rr,
+                          ir,
                           e.toDisplayString(t.$t("成片方式")),
                           1
                           /* TEXT */
                         ),
-                        e.createElementVNode("div", ir, [
+                        e.createElementVNode("div", sr, [
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(fo.value, (l) => (e.openBlock(), e.createElementBlock("button", {
+                            e.renderList(yo.value, (l) => (e.openBlock(), e.createElementBlock("button", {
                               key: l.id,
                               type: "button",
                               class: e.normalizeClass({ active: J.value === l.id }),
@@ -3055,26 +3051,26 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                                   /* TEXT */
                                 )
                               ])
-                            ], 10, sr))),
+                            ], 10, cr))),
                             128
                             /* KEYED_FRAGMENT */
                           ))
                         ])
                       ]),
                       e.createCommentVNode(" #22 成片比例：多选，勾几个出几份；默认随第 2 步平台自动预勾 "),
-                      e.createElementVNode("div", cr, [
+                      e.createElementVNode("div", dr, [
                         e.createElementVNode(
                           "span",
-                          dr,
+                          ur,
                           e.toDisplayString(t.$t("成片比例")),
                           1
                           /* TEXT */
                         ),
-                        e.createElementVNode("div", ur, [
+                        e.createElementVNode("div", mr, [
                           (e.openBlock(), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(yo, (l) => e.createElementVNode(
+                            e.renderList(ho, (l) => e.createElementVNode(
                               "label",
                               {
                                 key: l.value,
@@ -3084,8 +3080,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                                 e.createElementVNode("input", {
                                   type: "checkbox",
                                   checked: Le.value.includes(l.value),
-                                  onChange: (r) => ho(l.value)
-                                }, null, 40, mr),
+                                  onChange: (r) => ko(l.value)
+                                }, null, 40, pr),
                                 e.createElementVNode("span", null, [
                                   e.createElementVNode(
                                     "strong",
@@ -3097,7 +3093,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                                   e.createElementVNode(
                                     "small",
                                     null,
-                                    e.toDisplayString(ko(l.value) || t.$t(l.hint)),
+                                    e.toDisplayString(bo(l.value) || t.$t(l.hint)),
                                     1
                                     /* TEXT */
                                   )
@@ -3112,7 +3108,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         ]),
                         e.createElementVNode(
                           "small",
-                          pr,
+                          vr,
                           e.toDisplayString(t.$t("将按勾选的比例各出一份成片（当前 {p0} 份：{p1}）；发布时自动挑该平台收得下的那一份。", {
                             p0: zt.value.length,
                             p1: zt.value.join(" / ")
@@ -3122,7 +3118,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         )
                       ]),
                       e.createCommentVNode(" #23 配音与配乐：独立一行，不跟成片比例挤在一起 "),
-                      e.createElementVNode("div", vr, [
+                      e.createElementVNode("div", gr, [
                         e.createElementVNode(
                           "label",
                           {
@@ -3138,7 +3134,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                               -1
                               /* CACHED */
                             )),
-                            e.createElementVNode("span", gr, [
+                            e.createElementVNode("span", fr, [
                               e.createElementVNode(
                                 "strong",
                                 null,
@@ -3182,7 +3178,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           2
                           /* CLASS */
                         ),
-                        e.createElementVNode("label", fr, [
+                        e.createElementVNode("label", yr, [
                           e.createElementVNode(
                             "span",
                             null,
@@ -3199,10 +3195,10 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                               (e.openBlock(), e.createElementBlock(
                                 e.Fragment,
                                 null,
-                                e.renderList(Eo, (l) => e.createElementVNode("option", {
+                                e.renderList(No, (l) => e.createElementVNode("option", {
                                   key: l.id,
                                   value: l.id
-                                }, e.toDisplayString(t.$t(l.label)), 9, yr)),
+                                }, e.toDisplayString(t.$t(l.label)), 9, hr)),
                                 64
                                 /* STABLE_FRAGMENT */
                               ))
@@ -3218,7 +3214,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                   用户既不知道会发生什么，也无从选择。这几条的差别是要不要花钱、要不要等，
                   必须显式选；**默认那条不花钱**（点「生成」不等于同意为补素材额外付费）。
                 `),
-                        e.createElementVNode("label", hr, [
+                        e.createElementVNode("label", kr, [
                           e.createElementVNode(
                             "span",
                             null,
@@ -3238,7 +3234,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                                 e.renderList(e.unref(ze.MATERIAL_FALLBACK_OPTIONS), (l) => (e.openBlock(), e.createElementBlock("option", {
                                   key: l.id,
                                   value: l.id
-                                }, e.toDisplayString(t.$t(l.label)) + e.toDisplayString(l.costs ? t.$t("（花钱）") : ""), 9, kr))),
+                                }, e.toDisplayString(t.$t(l.label)) + e.toDisplayString(l.costs ? t.$t("（花钱）") : ""), 9, br))),
                                 128
                                 /* KEYED_FRAGMENT */
                               ))
@@ -3250,8 +3246,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           ]),
                           e.createElementVNode(
                             "small",
-                            br,
-                            e.toDisplayString(t.$t(No.value)),
+                            Er,
+                            e.toDisplayString(t.$t(Vo.value)),
                             1
                             /* TEXT */
                           )
@@ -3267,12 +3263,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               e.createElementVNode(
                 "article",
                 {
-                  class: e.normalizeClass(["guide-step", { done: vt.value }])
+                  class: e.normalizeClass(["guide-step", { done: gt.value }])
                 },
                 [
                   e.createElementVNode("header", null, [
-                    e.createElementVNode("span", Er, [
-                      vt.value ? (e.openBlock(), e.createElementBlock("i", Nr)) : (e.openBlock(), e.createElementBlock(
+                    e.createElementVNode("span", Nr, [
+                      gt.value ? (e.openBlock(), e.createElementBlock("i", Vr)) : (e.openBlock(), e.createElementBlock(
                         e.Fragment,
                         { key: 1 },
                         [
@@ -3301,19 +3297,19 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     e.createElementVNode(
                       "em",
                       {
-                        class: e.normalizeClass(["step-state", vt.value ? "ok" : "todo"])
+                        class: e.normalizeClass(["step-state", gt.value ? "ok" : "todo"])
                       },
-                      e.toDisplayString(vt.value ? t.$t("已选 {p0} 个平台", { p0: Z.value.length }) : t.$t("待确认")),
+                      e.toDisplayString(gt.value ? t.$t("已选 {p0} 个平台", { p0: X.value.length }) : t.$t("待确认")),
                       3
                       /* TEXT, CLASS */
                     )
                   ]),
-                  e.createElementVNode("div", Vr, [
+                  e.createElementVNode("div", Sr, [
                     e.createElementVNode("div", wr, [
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(e.unref(N), (l) => (e.openBlock(), e.createElementBlock(
+                        e.renderList(e.unref(b), (l) => (e.openBlock(), e.createElementBlock(
                           "label",
                           {
                             key: `guide-${l.id}`,
@@ -3325,7 +3321,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                               type: "checkbox",
                               checked: !de.value.has(l.id),
                               onChange: (r) => Vn(l.id)
-                            }, null, 40, Sr),
+                            }, null, 40, _r),
                             e.createElementVNode(
                               "i",
                               {
@@ -3353,7 +3349,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                                 -1
                                 /* CACHED */
                               )
-                            ])], 8, _r)) : e.createCommentVNode("v-if", !0)
+                            ])], 8, Dr)) : e.createCommentVNode("v-if", !0)
                           ],
                           6
                           /* CLASS, STYLE */
@@ -3380,7 +3376,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         )
                       ])
                     ]),
-                    e.createElementVNode("div", Dr, [
+                    e.createElementVNode("div", Ar, [
                       e.createElementVNode("span", null, [
                         n[58] || (n[58] = e.createElementVNode(
                           "i",
@@ -3390,7 +3386,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           /* CACHED */
                         )),
                         e.createTextVNode(
-                          e.toDisplayString(t.$t("真实发布需要各平台账号 ID（{p0}），点击补填：", { p0: e.unref(st) })),
+                          e.toDisplayString(t.$t("真实发布需要各平台账号 ID（{p0}），点击补填：", { p0: e.unref(ct) })),
                           1
                           /* TEXT */
                         )
@@ -3398,7 +3394,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(Z.value, (l) => (e.openBlock(), e.createElementBlock("button", {
+                        e.renderList(X.value, (l) => (e.openBlock(), e.createElementBlock("button", {
                           key: `id-${l.id}`,
                           class: "mini-button",
                           type: "button",
@@ -3418,7 +3414,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                             1
                             /* TEXT */
                           )
-                        ], 8, Ar))),
+                        ], 8, $r))),
                         128
                         /* KEYED_FRAGMENT */
                       ))
@@ -3436,8 +3432,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 },
                 [
                   e.createElementVNode("header", null, [
-                    e.createElementVNode("span", $r, [
-                      Ye.value ? (e.openBlock(), e.createElementBlock("i", Cr)) : (e.openBlock(), e.createElementBlock(
+                    e.createElementVNode("span", Cr, [
+                      Ye.value ? (e.openBlock(), e.createElementBlock("i", Br)) : (e.openBlock(), e.createElementBlock(
                         e.Fragment,
                         { key: 1 },
                         [
@@ -3468,12 +3464,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       {
                         class: e.normalizeClass(["step-state", Ye.value ? "ok" : "todo"])
                       },
-                      e.toDisplayString(T.value ? t.$t("已选历史成片") : ce.value ? t.$t("素材已就绪") : Ut.value ? t.$t("提示词已就绪") : t.$t("待完成")),
+                      e.toDisplayString(B.value ? t.$t("已选历史成片") : ce.value ? t.$t("素材已就绪") : Ut.value ? t.$t("提示词已就绪") : t.$t("待完成")),
                       3
                       /* TEXT, CLASS */
                     )
                   ]),
-                  e.createElementVNode("div", Br, [
+                  e.createElementVNode("div", Tr, [
                     e.createElementVNode(
                       "input",
                       {
@@ -3493,7 +3489,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       "input",
                       {
                         ref_key: "creativeFolderInput",
-                        ref: Hl,
+                        ref: Gl,
                         class: "file-input",
                         type: "file",
                         multiple: "",
@@ -3506,7 +3502,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       544
                       /* NEED_HYDRATION, NEED_PATCH */
                     ),
-                    e.createElementVNode("div", Tr, [
+                    e.createElementVNode("div", Lr, [
                       e.createElementVNode("button", {
                         class: "creative-source-button",
                         type: "button",
@@ -3539,13 +3535,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       e.createElementVNode("button", {
                         class: "creative-source-button",
                         type: "button",
-                        disabled: tt.value,
-                        onClick: Lo
+                        disabled: lt.value,
+                        onClick: Po
                       }, [
                         e.createElementVNode(
                           "i",
                           {
-                            class: e.normalizeClass(tt.value ? "ri-loader-4-line spin" : "ri-folder-upload-line")
+                            class: e.normalizeClass(lt.value ? "ri-loader-4-line spin" : "ri-folder-upload-line")
                           },
                           null,
                           2
@@ -3562,12 +3558,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           e.createElementVNode(
                             "small",
                             null,
-                            e.toDisplayString(tt.value ? t.$t("正在扫描素材…") : t.$t("递归读取文件夹中的全部支持素材")),
+                            e.toDisplayString(lt.value ? t.$t("正在扫描素材…") : t.$t("递归读取文件夹中的全部支持素材")),
                             1
                             /* TEXT */
                           )
                         ])
-                      ], 8, Lr),
+                      ], 8, Pr),
                       e.createCommentVNode(" 只有「动态视频生成」需要提示词：图片成片是确定性拼接，没有分镜可写 "),
                       J.value === "dynamic" ? (e.openBlock(), e.createElementBlock("button", {
                         key: 0,
@@ -3585,7 +3581,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           2
                           /* CLASS */
                         ),
-                        Ut.value && !se.value ? (e.openBlock(), e.createElementBlock("i", Ir)) : e.createCommentVNode("v-if", !0),
+                        Ut.value && !se.value ? (e.openBlock(), e.createElementBlock("i", Mr)) : e.createCommentVNode("v-if", !0),
                         e.createElementVNode("span", null, [
                           e.createElementVNode(
                             "strong",
@@ -3597,16 +3593,16 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           e.createElementVNode(
                             "small",
                             null,
-                            e.toDisplayString(F.value.length ? t.$t("已生成 {p0} 个分镜提示词，点击查看或重写", { p0: F.value.length }) : ke.value ? t.$t("先写分镜与运镜提示，第 5 步按它调用 {p0} 出片", { p0: ke.value }) : t.$t("先写分镜与运镜提示；需在第 1 步配置视频生成模型")),
+                            e.toDisplayString(I.value.length ? t.$t("已生成 {p0} 个分镜提示词，点击查看或重写", { p0: I.value.length }) : ke.value ? t.$t("先写分镜与运镜提示，第 5 步按它调用 {p0} 出片", { p0: ke.value }) : t.$t("先写分镜与运镜提示；需在第 1 步配置视频生成模型")),
                             1
                             /* TEXT */
                           )
                         ])
-                      ], 10, Pr)) : e.createCommentVNode("v-if", !0)
+                      ], 10, Ir)) : e.createCommentVNode("v-if", !0)
                     ]),
                     e.createCommentVNode(` 保存后的分镜提示词就地展示、就地可改：第 5 步按这份出片，
                  藏在弹层里用户看不到自己到底在用什么提示词（实测反馈） `),
-                    J.value === "dynamic" && Ne.value && F.value.length ? (e.openBlock(), e.createElementBlock("section", Mr, [
+                    J.value === "dynamic" && Ne.value && I.value.length ? (e.openBlock(), e.createElementBlock("section", Or, [
                       e.createElementVNode("header", null, [
                         e.createElementVNode("span", null, [
                           n[60] || (n[60] = e.createElementVNode(
@@ -3648,7 +3644,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           )
                         ])
                       ]),
-                      e.createElementVNode("label", Or, [
+                      e.createElementVNode("label", Wr, [
                         e.createElementVNode(
                           "span",
                           null,
@@ -3659,7 +3655,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         e.withDirectives(e.createElementVNode(
                           "textarea",
                           {
-                            "onUpdate:modelValue": n[7] || (n[7] = (l) => we.value = l),
+                            "onUpdate:modelValue": n[7] || (n[7] = (l) => Se.value = l),
                             rows: "3"
                           },
                           null,
@@ -3668,17 +3664,17 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         ), [
                           [
                             e.vModelText,
-                            we.value,
+                            Se.value,
                             void 0,
                             { trim: !0 }
                           ]
                         ])
                       ]),
-                      e.createElementVNode("ol", Wr, [
+                      e.createElementVNode("ol", Fr, [
                         (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList(F.value, (l, r) => (e.openBlock(), e.createElementBlock("li", {
+                          e.renderList(I.value, (l, r) => (e.openBlock(), e.createElementBlock("li", {
                             key: `inline-${l.id}`
                           }, [
                             e.createElementVNode("header", null, [
@@ -3689,17 +3685,40 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                                 1
                                 /* TEXT */
                               ),
-                              e.createElementVNode("small", {
-                                title: l.referenceImage
-                              }, e.toDisplayString((l.referenceImage || "").split(/[\\/]/).pop()), 9, Fr),
+                              e.withDirectives(e.createElementVNode("select", {
+                                "onUpdate:modelValue": (i) => l.referenceImage = i,
+                                class: "scene-ref",
+                                title: t.$t("首帧参考图"),
+                                onChange: et
+                              }, [
+                                e.createElementVNode(
+                                  "option",
+                                  Ur,
+                                  e.toDisplayString(t.$t("不用参考图（纯文生视频）")),
+                                  1
+                                  /* TEXT */
+                                ),
+                                (e.openBlock(!0), e.createElementBlock(
+                                  e.Fragment,
+                                  null,
+                                  e.renderList(ln.value, (i) => (e.openBlock(), e.createElementBlock("option", {
+                                    key: i,
+                                    value: i
+                                  }, e.toDisplayString(t.$t("首帧：{p0}", { p0: i.split(/[\\/]/).pop() })), 9, zr))),
+                                  128
+                                  /* KEYED_FRAGMENT */
+                                ))
+                              ], 40, Rr), [
+                                [e.vModelSelect, l.referenceImage]
+                              ]),
                               e.createElementVNode("em", null, [
                                 e.withDirectives(e.createElementVNode("input", {
                                   "onUpdate:modelValue": (i) => l.duration = i,
                                   type: "number",
                                   min: "2",
                                   max: "10",
-                                  onChange: Et
-                                }, null, 40, Rr), [
+                                  onChange: et
+                                }, null, 40, Kr), [
                                   [
                                     e.vModelText,
                                     l.duration,
@@ -3718,15 +3737,15 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                               e.createElementVNode(
                                 "span",
                                 null,
-                                e.toDisplayString(t.$t("运镜提示（英文，交给视频模型）")),
+                                e.toDisplayString(t.$t("运镜提示（交给视频模型）")),
                                 1
                                 /* TEXT */
                               ),
                               e.withDirectives(e.createElementVNode("textarea", {
                                 "onUpdate:modelValue": (i) => l.prompt = i,
                                 rows: "2",
-                                onChange: Et
-                              }, null, 40, Ur), [
+                                onChange: et
+                              }, null, 40, jr), [
                                 [
                                   e.vModelText,
                                   l.prompt,
@@ -3746,8 +3765,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                               e.withDirectives(e.createElementVNode("input", {
                                 "onUpdate:modelValue": (i) => l.caption = i,
                                 type: "text",
-                                onChange: Et
-                              }, null, 40, zr), [
+                                onChange: et
+                              }, null, 40, Gr), [
                                 [
                                   e.vModelText,
                                   l.caption,
@@ -3765,39 +3784,39 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     e.createElementVNode(
                       "button",
                       {
-                        class: e.normalizeClass(["creative-dropzone", { filled: D.value.length, dragging: pt.value }]),
+                        class: e.normalizeClass(["creative-dropzone", { filled: w.value.length, dragging: vt.value }]),
                         type: "button",
                         onClick: n[8] || (n[8] = (l) => rl.value?.click()),
-                        onDragenter: n[9] || (n[9] = e.withModifiers((l) => pt.value = !0, ["prevent"])),
-                        onDragover: n[10] || (n[10] = e.withModifiers((l) => pt.value = !0, ["prevent"])),
-                        onDragleave: n[11] || (n[11] = e.withModifiers((l) => pt.value = !1, ["prevent"])),
-                        onDrop: e.withModifiers(ua, ["prevent"])
+                        onDragenter: n[9] || (n[9] = e.withModifiers((l) => vt.value = !0, ["prevent"])),
+                        onDragover: n[10] || (n[10] = e.withModifiers((l) => vt.value = !0, ["prevent"])),
+                        onDragleave: n[11] || (n[11] = e.withModifiers((l) => vt.value = !1, ["prevent"])),
+                        onDrop: e.withModifiers(ma, ["prevent"])
                       },
                       [
                         ce.value ? (e.openBlock(), e.createElementBlock(
                           e.Fragment,
                           { key: 0 },
                           [
-                            e.createElementVNode("span", Kr, [
+                            e.createElementVNode("span", Hr, [
                               e.createCommentVNode(' 只有真有预览图才渲染 <img>：走原生目录选择器时素材没有 blob 预览，\n                       `src=""` 会被浏览器画成裂图占位符（实测就是这个现象） '),
                               ce.value.kind === "image" && ce.value.previewUrl ? (e.openBlock(), e.createElementBlock("img", {
                                 key: 0,
                                 src: ce.value.previewUrl,
                                 alt: ""
-                              }, null, 8, jr)) : ce.value.kind === "image" ? (e.openBlock(), e.createElementBlock("i", Gr)) : (e.openBlock(), e.createElementBlock("i", Hr))
+                              }, null, 8, Jr)) : ce.value.kind === "image" ? (e.openBlock(), e.createElementBlock("i", qr)) : (e.openBlock(), e.createElementBlock("i", Yr))
                             ]),
-                            e.createElementVNode("span", Jr, [
+                            e.createElementVNode("span", Zr, [
                               e.createElementVNode(
                                 "strong",
                                 null,
-                                e.toDisplayString(t.$t("{count} 个客户素材已就绪", { count: D.value.length })),
+                                e.toDisplayString(t.$t("{count} 个客户素材已就绪", { count: w.value.length })),
                                 1
                                 /* TEXT */
                               ),
                               e.createElementVNode(
                                 "small",
                                 null,
-                                e.toDisplayString(xo.value) + " · " + e.toDisplayString(Sl(Nl.value)),
+                                e.toDisplayString(ea.value) + " · " + e.toDisplayString(wl(Nl.value)),
                                 1
                                 /* TEXT */
                               ),
@@ -3839,7 +3858,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                               -1
                               /* CACHED */
                             )),
-                            e.createElementVNode("span", qr, [
+                            e.createElementVNode("span", Xr, [
                               e.createElementVNode(
                                 "strong",
                                 null,
@@ -3870,7 +3889,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       34
                       /* CLASS, NEED_HYDRATION */
                     ),
-                    D.value.length ? (e.openBlock(), e.createElementBlock("div", {
+                    w.value.length ? (e.openBlock(), e.createElementBlock("div", {
                       key: 1,
                       class: "creative-file-list",
                       "aria-label": t.$t("已选择素材")
@@ -3878,7 +3897,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(D.value.slice(0, Jt.value), (l) => (e.openBlock(), e.createElementBlock("span", {
+                        e.renderList(w.value.slice(0, Jt.value), (l) => (e.openBlock(), e.createElementBlock("span", {
                           key: `${l.relativePath}-${l.name}`
                         }, [
                           e.createElementVNode(
@@ -3901,7 +3920,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                             e.createElementVNode(
                               "small",
                               null,
-                              e.toDisplayString(l.relativePath || Sl(l.size)),
+                              e.toDisplayString(l.relativePath || wl(l.size)),
                               1
                               /* TEXT */
                             )
@@ -3911,7 +3930,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                             class: "creative-remove",
                             type: "button",
                             title: t.$t("移除这个素材"),
-                            onClick: e.withModifiers((r) => To(l), ["stop"])
+                            onClick: e.withModifiers((r) => Lo(l), ["stop"])
                           }, [...n[65] || (n[65] = [
                             e.createElementVNode(
                               "i",
@@ -3920,12 +3939,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                               -1
                               /* CACHED */
                             )
-                          ])], 8, Xr)
+                          ])], 8, xr)
                         ]))),
                         128
                         /* KEYED_FRAGMENT */
                       )),
-                      D.value.length > Jt.value ? (e.openBlock(), e.createElementBlock(
+                      w.value.length > Jt.value ? (e.openBlock(), e.createElementBlock(
                         "button",
                         {
                           key: 0,
@@ -3933,12 +3952,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           type: "button",
                           onClick: n[12] || (n[12] = (l) => Jt.value += 40)
                         },
-                        " +" + e.toDisplayString(D.value.length - Jt.value) + " " + e.toDisplayString(t.$t("个素材，点击展开")),
+                        " +" + e.toDisplayString(w.value.length - Jt.value) + " " + e.toDisplayString(t.$t("个素材，点击展开")),
                         1
                         /* TEXT */
                       )) : e.createCommentVNode("v-if", !0)
-                    ], 8, Yr)) : e.createCommentVNode("v-if", !0),
-                    oe.value ? (e.openBlock(), e.createElementBlock("p", Zr, [
+                    ], 8, Qr)) : e.createCommentVNode("v-if", !0),
+                    oe.value ? (e.openBlock(), e.createElementBlock("p", ei, [
                       n[66] || (n[66] = e.createElementVNode(
                         "i",
                         { class: "ri-error-warning-line" },
@@ -3961,12 +3980,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               e.createElementVNode(
                 "article",
                 {
-                  class: e.normalizeClass(["guide-step", { done: gt.value }])
+                  class: e.normalizeClass(["guide-step", { done: ft.value }])
                 },
                 [
                   e.createElementVNode("header", null, [
-                    e.createElementVNode("span", Qr, [
-                      gt.value ? (e.openBlock(), e.createElementBlock("i", xr)) : (e.openBlock(), e.createElementBlock(
+                    e.createElementVNode("span", ti, [
+                      ft.value ? (e.openBlock(), e.createElementBlock("i", li)) : (e.openBlock(), e.createElementBlock(
                         e.Fragment,
                         { key: 1 },
                         [
@@ -3995,15 +4014,15 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     e.createElementVNode(
                       "em",
                       {
-                        class: e.normalizeClass(["step-state", gt.value ? "ok" : "todo"])
+                        class: e.normalizeClass(["step-state", ft.value ? "ok" : "todo"])
                       },
-                      e.toDisplayString(gt.value ? t.$t("已完成") : t.$t("待确认")),
+                      e.toDisplayString(ft.value ? t.$t("已完成") : t.$t("待确认")),
                       3
                       /* TEXT, CLASS */
                     )
                   ]),
-                  e.createElementVNode("div", ei, [
-                    e.createElementVNode("div", ti, [
+                  e.createElementVNode("div", ni, [
+                    e.createElementVNode("div", oi, [
                       e.createElementVNode("label", null, [
                         e.createElementVNode(
                           "span",
@@ -4013,13 +4032,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           /* TEXT */
                         ),
                         e.withDirectives(e.createElementVNode("input", {
-                          "onUpdate:modelValue": n[13] || (n[13] = (l) => h.brandName = l),
+                          "onUpdate:modelValue": n[13] || (n[13] = (l) => _.brandName = l),
                           type: "text",
                           placeholder: t.$t("例如：UAE Market Entry")
-                        }, null, 8, li), [
+                        }, null, 8, ai), [
                           [
                             e.vModelText,
-                            h.brandName,
+                            _.brandName,
                             void 0,
                             { trim: !0 }
                           ],
@@ -4037,7 +4056,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         e.withDirectives(e.createElementVNode(
                           "input",
                           {
-                            "onUpdate:modelValue": n[14] || (n[14] = (l) => h.arabicHeadline = l),
+                            "onUpdate:modelValue": n[14] || (n[14] = (l) => _.arabicHeadline = l),
                             dir: "rtl",
                             type: "text",
                             placeholder: "اكتشف علامتنا في الإمارات"
@@ -4048,13 +4067,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         ), [
                           [
                             e.vModelText,
-                            h.arabicHeadline,
+                            _.arabicHeadline,
                             void 0,
                             { trim: !0 }
                           ]
                         ])
                       ]),
-                      e.createElementVNode("label", ni, [
+                      e.createElementVNode("label", ri, [
                         e.createElementVNode(
                           "span",
                           null,
@@ -4066,7 +4085,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           "onUpdate:modelValue": n[15] || (n[15] = (l) => A.tenantId = l),
                           type: "text",
                           placeholder: t.$t("例如：tenant-uae-demo")
-                        }, null, 8, oi), [
+                        }, null, 8, ii), [
                           [
                             e.vModelText,
                             A.tenantId,
@@ -4080,7 +4099,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       class: "platform-topics",
                       "aria-label": t.$t("各平台话题")
                     }, [
-                      e.createElementVNode("div", ri, [
+                      e.createElementVNode("div", ci, [
                         e.createElementVNode(
                           "span",
                           null,
@@ -4099,7 +4118,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(Z.value, (l) => (e.openBlock(), e.createElementBlock("label", {
+                        e.renderList(X.value, (l) => (e.openBlock(), e.createElementBlock("label", {
                           key: `topic-${l.id}`
                         }, [
                           e.createElementVNode(
@@ -4130,7 +4149,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                             "onUpdate:modelValue": (r) => ue[l.id] = r,
                             type: "text",
                             placeholder: t.$t("例如：#UAE #Dubai #迪拜")
-                          }, null, 8, ii), [
+                          }, null, 8, di), [
                             [
                               e.vModelText,
                               ue[l.id],
@@ -4142,14 +4161,14 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         128
                         /* KEYED_FRAGMENT */
                       )),
-                      Z.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
+                      X.value.length ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock(
                         "p",
-                        si,
+                        ui,
                         e.toDisplayString(t.$t("当前没有勾选任何「本次投放」平台；先在平台连接 Tab 勾选后再填写话题。")),
                         1
                         /* TEXT */
                       ))
-                    ], 8, ai)
+                    ], 8, si)
                   ])
                 ],
                 2
@@ -4189,44 +4208,44 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       )
                     ])
                   ]),
-                  e.createElementVNode("div", ci, [
+                  e.createElementVNode("div", mi, [
                     e.createElementVNode("button", {
                       class: "button primary run-button",
                       type: "button",
-                      disabled: !Qt("campaign-launch") || !!e.unref($) || e.unref(S),
-                      onClick: Sn
+                      disabled: !Qt("campaign-launch") || !!e.unref($) || e.unref(N),
+                      onClick: wn
                     }, [
                       e.createElementVNode(
                         "i",
                         {
-                          class: e.normalizeClass(e.unref($) || e.unref(S) ? "ri-loader-4-line spin" : "ri-rocket-2-line")
+                          class: e.normalizeClass(e.unref($) || e.unref(N) ? "ri-loader-4-line spin" : "ri-rocket-2-line")
                         },
                         null,
                         2
                         /* CLASS */
                       ),
                       e.createTextVNode(
-                        " " + e.toDisplayString(e.unref(S) ? t.$t("正在生成成片…") : e.unref($) ? t.$t("正在执行投放…") : e.unref(_).length ? t.$t("执行新一轮投放任务") : t.$t("一键执行投放任务")),
+                        " " + e.toDisplayString(e.unref(N) ? t.$t("正在生成成片…") : e.unref($) ? t.$t("正在执行投放…") : e.unref(V).length ? t.$t("执行新一轮投放任务") : t.$t("一键执行投放任务")),
                         1
                         /* TEXT */
                       )
-                    ], 8, di),
+                    ], 8, pi),
                     e.createCommentVNode(" 生成阶段：动态视频生成模式下第 5 步先真调模型出片，进度与预览都在这里 "),
                     e.createCommentVNode(` 失败后也要留着：只认 active/preview 的话，一出错整块就消失，
                  用户看不到哪一步挂了、也无从判断要不要重试（实测反馈） `),
-                    e.unref(S) || e.unref(pe) || e.unref(b).length ? (e.openBlock(), e.createElementBlock(
+                    e.unref(N) || e.unref(pe) || e.unref(k).length ? (e.openBlock(), e.createElementBlock(
                       "div",
                       {
                         key: 0,
-                        class: e.normalizeClass(["run-live", { active: e.unref(S) }])
+                        class: e.normalizeClass(["run-live", { active: e.unref(N) }])
                       },
                       [
-                        e.createElementVNode("div", ui, [
+                        e.createElementVNode("div", vi, [
                           e.createCommentVNode(" 取消是中性终态：不用告警图标、不说「失败」（用户自己叫停的，不是出错） "),
                           e.createElementVNode(
                             "i",
                             {
-                              class: e.normalizeClass(e.unref(S) ? "ri-loader-4-line spin" : e.unref(b).some((l) => l.state === "failed") ? "ri-error-warning-line" : e.unref(b).some((l) => l.state === "cancelled") ? "ri-stop-circle-line" : "ri-checkbox-circle-line")
+                              class: e.normalizeClass(e.unref(N) ? "ri-loader-4-line spin" : e.unref(k).some((l) => l.state === "failed") ? "ri-error-warning-line" : e.unref(k).some((l) => l.state === "cancelled") ? "ri-stop-circle-line" : "ri-checkbox-circle-line")
                             },
                             null,
                             2
@@ -4235,7 +4254,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           e.createElementVNode(
                             "strong",
                             null,
-                            e.toDisplayString(e.unref(S) ? t.$t("正在生成广告成片") : e.unref(b).some((l) => l.state === "failed") ? t.$t("成片生成失败") : e.unref(b).some((l) => l.state === "cancelled") ? t.$t("已取消本次成片") : t.$t("成片已生成")),
+                            e.toDisplayString(e.unref(N) ? t.$t("正在生成广告成片") : e.unref(k).some((l) => l.state === "failed") ? t.$t("成片生成失败") : e.unref(k).some((l) => l.state === "cancelled") ? t.$t("已取消本次成片") : t.$t("成片已生成")),
                             1
                             /* TEXT */
                           ),
@@ -4254,18 +4273,18 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                               /* STABLE_FRAGMENT */
                             )) : e.createCommentVNode("v-if", !0),
                             e.createTextVNode(
-                              " " + e.toDisplayString(wl.value.done) + " / " + e.toDisplayString(wl.value.total),
+                              " " + e.toDisplayString(Sl.value.done) + " / " + e.toDisplayString(Sl.value.total),
                               1
                               /* TEXT */
                             )
                           ]),
                           e.createCommentVNode(` 主进程一直有取消通道（preload 的 cancelSlideshow），界面上却没有入口：
                      跑起来之后用户只能干等或杀应用。成片是分钟级的重活，必须给得起后悔药。 `),
-                          e.unref(S) ? (e.openBlock(), e.createElementBlock("button", {
+                          e.unref(N) ? (e.openBlock(), e.createElementBlock("button", {
                             key: 0,
                             class: "mini-button run-retry",
                             type: "button",
-                            disabled: ot.value,
+                            disabled: at.value,
                             onClick: n[16] || (n[16] = (l) => _n())
                           }, [
                             n[68] || (n[68] = e.createElementVNode(
@@ -4276,28 +4295,28 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                               /* CACHED */
                             )),
                             e.createTextVNode(
-                              e.toDisplayString(ot.value ? t.$t("正在停止…") : t.$t("取消生成")),
+                              e.toDisplayString(at.value ? t.$t("正在停止…") : t.$t("取消生成")),
                               1
                               /* TEXT */
                             )
-                          ], 8, mi)) : e.createCommentVNode("v-if", !0)
+                          ], 8, gi)) : e.createCommentVNode("v-if", !0)
                         ]),
-                        e.createElementVNode("div", pi, [
+                        e.createElementVNode("div", fi, [
                           e.createElementVNode(
                             "span",
                             {
-                              style: e.normalizeStyle({ width: `${wl.value.percent}%` })
+                              style: e.normalizeStyle({ width: `${Sl.value.percent}%` })
                             },
                             null,
                             4
                             /* STYLE */
                           )
                         ]),
-                        e.createElementVNode("ol", vi, [
+                        e.createElementVNode("ol", yi, [
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(e.unref(b), (l) => (e.openBlock(), e.createElementBlock(
+                            e.renderList(e.unref(k), (l) => (e.openBlock(), e.createElementBlock(
                               "li",
                               {
                                 key: l.id,
@@ -4322,8 +4341,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                                 ),
                                 e.createElementVNode(
                                   "span",
-                                  gi,
-                                  e.toDisplayString(Io(l)),
+                                  hi,
+                                  e.toDisplayString(Mo(l)),
                                   1
                                   /* TEXT */
                                 )
@@ -4336,10 +4355,10 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           ))
                         ]),
                         e.createCommentVNode(" 失败原因进下面的告警卡（带重新生成）；其它阶段性消息仍在这里 "),
-                        e.unref(L) && St.value?.state !== "failed" ? (e.openBlock(), e.createElementBlock(
+                        e.unref(T) && wt.value?.state !== "failed" ? (e.openBlock(), e.createElementBlock(
                           "p",
-                          fi,
-                          e.toDisplayString(e.unref(L)),
+                          ki,
+                          e.toDisplayString(e.unref(T)),
                           1
                           /* TEXT */
                         )) : e.createCommentVNode("v-if", !0),
@@ -4349,23 +4368,23 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 超时由看门狗判（跑过 max(预计×3, 预计+5min) 或很久没进度），可「继续等待」或「重新生成」
                 （重新生成会先取消还在跑的旧任务，不堆僵尸进程）。
               `),
-                        St.value ? (e.openBlock(), e.createBlock(Ta, {
+                        wt.value ? (e.openBlock(), e.createBlock(La, {
                           key: 1,
-                          state: St.value.state,
-                          message: St.value.message,
-                          "elapsed-sec": e.unref(Se).elapsedSec.value,
-                          "estimate-sec": lt.value?.etaSec || null,
-                          "since-heartbeat-sec": e.unref(Se).sinceHeartbeatSec.value,
+                          state: wt.value.state,
+                          message: wt.value.message,
+                          "elapsed-sec": e.unref(we).elapsedSec.value,
+                          "estimate-sec": nt.value?.etaSec || null,
+                          "since-heartbeat-sec": e.unref(we).sinceHeartbeatSec.value,
                           "retry-label": t.$t("重新生成并执行投放"),
-                          busy: wt.value,
-                          onRetry: n[17] || (n[17] = (l) => Oo()),
-                          onKeepWaiting: n[18] || (n[18] = (l) => e.unref(Se).keepWaiting())
+                          busy: St.value,
+                          onRetry: n[17] || (n[17] = (l) => Wo()),
+                          onKeepWaiting: n[18] || (n[18] = (l) => e.unref(we).keepWaiting())
                         }, null, 8, ["state", "message", "elapsed-sec", "estimate-sec", "since-heartbeat-sec", "retry-label", "busy"])) : e.createCommentVNode("v-if", !0),
                         e.unref(pe) ? (e.openBlock(), e.createElementBlock("button", {
                           key: 2,
                           class: "mini-button primary",
                           type: "button",
-                          onClick: n[19] || (n[19] = (l) => yn({ id: "gen", projectName: h.brandName, path: e.unref(pe), createdAt: Date.now() }))
+                          onClick: n[19] || (n[19] = (l) => yn({ id: "gen", projectName: _.brandName, path: e.unref(pe), createdAt: Date.now() }))
                         }, [
                           n[69] || (n[69] = e.createElementVNode(
                             "i",
@@ -4385,18 +4404,18 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       /* CLASS */
                     )) : e.createCommentVNode("v-if", !0),
                     e.createCommentVNode(' 执行中就地展开多节点状态：用户点完立刻看到"程序在跑"，不必去右侧找 '),
-                    e.unref(_).length ? (e.openBlock(), e.createElementBlock(
+                    e.unref(V).length ? (e.openBlock(), e.createElementBlock(
                       "div",
                       {
                         key: 1,
                         class: e.normalizeClass(["run-live", { active: !!e.unref($) }])
                       },
                       [
-                        e.createElementVNode("div", yi, [
+                        e.createElementVNode("div", bi, [
                           e.createElementVNode(
                             "i",
                             {
-                              class: e.normalizeClass(e.unref($) ? "ri-loader-4-line spin" : e.unref(rt) ? "ri-error-warning-line" : "ri-checkbox-circle-line")
+                              class: e.normalizeClass(e.unref($) ? "ri-loader-4-line spin" : e.unref(it) ? "ri-error-warning-line" : "ri-checkbox-circle-line")
                             },
                             null,
                             2
@@ -4405,7 +4424,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           e.createElementVNode(
                             "strong",
                             null,
-                            e.toDisplayString(e.unref($) ? t.$t("投放执行中") : e.unref(rt) ? t.$t("上次执行被中断") : t.$t("本次投放已结束")),
+                            e.toDisplayString(e.unref($) ? t.$t("投放执行中") : e.unref(it) ? t.$t("上次执行被中断") : t.$t("本次投放已结束")),
                             1
                             /* TEXT */
                           ),
@@ -4424,13 +4443,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                               /* STABLE_FRAGMENT */
                             )) : e.createCommentVNode("v-if", !0),
                             e.createTextVNode(
-                              " " + e.toDisplayString(nt.value.platformsDone) + " / " + e.toDisplayString(nt.value.platforms),
+                              " " + e.toDisplayString(ot.value.platformsDone) + " / " + e.toDisplayString(ot.value.platforms),
                               1
                               /* TEXT */
                             )
                           ]),
                           e.createCommentVNode(" 中断/失败可重试：只重跑没成功的那几条，已发出去的不动（重发会在平台侧堆重复内容） "),
-                          pn.value && !e.unref($) && !e.unref(S) ? (e.openBlock(), e.createElementBlock("button", {
+                          pn.value && !e.unref($) && !e.unref(N) ? (e.openBlock(), e.createElementBlock("button", {
                             key: 0,
                             class: "mini-button primary run-retry",
                             type: "button",
@@ -4450,22 +4469,22 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                             )
                           ])) : e.createCommentVNode("v-if", !0)
                         ]),
-                        e.createElementVNode("div", hi, [
+                        e.createElementVNode("div", Ei, [
                           e.createElementVNode(
                             "span",
                             {
-                              style: e.normalizeStyle({ width: `${nt.value.percent}%` })
+                              style: e.normalizeStyle({ width: `${ot.value.percent}%` })
                             },
                             null,
                             4
                             /* STYLE */
                           )
                         ]),
-                        e.createElementVNode("ol", ki, [
+                        e.createElementVNode("ol", Ni, [
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(e.unref(_), (l) => (e.openBlock(), e.createElementBlock(
+                            e.renderList(e.unref(V), (l) => (e.openBlock(), e.createElementBlock(
                               "li",
                               {
                                 key: `live-${l.platformId}`,
@@ -4491,11 +4510,11 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                                 e.createElementVNode(
                                   "span",
                                   null,
-                                  e.toDisplayString(Fo(l)),
+                                  e.toDisplayString(Ro(l)),
                                   1
                                   /* TEXT */
                                 ),
-                                l.state === "failed" && !e.unref($) && !e.unref(S) ? (e.openBlock(), e.createElementBlock("button", {
+                                l.state === "failed" && !e.unref($) && !e.unref(N) ? (e.openBlock(), e.createElementBlock("button", {
                                   key: 0,
                                   class: "mini-button run-retry-one",
                                   type: "button",
@@ -4514,7 +4533,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                                     1
                                     /* TEXT */
                                   )
-                                ], 8, bi)) : e.createCommentVNode("v-if", !0)
+                                ], 8, Vi)) : e.createCommentVNode("v-if", !0)
                               ],
                               2
                               /* CLASS */
@@ -4527,7 +4546,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       2
                       /* CLASS */
                     )) : e.createCommentVNode("v-if", !0),
-                    !Qt("campaign-launch") && !e.unref($) && !e.unref(S) ? (e.openBlock(), e.createElementBlock("p", Ei, [
+                    !Qt("campaign-launch") && !e.unref($) && !e.unref(N) ? (e.openBlock(), e.createElementBlock("p", Si, [
                       n[72] || (n[72] = e.createElementVNode(
                         "i",
                         { class: "ri-information-line" },
@@ -4536,7 +4555,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         /* CACHED */
                       )),
                       e.createTextVNode(
-                        e.toDisplayString(wn("campaign-launch")),
+                        e.toDisplayString(Sn("campaign-launch")),
                         1
                         /* TEXT */
                       )
@@ -4545,7 +4564,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       { key: 3 },
                       [
                         e.createCommentVNode(" 开跑前的预检没过（例如素材目录里一张图都没有）：原地说清，不去起任务 "),
-                        e.createElementVNode("p", Ni, [
+                        e.createElementVNode("p", wi, [
                           n[73] || (n[73] = e.createElementVNode(
                             "i",
                             { class: "ri-error-warning-line" },
@@ -4562,12 +4581,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       ],
                       2112
                       /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
-                    )) : !e.unref(_).length && !e.unref(S) && !St.value ? (e.openBlock(), e.createElementBlock(
+                    )) : !e.unref(V).length && !e.unref(N) && !wt.value ? (e.openBlock(), e.createElementBlock(
                       e.Fragment,
                       { key: 4 },
                       [
                         e.createCommentVNode(" 「全部就绪」只在真的空闲且上一轮没有失败/超时时显示；和失败态同屏是自相矛盾（实测截图） "),
-                        e.createElementVNode("p", Vi, [
+                        e.createElementVNode("p", _i, [
                           n[74] || (n[74] = e.createElementVNode(
                             "i",
                             { class: "ri-checkbox-circle-line" },
@@ -4595,8 +4614,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             /* NEED_PATCH */
           ),
           e.createCommentVNode(" 右侧：历史生成视频 + 发布回执 "),
-          e.createElementVNode("aside", wi, [
-            e.createElementVNode("div", Si, [
+          e.createElementVNode("aside", Di, [
+            e.createElementVNode("div", Ai, [
               e.createElementVNode(
                 "strong",
                 null,
@@ -4606,39 +4625,39 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               ),
               e.createElementVNode("button", {
                 class: "mini-button",
-                disabled: bt.value,
+                disabled: Et.value,
                 onClick: rn
               }, [
                 e.createElementVNode(
                   "i",
                   {
-                    class: e.normalizeClass(bt.value ? "ri-loader-4-line spin" : "ri-refresh-line")
+                    class: e.normalizeClass(Et.value ? "ri-loader-4-line spin" : "ri-refresh-line")
                   },
                   null,
                   2
                   /* CLASS */
                 )
-              ], 8, _i)
+              ], 8, $i)
             ]),
             e.createElementVNode(
               "p",
-              Di,
+              Ci,
               e.toDisplayString(t.$t("生成过的广告视频都在这里：可预览、选为发布视频，或直接一键发布测试发布链路。")),
               1
               /* TEXT */
             ),
-            e.createElementVNode("label", Ai, [
+            e.createElementVNode("label", Bi, [
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": n[21] || (n[21] = (l) => ht.value = l),
+                  "onUpdate:modelValue": n[21] || (n[21] = (l) => kt.value = l),
                   type: "checkbox"
                 },
                 null,
                 512
                 /* NEED_PATCH */
               ), [
-                [e.vModelCheckbox, ht.value]
+                [e.vModelCheckbox, kt.value]
               ]),
               e.createElementVNode("span", null, [
                 e.createElementVNode(
@@ -4651,24 +4670,24 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 e.createElementVNode(
                   "small",
                   null,
-                  e.toDisplayString(ht.value ? t.$t("注入成片后自动填文案并点击「发布」，全程无需人工") : t.$t("只准备成片与文案，最终「发布」由你手动点击")),
+                  e.toDisplayString(kt.value ? t.$t("注入成片后自动填文案并点击「发布」，全程无需人工") : t.$t("只准备成片与文案，最终「发布」由你手动点击")),
                   1
                   /* TEXT */
                 )
               ])
             ]),
-            W.value.length ? (e.openBlock(), e.createElementBlock("div", Ci, [
+            W.value.length ? (e.openBlock(), e.createElementBlock("div", Li, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(Ao.value, (l) => (e.openBlock(), e.createElementBlock(
+                e.renderList($o.value, (l) => (e.openBlock(), e.createElementBlock(
                   "article",
                   {
                     key: l.id,
-                    class: e.normalizeClass(["ads-video-item", { selected: T.value === l.path }])
+                    class: e.normalizeClass(["ads-video-item", { selected: B.value === l.path }])
                   },
                   [
-                    e.createElementVNode("span", Bi, [
+                    e.createElementVNode("span", Pi, [
                       e.createElementVNode(
                         "i",
                         {
@@ -4679,19 +4698,19 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         /* CLASS */
                       )
                     ]),
-                    e.createElementVNode("div", Ti, [
+                    e.createElementVNode("div", Ii, [
                       e.createElementVNode("strong", null, [
                         e.createTextVNode(
-                          e.toDisplayString(bo(l)) + " ",
+                          e.toDisplayString(Eo(l)) + " ",
                           1
                           /* TEXT */
                         ),
                         e.createCommentVNode(` 画幅徽标从**文件名**解析，不依赖 projectName 怎么拼 ——
                      名字是生成时拼好存进 localStorage 的，历史数据/改过命名规则时就没有画幅了 `),
-                        Ze(l.path) ? (e.openBlock(), e.createElementBlock(
+                        Xe(l.path) ? (e.openBlock(), e.createElementBlock(
                           "span",
-                          Li,
-                          e.toDisplayString(Ze(l.path)),
+                          Mi,
+                          e.toDisplayString(Xe(l.path)),
                           1
                           /* TEXT */
                         )) : e.createCommentVNode("v-if", !0)
@@ -4713,24 +4732,24 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         /* TEXT, CLASS */
                       ),
                       e.createCommentVNode(" 画幅是硬约束：先摆出这批成片能覆盖哪些平台，免得点了才发现平台被摘 "),
-                      C[l.path] ? (e.openBlock(), e.createElementBlock("small", Pi, [
+                      C[l.path] ? (e.openBlock(), e.createElementBlock("small", Oi, [
                         e.createElementVNode(
                           "span",
-                          Ii,
+                          Wi,
                           e.toDisplayString(t.$t("{p0}：{p1}", { p0: t.$t("可发布"), p1: vl(l).ok.join(" / ") || t.$t("无") })),
                           1
                           /* TEXT */
                         ),
                         vl(l).miss.length ? (e.openBlock(), e.createElementBlock(
                           "span",
-                          Mi,
+                          Fi,
                           e.toDisplayString(t.$t("{p0}：{p1}", { p0: t.$t("画幅不符"), p1: vl(l).miss.join(" / ") })),
                           1
                           /* TEXT */
                         )) : e.createCommentVNode("v-if", !0)
                       ])) : e.createCommentVNode("v-if", !0)
                     ]),
-                    e.createElementVNode("div", Oi, [
+                    e.createElementVNode("div", Ri, [
                       e.createElementVNode("button", {
                         class: "mini-button primary",
                         disabled: !C[l.path] || !!e.unref($),
@@ -4751,7 +4770,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           1
                           /* TEXT */
                         )
-                      ], 8, Wi),
+                      ], 8, Ui),
                       e.createElementVNode("button", {
                         class: "mini-button",
                         disabled: !C[l.path],
@@ -4769,30 +4788,30 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           1
                           /* TEXT */
                         )
-                      ], 8, Fi),
+                      ], 8, zi),
                       e.createElementVNode("button", {
-                        class: e.normalizeClass(["mini-button", { primary: T.value !== l.path }]),
+                        class: e.normalizeClass(["mini-button", { primary: B.value !== l.path }]),
                         disabled: !C[l.path],
-                        onClick: (r) => Po(l)
+                        onClick: (r) => Io(l)
                       }, [
                         e.createElementVNode(
                           "i",
                           {
-                            class: e.normalizeClass(T.value === l.path ? "ri-checkbox-circle-fill" : "ri-checkbox-blank-circle-line")
+                            class: e.normalizeClass(B.value === l.path ? "ri-checkbox-circle-fill" : "ri-checkbox-blank-circle-line")
                           },
                           null,
                           2
                           /* CLASS */
                         ),
                         e.createTextVNode(
-                          " " + e.toDisplayString(T.value === l.path ? t.$t("已选为发布视频") : t.$t("选为发布视频")),
+                          " " + e.toDisplayString(B.value === l.path ? t.$t("已选为发布视频") : t.$t("选为发布视频")),
                           1
                           /* TEXT */
                         )
-                      ], 10, Ri),
+                      ], 10, Ki),
                       e.createElementVNode("button", {
                         class: "mini-button warn",
-                        onClick: (r) => Ro(l.id)
+                        onClick: (r) => Uo(l.id)
                       }, [
                         n[76] || (n[76] = e.createElementVNode(
                           "i",
@@ -4806,7 +4825,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           1
                           /* TEXT */
                         )
-                      ], 8, Ui)
+                      ], 8, ji)
                     ])
                   ],
                   2
@@ -4817,7 +4836,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               )),
               e.createCommentVNode(` #32 分页：第 1 页恒为最新（按生成时间倒序）。
                只有一页时也保留这一行显示总条数 —— 否则条数减少后整块凭空消失，看着像功能没了。 `),
-              e.createElementVNode("div", zi, [
+              e.createElementVNode("div", Gi, [
                 xe.value > 1 ? (e.openBlock(), e.createElementBlock("button", {
                   key: 0,
                   class: "mini-button",
@@ -4836,7 +4855,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     1
                     /* TEXT */
                   )
-                ], 8, Ki)) : e.createCommentVNode("v-if", !0),
+                ], 8, Hi)) : e.createCommentVNode("v-if", !0),
                 e.createElementVNode("span", null, [
                   e.createTextVNode(
                     e.toDisplayString(t.$t("共 {p0} 条", { p0: W.value.length })) + " ",
@@ -4875,22 +4894,22 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     -1
                     /* CACHED */
                   ))
-                ], 8, ji)) : e.createCommentVNode("v-if", !0)
+                ], 8, Ji)) : e.createCommentVNode("v-if", !0)
               ])
             ])) : (e.openBlock(), e.createElementBlock(
               "div",
-              $i,
+              Ti,
               e.toDisplayString(t.$t("还没有生成过广告视频。点击右上角「生成广告视频」开始第一条。")),
               1
               /* TEXT */
             )),
             e.createCommentVNode(" #28 发布运行状态：和工作流「实时执行记录」同一套读法 —— 总进度条 + 每平台逐步点亮 "),
-            e.unref(_).length ? (e.openBlock(), e.createElementBlock("div", {
+            e.unref(V).length ? (e.openBlock(), e.createElementBlock("div", {
               key: 2,
               class: "publish-runs",
               "aria-label": t.$t("发布运行状态")
             }, [
-              e.createElementVNode("div", Hi, [
+              e.createElementVNode("div", Yi, [
                 e.createElementVNode(
                   "strong",
                   null,
@@ -4901,16 +4920,16 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 e.createElementVNode(
                   "em",
                   null,
-                  e.toDisplayString(nt.value.platformsDone) + "/" + e.toDisplayString(nt.value.platforms),
+                  e.toDisplayString(ot.value.platformsDone) + "/" + e.toDisplayString(ot.value.platforms),
                   1
                   /* TEXT */
                 )
               ]),
-              e.createElementVNode("div", Ji, [
+              e.createElementVNode("div", Zi, [
                 e.createElementVNode(
                   "span",
                   {
-                    style: e.normalizeStyle({ width: `${nt.value.percent}%` })
+                    style: e.normalizeStyle({ width: `${ot.value.percent}%` })
                   },
                   null,
                   4
@@ -4920,7 +4939,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(e.unref(_), (l) => (e.openBlock(), e.createElementBlock(
+                e.renderList(e.unref(V), (l) => (e.openBlock(), e.createElementBlock(
                   "article",
                   {
                     key: l.platformId,
@@ -4947,7 +4966,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       ),
                       e.createElementVNode(
                         "span",
-                        qi,
+                        Xi,
                         e.toDisplayString(l.aspect),
                         1
                         /* TEXT */
@@ -4965,8 +4984,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     e.createElementVNode("small", {
                       class: "run-file",
                       title: l.file
-                    }, e.toDisplayString(l.file), 9, Yi),
-                    e.createElementVNode("ol", Xi, [
+                    }, e.toDisplayString(l.file), 9, Qi),
+                    e.createElementVNode("ol", xi, [
                       (e.openBlock(!0), e.createElementBlock(
                         e.Fragment,
                         null,
@@ -5003,7 +5022,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     ]),
                     l.detail ? (e.openBlock(), e.createElementBlock(
                       "p",
-                      Zi,
+                      es,
                       e.toDisplayString(l.detail),
                       1
                       /* TEXT */
@@ -5015,15 +5034,15 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 128
                 /* KEYED_FRAGMENT */
               ))
-            ], 8, Gi)) : e.createCommentVNode("v-if", !0)
+            ], 8, qi)) : e.createCommentVNode("v-if", !0)
           ])
         ])) : e.createCommentVNode("v-if", !0),
-        z.value === "connect" ? (e.openBlock(), e.createElementBlock("section", Qi, [
-          z.value === "connect" ? (e.openBlock(), e.createElementBlock("article", xi, [
-            e.createElementVNode("div", es, [
+        z.value === "connect" ? (e.openBlock(), e.createElementBlock("section", ts, [
+          z.value === "connect" ? (e.openBlock(), e.createElementBlock("article", ls, [
+            e.createElementVNode("div", ns, [
               e.createElementVNode(
                 "span",
-                ts,
+                os,
                 e.toDisplayString(t.$t("Channel Access")),
                 1
                 /* TEXT */
@@ -5043,11 +5062,11 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 /* TEXT */
               )
             ]),
-            e.createElementVNode("div", ls, [
+            e.createElementVNode("div", as, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(e.unref(N), (l) => (e.openBlock(), e.createElementBlock(
+                e.renderList(e.unref(b), (l) => (e.openBlock(), e.createElementBlock(
                   "article",
                   {
                     key: `login-${l.id}`,
@@ -5055,8 +5074,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     style: e.normalizeStyle({ "--platform-color": l.color })
                   },
                   [
-                    e.createElementVNode("div", ns, [
-                      e.createElementVNode("span", os, [
+                    e.createElementVNode("div", rs, [
+                      e.createElementVNode("span", is, [
                         e.createElementVNode(
                           "i",
                           {
@@ -5091,7 +5110,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           type: "checkbox",
                           checked: !de.value.has(l.id),
                           onChange: (r) => Vn(l.id)
-                        }, null, 40, rs),
+                        }, null, 40, cs),
                         e.createElementVNode(
                           "span",
                           null,
@@ -5099,7 +5118,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           1
                           /* TEXT */
                         )
-                      ], 8, as)
+                      ], 8, ss)
                     ]),
                     e.createElementVNode("div", {
                       class: "access-mode-switch",
@@ -5125,7 +5144,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           -1
                           /* CACHED */
                         )
-                      ])], 10, ss),
+                      ])], 10, us),
                       e.createElementVNode("button", {
                         type: "button",
                         role: "radio",
@@ -5145,9 +5164,9 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           -1
                           /* CACHED */
                         )
-                      ])], 10, cs)
-                    ], 8, is),
-                    $l(l.id) ? (e.openBlock(), e.createElementBlock("p", ds, [
+                      ])], 10, ms)
+                    ], 8, ds),
+                    $l(l.id) ? (e.openBlock(), e.createElementBlock("p", ps, [
                       n[81] || (n[81] = e.createElementVNode(
                         "i",
                         { class: "ri-external-link-line" },
@@ -5165,7 +5184,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       class: "access-connect-button",
                       type: "button",
                       disabled: Ce.value === l.id,
-                      onClick: (r) => va(l.id)
+                      onClick: (r) => ga(l.id)
                     }, [
                       e.createElementVNode(
                         "i",
@@ -5181,7 +5200,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         1
                         /* TEXT */
                       )
-                    ], 8, us)
+                    ], 8, vs)
                   ],
                   4
                   /* STYLE */
@@ -5190,7 +5209,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 /* KEYED_FRAGMENT */
               ))
             ]),
-            ae.value ? (e.openBlock(), e.createElementBlock("p", ms, [
+            ae.value ? (e.openBlock(), e.createElementBlock("p", gs, [
               n[82] || (n[82] = e.createElementVNode(
                 "i",
                 { class: "ri-window-line" },
@@ -5206,11 +5225,11 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             ])) : e.createCommentVNode("v-if", !0)
           ])) : e.createCommentVNode("v-if", !0)
         ])) : e.createCommentVNode("v-if", !0),
-        z.value === "campaign" && D.value.length ? (e.openBlock(), e.createElementBlock("section", ps, [
-          e.createElementVNode("div", vs, [
+        z.value === "campaign" && w.value.length ? (e.openBlock(), e.createElementBlock("section", fs, [
+          e.createElementVNode("div", ys, [
             e.createElementVNode(
               "span",
-              gs,
+              hs,
               e.toDisplayString(t.$t("Agent Creative Preview")),
               1
               /* TEXT */
@@ -5237,7 +5256,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(e.unref(N), (l) => (e.openBlock(), e.createElementBlock("button", {
+                e.renderList(e.unref(b), (l) => (e.openBlock(), e.createElementBlock("button", {
                   key: `preview-${l.id}`,
                   type: "button",
                   role: "tab",
@@ -5260,11 +5279,11 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     1
                     /* TEXT */
                   )
-                ], 14, ys))),
+                ], 14, bs))),
                 128
                 /* KEYED_FRAGMENT */
               ))
-            ], 8, fs),
+            ], 8, ks),
             e.createElementVNode("ul", null, [
               e.createElementVNode("li", null, [
                 n[83] || (n[83] = e.createElementVNode(
@@ -5320,8 +5339,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               e.createElementVNode("header", null, [
                 e.createElementVNode(
                   "span",
-                  hs,
-                  e.toDisplayString(h.brandName.slice(0, 1).toUpperCase() || "U"),
+                  Es,
+                  e.toDisplayString(_.brandName.slice(0, 1).toUpperCase() || "U"),
                   1
                   /* TEXT */
                 ),
@@ -5329,7 +5348,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                   e.createElementVNode(
                     "strong",
                     null,
-                    e.toDisplayString(h.brandName || t.$t("客户品牌")),
+                    e.toDisplayString(_.brandName || t.$t("客户品牌")),
                     1
                     /* TEXT */
                   ),
@@ -5349,12 +5368,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                   /* CACHED */
                 ))
               ]),
-              e.createElementVNode("div", ks, [
-                Zt.value?.kind === "image" && Zt.value.previewUrl ? (e.openBlock(), e.createElementBlock("img", {
+              e.createElementVNode("div", Ns, [
+                Xt.value?.kind === "image" && Xt.value.previewUrl ? (e.openBlock(), e.createElementBlock("img", {
                   key: 0,
-                  src: Zt.value.previewUrl,
+                  src: Xt.value.previewUrl,
                   alt: t.$t("客户素材生成的广告预览")
-                }, null, 8, bs)) : (e.openBlock(), e.createElementBlock("div", Es, [
+                }, null, 8, Vs)) : (e.openBlock(), e.createElementBlock("div", Ss, [
                   n[87] || (n[87] = e.createElementVNode(
                     "i",
                     { class: "ri-video-line" },
@@ -5365,7 +5384,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                   e.createElementVNode(
                     "span",
                     null,
-                    e.toDisplayString(Zt.value?.name),
+                    e.toDisplayString(Xt.value?.name),
                     1
                     /* TEXT */
                   )
@@ -5378,18 +5397,18 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                   /* CACHED */
                 ))
               ]),
-              e.createElementVNode("div", Ns, [
+              e.createElementVNode("div", ws, [
                 e.createElementVNode(
                   "span",
                   null,
-                  e.toDisplayString(h.brandName || t.$t("客户品牌")),
+                  e.toDisplayString(_.brandName || t.$t("客户品牌")),
                   1
                   /* TEXT */
                 ),
                 e.createElementVNode(
                   "h3",
                   null,
-                  e.toDisplayString(h.arabicHeadline || "اكتشف علامتنا في الإمارات"),
+                  e.toDisplayString(_.arabicHeadline || "اكتشف علامتنا في الإمارات"),
                   1
                   /* TEXT */
                 ),
@@ -5434,13 +5453,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             /* STYLE */
           )
         ])) : e.createCommentVNode("v-if", !0),
-        z.value === "scenarios" ? (e.openBlock(), e.createBlock(Ia, {
+        z.value === "scenarios" ? (e.openBlock(), e.createBlock(Ma, {
           key: 3,
           domain: "global-ads",
-          execute: fa,
+          execute: ya,
           "can-start": Qt,
-          "start-blocked-reason": wn,
-          "before-start": sa,
+          "start-blocked-reason": Sn,
+          "before-start": ca,
           "hidden-scenarios": e.unref(j)
         }, null, 8, ["hidden-scenarios"])) : e.createCommentVNode("v-if", !0),
         z.value === "connect" ? (e.openBlock(), e.createElementBlock(
@@ -5454,61 +5473,61 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             }])
           },
           [
-            e.createElementVNode("span", Vs, [
-              ct.value ? (e.openBlock(), e.createElementBlock("i", ws)) : De.value ? (e.openBlock(), e.createElementBlock("i", Ss)) : _e.value ? (e.openBlock(), e.createElementBlock("i", _s)) : (e.openBlock(), e.createElementBlock("i", Ds))
+            e.createElementVNode("span", _s, [
+              dt.value ? (e.openBlock(), e.createElementBlock("i", Ds)) : De.value ? (e.openBlock(), e.createElementBlock("i", As)) : _e.value ? (e.openBlock(), e.createElementBlock("i", $s)) : (e.openBlock(), e.createElementBlock("i", Cs))
             ]),
             e.createElementVNode("div", null, [
-              ct.value ? (e.openBlock(), e.createElementBlock(
+              dt.value ? (e.openBlock(), e.createElementBlock(
                 "strong",
-                As,
+                Bs,
                 e.toDisplayString(t.$t("正在核验区域与投放护栏")),
                 1
                 /* TEXT */
               )) : De.value ? (e.openBlock(), e.createElementBlock(
                 "strong",
-                $s,
+                Ts,
                 e.toDisplayString(t.$t("区域状态不可用，写操作保持关闭")),
                 1
                 /* TEXT */
               )) : _e.value ? (e.openBlock(), e.createElementBlock(
                 "strong",
-                Cs,
+                Ls,
                 e.toDisplayString(t.$t("当前区域允许广告写操作")),
                 1
                 /* TEXT */
               )) : (e.openBlock(), e.createElementBlock(
                 "strong",
-                Bs,
+                Ps,
                 e.toDisplayString(t.$t("当前区域禁止广告写操作")),
                 1
                 /* TEXT */
               )),
               De.value ? (e.openBlock(), e.createElementBlock(
                 "p",
-                Ts,
+                Is,
                 e.toDisplayString(De.value),
                 1
                 /* TEXT */
               )) : _e.value ? (e.openBlock(), e.createElementBlock(
                 "p",
-                Ps,
+                Os,
                 e.toDisplayString(t.$t(`{p0}：{p1}
           · {p2}：{p3}
           · {p4}：{p5}
-          · {p6}`, { p0: t.$t("区域"), p1: P.value?.region || "—", p2: t.$t("币种"), p3: P.value?.currency || "—", p4: t.$t("时区"), p5: P.value?.timezone || "—", p6: t.$t("写操作始终受预算护栏与人工确认保护。") })),
+          · {p6}`, { p0: t.$t("区域"), p1: L.value?.region || "—", p2: t.$t("币种"), p3: L.value?.currency || "—", p4: t.$t("时区"), p5: L.value?.timezone || "—", p6: t.$t("写操作始终受预算护栏与人工确认保护。") })),
                 1
                 /* TEXT */
               )) : (e.openBlock(), e.createElementBlock(
                 "p",
-                Ls,
-                e.toDisplayString(t.$t(String(P.value?.regionBlockReason || P.value?.region_block_reason || "请由管理员核对运行区域与 global_ads 配置。"))),
+                Ms,
+                e.toDisplayString(t.$t(String(L.value?.regionBlockReason || L.value?.region_block_reason || "请由管理员核对运行区域与 global_ads 配置。"))),
                 1
                 /* TEXT */
               ))
             ]),
             $t.value ? (e.openBlock(), e.createElementBlock(
               "span",
-              Is,
+              Ws,
               e.toDisplayString(_e.value ? t.$t("可投放") : t.$t("只读")),
               1
               /* TEXT */
@@ -5566,7 +5585,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               e.createElementVNode(
                 "span",
                 null,
-                e.toDisplayString(t.$t("当前活跃")) + " " + e.toDisplayString(Kn(P.value?.web?.activeSessions ?? P.value?.web?.active_sessions)) + " / " + e.toDisplayString(t.$t("上限")) + " " + e.toDisplayString(Kn(P.value?.web?.maxParallelSessions ?? P.value?.web?.max_parallel_sessions)),
+                e.toDisplayString(t.$t("当前活跃")) + " " + e.toDisplayString(Kn(L.value?.web?.activeSessions ?? L.value?.web?.active_sessions)) + " / " + e.toDisplayString(t.$t("上限")) + " " + e.toDisplayString(Kn(L.value?.web?.maxParallelSessions ?? L.value?.web?.max_parallel_sessions)),
                 1
                 /* TEXT */
               )
@@ -5597,13 +5616,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               )
             ])
           ])
-        ], 8, Ms)) : e.createCommentVNode("v-if", !0),
-        z.value === "connect" ? (e.openBlock(), e.createElementBlock("section", Os, [
-          e.createElementVNode("div", Ws, [
+        ], 8, Fs)) : e.createCommentVNode("v-if", !0),
+        z.value === "connect" ? (e.openBlock(), e.createElementBlock("section", Rs, [
+          e.createElementVNode("div", Us, [
             e.createElementVNode("div", null, [
               e.createElementVNode(
                 "span",
-                Fs,
+                zs,
                 e.toDisplayString(t.$t("连接状态")),
                 1
                 /* TEXT */
@@ -5612,13 +5631,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               e.createElementVNode(
                 "h2",
                 null,
-                e.toDisplayString(t.$t("{p0} 个平台状态", { p0: e.unref(N).length })),
+                e.toDisplayString(t.$t("{p0} 个平台状态", { p0: e.unref(b).length })),
                 1
                 /* TEXT */
               ),
               e.createElementVNode(
                 "p",
-                Rs,
+                Ks,
                 e.toDisplayString(t.$t("未来会支持更多平台")),
                 1
                 /* TEXT */
@@ -5626,13 +5645,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             ]),
             e.createElementVNode(
               "span",
-              Us,
-              e.toDisplayString(Qo.value) + " / " + e.toDisplayString(e.unref(N).length) + " " + e.toDisplayString(t.$t("已配置")),
+              js,
+              e.toDisplayString(xo.value) + " / " + e.toDisplayString(e.unref(b).length) + " " + e.toDisplayString(t.$t("已配置")),
               1
               /* TEXT */
             )
           ]),
-          al.value ? (e.openBlock(), e.createElementBlock("div", zs, [
+          al.value ? (e.openBlock(), e.createElementBlock("div", Gs, [
             n[92] || (n[92] = e.createElementVNode(
               "i",
               { class: "ri-loader-4-line spin" },
@@ -5645,7 +5664,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               1
               /* TEXT */
             )
-          ])) : (e.openBlock(), e.createElementBlock("div", Ks, [
+          ])) : (e.openBlock(), e.createElementBlock("div", Hs, [
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
@@ -5653,11 +5672,11 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 key: l.id,
                 class: "platform-card"
               }, [
-                e.createElementVNode("div", js, [
+                e.createElementVNode("div", Js, [
                   e.createElementVNode(
                     "span",
-                    Gs,
-                    e.toDisplayString(Da(l.id)),
+                    qs,
+                    e.toDisplayString(Aa(l.id)),
                     1
                     /* TEXT */
                   ),
@@ -5699,12 +5718,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     e.createElementVNode(
                       "dd",
                       null,
-                      e.toDisplayString(_a(l.mode)),
+                      e.toDisplayString(Da(l.mode)),
                       1
                       /* TEXT */
                     )
                   ]),
-                  l.mode === "api" ? (e.openBlock(), e.createElementBlock("div", Hs, [
+                  l.mode === "api" ? (e.openBlock(), e.createElementBlock("div", Ys, [
                     e.createElementVNode(
                       "dt",
                       null,
@@ -5719,7 +5738,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       1
                       /* TEXT */
                     )
-                  ])) : (e.openBlock(), e.createElementBlock("div", Js, [
+                  ])) : (e.openBlock(), e.createElementBlock("div", Zs, [
                     e.createElementVNode(
                       "dt",
                       null,
@@ -5730,13 +5749,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     e.createElementVNode(
                       "dd",
                       null,
-                      e.toDisplayString(Sa(l.webLogin)),
+                      e.toDisplayString(_a(l.webLogin)),
                       1
                       /* TEXT */
                     )
                   ]))
                 ]),
-                l.mode === "api" && l.missingSecrets.length ? (e.openBlock(), e.createElementBlock("p", qs, [
+                l.mode === "api" && l.missingSecrets.length ? (e.openBlock(), e.createElementBlock("p", Xs, [
                   n[93] || (n[93] = e.createElementVNode(
                     "i",
                     { class: "ri-key-2-line" },
@@ -5749,7 +5768,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     1
                     /* TEXT */
                   )
-                ])) : l.error ? (e.openBlock(), e.createElementBlock("p", Ys, [
+                ])) : l.error ? (e.openBlock(), e.createElementBlock("p", Qs, [
                   n[94] || (n[94] = e.createElementVNode(
                     "i",
                     { class: "ri-error-warning-line" },
@@ -5763,7 +5782,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     /* TEXT */
                   )
                 ])) : e.createCommentVNode("v-if", !0),
-                l.capabilities.length ? (e.openBlock(), e.createElementBlock("div", Xs, [
+                l.capabilities.length ? (e.openBlock(), e.createElementBlock("div", xs, [
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
@@ -5779,13 +5798,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                   )),
                   l.capabilities.length > 5 ? (e.openBlock(), e.createElementBlock(
                     "span",
-                    Zs,
+                    ec,
                     "+" + e.toDisplayString(l.capabilities.length - 5),
                     1
                     /* TEXT */
                   )) : e.createCommentVNode("v-if", !0)
                 ])) : e.createCommentVNode("v-if", !0),
-                e.createElementVNode("div", Qs, [
+                e.createElementVNode("div", tc, [
                   l.mode === "api" ? (e.openBlock(), e.createElementBlock("button", {
                     key: 0,
                     class: "mini-button primary",
@@ -5804,11 +5823,11 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       1
                       /* TEXT */
                     )
-                  ], 8, xs)) : e.createCommentVNode("v-if", !0),
+                  ], 8, lc)) : e.createCommentVNode("v-if", !0),
                   e.createElementVNode("button", {
                     class: "mini-button",
                     disabled: !!K[l.id] || l.mode === "api" && l.missingSecrets.length > 0,
-                    onClick: (r) => ya(l)
+                    onClick: (r) => ha(l)
                   }, [
                     e.createElementVNode(
                       "i",
@@ -5824,12 +5843,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       1
                       /* TEXT */
                     )
-                  ], 8, ec),
+                  ], 8, nc),
                   l.mode === "web" ? (e.openBlock(), e.createElementBlock("button", {
                     key: 1,
                     class: "mini-button",
                     disabled: !!K[l.id] || !_e.value || !$t.value,
-                    onClick: (r) => ha(l)
+                    onClick: (r) => ka(l)
                   }, [
                     e.createElementVNode(
                       "i",
@@ -5845,7 +5864,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       1
                       /* TEXT */
                     )
-                  ], 8, tc)) : e.createCommentVNode("v-if", !0)
+                  ], 8, oc)) : e.createCommentVNode("v-if", !0)
                 ]),
                 ve[l.id] ? (e.openBlock(), e.createElementBlock(
                   "p",
@@ -5872,34 +5891,34 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                   2
                   /* CLASS */
                 )) : e.createCommentVNode("v-if", !0),
-                I[l.id] ? (e.openBlock(), e.createElementBlock("div", lc, [
+                P[l.id] ? (e.openBlock(), e.createElementBlock("div", ac, [
                   e.createElementVNode("div", null, [
                     e.createElementVNode(
                       "strong",
                       null,
-                      e.toDisplayString(t.$t("Web 会话")) + " · " + e.toDisplayString(I[l.id]?.state || t.$t("未知")),
+                      e.toDisplayString(t.$t("Web 会话")) + " · " + e.toDisplayString(P[l.id]?.state || t.$t("未知")),
                       1
                       /* TEXT */
                     ),
                     e.createElementVNode(
                       "span",
                       null,
-                      e.toDisplayString(I[l.id]?.humanHint || I[l.id]?.human_hint || I[l.id]?.detail || I[l.id]?.errorMessage || I[l.id]?.error_message || t.$t("请以已打开浏览器中的真实页面为准。")),
+                      e.toDisplayString(P[l.id]?.humanHint || P[l.id]?.human_hint || P[l.id]?.detail || P[l.id]?.errorMessage || P[l.id]?.error_message || t.$t("请以已打开浏览器中的真实页面为准。")),
                       1
                       /* TEXT */
                     )
                   ]),
-                  e.createElementVNode("div", nc, [
+                  e.createElementVNode("div", rc, [
                     e.createElementVNode("button", {
                       class: "mini-button",
-                      disabled: !!K[l.id] || zn(I[l.id]),
-                      onClick: (r) => ka(l.id)
-                    }, e.toDisplayString(t.$t("探测一次")), 9, oc),
+                      disabled: !!K[l.id] || zn(P[l.id]),
+                      onClick: (r) => ba(l.id)
+                    }, e.toDisplayString(t.$t("探测一次")), 9, ic),
                     e.createElementVNode("button", {
                       class: "mini-button warn",
-                      disabled: !!K[l.id] || zn(I[l.id]),
-                      onClick: (r) => ba(l.id)
-                    }, e.toDisplayString(t.$t("取消")), 9, ac)
+                      disabled: !!K[l.id] || zn(P[l.id]),
+                      onClick: (r) => Ea(l.id)
+                    }, e.toDisplayString(t.$t("取消")), 9, sc)
                   ])
                 ])) : e.createCommentVNode("v-if", !0)
               ]))),
@@ -5907,7 +5926,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               /* KEYED_FRAGMENT */
             ))
           ])),
-          dt.value ? (e.openBlock(), e.createElementBlock("p", rc, [
+          ut.value ? (e.openBlock(), e.createElementBlock("p", cc, [
             n[96] || (n[96] = e.createElementVNode(
               "i",
               { class: "ri-error-warning-line" },
@@ -5916,18 +5935,18 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               /* CACHED */
             )),
             e.createTextVNode(
-              e.toDisplayString(dt.value),
+              e.toDisplayString(ut.value),
               1
               /* TEXT */
             )
           ])) : e.createCommentVNode("v-if", !0)
         ])) : e.createCommentVNode("v-if", !0),
-        z.value === "insights" ? (e.openBlock(), e.createElementBlock("section", ic, [
-          e.createElementVNode("div", sc, [
+        z.value === "insights" ? (e.openBlock(), e.createElementBlock("section", dc, [
+          e.createElementVNode("div", uc, [
             e.createElementVNode("div", null, [
               e.createElementVNode(
                 "span",
-                cc,
+                mc,
                 e.toDisplayString(t.$t("只读分析")),
                 1
                 /* TEXT */
@@ -5942,14 +5961,14 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             ]),
             e.createElementVNode(
               "span",
-              dc,
+              pc,
               e.toDisplayString(t.$t("findings 由确定性规则计算")),
               1
               /* TEXT */
             )
           ]),
-          e.createElementVNode("div", uc, [
-            e.createElementVNode("label", mc, [
+          e.createElementVNode("div", vc, [
+            e.createElementVNode("label", gc, [
               e.createElementVNode(
                 "span",
                 null,
@@ -5960,17 +5979,17 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": n[25] || (n[25] = (l) => k.since = l),
+                  "onUpdate:modelValue": n[25] || (n[25] = (l) => h.since = l),
                   type: "date"
                 },
                 null,
                 512
                 /* NEED_PATCH */
               ), [
-                [e.vModelText, k.since]
+                [e.vModelText, h.since]
               ])
             ]),
-            e.createElementVNode("label", pc, [
+            e.createElementVNode("label", fc, [
               e.createElementVNode(
                 "span",
                 null,
@@ -5981,17 +6000,17 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": n[26] || (n[26] = (l) => k.until = l),
+                  "onUpdate:modelValue": n[26] || (n[26] = (l) => h.until = l),
                   type: "date"
                 },
                 null,
                 512
                 /* NEED_PATCH */
               ), [
-                [e.vModelText, k.until]
+                [e.vModelText, h.until]
               ])
             ]),
-            e.createElementVNode("label", vc, [
+            e.createElementVNode("label", yc, [
               e.createElementVNode(
                 "span",
                 null,
@@ -6002,16 +6021,16 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               e.withDirectives(e.createElementVNode(
                 "select",
                 {
-                  "onUpdate:modelValue": n[27] || (n[27] = (l) => k.insightsPlatform = l)
+                  "onUpdate:modelValue": n[27] || (n[27] = (l) => h.insightsPlatform = l)
                 },
                 [
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(e.unref(N), (l) => (e.openBlock(), e.createElementBlock("option", {
+                    e.renderList(e.unref(b), (l) => (e.openBlock(), e.createElementBlock("option", {
                       key: l.id,
                       value: l.id
-                    }, e.toDisplayString(t.$t(l.label)), 9, gc))),
+                    }, e.toDisplayString(t.$t(l.label)), 9, hc))),
                     128
                     /* KEYED_FRAGMENT */
                   ))
@@ -6019,10 +6038,10 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 512
                 /* NEED_PATCH */
               ), [
-                [e.vModelSelect, k.insightsPlatform]
+                [e.vModelSelect, h.insightsPlatform]
               ])
             ]),
-            e.createElementVNode("label", fc, [
+            e.createElementVNode("label", kc, [
               e.createElementVNode(
                 "span",
                 null,
@@ -6033,7 +6052,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               e.withDirectives(e.createElementVNode(
                 "select",
                 {
-                  "onUpdate:modelValue": n[28] || (n[28] = (l) => k.insightsMode = l)
+                  "onUpdate:modelValue": n[28] || (n[28] = (l) => h.insightsMode = l)
                 },
                 [...n[97] || (n[97] = [
                   e.createElementVNode(
@@ -6054,11 +6073,11 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 512
                 /* NEED_PATCH */
               ), [
-                [e.vModelSelect, k.insightsMode]
+                [e.vModelSelect, h.insightsMode]
               ])
             ])
           ]),
-          e.createElementVNode("div", yc, [
+          e.createElementVNode("div", bc, [
             e.createElementVNode(
               "span",
               null,
@@ -6069,15 +6088,15 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             (e.openBlock(!0), e.createElementBlock(
               e.Fragment,
               null,
-              e.renderList(e.unref(N), (l) => (e.openBlock(), e.createElementBlock("label", {
+              e.renderList(e.unref(b), (l) => (e.openBlock(), e.createElementBlock("label", {
                 key: l.id
               }, [
                 e.withDirectives(e.createElementVNode("input", {
-                  "onUpdate:modelValue": n[29] || (n[29] = (r) => k.platforms = r),
+                  "onUpdate:modelValue": n[29] || (n[29] = (r) => h.platforms = r),
                   type: "checkbox",
                   value: l.id
-                }, null, 8, hc), [
-                  [e.vModelCheckbox, k.platforms]
+                }, null, 8, Ec), [
+                  [e.vModelCheckbox, h.platforms]
                 ]),
                 e.createTextVNode(
                   " " + e.toDisplayString(t.$t(l.label)),
@@ -6092,14 +6111,14 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               e.withDirectives(e.createElementVNode(
                 "input",
                 {
-                  "onUpdate:modelValue": n[30] || (n[30] = (l) => k.comparePrevious = l),
+                  "onUpdate:modelValue": n[30] || (n[30] = (l) => h.comparePrevious = l),
                   type: "checkbox"
                 },
                 null,
                 512
                 /* NEED_PATCH */
               ), [
-                [e.vModelCheckbox, k.comparePrevious]
+                [e.vModelCheckbox, h.comparePrevious]
               ]),
               e.createTextVNode(
                 " " + e.toDisplayString(t.$t("对比紧邻上一周期")),
@@ -6108,11 +6127,11 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               )
             ])
           ]),
-          e.createElementVNode("div", kc, [
+          e.createElementVNode("div", Nc, [
             e.createElementVNode("button", {
               class: "button ghost",
-              disabled: Wt.value || !Xt.value,
-              onClick: Ea
+              disabled: Wt.value || !Zt.value,
+              onClick: Na
             }, [
               e.createElementVNode(
                 "i",
@@ -6128,11 +6147,11 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 1
                 /* TEXT */
               )
-            ], 8, bc),
+            ], 8, Vc),
             e.createElementVNode("button", {
               class: "button primary",
-              disabled: Ft.value || !Xt.value || !k.platforms.length,
-              onClick: Na
+              disabled: Ft.value || !Zt.value || !h.platforms.length,
+              onClick: Va
             }, [
               e.createElementVNode(
                 "i",
@@ -6148,14 +6167,14 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 1
                 /* TEXT */
               )
-            ], 8, Ec)
+            ], 8, Sc)
           ]),
-          e.createElementVNode("div", Nc, [
-            e.createElementVNode("div", Vc, [
+          e.createElementVNode("div", wc, [
+            e.createElementVNode("div", _c, [
               e.createElementVNode(
                 "strong",
                 null,
-                e.toDisplayString(t.$t("平台每日指标")) + " · " + e.toDisplayString(k.since) + " — " + e.toDisplayString(k.until),
+                e.toDisplayString(t.$t("平台每日指标")) + " · " + e.toDisplayString(h.since) + " — " + e.toDisplayString(h.until),
                 1
                 /* TEXT */
               ),
@@ -6167,21 +6186,21 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 /* TEXT */
               )
             ]),
-            Mn.value ? (e.openBlock(), e.createBlock(e.unref(La), {
+            Mn.value ? (e.openBlock(), e.createBlock(e.unref(Pa), {
               key: 0,
               class: "ads-chart",
               option: Mn.value,
               autoresize: ""
             }, null, 8, ["option"])) : (e.openBlock(), e.createElementBlock(
               "p",
-              wc,
+              Dc,
               e.toDisplayString(t.$t("暂无可绘制的每日指标，请先读取平台数据；区间汇总不会转换为日趋势。")),
               1
               /* TEXT */
             ))
           ]),
-          fe.value ? (e.openBlock(), e.createElementBlock("div", Sc, [
-            e.createElementVNode("div", _c, [
+          fe.value ? (e.openBlock(), e.createElementBlock("div", Ac, [
+            e.createElementVNode("div", $c, [
               e.createElementVNode(
                 "strong",
                 null,
@@ -6192,7 +6211,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               e.createElementVNode(
                 "span",
                 {
-                  class: e.normalizeClass(Va(fe.value))
+                  class: e.normalizeClass(Sa(fe.value))
                 },
                 e.toDisplayString(wa(fe.value)),
                 3
@@ -6202,17 +6221,17 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             e.createElementVNode(
               "pre",
               null,
-              e.toDisplayString(jn(fe.value)),
+              e.toDisplayString(Jn(fe.value)),
               1
               /* TEXT */
             )
           ])) : e.createCommentVNode("v-if", !0),
-          ye.value ? (e.openBlock(), e.createElementBlock("div", Dc, [
-            e.createElementVNode("div", Ac, [
+          ye.value ? (e.openBlock(), e.createElementBlock("div", Cc, [
+            e.createElementVNode("div", Bc, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
-                e.renderList(ma.value, (l) => (e.openBlock(), e.createElementBlock("article", {
+                e.renderList(pa.value, (l) => (e.openBlock(), e.createElementBlock("article", {
                   key: l.key
                 }, [
                   e.createElementVNode(
@@ -6234,8 +6253,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 /* KEYED_FRAGMENT */
               ))
             ]),
-            e.createElementVNode("div", $c, [
-              e.createElementVNode("div", Cc, [
+            e.createElementVNode("div", Tc, [
+              e.createElementVNode("div", Lc, [
                 e.createElementVNode(
                   "strong",
                   null,
@@ -6246,13 +6265,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               ]),
               e.createElementVNode(
                 "p",
-                Bc,
+                Pc,
                 e.toDisplayString(t.$t("每日复盘明细待确认：现有报告仅返回平台区间汇总，暂不绘制趋势。")),
                 1
                 /* TEXT */
               )
             ]),
-            Bn.value.length ? (e.openBlock(), e.createElementBlock("div", Tc, [
+            Bn.value.length ? (e.openBlock(), e.createElementBlock("div", Ic, [
               (e.openBlock(!0), e.createElementBlock(
                 e.Fragment,
                 null,
@@ -6299,7 +6318,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 /* KEYED_FRAGMENT */
               ))
             ])) : e.createCommentVNode("v-if", !0),
-            Tn.value.length ? (e.openBlock(), e.createElementBlock("div", Lc, [
+            Tn.value.length ? (e.openBlock(), e.createElementBlock("div", Mc, [
               e.createElementVNode(
                 "h3",
                 null,
@@ -6339,7 +6358,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     ),
                     l.suggestion ? (e.openBlock(), e.createElementBlock(
                       "small",
-                      Pc,
+                      Oc,
                       e.toDisplayString(l.suggestion),
                       1
                       /* TEXT */
@@ -6350,7 +6369,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 /* KEYED_FRAGMENT */
               ))
             ])) : e.createCommentVNode("v-if", !0),
-            Ln.value ? (e.openBlock(), e.createElementBlock("p", Ic, [
+            Ln.value ? (e.openBlock(), e.createElementBlock("p", Wc, [
               n[98] || (n[98] = e.createElementVNode(
                 "i",
                 { class: "ri-sticky-note-line" },
@@ -6364,8 +6383,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 /* TEXT */
               )
             ])) : e.createCommentVNode("v-if", !0),
-            e.createElementVNode("div", Mc, [
-              e.createElementVNode("div", Oc, [
+            e.createElementVNode("div", Fc, [
+              e.createElementVNode("div", Rc, [
                 e.createElementVNode(
                   "strong",
                   null,
@@ -6377,19 +6396,19 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               e.createElementVNode(
                 "pre",
                 null,
-                e.toDisplayString(jn(ye.value)),
+                e.toDisplayString(Jn(ye.value)),
                 1
                 /* TEXT */
               )
             ])
           ])) : e.createCommentVNode("v-if", !0)
         ])) : e.createCommentVNode("v-if", !0),
-        z.value === "audit" ? (e.openBlock(), e.createElementBlock("section", Wc, [
-          e.createElementVNode("div", Fc, [
+        z.value === "audit" ? (e.openBlock(), e.createElementBlock("section", Uc, [
+          e.createElementVNode("div", zc, [
             e.createElementVNode("div", null, [
               e.createElementVNode(
                 "span",
-                Rc,
+                Kc,
                 e.toDisplayString(t.$t("可追溯性")),
                 1
                 /* TEXT */
@@ -6421,10 +6440,10 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 1
                 /* TEXT */
               )
-            ], 8, Uc)
+            ], 8, jc)
           ]),
-          e.createElementVNode("div", zc, [
-            e.createElementVNode("label", Kc, [
+          e.createElementVNode("div", Gc, [
+            e.createElementVNode("label", Hc, [
               e.createElementVNode(
                 "span",
                 null,
@@ -6440,7 +6459,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 [
                   e.createElementVNode(
                     "option",
-                    jc,
+                    Jc,
                     e.toDisplayString(t.$t("全部平台")),
                     1
                     /* TEXT */
@@ -6448,10 +6467,10 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                   (e.openBlock(!0), e.createElementBlock(
                     e.Fragment,
                     null,
-                    e.renderList(e.unref(N), (l) => (e.openBlock(), e.createElementBlock("option", {
+                    e.renderList(e.unref(b), (l) => (e.openBlock(), e.createElementBlock("option", {
                       key: l.id,
                       value: l.id
-                    }, e.toDisplayString(t.$t(l.label)), 9, Gc))),
+                    }, e.toDisplayString(t.$t(l.label)), 9, qc))),
                     128
                     /* KEYED_FRAGMENT */
                   ))
@@ -6462,7 +6481,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 [e.vModelSelect, qe.platform]
               ])
             ]),
-            e.createElementVNode("label", Hc, [
+            e.createElementVNode("label", Yc, [
               e.createElementVNode(
                 "span",
                 null,
@@ -6473,7 +6492,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               e.withDirectives(e.createElementVNode("input", {
                 "onUpdate:modelValue": n[32] || (n[32] = (l) => qe.tenantId = l),
                 placeholder: t.$t("可选")
-              }, null, 8, Jc), [
+              }, null, 8, Zc), [
                 [
                   e.vModelText,
                   qe.tenantId,
@@ -6486,9 +6505,9 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               class: "button ghost compact",
               disabled: Je.value,
               onClick: el
-            }, e.toDisplayString(t.$t("应用筛选")), 9, qc)
+            }, e.toDisplayString(t.$t("应用筛选")), 9, Xc)
           ]),
-          Je.value ? (e.openBlock(), e.createElementBlock("div", Yc, [
+          Je.value ? (e.openBlock(), e.createElementBlock("div", Qc, [
             n[99] || (n[99] = e.createElementVNode(
               "i",
               { class: "ri-loader-4-line spin" },
@@ -6501,7 +6520,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               1
               /* TEXT */
             )
-          ])) : Rt.value ? (e.openBlock(), e.createElementBlock("p", Xc, [
+          ])) : Rt.value ? (e.openBlock(), e.createElementBlock("p", xc, [
             n[100] || (n[100] = e.createElementVNode(
               "i",
               { class: "ri-error-warning-line" },
@@ -6514,8 +6533,8 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               1
               /* TEXT */
             )
-          ])) : he.value.length ? (e.openBlock(), e.createElementBlock("div", Qc, [
-            e.createElementVNode("table", xc, [
+          ])) : he.value.length ? (e.openBlock(), e.createElementBlock("div", td, [
+            e.createElementVNode("table", ld, [
               e.createElementVNode("thead", null, [
                 e.createElementVNode("tr", null, [
                   e.createElementVNode(
@@ -6566,13 +6585,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(uo.value, (l, r) => (e.openBlock(), e.createElementBlock("tr", {
-                    key: `${l.ts || l.iso || r}-${(X.value - 1) * at + r}`
+                  e.renderList(mo.value, (l, r) => (e.openBlock(), e.createElementBlock("tr", {
+                    key: `${l.ts || l.iso || r}-${(Z.value - 1) * rt + r}`
                   }, [
                     e.createElementVNode(
                       "td",
                       null,
-                      e.toDisplayString(Aa(l)),
+                      e.toDisplayString($a(l)),
                       1
                       /* TEXT */
                     ),
@@ -6644,15 +6663,15 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               e.createElementVNode(
                 "span",
                 null,
-                e.toDisplayString(t.$t("共 {p0} 条", { p0: he.value.length })) + " · " + e.toDisplayString(po.value) + "–" + e.toDisplayString(vo.value) + " · " + e.toDisplayString(t.$t("每页 10 条")),
+                e.toDisplayString(t.$t("共 {p0} 条", { p0: he.value.length })) + " · " + e.toDisplayString(vo.value) + "–" + e.toDisplayString(go.value) + " · " + e.toDisplayString(t.$t("每页 10 条")),
                 1
                 /* TEXT */
               ),
               e.createElementVNode("div", null, [
                 e.createElementVNode("button", {
                   type: "button",
-                  disabled: X.value === 1,
-                  onClick: n[33] || (n[33] = (l) => Ll(X.value - 1))
+                  disabled: Z.value === 1,
+                  onClick: n[33] || (n[33] = (l) => Ll(Z.value - 1))
                 }, [
                   n[101] || (n[101] = e.createElementVNode(
                     "i",
@@ -6666,24 +6685,24 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     1
                     /* TEXT */
                   )
-                ], 8, td),
+                ], 8, od),
                 (e.openBlock(!0), e.createElementBlock(
                   e.Fragment,
                   null,
-                  e.renderList(mo.value, (l) => (e.openBlock(), e.createElementBlock("button", {
+                  e.renderList(po.value, (l) => (e.openBlock(), e.createElementBlock("button", {
                     key: l,
                     type: "button",
-                    class: e.normalizeClass({ active: X.value === l }),
-                    "aria-current": X.value === l ? "page" : void 0,
+                    class: e.normalizeClass({ active: Z.value === l }),
+                    "aria-current": Z.value === l ? "page" : void 0,
                     onClick: (r) => Ll(l)
-                  }, e.toDisplayString(l), 11, ld))),
+                  }, e.toDisplayString(l), 11, ad))),
                   128
                   /* KEYED_FRAGMENT */
                 )),
                 e.createElementVNode("button", {
                   type: "button",
-                  disabled: X.value === il.value,
-                  onClick: n[34] || (n[34] = (l) => Ll(X.value + 1))
+                  disabled: Z.value === il.value,
+                  onClick: n[34] || (n[34] = (l) => Ll(Z.value + 1))
                 }, [
                   e.createTextVNode(
                     e.toDisplayString(t.$t("下一页")),
@@ -6697,24 +6716,24 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     -1
                     /* CACHED */
                   ))
-                ], 8, nd)
+                ], 8, rd)
               ])
-            ], 8, ed)
+            ], 8, nd)
           ])) : (e.openBlock(), e.createElementBlock(
             "div",
-            Zc,
+            ed,
             e.toDisplayString(t.$t("当前筛选下没有审计记录。")),
             1
             /* TEXT */
           ))
         ])) : e.createCommentVNode("v-if", !0),
         e.createCommentVNode(" ══ 定时自动化 Tab ══ "),
-        z.value === "automation" ? (e.openBlock(), e.createElementBlock("section", od, [
-          e.createElementVNode("div", ad, [
+        z.value === "automation" ? (e.openBlock(), e.createElementBlock("section", id, [
+          e.createElementVNode("div", sd, [
             e.createElementVNode("div", null, [
               e.createElementVNode(
                 "span",
-                rd,
+                cd,
                 e.toDisplayString(t.$t("Scheduling")),
                 1
                 /* TEXT */
@@ -6730,7 +6749,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
             e.createElementVNode("button", {
               class: "button primary compact",
               disabled: Dt.value,
-              onClick: Yo
+              onClick: Zo
             }, [
               e.createElementVNode(
                 "i",
@@ -6746,16 +6765,16 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 1
                 /* TEXT */
               )
-            ], 8, id)
+            ], 8, dd)
           ]),
           e.createElementVNode(
             "p",
-            sd,
+            ud,
             e.toDisplayString(t.$t("把复盘、巡检等环节写成真实定时任务（保存后在 左侧菜单 → 定时任务 也可统一管理），让投放链路按节奏自动运转；预算变更始终保留人工确认。")),
             1
             /* TEXT */
           ),
-          e.createElementVNode("div", cd, [
+          e.createElementVNode("div", md, [
             (e.openBlock(), e.createElementBlock(
               e.Fragment,
               null,
@@ -6763,12 +6782,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 key: l.key,
                 class: "cron-item"
               }, [
-                e.createElementVNode("label", dd, [
+                e.createElementVNode("label", pd, [
                   e.withDirectives(e.createElementVNode("input", {
                     "onUpdate:modelValue": (r) => _t[l.key] = r,
                     type: "checkbox",
                     disabled: l.key === "video" && !Fe.value.trim()
-                  }, null, 8, ud), [
+                  }, null, 8, vd), [
                     [e.vModelCheckbox, _t[l.key]]
                   ]),
                   e.createElementVNode("span", null, [
@@ -6789,7 +6808,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                   ])
                 ]),
                 e.createCommentVNode(" 人话排期：频率 + 时间/星期/间隔 下拉；底层自动生成 cron，不让用户写表达式 "),
-                e.createElementVNode("div", md, [
+                e.createElementVNode("div", gd, [
                   e.createElementVNode("label", null, [
                     e.createElementVNode(
                       "span",
@@ -6799,34 +6818,34 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       /* TEXT */
                     ),
                     e.withDirectives(e.createElementVNode("select", {
-                      "onUpdate:modelValue": (r) => R[l.key].freq = r
+                      "onUpdate:modelValue": (r) => F[l.key].freq = r
                     }, [
                       e.createElementVNode(
                         "option",
-                        vd,
+                        yd,
                         e.toDisplayString(t.$t("每天")),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "option",
-                        gd,
+                        hd,
                         e.toDisplayString(t.$t("每周")),
                         1
                         /* TEXT */
                       ),
                       e.createElementVNode(
                         "option",
-                        fd,
+                        kd,
                         e.toDisplayString(t.$t("每隔几小时")),
                         1
                         /* TEXT */
                       )
-                    ], 8, pd), [
-                      [e.vModelSelect, R[l.key].freq]
+                    ], 8, fd), [
+                      [e.vModelSelect, F[l.key].freq]
                     ])
                   ]),
-                  R[l.key].freq === "weekly" ? (e.openBlock(), e.createElementBlock("label", yd, [
+                  F[l.key].freq === "weekly" ? (e.openBlock(), e.createElementBlock("label", bd, [
                     e.createElementVNode(
                       "span",
                       null,
@@ -6835,28 +6854,28 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       /* TEXT */
                     ),
                     e.withDirectives(e.createElementVNode("select", {
-                      "onUpdate:modelValue": (r) => R[l.key].weekday = r
+                      "onUpdate:modelValue": (r) => F[l.key].weekday = r
                     }, [
                       (e.openBlock(), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(Go, (r) => e.createElementVNode("option", {
+                        e.renderList(Ho, (r) => e.createElementVNode("option", {
                           key: r.value,
                           value: r.value
-                        }, e.toDisplayString(t.$t(r.label)), 9, kd)),
+                        }, e.toDisplayString(t.$t(r.label)), 9, Nd)),
                         64
                         /* STABLE_FRAGMENT */
                       ))
-                    ], 8, hd), [
+                    ], 8, Ed), [
                       [
                         e.vModelSelect,
-                        R[l.key].weekday,
+                        F[l.key].weekday,
                         void 0,
                         { number: !0 }
                       ]
                     ])
                   ])) : e.createCommentVNode("v-if", !0),
-                  R[l.key].freq === "hours" ? (e.openBlock(), e.createElementBlock("label", bd, [
+                  F[l.key].freq === "hours" ? (e.openBlock(), e.createElementBlock("label", Vd, [
                     e.createElementVNode(
                       "span",
                       null,
@@ -6865,28 +6884,28 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       /* TEXT */
                     ),
                     e.withDirectives(e.createElementVNode("select", {
-                      "onUpdate:modelValue": (r) => R[l.key].everyHours = r
+                      "onUpdate:modelValue": (r) => F[l.key].everyHours = r
                     }, [
                       (e.openBlock(), e.createElementBlock(
                         e.Fragment,
                         null,
-                        e.renderList(jo, (r) => e.createElementVNode("option", {
+                        e.renderList(Go, (r) => e.createElementVNode("option", {
                           key: r,
                           value: r
-                        }, e.toDisplayString(t.$t("{p0} 小时", { p0: r })), 9, Nd)),
+                        }, e.toDisplayString(t.$t("{p0} 小时", { p0: r })), 9, wd)),
                         64
                         /* STABLE_FRAGMENT */
                       ))
-                    ], 8, Ed), [
+                    ], 8, Sd), [
                       [
                         e.vModelSelect,
-                        R[l.key].everyHours,
+                        F[l.key].everyHours,
                         void 0,
                         { number: !0 }
                       ]
                     ])
                   ])) : e.createCommentVNode("v-if", !0),
-                  R[l.key].freq !== "hours" ? (e.openBlock(), e.createElementBlock("label", Vd, [
+                  F[l.key].freq !== "hours" ? (e.openBlock(), e.createElementBlock("label", _d, [
                     e.createElementVNode(
                       "span",
                       null,
@@ -6894,24 +6913,24 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       1
                       /* TEXT */
                     ),
-                    e.createElementVNode("span", wd, [
+                    e.createElementVNode("span", Dd, [
                       e.withDirectives(e.createElementVNode("select", {
-                        "onUpdate:modelValue": (r) => R[l.key].hour = r
+                        "onUpdate:modelValue": (r) => F[l.key].hour = r
                       }, [
                         (e.openBlock(!0), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList(e.unref(zo), (r) => (e.openBlock(), e.createElementBlock("option", {
+                          e.renderList(e.unref(Ko), (r) => (e.openBlock(), e.createElementBlock("option", {
                             key: r,
                             value: r
-                          }, e.toDisplayString(kn(r)), 9, _d))),
+                          }, e.toDisplayString(kn(r)), 9, $d))),
                           128
                           /* KEYED_FRAGMENT */
                         ))
-                      ], 8, Sd), [
+                      ], 8, Ad), [
                         [
                           e.vModelSelect,
-                          R[l.key].hour,
+                          F[l.key].hour,
                           void 0,
                           { number: !0 }
                         ]
@@ -6924,22 +6943,22 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         /* CACHED */
                       )),
                       e.withDirectives(e.createElementVNode("select", {
-                        "onUpdate:modelValue": (r) => R[l.key].minute = r
+                        "onUpdate:modelValue": (r) => F[l.key].minute = r
                       }, [
                         (e.openBlock(), e.createElementBlock(
                           e.Fragment,
                           null,
-                          e.renderList(Ko, (r) => e.createElementVNode("option", {
+                          e.renderList(jo, (r) => e.createElementVNode("option", {
                             key: r,
                             value: r
-                          }, e.toDisplayString(kn(r)), 9, Ad)),
+                          }, e.toDisplayString(kn(r)), 9, Bd)),
                           64
                           /* STABLE_FRAGMENT */
                         ))
-                      ], 8, Dd), [
+                      ], 8, Cd), [
                         [
                           e.vModelSelect,
-                          R[l.key].minute,
+                          F[l.key].minute,
                           void 0,
                           { number: !0 }
                         ]
@@ -6948,13 +6967,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                   ])) : e.createCommentVNode("v-if", !0),
                   e.createElementVNode(
                     "small",
-                    $d,
-                    e.toDisplayString(Jo(hn(R[l.key]))),
+                    Td,
+                    e.toDisplayString(qo(hn(F[l.key]))),
                     1
                     /* TEXT */
                   )
                 ]),
-                l.key === "video" ? (e.openBlock(), e.createElementBlock("div", Cd, [
+                l.key === "video" ? (e.openBlock(), e.createElementBlock("div", Ld, [
                   e.createElementVNode(
                     "span",
                     null,
@@ -6962,12 +6981,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     1
                     /* TEXT */
                   ),
-                  e.createElementVNode("div", Bd, [
+                  e.createElementVNode("div", Pd, [
                     e.withDirectives(e.createElementVNode("input", {
                       "onUpdate:modelValue": n[35] || (n[35] = (r) => Fe.value = r),
                       type: "text",
                       placeholder: t.$t("包含图片 / 视频素材的本地文件夹绝对路径")
-                    }, null, 8, Td), [
+                    }, null, 8, Id), [
                       [
                         e.vModelText,
                         Fe.value,
@@ -6977,7 +6996,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     ]),
                     e.createElementVNode("button", {
                       type: "button",
-                      onClick: Uo
+                      onClick: zo
                     }, [...n[104] || (n[104] = [
                       e.createElementVNode(
                         "i",
@@ -6994,7 +7013,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               /* STABLE_FRAGMENT */
             ))
           ]),
-          At.value ? (e.openBlock(), e.createElementBlock("p", Ld, [
+          At.value ? (e.openBlock(), e.createElementBlock("p", Md, [
             n[105] || (n[105] = e.createElementVNode(
               "i",
               { class: "ri-checkbox-circle-line" },
@@ -7027,7 +7046,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 e.createElementVNode("div", null, [
                   e.createElementVNode(
                     "span",
-                    Id,
+                    Wd,
                     e.toDisplayString(re.value === "video" ? t.$t("Video Engine") : t.$t("Voice Engine")),
                     1
                     /* TEXT */
@@ -7059,15 +7078,15 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     -1
                     /* CACHED */
                   )
-                ])], 8, Md)
+                ])], 8, Fd)
               ]),
               e.createElementVNode(
                 "form",
                 {
-                  onSubmit: e.withModifiers(_o, ["prevent"])
+                  onSubmit: e.withModifiers(Do, ["prevent"])
                 },
                 [
-                  e.createElementVNode("div", Od, [
+                  e.createElementVNode("div", Rd, [
                     e.createElementVNode("label", null, [
                       e.createElementVNode(
                         "span",
@@ -7085,10 +7104,10 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           (e.openBlock(!0), e.createElementBlock(
                             e.Fragment,
                             null,
-                            e.renderList(en.value, (l) => (e.openBlock(), e.createElementBlock("option", {
+                            e.renderList(xl.value, (l) => (e.openBlock(), e.createElementBlock("option", {
                               key: l.id,
                               value: l.id
-                            }, e.toDisplayString(l.label) + e.toDisplayString(l.configured ? ` · ${t.$t("已接入")}` : ""), 9, Wd))),
+                            }, e.toDisplayString(l.label) + e.toDisplayString(l.configured ? ` · ${t.$t("已接入")}` : ""), 9, Ud))),
                             128
                             /* KEYED_FRAGMENT */
                           ))
@@ -7113,13 +7132,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           ),
                           l.required ? (e.openBlock(), e.createElementBlock(
                             "em",
-                            Fd,
+                            zd,
                             e.toDisplayString(t.$t("必填")),
                             1
                             /* TEXT */
                           )) : l.set ? (e.openBlock(), e.createElementBlock(
                             "small",
-                            Rd,
+                            Kd,
                             e.toDisplayString(t.$t("已保存，留空即不覆盖")),
                             1
                             /* TEXT */
@@ -7141,7 +7160,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                             /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
                           )) : (e.openBlock(), e.createElementBlock(
                             "small",
-                            Ud,
+                            jd,
                             e.toDisplayString(t.$t("可选")),
                             1
                             /* TEXT */
@@ -7158,7 +7177,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                               type: l.secret && !Oe[l.env] ? "password" : "text",
                               placeholder: l.set ? l.masked || "••••••" : l.placeholder || "",
                               autocomplete: "off"
-                            }, null, 8, zd), [
+                            }, null, 8, Gd), [
                               [
                                 e.vModelDynamic,
                                 Me[l.env],
@@ -7181,7 +7200,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                                 2
                                 /* CLASS */
                               )
-                            ], 8, Kd)) : e.createCommentVNode("v-if", !0)
+                            ], 8, Hd)) : e.createCommentVNode("v-if", !0)
                           ],
                           2
                           /* CLASS */
@@ -7205,16 +7224,16 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           /* TEXT */
                         )
                       ]),
-                      e.createElementVNode("div", jd, [
+                      e.createElementVNode("div", Jd, [
                         e.withDirectives(e.createElementVNode("input", {
-                          "onUpdate:modelValue": n[37] || (n[37] = (l) => kt.value = l),
+                          "onUpdate:modelValue": n[37] || (n[37] = (l) => bt.value = l),
                           type: "text",
-                          placeholder: So.value,
+                          placeholder: _o.value,
                           autocomplete: "off"
-                        }, null, 8, Gd), [
+                        }, null, 8, qd), [
                           [
                             e.vModelText,
-                            kt.value,
+                            bt.value,
                             void 0,
                             { trim: !0 }
                           ]
@@ -7222,7 +7241,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       ])
                     ])
                   ]),
-                  Qe.value ? (e.openBlock(), e.createElementBlock("p", Hd, [
+                  Qe.value ? (e.openBlock(), e.createElementBlock("p", Yd, [
                     n[107] || (n[107] = e.createElementVNode(
                       "i",
                       { class: "ri-error-warning-line" },
@@ -7242,7 +7261,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       type: "button",
                       disabled: We.value,
                       onClick: yl
-                    }, e.toDisplayString(t.$t("取消")), 9, Jd),
+                    }, e.toDisplayString(t.$t("取消")), 9, Zd),
                     e.createElementVNode("button", {
                       class: "button primary",
                       type: "submit",
@@ -7262,22 +7281,22 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         1
                         /* TEXT */
                       )
-                    ], 8, qd)
+                    ], 8, Xd)
                   ])
                 ],
                 32
                 /* NEED_HYDRATION */
               )
-            ], 8, Pd)
+            ], 8, Od)
           ])) : e.createCommentVNode("v-if", !0)
         ])),
         e.createCommentVNode(" ══ 弹出层：生成广告视频提示词（只服务动态视频生成）══ "),
         (e.openBlock(), e.createBlock(e.Teleport, { to: "body" }, [
-          et.value ? (e.openBlock(), e.createElementBlock("div", {
+          tt.value ? (e.openBlock(), e.createElementBlock("div", {
             key: 0,
             role: "dialog",
             class: "credential-backdrop",
-            onClick: n[42] || (n[42] = e.withModifiers((l) => et.value = !1, ["self"]))
+            onClick: n[42] || (n[42] = e.withModifiers((l) => tt.value = !1, ["self"]))
           }, [
             e.createElementVNode("section", {
               class: "credential-dialog",
@@ -7289,7 +7308,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 e.createElementVNode("div", null, [
                   e.createElementVNode(
                     "span",
-                    Xd,
+                    xd,
                     e.toDisplayString(t.$t("Ad Prompt")),
                     1
                     /* TEXT */
@@ -7312,7 +7331,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 e.createElementVNode("button", {
                   type: "button",
                   "aria-label": t.$t("关闭"),
-                  onClick: n[38] || (n[38] = (l) => et.value = !1)
+                  onClick: n[38] || (n[38] = (l) => tt.value = !1)
                 }, [...n[108] || (n[108] = [
                   e.createElementVNode(
                     "i",
@@ -7321,15 +7340,15 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     -1
                     /* CACHED */
                   )
-                ])], 8, Zd)
+                ])], 8, eu)
               ]),
               e.createElementVNode(
                 "form",
                 {
-                  onSubmit: e.withModifiers(Co, ["prevent"])
+                  onSubmit: e.withModifiers(Bo, ["prevent"])
                 },
                 [
-                  e.createElementVNode("div", Qd, [
+                  e.createElementVNode("div", tu, [
                     e.createElementVNode("label", null, [
                       e.createElementVNode("span", null, [
                         e.createTextVNode(
@@ -7345,12 +7364,12 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           /* TEXT */
                         )
                       ]),
-                      e.createElementVNode("div", xd, [
+                      e.createElementVNode("div", lu, [
                         e.withDirectives(e.createElementVNode("input", {
                           "onUpdate:modelValue": n[39] || (n[39] = (l) => G.value = l),
                           type: "text",
                           placeholder: t.$t("包含图片 / 视频素材的本地文件夹绝对路径")
-                        }, null, 8, eu), [
+                        }, null, 8, nu), [
                           [
                             e.vModelText,
                             G.value,
@@ -7372,7 +7391,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         ])])
                       ])
                     ]),
-                    e.createElementVNode("label", tu, [
+                    e.createElementVNode("label", ou, [
                       e.createElementVNode(
                         "span",
                         null,
@@ -7383,7 +7402,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       e.withDirectives(e.createElementVNode(
                         "textarea",
                         {
-                          "onUpdate:modelValue": n[40] || (n[40] = (l) => we.value = l),
+                          "onUpdate:modelValue": n[40] || (n[40] = (l) => Se.value = l),
                           rows: "4"
                         },
                         null,
@@ -7392,19 +7411,19 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       ), [
                         [
                           e.vModelText,
-                          we.value,
+                          Se.value,
                           void 0,
                           { trim: !0 }
                         ]
                       ])
                     ])
                   ]),
-                  e.createElementVNode("div", lu, [
+                  e.createElementVNode("div", au, [
                     e.createElementVNode("button", {
                       class: "button ghost",
                       type: "button",
                       disabled: se.value || !G.value,
-                      onClick: $o
+                      onClick: Co
                     }, [
                       e.createElementVNode(
                         "i",
@@ -7416,24 +7435,24 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         /* CLASS */
                       ),
                       e.createTextVNode(
-                        " " + e.toDisplayString(se.value ? t.$t("正在生成提示词…") : F.value.length ? t.$t("重新生成提示词") : t.$t("生成提示词")),
+                        " " + e.toDisplayString(se.value ? t.$t("正在生成提示词…") : I.value.length ? t.$t("重新生成提示词") : t.$t("生成提示词")),
                         1
                         /* TEXT */
                       )
-                    ], 8, nu),
+                    ], 8, ru),
                     Ve.value ? (e.openBlock(), e.createElementBlock(
                       "small",
-                      ou,
+                      iu,
                       e.toDisplayString(Ve.value),
                       1
                       /* TEXT */
                     )) : e.createCommentVNode("v-if", !0)
                   ]),
-                  F.value.length ? (e.openBlock(), e.createElementBlock("ol", au, [
+                  I.value.length ? (e.openBlock(), e.createElementBlock("ol", su, [
                     (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       null,
-                      e.renderList(F.value, (l, r) => (e.openBlock(), e.createElementBlock("li", {
+                      e.renderList(I.value, (l, r) => (e.openBlock(), e.createElementBlock("li", {
                         key: l.id
                       }, [
                         e.createElementVNode("header", null, [
@@ -7444,16 +7463,38 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                             1
                             /* TEXT */
                           ),
-                          e.createElementVNode("small", {
-                            title: l.referenceImage
-                          }, e.toDisplayString((l.referenceImage || "").split(/[\\/]/).pop()), 9, ru),
+                          e.withDirectives(e.createElementVNode("select", {
+                            "onUpdate:modelValue": (i) => l.referenceImage = i,
+                            class: "scene-ref",
+                            title: t.$t("首帧参考图")
+                          }, [
+                            e.createElementVNode(
+                              "option",
+                              du,
+                              e.toDisplayString(t.$t("不用参考图（纯文生视频）")),
+                              1
+                              /* TEXT */
+                            ),
+                            (e.openBlock(!0), e.createElementBlock(
+                              e.Fragment,
+                              null,
+                              e.renderList(ln.value, (i) => (e.openBlock(), e.createElementBlock("option", {
+                                key: i,
+                                value: i
+                              }, e.toDisplayString(t.$t("首帧：{p0}", { p0: i.split(/[\\/]/).pop() })), 9, uu))),
+                              128
+                              /* KEYED_FRAGMENT */
+                            ))
+                          ], 8, cu), [
+                            [e.vModelSelect, l.referenceImage]
+                          ]),
                           e.createElementVNode("em", null, [
                             e.withDirectives(e.createElementVNode("input", {
                               "onUpdate:modelValue": (i) => l.duration = i,
                               type: "number",
                               min: "2",
                               max: "10"
-                            }, null, 8, iu), [
+                            }, null, 8, mu), [
                               [
                                 e.vModelText,
                                 l.duration,
@@ -7472,14 +7513,14 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           e.createElementVNode(
                             "span",
                             null,
-                            e.toDisplayString(t.$t("运镜提示（英文，交给视频模型）")),
+                            e.toDisplayString(t.$t("运镜提示（交给视频模型）")),
                             1
                             /* TEXT */
                           ),
                           e.withDirectives(e.createElementVNode("textarea", {
                             "onUpdate:modelValue": (i) => l.prompt = i,
                             rows: "2"
-                          }, null, 8, su), [
+                          }, null, 8, pu), [
                             [
                               e.vModelText,
                               l.prompt,
@@ -7499,7 +7540,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           e.withDirectives(e.createElementVNode("input", {
                             "onUpdate:modelValue": (i) => l.caption = i,
                             type: "text"
-                          }, null, 8, cu), [
+                          }, null, 8, vu), [
                             [
                               e.vModelText,
                               l.caption,
@@ -7512,7 +7553,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       128
                       /* KEYED_FRAGMENT */
                     ))
-                  ])) : (e.openBlock(), e.createElementBlock("p", du, [
+                  ])) : (e.openBlock(), e.createElementBlock("p", gu, [
                     n[110] || (n[110] = e.createElementVNode(
                       "i",
                       { class: "ri-information-line" },
@@ -7526,7 +7567,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       /* TEXT */
                     )
                   ])),
-                  pl.value ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", uu, [
+                  pl.value ? e.createCommentVNode("v-if", !0) : (e.openBlock(), e.createElementBlock("p", fu, [
                     n[111] || (n[111] = e.createElementVNode(
                       "i",
                       { class: "ri-error-warning-line" },
@@ -7546,7 +7587,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       {
                         class: "button ghost",
                         type: "button",
-                        onClick: n[41] || (n[41] = (l) => et.value = !1)
+                        onClick: n[41] || (n[41] = (l) => tt.value = !1)
                       },
                       e.toDisplayString(t.$t("取消")),
                       1
@@ -7555,7 +7596,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     e.createElementVNode("button", {
                       class: "button primary",
                       type: "submit",
-                      disabled: !F.value.length
+                      disabled: !I.value.length
                     }, [
                       n[112] || (n[112] = e.createElementVNode(
                         "i",
@@ -7569,13 +7610,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         1
                         /* TEXT */
                       )
-                    ], 8, mu)
+                    ], 8, yu)
                   ])
                 ],
                 32
                 /* NEED_HYDRATION */
               )
-            ], 8, Yd)
+            ], 8, Qd)
           ])) : e.createCommentVNode("v-if", !0)
         ])),
         e.createCommentVNode(" ══ 弹出层：历史成片预览 ══ "),
@@ -7596,7 +7637,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 e.createElementVNode("div", null, [
                   e.createElementVNode(
                     "span",
-                    vu,
+                    ku,
                     e.toDisplayString(t.$t("Preview")),
                     1
                     /* TEXT */
@@ -7610,7 +7651,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                   ),
                   e.createElementVNode(
                     "p",
-                    gu,
+                    bu,
                     e.toDisplayString(kl.value),
                     1
                     /* TEXT */
@@ -7628,10 +7669,10 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     -1
                     /* CACHED */
                   )
-                ])], 8, fu)
+                ])], 8, Eu)
               ]),
-              e.createElementVNode("div", yu, [
-                hl.value ? (e.openBlock(), e.createElementBlock("i", hu)) : Nt.value ? (e.openBlock(), e.createElementBlock(
+              e.createElementVNode("div", Nu, [
+                hl.value ? (e.openBlock(), e.createElementBlock("i", Vu)) : Nt.value ? (e.openBlock(), e.createElementBlock(
                   e.Fragment,
                   { key: 1 },
                   [
@@ -7641,23 +7682,23 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       controls: "",
                       autoplay: "",
                       onError: n[44] || (n[44] = (l) => Nt.value = "")
-                    }, null, 40, ku)
+                    }, null, 40, Su)
                   ],
                   2112
                   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
                 )) : (e.openBlock(), e.createElementBlock(
                   "p",
-                  bu,
+                  wu,
                   e.toDisplayString(t.$t("无法读取成片")),
                   1
                   /* TEXT */
                 ))
               ])
-            ], 8, pu)
+            ], 8, hu)
           ])) : e.createCommentVNode("v-if", !0)
         ])),
         (e.openBlock(), e.createBlock(e.Teleport, { to: "body" }, [
-          mt.value ? (e.openBlock(), e.createElementBlock("div", {
+          pt.value ? (e.openBlock(), e.createElementBlock("div", {
             key: 0,
             role: "dialog",
             class: "credential-backdrop",
@@ -7673,7 +7714,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                 e.createElementVNode("div", null, [
                   e.createElementVNode(
                     "span",
-                    Nu,
+                    Du,
                     e.toDisplayString(t.$t("API Connection")),
                     1
                     /* TEXT */
@@ -7681,7 +7722,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                   e.createElementVNode(
                     "h2",
                     null,
-                    e.toDisplayString(Zo.value) + " · " + e.toDisplayString(t.$t("API 凭据配置")),
+                    e.toDisplayString(Qo.value) + " · " + e.toDisplayString(t.$t("API 凭据配置")),
                     1
                     /* TEXT */
                   ),
@@ -7705,9 +7746,9 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                     -1
                     /* CACHED */
                   )
-                ])], 8, Vu)
+                ])], 8, Au)
               ]),
-              Ge.value === "instagram" ? (e.openBlock(), e.createElementBlock("p", wu, [
+              Ge.value === "instagram" ? (e.openBlock(), e.createElementBlock("p", $u, [
                 n[115] || (n[115] = e.createElementVNode(
                   "i",
                   { class: "ri-information-line" },
@@ -7720,7 +7761,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                   1
                   /* TEXT */
                 )
-              ])) : Ge.value === "youtube" ? (e.openBlock(), e.createElementBlock("p", Su, [
+              ])) : Ge.value === "youtube" ? (e.openBlock(), e.createElementBlock("p", Cu, [
                 n[116] || (n[116] = e.createElementVNode(
                   "i",
                   { class: "ri-information-line" },
@@ -7737,10 +7778,10 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
               e.createElementVNode(
                 "form",
                 {
-                  onSubmit: e.withModifiers(ga, ["prevent"])
+                  onSubmit: e.withModifiers(fa, ["prevent"])
                 },
                 [
-                  e.createElementVNode("div", _u, [
+                  e.createElementVNode("div", Bu, [
                     (e.openBlock(!0), e.createElementBlock(
                       e.Fragment,
                       null,
@@ -7755,13 +7796,13 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                           ),
                           l.required ? (e.openBlock(), e.createElementBlock(
                             "em",
-                            Du,
+                            Tu,
                             e.toDisplayString(t.$t("必填")),
                             1
                             /* TEXT */
                           )) : (e.openBlock(), e.createElementBlock(
                             "small",
-                            Au,
+                            Lu,
                             e.toDisplayString(t.$t("可选")),
                             1
                             /* TEXT */
@@ -7778,7 +7819,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                               type: l.secret && !Ae[l.key] ? "password" : "text",
                               placeholder: l.placeholder,
                               autocomplete: "off"
-                            }, null, 8, $u), [
+                            }, null, 8, Pu), [
                               [
                                 e.vModelDynamic,
                                 ge[l.key],
@@ -7801,14 +7842,14 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                                 2
                                 /* CLASS */
                               )
-                            ], 8, Cu)) : e.createCommentVNode("v-if", !0)
+                            ], 8, Iu)) : e.createCommentVNode("v-if", !0)
                           ],
                           2
                           /* CLASS */
                         ),
                         l.hint ? (e.openBlock(), e.createElementBlock(
                           "small",
-                          Bu,
+                          Mu,
                           e.toDisplayString(t.$t(l.hint)),
                           1
                           /* TEXT */
@@ -7818,7 +7859,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       /* KEYED_FRAGMENT */
                     ))
                   ]),
-                  He.value ? (e.openBlock(), e.createElementBlock("p", Tu, [
+                  He.value ? (e.openBlock(), e.createElementBlock("p", Ou, [
                     n[117] || (n[117] = e.createElementVNode(
                       "i",
                       { class: "ri-error-warning-line" },
@@ -7838,7 +7879,7 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                       type: "button",
                       disabled: $e.value,
                       onClick: Bl
-                    }, e.toDisplayString(t.$t("取消")), 9, Lu),
+                    }, e.toDisplayString(t.$t("取消")), 9, Wu),
                     e.createElementVNode("button", {
                       class: "button primary",
                       type: "submit",
@@ -7858,24 +7899,24 @@ const Wa = ["dir"], Fa = { class: "hero" }, Ra = { class: "hero-copy" }, Ua = { 
                         1
                         /* TEXT */
                       )
-                    ], 8, Pu)
+                    ], 8, Fu)
                   ])
                 ],
                 32
                 /* NEED_HYDRATION */
               )
-            ], 8, Eu)
+            ], 8, _u)
           ])) : e.createCommentVNode("v-if", !0)
         ]))
-      ], 8, Wa);
+      ], 8, Fa);
     };
   }
-}), Mu = (O, je) => {
+}), Uu = (O, je) => {
   const H = O.__vccOpts || O;
-  for (const [N, g] of je)
-    H[N] = g;
+  for (const [b, g] of je)
+    H[b] = g;
   return H;
-}, Ou = /* @__PURE__ */ Mu(Iu, [["__scopeId", "data-v-77e3c604"]]);
+}, zu = /* @__PURE__ */ Uu(Ru, [["__scopeId", "data-v-4086a892"]]);
 export {
-  Ou as default
+  zu as default
 };

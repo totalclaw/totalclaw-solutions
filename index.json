@@ -473,7 +473,7 @@
       "icon": "icon-solutions",
       "order": 70,
       "description": "Facebook、Instagram、Google Ads 与 YouTube 全链路投放、复盘和账户优化。",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "release": {
         "channel": "stable",
         "rollout": 100
@@ -520,10 +520,10 @@
       "capabilities": [],
       "path": "solutions/workbench-global-ads",
       "fileCount": 7,
-      "size": 427857,
-      "treeDigest": "631832803956048bbbd9dbba685344b1aae75ed52f221557456601b6ff5c324d",
+      "size": 430189,
+      "treeDigest": "43544aa0b2aa7970e5e07ca7df04f050857584ba5062b9b0274e1468a3edc71c",
       "largeAssets": [],
-      "changelog": "- 页面标题、说明与入口文案跟随工作台新名称（同步 qiye-app 2026-10-27 改名，上一版只改了清单里的名称）。\n- 界面样式：剩余写死的颜色 / 圆角 / 阴影 / 字号改用宿主设计 token，图标去掉 sparkle / emoji，深色强调面按界面主题取色。\n- 按钮交互状态：禁用的按钮悬停不再变色，选中 / 展开态不被悬停覆盖。\n- 测试用例同步 qiye-app（不影响功能）。",
+      "changelog": "- 生成的视频统一用中文：分镜的运镜提示词、字幕、TTS 旁白都写简体中文，不再随界面语言变，也不再带阿语副字幕（阿语标题只用于投放到平台的文案）。\n- 「运镜提示」不再要求英文（豆包 Seedance 原生理解中文提示词），模型未按时返回时的兜底运镜模板也改为中文。\n- 分镜提示词里每个镜头可单独选「首帧参考图」或「不用参考图（纯文生视频）」：选了图就是图生视频，第一帧就是这张图（品牌 logo 等必须原样出现的画面靠它）。\n- 配合 App 侧改动：动态视频按「设置 → 媒体模型」里的默认视频引擎出片（选了豆包 Seedance 就直连方舟），fal 账号失效时自动换通道；动态视频也会把中文字幕烧进画面。",
       "filesRef": "index/workbench-global-ads.json"
     },
     {

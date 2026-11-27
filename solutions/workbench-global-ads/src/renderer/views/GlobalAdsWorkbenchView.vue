@@ -311,13 +311,16 @@
                 <li v-for="(scene, index) in adsPromptScenes" :key="`inline-${scene.id}`">
                   <header>
                     <strong>{{ $t('镜头 {p0}', { p0: index + 1 }) }}</strong>
-                    <small :title="scene.referenceImage">{{ (scene.referenceImage || '').split(/[\\/]/).pop() }}</small>
+                    <select v-model="scene.referenceImage" class="scene-ref" :title="$t('首帧参考图')" @change="persistAdsPromptScenes">
+                      <option value="">{{ $t('不用参考图（纯文生视频）') }}</option>
+                      <option v-for="img in adsRefImageOptions" :key="img" :value="img">{{ $t('首帧：{p0}', { p0: img.split(/[\\/]/).pop() }) }}</option>
+                    </select>
                     <em>
                       <input v-model.number="scene.duration" type="number" min="2" max="10" @change="persistAdsPromptScenes" />{{ $t('秒') }}
                     </em>
                   </header>
                   <label>
-                    <span>{{ $t('运镜提示（英文，交给视频模型）') }}</span>
+                    <span>{{ $t('运镜提示（交给视频模型）') }}</span>
                     <textarea v-model.trim="scene.prompt" rows="2" @change="persistAdsPromptScenes"></textarea>
                   </label>
                   <label>
@@ -1454,13 +1457,16 @@
               <li v-for="(scene, index) in adsPromptScenes" :key="scene.id">
                 <header>
                   <strong>{{ $t('镜头 {p0}', { p0: index + 1 }) }}</strong>
-                  <small :title="scene.referenceImage">{{ (scene.referenceImage || '').split(/[\\/]/).pop() }}</small>
+                  <select v-model="scene.referenceImage" class="scene-ref" :title="$t('首帧参考图')">
+                    <option value="">{{ $t('不用参考图（纯文生视频）') }}</option>
+                    <option v-for="img in adsRefImageOptions" :key="img" :value="img">{{ $t('首帧：{p0}', { p0: img.split(/[\\/]/).pop() }) }}</option>
+                  </select>
                   <em>
                     <input v-model.number="scene.duration" type="number" min="2" max="10" />{{ $t('秒') }}
                   </em>
                 </header>
                 <label>
-                  <span>{{ $t('运镜提示（英文，交给视频模型）') }}</span>
+                  <span>{{ $t('运镜提示（交给视频模型）') }}</span>
                   <textarea v-model.trim="scene.prompt" rows="2"></textarea>
                 </label>
                 <label>
@@ -2387,7 +2393,7 @@ const selectedPublishVideoPath = ref('');
  */
 /**
  * caption = 主字幕（跟随界面语言，同时用于 TTS 朗读）；
- * captionAr = 副字幕（阿语，只烧进画面、**不参与朗读**）。
+ * captionAr = 副字幕（阿语）。2026-11-27 起成片统一中文，新生成的分镜恒为空，字段只为兼容旧存档保留。
  * 两者必须分开存：合成一个字段的话，narrationFromScenes 会把阿语也一起念出来。
  */
 interface AdsPromptScene { id: string; referenceImage: string; duration: number; prompt: string; caption: string; captionAr: string }
@@ -2404,6 +2410,17 @@ const adsPromptScenes = ref<AdsPromptScene[]>((() => {
  * 单看 adsPromptScenes.length 不够 —— 提示词要留着（下次还能用），只是这轮不选它。
  */
 const ADS_PROMPT_CHOSEN_KEY = 'totalclaw:global-ads-prompt-chosen:v1';
+/**
+ * 每个镜头可选的首帧参考图：已载入素材里的图片 + 分镜里已经指定过的图。
+ * 选「不用参考图」= 纯文生视频；选了图 = 图生视频，画面第一帧就是这张图
+ * （品牌 logo 这类必须原样出现的东西靠它，文生视频画不出真 logo）。
+ */
+const adsRefImageOptions = computed<string[]>(() => {
+  const set = new Set<string>();
+  for (const item of creativeAssets.value) if (item.kind === 'image' && item.absolutePath) set.add(String(item.absolutePath));
+  for (const scene of adsPromptScenes.value) if (scene.referenceImage) set.add(scene.referenceImage);
+  return [...set];
+});
 const adsPromptChosen = ref<boolean>((() => {
   const saved = localStorage.getItem(ADS_PROMPT_CHOSEN_KEY);
   // 没存过就沿用老行为：有提示词即视为选中
@@ -2446,16 +2463,14 @@ async function generateAdsPromptScenes(): Promise<void> {
     try {
       const reply = await askLlmOnce('marketing-content-creator', [
         i18nT('为品牌「{p0}」写一条面向阿联酋市场的 15–30 秒广告分镜，3 个场景。', { p0: brand }),
-        creativeBrief.arabicHeadline.trim() ? i18nT('阿语广告标题：{p0}', { p0: creativeBrief.arabicHeadline.trim() }) : '',
         adsVideoBrief.value.trim(),
         i18nT('可用的首帧参考图（按顺序分配，一个场景一张）：') + '\n' + images.map((path: string, i: number) => `${i + 1}. ${path}`).join('\n'),
         // 运镜 prompt 必须是英文（视频模型只吃英文），但字幕是给人看/给 TTS 念的，跟随界面语言。
-        // 原来写死「中英/阿语」，界面切成别的语言时字幕和旁白都对不上。
-        // 这是阿联酋市场的投放物料：主讲与主字幕跟随界面语言，阿语作为副字幕固定保留。
+        // 2026-11-27 用户要求：本工作台生成的视频一律中文（运镜提示、字幕、旁白），不再带阿语副字幕。
         // 运镜 prompt 必须英文（视频模型只吃英文）。
-        i18nT('每个场景给三样：① 运镜与画面变化的英文 prompt（要有明确的镜头运动，不要只"轻微动"）；② 一句{p0}主字幕（会同时用于配音朗读）；③ 同一句话的阿拉伯语副字幕。', { p0: copyLanguage().label }),
+        ADS_VIDEO_ZH_RULE(),
         i18nT('只输出 JSON，不要解释、不要代码块。格式：')
-          + ' {"scenes":[{"reference_image":"上面列出的绝对路径","duration":5,"prompt":"camera move…","caption":"主字幕","caption_ar":"阿语副字幕"}]}',
+          + ' {"scenes":[{"reference_image":"上面列出的绝对路径","duration":5,"prompt":"中文运镜提示…","caption":"中文字幕"}]}',
         i18nT('严禁编造价格、优惠、功效或上下文里没有的事实。'),
       ].filter(Boolean).join('\n'), 40_000);
       const parsed = extractJsonObject(reply);
@@ -2466,7 +2481,8 @@ async function generateAdsPromptScenes(): Promise<void> {
           duration: Number(scene?.duration) > 0 ? Math.min(10, Number(scene.duration)) : 5,
           prompt: String(scene?.prompt || '').trim(),
           caption: String(scene?.caption || '').trim(),
-          captionAr: String(scene?.caption_ar || '').trim(),
+          // 成片统一中文（2026-11-27 用户要求）：不再要阿语副字幕
+          captionAr: '',
         }))
         .filter((scene: AdsPromptScene) => scene.prompt);
       adsPromptNote.value = scenes.length ? i18nT('已按素材生成分镜提示词，可逐条修改。') : '';
@@ -2475,21 +2491,15 @@ async function generateAdsPromptScenes(): Promise<void> {
     }
     if (!scenes.length) {
       // 确定性兜底：一图一镜、运镜模板轮换、字幕只用已填内容，不编事实
-      const moves = [
-        'slow push in, cinematic lighting, subtle parallax',
-        'slow pan right, shallow depth of field, natural light',
-        'gentle pull back revealing the scene, cinematic grade',
-        'slow tilt up, soft highlights, premium look',
-      ];
-      const caption = creativeBrief.arabicHeadline.trim() || brand;
+      const moves = ADS_ZH_FALLBACK_MOVES();
+      const caption = brand;
       scenes = images.slice(0, 3).map((image: string, index: number) => ({
         id: `0${index + 1}`,
         referenceImage: image,
         duration: 5,
         prompt: moves[index % moves.length],
         caption: index === 0 ? caption : '',
-        // 兜底只用用户填过的内容，没有可用的阿语副字幕就留空（不编）
-        captionAr: index === 0 ? creativeBrief.arabicHeadline.trim() : '',
+        captionAr: '',
       }));
     }
     adsPromptScenes.value = scenes;
@@ -2544,9 +2554,9 @@ function buildAdsVideoBrief(): string {
     ? i18nT('图片成片')
     : (videoModelLabel.value || i18nT('动态视频生成'));
   const voice = adsVideoVoiceover.value
-    ? i18nT('阿英双语字幕 + TTS 旁白')
-    : i18nT('阿英双语字幕（不加 AI 旁白，保留素材原声）');
-  return i18nT('制作一条 15–30 秒 UAE 广告视频（画幅：{p0}；成片方式：{p1}）：阿语 RTL 标题 + {p2}；突出品牌核心卖点与明确的行动引导；只使用素材内可核验的事实。', {
+    ? i18nT('中文字幕 + 中文 TTS 旁白')
+    : i18nT('中文字幕（不加 AI 旁白，保留素材原声）');
+  return i18nT('制作一条 15–30 秒广告视频（画幅：{p0}；成片方式：{p1}）：{p2}，画面内文字一律用简体中文；突出品牌核心卖点与明确的行动引导；只使用素材内可核验的事实。', {
     p0: aspects, p1: mode, p2: voice,
   });
 }
@@ -2898,7 +2908,7 @@ async function preflightAdsGeneration(dir: string): Promise<void> {
   if (typeof lister !== 'function') return; // 老版本没有扫描通道：交给脚本自己报错
   if (adsVideoMode.value === 'dynamic') {
     const savedScenes = adsPromptChosen.value
-      && adsPromptScenes.value.some((scene) => scene.prompt.trim() && scene.referenceImage);
+      && adsPromptScenes.value.some((scene) => scene.prompt.trim());
     const loadedImages = creativeAssets.value.some((item) => item.kind === 'image' && item.absolutePath);
     // 分镜自带参考图绝对路径 / 素材已载入内存：都不依赖目录扫描
     if (savedScenes || loadedImages) return;
@@ -3192,7 +3202,7 @@ const adsCronPresets: ReadonlyArray<{ key: string; name: string; desc: string; c
     name: i18nT('阿联酋广告·定时视频投放'),
     desc: i18nT('按计划从素材库真实生成 UAE 广告视频并自动发布到已登录平台（需先选择素材库）'),
     cron: '30 10 * * *',
-    prompt: i18nT('用「阿联酋广告投放」能力执行一轮定时视频投放：从素材库 {materialDir} 读取素材，真实生成一条 15–30 秒 9:16 的 UAE 广告视频（阿语 RTL 标题 + 阿英双语字幕 + TTS 旁白），随后对已登录的平台执行真实发布（YouTube 经外部 Chrome 上传，Meta 经 Business Suite），发布结果与回执写入审计；未登录的平台如实标记跳过，不得伪造成功。'),
+    prompt: i18nT('用「阿联酋广告投放」能力执行一轮定时视频投放：从素材库 {materialDir} 读取素材，真实生成一条 15–30 秒 9:16 的广告视频（中文字幕 + 中文 TTS 旁白，画面内文字一律用简体中文），随后对已登录的平台执行真实发布（YouTube 经外部 Chrome 上传，Meta 经 Business Suite），发布结果与回执写入审计；未登录的平台如实标记跳过，不得伪造成功。'),
   },
 ];
 const adsCronEnabled = reactive<Record<string, boolean>>({ review: true, patrol: true, weekly: true, video: false });
@@ -3739,17 +3749,15 @@ async function runSlideshowFastPath(
   let narration: Array<{ id: string; text: string }> = [];
   let subtitles: Array<{ start: number; end: number; text: string }> = [];
   /**
-   * 兜底文案：只用用户已经填过的内容（品牌 / 阿语标题 / 话题）拼，**不编事实**。
+   * 兜底文案：只用用户已经填过的内容（品牌 / 话题）拼，**不编事实**。成片统一中文，不再带阿语标题。
    * 有它才敢给 LLM 设短超时 —— 模型慢就走这份，成片不会被文案卡住。
    */
   const lang = copyLanguage();
   const fallbackCopy = (): Array<{ en: string; ar: string }> => {
     const brandName = brand.trim();
-    const ar = creativeBrief.arabicHeadline.trim();
     const topics = String(platformTopics.instagram || platformTopics.facebook || '').trim();
     const lines: Array<{ en: string; ar: string }> = [];
-    if (brandName) lines.push({ en: brandName, ar });
-    else if (ar) lines.push({ en: '', ar });
+    if (brandName) lines.push({ en: brandName, ar: '' });
     if (topics) lines.push({ en: topics, ar: '' });
     return lines.filter((line) => line.en || line.ar);
   };
@@ -3764,12 +3772,11 @@ async function runSlideshowFastPath(
        * 差的就是这里。25 秒拿不到就用兜底文案，成片照常出。
        */
       const reply = await askLlmOnce('marketing-content-creator', [
-        i18nT('为品牌「{p0}」写一条面向阿联酋市场的短视频广告旁白，3 句，每句 6–12 个词，口语、可直接朗读。', { p0: brand }),
+        i18nT('为品牌「{p0}」写一条短视频广告旁白，3 句，每句 12–24 个字，口语、可直接朗读。', { p0: brand }),
         // 旁白语言跟随界面语言（原来写死英文），否则中文用户会听到中文音色念英文
         i18nT('旁白（primary 字段）必须用{p0}撰写。', { p0: lang.label }),
-        creativeBrief.arabicHeadline.trim() ? i18nT('阿语广告标题：{p0}', { p0: creativeBrief.arabicHeadline.trim() }) : '',
         i18nT('只输出 JSON，不要解释、不要代码块。格式：')
-          + ` {"lines":[{"primary":"${lang.label}旁白","ar":"阿语字幕"}]}`,
+          + ` {"lines":[{"primary":"${lang.label}旁白"}]}`,
         i18nT('严禁编造价格、优惠、功效或上下文里没有的事实。'),
       ].filter(Boolean).join('\n'), 25_000);
       const parsed = extractJsonObject(reply);
@@ -3782,17 +3789,12 @@ async function runSlideshowFastPath(
       narration = lines.map((line: AnyRecord, index: number) => ({
         id: `s${index + 1}`, text: primaryOf(line),
       })).filter((item: { text: string }) => item.text);
-      subtitles = lines.map((line: AnyRecord, index: number) => {
-        const primary = primaryOf(line);
-        const arabic = String(line?.ar || '').trim();
-        // 界面本来就是阿语时，两行会重复，只留一行
-        const rows = lang.code === 'ar' ? [primary || arabic] : [primary, arabic];
-        return {
-          start: 1 + index * 7,
-          end: 6.5 + index * 7,
-          text: rows.filter(Boolean).join('\n'),
-        };
-      }).filter((item: { text: string }) => item.text);
+      // 成片统一中文：字幕只烧中文旁白这一行（不再加阿语副字幕）
+      subtitles = lines.map((line: AnyRecord, index: number) => ({
+        start: 1 + index * 7,
+        end: 6.5 + index * 7,
+        text: primaryOf(line),
+      })).filter((item: { text: string }) => item.text);
     } catch (error) {
       // 模型慢/挂了都不阻断成片：改用只含用户已填内容的兜底文案，并如实说明
       const lines = fallbackCopy();
@@ -3801,8 +3803,8 @@ async function runSlideshowFastPath(
       subtitles = lines.map((line, index) => ({
         start: 1 + index * 7,
         end: 6.5 + index * 7,
-        // 兜底文案只含用户自己填过的品牌/阿语标题/话题，本来就没有语言可选，原样呈现
-        text: [line.en, line.ar].filter(Boolean).join('\n'),
+        // 兜底文案只含用户自己填过的品牌 / 话题，原样呈现
+        text: String(line.en || '').trim(),
       })).filter((item) => item.text);
       adsGenMessage.value = narration.length
         ? i18nT('模型未在 25 秒内返回，已改用你填写的品牌与标题作为文案：{p0}', { p0: errorMessage(error) })
@@ -4002,17 +4004,15 @@ async function runFalShotsFastPath(
    * （实测：第 3 步显示「提示词已就绪」，第 5 步却报"需要图片素材"）。
    */
   const savedScenes = (adsPromptChosen.value ? adsPromptScenes.value : [])
-    .filter((scene) => scene.prompt.trim() && scene.referenceImage)
+    // 参考图可以不选（纯文生视频），只要有提示词就算有效分镜
+    .filter((scene) => scene.prompt.trim())
     .map((scene, index) => ({
       id: scene.id || `0${index + 1}`,
-      reference_image: scene.referenceImage,
+      reference_image: scene.referenceImage || '',
       duration: Number(scene.duration) > 0 ? Math.min(10, Number(scene.duration)) : 5,
       prompt: scene.prompt.trim(),
-      // 烧进画面的是「主字幕 + 阿语副字幕」两行；朗读走 narrationFromScenes，只取主字幕
-      caption: [scene.caption.trim(), (scene.captionAr || '').trim()]
-        .filter(Boolean)
-        .filter((line, i, arr) => arr.indexOf(line) === i)   // 界面本就是阿语时两行会重复
-        .join('\n'),
+      // 成片统一中文：只烧中文字幕（旧数据里存着的阿语副字幕不再带进画面）
+      caption: scene.caption.trim(),
     }));
   if (savedScenes.length) {
     // 直接读提示词，这一步是本地取值，不该有等待
@@ -4036,16 +4036,11 @@ async function runFalShotsFastPath(
 
   /**
    * 确定性兜底分镜：一张参考图一个镜头，运镜提示走固定模板轮换，
-   * 字幕只用用户已填的阿语标题/品牌 —— **不编任何事实**。
+   * 字幕只用用户已填的品牌 —— **不编任何事实**。
    */
   const fallbackScenes = (refs: string[]): AnyRecord[] => {
-    const moves = [
-      'slow push in, cinematic lighting, subtle parallax',
-      'slow pan right, shallow depth of field, natural light',
-      'gentle pull back revealing the scene, cinematic grade',
-      'slow tilt up, soft highlights, premium look',
-    ];
-    const caption = creativeBrief.arabicHeadline.trim() || brand.trim();
+    const moves = ADS_ZH_FALLBACK_MOVES();
+    const caption = brand.trim();
     return refs.slice(0, 4).map((image, index) => ({
       id: `0${index + 1}`,
       reference_image: image,
@@ -4061,11 +4056,10 @@ async function runFalShotsFastPath(
   try {
     const reply = await askLlmOnce('marketing-content-creator', [
       i18nT('为品牌「{p0}」写一条面向阿联酋市场的 15–30 秒广告分镜，3 个场景。', { p0: brand }),
-      creativeBrief.arabicHeadline.trim() ? i18nT('阿语广告标题：{p0}', { p0: creativeBrief.arabicHeadline.trim() }) : '',
       i18nT('可用的首帧参考图（按顺序分配，一个场景一张）：') + '\n' + images.map((path: string, i: number) => `${i + 1}. ${path}`).join('\n'),
-      i18nT('每个场景给：运镜与画面变化的英文 prompt（要有明确的镜头运动，不要只"轻微动"），以及一句中英/阿语字幕。'),
+      ADS_VIDEO_ZH_RULE(),
       i18nT('只输出 JSON，不要解释、不要代码块。格式：')
-        + ' {"scenes":[{"reference_image":"上面列出的绝对路径","duration":5,"prompt":"camera move…","caption":"字幕"}]}',
+        + ' {"scenes":[{"reference_image":"上面列出的绝对路径","duration":5,"prompt":"中文运镜提示…","caption":"中文字幕"}]}',
       i18nT('严禁编造价格、优惠、功效或上下文里没有的事实。'),
     ].filter(Boolean).join('\n'), 40_000);
     const parsed = extractJsonObject(reply);
@@ -5277,11 +5271,31 @@ function numberOrDash(value: unknown): string {
  * `targeting.languages: ['ar','en']`（投给 UAE 哪些语言的人群）是两回事，那个不动。
  * 阿语标题是用户自己填的 UAE 市场素材，作为附加字幕行保留。
  */
+/**
+ * 成片文案（字幕 / 旁白）的语言。2026-11-27 用户要求：本工作台生成的视频一律用中文，
+ * 不再跟随界面语言、也不带阿语副字幕。投放到平台的文案（阿语标题、话题）不受影响。
+ */
 function copyLanguage(): { code: 'zh' | 'en' | 'ar'; label: string; voice: string } {
-  const loc = String(i18n.global.locale.value || 'zh-CN');
-  if (loc === 'ar') return { code: 'ar', label: i18nT('阿拉伯语'), voice: 'ar-AE-FatimaNeural' };
-  if (loc.startsWith('en')) return { code: 'en', label: i18nT('英语'), voice: 'en-US-AriaNeural' };
   return { code: 'zh', label: i18nT('简体中文'), voice: 'zh-CN-XiaoxiaoNeural' };
+}
+
+/** 分镜要求：运镜提示与字幕都写简体中文（豆包 Seedance 原生理解中文提示词，用户也能直接改） */
+function ADS_VIDEO_ZH_RULE(): string {
+  return i18nT('每个场景给两样：① 运镜与画面的中文提示词（交给视频模型，写清镜头运动、主体、光线与质感，要有明确的镜头运动，不要只"轻微动"，画面里不要出现可读文字）；② 一句简体中文字幕（会同时用于配音朗读）。全部用简体中文，不要阿拉伯语或英文字幕。');
+}
+
+/**
+ * 模型没按时返回分镜时的确定性运镜模板。
+ * i18n-ignore：这是交给视频模型的中文提示词（成片统一中文），不是界面文案，任何界面语言下都必须是中文。
+ */
+const ADS_ZH_FALLBACK_MOVE_LIST: readonly string[] = [
+  '缓慢推镜，电影感布光，轻微视差',
+  '缓慢向右横移，浅景深，自然光',
+  '缓慢拉远展现全景，电影级调色',
+  '缓慢上摇，柔和高光，高级质感',
+];
+function ADS_ZH_FALLBACK_MOVES(): string[] {
+  return [...ADS_ZH_FALLBACK_MOVE_LIST];
 }
 
 function localeForFormat(): string {
@@ -5909,6 +5923,10 @@ onBeforeUnmount(() => {
 .prompt-scenes li > header small {
   flex: 1; min-width: 0; color: var(--color-text-muted); font-size: 10px;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.prompt-scenes li > header .scene-ref {
+  flex: 1; min-width: 0; height: 26px; padding: 0 6px; border: 1px solid var(--color-border); border-radius: var(--radius-2);
+  background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 10.5px;
 }
 .prompt-scenes li > header em { display: flex; align-items: center; gap: 4px; color: var(--color-text-muted); font-size: 10px; font-style: normal; }
 .prompt-scenes li > header em input { width: 46px; height: 26px; padding: 0 6px; border: 1px solid var(--color-border); border-radius: var(--radius-2); background: var(--color-bg-input); color: var(--color-text-primary); font: inherit; font-size: 10.5px; }
